@@ -1,0 +1,43 @@
+#verificador_edad{
+  width: 600px;
+  margin: 0 auto;
+  background: #F5F5F5;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+
+p, h4 {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin: 0px;
+    color:  #771010;
+    font-family: 'Arial', sans-serif;
+    text-align: center
+}
+
+ul{
+  list-style-type: none;
+  width: 100%;
+}
+
+li{
+  display: inline-block;
+  width: 32%
+}
+
+button{
+  border: none;
+  background: #910404;
+  width: 100px;
+  margin: 0 auto;
+  padding: 10px;
+  color: #fff;
+  display: block;
+}
+
+input{
+  padding: 10px;
+  border: 1px solid #9c0303;
+  color: #990000;
+}

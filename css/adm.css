@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Roboto Slab', serif;
+	}
+	body{
+		background: url("../image/logo3.png");
+		background-size: 100vw 100vh;
+		background-repeat: no-repeat;
+	}
+	.capa{
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0,0,0,0.6);
+		z-index: -1;
+		top: 0;left: 0;
+	}
+	/*Estilos para el encabezado*/
+	.header{
+		width: 100%;
+		height: 100px;
+		position: fixed;
+		top: 0;left: 0;
+	}
+	.container{
+		width: 100%;
+		max-width: 1000px;
+		margin: auto;
+	}
+	.container .btn-menu, .logo{
+		float: left;
+		line-height:200px;
+	}
+	.container .btn-menu label{
+		color: #990033;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	.logo h1{
+		color: #fff;
+		font-weight: 400;
+		font-size: 22px;
+		margin-left: 10px;
+	}
+	.container .menu{
+		float: right;
+		line-height: 100px;
+	}
+	.container .menu a{
+		display: inline-block;
+		padding: 15px;
+		line-height: normal;
+		text-decoration: none;
+		color: #fff;
+		transition: all 0.3s ease;
+		border-bottom: 2px solid transparent;
+		font-size: 15px;
+		margin-right: 5px;
+	}
+	.container .menu a:hover{
+		border-bottom: 2px solid #c7c7c7;
+		padding-bottom: 5px;
+	}
+	/*Fin de Estilos para el encabezado*/
+
+	/*Menù lateral*/
+	#btn-menu{
+		display: none;
+	}
+	.container-menu{
+		position: absolute;
+		background: rgba(0,0,0,0.5);
+		width: 100%;
+		height: 100vh;
+		top: 0;left: 0;
+		transition: all 500ms ease;
+		opacity: 0;
+		visibility: hidden;
+	}
+	#btn-menu:checked ~ .container-menu{
+		opacity: 1;
+		visibility: visible;
+	}
+	.cont-menu{
+		width: 100%;
+		max-width: 250px;
+		background: #1c1c1c;
+		height: 500vh;
+		position: relative;
+		transition: all 500ms ease;
+		transform: translateX(-100%);
+	}
+	#btn-menu:checked ~ .container-menu .cont-menu{
+		transform: translateX(0%);
+	}
+	.cont-menu nav{
+		transform: translateY(15%);
+	}
+	.cont-menu nav a{
+		display: block;
+		text-decoration: none;
+		padding: 20px;
+		color: #cccccc;
+		border-left: 5px solid transparent;
+		transition: all 400ms ease;
+	}
+	.cont-menu nav a:hover{
+		border-left: 10px solid #cccccc;
+		background: #990033;
+	}
+	.cont-menu label{
+		position: absolute;
+		right: 5px;
+		top: 10px;
+		color: #cccccc;
+		cursor: pointer;
+		font-size: 18px;
+	}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url("https://healthcorp.com.au/public/wp-content/uploads/2015/10/bg-grey-shapes.png");
+    background-size: cover;
+    font-family: 'Roboto Slab', serif;
+}
+
+#tema {
+    background: orange;
+    text-align: left;
+    padding: 10px 5px;
+    text-align: center;
+    position: fixed;
+    top: 25px;
+    left: 5px;
+    font-size: 15px;
+    border-radius: .5%;
+}
+
+audio {
+    background: orange;
+    height: 50px;
+    width: 100%;
+}
+
+header img {
+    margin-top: 20px;
+    height: 100px;
+    width: 100px;
+}
+
+#container {
+    background: #FFF;
+    width: 70%;
+    margin: 25px auto;
+    border: 1px solid;
+    border-radius: .5%;
+}
+
+header {
+    background: #990033;
+    text-align: center;
+    padding: 1%;
+    color: white;
+}
+
+form {
+    margin: 5%;
+    width: 70%;
+}
+
+fieldset {
+    border: 0px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+#country,
+input[type="email"],
+input[type="password"],
+textarea {
+    border: 1px solid #990033;
+    display: block;
+    margin: 10px auto;
+    padding: 2%;
+    width: 100%;
+}
+
+input[type="radio"] {
+    margin-top: 1.5%;
+}
+
+#submitButton {
+    background: #c1beba;
+    padding: 15px 10px;
+    float: left;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+#submitButton:hover {
+    filter: brightness(115%);
+}
+
+#resetButton {
+    background: #e24f2b;
+    padding: 15px 10px;
+    color: white;
+    float: right;
+    cursor: pointer;
+}
+
+#resetButton:hover {
+    filter: brightness(115%);
+}
+
+#part-1 label:after {
+    content: " *";
+    color: red;
+}
+
+#part-2 label:after {
+    content: " *";
+    color: red;
+}
+
+textarea {
+    resize: none;
+}
+
+/*Media Query */
+
+@media all and (min-width: 0px) and (max-width: 320px) {
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    #container {
+        width: 90%;
+        margin-top: 20%;
+    }
+    #tema {
+        width: 100%;
+        left: .5px;
+        top: 0;
+    }
+    #resetButton {
+        float: left;
+    }
+}
+
+@media all and (min-width: 321px) and (max-width: 480px) {
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    #container {
+        width: 90%;
+        margin-top: 13%;
+    }
+    #tema {
+        width: 100%;
+        left: .5px;
+        top: 0;
+    }
+    #resetButton {
+        float: left;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 568px) {
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    #container {
+        width: 90%;
+        margin-top: 10%;
+    }
+    #tema {
+        width: 100%;
+        left: .5px;
+        top: 0;
+    }
+}
+
+@media all and (min-width: 569px) and (max-width: 768px) {
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    #container {
+        width: 90%;
+        margin-top: 7%;
+    }
+    #tema {
+        width: 100%;
+        left: .5px;
+        top: 0;
+    }
+}

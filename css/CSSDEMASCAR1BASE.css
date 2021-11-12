@@ -1,0 +1,21 @@
+.has-error .form-control, .has-error .custom-select {
+    border: 3px solid #ff642d;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+.help-block, .has-error span.required {
+    color: #ff642d;
+}
+.help-block {
+    display: block;
+}
+
+.has-success .form-control, has-success .custom-select {
+    border: 3px solid #2cdf95!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.ui.label { background-color: #EEE; color: #666 !important; font-size: 13px; }
+.ui.label .icon:before { content: '\f00d'; font-family: fontAwesome; font-style: normal; font-size: 12px; padding-left: 5px; position: relative; top: -1px; }
+.ui.label .icon:hover:before { color: #F00; }
