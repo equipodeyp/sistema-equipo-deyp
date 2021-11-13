@@ -10,6 +10,8 @@ if ($verifica == 1) {
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
   // carga de datsos
+  date_default_timezone_set('UTC');
+  date_default_timezone_set("America/Mexico_City");
   $unidad =$_POST['unidad'];
   $sede=$_POST['sede'];
   $r_sede= substr("$sede", 0,3);//obteniendo las tres primeras letras
