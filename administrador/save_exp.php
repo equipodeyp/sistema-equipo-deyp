@@ -9,7 +9,11 @@ if ($verifica == 1) {
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
-  // carga de datsos
+  // carga de datos
+  // cambio de zona horaria
+  // nuevo comentario
+  date_default_timezone_set('UTC');
+  date_default_timezone_set("America/Mexico_City");
   $unidad =$_POST['unidad'];
   $sede=$_POST['sede'];
   $r_sede= substr("$sede", 0,3);//obteniendo las tres primeras letras
