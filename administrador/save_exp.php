@@ -22,7 +22,7 @@ if ($verifica == 1) {
   $n=$num_consecutivo;
   $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
   $año = date("Y");
-  $fechaActual = date('Y-m-d');
+  $fechaActual = date('y/m/d');
   // consulta del municipio
   $sentencia=" SELECT nombre, clave FROM municipios WHERE clave='$municipio'";
   $result = $mysqli->query($sentencia);

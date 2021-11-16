@@ -113,7 +113,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
             echo '<div class="col-md-6 mb-3 validar" id="asistencia" >';
               echo '<label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>';
               echo '<select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">';
-              echo '<option id="opt-medida-asistencia" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
+              echo '<option id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $asistencia = "SELECT * FROM medidaasistencia";
                 $answerasis = $mysqli->query($asistencia);
                 while($asistencias = $answerasis->fetch_assoc()){
@@ -127,23 +127,23 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
                 <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="'.$rowmedida['descripcion'].'" placeholder="" type="text">
               </div>';
             }
-          } elseif ($rowmedida['clasificacion']=='RESGUARDO') {
-            echo '<div class="col-md-6 mb-3 validar" id="resguardo" >
-              <label for="MEDIDAS_RESGUARDO">MEDIDAS_RESGUARDO<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" >
-                <option value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
+          }  else if($rowmedida['clasificacion']=='RESGUARDO') {
+            echo '<div class="col-md-6 mb-3 validar" id="resguardo" >';
+              echo '<label for="MEDIDAS_RESGUARDO">MEDIDAS_RESGUARDO<span class="required"></span></label>';
+              echo '<select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" >';
+              echo '<option id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $resguardo = "SELECT * FROM medidaresguardo";
                 $answerres = $mysqli->query($resguardo);
                 while($resguardos = $answerres->fetch_assoc()){
                  echo "<option value='".$resguardos['nombre']."'>".$resguardos['nombre']."</option>";
                 }
-                echo '</select>
-            </div>';
+                echo '</select>';
+            echo '</div>';
             if ($rowmedida['medida']=='XI. EJECUCION DE MEDIDAS PROCESALES') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
                <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
-               <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
-                 <option value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
+               <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
+                 <option id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxi = "SELECT * FROM medidaresguardoxi";
                  $answerresxi = $mysqli->query($resguardoxi);
                  while($resguardosxi = $answerresxi->fetch_assoc()){
@@ -151,11 +151,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
                  }
                echo  '</select>
              </div>';
-           } elseif ($rowmedida['medida']=='XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
+           } else if ($rowmedida['medida']=='XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxii">
                <label for="RESGUARDO_XII">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
-               <select class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
-                 <option value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
+               <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
+                 <option id="opt-medida-resguardo"value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxii = "SELECT * FROM medidaresguardoxii";
                  $answerresxii = $mysqli->query($resguardoxii);
                  while($resguardosxii = $answerresxii->fetch_assoc()){
@@ -293,8 +293,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
             if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
               echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
                 <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                  <option value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
+                <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
+                  <option id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
                   $art35 = "SELECT * FROM conclusionart35";
                   $answerart35 = $mysqli->query($art35);
                   while($art35s = $answerart35->fetch_assoc()){
@@ -470,9 +470,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 function myFunctionHidden() {
   document.getElementById("opt-tipo-medida").style.visibility = "hidden";
   document.getElementById("opt-clasificacion-medida").style.visibility = "hidden";
-  document.getElementById("opt-medida-asistencia").style.visibility = "hidden";
+  document.getElementById("opt-medida").style.visibility = "hidden";
+  document.getElementById("opt-medida-resguardo").style.visibility = "hidden";
   document.getElementById("opt-medida-modificada").style.visibility = "hidden";
   document.getElementById("opt-conclusion-cancelacion").style.visibility = "hidden";
+  document.getElementById("opt-conclusion-art35").style.visibility = "hidden";
   document.getElementById("opt-estatus-medida").style.visibility = "hidden";
   document.getElementById("opt-municipio-ejecucion-medida").style.visibility = "hidden";
   document.getElementById("opt-fuente").style.visibility = "hidden";

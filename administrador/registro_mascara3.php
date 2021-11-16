@@ -43,9 +43,14 @@ $ro_persona=$r_d_persona->fetch_assoc();
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <!-- <script src="JQuery.js"></script> -->
-        <script src="../js/Javascript.js"></script>
+<script src="../js/Javascript.js"></script>
+<script src="../js/validarmascara3.js"></script>
 
-        <script src="../js/validarmascara3.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
 </head>
 <body >
 <div class="contenedor">
@@ -271,12 +276,26 @@ $ro_persona=$r_d_persona->fetch_assoc();
     </article>
   </div>
 </div>
-
-
   </div>
 </div>
 <div class="contenedor">
 <a href="admin.php" class="btn-flotante">CANCELAR</a>
 </div>
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("FECHA_AUTORIZACION_ANALISIS").setAttribute("max", today);
+document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").setAttribute("max", today);
+document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
+</script>
 </body>
 </html>
