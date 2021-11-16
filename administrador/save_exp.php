@@ -10,7 +10,8 @@ if ($verifica == 1) {
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
   // carga de datos
-  // cambio de zona horaria 
+  // cambio de zona horaria
+  // nuevo comentario
   date_default_timezone_set('UTC');
   date_default_timezone_set("America/Mexico_City");
   $unidad =$_POST['unidad'];
