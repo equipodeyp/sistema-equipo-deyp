@@ -590,7 +590,7 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">FOTOGRAFIA DEL SUJETO</h3>
           </div>
           <section class="text-center" >
-            <input type="file" name="foto" id="archivoInput" class="col-md-offset-3 col-md-7" onchange="return validarExt()" / >
+            <input class="input-group" type="file" name="user_image" accept="image/*" />
             <br><br>
             <div id="visorArchivo">
           <!--Aqui se desplegará el fichero-->

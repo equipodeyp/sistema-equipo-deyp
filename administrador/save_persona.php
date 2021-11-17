@@ -162,12 +162,34 @@ if ($verifica == 1) {
   // $name_radicacion=$ro_rad['nombre'];
 
   // sql de la inserccion de los datos de la persona
-  if(is_uploaded_file($_FILES['foto']['tmp_name'])){
-      $archivo = $_FILES['foto']['name'];
-      move_uploaded_file($_FILES['foto']['tmp_name'], '../imagenesbdd/'.$archivo);
+  $imgFile = $_FILES['user_image']['name'];
+  $tmp_dir = $_FILES['user_image']['tmp_name'];
+  $imgSize = $_FILES['user_image']['size'];
+  $upload_dir = '../imagenesbdd/'; // upload directory
+
+  $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+
+  // valid image extensions
+  $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+
+  // rename uploading image
+  $userpic = rand(1000,1000000).".".$imgExt;
+
+  // allow valid image file formats
+  if(in_array($imgExt, $valid_extensions)){
+    // Check file size '1MB'
+    if($imgSize < 1000000)				{
+      move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+    }
+    else{
+      $errMSG = "Su archivo es muy grande.";
+    }
+  }
+  else{
+    $errMSG = "Solo archivos JPG, JPEG, PNG & GIF son permitidos.";
   }
   $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus)
-                    VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$estatus')";
+                    VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$userpic', '$estatus')";
   $res_dat_per = $mysqli->query($datos_persona);
   $qry = "select max(ID) As id from datospersonales";
   $result = $mysqli->query($qry);

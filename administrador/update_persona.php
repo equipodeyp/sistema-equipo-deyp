@@ -206,23 +206,48 @@ if ($verifica_update_person == 1) {
   //     $archivo = $_FILES['foto1']['name'];
   //     move_uploaded_file($_FILES['foto1']['tmp_name'], '../imagenesbdd/'.$archivo);
   // }
-  if(is_uploaded_file($_FILES['foto1']['tmp_name'])){
-      $archivo = $_FILES['foto1']['name'];
-      move_uploaded_file($_FILES['foto1']['tmp_name'], '../imagenesbdd/'.$archivo);
-      unlink('../imagenesbdd/'.$foto_previa);
 
-  }
   // $nom_archivo=$_FILES['foto1']['name']; // Para conocer el nombre del archivo
   // $ruta = "../imagenesbdd/" . $nom_archivo;  // La ruta del archivo contiene el nuevo nombre y el tipo de extension
   // $archivo = $_FILES['foto1']['tmp_name']; //el arhivo a subir
   // $subir=move_uploaded_file($archivo, $ruta); //se sube el archivo
 
-
+  $imgFile = $_FILES['user_image']['name'];
+	$tmp_dir = $_FILES['user_image']['tmp_name'];
+	$imgSize = $_FILES['user_image']['size'];
+  if($imgFile)
+	{
+		$upload_dir = '../imagenesbdd/'; // upload directory
+		$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+		$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+		$userpic = rand(1000,1000000).".".$imgExt;
+		if(in_array($imgExt, $valid_extensions))
+		{
+			if($imgSize < 1000000)
+			{
+				unlink($upload_dir.$edit_row['Imagen_Img']);
+				move_uploaded_file($tmp_dir,$upload_dir.$userpic);
+			}
+			else
+			{
+				$errMSG = "Su archivo es demasiado grande mayor a 1MB";
+			}
+		}
+		else
+		{
+			$errMSG = "Solo archivos JPG, JPEG, PNG & GIF .";
+		}
+	}
+	else
+	{
+		// if no image selected the old image remain as it is.
+		$userpic = $edit_row['Imagen_Img']; // old image from database
+	}
   // $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona,  aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus)
   //                                          VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona',              '$g_persona', '$name_cal', '$s_persona', '$cu_persona', '$rfc_persona',  '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$name_estatus')";
   // $res_dat_per = $mysqli->query($datos_persona);
   $datos_persona = "UPDATE datospersonales SET nombrepersona='$n_persona', paternopersona='$p_persona', maternopersona='$m_persona', fechanacimientopersona='$f_persona', edadpersona='$e_persona', grupoedad='$g_persona', calidadpersona='$c_persona', sexopersona='$s_persona', curppersona='$cu_persona', rfcpersona='$rfc_persona', aliaspersona='$al_persona', ocupacion='$o_persona',
-                                telefonofijo='$t_fijo', telefonocelular='$t_celular', incapaz='$incapaz', foto='$archivo', estatus='$estatus'  WHERE id = '$id_persona'";
+                                telefonofijo='$t_fijo', telefonocelular='$t_celular', incapaz='$incapaz', foto='$userpic', estatus='$estatus'  WHERE id = '$id_persona'";
   $res_dat_per = $mysqli->query($datos_persona);
   // sql para la inserccion de datos del sujeto de su origen
   // $origen = "INSERT INTO datosorigen(lugardenacimiento, municipiodenacimiento, nacionalidadpersona, folioexpediente, id_persona)

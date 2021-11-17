@@ -147,7 +147,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     		<div class="secciones">
     			<article id="tab1">
     				<div class="container">
-              <form class="container well form-horizontal" action="update_persona.php?folio=<?php echo $id_person; ?>" method="post">
+              <form class="container well form-horizontal" action="update_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -795,8 +795,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">Fotografia del Sujeto</h3>
                   </div>
                   <section class="text-center" >
-                    <input type="file" name="foto1" id="archivoInput" class="col-md-offset-3 col-md-7" onchange="return validarExt()" / >
-                    <br><br>
+
                     <div id="visorArchivo">
                   <!--Aqui se desplegará el fichero-->
                     </div>
@@ -809,6 +808,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     }
                     ?>
                   </section>
+                  <input class="input-group" type="file" name="user_image" accept="image/*" />
                 </div>
                 <div class="row">
                   <div>
