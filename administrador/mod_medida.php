@@ -59,7 +59,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 </head>
 <body >
@@ -274,7 +274,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">ANALISIS MULTIDISCIPLINARIO</h3>
+              <h3 style="text-align:center">CONCLUSION / CANCELACIÓN</h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -332,7 +332,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
              </div>
 
              <div class="col-md-6 mb-3 validar">
-               <label for="FECHA_DESINCORPORACION">FECHA_DESINCORPORACION<span class="required"></span></label>
+               <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN O CANCELACIÓN<span class="required"></span></label>
                <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowmultidisciplinario['date_close']; ?>">
              </div>
           </div>

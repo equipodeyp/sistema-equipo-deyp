@@ -198,11 +198,11 @@ echo $fol_exp;
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">ANALISIS MULTIDISCIPLINARIO</h3>
+                  <h3 style="text-align:center">CONCLUSION / CANCELACIÓN</h3>
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="CONCLUSION_CANCELACION">CONCLUSION_CANCELACION</label>
+                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN_CANCELACION</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCION</option>
                     <option value="CANCELACION">CANCELACION</option>
@@ -230,7 +230,7 @@ echo $fol_exp;
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DESINCORPORACION">FECHA_DESINCORPORACION<span class="required"></span></label>
+                  <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSION O CANCELACIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
                 </div>
 
