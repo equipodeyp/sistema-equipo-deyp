@@ -212,6 +212,12 @@ if ($verifica_update_person == 1) {
   // $archivo = $_FILES['foto1']['tmp_name']; //el arhivo a subir
   // $subir=move_uploaded_file($archivo, $ruta); //se sube el archivo
 
+
+  $img=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $res_img = $mysqli->query($img);
+  $edit_row=$res_img->fetch_assoc();
+
+
   $imgFile = $_FILES['user_image']['name'];
 	$tmp_dir = $_FILES['user_image']['tmp_name'];
 	$imgSize = $_FILES['user_image']['size'];
@@ -241,7 +247,7 @@ if ($verifica_update_person == 1) {
 	else
 	{
 		// if no image selected the old image remain as it is.
-		$userpic = $edit_row['Imagen_Img']; // old image from database
+		$userpic = $edit_row['foto']; // old image from database
 	}
   // $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona,  aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus)
   //                                          VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona',              '$g_persona', '$name_cal', '$s_persona', '$cu_persona', '$rfc_persona',  '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$name_estatus')";
