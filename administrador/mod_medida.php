@@ -90,8 +90,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
           <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-            <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
-              <option id="opt-tipo-medida" value="<?php echo $rowmedida['tipo']; ?>"><?php echo $rowmedida['tipo']; ?></option>
+            <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
+              <option style="visibility: hidden" id="opt-tipo-medida" value="<?php echo $rowmedida['tipo']; ?>"><?php echo $rowmedida['tipo']; ?></option>
               <option value="PROVISIONAL">PROVISIONAL</option>
               <option value="DEFINITIVA">DEFINITIVA</option>
             </select>
@@ -99,8 +99,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
           <div class="col-md-6 mb-3 validar">
             <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
-            <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)" required="">
-              <option id="opt-clasificacion-medida" value="<?php echo $rowmedida['clasificacion']; ?>"><?php echo $rowmedida['clasificacion']; ?></option>
+            <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)" required="">
+              <option style="visibility: hidden" id="opt-clasificacion-medida" value="<?php echo $rowmedida['clasificacion']; ?>"><?php echo $rowmedida['clasificacion']; ?></option>
               <option value="ASISTENCIA">ASISTENCIA</option>
               <option value="RESGUARDO">RESGUARDO</option>
             </select>
@@ -112,8 +112,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           if ($rowmedida['clasificacion']=='ASISTENCIA') {
             echo '<div class="col-md-6 mb-3 validar" id="asistencia" >';
               echo '<label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>';
-              echo '<select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">';
-              echo '<option id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
+              echo '<select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">';
+              echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $asistencia = "SELECT * FROM medidaasistencia";
                 $answerasis = $mysqli->query($asistencia);
                 while($asistencias = $answerasis->fetch_assoc()){
@@ -130,8 +130,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           }  else if($rowmedida['clasificacion']=='RESGUARDO') {
             echo '<div class="col-md-6 mb-3 validar" id="resguardo" >';
               echo '<label for="MEDIDAS_RESGUARDO">MEDIDAS_RESGUARDO<span class="required"></span></label>';
-              echo '<select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" >';
-              echo '<option id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
+              echo '<select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" >';
+              echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $resguardo = "SELECT * FROM medidaresguardo";
                 $answerres = $mysqli->query($resguardo);
                 while($resguardos = $answerres->fetch_assoc()){
@@ -142,8 +142,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
             if ($rowmedida['medida']=='XI. EJECUCION DE MEDIDAS PROCESALES') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
                <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
-               <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
-                 <option id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
+               <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
+                 <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxi = "SELECT * FROM medidaresguardoxi";
                  $answerresxi = $mysqli->query($resguardoxi);
                  while($resguardosxi = $answerresxi->fetch_assoc()){
@@ -154,7 +154,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
            } else if ($rowmedida['medida']=='XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxii">
                <label for="RESGUARDO_XII">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
-               <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
+               <select style="visibility: hidden" class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
                  <option id="opt-medida-resguardo"value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxii = "SELECT * FROM medidaresguardoxii";
                  $answerresxii = $mysqli->query($resguardoxii);
@@ -252,8 +252,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
           <div class="col-md-6 mb-3 validar">
             <label for="MEDIDA_MODOIFICADA">MEDIDA_MODIFICADA<span class="required"></span></label>
-            <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="">
-              <option id="opt-medida-modificada" desibled selected><?php echo $rowmedida['modificacion']; ?></option>
+            <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="">
+              <option style="visibility: hidden" id="opt-medida-modificada" desibled selected><?php echo $rowmedida['modificacion']; ?></option>
               <option value="EJECUCION">EJECUCION</option>
               <option value="TERMINADA">TERMINADA</option>
               </select>
@@ -279,8 +279,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
             <div class="col-md-6 mb-3 validar">
               <label for="CONCLUSION_CANCELACION">CONCLUSION_CANCELACION</label>
-              <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
-                <option id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
+              <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
+                <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
                 <option value="CANCELACION">CANCELACION</option>
                 <option value="CONCLUSION">CONCLUSION</option>
               </select>
@@ -293,8 +293,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
             if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
               echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
                 <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                  <option id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
+                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
+                  <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
                   $art35 = "SELECT * FROM conclusionart35";
                   $answerart35 = $mysqli->query($art35);
                   while($art35s = $answerart35->fetch_assoc()){
@@ -347,8 +347,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
             <div class="col-md-6 mb-3 validar">
               <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
-              <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
-                <option id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
+              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
+                <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
                 <option value="EJECUTADA">EJECUTADA</option>
                 <option value="EN EJECUCION">EN EJECUCION</option>
                 </select>
@@ -356,8 +356,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
             <div class="col-md-6 mb-3 validar">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO_EJECUCION_MEDIDA<span class="required"></span></label>
-              <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
-                <option id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
+              <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
+                <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
                 <?php
                 $municipio = "SELECT * FROM municipios";
                 $answermun = $mysqli->query($municipio);
@@ -384,8 +384,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="FUENTE_M">FUENTE<span class="required"></span></label>
-                  <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="FUENTE_M" name="FUENTE_M" onChange="radicacionfuenteM1(this)">
-                    <option id="opt-fuente" value="<?php echo $rowfuentemedida['fuente']; ?>"><?php echo $rowfuentemedida['fuente']; ?></option>
+                  <select class="form-select form-select-lg" id="FUENTE_M" name="FUENTE_M" onChange="radicacionfuenteM1(this)">
+                    <option style="visibility: hidden" id="opt-fuente" value="<?php echo $rowfuentemedida['fuente']; ?>"><?php echo $rowfuentemedida['fuente']; ?></option>
                     <?php
                     $rad = "SELECT * FROM radicacion";
                     $answerrad = $mysqli->query($rad);
@@ -466,20 +466,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 <div class="contenedor">
 <a href="admin.php" class="btn-flotante">ACTUALIZAR</a>
 </div>
-<script>
-function myFunctionHidden() {
-  document.getElementById("opt-tipo-medida").style.visibility = "hidden";
-  document.getElementById("opt-clasificacion-medida").style.visibility = "hidden";
-  document.getElementById("opt-medida").style.visibility = "hidden";
-  document.getElementById("opt-medida-resguardo").style.visibility = "hidden";
-  document.getElementById("opt-medida-modificada").style.visibility = "hidden";
-  document.getElementById("opt-conclusion-cancelacion").style.visibility = "hidden";
-  document.getElementById("opt-conclusion-art35").style.visibility = "hidden";
-  document.getElementById("opt-estatus-medida").style.visibility = "hidden";
-  document.getElementById("opt-municipio-ejecucion-medida").style.visibility = "hidden";
-  document.getElementById("opt-fuente").style.visibility = "hidden";
-}
-</script>
+<!-- SCRIPT DE FECHAS  -->
+
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();

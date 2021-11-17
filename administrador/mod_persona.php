@@ -164,8 +164,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_AUTORIDAD">NOMBRE_AUTORIDAD<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)">
-                      <option id="opt-nombre-autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>"><?php echo $rowaut['nombreautoridad']; ?></option>
+                    <select class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)">
+                      <option style="visibility: hidden" id="opt-nombre-autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>"><?php echo $rowaut['nombreautoridad']; ?></option>
                       <?php
                       $autoridad = "SELECT * FROM nombreautoridad";
                       $answer = $mysqli->query($autoridad);
@@ -248,16 +248,16 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" >
-                      <option id="opt-edad-persona" value="<?php echo $rowfol['grupoedad']; ?>"><?php echo $rowfol['grupoedad']; ?></option>
+                    <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" >
+                      <option style="visibility: hidden" id="opt-edad-persona" value="<?php echo $rowfol['grupoedad']; ?>"><?php echo $rowfol['grupoedad']; ?></option>
                       <option value="MENOR">MENOR</option>
                       <option value="MAYOR">MAYOR</option>
                     </select>
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" >
-                      <option id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
+                    <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" >
+                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
                       $calidad = "SELECT * FROM calidadpersona";
                       $answer = $mysqli->query($calidad);
@@ -270,8 +270,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">SEXO_PERSONA<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" >
-                      <option id="opt-sexo-persona" value="<?php echo $rowfol['sexopersona']; ?>"><?php echo $rowfol['sexopersona']; ?></option>
+                    <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" >
+                      <option style="visibility: hidden" id="opt-sexo-persona" value="<?php echo $rowfol['sexopersona']; ?>"><?php echo $rowfol['sexopersona']; ?></option>
                       <option value="MUJER">MUJER</option>
                       <option value="HOMBRE">HOMBRE</option>
                     </select>
@@ -279,8 +279,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="updatenac(this)" >
-                      <option id="opt-lugar-nacimiento" value="<?php echo $roworigen['lugardenacimiento']; ?>"><?php echo $roworigen['lugardenacimiento']; ?></option>
+                    <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="updatenac(this)" >
+                      <option style="visibility: hidden" id="opt-lugar-nacimiento" value="<?php echo $roworigen['lugardenacimiento']; ?>"><?php echo $roworigen['lugardenacimiento']; ?></option>
                       <?php while($row = $resultado23->fetch_assoc()) { ?>
                         <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
                       <?php } ?>
@@ -333,8 +333,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1" onChange="updatedom(this)" >
-                      <option id="opt-seleccion-estado" value="<?php echo $rowdomicilio['seleccioneestado']; ?>"><?php echo $rowdomicilio['seleccioneestado']; ?></option>
+                    <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1" onChange="updatedom(this)" >
+                      <option style="visibility: hidden" id="opt-seleccion-estado" value="<?php echo $rowdomicilio['seleccioneestado']; ?>"><?php echo $rowdomicilio['seleccioneestado']; ?></option>
                       <?php while($row = $resultado1->fetch_assoc()) { ?>
                         <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
                       <?php } ?>
@@ -369,8 +369,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCAPAZ">INCAPAZ<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)" >
-                      <option id="opt-incapaz" value="<?php echo $rowfol['incapaz']; ?>"><?php echo $rowfol['incapaz']; ?></option>
+                    <select class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)" >
+                      <option style="visibility: hidden" id="opt-incapaz" value="<?php echo $rowfol['incapaz']; ?>"><?php echo $rowfol['incapaz']; ?></option>
                       <option value="SI">SI</option>
                       <option value="NO">NO</option>
                     </select>
@@ -444,8 +444,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="DELITO_PRINCIPAL">DELITO PRINCIPAL<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="DELITO_PRINCIPAL" name="DELITO_PRINCIPAL" onChange="otherdelito(this)" >
-                      <option id="opt-delito-principal" value="<?php echo $rowprocess['delitoprincipal']; ?>"><?php echo $rowprocess['delitoprincipal']; ?></option>
+                    <select class="form-select form-select-lg" id="DELITO_PRINCIPAL" name="DELITO_PRINCIPAL" onChange="otherdelito(this)" >
+                      <option style="visibility: hidden" id="opt-delito-principal" value="<?php echo $rowprocess['delitoprincipal']; ?>"><?php echo $rowprocess['delitoprincipal']; ?></option>
                       <?php
                       $delito = "SELECT * FROM delito";
                       $answer = $mysqli->query($delito);
@@ -475,8 +475,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="DELITO_SECUNDARIO">DELITO SECUNDARIO<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="DELITO_SECUNDARIO" name="DELITO_SECUNDARIO" onChange="delito_secundario(this)" >
-                      <option id="opt-delito-secundario" value="<?php echo $rowprocess['delitosecundario']; ?>"><?php echo $rowprocess['delitosecundario']; ?></option>
+                    <select class="form-select form-select-lg" id="DELITO_SECUNDARIO" name="DELITO_SECUNDARIO" onChange="delito_secundario(this)" >
+                      <option style="visibility: hidden" id="opt-delito-secundario" value="<?php echo $rowprocess['delitosecundario']; ?>"><?php echo $rowprocess['delitosecundario']; ?></option>
                       <?php
                       $delito = "SELECT * FROM delito";
                       $answer = $mysqli->query($delito);
@@ -505,8 +505,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="ETAPA_PROCEDIMIENTO">ETAPA PROCEDIMIENTO<span class="required">(*)</span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" >
-                      <option id="opt-etapa-procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>"><?php echo $rowprocess['etapaprocedimiento']; ?></option>
+                    <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" >
+                      <option style="visibility: hidden" id="opt-etapa-procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>"><?php echo $rowprocess['etapaprocedimiento']; ?></option>
                       <?php
                       $etapaproc = "SELECT * FROM etapa_proc";
                       $answeretapa = $mysqli->query($etapaproc);
@@ -524,8 +524,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MUNICIPIO_PERSONA">MUNICIPIO_RADICACION<span class="required">(*)</span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" >
-                      <option id="opt-municipio-radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>"><?php echo $rowprocess['numeroradicacion']; ?></option>
+                    <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" >
+                      <option style="visibility: hidden" id="opt-municipio-radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>"><?php echo $rowprocess['numeroradicacion']; ?></option>
                       <?php
                       $select = "SELECT * FROM municipios";
                       $answer = $mysqli->query($select);
@@ -548,8 +548,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACION JURIDICA<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" >
-                      <option id="opt-resultado-valoracio-juridica" value="<?php echo $rowvaljur['resultadovaloracion']; ?>"><?php echo $rowvaljur['resultadovaloracion']; ?></option>
+                    <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" >
+                      <option style="visibility: hidden" id="opt-resultado-valoracio-juridica" value="<?php echo $rowvaljur['resultadovaloracion']; ?>"><?php echo $rowvaljur['resultadovaloracion']; ?></option>
                       <option value="SI PROCEDE">SI PROCEDE</option>
                       <option value="NO PROCEDE">NO PROCEDE</option>
                     </select>
@@ -557,8 +557,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MOTIVO_NO_PROCEDENCIA">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" >
-                      <option id="opt-motivo-no-procedencia" value="<?php echo $rowvaljur['motivoprocedencia']; ?>"><?php echo $rowvaljur['motivoprocedencia']; ?></option>
+                    <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" >
+                      <option style="visibility: hidden" id="opt-motivo-no-procedencia" value="<?php echo $rowvaljur['motivoprocedencia']; ?>"><?php echo $rowvaljur['motivoprocedencia']; ?></option>
                       <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL</option>
                       <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
                       <option value="AMBAS">AMBAS</option>
@@ -578,8 +578,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS_MULTIDISCIPLINARIO</label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
-                      <option id="opt-analisis-multidisiplinario" value="<?php echo $rowdetinc['multidisciplinario']; ?>"><?php echo $rowdetinc['multidisciplinario']; ?></option>
+                    <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
+                      <option style="visibility: hidden" id="opt-analisis-multidisiplinario" value="<?php echo $rowdetinc['multidisciplinario']; ?>"><?php echo $rowdetinc['multidisciplinario']; ?></option>
                       <?php
                       $multidisciplinario = "SELECT * FROM multidisciplinario";
                       $answermultidisciplinario = $mysqli->query($multidisciplinario);
@@ -592,8 +592,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCORPORACION">INCORPORACION<span class="required"></span></label>
-                    <select ondblclick="myFunctionHidden()" class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
-                      <option id="opt-incorporacion" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
+                    <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
+                      <option style="visibility: hidden" id="opt-incorporacion" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
                       <option value="SUJETO INCORPORADO">SUJETO INCORPORADO</option>
                       <option value="SUJETO NO INCORPORADO">SUJETO NO INCORPORADO</option>
                     </select>
@@ -606,8 +606,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONVENIO_ENTENDIMIENTO">CONVENIO_ENTENDIMIENTO<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="CONVENIO_ENTENDIMIENTO" name="CONVENIO_ENTENDIMIENTO" >
-                      <option id="opt-convenio-de-entendimiento" value="<?php echo $rowdetinc['convenio']; ?>"><?php echo $rowdetinc['convenio']; ?></option>
+                    <select class="form-select form-select-lg" id="CONVENIO_ENTENDIMIENTO" name="CONVENIO_ENTENDIMIENTO" >
+                      <option style="visibility: hidden" id="opt-convenio-de-entendimiento" value="<?php echo $rowdetinc['convenio']; ?>"><?php echo $rowdetinc['convenio']; ?></option>
                       <?php
                       $convenioo = "SELECT * FROM convenio";
                       $answerconvenioo = $mysqli->query($convenioo);
@@ -630,8 +630,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_CANCELACION">CONCLUSION_CANCELACION</label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)">
-                      <option id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
+                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)">
+                      <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACION</option>
                       <option value="CONCLUSION">CONCLUSION</option>
                     </select>
@@ -644,8 +644,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   if ($rowdetinc['conclu_cancel'] == 'CONCLUSION') {
                     echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
                       <label for="CONCLUSION">CONCLUSION ARTICULO 35</label>
-                      <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="CONCLUSION_ART35z" name="CONCLUSION_ART35z" onChange="otherart35(this)">
-                        <option id="opt-conclusion-art35" value="'.$rowdetinc['conclusionart35'].'">'.$rowdetinc['conclusionart35'].'</option>';
+                      <select class="form-select form-select-lg" id="CONCLUSION_ART35z" name="CONCLUSION_ART35z" onChange="otherart35(this)">
+                        <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowdetinc['conclusionart35'].'">'.$rowdetinc['conclusionart35'].'</option>';
                         $art35 = "SELECT * FROM conclusionart35";
                         $answerart35 = $mysqli->query($art35);
                         while($art35s = $answerart35->fetch_assoc()){
@@ -704,8 +704,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="ESTATUS_PERSONA">ESTATUS DE LA PERSONA<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="ESTATUS_PERSONA" name="ESTATUS_PERSONA" >
-                      <option id="opt-estatus-persona" value="<?php echo $rowfol['estatus']; ?>"><?php echo $rowfol['estatus']; ?></option>
+                    <select class="form-select form-select-lg" id="ESTATUS_PERSONA" name="ESTATUS_PERSONA" >
+                      <option style="visibility: hidden" id="opt-estatus-persona" value="<?php echo $rowfol['estatus']; ?>"><?php echo $rowfol['estatus']; ?></option>
                       <?php
                       $estatus = "SELECT * FROM estatuspersona";
                       $answerestatus = $mysqli->query($estatus);
@@ -727,8 +727,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="FUENTE">FUENTE<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="FUENTE" name="FUENTE" onChange="showInp()" >
-                      <option id="opt-fuente" value="<?php echo $rowradmas['fuente']; ?>"><?php echo $rowradmas['fuente']; ?></option>
+                    <select class="form-select form-select-lg" id="FUENTE" name="FUENTE" onChange="showInp()" >
+                      <option style="visibility: hidden" id="opt-fuente" value="<?php echo $rowradmas['fuente']; ?>"><?php echo $rowradmas['fuente']; ?></option>
                       <?php
                       $rad = "SELECT * FROM radicacion";
                       $answerrad = $mysqli->query($rad);
@@ -945,8 +945,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS_MULTIDISCIPLINARIO</label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
-                      <option id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
+                    <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
+                      <option style="visibility: hidden" id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
                       <?php
                       $multidisciplinario = "SELECT * FROM multidisciplinario";
                       $answermultidisciplinario = $mysqli->query($multidisciplinario);
@@ -960,8 +960,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCORPORACION">INCORPORACION<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
-                      <option id="tab3-incorporacion" value="<?php echo $rowseguimexp['incorporacion']; ?>"><?php echo $rowseguimexp['incorporacion']; ?></option>
+                    <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
+                      <option style="visibility: hidden" id="tab3-incorporacion" value="<?php echo $rowseguimexp['incorporacion']; ?>"><?php echo $rowseguimexp['incorporacion']; ?></option>
                       <?php
                       $inc = "SELECT * FROM incorporacion";
                       $answerinc = $mysqli->query($inc);
@@ -979,8 +979,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONVENIO_DE_ENTENDIMIENTO">CONVENIO_DE_ENTENDIMIENTO<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="CONVENIO_DE_ENTENDIMIENTO" name="CONVENIO_DE_ENTENDIMIENTO">
-                      <option id="tab3-convenio-entendimiento" value="<?php echo $rowseguimexp['convenio']; ?>"><?php echo $rowseguimexp['convenio']; ?></option>
+                    <select class="form-select form-select-lg" id="CONVENIO_DE_ENTENDIMIENTO" name="CONVENIO_DE_ENTENDIMIENTO">
+                      <option style="visibility: hidden" id="tab3-convenio-entendimiento" value="<?php echo $rowseguimexp['convenio']; ?>"><?php echo $rowseguimexp['convenio']; ?></option>
                       <?php
                       $convenio = "SELECT * FROM convenio";
                       $answerconvenio = $mysqli->query($convenio);
@@ -1013,8 +1013,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_CANCELACION">CONCLUSION_CANCELACION</label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
-                      <option id="tab3-conclusion-cancelaciom" value="<?php echo $rowstatusexp['conclu_cancel']; ?>"><?php echo $rowstatusexp['conclu_cancel']; ?></option>
+                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
+                      <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $rowstatusexp['conclu_cancel']; ?>"><?php echo $rowstatusexp['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACION</option>
                       <option value="CONCLUSION">CONCLUSION</option>
                     </select>
@@ -1072,8 +1072,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                    <div class="col-md-6 mb-3 validar">
                      <label for="ESTATUS_EXPEDIENTE">ESTATUS_EXPEDIENTE<span class="required"></span></label>
-                     <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
-                       <option id="tab3-estatus-expediente" value="<?php echo $rowstatusexp['status'] ?>"><?php echo $rowstatusexp['status']; ?></option>
+                     <select class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
+                       <option style="visibility: hidden" id="tab3-estatus-expediente" value="<?php echo $rowstatusexp['status'] ?>"><?php echo $rowstatusexp['status']; ?></option>
                        <?php
                        $statusexp = "SELECT * FROM statusexpediente";
                        $answerstatusexp = $mysqli->query($statusexp);
@@ -1095,8 +1095,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="FUENTE_S">FUENTE<span class="required"></span></label>
-                    <select onclick="myFunctionHidden()" class="form-select form-select-lg" id="FUENTE_S" name="FUENTE_S" onChange="radicacionfuenteS(this)" >
-                      <option  id="tab3-fuente-seguimiento" value"<?php echo $rowfuente3['fuente']; ?>"><?php echo $rowfuente3['fuente']; ?></option>
+                    <select class="form-select form-select-lg" id="FUENTE_S" name="FUENTE_S" onChange="radicacionfuenteS(this)" >
+                      <option style="visibility: hidden" id="tab3-fuente-seguimiento" value"<?php echo $rowfuente3['fuente']; ?>"><?php echo $rowfuente3['fuente']; ?></option>
                       <?php
                       $rad = "SELECT * FROM radicacion";
                       $answerrad = $mysqli->query($rad);
@@ -1174,40 +1174,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <div class="contenedor">
 <a href="admin.php" class="btn-flotante">CANCELAR</a>
 </div>
-<script>
-function myFunctionHidden() {
-  document.getElementById("opt-nombre-autoridad").style.visibility = "hidden";
-  document.getElementById("opt-calidad-persona").style.visibility = "hidden";
-  document.getElementById("opt-lugar-nacimiento").style.visibility = "hidden";
-  document.getElementById("opt-edad-persona").style.visibility = "hidden";
-  document.getElementById("opt-sexo-persona").style.visibility = "hidden";
-  document.getElementById("opt-seleccion-estado").style.visibility = "hidden";
-  document.getElementById("opt-incapaz").style.visibility = "hidden";
-  document.getElementById("opt-delito-principal").style.visibility = "hidden";
-  document.getElementById("opt-delito-secundario").style.visibility = "hidden";
-  document.getElementById("opt-etapa-procedimiento").style.visibility = "hidden";
-  document.getElementById("opt-municipio-radicacion").style.visibility = "hidden";
-  document.getElementById("opt-resultado-valoracio-juridica").style.visibility = "hidden";
-  document.getElementById("opt-motivo-no-procedencia").style.visibility = "hidden";
-
-  document.getElementById("opt-analisis-multidisiplinario").style.visibility = "hidden";
-  document.getElementById("opt-incorporacion").style.visibility = "hidden";
-  document.getElementById("opt-convenio-de-entendimiento").style.visibility = "hidden";
-  document.getElementById("opt-conclusion-cancelacion").style.visibility = "hidden";
-  document.getElementById("opt-conclusion-art35").style.visibility = "hidden";
-  document.getElementById("opt-estatus-persona").style.visibility = "hidden";
-  document.getElementById("opt-fuente").style.visibility = "hidden";
-
-  document.getElementById("tab3-analisis-multidisiplñinario").style.visibility = "hidden";
-  document.getElementById("tab3-incorporacion").style.visibility = "hidden";
-  document.getElementById("tab3-convenio-entendimiento").style.visibility = "hidden";
-  document.getElementById("tab3-conclusion-cancelaciom").style.visibility = "hidden";
-  document.getElementById("tab3-art35").style.visibility = "hidden";
-
-  document.getElementById("tab3-estatus-expediente").style.visibility = "hidden";
-  document.getElementById("tab3-fuente-seguimiento").style.visibility = "hidden";
-}
-</script>
+<!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
