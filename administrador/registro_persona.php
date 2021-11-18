@@ -10,7 +10,7 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
+$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
 $resultado=$mysqli->query($query);
 
 $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
@@ -204,7 +204,7 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
-              <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado">
+              <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)">
                 <option value="0">Seleccionar Estado</option>
                 <?php while($row = $resultado->fetch_assoc()) { ?>
                   <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
@@ -212,7 +212,12 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
+            <div class="col-md-6 mb-3 validar" id="other_pais" style="display:none;">
+              <label for="OTHER_PAIS">ESPECIFIQUE</label>
+              <input class="form-control" id="OTHER_PAIS" name="OTHER_PAIS" placeholder="" value="" type="text">
+            </div>
+
+            <div class="col-md-6 mb-3 validar" id="municipio">
               <label for="NOMBRE_MUNICIPIO">MUNICIPIO DE NACIMIENTO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_municipio" id="cbx_municipio"></select>
             </div>
