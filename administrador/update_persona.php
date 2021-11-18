@@ -142,12 +142,14 @@ if ($verifica_update_person == 1) {
   $r_estado = $mysqli->query($name_estado);
   $ro_est=$r_estado->fetch_assoc();
   $name_est=$ro_est['estado'];
-
-  // consulta del municipio
-  $name_municipio= "SELECT id_municipio, municipio FROM t_municipio WHERE id_municipio='$m_nacimiento' or municipio='$m_nacimiento'";
-  $r_muni = $mysqli->query($name_municipio);
-  $ro_muni=$r_muni->fetch_assoc();
-  $name_muni=$ro_muni['municipio'];
+  if ($name_est == 'OTRO') {
+    $name_muni = $_POST['OTHER_PAIS'];
+  } else {
+    $name_municipio= "SELECT id_municipio, municipio FROM t_municipio WHERE id_municipio='$m_nacimiento'";
+    $r_muni = $mysqli->query($name_municipio);
+    $ro_muni=$r_muni->fetch_assoc();
+    $name_muni=$ro_muni['municipio'];
+  } 
 
   // consulta del estado actual del Sujeto
   $name_estadoact = "SELECT id_estado, estado FROM t_estado WHERE id_estado='$es_persona' or estado='$es_persona'";

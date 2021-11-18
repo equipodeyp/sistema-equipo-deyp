@@ -354,3 +354,20 @@ jQuery(document).ready(function(){
         document.getElementById("OTRO1").value = '';
       }
     }
+
+    function OTHERPAIS(sel) {
+          if (sel.value=="33"){
+               divC = document.getElementById("other_pais");
+               divC.style.display = "";
+               divC = document.getElementById("municipio");
+               divC.style.display = "none";
+
+
+          }else{
+            divC = document.getElementById("other_pais");
+            divC.style.display = "none";
+            divC = document.getElementById("municipio");
+            divC.style.display = "";
+
+          }
+    }

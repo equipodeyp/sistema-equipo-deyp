@@ -10,9 +10,8 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
+$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
 $resultado23=$mysqli->query($query);
-
 
 $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
@@ -279,7 +278,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="updatenac(this)" >
+                    <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)" >
                       <option style="visibility: hidden" id="opt-lugar-nacimiento" value="<?php echo $roworigen['lugardenacimiento']; ?>"><?php echo $roworigen['lugardenacimiento']; ?></option>
                       <?php while($row = $resultado23->fetch_assoc()) { ?>
                         <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
@@ -287,7 +286,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  <div class="col-md-6 mb-3 validar" id="realdate2">
+                  <div class="col-md-6 mb-3 validar" id="other_pais" style="display:none;">
+                    <label for="OTHER_PAIS">ESPECIFIQUE</label>
+                    <input class="form-control" id="OTHER_PAIS" name="OTHER_PAIS" placeholder="" value="" type="text">
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar" id="municipio">
                     <label for="NOMBRE_MUNICIPIO">MUNICIPIO DE NACIMIENTO<span class="required"></span></label>
                     <select class="form-select form-select-lg" name="cbx_municipio" id="cbx_municipio"  >
                       <option value="<?php echo $roworigen['municipiodenacimiento']; ?>"><?php echo $roworigen['municipiodenacimiento']; ?></option>
@@ -807,8 +811,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
+                    <input class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
                   </section>
-                  <input class="input-group" type="file" name="user_image" accept="image/*" />
                 </div>
                 <div class="row">
                   <div>
