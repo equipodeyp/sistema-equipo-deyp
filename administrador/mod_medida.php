@@ -487,5 +487,6 @@ document.getElementById("FECHA_MODIFICACION").setAttribute("max", today);
 document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 document.getElementById("FECHA_DE_EJECUCION").setAttribute("max", today);
 </script>
+
 </body>
 </html>
