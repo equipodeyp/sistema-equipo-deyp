@@ -168,7 +168,7 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="EDAD_PERSONA">EDAD_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
+              <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -672,7 +672,9 @@ window.addEventListener('load', function () {
             function enviarEdad() {
               calcularEdad = document.getElementById("EDAD_PERSONA").value;
             }
-            console.log(`La edad es: ${calcularEdad(this.value)} años`);
+            // console.log(`La edad es: ${calcularEdad(this.value)} años`);
+            
+            document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
         }
     });
 
