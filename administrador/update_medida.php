@@ -102,6 +102,16 @@ if ($verifica_update_person == 1) {
       $des_rad = $_POST['OTRO_M1'];
     }
   }
+  // datos del comentario
+  $comment = $_POST['COMENTARIO'];
+  $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+  $result = $mysqli->query($sentencia);
+  $row=$result->fetch_assoc();
+  $com_folio=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $res_fol = $mysqli->query($com_folio);
+  $row_fol=$res_fol->fetch_assoc();
+  $fol_exp = $row_fol['folioexpediente'];
+  $comment_mascara = '2';
   // consulta de  la fuente de radicacion
   // $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion_m'";
   // $r_rad = $mysqli->query($radcon);
@@ -131,6 +141,12 @@ if ($verifica_update_person == 1) {
   // $res_radicacion = $mysqli->query($fuente_rad);
   $fuente_rad = "UPDATE radicacion_mascara2 SET fuente='$radicacion_m', descripcion='$des_rad' WHERE id_medida = '$id_persona'";
   $res_radicacion = $mysqli->query($fuente_rad);
+  // insertar comentarios de cambios
+  if ($comment != '') {
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
+                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_p', '$id_persona')";
+    $res_comment = $mysqli->query($comment);
+  }
   // validacion de update correcto
   if($res_radicacion){
     echo ("<script type='text/javaScript'>

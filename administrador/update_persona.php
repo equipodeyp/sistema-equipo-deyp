@@ -51,10 +51,7 @@ if ($verifica_update_person == 1) {
   $incapaz= $_POST['INCAPAZ'];
   // echo $incapaz;
   $archivo = $_FILES['foto1']['name'];
-
   $estatus= $_POST['ESTATUS_PERSONA'];
-
-
   // datos origen
   $e_nacimiento =$_POST['cbx_estado'];
   $m_nacimiento=$_POST['cbx_municipio'];
@@ -63,7 +60,6 @@ if ($verifica_update_person == 1) {
   $es_persona=$_POST['cbx_estado1'];
   $mu_persona= $_POST['cbx_municipio11'];
   $lo_persona =$_POST['cbx_localidad11'];
-
   $ca_persona=$_POST['CALLE'];
   $cp_persona=$_POST['CP'];
   // datos del tutor
@@ -127,6 +123,17 @@ if ($verifica_update_person == 1) {
   $mot_inc=$_POST['MOTIVO_NO_INCORPORACION'];
   //
   $radicacion=$_POST['FUENTE'];
+  // datos del comentario
+  $comment = $_POST['COMENTARIO'];
+  $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+  $result = $mysqli->query($sentencia);
+  $row=$result->fetch_assoc();
+  $com_folio=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $res_fol = $mysqli->query($com_folio);
+  $row_fol=$res_fol->fetch_assoc();
+  $fol_exp = $row_fol['folioexpediente'];
+  $comment_mascara = '1';
+  $id_medida = "N/A";
   // consulta del la autoridad
   // $sentencia=" SELECT id, nombre FROM nombreautoridad WHERE id='$nombre_autoridad'";
   // $result = $mysqli->query($sentencia);
@@ -149,7 +156,7 @@ if ($verifica_update_person == 1) {
     $r_muni = $mysqli->query($name_municipio);
     $ro_muni=$r_muni->fetch_assoc();
     $name_muni=$ro_muni['municipio'];
-  } 
+  }
 
   // consulta del estado actual del Sujeto
   $name_estadoact = "SELECT id_estado, estado FROM t_estado WHERE id_estado='$es_persona' or estado='$es_persona'";
@@ -324,6 +331,13 @@ if ($verifica_update_person == 1) {
   // $res_radicacion = $mysqli->query($fuente_rad);
   $fuente_rad = "UPDATE radicacion_mascara1 SET fuente='$radicacion', descripcion='$des_rad' WHERE id_persona = '$id_persona'";
   $res_radicacion = $mysqli->query($fuente_rad);
+  // insertar comentarios de cambios
+  if ($comment != '') {
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
+                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida')";
+    $res_comment = $mysqli->query($comment);
+  }
+
   // validacion de update correcto
   if($res_det_inc && $res_radicacion){
     echo ("<script type='text/javaScript'>

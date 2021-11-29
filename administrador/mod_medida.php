@@ -59,7 +59,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  
+
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 </head>
@@ -446,6 +446,18 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 
 
 
+              </div>
+              <div class="row">
+                <div class="row">
+
+                  <hr class="mb-4">
+                </div>
+                <div class="alert alert-info">
+                  <h3 style="text-align:center">ESPECIFICAR CAMBIOS</h3>
+                </div>
+                <section class="text-center" >
+                <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="describe cual fue la modificacion" maxlength="100"></textarea>
+              </section>
               </div>
 
               <div class="row">
