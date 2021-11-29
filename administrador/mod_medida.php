@@ -12,6 +12,7 @@ $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
 $resultadomedida = $mysqli->query($medida);
 $rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
 $id_p = $rowmedida['id_persona'];
+$fol_exp =$rowmedida['folioexpediente'];
 $multidisciplinario = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
 $resultadomultidisciplinario = $mysqli->query($multidisciplinario);
 $rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
@@ -477,7 +478,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="admin.php" class="btn-flotante">ACTUALIZAR</a>
+<a href="mod_persona.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
 <!-- SCRIPT DE FECHAS  -->
 
