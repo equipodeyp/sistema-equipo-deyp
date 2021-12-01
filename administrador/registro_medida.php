@@ -250,6 +250,7 @@ echo $fol_exp;
                     <option disabled selected value>SELECCIONA UN ESTATUS</option>
                     <option value="EJECUTADA">EJECUTADA</option>
                     <option value="EN EJECUCION">EN EJECUCION</option>
+                    <option value="CONCLUIDA">CONCLUIDA</option>
                     </select>
                 </div>
 

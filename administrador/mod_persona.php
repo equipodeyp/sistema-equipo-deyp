@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-
+echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -801,7 +801,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">Fotografia del Sujeto</h3>
+                    <h3 style="text-align:center">FOTOGRAFIA DEL SUJETO</h3>
                   </div>
                   <section class="text-center" >
 
@@ -818,6 +818,19 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     ?>
                     <input class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
                   </section>
+                </div>
+
+                <div class="row">
+                  <div class="row">
+
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">ESPECIFICAR CAMBIOS</h3>
+                  </div>
+                  <section class="text-center" >
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="describe cual fue la modificacion" maxlength="100"></textarea>
+                </section>
                 </div>
                 <div class="row">
                   <div>
@@ -1163,6 +1176,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                 </div>
+                <div class="row">
+                  <div class="row">
+
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">ESPECIFICAR CAMBIOS</h3>
+                  </div>
+                  <section class="text-center" >
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="describe cual fue la modificacion" maxlength="100"></textarea>
+                </section>
+                </div>
 
                 <div class="row">
                   <div>
@@ -1181,7 +1206,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="admin.php" class="btn-flotante">CANCELAR</a>
+<a href="../administrador/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
