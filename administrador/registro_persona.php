@@ -719,7 +719,7 @@ var fechaObtenida;
       const mes = parseInt(fecha.getMonth());
       const dia = parseInt(fecha.getDate());
 
-      var nuevaFecha = anio + '/' + (mes + 1) + '/' + dia;
+      var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
       document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
     }
     
