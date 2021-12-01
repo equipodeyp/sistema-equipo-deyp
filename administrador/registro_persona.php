@@ -108,7 +108,7 @@ $num_consecutivo =$row["id"];
               $autoridad = "SELECT * FROM nombreautoridad";
               $answer = $mysqli->query($autoridad);
               while($autoridades = $answer->fetch_assoc()){
-               echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
+                echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
               }
               ?>
             </select>
@@ -478,13 +478,18 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-            <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="">
+            <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA INICIO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+            <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="" type="date" value="" >
+          </div>    
+
+          <div class="col-md-6 mb-3 validar">
+            <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO<span class="required"></span></label>
+            <input placeholder="Cantidad en días" class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="">
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA_CONVENIO_ENTENDIMIENTO<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder=""  type="date" value="">
+            <label for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TERMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+            <input readonly placeholder="" class="form-control" id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="">
           </div>
 
           <div class="col-md-6 mb-3 validar">
@@ -620,6 +625,8 @@ $num_consecutivo =$row["id"];
 <div class="contenedor">
 <a href="admin.php" class="btn-flotante">CANCELAR</a>
 </div>
+
+
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
@@ -640,6 +647,7 @@ document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 </script>
 
 <script>
+
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
 
@@ -680,8 +688,44 @@ window.addEventListener('load', function () {
 
 });
 
-
 </script>
 
+<script>
+
+
+
+var numeroIngresado = document.getElementById('VIGENCIA_CONVENIO');
+var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO');
+
+var numeroObtenido;
+var fechaObtenida;
+
+
+
+    fechaInicio.addEventListener('change', obtenerFecha);
+    function obtenerFecha(e) {
+      fechaObtenida = e.target.value;
+    }
+
+    numeroIngresado.addEventListener('change', obtenerNumero);
+    function obtenerNumero(e) {
+      numeroObtenido = e.target.value;
+
+      var fecha = new Date(fechaObtenida);
+      var dias = parseInt(numeroObtenido) + 1;
+
+      fecha.setDate(fecha.getDate() + dias);
+      const anio = parseInt(fecha.getFullYear());
+      const mes = parseInt(fecha.getMonth());
+      const dia = parseInt(fecha.getDate());
+
+      var nuevaFecha = anio + '/' + (mes + 1) + '/' + dia;
+      document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
+    }
+    
+
+    
+
+</script>
 </body>
 </html>

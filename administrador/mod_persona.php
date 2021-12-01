@@ -242,7 +242,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="EDAD_PERSONA">EDAD_PERSONA <span class="required"></span></label>
-                    <input class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2" >
+                    <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -623,13 +623,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>">
+                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA INICIO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+                    <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_DOS" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="<?php echo $rowdetinc['date_convenio']; ?>" type="date" value="" >
+                  </div>    
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO<span class="required"></span></label>
+                    <input onclick="calcularFecha()" placeholder="Cantidad en días" class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA_CONVENIO_ENTENDIMIENTO<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_DOS" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="<?php echo $rowdetinc['date_convenio']; ?>" type="date" value="" >
+                    <label for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TERMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+                    <input readonly placeholder="" class="form-control" id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -1178,11 +1183,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <div class="contenedor">
 <a href="admin.php" class="btn-flotante">CANCELAR</a>
 </div>
+
+
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
+var mm = today.getMonth()+1; 
 var yyyy = today.getFullYear();
 if(dd<10){
       dd='0'+dd
@@ -1202,5 +1209,86 @@ document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").setAttribute("max", 
 document.getElementById("FECHA_DESINCORPORACION_DOS").setAttribute("max", today);
 
 </script>
+
+
+<script>
+const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
+const edad = document.getElementById("EDAD_PERSONA");
+
+const calcularEdad = (fechaNacimiento) => {
+    const fechaActual = new Date();
+    const anoActual = parseInt(fechaActual.getFullYear());
+    const mesActual = parseInt(fechaActual.getMonth()) + 1;
+    const diaActual = parseInt(fechaActual.getDate());
+
+
+    const anoNacimiento = parseInt(String(fechaNacimiento).substring(0, 4));
+    const mesNacimiento = parseInt(String(fechaNacimiento).substring(5, 7));
+    const diaNacimiento = parseInt(String(fechaNacimiento).substring(8, 10));
+
+    let edad = anoActual - anoNacimiento;
+    if (mesActual < mesNacimiento) {
+        edad--;
+    } else if (mesActual === mesNacimiento) {
+        if (diaActual < diaNacimiento) {
+            edad--;
+        }
+    }
+    return edad;
+};
+
+window.addEventListener('load', function () {
+
+    fechaNacimiento.addEventListener('change', function () {
+        if (this.value) {
+            function enviarEdad() {
+              calcularEdad = document.getElementById("EDAD_PERSONA").value;
+            }
+            // console.log(`La edad es: ${calcularEdad(this.value)} años`);
+            
+            document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
+        }
+    });
+
+});
+
+</script>
+
+<script>
+
+
+
+
+
+
+var numero = document.getElementById('VIGENCIA_CONVENIO').value;
+var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value;
+
+  //fecha
+function calcularFecha() {
+
+  var fecha = new Date(fechaInicio);
+  var dias = parseInt(numero)+ 1;
+
+  fecha.setDate(fecha.getDate() + dias);
+  const anio = parseInt(fecha.getFullYear());
+  const mes = parseInt(fecha.getMonth());
+  const dia = parseInt(fecha.getDate());
+
+   //nueva fecha sumada
+  var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
+  //formato de salida para la fecha
+  //2021/11/29
+  //2021-12-1
+  //console.log(nuevaFecha);
+  document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
+}
+calcularFecha();
+
+
+</script>
+
+
+
 </body>
 </html>
