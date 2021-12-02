@@ -35,7 +35,7 @@ function ConsultarUsuario($usuario, $password)
       if($filas['id_cargo']==3){ //registro mascara 1
         echo'<script type="text/javascript">
         alert("Bienvenido");
-        window.location.href="registro_mascara1/registro_mascara1.php";
+        window.location.href="subdireccion_de_apoyo_tecnico_juridico/menu.php";
         </script>';
         // MensajeAlerta("correcto", "Bienvenido", "registro_mascara1/registro_mascara1.php");
           /*header("location: registro_mascara1/registro_mascara1.php");*/
