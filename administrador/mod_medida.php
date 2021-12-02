@@ -353,6 +353,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
                 <option value="EJECUTADA">EJECUTADA</option>
                 <option value="EN EJECUCION">EN EJECUCION</option>
+                <option value="CONCLUIDA">CONCLUIDA</option>
                 </select>
             </div>
 
