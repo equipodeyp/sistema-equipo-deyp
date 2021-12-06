@@ -276,6 +276,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
+                  </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
                     <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)" >
@@ -333,6 +337,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar">
                     <label for="TELEFONO_CELULAR">TELEFONO_CELULAR<span class="required"></span></label>
                     <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
+                  </div>
+
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">DATOS DE RADICACION</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
