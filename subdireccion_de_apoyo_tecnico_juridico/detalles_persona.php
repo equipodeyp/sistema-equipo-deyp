@@ -237,17 +237,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_NACIMIENTO_PERSONA">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
-                    <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="<?php echo $rowfol['fechanacimientopersona']; ?>" >
+                    <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="<?php echo $rowfol['fechanacimientopersona']; ?>" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="EDAD_PERSONA">EDAD_PERSONA <span class="required"></span></label>
-                    <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2" >
+                    <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
+                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required readonly>
                     <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
                     <option disabled selected value>SELECCIONE UNA OPCION</option>
                     <option value="MENOR">MENOR</option>
@@ -256,7 +256,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" >
+                    <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
                       $calidad = "SELECT * FROM calidadpersona";
@@ -270,7 +270,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">SEXO_PERSONA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" >
+                    <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" disabled>
                       <option style="visibility: hidden" id="opt-sexo-persona" value="<?php echo $rowfol['sexopersona']; ?>"><?php echo $rowfol['sexopersona']; ?></option>
                       <option value="MUJER">MUJER</option>
                       <option value="HOMBRE">HOMBRE</option>
@@ -312,12 +312,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CURP_PERSONA">CURP_PERSONA <span class="required"></span></label>
-                    <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" value="<?php echo $rowfol['curppersona']; ?>" type="text" >
+                    <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" value="<?php echo $rowfol['curppersona']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="RFC_PERSONA">RFC_PERSONA<span class="required"></span></label>
-                    <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['rfcpersona']; ?>" maxlength="13" >
+                    <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['rfcpersona']; ?>" maxlength="13" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
