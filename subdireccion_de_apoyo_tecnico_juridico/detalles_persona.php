@@ -247,11 +247,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-                    <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" >
-                      <option style="visibility: hidden" id="opt-edad-persona" value="<?php echo $rowfol['grupoedad']; ?>"><?php echo $rowfol['grupoedad']; ?></option>
-                      <option value="MENOR">MENOR</option>
-                      <option value="MAYOR">MAYOR</option>
-                    </select>
+                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
+                    <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
+                    <option disabled selected value>SELECCIONE UNA OPCION</option>
+                    <option value="MENOR">MENOR</option>
+                    <option value="MAYOR">MAYOR</option>
+                    </select> -->
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
@@ -625,13 +626,7 @@ if(dd<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_SOLICITUD").setAttribute("max", today);
 document.getElementById("FECHA_NACIMIENTO_PERSONA").setAttribute("max", today);
-document.getElementById("FECHA_AUTORIZACION").setAttribute("max", today);
-document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_UNO").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION_UNO").setAttribute("max", today);
 
-document.getElementById("FECHA_AUTORIZACION_ANALISIS").setAttribute("max", today);
-document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION_DOS").setAttribute("max", today);
 
 </script>
 
@@ -669,9 +664,22 @@ window.addEventListener('load', function () {
             function enviarEdad() {
               calcularEdad = document.getElementById("EDAD_PERSONA").value;
             }
-            // console.log(`La edad es: ${calcularEdad(this.value)} años`);
+            console.log(`La edad es: ${calcularEdad(this.value)} años`);
 
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
+            var mayor = "MAYOR DE EDAD";
+            var menor = "MENOR DE EDAD";
+            if (calcularEdad(this.value) >= 18) {
+
+              //console.log("MAYOR DE EDAD");
+              document.getElementById("GRUPO_EDAD").value = mayor;
+
+            } else if (calcularEdad(this.value) <= 18){
+
+              //console.log("MENOR DE EDAD");
+              document.getElementById("GRUPO_EDAD").value = menor;
+
+            }
         }
     });
 
@@ -683,32 +691,6 @@ window.addEventListener('load', function () {
 
 
 
-
-
-
-var numero = document.getElementById('VIGENCIA_CONVENIO').value;
-var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value;
-
-  //fecha
-function calcularFecha() {
-
-  var fecha = new Date(fechaInicio);
-  var dias = parseInt(numero)+ 1;
-
-  fecha.setDate(fecha.getDate() + dias);
-  const anio = parseInt(fecha.getFullYear());
-  const mes = parseInt(fecha.getMonth());
-  const dia = parseInt(fecha.getDate());
-
-   //nueva fecha sumada
-  var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
-  //formato de salida para la fecha
-  //2021/11/29
-  //2021-12-1
-  //console.log(nuevaFecha);
-  document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
-}
-calcularFecha();
 
 
 </script>

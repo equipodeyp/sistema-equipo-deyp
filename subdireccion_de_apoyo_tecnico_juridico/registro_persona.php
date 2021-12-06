@@ -173,11 +173,12 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-              <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
+              <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
+              <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <option value="MENOR">MENOR</option>
                 <option value="MAYOR">MAYOR</option>
-              </select>
+              </select> -->
             </div>
 
             <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
@@ -516,6 +517,19 @@ window.addEventListener('load', function () {
             // console.log(`La edad es: ${calcularEdad(this.value)} años`);
 
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
+            var mayor = "MAYOR DE EDAD";
+            var menor = "MENOR DE EDAD";
+            if (calcularEdad(this.value) >= 18) {
+
+              //console.log("MAYOR DE EDAD");
+              document.getElementById("GRUPO_EDAD").value = mayor;
+
+            } else if (calcularEdad(this.value) <= 18){
+
+              //console.log("MENOR DE EDAD");
+              document.getElementById("GRUPO_EDAD").value = menor;
+
+            }
         }
     });
 
