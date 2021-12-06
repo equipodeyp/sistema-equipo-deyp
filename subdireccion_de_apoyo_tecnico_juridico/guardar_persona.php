@@ -135,6 +135,17 @@ if ($verifica == 1) {
   $r_locaact = $mysqli->query($name_estaadoac);
   $ro_locaac=$r_locaact->fetch_assoc();
   $name_locaac=$ro_locaac['localidad'];
+  // datos del comentario
+  $comment = $_POST['COMENTARIO'];
+  $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+  $result = $mysqli->query($sentencia);
+  $row=$result->fetch_assoc();
+  // $com_folio=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  // $res_fol = $mysqli->query($com_folio);
+  // $row_fol=$res_fol->fetch_assoc();
+  // $fol_exp = $row_fol['folioexpediente'];
+  $comment_mascara = '1';
+  $id_medida = "N/A";
   // consulta del delito primario
   // $name_delito= "SELECT id, nombre FROM delito WHERE id= '$del_primario'";
   // $r_delito = $mysqli->query($name_delito);
@@ -246,6 +257,12 @@ if ($verifica == 1) {
   $fuente_rad = "INSERT INTO radicacion_mascara1(fuente, descripcion, id_persona, folioexpediente)
                 VALUES ('$radicacion', '$des_rad', '$id_persona', '$fol_exp')";
   $res_radicacion = $mysqli->query($fuente_rad);
+  // insertar comentarios de cambios
+  if ($comment != '') {
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
+                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida')";
+    $res_comment = $mysqli->query($comment);
+  }
 
   // validacion de registro GUARDADO
   if($res_dat_per && $resultado && $res_origen && $res_domicilio && $res_proceso && $res_val_juridica && $res_det_inc && $res_radicacion){

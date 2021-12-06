@@ -429,6 +429,19 @@ $num_consecutivo =$row["id"];
         </div>
 
         <div class="row">
+          <div class="row">
+
+            <hr class="mb-4">
+          </div>
+          <div class="alert alert-info">
+            <h3 style="text-align:center">COMENTARIOS</h3>
+          </div>
+          <section class="text-center" >
+          <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+        </section>
+        </div>
+
+        <div class="row">
           <div>
               <br>
               <br>
