@@ -7,7 +7,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 	require 'conexion.php';
 	$fol_exp = $_GET['folio'];
-	echo $fol_exp;
+	
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];

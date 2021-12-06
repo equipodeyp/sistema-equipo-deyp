@@ -625,7 +625,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA INICIO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_DOS" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="<?php echo $rowdetinc['date_convenio']; ?>" type="date" value="" >
-                  </div>    
+                  </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO<span class="required"></span></label>
@@ -826,10 +826,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">ESPECIFICAR CAMBIOS</h3>
+                    <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
                   <section class="text-center" >
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="describe cual fue la modificacion" maxlength="100"></textarea>
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Esdcribe tu comentario" maxlength="100"></textarea>
                 </section>
                 </div>
                 <div class="row">
@@ -1182,10 +1182,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">ESPECIFICAR CAMBIOS</h3>
+                    <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
                   <section class="text-center" >
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="describe cual fue la modificacion" maxlength="100"></textarea>
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
                 </section>
                 </div>
 
@@ -1214,7 +1214,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1; 
+var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 if(dd<10){
       dd='0'+dd
@@ -1270,7 +1270,7 @@ window.addEventListener('load', function () {
               calcularEdad = document.getElementById("EDAD_PERSONA").value;
             }
             // console.log(`La edad es: ${calcularEdad(this.value)} años`);
-            
+
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
         }
     });
