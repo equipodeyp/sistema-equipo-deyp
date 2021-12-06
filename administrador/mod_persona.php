@@ -825,7 +825,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
                   <section class="text-center" >
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Esdcribe tu comentario" maxlength="100"></textarea>
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
                 </section>
                 </div>
                 <div class="row">
