@@ -247,11 +247,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-                    <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" >
-                      <option style="visibility: hidden" id="opt-edad-persona" value="<?php echo $rowfol['grupoedad']; ?>"><?php echo $rowfol['grupoedad']; ?></option>
-                      <option value="MENOR">MENOR</option>
-                      <option value="MAYOR">MAYOR</option>
-                    </select>
+                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
@@ -1272,6 +1268,19 @@ window.addEventListener('load', function () {
             // console.log(`La edad es: ${calcularEdad(this.value)} años`);
             
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
+            var mayor = "MAYOR DE EDAD";
+            var menor = "MENOR DE EDAD";
+            if (calcularEdad(this.value) >= 18) {
+
+              //console.log("MAYOR DE EDAD");
+              document.getElementById("GRUPO_EDAD").value = mayor;
+
+            } else if (calcularEdad(this.value) <= 18){
+
+              //console.log("MENOR DE EDAD");
+              document.getElementById("GRUPO_EDAD").value = menor;
+
+            }
         }
     });
 
@@ -1280,11 +1289,6 @@ window.addEventListener('load', function () {
 </script>
 
 <script>
-
-
-
-
-
 
 var numero = document.getElementById('VIGENCIA_CONVENIO').value;
 var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value;

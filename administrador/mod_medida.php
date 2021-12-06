@@ -231,7 +231,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
               $resguardoxii = "SELECT * FROM medidaresguardoxii";
               $answerresxii = $mysqli->query($resguardoxii);
               while($resguardosxii = $answerresxii->fetch_assoc()){
-               echo "<option value='".$resguardosxii['nombre']."'>".$resguardosxii['nombre']."</option>";
+                echo "<option value='".$resguardosxii['nombre']."'>".$resguardosxii['nombre']."</option>";
               }
               ?>
               </select>
