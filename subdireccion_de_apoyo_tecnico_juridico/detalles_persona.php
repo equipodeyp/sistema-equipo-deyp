@@ -153,17 +153,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID_SOLICITUD<span class="required"></span></label>
-                    <input class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="<?php echo $rowaut['idsolicitud']; ?>" maxlength="20" >
+                    <input class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="<?php echo $rowaut['idsolicitud']; ?>" maxlength="20" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_SOLICITUD">FECHA_SOLICITUD<span ></span></label>
-                    <input class="form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="<?php echo $rowaut['fechasolicitud']; ?>" >
+                    <input class="form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="<?php echo $rowaut['fechasolicitud']; ?>" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_AUTORIDAD">NOMBRE_AUTORIDAD<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)">
+                    <select class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" disabled>
                       <option style="visibility: hidden" id="opt-nombre-autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>"><?php echo $rowaut['nombreautoridad']; ?></option>
                       <?php
                       $autoridad = "SELECT * FROM nombreautoridad";
@@ -181,34 +181,34 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   if ($rowaut['nombreautoridad'] == 'OTRO') {
                     echo '<div class="col-md-6 mb-3 validar" id="other">
                       <label for="OTHER_AUTORIDAD">ESPECIFIQUE</label>
-                      <input class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="'.$rowaut['otraautoridad'].'" type="text">
+                      <input class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="'.$rowaut['otraautoridad'].'" type="text" readonly>
                     </div>';
                   }
                    ?>
 
                   <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
                     <label for="OTHER_AUTORIDAD">ESPECIFIQUE</label>
-                    <input class="form-control" id="OTHER_AUTORIDAD1" name="OTHER_AUTORIDAD1" placeholder="" value="<?php echo $rowaut['otraautoridad']; ?>" type="text">
+                    <input class="form-control" id="OTHER_AUTORIDAD1" name="OTHER_AUTORIDAD1" placeholder="" value="<?php echo $rowaut['otraautoridad']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_SERVIDOR">NOMBRE_SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" value="<?php echo $rowaut['nombreservidor']; ?>" type="text" >
+                    <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" value="<?php echo $rowaut['nombreservidor']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="AÑO">PATERNO_SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidopaterno']; ?>" type="text" >
+                    <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidopaterno']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_SERVIDOR">MATERNO_SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidomaterno']; ?>" type="text" >
+                    <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidomaterno']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CARGO_SERVIDOR">CARGO_SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" value="<?php echo $rowaut['cargoservidor']; ?>" type="text" >
+                    <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" value="<?php echo $rowaut['cargoservidor']; ?>" type="text" readonly>
                   </div>
 
                 </div>
