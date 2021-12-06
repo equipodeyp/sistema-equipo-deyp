@@ -693,7 +693,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_DESINCORPORACION">FECHA_DESINCORPORACION<span class="required"></span></label>
+                    <label for="FECHA_DESINCORPORACION">FECHA DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
                     <input class="form-control" id="FECHA_DESINCORPORACION_UNO" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
                   </div>
 

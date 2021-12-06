@@ -173,7 +173,7 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-              <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
+              <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
               <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <option value="MENOR">MENOR</option>
@@ -522,7 +522,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_DESINCORPORACION">FECHA_DESINCORPORACION<span class="required"></span></label>
+            <label for="FECHA_DESINCORPORACION">FECHA DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
             <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
           </div>
 
