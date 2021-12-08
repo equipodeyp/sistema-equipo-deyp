@@ -691,8 +691,8 @@ window.addEventListener('load', function () {
 
               //console.log("MAYOR DE EDAD");
               document.getElementById("GRUPO_EDAD").value = mayor;
-
-            } else if (calcularEdad(this.value) <= 18){
+              
+            } else if (calcularEdad(this.value) < 18){
 
               //console.log("MENOR DE EDAD");
               document.getElementById("GRUPO_EDAD").value = menor;

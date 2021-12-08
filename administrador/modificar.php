@@ -156,12 +156,14 @@ $row=$result->fetch_assoc();
 		  			<th> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
 		  		<?php
-		      $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
-		       $var_resultado = $mysqli->query($tabla);
+			$cuenta = 0;
+		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
+		    $var_resultado = $mysqli->query($tabla);
 		      while ($var_fila=$var_resultado->fetch_array())
 		      {
+				$cuenta = $cuenta + 1;
 		        echo "<tr>";
-		          echo "<td>"; echo $var_fila['id']; echo "</td>";
+		          echo "<td>"; echo $cuenta; echo "</td>";
 		          echo "<td>"; echo $var_fila['nombrepersona']; echo "</td>";
 		          echo "<td>"; echo $var_fila['paternopersona']; echo "</td>";
 		          echo "<td>"; echo $var_fila['maternopersona']; echo "</td>";
