@@ -17,11 +17,16 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
+$exp=" SELECT *FROM expediente WHERE fol_exp = '$fol_exp'";
+$result_exp = $mysqli->query($exp);
+$row_exp=$result_exp->fetch_assoc();
+
 
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
 $num_consecutivo =$row["id"];
+
 
  ?>
 <!DOCTYPE html>
@@ -87,6 +92,17 @@ $num_consecutivo =$row["id"];
     <div class="container">
       <form class="container well form-horizontal" id="myform" method="POST" action="guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
         <div class="row">
+          <div class="alert alert-info">
+            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+          </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
           </div>
@@ -406,7 +422,33 @@ $num_consecutivo =$row["id"];
           </div>
         </div>
 
+        <div class="row">
+          <div class="row">
+            <hr class="mb-4">
+          </div>
+          <div class="alert alert-info">
+            <h3 style="text-align:center">VALORACION JURIDICA</h3>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACION JURIDICA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" required>
+              <option disabled selected value>SELECCIONE UNA OPCION</option>
+              <option value="SI PROCEDE">SI PROCEDE</option>
+              <option value="NO PROCEDE">NO PROCEDE</option>
+            </select>
+          </div>
 
+          <div class="col-md-6 mb-3 validar">
+            <label for="MOTIVO_NO_PROCEDENCIA">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" required>
+              <option disabled selected value>SELECCIONE UNA OPCION</option>
+              <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL</option>
+              <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
+              <option value="AMBAS">AMBAS</option>
+              <option value="NO APLICA">NO APLICA</option>
+            </select>
+          </div>
+        </div>
 
 
 
@@ -438,8 +480,8 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">COMENTARIOS</h3>
           </div>
           <section class="text-center" >
-          <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
-        </section>
+            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+          </section>
         </div>
 
         <div class="row">
@@ -576,3 +618,7 @@ var fechaObtenida;
 </script>
 </body>
 </html>
+<script type="text/javascript">
+// asignar id unico a cada persona
+
+</script>
