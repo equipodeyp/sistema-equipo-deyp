@@ -1258,6 +1258,7 @@ const calcularEdad = (fechaNacimiento) => {
     return edad;
 };
 
+
 window.addEventListener('load', function () {
 
     fechaNacimiento.addEventListener('change', function () {
@@ -1270,6 +1271,7 @@ window.addEventListener('load', function () {
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
             var mayor = "MAYOR DE EDAD";
             var menor = "MENOR DE EDAD";
+            
             if (calcularEdad(this.value) >= 18) {
 
               //console.log("MAYOR DE EDAD");

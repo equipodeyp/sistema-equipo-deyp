@@ -247,12 +247,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
-                    <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
-                    <option disabled selected value>SELECCIONE UNA OPCION</option>
-                    <option value="MENOR">MENOR</option>
-                    <option value="MAYOR">MAYOR</option>
-                    </select> -->
+                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
@@ -425,6 +420,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="row">
                     <hr class="mb-4">
                   </div>
+                  
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DEL TUTOR</h3>
                   </div>
@@ -657,6 +653,7 @@ const calcularEdad = (fechaNacimiento) => {
     return edad;
 };
 
+
 window.addEventListener('load', function () {
 
     fechaNacimiento.addEventListener('change', function () {
@@ -664,38 +661,27 @@ window.addEventListener('load', function () {
             function enviarEdad() {
               calcularEdad = document.getElementById("EDAD_PERSONA").value;
             }
-            console.log(`La edad es: ${calcularEdad(this.value)} años`);
-
+            
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
             var mayor = "MAYOR DE EDAD";
             var menor = "MENOR DE EDAD";
+            
             if (calcularEdad(this.value) >= 18) {
 
               //console.log("MAYOR DE EDAD");
               document.getElementById("GRUPO_EDAD").value = mayor;
 
-            } else if (calcularEdad(this.value) <= 18){
+            } else if (calcularEdad(this.value) < 18){
 
               //console.log("MENOR DE EDAD");
               document.getElementById("GRUPO_EDAD").value = menor;
-
             }
+
         }
     });
-
 });
 
-</script>
-
-<script>
-
-
-
-
 
 </script>
-
-
-
 </body>
 </html>

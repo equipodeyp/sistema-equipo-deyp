@@ -446,7 +446,7 @@ $num_consecutivo =$row["id"];
           <div>
               <br>
               <br>
-          		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">SIGUIENTE</button>
+          		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
           </div>
         </div>
       </form>
@@ -569,9 +569,6 @@ var fechaObtenida;
       var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
       document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
     }
-
-
-
 
 </script>
 </body>

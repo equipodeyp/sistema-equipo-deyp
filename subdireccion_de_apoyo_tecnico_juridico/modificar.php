@@ -145,7 +145,7 @@ $row=$result->fetch_assoc();
 		  </div>
 		  <div id="contenido">
 				<div class="row">
-		  	<table class="table table-striped table-bordered ">
+		  	<table class="table table-striped table-bordered" id="tabla_personas">
 		  		<thead >
 		  			<th>ID</th>
 		  			<th>NOMBRE</th>
@@ -156,12 +156,15 @@ $row=$result->fetch_assoc();
 		  			<th> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
 		  		<?php
-		      $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
-		       $var_resultado = $mysqli->query($tabla);
+			$cuenta = 0;
+		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
+		    $var_resultado = $mysqli->query($tabla);
 		      while ($var_fila=$var_resultado->fetch_array())
 		      {
+			$cuenta = $cuenta + 1;
+			
 		        echo "<tr>";
-		          echo "<td>"; echo $var_fila['id']; echo "</td>";
+		          echo "<td>"; echo $cuenta; echo "</td>";
 		          echo "<td>"; echo $var_fila['nombrepersona']; echo "</td>";
 		          echo "<td>"; echo $var_fila['paternopersona']; echo "</td>";
 		          echo "<td>"; echo $var_fila['maternopersona']; echo "</td>";
@@ -178,7 +181,7 @@ $row=$result->fetch_assoc();
 		  	</div>
 		</div>
 
-
+		<!-- <input type="submit" value="Enviar" onclick="contarFilas()"/> -->
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="contenedor">
@@ -191,3 +194,11 @@ $row=$result->fetch_assoc();
 	</div>
 	</div>
 	</div>
+<script type="text/javascript">
+	function contarFilas() {
+    			var $num = document.getElementById('tabla_personas').getElementsByTagName('tr').length - 1;
+    			//alert($num);
+    		}
+</script>
+</body>
+</html>
