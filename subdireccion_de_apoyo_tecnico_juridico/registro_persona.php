@@ -613,9 +613,178 @@ var fechaObtenida;
     }
 
 </script>
-</body>
-</html>
-<script type="text/javascript">
+
+<script>
 // asignar id unico a cada persona
 
+var nombrePersona = document.getElementById('NOMBRE_PERSONA');
+var paternoPersona = document.getElementById('PATERNO_PERSONA');
+var maternoPersona = document.getElementById('MATERNO_PERSONA');
+
+var nombreIngresado;
+var paternoIngresado;
+var maternoIngresado;
+
+var cadenaNombre;
+
+
+var fullName;
+
+var arrayIniciales = [];
+
+
+
+nombrePersona.addEventListener('change', obtenerNombre);
+paternoPersona.addEventListener('change', obtenerPaterno);
+maternoPersona.addEventListener('change', obtenerMaterno);
+
+
+function obtenerNombre(e) {
+  nombreIngresado = e.target.value;
+  console.log(nombreIngresado);
+}
+
+function obtenerPaterno(e) {
+  paternoIngresado = e.target.value;
+  console.log(paternoIngresado);
+}
+
+function obtenerMaterno(e) {
+  maternoIngresado = e.target.value;
+  console.log(maternoIngresado);
+
+
+  fullName = nombreIngresado + ' ' + paternoIngresado + ' ' + maternoIngresado;
+  console.log(fullName);
+
+
+  var separador = '';
+  var iniciales = fullName;
+
+  for ( var i = 0; i < iniciales.length; i++){
+  cadenaNombre = iniciales[i].substring(0, 1).toUpperCase(0, 1).split(separador);
+  arrayIniciales.push(cadenaNombre);
+  }
+  console.log(arrayIniciales);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+// var nombrePersona = document.getElementById('NOMBRE_PERSONA');
+// var paternoPersona = document.getElementById('PATERNO_PERSONA');
+// var maternoPersona = document.getElementById('MATERNO_PERSONA');
+
+// var nombreIngresado;
+// var paternoIngresado;
+// var maternoIngresado;
+// var letterNombre;
+// var letterPaterno;
+// var letterMaterno;
+// var fullName;
+// var arrayNombre = [];
+// var arrayInicialesNombre;
+
+// nombrePersona.addEventListener('change', obtenerNombre);
+// paternoPersona.addEventListener('change', obtenerPaterno);
+// maternoPersona.addEventListener('change', obtenerMaterno);
+
+
+// function obtenerNombre(e) {
+//   nombreIngresado = e.target.value;
+
+//   var arregloNombre = nombreIngresado.split(' ');
+
+//   for (i = 0; i < arregloNombre.length; i++){
+//     var inicialNombre = arregloNombre[i].substring(0, 1).toUpperCase(0, 1).trim();
+//     arrayNombre.push(inicialNombre);
+//     //console.log(arrayNombre);
+//   }
+
+//   //console.log(arrayNombre);
+
+//   for(var i = 0; i < arrayNombre.length; i++) {
+//     if(arrayNombre[i] === " ") {
+//       arrayNombre.splice(i, i);
+//       // console.log(arrayNombre.toString());
+      
+//     }
+//   }
+//   console.log(arrayNombre);
+
+// }
+
+
+// function obtenerPaterno(e) {
+//   paternoIngresado = e.target.value;
+
+//   var arregloPaterno = paternoIngresado.split(' ');
+  
+//   for (i = 0; i < arregloPaterno.length; i++){
+//     var inicialPaterno = arregloPaterno[i].substring(0, 1).toUpperCase(0, 1).trim();
+
+//     }
+// }
+
+
+// function obtenerMaterno(e) {
+//   maternoIngresado = e.target.value;
+  
+//   var arregloMaterno = maternoIngresado.split(' ');
+  
+//   for (i = 0; i < arregloMaterno.length; i++){
+//     var inicialMaterno = arregloMaterno[i].substring(0, 1).toUpperCase(0, 1).trim();
+  
+
+//     // fullName = letterNombre + letterPaterno + letterMaterno;
+//     // console.log(fullName);
+//     }
+// }
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+// var separador = " ";
+//   var arregloNombre = nombreIngresado.split(separador);
+
+//   for (i = 0; i < arregloNombre.length; i++){
+//   cadenaNombre = arregloNombre[i].substring(0, 1);
+//   document.write(cadenaNombre + " ");
+//   }
+
 </script>
+</body>
+</html>
