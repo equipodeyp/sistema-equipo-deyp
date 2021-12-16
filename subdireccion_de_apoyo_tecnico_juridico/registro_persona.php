@@ -164,17 +164,22 @@ $num_consecutivo =$row["id"];
           </div>
             <div class="col-md-6 mb-3 validar">
               <label for="SIGLAS DE LA UNIDAD">NOMBRE_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <input onclick="vaciarCampoNombre()"class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="PATERNO_PERSONA">PATERNO_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input onclick="vaciarCampoPaterno()"class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="MATERNO_PERSONA">MATERNO_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input onclick="vaciarCampoMaterno()"class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="GENERAR_ID">Para generar el identificador clave presiona el siguente botón. <br>Antes de generar el id revisa que la información este correcta. <span class="required"></span></label>
+              <button onclick="enviarId()" style="display: block; margin: 0 auto;" id="GENERAR_ID" type="button" required> GENERAR ID </button>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -190,11 +195,6 @@ $num_consecutivo =$row["id"];
             <div class="col-md-6 mb-3 validar">
               <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
               <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
-              <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
-                <option disabled selected value>SELECCIONE UNA OPCION</option>
-                <option value="MENOR">MENOR</option>
-                <option value="MAYOR">MAYOR</option>
-              </select> -->
             </div>
 
             <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
@@ -625,14 +625,23 @@ var nombreIngresado;
 var paternoIngresado;
 var maternoIngresado;
 
-var cadenaNombre;
+var arregloNombre;
+var arregloPaterno;
+var arregloMaterno;
 
+var inicialNombre;
+var inicialPaterno;
+var inicialMaterno;
 
-var fullName;
+var fullNombre;
+var fullPaterno;
+var fullMaterno;
 
-var arrayIniciales = [];
+var arrayNombre = [];
+var arrayPaterno = [];
+var arrayMaterno = [];
 
-
+var text1 = "", text2 = "", text3 = "";
 
 nombrePersona.addEventListener('change', obtenerNombre);
 paternoPersona.addEventListener('change', obtenerPaterno);
@@ -641,149 +650,83 @@ maternoPersona.addEventListener('change', obtenerMaterno);
 
 function obtenerNombre(e) {
   nombreIngresado = e.target.value;
-  console.log(nombreIngresado);
+
+  arregloNombre = nombreIngresado.split(' ');
+  for (var i = 0; i < arregloNombre.length; i++){
+    inicialNombre = arregloNombre[i].substring(0, 1).toUpperCase(0, 1);
+    arrayNombre.push(inicialNombre); 
+  }
+  fullNombre = arrayNombre.filter(v => v);
+  document.getElementById("ID_UNICO").value = "";
+
 }
+
 
 function obtenerPaterno(e) {
   paternoIngresado = e.target.value;
-  console.log(paternoIngresado);
+
+  arregloPaterno = paternoIngresado.split(' ');
+  for (var i = 0; i < arregloPaterno.length; i++){
+    inicialPaterno = arregloPaterno[i].substring(0, 1).toUpperCase(0, 1);
+    arrayPaterno.push(inicialPaterno);
+  }
+  fullPaterno = arrayPaterno.filter(v => v);
+  document.getElementById("ID_UNICO").value = "";
 }
+
 
 function obtenerMaterno(e) {
   maternoIngresado = e.target.value;
-  console.log(maternoIngresado);
-
-
-  fullName = nombreIngresado + ' ' + paternoIngresado + ' ' + maternoIngresado;
-  console.log(fullName);
-
-
-  var separador = '';
-  var iniciales = fullName;
-
-  for ( var i = 0; i < iniciales.length; i++){
-  cadenaNombre = iniciales[i].substring(0, 1).toUpperCase(0, 1).split(separador);
-  arrayIniciales.push(cadenaNombre);
+  
+  arregloMaterno = maternoIngresado.split(' ');
+  for (var i = 0; i < arregloMaterno.length; i++){
+    inicialMaterno = arregloMaterno[i].substring(0, 1).toUpperCase(0, 1);
+    arrayMaterno.push(inicialMaterno);
   }
-  console.log(arrayIniciales);
+  fullMaterno = arrayMaterno.filter(v => v);
+  document.getElementById("ID_UNICO").value = "";
+  
+  fullNombre.forEach(nombresPersona);
+  fullPaterno.forEach(paternoPersona);
+  fullMaterno.forEach(maternoPersona);
+
+  function nombresPersona(item1) {
+  text1 += item1;
+  }
+  function paternoPersona(item2) {
+  text2 += item2; 
+  }
+  function maternoPersona(item3) {
+  text3 += item3; 
+  }
 }
 
+function enviarId() {
+  document.getElementById("ID_UNICO").value = "";
+  document.getElementById("ID_UNICO").value = text1+text2+text3;
+}
 
+function vaciarCampoNombre() {
+document.getElementById('NOMBRE_PERSONA').value = "";
+document.getElementById('PATERNO_PERSONA').value = "";
+document.getElementById('MATERNO_PERSONA').value = "";
+document.getElementById("ID_UNICO").value = "";
+}
 
+function vaciarCampoPaterno() {
+document.getElementById('PATERNO_PERSONA').value = "";
+document.getElementById('NOMBRE_PERSONA').value = "";
+document.getElementById('MATERNO_PERSONA').value = "";
+document.getElementById("ID_UNICO").value = "";
+}
 
+function vaciarCampoMaterno() {
+document.getElementById('NOMBRE_PERSONA').value = "";
+document.getElementById('PATERNO_PERSONA').value = "";
+document.getElementById('MATERNO_PERSONA').value = "";
+document.getElementById("ID_UNICO").value = "";
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-// var nombrePersona = document.getElementById('NOMBRE_PERSONA');
-// var paternoPersona = document.getElementById('PATERNO_PERSONA');
-// var maternoPersona = document.getElementById('MATERNO_PERSONA');
-
-// var nombreIngresado;
-// var paternoIngresado;
-// var maternoIngresado;
-// var letterNombre;
-// var letterPaterno;
-// var letterMaterno;
-// var fullName;
-// var arrayNombre = [];
-// var arrayInicialesNombre;
-
-// nombrePersona.addEventListener('change', obtenerNombre);
-// paternoPersona.addEventListener('change', obtenerPaterno);
-// maternoPersona.addEventListener('change', obtenerMaterno);
-
-
-// function obtenerNombre(e) {
-//   nombreIngresado = e.target.value;
-
-//   var arregloNombre = nombreIngresado.split(' ');
-
-//   for (i = 0; i < arregloNombre.length; i++){
-//     var inicialNombre = arregloNombre[i].substring(0, 1).toUpperCase(0, 1).trim();
-//     arrayNombre.push(inicialNombre);
-//     //console.log(arrayNombre);
-//   }
-
-//   //console.log(arrayNombre);
-
-//   for(var i = 0; i < arrayNombre.length; i++) {
-//     if(arrayNombre[i] === " ") {
-//       arrayNombre.splice(i, i);
-//       // console.log(arrayNombre.toString());
-      
-//     }
-//   }
-//   console.log(arrayNombre);
-
-// }
-
-
-// function obtenerPaterno(e) {
-//   paternoIngresado = e.target.value;
-
-//   var arregloPaterno = paternoIngresado.split(' ');
-  
-//   for (i = 0; i < arregloPaterno.length; i++){
-//     var inicialPaterno = arregloPaterno[i].substring(0, 1).toUpperCase(0, 1).trim();
-
-//     }
-// }
-
-
-// function obtenerMaterno(e) {
-//   maternoIngresado = e.target.value;
-  
-//   var arregloMaterno = maternoIngresado.split(' ');
-  
-//   for (i = 0; i < arregloMaterno.length; i++){
-//     var inicialMaterno = arregloMaterno[i].substring(0, 1).toUpperCase(0, 1).trim();
-  
-
-//     // fullName = letterNombre + letterPaterno + letterMaterno;
-//     // console.log(fullName);
-//     }
-// }
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////
-
-// var separador = " ";
-//   var arregloNombre = nombreIngresado.split(separador);
-
-//   for (i = 0; i < arregloNombre.length; i++){
-//   cadenaNombre = arregloNombre[i].substring(0, 1);
-//   document.write(cadenaNombre + " ");
-//   }
 
 </script>
 </body>
