@@ -7,7 +7,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 	require 'conexion.php';
 	$fol_exp = $_GET['folio'];
-	
+
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
@@ -53,7 +53,9 @@ $row=$result->fetch_assoc();
   </div>
   	<div class="main bg-light">
     	<div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+				<img src="../image/fiscalia.png" alt="" width="150" height="150">
+				<img src="../image/ups2.png" alt="" width="1400" height="70">
+				<img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     	</div>
 			<div class="wrap">
 
