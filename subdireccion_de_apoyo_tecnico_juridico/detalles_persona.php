@@ -17,7 +17,6 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -25,6 +24,7 @@ $name_folio=$rowfol['folioexpediente'];
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
 
+// echo $name_folio;
 
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
@@ -133,7 +133,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
   <div class="main bg-light">
     <div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+        <img src="../image/fiscalia.png" alt="" width="150" height="150">
+        <img src="../image/ups2.png" alt="" width="1400" height="70">
+        <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
       <!--  -->
       <div class="wrap">
@@ -429,7 +431,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  
+
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DEL TUTOR</h3>
                   </div>
@@ -583,12 +585,54 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                 <div class="row">
                   <div class="row">
-
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
+                  <div id="contenido">
+  									<div class="row">
+  		  							<table class="table table-striped table-bordered " style="text-align:center;">
+  		  								<thead >
+
+  		  								</thead>
+  		  								<?php
+  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'";
+  		       						$var_resultado = $mysqli->query($tabla);
+  		      						while ($var_fila=$var_resultado->fetch_array())
+  		      						{
+  		        					echo "<tr>";
+  		          				echo "<td>";
+                        echo "<ul>
+                              <li>
+
+                              <div>
+                              <span>
+                              usuario:".$var_fila['usuario']."
+                              </span>
+                              </div>
+                              <div>
+                              <span>
+                                ".$var_fila['comentario']."
+                              </span>
+                              </div>
+                              <div>
+                              <span>
+                              ".$var_fila['fecha']."
+                              </span>
+                              </div>
+                              </li>
+                        </ul>";echo "</td>";
+  		          				echo "</tr>";
+
+  		      						}
+  		      					?>
+  		  							</table>
+  									</div>
+  		  					</div>
+  								<div id="footer">
+  		  					</div>
+  							</div>
                   <section class="text-center" >
                   <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
                 </section>
@@ -670,11 +714,11 @@ window.addEventListener('load', function () {
             function enviarEdad() {
               calcularEdad = document.getElementById("EDAD_PERSONA").value;
             }
-            
+
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
             var mayor = "MAYOR DE EDAD";
             var menor = "MENOR DE EDAD";
-            
+
             if (calcularEdad(this.value) >= 18) {
 
               //console.log("MAYOR DE EDAD");

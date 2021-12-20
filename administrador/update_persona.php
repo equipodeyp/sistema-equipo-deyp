@@ -332,9 +332,10 @@ if ($verifica_update_person == 1) {
   $fuente_rad = "UPDATE radicacion_mascara1 SET fuente='$radicacion', descripcion='$des_rad' WHERE id_persona = '$id_persona'";
   $res_radicacion = $mysqli->query($fuente_rad);
   // insertar comentarios de cambios
+  $fechacomentario = date('y/m/d');
   if ($comment != '') {
-    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
-                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida')";
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
+                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
     $res_comment = $mysqli->query($comment);
   }
 

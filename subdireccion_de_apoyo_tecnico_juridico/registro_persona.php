@@ -82,7 +82,9 @@ $num_consecutivo =$row["id"];
   </div>
   <div class="main bg-light">
     <div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+      <img src="../image/fiscalia.png" alt="" width="150" height="150">
+      <img src="../image/ups2.png" alt="" width="1400" height="70">
+      <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
     <div class="wrap">
 
@@ -654,7 +656,7 @@ function obtenerNombre(e) {
   arregloNombre = nombreIngresado.split(' ');
   for (var i = 0; i < arregloNombre.length; i++){
     inicialNombre = arregloNombre[i].substring(0, 1).toUpperCase(0, 1);
-    arrayNombre.push(inicialNombre); 
+    arrayNombre.push(inicialNombre);
   }
   fullNombre = arrayNombre.filter(v => v);
   document.getElementById("ID_UNICO").value = "";
@@ -677,7 +679,7 @@ function obtenerPaterno(e) {
 
 function obtenerMaterno(e) {
   maternoIngresado = e.target.value;
-  
+
   arregloMaterno = maternoIngresado.split(' ');
   for (var i = 0; i < arregloMaterno.length; i++){
     inicialMaterno = arregloMaterno[i].substring(0, 1).toUpperCase(0, 1);
@@ -685,7 +687,7 @@ function obtenerMaterno(e) {
   }
   fullMaterno = arrayMaterno.filter(v => v);
   document.getElementById("ID_UNICO").value = "";
-  
+
   fullNombre.forEach(nombresPersona);
   fullPaterno.forEach(paternoPersona);
   fullMaterno.forEach(maternoPersona);
@@ -694,10 +696,10 @@ function obtenerMaterno(e) {
   text1 += item1;
   }
   function paternoPersona(item2) {
-  text2 += item2; 
+  text2 += item2;
   }
   function maternoPersona(item3) {
-  text3 += item3; 
+  text3 += item3;
   }
 }
 
