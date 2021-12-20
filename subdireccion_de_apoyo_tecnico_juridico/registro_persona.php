@@ -22,6 +22,7 @@ $result_exp = $mysqli->query($exp);
 $row_exp=$result_exp->fetch_assoc();
 
 
+
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
@@ -101,7 +102,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
-            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+            <input class="form-control" id="ID_UNICO" disabled="disabled" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -163,24 +164,24 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
           </div>
             <div class="col-md-6 mb-3 validar">
-              <label for="SIGLAS DE LA UNIDAD">NOMBRE_PERSONA <span class="required"></span></label>
-              <input onclick="vaciarCampoNombre()"class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
+              <input onclick="vaciarCampoNombre()" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="PATERNO_PERSONA">PATERNO_PERSONA <span class="required"></span></label>
-              <input onclick="vaciarCampoPaterno()"class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
+              <input onclick="vaciarCampoPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="MATERNO_PERSONA">MATERNO_PERSONA <span class="required"></span></label>
-              <input onclick="vaciarCampoMaterno()"class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
+              <input onclick="vaciarCampoMaterno()" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="GENERAR_ID">Para generar el identificador clave presiona el siguente botón. <br>Antes de generar el id revisa que la información este correcta. <span class="required"></span></label>
+            <!-- <div class="col-md-6 mb-3 validar">
+              <label for="GENERAR_ID">Para generar el identificador clave presiona el siguente botón. Antes de generar el id revisa que la información se encuentre correcta. <span class="required"></span></label>
               <button onclick="enviarId()" style="display: block; margin: 0 auto;" id="GENERAR_ID" type="button" required> GENERAR ID </button>
-            </div>
+            </div> -->
 
             <div class="col-md-6 mb-3 validar">
               <label for="FECHA_NACIMIENTO_PERSONA">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
@@ -522,8 +523,8 @@ document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").setAttribute("max", toda
 document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 </script>
 
-<script>
 
+<script>
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
 
@@ -576,45 +577,17 @@ window.addEventListener('load', function () {
     });
 
 });
-
 </script>
 
-<script>
 
 
+<script type="text/javascript">
+var separarFolio = [];
+var folio = document.getElementById('NUM_EXPEDIENTE').value;
+separarFolio = folio.split("/");
 
-var numeroIngresado = document.getElementById('VIGENCIA_CONVENIO');
-var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO');
-
-var numeroObtenido;
-var fechaObtenida;
-
-
-
-    fechaInicio.addEventListener('change', obtenerFecha);
-    function obtenerFecha(e) {
-      fechaObtenida = e.target.value;
-    }
-
-    numeroIngresado.addEventListener('change', obtenerNumero);
-    function obtenerNumero(e) {
-      numeroObtenido = e.target.value;
-
-      var fecha = new Date(fechaObtenida);
-      var dias = parseInt(numeroObtenido) + 1;
-
-      fecha.setDate(fecha.getDate() + dias);
-      const anio = parseInt(fecha.getFullYear());
-      const mes = parseInt(fecha.getMonth());
-      const dia = parseInt(fecha.getDate());
-
-      var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
-      document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
-    }
-
-</script>
-
-<script>
+var idFolio = separarFolio[3];
+console.log(idFolio);
 // asignar id unico a cada persona
 
 var nombrePersona = document.getElementById('NOMBRE_PERSONA');
@@ -658,7 +631,6 @@ function obtenerNombre(e) {
   }
   fullNombre = arrayNombre.filter(v => v);
   document.getElementById("ID_UNICO").value = "";
-
 }
 
 
@@ -699,35 +671,126 @@ function obtenerMaterno(e) {
   function maternoPersona(item3) {
   text3 += item3; 
   }
+  enviarId();
+
 }
 
 function enviarId() {
-  document.getElementById("ID_UNICO").value = "";
-  document.getElementById("ID_UNICO").value = text1+text2+text3;
+  // document.getElementById("ID_UNICO").value = "";
+  document.getElementById("ID_UNICO").value = text1+text2+text3+idFolio;
 }
 
 function vaciarCampoNombre() {
-document.getElementById('NOMBRE_PERSONA').value = "";
+arrayNombre = [];
+arregloNombre = [];
+arrayNombre = [];
+fullNombre = [];
+nombreIngresado = "";
+inicialNombre = "";
+text1 = "";
+
+arrayPaterno = [];
+arregloPaterno = [];
+arrayPaterno = [];
+fullPaterno = [];
+paternoIngresado = "";
+inicialPaterno = "";
+text2 = "";
+
+arrayMaterno = [];
+arregloMaterno = [];
+arrayMaterno = [];
+fullMaterno = [];
+maternoIngresado = "";
+inicialMaterno = "";
+text3 = "";
+arrayMaterno = [];
+
 document.getElementById('PATERNO_PERSONA').value = "";
 document.getElementById('MATERNO_PERSONA').value = "";
 document.getElementById("ID_UNICO").value = "";
 }
 
 function vaciarCampoPaterno() {
-document.getElementById('PATERNO_PERSONA').value = "";
+arrayNombre = [];
+arregloNombre = [];
+arrayNombre = [];
+fullNombre = [];
+nombreIngresado = "";
+inicialNombre = "";
+text1 = "";
+
+arrayPaterno = [];
+arregloPaterno = [];
+arrayPaterno = [];
+fullPaterno = [];
+paternoIngresado = "";
+inicialPaterno = "";
+text2 = "";
+
+arrayMaterno = [];
+arregloMaterno = [];
+arrayMaterno = [];
+fullMaterno = [];
+maternoIngresado = "";
+inicialMaterno = "";
+text3 = "";
+arrayMaterno = [];
+
+
 document.getElementById('NOMBRE_PERSONA').value = "";
 document.getElementById('MATERNO_PERSONA').value = "";
 document.getElementById("ID_UNICO").value = "";
 }
 
 function vaciarCampoMaterno() {
-document.getElementById('NOMBRE_PERSONA').value = "";
+arrayNombre = [];
+arregloNombre = [];
+arrayNombre = [];
+fullNombre = [];
+nombreIngresado = "";
+inicialNombre = "";
+text1 = "";
+
+arrayPaterno = [];
+arregloPaterno = [];
+arrayPaterno = [];
+fullPaterno = [];
+paternoIngresado = "";
+inicialPaterno = "";
+text2 = "";
+
+arrayMaterno = [];
+arregloMaterno = [];
+arrayMaterno = [];
+fullMaterno = [];
+maternoIngresado = "";
+inicialMaterno = "";
+text3 = "";
+arrayMaterno = [];
+
+
 document.getElementById('PATERNO_PERSONA').value = "";
-document.getElementById('MATERNO_PERSONA').value = "";
+document.getElementById('NOMBRE_PERSONA').value = "";
 document.getElementById("ID_UNICO").value = "";
 }
-
-
 </script>
+
+
+<script type="text/javascript">
+function validarNombrePersona(form) {
+    form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
+}
+
+function validarApellidoPersona(form) {
+    
+    form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
+
+}
+</script>
+
+
+
+
 </body>
 </html>

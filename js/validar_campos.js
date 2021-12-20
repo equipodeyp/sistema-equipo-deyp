@@ -25,7 +25,7 @@ jQuery(document).ready(function(){
 			});
       //input de nombre de la persona
       jQuery("#NOMBRE_PERSONA").on('input', function (evt) {
-				jQuery(this).val(jQuery(this).val().replace(/[^A-Za-zÑ-ñ]/g, ''));
+				jQuery(this).val(jQuery(this).val().replace(/[^A-Za-zÑ-ñ ]/g, ''));
 			});
       //input apellido paterno de la persona
       jQuery("#PATERNO_PERSONA").on('input', function (evt) {

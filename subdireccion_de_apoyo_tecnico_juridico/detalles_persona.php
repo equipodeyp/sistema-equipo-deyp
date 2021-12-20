@@ -247,16 +247,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO_EDAD<span class="required">(*)</span></label>
-<<<<<<< HEAD
                     <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>">
-=======
-                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required readonly>
-                    <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
-                    <option disabled selected value>SELECCIONE UNA OPCION</option>
-                    <option value="MENOR">MENOR</option>
-                    <option value="MAYOR">MAYOR</option>
-                    </select> -->
->>>>>>> c2575dffced9cba4ba24b6cff92e3386b8bd5c4c
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
@@ -689,8 +680,221 @@ window.addEventListener('load', function () {
         }
     });
 });
-
-
 </script>
+
+
+
+<script type="text/javascript">
+var separarFolio = [];
+var folio = document.getElementById('NUM_EXPEDIENTE').value;
+separarFolio = folio.split("/");
+
+var idFolio = separarFolio[3];
+console.log(idFolio);
+// asignar id unico a cada persona
+
+var nombrePersona = document.getElementById('NOMBRE_PERSONA');
+var paternoPersona = document.getElementById('PATERNO_PERSONA');
+var maternoPersona = document.getElementById('MATERNO_PERSONA');
+
+var nombreIngresado;
+var paternoIngresado;
+var maternoIngresado;
+
+var arregloNombre;
+var arregloPaterno;
+var arregloMaterno;
+
+var inicialNombre;
+var inicialPaterno;
+var inicialMaterno;
+
+var fullNombre;
+var fullPaterno;
+var fullMaterno;
+
+var arrayNombre = [];
+var arrayPaterno = [];
+var arrayMaterno = [];
+
+var text1 = "", text2 = "", text3 = "";
+
+nombrePersona.addEventListener('change', obtenerNombre);
+paternoPersona.addEventListener('change', obtenerPaterno);
+maternoPersona.addEventListener('change', obtenerMaterno);
+
+
+function obtenerNombre(e) {
+  nombreIngresado = e.target.value;
+
+  arregloNombre = nombreIngresado.split(' ');
+  for (var i = 0; i < arregloNombre.length; i++){
+    inicialNombre = arregloNombre[i].substring(0, 1).toUpperCase(0, 1);
+    arrayNombre.push(inicialNombre); 
+  }
+  fullNombre = arrayNombre.filter(v => v);
+  document.getElementById("ID_UNICO").value = "";
+}
+
+
+function obtenerPaterno(e) {
+  paternoIngresado = e.target.value;
+
+  arregloPaterno = paternoIngresado.split(' ');
+  for (var i = 0; i < arregloPaterno.length; i++){
+    inicialPaterno = arregloPaterno[i].substring(0, 1).toUpperCase(0, 1);
+    arrayPaterno.push(inicialPaterno);
+  }
+  fullPaterno = arrayPaterno.filter(v => v);
+  document.getElementById("ID_UNICO").value = "";
+}
+
+
+function obtenerMaterno(e) {
+  maternoIngresado = e.target.value;
+  
+  arregloMaterno = maternoIngresado.split(' ');
+  for (var i = 0; i < arregloMaterno.length; i++){
+    inicialMaterno = arregloMaterno[i].substring(0, 1).toUpperCase(0, 1);
+    arrayMaterno.push(inicialMaterno);
+  }
+  fullMaterno = arrayMaterno.filter(v => v);
+  document.getElementById("ID_UNICO").value = "";
+  
+  fullNombre.forEach(nombresPersona);
+  fullPaterno.forEach(paternoPersona);
+  fullMaterno.forEach(maternoPersona);
+
+  function nombresPersona(item1) {
+  text1 += item1;
+  }
+  function paternoPersona(item2) {
+  text2 += item2; 
+  }
+  function maternoPersona(item3) {
+  text3 += item3; 
+  }
+  enviarId();
+
+}
+
+function enviarId() {
+  // document.getElementById("ID_UNICO").value = "";
+  document.getElementById("ID_UNICO").value = text1+text2+text3+idFolio;
+}
+
+function vaciarCampoNombre() {
+arrayNombre = [];
+arregloNombre = [];
+arrayNombre = [];
+fullNombre = [];
+nombreIngresado = "";
+inicialNombre = "";
+text1 = "";
+
+arrayPaterno = [];
+arregloPaterno = [];
+arrayPaterno = [];
+fullPaterno = [];
+paternoIngresado = "";
+inicialPaterno = "";
+text2 = "";
+
+arrayMaterno = [];
+arregloMaterno = [];
+arrayMaterno = [];
+fullMaterno = [];
+maternoIngresado = "";
+inicialMaterno = "";
+text3 = "";
+arrayMaterno = [];
+
+document.getElementById('PATERNO_PERSONA').value = "";
+document.getElementById('MATERNO_PERSONA').value = "";
+document.getElementById("ID_UNICO").value = "";
+}
+
+function vaciarCampoPaterno() {
+arrayNombre = [];
+arregloNombre = [];
+arrayNombre = [];
+fullNombre = [];
+nombreIngresado = "";
+inicialNombre = "";
+text1 = "";
+
+arrayPaterno = [];
+arregloPaterno = [];
+arrayPaterno = [];
+fullPaterno = [];
+paternoIngresado = "";
+inicialPaterno = "";
+text2 = "";
+
+arrayMaterno = [];
+arregloMaterno = [];
+arrayMaterno = [];
+fullMaterno = [];
+maternoIngresado = "";
+inicialMaterno = "";
+text3 = "";
+arrayMaterno = [];
+
+
+document.getElementById('NOMBRE_PERSONA').value = "";
+document.getElementById('MATERNO_PERSONA').value = "";
+document.getElementById("ID_UNICO").value = "";
+}
+
+function vaciarCampoMaterno() {
+arrayNombre = [];
+arregloNombre = [];
+arrayNombre = [];
+fullNombre = [];
+nombreIngresado = "";
+inicialNombre = "";
+text1 = "";
+
+arrayPaterno = [];
+arregloPaterno = [];
+arrayPaterno = [];
+fullPaterno = [];
+paternoIngresado = "";
+inicialPaterno = "";
+text2 = "";
+
+arrayMaterno = [];
+arregloMaterno = [];
+arrayMaterno = [];
+fullMaterno = [];
+maternoIngresado = "";
+inicialMaterno = "";
+text3 = "";
+arrayMaterno = [];
+
+
+document.getElementById('PATERNO_PERSONA').value = "";
+document.getElementById('NOMBRE_PERSONA').value = "";
+document.getElementById("ID_UNICO").value = "";
+}
+</script>
+
+
+<script type="text/javascript">
+function validarNombrePersona(form) {
+    form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
+}
+
+function validarApellidoPersona(form) {
+    
+    form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
+
+}
+</script>
+
+
+
+
+
 </body>
 </html>

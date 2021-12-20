@@ -727,6 +727,8 @@ var fechaObtenida;
     function obtenerNumero(e) {
       numeroObtenido = e.target.value;
 
+      //console.log(numeroObtenido);
+
       var fecha = new Date(fechaObtenida);
       var dias = parseInt(numeroObtenido) + 1;
 
