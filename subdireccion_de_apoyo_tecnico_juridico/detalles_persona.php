@@ -24,6 +24,7 @@ $name_folio=$rowfol['folioexpediente'];
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
 
+
 // echo $name_folio;
 
 // consulta de los datos de la autoridad
@@ -150,6 +151,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     				<div class="container">
               <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                        <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                        <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+                    <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+                  </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
                   </div>
