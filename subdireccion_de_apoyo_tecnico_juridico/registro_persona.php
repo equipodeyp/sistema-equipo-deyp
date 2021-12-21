@@ -633,6 +633,7 @@ function obtenerNombre(e) {
   }
   fullNombre = arrayNombre.filter(v => v);
   document.getElementById("ID_UNICO").value = "";
+  readOnlyNombre();
 }
 
 
@@ -647,6 +648,7 @@ function obtenerPaterno(e) {
   fullPaterno = arrayPaterno.filter(v => v);
   document.getElementById("ID_UNICO").value = "";
   document.getElementById("PATERNO_PERSONA").style.disabled = true;
+  readOnlyPaterno();
 }
 
 
@@ -675,6 +677,7 @@ function obtenerMaterno(e) {
   text3 += item3;
   }
   enviarId();
+  readOnlyMaterno()
 
 }
 
@@ -775,6 +778,19 @@ arrayMaterno = [];
 
 // document.getElementById('NOMBRE_PERSONA').value = "";
 // document.getElementById("ID_UNICO").value = "";
+}
+
+
+function readOnlyNombre() {
+  document.getElementById("NOMBRE_PERSONA").readOnly = true;
+}
+
+function readOnlyPaterno() {
+  document.getElementById("PATERNO_PERSONA").readOnly = true;
+}
+
+function readOnlyMaterno() {
+  document.getElementById("MATERNO_PERSONA").readOnly = true;
 }
 </script>
 
