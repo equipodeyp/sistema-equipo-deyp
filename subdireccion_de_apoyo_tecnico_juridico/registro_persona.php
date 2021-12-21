@@ -692,37 +692,37 @@ nombreIngresado = "";
 inicialNombre = "";
 text1 = "";
 
-arrayPaterno = [];
-arregloPaterno = [];
-arrayPaterno = [];
-fullPaterno = [];
-paternoIngresado = "";
-inicialPaterno = "";
-text2 = "";
+// arrayPaterno = [];
+// arregloPaterno = [];
+// arrayPaterno = [];
+// fullPaterno = [];
+// paternoIngresado = "";
+// inicialPaterno = "";
+// text2 = "";
 
-arrayMaterno = [];
-arregloMaterno = [];
-arrayMaterno = [];
-fullMaterno = [];
-maternoIngresado = "";
-inicialMaterno = "";
-text3 = "";
-arrayMaterno = [];
+// arrayMaterno = [];
+// arregloMaterno = [];
+// arrayMaterno = [];
+// fullMaterno = [];
+// maternoIngresado = "";
+// inicialMaterno = "";
+// text3 = "";
+// arrayMaterno = [];
 
-document.getElementById('NOMBRE_PERSONA').value = "";
-document.getElementById('PATERNO_PERSONA').value = "";
-document.getElementById('MATERNO_PERSONA').value = "";
-document.getElementById("ID_UNICO").value = "";
+// document.getElementById('NOMBRE_PERSONA').value = "";
+// document.getElementById('PATERNO_PERSONA').value = "";
+// document.getElementById('MATERNO_PERSONA').value = "";
+// document.getElementById("ID_UNICO").value = "";
 }
 
 function vaciarCampoPaterno() {
-arrayNombre = [];
-arregloNombre = [];
-arrayNombre = [];
-fullNombre = [];
-nombreIngresado = "";
-inicialNombre = "";
-text1 = "";
+// arrayNombre = [];
+// arregloNombre = [];
+// arrayNombre = [];
+// fullNombre = [];
+// nombreIngresado = "";
+// inicialNombre = "";
+// text1 = "";
 
 arrayPaterno = [];
 arregloPaterno = [];
@@ -732,36 +732,36 @@ paternoIngresado = "";
 inicialPaterno = "";
 text2 = "";
 
-arrayMaterno = [];
-arregloMaterno = [];
-arrayMaterno = [];
-fullMaterno = [];
-maternoIngresado = "";
-inicialMaterno = "";
-text3 = "";
-arrayMaterno = [];
+// arrayMaterno = [];
+// arregloMaterno = [];
+// arrayMaterno = [];
+// fullMaterno = [];
+// maternoIngresado = "";
+// inicialMaterno = "";
+// text3 = "";
+// arrayMaterno = [];
 
 
-document.getElementById('NOMBRE_PERSONA').value = "";
-document.getElementById("ID_UNICO").value = "";
+// document.getElementById('NOMBRE_PERSONA').value = "";
+// document.getElementById("ID_UNICO").value = "";
 }
 
 function vaciarCampoMaterno() {
-arrayNombre = [];
-arregloNombre = [];
-arrayNombre = [];
-fullNombre = [];
-nombreIngresado = "";
-inicialNombre = "";
-text1 = "";
+// arrayNombre = [];
+// arregloNombre = [];
+// arrayNombre = [];
+// fullNombre = [];
+// nombreIngresado = "";
+// inicialNombre = "";
+// text1 = "";
 
-arrayPaterno = [];
-arregloPaterno = [];
-arrayPaterno = [];
-fullPaterno = [];
-paternoIngresado = "";
-inicialPaterno = "";
-text2 = "";
+// arrayPaterno = [];
+// arregloPaterno = [];
+// arrayPaterno = [];
+// fullPaterno = [];
+// paternoIngresado = "";
+// inicialPaterno = "";
+// text2 = "";
 
 arrayMaterno = [];
 arregloMaterno = [];
@@ -773,8 +773,8 @@ text3 = "";
 arrayMaterno = [];
 
 
-document.getElementById('NOMBRE_PERSONA').value = "";
-document.getElementById("ID_UNICO").value = "";
+// document.getElementById('NOMBRE_PERSONA').value = "";
+// document.getElementById("ID_UNICO").value = "";
 }
 </script>
 
