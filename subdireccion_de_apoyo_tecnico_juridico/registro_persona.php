@@ -589,7 +589,7 @@ var folio = document.getElementById('NUM_EXPEDIENTE').value;
 separarFolio = folio.split("/");
 
 var idFolio = separarFolio[3];
-console.log(idFolio);
+
 // asignar id unico a cada persona
 
 var nombrePersona = document.getElementById('NOMBRE_PERSONA');
@@ -646,6 +646,7 @@ function obtenerPaterno(e) {
   }
   fullPaterno = arrayPaterno.filter(v => v);
   document.getElementById("ID_UNICO").value = "";
+  document.getElementById("PATERNO_PERSONA").style.disabled = true;
 }
 
 
@@ -708,6 +709,7 @@ inicialMaterno = "";
 text3 = "";
 arrayMaterno = [];
 
+document.getElementById('NOMBRE_PERSONA').value = "";
 document.getElementById('PATERNO_PERSONA').value = "";
 document.getElementById('MATERNO_PERSONA').value = "";
 document.getElementById("ID_UNICO").value = "";
@@ -741,7 +743,6 @@ arrayMaterno = [];
 
 
 document.getElementById('NOMBRE_PERSONA').value = "";
-document.getElementById('MATERNO_PERSONA').value = "";
 document.getElementById("ID_UNICO").value = "";
 }
 
@@ -772,7 +773,6 @@ text3 = "";
 arrayMaterno = [];
 
 
-document.getElementById('PATERNO_PERSONA').value = "";
 document.getElementById('NOMBRE_PERSONA').value = "";
 document.getElementById("ID_UNICO").value = "";
 }
