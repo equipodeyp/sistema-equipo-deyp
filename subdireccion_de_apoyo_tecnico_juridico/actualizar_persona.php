@@ -1,10 +1,10 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];
 if ($verifica_update_person == 1) {
-  echo $verifica_update_person;
+  // echo $verifica_update_person;
   unset($_SESSION['verifica_update_person']);
   $name = $_SESSION['usuario'];
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
@@ -331,9 +331,11 @@ if ($verifica_update_person == 1) {
   // $fuente_rad = "UPDATE radicacion_mascara1 SET fuente='$radicacion', descripcion='$des_rad' WHERE id_persona = '$id_persona'";
   // $res_radicacion = $mysqli->query($fuente_rad);
   // insertar comentarios de cambios
+  date_default_timezone_set("America/Mexico_City");
+    $fecha = date('y/m/d H:i:sa');
   if ($comment != '') {
-    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
-                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida')";
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
+                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fecha')";
     $res_comment = $mysqli->query($comment);
   }
 

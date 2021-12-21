@@ -150,9 +150,8 @@ $row=$result->fetch_assoc();
 		  	<table class="table table-striped table-bordered" id="tabla_personas">
 		  		<thead >
 		  			<th>ID</th>
-		  			<th>NOMBRE</th>
-		  			<th>APELLIDO PATERNO</th>
-		        <th>APELLIDO MATERNO</th>
+		  			<th>SUJETO</th>
+						<th>SEXO</th>
 		  			<th>ESTATUS</th>
 		  			<th>CALIDAD</th>
 		  			<th> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
@@ -167,9 +166,8 @@ $row=$result->fetch_assoc();
 
 		        echo "<tr>";
 		          echo "<td>"; echo $cuenta; echo "</td>";
-		          echo "<td>"; echo $var_fila['nombrepersona']; echo "</td>";
-		          echo "<td>"; echo $var_fila['paternopersona']; echo "</td>";
-		          echo "<td>"; echo $var_fila['maternopersona']; echo "</td>";
+		          echo "<td>"; echo $var_fila['identificador']; echo "</td>";
+							echo "<td>"; echo $var_fila['sexopersona']; echo "</td>";
 		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
 		          echo "<td>"; echo $var_fila['calidadpersona']; echo "</td>";
 		          echo "<td>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";

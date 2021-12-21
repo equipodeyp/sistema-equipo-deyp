@@ -25,7 +25,7 @@ $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
 
 
-echo $id_person;
+// echo $id_person;
 
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
