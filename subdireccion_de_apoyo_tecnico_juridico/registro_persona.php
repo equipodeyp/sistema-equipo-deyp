@@ -104,7 +104,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
-            <input class="form-control" id="ID_UNICO" disabled="disabled" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -785,7 +785,7 @@ function validarNombrePersona(form) {
 }
 
 function validarApellidoPersona(form) {
-    
+
     form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
 
 }

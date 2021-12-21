@@ -25,7 +25,7 @@ $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
 
 
-// echo $name_folio;
+echo $id_person;
 
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
@@ -160,7 +160,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
-                    <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+                    <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -576,9 +576,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
                     <?php
                     if ($rowfol['foto']=='') {
-                      echo "no hay foto";
+                      echo "NO SE CUENTA CON FOTOGRAFIA";
                     }else {
-                      echo "si hay foto";
+                      echo "";
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
@@ -600,7 +600,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
   		  								</thead>
   		  								<?php
-  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'";
+  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio' AND id_persona = '$id_person'";
   		       						$var_resultado = $mysqli->query($tabla);
   		      						while ($var_fila=$var_resultado->fetch_array())
   		      						{
