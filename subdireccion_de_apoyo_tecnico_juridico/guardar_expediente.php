@@ -28,12 +28,13 @@ if ($verifica == 1) {
   $año = date("Y");
   $fechaActual = date('y/m/d');
   // consulta del municipio
-  $sentencia=" SELECT nombre, clave FROM municipios WHERE clave='$municipio'";
+  $sentencia=" SELECT nombre, clave FROM municipios WHERE nombre='$municipio'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
   $name_mun=$row['nombre'];
+  $claveMunicipio=$row['clave'];
   //
-  $folio_expediente = $unidad.'/'.$r_sede.'/'.$municipio.'/'.$n_con.'/'.$año;
+  $folio_expediente = $unidad.'/'.$r_sede.'/'.$claveMunicipio.'/'.$n_con.'/'.$año;
   $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha)
           VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual')";
   $resultado = $mysqli->query($sql);

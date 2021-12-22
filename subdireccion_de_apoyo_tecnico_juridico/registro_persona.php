@@ -121,16 +121,16 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_AUTORIDAD">NOMBRE_AUTORIDAD<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" required>
-              <option disabled selected value>SELECCIONE LA AUTORIDAD</option>
-              <?php
-              $autoridad = "SELECT * FROM nombreautoridad";
-              $answer = $mysqli->query($autoridad);
-              while($autoridades = $answer->fetch_assoc()){
-                echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
-              }
-              ?>
-            </select>
+            <input list="datalistOptions" class="form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" placeholder="SELECCIONE EL MUNICIPIO" required>
+            <datalist id="datalistOptions">
+            <?php
+            $autoridad = "SELECT * FROM nombreautoridad";
+            $answer = $mysqli->query($autoridad);
+            while($autoridades = $answer->fetch_assoc()){
+            echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
+            }
+            ?> 
+            </datalist>
           </div>
 
           <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
@@ -225,7 +225,7 @@ $num_consecutivo =$row["id"];
               <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
-              <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
+              <label for="NOMBRE_ESTADO">ESTADO DE NACIMIENTO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)">
                 <option value="0">Seleccionar Estado</option>
                 <?php while($row = $resultado->fetch_assoc()) { ?>

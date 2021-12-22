@@ -89,20 +89,20 @@ $row=$result->fetch_assoc();
                   </div>
 
                   <div class="form-group">
-                    <label for="municipio" class="col-md-4 control-label">MUNICIPIO DE RADICACION DE LA CI</label>
+                    <label for="municipio" class="col-md-4 control-label" style="font-size: 12px">MUNICIPIO DE RADICACIÓN <br>DE LA CARPETA DE INVESTIGACIÓN</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-map-marked-alt"></i></span>
-                        <select class="form-control" id="municipio" name="municipio" placeholder="SELECCIONE EL MUNICIPIO" required>
-                          <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
-                          <?php
-                          $select = "SELECT * FROM municipios";
-                          $answer = $mysqli->query($select);
-                          while($valores = $answer->fetch_assoc()){
-                            echo "<option value='".$valores['clave']."'>".$valores['nombre']."</option>";
-                          }
-                          ?>
-                        </select>
+                        <input list="datalistOptions" class="form-control" id="municipio" name="municipio" placeholder="SELECCIONE EL MUNICIPIO" required>
+                        <datalist id="datalistOptions">
+                            <?php
+                            $select = "SELECT * FROM municipios";
+                            $answer = $mysqli->query($select);
+                            while($valores = $answer->fetch_assoc()){
+                              echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                            }
+                          ?> 
+                        </datalist>  
                       </div>
                     </div>
                   </div>
@@ -124,5 +124,8 @@ $row=$result->fetch_assoc();
   <div class="contenedor">
     <a href="menu.php" class="btn-flotante">CANCELAR</a>
   </div>
+<script type="text/javascript"> 
+
+</script>
 </body>
 </html>
