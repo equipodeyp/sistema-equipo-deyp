@@ -277,6 +277,20 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
+                  <!-- calidad persona en el procedimiento -->
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD_PERSONA_PROCEDIMIENTO<span class="required"></span></label>
+                    <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
+                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
+                      <?php
+                      $calidad = "SELECT * FROM calidadpersona";
+                      $answer = $mysqli->query($calidad);
+                      while($calidades = $answer->fetch_assoc()){
+                        echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">SEXO_PERSONA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" disabled>
@@ -371,10 +385,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar" id="realc">
-                    <label for="NOMBRE_LOCALIDAD">SELECCIONE UNA LOCALIDAD<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_localidad11" id="cbx_localidad11" >
-                      <option value="<?php echo $rowdomicilio['seleccionelocalidad']; ?>"><?php echo $rowdomicilio['seleccionelocalidad']; ?></option>
-                    </select>
+                    <label for="NOMBRE_LOCALIDAD">ESPECIFIQUE LA LOCALIDAD<span class="required"></span></label>
+                    <input class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="<?php echo $rowdomicilio['seleccionelocalidad']; ?>" type="text">
+                      <!-- <option value="<?php echo $rowdomicilio['seleccionelocalidad']; ?>"><?php echo $rowdomicilio['seleccionelocalidad']; ?></option>
+                    </select> -->
                   </div>
 
 
