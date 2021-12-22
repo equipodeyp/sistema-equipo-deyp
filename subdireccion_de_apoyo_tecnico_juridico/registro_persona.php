@@ -111,7 +111,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="SIGLAS DE LA UNIDAD">ID_SOLICITUD<span ></span></label>
-            <input class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="" maxlength="20">
+            <input autocomplete="off" class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="" maxlength="20">
           </div>
 
           <div class="col-md-6 mb-3 validar">
@@ -121,7 +121,7 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_AUTORIDAD">NOMBRE_AUTORIDAD<span class="required"></span></label>
-            <input list="datalistOptions" class="form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" placeholder="SELECCIONE EL MUNICIPIO" required>
+            <input list="datalistOptions" class="form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE EL MUNICIPIO" required>
             <datalist id="datalistOptions">
             <?php
             $autoridad = "SELECT * FROM nombreautoridad";
@@ -135,27 +135,27 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
             <label for="OTHER_AUTORIDAD">ESPECIFIQUE</label>
-            <input class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="" type="text">
+            <input autocomplete="off" class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="" type="text">
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_SERVIDOR">NOMBRE_SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="AÑO">PATERNO_SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="MATERNO_SERVIDOR">MATERNO_SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="CARGO_SERVIDOR">CARGO_SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
           </div>
         </div>
         <div class="row">
@@ -167,17 +167,17 @@ $num_consecutivo =$row["id"];
           </div>
             <div class="col-md-6 mb-3 validar">
               <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
-              <input onclick="vaciarCampoNombre()" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onclick="vaciarCampoNombre()" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-              <input onclick="vaciarCampoPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onclick="vaciarCampoPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-              <input onclick="vaciarCampoMaterno()" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onclick="vaciarCampoMaterno()" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
             </div>
 
             <!-- <div class="col-md-6 mb-3 validar">
@@ -259,37 +259,37 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="NACIONALIDAD_PERSONA">NACIONALIDAD_PERSONA<span class="required"></span></label>
-              <input class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="CURP_PERSONA">CURP_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" required type="text">
+              <input autocomplete="off" class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" required type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="RFC_PERSONA">RFC_PERSONA<span class="required"></span></label>
-              <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder="" required type="text" maxlength="13">
+              <input autocomplete="off" class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder="" required type="text" maxlength="13">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="ALIAS_PERSONA">ALIAS_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="OCUPACION_PERSONA">OCUPACION_PERSONA<span class="required"></span></label>
-              <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="TELEFONO_FIJO">TELEFONO_FIJO <span class="required"></span></label>
-              <input class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder=""  type="text" maxlength="10">
+              <input autocomplete="off" class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder=""  type="text" maxlength="10">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="TELEFONO_CELULAR">TELEFONO_CELULAR<span class="required"></span></label>
-              <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
+              <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
@@ -312,17 +312,17 @@ $num_consecutivo =$row["id"];
 
               <div class="col-md-6 mb-3 validar">
                 <label for="NOMBRE_LOCALIDAD">ESPECIFIQUE LA LOCALIDAD<span class="required"></span></label>
-                <input class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
+                <input autocomplete="off" class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
               </div>
               <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
               <div class="col-md-6 mb-3 validar">
                 <label for="CALLE">CALLE<span class="required"></span></label>
-                <input class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text">
+                <input autocomplete="off" class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text">
               </div>
 
               <div class="col-md-6 mb-3 validar">
                 <label for="CP">CP<span class="required"></span></label>
-                <input class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5">
+                <input autocomplete="off" class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5">
               </div>
 
               <div class="col-md-6 mb-3 validar">
@@ -344,17 +344,17 @@ $num_consecutivo =$row["id"];
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
-              <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="COLONIA">TUTOR_PATERNO <span class="required"></span></label>
-              <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="COLONIA">TUTOR_MATERNO <span class="required"></span></label>
-              <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder=""  type="text">
             </div>
 
         </div>
@@ -420,7 +420,7 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar">
             <label for="NUC">NUC <span class="required"></span></label>
-            <input class="form-control" id="NUC" name="NUC" placeholder=""  type="text" required>
+            <input autocomplete="off" class="form-control" id="NUC" name="NUC" placeholder=""  type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
