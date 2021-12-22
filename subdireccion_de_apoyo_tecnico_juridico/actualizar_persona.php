@@ -59,7 +59,7 @@ if ($verifica_update_person == 1) {
   // datos de domicilio
   $es_persona=$_POST['cbx_estado1'];
   $mu_persona= $_POST['cbx_municipio11'];
-  $lo_persona =$_POST['cbx_localidad11'];
+  $lo_persona =$_POST['localidadrad'];
   $ca_persona=$_POST['CALLE'];
   $cp_persona=$_POST['CP'];
   // datos del tutor
@@ -273,7 +273,7 @@ if ($verifica_update_person == 1) {
   // $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona)
   //               VALUES ('$name_estac', '$name_muniac', '$name_locaac', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona')";
   // $res_domicilio = $mysqli->query($dom_actual);
-  $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$name_locaac', calle='$ca_persona', cp='$cp_persona' WHERE id_persona = '$id_persona'";
+  $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona' WHERE id_persona = '$id_persona'";
   $res_domicilio = $mysqli->query($dom_actual);
   // // sql para la inserccion de datos del TUTOR
   // if ($incapaz == 'SI') {

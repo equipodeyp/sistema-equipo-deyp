@@ -34,6 +34,7 @@ if ($verifica == 1) {
   $e_persona =$_POST['EDAD_PERSONA'];
   $g_persona=$_POST['GRUPO_EDAD'];
   $c_persona=$_POST['CALIDAD_PERSONA'];
+  $p_procedimiento = $_POST['CALIDAD_PERSONA_PROCEDIMIENTO'];
   $s_persona= $_POST['SEXO_PERSONA'];
   $cu_persona= $_POST['CURP_PERSONA'];
   $rfc_persona =$_POST['RFC_PERSONA'];
@@ -55,7 +56,7 @@ if ($verifica == 1) {
   // datos de domicilio
   $es_persona=$_POST['cbx_estado1'];
   $mu_persona= $_POST['cbx_municipio1'];
-  $lo_persona =$_POST['cbx_localidad11'];
+  $lo_persona =$_POST['localidadrad'];
   $ca_persona=$_POST['CALLE'];
   $cp_persona=$_POST['CP'];
   // datos del tutor
@@ -205,8 +206,10 @@ if ($verifica == 1) {
     $errMSG = "Solo archivos JPG, JPEG, PNG & GIF son permitidos.";
   }
   $identificador = $_POST['ID_UNICO'];
-  $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus, identificador)
-                    VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador')";
+  $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, calidadprocedimiento, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular,
+                                incapaz, folioexpediente, foto, estatus, identificador)
+                    VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$p_procedimiento','$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular',
+                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador')";
   $res_dat_per = $mysqli->query($datos_persona);
   $qry = "select max(ID) As id from datospersonales";
   $result = $mysqli->query($qry);
@@ -225,7 +228,7 @@ if ($verifica == 1) {
   $res_origen = $mysqli->query($origen);
   // // sql para la inserccion de datos del lugar donde radica el Sujeto
   $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona)
-                VALUES ('$name_estac', '$name_muniac', '$name_locaac', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona')";
+                VALUES ('$name_estac', '$name_muniac', '$lo_persona', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona')";
   $res_domicilio = $mysqli->query($dom_actual);
   // // sql para lña inserccion de datos del TUTOR
   if ($incapaz == 'SI') {
@@ -259,7 +262,7 @@ if ($verifica == 1) {
                 VALUES ('$radicacion', '$des_rad', '$id_persona', '$fol_exp')";
   $res_radicacion = $mysqli->query($fuente_rad);
   // insertar comentarios de cambios
-  $fechacomentario = date('y/m/d');
+  $fechacomentario = date('y/m/d H:i:sa');
   if ($comment != '') {
     $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
                   VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";

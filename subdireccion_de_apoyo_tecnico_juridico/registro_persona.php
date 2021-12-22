@@ -212,6 +212,19 @@ $num_consecutivo =$row["id"];
                 ?>
               </select>
             </div>
+            <!-- calidad persona en el procedimiento -->
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD_PERSONA_PROCEDIMIENTO<span class="required"></span></label>
+              <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" required>
+                <option disabled selected value>SELECCIONE UNA OPCION</option>
+                <?php
+                $calidad = "SELECT * FROM calidadpersona";
+                $answer = $mysqli->query($calidad);
+                while($calidades = $answer->fetch_assoc()){
+                  echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
+                }
+                ?>
+              </select>
+            </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="GRUPO_EDAD">SEXO_PERSONA<span class="required"></span></label>
@@ -251,12 +264,12 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="CURP_PERSONA">CURP_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder=""  type="text">
+              <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" required type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="RFC_PERSONA">RFC_PERSONA<span class="required"></span></label>
-              <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" maxlength="13">
+              <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder="" required type="text" maxlength="13">
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -298,8 +311,8 @@ $num_consecutivo =$row["id"];
               </div>
 
               <div class="col-md-6 mb-3 validar">
-                <label for="NOMBRE_LOCALIDAD">SELECCIONE UNA LOCALIDAD<span class="required"></span></label>
-                <select class="form-select form-select-lg" name="cbx_localidad11" id="cbx_localidad11"></select>
+                <label for="NOMBRE_LOCALIDAD">ESPECIFIQUE LA LOCALIDAD<span class="required"></span></label>
+                <input class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
               </div>
               <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
               <div class="col-md-6 mb-3 validar">
