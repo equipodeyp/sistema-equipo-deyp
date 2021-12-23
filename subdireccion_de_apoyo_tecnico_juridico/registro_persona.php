@@ -104,7 +104,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
-            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly required>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -162,28 +162,32 @@ $num_consecutivo =$row["id"];
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
-          </div>
+          
+            <div class="alert alert-info">
+              <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
+            </div>
+
+            <div>
+            <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
+            </div>
+          
             <div class="col-md-6 mb-3 validar">
               <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
-              <input autocomplete="off" onclick="vaciarCampoNombre()" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <!-- <input autocomplete="off" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-              <input autocomplete="off" onclick="vaciarCampoPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <!-- <input autocomplete="off" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-              <input autocomplete="off" onclick="vaciarCampoMaterno()" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <!-- <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
-
-            <!-- <div class="col-md-6 mb-3 validar">
-              <label for="GENERAR_ID">Para generar el identificador clave presiona el siguente botón. Antes de generar el id revisa que la información se encuentre correcta. <span class="required"></span></label>
-              <button onclick="enviarId()" style="display: block; margin: 0 auto;" id="GENERAR_ID" type="button" required> GENERAR ID </button>
-            </div> -->
 
             <div class="col-md-6 mb-3 validar">
               <label for="FECHA_NACIMIENTO_PERSONA">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
@@ -234,6 +238,12 @@ $num_consecutivo =$row["id"];
                 <option value="HOMBRE">HOMBRE</option>
               </select>
             </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <br>
+              <button onclick="enviarId()" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button" required> GENERAR ID </button>
+            </div>
+
             <div class="alert alert-info">
               <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
             </div>
@@ -597,231 +607,87 @@ window.addEventListener('load', function () {
 
 
 <script type="text/javascript">
-var separarFolio = [];
-var folio = document.getElementById('NUM_EXPEDIENTE').value;
-separarFolio = folio.split("/");
-
-var idFolio = separarFolio[3];
-
-// asignar id unico a cada persona
-
-var nombrePersona = document.getElementById('NOMBRE_PERSONA');
-var paternoPersona = document.getElementById('PATERNO_PERSONA');
-var maternoPersona = document.getElementById('MATERNO_PERSONA');
-
-var nombreIngresado;
-var paternoIngresado;
-var maternoIngresado;
-
-var arregloNombre;
-var arregloPaterno;
-var arregloMaterno;
-
-var inicialNombre;
-var inicialPaterno;
-var inicialMaterno;
-
-var fullNombre;
-var fullPaterno;
-var fullMaterno;
-
-var arrayNombre = [];
-var arrayPaterno = [];
-var arrayMaterno = [];
-
-var text1 = "", text2 = "", text3 = "";
-
-nombrePersona.addEventListener('change', obtenerNombre);
-paternoPersona.addEventListener('change', obtenerPaterno);
-maternoPersona.addEventListener('change', obtenerMaterno);
-
-
-function obtenerNombre(e) {
-  nombreIngresado = e.target.value;
-
-  arregloNombre = nombreIngresado.split(' ');
-  for (var i = 0; i < arregloNombre.length; i++){
-    inicialNombre = arregloNombre[i].substring(0, 1).toUpperCase(0, 1);
-    arrayNombre.push(inicialNombre);
-  }
-  fullNombre = arrayNombre.filter(v => v);
-  document.getElementById("ID_UNICO").value = "";
-  readOnlyNombre();
-}
-
-
-function obtenerPaterno(e) {
-  paternoIngresado = e.target.value;
-
-  arregloPaterno = paternoIngresado.split(' ');
-  for (var i = 0; i < arregloPaterno.length; i++){
-    inicialPaterno = arregloPaterno[i].substring(0, 1).toUpperCase(0, 1);
-    arrayPaterno.push(inicialPaterno);
-  }
-  fullPaterno = arrayPaterno.filter(v => v);
-  document.getElementById("ID_UNICO").value = "";
-  document.getElementById("PATERNO_PERSONA").style.disabled = true;
-  readOnlyPaterno();
-}
-
-
-function obtenerMaterno(e) {
-  maternoIngresado = e.target.value;
-
-  arregloMaterno = maternoIngresado.split(' ');
-  for (var i = 0; i < arregloMaterno.length; i++){
-    inicialMaterno = arregloMaterno[i].substring(0, 1).toUpperCase(0, 1);
-    arrayMaterno.push(inicialMaterno);
-  }
-  fullMaterno = arrayMaterno.filter(v => v);
-  document.getElementById("ID_UNICO").value = "";
-
-  fullNombre.forEach(nombresPersona);
-  fullPaterno.forEach(paternoPersona);
-  fullMaterno.forEach(maternoPersona);
-
-  function nombresPersona(item1) {
-  text1 += item1;
-  }
-  function paternoPersona(item2) {
-  text2 += item2;
-  }
-  function maternoPersona(item3) {
-  text3 += item3;
-  }
-  enviarId();
-  readOnlyMaterno()
-
-}
-
-function enviarId() {
-  // document.getElementById("ID_UNICO").value = "";
-  document.getElementById("ID_UNICO").value = text1+text2+text3+idFolio;
-}
-
-function vaciarCampoNombre() {
-arrayNombre = [];
-arregloNombre = [];
-arrayNombre = [];
-fullNombre = [];
-nombreIngresado = "";
-inicialNombre = "";
-text1 = "";
-
-// arrayPaterno = [];
-// arregloPaterno = [];
-// arrayPaterno = [];
-// fullPaterno = [];
-// paternoIngresado = "";
-// inicialPaterno = "";
-// text2 = "";
-
-// arrayMaterno = [];
-// arregloMaterno = [];
-// arrayMaterno = [];
-// fullMaterno = [];
-// maternoIngresado = "";
-// inicialMaterno = "";
-// text3 = "";
-// arrayMaterno = [];
-
-// document.getElementById('NOMBRE_PERSONA').value = "";
-// document.getElementById('PATERNO_PERSONA').value = "";
-// document.getElementById('MATERNO_PERSONA').value = "";
-// document.getElementById("ID_UNICO").value = "";
-}
-
-function vaciarCampoPaterno() {
-// arrayNombre = [];
-// arregloNombre = [];
-// arrayNombre = [];
-// fullNombre = [];
-// nombreIngresado = "";
-// inicialNombre = "";
-// text1 = "";
-
-arrayPaterno = [];
-arregloPaterno = [];
-arrayPaterno = [];
-fullPaterno = [];
-paternoIngresado = "";
-inicialPaterno = "";
-text2 = "";
-
-// arrayMaterno = [];
-// arregloMaterno = [];
-// arrayMaterno = [];
-// fullMaterno = [];
-// maternoIngresado = "";
-// inicialMaterno = "";
-// text3 = "";
-// arrayMaterno = [];
-
-
-// document.getElementById('NOMBRE_PERSONA').value = "";
-// document.getElementById("ID_UNICO").value = "";
-}
-
-function vaciarCampoMaterno() {
-// arrayNombre = [];
-// arregloNombre = [];
-// arrayNombre = [];
-// fullNombre = [];
-// nombreIngresado = "";
-// inicialNombre = "";
-// text1 = "";
-
-// arrayPaterno = [];
-// arregloPaterno = [];
-// arrayPaterno = [];
-// fullPaterno = [];
-// paternoIngresado = "";
-// inicialPaterno = "";
-// text2 = "";
-
-arrayMaterno = [];
-arregloMaterno = [];
-arrayMaterno = [];
-fullMaterno = [];
-maternoIngresado = "";
-inicialMaterno = "";
-text3 = "";
-arrayMaterno = [];
-
-
-// document.getElementById('NOMBRE_PERSONA').value = "";
-// document.getElementById("ID_UNICO").value = "";
-}
-
-
-function readOnlyNombre() {
-  document.getElementById("NOMBRE_PERSONA").readOnly = true;
-}
-
-function readOnlyPaterno() {
-  document.getElementById("PATERNO_PERSONA").readOnly = true;
-}
-
-function readOnlyMaterno() {
-  document.getElementById("MATERNO_PERSONA").readOnly = true;
-}
-</script>
-
-
-<script type="text/javascript">
-function validarNombrePersona(form) {
-    form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
-}
-
-function validarApellidoPersona(form) {
-
-    form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
-
-}
-</script>
-
-
-
-
+    // obtener folio
+    var separarFolio = [];
+    var folio = document.getElementById('NUM_EXPEDIENTE').value;
+    separarFolio = folio.split("/");
+    var idFolio = separarFolio[3];
+    
+    // asignar id unico persona
+    var nombrePersona = document.getElementById('NOMBRE_PERSONA');
+    var paternoPersona = document.getElementById('PATERNO_PERSONA');
+    var maternoPersona = document.getElementById('MATERNO_PERSONA');
+    var nombreIngresado;
+    var paternoIngresado;
+    var maternoIngresado;
+    var nombreCompleto;
+    var arregloNombreCompleto;
+    var inicialesNombreCompleto;
+    var fullNombreCompleto;
+    var arrayNombreCompleto = [];
+    var text1 = "";
+    
+    nombrePersona.addEventListener('change', obtenerNombre);
+    paternoPersona.addEventListener('change', obtenerPaterno);
+    maternoPersona.addEventListener('change', obtenerMaterno);
+    
+    function obtenerNombre(e) {
+      nombreIngresado = e.target.value;
+      console.log(nombreIngresado);
+    }
+    
+    function obtenerPaterno(e) {
+      paternoIngresado = e.target.value;
+      console.log(paternoIngresado);
+    }
+    
+    function obtenerMaterno(e) {
+      maternoIngresado = e.target.value;
+      console.log(maternoIngresado);
+    }
+    
+    function obtenerIniciales() {
+      nombreCompleto = " " + nombreIngresado + " " + paternoIngresado + " " + maternoIngresado + " ";
+      
+      arregloNombreCompleto = nombreCompleto.split(' ');
+      for (var i = 0; i < arregloNombreCompleto.length; i++){
+        inicialesNombreCompleto = arregloNombreCompleto[i].substring(0, 1).toUpperCase(0, 1);
+        arrayNombreCompleto.push(inicialesNombreCompleto);
+      }
+    
+      fullNombreCompleto = arrayNombreCompleto.filter(v => v);
+      console.log(fullNombreCompleto);
+      document.getElementById("ID_UNICO").value = "";
+    
+      fullNombreCompleto.forEach(nombrePersona);
+    
+      function nombrePersona(item1) {
+      text1 += item1;
+      }
+    }
+    
+    function enviarId() {
+      obtenerIniciales();
+      document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
+      readOnlyNombreCompleto();
+    }
+    
+    function readOnlyNombreCompleto() {
+      document.getElementById("NOMBRE_PERSONA").readOnly = true;
+      document.getElementById("PATERNO_PERSONA").readOnly = true;
+      document.getElementById("MATERNO_PERSONA").readOnly = true;
+      document.getElementById("GENERAR_ID").disabled = true;
+    }
+    
+    function validarNombrePersona(form) {
+        form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
+    }
+    
+    function validarApellidoPersona(form) {
+        form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
+    }
+    
+    
+    </script>
 </body>
 </html>
