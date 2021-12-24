@@ -129,7 +129,7 @@ $num_consecutivo =$row["id"];
             while($autoridades = $answer->fetch_assoc()){
             echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
             }
-            ?> 
+            ?>
             </datalist>
           </div>
 
@@ -162,7 +162,7 @@ $num_consecutivo =$row["id"];
           <div class="row">
             <hr class="mb-4">
           </div>
-          
+
             <div class="alert alert-info">
               <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
             </div>
@@ -170,7 +170,7 @@ $num_consecutivo =$row["id"];
             <div>
             <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
             </div>
-          
+
             <div class="col-md-6 mb-3 validar">
               <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
               <input autocomplete="off" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
@@ -525,6 +525,11 @@ $num_consecutivo =$row["id"];
 </div>
 </div>
 <div class="contenedor">
+  <div class="columns download">
+          <p>
+             <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
+          </p>
+  </div>
 <a href="menu.php" class="btn-flotante">CANCELAR</a>
 </div>
 
@@ -612,7 +617,7 @@ window.addEventListener('load', function () {
     var folio = document.getElementById('NUM_EXPEDIENTE').value;
     separarFolio = folio.split("/");
     var idFolio = separarFolio[3];
-    
+
     // asignar id unico persona
     var nombrePersona = document.getElementById('NOMBRE_PERSONA');
     var paternoPersona = document.getElementById('PATERNO_PERSONA');
@@ -626,68 +631,68 @@ window.addEventListener('load', function () {
     var fullNombreCompleto;
     var arrayNombreCompleto = [];
     var text1 = "";
-    
+
     nombrePersona.addEventListener('change', obtenerNombre);
     paternoPersona.addEventListener('change', obtenerPaterno);
     maternoPersona.addEventListener('change', obtenerMaterno);
-    
+
     function obtenerNombre(e) {
       nombreIngresado = e.target.value;
       console.log(nombreIngresado);
     }
-    
+
     function obtenerPaterno(e) {
       paternoIngresado = e.target.value;
       console.log(paternoIngresado);
     }
-    
+
     function obtenerMaterno(e) {
       maternoIngresado = e.target.value;
       console.log(maternoIngresado);
     }
-    
+
     function obtenerIniciales() {
       nombreCompleto = " " + nombreIngresado + " " + paternoIngresado + " " + maternoIngresado + " ";
-      
+
       arregloNombreCompleto = nombreCompleto.split(' ');
       for (var i = 0; i < arregloNombreCompleto.length; i++){
         inicialesNombreCompleto = arregloNombreCompleto[i].substring(0, 1).toUpperCase(0, 1);
         arrayNombreCompleto.push(inicialesNombreCompleto);
       }
-    
+
       fullNombreCompleto = arrayNombreCompleto.filter(v => v);
       console.log(fullNombreCompleto);
       document.getElementById("ID_UNICO").value = "";
-    
+
       fullNombreCompleto.forEach(nombrePersona);
-    
+
       function nombrePersona(item1) {
       text1 += item1;
       }
     }
-    
+
     function enviarId() {
       obtenerIniciales();
       document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
       readOnlyNombreCompleto();
     }
-    
+
     function readOnlyNombreCompleto() {
       document.getElementById("NOMBRE_PERSONA").readOnly = true;
       document.getElementById("PATERNO_PERSONA").readOnly = true;
       document.getElementById("MATERNO_PERSONA").readOnly = true;
       document.getElementById("GENERAR_ID").disabled = true;
     }
-    
+
     function validarNombrePersona(form) {
         form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
     }
-    
+
     function validarApellidoPersona(form) {
         form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
     }
-    
-    
+
+
     </script>
 </body>
 </html>
