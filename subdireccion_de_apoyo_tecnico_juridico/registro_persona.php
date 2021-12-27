@@ -65,8 +65,7 @@ $num_consecutivo =$row["id"];
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
+<link rel="stylesheet" href="../subdireccion_de_apoyo_tecnico_juridico/style/modal.css" rel="stylesheet">
 
 </head>
 <body >
@@ -477,11 +476,6 @@ $num_consecutivo =$row["id"];
           </div>
         </div>
 
-
-
-
-
-
         <div class="row">
           <div class="row">
             <hr class="mb-4">
@@ -516,6 +510,30 @@ $num_consecutivo =$row["id"];
               <br>
               <br>
           		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+
+              
+              <div id="myModal" class="modal">
+              <!-- Modal content -->
+                <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="modal-text">Selecciona la opcion deseada.</p>
+                <br>
+                <br>
+                <p>Antes de GUARDAR la información asegurate de que se encuentre correctamente.</p>
+                <p>¿Deseas GUARDAR la información?</p>
+                <br>
+                <div class="btn-modal">
+                  <div>
+                    <button class="button-modal-guardar">GUARDAR</button>
+                  </div>
+                  <div>
+                    <button class="button-modal-cancelas">CANCELAR</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+
+              
           </div>
         </div>
       </form>
@@ -705,14 +723,35 @@ window.addEventListener('load', function () {
     function cleanMaterno(){
       document.getElementById('MATERNO_PERSONA').value = '';
     }
+</script>
 
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("enter");
 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
-    </script>
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
 
-
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 
 </body>
 </html>
