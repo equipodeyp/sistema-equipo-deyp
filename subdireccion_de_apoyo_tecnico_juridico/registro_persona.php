@@ -104,7 +104,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
-            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly required>
+            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -173,19 +173,19 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
-              <input autocomplete="off" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onclick="cleanNombre()" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
               <!-- <input autocomplete="off" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-              <input autocomplete="off" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onclick="cleanPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
               <!-- <input autocomplete="off" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-              <input autocomplete="off" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onclick="cleanMaterno()" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
               <!-- <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
@@ -240,8 +240,9 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
+              <!-- <br> -->
               <br>
-              <button onclick="enviarId()" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button" required> GENERAR ID </button>
+              <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
             </div>
 
             <div class="alert alert-info">
@@ -639,16 +640,19 @@ window.addEventListener('load', function () {
     function obtenerNombre(e) {
       nombreIngresado = e.target.value;
       console.log(nombreIngresado);
+      document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function obtenerPaterno(e) {
       paternoIngresado = e.target.value;
       console.log(paternoIngresado);
+      document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function obtenerMaterno(e) {
       maternoIngresado = e.target.value;
       console.log(maternoIngresado);
+      document.getElementById("GENERAR_ID").disabled = false;
     }
 
     function obtenerIniciales() {
@@ -672,16 +676,16 @@ window.addEventListener('load', function () {
     }
 
     function enviarId() {
-      obtenerIniciales();
-      document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
-      readOnlyNombreCompleto();
+        obtenerIniciales();
+        document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
+        readOnlyNombreCompleto();
+        document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function readOnlyNombreCompleto() {
       document.getElementById("NOMBRE_PERSONA").readOnly = true;
       document.getElementById("PATERNO_PERSONA").readOnly = true;
       document.getElementById("MATERNO_PERSONA").readOnly = true;
-      document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function validarNombrePersona(form) {
@@ -692,7 +696,23 @@ window.addEventListener('load', function () {
         form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
     }
 
+    function cleanNombre(){
+      document.getElementById('NOMBRE_PERSONA').value = '';
+    }
+    function cleanPaterno(){
+      document.getElementById('PATERNO_PERSONA').value = '';
+    }
+    function cleanMaterno(){
+      document.getElementById('MATERNO_PERSONA').value = '';
+    }
+
+
+
+
 
     </script>
+
+
+
 </body>
 </html>
