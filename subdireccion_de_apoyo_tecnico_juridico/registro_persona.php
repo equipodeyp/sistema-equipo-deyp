@@ -237,7 +237,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="GRUPO_EDAD" class="required">SEXO_PERSONA<span class="required"></span></label>
+              <label for="GRUPO_EDAD" class="is-required">SEXO_PERSONA<span class="required"></span></label>
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <option value="MUJER">MUJER</option>
@@ -509,7 +509,7 @@ $num_consecutivo =$row["id"];
           </div>
 
             <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
-          
+
         </div>
 
         <div class="row" style="display:none;" id="guardarfrm">

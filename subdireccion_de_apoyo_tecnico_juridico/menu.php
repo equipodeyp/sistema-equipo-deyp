@@ -7,30 +7,30 @@ if (!isset($name)) {
   header("location: ../logout.php");
 }
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo']) ) {
-
-    //Tiempo en segundos para dar vida a la sesión.
-    $inactivo = 10;//20min en este caso.
-
-    //Calculamos tiempo de vida inactivo.
-    $vida_session = time() - $_SESSION['tiempo'];
-
-        //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-        if($vida_session > $inactivo)
-        {
-            //Removemos sesión.
-            session_unset();
-            //Destruimos sesión.
-            session_destroy();
-            //Redirigimos pagina.
-            header("Location: ../logout.php");
-
-            exit();
-        }
-
-}
-$_SESSION['tiempo'] = time();
-    // El siguiente key se crea cuando se inicia sesión
+// if(isset($_SESSION['tiempo']) ) {
+//
+//     //Tiempo en segundos para dar vida a la sesión.
+//     $inactivo = 100;//20min en este caso.
+//
+//     //Calculamos tiempo de vida inactivo.
+//     $vida_session = time() - $_SESSION['tiempo'];
+//
+//         //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+//         if($vida_session > $inactivo)
+//         {
+//             //Removemos sesión.
+//             session_unset();
+//             //Destruimos sesión.
+//             session_destroy();
+//             //Redirigimos pagina.
+//             header("Location: ../logout.php");
+//
+//             exit();
+//         }
+//
+// }
+// $_SESSION['tiempo'] = time();
+//     // El siguiente key se crea cuando se inicia sesión
 
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
