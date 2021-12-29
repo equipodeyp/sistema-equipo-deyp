@@ -607,9 +607,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
-                  <div id="contenido">
-  									<div class="row">
-  		  							<table class="table table-striped table-bordered " style="text-align:center;">
+                  <div id="contenido" class="">
+  									<div class="">
+  		  							<table class="table table-striped table-bordered " >
   		  								<thead >
 
   		  								</thead>
@@ -649,11 +649,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   		  					</div>
   								<div id="footer">
   		  					</div>
+                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+                  <!-- </div> -->
   							</div>
-                  <section class="text-center" >
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
-                </section>
-                </div>
                 <div class="row">
                   <div>
                       <br>
@@ -664,9 +662,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
               </form>
             </div>
     			</article>
-
-
-
     		</div>
     	</div>
       <!--  -->
@@ -675,8 +670,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <div class="contenedor">
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
-
-
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var today = new Date();
@@ -692,11 +685,7 @@ if(dd<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_SOLICITUD").setAttribute("max", today);
 document.getElementById("FECHA_NACIMIENTO_PERSONA").setAttribute("max", today);
-
-
 </script>
-
-
 <script>
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
@@ -706,8 +695,6 @@ const calcularEdad = (fechaNacimiento) => {
     const anoActual = parseInt(fechaActual.getFullYear());
     const mesActual = parseInt(fechaActual.getMonth()) + 1;
     const diaActual = parseInt(fechaActual.getDate());
-
-
     const anoNacimiento = parseInt(String(fechaNacimiento).substring(0, 4));
     const mesNacimiento = parseInt(String(fechaNacimiento).substring(5, 7));
     const diaNacimiento = parseInt(String(fechaNacimiento).substring(8, 10));
@@ -751,9 +738,6 @@ window.addEventListener('load', function () {
     });
 });
 </script>
-
-
-
 <script type="text/javascript">
 var separarFolio = [];
 var folio = document.getElementById('NUM_EXPEDIENTE').value;
@@ -761,9 +745,6 @@ separarFolio = folio.split("/");
 
 var idFolio = separarFolio[3];
 console.log(idFolio);
-
 </script>
-
-
 </body>
 </html>

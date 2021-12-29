@@ -115,7 +115,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="ID_SOLICITUD" class="is-required">ID_SOLICITUD<span ></span></label>
-            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" required type="text" value="" maxlength="20">
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" required type="text" value="">
           </div>
 
           <div class="col-md-6 mb-3 validar">
