@@ -203,3 +203,13 @@ bottom: 20px;
 right: 20px;
 }
 }
+
+
+
+.is-required:after {
+  content: '*';
+  margin-left: 3px;
+  color: red;
+  font-weight: bolder;
+  font-size: x-small;
+}

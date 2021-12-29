@@ -2,6 +2,10 @@
 /*require 'conexion.php';*/
 include("conexion.php");
 session_start ();
+$name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
 $verifica = 1;
 $_SESSION["verifica"] = $verifica;
 $name = $_SESSION['usuario'];
@@ -101,8 +105,8 @@ $row=$result->fetch_assoc();
                             while($valores = $answer->fetch_assoc()){
                               echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
                             }
-                          ?> 
-                        </datalist>  
+                          ?>
+                        </datalist>
                       </div>
                     </div>
                   </div>
@@ -124,7 +128,7 @@ $row=$result->fetch_assoc();
   <div class="contenedor">
     <a href="menu.php" class="btn-flotante">CANCELAR</a>
   </div>
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 </script>
 </body>

@@ -14,8 +14,12 @@ function ConsultarUsuario($usuario, $password)
 
   if($filas > 0) //si la variable count es mayor a 0
   {
+    $_SESSION['IS_LOGIN']='yes';
     $_SESSION['usuario']=$usuario;
     if($filas['id_cargo']==1){ //administrador
+      // $_SESSION['start'] = time(); // Taking now logged in time.
+      //       // Ending a session in 30 minutes from the starting time.
+      // $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
       echo'<script type="text/javascript">
       alert("Bienvenido");
       window.location.href="administrador/admin.php";
