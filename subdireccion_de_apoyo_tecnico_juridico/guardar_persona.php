@@ -272,7 +272,7 @@ if ($verifica == 1) {
   // validacion de registro GUARDADO
   if($res_dat_per && $resultado && $res_origen && $res_domicilio && $res_proceso && $res_val_juridica && $res_det_inc && $res_radicacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_apoyo_tecnico_juridico/menu.php?folio=$id_persona';
+     window.location.href='../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=$fol_exp';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }
