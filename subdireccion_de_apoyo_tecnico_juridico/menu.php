@@ -82,7 +82,7 @@ $row=$result->fetch_assoc();
       <div class="logo text-warning">
       </div>
       <div class="user">
-        <img src="../image/mujer.png" alt="" width="100" height="100">
+        <img src="../image/user.png" alt="" width="100" height="100">
         <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
       </div>
       <nav class="menu-nav">
