@@ -149,8 +149,8 @@ $row=$result->fetch_assoc();
 				<div class="row">
 		  	<table class="table table-striped table-bordered" id="tabla_personas">
 		  		<thead >
-		  			<th>ID</th>
-		  			<th>SUJETO</th>
+		  			<th>No.</th>
+		  			<th>ID PERSONA</th>
 						<th>SEXO</th>
 		  			<th>ESTATUS</th>
 		  			<th>CALIDAD</th>
