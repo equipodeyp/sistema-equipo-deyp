@@ -2,6 +2,10 @@
 /*require 'conexion.php';*/
 include("conexion.php");
 session_start ();
+$name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
 $verifica = 1;
 $_SESSION["verifica"] = $verifica;
 $name = $_SESSION['usuario'];
@@ -87,20 +91,20 @@ $row=$result->fetch_assoc();
                   </div>
 
                   <div class="form-group">
-                    <label for="municipio" class="col-md-4 control-label">MUNICIPIO DE RADICACION DE LA CI</label>
+                    <label for="municipio" class="col-md-4 control-label" style="font-size: 12px">MUNICIPIO DE RADICACIÓN <br>DE LA CARPETA DE INVESTIGACIÓN</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-map-marked-alt"></i></span>
-                        <select class="form-control" id="municipio" name="municipio" placeholder="SELECCIONE EL MUNICIPIO" required>
-                          <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
-                          <?php
-                          $select = "SELECT * FROM municipios";
-                          $answer = $mysqli->query($select);
-                          while($valores = $answer->fetch_assoc()){
-                            echo "<option value='".$valores['clave']."'>".$valores['nombre']."</option>";
-                          }
+                        <input list="datalistOptions" class="form-control" id="municipio" name="municipio" placeholder="SELECCIONE EL MUNICIPIO" required>
+                        <datalist id="datalistOptions">
+                            <?php
+                            $select = "SELECT * FROM municipios";
+                            $answer = $mysqli->query($select);
+                            while($valores = $answer->fetch_assoc()){
+                              echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                            }
                           ?>
-                        </select>
+                        </datalist>
                       </div>
                     </div>
                   </div>

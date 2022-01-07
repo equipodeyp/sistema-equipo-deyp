@@ -6,7 +6,7 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-//Comprobamos si esta definida la sesión 'tiempo'.
+// // Comprobamos si esta definida la sesión 'tiempo'.
 // if(isset($_SESSION['tiempo']) ) {
 //
 //     //Tiempo en segundos para dar vida a la sesión.
@@ -30,7 +30,7 @@ if (!isset($name)) {
 //
 // }
 // $_SESSION['tiempo'] = time();
-//     // El siguiente key se crea cuando se inicia sesión
+    // El siguiente key se crea cuando se inicia sesión
 
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
@@ -54,7 +54,7 @@ $row=$result->fetch_assoc();
 <script>
   $(document).ready(function(){
     $('#mitabla').DataTable({
-      "order": [[1, "asc"]],
+      "order": [[1, "desc"]],
       "language":{
       "lengthMenu": "Mostrar _MENU_ registros por pagina",
       "info": "Mostrando pagina _PAGE_ de _PAGES_",
