@@ -195,13 +195,13 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="FECHA_NACIMIENTO_PERSONA" class="is-required">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
-              <input onkeyup="validardiv2()" class="verificdiv2 form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="" required>
+              <label for="FECHA_NACIMIENTO_PERSONA">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
+              <input onkeyup="validardiv2()" class="verificdiv2 form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="EDAD_PERSONA">EDAD_PERSONA <span class="required"></span></label>
-              <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
+              <input class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -210,7 +210,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD_PERSONA<span class="required"></span></label>
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD PERSONA EN EL PROCESO PENAL<span class="required"></span></label>
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <?php
@@ -223,7 +223,7 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
             <!-- calidad persona en el procedimiento -->
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD_PERSONA_PROCEDIMIENTO<span class="required"></span></label>
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <?php
@@ -310,7 +310,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DE RADICACION</h3>
+              <h3 style="text-align:center">DATOS DE RADICACION DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
@@ -344,7 +344,7 @@ $num_consecutivo =$row["id"];
 
               <div class="col-md-6 mb-3 validar">
                 <label for="INCAPAZ" class="is-required">INCAPAZ<span class="required"></span></label>
-                <select onchange="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
+                <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
                   <option disabled selected value>SELECCIONE UNA OPCION</option>
                   <option value="SI">SI</option>
                   <option value="NO">NO</option>
@@ -550,7 +550,7 @@ $num_consecutivo =$row["id"];
 <div class="contenedor">
   <div class="columns download">
           <p>
-             <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
+            <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
           </p>
   </div>
 <a href="menu.php" class="btn-flotante">CANCELAR</a>
