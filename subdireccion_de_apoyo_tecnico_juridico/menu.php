@@ -120,6 +120,7 @@ $row=$result->fetch_assoc();
                 <th>FECHA</th>
                 <th>FOLIO EXPEDIENTE</th>
                 <th>DETALLES</th>
+                <th>PERSONAS</th>
               </tr>
             </thead>
             <tbody>
