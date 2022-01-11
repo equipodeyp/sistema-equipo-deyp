@@ -7,7 +7,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 	require 'conexion.php';
 	$fol_exp = $_GET['folio'];
-	echo $fol_exp;
+	// echo $fol_exp;
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
@@ -45,7 +45,7 @@ $row=$result->fetch_assoc();
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/USER.jpg" alt="" width="100" height="100">
+      <img src="../image/USER.png" alt="" width="100" height="100">
     	<span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">

@@ -82,7 +82,23 @@ $row=$result->fetch_assoc();
       <div class="logo text-warning">
       </div>
       <div class="user">
-        <img src="../image/user.png" alt="" width="100" height="100">
+        <?php
+        $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+        $result = $mysqli->query($sentencia);
+        $row=$result->fetch_assoc();
+        $genero = $row['sexo'];
+
+        if ($genero=='mujer') {
+          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+        }
+
+        if ($genero=='hombre') {
+          // $foto = ../image/user.png;
+          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+        }
+        // echo $genero;
+         ?>
+        <!-- <img src="$genero" alt="" width="100" height="100"> -->
         <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
       </div>
       <nav class="menu-nav">

@@ -45,7 +45,7 @@ if ($verifica == 1) {
   if($resultado) {
         echo $verifica;
         echo ("<script type='text/javaScript'>
-         window.location.href='../subdireccion_de_apoyo_tecnico_juridico/detalle_expediente.php?folio=$folio';
+         window.location.href='../administrador/exp_detalle.php?folio=$folio';
          window.alert('!!!!!Registro exitoso¡¡¡¡¡')
        </script>");
         } else {  }

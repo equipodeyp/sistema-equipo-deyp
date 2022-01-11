@@ -48,12 +48,12 @@ ul.tabs li a .tab-text{
 }
 
 .secciones{
-	width: 120%;
+	width: 100%;
 	background: #cccccc;
 }
 
 .secciones article{
-	padding: 25px;
+	padding: 20px;
 }
 
 .secciones article p{
