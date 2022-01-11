@@ -2,6 +2,10 @@
 /*require 'conexion.php';*/
 include("conexion.php");
 session_start ();
+$name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
 $verifica = 1;
 $_SESSION["verifica"] = $verifica;
 $name = $_SESSION['usuario'];
@@ -17,6 +21,9 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
+$exp=" SELECT *FROM expediente WHERE fol_exp = '$fol_exp'";
+$result_exp = $mysqli->query($exp);
+$row_exp=$result_exp->fetch_assoc();
 
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
@@ -69,7 +76,7 @@ $num_consecutivo =$row["id"];
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/USER.jpg" alt="" width="100" height="100">
+      <img src="../image/user.png" alt="" width="100" height="100">
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
@@ -77,65 +84,79 @@ $num_consecutivo =$row["id"];
   </div>
   <div class="main bg-light">
     <div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+      <img src="../image/fiscalia.png" alt="" width="150" height="150">
+      <img src="../image/ups2.png" alt="" width="1400" height="70">
+      <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
     <div class="wrap">
 
     <div class="secciones">
 
   <article id="tab1">
+    <p><span><label ></label> * CAMPOS OBLIGATORIOS</span></p>
     <div class="container">
       <form class="container well form-horizontal" id="myform" method="POST" action="save_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
         <div class="row">
           <div class="alert alert-info">
+            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
+          </div>
+          <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID_SOLICITUD<span ></span></label>
+            <label for="ID_SOLICITUD" class="is-required">ID_SOLICITUD<span ></span></label>
             <input class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="" maxlength="20">
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_SOLICITUD">FECHA_SOLICITUD<span class="required"></span></label>
+            <label for="FECHA_SOLICITUD" class="is-required">FECHA_SOLICITUD<span class="required"></span></label>
             <input class="form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_AUTORIDAD">NOMBRE_AUTORIDAD<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" required>
-              <option disabled selected value>SELECCIONE LA AUTORIDAD</option>
-              <?php
-              $autoridad = "SELECT * FROM nombreautoridad";
-              $answer = $mysqli->query($autoridad);
-              while($autoridades = $answer->fetch_assoc()){
-                echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
-              }
-              ?>
-            </select>
+            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE_AUTORIDAD<span class="required"></span></label>
+            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE EL MUNICIPIO" required>
+            <datalist id="datalistOptions">
+            <?php
+            $autoridad = "SELECT * FROM nombreautoridad";
+            $answer = $mysqli->query($autoridad);
+            while($autoridades = $answer->fetch_assoc()){
+            echo "<option value='".$autoridades['nombre']."'>".$autoridades['nombre']."</option>";
+            }
+            ?>
+            </datalist>
           </div>
 
           <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
-            <label for="OTHER_AUTORIDAD">ESPECIFIQUE</label>
+            <label for="OTHER_AUTORIDAD" class="is-required">ESPECIFIQUE</label>
             <input class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="" type="text">
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_SERVIDOR">NOMBRE_SERVIDOR<span class="required"></span></label>
+            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE_SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="AÑO">PATERNO_SERVIDOR<span class="required"></span></label>
+            <label for="PATERNO_SERVIDOR" class="is-required">PATERNO_SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_SERVIDOR">MATERNO_SERVIDOR<span class="required"></span></label>
+            <label for="MATERNO_SERVIDOR" class="is-required">MATERNO_SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CARGO_SERVIDOR">CARGO_SERVIDOR<span class="required"></span></label>
+            <label for="CARGO_SERVIDOR" class="is-required">CARGO_SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
           </div>
         </div>
@@ -146,23 +167,31 @@ $num_consecutivo =$row["id"];
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
           </div>
-            <div class="col-md-6 mb-3 validar">
-              <label for="SIGLAS DE LA UNIDAD">NOMBRE_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
-            </div>
+
+          <div>
+          <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
+          </div>
+
+          <div class="col-md-6 mb-3 validar">
+            <label for="NOMBRE_PERSONA" class="is-required">NOMBRE (S) <span class="required"></span></label>
+            <input autocomplete="off"  onkeydown="validardiv2()" onclick="cleanNombre()" onkeyup="validarNombrePersona(this.form)" class="verificdiv2 form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+            <!-- <input autocomplete="off" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required> -->
+          </div>
+
+          <div class="col-md-6 mb-3 validar">
+            <label for="PATERNO_PERSONA" class="is-required">APELLIDO PATERNO <span class="required"></span></label>
+            <input autocomplete="off"  onkeydown="validardiv2()" onclick="cleanPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="verificdiv2 form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+            <!-- <input autocomplete="off" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
+          </div>
+
+          <div class="col-md-6 mb-3 validar">
+            <label for="MATERNO_PERSONA" class="is-required"> APELLIDO MATERNO <span class="required"></span></label>
+            <input autocomplete="off" onkeydown="validardiv2()" onclick="cleanMaterno()" disabled="disabled" class="verificdiv2 form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+            <!-- <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
+          </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="PATERNO_PERSONA">PATERNO_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
-            </div>
-
-            <div class="col-md-6 mb-3 validar">
-              <label for="MATERNO_PERSONA">MATERNO_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
-            </div>
-
-            <div class="col-md-6 mb-3 validar">
-              <label for="FECHA_NACIMIENTO_PERSONA">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
+              <label for="FECHA_NACIMIENTO_PERSONA" class="is-required">FECHA_NACIMIENTO_PERSONA <span class="required"></span></label>
               <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="" required>
             </div>
 
@@ -181,8 +210,22 @@ $num_consecutivo =$row["id"];
               </select> -->
             </div>
 
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
+            <div class="col-md-6 mb-3 validar">
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD_PERSONA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
+                <option disabled selected value>SELECCIONE UNA OPCION</option>
+                <?php
+                $calidad = "SELECT * FROM calidadpersona";
+                $answer = $mysqli->query($calidad);
+                while($calidades = $answer->fetch_assoc()){
+                  echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
+                }
+                ?>
+              </select>
+            </div>
+            <!-- calidad persona en el procedimiento -->
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD_PERSONA_PROCEDIMIENTO<span class="required"></span></label>
+              <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <?php
                 $calidad = "SELECT * FROM calidadpersona";
@@ -201,6 +244,15 @@ $num_consecutivo =$row["id"];
                 <option value="MUJER">MUJER</option>
                 <option value="HOMBRE">HOMBRE</option>
               </select>
+            </div>
+            <div class="col-md-6 mb-3 validar">
+              <!-- <br> -->
+              <br>
+              <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
+            </div>
+
+            <div class="alert alert-info">
+              <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -258,6 +310,9 @@ $num_consecutivo =$row["id"];
               <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
+            <div class="alert alert-info">
+              <h3 style="text-align:center">DATOS DE RADICACION</h3>
+            </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1">
@@ -481,7 +536,7 @@ $num_consecutivo =$row["id"];
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA INICIO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
             <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="" type="date" value="" >
-          </div>    
+          </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO<span class="required"></span></label>
@@ -609,11 +664,24 @@ $num_consecutivo =$row["id"];
           </section>
         </div>
 
+        <div class="row" id="comentarios">
+          <div class="row">
+
+            <hr class="mb-4">
+          </div>
+          <div class="alert alert-info">
+            <h3 style="text-align:center">COMENTARIOS</h3>
+          </div>
+
+            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+
+        </div>
+
         <div class="row">
           <div>
               <br>
               <br>
-          		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">SIGUIENTE</button>
+          		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
           </div>
         </div>
       </form>
@@ -624,6 +692,11 @@ $num_consecutivo =$row["id"];
 </div>
 </div>
 <div class="contenedor">
+  <div class="columns download">
+          <p>
+             <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
+          </p>
+  </div>
 <a href="admin.php" class="btn-flotante">CANCELAR</a>
 </div>
 
@@ -647,8 +720,8 @@ document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").setAttribute("max", toda
 document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 </script>
 
-<script>
 
+<script>
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
 
@@ -680,10 +753,9 @@ window.addEventListener('load', function () {
         if (this.value) {
             function enviarEdad() {
               calcularEdad = document.getElementById("EDAD_PERSONA").value;
-              
             }
             // console.log(`La edad es: ${calcularEdad(this.value)} años`);
-            
+
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
             var mayor = "MAYOR DE EDAD";
             var menor = "MENOR DE EDAD";
@@ -691,63 +763,240 @@ window.addEventListener('load', function () {
 
               //console.log("MAYOR DE EDAD");
               document.getElementById("GRUPO_EDAD").value = mayor;
-              
-            } else if (calcularEdad(this.value) < 18){
+
+            } else if (calcularEdad(this.value) <= 18){
 
               //console.log("MENOR DE EDAD");
               document.getElementById("GRUPO_EDAD").value = menor;
 
             }
-  
         }
     });
 
 });
+</script>
 
+
+
+<script type="text/javascript">
+    // obtener folio
+    var separarFolio = [];
+    var folio = document.getElementById('NUM_EXPEDIENTE').value;
+    separarFolio = folio.split("/");
+    var idFolio = separarFolio[3];
+
+    // asignar id unico persona
+    var nombrePersona = document.getElementById('NOMBRE_PERSONA');
+    var paternoPersona = document.getElementById('PATERNO_PERSONA');
+    var maternoPersona = document.getElementById('MATERNO_PERSONA');
+    var nombreIngresado;
+    var paternoIngresado;
+    var maternoIngresado;
+    var nombreCompleto;
+    var arregloNombreCompleto;
+    var inicialesNombreCompleto;
+    var fullNombreCompleto;
+    var arrayNombreCompleto = [];
+    var text1 = "";
+
+    nombrePersona.addEventListener('change', obtenerNombre);
+    paternoPersona.addEventListener('change', obtenerPaterno);
+    maternoPersona.addEventListener('change', obtenerMaterno);
+
+    function obtenerNombre(e) {
+      nombreIngresado = e.target.value;
+      console.log(nombreIngresado);
+      document.getElementById("GENERAR_ID").disabled = true;
+    }
+
+    function obtenerPaterno(e) {
+      paternoIngresado = e.target.value;
+      console.log(paternoIngresado);
+      document.getElementById("GENERAR_ID").disabled = true;
+    }
+
+    function obtenerMaterno(e) {
+      maternoIngresado = e.target.value;
+      console.log(maternoIngresado);
+      document.getElementById("GENERAR_ID").disabled = false;
+    }
+
+    function obtenerIniciales() {
+      nombreCompleto = " " + nombreIngresado + " " + paternoIngresado + " " + maternoIngresado + " ";
+
+      arregloNombreCompleto = nombreCompleto.split(' ');
+      for (var i = 0; i < arregloNombreCompleto.length; i++){
+        inicialesNombreCompleto = arregloNombreCompleto[i].substring(0, 1).toUpperCase(0, 1);
+        arrayNombreCompleto.push(inicialesNombreCompleto);
+      }
+
+      fullNombreCompleto = arrayNombreCompleto.filter(v => v);
+      console.log(fullNombreCompleto);
+      document.getElementById("ID_UNICO").value = "";
+
+      fullNombreCompleto.forEach(nombrePersona);
+
+      function nombrePersona(item1) {
+      text1 += item1;
+      }
+    }
+
+    function enviarId() {
+        obtenerIniciales();
+        document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
+        readOnlyNombreCompleto();
+        document.getElementById("GENERAR_ID").disabled = true;
+    }
+
+    function readOnlyNombreCompleto() {
+      document.getElementById("NOMBRE_PERSONA").readOnly = true;
+      document.getElementById("PATERNO_PERSONA").readOnly = true;
+      document.getElementById("MATERNO_PERSONA").readOnly = true;
+    }
+
+    function validarNombrePersona(form) {
+        form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
+    }
+
+    function validarApellidoPersona(form) {
+        form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
+    }
+
+    function cleanNombre(){
+      document.getElementById('NOMBRE_PERSONA').value = '';
+    }
+    function cleanPaterno(){
+      document.getElementById('PATERNO_PERSONA').value = '';
+    }
+    function cleanMaterno(){
+      document.getElementById('MATERNO_PERSONA').value = '';
+    }
+</script>
+
+
+<script type="text/javascript">
+function validarfrm(){
+  var validado = true;
+  elementos = document.getElementsByClassName("verific");
+  for(i=0;i<elementos.length;i++){
+    if(elementos[i].value == "" || elementos[i].value == null){
+    validado = false
+    }
+  }
+  if(validado){
+  document.getElementById("next").disabled = false;
+
+  }else{
+     document.getElementById("next").disabled = true;
+  //Salta un alert cada vez que escribes y hay un campo vacio
+  //alert("Hay campos vacios")
+  }
+  }
+</script>
+<script>
+document.getElementById("next").addEventListener("click", function() {
+    document.getElementById("persona_p").style.display="";
+    document.getElementById("btnnext1").style.display="none";
+    document.getElementById("btnnext2").style.display="";
+
+});
+</script>
+<script type="text/javascript">
+function validardiv2(){
+  var validado = true;
+  elementos = document.getElementsByClassName("verificdiv2");
+  for(i=0;i<elementos.length;i++){
+    if(elementos[i].value == "" || elementos[i].value == null){
+    validado = false
+    }
+  }
+  if(validado){
+  document.getElementById("next2").disabled = false;
+
+  }else{
+     document.getElementById("next2").disabled = true;
+  //Salta un alert cada vez que escribes y hay un campo vacio
+  //alert("Hay campos vacios")
+  }
+  // NOMBRE_PERSONA = document.getElementById("NOMBRE_PERSONA").value;
+  // varnext2=0;
+  // if (NOMBRE_PERSONA=="") {
+  //   varnext2++;
+  // }
+  // if (varnext2==0) {
+  //   document.getElementById("next2").disabled="false";
+  // }else {
+  //   document.getElementById("next2").disabled="true";
+  // }
+  //
+  // document.getElementById("NOMBRE_PERSONA").addEventListener("keyup", validardiv2);
+}
 </script>
 
 <script>
+document.getElementById("next2").addEventListener("click", function() {
+    document.getElementById("procesopenal").style.display="";
+    document.getElementById("btnnext2").style.display="none";
+    document.getElementById("btnnext3").style.display="";
 
+});
+</script>
+<script type="text/javascript">
+function validardiv3(){
+  // var validado = true;
+  // elementos = document.getElementsByClassName("verificdiv2");
+  // for(i=0;i<elementos.length;i++){
+  //   if(elementos[i].value == "" || elementos[i].value == null){
+  //   validado = false
+  //   }
+  // }
+  // if(validado){
+  // document.getElementById("next2").disabled = false;
+  //
+  // }else{
+  //    document.getElementById("next2").disabled = true;
+  // //Salta un alert cada vez que escribes y hay un campo vacio
+  // //alert("Hay campos vacios")
+  // }
+  DELITO_PRINCIPAL = document.getElementById("DELITO_PRINCIPAL").value;
+  ETAPA_PROCEDIMIENTO = document.getElementById("ETAPA_PROCEDIMIENTO").value;
+  NUC = document.getElementById("NUC").value;
+  MUNICIPIO_RADICACION = document.getElementById("MUNICIPIO_RADICACION").value;
+  varnext2 = 0;
+  if (DELITO_PRINCIPAL=="") {
+    varnext2++;
+  }
+  if (ETAPA_PROCEDIMIENTO == "") {
+    varnext2++;
+  }
+  if (NUC == "") {
+    varnext2++;
+  }
+  if (MUNICIPIO_RADICACION == "") {
+    varnext2++;
+  }
+  if (varnext2 == 0) {
+    document.getElementById("next3").disabled= false;
+  }else {
+    document.getElementById("next3").disabled= true;
+  }
 
-
-var numeroIngresado = document.getElementById('VIGENCIA_CONVENIO');
-var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO');
-
-var numeroObtenido;
-var fechaObtenida;
-
-
-
-    fechaInicio.addEventListener('change', obtenerFecha);
-    function obtenerFecha(e) {
-      fechaObtenida = e.target.value;
-    }
-
-    numeroIngresado.addEventListener('change', obtenerNumero);
-    function obtenerNumero(e) {
-      numeroObtenido = e.target.value;
-
-      //console.log(numeroObtenido);
-
-      var fecha = new Date(fechaObtenida);
-      var dias = parseInt(numeroObtenido) + 1;
-
-      fecha.setDate(fecha.getDate() + dias);
-      const anio = parseInt(fecha.getFullYear());
-      const mes = parseInt(fecha.getMonth());
-      const dia = parseInt(fecha.getDate());
-
-      var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
-      document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
-    }
-    
-
-    
-
+}
+document.getElementById("DELITO_PRINCIPAL").addEventListener("change", validardiv3);
+document.getElementById("ETAPA_PROCEDIMIENTO").addEventListener("change", validardiv3);
+document.getElementById("NUC").addEventListener("keyup", validardiv3);
+document.getElementById("MUNICIPIO_RADICACION").addEventListener("change", validardiv3);
 </script>
 
+<script>
+document.getElementById("next3").addEventListener("click", function() {
+    document.getElementById("valoracionjuridica").style.display="";
+    document.getElementById("fotografia").style.display="";
+    document.getElementById("comentarios").style.display="";
+    document.getElementById("guardarfrm").style.display="";
+    document.getElementById("btnnext3").style.display="none";
 
-
-
+});
+</script>
 </body>
 </html>

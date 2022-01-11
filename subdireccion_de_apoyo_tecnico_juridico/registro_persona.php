@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+// SELECT COUNT(*) FROM datospersonales WHERE folioexpediente = 'UPSIPPED/TOL/012/002/2021'
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -25,13 +26,10 @@ $exp=" SELECT *FROM expediente WHERE fol_exp = '$fol_exp'";
 $result_exp = $mysqli->query($exp);
 $row_exp=$result_exp->fetch_assoc();
 
-
-
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
 $num_consecutivo =$row["id"];
-
 
  ?>
 <!DOCTYPE html>
@@ -344,7 +342,7 @@ $num_consecutivo =$row["id"];
 
               <div class="col-md-6 mb-3 validar">
                 <label for="INCAPAZ" class="is-required">INCAPAZ<span class="required"></span></label>
-                <select onchange="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
+                <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
                   <option disabled selected value>SELECCIONE UNA OPCION</option>
                   <option value="SI">SI</option>
                   <option value="NO">NO</option>
