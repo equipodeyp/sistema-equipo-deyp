@@ -48,10 +48,36 @@ $row=$result->fetch_assoc();
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../js/bootstrap.min.js"></script>
-  <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-  <script src="../js/jquery.dataTables.min.js"></script>
+  <!-- <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="../js/jquery.dataTables.min.js"></script> -->
   <link rel="stylesheet" href="../css/cli.css">
-<script>
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="../css/main2.css">
+  <!--datables CSS básico-->
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css"/>
+  <!--datables estilo bootstrap 4 CSS-->
+  <link rel="stylesheet"  type="text/css" href="../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+  <!--font awesome con CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- jQuery, Popper.js, Bootstrap JS -->
+  <!-- <script src="jquery/jquery-3.3.1.min.js"></script> -->
+  <!-- <script src="../popper/popper.min.js"></script> -->
+  <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+
+  <!-- datatables JS -->
+  <script type="text/javascript" src="../datatables/datatables.min.js"></script>
+
+  <!-- para usar botones en datatables JS -->
+  <script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+  <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
+  <script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+  <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+  <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+
+  <!-- código JS propìo-->
+  <!-- <script type="text/javascript" src="../js/main2.js"></script> -->
+
+<!-- <script>
   $(document).ready(function(){
     $('#mitabla').DataTable({
       "order": [[1, "desc"]],
@@ -74,9 +100,53 @@ $row=$result->fetch_assoc();
       "sAjaxSource": "server_process.php"
     });
   });
+</script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable({
+        language: {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+           },
+           "sProcessing":"Procesando...",
+            },
+        //para usar los botones
+        // responsive: "true",
+        // dom: 'Bfrtilp',
+    //     buttons:[
+    //   {
+    //     // extend:    'excelHtml5',
+    //     // text:      '<i class="fas fa-file-excel"></i> ',
+    //     // titleAttr: 'Exportar a Excel',
+    //     // className: 'btn btn-success'
+    //   },
+    //   {
+    //     // extend:    'pdfHtml5',
+    //     // text:      '<i class="fas fa-file-pdf"></i> ',
+    //     // titleAttr: 'Exportar a PDF',
+    //     // className: 'btn btn-danger'
+    //   },
+    //   {
+    //     // extend:    'print',
+    //     // text:      '<i class="fa fa-print"></i> ',
+    //     // titleAttr: 'Imprimir',
+    //     // className: 'btn btn-info'
+    //   },
+    // ]
+    });
+});
 </script>
 </head>
-<body onload="nobackbutton();">
+<body>
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
@@ -125,23 +195,62 @@ $row=$result->fetch_assoc();
           <a href="crear_expediente.php" class="btn btn-primary">Nuevo Expediente</a>
         </div>
         <br>
-        <div class="row table-responsive">
-          <table class="display" id="mitabla">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>UNIDAD</th>
-                <th>SEDE</th>
-                <th>MUNICIPIO</th>
-                <th>FECHA</th>
-                <th>FOLIO EXPEDIENTE</th>
-                <th>DETALLES</th>
-                <th>PERSONAS</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+        <!--Ejemplo tabla con DataTables-->
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>UNIDAD</th>
+                                    <th>SEDE</th>
+                                    <th>MUNICIPIO</th>
+                                    <th>FECHA</th>
+                                    <th>FOLIO EXPEDIENTE</th>
+                                    <th>PERSONAS</th>
+                                    <th>DETALLES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                              $sql = "SELECT * FROM expediente";
+                              $resultado = $mysqli->query($sql);
+                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
+                              $fol_exp =$row['fol_exp'];
+                              $tabla="SELECT * FROM expediente";
+                              $var_resultado = $mysqli->query($tabla);
+                              while ($var_fila=$var_resultado->fetch_array())
+                              {
+                                $fol_exp2=$var_fila['fol_exp'];
+                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
+                                $result=$mysqli->query($abc);
+                                if($result)
+                                {
+                                  while($row=mysqli_fetch_assoc($result))
+                                  {
+                                    echo "<tr>";
+                                    echo "<td>"; echo $var_fila['id']; echo "</td>";
+                                    echo "<td>"; echo $var_fila['unidad']; echo "</td>";
+                                    echo "<td>"; echo $var_fila['sede']; echo "</td>";
+                                    echo "<td>"; echo $var_fila['municipio']; echo "</td>";
+                                    echo "<td>"; echo $var_fila['fecha']; echo "</td>";
+                                    echo "<td>"; echo $var_fila['fol_exp']; echo "</td>";
+                                    echo "<td>"; echo $row['c']; echo "</td>";
+                                    echo "<td><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                    echo "</tr>";
+
+                                  }
+
+                                }
+                              }
+                            ?>
+                            </tbody>
+                           </table>
+                        </div>
+                    </div>
+            </div>
         </div>
       </div>
     </div>
