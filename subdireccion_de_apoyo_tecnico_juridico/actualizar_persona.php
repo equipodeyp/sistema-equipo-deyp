@@ -261,7 +261,7 @@ if ($verifica_update_person == 1) {
   // $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona,  aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus)
   //                                          VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona',              '$g_persona', '$name_cal', '$s_persona', '$cu_persona', '$rfc_persona',  '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$name_estatus')";
   // $res_dat_per = $mysqli->query($datos_persona);
-  $datos_persona = "UPDATE datospersonales SET  aliaspersona='$al_persona', ocupacion='$o_persona', telefonofijo='$t_fijo', telefonocelular='$t_celular', incapaz='$incapaz', foto='$userpic'  WHERE id = '$id_persona'";
+  $datos_persona = "UPDATE datospersonales SET  aliaspersona='$al_persona', ocupacion='$o_persona', telefonofijo='$t_fijo', telefonocelular='$t_celular',  foto='$userpic'  WHERE id = '$id_persona'";
   $res_dat_per = $mysqli->query($datos_persona);
   // sql para la inserccion de datos del sujeto de su origen
   // $origen = "INSERT INTO datosorigen(lugardenacimiento, municipiodenacimiento, nacionalidadpersona, folioexpediente, id_persona)
@@ -281,10 +281,10 @@ if ($verifica_update_person == 1) {
   //             VALUES ('$t_nombre', '$t_paterno', '$t_materno', '$fol_exp', '$id_persona')";
   //   $res_tutor = $mysqli->query($tutor);
   // }
-  if ($incapaz == 'SI') {
-    $tutor = "UPDATE tutor SET nombre='$t_nombre', apellidopaterno='$t_paterno', apellidomaterno='$t_materno' WHERE id_persona = '$id_persona'";
-    $res_tutor = $mysqli->query($tutor);
-  }
+  // if ($incapaz == 'SI') {
+  //   $tutor = "UPDATE tutor SET nombre='$t_nombre', apellidopaterno='$t_paterno', apellidomaterno='$t_materno' WHERE id_persona = '$id_persona'";
+  //   $res_tutor = $mysqli->query($tutor);
+  // }
   // sql para inserccion de los datos de la investigacion o proceso penal
   // $proceso_penal= "INSERT INTO procesopenal (delitoprincipal, otrodelitoprincipal, delitosecundario, otrodelitosecundario, etapaprocedimiento, nuc, numeroradicacion, folioexpediente, id_persona)
   //                   VALUES ('$name_del', '$otro_del_p', '$name_del2', '$otro_del_s', '$etapa_p', '$nuc', '$name_muni_del', '$fol_exp', '$id_persona')";

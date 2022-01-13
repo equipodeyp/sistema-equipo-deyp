@@ -211,6 +211,7 @@ $(document).ready(function() {
                                     <th>FOLIO EXPEDIENTE</th>
                                     <th>PERSONAS</th>
                                     <th>DETALLES</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
@@ -239,6 +240,7 @@ $(document).ready(function() {
                                     echo "<td>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td>"; echo $row['c']; echo "</td>";
                                     echo "<td><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+
                                     echo "</tr>";
 
                                   }
