@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -10,7 +10,7 @@ if (!isset($name)) {
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
-echo $name;
+// echo $name;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -22,16 +22,21 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
+// echo $name_folio;
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
+$valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
+$res_val1=$mysqli->query($valid1);
+$fil_val1 = $res_val1->fetch_assoc();
+$validacion1 = $fil_val1['folioexpediente'];
+echo $validacion1;
 
-
-echo $id_person;
+// echo $id_person;
 
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";

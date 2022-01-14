@@ -177,9 +177,8 @@ $(document).ready(function() {
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>UNIDAD</th>
                                     <th>SEDE</th>
-                                    <th>MUNICIPIO</th>
+                                    <th>MUNICIPIO DE RADICACION</th>
                                     <th>FECHA RECEPCION</th>
                                     <th>FOLIO EXPEDIENTE</th>
                                     <th>PERSONAS</th>
@@ -206,7 +205,7 @@ $(document).ready(function() {
                                   {
                                     echo "<tr>";
                                     echo "<td>"; echo $var_fila['id']; echo "</td>";
-                                    echo "<td>"; echo $var_fila['unidad']; echo "</td>";
+                                    
                                     echo "<td>"; echo $var_fila['sede']; echo "</td>";
                                     echo "<td>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td>"; echo $var_fila['fecha']; echo "</td>";
