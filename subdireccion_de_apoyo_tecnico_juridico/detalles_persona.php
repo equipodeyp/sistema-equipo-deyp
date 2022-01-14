@@ -3,9 +3,14 @@
 error_reporting(0);
 include("conexion.php");
 session_start ();
+$name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
+echo $name;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -17,6 +22,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
+echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -25,7 +31,7 @@ $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
 
 
-// echo $id_person;
+echo $id_person;
 
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
@@ -264,7 +270,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>">
                   </div>
 
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD_PERSONA<span class="required"></span></label>
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD PERSONA EN EL PROCESO PENAL<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
@@ -278,7 +284,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <!-- calidad persona en el procedimiento -->
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD_PERSONA_PROCEDIMIENTO<span class="required"></span></label>
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
@@ -364,7 +370,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE RADICACION</h3>
+                    <h3 style="text-align:center">DATOS DE RADICACION DE LA PERSONA PROPUESTA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -423,7 +429,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <hr class="mb-4">
                     </div>
                     <div class="alert alert-info">
-                      <p style="text-align:center">DATOS DEL TUTOR</p>
+                      <h3 style="text-align:center">DATOS DEL TUTOR</h3>
                     </div>
                     <div class="col-md-6 mb-3 validar">
                       <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
@@ -668,6 +674,24 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
+  <?php
+  $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+  $resultfol = $mysqli->query($fol);
+  $rowfol=$resultfol->fetch_assoc();
+  $name_folio=$rowfol['folioexpediente'];
+  $id_person=$rowfol['id'];
+  $valid = "SELECT * FROM validar_persona WHERE id_persona='$id_person'";
+  $res_val=$mysqli->query($valid);
+  $fil_val = $res_val->fetch_assoc();
+  $validacion = $fil_val['validacion'];
+    if ($name == 'diana') {
+      echo "<div class='columns download'>
+              <p>
+                <a href='validar_persona.php?folio= $id_person' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+              </p>
+      </div>";
+    }
+   ?>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 <!-- SCRIPT DE FECHAS  -->

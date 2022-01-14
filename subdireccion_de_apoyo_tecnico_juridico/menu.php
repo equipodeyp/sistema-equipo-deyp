@@ -74,33 +74,6 @@ $row=$result->fetch_assoc();
   <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
 
-  <!-- código JS propìo-->
-  <!-- <script type="text/javascript" src="../js/main2.js"></script> -->
-
-<!-- <script>
-  $(document).ready(function(){
-    $('#mitabla').DataTable({
-      "order": [[1, "desc"]],
-      "language":{
-      "lengthMenu": "Mostrar _MENU_ registros por pagina",
-      "info": "Mostrando pagina _PAGE_ de _PAGES_",
-        "infoEmpty": "No hay registros disponibles",
-        "infoFiltered": "(filtrada de _MAX_ registros)",
-        "loadingRecords": "Cargando...",
-        "processing":     "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords":    "No se encontraron registros coincidentes",
-        "paginate": {
-          "next":       "Siguiente",
-          "previous":   "Anterior"
-        },
-      },
-      "bProcessing": true,
-      "bServerSide": true,
-      "sAjaxSource": "server_process.php"
-    });
-  });
-</script> -->
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -119,27 +92,27 @@ $(document).ready(function() {
            },
            "sProcessing":"Procesando...",
             },
-        //para usar los botones
-        // responsive: "true",
-        // dom: 'Bfrtilp',
+        // para usar los botones
+    //     responsive: "true",
+    //     dom: 'Bfrtilp',
     //     buttons:[
     //   {
-    //     // extend:    'excelHtml5',
-    //     // text:      '<i class="fas fa-file-excel"></i> ',
-    //     // titleAttr: 'Exportar a Excel',
-    //     // className: 'btn btn-success'
+    //     extend:    'excelHtml5',
+    //     text:      '<i class="fas fa-file-excel"></i> ',
+    //     titleAttr: 'Exportar a Excel',
+    //     className: 'btn btn-success'
     //   },
     //   {
-    //     // extend:    'pdfHtml5',
-    //     // text:      '<i class="fas fa-file-pdf"></i> ',
-    //     // titleAttr: 'Exportar a PDF',
-    //     // className: 'btn btn-danger'
+    //     extend:    'pdfHtml5',
+    //     text:      '<i class="fas fa-file-pdf"></i> ',
+    //     titleAttr: 'Exportar a PDF',
+    //     className: 'btn btn-danger'
     //   },
     //   {
-    //     // extend:    'print',
-    //     // text:      '<i class="fa fa-print"></i> ',
-    //     // titleAttr: 'Imprimir',
-    //     // className: 'btn btn-info'
+    //     extend:    'print',
+    //     text:      '<i class="fa fa-print"></i> ',
+    //     titleAttr: 'Imprimir',
+    //     className: 'btn btn-info'
     //   },
     // ]
     });
@@ -196,7 +169,7 @@ $(document).ready(function() {
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
-        <div class="container">
+        <div class="">
             <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">
@@ -207,11 +180,11 @@ $(document).ready(function() {
                                     <th>UNIDAD</th>
                                     <th>SEDE</th>
                                     <th>MUNICIPIO</th>
-                                    <th>FECHA</th>
+                                    <th>FECHA RECEPCION</th>
                                     <th>FOLIO EXPEDIENTE</th>
                                     <th>PERSONAS</th>
                                     <th>DETALLES</th>
-                                  
+
                                 </tr>
                             </thead>
                             <tbody>
