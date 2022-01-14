@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-// error_reporting(0);
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -33,8 +33,8 @@ $foto=$rowfol['foto'];
 $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
 $res_val1=$mysqli->query($valid1);
 $fil_val1 = $res_val1->fetch_assoc();
-$validacion1 = $fil_val1['folioexpediente'];
-echo $validacion1;
+$validacion1 = $fil_val1['id_persona'];
+
 
 // echo $id_person;
 
@@ -162,6 +162,28 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     				<div class="container">
               <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
+                  <?php
+                  $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+                  $resultfol = $mysqli->query($fol);
+                  $rowfol=$resultfol->fetch_assoc();
+                  $name_folio=$rowfol['folioexpediente'];
+                  $id_person=$rowfol['id'];
+                  $idunico= $rowfol['identificador'];
+                  $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
+                  $res_val=$mysqli->query($valid);
+                  $fil_val = $res_val->fetch_assoc();
+                  $validacion = $fil_val['validacion'];
+
+                    if ($validacion == 'true') {
+                      echo "<div class='columns download'>
+                              <p>
+                              <img src='../image/true4.jpg' width='50' height='50' class='center'>
+                              <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA VALIDADA</FONT></h3>
+
+                              </p>
+                      </div>";
+                    }
+                    ?>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
                   </div>
@@ -375,7 +397,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE RADICACION DE LA PERSONA PROPUESTA</h3>
+                    <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -434,7 +456,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <hr class="mb-4">
                     </div>
                     <div class="alert alert-info">
-                      <h3 style="text-align:center">DATOS DEL TUTOR</h3>
+                      <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                     </div>
                     <div class="col-md-6 mb-3 validar">
                       <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
@@ -660,7 +682,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   		  					</div>
   								<div id="footer">
   		  					</div>
-                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
                   <!-- </div> -->
   							</div>
                 <div class="row">
@@ -685,11 +707,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   $rowfol=$resultfol->fetch_assoc();
   $name_folio=$rowfol['folioexpediente'];
   $id_person=$rowfol['id'];
-  $valid = "SELECT * FROM validar_persona WHERE id_persona='$id_person'";
+  $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
-    if ($name == 'diana') {
+    if ($name == 'diana' && $validacion != 'true') {
       echo "<div class='columns download'>
               <p>
                 <a href='validar_persona.php?folio= $id_person' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>

@@ -34,9 +34,11 @@ if ($verifica == 1) {
   $name_mun=$row['nombre'];
   $claveMunicipio=$row['clave'];
   //
+  // estado inicial de validacion
+  $validacion = 'false';
   $folio_expediente = $unidad.'/'.$r_sede.'/'.$claveMunicipio.'/'.$n_con.'/'.$año;
-  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha)
-          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual')";
+  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, validacion)
+          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$validacion')";
   $resultado = $mysqli->query($sql);
   $sent=" SELECT id, fol_exp FROM expediente WHERE fol_exp='$folio_expediente'";
   $resu = $mysqli->query($sent);

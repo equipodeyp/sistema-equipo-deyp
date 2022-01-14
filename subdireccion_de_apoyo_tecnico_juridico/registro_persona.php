@@ -212,7 +212,7 @@ $num_consecutivo =$row["id"];
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <?php
-                $calidad = "SELECT * FROM calidadpersona";
+                $calidad = "SELECT * FROM calidadpersonaprocesopenal";
                 $answer = $mysqli->query($calidad);
                 while($calidades = $answer->fetch_assoc()){
                   echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
@@ -308,7 +308,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DE RADICACION DE LA PERSONA PROPUESTA</h3>
+              <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
@@ -355,7 +355,7 @@ $num_consecutivo =$row["id"];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DEL TUTOR</h3>
+              <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="TUTOR_NOMBRE" class="is-required">TUTOR_NOMBRE <span class="required"></span></label>
@@ -506,7 +506,7 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">COMENTARIOS</h3>
           </div>
 
-            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
 
         </div>
 

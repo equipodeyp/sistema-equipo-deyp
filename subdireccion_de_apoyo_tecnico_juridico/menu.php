@@ -3,7 +3,7 @@
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
-echo $name;
+// echo $name;
 if (!isset($name)) {
   header("location: ../logout.php");
 }
@@ -177,13 +177,14 @@ $(document).ready(function() {
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>SEDE</th>
-                                    <th>MUNICIPIO DE RADICACION</th>
-                                    <th>FECHA RECEPCION</th>
-                                    <th>FOLIO EXPEDIENTE</th>
-                                    <th>PERSONAS</th>
-                                    <th>DETALLES</th>
+                                    <th style="text-align:center">ID</th>
+                                    <th style="text-align:center">SEDE</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACION</th>
+                                    <th style="text-align:center">FECHA RECEPCION</th>
+                                    <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                                    <th style="text-align:center">PERSONAS</th>
+                                    <th style="text-align:center">VALIDACION</th>
+                                    <th style="text-align:center">DETALLES</th>
 
                                 </tr>
                             </thead>
@@ -205,14 +206,19 @@ $(document).ready(function() {
                                   while($row=mysqli_fetch_assoc($result))
                                   {
                                     echo "<tr>";
-                                    echo "<td>"; echo $var_fila['id']; echo "</td>";
-                                    
-                                    echo "<td>"; echo $var_fila['sede']; echo "</td>";
-                                    echo "<td>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td>"; echo $var_fila['fecha']; echo "</td>";
-                                    echo "<td>"; echo $var_fila['fol_exp']; echo "</td>";
-                                    echo "<td>"; echo $row['c']; echo "</td>";
-                                    echo "<td><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+
+                                    echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
+                                      echo "<i class='fas fa-check'></i>";
+                                    }elseif ($var_fila['validacion'] == 'false') {
+                                      echo "<i class='fas fa-times'></i>";
+                                    } echo "</td>";
+                                    echo "<td style='text-align:center'><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
 
                                     echo "</tr>";
 

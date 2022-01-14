@@ -153,13 +153,13 @@ $row=$result->fetch_assoc();
 				<div class="row">
 		  	<table class="table table-striped table-bordered" id="tabla_personas">
 		  		<thead >
-		  			<th>No.</th>
-		  			<th>ID PERSONA</th>
-						<th>SEXO</th>
-		  			<th>ESTATUS</th>
-		  			<th>CALIDAD</th>
-            <!-- <th>VALIDACION</th> -->
-		  			<th> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
+		  			<th style="text-align:center">No.</th>
+		  			<th style="text-align:center">ID PERSONA</th>
+						<th style="text-align:center">SEXO</th>
+		  			<th style="text-align:center">ESTATUS</th>
+		  			<th style="text-align:center">CALIDAD</th>
+            <th style="text-align:center">VALIDACION</th>
+		  			<th style="text-align:center"> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
 		  		<?php
 			$cuenta = 0;
@@ -167,16 +167,27 @@ $row=$result->fetch_assoc();
 		    $var_resultado = $mysqli->query($tabla);
 		      while ($var_fila=$var_resultado->fetch_array())
 		      {
-			$cuenta = $cuenta + 1;
+            $id_persona = $var_fila['id'];
+            $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+            $res_val = $mysqli->query($datevalidar);
+            while ($fila_val=$res_val->fetch_array()) {
+              $cuenta = $cuenta + 1;
 
-		        echo "<tr>";
-		          echo "<td>"; echo $cuenta; echo "</td>";
-		          echo "<td>"; echo $var_fila['identificador']; echo "</td>";
-							echo "<td>"; echo $var_fila['sexopersona']; echo "</td>";
-		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
-		          echo "<td>"; echo $var_fila['calidadpersona']; echo "</td>";
-		          echo "<td>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
-		        echo "</tr>";
+        		        echo "<tr>";
+        		          echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
+        		          echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
+        							echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
+        		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+        		          echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+                      echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
+                        echo "<i class='fas fa-check'></i>";
+                      } elseif ($fila_val['validacion'] == 'false') {
+                        echo "<i class='fas fa-times'></i>";
+                      } echo "</td>";
+        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
+        		        echo "</tr>";
+            }
+
 		      }
 		      ?>
 		  	</table>

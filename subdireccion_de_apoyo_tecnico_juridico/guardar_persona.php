@@ -269,6 +269,19 @@ if ($verifica == 1) {
     $res_comment = $mysqli->query($comment);
   }
 
+  $com_folio=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $res_fol = $mysqli->query($com_folio);
+  $row_fol=$res_fol->fetch_assoc();
+  $fol_exp = $row_fol['folioexpediente'];
+  $id_unico = $row_fol['identificador'];
+  $validacion = 'false';
+  date_default_timezone_set("America/Mexico_City");
+  $fecha = date('y/m/d H:i:sa');
+
+  $datos_validacion = "INSERT INTO validar_persona (folioexpediente, validacion, id_persona, fecha, id_unico)
+                                           VALUES('$fol_exp', '$validacion', '$id_persona', '$fecha', '$id_unico')";
+  $res_validacion = $mysqli->query($datos_validacion);
+
   // validacion de registro GUARDADO
   if($res_dat_per && $resultado && $res_origen && $res_domicilio && $res_proceso && $res_val_juridica && $res_det_inc && $res_radicacion){
     echo ("<script type='text/javaScript'>
