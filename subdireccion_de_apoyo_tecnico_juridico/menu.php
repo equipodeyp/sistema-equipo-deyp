@@ -3,6 +3,7 @@
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
+echo $name;
 if (!isset($name)) {
   header("location: ../logout.php");
 }
