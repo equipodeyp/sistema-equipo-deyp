@@ -144,6 +144,29 @@ $row=$result->fetch_assoc();
 			<div class="well form-horizontal">
 		  <div id="cabecera">
 				<div class="row">
+          <?php
+          $cuenta = 0;
+    		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
+    		    $var_resultado = $mysqli->query($tabla);
+            while ($var_fila=$var_resultado->fetch_array())
+  		      {
+              $id_persona = $var_fila['id'];
+              $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+              $res_val = $mysqli->query($datevalidar);
+              while ($fila_val=$res_val->fetch_array()) {
+                $cuenta = $cuenta + 1;
+                // echo $fila_val['validacion'];
+                for ($i=0; $i < $cuenta ; $i++) {
+                  if ($fila_val[$i] != 'true') {
+                    $validarexpe = 'no se puede validar el expediente, hay sujetos por validar';
+                  }else {
+                    $validarexpe = 'ya se puede validar';
+                  }
+                }
+              }
+            }
+            // echo $validarexpe;
+           ?>
 				<div class="alert alert-info">
 					<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
 				</div>
