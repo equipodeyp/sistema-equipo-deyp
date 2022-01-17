@@ -5,12 +5,15 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 	require 'conexion.php';
 	$fol_exp = $_GET['id'];
+  // echo $fol_exp;
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
@@ -146,6 +149,11 @@ $row=$result->fetch_assoc();
 				<div class="row">
           <?php
           $cuenta = 0;
+            $ver_exp ="SELECT * FROM expediente WHERE fol_exp ='$fol_exp'";
+    		    $var_exp = $mysqli->query($ver_exp);
+            $row_exp = $var_exp->fetch_assoc();
+            $exp_validado = $row_exp['validacion'];
+            // echo $exp_validado;
     		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
     		    $var_resultado = $mysqli->query($tabla);
             while ($var_fila=$var_resultado->fetch_array())
@@ -157,15 +165,33 @@ $row=$result->fetch_assoc();
                 $cuenta = $cuenta + 1;
                 // echo $fila_val['validacion'];
                 for ($i=0; $i < $cuenta ; $i++) {
-                  if ($fila_val[$i] != 'true') {
-                    $validarexpe = 'no se puede validar el expediente, hay sujetos por validar';
+                  if ($fila_val['validacion'] != 'true') {
+                    $valexp = 'NO';
+                    $validarexpe = '';
                   }else {
-                    $validarexpe = 'ya se puede validar';
+                    $valexp = 'SI';
+                    $validarexpe = '';
                   }
                 }
               }
             }
-            // echo $validarexpe;
+            if ($name == 'diana' && $exp_validado == 'false') {
+              echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
+              echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>YA SE PUEDE VALIDAR EL EXPEDIENTE</FONT></h3>";
+            }elseif ($valexp == 'NO') {
+              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>AUN NO SE PUEDE VALIDAR EL EXPEDIENTE, HAY SUJETOS QUE FALTAN VALIDAR</FONT></h3>";
+            }   ;echo "</h3>";
+            }
+            if ($exp_validado == 'true') {
+              echo "<div class='columns download'>
+                      <p>
+                      <img src='../image/true4.jpg' width='50' height='50' class='center'>
+                      <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>EXPEDIENTE VALIDADO</FONT></h3>
+
+                      </p>
+              </div>";
+            }
+
            ?>
 				<div class="alert alert-info">
 					<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
@@ -186,6 +212,7 @@ $row=$result->fetch_assoc();
 		  		</thead>
 		  		<?php
 			$cuenta = 0;
+
 		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
 		    $var_resultado = $mysqli->query($tabla);
 		      while ($var_fila=$var_resultado->fetch_array())
@@ -224,7 +251,45 @@ $row=$result->fetch_assoc();
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="contenedor">
-				<a href="menu.php" class="btn-flotante">REGRESAR</a>
+          <?php
+          $cuenta = 0;
+          $ver_exp ="SELECT * FROM expediente WHERE fol_exp ='$fol_exp'";
+          $var_exp = $mysqli->query($ver_exp);
+          $row_exp = $var_exp->fetch_assoc();
+          $exp_validado = $row_exp['validacion'];
+    		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
+    		    $var_resultado = $mysqli->query($tabla);
+            while ($var_fila=$var_resultado->fetch_array())
+  		      {
+              $id_persona = $var_fila['id'];
+              $folio_expediente = $var_fila['folioexpediente'];
+              $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+              $res_val = $mysqli->query($datevalidar);
+              while ($fila_val=$res_val->fetch_array()) {
+                $cuenta = $cuenta + 1;
+                // echo $fila_val['validacion'];
+                $fol_exp2 = $fila_val['folioexpediente'];
+                for ($i=0; $i < $cuenta ; $i++) {
+                  if ($fila_val['validacion'] != 'true') {
+                    $valexp = 'NO';
+                    $validarexpe = '';
+                  }else {
+                    $valexp = 'SI';
+                    $validarexpe = '';
+                  }
+                }
+              }
+            }
+            if ($name == 'diana' && $valexp == 'SI' && $exp_validado == 'false') {
+              echo "<div class='columns download'>
+                      <p>
+                        <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+                      </p>
+              </div>";
+            }
+
+           ?>
+				   <a href="menu.php" class="btn-flotante">REGRESAR</a>
 				</div>
 			</div>
 		</div>

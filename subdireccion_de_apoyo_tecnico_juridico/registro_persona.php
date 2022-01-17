@@ -108,6 +108,10 @@ $num_consecutivo =$row["id"];
             <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="FECHA_CAPTURA" >FECHA  DE CAPTURA DEL SUJETO<span class="required"></span></label>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="<?php echo date("Y-m-d");?>" readonly>
+          </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
           </div>
