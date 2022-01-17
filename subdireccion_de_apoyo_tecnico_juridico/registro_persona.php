@@ -30,6 +30,8 @@ $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
 $num_consecutivo =$row["id"];
+// date_default_timezone_set("America/Mexico_City");
+// $fecha = date('y/m/d H:i:sa');
 
  ?>
 <!DOCTYPE html>
@@ -110,7 +112,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA" >FECHA  DE CAPTURA DEL SUJETO<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="<?php echo date("Y-m-d");?>" readonly>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="" readonly>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -858,3 +860,16 @@ document.getElementById("next3").addEventListener("click", function() {
 </script>
 </body>
 </html>
+<script type="text/javascript">
+window.onload = function(){
+var fecha = new Date(); //Fecha actual
+var mes = fecha.getMonth()+1; //obteniendo mes
+var dia = fecha.getDate(); //obteniendo dia
+var ano = fecha.getFullYear(); //obteniendo año
+if(dia<10)
+  dia='0'+dia; //agrega cero si el menor de 10
+if(mes<10)
+  mes='0'+mes //agrega cero si el menor de 10
+document.getElementById('FECHA_CAPTURA').value=ano+"-"+mes+"-"+dia;
+}
+</script>
