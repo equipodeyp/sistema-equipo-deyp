@@ -210,7 +210,7 @@ $(document).ready(function() {
 
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
                                     echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
