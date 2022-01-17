@@ -338,7 +338,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
+                    <h3 style="text-align:center">LUGAR DE NACIMIENTO Y DATOS DE LA PERSONA PROPUESTA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -401,7 +401,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
+                    <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -597,7 +597,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MUNICIPIO_PERSONA">MUNICIPIO_RADICACION<span class="required">(*)</span></label>
+                    <label for="MUNICIPIO_PERSONA">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN<span class="required">(*)</span></label>
                     <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" disabled>
                       <option style="visibility: hidden" id="opt-municipio-radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>"><?php echo $rowprocess['numeroradicacion']; ?></option>
                       <?php

@@ -131,7 +131,7 @@ $row=$result->fetch_assoc();
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="fecha" class="col-md-4 control-label">FECHA RECEPCION</label>
+					<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
@@ -139,6 +139,17 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+				  <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecharecep']; ?>">
+			    </div>
+					</div>
+				</div>
+
 				</div>
 			</div>
 
@@ -303,6 +314,12 @@ $row=$result->fetch_assoc();
     			var $num = document.getElementById('tabla_personas').getElementsByTagName('tr').length - 1;
     			//alert($num);
     		}
+</script>
+
+
+</script>
+<script type="text/javascript">
+
 </script>
 </body>
 </html>

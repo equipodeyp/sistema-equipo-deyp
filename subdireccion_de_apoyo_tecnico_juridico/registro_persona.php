@@ -182,19 +182,19 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_PERSONA" class="is-required">NOMBRE (S) <span class="required"></span></label>
-              <input autocomplete="off"  onkeydown="validardiv2()" onclick="cleanNombre()" onkeyup="validarNombrePersona(this.form)" class="verificdiv2 form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off"  onkeydown="validardiv2()" onkeyup="validarNombrePersona(this.form)" class="verificdiv2 form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
               <!-- <input autocomplete="off" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="PATERNO_PERSONA" class="is-required">APELLIDO PATERNO <span class="required"></span></label>
-              <input autocomplete="off"  onkeydown="validardiv2()" onclick="cleanPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="verificdiv2 form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off"  onkeydown="validardiv2()"  onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="verificdiv2 form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
               <!-- <input autocomplete="off" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="MATERNO_PERSONA" class="is-required"> APELLIDO MATERNO <span class="required"></span></label>
-              <input autocomplete="off" onkeydown="validardiv2()" onclick="cleanMaterno()" disabled="disabled" class="verificdiv2 form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <input autocomplete="off" onkeydown="validardiv2()" disabled="disabled" class="verificdiv2 form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
               <!-- <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
             </div>
 
@@ -205,7 +205,7 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="EDAD_PERSONA">EDAD_PERSONA <span class="required"></span></label>
-              <input class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
+              <input autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -256,7 +256,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
+              <h3 style="text-align:center">LUGAR DE NACIMIENTO Y DATOS DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">ESTADO DE NACIMIENTO<span class="required"></span></label>
@@ -314,7 +314,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
+              <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
@@ -445,7 +445,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MUNICIPIO_RADICACION" class="is-required">MUNICIPIO_RADICACION<span class="required">(*)</span></label>
+            <label for="MUNICIPIO_RADICACION" class="is-required">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGAÓN <span class="required">(*)</span></label>
             <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" required>
               <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
               <?php
@@ -722,15 +722,7 @@ window.addEventListener('load', function () {
         form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
     }
 
-    function cleanNombre(){
-      document.getElementById('NOMBRE_PERSONA').value = '';
-    }
-    function cleanPaterno(){
-      document.getElementById('PATERNO_PERSONA').value = '';
-    }
-    function cleanMaterno(){
-      document.getElementById('MATERNO_PERSONA').value = '';
-    }
+
 </script>
 
 
