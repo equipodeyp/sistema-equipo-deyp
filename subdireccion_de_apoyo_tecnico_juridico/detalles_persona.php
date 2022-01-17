@@ -593,7 +593,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MUNICIPIO_PERSONA">MUNICIPIO_RADICACION<span class="required">(*)</span></label>
+                    <label for="MUNICIPIO_PERSONA">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN<span class="required">(*)</span></label>
                     <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" disabled>
                       <option style="visibility: hidden" id="opt-municipio-radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>"><?php echo $rowprocess['numeroradicacion']; ?></option>
                       <?php
