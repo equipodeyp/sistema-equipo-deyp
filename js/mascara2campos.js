@@ -74,6 +74,20 @@ function selectmedidares(sel) {
 
 }
 
+function changemedidamod(sel) {
+      if (sel.value=="EJECUCION"){
+        divC = document.getElementById("fecha_modificacion_sel1");
+        divC.style.display="";
+        divC = document.getElementById("fecha_modificacion_sel2");
+        divC.style.display="";
+
+      }else if (sel.value=="TERMINADA") {
+        divC = document.getElementById("fecha_modificacion_sel1");
+        divC.style.display="none";
+        divC = document.getElementById("fecha_modificacion_sel2");
+        divC.style.display="none";
+      }
+}
 
 function selectother(sel) {
       if (sel.value=="VIII. OTRAS"){
