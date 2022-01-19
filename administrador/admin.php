@@ -85,7 +85,7 @@ $row=$result->fetch_assoc();
   });
   </script>
 </head>
-<body onload="nobackbutton();">
+<body>
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
