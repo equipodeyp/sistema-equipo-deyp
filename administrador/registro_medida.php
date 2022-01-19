@@ -98,6 +98,12 @@ $fol_exp = $_GET['folio'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
+            <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA INFORMACIÓN<span class="required"></span></label>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder=""  readonly type="text">
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
               <option disabled selected value>SELECCIONE EL TIPO DE MEDIDA</option>
@@ -182,7 +188,7 @@ $fol_exp = $_GET['folio'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="INICIO_EJECUCION_MEDIDA">FECHA MEDIDA PROVISIONAL<span class="required"></span></label>
+            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO MEDIDA PROVISIONAL<span class="required"></span></label>
             <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="date">
           </div>
 
@@ -382,6 +388,20 @@ document.getElementById("FECHA_ACTUALIZACION_MEDIDA").setAttribute("max", today)
 document.getElementById("FECHA_MODIFICACION").setAttribute("max", today);
 document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 document.getElementById("FECHA_DE_EJECUCION").setAttribute("max", today);
+document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
+</script>
+<script type="text/javascript">
+window.onload = function(){
+  var fecha = new Date();
+  var mes = fecha.getMonth()+1;
+  var dia = fecha.getDate();
+  var ano = fecha.getFullYear();
+  if(dia<10)
+    dia='0'+dia; 
+  if(mes<10)
+    mes='0'+mes
+  document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
+}
 </script>
 </body>
 </html>
