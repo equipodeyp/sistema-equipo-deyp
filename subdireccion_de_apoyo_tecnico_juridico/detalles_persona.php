@@ -724,6 +724,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     }
    ?>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<p>
+  <a href="https://mail.fiscaliaedomex.gob.mx" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+</p>
 </div>
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
