@@ -215,10 +215,10 @@ $row=$result->fetch_assoc();
 		  		<thead >
 		  			<th style="text-align:center">No.</th>
 		  			<th style="text-align:center">ID PERSONA</th>
-						<th style="text-align:center">SEXO</th>
+					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
-            <th style="text-align:center">VALIDACION</th>
+            		<th style="text-align:center">VALIDACIÓN</th>
 		  			<th style="text-align:center"> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
 		  		<?php
@@ -235,12 +235,12 @@ $row=$result->fetch_assoc();
               $cuenta = $cuenta + 1;
 
         		        echo "<tr>";
-        		          echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
-        		          echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
-        							echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
-        		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-        		          echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
-                      echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
+        		        echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
+        				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+                      	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";

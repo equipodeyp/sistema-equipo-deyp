@@ -120,7 +120,7 @@ $row=$result->fetch_assoc();
                   </div>
 
 
-                  <div class="form-group">
+        <div class="form-group">
 					<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
@@ -135,7 +135,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-				    <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" placeholder=""  type="date" value="">
+				    <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" required placeholder=""  type="date" value="">
 			    </div>
 					</div>
 				</div>
