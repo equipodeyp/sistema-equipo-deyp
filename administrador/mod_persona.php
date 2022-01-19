@@ -203,6 +203,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
                   <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
+                <div class="col-md-6 mb-3 validar">
+                  <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA PROPUESTA<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
+                </div>
                 <div class="alert alert-info">
                      <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
                    </div>
@@ -462,175 +466,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>';
                  }
                  ?>
-
                  <div id="tutor" class="row" style="display:none;">
-                   <div class="row">
-                     <hr class="mb-4">
-                   </div>
-
-
-
-                <!-- calidad persona en el procedimiento -->
-                <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
-                    <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
-                    <?php
-                    $calidad = "SELECT * FROM calidadpersona";
-                    $answer = $mysqli->query($calidad);
-                    while($calidades = $answer->fetch_assoc()){
-                      echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
-                    }
-                    ?>
-                  </select>
-                </div>
-
-                <div class="col-md-6 mb-3 validar">
-                  <label for="GRUPO_EDAD">SEXO_PERSONA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" disabled>
-                    <option style="visibility: hidden" id="opt-sexo-persona" value="<?php echo $rowfol['sexopersona']; ?>"><?php echo $rowfol['sexopersona']; ?></option>
-                    <option value="MUJER">MUJER</option>
-                    <option value="HOMBRE">HOMBRE</option>
-                  </select>
-                </div>
-
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)" >
-                      <option style="visibility: hidden" id="opt-lugar-nacimiento" value="<?php echo $roworigen['lugardenacimiento']; ?>"><?php echo $roworigen['lugardenacimiento']; ?></option>
-                      <?php while($row = $resultado23->fetch_assoc()) { ?>
-                        <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar" id="other_pais" style="display:none;">
-                    <label for="OTHER_PAIS">ESPECIFIQUE</label>
-                    <input class="form-control" id="OTHER_PAIS" name="OTHER_PAIS" placeholder="" value="" type="text">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar" id="municipio">
-                    <label for="NOMBRE_MUNICIPIO">MUNICIPIO DE NACIMIENTO<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_municipio" id="cbx_municipio"  >
-                      <option value="<?php echo $roworigen['municipiodenacimiento']; ?>"><?php echo $roworigen['municipiodenacimiento']; ?></option>
-                    </select>
-                  </div>
-
-
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="NACIONALIDAD_PERSONA">NACIONALIDAD_PERSONA<span class="required"></span></label>
-                    <input class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder="" value="<?php echo $roworigen['nacionalidadpersona']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="CURP_PERSONA">CURP_PERSONA <span class="required"></span></label>
-                    <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" value="<?php echo $rowfol['curppersona']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="RFC_PERSONA">RFC_PERSONA<span class="required"></span></label>
-                    <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['rfcpersona']; ?>" maxlength="13" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="ALIAS_PERSONA">ALIAS_PERSONA <span class="required"></span></label>
-                    <input class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder="" value="<?php echo $rowfol['aliaspersona']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="OCUPACION_PERSONA">OCUPACION_PERSONA<span class="required"></span></label>
-                    <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder="" value="<?php echo $rowfol['ocupacion']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="TELEFONO_FIJO">TELEFONO_FIJO <span class="required"></span></label>
-                    <input class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder="" value="<?php echo $rowfol['telefonofijo']; ?>" type="text" maxlength="10" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="TELEFONO_CELULAR">TELEFONO_CELULAR<span class="required"></span></label>
-                    <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1" onChange="updatedom(this)" >
-                      <option style="visibility: hidden" id="opt-seleccion-estado" value="<?php echo $rowdomicilio['seleccioneestado']; ?>"><?php echo $rowdomicilio['seleccioneestado']; ?></option>
-                      <?php while($row = $resultado1->fetch_assoc()) { ?>
-                        <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar" id="realm">
-                    <label for="NOMBRE_MUNICIPIO">SELECCIONE UN MUNICIPIO<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_municipio11" id="cbx_municipio11" >
-                      <option value="<?php echo $rowdomicilio['seleccionemunicipio']; ?>"><?php echo $rowdomicilio['seleccionemunicipio']; ?></option>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar" id="realc">
-                    <label for="NOMBRE_LOCALIDAD">SELECCIONE UNA LOCALIDAD<span class="required"></span></label>
-                    <select class="form-select form-select-lg" name="cbx_localidad11" id="cbx_localidad11" >
-                      <option value="<?php echo $rowdomicilio['seleccionelocalidad']; ?>"><?php echo $rowdomicilio['seleccionelocalidad']; ?></option>
-                    </select>
-                  </div>
-
-
-                  <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="CALLE">CALLE<span class="required"></span></label>
-                    <input class="form-control" id="CALLE" name="CALLE" placeholder="" value="<?php echo $rowdomicilio['calle']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="CP">CP<span class="required"></span></label>
-                    <input class="form-control" id="CP" name="CP" placeholder="" value="<?php echo $rowdomicilio['cp']; ?>" type="text" maxlength="5" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="INCAPAZ">INCAPAZ<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)" >
-                      <option style="visibility: hidden" id="opt-incapaz" value="<?php echo $rowfol['incapaz']; ?>"><?php echo $rowfol['incapaz']; ?></option>
-                      <option value="SI">SI</option>
-                      <option value="NO">NO</option>
-                    </select>
-                  </div> --> -->
-
-                </div>
-                <?php
-                $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-                $resultadotutor = $mysqli->query($tutor);
-                $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-                if ($rowfol['incapaz']=='SI') {
-                  echo '<div id="tutor" class="row">
-                    <div class="row">
-                      <hr class="mb-4">
-                    </div>
-                    <div class="alert alert-info">
-                      <p style="text-align:center">DATOS DEL TUTOR</p>
-                    </div>
-                    <div class="col-md-6 mb-3 validar">
-                      <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text" >
-                    </div>
-
-                    <div class="col-md-6 mb-3 validar">
-                      <label for="COLONIA">TUTOR_PATERNO <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text" >
-                    </div>
-
-                    <div class="col-md-6 mb-3 validar">
-                      <label for="COLONIA">TUTOR_MATERNO <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text" >
-                    </div>
-
-                  </div>';
-                }
-                ?>
-
-                <div id="tutor" class="row" style="display:none;">
                   <div class="row">
                     <hr class="mb-4">
                   </div>

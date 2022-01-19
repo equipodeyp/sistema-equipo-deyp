@@ -141,23 +141,23 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 			}
 			// echo $genero;
 			 ?>
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+       <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
     </nav>
   </div>
   <div class="main bg-light">
     <div class="barra">
-      <img src="../image/fiscalia.png" alt="" width="150" height="150">
-      <img src="../image/ups2.png" alt="" width="1400" height="70">
-      <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
-    </div>
+				<img src="../image/fiscalia.png" alt="" width="150" height="150">
+				<img src="../image/ups2.png" alt="" width="1400" height="70">
+				<img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+		</div>
       <!--  -->
       <div class="wrap">
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
-    			<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li>
+    			<!-- <li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
     		</ul>
 
     		<div class="secciones">
