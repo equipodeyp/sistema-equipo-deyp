@@ -301,6 +301,11 @@ $row=$result->fetch_assoc();
 
            ?>
 				   <a href="menu.php" class="btn-flotante">REGRESAR</a>
+           <div class="columns download">
+                   <p>
+                     <a href="https://mail.fiscaliaedomex.gob.mx" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+                   </p>
+           </div>
 				</div>
 			</div>
 		</div>
