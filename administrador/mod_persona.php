@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -125,7 +125,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/USER.jpg" alt="" width="100" height="100">
+      <?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			 ?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
@@ -133,7 +148,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
   <div class="main bg-light">
     <div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+      <img src="../image/fiscalia.png" alt="" width="150" height="150">
+      <img src="../image/ups2.png" alt="" width="1400" height="70">
+      <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
       <!--  -->
       <div class="wrap">
@@ -1271,7 +1288,7 @@ window.addEventListener('load', function () {
             document.getElementById("EDAD_PERSONA").value = `${calcularEdad(this.value)} años`;
             var mayor = "MAYOR DE EDAD";
             var menor = "MENOR DE EDAD";
-            
+
             if (calcularEdad(this.value) >= 18) {
 
               //console.log("MAYOR DE EDAD");

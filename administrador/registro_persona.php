@@ -91,7 +91,7 @@ $num_consecutivo =$row["id"];
 				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
 			}
 			// echo $genero;
-			 ?>
+			?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">

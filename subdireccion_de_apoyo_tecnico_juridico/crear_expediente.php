@@ -53,8 +53,23 @@ $row=$result->fetch_assoc();
       <div class="logo text-warning">
       </div>
       <div class="user">
-        <img src="../image/user.png" alt="" width="100" height="100">
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <?php
+  			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+  			$result_user = $mysqli->query($sentencia_user);
+  			$row_user=$result_user->fetch_assoc();
+  			$genero = $row_user['sexo'];
+
+  			if ($genero=='mujer') {
+  				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+  			}
+
+  			if ($genero=='hombre') {
+  				// $foto = ../image/user.png;
+  				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+  			}
+  			// echo $genero;
+  			?>
+        <span class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </span>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -179,7 +194,7 @@ window.onload = function(){
   var dia = fecha.getDate();
   var ano = fecha.getFullYear();
   if(dia<10)
-    dia='0'+dia; 
+    dia='0'+dia;
   if(mes<10)
     mes='0'+mes
   document.getElementById('fecha').value=dia+"-"+mes+"-"+ano;
