@@ -137,7 +137,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/user.png" alt="" width="100" height="100">
+      <?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
@@ -192,8 +207,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">ID UNICO DE LA PERSONA PROPUESTA<span ></span></label>
                     <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA PROPUESTA<span class="required"></span></label>
+                    <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -299,9 +318,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD PERSONA EN EL PROCESO PENAL<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" disabled>
-                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
+                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadprocedimiento']; ?></option>
                       <?php
-                      $calidad = "SELECT * FROM calidadpersona";
+                      $calidad = "SELECT * FROM calidadpersonaprocesopenal";
                       $answer = $mysqli->query($calidad);
                       while($calidades = $answer->fetch_assoc()){
                         echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
@@ -313,7 +332,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <!-- calidad persona en el procedimiento -->
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
-                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
+                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
                       $calidad = "SELECT * FROM calidadpersona";
                       $answer = $mysqli->query($calidad);
@@ -334,7 +353,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
+                    <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -397,7 +416,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
+                    <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -593,7 +612,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MUNICIPIO_PERSONA">MUNICIPIO_RADICACION<span class="required">(*)</span></label>
+                    <label for="MUNICIPIO_PERSONA">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN<span class="required">(*)</span></label>
                     <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" disabled>
                       <option style="visibility: hidden" id="opt-municipio-radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>"><?php echo $rowprocess['numeroradicacion']; ?></option>
                       <?php
@@ -720,6 +739,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     }
    ?>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<p>
+  <a href="https://mail.fiscaliaedomex.gob.mx" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+</p>
 </div>
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">

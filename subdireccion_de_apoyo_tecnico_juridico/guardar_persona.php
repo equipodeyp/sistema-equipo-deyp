@@ -206,10 +206,11 @@ if ($verifica == 1) {
     $errMSG = "Solo archivos JPG, JPEG, PNG & GIF son permitidos.";
   }
   $identificador = $_POST['ID_UNICO'];
+  $fecha_captura = $_POST['FECHA_CAPTURA'];
   $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, calidadprocedimiento, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular,
-                                incapaz, folioexpediente, foto, estatus, identificador)
+                                incapaz, folioexpediente, foto, estatus, identificador, fecha_captura)
                     VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$p_procedimiento','$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular',
-                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador')";
+                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador', '$fecha_captura')";
   $res_dat_per = $mysqli->query($datos_persona);
   $qry = "select max(ID) As id from datospersonales";
   $result = $mysqli->query($qry);
@@ -281,6 +282,14 @@ if ($verifica == 1) {
   $datos_validacion = "INSERT INTO validar_persona (folioexpediente, validacion, id_persona, fecha, id_unico)
                                            VALUES('$fol_exp', '$validacion', '$id_persona', '$fecha', '$id_unico')";
   $res_validacion = $mysqli->query($datos_validacion);
+
+  // validar el expediente es estado false
+  $validacion = 'false';
+  date_default_timezone_set("America/Mexico_City");
+  $fecha = date('y/m/d H:i:sa');
+
+  $datos_validacion_exp = "UPDATE expediente SET validacion='$validacion', fecha_validacion = '$fecha' WHERE fol_exp = '$fol_exp'";
+  $res_validacion_exp = $mysqli->query($datos_validacion_exp);
 
   // validacion de registro GUARDADO
   if($res_dat_per && $resultado && $res_origen && $res_domicilio && $res_proceso && $res_val_juridica && $res_det_inc && $res_radicacion){

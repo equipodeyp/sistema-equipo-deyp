@@ -45,16 +45,33 @@ $row=$result->fetch_assoc();
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/USER.png" alt="" width="100" height="100">
+			<?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			 ?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
     </nav>
   </div>
   <div class="main bg-light">
-    <div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
-    </div>
+		<div class="barra">
+				<img src="../image/fiscalia.png" alt="" width="150" height="150">
+				<img src="../image/ups2.png" alt="" width="1400" height="70">
+				<img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+		</div>
 
 		<!-- folio del expediente -->
 
@@ -122,11 +139,21 @@ $row=$result->fetch_assoc();
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="fecha" class="col-md-4 control-label">FECHA RECEPCION</label>
+					<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+			      			<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+			    		</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+				  <input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
 			    </div>
 					</div>
 				</div>
@@ -147,30 +174,42 @@ $row=$result->fetch_assoc();
 				<div class="row">
 		  	<table class="table table-striped table-bordered ">
 		  		<thead >
-		  			<th>ID</th>
-		  			<th>NOMBRE</th>
-		  			<th>APELLIDO PATERNO</th>
-		        <th>APELLIDO MATERNO</th>
-		  			<th>ESTATUS</th>
-		  			<th>CALIDAD</th>
-		  			<th> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
+				  	<th style="text-align:center">No.</th>
+		  			<th style="text-align:center">ID PERSONA</th>
+					<th style="text-align:center">SEXO</th>
+		  			<th style="text-align:center">ESTATUS</th>
+		  			<th style="text-align:center">CALIDAD</th>
+					  <th style="text-align:center">VALIDACIÓN</th>
+					<th style="text-align:center">DETALLES</th>
 		  		</thead>
-		  		<?php
+			<?php
 			$cuenta = 0;
+
 		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
 		    $var_resultado = $mysqli->query($tabla);
 		      while ($var_fila=$var_resultado->fetch_array())
 		      {
-				$cuenta = $cuenta + 1;
-		        echo "<tr>";
-		          echo "<td>"; echo $cuenta; echo "</td>";
-		          echo "<td>"; echo $var_fila['nombrepersona']; echo "</td>";
-		          echo "<td>"; echo $var_fila['paternopersona']; echo "</td>";
-		          echo "<td>"; echo $var_fila['maternopersona']; echo "</td>";
-		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
-		          echo "<td>"; echo $var_fila['calidadpersona']; echo "</td>";
-		          echo "<td>  <a href='mod_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
-		        echo "</tr>";
+            $id_persona = $var_fila['id'];
+            $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+            $res_val = $mysqli->query($datevalidar);
+            while ($fila_val=$res_val->fetch_array()) {
+              $cuenta = $cuenta + 1;
+
+        		        echo "<tr>";
+        		        echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
+        				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+                      	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
+                        echo "<i class='fas fa-check'></i>";
+                      } elseif ($fila_val['validacion'] == 'false') {
+                        echo "<i class='fas fa-times'></i>";
+                      } echo "</td>";
+        		          echo "<td style='text-align:center'>  <a href='mod_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+        		        echo "</tr>";
+            }
+
 		      }
 		      ?>
 		  	</table>

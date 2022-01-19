@@ -15,6 +15,7 @@ if ($verifica == 1) {
   date_default_timezone_set('UTC');
   date_default_timezone_set("America/Mexico_City");
   $unidad =$_POST['unidad'];
+  $fecharecepcion = $_POST['FECHA_RECEPCION'];
   $sede=$_POST['sede'];
   $r_sede= substr("$sede", 0,3);//obteniendo las tres primeras letras
   $municipio=$_POST['municipio'];
@@ -37,8 +38,8 @@ if ($verifica == 1) {
   // estado inicial de validacion
   $validacion = 'false';
   $folio_expediente = $unidad.'/'.$r_sede.'/'.$claveMunicipio.'/'.$n_con.'/'.$año;
-  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, validacion)
-          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$validacion')";
+  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion)
+          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion')";
   $resultado = $mysqli->query($sql);
   $sent=" SELECT id, fol_exp FROM expediente WHERE fol_exp='$folio_expediente'";
   $resu = $mysqli->query($sent);

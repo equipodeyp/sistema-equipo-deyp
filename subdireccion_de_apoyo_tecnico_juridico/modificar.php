@@ -5,12 +5,15 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 	require 'conexion.php';
 	$fol_exp = $_GET['id'];
+  // echo $fol_exp;
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
@@ -49,7 +52,22 @@ $row=$result->fetch_assoc();
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/user.png" alt="" width="100" height="100">
+      <?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
@@ -128,14 +146,26 @@ $row=$result->fetch_assoc();
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="fecha" class="col-md-4 control-label">FECHA RECEPCION</label>
+					<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+				  <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecha']; ?>">
+			      <!--  -->
 			    </div>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+				  <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecharecep']; ?>" disabled>
+			    </div>
+					</div>
+				</div>
+
 				</div>
 			</div>
 
@@ -146,6 +176,11 @@ $row=$result->fetch_assoc();
 				<div class="row">
           <?php
           $cuenta = 0;
+            $ver_exp ="SELECT * FROM expediente WHERE fol_exp ='$fol_exp'";
+    		    $var_exp = $mysqli->query($ver_exp);
+            $row_exp = $var_exp->fetch_assoc();
+            $exp_validado = $row_exp['validacion'];
+            // echo $exp_validado;
     		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
     		    $var_resultado = $mysqli->query($tabla);
             while ($var_fila=$var_resultado->fetch_array())
@@ -157,15 +192,33 @@ $row=$result->fetch_assoc();
                 $cuenta = $cuenta + 1;
                 // echo $fila_val['validacion'];
                 for ($i=0; $i < $cuenta ; $i++) {
-                  if ($fila_val[$i] != 'true') {
-                    $validarexpe = 'no se puede validar el expediente, hay sujetos por validar';
+                  if ($fila_val['validacion'] != 'true') {
+                    $valexp = 'NO';
+                    $validarexpe = '';
                   }else {
-                    $validarexpe = 'ya se puede validar';
+                    $valexp = 'SI';
+                    $validarexpe = '';
                   }
                 }
               }
             }
-            // echo $validarexpe;
+            if ($name == 'diana' && $exp_validado == 'false') {
+              echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
+              echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>YA SE PUEDE VALIDAR EL EXPEDIENTE</FONT></h3>";
+            }elseif ($valexp == 'NO') {
+              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>AUN NO SE PUEDE VALIDAR EL EXPEDIENTE, HAY SUJETOS QUE FALTAN VALIDAR</FONT></h3>";
+            }   ;echo "</h3>";
+            }
+            if ($exp_validado == 'true') {
+              echo "<div class='columns download'>
+                      <p>
+                      <img src='../image/true4.jpg' width='50' height='50' class='center'>
+                      <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>EXPEDIENTE VALIDADO</FONT></h3>
+
+                      </p>
+              </div>";
+            }
+
            ?>
 				<div class="alert alert-info">
 					<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
@@ -178,14 +231,15 @@ $row=$result->fetch_assoc();
 		  		<thead >
 		  			<th style="text-align:center">No.</th>
 		  			<th style="text-align:center">ID PERSONA</th>
-						<th style="text-align:center">SEXO</th>
+					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
-            <th style="text-align:center">VALIDACION</th>
+            		<th style="text-align:center">VALIDACIÓN</th>
 		  			<th style="text-align:center"> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
 		  		<?php
 			$cuenta = 0;
+
 		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
 		    $var_resultado = $mysqli->query($tabla);
 		      while ($var_fila=$var_resultado->fetch_array())
@@ -197,12 +251,12 @@ $row=$result->fetch_assoc();
               $cuenta = $cuenta + 1;
 
         		        echo "<tr>";
-        		          echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
-        		          echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
-        							echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
-        		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-        		          echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
-                      echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
+        		        echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
+        				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+        		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+                      	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";
@@ -224,7 +278,50 @@ $row=$result->fetch_assoc();
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="contenedor">
-				<a href="menu.php" class="btn-flotante">REGRESAR</a>
+          <?php
+          $cuenta = 0;
+          $ver_exp ="SELECT * FROM expediente WHERE fol_exp ='$fol_exp'";
+          $var_exp = $mysqli->query($ver_exp);
+          $row_exp = $var_exp->fetch_assoc();
+          $exp_validado = $row_exp['validacion'];
+    		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
+    		    $var_resultado = $mysqli->query($tabla);
+            while ($var_fila=$var_resultado->fetch_array())
+  		      {
+              $id_persona = $var_fila['id'];
+              $folio_expediente = $var_fila['folioexpediente'];
+              $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+              $res_val = $mysqli->query($datevalidar);
+              while ($fila_val=$res_val->fetch_array()) {
+                $cuenta = $cuenta + 1;
+                // echo $fila_val['validacion'];
+                $fol_exp2 = $fila_val['folioexpediente'];
+                for ($i=0; $i < $cuenta ; $i++) {
+                  if ($fila_val['validacion'] != 'true') {
+                    $valexp = 'NO';
+                    $validarexpe = '';
+                  }else {
+                    $valexp = 'SI';
+                    $validarexpe = '';
+                  }
+                }
+              }
+            }
+            if ($name == 'diana' && $valexp == 'SI' && $exp_validado == 'false') {
+              echo "<div class='columns download'>
+                      <p>
+                        <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+                      </p>
+              </div>";
+            }
+
+           ?>
+				   <a href="menu.php" class="btn-flotante">REGRESAR</a>
+           <div class="columns download">
+                   <p>
+                     <a href="https://mail.fiscaliaedomex.gob.mx" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+                   </p>
+           </div>
 				</div>
 			</div>
 		</div>
@@ -238,6 +335,12 @@ $row=$result->fetch_assoc();
     			var $num = document.getElementById('tabla_personas').getElementsByTagName('tr').length - 1;
     			//alert($num);
     		}
+</script>
+
+
+</script>
+<script type="text/javascript">
+
 </script>
 </body>
 </html>

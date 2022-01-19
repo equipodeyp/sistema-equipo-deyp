@@ -127,12 +127,22 @@ $row=$result->fetch_assoc();
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="fecha" class="col-md-4 control-label">FECHA RECEPCION</label>
+										<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
 										<div class="col-md-4 inputGroupContainer">
 											<div class="input-group">
-			      						<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      						<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
-			    						</div>
+									<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+									<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+									</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+									<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+									<input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecharecep']; ?>">
+									</div>
 										</div>
 									</div>
 								</div>
@@ -187,6 +197,7 @@ $row=$result->fetch_assoc();
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
+                
 								<div class="contenedor">
 									<a href="menu.php" class="btn-flotante">REGRESAR</a>
 								</div>

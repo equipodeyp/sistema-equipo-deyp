@@ -49,8 +49,6 @@ $row=$result->fetch_assoc();
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../js/bootstrap.min.js"></script>
-  <!-- <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-  <script src="../js/jquery.dataTables.min.js"></script> -->
   <link rel="stylesheet" href="../css/cli.css">
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/main2.css">
@@ -60,14 +58,8 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet"  type="text/css" href="../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
   <!--font awesome con CDN-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <!-- jQuery, Popper.js, Bootstrap JS -->
-  <!-- <script src="jquery/jquery-3.3.1.min.js"></script> -->
-  <!-- <script src="../popper/popper.min.js"></script> -->
-  <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
-
   <!-- datatables JS -->
   <script type="text/javascript" src="../datatables/datatables.min.js"></script>
-
   <!-- para usar botones en datatables JS -->
   <script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
   <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
@@ -207,10 +199,9 @@ $(document).ready(function() {
                                   {
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
-
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
                                     echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {

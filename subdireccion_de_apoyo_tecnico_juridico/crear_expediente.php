@@ -38,6 +38,14 @@ $row=$result->fetch_assoc();
   <script src="../js/validar_campos.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/cli.css">
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+
 </head>
 <body >
   <div class="contenedor">
@@ -45,8 +53,23 @@ $row=$result->fetch_assoc();
       <div class="logo text-warning">
       </div>
       <div class="user">
-        <img src="../image/user.png" alt="" width="100" height="100">
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <?php
+  			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+  			$result_user = $mysqli->query($sentencia_user);
+  			$row_user=$result_user->fetch_assoc();
+  			$genero = $row_user['sexo'];
+
+  			if ($genero=='mujer') {
+  				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+  			}
+
+  			if ($genero=='hombre') {
+  				// $foto = ../image/user.png;
+  				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+  			}
+  			// echo $genero;
+  			?>
+        <span class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </span>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -111,6 +134,27 @@ $row=$result->fetch_assoc();
                     </div>
                   </div>
 
+
+        <div class="form-group">
+					<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+			      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="" disabled>
+			    </div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+				    <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" required placeholder=""  type="date" value="">
+			    </div>
+					</div>
+				</div>
+
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
@@ -130,6 +174,31 @@ $row=$result->fetch_assoc();
   </div>
 <script type="text/javascript">
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("FECHA_RECEPCION").max = new Date().toISOString().split("T")[0];
+</script>
+<script type="text/javascript">
+window.onload = function(){
+  var fecha = new Date();
+  var mes = fecha.getMonth()+1;
+  var dia = fecha.getDate();
+  var ano = fecha.getFullYear();
+  if(dia<10)
+    dia='0'+dia;
+  if(mes<10)
+    mes='0'+mes
+  document.getElementById('fecha').value=dia+"-"+mes+"-"+ano;
+}
 </script>
 </body>
 </html>

@@ -18,6 +18,8 @@ if ($verifica == 1) {
   $sede=$_POST['sede'];
   $r_sede= substr("$sede", 0,3);//obteniendo las tres primeras letras
   $municipio=$_POST['municipio'];
+  $fecha_captura=$_POST['fecha'];
+  $fecha_recep=$_POST['FECHA_RECEPCION'];
   $qry = "select max(ID) As id from expediente";
   $result = $mysqli->query($qry);
   $row = $result->fetch_assoc();
@@ -35,7 +37,7 @@ if ($verifica == 1) {
   $claveMunicipio=$row['clave'];
   //
   $folio_expediente = $unidad.'/'.$r_sede.'/'.$claveMunicipio.'/'.$n_con.'/'.$año;
-  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha)
+  $sql = "INSERT INTO expediente (unidad, sede, municipio, fecharecep, num_consecutivo, año, fol_exp, fecha)
           VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual')";
   $resultado = $mysqli->query($sql);
   $sent=" SELECT id, fol_exp FROM expediente WHERE fol_exp='$folio_expediente'";

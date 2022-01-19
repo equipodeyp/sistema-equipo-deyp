@@ -109,6 +109,27 @@ $row=$result->fetch_assoc();
                     </div>
                   </div>
 
+
+                  <div class="form-group">
+                    <label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+                      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="" disabled>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+                      <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" placeholder="" required type="date" value="">
+                    </div>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
@@ -126,5 +147,35 @@ $row=$result->fetch_assoc();
   <div class="contenedor">
     <a href="admin.php" class="btn-flotante">CANCELAR</a>
   </div>
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("FECHA_RECEPCION").max = new Date().toISOString().split("T")[0];
+</script>
+
+<script type="text/javascript">
+window.onload = function(){
+  var fecha = new Date();
+  var mes = fecha.getMonth()+1;
+  var dia = fecha.getDate();
+  var ano = fecha.getFullYear();
+  if(dia<10)
+    dia='0'+dia; 
+  if(mes<10)
+    mes='0'+mes
+  document.getElementById('fecha').value=dia+"-"+mes+"-"+ano;
+}
+</script>
+
 </body>
 </html>
