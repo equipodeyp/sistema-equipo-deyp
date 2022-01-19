@@ -31,7 +31,7 @@ function ConsultarUsuario($usuario, $password)
     if($filas['id_cargo']==2){ //cliente
       echo'<script type="text/javascript">
       alert("Bienvenido");
-      window.location.href="consultores/consultar.php";
+      window.location.href="subdireccion_de_analisis_de_riesgo/menu.php";
       </script>';
         // MensajeAlerta("correcto", "Bienvenido", "consultores/consultar.php");
         /*header("location: consultores/consultar.php");*/
