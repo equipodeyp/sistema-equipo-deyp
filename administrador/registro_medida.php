@@ -5,11 +5,14 @@ session_start ();
 $verifica_medida = 1;
 $_SESSION["verifica_medida"] = $verifica_medida;
 $name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,15 +59,32 @@ echo $fol_exp;
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/USER.jpg" alt="" width="100" height="100">
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+      <?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			?>
+      <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
     </nav>
   </div>
   <div class="main bg-light">
     <div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+      <img src="../image/fiscalia.png" alt="" width="150" height="150">
+      <img src="../image/ups2.png" alt="" width="1400" height="70">
+      <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
     <div class="wrap">
     <div class="secciones">
@@ -74,7 +94,7 @@ echo $fol_exp;
 
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">MEDIDAS</h3>
+            <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
 
           <div class="col-md-6 mb-3 validar">
@@ -170,27 +190,32 @@ echo $fol_exp;
             <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA MEDIDA DEFINITIVA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
           </div>
+        </div>
 
+        <div class="row">
+          <div class="row">
+            <hr class="mb-4">
+          </div>
+          <div class="alert alert-info">
+            <h3 style="text-align:center">MODIFICACION DE LA MEDIDA</h3>
+          </div>
           <div class="col-md-6 mb-3 validar">
             <label for="MEDIDA_MODOIFICADA">MEDIDA_MODIFICADA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="">
+            <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="" onchange="changemedidamod(this)">
               <option desibled selected>SELECCIONE UNA OPCION</option>
               <option value="EJECUCION">SI</option>
               <option value="TERMINADA">NO</option>
               </select>
           </div>
-
-          <div class="col-md-6 mb-3 validar">
+          <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel1" style="display:none;">
             <label for="FECHA_MODIFICACION">FECHA_MODIFICACION<span class="required"></span></label>
             <input class="form-control" id="FECHA_MODIFICACION" name="FECHA_MODIFICACION" placeholder=""  type="date">
           </div>
 
-          <div class="col-md-6 mb-3 validar">
+          <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel2" style="display:none;">
             <label for="TIPO_MODIFICACION">TIPO_MODIFICACION<span class="required"></span></label>
             <input class="form-control" id="TIPO_MODIFICACION" name="TIPO_MODIFICACION" placeholder=""  type="text">
           </div>
-
-
         </div>
 
               <div class="row">
@@ -198,7 +223,7 @@ echo $fol_exp;
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">CONCLUSION / CANCELACIÓN</h3>
+                  <h3 style="text-align:center">CONCLUSION / CANCELACIÓN DE LA MEDIDA</h3>
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
@@ -241,7 +266,7 @@ echo $fol_exp;
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">ESTATUS</h3>
+                  <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
@@ -251,6 +276,8 @@ echo $fol_exp;
                     <option value="EJECUTADA">EJECUTADA</option>
                     <option value="EN EJECUCION">EN EJECUCION</option>
                     <option value="CONCLUIDA">CONCLUIDA</option>
+                    <option value="PENDIENTE">PENDIENTE</option>
+                    <option value="CANCELADA">CANCELADA</option>
                     </select>
                 </div>
 
@@ -265,8 +292,8 @@ echo $fol_exp;
                      echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
                     }
                     ?>
-                           </select>
-                    </div>
+                  </select>
+                </div>
 
                     <div class="col-md-6 mb-3 validar">
                       <label for="FECHA_DE_EJECUCION">FECHA_DE_EJECUCION<span class="required"></span></label>

@@ -197,6 +197,7 @@ $row=$result->fetch_assoc();
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
+                
 								<div class="contenedor">
 									<a href="menu.php" class="btn-flotante">REGRESAR</a>
 								</div>

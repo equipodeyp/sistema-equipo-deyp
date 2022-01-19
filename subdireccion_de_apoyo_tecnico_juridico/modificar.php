@@ -52,7 +52,22 @@ $row=$result->fetch_assoc();
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/user.png" alt="" width="100" height="100">
+      <?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
@@ -135,7 +150,8 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+				  <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecha']; ?>">
+			      <!--  -->
 			    </div>
 					</div>
 				</div>
@@ -145,7 +161,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-				  <input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecharecep']; ?>">
+				  <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecharecep']; ?>" disabled>
 			    </div>
 					</div>
 				</div>
@@ -301,6 +317,11 @@ $row=$result->fetch_assoc();
 
            ?>
 				   <a href="menu.php" class="btn-flotante">REGRESAR</a>
+           <div class="columns download">
+                   <p>
+                     <a href="https://mail.fiscaliaedomex.gob.mx" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+                   </p>
+           </div>
 				</div>
 			</div>
 		</div>

@@ -10,7 +10,6 @@ if (!isset($name)) {
 $verifica = 1;
 $_SESSION["verifica"] = $verifica;
 $name = $_SESSION['usuario'];
-
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -30,6 +29,8 @@ $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
 $num_consecutivo =$row["id"];
+// date_default_timezone_set("America/Mexico_City");
+// $fecha = date('y/m/d H:i:sa');
 
  ?>
 <!DOCTYPE html>
@@ -76,7 +77,22 @@ $num_consecutivo =$row["id"];
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/user.png" alt="" width="100" height="100">
+      <?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			?>
     <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
     </div>
     <nav class="menu-nav">
@@ -105,12 +121,12 @@ $num_consecutivo =$row["id"];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID UNICO DE LA PERSONA PROPUESTA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CAPTURA" >FECHA  DE CAPTURA DEL SUJETO<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="<?php echo date("Y-m-d");?>" readonly>
+            <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA PROPUESTA <span class="required"></span></label>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="" readonly>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
@@ -254,7 +270,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">LUGAR DE NACIMIENTO Y DATOS DE LA PERSONA PROPUESTA</h3>
+              <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">ESTADO DE NACIMIENTO<span class="required"></span></label>
@@ -850,3 +866,16 @@ document.getElementById("next3").addEventListener("click", function() {
 </script>
 </body>
 </html>
+<script type="text/javascript">
+window.onload = function(){
+var fecha = new Date(); //Fecha actual
+var mes = fecha.getMonth()+1; //obteniendo mes
+var dia = fecha.getDate(); //obteniendo dia
+var ano = fecha.getFullYear(); //obteniendo año
+if(dia<10)
+  dia='0'+dia; //agrega cero si el menor de 10
+if(mes<10)
+  mes='0'+mes //agrega cero si el menor de 10
+document.getElementById('FECHA_CAPTURA').value=ano+"-"+mes+"-"+dia;
+}
+</script>
