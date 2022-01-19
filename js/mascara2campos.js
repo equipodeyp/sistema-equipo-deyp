@@ -90,7 +90,7 @@ function changemedidamod(sel) {
 }
 
 function selectother(sel) {
-      if (sel.value=="VIII. OTRAS"){
+      if (sel.value=="VI. OTRAS"){
            divC = document.getElementById("otherasistencia");
            divC.style.display = "";
 

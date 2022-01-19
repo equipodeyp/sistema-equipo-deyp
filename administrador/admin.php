@@ -121,7 +121,7 @@ $row=$result->fetch_assoc();
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php   echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>

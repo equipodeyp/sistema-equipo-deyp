@@ -152,11 +152,25 @@ $row=$result->fetch_assoc();
 					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
-			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-				  <input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
-			    </div>
+			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+				  		<input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
+			    		</div>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+						  <input name="FECHA_RECEPCION" type="date" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="">
+			    		</div>
+					</div>
+					<div>
+						<button type='button' class='btn btn-success'>Guardar Fecha</button>
+					</div>
+				</div>
+
 				</div>
 			</div>
 
@@ -179,8 +193,8 @@ $row=$result->fetch_assoc();
 					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
-					  <th style="text-align:center">VALIDACIÓN</th>
-					<th style="text-align:center">DETALLES</th>
+					<th style="text-align:center">VALIDACIÓN</th>
+					<th style="text-align:center"> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
 			<?php
 			$cuenta = 0;
