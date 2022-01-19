@@ -318,7 +318,7 @@ $fol_exp = $_GET['folio'];
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="FUENTE_M">FUENTE<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="FUENTE_M" name="FUENTE_M" onChange="radicacionfuenteM(this)" required="">
+                  <select class="form-select form-select-lg" id="FUENTE_M" name="FUENTE_M" onChange="radicacionfuenteM(this)">
                     <option disabled selected value>SELECCIONE UNA OPCION</option>
                     <?php
                     $rad = "SELECT * FROM radicacion";

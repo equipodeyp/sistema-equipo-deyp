@@ -326,7 +326,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DE RADICACION</h3>
+              <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
@@ -373,7 +373,7 @@ $num_consecutivo =$row["id"];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DEL TUTOR</h3>
+              <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
