@@ -157,6 +157,18 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+						  <input name="FECHA_RECEPCION" type="date" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="">
+			    		</div>
+					</div>
+					<div>
+						<button type='button' class='btn btn-success'>Guardar Fecha</button>
+					</div>
+				</div>
 				</div>
 			</div>
 

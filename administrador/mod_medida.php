@@ -102,7 +102,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
     <article id="tab1">
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="update_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
-        <div class="row">
+        <div class="row">          
           <div class="alert alert-info">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>

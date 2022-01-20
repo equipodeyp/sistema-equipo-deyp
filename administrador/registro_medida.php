@@ -97,11 +97,11 @@ $fol_exp = $_GET['folio'];
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
 
-          <div class="col-md-6 mb-3 validar">
+          <!-- <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA INFORMACIÓN<span class="required"></span></label>
             <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder=""  readonly type="text">
             </select>
-          </div>
+          </div> -->
 
           <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
@@ -353,6 +353,19 @@ $fol_exp = $_GET['folio'];
               </div>
 
               <div class="row">
+                <div class="row">
+
+                  <hr class="mb-4">
+                </div>
+                <div class="alert alert-info">
+                  <h3 style="text-align:center">COMENTARIOS</h3>
+                </div>
+
+                <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="300"></textarea>
+
+              </div>
+
+              <div class="row">
                 <div>
                     <br>
                     <br>
@@ -397,7 +410,7 @@ window.onload = function(){
   var dia = fecha.getDate();
   var ano = fecha.getFullYear();
   if(dia<10)
-    dia='0'+dia; 
+    dia='0'+dia;
   if(mes<10)
     mes='0'+mes
   document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
