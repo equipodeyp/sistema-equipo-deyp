@@ -390,7 +390,7 @@ $validacion = $fil_val['validacion'];
                 <div>
                     <br>
                     <br>
-                		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">SIGUIENTE</button>
+                		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
                 </div>
 
               </div>
@@ -403,7 +403,7 @@ $validacion = $fil_val['validacion'];
   </div>
 </div>
 <div class="contenedor">
-<a href="admin.php" class="btn-flotante">CANCELAR</a>
+<a href="menu.php" class="btn-flotante">CANCELAR</a>
 </div>
 <script type="text/javascript">
 var today = new Date();

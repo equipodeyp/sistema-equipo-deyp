@@ -235,7 +235,7 @@ $row=$result->fetch_assoc();
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="contenedor">
-				<a href="admin.php" class="btn-flotante">REGRESAR</a>
+				<a href="menu.php" class="btn-flotante">REGRESAR</a>
 				</div>
 			</div>
 		</div>

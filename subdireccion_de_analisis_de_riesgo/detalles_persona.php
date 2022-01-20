@@ -864,9 +864,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
                     <?php
                     if ($rowfol['foto']=='') {
-                      echo "no hay foto";
+                      // echo "no hay foto";
                     }else {
-                      echo "si hay foto";
+                      // echo "si hay foto";
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
@@ -879,18 +879,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <!-- <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
 
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100" readonly></textarea>
-                
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100" readonly></textarea> -->
+
                 </div>
                 <div class="row">
                   <div>
                       <br>
                       <br>
-                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                  		<!-- <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button> -->
                   </div>
                 </div>
               </form>
@@ -972,7 +972,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
         		          echo "<td>"; echo $var_fila['ejecucion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['date_ejecucion']; echo "</td>";
-        		          echo "<td>  <a href='mod_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
+        		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
         		        echo "</tr>";
         		      }
         		      ?>
@@ -1260,7 +1260,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
