@@ -326,7 +326,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 
                    <div class="alert alert-info">
-                     <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
+                     <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
@@ -388,7 +388,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                      <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                    </div>
                    <div class="alert alert-info">
-                     <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
+                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
