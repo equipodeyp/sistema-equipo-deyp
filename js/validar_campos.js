@@ -371,3 +371,34 @@ jQuery(document).ready(function(){
 
           }
     }
+
+// domicilio ACTUAL
+function domicilioactual(sel) {
+      if (sel.value=="SI"){
+        divC = document.getElementById("domestado");
+        divC.style.display="none";
+        divC = document.getElementById("dommunicipio");
+        divC.style.display="none";
+        divC = document.getElementById("domlocalidad");
+        divC.style.display="none";
+        divC = document.getElementById("domcalle");
+        divC.style.display="none";
+        divC = document.getElementById("domcp");
+        divC.style.display="none"
+        divC = document.getElementById("reclusorio");
+        divC.style.display=""
+      }else{
+           divC = document.getElementById("reclusorio");
+           divC.style.display="none"
+           divC = document.getElementById("domestado");
+           divC.style.display="";
+           divC = document.getElementById("dommunicipio");
+           divC.style.display="";
+           divC = document.getElementById("domlocalidad");
+           divC.style.display="";
+           divC = document.getElementById("domcalle");
+           divC.style.display="";
+           divC = document.getElementById("domcp");
+           divC.style.display="";
+      }
+}
