@@ -340,7 +340,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- centros de reclusorios -->
             <div class="col-md-6 mb-3 validar" id="reclusorio" style="display:none;">
-              <label for="RECLUSORIO"  >DELITO PRINCIPAL<span class="required"></span></label>
+              <label for="RECLUSORIO"  >CENTROS PENITENCIARIOS<span class="required"></span></label>
               <select  class="form-select form-select-lg" id="RECLUSORIO" name="RECLUSORIO" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <option value="SI">OPCION 1</option>
