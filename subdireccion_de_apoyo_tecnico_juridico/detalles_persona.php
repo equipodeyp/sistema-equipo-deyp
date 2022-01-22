@@ -418,6 +418,34 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                   </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="DOMICILIO" >DOMICILIO<span class="required"></span></label>
+                    <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)" required>
+                      <option disabled selected value="<?php echo $rowdomicilio['lugar']; ?>"><?php echo $rowdomicilio['lugar']; ?></option>
+                      <option value="SI">SI</option>
+                      <option value="NO">NO</option>
+                    </select>
+                  </div>
+
+                  <?php
+                  $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
+                  $resultadodomicilio = $mysqli->query($domicilio);
+                  $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
+                  if ($rowdomicilio['lugar'] == 'SI'){
+                      echo "<div class='col-md-6 mb-3 validar' id='reclusorio'>
+                        <label for='RECLUSORIO'  >CENTROS PENITENCIARIOS<span class='required'></span></label>
+                        <select  class='form-select form-select-lg' id='RECLUSORIO' name='RECLUSORIO'>
+                          <option disabled selected value=''>SELECCIONE UNA OPCION</option>";
+                          $reclusorio = "SELECT * FROM reclusorios";
+                          $answer_reclusorio = $mysqli->query($reclusorio);
+                          while($reclusorios = $answer_reclusorio->fetch_assoc()){
+                            echo "<option value='".$reclusorios['denominacion']."'>".$reclusorios['denominacion']."</option>";
+                          }
+                          echo "
+                        </select>
+                      </div>";
+                  }
+                  ?>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>

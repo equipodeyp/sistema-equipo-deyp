@@ -228,9 +228,26 @@ if ($verifica == 1) {
               VALUES ('$name_est', '$name_muni', '$na_persona', '$fol_exp', '$id_persona')";
   $res_origen = $mysqli->query($origen);
   // // sql para la inserccion de datos del lugar donde radica el Sujeto
-  $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona)
-                VALUES ('$name_estac', '$name_muniac', '$lo_persona', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona')";
-  $res_domicilio = $mysqli->query($dom_actual);
+  $domicilio = $_POST["DOMICILIO"];
+  if ($domicilio == 'SI'){
+    $reclusorio = $_POST['RECLUSORIO'];
+    $name_recluso ="SELECT * FROM reclusorios WHERE denominacion='$reclusorio'";
+    $r_recluso = $mysqli->query($name_recluso);
+    $ro_recluso=$r_recluso->fetch_assoc();
+    $name_reclusorio=$ro_recluso['denominacion'];
+    $direccion = $ro_recluso['direccion'];
+    $localidad = '';
+    $calle = '';
+    $cp = '';
+    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar)
+                  VALUES ('$name_reclusorio', '$direccion', '$localidad', '$calle', '$cp', '$fol_exp', '$id_persona', '$domicilio')";
+    $res_domicilio = $mysqli->query($dom_actual);
+  } elseif ($domicilio == 'NO'){
+    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar)
+                  VALUES ('$name_estac', '$name_muniac', '$lo_persona', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona', '$domicilio')";
+    $res_domicilio = $mysqli->query($dom_actual);
+  }
+
   // // sql para lña inserccion de datos del TUTOR
   if ($incapaz == 'SI') {
     $tutor = "INSERT INTO tutor (nombre, apellidopaterno, apellidomaterno, folioexpediente, id_persona)

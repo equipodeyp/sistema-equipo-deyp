@@ -409,9 +409,9 @@ $validacion = $fil_val['validacion'];
               <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <option value="EJECUTADA">EJECUTADA</option>
                 <option value="EN EJECUCION">EN EJECUCION</option>
-                <option value="CONCLUIDA">CONCLUIDA</option>
+                <option value="EJECUTADA">EJECUTADA</option>
+                <option value="CANCELADA">CANCELADA</option>
                 </select>
             </div>
 

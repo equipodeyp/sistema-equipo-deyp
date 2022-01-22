@@ -341,10 +341,15 @@ $num_consecutivo =$row["id"];
             <!-- centros de reclusorios -->
             <div class="col-md-6 mb-3 validar" id="reclusorio" style="display:none;">
               <label for="RECLUSORIO"  >CENTROS PENITENCIARIOS<span class="required"></span></label>
-              <select  class="form-select form-select-lg" id="RECLUSORIO" name="RECLUSORIO" required>
+              <select  class="form-select form-select-lg" id="RECLUSORIO" name="RECLUSORIO">
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
-                <option value="SI">OPCION 1</option>
-                <option value="NO">OPCION 2</option>
+                <?php
+                $reclusorio = "SELECT * FROM reclusorios";
+                $answer_reclusorio = $mysqli->query($reclusorio);
+                while($reclusorios = $answer_reclusorio->fetch_assoc()){
+                  echo "<option value='".$reclusorios['denominacion']."'>".$reclusorios['denominacion']."</option>";
+                }
+                ?>
               </select>
             </div>
             <!--  -->

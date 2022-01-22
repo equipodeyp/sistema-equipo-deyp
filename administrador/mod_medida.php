@@ -102,7 +102,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
     <article id="tab1">
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="update_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
-        <div class="row">          
+        <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
@@ -368,9 +368,9 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
               <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <option value="EJECUTADA">EJECUTADA</option>
                 <option value="EN EJECUCION">EN EJECUCION</option>
-                <option value="CONCLUIDA">CONCLUIDA</option>
+                <option value="EJECUTADA">EJECUTADA</option>
+                <option value="CANCELADA">CANCELADA</option>
                 </select>
             </div>
 
