@@ -384,12 +384,12 @@ function domicilioactual(sel) {
         divC = document.getElementById("domcalle");
         divC.style.display="none";
         divC = document.getElementById("domcp");
-        divC.style.display="none"
+        divC.style.display="none";
         divC = document.getElementById("reclusorio");
-        divC.style.display=""
+        divC.style.display="";
       }else{
            divC = document.getElementById("reclusorio");
-           divC.style.display="none"
+           divC.style.display="none";
            divC = document.getElementById("domestado");
            divC.style.display="";
            divC = document.getElementById("dommunicipio");
@@ -400,5 +400,53 @@ function domicilioactual(sel) {
            divC.style.display="";
            divC = document.getElementById("domcp");
            divC.style.display="";
+      }
+}
+// modificacion del domicilio ACTUAL
+function mod_domicilioactual(sel) {
+      if (sel.value=="SI"){
+        divC = document.getElementById("mod_reclusorio");
+        divC.style.display="";
+        divC = document.getElementById("act_estado");
+        divC.style.display="none";
+        divC = document.getElementById("act_municipio");
+        divC.style.display="none";
+        divC = document.getElementById("act_localidad");
+        divC.style.display="none";
+        divC = document.getElementById("act_calle");
+        divC.style.display="none";
+        divC = document.getElementById("act_cp");
+        divC.style.display="none";
+        divC = document.getElementById("mod_reclusorio_s");
+        divC.style.display="none";
+        divC = document.getElementById("dir_reclusorio");
+        divC.style.display="none";
+      }else if (sel.value=='NO') {
+        divC = document.getElementById("act_estado");
+        divC.style.display="";
+        divC = document.getElementById("act_municipio");
+        divC.style.display="";
+        divC = document.getElementById("act_localidad");
+        divC.style.display="";
+        divC = document.getElementById("act_calle");
+        divC.style.display="";
+        divC = document.getElementById("act_cp");
+        divC.style.display="";
+        divC = document.getElementById("mod_reclusorio");
+        divC.style.display="none";
+        divC = document.getElementById("estado_s");
+        divC.style.display="none";
+        divC = document.getElementById("municipio_s");
+        divC.style.display="none";
+        divC = document.getElementById("localidad_s");
+        divC.style.display="none";
+        divC = document.getElementById("calle_s");
+        divC.style.display="none";
+        divC = document.getElementById("cp_s");
+        divC.style.display="none";
+        divC = document.getElementById("mod_reclusorio_s");
+        divC.style.display="none";
+        divC = document.getElementById("dir_reclusorio");
+        divC.style.display="none";
       }
 }
