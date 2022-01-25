@@ -287,7 +287,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">NOMBRE (S)<span class="required"></span></label>
                     <input disabled="disabled" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['nombrepersona']; ?>" required>
                   </div>
 
@@ -819,7 +819,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
    ?>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 <p>
-  <a href="https://mail.fiscaliaedomex.gob.mx"  target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+  <a href="https://10.51.0.215/"  target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
 </p>
 </div>
 <!-- SCRIPT DE FECHAS  -->

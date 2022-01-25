@@ -950,7 +950,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  		</thead>
         		  		<?php
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
-        		       $var_resultado = $mysqli->query($tabla);
+        		      $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
         		        echo "<tr>";

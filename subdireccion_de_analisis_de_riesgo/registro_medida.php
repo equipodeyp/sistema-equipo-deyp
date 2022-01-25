@@ -330,45 +330,9 @@ $validacion = $fil_val['validacion'];
 
               <div class="row">
                 <div class="row">
-                  <hr class="mb-4">
-                </div>
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">FUENTE</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FUENTE_M">FUENTE<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="FUENTE_M" name="FUENTE_M" onChange="radicacionfuenteM(this)">
-                    <option disabled selected value>SELECCIONE UNA OPCION</option>
-                    <?php
-                    $rad = "SELECT * FROM radicacion";
-                    $answerrad = $mysqli->query($rad);
-                    while($rads = $answerrad->fetch_assoc()){
-                      echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-                    }
-                    ?>
-                  </select>
                 </div>
-
-                <div class="col-md-6 mb-3 validar" id="OFICIO_M" style="display:none;">
-                  <label for="OFICIO_M">OFICIO<span class="required"></span></label>
-                  <input class="form-control" id="OFICIO_M" name="OFICIO_M" placeholder="" value=""  type="text" >
-                </div>
-
-                <div class="col-md-6 mb-3 validar" id="CORREO_M" style="display:none;">
-                  <label for="CORREO_M">CORREO<span class="required"></span></label>
-                  <input class="form-control" id="CORREO_M" name="CORREO_M" placeholder=""  value="" type="text" >
-                </div>
-
-                <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_M" style="display:none;">
-                  <label for="EXPEDIENTE_M">EXPEDIENTE<span class="required"></span></label>
-                  <input class="form-control" id="EXPEDIENTE_M" name="EXPEDIENTE_M" placeholder=""  value="" type="text" >
-                </div>
-
-                <div class="col-md-6 mb-3 validar" id="OTRO_M" style="display:none;">
-                  <label for="OTRO_M">OTRO<span class="required"></span></label>
-                  <input class="form-control" id="OTRO_M" name="OTRO_M" placeholder=""  value="" type="text" >
-                </div>
-
               </div>
 
               <div class="row">

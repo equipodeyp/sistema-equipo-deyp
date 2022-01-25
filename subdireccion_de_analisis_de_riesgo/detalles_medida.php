@@ -512,6 +512,7 @@ $validacion = $fil_val['validacion'];
 
                   <hr class="mb-4">
                 </div>
+                
                 <div class="alert alert-info">
                   <h3 style="text-align:center">COMENTARIOS</h3>
                 </div>

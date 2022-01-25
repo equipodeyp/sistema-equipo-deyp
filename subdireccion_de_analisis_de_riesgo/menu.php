@@ -159,10 +159,7 @@ $row=$result->fetch_assoc();
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
                               $fol_exp =$row['fol_exp'];
 
-                              $fol_exp3=$row2['fol_exp'];
-
-                              $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp3'";
-                              $result=$mysqli->query($cant);
+                              
                             
 
                               $tabla="SELECT * FROM expediente";
@@ -171,10 +168,15 @@ $row=$result->fetch_assoc();
                               {
                                 $fol_exp2=$var_fila['fol_exp'];
 
+                                
+
+                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
+                                $r=$mysqli->query($cant);
+                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
+
 
                                 $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
                                 $result=$mysqli->query($abc);
-
 
                                 if($result)
                                 {

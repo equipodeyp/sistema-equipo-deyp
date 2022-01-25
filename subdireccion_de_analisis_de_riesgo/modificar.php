@@ -195,7 +195,8 @@ $row=$result->fetch_assoc();
 					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
-					  <th style="text-align:center">VALIDACIÓN</th>
+					<th style="text-align:center">MEDIDAS</th>
+					<th style="text-align:center">VALIDACIÓN</th>
 					<th style="text-align:center">DETALLES</th>
 		  		</thead>
 			<?php
@@ -203,11 +204,20 @@ $row=$result->fetch_assoc();
 
 		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
 		    $var_resultado = $mysqli->query($tabla);
-		      while ($var_fila=$var_resultado->fetch_array())
+
+		    while ($var_fila=$var_resultado->fetch_array())
 		      {
-            $id_persona = $var_fila['id'];
-            $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
-            $res_val = $mysqli->query($datevalidar);
+				$id_persona = $var_fila['id'];
+		
+
+				$datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+				$res_val = $mysqli->query($datevalidar);
+
+				$cant_med = "SELECT a.id_persona, COUNT(*) AS num FROM medidas AS a GROUP BY a.id_persona";
+				$res_cant_med = $mysqli->query($cant_med);
+                $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+
+
             while ($fila_val=$res_val->fetch_array()) {
               $cuenta = $cuenta + 1;
 
@@ -217,12 +227,13 @@ $row=$result->fetch_assoc();
         				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+						echo "<td style='text-align:center'>"; echo $row_med['num']; echo "</td>";
                       	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";
                       } echo "</td>";
-        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Abrir</button> </a> </td>";
+        		        echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Abrir</button> </a> </td>";
         		        echo "</tr>";
             }
 
