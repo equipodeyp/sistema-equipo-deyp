@@ -11,7 +11,7 @@ $row=$result->fetch_assoc();
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 
-	?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -79,7 +79,7 @@ $row=$result->fetch_assoc();
 
 	    <div class="secciones">
 
-	  <article id="tab1">
+	<article id="tab1">
 			<div class="well form-horizontal" >
 				<div class="row">
 				<div class="alert alert-info">
@@ -157,17 +157,21 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
-			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-						  <input name="FECHA_RECEPCION" type="date" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="">
+			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+						  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="" required>
 			    		</div>
 					</div>
-					<div>
-						<button type='button' class='btn btn-success'>Guardar Fecha</button>
-					</div>
+				<div>
+					<button type="submit" class='btn btn-success'>Guardar Fecha</button>
+				</div>
+				
+
+
 				</div>
 				</div>
 			</div>
@@ -244,3 +248,22 @@ $row=$result->fetch_assoc();
 	</div>
 	</div>
 	</div>
+
+<script type="text/javascript">
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
+</script>
+
+</body>
+</html>
