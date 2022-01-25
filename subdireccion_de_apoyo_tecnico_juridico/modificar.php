@@ -204,9 +204,9 @@ $row=$result->fetch_assoc();
             }
             if ($name == 'diana' && $exp_validado == 'false') {
               echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
-              echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>YA SE PUEDE VALIDAR EL EXPEDIENTE</FONT></h3>";
+              echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>¡ YA PUEDE VALIDAR EL EXPEDIENTE !</FONT></h3>";
             }elseif ($valexp == 'NO') {
-              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>AUN NO SE PUEDE VALIDAR EL EXPEDIENTE, HAY SUJETOS QUE FALTAN VALIDAR</FONT></h3>";
+              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>¡ EXISTE INFORMACIÓN POR VALIDAR ! <br><br> Para validar el expediente, es necesario validar la información de las personas incorparas al programa.</FONT></h3>";
             }   ;echo "</h3>";
             }
             if ($exp_validado == 'true') {
