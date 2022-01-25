@@ -229,7 +229,11 @@ if ($verifica == 1) {
   $res_origen = $mysqli->query($origen);
   // // sql para la inserccion de datos del lugar donde radica el Sujeto
   $domicilio = $_POST["DOMICILIO"];
-  if ($domicilio == 'SI'){
+  if ($domicilio == '') {
+    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar)
+                  VALUES ('$name_estac', '$name_muniac', '$lo_persona', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona', '$domicilio')";
+    $res_domicilio = $mysqli->query($dom_actual);
+  }else if ($domicilio == 'SI'){
     $reclusorio = $_POST['RECLUSORIO'];
     $name_recluso ="SELECT * FROM reclusorios WHERE denominacion='$reclusorio'";
     $r_recluso = $mysqli->query($name_recluso);
@@ -309,7 +313,7 @@ if ($verifica == 1) {
   $res_validacion_exp = $mysqli->query($datos_validacion_exp);
 
   // validacion de registro GUARDADO
-  if($res_dat_per && $resultado && $res_origen && $res_domicilio && $res_proceso && $res_val_juridica && $res_det_inc && $res_radicacion){
+  if($res_val_juridica){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=$fol_exp';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')

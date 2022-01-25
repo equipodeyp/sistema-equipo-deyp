@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -419,9 +419,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="DOMICILIO" >DOMICILIO<span class="required"></span></label>
-                    <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)" required>
-                      <option disabled selected value="<?php echo $rowdomicilio['lugar']; ?>"><?php echo $rowdomicilio['lugar']; ?></option>
+                    <label for="MOD_DOMICILIO" >DOMICILIO<span class="required"></span></label>
+                    <select  class="form-select form-select-lg" id="MOD_DOMICILIO" name="MOD_DOMICILIO"  onclick="mod_domicilioactual(this)">
+                      <option style="visibility: hidden" value="<?php echo $rowdomicilio['lugar']; ?>"><?php echo $rowdomicilio['lugar']; ?></option>
                       <option value="SI">SI</option>
                       <option value="NO">NO</option>
                     </select>
@@ -432,55 +432,106 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   $resultadodomicilio = $mysqli->query($domicilio);
                   $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
                   if ($rowdomicilio['lugar'] == 'SI'){
-                      echo "<div class='col-md-6 mb-3 validar' id='reclusorio'>
-                        <label for='RECLUSORIO'  >CENTROS PENITENCIARIOS<span class='required'></span></label>
-                        <select  class='form-select form-select-lg' id='RECLUSORIO' name='RECLUSORIO'>
-                          <option disabled selected value=''>SELECCIONE UNA OPCION</option>";
+                      echo '<div class="col-md-6 mb-3 validar" id="mod_reclusorio_s">
+                        <label for="RECLUSORIO"  >CENTROS PENITENCIARIOS<span class="required"></span></label>
+                        <select  class="form-select form-select-lg" id="RECLUSORIO" name="RECLUSORIO">
+                          <option style="visibility: hidden" value="'.$rowdomicilio['seleccioneestado'].'">'.$rowdomicilio['seleccioneestado'].'</option>';
                           $reclusorio = "SELECT * FROM reclusorios";
                           $answer_reclusorio = $mysqli->query($reclusorio);
                           while($reclusorios = $answer_reclusorio->fetch_assoc()){
                             echo "<option value='".$reclusorios['denominacion']."'>".$reclusorios['denominacion']."</option>";
                           }
-                          echo "
-                        </select>
-                      </div>";
-                  }
-                  ?>
+                        echo '</select>
+                      </div>
+                      <div class="col-md-6 mb-3 validar" id="dir_reclusorio">
+                        <label for="direccion_penal">DIRECCION DEL CENTRO PENITENCIARIO<span class="required"></span></label>
+                        <input class="form-control" name="dir_penal" id="dir_penal" type="text" value="'.$rowdomicilio['seleccionemunicipio'].'" readonly>
+                      </div>';
+                  }elseif ($rowdomicilio['lugar'] == 'NO') {
+                    echo '<div class="col-md-6 mb-3 validar" id="estado_s" >
+                      <label for="ESTADO"  >ESTADO<span class="required"></span></label>
+                      <select  class="form-select form-select-lg" id="estado_suj" name="estado_suj">
+                        <option style="visibility: hidden" value="'.$rowdomicilio['seleccioneestado'].'">'.$rowdomicilio['seleccioneestado'].'</option>';
+                        $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
+                        $resultado1=$mysqli->query($query1);
+                        while($row_estado = $resultado1->fetch_assoc()){
+                          echo "<option value='".$row_estado['id_estado']."'>".$row_estado['estado']."</option>";
+                        }
+                        echo '
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3 validar" id="municipio_s">
+                      <label for="NOMBRE_MUNICIPIO">MUNICIPIO<span class="required"></span></label>
+                      <select class="form-select form-select-lg" name="municipio_suj" id="municipio_suj">
+                        <option value="'.$rowdomicilio['seleccionemunicipio'].'">'.$rowdomicilio['seleccionemunicipio'].'</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3 validar" id="localidad_s">
+                      <label for="NOMBRE_LOCALIDAD">LOCALIDAD<span class="required"></span></label>
+                      <input class="form-control" name="localidad_suj" id="localidad_suj" placeholder="" value="'.$rowdomicilio['seleccionelocalidad'].'" type="text">
+                    </div>
+                    <div class="col-md-6 mb-3 validar" id="calle_s">
+                      <label for="CALLE">CALLE<span class="required"></span></label>
+                      <input class="form-control" id="calle_suj" name="calle_suj" placeholder="" value="'.$rowdomicilio['calle'].'" type="text">
+                    </div>
 
-                  <div class="col-md-6 mb-3 validar">
+                    <div class="col-md-6 mb-3 validar" id="cp_s">
+                      <label for="CP">CODIGO POSTAL<span class="required"></span></label>
+                      <input class="form-control" id="codigo_postal_s" name="codigo_postal_s" placeholder="" value="'.$rowdomicilio['cp'].'" type="text" maxlength="5">
+                    </div>';
+
+                  }
+
+
+                  ?>
+                  <!-- centros de reclusorios -->
+                  <div class="col-md-6 mb-3 validar" id="mod_reclusorio" style="display:none;">
+                    <label for="RECLUSORIO"  >CENTROS PENITENCIARIOS<span class="required"></span></label>
+                    <select  class="form-select form-select-lg" id="RECLUSORIO1" name="RECLUSORIO1">
+                      <option style="visibility: hidden" value>SELECCIONE UNA OPCION</option>
+                      <?php
+                      $reclusorio = "SELECT * FROM reclusorios";
+                      $answer_reclusorio = $mysqli->query($reclusorio);
+                      while($reclusorios = $answer_reclusorio->fetch_assoc()){
+                        echo "<option value='".$reclusorios['denominacion']."'>".$reclusorios['denominacion']."</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
+                  <!--  -->
+
+                  <div class="col-md-6 mb-3 validar" id="act_estado" style="display:none;">
                     <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
                     <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1" onChange="updatedom(this)" >
-                      <option style="visibility: hidden" id="opt-seleccion-estado" value="<?php echo $rowdomicilio['seleccioneestado']; ?>"><?php echo $rowdomicilio['seleccioneestado']; ?></option>
+                      <option style="visibility: hidden" id="opt-seleccion-estado" value=""></option>
                       <?php while($row = $resultado1->fetch_assoc()) { ?>
                         <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
                       <?php } ?>
                     </select>
                   </div>
 
-                  <div class="col-md-6 mb-3 validar" id="realm">
+                  <div class="col-md-6 mb-3 validar" id="act_municipio" style="display:none;">
                     <label for="NOMBRE_MUNICIPIO">SELECCIONE UN MUNICIPIO<span class="required"></span></label>
                     <select class="form-select form-select-lg" name="cbx_municipio11" id="cbx_municipio11" >
-                      <option value="<?php echo $rowdomicilio['seleccionemunicipio']; ?>"><?php echo $rowdomicilio['seleccionemunicipio']; ?></option>
+                      <option value=""></option>
                     </select>
                   </div>
 
-                  <div class="col-md-6 mb-3 validar" id="realc">
+                  <div class="col-md-6 mb-3 validar" id="act_localidad" style="display:none;">
                     <label for="NOMBRE_LOCALIDAD">ESPECIFIQUE LA LOCALIDAD<span class="required"></span></label>
-                    <input class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="<?php echo $rowdomicilio['seleccionelocalidad']; ?>" type="text">
-                      <!-- <option value="<?php echo $rowdomicilio['seleccionelocalidad']; ?>"><?php echo $rowdomicilio['seleccionelocalidad']; ?></option>
-                    </select> -->
+                    <input class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
                   </div>
 
 
                   <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="act_calle" style="display:none;">
                     <label for="CALLE">CALLE<span class="required"></span></label>
-                    <input class="form-control" id="CALLE" name="CALLE" placeholder="" value="<?php echo $rowdomicilio['calle']; ?>" type="text" >
+                    <input class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text" >
                   </div>
 
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="act_cp" style="display:none;">
                     <label for="CP">CP<span class="required"></span></label>
-                    <input class="form-control" id="CP" name="CP" placeholder="" value="<?php echo $rowdomicilio['cp']; ?>" type="text" maxlength="5" >
+                    <input class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">

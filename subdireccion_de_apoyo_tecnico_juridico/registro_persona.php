@@ -332,8 +332,8 @@ $num_consecutivo =$row["id"];
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="DOMICILIO" >DOMICILIO<span class="required"></span></label>
-              <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)" required>
-                <option disabled selected value>SELECCIONE UNA OPCION</option>
+              <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)">
+                <option disabled selected value="null">SELECCIONE UNA OPCION</option>
                 <option value="SI">SI</option>
                 <option value="NO">NO</option>
               </select>
