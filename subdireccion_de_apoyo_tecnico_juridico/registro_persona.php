@@ -331,15 +331,9 @@ $num_consecutivo =$row["id"];
               <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
-<<<<<<< HEAD
               <label for="DOMICILIO" >PPL<span class="required"></span></label>
               <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
-=======
-              <label for="DOMICILIO" >DOMICILIO<span class="required"></span></label>
-              <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)">
-                <option disabled selected value="null">SELECCIONE UNA OPCION</option>
->>>>>>> daa31b542cf3143342b01247b581ebd1d41fa892
                 <option value="SI">SI</option>
                 <option value="NO">NO</option>
               </select>

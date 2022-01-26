@@ -206,7 +206,7 @@ $row=$result->fetch_assoc();
               echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
               echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>¡ YA PUEDE VALIDAR EL EXPEDIENTE !</FONT></h3>";
             }elseif ($valexp == 'NO') {
-              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>¡ EXISTE INFORMACIÓN POR VALIDAR ! <br><br> Para validar el expediente, es necesario validar la información de las personas incorparas al programa.</FONT></h3>";
+              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>¡ EXISTE INFORMACIÓN POR VALIDAR ! </FONT></h3><br><h3 style='text-align:left'><FONT COLOR='red' size=6 align='center'>Para validar el expediente, es necesario validar la información de las personas incorporadas al programa.</FONT></h3>";
             }   ;echo "</h3>";
             }
             if ($exp_validado == 'true') {
@@ -234,6 +234,7 @@ $row=$result->fetch_assoc();
 					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
+					<th style="text-align:center">MEDIDAS</th>
             		<th style="text-align:center">VALIDACIÓN</th>
 		  			<th style="text-align:center"> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
 		  		</thead>
@@ -247,6 +248,11 @@ $row=$result->fetch_assoc();
             $id_persona = $var_fila['id'];
             $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
             $res_val = $mysqli->query($datevalidar);
+
+			$cant_med="SELECT COUNT(*) AS cant FROM medidas WHERE id_persona = '$id_persona'";
+            $res_cant_med=$mysqli->query($cant_med);
+            $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+
             while ($fila_val=$res_val->fetch_array()) {
               $cuenta = $cuenta + 1;
 
@@ -256,6 +262,7 @@ $row=$result->fetch_assoc();
         				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+						echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
                       	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
