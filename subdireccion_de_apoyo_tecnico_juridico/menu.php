@@ -175,7 +175,6 @@ $(document).ready(function() {
                                     <th style="text-align:center">FECHA RECEPCION</th>
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
-                                    <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACION</th>
                                     <th style="text-align:center">DETALLES</th>
 
@@ -194,12 +193,6 @@ $(document).ready(function() {
                                 $fol_exp2=$var_fila['fol_exp'];
                                 $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
                                 $result=$mysqli->query($abc);
-
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-
                                 if($result)
                                 {
                                   while($row=mysqli_fetch_assoc($result))
@@ -211,7 +204,6 @@ $(document).ready(function() {
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
                                     echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
                                       echo "<i class='fas fa-check'></i>";
                                     }elseif ($var_fila['validacion'] == 'false') {

@@ -11,7 +11,7 @@ $row=$result->fetch_assoc();
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 
-?>
+	?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -79,7 +79,7 @@ $row=$result->fetch_assoc();
 
 	    <div class="secciones">
 
-	<article id="tab1">
+	  <article id="tab1">
 			<div class="well form-horizontal" >
 				<div class="row">
 				<div class="alert alert-info">
@@ -157,21 +157,17 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
-				
 				<div class="form-group">
 					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
-			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-						  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="" required>
+			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+						  <input name="FECHA_RECEPCION" type="date" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="">
 			    		</div>
 					</div>
-				<div>
-					<button type="submit" class='btn btn-success'>Guardar Fecha</button>
-				</div>
-				
-
-
+					<div>
+						<button type='button' class='btn btn-success'>Guardar Fecha</button>
+					</div>
 				</div>
 				</div>
 			</div>
@@ -195,8 +191,7 @@ $row=$result->fetch_assoc();
 					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
-					<th style="text-align:center">MEDIDAS</th>
-					<th style="text-align:center">VALIDACIÓN</th>
+					  <th style="text-align:center">VALIDACIÓN</th>
 					<th style="text-align:center">DETALLES</th>
 		  		</thead>
 			<?php
@@ -204,24 +199,11 @@ $row=$result->fetch_assoc();
 
 		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
 		    $var_resultado = $mysqli->query($tabla);
-
-		    while ($var_fila=$var_resultado->fetch_array())
+		      while ($var_fila=$var_resultado->fetch_array())
 		      {
-				$id_persona = $var_fila['id'];
-		
-
-				$datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
-				$res_val = $mysqli->query($datevalidar);
-
-				// $cant_med = "SELECT a.id_persona, COUNT(*) AS num FROM medidas AS a GROUP BY a.id_persona";
-				// $res_cant_med = $mysqli->query($cant_med);
-                // $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
-
-				$cant_med="SELECT COUNT(*) AS cant FROM medidas WHERE id_persona = '$id_persona'";
-                $res_cant_med=$mysqli->query($cant_med);
-                $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
-
-
+            $id_persona = $var_fila['id'];
+            $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+            $res_val = $mysqli->query($datevalidar);
             while ($fila_val=$res_val->fetch_array()) {
               $cuenta = $cuenta + 1;
 
@@ -231,13 +213,12 @@ $row=$result->fetch_assoc();
         				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
-						echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
                       	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";
                       } echo "</td>";
-        		        echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Abrir</button> </a> </td>";
+        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Abrir</button> </a> </td>";
         		        echo "</tr>";
             }
 
@@ -263,22 +244,3 @@ $row=$result->fetch_assoc();
 	</div>
 	</div>
 	</div>
-
-<script type="text/javascript">
-
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-      dd='0'+dd
-  }
-  if(mm<10){
-      mm='0'+mm
-  }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
-</script>
-
-</body>
-</html>

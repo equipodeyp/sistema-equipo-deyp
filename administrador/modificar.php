@@ -163,7 +163,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-						  <input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="">
+						  <input name="FECHA_RECEPCION" type="date" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="">
 			    		</div>
 					</div>
 					<div>
@@ -246,19 +246,3 @@ $row=$result->fetch_assoc();
 	</div>
 	</div>
 	</div>
-<script type="text/javascript">
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-      dd='0'+dd
-  }
-  if(mm<10){
-      mm='0'+mm
-  }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("FECHA_RECEPCION").max = new Date().toISOString().split("T")[0];
-</script>
-</body>
-</html>

@@ -194,6 +194,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                               <p>
                               <img src='../image/true4.jpg' width='50' height='50' class='center'>
                               <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA VALIDADA</FONT></h3>
+
                               </p>
                       </div>";
                     }
@@ -418,7 +419,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MOD_DOMICILIO" >PPL<span class="required"></span></label>
+                    <label for="MOD_DOMICILIO" >DOMICILIO<span class="required"></span></label>
                     <select  class="form-select form-select-lg" id="MOD_DOMICILIO" name="MOD_DOMICILIO"  onclick="mod_domicilioactual(this)">
                       <option style="visibility: hidden" value="<?php echo $rowdomicilio['lugar']; ?>"><?php echo $rowdomicilio['lugar']; ?></option>
                       <option value="SI">SI</option>
@@ -473,6 +474,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <label for="CALLE">CALLE<span class="required"></span></label>
                       <input class="form-control" id="calle_suj" name="calle_suj" placeholder="" value="'.$rowdomicilio['calle'].'" type="text">
                     </div>
+
                     <div class="col-md-6 mb-3 validar" id="cp_s">
                       <label for="CP">CODIGO POSTAL<span class="required"></span></label>
                       <input class="form-control" id="codigo_postal_s" name="codigo_postal_s" placeholder="" value="'.$rowdomicilio['cp'].'" type="text" maxlength="5">
@@ -558,14 +560,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
                       <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text" readonly>
                     </div>
+
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">TUTOR_PATERNO <span class="required"></span></label>
                       <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text" readonly>
                     </div>
+
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">TUTOR_MATERNO <span class="required"></span></label>
                       <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text" readonly>
                     </div>
+
                   </div>';
                 }
                 ?>
@@ -748,6 +753,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   		          				echo "<td>";
                         echo "<ul>
                               <li>
+
                               <div>
                               <span>
                               usuario:".$var_fila['usuario']."
