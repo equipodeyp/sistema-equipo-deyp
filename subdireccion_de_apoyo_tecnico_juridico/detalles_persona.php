@@ -419,7 +419,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MOD_DOMICILIO" >DOMICILIO<span class="required"></span></label>
+                    <label for="MOD_DOMICILIO" >PPL<span class="required"></span></label>
                     <select  class="form-select form-select-lg" id="MOD_DOMICILIO" name="MOD_DOMICILIO"  onclick="mod_domicilioactual(this)">
                       <option style="visibility: hidden" value="<?php echo $rowdomicilio['lugar']; ?>"><?php echo $rowdomicilio['lugar']; ?></option>
                       <option value="SI">SI</option>
