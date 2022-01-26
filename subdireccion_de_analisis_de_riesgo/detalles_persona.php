@@ -782,24 +782,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                 <div class="row">
                   <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">FUENTE</h3>
+                    <!-- <hr class="mb-4"> -->
                   </div>
 
+
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FUENTE">FUENTE<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="FUENTE" name="FUENTE" onChange="showInp()" disabled>
-                      <option style="visibility: hidden" id="opt-fuente" value="<?php echo $rowradmas['fuente']; ?>"><?php echo $rowradmas['fuente']; ?></option>
-                      <?php
-                      $rad = "SELECT * FROM radicacion";
-                      $answerrad = $mysqli->query($rad);
-                      while($rads = $answerrad->fetch_assoc()){
-                        echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
+
                   </div>
                   <?php
                   $radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
@@ -870,7 +858,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
-                    <input class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
+                    <!-- <input class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" /> -->
                   </section>
                 </div>
 
@@ -962,7 +950,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  		</thead>
         		  		<?php
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
-        		       $var_resultado = $mysqli->query($tabla);
+        		      $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
         		        echo "<tr>";

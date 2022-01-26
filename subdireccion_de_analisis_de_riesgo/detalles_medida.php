@@ -512,12 +512,13 @@ $validacion = $fil_val['validacion'];
 
                   <hr class="mb-4">
                 </div>
+                
                 <div class="alert alert-info">
                   <h3 style="text-align:center">COMENTARIOS</h3>
                 </div>
-                <section class="text-center" >
+                <!-- <section class="text-center" > -->
                 <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-              </section>
+              <!-- </section> -->
               </div>
 
               <div class="row">
