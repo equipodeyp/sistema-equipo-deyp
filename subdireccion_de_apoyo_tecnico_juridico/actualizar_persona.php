@@ -288,16 +288,32 @@ if ($verifica_update_person == 1) {
   // $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona)
   //               VALUES ('$name_estac', '$name_muniac', '$name_locaac', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona')";
   // $res_domicilio = $mysqli->query($dom_actual);
+  $domicilio = $_POST['MOD_DOMICILIO'];
+  $reclusorio = $_POST['RECLUSORIO'];
+  if ($reclusorio == '') {
+      $reclusorio =$_POST['RECLUSORIO1'];
+  }
+  $name_recluso ="SELECT * FROM reclusorios WHERE denominacion='$reclusorio'";
+  $r_recluso = $mysqli->query($name_recluso);
+  $ro_recluso=$r_recluso->fetch_assoc();
+  $name_reclusorio=$ro_recluso['denominacion'];
+  $direccion = $ro_recluso['direccion'];
+  $localidad = '';
+  $calle = '';
+  $cp = '';
+  if ($domicilio == '') {
+    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio' WHERE id_persona = '$id_persona'";
+    $res_domicilio = $mysqli->query($dom_actual);
+  }else if ($domicilio == 'SI'){
 
-
-  
-  $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona' WHERE id_persona = '$id_persona'";
-  $res_domicilio = $mysqli->query($dom_actual);
-
-
-
-
-
+    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_reclusorio', seleccionemunicipio='$direccion', seleccionelocalidad='$localidad', calle='$calle', cp='$cp', lugar='$domicilio' WHERE id_persona = '$id_persona'";
+    $res_domicilio = $mysqli->query($dom_actual);
+  } elseif ($domicilio == 'NO'){
+    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio' WHERE id_persona = '$id_persona'";
+    $res_domicilio = $mysqli->query($dom_actual);
+  }
+  // $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona' WHERE id_persona = '$id_persona'";
+  // $res_domicilio = $mysqli->query($dom_actual);
   // // sql para la inserccion de datos del TUTOR
   // if ($incapaz == 'SI') {
   //   $tutor = "INSERT INTO tutor (nombre, apellidopaterno, apellidomaterno, folioexpediente, id_persona)

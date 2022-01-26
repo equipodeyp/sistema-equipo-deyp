@@ -194,7 +194,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                               <p>
                               <img src='../image/true4.jpg' width='50' height='50' class='center'>
                               <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA VALIDADA</FONT></h3>
-
                               </p>
                       </div>";
                     }
@@ -287,7 +286,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">NOMBRE (S)<span class="required"></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
                     <input disabled="disabled" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['nombrepersona']; ?>" required>
                   </div>
 
@@ -474,7 +473,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <label for="CALLE">CALLE<span class="required"></span></label>
                       <input class="form-control" id="calle_suj" name="calle_suj" placeholder="" value="'.$rowdomicilio['calle'].'" type="text">
                     </div>
-
                     <div class="col-md-6 mb-3 validar" id="cp_s">
                       <label for="CP">CODIGO POSTAL<span class="required"></span></label>
                       <input class="form-control" id="codigo_postal_s" name="codigo_postal_s" placeholder="" value="'.$rowdomicilio['cp'].'" type="text" maxlength="5">
@@ -560,17 +558,14 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <label for="TUTOR_NOMBRE">TUTOR_NOMBRE <span class="required"></span></label>
                       <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text" readonly>
                     </div>
-
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">TUTOR_PATERNO <span class="required"></span></label>
                       <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text" readonly>
                     </div>
-
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">TUTOR_MATERNO <span class="required"></span></label>
                       <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text" readonly>
                     </div>
-
                   </div>';
                 }
                 ?>
@@ -753,7 +748,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   		          				echo "<td>";
                         echo "<ul>
                               <li>
-
                               <div>
                               <span>
                               usuario:".$var_fila['usuario']."
@@ -819,7 +813,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
    ?>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 <p>
-  <a href="https://10.51.0.215/"  target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+  <a href="https://mail.fiscaliaedomex.gob.mx" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
 </p>
 </div>
 <!-- SCRIPT DE FECHAS  -->
