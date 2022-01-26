@@ -213,8 +213,12 @@ $row=$result->fetch_assoc();
 				$datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
 				$res_val = $mysqli->query($datevalidar);
 
-				$cant_med = "SELECT a.id_persona, COUNT(*) AS num FROM medidas AS a GROUP BY a.id_persona";
-				$res_cant_med = $mysqli->query($cant_med);
+				// $cant_med = "SELECT a.id_persona, COUNT(*) AS num FROM medidas AS a GROUP BY a.id_persona";
+				// $res_cant_med = $mysqli->query($cant_med);
+                // $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+
+				$cant_med="SELECT COUNT(*) AS cant FROM medidas WHERE id_persona = '$id_persona'";
+                $res_cant_med=$mysqli->query($cant_med);
                 $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
 
 
@@ -227,7 +231,7 @@ $row=$result->fetch_assoc();
         				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
-						echo "<td style='text-align:center'>"; echo $row_med['num']; echo "</td>";
+						echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
                       	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
