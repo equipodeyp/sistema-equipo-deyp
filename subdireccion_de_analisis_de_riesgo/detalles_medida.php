@@ -112,7 +112,7 @@ $validacion = $fil_val['validacion'];
     <div class="secciones">
     <article id="tab1">
     <div class="container">
-      <form class="container well form-horizontal" method="POST" action="update_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
+      <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
@@ -150,7 +150,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar">
             <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)" required="">
+            <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)" disabled>
               <option style="visibility: hidden" id="opt-clasificacion-medida" value="<?php echo $rowmedida['clasificacion']; ?>"><?php echo $rowmedida['clasificacion']; ?></option>
               <option value="ASISTENCIA">ASISTENCIA</option>
               <option value="RESGUARDO">RESGUARDO</option>
@@ -163,7 +163,7 @@ $validacion = $fil_val['validacion'];
           if ($rowmedida['clasificacion']=='ASISTENCIA') {
             echo '<div class="col-md-6 mb-3 validar" id="asistencia" >';
               echo '<label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>';
-              echo '<select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">';
+              echo '<select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)" disabled>';
               echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $asistencia = "SELECT * FROM medidaasistencia";
                 $answerasis = $mysqli->query($asistencia);
@@ -175,13 +175,13 @@ $validacion = $fil_val['validacion'];
             if ($rowmedida['medida']=='VIII. OTRAS') {
               echo '<div class="col-md-6 mb-3 validar" id="otherasistencia" >
                 <label for="OTRA_MEDIDA_ASISTENCIA">OTRA MEDIDA ASISTENCIA<span class="required"></span></label>
-                <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="'.$rowmedida['descripcion'].'" placeholder="" type="text">
+                <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="'.$rowmedida['descripcion'].'" placeholder="" type="text" readonly>
               </div>';
             }
           }  else if($rowmedida['clasificacion']=='RESGUARDO') {
             echo '<div class="col-md-6 mb-3 validar" id="resguardo" >';
               echo '<label for="MEDIDAS_RESGUARDO">MEDIDAS_RESGUARDO<span class="required"></span></label>';
-              echo '<select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" >';
+              echo '<select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" disabled>';
               echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $resguardo = "SELECT * FROM medidaresguardo";
                 $answerres = $mysqli->query($resguardo);
@@ -193,7 +193,7 @@ $validacion = $fil_val['validacion'];
             if ($rowmedida['medida']=='XI. EJECUCION DE MEDIDAS PROCESALES') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
                <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
-               <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
+               <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" disabled>
                  <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxi = "SELECT * FROM medidaresguardoxi";
                  $answerresxi = $mysqli->query($resguardoxi);
@@ -205,7 +205,7 @@ $validacion = $fil_val['validacion'];
            } else if ($rowmedida['medida']=='XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxii">
                <label for="RESGUARDO_XII">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
-               <select style="visibility: hidden" class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
+               <select style="visibility: hidden" class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" disabled>
                  <option id="opt-medida-resguardo"value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxii = "SELECT * FROM medidaresguardoxii";
                  $answerresxii = $mysqli->query($resguardoxii);
@@ -217,7 +217,7 @@ $validacion = $fil_val['validacion'];
            }elseif ($rowmedida['medida']=='XIII. OTRAS MEDIDAS') {
              echo '<div class="col-md-6 mb-3 validar" id="otherresguardo">
                <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
-               <input class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="'.$rowmedida['descripcion'].'" placeholder="" type="text">
+               <input class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="'.$rowmedida['descripcion'].'" placeholder="" type="text" readonly>
              </div>';
            }
           }
@@ -226,7 +226,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="asistencia" style="display:none;">
             <label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">
+            <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)" disabled>
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
               $asistencia = "SELECT * FROM medidaasistencia";
@@ -241,12 +241,12 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="otherasistencia" style="display:none;">
             <label for="OTRA_MEDIDA_ASISTENCIA1">OTRA MEDIDA ASISTENCIA<span class="required"></span></label>
-            <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA1" name="OTRA_MEDIDA_ASISTENCIA1" placeholder="" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
+            <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA1" name="OTRA_MEDIDA_ASISTENCIA1" placeholder="" value="<?php echo $rowmedida['descripcion']; ?>" type="text" readonly>
           </div>
 
           <div class="col-md-6 mb-3 validar" id="resguardo" style="display:none;">
             <label for="MEDIDAS_RESGUARDO1">MEDIDAS_RESGUARDO1<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO1" name="MEDIDAS_RESGUARDO1" onChange="modselectmedidares(this)" >
+            <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO1" name="MEDIDAS_RESGUARDO1" onChange="modselectmedidares(this)" disabled>
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
               $resguardo = "SELECT * FROM medidaresguardo";
@@ -260,7 +260,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="resguardoxi" style="display:none;">
             <label for="RESGUARDO_XI1">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="RESGUARDO_XI1" name="RESGUARDO_XI1" >
+            <select class="form-select form-select-lg" id="RESGUARDO_XI1" name="RESGUARDO_XI1" disabled>
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
               $resguardoxi = "SELECT * FROM medidaresguardoxi";
@@ -274,7 +274,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="resguardoxii" style="display:none;">
             <label for="RESGUARDO_XII1">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="RESGUARDO_XII1" name="RESGUARDO_XII1" >
+            <select class="form-select form-select-lg" id="RESGUARDO_XII1" name="RESGUARDO_XII1" disabled>
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
               $resguardoxii = "SELECT * FROM medidaresguardoxii";
@@ -288,17 +288,17 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="otherresguardo" style="display:none;">
             <label for="OTRA_MEDIDA_RESGUARDO1">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
-            <input class="form-control" id="OTRA_MEDIDA_RESGUARDO1" name="OTRA_MEDIDA_RESGUARDO1" placeholder="" type="text">
+            <input class="form-control" id="OTRA_MEDIDA_RESGUARDO1" name="OTRA_MEDIDA_RESGUARDO1" placeholder="" type="text" readonly>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="INICIO_EJECUCION_MEDIDA">FECHA MEDIDA PROVISIONAL<span class="required"></span></label>
-            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="<?php echo $rowmedida['date_provisional']; ?>" placeholder="" type="date">
+            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="<?php echo $rowmedida['date_provisional']; ?>" placeholder="" type="date" readonly>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA MEDIDA DEFINITIVA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php echo $rowmedida['date_definitva']; ?>" type="date">
+            <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php echo $rowmedida['date_definitva']; ?>" type="date" readonly>
           </div>
 
           <div class="row">
@@ -512,7 +512,7 @@ $validacion = $fil_val['validacion'];
 
                   <hr class="mb-4">
                 </div>
-                
+
                 <div class="alert alert-info">
                   <h3 style="text-align:center">COMENTARIOS</h3>
                 </div>
