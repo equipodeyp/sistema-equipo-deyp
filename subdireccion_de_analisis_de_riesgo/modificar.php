@@ -2,6 +2,12 @@
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -157,18 +163,24 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
-				
+				<form method="post" action="fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
 				<div class="form-group">
 					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-						  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="" required>
+						  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
 			    		</div>
 					</div>
 				<div>
 					<button type="submit" class='btn btn-success'>Guardar Fecha</button>
+					<!-- <p>
+                	<a href="fecha_acuerdo.php?folio= <?php echo $fol_exp; ?>" class="btn btn-success" ><i class=""></i>Guardar Fecha</a>
+              		</p> -->
 				</div>
+
+				</form>
+
 				
 
 
