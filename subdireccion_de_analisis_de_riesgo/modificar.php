@@ -170,10 +170,11 @@ $row=$result->fetch_assoc();
 						<div class="input-group">
 			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
 						  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
+
 			    		</div>
 					</div>
 				<div>
-					<button type="submit" class='btn btn-success'>Guardar Fecha</button>
+					<button type="submit" id="fecha_acuerdo" class='btn btn-success'>Guardar Fecha</button>
 					<!-- <p>
                 	<a href="fecha_acuerdo.php?folio= <?php echo $fol_exp; ?>" class="btn btn-success" ><i class=""></i>Guardar Fecha</a>
               		</p> -->
@@ -290,6 +291,18 @@ if(dd<10){
   }
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
+</script>
+
+<script type="text/javascript">
+var inputFecha = document.getElementById("FECHA_ACUERDO").value;
+var botonGuardar = document.getElementById("fecha_acuerdo");
+if (inputFecha == null || inputFecha == ""){
+	botonGuardar.disabled = false;
+}
+else {
+	botonGuardar.disabled = true;
+}
+
 </script>
 
 </body>
