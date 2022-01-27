@@ -428,6 +428,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <?php
+                  
                   $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
                   $resultadodomicilio = $mysqli->query($domicilio);
                   $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
