@@ -131,7 +131,7 @@ $validacion = $fil_val['validacion'];
           </div> -->
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder=""  readonly type="text">
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo $rowfol['fecha_captura']; ?>" readonly type="text">
             </select>
           </div>
 
@@ -402,12 +402,12 @@ $validacion = $fil_val['validacion'];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">ESTATUS</h3>
+              <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
+              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" disabled>
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
                 <option value="EN EJECUCION">EN EJECUCION</option>
                 <option value="EJECUTADA">EJECUTADA</option>
@@ -417,7 +417,7 @@ $validacion = $fil_val['validacion'];
 
             <div class="col-md-6 mb-3 validar">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO_EJECUCION_MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
+              <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
                 <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
                 <?php
                 $municipio = "SELECT * FROM municipios";
@@ -430,83 +430,13 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA_DE_EJECUCION<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>">
+                  <label for="FECHA_DE_EJECUCION">FECHA EJECUTADA O CANCELADA<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>" readonly>
                 </div>
           </div>
 
               </div>
-              <div class="row">
-                <div class="row">
-                  <hr class="mb-4">
-                </div>
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">FUENTE</h3>
-                </div>
-                <div class="col-md-6 mb-3 validar">
-                  <label for="FUENTE_M">FUENTE<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="FUENTE_M" name="FUENTE_M" onChange="radicacionfuenteM1(this)">
-                    <option style="visibility: hidden" id="opt-fuente" value="<?php echo $rowfuentemedida['fuente']; ?>"><?php echo $rowfuentemedida['fuente']; ?></option>
-                    <?php
-                    $rad = "SELECT * FROM radicacion";
-                    $answerrad = $mysqli->query($rad);
-                    while($rads = $answerrad->fetch_assoc()){
-                      echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-                    }
-                    ?>
-                  </select>
-                </div>
-
-                <?php
-                $fuentemedida = "SELECT * FROM radicacion_mascara2 WHERE id_medida = '$id_medida'";
-                $resultadofuentemedida = $mysqli->query($fuentemedida);
-                $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
-                if ($rowfuentemedida['fuente']=='OFICIO') {
-                  echo '<div class="col-md-6 mb-3 validar" id="OFICIO_M">
-                    <label for="OFICIO_M">OFICIO<span class="required"></span></label>
-                    <input class="form-control" id="OFICIO_M" name="OFICIO_M" placeholder="" value="'.$rowfuentemedida['descripcion'].'"  type="text" >
-                  </div>';
-                }elseif ($rowfuentemedida['fuente']=='CORREO') {
-                  echo '<div class="col-md-6 mb-3 validar" id="CORREO_M">
-                    <label for="CORREO_M">CORREO<span class="required"></span></label>
-                    <input class="form-control" id="CORREO_M" name="CORREO_M" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                  </div>';
-                }elseif ($rowfuentemedida['fuente']=='EXPEDIENTE') {
-                  echo '<div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_M">
-                    <label for="EXPEDIENTE_M">EXPEDIENTE<span class="required"></span></label>
-                    <input class="form-control" id="EXPEDIENTE_M" name="EXPEDIENTE_M" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                  </div>';
-                }elseif ($rowfuentemedida['fuente']=='OTRO') {
-                  echo '<div class="col-md-6 mb-3 validar" id="OTRO_M">
-                    <label for="OTRO_M">OTRO<span class="required"></span></label>
-                    <input class="form-control" id="OTRO_M" name="OTRO_M" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                  </div>';
-                }
-                 ?>
-
-                 <div class="col-md-6 mb-3 validar" id="OFICIO_M" style="display:none;">
-                   <label for="OFICIO_M1">OFICIO<span class="required"></span></label>
-                   <input class="form-control" id="OFICIO_M1" name="OFICIO_M1" placeholder="" value=""  type="text" >
-                 </div>
-
-                 <div class="col-md-6 mb-3 validar" id="CORREO_M" style="display:none;">
-                   <label for="CORREO_M1">CORREO<span class="required"></span></label>
-                   <input class="form-control" id="CORREO_M1" name="CORREO_M1" placeholder=""  value="" type="text" >
-                 </div>
-
-                 <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_M" style="display:none;">
-                   <label for="EXPEDIENTE_M1">EXPEDIENTE<span class="required"></span></label>
-                   <input class="form-control" id="EXPEDIENTE_M1" name="EXPEDIENTE_M1" placeholder=""  value="" type="text" >
-                 </div>
-
-                 <div class="col-md-6 mb-3 validar" id="OTRO_M" style="display:none;">
-                   <label for="OTRO_M1">OTRO<span class="required"></span></label>
-                   <input class="form-control" id="OTRO_M1" name="OTRO_M1" placeholder=""  value="" type="text" >
-                 </div>
-
-
-
-              </div>
+            
               <div class="row">
                 <div class="row">
 

@@ -298,7 +298,7 @@ $validacion = $fil_val['validacion'];
 
                 <div class="col-md-6 mb-3 validar">
                   <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
+                  <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
                     <option disabled selected value>SELECCIONA UN ESTATUS</option>
                     <option value="EN EJECUCION">EN EJECUCION</option>
                     <option value="EJECUTADA">EJECUTADA</option>
@@ -320,8 +320,8 @@ $validacion = $fil_val['validacion'];
                   </select>
                 </div>
 
-                    <div class="col-md-6 mb-3 validar">
-                      <label for="FECHA_DE_EJECUCION">FECHA_DE_EJECUCION<span class="required"></span></label>
+                    <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
+                      <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION O CANCELACION<span class="required"></span></label>
                       <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="">
                     </div>
 

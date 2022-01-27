@@ -204,3 +204,14 @@ function radicacionfuenteM1(sel) {
       }
 
 }
+// fecha de la medida cuando este ejecutada o cancelada
+function fecha_ejecutada(sel) {
+      if (sel.value=="EJECUTADA" || sel.value=="CANCELADA"){
+        divC = document.getElementById("ejecucion_cancelacion");
+        divC.style.display="";
+
+      }else if (sel.value=="EN EJECUCION") {
+        divC = document.getElementById("ejecucion_cancelacion");
+        divC.style.display="none";
+      }
+}
