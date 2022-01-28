@@ -35,41 +35,32 @@ if ($verifica_medida == 1) {
   $medida_mod=$_POST['MEDIDA_MODOIFICADA'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
-  $acuerdo =$_POST['CONCLUSION_CANCELACION'];
+  
 
-  if ($acuerdo == 'NO APOLICA') {
+
+
+
+
+
+  if ($acuerdo == 'NO APLICA') {
     $conclusionart35=$_POST['CONCLUSION_ART35'];
-    $conclusionart35 = "";
+    $conclusionart35='';
+    $acuerdo =$_POST['CONCLUSION_CANCELACION'];
+    $acuerdo='';
 
-    $cancel=['FECHA_DESINCORPORACION'];
-    $cancel = "";
-
-  //   if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-  //     $otherart35=$_POST['OTHER_ART35'];
-  //   }else {
-  //     $otherart35 ='';
-  //   }
-  // }else {
-  //   $conclusionart35='';
+  elseif ($acuerdo == 'CONCLUSION') {
+    $conclusionart35=$_POST['CONCLUSION_ART35'];
+    if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+      $otherart35=$_POST['OTHER_ART35'];
+    }else {
+      $otherart35 ='';
+    }
+  }elseif {
+    $conclusionart35='';
   }
 
 
-
-
-
-
-
-  // if ($acuerdo == 'CONCLUSION') {
-  //   $conclusionart35=$_POST['CONCLUSION_ART35'];
-  //   if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-  //     $otherart35=$_POST['OTHER_ART35'];
-  //   }else {
-  //     $otherart35 ='';
-  //   }
-  // }else {
-  //   $conclusionart35='';
-  // }
-
+  }
 
 
 

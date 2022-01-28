@@ -257,8 +257,8 @@ $validacion = $fil_val['validacion'];
                   <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
-                    <option value="CANCELACION">CANCELACIÓN</option>
-                    <option value="CONCLUSION">CONCLUSIÓN</option>
+                    <option value="CANCELACION">CANCELACION</option>
+                    <option value="CONCLUSION">CONCLUSION</option>
                     <option value="CONCLUSION">NO APLICA</option>
                   </select>
                 </div>
@@ -286,6 +286,8 @@ $validacion = $fil_val['validacion'];
                   <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSION O CANCELACIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
                 </div>
+
+              
 
               </div>
 
