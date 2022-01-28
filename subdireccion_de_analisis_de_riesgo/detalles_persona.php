@@ -497,7 +497,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
+                    <h3 style="text-align:center">DATOS DE LA INVESTIGACION O PROCESO PENAL</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -601,7 +601,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">VALORACIÓN JURIDICA</h3>
+                    <h3 style="text-align:center">VALORACION JURIDICA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -631,7 +631,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DETERMINACIÓN DE LA INCORPORACIÓN</h3>
+                    <h3 style="text-align:center">DETERMINACION DE LA INCORPORACION</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -940,12 +940,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  <div id="contenido">
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
-        		  			<th>No.</th>
+        		  			<th>ID</th>
                     <th>Tipo de medida</th>
-                    <th>Clasificación medida</th>
+                    <th>Clasificacion medida</th>
                     <th>Estatus</th>
                     <th>Municipio</th>
-                    <th>Fecha ejecución</th>
+                    <th>Fecha ejecucion</th>
         		  			<th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nueva Medida</button> </a> </th>
         		  		</thead>
         		  		<?php
@@ -953,9 +953,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		      $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
-                    $cant_med = $cant_med + 1;
         		        echo "<tr>";
-        		          echo "<td>"; echo $cant_med; echo "</td>";
+        		          echo "<td>"; echo $var_fila['id']; echo "</td>";
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";

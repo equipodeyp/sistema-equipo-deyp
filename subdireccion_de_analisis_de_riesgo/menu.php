@@ -143,8 +143,8 @@ $row=$result->fetch_assoc();
                                 <tr>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
-                                    <th style="text-align:center">FECHA RECEPCIÓN</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACION</th>
+                                    <th style="text-align:center">FECHA RECEPCION</th>
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
@@ -182,7 +182,6 @@ $row=$result->fetch_assoc();
                                 {
                                   while($row=mysqli_fetch_assoc($result))
                                   {
-                                    
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
