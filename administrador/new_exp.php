@@ -115,7 +115,7 @@ $row=$result->fetch_assoc();
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                       <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="" disabled>
+                      <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="" value="" disabled>
                     </div>
                     </div>
                   </div>

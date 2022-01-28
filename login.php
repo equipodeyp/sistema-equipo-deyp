@@ -47,7 +47,7 @@ function ConsultarUsuario($usuario, $password)
         if($filas['id_cargo']==4){ //registro mascara 1
           echo'<script type="text/javascript">
           alert("Bienvenido");
-          window.location.href="mascara1/registro_mascara1.php";
+          window.location.href="subdireccion_de_estadistica_y_preregistro/menu.php";
           </script>';
         // MensajeAlerta("correcto", "Bienvenido", "mascara1/registro_mascara1.php");
             /*header("location: mascara1/registro_mascara1.php");*/

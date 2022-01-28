@@ -121,7 +121,7 @@ $row=$result->fetch_assoc();
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php   echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
@@ -129,9 +129,7 @@ $row=$result->fetch_assoc();
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h2>
         </div>
-        <!-- <div class="row">
-          <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
-        </div> -->
+
         <br>
         <!--Ejemplo tabla con DataTables-->
         <div class="">
@@ -147,9 +145,9 @@ $row=$result->fetch_assoc();
                                     <th style="text-align:center">FECHA RECEPCION</th>
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
-                                    <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACION</th>
                                     <th style="text-align:center">DETALLES</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,31 +156,17 @@ $row=$result->fetch_assoc();
                               $resultado = $mysqli->query($sql);
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
                               $fol_exp =$row['fol_exp'];
-
-                              
-                            
-
                               $tabla="SELECT * FROM expediente";
                               $var_resultado = $mysqli->query($tabla);
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $fol_exp2=$var_fila['fol_exp'];
-
-                                
-
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-
                                 $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
                                 $result=$mysqli->query($abc);
-
                                 if($result)
                                 {
                                   while($row=mysqli_fetch_assoc($result))
                                   {
-                                    
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
@@ -190,13 +174,12 @@ $row=$result->fetch_assoc();
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
                                     echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
                                       echo "<i class='fas fa-check'></i>";
                                     }elseif ($var_fila['validacion'] == 'false') {
                                       echo "<i class='fas fa-times'></i>";
                                     } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
 
                                     echo "</tr>";
 

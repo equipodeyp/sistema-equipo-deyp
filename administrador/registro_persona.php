@@ -267,7 +267,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DEL LUGAR DE NACIMIENTO</h3>
+              <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -326,7 +326,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DEL DOMICILIO</h3>
+              <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>

@@ -331,6 +331,29 @@ $num_consecutivo =$row["id"];
               <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
+              <label for="DOMICILIO" >PPL<span class="required"></span></label>
+              <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)">
+                <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                <option value="SI">SI</option>
+                <option value="NO">NO</option>
+              </select>
+            </div>
+            <!-- centros de reclusorios -->
+            <div class="col-md-6 mb-3 validar" id="reclusorio" style="display:none;">
+              <label for="RECLUSORIO"  >CENTROS PENITENCIARIOS<span class="required"></span></label>
+              <select  class="form-select form-select-lg" id="RECLUSORIO" name="RECLUSORIO">
+                <option disabled selected value>SELECCIONE UNA OPCION</option>
+                <?php
+                $reclusorio = "SELECT * FROM reclusorios";
+                $answer_reclusorio = $mysqli->query($reclusorio);
+                while($reclusorios = $answer_reclusorio->fetch_assoc()){
+                  echo "<option value='".$reclusorios['denominacion']."'>".$reclusorios['denominacion']."</option>";
+                }
+                ?>
+              </select>
+            </div>
+            <!--  -->
+            <div class="col-md-6 mb-3 validar" id="domestado" style="display:none;">
               <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1">
                 <option value="">Seleccionar Estado</option>
@@ -340,22 +363,22 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
+            <div class="col-md-6 mb-3 validar" id="dommunicipio" style="display:none;">
               <label for="NOMBRE_MUNICIPIO">SELECCIONE UN MUNICIPIO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_municipio11" id="cbx_municipio11"></select>
               </div>
 
-              <div class="col-md-6 mb-3 validar">
+              <div class="col-md-6 mb-3 validar" id="domlocalidad" style="display:none;">
                 <label for="NOMBRE_LOCALIDAD">ESPECIFIQUE LA LOCALIDAD<span class="required"></span></label>
                 <input autocomplete="off" class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
               </div>
               <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
-              <div class="col-md-6 mb-3 validar">
+              <div class="col-md-6 mb-3 validar" id="domcalle" style="display:none;">
                 <label for="CALLE">CALLE<span class="required"></span></label>
                 <input autocomplete="off" class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text">
               </div>
 
-              <div class="col-md-6 mb-3 validar">
+              <div class="col-md-6 mb-3 validar" id="domcp" style="display:none;">
                 <label for="CP">CP<span class="required"></span></label>
                 <input autocomplete="off" class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5">
               </div>
