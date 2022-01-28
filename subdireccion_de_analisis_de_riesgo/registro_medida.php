@@ -111,7 +111,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DEL SUJETO<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
@@ -134,9 +134,9 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
+            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN_MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="selectmedida(this)" required="">
-              <option disabled selected value>SELECCIONE LA CLASIFICACION DE LA MEDIDA</option>
+              <option disabled selected value>SELECCIONE LA CLASIFICACIÓN DE LA MEDIDA</option>
               <option value="ASISTENCIA">ASISTENCIA</option>
               <option value="RESGUARDO">RESGUARDO</option>
             </select>
@@ -181,7 +181,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="resguardoxi" style="display:none;">
-            <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
+            <label for="RESGUARDO_XI">EJECUCIÓN DE MEDIDAS PROCESALES<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
@@ -224,23 +224,23 @@ $validacion = $fil_val['validacion'];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">MODIFICACION DE LA MEDIDA</h3>
+            <h3 style="text-align:center">MODIFICACIÓN DE LA MEDIDA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="MEDIDA_MODOIFICADA">MEDIDA_MODIFICADA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="" onchange="changemedidamod(this)">
-              <option desibled selected>SELECCIONE UNA OPCION</option>
+              <option desibled selected>SELECCIONE UNA OPCIÓN</option>
               <option value="EJECUCION">SI</option>
               <option value="TERMINADA">NO</option>
               </select>
           </div>
           <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel1" style="display:none;">
-            <label for="FECHA_MODIFICACION">FECHA_MODIFICACION<span class="required"></span></label>
+            <label for="FECHA_MODIFICACION">FECHA_MODIFICACIÓN<span class="required"></span></label>
             <input class="form-control" id="FECHA_MODIFICACION" name="FECHA_MODIFICACION" placeholder=""  type="date">
           </div>
 
           <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel2" style="display:none;">
-            <label for="TIPO_MODIFICACION">TIPO_MODIFICACION<span class="required"></span></label>
+            <label for="TIPO_MODIFICACION">TIPO_MODIFICACIÓN<span class="required"></span></label>
             <input class="form-control" id="TIPO_MODIFICACION" name="TIPO_MODIFICACION" placeholder=""  type="text">
           </div>
         </div>
@@ -250,22 +250,22 @@ $validacion = $fil_val['validacion'];
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">CONCLUSION / CANCELACIÓN DE LA MEDIDA</h3>
+                  <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN DE LA MEDIDA</h3>
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN_CANCELACION</label>
+                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN_CANCELACIÓN</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
-                    <option disabled selected value="">SELECCIONE UNA OPCION</option>
-                    <option value="CANCELACION">CANCELACION</option>
-                    <option value="CONCLUSION">CONCLUSION</option>
+                    <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
+                    <option value="CANCELACION">CANCELACIÓN</option>
+                    <option value="CONCLUSION">CONCLUSIÓN</option>
                   </select>
                 </div>
 
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                  <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+                  <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
-                    <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                    <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <?php
                     $art35 = "SELECT * FROM conclusionart35";
                     $answerart35 = $mysqli->query($art35);
@@ -282,7 +282,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSION O CANCELACIÓN<span class="required"></span></label>
+                  <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN O CANCELACIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
                 </div>
 
@@ -300,14 +300,14 @@ $validacion = $fil_val['validacion'];
                   <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
                     <option disabled selected value>SELECCIONA UN ESTATUS</option>
-                    <option value="EN EJECUCION">EN EJECUCION</option>
+                    <option value="EN EJECUCION">EN EJECUCIÓN</option>
                     <option value="EJECUTADA">EJECUTADA</option>
                     <option value="CANCELADA">CANCELADA</option>
                     </select>
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNIPIO_EJECUCION_MEDIDA<span class="required"></span></label>
+                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNIPIO_EJECUCIÓN_MEDIDA<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
                     <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
                     <?php
@@ -321,7 +321,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                     <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
-                      <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION O CANCELACION<span class="required"></span></label>
+                      <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCIÓN O CANCELACIÓN<span class="required"></span></label>
                       <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="">
                     </div>
 
