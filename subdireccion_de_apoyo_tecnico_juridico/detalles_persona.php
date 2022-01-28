@@ -207,7 +207,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">ID UNICO DE LA PERSONA PROPUESTA<span ></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
                     <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -401,7 +401,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="OCUPACION_PERSONA">OCUPACION_PERSONA<span class="required"></span></label>
+                    <label for="OCUPACION_PERSONA">OCUPACIÓN_PERSONA<span class="required"></span></label>
                     <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder="" value="<?php echo $rowfol['ocupacion']; ?>" type="text" >
                   </div>
 
@@ -608,7 +608,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE LA INVESTIGACION O PROCESO PENAL</h3>
+                    <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">

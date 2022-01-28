@@ -200,7 +200,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
+<<<<<<< HEAD
                   <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+=======
+                  <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DEL SUJETO<span ></span></label>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                   <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -374,7 +378,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
+<<<<<<< HEAD
                      <label for="OCUPACION_PERSONA">OCUPACION_PERSONA<span class="required"></span></label>
+=======
+                     <label for="OCUPACION_PERSONA">OCUPACIÓN_PERSONA<span class="required"></span></label>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                      <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder="" value="<?php echo $rowfol['ocupacion']; ?>" type="text" readonly>
                    </div>
 
@@ -497,7 +505,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE LA INVESTIGACION O PROCESO PENAL</h3>
+                    <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -581,7 +589,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
+<<<<<<< HEAD
                     <label for="MUNICIPIO_PERSONA">MUNICIPIO_RADICACION<span class="required">(*)</span></label>
+=======
+                    <label for="MUNICIPIO_PERSONA">MUNICIPIO_RADICACIÓN<span class="required">(*)</span></label>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                     <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" disabled>
                       <option style="visibility: hidden" id="opt-municipio-radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>"><?php echo $rowprocess['numeroradicacion']; ?></option>
                       <?php
@@ -601,7 +613,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">VALORACION JURIDICA</h3>
+                    <h3 style="text-align:center">VALORACIÓN JURIDICA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -631,7 +643,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DETERMINACION DE LA INCORPORACION</h3>
+                    <h3 style="text-align:center">DETERMINACIÓN DE LA INCORPORACIÓN</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -649,7 +661,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
+<<<<<<< HEAD
                     <label for="INCORPORACION">INCORPORACION<span class="required"></span></label>
+=======
+                    <label for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                     <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" disabled>
                       <option style="visibility: hidden" id="opt-incorporacion" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
                       <option value="SUJETO INCORPORADO">SUJETO INCORPORADO</option>
@@ -658,7 +674,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
+<<<<<<< HEAD
                     <label for="FECHA_AUTORIZACION">FECHA AUTORIZACION ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+=======
+                    <label for="FECHA_AUTORIZACION">FECHA AUTORIZACIÓN ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                     <input class="form-control" id="FECHA_AUTORIZACION" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_autorizacion']; ?>" readonly>
                   </div>
 
@@ -692,7 +712,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
+<<<<<<< HEAD
                     <label for="CONCLUSION_CANCELACION">CONCLUSION_CANCELACION</label>
+=======
+                    <label for="CONCLUSION_CANCELACION">CONCLUSIÓN_CANCELACIÓN</label>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                     <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)" disabled>
                       <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACION</option>
@@ -942,10 +966,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  		<thead >
         		  			<th>No.</th>
                     <th>Tipo de medida</th>
-                    <th>Clasificacion medida</th>
+                    <th>Clasificación medida</th>
                     <th>Estatus</th>
                     <th>Municipio</th>
-                    <th>Fecha ejecucion</th>
+                    <th>Fecha ejecución</th>
         		  			<th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nueva Medida</button> </a> </th>
         		  		</thead>
         		  		<?php
@@ -953,9 +977,15 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		      $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
+<<<<<<< HEAD
                     $cant_med = $cant_med + 1;
         		        echo "<tr>";
         		          echo "<td>"; echo $cant_med; echo "</td>";
+=======
+                    $cuenta = $cuenta + 1;
+        		        echo "<tr>";
+        		          echo "<td>"; echo $cuenta; echo "</td>";
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";

@@ -171,12 +171,16 @@ $(document).ready(function() {
                                 <tr>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACION</th>
-                                    <th style="text-align:center">FECHA RECEPCION</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
+                                    <th style="text-align:center">FECHA RECEPCIÓN</th>
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
+<<<<<<< HEAD
                                     <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACION</th>
+=======
+                                    <th style="text-align:center">VALIDACIÓN</th>
+>>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                                     <th style="text-align:center">DETALLES</th>
 
                                 </tr>
