@@ -148,11 +148,7 @@ $row=$result->fetch_assoc();
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
-<<<<<<< HEAD
                                     <th style="text-align:center">VALIDACION</th>
-=======
-                                    <th style="text-align:center">VALIDACIÓN</th>
->>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
                                     <th style="text-align:center">DETALLES</th>
                                 </tr>
                             </thead>
@@ -163,13 +159,8 @@ $row=$result->fetch_assoc();
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
                               $fol_exp =$row['fol_exp'];
 
-<<<<<<< HEAD
                               
                             
-=======
-
-
->>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
 
                               $tabla="SELECT * FROM expediente";
                               $var_resultado = $mysqli->query($tabla);
@@ -177,11 +168,7 @@ $row=$result->fetch_assoc();
                               {
                                 $fol_exp2=$var_fila['fol_exp'];
 
-<<<<<<< HEAD
                                 
-=======
-
->>>>>>> 59fb5cf72c8d03fc02fa88db73eb1e74589e3d17
 
                                 $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
                                 $r=$mysqli->query($cant);
