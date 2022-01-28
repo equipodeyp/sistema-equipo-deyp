@@ -36,17 +36,44 @@ if ($verifica_medida == 1) {
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
-  if ($acuerdo == 'CONCLUSION') {
+
+  if ($acuerdo == 'NO APOLICA') {
     $conclusionart35=$_POST['CONCLUSION_ART35'];
-    if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-      $otherart35=$_POST['OTHER_ART35'];
-    }else {
-      $otherart35 ='';
-    }
-  }else {
-    $conclusionart35='';
+    $conclusionart35 = "";
+
+    $cancel=['FECHA_DESINCORPORACION'];
+    $cancel = "";
+
+  //   if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+  //     $otherart35=$_POST['OTHER_ART35'];
+  //   }else {
+  //     $otherart35 ='';
+  //   }
+  // }else {
+  //   $conclusionart35='';
   }
-  $date_conclusion=$_POST['FECHA_DESINCORPORACION'];
+
+
+
+
+
+
+
+  // if ($acuerdo == 'CONCLUSION') {
+  //   $conclusionart35=$_POST['CONCLUSION_ART35'];
+  //   if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+  //     $otherart35=$_POST['OTHER_ART35'];
+  //   }else {
+  //     $otherart35 ='';
+  //   }
+  // }else {
+  //   $conclusionart35='';
+  // }
+
+
+
+
+  // $date_conclusion=$_POST['FECHA_DESINCORPORACION'];
   $estatus =$_POST['ESTATUS_MEDIDA'];
   $municipio_medida=$_POST['MUNIPIO_EJECUCION_MEDIDA'];
   // $name_municipioact= "SELECT id, nombre FROM municipios WHERE id='$municipio_medida'";

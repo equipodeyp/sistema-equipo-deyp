@@ -953,8 +953,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		      $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
+                    $cuenta = $cuenta + 1;
         		        echo "<tr>";
-        		          echo "<td>"; echo $var_fila['id']; echo "</td>";
+        		          echo "<td>"; echo $cuenta; echo "</td>";
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
