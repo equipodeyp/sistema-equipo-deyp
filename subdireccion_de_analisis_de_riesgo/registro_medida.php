@@ -221,26 +221,41 @@ $validacion = $fil_val['validacion'];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">MODIFICACION DE LA MEDIDA</h3>
-          </div>
-          <div class="col-md-6 mb-3 validar">
-            <label for="MEDIDA_MODOIFICADA">MEDIDA MODIFICADA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="" onchange="changemedidamod(this)">
-              <option desibled selected>SELECCIONE UNA OPCION</option>
-              <option value="SI">SI</option>
-              <option value="NO">NO</option>
-              </select>
-          </div>
-          <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel1" style="display:none;">
-            <label for="FECHA_MODIFICACION">FECHA MODIFICACIÓN<span class="required"></span></label>
-            <input class="form-control" id="FECHA_MODIFICACION" name="FECHA_MODIFICACION" placeholder=""  type="date">
+            <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
           </div>
 
-          <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel2" style="display:none;">
-            <label for="TIPO_MODIFICACION">TIPO MODIFICACION<span class="required"></span></label>
-            <input class="form-control" id="TIPO_MODIFICACION" name="TIPO_MODIFICACION" placeholder=""  type="text">
+          <div class="col-md-6 mb-3 validar">
+            <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
+              <option disabled selected value>SELECCIONA UN ESTATUS</option>
+              <option value="EN EJECUCION">EN EJECUCION</option>
+              <option value="EJECUTADA">EJECUTADA</option>
+              <option value="CANCELADA">CANCELADA</option>
+              </select>
           </div>
+
+          <div class="col-md-6 mb-3 validar">
+            <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
+              <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
+              <?php
+              $municipio = "SELECT * FROM municipios";
+              $answermun = $mysqli->query($municipio);
+              while($municipios = $answermun->fetch_assoc()){
+               echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+              }
+              ?>
+            </select>
+          </div>
+
+              <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
+                <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION O CANCELACION<span class="required"></span></label>
+                <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" disabled type="text">
+              </div>
+
         </div>
+
+
 
               <div class="row">
                 <div class="row">
@@ -280,50 +295,14 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar" id="fecha_cancel_conclu" style="display:none;">
-                  <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN O CANCELACIÓN<span class="required"></span></label>
+                  <label for="FECHA_DESINCORPORACION" id="date_cance" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
+                  <label for="FECHA_DESINCORPORACION" id="date_concl" style="display:none;">FECHA DE CONCLUSIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
                 </div>
 
               </div>
 
-              <div class="row">
-                <div class="row">
-                  <hr class="mb-4">
-                </div>
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
-                </div>
 
-                <div class="col-md-6 mb-3 validar">
-                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
-                    <option disabled selected value>SELECCIONA UN ESTATUS</option>
-                    <option value="EN EJECUCION">EN EJECUCION</option>
-                    <option value="EJECUTADA">EJECUTADA</option>
-                    <option value="CANCELADA">CANCELADA</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6 mb-3 validar">
-                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
-                    <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
-                    <?php
-                    $municipio = "SELECT * FROM municipios";
-                    $answermun = $mysqli->query($municipio);
-                    while($municipios = $answermun->fetch_assoc()){
-                     echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
-                    }
-                    ?>
-                  </select>
-                </div>
-
-                    <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
-                      <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION O CANCELACION<span class="required"></span></label>
-                      <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" disabled type="text">
-                    </div>
-
-              </div>
 
 
               <div class="row">
