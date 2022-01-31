@@ -17,7 +17,7 @@ if ($verifica_medida == 1) {
   $clasificacion_medida=$_POST['CLASIFICACION_MEDIDA'];
   if ($clasificacion_medida == 'ASISTENCIA') {
     $medida=$_POST['MEDIDAS_ASISTENCIA'];
-    if ($medida == 'VIII. OTRAS') {
+    if ($medida == 'VI. OTRAS') {
       $med_res = $_POST['OTRA_MEDIDA_ASISTENCIA'];
     }
   } elseif ($clasificacion_medida == 'RESGUARDO') {

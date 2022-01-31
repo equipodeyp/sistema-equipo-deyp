@@ -295,6 +295,7 @@ document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T
 
 <script type="text/javascript">
 var inputFecha = document.getElementById("FECHA_ACUERDO").value;
+console.log(inputFecha);
 var botonGuardar = document.getElementById("fecha_acuerdo");
 if (inputFecha == null || inputFecha == ""){
 	botonGuardar.disabled = false;

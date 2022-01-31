@@ -940,7 +940,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  <div id="contenido">
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
-        		  			<th>ID</th>
+        		  			<th>No.</th>
                     <th>Tipo de medida</th>
                     <th>Clasificacion medida</th>
                     <th>Estatus</th>
@@ -953,8 +953,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		      $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
+                    $cont_med = $cont_med + 1;
         		        echo "<tr>";
-        		          echo "<td>"; echo $var_fila['id']; echo "</td>";
+        		          echo "<td>"; echo $cont_med; echo "</td>";
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";

@@ -102,27 +102,24 @@ $validacion = $fil_val['validacion'];
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="save_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
 
+
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+            <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA AL PROGRAMA</h3>
           </div>
+
           <div class="col-md-6 mb-3 validar">
                 <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID UNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
+
           <div class="alert alert-info">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
-
-          <!-- <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA INFORMACIÓN<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder=""  readonly type="text">
-            </select>
-          </div> -->
 
           <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
@@ -134,7 +131,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
+            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="selectmedida(this)" required="">
               <option disabled selected value>SELECCIONE LA CLASIFICACION DE LA MEDIDA</option>
               <option value="ASISTENCIA">ASISTENCIA</option>
@@ -143,7 +140,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="asistencia" style="display:none;">
-            <label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>
+            <label for="MEDIDAS_ASISTENCIA">INCISO DE LA MEDIDA DE ASISTENCIA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="selectother(this)">
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
@@ -162,7 +159,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="resguardo" style="display:none;">
-            <label for="MEDIDAS_RESGUARDO">MEDIDAS_RESGUARDO<span class="required"></span></label>
+            <label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="selectmedidares(this)" >
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
@@ -181,7 +178,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="resguardoxi" style="display:none;">
-            <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
+            <label for="RESGUARDO_XI">EJECUCIÓN DE LA MEDIDA PROCESAL<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
@@ -195,7 +192,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="resguardoxii" style="display:none;">
-            <label for="RESGUARDO_XII">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
+            <label for="RESGUARDO_XII">MEDIDA OTORGADA A SUJETOS RECLUIDOS<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
@@ -209,12 +206,12 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO MEDIDA PROVISIONAL<span class="required"></span></label>
+            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
             <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="date">
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA MEDIDA DEFINITIVA<span class="required"></span></label>
+            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
           </div>
         </div>
@@ -227,20 +224,20 @@ $validacion = $fil_val['validacion'];
             <h3 style="text-align:center">MODIFICACION DE LA MEDIDA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="MEDIDA_MODOIFICADA">MEDIDA_MODIFICADA<span class="required"></span></label>
+            <label for="MEDIDA_MODOIFICADA">MEDIDA MODIFICADA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="" onchange="changemedidamod(this)">
               <option desibled selected>SELECCIONE UNA OPCION</option>
-              <option value="EJECUCION">SI</option>
-              <option value="TERMINADA">NO</option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
               </select>
           </div>
           <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel1" style="display:none;">
-            <label for="FECHA_MODIFICACION">FECHA_MODIFICACION<span class="required"></span></label>
+            <label for="FECHA_MODIFICACION">FECHA MODIFICACIÓN<span class="required"></span></label>
             <input class="form-control" id="FECHA_MODIFICACION" name="FECHA_MODIFICACION" placeholder=""  type="date">
           </div>
 
           <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel2" style="display:none;">
-            <label for="TIPO_MODIFICACION">TIPO_MODIFICACION<span class="required"></span></label>
+            <label for="TIPO_MODIFICACION">TIPO MODIFICACION<span class="required"></span></label>
             <input class="form-control" id="TIPO_MODIFICACION" name="TIPO_MODIFICACION" placeholder=""  type="text">
           </div>
         </div>
@@ -254,7 +251,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN_CANCELACION</label>
+                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACION</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCION</option>
                     <option value="CANCELACION">CANCELACION</option>
@@ -264,7 +261,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                  <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+                  <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTICULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCION</option>
                     <?php
@@ -282,8 +279,8 @@ $validacion = $fil_val['validacion'];
                   <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="" type="text">
                 </div>
 
-                <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSION O CANCELACIÓN<span class="required"></span></label>
+                <div class="col-md-6 mb-3 validar" id="fecha_cancel_conclu" style="display:none;">
+                  <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN O CANCELACIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
                 </div>
 
@@ -298,7 +295,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
+                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
                     <option disabled selected value>SELECCIONA UN ESTATUS</option>
                     <option value="EN EJECUCION">EN EJECUCION</option>
@@ -308,7 +305,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNIPIO_EJECUCION_MEDIDA<span class="required"></span></label>
+                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
                     <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
                     <?php
@@ -323,7 +320,7 @@ $validacion = $fil_val['validacion'];
 
                     <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
                       <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION O CANCELACION<span class="required"></span></label>
-                      <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="">
+                      <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" disabled type="text">
                     </div>
 
               </div>
@@ -399,6 +396,36 @@ window.onload = function(){
     mes='0'+mes
   document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
 }
+</script>
+
+<script type="text/javascript">
+
+    var fechaInicio = document.getElementById('INICIO_EJECUCION_MEDIDA');
+    var fechaInicioIngresada;
+
+    var fechaDefinitiva = document.getElementById('FECHA_ACTUALIZACION_MEDIDA');
+    var fechaDefinitivaIngresada;
+
+    fechaInicio.addEventListener('change', obtenerFechaInicio);
+    fechaDefinitiva.addEventListener('change', obtenerFechaDefinitiva);
+
+
+    function obtenerFechaInicio(e) {
+      fechaInicioIngresada = e.target.value;
+      console.log(fechaInicioIngresada);
+      document.getElementById("FECHA_DE_EJECUCION").value = fechaInicioIngresada;
+    }
+
+    function obtenerFechaDefinitiva(e) {
+      fechaDefinitivaIngresada = e.target.value;
+      console.log(fechaDefinitivaIngresada);
+      document.getElementById("FECHA_DE_EJECUCION").value = fechaDefinitivaIngresada;
+    }
+
+
+
+
+
 </script>
 </body>
 </html>

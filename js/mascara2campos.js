@@ -75,13 +75,13 @@ function selectmedidares(sel) {
 }
 
 function changemedidamod(sel) {
-      if (sel.value=="EJECUCION"){
+      if (sel.value=="SI"){
         divC = document.getElementById("fecha_modificacion_sel1");
         divC.style.display="";
         divC = document.getElementById("fecha_modificacion_sel2");
         divC.style.display="";
 
-      }else if (sel.value=="TERMINADA") {
+      }else if (sel.value=="NO") {
         divC = document.getElementById("fecha_modificacion_sel1");
         divC.style.display="none";
         divC = document.getElementById("fecha_modificacion_sel2");
@@ -152,11 +152,20 @@ function open2art35(sel) {
       if (sel.value=="CONCLUSION"){
            divC = document.getElementById("CONCLUSION_ART35");
            divC.style.display = "";
+           divC = document.getElementById("fecha_cancel_conclu");
+           divC.style.display = "";
 
-      }else{
+      }else if (sel.value=="CANCELACION") {
+        divC = document.getElementById("CONCLUSION_ART35");
+        divC.style.display="none";
+        divC = document.getElementById("fecha_cancel_conclu");
+        divC.style.display = "";
+      }else if (sel.value=="NO APLICA") {
+        divC = document.getElementById("CONCLUSION_ART35");
+        divC.style.display = "none";
+        divC = document.getElementById("fecha_cancel_conclu");
+        divC.style.display = "none";
 
-           divC = document.getElementById("CONCLUSION_ART35");
-           divC.style.display="none";
       }
 }
 
