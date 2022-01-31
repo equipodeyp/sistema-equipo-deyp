@@ -13,6 +13,7 @@ if ($verifica_medida == 1) {
   // carga de datsos
   $id_persona = $_GET['folio'];   //variable del folio al que se relaciona
   // datos de la autoridad
+  $categoria = $_POST['CATEAGORIA_MEDIDA'];
   $tipo_medida =$_POST['TIPO_DE_MEDIDA'];
   $clasificacion_medida=$_POST['CLASIFICACION_MEDIDA'];
   if ($clasificacion_medida == 'ASISTENCIA') {
@@ -79,8 +80,8 @@ if ($verifica_medida == 1) {
   date_default_timezone_set("America/Mexico_City");
   $fecha = date('y/m/d H:i:sa');
 
-  $addmedidas = "INSERT INTO medidas (tipo, clasificacion, medida, descripcion, date_provisional, date_definitva, modificacion, date_modificada, tipo_modificacion, estatus, ejecucion, date_ejecucion, folioexpediente, id_persona, fecha_captura)
-                 VALUES('$tipo_medida', '$clasificacion_medida', '$medida', '$med_res', '$inicio_medida', '$act_medida', '$medida_mod', '$fecha_mod', '$tipo_mod', '$estatus', '$municipio_medida', '$date_ejec', '$folio_expediente', '$id_persona', '$fecha')";
+  $addmedidas = "INSERT INTO medidas (categoria, tipo, clasificacion, medida, descripcion, date_provisional, date_definitva, modificacion, date_modificada, tipo_modificacion, estatus, ejecucion, date_ejecucion, folioexpediente, id_persona, fecha_captura)
+                 VALUES('$categoria', '$tipo_medida', '$clasificacion_medida', '$medida', '$med_res', '$inicio_medida', '$act_medida', '$medida_mod', '$fecha_mod', '$tipo_mod', '$estatus', '$municipio_medida', '$date_ejec', '$folio_expediente', '$id_persona', '$fecha')";
   $res_addmedidas = $mysqli->query($addmedidas);
 
   $qry = "select max(ID) As id from medidas";
