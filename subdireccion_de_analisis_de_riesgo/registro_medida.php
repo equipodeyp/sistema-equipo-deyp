@@ -234,7 +234,7 @@ $validacion = $fil_val['validacion'];
               </select>
           </div>
 
-          <div class="col-md-6 mb-3 validar">
+          <div class="col-md-6 mb-3 validar" id="MUNICIPIO_EJECUCION" style="display:none;">
             <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
               <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
@@ -249,8 +249,8 @@ $validacion = $fil_val['validacion'];
           </div>
 
               <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
-                <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION O CANCELACION<span class="required"></span></label>
-                <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" disabled type="text">
+                <label for="FECHA_DE_EJECUCION">FECHA DE TERMINO<span class="required"></span></label>
+                <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" type="text">
               </div>
 
         </div>

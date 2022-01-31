@@ -154,12 +154,21 @@ function open2art35(sel) {
            divC.style.display = "";
            divC = document.getElementById("fecha_cancel_conclu");
            divC.style.display = "";
+           divC = document.getElementById("date_concl");
+           divC.style.display = "";
+           divC = document.getElementById("date_cance");
+           divC.style.display = "none";
 
       }else if (sel.value=="CANCELACION") {
         divC = document.getElementById("CONCLUSION_ART35");
         divC.style.display="none";
         divC = document.getElementById("fecha_cancel_conclu");
         divC.style.display = "";
+        divC = document.getElementById("date_cance");
+        divC.style.display = "";
+        divC = document.getElementById("date_concl");
+        divC.style.display = "none";
+
       }else if (sel.value=="NO APLICA") {
         divC = document.getElementById("CONCLUSION_ART35");
         divC.style.display = "none";
@@ -215,12 +224,21 @@ function radicacionfuenteM1(sel) {
 }
 // fecha de la medida cuando este ejecutada o cancelada
 function fecha_ejecutada(sel) {
-      if (sel.value=="EJECUTADA" || sel.value=="CANCELADA"){
+      if (sel.value=="EJECUTADA"){
         divC = document.getElementById("ejecucion_cancelacion");
+        divC.style.display="";
+        divC = document.getElementById("MUNICIPIO_EJECUCION");
         divC.style.display="";
 
       }else if (sel.value=="EN EJECUCION") {
         divC = document.getElementById("ejecucion_cancelacion");
+        divC.style.display="none";
+        divC = document.getElementById("MUNICIPIO_EJECUCION");
+        divC.style.display="";
+      }else if (sel.value=="CANCELADA") {
+        divC = document.getElementById("ejecucion_cancelacion");
+        divC.style.display="none";
+        divC = document.getElementById("MUNICIPIO_EJECUCION");
         divC.style.display="none";
       }
 }
