@@ -155,7 +155,7 @@ $row=$result->fetch_assoc();
 				</div>
 
 				<div class="form-group">
-					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DE LA SOLICITUD</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
@@ -182,7 +182,7 @@ $row=$result->fetch_assoc();
 
 				</form>
 
-				
+
 
 
 				</div>
@@ -221,7 +221,7 @@ $row=$result->fetch_assoc();
 		    while ($var_fila=$var_resultado->fetch_array())
 		      {
 				$id_persona = $var_fila['id'];
-		
+
 
 				$datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
 				$res_val = $mysqli->query($datevalidar);
