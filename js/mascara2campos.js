@@ -229,12 +229,18 @@ function fecha_ejecutada(sel) {
         divC.style.display="";
         divC = document.getElementById("MUNICIPIO_EJECUCION");
         divC.style.display="";
+        divC = document.getElementById("fech_inicio");
+        divC.style.display="";
+
 
       }else if (sel.value=="EN EJECUCION") {
         divC = document.getElementById("ejecucion_cancelacion");
         divC.style.display="none";
         divC = document.getElementById("MUNICIPIO_EJECUCION");
         divC.style.display="";
+        divC = document.getElementById("fech_inicio");
+        divC.style.display="";
+
       }else if (sel.value=="CANCELADA") {
         divC = document.getElementById("ejecucion_cancelacion");
         divC.style.display="none";

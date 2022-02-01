@@ -257,6 +257,11 @@ $validacion = $fil_val['validacion'];
             </select>
           </div>
 
+              <div class="col-md-6 mb-3 validar" id="fech_inicio" style="display:none;">
+                <label for="FECH_INICIO">FECHA DE INICIO<span class="required"></span></label>
+                <input class="form-control" id="FECH_INICIO" name="FECH_INICIO" placeholder="" readonly type="text">
+              </div>
+
               <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
                 <label for="FECHA_DE_EJECUCION">FECHA DE TERMINO<span class="required"></span></label>
                 <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" type="date">
@@ -398,23 +403,25 @@ window.onload = function(){
     fechaInicio.addEventListener('change', obtenerFechaInicio);
     fechaDefinitiva.addEventListener('change', obtenerFechaDefinitiva);
 
-
     function obtenerFechaInicio(e) {
       fechaInicioIngresada = e.target.value;
-      console.log(fechaInicioIngresada);
-      document.getElementById("FECHA_DE_EJECUCION").value = fechaInicioIngresada;
+      if (fechaInicioIngresada < fechaDefinitivaIngresada ||  fechaDefinitivaIngresada == null || fechaDefinitivaIngresada == ""){
+      document.getElementById("FECH_INICIO").value = fechaInicioIngresada;
+      }
+      else {
+      document.getElementById("FECH_INICIO").value = fechaDefinitivaIngresada;
+      }
     }
 
     function obtenerFechaDefinitiva(e) {
       fechaDefinitivaIngresada = e.target.value;
-      console.log(fechaDefinitivaIngresada);
-      document.getElementById("FECHA_DE_EJECUCION").value = fechaDefinitivaIngresada;
+      if (fechaInicioIngresada < fechaDefinitivaIngresada || fechaDefinitivaIngresada == null || fechaDefinitivaIngresada == ""){
+      document.getElementById("FECH_INICIO").value = fechaInicioIngresada;
+      }
+      else {
+      document.getElementById("FECH_INICIO").value = fechaDefinitivaIngresada;
+      }
     }
-
-
-
-
-
 </script>
 </body>
 </html>
