@@ -220,7 +220,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE INICIO DE LA MEDIDA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
           </div>
         </div>
@@ -263,16 +263,25 @@ $validacion = $fil_val['validacion'];
               </div>
 
               <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
-                <label for="FECHA_DE_EJECUCION">FECHA DE TERMINO<span class="required"></span></label>
+                <label for="FECHA_TERMINO" id="FECHA_TERMINO" style="display:none;">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                <label for="FECHA_CANCEL" id="FECHA_CANCEL" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
                 <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" type="date">
               </div>
+
+
+              <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
+                <label for="MOTIVO">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
+                <input class="form-control" id="MOTIVO" name="FECH_INICIO" placeholder="" type="text">
+              </div>
+
+
 
 
         </div>
 
 
 
-              <div class="row">
+              <div class="row" id="DIV_CONCLUSION_CANCELACION" style="display:none;">
                 <div class="row">
                   <hr class="mb-4">
                 </div>
@@ -284,7 +293,6 @@ $validacion = $fil_val['validacion'];
                   <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACION</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCION</option>
-                    <option value="CANCELACION">CANCELACION</option>
                     <option value="CONCLUSION">CONCLUSION</option>
                     <option value="NO APLICA">NO APLICA</option>
                   </select>
@@ -309,11 +317,11 @@ $validacion = $fil_val['validacion'];
                   <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="" type="text">
                 </div>
 
-                <div class="col-md-6 mb-3 validar" id="fecha_cancel_conclu" style="display:none;">
+                <!-- <div class="col-md-6 mb-3 validar" id="fecha_cancel_conclu" style="display:none;">
                   <label for="FECHA_DESINCORPORACION" id="date_cance" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
                   <label for="FECHA_DESINCORPORACION" id="date_concl" style="display:none;">FECHA DE CONCLUSIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
-                </div>
+                </div> -->
 
               </div>
 
