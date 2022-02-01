@@ -280,9 +280,9 @@ function fecha_ejecutada(sel) {
 
       }else if (sel.value=="CANCELADA") {
         divC = document.getElementById("MUNICIPIO_EJECUCION");
-        divC.style.display="none";
+        divC.style.display="";
         divC = document.getElementById("fech_inicio");
-        divC.style.display="none";
+        divC.style.display="";
 
         
         divC = document.getElementById("DIV_CONCLUSION_CANCELACION");
@@ -290,9 +290,10 @@ function fecha_ejecutada(sel) {
         // divC = document.getElementById("CONCLUSION_ART35");
         // divC.style.display="none";
 
-        
+        //label
         divC = document.getElementById("FECHA_CANCEL");
         divC.style.display="";
+        //input
         divC = document.getElementById("ejecucion_cancelacion");
         divC.style.display="";
         divC = document.getElementById("MOTIVO");
