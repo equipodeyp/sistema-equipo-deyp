@@ -140,6 +140,15 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
+            <label for="CATEAGORIA_MEDIDA">CATEGORIA DE LA MEDIDA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA" onChange="selectmedida(this)" disabled>
+              <option style="visibility: hidden" value="<?php echo $rowmedida['categoria']; ?>"><?php echo $rowmedida['categoria']; ?></option>
+              <option value="INICIAL">INICIAL</option>
+              <option value="AMPLIACION">AMPLIACION</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
               <option style="visibility: hidden" id="opt-tipo-medida" value="<?php echo $rowmedida['tipo']; ?>"><?php echo $rowmedida['tipo']; ?></option>
@@ -205,8 +214,8 @@ $validacion = $fil_val['validacion'];
            } else if ($rowmedida['medida']=='XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxii">
                <label for="RESGUARDO_XII">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
-               <select style="visibility: hidden" class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" disabled>
-                 <option id="opt-medida-resguardo"value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
+               <select class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" disabled>
+                 <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxii = "SELECT * FROM medidaresguardoxii";
                  $answerresxii = $mysqli->query($resguardoxii);
                  while($resguardosxii = $answerresxii->fetch_assoc()){
@@ -239,33 +248,38 @@ $validacion = $fil_val['validacion'];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">MODIFICACION DE LA MEDIDA</h3>
+              <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
+
             <div class="col-md-6 mb-3 validar">
-              <label for="MEDIDA_MODOIFICADA">MEDIDA MODIFICADA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="" onchange="changemedidamod(this)">
-                <option style="visibility: hidden" value="<?php echo $rowmedida['modificacion'] ?>"><?php echo $rowmedida['modificacion'] ?></option>
-                <option value="SI">SI</option>
-                <option value="NO">NO</option>
+              <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
+              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA">
+                <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
+                <option value="EN EJECUCION">EN EJECUCION</option>
+                <option value="EJECUTADA">EJECUTADA</option>
+                <option value="CANCELADA">CANCELADA</option>
                 </select>
             </div>
-            <?php
-            if ($rowmedida['modificacion'] == 'SI') {
-              echo '<div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel1">
-                <label for="FECHA_MODIFICACION">FECHA MODIFICACION<span class="required"></span></label>
-                <input class="form-control" id="FECHA_MODIFICACION" name="FECHA_MODIFICACION" placeholder="" value="'.$rowmedida['date_modificada'].'"  type="date">
-              </div>
 
-              <div class="col-md-6 mb-3 validar" id="fecha_modificacion_sel2">
-                <label for="TIPO_MODIFICACION">TIPO MODIFICACION<span class="required"></span></label>
-                <input class="form-control" id="TIPO_MODIFICACION" name="TIPO_MODIFICACION" placeholder="" value="'.$rowmedida['tipo_modificacion'].'" type="text">
-              </div>
-            </div>';
-            }
-             ?>
+            <div class="col-md-6 mb-3 validar">
+              <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
+              <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
+                <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
+                <?php
+                $municipio = "SELECT * FROM municipios";
+                $answermun = $mysqli->query($municipio);
+                while($municipios = $answermun->fetch_assoc()){
+                 echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+                }
+                ?>
+                       </select>
+                </div>
 
-
-
+                <div class="col-md-6 mb-3 validar">
+                  <label for="FECHA_DE_EJECUCION">FECHA EJECUTADA O CANCELADA<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>" readonly>
+                </div>
+          </div>
 
           <div class="row">
             <div class="row">
@@ -343,43 +357,7 @@ $validacion = $fil_val['validacion'];
              </div>
           </div>
 
-          <div class="row">
-            <div class="row">
-              <hr class="mb-4">
-            </div>
-            <div class="alert alert-info">
-              <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
-            </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" disabled>
-                <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <option value="EN EJECUCION">EN EJECUCION</option>
-                <option value="EJECUTADA">EJECUTADA</option>
-                <option value="CANCELADA">CANCELADA</option>
-                </select>
-            </div>
-
-            <div class="col-md-6 mb-3 validar">
-              <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
-                <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
-                <?php
-                $municipio = "SELECT * FROM municipios";
-                $answermun = $mysqli->query($municipio);
-                while($municipios = $answermun->fetch_assoc()){
-                 echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
-                }
-                ?>
-                       </select>
-                </div>
-
-                <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA EJECUTADA O CANCELADA<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>" readonly>
-                </div>
-          </div>
 
               </div>
 
