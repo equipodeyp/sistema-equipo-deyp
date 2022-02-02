@@ -52,7 +52,7 @@ if ($verifica_update_person == 1) {
   }
   $inicio_medida=$_POST['INICIO_EJECUCION_MEDIDA'];
   $act_medida= $_POST['FECHA_ACTUALIZACION_MEDIDA'];
-  $medida_mod=$_POST['MEDIDA_MODOIFICADA'];
+  $medida_mod=$_POST['MOTIVO_CANCEL'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
@@ -126,7 +126,7 @@ if ($verifica_update_person == 1) {
   // $addmedidas = "INSERT INTO medidas (tipo, clasificacion, medida, descripcion, date_provisional, date_definitva, modificacion, date_modificada, tipo_modificacion, estatus, ejecucion, date_ejecucion, folioexpediente, id_persona)
   //                VALUES('$tipo_medida', '$clasificacion_medida', '$medida', '$med_res', '$inicio_medida', '$act_medida', '$medida_mod', '$fecha_mod', '$tipo_mod', '$estatus', '$municipio_medida', '$date_ejec', '$folio_expediente', '$id_persona')";
   // $res_addmedidas = $mysqli->query($addmedidas);
-  $addmedidas = "UPDATE medidas SET tipo='$tipo_medida', date_definitva='$act_medida', estatus='$estatus' WHERE id = '$id_persona'";
+  $addmedidas = "UPDATE medidas SET tipo='$tipo_medida', date_definitva='$act_medida', estatus='$estatus', modificacion='$medida_mod', date_ejecucion='$date_conclusion' WHERE id = '$id_persona'";
   $res_addmedidas = $mysqli->query($addmedidas);
   //
   // $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, otherart35, date_close, folioexpediente, id_persona)
