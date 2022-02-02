@@ -58,6 +58,9 @@ if ($verifica_update_person == 1) {
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
   if ($acuerdo == 'CONCLUSION') {
     $conclusionart35=$_POST['CONCLUSION_ART35'];
+    if ($conclusionart35 == '') {
+      $conclusionart35=$_POST['CONCLUSION_ART351'];
+    }
     if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
       $otherart35=$_POST['OTHER_ART35'];
       if ($otherart35 == '') {
@@ -70,6 +73,9 @@ if ($verifica_update_person == 1) {
     $conclusionart35='';
   }
   $date_conclusion=$_POST['FECHA_DESINCORPORACION'];
+  if ($date_conclusion == '') {
+    $date_conclusion=$_POST['FECHA_DESINCORPORACION1'];
+  }
   $estatus =$_POST['ESTATUS_MEDIDA'];
   $municipio_medida=$_POST['MUNIPIO_EJECUCION_MEDIDA'];
   // $name_municipioact= "SELECT id, nombre FROM municipios WHERE id='$municipio_medida'";
