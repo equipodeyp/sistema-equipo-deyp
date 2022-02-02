@@ -231,12 +231,12 @@ function fecha_ejecutada(sel) {
         divC.style.display="";
         divC = document.getElementById("fech_inicio");
         divC.style.display="";
-        
+
         divC = document.getElementById("DIV_CONCLUSION_CANCELACION");
         divC.style.display="";
         // divC = document.getElementById("CONCLUSION_ART35");
         // divC.style.display="";
-        
+
 
 
         divC = document.getElementById("FECHA_TERMINO");
@@ -246,7 +246,7 @@ function fecha_ejecutada(sel) {
 
         divC = document.getElementById("MOTIVO");
         divC.style.display="none";
-        
+
 
 
       }else if (sel.value=="EN EJECUCION") {
@@ -284,7 +284,7 @@ function fecha_ejecutada(sel) {
         divC = document.getElementById("fech_inicio");
         divC.style.display="";
 
-        
+
         divC = document.getElementById("DIV_CONCLUSION_CANCELACION");
         divC.style.display="none";
         // divC = document.getElementById("CONCLUSION_ART35");
@@ -303,4 +303,39 @@ function fecha_ejecutada(sel) {
         divC = document.getElementById("FECHA_TERMINO");
         divC.style.display="none";
       }
+}
+
+function actualizar_estatus_medida(sel) {
+  if (sel.value=="EJECUTADA") {
+    divC = document.getElementById("fecha_conclusion");
+    divC.style.display="";
+    divC = document.getElementById("conclu_cancel");
+    divC.style.display="";
+    divC = document.getElementById("MOTIVO");
+    divC.style.display="none";
+  }else if (sel.value=="CANCELADA") {
+    divC = document.getElementById("fecha_conclusion");
+    divC.style.display="";
+    divC = document.getElementById("MOTIVO");
+    divC.style.display="";
+    divC = document.getElementById("conclu_cancel");
+    divC.style.display="none";
+  }
+}
+
+function actualizar_cancel(sel) {
+      if (sel.value=="CONCLUSION"){
+           divC = document.getElementById("CONCLUSION_ART35");
+           divC.style.display = "";
+           document.getElementById("OTHER_ART351").value = '';
+           document.getElementById("CONCLUSION_ART35").value = 'selecciona una opcion';
+
+      }else if (sel.value=="NO APLICA") {
+        divC = document.getElementById("CONCLUSION_ART35");
+        divC.style.display="none";
+        divC = document.getElementById("OTHERART35");
+        divC.style.display="none";
+        document.getElementById("CONCLUSION_ART35").value = 'selecciona una opcion';
+      }
+
 }

@@ -123,7 +123,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar">
             <label for="CATEAGORIA_MEDIDA">CATEGORIA DE LA MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA" onChange="selectmedida(this)" required="">
+            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA">
               <option disabled selected value>SELECCIONE UNA OPCION</option>
               <option value="INICIAL">INICIAL</option>
               <option value="AMPLIACION">AMPLIACION</option>
@@ -270,17 +270,10 @@ $validacion = $fil_val['validacion'];
 
 
               <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
-                <label for="MOTIVO">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
-                <input class="form-control" id="MOTIVO" name="FECH_INICIO" placeholder="" type="text">
+                <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
+                <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" placeholder="" type="text">
               </div>
-
-
-
-
         </div>
-
-
-
               <div class="row" id="DIV_CONCLUSION_CANCELACION" style="display:none;">
                 <div class="row">
                   <hr class="mb-4">

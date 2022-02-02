@@ -143,7 +143,7 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE_AUTORIDAD<span class="required"></span></label>
-            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE EL MUNICIPIO" required>
+            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE UNA OPCION" required>
             <datalist id="datalistOptions">
             <?php
             $autoridad = "SELECT * FROM nombreautoridad";

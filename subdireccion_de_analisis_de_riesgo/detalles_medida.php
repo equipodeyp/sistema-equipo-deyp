@@ -253,14 +253,13 @@ $validacion = $fil_val['validacion'];
 
             <div class="col-md-6 mb-3 validar">
               <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA">
+              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <option value="EN EJECUCION">EN EJECUCION</option>
+                <!-- <option value="EN EJECUCION" >EN EJECUCION</option> -->
                 <option value="EJECUTADA">EJECUTADA</option>
                 <option value="CANCELADA">CANCELADA</option>
                 </select>
             </div>
-
             <div class="col-md-6 mb-3 validar">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
@@ -272,16 +271,82 @@ $validacion = $fil_val['validacion'];
                  echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
                 }
                 ?>
-                       </select>
-                </div>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3 validar">
+              <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
+              <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php echo $rowmedida['date_provisional']; ?>" readonly>
+            </div>
 
-                <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA EJECUTADA O CANCELADA<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>" readonly>
+            <?php
+              if ($rowmedida['estatus'] == 'EJECUTADA') {
+                echo '<div class="col-md-6 mb-3 validar">
+                  <label for="FECHA_DE_EJECUCION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="'.$rowmedida['date_ejecucion'].'" readonly>
                 </div>
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 validar">
+                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
+                  <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)" disabled>
+                    <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="'.$rowmultidisciplinario['acuerdo'].'">'.$rowmultidisciplinario['acuerdo'].'</option>
+                    <option value="CANCELACION">CANCELACION</option>
+                    <option value="CONCLUSION">CONCLUSION</option>
+                    <option value="NO APLICA">NO APLICA</option>
+                  </select>
+                </div>';
+                if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
+                  echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
+                    <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+                    <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)" disabled>
+                      <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
+                      $art35 = "SELECT * FROM conclusionart35";
+                      $answerart35 = $mysqli->query($art35);
+                      while($art35s = $answerart35->fetch_assoc()){
+                        echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
+                      }
+                      echo '
+                    </select>
+                  </div>';
+                  if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+                    echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
+                      <label for="OTHER_ART35">ESPECIFIQUE</label>
+                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['otherart35'].'" type="text" readonly>
+                    </div>';
+                  }
+                }
+              }
+              if ($rowmedida['estatus'] == 'CANCELADA') {
+                echo '<div class="col-md-6 mb-3 validar">
+                  <label for="FECHA_DE_EJECUCION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="'.$rowmedida['date_ejecucion'].'" readonly>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="MOTIVO">
+                  <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
+                  <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="'.$rowmedida['modificacion'].'" placeholder="" type="text" readonly>
+                </div>';
+              }
+             ?>
+             <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
+               <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
+             </div>
+
+             <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
+               <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
+               <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" placeholder="" type="text">
+             </div>
+
           </div>
 
-          <div class="row">
+
+          <div class="row" id="conclu_cancel" style="display:none;">
             <div class="row">
               <hr class="mb-4">
             </div>
@@ -291,46 +356,13 @@ $validacion = $fil_val['validacion'];
 
             <div class="col-md-6 mb-3 validar">
               <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-              <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
+              <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <option value="CANCELACION">CANCELACION</option>
+                <!-- <option value="CANCELACION">CANCELACION</option> -->
                 <option value="CONCLUSION">CONCLUSION</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
             </div>
-
-            <?php
-            $multidisciplinario = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
-            $resultadomultidisciplinario = $mysqli->query($multidisciplinario);
-            $rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
-            if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
-              echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
-                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                  <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
-                  $art35 = "SELECT * FROM conclusionart35";
-                  $answerart35 = $mysqli->query($art35);
-                  while($art35s = $answerart35->fetch_assoc()){
-                    echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                  }
-                  echo '
-                </select>
-              </div>';
-              if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-                echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
-                  <label for="OTHER_ART35">ESPECIFIQUE</label>
-                  <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['otherart35'].'" type="text">
-                </div>';
-              }
-
-            }
-            if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION' || $rowmultidisciplinario['acuerdo'] == 'CANCELACION') {
-              echo '<div class="col-md-6 mb-3 validar" id="fecha_cancel_conclu">
-                <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN O CANCELACIÓN<span class="required"></span></label>
-                <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'">
-              </div>';
-            }
-             ?>
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
@@ -351,10 +383,6 @@ $validacion = $fil_val['validacion'];
                <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
              </div>
 
-             <div class="col-md-6 mb-3 validar" id="fecha_cancel_conclu" style="display:none;">
-               <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN O CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowmultidisciplinario['date_close']; ?>">
-             </div>
           </div>
 
 

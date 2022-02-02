@@ -33,7 +33,7 @@ if ($verifica_medida == 1) {
   }
   $inicio_medida=$_POST['INICIO_EJECUCION_MEDIDA'];
   $act_medida= $_POST['FECHA_ACTUALIZACION_MEDIDA'];
-  $medida_mod=$_POST['MEDIDA_MODOIFICADA'];
+  $medida_mod=$_POST['MOTIVO_CANCEL'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
@@ -90,7 +90,7 @@ if ($verifica_medida == 1) {
   $id_med =$row["id"];
 
   $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, otherart35, date_close, folioexpediente, id_persona, id_medida)
-                VALUES ('$acuerdo', '$conclusionart35', '$otherart35', '$date_conclusion', '$folio_expediente', '$id_persona', '$id_med')";
+                VALUES ('$acuerdo', '$conclusionart35', '$otherart35', '$date_ejec', '$folio_expediente', '$id_persona', '$id_med')";
   $res_mult_meds = $mysqli->query($mult_meds);
 
   $fuente_rad = "INSERT INTO radicacion_mascara2(fuente, descripcion, id_persona, folioexpediente, id_medida)
