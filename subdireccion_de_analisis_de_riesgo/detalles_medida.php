@@ -342,7 +342,7 @@ $validacion = $fil_val['validacion'];
               }
               if ($rowmedida['estatus'] == 'CANCELADA') {
                 echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar" id="MOTIVO">
@@ -352,7 +352,8 @@ $validacion = $fil_val['validacion'];
               }
              ?>
              <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
-               <label for="FECHA_DE_EJECUCION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+               <label for="FECHA_DE_EJECUCION" id="dat_ejec" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
+               <label for="FECHA_DE_CANCELACION" id="dat_cancel" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
                <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
              </div>
 
@@ -407,23 +408,24 @@ $validacion = $fil_val['validacion'];
 
               </div>
 
-              <div class="row">
-                <div class="row">
 
-                  <hr class="mb-4">
-                </div>
-
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">COMENTARIOS</h3>
-                </div>
-                <!-- <section class="text-center" > -->
-                <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-              <!-- </section> -->
-              </div>
 
               <?php
                 if ($rowmedida['tipo'] == 'PROVISIONAL' || $rowmedida['estatus'] == 'EN EJECUCION') {
                   echo '<div class="row">
+                    <div class="row">
+
+                      <hr class="mb-4">
+                    </div>
+
+                    <div class="alert alert-info">
+                      <h3 style="text-align:center">COMENTARIOS</h3>
+                    </div>
+                    <!-- <section class="text-center" > -->
+                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
+                  <!-- </section> -->
+                  </div>
+                  <div class="row">
                     <div>
                         <br>
                         <br>
