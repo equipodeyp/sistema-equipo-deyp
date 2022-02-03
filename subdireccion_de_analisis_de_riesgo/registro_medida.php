@@ -215,12 +215,12 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="date_provisional" style="display:none;">
-            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
+            <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
             <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="date">
           </div>
 
           <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
-            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE INICIO DE LA MEDIDA<span class="required"></span></label>
+            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
           </div>
         </div>
