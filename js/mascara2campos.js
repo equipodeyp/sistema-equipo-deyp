@@ -311,10 +311,18 @@ function actualizar_estatus_medida(sel) {
     divC.style.display="";
     divC = document.getElementById("conclu_cancel");
     divC.style.display="";
+    divC = document.getElementById("dat_ejec");
+    divC.style.display="";
+    divC = document.getElementById("dat_cancel");
+    divC.style.display="none";
     divC = document.getElementById("MOTIVO");
     divC.style.display="none";
   }else if (sel.value=="CANCELADA") {
     divC = document.getElementById("fecha_conclusion");
+    divC.style.display="";
+    divC = document.getElementById("dat_ejec");
+    divC.style.display="none";
+    divC = document.getElementById("dat_cancel");
     divC.style.display="";
     divC = document.getElementById("MOTIVO");
     divC.style.display="";
@@ -339,3 +347,24 @@ function actualizar_cancel(sel) {
       }
 
 }
+
+function datesmedidas(sel) {
+  if (sel.value == "PROVISIONAL") {
+    divC = document.getElementById("date_provisional");
+    divC.style.display="";
+    divC = document.getElementById("date_definitva");
+    divC.style.display="none";
+  }else if (sel.value == "DEFINITIVA") {
+    divC = document.getElementById("date_provisional");
+    divC.style.display="none";
+    divC = document.getElementById("date_definitva");
+    divC.style.display="";
+  }
+}
+
+ function act_datedef(sel) {
+   if (sel.value == "DEFINITIVA") {
+     divC = document.getElementById("act_date_definitiva");
+     divC.style.display="";
+   }
+ }

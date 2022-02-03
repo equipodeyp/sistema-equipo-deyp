@@ -148,14 +148,22 @@ $validacion = $fil_val['validacion'];
             </select>
           </div>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
-              <option style="visibility: hidden" id="opt-tipo-medida" value="<?php echo $rowmedida['tipo']; ?>"><?php echo $rowmedida['tipo']; ?></option>
-              <option value="PROVISIONAL">PROVISIONAL</option>
-              <option value="DEFINITIVA">DEFINITIVA</option>
-            </select>
-          </div>
+          <?php
+            if ($rowmedida['tipo'] == 'PROVISIONAL') {
+              echo '<div class="col-md-6 mb-3 validar">
+                <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
+                <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="" onChange="act_datedef(this)">
+                  <option style="visibility: hidden" id="opt-tipo-medida" value="'.$rowmedida['tipo'].'">'.$rowmedida['tipo'].'</option>
+                  <option value="DEFINITIVA">DEFINITIVA</option>
+                </select>
+              </div>';
+            }else if ($rowmedida['tipo'] == 'DEFINITIVA') {
+              echo '<div class="col-md-6 mb-3 validar">
+                <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
+                <input class="form-control" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" value="'.$rowmedida['tipo'].'" type="text" readonly>
+              </div>';
+            }
+           ?>
 
           <div class="col-md-6 mb-3 validar">
             <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
@@ -233,15 +241,32 @@ $validacion = $fil_val['validacion'];
 
           ?>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
-            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="<?php echo $rowmedida['date_provisional']; ?>" placeholder="" type="date" readonly>
-          </div>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php echo $rowmedida['date_definitva']; ?>" type="date">
-          </div>
+
+          <?php
+            if ($rowmedida['date_provisional'] != '') {
+              echo '<div class="col-md-6 mb-3 validar">
+                <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA <span class="required"></span></label>
+                <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="'.$rowmedida['date_provisional'].'" placeholder="" type="date" readonly>
+              </div>';
+            }
+            if ($rowmedida['tipo'] != 'DEFINITIVA' && $rowmedida['date_definitva'] == '') {
+              // echo '<div class="col-md-6 mb-3 validar">
+              //   <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              //   <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+              // </div>';
+            }elseif ($rowmedida['tipo'] == 'DEFINITIVA' && $rowmedida['date_definitva'] != '') {
+              echo '<div class="col-md-6 mb-3 validar">
+                <label for="FECHA_ACTUALIZACION_MEDIDA1">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA1" name="FECHA_ACTUALIZACION_MEDIDA1" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date" readonly>
+              </div>';
+            }
+           ?>
+           <div class="col-md-6 mb-3 validar" id="act_date_definitiva" style="display:none;">
+              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+           </div>
+
 
           <div class="row">
             <div class="row">
@@ -251,15 +276,26 @@ $validacion = $fil_val['validacion'];
               <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
-                <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <!-- <option value="EN EJECUCION" >EN EJECUCION</option> -->
-                <option value="EJECUTADA">EJECUTADA</option>
-                <option value="CANCELADA">CANCELADA</option>
-                </select>
-            </div>
+            <?php
+              if ($rowmedida['estatus'] == 'EN EJECUCION') {
+                echo '<div class="col-md-6 mb-3 validar">
+                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
+                    <option style="visibility: hidden" id="opt-estatus-medida" value="'.$rowmedida['estatus'].'">'.$rowmedida['estatus'].'</option>
+                    <!-- <option value="EN EJECUCION" >EN EJECUCION</option> -->
+                    <option value="EJECUTADA">EJECUTADA</option>
+                    <option value="CANCELADA">CANCELADA</option>
+                    </select>
+                </div>';
+              }elseif ($rowmedida['estatus'] != 'EN EJECUCION') {
+                echo '<div class="col-md-6 mb-3 validar">
+                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
+                  <input class="form-control" id="ESTATUS_MEDIDA" name="ESTATUS_MEDIDA" placeholder="" value="'.$rowmedida['estatus'].'" type="text" readonly>
+                </div>';
+              }
+             ?>
+
+
             <div class="col-md-6 mb-3 validar">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
@@ -281,8 +317,8 @@ $validacion = $fil_val['validacion'];
             <?php
               if ($rowmedida['estatus'] == 'EJECUTADA') {
                 echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="'.$rowmedida['date_ejecucion'].'" readonly>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="text" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="row">
                   <div class="row">
@@ -294,25 +330,12 @@ $validacion = $fil_val['validacion'];
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-                  <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)" disabled>
-                    <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="'.$rowmultidisciplinario['acuerdo'].'">'.$rowmultidisciplinario['acuerdo'].'</option>
-                    <option value="CANCELACION">CANCELACION</option>
-                    <option value="CONCLUSION">CONCLUSION</option>
-                    <option value="NO APLICA">NO APLICA</option>
-                  </select>
+                  <input class="form-control" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
                 </div>';
                 if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
-                  echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
+                  echo '<div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                    <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)" disabled>
-                      <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
-                      $art35 = "SELECT * FROM conclusionart35";
-                      $answerart35 = $mysqli->query($art35);
-                      while($art35s = $answerart35->fetch_assoc()){
-                        echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                      }
-                      echo '
-                    </select>
+                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
                   </div>';
                   if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
@@ -324,8 +347,8 @@ $validacion = $fil_val['validacion'];
               }
               if ($rowmedida['estatus'] == 'CANCELADA') {
                 echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="'.$rowmedida['date_ejecucion'].'" readonly>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
+                  <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar" id="MOTIVO">
                   <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
@@ -334,7 +357,8 @@ $validacion = $fil_val['validacion'];
               }
              ?>
              <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
-               <label for="FECHA_DESINCORPORACION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+               <label for="FECHA_DE_EJECUCION" id="dat_ejec" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
+               <label for="FECHA_DE_CANCELACION" id="dat_cancel" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
                <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
              </div>
 
@@ -389,28 +413,34 @@ $validacion = $fil_val['validacion'];
 
               </div>
 
-              <div class="row">
-                <div class="row">
 
-                  <hr class="mb-4">
-                </div>
 
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">COMENTARIOS</h3>
-                </div>
-                <!-- <section class="text-center" > -->
-                <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-              <!-- </section> -->
-              </div>
+              <?php
+                if ($rowmedida['tipo'] == 'PROVISIONAL' || $rowmedida['estatus'] == 'EN EJECUCION') {
+                  echo '<div class="row">
+                    <div class="row">
 
-              <div class="row">
-                <div>
-                    <br>
-                    <br>
-                		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
-                </div>
+                      <hr class="mb-4">
+                    </div>
 
-              </div>
+                    <div class="alert alert-info">
+                      <h3 style="text-align:center">COMENTARIOS</h3>
+                    </div>
+                    <!-- <section class="text-center" > -->
+                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
+                  <!-- </section> -->
+                  </div>
+                  <div class="row">
+                    <div>
+                        <br>
+                        <br>
+                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                    </div>
+                  </div>';
+                }
+               ?>
+
+
         </div>
       </form>
     </div>

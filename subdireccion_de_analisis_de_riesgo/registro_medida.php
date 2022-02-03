@@ -123,7 +123,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar">
             <label for="CATEAGORIA_MEDIDA">CATEGORIA DE LA MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA">
+            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA" required>
               <option disabled selected value>SELECCIONE UNA OPCION</option>
               <option value="INICIAL">INICIAL</option>
               <option value="AMPLIACION">AMPLIACION</option>
@@ -132,7 +132,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
+            <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" onChange="datesmedidas(this)" required>
               <option disabled selected value>SELECCIONE EL TIPO DE MEDIDA</option>
               <option value="PROVISIONAL">PROVISIONAL</option>
               <option value="DEFINITIVA">DEFINITIVA</option>
@@ -214,13 +214,13 @@ $validacion = $fil_val['validacion'];
               </select>
           </div>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
+          <div class="col-md-6 mb-3 validar" id="date_provisional" style="display:none;">
+            <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
             <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="date">
           </div>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE INICIO DE LA MEDIDA<span class="required"></span></label>
+          <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
+            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
           </div>
         </div>
@@ -259,11 +259,11 @@ $validacion = $fil_val['validacion'];
 
               <div class="col-md-6 mb-3 validar" id="fech_inicio" style="display:none;">
                 <label for="FECH_INICIO">FECHA DE INICIO<span class="required"></span></label>
-                <input class="form-control" id="FECH_INICIO" name="FECH_INICIO" placeholder="" readonly type="text">
+                <input class="form-control" id="FECH_INICIO" name="FECH_INICIO" placeholder="" readonly type="date">
               </div>
 
               <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
-                <label for="FECHA_TERMINO" id="FECHA_TERMINO" style="display:none;">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                <label for="FECHA_TERMINO" id="FECHA_TERMINO" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
                 <label for="FECHA_CANCEL" id="FECHA_CANCEL" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
                 <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" type="date">
               </div>
