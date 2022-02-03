@@ -259,11 +259,11 @@ $validacion = $fil_val['validacion'];
 
               <div class="col-md-6 mb-3 validar" id="fech_inicio" style="display:none;">
                 <label for="FECH_INICIO">FECHA DE INICIO<span class="required"></span></label>
-                <input class="form-control" id="FECH_INICIO" name="FECH_INICIO" placeholder="" readonly type="text">
+                <input class="form-control" id="FECH_INICIO" name="FECH_INICIO" placeholder="" readonly type="date">
               </div>
 
               <div class="col-md-6 mb-3 validar" id="ejecucion_cancelacion" style="display:none;">
-                <label for="FECHA_TERMINO" id="FECHA_TERMINO" style="display:none;">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                <label for="FECHA_TERMINO" id="FECHA_TERMINO" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
                 <label for="FECHA_CANCEL" id="FECHA_CANCEL" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
                 <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder="" type="date">
               </div>
