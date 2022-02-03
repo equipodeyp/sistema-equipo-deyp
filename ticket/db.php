@@ -1,0 +1,14 @@
+<?php
+
+	$mysqli = new mysqli('localhost', 'root', '', 'sistemafgjem');
+
+	if($mysqli->connect_error){
+
+		die('Error en la conexion' . $mysqli->connect_error);
+
+	}
+    
+    // if(isset($mysqli)){
+    //     echo 'DB is connect';
+    // }
+?>

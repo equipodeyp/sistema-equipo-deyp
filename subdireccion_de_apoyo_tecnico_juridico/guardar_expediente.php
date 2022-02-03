@@ -22,19 +22,45 @@ if ($verifica == 1) {
   $qry = "select max(ID) As id from expediente";
   $result = $mysqli->query($qry);
   $row = $result->fetch_assoc();
-  $num_consecutivo =$row["id"];
 
-  $n=$num_consecutivo;
-  $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
-  $año = date("Y");
+  
+
   $fechaActual = date('y/m/d');
+  date_default_timezone_set('America/Mexico_City');
+  $año = date("y");
+  $month = date("m");
+  $day = date("d");
+
+  $f = $row['fecha'];
+  date_default_timezone_set('America/Mexico_City'); 
+  $a = date("y");
+  $m = date("m");
+  $d = date("d");
+
+  if ($a == $año){
+    $num_consecutivo =$row["id"];
+    $n=$num_consecutivo;
+    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
+  } else {
+    $n_con =" ALTER TABLE num_consecutivo AUTO_INCREMENT = 0;";
+    $num_consecutivo =$row["id"];
+    $n=$num_consecutivo;
+    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
+  }
+
+
   // consulta del municipio
   $sentencia=" SELECT nombre, clave FROM municipios WHERE nombre='$municipio'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
   $name_mun=$row['nombre'];
   $claveMunicipio=$row['clave'];
-  //
+  
+
+  
+
+
+
   // estado inicial de validacion
   $validacion = 'false';
   $folio_expediente = $unidad.'/'.$r_sede.'/'.$claveMunicipio.'/'.$n_con.'/'.$año;
