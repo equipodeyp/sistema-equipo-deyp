@@ -52,6 +52,9 @@ if ($verifica_update_person == 1) {
   }
   $inicio_medida=$_POST['INICIO_EJECUCION_MEDIDA'];
   $act_medida= $_POST['FECHA_ACTUALIZACION_MEDIDA'];
+  if ($act_medida == '') {
+    $act_medida= $_POST['FECHA_ACTUALIZACION_MEDIDA1'];
+  }
   $medida_mod=$_POST['MOTIVO_CANCEL'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];

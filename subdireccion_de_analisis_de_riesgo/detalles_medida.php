@@ -152,9 +152,8 @@ $validacion = $fil_val['validacion'];
             if ($rowmedida['tipo'] == 'PROVISIONAL') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-                <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="">
+                <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="" onChange="act_datedef(this)">
                   <option style="visibility: hidden" id="opt-tipo-medida" value="'.$rowmedida['tipo'].'">'.$rowmedida['tipo'].'</option>
-                  <option value="PROVISIONAL">PROVISIONAL</option>
                   <option value="DEFINITIVA">DEFINITIVA</option>
                 </select>
               </div>';
@@ -242,25 +241,31 @@ $validacion = $fil_val['validacion'];
 
           ?>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="INICIO_EJECUCION_MEDIDA">FECHA INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
-            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="<?php echo $rowmedida['date_provisional']; ?>" placeholder="" type="date" readonly>
-          </div>
+
 
           <?php
-            if ($rowmedida['tipo'] != 'DEFINITIVA' && $rowmedida['date_definitva'] == '') {
+            if ($rowmedida['date_provisional'] != '') {
               echo '<div class="col-md-6 mb-3 validar">
-                <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
-                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+                <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA <span class="required"></span></label>
+                <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="'.$rowmedida['date_provisional'].'" placeholder="" type="date" readonly>
               </div>';
+            }
+            if ($rowmedida['tipo'] != 'DEFINITIVA' && $rowmedida['date_definitva'] == '') {
+              // echo '<div class="col-md-6 mb-3 validar">
+              //   <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              //   <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+              // </div>';
             }elseif ($rowmedida['tipo'] == 'DEFINITIVA' && $rowmedida['date_definitva'] != '') {
               echo '<div class="col-md-6 mb-3 validar">
-                <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
-                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date" readonly>
+                <label for="FECHA_ACTUALIZACION_MEDIDA1">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA1" name="FECHA_ACTUALIZACION_MEDIDA1" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date" readonly>
               </div>';
             }
            ?>
-
+           <div class="col-md-6 mb-3 validar" id="act_date_definitiva" style="display:none;">
+              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+           </div>
 
 
           <div class="row">

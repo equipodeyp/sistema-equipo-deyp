@@ -347,3 +347,24 @@ function actualizar_cancel(sel) {
       }
 
 }
+
+function datesmedidas(sel) {
+  if (sel.value == "PROVISIONAL") {
+    divC = document.getElementById("date_provisional");
+    divC.style.display="";
+    divC = document.getElementById("date_definitva");
+    divC.style.display="none";
+  }else if (sel.value == "DEFINITIVA") {
+    divC = document.getElementById("date_provisional");
+    divC.style.display="none";
+    divC = document.getElementById("date_definitva");
+    divC.style.display="";
+  }
+}
+
+ function act_datedef(sel) {
+   if (sel.value == "DEFINITIVA") {
+     divC = document.getElementById("act_date_definitiva");
+     divC.style.display="";
+   }
+ }
