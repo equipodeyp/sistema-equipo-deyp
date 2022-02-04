@@ -27,22 +27,21 @@ if ($verifica == 1) {
 
   $fechaActual = date('y/m/d');
   date_default_timezone_set('America/Mexico_City');
-  $año = date("y");
+  $año = date("Y");
   $month = date("m");
   $day = date("d");
 
-  $f = $row['fecha'];
-  date_default_timezone_set('America/Mexico_City'); 
-  $a = date("y");
-  $m = date("m");
-  $d = date("d");
+  $ultima_fecha = "SELECT fecha FROM expediente WHERE fecha = (SELECT MAX(fecha) from expediente)";
+  $fech_intro = $ultima_fecha;
+  $año_separado = substr("$fech_intro", 0,4);
+  
 
-  if ($a == $año){
+  if ($año_separado == $año){
     $num_consecutivo =$row["id"];
     $n=$num_consecutivo;
     $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
   } else {
-    $n_con =" ALTER TABLE num_consecutivo AUTO_INCREMENT = 0;";
+    $n_con ="ALTER TABLE expediente AUTO_INCREMENT = 0";
     $num_consecutivo =$row["id"];
     $n=$num_consecutivo;
     $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
