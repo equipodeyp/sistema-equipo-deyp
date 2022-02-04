@@ -149,7 +149,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <?php
-            if ($rowmedida['tipo'] == 'PROVISIONAL') {
+            if ($rowmedida['estatus'] == 'EN EJECUCION') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
                 <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="" onChange="act_datedef(this)">
@@ -157,7 +157,7 @@ $validacion = $fil_val['validacion'];
                   <option value="DEFINITIVA">DEFINITIVA</option>
                 </select>
               </div>';
-            }else if ($rowmedida['tipo'] == 'DEFINITIVA') {
+            }else if ($rowmedida['estatus'] != 'EN EJECUCION') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
                 <input class="form-control" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" value="'.$rowmedida['tipo'].'" type="text" readonly>
