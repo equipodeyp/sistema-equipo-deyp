@@ -169,6 +169,7 @@ $(document).ready(function() {
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th style="text-align:center">CONSECUTIVO</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
@@ -205,6 +206,7 @@ $(document).ready(function() {
                                   {
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'.$var_fila['año']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
