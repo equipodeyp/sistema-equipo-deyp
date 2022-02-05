@@ -186,6 +186,7 @@ if(dd<10){
   }
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_RECEPCION").max = new Date().toISOString().split("T")[0];
+
 </script>
 <script type="text/javascript">
 window.onload = function(){
@@ -197,7 +198,7 @@ window.onload = function(){
     dia='0'+dia;
   if(mes<10)
     mes='0'+mes
-  document.getElementById('fecha').value=dia+"-"+mes+"-"+ano;
+  document.getElementById('fecha').value=dia+"/"+mes+"/"+ano;
 }
 </script>
 </body>

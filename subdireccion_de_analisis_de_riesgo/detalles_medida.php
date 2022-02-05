@@ -528,13 +528,13 @@ if(dd<10){
   if(mm<10){
       mm='0'+mm
   }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_ACTUALIZACION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_MODIFICACION").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
-document.getElementById("FECHA_DE_EJECUCION").setAttribute("max", today);
-</script>
+today = dd+'/'+mm+'/'+yyyy;
 
+document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
+document.getElementById("FECHA_DESINCORPORACION1").setAttribute("max", today);
+document.getElementById("FECHA_INICIO").setAttribute("max", today);
+document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
+
+</script>
 </body>
 </html>

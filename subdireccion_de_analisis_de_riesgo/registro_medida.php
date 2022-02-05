@@ -368,12 +368,11 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
+
 document.getElementById("FECHA_ACTUALIZACION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_MODIFICACION").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
+document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
 document.getElementById("FECHA_DE_EJECUCION").setAttribute("max", today);
-document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
+
 </script>
 <script type="text/javascript">
 window.onload = function(){
