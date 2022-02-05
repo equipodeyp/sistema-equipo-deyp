@@ -169,7 +169,11 @@ $(document).ready(function() {
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<<<<<<< HEAD
                                     <th style="text-align:center">No.</th>
+=======
+                                    <th style="text-align:center">NO.</th>
+>>>>>>> 98df6d37b66200974d8d6cedb7b8f2ab175c14ca
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
