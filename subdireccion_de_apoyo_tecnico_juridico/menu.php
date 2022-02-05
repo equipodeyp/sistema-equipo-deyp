@@ -169,7 +169,7 @@ $(document).ready(function() {
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th style="text-align:center">NO.</th>
+                                    <th style="text-align:center">No.</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
@@ -177,7 +177,7 @@ $(document).ready(function() {
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
-                                    <th style="text-align:center">VALIDACION</th>
+                                    <th style="text-align:center">VALIDACIÓN</th>
                                     <th style="text-align:center">DETALLES</th>
 
                                 </tr>

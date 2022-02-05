@@ -143,11 +143,11 @@ $row=$result->fetch_assoc();
                                 <tr>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACION</th>
-                                    <th style="text-align:center">FECHA RECEPCION</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
+                                    <th style="text-align:center">FECHA RECEPCIÓN</th>
                                     <th style="text-align:center">FOLIO EXPEDIENTE</th>
                                     <th style="text-align:center">PERSONAS</th>
-                                    <th style="text-align:center">VALIDACION</th>
+                                    <th style="text-align:center">VALIDACIÓN</th>
                                     <th style="text-align:center">DETALLES</th>
 
                                 </tr>
