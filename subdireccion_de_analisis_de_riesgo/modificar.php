@@ -294,6 +294,20 @@ document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T
 </script>
 
 <script type="text/javascript">
+window.onload = function(){
+  var fecha = new Date();
+  var mes = fecha.getMonth()+1;
+  var dia = fecha.getDate();
+  var ano = fecha.getFullYear();
+  if(dia<10)
+    dia='0'+dia;
+  if(mes<10)
+    mes='0'+mes
+  document.getElementById('fecha').value=dia+"/"+mes+"/"+ano;
+}
+</script>
+
+<script type="text/javascript">
 var inputFecha = document.getElementById("FECHA_ACUERDO").value;
 console.log(inputFecha);
 var botonGuardar = document.getElementById("fecha_acuerdo");
