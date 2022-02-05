@@ -106,6 +106,12 @@ if ($verifica_medida == 1) {
                     VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$id_persona', '$id_med', '$fechacomentario')";
       $res_comment = $mysqli->query($comment);
     }
+    // creacion de la medida para validacion posterior
+    $validar = 'false';
+    $fecha_captura = date('y/m/d H:i:sa');
+    $val_medida = "INSERT INTO validar_medida(folioexpediente, id_persona, id_medida, validacion, fecha_captura)
+                    VALUES ('$folio_expediente', '$id_persona', '$id_med', '$validar', '$fecha_captura')";
+    $res_validar_medida = $mysqli->query($val_medida);
 // validacion del registro correcto
   if($res_addmedidas && $res_mult_meds && $res_radicacion){
     echo ("<script type='text/javaScript'>
