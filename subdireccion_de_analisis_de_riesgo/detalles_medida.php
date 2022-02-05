@@ -4,6 +4,12 @@
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -117,6 +123,35 @@ $validacion = $fil_val['validacion'];
           <div class="alert alert-info">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
           </div>
+          <?php
+          $fol=" SELECT * FROM validar_medida WHERE id_medida='$id_medida'";
+          $resultfol = $mysqli->query($fol);
+          $rowfol1=$resultfol->fetch_assoc();
+          $name_folio=$rowfol1['folioexpediente'];
+          // $id_person=$rowfol['id'];
+          // $idunico= $rowfol['identificador'];
+          // $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
+          // $res_val=$mysqli->query($valid);
+          // $fil_val = $res_val->fetch_assoc();
+          $validacion = $rowfol1['validacion'];
+            if ($validacion == 'true') {
+              echo "<div class='columns download'>
+                      <p>
+                      <img src='../image/true4.jpg' width='50' height='50' class='center'>
+                      <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>MEDIDA VALIDADA</FONT></h3>
+
+                      </p>
+              </div>";
+            }elseif ($validacion == 'false') {
+              echo "<div class='columns download'>
+                      <p>
+
+                      <h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>PENDIENTE POR VALIDAR</FONT></h3>
+
+                      </p>
+              </div>";
+            }
+            ?>
           <div class="col-md-6 mb-3 validar">
                 <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
@@ -244,7 +279,7 @@ $validacion = $fil_val['validacion'];
 
 
           <?php
-            if ($rowmedida['date_provisional'] != '') {
+            if ($rowmedida['date_provisional'] != '0000-00-00') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA <span class="required"></span></label>
                 <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="'.$rowmedida['date_provisional'].'" placeholder="" type="date" readonly>
@@ -309,16 +344,21 @@ $validacion = $fil_val['validacion'];
                 ?>
               </select>
             </div>
-            <div class="col-md-6 mb-3 validar">
-              <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
-              <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php echo $rowmedida['date_provisional']; ?>" readonly>
-            </div>
-
             <?php
+            if ($rowmedida['date_provisional'] == '0000-00-00') {
+              echo '';
+            }
+             ?>
+             <div class="col-md-6 mb-3 validar">
+               <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
+               <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php echo $rowmedida['date_provisional']; ?>" readonly>
+             </div>
+            <?php
+
               if ($rowmedida['estatus'] == 'EJECUTADA') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="text" value="'.$rowmultidisciplinario['date_close'].'" readonly>
+                  <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="row">
                   <div class="row">
@@ -416,7 +456,10 @@ $validacion = $fil_val['validacion'];
 
 
               <?php
-                if ($rowmedida['tipo'] == 'PROVISIONAL' || $rowmedida['estatus'] == 'EN EJECUCION') {
+              $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
+              $resultadomedida = $mysqli->query($medida);
+              $rowmedida12 = $resultadomedida->fetch_array();
+                if ($rowmedida12['estatus'] == 'EN EJECUCION') {
                   echo '<div class="row">
                     <div class="row">
 
@@ -426,9 +469,9 @@ $validacion = $fil_val['validacion'];
                     <div class="alert alert-info">
                       <h3 style="text-align:center">COMENTARIOS</h3>
                     </div>
-                    <!-- <section class="text-center" > -->
+
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-                  <!-- </section> -->
+
                   </div>
                   <div class="row">
                     <div>
@@ -450,6 +493,26 @@ $validacion = $fil_val['validacion'];
   </div>
 </div>
 <div class="contenedor">
+  <?php
+  $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
+  $resultadomedida = $mysqli->query($medida);
+  $rowmedida1 = $resultadomedida->fetch_array(MYSQLI_ASSOC);
+  $id_p = $rowmedida1['id_persona'];
+  $fol_exp =$rowmedida1['folioexpediente'];
+  $id_m = $rowmedida1['id'];
+  $estatus_medida = $rowmedida1['estatus'];
+  $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
+  $res_val=$mysqli->query($valid);
+  $fil_val = $res_val->fetch_assoc();
+  $validacion = $fil_val['validacion'];
+    if (($estatus_medida != 'EN EJECUCION') && ($name == 'guillermo' && $validacion != 'true')) {
+      echo "<div>
+              <p>
+                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+              </p>
+      </div>";
+    }
+   ?>
 <a href="detalles_persona.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
 <!-- SCRIPT DE FECHAS  -->
@@ -465,13 +528,13 @@ if(dd<10){
   if(mm<10){
       mm='0'+mm
   }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_ACTUALIZACION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_MODIFICACION").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
-document.getElementById("FECHA_DE_EJECUCION").setAttribute("max", today);
-</script>
+today = dd+'/'+mm+'/'+yyyy;
 
+document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
+document.getElementById("FECHA_DESINCORPORACION1").setAttribute("max", today);
+document.getElementById("FECHA_INICIO").setAttribute("max", today);
+document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
+
+</script>
 </body>
 </html>

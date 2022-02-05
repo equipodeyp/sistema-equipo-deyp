@@ -155,6 +155,14 @@ if ($verifica_update_person == 1) {
                   VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_p', '$id_persona')";
     $res_comment = $mysqli->query($comment);
   }
+
+  // regresa la validacion a false para validar nuevamente la informacion
+  $validacion = 'false';
+  date_default_timezone_set("America/Mexico_City");
+  $fecha_validacion = date('y/m/d H:i:sa');
+
+  $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_persona'";
+  $res_validacion = $mysqli->query($datos_validacion);
   // validacion de update correcto
   if($res_radicacion){
     echo ("<script type='text/javaScript'>
