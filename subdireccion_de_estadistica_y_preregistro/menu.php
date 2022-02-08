@@ -139,6 +139,7 @@ $row=$result->fetch_assoc();
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th style="text-align:center">NO.</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACION</th>
@@ -169,6 +170,7 @@ $row=$result->fetch_assoc();
                                   {
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";

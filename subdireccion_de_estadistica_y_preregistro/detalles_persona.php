@@ -168,7 +168,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     		<div class="secciones">
     			<article id="tab1">
     				<div class="container">
-              <form class="container well form-horizontal" action="update_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                       <?php
                       $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
@@ -843,7 +843,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
