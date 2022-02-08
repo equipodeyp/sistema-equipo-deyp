@@ -452,23 +452,76 @@ $validacion = $fil_val['validacion'];
 
 
               </div>
+              <div class="row">
+                <div class="row">
+
+                  <hr class="mb-4">
+                </div>
+
+                <div class="alert alert-info">
+                  <h3 style="text-align:center">COMENTARIOS</h3>
+                </div>
+
+              <div id="contenido" class="">
+                <div class="">                  
+                  <table class="table table-striped table-bordered " >
+                    <thead >
+
+                    </thead>
+                    <?php
+                    $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida'";
+                    $var_resultado = $mysqli->query($tabla);
+                    while ($var_fila=$var_resultado->fetch_array())
+                    {
+                    echo "<tr>";
+                    echo "<td>";
+                    echo "<ul>
+                          <li>
+
+                          <div>
+                          <span>
+                          usuario:".$var_fila['usuario']."
+                          </span>
+                          </div>
+                          <div>
+                          <span>
+                            ".$var_fila['comentario']."
+                          </span>
+                          </div>
+                          <div>
+                          <span>
+                          ".$var_fila['fecha']."
+                          </span>
+                          </div>
+                          </li>
+                    </ul>";echo "</td>";
+                    echo "</tr>";
+
+                    }
+                  ?>
+                  </table>
+                </div>
+              </div>
 
 
 
               <?php
               $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
               $resultadomedida = $mysqli->query($medida);
+              $rowmedida1 = $resultadomedida->fetch_array(MYSQLI_ASSOC);
+              $id_p = $rowmedida1['id_persona'];
+              $fol_exp =$rowmedida1['folioexpediente'];
+              $id_m = $rowmedida1['id'];
+              $estatus_medida = $rowmedida1['estatus'];
+              $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
+              $resultadomedida = $mysqli->query($medida);
               $rowmedida12 = $resultadomedida->fetch_array();
-                if ($rowmedida12['estatus'] == 'EN EJECUCION') {
-                  echo '<div class="row">
-                    <div class="row">
-
-                      <hr class="mb-4">
-                    </div>
-
-                    <div class="alert alert-info">
-                      <h3 style="text-align:center">COMENTARIOS</h3>
-                    </div>
+              $valid13 = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
+              $res_val13=$mysqli->query($valid13);
+              $fil_val13 = $res_val13->fetch_assoc();
+              $validacion13 = $fil_val13['validacion'];
+                if ($validacion13 != 'true') {
+                  echo '
 
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
 
