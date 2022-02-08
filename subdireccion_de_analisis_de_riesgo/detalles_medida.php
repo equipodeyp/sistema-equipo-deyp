@@ -157,7 +157,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID UNICO DEL SUJETO<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
           <!-- <div class="col-md-6 mb-3 validar">
@@ -175,11 +175,11 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CATEAGORIA_MEDIDA">CATEGORIA DE LA MEDIDA<span class="required"></span></label>
+            <label for="CATEAGORIA_MEDIDA">CATEGORÍA DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA" onChange="selectmedida(this)" disabled>
               <option style="visibility: hidden" value="<?php echo $rowmedida['categoria']; ?>"><?php echo $rowmedida['categoria']; ?></option>
               <option value="INICIAL">INICIAL</option>
-              <option value="AMPLIACION">AMPLIACION</option>
+              <option value="AMPLIACION">AMPLIACIÓN</option>
             </select>
           </div>
 
@@ -201,7 +201,7 @@ $validacion = $fil_val['validacion'];
            ?>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
+            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)" disabled>
               <option style="visibility: hidden" id="opt-clasificacion-medida" value="<?php echo $rowmedida['clasificacion']; ?>"><?php echo $rowmedida['clasificacion']; ?></option>
               <option value="ASISTENCIA">ASISTENCIA</option>
@@ -244,7 +244,7 @@ $validacion = $fil_val['validacion'];
             echo '</div>';
             if ($rowmedida['medida']=='XI. EJECUCION DE MEDIDAS PROCESALES') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
-               <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
+               <label for="RESGUARDO_XI">EJECUCIÓN DE LAS MEDIDAS PROCESALES<span class="required"></span></label>
                <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" disabled>
                  <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxi = "SELECT * FROM medidaresguardoxi";
@@ -357,7 +357,7 @@ $validacion = $fil_val['validacion'];
 
               if ($rowmedida['estatus'] == 'EJECUTADA') {
                 echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION<span class="required"></span></label>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="row">
@@ -374,7 +374,7 @@ $validacion = $fil_val['validacion'];
                 </div>';
                 if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
                   echo '<div class="col-md-6 mb-3 validar">
-                    <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+                    <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
                     <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
                   </div>';
                   if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
@@ -423,15 +423,15 @@ $validacion = $fil_val['validacion'];
               <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
                 <!-- <option value="CANCELACION">CANCELACION</option> -->
-                <option value="CONCLUSION">CONCLUSION</option>
+                <option value="CONCLUSION">CONCLUSIÓN</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
             </div>
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-               <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+               <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                 <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                 <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                  <?php
                  $art35 = "SELECT * FROM conclusionart35";
                  $answerart35 = $mysqli->query($art35);

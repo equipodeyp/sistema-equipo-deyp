@@ -121,14 +121,16 @@ $row=$result->fetch_assoc();
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php   echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php  echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
-          <h2 style="text-align:center">
+          <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h2>
+          </h5>
         </div>
+
+        <!-- <h3 style="text-align:center">Tabla de Expedientes</h3> -->
         <!-- <div class="row">
           <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
         </div> -->
@@ -140,13 +142,14 @@ $row=$result->fetch_assoc();
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
+                            <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
                                     <th style="text-align:center">No.</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
                                     <th style="text-align:center">FECHA RECEPCIÓN</th>
-                                    <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                                    <th style="text-align:center">FOLIO</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACIÓN</th>

@@ -113,7 +113,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID UNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
 
@@ -122,11 +122,11 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CATEAGORIA_MEDIDA">CATEGORIA DE LA MEDIDA<span class="required"></span></label>
+            <label for="CATEAGORIA_MEDIDA">CATEGORÍA DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA" required>
-              <option disabled selected value>SELECCIONE UNA OPCION</option>
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="INICIAL">INICIAL</option>
-              <option value="AMPLIACION">AMPLIACION</option>
+              <option value="AMPLIACION">AMPLIACIÓN</option>
             </select>
           </div>
 
@@ -142,7 +142,7 @@ $validacion = $fil_val['validacion'];
           <div class="col-md-6 mb-3 validar">
             <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="selectmedida(this)" required="">
-              <option disabled selected value>SELECCIONE LA CLASIFICACION DE LA MEDIDA</option>
+              <option disabled selected value>SELECCIONE LA CLASIFICACIÓN DE LA MEDIDA</option>
               <option value="ASISTENCIA">ASISTENCIA</option>
               <option value="RESGUARDO">RESGUARDO</option>
             </select>
@@ -236,8 +236,8 @@ $validacion = $fil_val['validacion'];
           <div class="col-md-6 mb-3 validar">
             <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
-              <option disabled selected value>SELECCIONA UN ESTATUS</option>
-              <option value="EN EJECUCION">EN EJECUCION</option>
+              <option disabled selected value>SELECCIONE UN ESTATUS</option>
+              <option value="EN EJECUCION">EN EJECUCIÓN</option>
               <option value="EJECUTADA">EJECUTADA</option>
               <option value="CANCELADA">CANCELADA</option>
               </select>
@@ -279,14 +279,14 @@ $validacion = $fil_val['validacion'];
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">CONCLUSION / CANCELACIÓN DE LA MEDIDA</h3>
+                  <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN DE LA MEDIDA</h3>
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
                   <label for="CONCLUSION_CANCELACION">CONCLUSIÓN</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
-                    <option disabled selected value="">SELECCIONE UNA OPCION</option>
-                    <option value="CONCLUSION">CONCLUSION</option>
+                    <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
+                    <option value="CONCLUSION">CONCLUSIÓN</option>
                     <option value="NO APLICA">NO APLICA</option>
                   </select>
                 </div>
@@ -294,7 +294,7 @@ $validacion = $fil_val['validacion'];
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                   <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTICULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
-                    <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                    <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <?php
                     $art35 = "SELECT * FROM conclusionart35";
                     $answerart35 = $mysqli->query($art35);
