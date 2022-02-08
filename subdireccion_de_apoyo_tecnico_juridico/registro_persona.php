@@ -319,12 +319,12 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="TELEFONO_FIJO">TELEFONO FIJO <span class="required"></span></label>
+              <label for="TELEFONO_FIJO">TELÉFONO FIJO <span class="required"></span></label>
               <input autocomplete="off" class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder=""  type="text" maxlength="10">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="TELEFONO_CELULAR">TELEFONO CELULAR<span class="required"></span></label>
+              <label for="TELEFONO_CELULAR">TELÉFONO CELULAR<span class="required"></span></label>
               <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
@@ -502,10 +502,10 @@ $num_consecutivo =$row["id"];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">VALORACIÓN JURIDICA</h3>
+            <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="RESULTADO_VALORACION_JURIDICA" class="is-required">RESULTADO DE LA VALORACIÓN JURIDICA<span class="required"></span></label>
+            <label for="RESULTADO_VALORACION_JURIDICA" class="is-required">RESULTADO DE LA VALORACIÓN JURÍDICA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="SI PROCEDE">SI PROCEDE</option>
