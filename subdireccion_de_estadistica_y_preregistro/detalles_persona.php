@@ -447,9 +447,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
                     <?php
                     if ($rowfol['foto']=='') {
-                      echo "no hay foto";
+
                     }else {
-                      echo "si hay foto";
+
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
@@ -465,9 +465,49 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
-                  <section class="text-center" >
+                  <div id="contenido" class="">
+  									<div class="">
+  		  							<table class="table table-striped table-bordered " >
+  		  								<thead >
+
+  		  								</thead>
+  		  								<?php
+  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio' AND id_persona = '$id_person' AND comentario_mascara = '1'";
+  		       						$var_resultado = $mysqli->query($tabla);
+  		      						while ($var_fila=$var_resultado->fetch_array())
+  		      						{
+  		        					echo "<tr>";
+  		          				echo "<td>";
+                        echo "<ul>
+                              <li>
+
+                              <div>
+                              <span>
+                              usuario:".$var_fila['usuario']."
+                              </span>
+                              </div>
+                              <div>
+                              <span>
+                                ".$var_fila['comentario']."
+                              </span>
+                              </div>
+                              <div>
+                              <span>
+                              ".$var_fila['fecha']."
+                              </span>
+                              </div>
+                              </li>
+                        </ul>";echo "</td>";
+  		          				echo "</tr>";
+
+  		      						}
+  		      					?>
+  		  							</table>
+  									</div>
+  		  					</div>
+
                   <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-                </section>
+
                 </div>
                 <div class="row">
                   <div>
@@ -536,12 +576,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
         		  			<th>ID</th>
-                    <th>Tipo de medida</th>
-                    <th>Clasificacion medida</th>
-                    <th>Estatus</th>
-                    <th>Municipio</th>
-                    <th>Fecha ejecucion</th>
-        		  			<th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nueva Medida</button> </a> </th>
+                    <th>TIPO DE MEDIDA</th>
+                    <th>CLASIFICACIÓN DE LA MEDIDA</th>
+                    <th>ESTATUS</th>
+                    <th>MUNICIPIO</th>
+                    <th>FECHA DE EJECUCIÓN</th>
+        		  			<th>DETALLES</th>
         		  		</thead>
         		  		<?php
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
@@ -555,7 +595,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
         		          echo "<td>"; echo $var_fila['ejecucion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['date_ejecucion']; echo "</td>";
-        		          echo "<td>  <a href='mod_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
+        		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>VER</button> </a> </td>";
         		        echo "</tr>";
         		      }
         		      ?>
