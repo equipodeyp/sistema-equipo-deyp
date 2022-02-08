@@ -528,12 +528,9 @@ if(dd<10){
   if(mm<10){
       mm='0'+mm
   }
-today = dd+'/'+mm+'/'+yyyy;
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 
-document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION1").setAttribute("max", today);
-document.getElementById("FECHA_INICIO").setAttribute("max", today);
-document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
 
 </script>
 </body>

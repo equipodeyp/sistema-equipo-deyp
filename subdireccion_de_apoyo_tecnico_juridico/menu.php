@@ -149,7 +149,7 @@ $(document).ready(function() {
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php   echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php  echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
@@ -161,6 +161,8 @@ $(document).ready(function() {
           <a href="crear_expediente.php" class="btn btn-primary">Nuevo Expediente</a>
         </div>
         <br>
+
+        <h3 style="text-align:center">Tabla de Expedientes</h3>
         <!--Ejemplo tabla con DataTables-->
         <div class="">
             <div class="row">
@@ -174,7 +176,7 @@ $(document).ready(function() {
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
                                     <th style="text-align:center">FECHA RECEPCIÓN</th>
-                                    <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                                    <th style="text-align:center">FOLIO</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACIÓN</th>

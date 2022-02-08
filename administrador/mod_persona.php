@@ -623,7 +623,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <option value="NO APLICA">NO APLICA</option>
                     </select>
                   </div>
-
                 </div>
 
                 <div class="row">
