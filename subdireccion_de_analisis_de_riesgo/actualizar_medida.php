@@ -10,13 +10,13 @@ if ($verifica_update_person == 1) {
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
   // carga de datsos
-  $id_persona = $_GET['folio'];   //variable del folio al que se relaciona
-
+  $id_persona = $_GET['folio'];   //variable del id de la medida
+// echo 'id medida = ' .$id_persona;
   $medida = "SELECT * FROM medidas WHERE id = '$id_persona'";
   $resultadomedida = $mysqli->query($medida);
   $rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
   $id_p = $rowmedida['id_persona'];
-
+// echo 'id persona ='. $id_p;
   // datos de la autoridad
   $tipo_medida =$_POST['TIPO_DE_MEDIDA'];
   $clasificacion_medida=$_POST['CLASIFICACION_MEDIDA'];
@@ -116,21 +116,23 @@ if ($verifica_update_person == 1) {
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
-  $com_folio=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $com_folio=" SELECT * FROM datospersonales WHERE id='$id_p'";
   $res_fol = $mysqli->query($com_folio);
   $row_fol=$res_fol->fetch_assoc();
   $fol_exp = $row_fol['folioexpediente'];
+  // echo $fol_exp;
   $comment_mascara = '2';
   // consulta de  la fuente de radicacion
   // $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion_m'";
   // $r_rad = $mysqli->query($radcon);
   // $ro_rad=$r_rad->fetch_assoc();
   // $name_radicacion_m=$ro_rad['nombre'];
-  $folio_exp=" SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $folio_exp=" SELECT * FROM datospersonales WHERE id='$id_p'";
   $resultfolio_exp = $mysqli->query($folio_exp);
   $rowfolio_exp=$resultfolio_exp->fetch_assoc();
   $folio_expediente=$rowfolio_exp['folioexpediente'];
   $persona = $rowfolio_exp['id_persona'];
+  // echo $folio_expediente. $persona;
 
   // $addmedidas = "INSERT INTO medidas (tipo, clasificacion, medida, descripcion, date_provisional, date_definitva, modificacion, date_modificada, tipo_modificacion, estatus, ejecucion, date_ejecucion, folioexpediente, id_persona)
   //                VALUES('$tipo_medida', '$clasificacion_medida', '$medida', '$med_res', '$inicio_medida', '$act_medida', '$medida_mod', '$fecha_mod', '$tipo_mod', '$estatus', '$municipio_medida', '$date_ejec', '$folio_expediente', '$id_persona')";
@@ -152,7 +154,7 @@ if ($verifica_update_person == 1) {
   // insertar comentarios de cambios
   if ($comment != '') {
     $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
-                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_p', '$id_persona')";
+                  VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$id_p', '$id_persona')";
     $res_comment = $mysqli->query($comment);
   }
 
