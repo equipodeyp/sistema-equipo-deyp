@@ -463,13 +463,13 @@ $validacion = $fil_val['validacion'];
                 </div>
 
               <div id="contenido" class="">
-                <div class="">                  
+                <div class="">
                   <table class="table table-striped table-bordered " >
                     <thead >
 
                     </thead>
                     <?php
-                    $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida'";
+                    $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida' AND comentario_mascara = '2'";
                     $var_resultado = $mysqli->query($tabla);
                     while ($var_fila=$var_resultado->fetch_array())
                     {
