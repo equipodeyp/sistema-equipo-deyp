@@ -162,7 +162,7 @@ $(document).ready(function() {
         </div>
         <br>
 
-        <h3 style="text-align:center">Tabla de Expedientes</h3>
+        
         <!--Ejemplo tabla con DataTables-->
         <div class="">
             <div class="row">
@@ -170,6 +170,7 @@ $(document).ready(function() {
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
+                              <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
                                     <th style="text-align:center">No.</th>
                                     <th style="text-align:center">ID</th>

@@ -151,17 +151,21 @@ if ($verifica_update_person == 1) {
   // $res_radicacion = $mysqli->query($fuente_rad);
   $fuente_rad = "UPDATE radicacion_mascara2 SET fuente='$radicacion_m', descripcion='$des_rad' WHERE id_medida = '$id_persona'";
   $res_radicacion = $mysqli->query($fuente_rad);
+
+ // regresa la validacion a false para validar nuevamente la informacion
+ $validacion = 'false';
+ date_default_timezone_set("America/Mexico_City");
+ $fecha_validacion = date('y/m/d H:i:sa');
+ $fecha_captura = date('y/m/d H:i:sa');
+
   // insertar comentarios de cambios
   if ($comment != '') {
-    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
-                  VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$id_p', '$id_persona')";
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
+                  VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$id_p', '$id_persona', '$fecha_captura')";
     $res_comment = $mysqli->query($comment);
   }
 
-  // regresa la validacion a false para validar nuevamente la informacion
-  $validacion = 'false';
-  date_default_timezone_set("America/Mexico_City");
-  $fecha_validacion = date('y/m/d H:i:sa');
+ 
 
   $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_persona'";
   $res_validacion = $mysqli->query($datos_validacion);

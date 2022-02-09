@@ -155,7 +155,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 			}
 			// echo $genero;
 			?>
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+    <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -202,7 +202,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     }
                     ?>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+                    <h3 style="text-align:center">DATOS DEL EXPEDIENTE</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                         <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>

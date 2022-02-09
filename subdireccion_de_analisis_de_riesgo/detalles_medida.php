@@ -568,7 +568,7 @@ $validacion = $fil_val['validacion'];
   if ($fil_val['validar_datos'] == 'false') {
     echo "<div>
             <p>
-              <a href='validar_datos_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+              <a href='validar_datos_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR INFORMACIÓN</a>
             </p>
     </div>";
   }elseif ($fil_val['validar_datos'] == 'true') {
