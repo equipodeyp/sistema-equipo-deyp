@@ -1038,7 +1038,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th>ESTATUS</th>
                     <th>MUNICIPIO</th>
                     <th>FECHA EJECUCIÓN</th>
-        		  			<th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
+                    <th>DETALLES</th>
+        		  			<!-- <th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVA MEDIDA</button> </a> </th> -->
         		  		</thead>
         		  		<?php
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
@@ -1053,7 +1054,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
         		          echo "<td>"; echo $var_fila['ejecucion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['date_ejecucion']; echo "</td>";
-        		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
+        		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>VER</button> </a> </td>";
         		        echo "</tr>";
         		      }
         		      ?>

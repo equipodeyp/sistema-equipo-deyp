@@ -137,20 +137,20 @@ if ($verifica_update_person == 1) {
   // $addmedidas = "INSERT INTO medidas (tipo, clasificacion, medida, descripcion, date_provisional, date_definitva, modificacion, date_modificada, tipo_modificacion, estatus, ejecucion, date_ejecucion, folioexpediente, id_persona)
   //                VALUES('$tipo_medida', '$clasificacion_medida', '$medida', '$med_res', '$inicio_medida', '$act_medida', '$medida_mod', '$fecha_mod', '$tipo_mod', '$estatus', '$municipio_medida', '$date_ejec', '$folio_expediente', '$id_persona')";
   // $res_addmedidas = $mysqli->query($addmedidas);
-  $addmedidas = "UPDATE medidas SET tipo='$tipo_medida', date_definitva='$act_medida', estatus='$estatus', modificacion='$medida_mod', date_ejecucion='$date_conclusion' WHERE id = '$id_persona'";
-  $res_addmedidas = $mysqli->query($addmedidas);
+  // $addmedidas = "UPDATE medidas SET tipo='$tipo_medida', date_definitva='$act_medida', estatus='$estatus', modificacion='$medida_mod', date_ejecucion='$date_conclusion' WHERE id = '$id_persona'";
+  // $res_addmedidas = $mysqli->query($addmedidas);
   //
   // $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, otherart35, date_close, folioexpediente, id_persona)
   //               VALUES ('$acuerdo', '$conclusionart35', '$otherart35', '$date_conclusion', '$folio_expediente', '$id_persona')";
   // $res_mult_meds = $mysqli->query($mult_meds);
-  $mult_meds = "UPDATE multidisciplinario_medidas SET acuerdo='$acuerdo', conclusionart35='$conclusionart35', otherart35='$otherart35', date_close='$date_conclusion' WHERE  id_medida = '$id_persona'";
-  $res_mult_meds = $mysqli->query($mult_meds);
+  // $mult_meds = "UPDATE multidisciplinario_medidas SET acuerdo='$acuerdo', conclusionart35='$conclusionart35', otherart35='$otherart35', date_close='$date_conclusion' WHERE  id_medida = '$id_persona'";
+  // $res_mult_meds = $mysqli->query($mult_meds);
   //
   // $fuente_rad = "INSERT INTO radicacion_mascara2(fuente, descripcion, id_persona, folioexpediente)
   // VALUES ('$radicacion_m', '$des_rad', '$id_persona', '$folio_expediente')";
   // $res_radicacion = $mysqli->query($fuente_rad);
-  $fuente_rad = "UPDATE radicacion_mascara2 SET fuente='$radicacion_m', descripcion='$des_rad' WHERE id_medida = '$id_persona'";
-  $res_radicacion = $mysqli->query($fuente_rad);
+  // $fuente_rad = "UPDATE radicacion_mascara2 SET fuente='$radicacion_m', descripcion='$des_rad' WHERE id_medida = '$id_persona'";
+  // $res_radicacion = $mysqli->query($fuente_rad);
   // insertar comentarios de cambios
   if ($comment != '') {
     $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida)
@@ -166,7 +166,7 @@ if ($verifica_update_person == 1) {
   $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_persona'";
   $res_validacion = $mysqli->query($datos_validacion);
   // validacion de update correcto
-  if($res_radicacion){
+  if($res_comment){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$id_p';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')

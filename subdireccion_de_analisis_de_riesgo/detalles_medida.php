@@ -128,29 +128,36 @@ $validacion = $fil_val['validacion'];
           $resultfol = $mysqli->query($fol);
           $rowfol1=$resultfol->fetch_assoc();
           $name_folio=$rowfol1['folioexpediente'];
-          // $id_person=$rowfol['id'];
-          // $idunico= $rowfol['identificador'];
-          // $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
-          // $res_val=$mysqli->query($valid);
-          // $fil_val = $res_val->fetch_assoc();
           $validacion = $rowfol1['validacion'];
-            if ($validacion == 'true') {
-              echo "<div class='columns download'>
-                      <p>
-                      <img src='../image/true4.jpg' width='50' height='50' class='center'>
-                      <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>MEDIDA VALIDADA</FONT></h3>
+          if ($rowfol1['validar_datos'] == 'false') {
+            echo "<div class='columns download'>
+                    <p>
 
-                      </p>
-              </div>";
-            }elseif ($validacion == 'false') {
-              echo "<div class='columns download'>
-                      <p>
+                    <h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>PENDIENTE POR VALIDAR LA INFORMACIÓN</FONT></h3>
 
-                      <h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>PENDIENTE POR VALIDAR</FONT></h3>
+                    </p>
+            </div>";
+          }elseif ($rowfol1['validar_datos'] == 'true') {
 
-                      </p>
-              </div>";
-            }
+              if ($validacion == 'true') {
+                echo "<div class='columns download'>
+                        <p>
+                        <img src='../image/true4.jpg' width='50' height='50' class='center'>
+                        <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>MEDIDA VALIDADA</FONT></h3>
+
+                        </p>
+                </div>";
+              }elseif ($validacion == 'false') {
+                echo "<div class='columns download'>
+                        <p>
+
+                        <h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>PENDIENTE POR VALIDAR EL ESTATUS</FONT></h3>
+
+                        </p>
+                </div>";
+              }
+          }
+
             ?>
           <div class="col-md-6 mb-3 validar">
                 <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
@@ -530,7 +537,7 @@ $validacion = $fil_val['validacion'];
                     <div>
                         <br>
                         <br>
-                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
                     </div>
                   </div>';
                 }
@@ -558,13 +565,22 @@ $validacion = $fil_val['validacion'];
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
-    if (($estatus_medida != 'EN EJECUCION') && ($name == 'guillermo' && $validacion != 'true')) {
+  if ($fil_val['validar_datos'] == 'false') {
+    echo "<div>
+            <p>
+              <a href='validar_datos_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR INFORMACIÓN</a>
+            </p>
+    </div>";
+  }elseif ($fil_val['validar_datos'] == 'true') {
+    if ($estatus_medida != 'EN EJECUCION' && $name == 'guillermo' && $validacion != 'true') {
       echo "<div>
               <p>
-                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR ESTATUS</a>
               </p>
       </div>";
     }
+  }
+
    ?>
 <a href="detalles_persona.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
