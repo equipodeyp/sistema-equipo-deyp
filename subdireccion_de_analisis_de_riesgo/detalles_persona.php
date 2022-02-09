@@ -453,10 +453,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <input readonly class="form-control" name="localidad_suj" id="localidad_suj" placeholder="" value="'.$rowdomicilio['seleccionelocalidad'].'" type="text">
                     </div>
                     <div class="col-md-6 mb-3 validar" id="calle_s">
-                      <label for="CALLE">CALLE<span class="required"></span></label>
+                      <label for="CALLE">CALLE Y NÚMERO <span class="required"></span></label>
                       <input readonly class="form-control" id="calle_suj" name="calle_suj" placeholder="" value="'.$rowdomicilio['calle'].'" type="text">
                     </div>
-
+                    
                     <div class="col-md-6 mb-3 validar" id="cp_s">
                       <label for="CP">C.P.<span class="required"></span></label>
                       <input readonly class="form-control" id="codigo_postal_s" name="codigo_postal_s" placeholder="" value="'.$rowdomicilio['cp'].'" type="text" maxlength="5">
