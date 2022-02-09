@@ -98,16 +98,16 @@ $row=$result->fetch_assoc();
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img style'text-align:center' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img style='text-align:center' src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -118,10 +118,11 @@ $row=$result->fetch_assoc();
           <img src="../image/ups2.png" alt="" width="1400" height="70">
           <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
+
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php  echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
@@ -163,16 +164,12 @@ $row=$result->fetch_assoc();
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
                               $fol_exp =$row['fol_exp'];
 
-
-
-
                               $tabla="SELECT * FROM expediente";
                               $var_resultado = $mysqli->query($tabla);
+
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $fol_exp2=$var_fila['fol_exp'];
-
-
 
                                 $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
                                 $r=$mysqli->query($cant);

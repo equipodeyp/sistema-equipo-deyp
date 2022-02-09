@@ -194,7 +194,7 @@ $validacion = $fil_val['validacion'];
             if ($rowmedida['estatus'] == 'EN EJECUCION') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-                <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="" onChange="act_datedef(this)">
+                <select disabled class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="" onChange="act_datedef(this)">
                   <option style="visibility: hidden" id="opt-tipo-medida" value="'.$rowmedida['tipo'].'">'.$rowmedida['tipo'].'</option>
                   <option value="DEFINITIVA">DEFINITIVA</option>
                 </select>
@@ -322,7 +322,7 @@ $validacion = $fil_val['validacion'];
               if ($rowmedida['estatus'] == 'EN EJECUCION') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
+                  <select disabled class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
                     <option style="visibility: hidden" id="opt-estatus-medida" value="'.$rowmedida['estatus'].'">'.$rowmedida['estatus'].'</option>
                     <!-- <option value="EN EJECUCION" >EN EJECUCION</option> -->
                     <option value="EJECUTADA">EJECUTADA</option>
@@ -332,7 +332,7 @@ $validacion = $fil_val['validacion'];
               }elseif ($rowmedida['estatus'] != 'EN EJECUCION') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-                  <input class="form-control" id="ESTATUS_MEDIDA" name="ESTATUS_MEDIDA" placeholder="" value="'.$rowmedida['estatus'].'" type="text" readonly>
+                  <input disabled class="form-control" id="ESTATUS_MEDIDA" name="ESTATUS_MEDIDA" placeholder="" value="'.$rowmedida['estatus'].'" type="text" readonly>
                 </div>';
               }
              ?>
@@ -537,7 +537,7 @@ $validacion = $fil_val['validacion'];
                     <div>
                         <br>
                         <br>
-                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">Añadir Comentario</button>
                     </div>
                   </div>';
                 }
@@ -568,7 +568,7 @@ $validacion = $fil_val['validacion'];
   if ($fil_val['validar_datos'] == 'false') {
     echo "<div>
             <p>
-              <a href='validar_datos_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR INFORMACIÓN</a>
+              <a href='validar_datos_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
             </p>
     </div>";
   }elseif ($fil_val['validar_datos'] == 'true') {

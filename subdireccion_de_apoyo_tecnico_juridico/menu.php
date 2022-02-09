@@ -125,17 +125,17 @@ $(document).ready(function() {
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img style'text-align:center' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img style'text-align:center' src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
         <!-- <img src="$genero" alt="" width="100" height="100"> -->
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -149,13 +149,13 @@ $(document).ready(function() {
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php  echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
-          <h2 style="text-align:center">
+          <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h2>
+          </h5>
         </div>
         <div class="row">
           <a href="crear_expediente.php" class="btn btn-primary">Nuevo Expediente</a>

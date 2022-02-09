@@ -7,9 +7,11 @@ if ($verifica_update_person == 1) {
   // echo $verifica_update_person;
   unset($_SESSION['verifica_update_person']);
   $name = $_SESSION['usuario'];
+
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
+  
   // carga de datos
   $fol_exp1 = $_GET['folio'];  //variable del folio al que se relaciona
 // echo $fol_exp1;

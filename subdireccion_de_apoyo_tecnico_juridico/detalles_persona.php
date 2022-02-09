@@ -27,6 +27,8 @@ $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
+
+
 // echo $name_folio;
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
@@ -666,7 +668,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <input class="form-control" id="OTRO_DELITO_SECUNDARIO" name="OTRO_DELITO_SECUNDARIO" placeholder="" value="'.$rowprocess['otrodelitosecundario'].'" type="text" value="" readonly>
                     </div>';
                   }
-                   ?>
+                  ?>
 
                   <div id="delitosec" class="col-md-6 mb-3 validar" style="display:none;">
                     <label for="OTRO_DELITO_SECUNDARIO1">OTRO DELITO SECUNDARIO <span class="required"></span></label>
@@ -836,6 +838,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   $rowfol=$resultfol->fetch_assoc();
   $name_folio=$rowfol['folioexpediente'];
   $id_person=$rowfol['id'];
+
   $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();

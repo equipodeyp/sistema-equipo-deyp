@@ -575,7 +575,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  <div id="contenido">
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
-        		  			<th>ID</th>
+        		  			<th>No.</th>
                     <th>TIPO DE MEDIDA</th>
                     <th>CLASIFICACIÓN DE LA MEDIDA</th>
                     <th>ESTATUS</th>
@@ -588,14 +588,15 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		       $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
+                    $cont_med = $cont_med + 1;
         		        echo "<tr>";
-        		          echo "<td>"; echo $var_fila['id']; echo "</td>";
+        		          echo "<td>"; echo $cont_med; echo "</td>";
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
         		          echo "<td>"; echo $var_fila['ejecucion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['date_ejecucion']; echo "</td>";
-        		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>DETALLES</button> </a> </td>";
+        		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
         		        echo "</tr>";
         		      }
         		      ?>
