@@ -572,7 +572,7 @@ $validacion = $fil_val['validacion'];
             </p>
     </div>";
   }elseif ($fil_val['validar_datos'] == 'true') {
-    if ($estatus_medida != 'EN EJECUCION' && $name == 'guillermo' && $validacion != 'true') {
+    if ($estatus_medida != 'EN EJECUCION' && $validacion != 'true') {
       echo "<div>
               <p>
                 <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR ESTATUS</a>

@@ -25,7 +25,7 @@ if ($verifica_update_person == 1) {
   date_default_timezone_set("America/Mexico_City");
   $fecha_validacion = date('y/m/d H:i:sa');
 
-  $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_medida'";
+  $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha', usuario2 = '$name' WHERE id_medida = '$id_medida'";
   $res_validacion = $mysqli->query($datos_validacion);
 
   // insertar comentarios de cambios
