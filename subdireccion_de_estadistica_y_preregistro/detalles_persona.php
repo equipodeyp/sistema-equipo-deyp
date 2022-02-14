@@ -235,8 +235,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <label for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
                       <option style="visibility: hidden" id="opt-incorporacion" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
-                      <option value="SUJETO INCORPORADO">PERSONA INCORPORADA AL PROGRAMA</option>
-                      <option value="SUJETO NO INCORPORADO">PERSONA NO INCORPORADA</option>
+                      <option value="SUJETO INCORPORADO">SUJETO INCORPORADO</option>
+                      <option value="SUJETO NO INCORPORADO">SUJETO NO INCORPORADO</option>
                     </select>
                   </div>
 
@@ -338,6 +338,50 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input class="form-control" id="FECHA_DESINCORPORACION_UNO" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
                   </div>
 
+                </div>
+
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">CONVENIOS DE ADHESION</h3>
+                  </div>
+                  <div id="contenido">
+            		  	<table class="table table-striped table-bordered ">
+            		  		<thead >
+            		  			<th>No.</th>
+                        <th>FECHA FIRMA</th>
+                        <th>VIGENCIA</th>
+            		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVO CONVENIO</button> </a> </th>
+            		  		</thead>
+
+            		  	</table>
+            		  </div>
+            			<div id="footer">
+            		  </div>
+                </div>
+
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">CONVENIOS MODIFICATORIOS</h3>
+                  </div>
+                  <div id="contenido">
+            		  	<table class="table table-striped table-bordered ">
+            		  		<thead >
+            		  			<th>No.</th>
+                        <th>FECHA FIRMA</th>
+                        <th>DESCRIPCION</th>
+            		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVO CONVENIO</button> </a> </th>
+            		  		</thead>
+
+            		  	</table>
+            		  </div>
+            			<div id="footer">
+            		  </div>
                 </div>
 
                 <div class="row">
