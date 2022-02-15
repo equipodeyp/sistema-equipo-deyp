@@ -1,5 +1,8 @@
 <?php
 
+
+	session_start();
+
 	$mysqli = new mysqli('localhost', 'root', '', 'sistemafgjem');
 
 	if($mysqli->connect_error){
@@ -8,7 +11,5 @@
 
 	}
     
-    // if(isset($mysqli)){
-    //     echo 'DB is connect';
-    // }
+
 ?>
