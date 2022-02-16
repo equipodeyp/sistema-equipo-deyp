@@ -4,7 +4,7 @@ require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];
 if ($verifica_update_person == 1) {
-  echo $verifica_update_person;
+  // echo $verifica_update_person;
   unset($_SESSION['verifica_update_person']);
   $name = $_SESSION['usuario'];
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
@@ -12,7 +12,6 @@ if ($verifica_update_person == 1) {
   $row=$result->fetch_assoc();
   // carga de datos
   $id_persona = $_GET['folio'];  //variable del folio al que se relaciona
-  // echo $id_persona ;
   // datos de la autoridad
   $id_solicitud =$_POST['ID_SOLICITUD'];
   $fecha_solicitud=$_POST['FECHA_SOLICITUD'];
@@ -99,8 +98,12 @@ if ($verifica_update_person == 1) {
   $incorporacion=$_POST['INCORPORACION'];
   $date_aut =$_POST['FECHA_AUTORIZACION'];
   $convenio= $_POST['CONVENIO_ENTENDIMIENTO'];
-  $vigencia=$_POST['VIGENCIA_CONVENIO'];
   $fecha_conv_ent =$_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
+  $vigencia=$_POST['VIGENCIA_CONVENIO'];
+  $fecha_vigencia = date("Y/m/d",strtotime($fecha_conv_ent."+ $vigencia days"));
+  $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
+  echo $fecha_conv_ent.'*'.$vigencia.'*'.$fecha_vigencia.'*'.$fecha_termino;
+
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
   if ($acuerdo=='CONCLUSION') {
     $conclusionart35=$_POST['CONCLUSION_ART35z'];
@@ -301,7 +304,7 @@ if ($verifica_update_person == 1) {
   // $det_inc = "INSERT INTO determinacionincorporacion (incorporacion, motivoincorporacion, convenioentendimiento, fechaconvenioentendimiento, folioexpediente, id_persona)
   //               VALUES('$incorporacion', '$mot_inc', '$name_convenio', '$fecha_conv_ent', '$fol_exp', '$id_persona')";
   // $res_det_inc = $mysqli->query($det_inc);
-  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_termino = '$fecha_termino', conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
   $res_det_inc = $mysqli->query($det_inc);
   if ($radicacion == 'OFICIO') {
     $des_rad = $_POST['OFICIO'];
