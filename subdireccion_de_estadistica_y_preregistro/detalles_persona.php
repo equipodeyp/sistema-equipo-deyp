@@ -350,8 +350,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div id="contenido">
                     <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
-            		  	<table class="table table-striped table-bordered">
-            		  		<thead >
+            		  	<table class="table table-striped table-dark table-bordered">
+            		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">FECHA FIRMA</th>
                         <th style="text-align:center">VIGENCIA</th>
@@ -386,8 +386,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div id="contenido">
                     <button style="display: block; margin: 0 auto;" type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button>
-            		  	<table class="table table-striped table-bordered ">
-            		  		<thead >
+            		  	<table class="table table-striped table-dark table-bordered">
+            		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">FECHA FIRMA</th>
                         <th style="text-align:center">DESCRIPCION</th>
