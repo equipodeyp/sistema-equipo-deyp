@@ -266,7 +266,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="VIGENCIA_CONVENIO">VIGENCIA DEL CONVENIO<span class="required"></span></label>
-                    <input onclick="calcularFecha()" placeholder="Cantidad en días" class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>">
+                    <input placeholder="Cantidad en días" class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -1018,34 +1018,70 @@ window.addEventListener('load', function () {
 
 <script>
 
-var numero = document.getElementById('VIGENCIA_CONVENIO').value;
-var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value;
+// var numero = document.getElementById('VIGENCIA_CONVENIO').value;
+// var fechaInicio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value;
 
-  //fecha
-function calcularFecha() {
 
-  var fecha = new Date(fechaInicio);
-  var dias = parseInt(numero)+ 1;
+// function calcularFecha() {
 
-  fecha.setDate(fecha.getDate() + dias);
-  const anio = parseInt(fecha.getFullYear());
-  const mes = parseInt(fecha.getMonth());
-  const dia = parseInt(fecha.getDate());
+//   var fecha = new Date(fechaInicio);
+//   var dias = parseInt(numero)+ 1;
 
-   //nueva fecha sumada
-  var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
-  //formato de salida para la fecha
-  //2021/11/29
-  //2021-12-1
-  //console.log(nuevaFecha);
-  document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
-}
-calcularFecha();
+//   fecha.setDate(fecha.getDate() + dias);
+//   const anio = parseInt(fecha.getFullYear());
+//   const mes = parseInt(fecha.getMonth());
+//   const dia = parseInt(fecha.getDate());
+
+//   // nueva fecha sumada
+//   var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
+//   formato de salida para la fecha
+//   // 2021/11/29
+//   // 2021-12-1
+//   console.log(nuevaFecha);
+//   document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
+// }
+
 
 
 </script>
 
+<script type="text/javascript">
+var fechaConvenio = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS');
+var vigencia = document.getElementById('VIGENCIA_CONVENIO');
+var fechaTermino = document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO');
+var fechaInicio;
+var diasVigencia;
 
+  
+
+    fechaConvenio.addEventListener('change', obtenerFecha);
+    vigencia.addEventListener('change',obtenerVigencia);
+    
+    function obtenerFecha(e) {
+      fechaInicio = e.target.value;
+    }
+
+    function obtenerVigencia(e) {
+      diasVigencia = e.target.value;
+  
+      var fecha = new Date(fechaInicio);
+      var dias = parseInt(diasVigencia);
+
+      fecha.setDate(fecha.getDate() + dias);
+      const anio = parseInt(fecha.getFullYear());
+      const mes = parseInt(fecha.getMonth());
+      const dia = parseInt(fecha.getDate());
+
+      
+      var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
+
+      document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
+
+    }
+
+</script>
+
+</script>
 
 </body>
 </html>

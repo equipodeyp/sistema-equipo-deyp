@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="./css/style_ticket.css">
 <?php include("./db.php")?>
 <?php include("./includes/header.php")?>
 
@@ -10,7 +11,7 @@
             <?php if (isset ($_SESSION ['message'])){?>
 
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <strong>¡ Muchas gracias !</strong> ¡ Reporte creado con éxito !
                     <? = $_SESSION['verifica_update_ticket']?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -28,19 +29,28 @@
                     <div class="form-group">
                         <textarea name="descripcion" row="5" class="form-control" placeholder="Descripción breve del error"></textarea>
                     </div>
-                    <input type="submit" class="btn btn-success btn-block" name="save_ticket" value="Guardar ticket">
+                    <input type="submit" class="btn btn-success btn-block" name="save_ticket" value="Reportar">
                 </form>
             </div>
         </div>
 
         <div class="col-md-10">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="table-tickets">
                 <thead>
                     <tr>
                         <th>Fecha</th>
+                        <!-- <th>Folio ticket</th>
+                        <th>Usuario</th>
+                        <th>Subdirección</th>
+                        <th>Folio expediente</th>
+                        <th>Apartado</th> -->
                         <th>Tipo</th>
                         <th>Descripcion</th>
+                        <!-- <th>Fecha de atención</th>
+                        <th>Respuesta</th>
+                        <th>Atendido por</th>
+                        <th>Estatus</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +63,7 @@
                                 <td><?php echo $row['fecha_solicitud']?></td>
                                 <td><?php echo $row['tipo']?></td>
                                 <td><?php echo $row['descripcion']?></td>
+                                
                             </tr>
 
                         <?php } ?>

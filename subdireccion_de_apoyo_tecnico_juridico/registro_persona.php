@@ -703,19 +703,19 @@ window.addEventListener('load', function () {
 
     function obtenerNombre(e) {
       nombreIngresado = e.target.value;
-      console.log(nombreIngresado);
+      // console.log(nombreIngresado);
       document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function obtenerPaterno(e) {
       paternoIngresado = e.target.value;
-      console.log(paternoIngresado);
+      // console.log(paternoIngresado);
       document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function obtenerMaterno(e) {
       maternoIngresado = e.target.value;
-      console.log(maternoIngresado);
+      // console.log(maternoIngresado);
       document.getElementById("GENERAR_ID").disabled = false;
     }
 
@@ -729,7 +729,7 @@ window.addEventListener('load', function () {
       }
 
       fullNombreCompleto = arrayNombreCompleto.filter(v => v);
-      console.log(fullNombreCompleto);
+      // console.log(fullNombreCompleto);
       document.getElementById("ID_UNICO").value = "";
 
       fullNombreCompleto.forEach(nombrePersona);
