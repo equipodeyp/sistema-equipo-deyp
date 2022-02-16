@@ -19,19 +19,19 @@ if ($verifica_update_person == 1) {
   // datos de la autoridad
   date_default_timezone_set("America/Mexico_City");
   $fecha_firma = $_POST['fecha_firma_mod'];
-  $descripcion = $_POST['vigencia_con_adh'];
+  $vigencia = $_POST['vigencia_con_adh'];
   $fecha = date('y/m/d H:i:sa');
   $validar = 'false';
   $validar_datos = 'false';
   $fecha_captura = date('y/m/d H:i:sa');
-  // echo $folio_expediente.'-'.$id_persona.'-'.$identificador.'-'.$fecha_firma.'-'.$descripcion.'-'.$name.'-'.$fecha_captura;
+  // echo $folio_expediente.'-'.$id_persona.'-'.$identificador.'-'.$fecha_firma.'-'.$vigencia.'-'.$name.'-'.$fecha_captura;
+// obtener fecha de la vigencia en automatico
+$fecha_vigencia = date("y/m/d",strtotime($fecha_firma."+ $vigencia days"));
 
-  $add_convenio_mod = "INSERT INTO convenio_adhesion(folioexpediente, id_persona, id_unico, fecha_firma, vigencia, usuario, fecha_alta)
-                 VALUES('$folio_expediente', '$id_persona', '$identificador', '$fecha_firma', '$descripcion', '$name', '$fecha_captura')";
+  $add_convenio_mod = "INSERT INTO convenio_adhesion(folioexpediente, id_persona, id_unico, fecha_firma, vigencia, fecha_vigencia, usuario, fecha_alta)
+                 VALUES('$folio_expediente', '$id_persona', '$identificador', '$fecha_firma', '$vigencia', '$fecha_vigencia', '$name', '$fecha_captura')";
   $res_add_convenio_mod = $mysqli->query($add_convenio_mod);
-  // $fuente_rad = "INSERT INTO radicacion_mascara1(fuente, descripcion, id_persona, folioexpediente)
-  //               VALUES ('$name_radicacion', '$des_rad', '$id_persona', '$fol_exp')";
-  // $res_radicacion = $mysqli->query($fuente_rad);
+
 // validacion del registro correcto
   if($res_add_convenio_mod){
     echo ("<script type='text/javaScript'>

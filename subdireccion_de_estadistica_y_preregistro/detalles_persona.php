@@ -349,12 +349,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">CONVENIOS DE ADHESION</h3>
                   </div>
                   <div id="contenido">
-            		  	<table class="table table-striped table-bordered ">
+                    <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
+            		  	<table class="table table-striped table-bordered">
             		  		<thead >
             		  			<th>No.</th>
                         <th>FECHA FIRMA</th>
                         <th>VIGENCIA</th>
-            		  			<th><button type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button></th>
+                        <th>FECHA DE TERMINO</th>
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM convenio_adhesion WHERE id_unico ='$identificador'";
@@ -366,6 +367,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		          echo "<td>"; echo $cont_med; echo "</td>";
             		          echo "<td>"; echo $var_fila['fecha_firma']; echo "</td>";
             		          echo "<td>"; echo $var_fila['vigencia']; echo "</td>";
+                          echo "<td>"; echo $var_fila['fecha_vigencia']; echo "</td>";
             		        echo "</tr>";
             		      }
             		      ?>
@@ -383,12 +385,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">CONVENIOS MODIFICATORIOS</h3>
                   </div>
                   <div id="contenido">
+                    <button style="display: block; margin: 0 auto;" type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button>
             		  	<table class="table table-striped table-bordered ">
             		  		<thead >
             		  			<th>No.</th>
                         <th>FECHA FIRMA</th>
                         <th>DESCRIPCION</th>
-            		  			<th><button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button> </th>
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
@@ -1146,18 +1148,18 @@ var fechaTermino = document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTEND
 var fechaInicio;
 var diasVigencia;
 
-  
+
 
     fechaConvenio.addEventListener('change', obtenerFecha);
     vigencia.addEventListener('change',obtenerVigencia);
-    
+
     function obtenerFecha(e) {
       fechaInicio = e.target.value;
     }
 
     function obtenerVigencia(e) {
       diasVigencia = e.target.value;
-  
+
       var fecha = new Date(fechaInicio);
       var dias = parseInt(diasVigencia);
 
@@ -1166,7 +1168,7 @@ var diasVigencia;
       const mes = parseInt(fecha.getMonth());
       const dia = parseInt(fecha.getDate());
 
-      
+
       var nuevaFecha = dia + '/' + (mes + 1) + '/' + anio;
 
       document.getElementById("FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO").value = nuevaFecha;
