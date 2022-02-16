@@ -22,7 +22,8 @@ $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
+$identificador = $rowfol['identificador'];
+// echo $identificador;
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
 $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
@@ -375,14 +376,28 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		  			<th>No.</th>
                         <th>FECHA FIRMA</th>
                         <th>DESCRIPCION</th>
-            		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVO CONVENIO</button> </a> </th>
+            		  			<th><button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">AGREGAR</button> </th>
             		  		</thead>
-
+                      <?php
+            		      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
+            		       $var_resultado = $mysqli->query($tabla);
+            		      while ($var_fila=$var_resultado->fetch_array())
+            		      {
+                        $cont_med = $cont_med + 1;
+            		        echo "<tr>";
+            		          echo "<td>"; echo $cont_med; echo "</td>";
+            		          echo "<td>"; echo $var_fila['fecha_firma']; echo "</td>";
+            		          echo "<td>"; echo $var_fila['descripcion']; echo "</td>";
+            		        echo "</tr>";
+            		      }
+            		      ?>
             		  	</table>
             		  </div>
             			<div id="footer">
             		  </div>
                 </div>
+
+
 
                 <div class="row">
                   <div class="row">
@@ -931,6 +946,39 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 
+<!-- modal del convenio MODIFICATORIO -->
+<div id="add_data_Modal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h4 class="modal-title">Ingresar personal</h4>
+    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+   </div>
+   <div class="modal-body">
+    <form method="post" id="insert_form" action="agregar_convenio_modificatorio.php?folio=<?php echo $id_person; ?>">
+     <label>FOLIO DEL EXPEDIENTE</label>
+     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+     <br />
+     <label>ID UNICO DE LA PERSONA PROPUESTA</label>
+     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
+     <br />
+     <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
+     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control">
+     <br />
+     <label>DESCRIPCION</label>
+     <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+     <br />
+     <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
+     <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
+    </form>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+   </div>
+  </div>
+ </div>
+</div>
+<!-- fin modal  -->
 
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
