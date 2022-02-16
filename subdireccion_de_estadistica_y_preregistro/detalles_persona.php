@@ -352,10 +352,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
             		  	<table class="table table-striped table-bordered">
             		  		<thead >
-            		  			<th>No.</th>
-                        <th>FECHA FIRMA</th>
-                        <th>VIGENCIA</th>
-                        <th>FECHA DE TERMINO</th>
+            		  			<th style="text-align:center">No.</th>
+                        <th style="text-align:center">FECHA FIRMA</th>
+                        <th style="text-align:center">VIGENCIA</th>
+                        <th style="text-align:center">FECHA DE TERMINO</th>
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM convenio_adhesion WHERE id_unico ='$identificador'";
@@ -364,10 +364,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		      {
                         $cont_med = $cont_med + 1;
             		        echo "<tr>";
-            		          echo "<td>"; echo $cont_med; echo "</td>";
-            		          echo "<td>"; echo $var_fila['fecha_firma']; echo "</td>";
-            		          echo "<td>"; echo $var_fila['vigencia']; echo "</td>";
-                          echo "<td>"; echo $var_fila['fecha_vigencia']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['fecha_firma']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $var_fila['fecha_vigencia']; echo "</td>";
             		        echo "</tr>";
             		      }
             		      ?>
@@ -388,9 +388,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <button style="display: block; margin: 0 auto;" type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button>
             		  	<table class="table table-striped table-bordered ">
             		  		<thead >
-            		  			<th>No.</th>
-                        <th>FECHA FIRMA</th>
-                        <th>DESCRIPCION</th>
+            		  			<th style="text-align:center">No.</th>
+                        <th style="text-align:center">FECHA FIRMA</th>
+                        <th style="text-align:center">DESCRIPCION</th>
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
@@ -399,9 +399,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		      {
                         $cont_med = $cont_med + 1;
             		        echo "<tr>";
-            		          echo "<td>"; echo $cont_med; echo "</td>";
-            		          echo "<td>"; echo $var_fila['fecha_firma']; echo "</td>";
-            		          echo "<td>"; echo $var_fila['descripcion']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['fecha_firma']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['descripcion']; echo "</td>";
             		        echo "</tr>";
             		      }
             		      ?>
@@ -977,10 +977,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
      <br />
      <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
-     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control">
+     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
      <br />
      <label>DESCRIPCION</label>
-     <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+     <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
      <br />
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
      <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
@@ -1011,10 +1011,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
      <br />
      <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESION</label>
-     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control">
+     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
      <br />
      <label>VIGENCIA</label>
-     <input type="text" name="vigencia_con_adh" id="vigencia_con_adh" class="form-control">
+     <input type="text" name="vigencia_con_adh" id="vigencia_con_adh" class="form-control" required>
      <br />
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
      <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
