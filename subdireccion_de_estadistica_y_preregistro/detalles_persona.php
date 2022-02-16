@@ -354,9 +354,21 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		  			<th>No.</th>
                         <th>FECHA FIRMA</th>
                         <th>VIGENCIA</th>
-            		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVO CONVENIO</button> </a> </th>
+            		  			<th><button type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button></th>
             		  		</thead>
-
+                      <?php
+            		      $tabla="SELECT * FROM convenio_adhesion WHERE id_unico ='$identificador'";
+            		       $var_resultado = $mysqli->query($tabla);
+            		      while ($var_fila=$var_resultado->fetch_array())
+            		      {
+                        $cont_med = $cont_med + 1;
+            		        echo "<tr>";
+            		          echo "<td>"; echo $cont_med; echo "</td>";
+            		          echo "<td>"; echo $var_fila['fecha_firma']; echo "</td>";
+            		          echo "<td>"; echo $var_fila['vigencia']; echo "</td>";
+            		        echo "</tr>";
+            		      }
+            		      ?>
             		  	</table>
             		  </div>
             			<div id="footer">
@@ -376,7 +388,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		  			<th>No.</th>
                         <th>FECHA FIRMA</th>
                         <th>DESCRIPCION</th>
-            		  			<th><button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">AGREGAR</button> </th>
+            		  			<th><button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button> </th>
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
@@ -951,7 +963,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">Ingresar personal</h4>
+    <h4 class="modal-title">AGREGAR CONVENIO MODIFICATORIO</h4>
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
    </div>
    <div class="modal-body">
@@ -973,7 +985,41 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </form>
    </div>
    <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+   </div>
+  </div>
+ </div>
+</div>
+<!-- fin modal  -->
+
+<!-- modal del convenio adhesion -->
+<div id="add_data_Modal_convenio" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESION</h4>
+    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+   </div>
+   <div class="modal-body">
+    <form method="post" id="insert_form" action="agregar_convenio_adhesion.php?folio=<?php echo $id_person; ?>">
+     <label>FOLIO DEL EXPEDIENTE</label>
+     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+     <br />
+     <label>ID UNICO DE LA PERSONA PROPUESTA</label>
+     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
+     <br />
+     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESION</label>
+     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control">
+     <br />
+     <label>VIGENCIA</label>
+     <input type="text" name="vigencia_con_adh" id="vigencia_con_adh" class="form-control">
+     <br />
+     <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
+     <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
+    </form>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
    </div>
   </div>
  </div>
