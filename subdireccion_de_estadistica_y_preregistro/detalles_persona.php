@@ -276,8 +276,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACION</label>
-                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)">
+                    <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
+                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)" id="CONCLUSION_CANCELACION">
                       <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACIÓN</option>
                       <option value="CONCLUSION">CONCLUSIÓN</option>
@@ -1176,6 +1176,41 @@ var diasVigencia;
     }
 
 </script>
+<script type="text/javascript">
+
+
+var conclusion_cancelacion = document.getElementById('CONCLUSION_CANCELACION');
+var con_can;
+
+
+conclusion_cancelacion.addEventListener('change', obtenerInfo);
+
+
+    function obtenerInfo(e) {
+      con_can = e.target.value;
+      console.log(con_can);
+      if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
+        document.getElementById("convenio_adhesion").style.display = "none";
+        document.getElementById("age").style.display = "none";
+    
+      }
+
+    }
+
+</script>
+
+
+<script type="text/javascript">
+
+
+var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
+
+      if (! inputConclusioCancelacion == null || ! inputConclusioCancelacion == ""){
+        document.getElementById("convenio_adhesion").style.display = "none";
+        document.getElementById("age").style.display = "none";
+        document.getElementById("enter").style.display = "none";
+      }
+  
 
 </script>
 
