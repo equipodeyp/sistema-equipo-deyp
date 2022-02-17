@@ -237,6 +237,15 @@ $row=$result->fetch_assoc();
 		  	</div>
 		</div>
 
+		<div class="well form-horizontal">
+			<div class="row">
+				<div class="alert alert-info">
+					<h3 style="text-align:center">SEGUIMIENTO</h3>
+				</div>
+				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a> 
+			</div>
+		</div>
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
