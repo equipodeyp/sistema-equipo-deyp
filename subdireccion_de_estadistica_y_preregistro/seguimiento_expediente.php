@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
+echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -51,7 +51,7 @@ $process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
 $resultadoprocess = $mysqli->query($process);
 $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
 // datos de la valoracion juridica
-$valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
+$valjur = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp'";
 $resultadovaljur = $mysqli->query($valjur);
 $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
 // datos de la determinacion de la incorporacion
@@ -441,7 +441,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 <!-- modal del convenio MODIFICATORIO -->
