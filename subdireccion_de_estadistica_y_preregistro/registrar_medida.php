@@ -100,7 +100,7 @@ $validacion = $fil_val['validacion'];
     <div class="secciones">
     <article id="tab1">
     <div class="container">
-      <form class="container well form-horizontal" method="POST" action="save_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
+      <form class="container well form-horizontal" method="POST" action="guardar_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
 
 
         <div class="row">
@@ -113,11 +113,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-<<<<<<< HEAD
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA <span ></span></label>
-=======
             <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
->>>>>>> 6e60de1544a02e0f25a88ecb4e072bfb7d68c6c1
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
 
@@ -240,11 +236,7 @@ $validacion = $fil_val['validacion'];
           <div class="col-md-6 mb-3 validar">
             <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
-<<<<<<< HEAD
-              <option disabled selected value>SELECCIONA UN ESTATUS</option>
-=======
               <option disabled selected value>SELECCIONE UN ESTATUS</option>
->>>>>>> 6e60de1544a02e0f25a88ecb4e072bfb7d68c6c1
               <option value="EN EJECUCION">EN EJECUCIÓN</option>
               <option value="EJECUTADA">EJECUTADA</option>
               <option value="CANCELADA">CANCELADA</option>
@@ -300,7 +292,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                  <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTÍCULO 35</label>
+                  <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTICULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <?php
@@ -362,7 +354,7 @@ $validacion = $fil_val['validacion'];
   </div>
 </div>
 <div class="contenedor">
-<a href="menu.php" class="btn-flotante">CANCELAR</a>
+<a href="../subdireccion_de_estadistica_y_preregistro/menu.php" class="btn-flotante">CANCELAR</a>
 </div>
 <script type="text/javascript">
 var today = new Date();

@@ -28,7 +28,7 @@ if ($verifica == 1) {
   $result22 = $mysqli->query($qry22);
   $row_exp22 = $result22->fetch_assoc();
 
-  $fechaActual = date('y/m/d');
+  $fechaActual = date('d/m/y');
   date_default_timezone_set('America/Mexico_City');
   $año = date("Y");
   $month = date("m");

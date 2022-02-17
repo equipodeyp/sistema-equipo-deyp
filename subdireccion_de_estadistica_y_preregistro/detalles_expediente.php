@@ -61,7 +61,7 @@ $row=$result->fetch_assoc();
 			}
 			// echo $genero;
 			 ?>
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+    <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -121,7 +121,7 @@ $row=$result->fetch_assoc();
 				</div>
 				<!-- nombre del municipio -->
 				<div class="form-group">
-					<label for="sede" class="col-md-4 control-label">MUNICIPIO</label>
+					<label for="sede" style="font-size: 12px" class="col-md-4 control-label">MUNICIPIO DE RADICACIÓN <br>DE LA CARPETA DE INVESTIGACIÓN</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-map-marked-alt"></i></span>
@@ -143,17 +143,17 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      			<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+				  			<input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecha']; ?>">
 			    		</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DEL LA SOLICITUD</label>
+					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE RECEPCIÓN DE LA SOLICITUD</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-				  		<input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
+				  		<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecharecep']; ?>" disabled>
 			    		</div>
 					</div>
 				</div>
@@ -190,6 +190,7 @@ $row=$result->fetch_assoc();
 					<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS</th>
 		  			<th style="text-align:center">CALIDAD</th>
+					<th style="text-align:center">MEDIDAS</th>
 					<th style="text-align:center">VALIDACIÓN</th>
 					<th style="text-align:center">DETALLES </th>
 		  		</thead>
@@ -201,6 +202,11 @@ $row=$result->fetch_assoc();
 		      while ($var_fila=$var_resultado->fetch_array())
 		      {
             $id_persona = $var_fila['id'];
+
+			$cant_med="SELECT COUNT(*) AS cant FROM medidas WHERE id_persona = '$id_persona'";
+            $res_cant_med=$mysqli->query($cant_med);
+            $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+
             $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
             $res_val = $mysqli->query($datevalidar);
             while ($fila_val=$res_val->fetch_array()) {
@@ -212,6 +218,7 @@ $row=$result->fetch_assoc();
         				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
         		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+						echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
                       	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
                         echo "<i class='fas fa-check'></i>";
                       } elseif ($fila_val['validacion'] == 'false') {
@@ -230,11 +237,20 @@ $row=$result->fetch_assoc();
 		  	</div>
 		</div>
 
+		<div class="well form-horizontal">
+			<div class="row">
+				<div class="alert alert-info">
+					<h3 style="text-align:center">SEGUIMIENTO</h3>
+				</div>
+				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a> 
+			</div>
+		</div>
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="contenedor">
-				<a href="admin.php" class="btn-flotante">REGRESAR</a>
+				<a href="menu.php" class="btn-flotante">REGRESAR</a>
 				</div>
 			</div>
 		</div>

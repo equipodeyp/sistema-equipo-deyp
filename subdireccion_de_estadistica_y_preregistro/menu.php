@@ -107,7 +107,7 @@ $row=$result->fetch_assoc();
         }
         // echo $genero;
          ?>
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -125,9 +125,9 @@ $row=$result->fetch_assoc();
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
-          <h2 style="text-align:center">
+          <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h2>
+          </h5>
         </div>
 
         <br>
@@ -138,14 +138,17 @@ $row=$result->fetch_assoc();
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
+                            <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
+                                    <th style="text-align:center">NO.</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACION</th>
-                                    <th style="text-align:center">FECHA RECEPCION</th>
-                                    <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
+                                    <th style="text-align:center">FECHA RECEPCIÓN</th>
+                                    <th style="text-align:center">FOLIO</th>
                                     <th style="text-align:center">PERSONAS</th>
-                                    <th style="text-align:center">VALIDACION</th>
+                                    <th style="text-align:center">MEDIDAS</th>
+                                    <th style="text-align:center">VALIDACIÓN</th>
                                     <th style="text-align:center">DETALLES</th>
 
                                 </tr>
@@ -156,11 +159,18 @@ $row=$result->fetch_assoc();
                               $resultado = $mysqli->query($sql);
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
                               $fol_exp =$row['fol_exp'];
+
                               $tabla="SELECT * FROM expediente";
                               $var_resultado = $mysqli->query($tabla);
+
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $fol_exp2=$var_fila['fol_exp'];
+
+                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
+                                $r=$mysqli->query($cant);
+                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
+
                                 $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
                                 $result=$mysqli->query($abc);
                                 if($result)
@@ -169,11 +179,13 @@ $row=$result->fetch_assoc();
                                   {
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
                                     echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
                                       echo "<i class='fas fa-check'></i>";
                                     }elseif ($var_fila['validacion'] == 'false') {

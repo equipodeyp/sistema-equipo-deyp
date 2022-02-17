@@ -98,16 +98,16 @@ $row=$result->fetch_assoc();
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img style'text-align:center' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img style='text-align:center' src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -118,17 +118,20 @@ $row=$result->fetch_assoc();
           <img src="../image/ups2.png" alt="" width="1400" height="70">
           <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
+
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php   echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
-          <h2 style="text-align:center">
+          <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h2>
+          </h5>
         </div>
+
+        <!-- <h3 style="text-align:center">Tabla de Expedientes</h3> -->
         <!-- <div class="row">
           <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
         </div> -->
@@ -140,13 +143,14 @@ $row=$result->fetch_assoc();
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
+                            <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
                                     <th style="text-align:center">No.</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
                                     <th style="text-align:center">FECHA RECEPCIÓN</th>
-                                    <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                                    <th style="text-align:center">FOLIO</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACIÓN</th>
@@ -160,16 +164,12 @@ $row=$result->fetch_assoc();
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
                               $fol_exp =$row['fol_exp'];
 
-
-
-
                               $tabla="SELECT * FROM expediente";
                               $var_resultado = $mysqli->query($tabla);
+
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $fol_exp2=$var_fila['fol_exp'];
-
-
 
                                 $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
                                 $r=$mysqli->query($cant);

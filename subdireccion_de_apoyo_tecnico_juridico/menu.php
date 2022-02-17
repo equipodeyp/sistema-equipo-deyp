@@ -125,17 +125,17 @@ $(document).ready(function() {
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img style'text-align:center' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img style'text-align:center' src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
         <!-- <img src="$genero" alt="" width="100" height="100"> -->
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -149,18 +149,20 @@ $(document).ready(function() {
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php   echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
+            <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
-          <h2 style="text-align:center">
+          <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h2>
+          </h5>
         </div>
         <div class="row">
           <a href="crear_expediente.php" class="btn btn-primary">Nuevo Expediente</a>
         </div>
         <br>
+
+        
         <!--Ejemplo tabla con DataTables-->
         <div class="">
             <div class="row">
@@ -168,13 +170,14 @@ $(document).ready(function() {
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
+                              <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
                                     <th style="text-align:center">No.</th>
                                     <th style="text-align:center">ID</th>
                                     <th style="text-align:center">SEDE</th>
                                     <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
                                     <th style="text-align:center">FECHA RECEPCIÓN</th>
-                                    <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                                    <th style="text-align:center">FOLIO</th>
                                     <th style="text-align:center">PERSONAS</th>
                                     <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACIÓN</th>

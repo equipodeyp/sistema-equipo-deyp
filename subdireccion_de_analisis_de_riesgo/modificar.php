@@ -67,7 +67,7 @@ $row=$result->fetch_assoc();
 			}
 			// echo $genero;
 			 ?>
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+    <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -127,7 +127,11 @@ $row=$result->fetch_assoc();
 				</div>
 				<!-- nombre del municipio -->
 				<div class="form-group">
+<<<<<<< HEAD
 					<label for="sede" class="col-md-4 control-label">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</label>
+=======
+					<label for="sede" style="font-size: 12px" class="col-md-4 control-label">MUNICIPIO DE RADICACIÓN <br>DE LA CARPETA DE INVESTIGACIÓN</label>
+>>>>>>> 6e60de1544a02e0f25a88ecb4e072bfb7d68c6c1
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-map-marked-alt"></i></span>
@@ -149,7 +153,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      			<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+				  			<input class="form-control" id="FECHA_RECEPCION" name="FECHA_RECEPCION" disabled placeholder="" type="date" value="<?php echo $row['fecha']; ?>">
 			    		</div>
 					</div>
 				</div>

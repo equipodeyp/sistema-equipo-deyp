@@ -7,10 +7,11 @@
     <title>ticket</title>
     <!-- BOOTSTRAP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">    
+
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-primary">
         <div class="container">
-            <a href="create_ticket.php" class="navbar-brand">CREA UN TICKET</a>
+            <a href="create_ticket.php" class="navbar-brand">REPORTAR UN ERROR</a>
         </div>
     </nav>
