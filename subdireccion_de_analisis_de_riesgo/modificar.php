@@ -127,7 +127,7 @@ $row=$result->fetch_assoc();
 				</div>
 				<!-- nombre del municipio -->
 				<div class="form-group">
-					<label for="sede" class="col-md-4 control-label">MUNICIPIO</label>
+					<label for="sede" class="col-md-4 control-label">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-map-marked-alt"></i></span>

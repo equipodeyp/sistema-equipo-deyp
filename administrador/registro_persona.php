@@ -120,7 +120,7 @@ $num_consecutivo =$row["id"];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DEL SUJETO<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
@@ -137,7 +137,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE AUTORIDAD<span class="required"></span></label>
+            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE  AUTORIDAD<span class="required"></span></label>
             <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE EL MUNICIPIO" required>
             <datalist id="datalistOptions">
             <?php
@@ -156,22 +156,22 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE SERVIDOR<span class="required"></span></label>
+            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="PATERNO_SERVIDOR" class="is-required">PATERNO SERVIDOR<span class="required"></span></label>
+            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_SERVIDOR" class="is-required">MATERNO SERVIDOR<span class="required"></span></label>
+            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CARGO_SERVIDOR" class="is-required">CARGO SERVIDOR<span class="required"></span></label>
+            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR<span class="required"></span></label>
             <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
           </div>
         </div>
@@ -206,12 +206,12 @@ $num_consecutivo =$row["id"];
           </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="FECHA_NACIMIENTO_PERSONA" class="is-required">FECHA NACIMIENTO PERSONA <span class="required"></span></label>
+              <label for="FECHA_NACIMIENTO_PERSONA" class="is-required">FECHA DE NACIMIENTO <span class="required"></span></label>
               <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="EDAD_PERSONA">EDAD PERSONA <span class="required"></span></label>
+              <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
               <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
@@ -253,7 +253,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="GRUPO_EDAD">SEXO PERSONA<span class="required"></span></label>
+              <label for="GRUPO_EDAD">SEXO<span class="required"></span></label>
               <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <option value="MUJER">MUJER</option>
@@ -291,27 +291,27 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="NACIONALIDAD_PERSONA">NACIONALIDAD PERSONA<span class="required"></span></label>
+              <label for="NACIONALIDAD_PERSONA">NACIONALIDAD <span class="required"></span></label>
               <input class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CURP_PERSONA">CURP PERSONA <span class="required"></span></label>
+              <label for="CURP_PERSONA">CURP <span class="required"></span></label>
               <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="RFC_PERSONA">RFC PERSONA<span class="required"></span></label>
+              <label for="RFC_PERSONA">RFC <span class="required"></span></label>
               <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" maxlength="13">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="ALIAS_PERSONA">ALIAS PERSONA <span class="required"></span></label>
+              <label for="ALIAS_PERSONA">ALIAS <span class="required"></span></label>
               <input class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="OCUPACION_PERSONA">OCUPACIÓN PERSONA<span class="required"></span></label>
+              <label for="OCUPACION_PERSONA">OCUPACIÓN <span class="required"></span></label>
               <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder=""  type="text">
             </div>
 
