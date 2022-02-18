@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -33,7 +33,7 @@ $validacion1 = $fil_val1['id_persona'];
 
 
 // consulta de los datos de la autoridad
-$aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
+$aut = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp'";
 $resultadoaut = $mysqli->query($aut);
 $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
 // consulta de los datos de origen del SUJETO
@@ -47,7 +47,7 @@ $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
 $resultadotutor = $mysqli->query($tutor);
 $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
 // datos del proceso penal
-$process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
+$process = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
 $resultadoprocess = $mysqli->query($process);
 $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
 // datos de la valoracion juridica
@@ -61,7 +61,7 @@ $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
 // datos de la radicacion de la informacion
 $radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
 $resultadoradmas = $mysqli->query($radmas);
-$rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
+// $rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
 //consulta de los datos de origen de la persona
 $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
 $resultadodomicilio = $mysqli->query($domicilio);
@@ -79,6 +79,9 @@ $fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
 $resultadofuente3 = $mysqli->query($fuente3);
 $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
+$expediente = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
+$res_expediente = $mysqli->query($expediente);
+$fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
 
  ?>
 <!DOCTYPE html>
@@ -173,24 +176,82 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="SEDE" name="RESULTADO_VALORACION_JURIDICA" disabled>
-                      <option value=""><?php echo $rowvaljur['resultadovaloracion']; ?></option>
-                      <option value="SI_PROCEDE">SI_PROCEDE </option>
-                      <option value="NO_PROCEDE">NO_PROCEDE</option>
-                    </select>
+                    <label for="expediente">ID DEL EXPEDIENTE</label>
+                    <input class="form-control" type="text" name="idexpediente" value="<?php echo $fila_expediente['fol_exp']; ?>" readonly>
                   </div>
-
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MOTIVO_NO_PROCEDENCIA_JURIDICA">MOTIVO NO PROCEDENCIA JURÍDICA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="SEDE" name="MOTIVO_NO_PROCEDENCIA_JURIDICA" disabled>
-                      <option value=""><?php echo $rowvaljur['motivoprocedencia']; ?></option>
-                      <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL </option>
-                      <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
-                      <option value="AMBAS">AMBAS </option>
-                      <option value="NO APLICA">NO APLICA</option>
-                    </select>
+                    <label for="fecha_recepcion">FECHA DE RECEPCION</label>
+                    <input class="form-control" type="date" name="fecha_recepcion" value="<?php echo $fila_expediente['fecharecp']; ?>" readonly>
                   </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="sede">SEDE</label>
+                    <input class="form-control" type="text" name="sede" value="<?php echo $fila_expediente['sede']; ?>" readonly>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="autoridad">NOMBRE DE LA AUTORIDAD</label>
+                    <input class="form-control" type="text" name="autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">PROCESO PENAL</h3>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="delito_principal">DELITO PRINCIPAL</label>
+                    <input class="form-control" type="text" name="delito_principal" value="<?php echo $rowprocess['delitoprincipal']; ?>" readonly>
+                  </div>
+                  <?php
+                    if ($rowprocess['delitoprincipal'] == 'OTRO') {
+                      echo
+                      '<div class="col-md-6 mb-3 validar">
+                        <label for="delito_principal">OTRO DELITO PRINCIPAL</label>
+                        <input class="form-control" type="text" name="delito_principal" value="'.$rowprocess['otrodelitoprincipal'].'" readonly>
+                        </div>';
+                      }
+                  ?>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="etapa_procedimiento">ETAPA DEL PROCEDIMIENTO</label>
+                    <input class="form-control" type="text" name="atapa_procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>" readonly>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="nuc">NUC</label>
+                    <input class="form-control" type="text" name="nuc" value="<?php echo $rowprocess['nuc']; ?>" readonly>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="municipio_radicacion">MUNICIPIO DE RADICACION</label>
+                    <input class="form-control" type="text" name="municipio_radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">VALORACION JURIDICA</h3>
+                  </div>
+                    <div class="col-md-6 mb-3 validar">
+                      <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="SEDE" name="RESULTADO_VALORACION_JURIDICA" disabled>
+                        <option value=""><?php echo $rowvaljur['resultadovaloracion']; ?></option>
+                        <option value="SI_PROCEDE">SI_PROCEDE </option>
+                        <option value="NO_PROCEDE">NO_PROCEDE</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3 validar">
+                      <label for="MOTIVO_NO_PROCEDENCIA_JURIDICA">MOTIVO NO PROCEDENCIA JURÍDICA<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="SEDE" name="MOTIVO_NO_PROCEDENCIA_JURIDICA" disabled>
+                        <option value=""><?php echo $rowvaljur['motivoprocedencia']; ?></option>
+                        <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL </option>
+                        <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
+                        <option value="AMBAS">AMBAS </option>
+                        <option value="NO APLICA">NO APLICA</option>
+                      </select>
+                    </div>
+
                 </div>
 
                 <div class="row">
@@ -419,9 +480,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
-                  <section class="text-center" >
+
                   <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-                </section>
+
                 </div>
 
                 <div class="row">
