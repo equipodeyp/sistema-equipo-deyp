@@ -121,11 +121,11 @@ $num_consecutivo =$row["id"];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA PROPUESTA <span class="required"></span></label>
+            <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA <span class="required"></span></label>
             <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="" readonly>
           </div>
           <div class="alert alert-info">
@@ -187,7 +187,7 @@ $num_consecutivo =$row["id"];
           </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
+              <h3 style="text-align:center">DATOS DE LA PERSONA<br><br></h3>
             </div>
 
             <div>
@@ -271,7 +271,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
+              <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
@@ -329,7 +329,7 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
+              <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
               <label for="DOMICILIO" >P.P.L.<span class="required"></span></label>
@@ -530,7 +530,7 @@ $num_consecutivo =$row["id"];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOTOGRAFIA DEL SUJETO</h3>
+            <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
           </div>
           <section class="text-center" >
             <input class="input-group" type="file" name="user_image" accept="image/*" />

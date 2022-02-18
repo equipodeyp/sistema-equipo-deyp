@@ -209,7 +209,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
                     <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -285,7 +285,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
+                    <h3 style="text-align:center">DATOS DE LA PERSONA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -355,7 +355,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
+                    <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -418,9 +418,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
+                    <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="MOD_DOMICILIO" >P.P.L.<span class="required"></span></label>
                     <select  class="form-select form-select-lg" id="MOD_DOMICILIO" name="MOD_DOMICILIO"  onclick="mod_domicilioactual(this)">
@@ -589,7 +589,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="TUTOR_NOMBRE">NOMBRE (S) <span class="required"></span></label>
+                    <label for="TUTOR_NOMBRE">NOMBRE(S) <span class="required"></span></label>
                     <input class="form-control" id="TUTOR_NOMBRE1" name="TUTOR_NOMBRE1" placeholder="" value="<?php echo $rowtutor['nombre']; ?>" type="text" >
                   </div>
 
@@ -745,7 +745,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">FOTOGRAFIA DEL SUJETO</h3>
+                    <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
                   </div>
                   <section class="text-center" >
 
