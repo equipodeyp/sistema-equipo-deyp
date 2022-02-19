@@ -182,7 +182,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="fecha_recepcion">FECHA DE RECEPCION</label>
-                    <input class="form-control" type="date" name="fecha_recepcion" value="<?php echo $fila_expediente['fecharecp']; ?>" readonly>
+                    <input class="form-control" type="text" name="fecha_recepcion" value="<?php echo $fila_expediente['fecharecep']; ?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="sede">SEDE</label>
@@ -264,22 +264,55 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
             		  	<table class="table table-striped table-dark table-bordered">
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
-                        <th style="text-align:center">FECHA FIRMA</th>
-                        <th style="text-align:center">VIGENCIA</th>
-                        <th style="text-align:center">FECHA DE TERMINO</th>
+                        <th style="text-align:center">ID PERSONA</th>
+                        <th style="text-align:center">CONVENIO</th>
+                        <th style="text-align:center">CONVENIO DE ADHESION</th>
+                        <th style="text-align:center">CONVENIO MODIFICATORIO</th>
             		  		</thead>
                       <?php
-            		      $tabla="SELECT * FROM convenio_adhesion WHERE id_unico ='$identificador'";
+                      $conexion=mysqli_connect("localhost","root","","sistemafgjem");
+                      $cont_med = 0;
+            		      $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
             		       $var_resultado = $mysqli->query($tabla);
             		      while ($var_fila=$var_resultado->fetch_array())
             		      {
+                        $id_persona_convenio = $var_fila['id'];
                         $cont_med = $cont_med + 1;
-            		        echo "<tr>";
-            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo $var_fila['fecha_firma']; echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['fecha_vigencia']; echo "</td>";
-            		        echo "</tr>";
+                        $convenio = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona_convenio'";
+                        $res_convenio = $mysqli->query($convenio);
+                        while ($fila_convenio = $res_convenio->fetch_array()) {
+                          echo "<tr>";
+              		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+              		          echo "<td style='text-align:center'>"; echo $var_fila['identificador']; "</td>";
+              		          echo "<td style='text-align:center'>";
+                              if ($fila_convenio['convenio'] == 'FORMALIZADO') {
+                                echo "<i class='fas fa-check'></i>";
+                              }else {
+                                echo "<i class='fas fa-times'></i>";
+                              }
+                            "</td>";
+                            echo "<td style='text-align:center'>";
+                              $convenio_adhesion = "SELECT * FROM convenio_adhesion WHERE id_persona = '$id_persona_convenio'";
+                              $res_convenio_adhesion = $conexion->query($convenio_adhesion);
+                              $fila_convenio_adhesion = mysqli_fetch_array($res_convenio_adhesion);
+                              if ($fila_convenio_adhesion > 0) {
+                                echo "<i class='fas fa-check'></i>";
+                              }else {
+                                echo "<i class='fas fa-times'></i>";
+                              }
+                            echo "</td>";
+                            echo "<td style='text-align:center'>";
+                              $convenio_modificatorio = "SELECT * FROM convenio_modificatorio WHERE id_persona = '$id_persona_convenio'";
+                              $res_convenio_modificatorio = $conexion->query($convenio_modificatorio);
+                              $fila_convenio_modificatorio = mysqli_fetch_array($res_convenio_modificatorio);
+                              if ($fila_convenio_modificatorio > 0) {
+                                echo "<i class='fas fa-check'></i>";
+                              }else {
+                                echo "<i class='fas fa-times'></i>";
+                              }
+                            echo "</td>";
+              		        echo "</tr>";
+                        }
             		      }
             		      ?>
             		  	</table>
@@ -287,38 +320,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
             			<div id="footer">
             		  </div>
                 </div>
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS MODIFICATORIOS</h3>
-                  </div>
-                  <div id="contenido">
-                    <table class="table table-striped table-dark table-bordered">
-                      <thead class="table-success">
-                        <th style="text-align:center">No.</th>
-                        <th style="text-align:center">FECHA FIRMA</th>
-                        <th style="text-align:center">DESCRIPCION</th>
-                      </thead>
-                      <?php
-                      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
-                       $var_resultado = $mysqli->query($tabla);
-                      while ($var_fila=$var_resultado->fetch_array())
-                      {
-                        $cont_med = $cont_med + 1;
-                        echo "<tr>";
-                          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['fecha_firma']; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['descripcion']; echo "</td>";
-                        echo "</tr>";
-                      }
-                      ?>
-                    </table>
-                  </div>
-                  <div id="footer">
-                  </div>
-                </div>
+
 
                 <div class="row">
                   <div class="row">
@@ -326,6 +328,10 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">ANALISIS</h3>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="personas_propuestas">PERSONAS PROPUESTAS</label>
+                    <input class="form-control" type="text" name="personas_propuestas" value="">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
@@ -340,7 +346,6 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                       ?>
                     </select>
                   </div>
-
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
@@ -385,6 +390,29 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_UNO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" type="date" value="<?php echo $rowseguimexp['date_convenio']; ?>">
                   </div>
 
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
+                    <input class="form-control" type="text" name="personas_incorporadas" value="">
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">CONVENIO ADHESION</h3>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">CONVENIO MODIFICATORIO</h3>
+                  </div>
                 </div>
 
                 <div class="row">
