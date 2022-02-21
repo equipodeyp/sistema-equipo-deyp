@@ -220,7 +220,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
-                    <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
+                    <select id="ANALISIS_MULTIDISCIPLINARIO" class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="opt-analisis-multidisiplinario" value="<?php echo $rowdetinc['multidisciplinario']; ?>"><?php echo $rowdetinc['multidisciplinario']; ?></option>
                       <?php
                       $multidisciplinario = "SELECT * FROM multidisciplinario";
@@ -464,22 +464,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   if ($rowradmas['fuente']=='OFICIO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OFICIO">
                       <label for="OFICIO">OFICIO<span class="required"></span></label>
-                      <input class="form-control" id="OFICIO" name="OFICIO" placeholder="" value="'.$rowradmas['descripcion'].'" value=""  type="text" >
+                      <input class="form-control" id="OFICIO_VALIDAR" name="OFICIO" placeholder="" value="'.$rowradmas['descripcion'].'" value=""  type="text" >
                     </div>';
                   } else if ($rowradmas['fuente']=='CORREO') {
                     echo '<div class="col-md-6 mb-3 validar" id="CORREO">
                       <label for="CORREO">CORREO<span class="required"></span></label>
-                      <input class="form-control" id="CORREO" name="CORREO" placeholder=""  value="'.$rowradmas['descripcion'].'" type="text" >
+                      <input class="form-control" id="CORREO_VALIDAR" name="CORREO" placeholder=""  value="'.$rowradmas['descripcion'].'" type="text" >
                     </div>';
                   } elseif ($rowradmas['fuente']=='EXPEDIENTE') {
                     echo '<div class="col-md-6 mb-3 validar"  id="EXPEDIENTE">
                       <label for="EXPEDIENTE">EXPEDIENTE<span class="required"></span></label>
-                      <input class="form-control" id="EXPEDIENTE" name="EXPEDIENTE" placeholder="" value="'.$rowradmas['descripcion'].'" type="text" >
+                      <input class="form-control" id="EXPEDIENTE_VALIDAR" name="EXPEDIENTE" placeholder="" value="'.$rowradmas['descripcion'].'" type="text" >
                     </div>';
                   }elseif ($rowradmas['fuente']=='OTRO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTRO">
                       <label for="OTRO">OTRO<span class="required"></span></label>
-                      <input class="form-control" id="OTRO" name="OTRO" placeholder=""  value="'.$rowradmas['descripcion'].'" type="text" >
+                      <input class="form-control" id="OTRO_VALIDAR" name="OTRO" placeholder=""  value="'.$rowradmas['descripcion'].'" type="text" >
                     </div>';
                   }
                    ?>
@@ -526,7 +526,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
-                    <input class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
+                    <input id="UPDATE_FILE" class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
                   </section>
                 </div>
 
@@ -1209,6 +1209,21 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
         document.getElementById("enter").style.display = "none";
+        document.getElementById("ANALISIS_MULTIDISCIPLINARIO").disabled = "true";
+        document.getElementById("INCORPORACION").disabled = "true";
+        document.getElementById("FECHA_AUTORIZACION").disabled = "true";
+        document.getElementById("CONVENIO_ENTENDIMIENTO").disabled = "true";
+        document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").disabled = "true";
+        document.getElementById("VIGENCIA_CONVENIO").disabled = "true";
+        document.getElementById("CONCLUSION_CANCELACION").disabled = "true";
+        document.getElementById("CONCLUSION_ART35z").disabled = "true";
+        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = "true";
+        document.getElementById("ESTATUS_PERSONA").disabled = "true";
+        document.getElementById("FUENTE").disabled = "true";
+        document.getElementById("COMENTARIO").disabled = "true";
+        document.getElementById("OFICIO_VALIDAR").disabled = "true";
+        document.getElementById("UPDATE_FILE").disabled = "true";
+        UPDATE_FILE
       }
   
 
