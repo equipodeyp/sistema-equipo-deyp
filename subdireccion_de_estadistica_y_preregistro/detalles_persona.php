@@ -657,6 +657,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
         		  		</thead>
         		  		<?php
+                  $cont_med = '0';
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
         		       $var_resultado = $mysqli->query($tabla);
         		      while ($var_fila=$var_resultado->fetch_array())

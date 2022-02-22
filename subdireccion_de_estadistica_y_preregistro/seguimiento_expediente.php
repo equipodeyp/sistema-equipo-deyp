@@ -389,7 +389,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $rowseguimexp['date_autorizacion']; ?>">
+                    <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $fila_analisis_expediente['fecha_analisis']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -523,7 +523,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                    <div class="col-md-6 mb-3 validar">
                      <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN<span class="required"></span></label>
-                     <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowstatusexp['date_desincorporacion']; ?>">
+                     <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $fila_seguiimiento_exped['date_desincorporacion']; ?>">
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
