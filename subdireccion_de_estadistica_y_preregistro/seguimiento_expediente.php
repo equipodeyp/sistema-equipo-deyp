@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -71,18 +71,34 @@ $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
 $seguimexp = "SELECT * FROM seguimientoexp WHERE id_persona = '$id_person'";
 $resultadoseguimexp = $mysqli->query($seguimexp);
 $rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
-// consulta del estatus del expediente
-$statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-$resultadostatusexp = $mysqli->query($statusexp);
-$rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 // consulta de la fuente de la mascara 3
-$fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
-$resultadofuente3 = $mysqli->query($fuente3);
-$rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
+// $fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
+// $resultadofuente3 = $mysqli->query($fuente3);
+// $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 $expediente = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $res_expediente = $mysqli->query($expediente);
 $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
+
+$analisis_exp = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$fol_exp'";
+$res_analsis_expediente = $mysqli->query($analisis_exp);
+$fila_analisis_expediente = $res_analsis_expediente->fetch_assoc();
+
+$convadh1 = "SELECT * FROM convenio_adh_expediente WHERE folioexpediente = '$fol_exp'";
+$res_convadh1 = $mysqli->query($convadh1);
+$fila_convadh1 = $res_convadh1->fetch_assoc();
+
+$convmod1 = "SELECT * FROM convenio_mod_expediente WHERE folioexpediente = '$fol_exp'";
+$res_convmod1 = $mysqli->query($convmod1);
+$fila_convmod1 = $res_convmod1->fetch_assoc();
+
+$seguimiento_exped = "SELECT * FROM statusseguimiento WHERE folioexpediente = '$fol_exp'";
+$res_seguimiento_exped = $mysqli->query($seguimiento_exped);
+$fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
+
+$fuentemedida = "SELECT * FROM radicacion_mascara3 WHERE folioexpediente = '$fol_exp'";
+$resultadofuentemedida = $mysqli->query($fuentemedida);
+$rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
  ?>
 <!DOCTYPE html>
@@ -171,7 +187,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
     		<div class="secciones">
     			<article id="tab3">
             <div class="container">
-              <form class=" container well form-horizontal" action="update_seguim.php?folio=<?php echo $id_person; ?>" method="post">
+              <form class=" container well form-horizontal" action="actualizar_expediente_seguimiento.php?folio=<?php echo $fol_exp; ?>" method="post">
                 <div class="row">
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>
@@ -331,12 +347,12 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="personas_propuestas">PERSONAS PROPUESTAS</label>
-                    <input class="form-control" type="text" name="personas_propuestas" value="">
+                    <input class="form-control" type="text" name="personas_propuestas" value="<?php echo $fila_analisis_expediente['personas_propuestas'];?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
-                      <option style="visibility: hidden" id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
+                      <option style="visibility: hidden" id="tab3-analisis-multidisciplinario" value="<?php echo $fila_analisis_expediente['analisis'];?>"><?php echo $fila_analisis_expediente['analisis'];?></option>
                       <?php
                       $multidisciplinario = "SELECT * FROM multidisciplinario";
                       $answermultidisciplinario = $mysqli->query($multidisciplinario);
@@ -350,7 +366,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
-                      <option style="visibility: hidden" id="tab3-incorporacion" value="<?php echo $rowseguimexp['incorporacion']; ?>"><?php echo $rowseguimexp['incorporacion']; ?></option>
+                      <option style="visibility: hidden" id="tab3-incorporacion" value="<?php echo $fila_analisis_expediente['incorporacion'];?>"><?php echo $fila_analisis_expediente['incorporacion'];?></option>
                       <?php
                       $inc = "SELECT * FROM incorporacion";
                       $answerinc = $mysqli->query($inc);
@@ -363,13 +379,13 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $rowseguimexp['date_autorizacion']; ?>">
+                    <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $fila_analisis_expediente['fecha_analisis'];?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONVENIO_DE_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CONVENIO_DE_ENTENDIMIENTO" name="CONVENIO_DE_ENTENDIMIENTO">
-                      <option style="visibility: hidden" id="tab3-convenio-entendimiento" value="<?php echo $rowseguimexp['convenio']; ?>"><?php echo $rowseguimexp['convenio']; ?></option>
+                      <option style="visibility: hidden" id="tab3-convenio-entendimiento" value="<?php echo $fila_analisis_expediente['convenio'];?>"><?php echo $fila_analisis_expediente['convenio'];?></option>
                       <?php
                       $convenio = "SELECT * FROM convenio";
                       $answerconvenio = $mysqli->query($convenio);
@@ -381,18 +397,19 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowseguimexp['vigencia']; ?>">
+                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DEL CONVENIO ENTENDIMIENTO<span class="required"></span></label>
+                    <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" type="date" value="<?php echo $fila_analisis_expediente['fecha_convenio'];?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DEL CONVENIO ENTENDIMIENTO<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_UNO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" type="date" value="<?php echo $rowseguimexp['date_convenio']; ?>">
+                    <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
+                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $fila_analisis_expediente['vigencia'];?>">
                   </div>
+
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
-                    <input class="form-control" type="text" name="personas_incorporadas" value="">
+                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $fila_analisis_expediente['personasincorporadas'];?>">
                   </div>
 
                 </div>
@@ -404,6 +421,18 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   <div class="alert alert-info">
                     <h3 style="text-align:center">CONVENIO ADHESION</h3>
                   </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="convenio_adhesion">CONVENIO DE ADHESION</label>
+                    <input class="form-control" type="text" name="convenio_adhesion" value="<?php echo $fila_convadh1['convenio']; ?>">
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="fecha_convenio_adhesion">FECHA DEL CONVENIO DE ADHESION</label>
+                    <input class="form-control" type="date" name="fecha_convenio_adhesion" value="<?php echo $fila_convadh1['fecha']; ?>">
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="vigencia_adhesion">VIGENCIA</label>
+                    <input class="form-control" type="text" name="vigencia_adhesion" value="<?php echo $fila_convadh1['vigencia']; ?>">
+                  </div>
                 </div>
 
                 <div class="row">
@@ -412,6 +441,14 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">CONVENIO MODIFICATORIO</h3>
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="convenio_modificatorio">CONVENIO MODIFICATORIO</label>
+                    <input class="form-control" type="text" name="convenio_modificatorio" value="<?php echo $fila_convmod1['convenio']; ?>">
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="fecha_modificatorio">FECHA DEL CONVENIO MODIFICATORIO</label>
+                    <input class="form-control" type="date" name="fecha_modificatorio" value="<?php echo $fila_convmod1['fecha']; ?>">
                   </div>
                 </div>
 
@@ -426,21 +463,18 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
                     <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
-                      <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $rowstatusexp['conclu_cancel']; ?>"><?php echo $rowstatusexp['conclu_cancel']; ?></option>
+                      <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $fila_seguiimiento_exped['conclu_cancel']; ?>"><?php echo $fila_seguiimiento_exped['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACIÓN</option>
                       <option value="CONCLUSION">CONCLUSIÓN</option>
                     </select>
                   </div>
 
                   <?php
-                  $statusseg = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-                  $resultadostatusseg = $mysqli->query($statusseg);
-                  $rowastatusseg = $resultadostatusseg->fetch_array(MYSQLI_ASSOC);
-                  if ($rowastatusseg['conclu_cancel']== 'CONCLUSION') {
+                  if ($fila_seguiimiento_exped['conclu_cancel']== 'CONCLUSION') {
                     echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m">
                       <label for="CONCLUSION">CONCLUSION ARTICULO 35</label>
                       <select onclick="myFunctionHidden" class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35s(this)">
-                        <option id="tab3-art35" value="'.$rowastatusseg['conclusionart35'].'">'.$rowastatusseg['conclusionart35'].'</option>';
+                        <option id="tab3-art35" value="'.$fila_seguiimiento_exped['conclusionart35'].'">'.$fila_seguiimiento_exped['conclusionart35'].'</option>';
                         $art35 = "SELECT * FROM conclusionart35";
                         $answerart35 = $mysqli->query($art35);
                         while($art35s = $answerart35->fetch_assoc()){
@@ -449,10 +483,10 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                         echo '
                       </select>
                     </div>';
-                    if ($rowastatusseg['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+                    if ($fila_seguiimiento_exped['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
                       echo '<div class="col-md-6 mb-3 validar" id="OTHER3ART35">
                         <label for="OTHER_ART35">ESPECIFIQUE</label>
-                        <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowastatusseg['otherart35'].'" type="text">
+                        <input class="form-control" id="OTHER_ART351" name="OTHER_ART3512" placeholder="" value="'.$fila_seguiimiento_exped['otherart35'].'" type="text">
                       </div>';
                     }
                   }
@@ -479,13 +513,13 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
 
                    <div class="col-md-6 mb-3 validar">
                      <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACION<span class="required"></span></label>
-                     <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowstatusexp['date_desincorporacion']; ?>">
+                     <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $fila_seguiimiento_exped['date_desincorporacion']; ?>">
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
                      <label for="ESTATUS_EXPEDIENTE">ESTATUS DEL EXPEDIENTE<span class="required"></span></label>
                      <select class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
-                       <option style="visibility: hidden" id="tab3-estatus-expediente" value="<?php echo $rowstatusexp['status'] ?>"><?php echo $rowstatusexp['status']; ?></option>
+                       <option style="visibility: hidden" id="tab3-estatus-expediente" value="<?php echo $fila_seguiimiento_exped['status']; ?>"><?php echo $fila_seguiimiento_exped['status']; ?></option>
                        <?php
                        $statusexp = "SELECT * FROM statusexpediente";
                        $answerstatusexp = $mysqli->query($statusexp);
@@ -508,7 +542,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar">
                     <label for="FUENTE_S">FUENTE<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="FUENTE_S" name="FUENTE_S" onChange="radicacionfuenteS(this)" >
-                      <option style="visibility: hidden" id="tab3-fuente-seguimiento" value"<?php echo $rowfuente3['fuente']; ?>"><?php echo $rowfuente3['fuente']; ?></option>
+                      <option style="visibility: hidden" id="tab3-fuente-seguimiento" value"<?php echo $rowfuentemedida['fuente']; ?>"><?php echo $rowfuentemedida['fuente']; ?></option>
                       <?php
                       $rad = "SELECT * FROM radicacion";
                       $answerrad = $mysqli->query($rad);
@@ -519,9 +553,6 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
                   <?php
-                  $fuentemedida = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
-                  $resultadofuentemedida = $mysqli->query($fuentemedida);
-                  $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
                   if ($rowfuentemedida['fuente']=='OFICIO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OFICIO_S" >
                       <label for="OFICIO_S">OFICIO<span class="required"></span></label>
@@ -549,16 +580,16 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                      <label for="OFICIO_S">OFICIO<span class="required"></span></label>
                      <input class="form-control" id="OFICIO_S1" name="OFICIO_S1" placeholder="" value=""  type="text" >
                    </div>
+                   <div class="col-md-6 mb-3 validar"  id="CORREO_S" style="display:none;">
+                     <label for="EXPEDIENTE_S">CORREO<span class="required"></span></label>
+                     <input class="form-control" id="CORREO_S1" name="CORREO_S1" placeholder=""  value="" type="text" >
+                   </div>
 
                    <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_S" style="display:none;">
                      <label for="EXPEDIENTE_S">EXPEDIENTE<span class="required"></span></label>
                      <input class="form-control" id="EXPEDIENTE_S1" name="EXPEDIENTE_S1" placeholder=""  value="" type="text" >
                    </div>
 
-                   <div class="col-md-6 mb-3 validar"  id="CORREO_S" style="display:none;">
-                     <label for="EXPEDIENTE_S">CORREO<span class="required"></span></label>
-                     <input class="form-control" id="CORREO_S1" name="CORREO_S1" placeholder=""  value="" type="text" >
-                   </div>
 
                    <div class="col-md-6 mb-3 validar" id="OTRO_S" style="display:none;">
                      <label for="OTRO_S">OTRO<span class="required"></span></label>
