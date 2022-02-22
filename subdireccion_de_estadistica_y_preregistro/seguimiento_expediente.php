@@ -274,7 +274,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS DE ADHESIÓN</h3>
+                    <h3 style="text-align:center">CONVENIOS</h3>
                   </div>
                   <div id="contenido">
             		  	<table class="table table-striped table-dark table-bordered">
@@ -345,9 +345,19 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="alert alert-info">
                     <h3 style="text-align:center">ANÁLISIS</h3>
                   </div>
+                  <?php
+                  $cant_med="SELECT COUNT(*) AS cant FROM determinacionincorporacion WHERE folioexpediente = '$fol_exp'";
+                  $res_cant_med=$mysqli->query($cant_med);
+                  $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+                  $cant_med1="SELECT COUNT(*) AS cant FROM determinacionincorporacion WHERE folioexpediente = '$fol_exp' AND convenio = 'FORMALIZADO'";
+                  $res_cant_med1=$mysqli->query($cant_med1);
+                  $row_med1 = $res_cant_med1->fetch_array(MYSQLI_ASSOC);
+                         // echo $row_med['cant'];
+                         // echo $row_med1['cant'];
+                   ?>
                   <div class="col-md-6 mb-3 validar">
                     <label for="personas_propuestas">PERSONAS PROPUESTAS</label>
-                    <input class="form-control" type="text" name="personas_propuestas" value="<?php echo $fila_analisis_expediente['personas_propuestas'];?>">
+                    <input class="form-control" type="text" name="personas_propuestas" value="<?php echo $row_med['cant'];?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
@@ -409,7 +419,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
-                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $fila_analisis_expediente['personasincorporadas'];?>">
+                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>" readonly>
                   </div>
 
                 </div>
