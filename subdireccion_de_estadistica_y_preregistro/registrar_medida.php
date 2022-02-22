@@ -105,7 +105,7 @@ $validacion = $fil_val['validacion'];
 
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA AL PROGRAMA</h3>
+            <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA</h3>
           </div>
 
           <div class="col-md-6 mb-3 validar">
@@ -113,7 +113,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
 

@@ -201,11 +201,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
+                  <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
                   <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA PROPUESTA<span class="required"></span></label>
+                  <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA<span class="required"></span></label>
                   <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
                 </div>
 
@@ -219,7 +219,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="opt-analisis-multidisiplinario" value="<?php echo $rowdetinc['multidisciplinario']; ?>"><?php echo $rowdetinc['multidisciplinario']; ?></option>
                       <?php
@@ -242,7 +242,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_AUTORIZACION">FECHA DE AUTORIZACIÓN DEL ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+                    <label for="FECHA_AUTORIZACION">FECHA DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_AUTORIZACION" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_autorizacion']; ?>">
                   </div>
 
@@ -304,7 +304,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   }
                    ?>
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                     <label for="CONCLUSION">CONCLUSIÓN ARTICULO 35</label>
+                     <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
                        <option  value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
                        <?php
@@ -346,7 +346,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS DE ADHESION</h3>
+                    <h3 style="text-align:center">CONVENIOS DE ADHESIÓN</h3>
                   </div>
                   <div id="contenido">
                     <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
@@ -390,7 +390,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">FECHA FIRMA</th>
-                        <th style="text-align:center">DESCRIPCION</th>
+                        <th style="text-align:center">DESCRIPCIÓN</th>
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
@@ -607,7 +607,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="NOMRE_SUJETO">NOMBRE DE LA PERSONA INCORPORADA AL PROGRAMA<span class="required"></span></label>
+                  <label for="NOMRE_SUJETO">NOMBRE DE LA PERSONA<span class="required"></span></label>
                   <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['nombrepersona']; ?>" disabled>
                 </div>
 
@@ -714,10 +714,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">ANALISIS</h3>
+                    <h3 style="text-align:center">ANÁLISIS</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
                       <?php
@@ -746,7 +746,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $rowseguimexp['date_autorizacion']; ?>">
                   </div>
 
@@ -839,7 +839,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACION<span class="required"></span></label>
+                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN<span class="required"></span></label>
                      <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowstatusexp['date_desincorporacion']; ?>">
                    </div>
 
@@ -973,13 +973,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
      <label>FOLIO DEL EXPEDIENTE</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
      <br />
-     <label>ID UNICO DE LA PERSONA PROPUESTA</label>
+     <label>ID ÚNICO DE LA PERSONA</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
      <br />
      <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
      <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
      <br />
-     <label>DESCRIPCION</label>
+     <label>DESCRIPCIÓN</label>
      <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
      <br />
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
@@ -999,7 +999,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESION</h4>
+    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESIÓN</h4>
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
    </div>
    <div class="modal-body">
@@ -1007,10 +1007,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
      <label>FOLIO DEL EXPEDIENTE</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
      <br />
-     <label>ID UNICO DE LA PERSONA PROPUESTA</label>
+     <label>ID ÚNICO DE LA PERSONA </label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
      <br />
-     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESION</label>
+     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESIÓN</label>
      <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
      <br />
      <label>VIGENCIA</label>
@@ -1192,7 +1192,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
       if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
-    
+
       }
 
     }
@@ -1210,7 +1210,7 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("age").style.display = "none";
         document.getElementById("enter").style.display = "none";
       }
-  
+
 
 </script>
 

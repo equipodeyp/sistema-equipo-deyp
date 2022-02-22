@@ -181,7 +181,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <input class="form-control" type="text" name="idexpediente" value="<?php echo $fila_expediente['fol_exp']; ?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_recepcion">FECHA DE RECEPCION</label>
+                    <label for="fecha_recepcion">FECHA DE RECEPCIÓN</label>
                     <input class="form-control" type="text" name="fecha_recepcion" value="<?php echo $fila_expediente['fecharecep']; ?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -222,7 +222,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <input class="form-control" type="text" name="nuc" value="<?php echo $rowprocess['nuc']; ?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="municipio_radicacion">MUNICIPIO DE RADICACION</label>
+                    <label for="municipio_radicacion">MUNICIPIO DE RADICACIÓN</label>
                     <input class="form-control" type="text" name="municipio_radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>" readonly>
                   </div>
                 </div>
@@ -231,7 +231,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">VALORACION JURIDICA</h3>
+                    <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
                   </div>
                     <div class="col-md-6 mb-3 validar">
                       <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
@@ -258,7 +258,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS DE ADHESION</h3>
+                    <h3 style="text-align:center">CONVENIOS DE ADHESIÓN</h3>
                   </div>
                   <div id="contenido">
             		  	<table class="table table-striped table-dark table-bordered">
@@ -266,7 +266,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">ID PERSONA</th>
                         <th style="text-align:center">CONVENIO</th>
-                        <th style="text-align:center">CONVENIO DE ADHESION</th>
+                        <th style="text-align:center">CONVENIO DE ADHESIÓN</th>
                         <th style="text-align:center">CONVENIO MODIFICATORIO</th>
             		  		</thead>
                       <?php
@@ -327,14 +327,14 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">ANALISIS</h3>
+                    <h3 style="text-align:center">ANÁLISIS</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="personas_propuestas">PERSONAS PROPUESTAS</label>
                     <input class="form-control" type="text" name="personas_propuestas" value="">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
                       <?php
@@ -362,7 +362,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $rowseguimexp['date_autorizacion']; ?>">
                   </div>
 
@@ -402,7 +402,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIO ADHESION</h3>
+                    <h3 style="text-align:center">CONVENIO ADHESIÓN</h3>
                   </div>
                 </div>
 
@@ -459,7 +459,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                    ?>
 
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m" style="display:none;">
-                     <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
+                     <label for="CONCLUSION_ART35">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35s(this)">
                        <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                        <?php
@@ -478,7 +478,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACION<span class="required"></span></label>
+                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN<span class="required"></span></label>
                      <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowstatusexp['date_desincorporacion']; ?>">
                    </div>
 
@@ -612,13 +612,13 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
      <label>FOLIO DEL EXPEDIENTE</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
      <br />
-     <label>ID UNICO DE LA PERSONA PROPUESTA</label>
+     <label>ID ÚNICO DE LA PERSONA</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
      <br />
      <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
      <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
      <br />
-     <label>DESCRIPCION</label>
+     <label>DESCRIPCIÓN</label>
      <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
      <br />
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
@@ -638,7 +638,7 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESION</h4>
+    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESIÓN</h4>
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
    </div>
    <div class="modal-body">
@@ -646,10 +646,10 @@ $fila_expediente = $res_expediente->fetch_array(MYSQLI_ASSOC);
      <label>FOLIO DEL EXPEDIENTE</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
      <br />
-     <label>ID UNICO DE LA PERSONA PROPUESTA</label>
+     <label>ID ÚNICO DE LA PERSONA</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
      <br />
-     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESION</label>
+     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESIÓN</label>
      <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
      <br />
      <label>VIGENCIA</label>
