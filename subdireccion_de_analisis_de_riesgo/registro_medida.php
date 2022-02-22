@@ -113,11 +113,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-<<<<<<< HEAD
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA <span ></span></label>
-=======
             <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
->>>>>>> 6e60de1544a02e0f25a88ecb4e072bfb7d68c6c1
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
 
@@ -240,11 +236,7 @@ $validacion = $fil_val['validacion'];
           <div class="col-md-6 mb-3 validar">
             <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
-<<<<<<< HEAD
-              <option disabled selected value>SELECCIONA UN ESTATUS</option>
-=======
               <option disabled selected value>SELECCIONE UN ESTATUS</option>
->>>>>>> 6e60de1544a02e0f25a88ecb4e072bfb7d68c6c1
               <option value="EN EJECUCION">EN EJECUCIÓN</option>
               <option value="EJECUTADA">EJECUTADA</option>
               <option value="CANCELADA">CANCELADA</option>

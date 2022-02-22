@@ -20,7 +20,8 @@ include ('./db.php');
             // </script>");
         }
 
-        $_SESSION['message'] = ' ¡ Reporte creado correctamente ! ';
+        $_SESSION['message'] = ' ¡ Muchas gracias ! Tu Reporte fue creado correctamente... ';
+        $_SESSION['message_type'] = 'primary';
         
 
         header ("location: create_ticket.php");
