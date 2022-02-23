@@ -279,8 +279,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
                     <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)" id="CONCLUSION_CANCELACION">
                       <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
-                      <option value="CANCELACION">CANCELACIÓN</option>
-                      <option value="CONCLUSION">CONCLUSIÓN</option>
+                      <option value="CANCELACION">CANCELACION</option>
+                      <option value="CONCLUSION">CONCLUSION</option>
                     </select>
                   </div>
 
@@ -305,7 +305,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    ?>
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                      <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
-                     <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
+                     <select readonly = "true";class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
                        <option  value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
                        <?php
                        $art35 = "SELECT * FROM conclusionart35";
@@ -1205,10 +1205,11 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 
 var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
 
-      if (! inputConclusioCancelacion == null || ! inputConclusioCancelacion == ""){
+      if (inputConclusioCancelacion === "CANCELACION" || inputConclusioCancelacion === "CONCLUSION"){
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
         document.getElementById("enter").style.display = "none";
+
         document.getElementById("ANALISIS_MULTIDISCIPLINARIO").disabled = "true";
         document.getElementById("INCORPORACION").disabled = "true";
         document.getElementById("FECHA_AUTORIZACION").disabled = "true";
@@ -1216,16 +1217,17 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").disabled = "true";
         document.getElementById("VIGENCIA_CONVENIO").disabled = "true";
         document.getElementById("CONCLUSION_CANCELACION").disabled = "true";
-        document.getElementById("CONCLUSION_ART35z").disabled = "true";
-        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = "true";
+
         document.getElementById("ESTATUS_PERSONA").disabled = "true";
         document.getElementById("FUENTE").disabled = "true";
         document.getElementById("COMENTARIO").disabled = "true";
         document.getElementById("OFICIO_VALIDAR").disabled = "true";
         document.getElementById("UPDATE_FILE").disabled = "true";
-        UPDATE_FILE
-      }
 
+        // document.getElementById("CONCLUSION_ART35z").readonly = "true";
+        // document.getElementById("FECHA_DESINCORPORACION_UNO").readonly = "true";
+        
+      }
 
 </script>
 
