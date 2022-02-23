@@ -100,12 +100,24 @@ if ($verifica_update_person == 1) {
   $fuente = $_POST['FUENTE_S'];
   if ($fuente == 'OFICIO') {
     $descripcion = $_POST['OFICIO_S1'];
+    if ($descripcion == '') {
+      $descripcion = $_POST['OFICIO_S'];
+    }
   }elseif ($fuente == 'CORREO') {
     $descripcion = $_POST['CORREO_S1'];
+    if ($descripcion == '') {
+      $descripcion = $_POST['CORREO_S'];
+    }
   }elseif ($fuente == 'EXPEDIENTE') {
     $descripcion = $_POST['EXPEDIENTE_S1'];
+    if ($descripcion == '') {
+      $descripcion = $_POST['EXPEDIENTE_S'];
+    }
   }elseif ($fuente == 'OTRO') {
     $descripcion = $_POST['OTRO_S1'];
+    if ($descripcion == '') {
+      $descripcion = $_POST['OTRO_S'];
+    }
   }
   $fuente_exp = "SELECT * FROM radicacion_mascara3 WHERE folioexpediente = '$folio_expediente'";
   $res_fuente_segexp = $conexion->query($fuente_exp);
@@ -117,6 +129,19 @@ if ($verifica_update_person == 1) {
     $new_fuente_exped = "INSERT INTO radicacion_mascara3 (fuente, descripcion, folioexpediente)
                          VALUES ('$fuente', '$descripcion', '$folio_expediente')";
     $res_fuente_exp = $mysqli->query($new_fuente_exped);
+  }
+
+  // variables de los comentarios
+  $comment = $_POST['COMENTARIO'];
+  $comment_mascara = '3';
+  date_default_timezone_set("America/Mexico_City");
+  $fecha_captura = date('y/m/d H:i:sa');
+
+  // insertar comentarios de cambios
+  if ($comment != '') {
+    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, fecha)
+                  VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$fecha_captura')";
+    $res_comment = $mysqli->query($comment);
   }
 
     // validacion del update correcto
