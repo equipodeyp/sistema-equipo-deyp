@@ -200,7 +200,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DEL SUJETO<span ></span></label>
+                  <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
                   <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -216,12 +216,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="FECHA_SOLICITUD">FECHA SOLICITUD<span ></span></label>
+                     <label for="FECHA_SOLICITUD">FECHA DE SOLICITUD<span ></span></label>
                      <input class="form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="<?php echo $rowaut['fechasolicitud']; ?>" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="NOMBRE_AUTORIDAD">NOMBRE AUTORIDAD<span class="required"></span></label>
+                     <label for="NOMBRE_AUTORIDAD">NOMBRE DE LA AUTORIDAD<span class="required"></span></label>
                      <select class="form-select form-select-lg" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)">
                        <option style="visibility: hidden" id="opt-nombre-autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>"><?php echo $rowaut['nombreautoridad']; ?></option>
                    </select>
@@ -234,22 +234,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="NOMBRE_SERVIDOR">NOMBRE SERVIDOR<span class="required"></span></label>
+                     <label for="NOMBRE_SERVIDOR">NOMBRE DEL SERVIDOR<span class="required"></span></label>
                      <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" value="<?php echo $rowaut['nombreservidor']; ?>" type="text" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="AÑO">PATERNO SERVIDOR<span class="required"></span></label>
+                     <label for="AÑO">APELLIDO PATERNO DEL SERVIDOR<span class="required"></span></label>
                      <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidopaterno']; ?>" type="text" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="MATERNO_SERVIDOR">MATERNO SERVIDOR<span class="required"></span></label>
+                     <label for="MATERNO_SERVIDOR">APELLIDO MATERNO DEL SERVIDOR<span class="required"></span></label>
                      <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidomaterno']; ?>" type="text" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="CARGO_SERVIDOR">CARGO SERVIDOR<span class="required"></span></label>
+                     <label for="CARGO_SERVIDOR">CARGO DEL SERVIDOR<span class="required"></span></label>
                      <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" value="<?php echo $rowaut['cargoservidor']; ?>" type="text" >
                    </div>
 
@@ -259,7 +259,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                      <hr class="mb-4">
                    </div>
                    <div class="alert alert-info">
-                     <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
+                     <h3 style="text-align:center">DATOS DE LA PERSONA</h3>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
@@ -278,12 +278,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="FECHA_NACIMIENTO_PERSONA">FECHA DE NACIMIENTO PERSONA <span class="required"></span></label>
+                     <label for="FECHA_NACIMIENTO_PERSONA">FECHA DE NACIMIENTO <span class="required"></span></label>
                      <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="<?php echo $rowfol['fechanacimientopersona']; ?>" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="EDAD_PERSONA">EDAD PERSONA <span class="required"></span></label>
+                     <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
                      <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2" >
                    </div>
 
@@ -314,7 +314,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="GRUPO_EDAD">SEXO PERSONA<span class="required"></span></label>
+                     <label for="GRUPO_EDAD">SEXO <span class="required"></span></label>
                      <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" >
                        <option style="visibility: hidden" id="opt-sexo-persona" value="<?php echo $rowfol['sexopersona']; ?>"><?php echo $rowfol['sexopersona']; ?></option>
                        <option value="MUJER">MUJER</option>
@@ -326,11 +326,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 
                    <div class="alert alert-info">
-                     <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
+                     <h3 style="text-align:center">LUGAR DE NACIMIENTO</h3>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
+                     <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
                      <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)" >
                        <option style="visibility: hidden" id="opt-lugar-nacimiento" value="<?php echo $roworigen['lugardenacimiento']; ?>"><?php echo $roworigen['lugardenacimiento']; ?></option>
                        <?php while($row = $resultado23->fetch_assoc()) { ?>
@@ -345,7 +345,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar" id="municipio">
-                     <label for="NOMBRE_MUNICIPIO">MUNICIPIO DE NACIMIENTO<span class="required"></span></label>
+                     <label for="NOMBRE_MUNICIPIO">MUNICIPIO<span class="required"></span></label>
                      <select class="form-select form-select-lg" name="cbx_municipio" id="cbx_municipio"  >
                        <option value="<?php echo $roworigen['municipiodenacimiento']; ?>"><?php echo $roworigen['municipiodenacimiento']; ?></option>
                      </select>
@@ -354,27 +354,27 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="NACIONALIDAD_PERSONA">NACIONALIDAD PERSONA<span class="required"></span></label>
+                     <label for="NACIONALIDAD_PERSONA">NACIONALIDAD<span class="required"></span></label>
                      <input class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder="" value="<?php echo $roworigen['nacionalidadpersona']; ?>" type="text" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="CURP_PERSONA">CURP PERSONA <span class="required"></span></label>
+                     <label for="CURP_PERSONA">CURP <span class="required"></span></label>
                      <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" value="<?php echo $rowfol['curppersona']; ?>" type="text" readonly>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="RFC_PERSONA">RFC PERSONA<span class="required"></span></label>
+                     <label for="RFC_PERSONA">R.F.C<span class="required"></span></label>
                      <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['rfcpersona']; ?>" maxlength="13" readonly>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="ALIAS_PERSONA">ALIAS PERSONA <span class="required"></span></label>
+                     <label for="ALIAS_PERSONA">ALIAS <span class="required"></span></label>
                      <input class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder="" value="<?php echo $rowfol['aliaspersona']; ?>" type="text" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="OCUPACION_PERSONA">OCUPACIÓN PERSONA<span class="required"></span></label>
+                     <label for="OCUPACION_PERSONA">OCUPACIÓN<span class="required"></span></label>
                      <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder="" value="<?php echo $rowfol['ocupacion']; ?>" type="text" >
                    </div>
 
@@ -388,11 +388,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                      <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                    </div>
                    <div class="alert alert-info">
-                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
+                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
+                     <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
                      <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1" onChange="updatedom(this)" >
                        <option style="visibility: hidden" id="opt-seleccion-estado" value="<?php echo $rowdomicilio['seleccioneestado']; ?>"><?php echo $rowdomicilio['seleccioneestado']; ?></option>
                        <?php while($row = $resultado1->fetch_assoc()) { ?>
@@ -402,7 +402,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    </div>
 
                    <div class="col-md-6 mb-3 validar" id="realm">
-                     <label for="NOMBRE_MUNICIPIO">SELECCIONE UN MUNICIPIO<span class="required"></span></label>
+                     <label for="NOMBRE_MUNICIPIO">MUNICIPIO<span class="required"></span></label>
                      <select class="form-select form-select-lg" name="cbx_municipio11" id="cbx_municipio11" >
                        <option value="<?php echo $rowdomicilio['seleccionemunicipio']; ?>"><?php echo $rowdomicilio['seleccionemunicipio']; ?></option>
                      </select>
@@ -475,17 +475,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="TUTOR_NOMBRE">TUTOR NOMBRE <span class="required"></span></label>
+                    <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
                     <input class="form-control" id="TUTOR_NOMBRE1" name="TUTOR_NOMBRE1" placeholder="" value="<?php echo $rowtutor['nombre']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="COLONIA">TUTOR PATERNO <span class="required"></span></label>
+                    <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
                     <input class="form-control" id="TUTOR_PATERNO1" name="TUTOR_PATERNO1" placeholder="" value="<?php echo $rowtutor['apellidopaterno']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="COLONIA">TUTOR MATERNO <span class="required"></span></label>
+                    <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
                     <input class="form-control" id="TUTOR_MATERNO1" name="TUTOR_MATERNO1" placeholder="" value="<?php echo $rowtutor['apellidomaterno']; ?>" type="text" >
                   </div>
 
@@ -601,11 +601,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">VALORACIÓN JURIDICA</h3>
+                    <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURIDICA<span class="required"></span></label>
+                    <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" >
                       <option style="visibility: hidden" id="opt-resultado-valoracio-juridica" value="<?php echo $rowvaljur['resultadovaloracion']; ?>"><?php echo $rowvaljur['resultadovaloracion']; ?></option>
                       <option value="SI PROCEDE">SI PROCEDE</option>
@@ -634,7 +634,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="opt-analisis-multidisiplinario" value="<?php echo $rowdetinc['multidisciplinario']; ?>"><?php echo $rowdetinc['multidisciplinario']; ?></option>
                       <?php
@@ -657,7 +657,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_AUTORIZACION">FECHA AUTORIZACIÓN ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+                    <label for="FECHA_AUTORIZACION">FECHA AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_AUTORIZACION" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_autorizacion']; ?>">
                   </div>
 
@@ -686,7 +686,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TERMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+                    <label for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
                     <input readonly placeholder="" class="form-control" id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="">
                   </div>
 
@@ -719,7 +719,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   }
                    ?>
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                     <label for="CONCLUSION">CONCLUSIÓN ARTICULO 35</label>
+                     <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
                        <option  value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
                        <?php
@@ -854,7 +854,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">FOTOGRAFIA DEL SUJETO</h3>
+                    <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
                   </div>
                   <section class="text-center" >
 
@@ -905,12 +905,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           				</div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ID_EXPEDIENTE">ID EXPEDIENTE<span class="required"></span></label>
+                    <label for="ID_EXPEDIENTE">FOLIO DEL EXPEDIENTE<span class="required"></span></label>
                     <input class="form-control" id="ID_EXPEDIENTE" name="ID_EXPEDIENTE" placeholder="" required="" type="text" value="<?php echo $rowaut['folioexpediente']; ?>" disabled>
                   </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="NOMRE_SUJETO">NOMBRE SUJETO PROTEGIDO<span class="required"></span></label>
+                  <label for="NOMRE_SUJETO">NOMBRE DE LA PERSONA<span class="required"></span></label>
                   <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['nombrepersona']; ?>" disabled>
                 </div>
 
@@ -925,7 +925,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="CALIDAD_DEL_SUJETO">CALIDAD DEL SUJETO<span class="required"></span></label>
+                  <label for="CALIDAD_DEL_SUJETO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
                   <select class="form-control" id="CALIDAD_DEL_SUJETO" name="CALIDAD_DEL_SUJETO" disabled>
                     <option value=""><?php echo $rowfol['calidadpersona']; ?></option>
                     <?php
@@ -951,7 +951,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  <div id="contenido">
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
-        		  			<th>ID</th>
+        		  			<th>No.</th>
                     <th>TIPO DE MEDIDA</th>
                     <th>CLASIFICACIÓN MEDIDA</th>
                     <th>ESTATUS</th>
@@ -991,7 +991,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURIDICA<span class="required"></span></label>
+                    <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="SEDE" name="RESULTADO_VALORACION_JURIDICA" disabled>
                       <option value=""><?php echo $rowvaljur['resultadovaloracion']; ?></option>
                       <option value="SI_PROCEDE">SI PROCEDE </option>
@@ -1000,7 +1000,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MOTIVO_NO_PROCEDENCIA_JURIDICA">MOTIVO NO PROCEDENCIA JURIDICA<span class="required"></span></label>
+                    <label for="MOTIVO_NO_PROCEDENCIA_JURIDICA">MOTIVO NO PROCEDENCIA JURÍDICA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="SEDE" name="MOTIVO_NO_PROCEDENCIA_JURIDICA" disabled>
                       <option value=""><?php echo $rowvaljur['motivoprocedencia']; ?></option>
                       <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL </option>
@@ -1016,10 +1016,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">ANALISIS</h3>
+                    <h3 style="text-align:center">ANÁLISIS</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
                       <?php
@@ -1048,7 +1048,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA AUTORIZACIÓN DE ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA AUTORIZACIÓN DE ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $rowseguimexp['date_autorizacion']; ?>">
                   </div>
 

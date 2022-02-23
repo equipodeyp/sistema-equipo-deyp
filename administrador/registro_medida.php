@@ -111,7 +111,7 @@ $validacion = $fil_val['validacion'];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DEL SUJETO<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
@@ -134,9 +134,9 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN MEDIDA<span class="required"></span></label>
+            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="selectmedida(this)" required="">
-              <option disabled selected value>SELECCIONE LA CLASIFICACION DE LA MEDIDA</option>
+              <option disabled selected value>SELECCIONE LA CLASIFICACIÓN DE LA MEDIDA</option>
               <option value="ASISTENCIA">ASISTENCIA</option>
               <option value="RESGUARDO">RESGUARDO</option>
             </select>
@@ -263,7 +263,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                  <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
+                  <label for="CONCLUSION_ART35">CONCLUSIÓN ARTÍCULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <?php
@@ -297,7 +297,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="ESTATUS_MEDIDA">ESTATUS MEDIDA<span class="required"></span></label>
+                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
                     <option disabled selected value>SELECCIONA UN ESTATUS</option>
                     <option value="EN EJECUCION">EN EJECUCIÓN</option>
@@ -307,7 +307,7 @@ $validacion = $fil_val['validacion'];
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNIPIO EJECUCIÓN MEDIDA<span class="required"></span></label>
+                  <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
                     <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
                     <?php
