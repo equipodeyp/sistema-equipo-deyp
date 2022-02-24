@@ -120,7 +120,7 @@ $num_consecutivo =$row["id"];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA PROPUESTA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="alert alert-info">
@@ -132,12 +132,12 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_SOLICITUD" class="is-required">FECHA SOLICITUD<span class="required"></span></label>
+            <label for="FECHA_SOLICITUD" class="is-required">FECHA DE SOLICITUD<span class="required"></span></label>
             <input class="form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE  AUTORIDAD<span class="required"></span></label>
+            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE AUTORIDAD<span class="required"></span></label>
             <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE EL MUNICIPIO" required>
             <datalist id="datalistOptions">
             <?php
@@ -180,7 +180,7 @@ $num_consecutivo =$row["id"];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
+            <h3 style="text-align:center">DATOS DE LA PERSONA</h3>
           </div>
 
           <div>
@@ -226,7 +226,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD PERSONA<span class="required"></span></label>
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD DE LA PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
@@ -239,7 +239,7 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
             <!-- calidad persona en el procedimiento -->
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA PROCEDIMIENTO<span class="required"></span></label>
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA DENTRO PROCEDIMIENTO<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
@@ -267,11 +267,11 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA PROPUESTA</h3>
+              <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="NOMBRE_ESTADO">LUGAR DE NACIMIENTO<span class="required"></span></label>
+              <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)">
                 <option value="0">Seleccionar Estado</option>
                 <?php while($row = $resultado->fetch_assoc()) { ?>
@@ -286,7 +286,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar" id="municipio">
-              <label for="NOMBRE_MUNICIPIO">MUNICIPIO DE NACIMIENTO<span class="required"></span></label>
+              <label for="NOMBRE_MUNICIPIO">MUNICIPIO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_municipio" id="cbx_municipio"></select>
             </div>
 
@@ -301,7 +301,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="RFC_PERSONA">RFC <span class="required"></span></label>
+              <label for="RFC_PERSONA">R.F.C <span class="required"></span></label>
               <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" maxlength="13">
             </div>
 
@@ -326,10 +326,10 @@ $num_consecutivo =$row["id"];
             </div>
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
-              <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA PROPUESTA</h3>
+              <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
-              <label for="NOMBRE_ESTADO">SELECCIONE UN ESTADO<span class="required"></span></label>
+              <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1">
                 <option value="">Seleccionar Estado</option>
                 <?php while($row = $resultado1->fetch_assoc()) { ?>
@@ -339,12 +339,12 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="NOMBRE_MUNICIPIO">SELECCIONE UN MUNICIPIO<span class="required"></span></label>
+              <label for="NOMBRE_MUNICIPIO">MUNICIPIO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_municipio11" id="cbx_municipio11"></select>
               </div>
 
               <div class="col-md-6 mb-3 validar">
-                <label for="NOMBRE_LOCALIDAD">SELECCIONE UNA LOCALIDAD<span class="required"></span></label>
+                <label for="NOMBRE_LOCALIDAD">LOCALIDAD<span class="required"></span></label>
                 <select class="form-select form-select-lg" name="cbx_localidad11" id="cbx_localidad11"></select>
               </div>
               <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
@@ -354,7 +354,7 @@ $num_consecutivo =$row["id"];
               </div>
 
               <div class="col-md-6 mb-3 validar">
-                <label for="CP">CP<span class="required"></span></label>
+                <label for="CP">C.P.<span class="required"></span></label>
                 <input class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5">
               </div>
 
@@ -376,17 +376,17 @@ $num_consecutivo =$row["id"];
               <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
-              <label for="TUTOR_NOMBRE">TUTOR NOMBRE <span class="required"></span></label>
+              <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
               <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="COLONIA">TUTOR PATERNO <span class="required"></span></label>
+              <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
               <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="COLONIA">TUTOR MATERNO <span class="required"></span></label>
+              <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
               <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder=""  type="text">
             </div>
 
@@ -476,10 +476,10 @@ $num_consecutivo =$row["id"];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">VALORACIÓN JURIDICA</h3>
+            <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURIDICA<span class="required"></span></label>
+            <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="SI PROCEDE">SI PROCEDE</option>
@@ -507,7 +507,7 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">DETERMINACIÓN DE LA INCORPORACIÓN</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="ANALISIS_MULTIDISCIPLINARIO">ANALISIS MULTIDISCIPLINARIO</label>
+            <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
             <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
               <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
               <?php
@@ -530,7 +530,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_AUTORIZACION">FECHA AUTORIZACIÓN ANALISIS MULTIDISCIPLINARIO<span class="required"></span></label>
+            <label for="FECHA_AUTORIZACION">FECHA AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
             <input class="form-control" id="FECHA_AUTORIZACION" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="">
           </div>
 
@@ -573,7 +573,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-            <label for="CONCLUSION">CONCLUSIÓN ARTICULO 35</label>
+            <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
             <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
               <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
               <?php
@@ -603,7 +603,7 @@ $num_consecutivo =$row["id"];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">ESTATUS DEL SUJETO EN EL PROGRAMA</h3>
+            <h3 style="text-align:center">ESTATUS DE LA PERSONA EN EL PROGRAMA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="ESTATUS_PERSONA">ESTATUS DE LA PERSONA<span ></span></label>
@@ -668,7 +668,7 @@ $num_consecutivo =$row["id"];
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOTOGRAFIA DEL SUJETO</h3>
+            <h3 style="text-align:center">FOTOGRAFÍA DE LA PERSONA</h3>
           </div>
           <section class="text-center" >
             <input class="input-group" type="file" name="user_image" accept="image/*" />

@@ -117,7 +117,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CLASIFICACION_MEDIDA">CLASIFICACION_MEDIDA<span class="required"></span></label>
+            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)" required="">
               <option style="visibility: hidden" id="opt-clasificacion-medida" value="<?php echo $rowmedida['clasificacion']; ?>"><?php echo $rowmedida['clasificacion']; ?></option>
               <option value="ASISTENCIA">ASISTENCIA</option>
@@ -130,7 +130,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           $rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
           if ($rowmedida['clasificacion']=='ASISTENCIA') {
             echo '<div class="col-md-6 mb-3 validar" id="asistencia" >';
-              echo '<label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>';
+              echo '<label for="MEDIDAS_ASISTENCIA">MEDIDAS DE ASISTENCIA<span class="required"></span></label>';
               echo '<select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">';
               echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $asistencia = "SELECT * FROM medidaasistencia";
@@ -148,7 +148,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
             }
           }  else if($rowmedida['clasificacion']=='RESGUARDO') {
             echo '<div class="col-md-6 mb-3 validar" id="resguardo" >';
-              echo '<label for="MEDIDAS_RESGUARDO">MEDIDAS_RESGUARDO<span class="required"></span></label>';
+              echo '<label for="MEDIDAS_RESGUARDO">MEDIDAS DE RESGUARDO<span class="required"></span></label>';
               echo '<select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)" >';
               echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
                 $resguardo = "SELECT * FROM medidaresguardo";
@@ -184,7 +184,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
              </div>';
            }elseif ($rowmedida['medida']=='XIII. OTRAS MEDIDAS') {
              echo '<div class="col-md-6 mb-3 validar" id="otherresguardo">
-               <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
+               <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA DE  RESGUARDO<span class="required"></span></label>
                <input class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="'.$rowmedida['descripcion'].'" placeholder="" type="text">
              </div>';
            }
@@ -193,7 +193,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           ?>
 
           <div class="col-md-6 mb-3 validar" id="asistencia" style="display:none;">
-            <label for="MEDIDAS_ASISTENCIA">MEDIDAS_ASISTENCIA<span class="required"></span></label>
+            <label for="MEDIDAS_ASISTENCIA">MEDIDAS DE ASISTENCIA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">
               <option disabled selected value>SELECCIONE LA MEDIDA</option>
               <?php
@@ -255,7 +255,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           </div>
 
           <div class="col-md-6 mb-3 validar" id="otherresguardo" style="display:none;">
-            <label for="OTRA_MEDIDA_RESGUARDO1">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
+            <label for="OTRA_MEDIDA_RESGUARDO1">OTRA MEDIDA  DE RESGUARDO<span class="required"></span></label>
             <input class="form-control" id="OTRA_MEDIDA_RESGUARDO1" name="OTRA_MEDIDA_RESGUARDO1" placeholder="" type="text">
           </div>
 
@@ -270,7 +270,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MEDIDA_MODOIFICADA">MEDIDA_MODIFICADA<span class="required"></span></label>
+            <label for="MEDIDA_MODOIFICADA">MEDIDA MODIFICADA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MEDIDA_MODOIFICADA" name="MEDIDA_MODOIFICADA" required="">
               <option style="visibility: hidden" id="opt-medida-modificada" desibled selected><?php echo $rowmedida['modificacion']; ?></option>
               <option value="EJECUCION">EJECUCION</option>
@@ -279,12 +279,12 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_MODIFICACION">FECHA_MODIFICACION<span class="required"></span></label>
+            <label for="FECHA_MODIFICACION">FECHA DE MODIFICACIÓN<span class="required"></span></label>
             <input class="form-control" id="FECHA_MODIFICACION" name="FECHA_MODIFICACION" placeholder="" value="<?php echo $rowmedida['date_modificada']; ?>" type="date">
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="TIPO_MODIFICACION">TIPO_MODIFICACION<span class="required"></span></label>
+            <label for="TIPO_MODIFICACION">TIPO DE MODIFICACIÓN<span class="required"></span></label>
             <input class="form-control" id="TIPO_MODIFICACION" name="TIPO_MODIFICACION" placeholder="" value="<?php echo $rowmedida['tipo_modificacion']; ?>" type="text">
           </div>
 
@@ -293,15 +293,15 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">CONCLUSION / CANCELACIÓN </h3>
+              <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CONCLUSION_CANCELACION">CONCLUSION_CANCELACION</label>
+              <label for="CONCLUSION_CANCELACION">CONCLUSIÓN/CANCELACIÓN</label>
               <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <option value="CANCELACION">CANCELACION</option>
-                <option value="CONCLUSION">CONCLUSION</option>
+                <option value="CANCELACION">CANCELACIÓN</option>
+                <option value="CONCLUSION">CONCLUSIÓN</option>
               </select>
             </div>
 
@@ -311,7 +311,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
             $rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
             if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
               echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
-                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+                <label for="CONCLUSION_ART35">CONCLUSION ARTÍCULO 35</label>
                 <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
                   <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowmultidisciplinario['conclusionart35'].'">'.$rowmultidisciplinario['conclusionart35'].'</option>';
                   $art35 = "SELECT * FROM conclusionart35";
@@ -332,9 +332,9 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
              ?>
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-               <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
+               <label for="CONCLUSION_ART35">CONCLUSIÓN ARTÍCULO 35</label>
                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                 <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                 <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                  <?php
                  $art35 = "SELECT * FROM conclusionart35";
                  $answerart35 = $mysqli->query($art35);
@@ -361,21 +361,21 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">ESTATUS</h3>
+              <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="ESTATUS_MEDIDA">ESTATUS_MEDIDA<span class="required"></span></label>
+              <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA">
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <option value="EN EJECUCION">EN EJECUCION</option>
+                <option value="EN EJECUCION">EN EJECUCIÓN</option>
                 <option value="EJECUTADA">EJECUTADA</option>
                 <option value="CANCELADA">CANCELADA</option>
                 </select>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO_EJECUCION_MEDIDA<span class="required"></span></label>
+              <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
                 <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
                 <?php
@@ -389,7 +389,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
                 </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA_DE_EJECUCION<span class="required"></span></label>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DE_EJECUCION" name="FECHA_DE_EJECUCION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>">
                 </div>
           </div>

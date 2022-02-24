@@ -66,7 +66,7 @@ $row=$result->fetch_assoc();
                     <h3 style="text-align:center">NUEVO EXPEDIENTE</h3>
                   </div>
                   <div class="form-group">
-                    <label for="unidad" class="col-md-4 control-label">SIGLAS DE LA UNIDAD</label>
+                    <label for="unidad" class="col-md-4 control-label">UNIDAD</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-hotel"></i></span>
@@ -170,7 +170,7 @@ window.onload = function(){
   var dia = fecha.getDate();
   var ano = fecha.getFullYear();
   if(dia<10)
-    dia='0'+dia; 
+    dia='0'+dia;
   if(mes<10)
     mes='0'+mes
   document.getElementById('fecha').value=dia+"-"+mes+"-"+ano;
