@@ -361,7 +361,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
+                    <select id="ANALISIS" class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
                       <option style="visibility: hidden" id="tab3-analisis-multidisciplinario" value="<?php echo $fila_analisis_expediente['analisis'];?>"><?php echo $fila_analisis_expediente['analisis'];?></option>
                       <?php
                       $multidisciplinario = "SELECT * FROM multidisciplinario";
@@ -469,6 +469,21 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="alert alert-info">
                     <h3 style="text-align:center">ESTATUS</h3>
                   </div>
+                  
+                  <div class="col-md-6 mb-3 validar">
+                     <label for="ESTATUS_EXPEDIENTE">ESTATUS DEL EXPEDIENTE<span class="required"></span></label>
+                     <select class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
+                       <option style="visibility: hidden" id="tab3-estatus-expediente" value="<?php echo $fila_seguiimiento_exped['status']; ?>"><?php echo $fila_seguiimiento_exped['status']; ?></option>
+                       <?php
+                       $statusexp = "SELECT * FROM statusexpediente";
+                       $answerstatusexp = $mysqli->query($statusexp);
+                       while($statusexps = $answerstatusexp->fetch_assoc()){
+                         echo "<option value='".$statusexps['nombre']."'>".$statusexps['nombre']."</option>";
+                       }
+                       ?>
+                     </select>
+                   </div>
+
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
@@ -526,19 +541,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                      <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $fila_seguiimiento_exped['date_desincorporacion']; ?>">
                    </div>
 
-                   <div class="col-md-6 mb-3 validar">
-                     <label for="ESTATUS_EXPEDIENTE">ESTATUS DEL EXPEDIENTE<span class="required"></span></label>
-                     <select class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
-                       <option style="visibility: hidden" id="tab3-estatus-expediente" value="<?php echo $fila_seguiimiento_exped['status']; ?>"><?php echo $fila_seguiimiento_exped['status']; ?></option>
-                       <?php
-                       $statusexp = "SELECT * FROM statusexpediente";
-                       $answerstatusexp = $mysqli->query($statusexp);
-                       while($statusexps = $answerstatusexp->fetch_assoc()){
-                         echo "<option value='".$statusexps['nombre']."'>".$statusexps['nombre']."</option>";
-                       }
-                       ?>
-                     </select>
-                   </div>
+                   
 
                 </div>
 
@@ -856,6 +859,38 @@ var diasVigencia;
     }
 
 </script>
+<script type="text/javascript">
+
+  function readOnlyCamposAnalisis() {
+    
+  let analisisMultidisiplinario = document.getElementById("ANALISIS").value;
+  let incorporacion = document.getElementById("INCORPORACION").value;
+  let fechaAutorizacion = document.getElementById("FECHA_AUTORIZACION_ANALISIS").value;
+  let convenioEntendimiento = document.getElementById("CONVENIO_DE_ENTENDIMIENTO").value;
+  let fechaConvenio = document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").value;
+  let vigencia= document.getElementById("VIGENCIA_CONVENIO").value;
+
+
+    if (!analisisMultidisiplinario == "" || !analisisMultidisiplinario == null){
+      document.getElementById("ANALISIS").disabled = true;
+    }
+    if (!incorporacion == "" || !incorporacion == null){
+      document.getElementById("INCORPORACION").disabled = true;
+    }
+    if (!fechaAutorizacion == "" || !fechaAutorizacion == null){
+      document.getElementById("FECHA_AUTORIZACION_ANALISIS").disabled = true;
+    }
+    if (!convenioEntendimiento == "" || !convenioEntendimiento == null){
+      document.getElementById("CONVENIO_DE_ENTENDIMIENTO").disabled = true;
+    }
+    if (!fechaConvenio == "" || !fechaConvenio == null){
+      document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+    }
+    if (!vigencia == "" || !vigencia == null){
+      document.getElementById("VIGENCIA_CONVENIO").disabled = true;
+    }
+  }
+  readOnlyCamposAnalisis();
 
 </script>
 

@@ -309,7 +309,7 @@ window.onload = function(){
 
 <script type="text/javascript">
 var inputFecha = document.getElementById("FECHA_ACUERDO").value;
-console.log(inputFecha);
+
 var botonGuardar = document.getElementById("fecha_acuerdo");
 if (inputFecha == null || inputFecha == ""){
 	botonGuardar.disabled = false;

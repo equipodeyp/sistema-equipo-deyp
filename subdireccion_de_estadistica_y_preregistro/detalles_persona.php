@@ -302,7 +302,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       </div>';
 
                   }
-                   ?>
+                  ?>
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                      <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select readonly = "true";class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
@@ -649,22 +649,31 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
         		  			<th>No.</th>
+                    <th>FOLIO</th>
                     <th>TIPO DE MEDIDA</th>
                     <th>CLASIFICACIÓN DE LA MEDIDA</th>
                     <th>ESTATUS</th>
                     <th>MUNICIPIO</th>
                     <th>FECHA DE EJECUCIÓN</th>
-        		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
+        		  			<th><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
         		  		</thead>
         		  		<?php
                   $cont_med = '0';
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
-        		       $var_resultado = $mysqli->query($tabla);
+                  $var_resultado = $mysqli->query($tabla);
+
+                  $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+                  $resultfol = $mysqli->query($fol);
+                  $rowfol=$resultfol->fetch_assoc();
+                  $idUnicoPersona = $rowfol['identificador'];
+
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
+
                     $cont_med = $cont_med + 1;
         		        echo "<tr>";
         		          echo "<td>"; echo $cont_med; echo "</td>";
+                      echo "<td>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";
@@ -1200,7 +1209,6 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 
 </script>
 
-
 <script type="text/javascript">
 
 
@@ -1225,10 +1233,15 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("OFICIO_VALIDAR").disabled = "true";
         document.getElementById("UPDATE_FILE").disabled = "true";
 
-        // document.getElementById("CONCLUSION_ART35z").readonly = "true";
-        // document.getElementById("FECHA_DESINCORPORACION_UNO").readonly = "true";
+        document.getElementById("CONCLUSION_ART35z").disabled = true;
+        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
         
+        document.getElementById("NUEVA_MEDIDA").style.display = "none";
       }
+
+</script>
+
+<script type="text/javascript">
 
 </script>
 

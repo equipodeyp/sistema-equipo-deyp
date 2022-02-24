@@ -450,3 +450,18 @@ function mod_domicilioactual(sel) {
         divC.style.display="none";
       }
 }
+
+
+var ConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
+
+      if (ConclusioCancelacion === "CONCLUSION"){
+
+
+        document.getElementById("CONCLUSION_ART35z").disabled = true;
+        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
+        
+        
+      }
+      else {
+        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
+      }

@@ -131,6 +131,11 @@ $validacion = $fil_val['validacion'];
           </div>
 
           <div class="col-md-6 mb-3 validar">
+            <label for="CATEAGORIA_MEDIDA">FOLIO MEDIDA<span class="required"></span></label>
+            <input class="form-control" id="FOLIO_MEDIDA" name="FOLIO_MEDIDA" placeholder="" type="text" readonly>
+          </div>
+
+          <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" onChange="datesmedidas(this)" required>
               <option disabled selected value>SELECCIONE EL TIPO DE MEDIDA</option>
