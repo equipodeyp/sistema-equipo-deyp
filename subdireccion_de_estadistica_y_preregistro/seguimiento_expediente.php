@@ -428,39 +428,74 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
+
                   <div class="alert alert-info">
                     <h3 style="text-align:center">CONVENIO ADHESIÓN</h3>
                   </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="convenio_adhesion">CONVENIO DE ADHESION</label>
                     <input class="form-control" type="text" name="convenio_adhesion" value="<?php echo $fila_convadh1['convenio']; ?>">
                   </div>
+
                   <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_convenio_adhesion">FECHA DEL CONVENIO DE ADHESION</label>
+                    <label for="fecha_convenio_adhesion">FECHA DE INICIO DEL CONVENIO DE ADHESION</label>
                     <input class="form-control" type="date" name="fecha_convenio_adhesion" value="<?php echo $fila_convadh1['fecha']; ?>">
                   </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="vigencia_adhesion">VIGENCIA</label>
                     <input class="form-control" type="text" name="vigencia_adhesion" value="<?php echo $fila_convadh1['vigencia']; ?>">
                   </div>
+
+                <div class="col-md-6 mb-3 validar">
+                    <label for="fecha_termino_convenio_adhesion">FECHA DE TERMINÓ DEL CONVENIO DE ADHESION</label>
+                    <input class="form-control" type="date" name="fecha_termino_convenio_adhesion" value="">
                 </div>
 
+
+                </div>
+
+                
                 <div class="row">
                   <div class="row">
                     <hr class="mb-4">
                   </div>
+
                   <div class="alert alert-info">
                     <h3 style="text-align:center">CONVENIO MODIFICATORIO</h3>
                   </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="convenio_modificatorio">CONVENIO MODIFICATORIO</label>
-                    <input class="form-control" type="text" name="convenio_modificatorio" value="<?php echo $fila_convmod1['convenio']; ?>">
+                    <!-- <input class="form-control" type="text" name="convenio_modificatorio" value="<?php echo $fila_convmod1['convenio']; ?>"> -->
+                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
+                      <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $fila_convmod1['convenio']; ?>"><?php echo $fila_convmod1['convenio']; ?></option>
+                      <option value="">FORMALIZADO</option>
+                      <option value="">NO FORMALIZADO</option>
+                      <option value="">EN ELABORACIÓN</option>
+                    </select>
                   </div>
+
                   <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_modificatorio">FECHA DEL CONVENIO MODIFICATORIO</label>
+                    <label for="fecha_modificatorio">FECHA DE INICIO DEL CONVENIO MODIFICATORIO</label>
                     <input class="form-control" type="date" name="fecha_modificatorio" value="<?php echo $fila_convmod1['fecha']; ?>">
                   </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                        <label for="vigencia_modificatorio">VIGENCIA</label>
+                        <input class="form-control" type="text" name="vigencia_modificatorio" value="">
+                  </div>
+                    
+
+                  <div class="col-md-6 mb-3 validar">
+                        <label for="fecha_termino_convenio_modificatorio">FECHA DE TERMINÓ DEL CONVENIO MODIFICATORIO</label>
+                        <input class="form-control" type="date" name="fecha_termino_convenio_modificatorio" value="">
+                  </div>
+
                 </div>
+
+                
 
                 <div class="row">
                   <div class="row">

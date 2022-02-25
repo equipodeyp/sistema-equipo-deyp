@@ -7,7 +7,7 @@ function ConsultarUsuario($usuario, $password)
 
   $conexion=mysqli_connect("localhost","root","","sistemafgjem");
   include_once "alerta_modal.php";
-  $sentencia="SELECT * FROM usuarios WHERE usuario='".$usuario."' AND password='".$password."' ";
+  $sentencia="SELECT * FROM usuarios WHERE UPPER (usuario='".$usuario."') AND UPPER (password='".$password."') ";
   $resultado=$conexion->query($sentencia) or die ("Error al comprobar usuario: ".mysqli_error($conexion));
 
   $filas=mysqli_fetch_array($resultado); //Numero de filas del resultado de la consulta

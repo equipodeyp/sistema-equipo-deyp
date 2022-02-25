@@ -149,7 +149,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      			<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+			      			<input name="fecha" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
 			    		</div>
 					</div>
 				</div>
@@ -159,7 +159,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-				  <input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
+				  <input name="FECHA_RECEPCION" type="text" class="form-control"  id="fecha"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
 			    </div>
 					</div>
 				</div>
@@ -293,7 +293,7 @@ today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 window.onload = function(){
   var fecha = new Date();
   var mes = fecha.getMonth()+1;
@@ -305,7 +305,7 @@ window.onload = function(){
     mes='0'+mes
   document.getElementById('fecha').value=dia+"/"+mes+"/"+ano;
 }
-</script>
+</script> -->
 
 <script type="text/javascript">
 var inputFecha = document.getElementById("FECHA_ACUERDO").value;
@@ -319,6 +319,17 @@ else {
 }
 
 </script>
+<script type="text/javascript">
+var d = document.getElementById("FECHA_RECEPCION").value; 
+var date = d;
+date = new Date();
+const formatDate = (date)=>{
+let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+ return formatted_date;
+ document.getElementById("FECHA_RECEPCION").value ="";
+ document.getElementById("FECHA_RECEPCION").value = formatted_date;
+}
 
+</script>
 </body>
 </html>

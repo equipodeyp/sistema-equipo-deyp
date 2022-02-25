@@ -305,7 +305,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   ?>
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                      <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
-                     <select readonly = "true";class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
+                     <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
                        <option  value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
                        <?php
                        $art35 = "SELECT * FROM conclusionart35";
@@ -333,6 +333,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <label for="OTHER_ART35">ESPECIFIQUE</label>
                       <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="<?php $rowdetinc['otroart35']; ?>" type="text">
                     </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
+                    <input class="form-control" id="FECHA_DESINCORPORACION_UNO" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
+                  </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
@@ -1215,6 +1220,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
 
       if (inputConclusioCancelacion === "CANCELACION" || inputConclusioCancelacion === "CONCLUSION"){
+        document.getElementById("NUEVA_MEDIDA").style.display = "none";
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
         document.getElementById("enter").style.display = "none";
