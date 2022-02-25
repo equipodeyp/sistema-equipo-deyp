@@ -121,7 +121,7 @@ $validacion = $fil_val['validacion'];
       <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+            <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           </div>
           <?php
           $fol=" SELECT * FROM validar_medida WHERE id_medida='$id_medida'";
@@ -153,11 +153,11 @@ $validacion = $fil_val['validacion'];
             }
             ?>
           <div class="col-md-6 mb-3 validar">
-                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
           <!-- <div class="col-md-6 mb-3 validar">
