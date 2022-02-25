@@ -144,12 +144,13 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
+
 				<div class="form-group">
 					<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      			<input name="fecha" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+			      			<input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
 			    		</div>
 					</div>
 				</div>
@@ -159,10 +160,11 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-				  <input name="FECHA_RECEPCION" type="text" class="form-control"  id="fecha"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
+				  <input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="" value="<?php echo $row['fecharecep']; ?>" disabled>
 			    </div>
 					</div>
 				</div>
+
 				<form method="post" action="fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
 				<div class="form-group">
 					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
