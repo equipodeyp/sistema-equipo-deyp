@@ -202,22 +202,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     }
                     ?>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DEL EXPEDIENTE</h3>
+                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                         <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
                         <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
                     <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA PROPUESTA<span class="required"></span></label>
+                    <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
                     <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
+                    <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCOPORACIÓN AL PROGRAMA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID SOLICITUD<span class="required"></span></label>
@@ -285,7 +285,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS DE LA PERSONA</h3>
+                    <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -362,7 +362,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                   </div>
 
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD PERSONA EN EL PROCESO PENAL<span class="required"></span></label>
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadprocedimiento']; ?></option>
                       <?php
@@ -376,7 +376,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <!-- calidad persona en el procedimiento -->
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
@@ -457,7 +457,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                 </div>
 
-                  
+
 
                   <div class="alert alert-info">
                     <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>

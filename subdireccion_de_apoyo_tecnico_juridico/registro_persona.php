@@ -114,22 +114,22 @@ $num_consecutivo =$row["id"];
       <form class="container well form-horizontal" id="myform" method="POST" action="guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+            <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA <span class="required"></span></label>
+            <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA <span class="required"></span></label>
             <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="" readonly>
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
+            <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="ID_SOLICITUD" class="is-required">ID SOLICITUD<span ></span></label>
@@ -161,22 +161,22 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR<span class="required"></span></label>
+            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR PUBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR<span class="required"></span></label>
+            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR PUBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR<span class="required"></span></label>
+            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PUBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR<span class="required"></span></label>
+            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR PUBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
@@ -272,7 +272,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD PERSONA EN EL PROCESO PENAL<span class="required"></span></label>
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCION</option>
                 <?php
@@ -285,7 +285,7 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
             <!-- calidad persona en el procedimiento -->
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
@@ -446,17 +446,17 @@ $num_consecutivo =$row["id"];
               <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
-              <label for="TUTOR_NOMBRE" class="is-required">NOMBRE (S)<span class="required"></span></label>
+              <label for="TUTOR_NOMBRE" class="is-required">NOMBRE TUTOR(A)<span class="required"></span></label>
               <input autocomplete="off" class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="COLONIA" class="is-required">APELLIDO PATERNO <span class="required"></span></label>
+              <label for="COLONIA" class="is-required">APELLIDO PATERNO TUTOR(A)<span class="required"></span></label>
               <input autocomplete="off" class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="COLONIA" class="is-required">APELLIDO MATERNO <span class="required"></span></label>
+              <label for="COLONIA" class="is-required">APELLIDO MATERNO TUTOR(A)<span class="required"></span></label>
               <input autocomplete="off" class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder=""  type="text">
             </div>
 
@@ -782,7 +782,7 @@ window.addEventListener('load', function () {
       text1 += item1;
       }
     }
-    
+
     function enviarId() {
         obtenerIniciales();
         document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
