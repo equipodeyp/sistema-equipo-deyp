@@ -187,7 +187,7 @@ $num_consecutivo =$row["id"];
           </div>
 
             <div class="alert alert-info">
-              <h3 style="text-align:center">DATOS DE LA PERSONA<br><br></h3>
+              <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
             </div>
 
             <div>
@@ -285,7 +285,7 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
             <!-- calidad persona en el procedimiento -->
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php

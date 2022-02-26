@@ -188,10 +188,10 @@ $row=$result->fetch_assoc();
 				  	<th style="text-align:center">No.</th>
 		  			<th style="text-align:center">ID PERSONA</th>
 					<th style="text-align:center">SEXO</th>
-		  			<th style="text-align:center">ESTATUS</th>
-		  			<th style="text-align:center">CALIDAD</th>
-					<th style="text-align:center">MEDIDAS</th>
-					<th style="text-align:center">VALIDACIÓN</th>
+		  			<th style="text-align:center">ESTATUS DE LA PERSONA PROPUESTA EN EL PROGRAMA</th>
+		  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
+					<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+					<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
 					<th style="text-align:center">DETALLES </th>
 		  		</thead>
 			<?php
@@ -242,7 +242,7 @@ $row=$result->fetch_assoc();
 				<div class="alert alert-info">
 					<h3 style="text-align:center">SEGUIMIENTO</h3>
 				</div>
-				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a> 
+				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a>
 			</div>
 		</div>
 
