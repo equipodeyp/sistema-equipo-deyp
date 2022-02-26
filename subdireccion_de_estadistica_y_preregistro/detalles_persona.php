@@ -335,14 +335,15 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
+                    <label for="FECHA_DESINCORPORACION" id="LABEL_FECHA_CONCLUSION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
+                    <label for="FECHA_DESINCORPORACION"id="LABEL_FECHA_CANCELACION" >FECHA DE CANCELACIÓN<span class="required"></span></label>
                     <input class="form-control" id="FECHA_DESINCORPORACION_UNO" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
                   </div>
 
-                  <div class="col-md-6 mb-3 validar">
+                  <!-- <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
                     <input class="form-control" id="FECHA_DESINCORPORACION_UNO" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
-                  </div>
+                  </div> -->
 
                 </div>
 
@@ -1203,7 +1204,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       con_can = e.target.value;
-      console.log(con_can);
+      
       if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
@@ -1220,6 +1221,8 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
 
       if (inputConclusioCancelacion === "CANCELACION" || inputConclusioCancelacion === "CONCLUSION"){
+
+
         document.getElementById("NUEVA_MEDIDA").style.display = "none";
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
@@ -1242,14 +1245,61 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("CONCLUSION_ART35z").disabled = true;
         document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
         
+
         document.getElementById("NUEVA_MEDIDA").style.display = "none";
+  
       }
 
 </script>
 
 <script type="text/javascript">
 
+var concluCancel = document.getElementById('CONCLUSION_CANCELACION');
+var conclu;
+
+
+concluCancel.addEventListener('change', obtenerValores);
+
+
+    function obtenerValores(e) {
+      conclu = e.target.value;
+      // console.log(conclu);
+      document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
+      document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
+      if(conclu === "CANCELACION"){
+
+        document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
+        
+        
+  
+      }
+      if(conclu === "CONCLUSION"){
+      
+        
+        document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
+        
+        
+      }
+
+  }
 </script>
+
+<script type="text/javascript">
+
+var article35 = document.getElementById('CONCLUSION_ART35z').value;
+
+ if (article35 != "" || article35 != null){
+
+  document.getElementById("OTHER_ART35").disabled = true;
+ 
+      }
+
+
+</script>
+
+
+
+
 
 </body>
 </html>

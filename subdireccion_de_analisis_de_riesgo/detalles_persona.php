@@ -1007,11 +1007,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  		<?php
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
         		      $var_resultado = $mysqli->query($tabla);
+
+                  $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+                  $resultfol = $mysqli->query($fol);
+                  $rowfol=$resultfol->fetch_assoc();
+                  $idUnicoPersona = $rowfol['identificador'];
+
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
                     $cont_med = $cont_med + 1;
         		        echo "<tr>";
         		          echo "<td>"; echo $cont_med; echo "</td>";
+                      echo "<td>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
         		          echo "<td>"; echo $var_fila['tipo']; echo "</td>";
         		          echo "<td>"; echo $var_fila['clasificacion']; echo "</td>";
         		          echo "<td>"; echo $var_fila['estatus']; echo "</td>";

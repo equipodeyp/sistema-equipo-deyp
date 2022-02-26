@@ -150,7 +150,6 @@ $row=$result->fetch_assoc();
                                     <th style="text-align:center">MEDIDAS</th>
                                     <th style="text-align:center">VALIDACIÓN</th>
                                     <th style="text-align:center">DETALLES</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,7 +209,7 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante">Cerrar Sesión</a>
+    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 </body>
 </html>

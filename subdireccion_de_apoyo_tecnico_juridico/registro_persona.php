@@ -24,6 +24,9 @@ $fol_exp = $_GET['folio'];
 $exp=" SELECT *FROM expediente WHERE fol_exp = '$fol_exp'";
 $result_exp = $mysqli->query($exp);
 $row_exp=$result_exp->fetch_assoc();
+// echo ($fol_exp);
+
+
 
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
@@ -639,7 +642,7 @@ $num_consecutivo =$row["id"];
             <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
           </p>
   </div>
-<a href="menu.php" class="btn-flotante">CANCELAR</a>
+<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">CANCELAR</a>
 </div>
 
 
