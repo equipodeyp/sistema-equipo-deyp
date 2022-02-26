@@ -351,7 +351,11 @@ $validacion = $fil_val['validacion'];
              ?>
              <div class="col-md-6 mb-3 validar">
                <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
-               <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php echo $rowmedida['date_provisional']; ?>" readonly>
+               <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php if ($rowmedida['date_provisional'] == '0000-00-00') {
+                 echo $rowmedida['date_definitva'];
+               }else {
+                 echo $rowmedida['date_provisional'];
+               } ?>" readonly>
              </div>
             <?php
 

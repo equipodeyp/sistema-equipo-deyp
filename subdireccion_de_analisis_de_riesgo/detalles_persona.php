@@ -200,22 +200,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         }
                 //         ?>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">DATOS DEL EXPEDIENTE</h3>
+                  <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                      <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                      <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                       <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA <span ></span></label>
+                  <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA <span ></span></label>
                   <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA INFORMACIÓN DE LA PERSONA<span class="required"></span></label>
+                  <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
                   <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
                 </div>
                 <div class="alert alert-info">
-                     <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
+                     <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
                    </div>
                    <div class="col-md-6 mb-3 validar">
                      <label for="SIGLAS DE LA UNIDAD">ID SOLICITUD<span class="required"></span></label>
@@ -241,22 +241,22 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="NOMBRE_SERVIDOR">NOMBRE DEL SERVIDOR<span class="required"></span></label>
+                     <label for="NOMBRE_SERVIDOR">NOMBRE DEL SERVIDOR PUBLICO<span class="required"></span></label>
                      <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" value="<?php echo $rowaut['nombreservidor']; ?>" type="text" readonly>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="AÑO">APELLIDO PATERNO DEL SERVIDOR<span class="required"></span></label>
+                     <label for="AÑO">APELLIDO PATERNO DEL SERVIDOR PUBLICO<span class="required"></span></label>
                      <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidopaterno']; ?>" type="text" readonly>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="MATERNO_SERVIDOR">APELLIDO MATERNO DEL SERVIDOR<span class="required"></span></label>
+                     <label for="MATERNO_SERVIDOR">APELLIDO MATERNO DEL SERVIDOR PUBLICO<span class="required"></span></label>
                      <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidomaterno']; ?>" type="text" readonly>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="CARGO_SERVIDOR">CARGO DEL SERVIDOR<span class="required"></span></label>
+                     <label for="CARGO_SERVIDOR">CARGO DEL SERVIDOR PUBLICO<span class="required"></span></label>
                      <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" value="<?php echo $rowaut['cargoservidor']; ?>" type="text" readonly>
                    </div>
 
@@ -266,7 +266,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                      <hr class="mb-4">
                    </div>
                    <div class="alert alert-info">
-                     <h3 style="text-align:center">DATOS DE LA PERSONA</h3>
+                     <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
@@ -299,14 +299,14 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>" readonly>
                    </div>
 
-                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD PERSONA EN EL PROCESO PENAL<span class="required"></span></label>
+                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
                      <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" disabled>
                        <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                        </select>
                    </div>
 
 
-                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
+                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
                      <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
                        <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                        <?php
@@ -504,17 +504,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                        <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                      </div>
                      <div class="col-md-6 mb-3 validar">
-                       <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
+                       <label for="TUTOR_NOMBRE">NOMBRE TUTOR(A)<span class="required"></span></label>
                        <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text" readonly>
                      </div>
 
                      <div class="col-md-6 mb-3 validar">
-                       <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
+                       <label for="COLONIA">APELLIDO PATERNO TUTOR(A)<span class="required"></span></label>
                        <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text" readonly>
                      </div>
 
                      <div class="col-md-6 mb-3 validar">
-                       <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
+                       <label for="COLONIA">APELLIDO MATERNO TUTOR(A)<span class="required"></span></label>
                        <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text" readonly>
                      </div>
 
@@ -530,17 +530,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
+                    <label for="TUTOR_NOMBRE">NOMBRE TUTOR(A) <span class="required"></span></label>
                     <input class="form-control" id="TUTOR_NOMBRE1" name="TUTOR_NOMBRE1" placeholder="" value="<?php echo $rowtutor['nombre']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
+                    <label for="COLONIA">APELLIDO PATERNO TUTOR(A) <span class="required"></span></label>
                     <input class="form-control" id="TUTOR_PATERNO1" name="TUTOR_PATERNO1" placeholder="" value="<?php echo $rowtutor['apellidopaterno']; ?>" type="text" readonly>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
+                    <label for="COLONIA">APELLIDO MATERNO TUTOR(A)<span class="required"></span></label>
                     <input class="form-control" id="TUTOR_MATERNO1" name="TUTOR_MATERNO1" placeholder="" value="<?php echo $rowtutor['apellidomaterno']; ?>" type="text" readonly>
                   </div>
 
@@ -945,11 +945,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         			<div class="well form-horizontal" >
         				<div class="row">
                   <div class="row alert alert-info">
-                    <h3 style="text-align:center">DATOS DEL EXPEDIENTE</h3>
+                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           				</div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ID_EXPEDIENTE">FOLIO DEL EXPEDIENTE<span class="required"></span></label>
+                    <label for="ID_EXPEDIENTE">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span class="required"></span></label>
                     <input class="form-control" id="ID_EXPEDIENTE" name="ID_EXPEDIENTE" placeholder="" required="" type="text" value="<?php echo $rowaut['folioexpediente']; ?>" disabled>
                   </div>
 
@@ -995,13 +995,14 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  <div id="contenido">
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
-        		  			<th>No.</th>
-                    <th>TIPO DE MEDIDA</th>
-                    <th>CLASIFICACIÓN MEDIDA</th>
-                    <th>ESTATUS</th>
-                    <th>MUNICIPIO</th>
-                    <th>FECHA EJECUCIÓN</th>
-                    <th>DETALLES</th>
+        		  			<th style="text-align:center">No.</th>
+                    <th style="text-align:center">TIPO DE MEDIDA</th>
+                    <th style="text-align:center">CLASIFICACIÓN MEDIDA</th>
+                    <th style="text-align:center">ESTATUS</th>
+                    <th style="text-align:center">MUNICIPIO</th>
+                    <th style="text-align:center">FECHA EJECUCIÓN</th>
+                    <th style="text-align:center">VALIDACIÓN</th>
+                    <th style="text-align:center">DETALLES</th>
         		  			<!-- <th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVA MEDIDA</button> </a> </th> -->
         		  		</thead>
         		  		<?php
@@ -1015,7 +1016,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
         		      while ($var_fila=$var_resultado->fetch_array())
         		      {
+                    $id_medida = $var_fila['id'];
                     $cont_med = $cont_med + 1;
+<<<<<<< HEAD
         		        echo "<tr>";
         		          echo "<td>"; echo $cont_med; echo "</td>";
                       echo "<td>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
@@ -1026,6 +1029,29 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		          echo "<td>"; echo $var_fila['date_ejecucion']; echo "</td>";
         		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
         		        echo "</tr>";
+=======
+                    $val_meds = "SELECT * FROM validar_medida WHERE folioexpediente = '$name_folio' AND id_persona = '$id_person' AND id_medida = '$id_medida'";
+                    $res_valmeds = $mysqli->query($val_meds);
+                    while ($fila_valmeds = $res_valmeds->fetch_array()) {
+                      echo "<tr>";
+          		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+          		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
+          		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+          		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+          		          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+          		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
+                          echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
+                        } echo "</td>";
+                        echo "<td style='text-align:center'>"; if ($fila_valmeds['validacion'] === 'true') {
+                          echo "<i class='fas fa-check'></i>";
+                        }elseif ($fila_valmeds['validacion'] === 'false') {
+                          echo "<i class='fas fa-times'></i>";
+                        } echo "</td>";
+          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+          		        echo "</tr>";
+                    }
+
+>>>>>>> 322edad70f910749c1eec4ede6cac9078583c66e
         		      }
         		      ?>
         		  	</table>

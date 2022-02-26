@@ -428,74 +428,77 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIO ADHESIÓN</h3>
+                    <h3 style="text-align:center">CONVENIOS DE ADHESIÓN FORMALIZADOS</h3>
                   </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="convenio_adhesion">CONVENIO DE ADHESION</label>
-                    <input class="form-control" type="text" name="convenio_adhesion" value="<?php echo $fila_convadh1['convenio']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_convenio_adhesion">FECHA DE INICIO DEL CONVENIO DE ADHESION</label>
-                    <input class="form-control" type="date" name="fecha_convenio_adhesion" value="<?php echo $fila_convadh1['fecha']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="vigencia_adhesion">VIGENCIA</label>
-                    <input class="form-control" type="text" name="vigencia_adhesion" value="<?php echo $fila_convadh1['vigencia']; ?>">
-                  </div>
-
-                <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_termino_convenio_adhesion">FECHA DE TERMINÓ DEL CONVENIO DE ADHESION</label>
-                    <input class="form-control" type="date" name="fecha_termino_convenio_adhesion" value="">
+                  <div id="contenido">
+                    <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
+            		  	<table class="table table-striped table-dark table-bordered">
+            		  		<thead class="table-success">
+            		  			<th style="text-align:center">No.</th>
+                        <th style="text-align:center">FECHA FIRMA</th>
+                        <th style="text-align:center">VIGENCIA</th>
+                        <th style="text-align:center">FECHA DE TERMINO</th>
+            		  		</thead>
+                      <?php
+                      $cont_med = '0';
+            		      $tabla="SELECT * FROM convenio_adh_expediente WHERE folioexpediente ='$fol_exp'";
+            		       $var_resultado = $mysqli->query($tabla);
+            		      while ($var_fila=$var_resultado->fetch_array())
+            		      {
+                        $cont_med = $cont_med + 1;
+            		        echo "<tr>";
+            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_termino'])); echo "</td>";
+            		        echo "</tr>";
+            		      }
+            		      ?>
+            		  	</table>
+            		  </div>
+            			<div id="footer">
+            		  </div>
                 </div>
 
 
-                </div>
-
-                
                 <div class="row">
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-
                   <div class="alert alert-info">
                     <h3 style="text-align:center">CONVENIO MODIFICATORIO</h3>
                   </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="convenio_modificatorio">CONVENIO MODIFICATORIO</label>
-                    <!-- <input class="form-control" type="text" name="convenio_modificatorio" value="<?php echo $fila_convmod1['convenio']; ?>"> -->
-                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
-                      <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $fila_convmod1['convenio']; ?>"><?php echo $fila_convmod1['convenio']; ?></option>
-                      <option value="">FORMALIZADO</option>
-                      <option value="">NO FORMALIZADO</option>
-                      <option value="">EN ELABORACIÓN</option>
-                    </select>
+                  <div id="contenido">
+                    <button style="display: block; margin: 0 auto;" type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button>
+                    <table class="table table-striped table-dark table-bordered">
+                      <thead class="table-success">
+                        <th style="text-align:center">No.</th>
+                        <th style="text-align:center">FECHA FIRMA</th>
+                        <th style="text-align:center">DESCRIPCIÓN</th>
+                      </thead>
+                      <?php
+                      $cont= '0';
+                      $tabla="SELECT * FROM convenio_mod_expediente WHERE folioexpediente ='$fol_exp'";
+                       $var_resultado = $mysqli->query($tabla);
+                      while ($var_fila=$var_resultado->fetch_array())
+                      {
+                        $cont = $cont + 1;
+                        echo "<tr>";
+                          echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $var_fila['convenio']; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
+                        echo "</tr>";
+                      }
+                      ?>
+                    </table>
                   </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_modificatorio">FECHA DE INICIO DEL CONVENIO MODIFICATORIO</label>
-                    <input class="form-control" type="date" name="fecha_modificatorio" value="<?php echo $fila_convmod1['fecha']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                        <label for="vigencia_modificatorio">VIGENCIA</label>
-                        <input class="form-control" type="text" name="vigencia_modificatorio" value="">
-                  </div>
-                    
-
-                  <div class="col-md-6 mb-3 validar">
-                        <label for="fecha_termino_convenio_modificatorio">FECHA DE TERMINÓ DEL CONVENIO MODIFICATORIO</label>
-                        <input class="form-control" type="date" name="fecha_termino_convenio_modificatorio" value="">
+                  <div id="footer">
                   </div>
 
                 </div>
 
-                
+
 
                 <div class="row">
                   <div class="row">
@@ -504,7 +507,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="alert alert-info">
                     <h3 style="text-align:center">ESTATUS</h3>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar">
                      <label for="ESTATUS_EXPEDIENTE">ESTATUS DEL EXPEDIENTE<span class="required"></span></label>
                      <select class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
@@ -576,7 +579,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                      <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $fila_seguiimiento_exped['date_desincorporacion']; ?>">
                    </div>
 
-                   
+
 
                 </div>
 
@@ -687,7 +690,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
    </div>
    <div class="modal-body">
-    <form method="post" id="insert_form" action="agregar_convenio_modificatorio.php?folio=<?php echo $id_person; ?>">
+    <form method="post" id="insert_form" action="agregar_convenio_modificatorio_expediente.php?folio=<?php echo $id_person; ?>">
      <label>FOLIO DEL EXPEDIENTE</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
      <br />
@@ -721,7 +724,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
    </div>
    <div class="modal-body">
-    <form method="post" id="insert_form" action="agregar_convenio_adhesion.php?folio=<?php echo $id_person; ?>">
+    <form method="post" id="insert_form" action="agregar_convenio_adhesion_expediente.php?folio=<?php echo $id_person; ?>">
      <label>FOLIO DEL EXPEDIENTE</label>
      <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
      <br />
@@ -897,7 +900,7 @@ var diasVigencia;
 <script type="text/javascript">
 
   function readOnlyCamposAnalisis() {
-    
+
   let analisisMultidisiplinario = document.getElementById("ANALISIS").value;
   let incorporacion = document.getElementById("INCORPORACION").value;
   let fechaAutorizacion = document.getElementById("FECHA_AUTORIZACION_ANALISIS").value;

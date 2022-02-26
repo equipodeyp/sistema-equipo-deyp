@@ -141,14 +141,14 @@ $row=$result->fetch_assoc();
                             <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
                                     <th style="text-align:center">NO.</th>
-                                    <th style="text-align:center">ID</th>
+                                    <th style="text-align:center">ID PERSONA</th>
                                     <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN</th>
-                                    <th style="text-align:center">FECHA RECEPCIÓN</th>
-                                    <th style="text-align:center">FOLIO</th>
-                                    <th style="text-align:center">PERSONAS</th>
-                                    <th style="text-align:center">MEDIDAS</th>
-                                    <th style="text-align:center">VALIDACIÓN</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</th>
+                                    <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
+                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
+                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
+                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+                                    <th style="text-align:center">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
                                     <th style="text-align:center">DETALLES</th>
                                 </tr>
                             </thead>

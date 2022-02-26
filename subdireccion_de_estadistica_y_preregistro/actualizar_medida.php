@@ -165,10 +165,15 @@ if ($verifica_update_person == 1) {
     $res_comment = $mysqli->query($comment);
   }
 
- 
+
 
   $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_persona'";
   $res_validacion = $mysqli->query($datos_validacion);
+  $municipio_ejecucio_med = $_POST['MUNIPIO_EJECUCION_MEDIDA'];
+  if ($municipio_ejecucio_med != '') {
+    $mun_med = "UPDATE medidas SET ejecucion = '$municipio_ejecucio_med' WHERE id = '$id_persona'";
+    $res_mun_med = $mysqli->query($mun_med);
+  }
   // validacion de update correcto
   if($res_radicacion){
     echo ("<script type='text/javaScript'>
