@@ -1,15 +1,19 @@
 <?php
-include("conexion.php");
-session_start ();
-$name = $_SESSION['usuario'];
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
-$result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
+	include("conexion.php");
+	session_start ();
+	$name = $_SESSION['usuario'];
+	$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+	$result = $mysqli->query($sentencia);
+	$row=$result->fetch_assoc();
 	require 'conexion.php';
+
 	$fol_exp = $_GET['id'];
+
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
+
+
 
 
 	?>
@@ -164,7 +168,7 @@ $row=$result->fetch_assoc();
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-						  <input name="FECHA_RECEPCION" type="date" class="form-control"  id="FECHA_RECEPCION"  placeholder="" value="<?php echo  $row['fechaacuerdo']?>" readonly>
+						  <input name="fecha_acuerdo" type="text" class="form-control"  id="fecha_acuerdo"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" disabled>
 			    		</div>
 					</div>
 				</div>

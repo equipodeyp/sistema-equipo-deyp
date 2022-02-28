@@ -659,8 +659,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">TIPO DE MEDIDA</th>
                     <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
                     <th style="text-align:center">ESTATUS</th>
-                    <!-- <th style="text-align:center">MUNICIPIO</th> -->
-                    <th style="text-align:center">FECHA DE INICIO</th>
+                    <th style="text-align:center">MUNICIPIO</th>
+                    <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
         		  			<th style="text-align:center"><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
         		  		</thead>
@@ -688,11 +688,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-          		          // echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; if ($var_fila['date_provisional'] == '0000-00-00') {
-                          echo date("d/m/Y", strtotime($var_fila['date_definitva']));
-                        }else {
-                          echo date("d/m/Y", strtotime($var_fila['date_provisional']));
+          		          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+          		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
+                          echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
                         } echo "</td>";
                         echo "<td style='text-align:center'>"; if ($fila_valmeds['validacion'] === 'true') {
                           echo "<i class='fas fa-check'></i>";
@@ -1220,7 +1218,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       con_can = e.target.value;
-
+      
       if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
@@ -1259,19 +1257,41 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("UPDATE_FILE").disabled = "true";
 
         document.getElementById("CONCLUSION_ART35z").disabled = true;
-        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
-<<<<<<< HEAD
-
-=======
->>>>>>> 322edad70f910749c1eec4ede6cac9078583c66e
+        
 
         document.getElementById("NUEVA_MEDIDA").style.display = "none";
-
+  
       }
 
 </script>
 
 <script type="text/javascript">
+var concluNone = document.getElementById('CONCLUSION_CANCELACION').value;
+
+if(concluNone === "" || concluNone === null){
+        document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
+        document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
+        document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "none";
+
+      }
+
+
+else if(concluNone === "CANCELACION"){
+document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
+document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
+document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
+
+document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
+
+}
+else if(concluNone === "CONCLUSION"){
+document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
+document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
+document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
+
+}
+
+
 
 var concluCancel = document.getElementById('CONCLUSION_CANCELACION');
 var conclu;
@@ -1283,24 +1303,61 @@ concluCancel.addEventListener('change', obtenerValores);
     function obtenerValores(e) {
       conclu = e.target.value;
       // console.log(conclu);
-      document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
-      document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
+
       if(conclu === "CANCELACION"){
 
+        document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
+        document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
         document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
-
-
-
+        
       }
-      if(conclu === "CONCLUSION"){
-
-
+      else {
+      
+        document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
+        document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
         document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
-
-
+        
+        
       }
+      
 
   }
+</script>
+
+<script type="text/javascript">
+
+
+var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
+
+      if (inputConclusioCancelacion === "CANCELACION" || inputConclusioCancelacion === "CONCLUSION"){
+
+
+        document.getElementById("NUEVA_MEDIDA").style.display = "none";
+        document.getElementById("convenio_adhesion").style.display = "none";
+        document.getElementById("age").style.display = "none";
+        document.getElementById("enter").style.display = "none";
+
+        document.getElementById("ANALISIS_MULTIDISCIPLINARIO").disabled = true;
+        document.getElementById("INCORPORACION").disabled = true;
+        document.getElementById("FECHA_AUTORIZACION").disabled = true;
+        document.getElementById("CONVENIO_ENTENDIMIENTO").disabled = true;
+        document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").disabled = true;
+        document.getElementById("VIGENCIA_CONVENIO").disabled = true;
+        document.getElementById("CONCLUSION_CANCELACION").disabled = true;
+
+        document.getElementById("ESTATUS_PERSONA").disabled = true;
+        document.getElementById("FUENTE").disabled = true;
+        document.getElementById("COMENTARIO").disabled = true;
+        document.getElementById("OFICIO_VALIDAR").disabled = true;
+        document.getElementById("UPDATE_FILE").disabled = true;
+
+        document.getElementById("CONCLUSION_ART35z").disabled = true;
+        document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
+
+        document.getElementById("NUEVA_MEDIDA").style.display = "none";
+  
+      }
+
 </script>
 
 <script type="text/javascript">
@@ -1310,7 +1367,7 @@ var article35 = document.getElementById('CONCLUSION_ART35z').value;
  if (article35 != "" || article35 != null){
 
   document.getElementById("OTHER_ART35").disabled = true;
-
+ 
       }
 
 

@@ -176,6 +176,7 @@ $row=$result->fetch_assoc();
 			    		</div>
 					</div>
 				<div>
+				<div>
 					<button type="submit" id="fecha_acuerdo" class='btn btn-success'>Guardar Fecha</button>
 					<!-- <p>
                 	<a href="fecha_acuerdo.php?folio= <?php echo $fol_exp; ?>" class="btn btn-success" ><i class=""></i>Guardar Fecha</a>
