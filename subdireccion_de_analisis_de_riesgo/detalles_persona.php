@@ -1002,8 +1002,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">MUNICIPIO</th>
                     <th style="text-align:center">FECHA EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
+<<<<<<< HEAD
                     <th style="text-align:center">DETALLES</th>
         		  			<!-- <th> <a href="registro_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">NUEVA MEDIDA</button> </a> </th> -->
+=======
+        		  			<th style="text-align:center">DETALLES</th>
+>>>>>>> 1c960d72f01eded9cfdb4ea1dcae054f8f37d693
         		  		</thead>
         		  		<?php
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";

@@ -238,6 +238,32 @@ jQuery(document).ready(function(){
       })
     });
 
+    // tercer ESTADO-MUNICIPIO-LOCALIDAD
+    $(document).ready(function(){
+      $("#estado_suj").change(function () {
+
+        $('#cbx_localidad11').find('option').remove().end().append('<option value="whatever"></option>').val('whatever');
+
+        $("#estado_suj option:selected").each(function () {
+          id_estado = $(this).val();
+          $.post("includes/getMunicipio.php", { id_estado: id_estado }, function(data){
+            $("#municipio_suj").html(data);
+          });
+        });
+      })
+    });
+
+    $(document).ready(function(){
+      $("#municipio_suj").change(function () {
+        $("#municipio_suj option:selected").each(function () {
+          id_municipio = $(this).val();
+          $.post("includes/getLocalidad.php", { id_municipio: id_municipio }, function(data){
+            $("#cbx_localidad11").html(data);
+          });
+        });
+      })
+    });
+
 
     function radicacionfuente(sel) {
           if (sel.value=="OFICIO"){
@@ -459,8 +485,8 @@ var ConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').val
 
         document.getElementById("CONCLUSION_ART35z").disabled = true;
         document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
-        
-        
+
+
       }
       else {
         document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;

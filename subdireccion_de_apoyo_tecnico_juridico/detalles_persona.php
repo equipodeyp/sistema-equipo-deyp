@@ -563,8 +563,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         <option style="visibility: hidden" value="'.$rowdomicilio['seleccioneestado'].'">'.$rowdomicilio['seleccioneestado'].'</option>';
                         $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
                         $resultado1=$mysqli->query($query1);
-                        while($row_estado = $resultado1->fetch_assoc()){
-                          echo "<option value='".$row_estado['id_estado']."'>".$row_estado['estado']."</option>";
+                        while($row_estado12 = $resultado1->fetch_assoc()){
+                          echo "<option value='".$row_estado12['id_estado']."'>".$row_estado12['estado']."</option>";
                         }
                         echo '
                       </select>
