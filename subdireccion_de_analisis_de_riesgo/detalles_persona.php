@@ -1003,7 +1003,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <!-- <th style="text-align:center">MUNICIPIO</th> -->
                     <th style="text-align:center">FECHA DE INICIO</th>
                     <th style="text-align:center">VALIDACIÓN</th>
-        		  			<th style="text-align:center"><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
+        		  			<th style="text-align:center">DETALLES</th>
         		  		</thead>
         		  		<?php
                   $cont_med = '0';
