@@ -141,9 +141,9 @@ $row=$result->fetch_assoc();
                             <h3 style="text-align:center">Tabla de Expedientes</h3>
                                 <tr>
                                     <th style="text-align:center">NO.</th>
-                                    <th style="text-align:center">ID PERSONA</th>
+                                    <!-- <th style="text-align:center">ID PERSONA</th>
                                     <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</th>
+                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</th> -->
                                     <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
                                     <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
                                     <th style="text-align:center">PERSONAS PROPUESTAS</th>
@@ -178,9 +178,9 @@ $row=$result->fetch_assoc();
                                   {
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
