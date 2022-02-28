@@ -1000,8 +1000,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">TIPO DE MEDIDA</th>
                     <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
                     <th style="text-align:center">ESTATUS</th>
-                    <th style="text-align:center">MUNICIPIO</th>
-                    <th style="text-align:center">FECHA DE EJECUCIÓN</th>
+                    <!-- <th style="text-align:center">MUNICIPIO</th> -->
+                    <th style="text-align:center">FECHA DE INICIO</th>
                     <th style="text-align:center">VALIDACIÓN</th>
         		  			<th style="text-align:center"><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
         		  		</thead>
@@ -1029,9 +1029,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
-                          echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
+          		          // echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+                        echo "<td style='text-align:center'>"; if ($var_fila['date_provisional'] == '0000-00-00') {
+                          echo date("d/m/Y", strtotime($var_fila['date_definitva']));
+                        }else {
+                          echo date("d/m/Y", strtotime($var_fila['date_provisional']));
                         } echo "</td>";
                         echo "<td style='text-align:center'>"; if ($fila_valmeds['validacion'] === 'true') {
                           echo "<i class='fas fa-check'></i>";
