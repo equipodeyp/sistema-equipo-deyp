@@ -486,8 +486,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                         $cont = $cont + 1;
                         echo "<tr>";
                           echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['convenio']; echo "</td>";
                           echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $var_fila['convenio']; echo "</td>";
                         echo "</tr>";
                       }
                       ?>
