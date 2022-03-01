@@ -241,7 +241,7 @@ $(document).ready(function() {
     </div>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotantedos-dos">Cerrar Sesión</a>
+    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 </body>
 </html>
