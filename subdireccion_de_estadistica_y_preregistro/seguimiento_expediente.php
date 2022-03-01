@@ -536,7 +536,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   if ($fila_seguiimiento_exped['conclu_cancel']== 'CONCLUSION') {
                     echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m">
                       <label for="CONCLUSION">CONCLUSION ARTICULO 35</label>
-                      <select onclick="myFunctionHidden" class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35s(this)">
+                      <select onclick="myFunctionHidden" class="form-select form-select-lg" name="CONCLUSION_ART35" id="ARTICULO_35_ESTATUS" onChange="modotherart35s(this)">
                         <option id="tab3-art35" value="'.$fila_seguiimiento_exped['conclusionart35'].'">'.$fila_seguiimiento_exped['conclusionart35'].'</option>';
                         $art35 = "SELECT * FROM conclusionart35";
                         $answerart35 = $mysqli->query($art35);
@@ -557,7 +557,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m" style="display:none;">
                      <label for="CONCLUSION_ART35">CONCLUSIÓN ARTÍCULO 35</label>
-                     <select class="form-select form-select-lg" name="CONCLUSION_ART35" id="CONCLUSION_ART35"onChange="modotherart35s(this)">
+                     <select class="form-select form-select-lg" name="CONCLUSION_ART35" id="CONCLUSION_ART35" onChange="modotherart35s(this)">
                        <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                        <?php
                        $art35 = "SELECT * FROM conclusionart35";
@@ -607,10 +607,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <?php
                   if ($rowfuentemedida['fuente']=='OFICIO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OFICIO_S" >
-                      <label for="OFICIO_S">OFICIO<span class="required"></span></label>
-                      <input class="form-control" id="OFICIO_S" name="OFICIO_S" placeholder="" value="'.$rowfuentemedida['descripcion'].'"  type="text" >
+                      <label for="OFICIO_S">ESPECIFIQUE<span class="required"></span></label>
+                      <input class="form-control" id="ESPECIFIQUE_FUENTE" name="OFICIO_S" placeholder="" value="'.$rowfuentemedida['descripcion'].'"  type="text" >
                     </div>';
-                  }elseif ($rowfuentemedida['fuente']=='CORREO') {
+                  }
+                  elseif ($rowfuentemedida['fuente']=='CORREO') {
                     echo '<div class="col-md-6 mb-3 validar" id="CORREO_S">
                       <label for="CORREO_S">CORREO<span class="required"></span></label>
                       <input class="form-control" id="CORREO_S" name="CORREO_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
@@ -626,7 +627,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                       <input class="form-control" id="OTRO_S" name="OTRO_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
                     </div>';
                   }
-                   ?>
+                  ?>
 
                    <div class="col-md-6 mb-3 validar" id="OFICIO_S" style="display:none;">
                      <label for="OFICIO_S">OFICIO<span class="required"></span></label>
@@ -955,6 +956,11 @@ document.getElementById("CONCLUSION_ART35").disabled = true;
 document.getElementById("CONCLUSION_CANCELACION").disabled = true;
 document.getElementById("FUENTE_S").disabled = true;
 document.getElementById("COMENTARIO").disabled = true;
+document.getElementById("CONVENIO_DE_ENTENDIMIENTO").disabled = true;
+document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+document.getElementById("ESPECIFIQUE_FUENTE").disabled = true;
+document.getElementById("OTHER_ART351").disabled = true;
+document.getElementById('ARTICULO_35_ESTATUS').disabled = true;
 
 document.getElementById("convenio_adhesion").style.display = "none";
 document.getElementById("age").style.display = "none";
@@ -974,13 +980,18 @@ document.getElementById("CONCLUSION_ART35").disabled = true;
 document.getElementById("CONCLUSION_CANCELACION").disabled = true;
 document.getElementById("FUENTE_S").disabled = true;
 document.getElementById("COMENTARIO").disabled = true;
+document.getElementById("CONVENIO_DE_ENTENDIMIENTO").disabled = true;
+document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+document.getElementById("ESPECIFIQUE_FUENTE").disabled = true;
+document.getElementById("OTHER_ART351").disabled = true;
+document.getElementById('ARTICULO_35_ESTATUS').disabled = true;
+
+
 
 document.getElementById("convenio_adhesion").style.display = "none";
 document.getElementById("age").style.display = "none";
 document.getElementById("enter").style.display = "none";
 }
-
-
 
 
 var concluCancel = document.getElementById('CONCLUSION_CANCELACION');
@@ -1014,7 +1025,7 @@ concluCancel.addEventListener('change', obtenerValores);
   }
 
   </script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     var article35 = document.getElementById('CONCLUSION_ART35').value;
 
       if (article35 != "" || article35 != null){
@@ -1022,6 +1033,6 @@ concluCancel.addEventListener('change', obtenerValores);
       document.getElementById("OTHER_ART351").disabled = true;
 
           }
-    </script>
+    </script> -->
 </body>
 </html>

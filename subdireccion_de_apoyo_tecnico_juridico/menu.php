@@ -169,70 +169,69 @@ $(document).ready(function() {
                     <div class="col-lg-12">
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                              <h3 style="text-align:center">Tabla de Expedientes</h3>
-                                <tr>
-                                    <th style="text-align:center">No.</th>
-                                    <!-- <th style="text-align:center">ID PERSONA</th>
-                                    <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTICACIÓN</th> -->
-                                    <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
-                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
-                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
-                                    <th style="text-align:center">DETALLES</th>
+                              <thead>
+                                <h3 style="text-align:center">Tabla de Expedientes</h3>
+                                  <tr>
+                                      <th style="text-align:center">No.</th>
+                                      <!-- <th style="text-align:center">ID PERSONA</th>
+                                      <th style="text-align:center">SEDE</th>
+                                      <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTICACIÓN</th> -->
+                                      <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
+                                      <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
+                                      <th style="text-align:center">PERSONAS PROPUESTAS</th>
+                                      <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+                                      <th style="text-align:center">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
+                                      <th style="text-align:center">DETALLES</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <?php
+                                $sql = "SELECT * FROM expediente";
+                                $resultado = $mysqli->query($sql);
+                                $row = $resultado->fetch_array(MYSQLI_ASSOC);
+                                $fol_exp =$row['fol_exp'];
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                              $sql = "SELECT * FROM expediente";
-                              $resultado = $mysqli->query($sql);
-                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
-                              $fol_exp =$row['fol_exp'];
-
-                              $tabla="SELECT * FROM expediente";
-                              $var_resultado = $mysqli->query($tabla);
-                              while ($var_fila=$var_resultado->fetch_array())
-                              {
-                                $fol_exp2=$var_fila['fol_exp'];
-
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
-                                $result=$mysqli->query($abc);
-                                if($result)
+                                $tabla="SELECT * FROM expediente";
+                                $var_resultado = $mysqli->query($tabla);
+                                while ($var_fila=$var_resultado->fetch_array())
                                 {
-                                  while($row=mysqli_fetch_assoc($result))
-                                  {
-                                    echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'.$var_fila['año']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
-                                      echo "<i class='fas fa-check'></i>";
-                                    }elseif ($var_fila['validacion'] == 'false') {
-                                      echo "<i class='fas fa-times'></i>";
-                                    } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                  $fol_exp2=$var_fila['fol_exp'];
 
-                                    echo "</tr>";
+                                  $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
+                                  $r=$mysqli->query($cant);
+                                  $row2 = $r->fetch_array(MYSQLI_ASSOC);
+
+                                  $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
+                                  $result=$mysqli->query($abc);
+                                  if($result)
+                                  {
+                                    while($row=mysqli_fetch_assoc($result))
+                                    {
+                                      echo "<tr>";
+                                      echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'.$var_fila['año']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
+                                        echo "<i class='fas fa-check'></i>";
+                                      }elseif ($var_fila['validacion'] == 'false') {
+                                        echo "<i class='fas fa-times'></i>";
+                                      } echo "</td>";
+                                      echo "<td style='text-align:center'><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+
+                                      echo "</tr>";
+
+                                    }
 
                                   }
-
                                 }
-                              }
-                            ?>
-                            </tbody>
-                           </table>
+                              ?>
+                              </tbody>
+                            </table>
                         </div>
                     </div>
             </div>
