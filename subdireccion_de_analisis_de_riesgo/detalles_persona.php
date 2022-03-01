@@ -996,6 +996,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
         		  			<th style="text-align:center">No.</th>
+                    <th style="text-align:center">FOLIO</th>
                     <th style="text-align:center">TIPO DE MEDIDA</th>
                     <th style="text-align:center">CLASIFICACIÓN MEDIDA</th>
                     <th style="text-align:center">ESTATUS</th>
@@ -1022,6 +1023,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     while ($fila_valmeds = $res_valmeds->fetch_array()) {
                       echo "<tr>";
           		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+                        echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
