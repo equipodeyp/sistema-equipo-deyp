@@ -525,7 +525,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
-                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
+                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" id="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
                       <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $fila_seguiimiento_exped['conclu_cancel']; ?>"><?php echo $fila_seguiimiento_exped['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACIÓN</option>
                       <option value="CONCLUSION">CONCLUSIÓN</option>
@@ -557,7 +557,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m" style="display:none;">
                      <label for="CONCLUSION_ART35">CONCLUSIÓN ARTÍCULO 35</label>
-                     <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35s(this)">
+                     <select class="form-select form-select-lg" name="CONCLUSION_ART35" id="CONCLUSION_ART35"onChange="modotherart35s(this)">
                        <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                        <?php
                        $art35 = "SELECT * FROM conclusionart35";
@@ -575,7 +575,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                    </div>
 
                    <div class="col-md-6 mb-3 validar">
-                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN<span class="required"></span></label>
+                     <label for="FECHA_DESINCORPORACION" id="LABEL_FECHA_CANCELACION">FECHA DE CANCELACIÓN<span class="required"></span></label>
+                     <label for="FECHA_DESINCORPORACION" id="LABEL_FECHA_CONCLUSION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
                      <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $fila_seguiimiento_exped['date_desincorporacion']; ?>">
                    </div>
 
@@ -932,5 +933,95 @@ var diasVigencia;
 
 </script>
 
+<script type="text/javascript">
+var concluNone = document.getElementById('CONCLUSION_CANCELACION').value;
+
+if(concluNone === "" || concluNone === null){
+        document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
+        document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
+        document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "none";
+
+      }
+
+
+else if(concluNone === "CANCELACION"){
+document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
+document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
+document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
+
+document.getElementById("ESTATUS_EXPEDIENTE").disabled = true;
+document.getElementById("FECHA_DESINCORPORACION_DOS").disabled = true;
+document.getElementById("CONCLUSION_ART35").disabled = true;
+document.getElementById("CONCLUSION_CANCELACION").disabled = true;
+document.getElementById("FUENTE_S").disabled = true;
+document.getElementById("COMENTARIO").disabled = true;
+
+document.getElementById("convenio_adhesion").style.display = "none";
+document.getElementById("age").style.display = "none";
+document.getElementById("enter").style.display = "none";
+
+
+}
+else if(concluNone === "CONCLUSION"){
+document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
+document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
+document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
+
+
+document.getElementById("ESTATUS_EXPEDIENTE").disabled = true;
+document.getElementById("FECHA_DESINCORPORACION_DOS").disabled = true;
+document.getElementById("CONCLUSION_ART35").disabled = true;
+document.getElementById("CONCLUSION_CANCELACION").disabled = true;
+document.getElementById("FUENTE_S").disabled = true;
+document.getElementById("COMENTARIO").disabled = true;
+
+document.getElementById("convenio_adhesion").style.display = "none";
+document.getElementById("age").style.display = "none";
+document.getElementById("enter").style.display = "none";
+}
+
+
+
+
+var concluCancel = document.getElementById('CONCLUSION_CANCELACION');
+var conclu;
+
+
+concluCancel.addEventListener('change', obtenerValores);
+
+
+    function obtenerValores(e) {
+      conclu = e.target.value;
+      // console.log(conclu);
+
+      if(conclu === "CANCELACION"){
+
+        document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
+        document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
+        document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
+        
+      }
+      else {
+      
+        document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
+        document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
+        document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
+        
+        
+      }
+      
+
+  }
+
+  </script>
+  <script type="text/javascript">
+    var article35 = document.getElementById('CONCLUSION_ART35').value;
+
+      if (article35 != "" || article35 != null){
+
+      document.getElementById("OTHER_ART351").disabled = true;
+
+          }
+    </script>
 </body>
 </html>
