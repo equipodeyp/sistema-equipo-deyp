@@ -899,7 +899,7 @@ var diasVigencia;
     }
 
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   function readOnlyCamposAnalisis() {
 
@@ -932,7 +932,7 @@ var diasVigencia;
   }
   readOnlyCamposAnalisis();
 
-</script>
+</script> -->
 
 <script type="text/javascript">
 var concluNone = document.getElementById('CONCLUSION_CANCELACION').value;
@@ -962,6 +962,13 @@ document.getElementById("ESPECIFIQUE_FUENTE").disabled = true;
 document.getElementById("OTHER_ART351").disabled = true;
 document.getElementById('ARTICULO_35_ESTATUS').disabled = true;
 
+document.getElementById("ANALISIS").disabled = true;
+document.getElementById("INCORPORACION").disabled = true;
+document.getElementById("FECHA_AUTORIZACION_ANALISIS").disabled = true;
+document.getElementById("CONVENIO_DE_ENTENDIMIENTO").disabled = true;
+document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+document.getElementById("VIGENCIA_CONVENIO").disabled = true;
+
 document.getElementById("convenio_adhesion").style.display = "none";
 document.getElementById("age").style.display = "none";
 document.getElementById("enter").style.display = "none";
@@ -986,6 +993,12 @@ document.getElementById("ESPECIFIQUE_FUENTE").disabled = true;
 document.getElementById("OTHER_ART351").disabled = true;
 document.getElementById('ARTICULO_35_ESTATUS').disabled = true;
 
+document.getElementById("ANALISIS").disabled = true;
+document.getElementById("INCORPORACION").disabled = true;
+document.getElementById("FECHA_AUTORIZACION_ANALISIS").disabled = true;
+document.getElementById("CONVENIO_DE_ENTENDIMIENTO").disabled = true;
+document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+document.getElementById("VIGENCIA_CONVENIO").disabled = true;
 
 
 document.getElementById("convenio_adhesion").style.display = "none";
