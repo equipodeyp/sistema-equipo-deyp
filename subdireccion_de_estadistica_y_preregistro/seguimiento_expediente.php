@@ -419,7 +419,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
-                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>" readonly>
+                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>">
                   </div>
 
                 </div>
