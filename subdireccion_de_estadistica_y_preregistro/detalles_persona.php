@@ -355,7 +355,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
-                    <!-- <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button> -->
+                    <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
             		  	<table class="table table-striped table-dark table-bordered">
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
@@ -1055,7 +1055,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
       </div>
       <div class="form-group">
         <label for="observaciones">OBSERVACIONES</label>
-        <textarea name="observaciones" rows="8" cols="200" placeholder="OBSERVACIONES"></textarea>
+        <textarea name="observaciones" rows="8" cols="100" placeholder="OBSERVACIONES"></textarea>
       </div>
       <div class="form-group">
         <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
