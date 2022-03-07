@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
+echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -352,72 +352,41 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS DE ADHESIÓN</h3>
+                    <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
-                    <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
+                    <!-- <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button> -->
             		  	<table class="table table-striped table-dark table-bordered">
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
+                        <th style="text-align:center">ID</th>
+                        <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
+                        <th style="text-align:center">FECHA DE AUTORIZACION</th>
+                        <th style="text-align:center">TIPO DE CONVENIO</th>
                         <th style="text-align:center">FECHA FIRMA</th>
+                        <th style="text-align:center">FECHA INICIO</th>
                         <th style="text-align:center">VIGENCIA</th>
-                        <th style="text-align:center">FECHA DE TERMINO</th>
+                        <th style="text-align:center"><a href="registrar_evaluacion.php?folio=<?php echo $identificador; ?>"> <button type="button" id="" class="btn btn-info">AGREGAR</button> </a> </th>
             		  		</thead>
                       <?php
-            		      $tabla="SELECT * FROM convenio_adhesion WHERE id_unico ='$identificador'";
-            		       $var_resultado = $mysqli->query($tabla);
-            		      while ($var_fila=$var_resultado->fetch_array())
-            		      {
-                        $cont_med = $cont_med + 1;
-            		        echo "<tr>";
-            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_firma'])); echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
-            		        echo "</tr>";
-            		      }
+            		      // $tabla="SELECT * FROM convenio_adhesion WHERE id_unico ='$identificador'";
+            		      //  $var_resultado = $mysqli->query($tabla);
+            		      // while ($var_fila=$var_resultado->fetch_array())
+            		      // {
+                      //   $cont_med = $cont_med + 1;
+            		      //   echo "<tr>";
+            		      //     echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+            		      //     echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_firma'])); echo "</td>";
+            		      //     echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
+                      //     echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
+            		      //   echo "</tr>";
+            		      // }
             		      ?>
             		  	</table>
             		  </div>
             			<div id="footer">
             		  </div>
                 </div>
-
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS MODIFICATORIOS</h3>
-                  </div>
-                  <div id="contenido">
-                    <button style="display: block; margin: 0 auto;" type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button>
-            		  	<table class="table table-striped table-dark table-bordered">
-            		  		<thead class="table-success">
-            		  			<th style="text-align:center">No.</th>
-                        <th style="text-align:center">FECHA FIRMA</th>
-                        <th style="text-align:center">DESCRIPCIÓN</th>
-            		  		</thead>
-                      <?php
-            		      $tabla="SELECT * FROM convenio_modificatorio WHERE id_unico ='$identificador'";
-            		       $var_resultado = $mysqli->query($tabla);
-            		      while ($var_fila=$var_resultado->fetch_array())
-            		      {
-                        $cont_med = $cont_med + 1;
-            		        echo "<tr>";
-            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_firma'])); echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo $var_fila['descripcion']; echo "</td>";
-            		        echo "</tr>";
-            		      }
-            		      ?>
-            		  	</table>
-            		  </div>
-            			<div id="footer">
-            		  </div>
-                </div>
-
-
 
                 <div class="row">
                   <div class="row">
@@ -1025,29 +994,75 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <!-- fin modal  -->
 
 <!-- modal del convenio adhesion -->
-<div id="add_data_Modal_convenio" class="modal fade">
- <div class="modal-dialog">
+<div id="add_data_Modal_convenio" class="modal">
+ <div class="modal-dialog " role="document">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESIÓN</h4>
+    <h4 class="modal-title">AGREGAR EVALUACION DE SEGUIMIENTO</h4>
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
    </div>
    <div class="modal-body">
     <form method="post" id="insert_form" action="agregar_convenio_adhesion.php?folio=<?php echo $id_person; ?>">
-     <label>FOLIO DEL EXPEDIENTE</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
-     <br />
-     <label>ID ÚNICO DE LA PERSONA </label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
-     <br />
-     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESIÓN</label>
-     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
-     <br />
-     <label>VIGENCIA</label>
-     <input type="text" name="vigencia_con_adh" id="vigencia_con_adh" class="form-control" required>
-     <br />
+      <div class="form-group ">
+        <label>FOLIO DEL EXPEDIENTE</label>
+        <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+      </div>
+      <div class="form-group ">
+        <label>ID ÚNICO DE LA PERSONA </label>
+        <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
+      </div>
+      <div class="form-group ">
+        <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
+        <select class="form-select form-select-lg" name="anal_m">
+          <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
+          <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
+          <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
+          <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+        </select>
+      </div>
+      <div class="form-group ">
+        <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
+        <input class="form-control" type="date" name="fecha_auto" value="">
+      </div>
+      <div class="form-group ">
+        <label for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
+        <input class="form-control" type="text" name="id_analisis" value="">
+      </div>
+      <div class="form-group ">
+        <label for="tipo_convenio">TIPO DE CONVENIO</label>
+        <select class="form-select form-select-lg" name="tipo_convenio">
+          <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
+          <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
+          <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+        </select>
+      </div>
+      <div class="form-group ">
+        <label for="fecha_firma">FECHA DE LA FIRMA</label>
+        <input class="form-control" type="date" name="fecha_firma" id="fecha_firma"  required>
+      </div>
+
+      <div class="form-group">
+        <label>FECHA DE INICIO</label>
+        <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio"  required>
+      </div>
+      <div class="form-group">
+        <label>VIGENCIA</label>
+        <input class="form-control" type="text" name="vigencia" id="vigencia" required>
+      </div>
+      <div class="form-group">
+        <label for="id_convenio">ID DEL CONVENIO</label>
+        <input class="form-control" type="text" name="id_convenio" value="">
+      </div>
+      <div class="form-group">
+        <label for="observaciones">OBSERVACIONES</label>
+        <textarea name="observaciones" rows="8" cols="200" placeholder="OBSERVACIONES"></textarea>
+      </div>
+      <div class="form-group">
+        <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
+      </div>
+
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
-     <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
+
     </form>
    </div>
    <div class="modal-footer">
@@ -1218,7 +1233,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       con_can = e.target.value;
-      
+
       if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
         document.getElementById("convenio_adhesion").style.display = "none";
         document.getElementById("age").style.display = "none";
@@ -1257,10 +1272,10 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("UPDATE_FILE").disabled = "true";
 
         document.getElementById("CONCLUSION_ART35z").disabled = true;
-        
+
 
         document.getElementById("NUEVA_MEDIDA").style.display = "none";
-  
+
       }
 
 </script>
@@ -1309,17 +1324,17 @@ concluCancel.addEventListener('change', obtenerValores);
         document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
         document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
         document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
-        
+
       }
       else {
-      
+
         document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
         document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
         document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
-        
-        
+
+
       }
-      
+
 
   }
 </script>
@@ -1355,7 +1370,7 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
         document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
 
         document.getElementById("NUEVA_MEDIDA").style.display = "none";
-  
+
       }
 
 </script>
@@ -1367,7 +1382,7 @@ var article35 = document.getElementById('CONCLUSION_ART35z').value;
  if (article35 != "" || article35 != null){
 
   document.getElementById("OTHER_ART35").disabled = true;
- 
+
       }
 
 
