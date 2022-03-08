@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE folioexpediente='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -432,7 +432,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                     <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
-                    <!-- <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button> -->
+                    <a href="registrar_evaluacion_seg.php?folio=<?php echo $fol_exp; ?>"><button style="display: block; margin: 0 auto;" type="button" id="" class="btn btn-info">AGREGAR</button></a>
             		  	<table class="table table-striped table-dark table-bordered">
                       <thead class="table-success">
             		  			<th style="text-align:center">No.</th>
@@ -443,22 +443,33 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                         <th style="text-align:center">FECHA FIRMA</th>
                         <th style="text-align:center">FECHA INICIO</th>
                         <th style="text-align:center">VIGENCIA</th>
-                        <th style="text-align:center"><a href="registrar_evaluacion_seg.php?folio=<?php echo $identificador; ?>"> <button type="button" id="" class="btn btn-info">AGREGAR</button> </a> </th>
+                        <!-- <th style="text-align:center"><a href="registrar_evaluacion_seg.php?folio=<?php echo $identificador; ?>"> <button type="button" id="" class="btn btn-info">AGREGAR</button> </a> </th> -->
             		  		</thead>
                       <?php
-                      // $cont_med = '0';
-            		      // $tabla="SELECT * FROM convenio_adh_expediente WHERE folioexpediente ='$fol_exp'";
-            		      //  $var_resultado = $mysqli->query($tabla);
-            		      // while ($var_fila=$var_resultado->fetch_array())
-            		      // {
-                      //   $cont_med = $cont_med + 1;
-            		      //   echo "<tr>";
-            		      //     echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-            		      //     echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
-            		      //     echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
-                      //     echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_termino'])); echo "</td>";
-            		      //   echo "</tr>";
-            		      // }
+                      $cont_med = '0';
+            		      $tabla="SELECT * FROM evaluacion_expediente WHERE folioexpediente ='$fol_exp'";
+            		       $var_resultado = $mysqli->query($tabla);
+            		      while ($var_fila=$var_resultado->fetch_array())
+            		      {
+                        $cont_med = $cont_med + 1;
+                        echo "<tr>";
+            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_aut'])); echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $var_fila['tipo_convenio']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; if ($var_fila['fecha_firma'] != '0000-00-00') {
+                            echo date("d/m/Y",strtotime($var_fila['fecha_firma']));
+                          } echo "</td>";
+                          echo "<td style='text-align:center'>"; if ($var_fila['fecha_inicio'] != '0000-00-00') {
+                            echo date("d/m/Y", strtotime($var_fila['fecha_inicio']));
+                          } echo "</td>";
+            		          echo "<td style='text-align:center'>"; if ($var_fila['vigencia'] != '0') {
+                            echo $var_fila['vigencia'];
+                          } echo "</td>";
+                          // echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
+            		        echo "</tr>";
+            		      }
             		      ?>
             		  	</table>
             		  </div>

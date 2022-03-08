@@ -8,13 +8,11 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-
 $identificador = $_GET['folio'];
 $consulta = "SELECT * FROM datospersonales WHERE identificador = '$identificador'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
 // echo $fol_exp;
-
  ?>
 <!DOCTYPE html>
 <html lang="es">
