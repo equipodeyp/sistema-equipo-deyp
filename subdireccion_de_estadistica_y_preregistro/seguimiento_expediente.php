@@ -17,7 +17,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
+echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE folioexpediente='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -429,76 +429,42 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIOS DE ADHESIÓN FORMALIZADOS</h3>
+                    <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
-                    <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button>
+                    <!-- <button style="display: block; margin: 0 auto;" type="button" name="convenio_adhesion" id="convenio_adhesion" data-toggle="modal" data-target="#add_data_Modal_convenio" class="btn btn-info">AGREGAR</button> -->
             		  	<table class="table table-striped table-dark table-bordered">
-            		  		<thead class="table-success">
+                      <thead class="table-success">
             		  			<th style="text-align:center">No.</th>
+                        <th style="text-align:center">ID</th>
+                        <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
+                        <th style="text-align:center">FECHA DE AUTORIZACION</th>
+                        <th style="text-align:center">TIPO DE CONVENIO</th>
                         <th style="text-align:center">FECHA FIRMA</th>
+                        <th style="text-align:center">FECHA INICIO</th>
                         <th style="text-align:center">VIGENCIA</th>
-                        <th style="text-align:center">FECHA DE TERMINO</th>
+                        <th style="text-align:center"><a href="registrar_evaluacion_seg.php?folio=<?php echo $identificador; ?>"> <button type="button" id="" class="btn btn-info">AGREGAR</button> </a> </th>
             		  		</thead>
                       <?php
-                      $cont_med = '0';
-            		      $tabla="SELECT * FROM convenio_adh_expediente WHERE folioexpediente ='$fol_exp'";
-            		       $var_resultado = $mysqli->query($tabla);
-            		      while ($var_fila=$var_resultado->fetch_array())
-            		      {
-                        $cont_med = $cont_med + 1;
-            		        echo "<tr>";
-            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
-            		          echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_termino'])); echo "</td>";
-            		        echo "</tr>";
-            		      }
+                      // $cont_med = '0';
+            		      // $tabla="SELECT * FROM convenio_adh_expediente WHERE folioexpediente ='$fol_exp'";
+            		      //  $var_resultado = $mysqli->query($tabla);
+            		      // while ($var_fila=$var_resultado->fetch_array())
+            		      // {
+                      //   $cont_med = $cont_med + 1;
+            		      //   echo "<tr>";
+            		      //     echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+            		      //     echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
+            		      //     echo "<td style='text-align:center'>"; echo $var_fila['vigencia']; echo "</td>";
+                      //     echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_termino'])); echo "</td>";
+            		      //   echo "</tr>";
+            		      // }
             		      ?>
             		  	</table>
             		  </div>
             			<div id="footer">
             		  </div>
                 </div>
-
-
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">CONVENIO MODIFICATORIO</h3>
-                  </div>
-                  <div id="contenido">
-                    <button style="display: block; margin: 0 auto;" type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info">AGREGAR</button>
-                    <table class="table table-striped table-dark table-bordered">
-                      <thead class="table-success">
-                        <th style="text-align:center">No.</th>
-                        <th style="text-align:center">FECHA FIRMA</th>
-                        <th style="text-align:center">DESCRIPCIÓN</th>
-                      </thead>
-                      <?php
-                      $cont= '0';
-                      $tabla="SELECT * FROM convenio_mod_expediente WHERE folioexpediente ='$fol_exp'";
-                       $var_resultado = $mysqli->query($tabla);
-                      while ($var_fila=$var_resultado->fetch_array())
-                      {
-                        $cont = $cont + 1;
-                        echo "<tr>";
-                          echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha'])); echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['convenio']; echo "</td>";
-                        echo "</tr>";
-                      }
-                      ?>
-                    </table>
-                  </div>
-                  <div id="footer">
-                  </div>
-
-                </div>
-
-
 
                 <div class="row">
                   <div class="row">
@@ -1023,17 +989,17 @@ concluCancel.addEventListener('change', obtenerValores);
         document.getElementById("LABEL_FECHA_CANCELACION").style.display = "";
         document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
         document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
-        
+
       }
       else {
-      
+
         document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
         document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
         document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
-        
-        
+
+
       }
-      
+
 
   }
 
