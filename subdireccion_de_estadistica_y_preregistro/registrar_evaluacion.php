@@ -150,16 +150,16 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <label for="id_convenio">ID DEL CONVENIO</label>
                   <input class="form-control" type="text" name="id_convenio" value="">
                 </div>
+              </div>
+              <div class="row">
                 <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">OBSERVACIONES</h3>
-                  </div>
-                    <label for="observaciones">OBSERVACIONES</label>
-                    <textarea name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
+                  <hr class="mb-4">
                 </div>
+                <div class="alert alert-info">
+                  <h3 style="text-align:center">OBSERVACIONES</h3>
+                </div>
+                  <label for="observaciones">OBSERVACIONES</label>
+                  <textarea name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
               </div>
               <div class="row">
                 <div>
