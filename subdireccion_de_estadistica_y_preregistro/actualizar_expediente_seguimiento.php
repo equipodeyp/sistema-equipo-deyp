@@ -18,11 +18,14 @@ if ($verifica_update_person == 1) {
   $analisis = $_POST['ANALISIS_MULTIDISCIPLINARIO'];
   $incorporacion = $_POST['INCORPORACION'];
   $fecha_analisis = $_POST['FECHA_AUTORIZACION_ANALISIS'];
+  $id_analisis = $_POST['id_analisis'];
   $convenio = $_POST['CONVENIO_DE_ENTENDIMIENTO'];
   $fecha_convenio = $_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
+  $fecha_inicio = $_POST['fecha_inicio'];
   $vigencia = $_POST['VIGENCIA_CONVENIO'];
-  $fecha_vigencia = date("Y/m/d",strtotime($fecha_convenio."+ $vigencia days"));
+  $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
   $fecha_termino = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
+  $id_convenio= $_POST['id_convenio'];
   $personas_incorporadas = $_POST['personas_incorporadas'];
 
   $analisis_expediente = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$folio_expediente'";
@@ -30,13 +33,13 @@ if ($verifica_update_person == 1) {
   $fila_analisis_exp = mysqli_fetch_array($res_analsis_exp);
 
   if ($fila_analisis_exp > 0) {
-    $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', analisis = '$analisis', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', convenio = '$convenio',
-                                                      fecha_convenio = '$fecha_convenio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino', personasincorporadas = '$personas_incorporadas' WHERE folioexpediente = '$folio_expediente'";
+    $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', analisis = '$analisis', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
+                                                      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino', id_convenio='$id_convenio', personasincorporadas = '$personas_incorporadas' WHERE folioexpediente = '$folio_expediente'";
     $res_analsis = $mysqli->query($update_analisis);
 
   }else {
-    $new_analisis = "INSERT INTO analisis_expediente (folioexpediente, personas_propuestas, analisis, incorporacion, fecha_analisis, convenio, fecha_convenio, vigencia, fecha_termino_convenio, personasincorporadas)
-                     VALUES('$folio_expediente', '$personas_propuestas', '$analisis', '$incorporacion', '$fecha_analisis', '$convenio', '$fecha_convenio', '$vigencia', '$fecha_termino', '$personas_incorporadas')";
+    $new_analisis = "INSERT INTO analisis_expediente (folioexpediente, personas_propuestas, analisis, incorporacion, fecha_analisis, id_analisis, convenio, fecha_convenio, fecha_inicio, vigencia, fecha_termino_convenio, id_convenio, personasincorporadas)
+                     VALUES('$folio_expediente', '$personas_propuestas', '$analisis', '$incorporacion', '$fecha_analisis', '$id_analisis', '$convenio', '$fecha_convenio', '$fecha_inicio', '$vigencia', '$fecha_termino', '$id_convenio', '$personas_incorporadas')";
     $res_analsis = $mysqli->query($new_analisis);
   }
   // convenio de adhesion del expediente
