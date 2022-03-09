@@ -352,12 +352,21 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   $cant_med1="SELECT COUNT(*) AS cant FROM determinacionincorporacion WHERE folioexpediente = '$fol_exp' AND convenio = 'FORMALIZADO'";
                   $res_cant_med1=$mysqli->query($cant_med1);
                   $row_med1 = $res_cant_med1->fetch_array(MYSQLI_ASSOC);
-                         // echo $row_med['cant'];
-                         // echo $row_med1['cant'];
+                  $cant_med2="SELECT COUNT(*) AS cant FROM datospersonales WHERE folioexpediente = '$fol_exp' AND estatus = 'SUJETO PROTEGIDO'";
+                  $res_cant_med2=$mysqli->query($cant_med2);
+                  $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
                    ?>
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-4 mb-3 validar">
                     <label for="personas_propuestas">PERSONAS PROPUESTAS</label>
                     <input class="form-control" type="text" name="personas_propuestas" value="<?php echo $row_med['cant'];?>" readonly>
+                  </div>
+                  <div class="col-md-4 mb-3 validar">
+                    <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
+                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>" readonly>
+                  </div>
+                  <div class="col-md-4 mb-3 validar">
+                    <label for="personas_vigentes">PERSONAS VIGENTES</label>
+                    <input class="form-control" type="text" name="personas_vigentes" value="<?php echo $row_med2['cant'];?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
@@ -414,12 +423,6 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="col-md-6 mb-3 validar">
                     <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
                     <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $fila_analisis_expediente['vigencia'];?>">
-                  </div>
-
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
-                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>">
                   </div>
 
                 </div>
