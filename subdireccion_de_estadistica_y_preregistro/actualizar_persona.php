@@ -97,13 +97,15 @@ if ($verifica_update_person == 1) {
   $multidisciplinario=$_POST['ANALISIS_MULTIDISCIPLINARIO'];
   $incorporacion=$_POST['INCORPORACION'];
   $date_aut =$_POST['FECHA_AUTORIZACION'];
+  $id_analisis =$_POST['id_analisis'];
   $convenio= $_POST['CONVENIO_ENTENDIMIENTO'];
   $fecha_conv_ent =$_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
+  $fecha_inicio = $_POST['fecha_inicio'];
   $vigencia=$_POST['VIGENCIA_CONVENIO'];
-  $fecha_vigencia = date("Y/m/d",strtotime($fecha_conv_ent."+ $vigencia days"));
+  $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
   $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
-  echo $fecha_conv_ent.'*'.$vigencia.'*'.$fecha_vigencia.'*'.$fecha_termino;
-
+  // echo $fecha_conv_ent.'*'.$vigencia.'*'.$fecha_vigencia.'*'.$fecha_termino;
+  $id_convenio=$_POST['id_convenio'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
   if ($acuerdo=='CONCLUSION') {
     $conclusionart35=$_POST['CONCLUSION_ART35z'];
@@ -304,7 +306,7 @@ if ($verifica_update_person == 1) {
   // $det_inc = "INSERT INTO determinacionincorporacion (incorporacion, motivoincorporacion, convenioentendimiento, fechaconvenioentendimiento, folioexpediente, id_persona)
   //               VALUES('$incorporacion', '$mot_inc', '$name_convenio', '$fecha_conv_ent', '$fol_exp', '$id_persona')";
   // $res_det_inc = $mysqli->query($det_inc);
-  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_termino = '$fecha_termino', conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio', conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
   $res_det_inc = $mysqli->query($det_inc);
   if ($radicacion == 'OFICIO') {
     $des_rad = $_POST['OFICIO'];

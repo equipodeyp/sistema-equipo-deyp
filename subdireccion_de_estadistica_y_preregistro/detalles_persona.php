@@ -247,7 +247,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
-                    <input class="form-control" type="text" name="id_analisis" value="">
+                    <input class="form-control" type="text" name="id_analisis" value="<?php echo $rowdetinc['id_analisis']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -271,7 +271,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="fecha_inicio">FECHA DE INICIO DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" type="date" name="fecha_inicio" value="">
+                    <input class="form-control" type="date" name="fecha_inicio" value="<?php echo $rowdetinc['fecha_inicio']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -286,7 +286,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="id_convenio">ID DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" type="text" name="id_convenio" value="">
+                    <input class="form-control" type="text" name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
