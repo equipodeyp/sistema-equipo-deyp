@@ -402,6 +402,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
+                    <label for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
+                    <input class="form-control" type="text" name="id_analisis" value="">
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
                     <label for="CONVENIO_DE_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CONVENIO_DE_ENTENDIMIENTO" name="CONVENIO_DE_ENTENDIMIENTO">
                       <option style="visibility: hidden" id="tab3-convenio-entendimiento" value="<?php echo $fila_analisis_expediente['convenio'];?>"><?php echo $fila_analisis_expediente['convenio'];?></option>
@@ -416,13 +421,23 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DEL CONVENIO ENTENDIMIENTO<span class="required"></span></label>
+                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DE LA FIRMA DEL CONVENIO ENTENDIMIENTO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" type="date" value="<?php echo $fila_analisis_expediente['fecha_convenio'];?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="fecha_inicio">FECHA DE INICIO DEL CONVENIO DE ENTENDIMIENTO</label>
+                    <input class="form-control" type="date" name="fecha_inicio" value="">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
                     <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $fila_analisis_expediente['vigencia'];?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="id_convenio">ID DEL CONVENIO DE ENTENDIMIENTO</label>
+                    <input class="form-control" type="text" name="id_convenio" value="">
                   </div>
 
                 </div>

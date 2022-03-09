@@ -245,6 +245,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <label for="FECHA_AUTORIZACION">FECHA DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_AUTORIZACION" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_autorizacion']; ?>">
                   </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
+                    <input class="form-control" type="text" name="id_analisis" value="">
+                  </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONVENIO_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
@@ -261,8 +265,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DE INICIO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DE LA FIRMA DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
                     <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_DOS" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="<?php echo $rowdetinc['date_convenio']; ?>" type="date" value="" >
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="fecha_inicio">FECHA DE INICIO DEL CONVENIO DE ENTENDIMIENTO</label>
+                    <input class="form-control" type="date" name="fecha_inicio" value="">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -273,6 +282,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
                     <input readonly placeholder="" class="form-control" id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="id_convenio">ID DEL CONVENIO DE ENTENDIMIENTO</label>
+                    <input class="form-control" type="text" name="id_convenio" value="">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
