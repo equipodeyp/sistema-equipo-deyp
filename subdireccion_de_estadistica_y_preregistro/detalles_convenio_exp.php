@@ -8,12 +8,13 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-$identificador = $_GET['folio'];
-$consulta = "SELECT * FROM datospersonales WHERE identificador = '$identificador'";
+
+$id = $_GET['id'];
+// echo $folioexpediente;
+$consulta = "SELECT * FROM datospersonales WHERE id = '$id'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
-// echo $fol_exp;
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -90,7 +91,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" method="POST" action="guardar_evaluacion_ind.php?folio=<?php echo $identificador; ?>" enctype= "multipart/form-data">
+            <form class="container well form-horizontal" enctype= "multipart/form-data">
               <div class="row">
                 <div class="row">
                   <hr class="mb-4">
@@ -102,52 +103,51 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <label>FOLIO DEL EXPEDIENTE</label>
                   <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
                 </div>
-                <div class="col-md-6 mb-3 validar ">
-                  <label>ID ÚNICO DE LA PERSONA </label>
-                  <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['identificador']; ?>" readonly>
-                </div>
-                <div class="col-md-6 mb-3 validar ">
-                  <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
-                  <select class="form-select form-select-lg" name="analisis_m" required>
-                    <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
-                    <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-                    <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-                    <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
-                  </select>
-                </div>
-                <div class="col-md-6 mb-3 validar ">
-                  <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
-                  <input class="form-control" type="date" name="fecha_auto" value="" required>
-                </div>
-                <div class="col-md-6 mb-3 validar ">
-                  <label for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
-                  <input class="form-control" type="text" name="id_analisis" value="" required>
-                </div>
-                <div class="col-md-6 mb-3 validar ">
-                  <label for="tipo_convenio">TIPO DE CONVENIO</label>
-                  <select class="form-select form-select-lg" name="tipo_convenio">
-                    <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
-                    <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
-                    <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
-                  </select>
-                </div>
-                <div class="col-md-6 mb-3 validar ">
-                  <label for="fecha_firma">FECHA DE LA FIRMA</label>
-                  <input class="form-control" type="date" name="fecha_firma" id="fecha_firma"  >
+                <div class="row">
+                  <div class="col-md-6 mb-3 validar ">
+                    <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
+                    <select disabled class="form-select form-select-lg" name="analisis_m">
+                      <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
+                      <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
+                      <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
+                      <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3 validar ">
+                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
+                    <input disabled class="form-control" type="date" name="fecha_auto" value="" required>
+                  </div>
+                  <div class="col-md-6 mb-3 validar ">
+                    <label for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
+                    <input disabled class="form-control" type="text" name="id_analisis" value="" required>
+                  </div>
+                  <div class="col-md-6 mb-3 validar ">
+                    <label for="tipo_convenio">TIPO DE CONVENIO</label>
+                    <select disabled class="form-select form-select-lg" name="tipo_convenio">
+                      <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
+                      <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
+                      <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3 validar ">
+                    <label for="fecha_firma">FECHA DE LA FIRMA</label>
+                    <input disabled class="form-control" type="date" name="fecha_firma" id="fecha_firma" >
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label>FECHA DE INICIO</label>
+                    <input disabled class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" >
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label>VIGENCIA</label>
+                    <input disabled class="form-control" type="text" name="vigencia" id="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                  </div>
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
+                    <input disabled class="form-control" type="text" name="id_convenio" value="" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                  </div>
                 </div>
 
-                <div class="col-md-6 mb-3 validar">
-                  <label>FECHA DE INICIO</label>
-                  <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio"  >
-                </div>
-                <div class="col-md-6 mb-3 validar">
-                  <label>VIGENCIA</label>
-                  <input class="form-control" type="text" name="vigencia" id="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
-                </div>
-                <div class="col-md-6 mb-3 validar">
-                  <label for="id_convenio">ID DEL CONVENIO</label>
-                  <input class="form-control" type="text" name="id_convenio" value="">
-                </div>
               </div>
               <div class="row">
                 <div class="row">
@@ -157,13 +157,13 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
+                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
               </div>
               <div class="row">
                 <div>
                     <br>
                     <br>
-                    <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+                    
                 </div>
               </div>
             </form>
@@ -174,7 +174,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fila_consulta['id']?>" class="btn-flotante">CANCELAR</a>
+
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+
+</script>

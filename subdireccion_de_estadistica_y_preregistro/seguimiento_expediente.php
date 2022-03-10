@@ -432,7 +432,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $fila_analisis_expediente['vigencia'];?>">
+                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $fila_analisis_expediente['vigencia'];?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -456,11 +456,12 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">ID</th>
                         <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
-                        <th style="text-align:center">FECHA DE AUTORIZACION</th>
+                        <th style="text-align:center">DETALLE DEL CONVENIO</th>
+                        <!-- <th style="text-align:center">FECHA DE AUTORIZACION</th>
                         <th style="text-align:center">TIPO DE CONVENIO</th>
                         <th style="text-align:center">FECHA FIRMA</th>
                         <th style="text-align:center">FECHA INICIO</th>
-                        <th style="text-align:center">VIGENCIA</th>
+                        <th style="text-align:center">VIGENCIA</th> -->
                         <!-- <th style="text-align:center"><a href="registrar_evaluacion_seg.php?folio=<?php echo $identificador; ?>"> <button type="button" id="" class="btn btn-info">AGREGAR</button> </a> </th> -->
             		  		</thead>
                       <?php
@@ -474,19 +475,20 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
             		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_aut'])); echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['tipo_convenio']; echo "</td>";
-            		          echo "<td style='text-align:center'>"; if ($var_fila['fecha_firma'] != '0000-00-00') {
-                            echo date("d/m/Y",strtotime($var_fila['fecha_firma']));
-                          } echo "</td>";
-                          echo "<td style='text-align:center'>"; if ($var_fila['fecha_inicio'] != '0000-00-00') {
-                            echo date("d/m/Y", strtotime($var_fila['fecha_inicio']));
-                          } echo "</td>";
-            		          echo "<td style='text-align:center'>"; if ($var_fila['vigencia'] != '0') {
-                            echo $var_fila['vigencia'];
-                          } echo "</td>";
-                          // echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
-            		        echo "</tr>";
+                          echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
+                        //   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_aut'])); echo "</td>";
+                        //   echo "<td style='text-align:center'>"; echo $var_fila['tipo_convenio']; echo "</td>";
+            		        //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_firma'] != '0000-00-00') {
+                        //     echo date("d/m/Y",strtotime($var_fila['fecha_firma']));
+                        //   } echo "</td>";
+                        //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_inicio'] != '0000-00-00') {
+                        //     echo date("d/m/Y", strtotime($var_fila['fecha_inicio']));
+                        //   } echo "</td>";
+            		        //   echo "<td style='text-align:center'>"; if ($var_fila['vigencia'] != '0') {
+                        //     echo $var_fila['vigencia'];
+                        //   } echo "</td>";
+                        //   // echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
+            		        // echo "</tr>";
             		      }
             		      ?>
             		  	</table>
