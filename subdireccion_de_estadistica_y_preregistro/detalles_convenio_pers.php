@@ -174,7 +174,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   </div>
 </div>
 <div class="contenedor">
-
+<a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fila_consulta['id']?>" class="btn-flotante">REGRESAR</a>
 </div>
 </body>
 </html>
