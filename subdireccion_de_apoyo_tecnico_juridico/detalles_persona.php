@@ -1037,5 +1037,17 @@ separarFolio = folio.split("/");
 var idFolio = separarFolio[3];
 console.log(idFolio);
 </script>
+
+
+<script type="text/javascript">
+var idUnico = document.getElementById('ID_UNICO').value;
+function Id() {
+if (idUnico == null || idUnico == ""){
+
+
+  alert("No se generó el id unico de la persona al registrar los datos. Soicitar su llenado.")
+} 
+Id();
+  </script>
 </body>
 </html>

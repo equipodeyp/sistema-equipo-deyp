@@ -247,7 +247,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
-                    <input class="form-control" type="text" name="id_analisis" value="<?php echo $rowdetinc['id_analisis']; ?>">
+                    <input class="form-control" type="text" id="id_analisis" name="id_analisis" value="<?php echo $rowdetinc['id_analisis']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -271,7 +271,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="fecha_inicio">FECHA DE INICIO DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" type="date" name="fecha_inicio" value="<?php echo $rowdetinc['fecha_inicio']; ?>">
+                    <input class="form-control" type="date" id="fecha_inicio" name="fecha_inicio" value="<?php echo $rowdetinc['fecha_inicio']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -286,12 +286,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="id_convenio">ID DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" type="text" name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
+                    <input class="form-control" type="text" id="id_convenio" name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
-                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)" id="CONCLUSION_CANCELACION">
+                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION_EXP" onChange="openart35(this)" id="CONCLUSION_CANCELACION_EXP">
                       <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
                       <option value="CANCELACION">CANCELACION</option>
                       <option value="CONCLUSION">CONCLUSION</option>
@@ -369,7 +369,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
-                    <a href="registrar_evaluacion.php?folio=<?php echo $identificador; ?>"><button style="display: block; margin: 0 auto;" type="button" id="" class="btn btn-info">AGREGAR</button></a>
+                    <a href="registrar_evaluacion.php?folio=<?php echo $identificador; ?>"><button style="display: block; margin: 0 auto;" type="button" id="AGREGAR_CONVENIO" class="btn btn-info">AGREGAR</button></a>
             		  	<table class="table table-striped table-dark table-bordered">
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
@@ -707,7 +707,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		</div>
         		</div>
     			</article>
-    			<article id="tab3">
+    			
+          <!-- <article id="tab3">
             <div class="container">
               <form class=" container well form-horizontal" action="update_seguim.php?folio=<?php echo $id_person; ?>" method="post">
                 <div class="row">
@@ -975,7 +976,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                 </div>
               </form>
             </div>
-          </article>
+          </article> -->
 
     		</div>
     	</div>
@@ -987,13 +988,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 </div>
 
 <!-- modal del convenio MODIFICATORIO -->
-<div id="add_data_Modal" class="modal fade">
+<!-- <div id="add_data_Modal" class="modal fade">
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO MODIFICATORIO</h4>
+    <h4 class="modal-title">AGREGAR CONVENIO MODIFICATORIO</h4> -->
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-   </div>
+   <!-- </div>
    <div class="modal-body">
     <form method="post" id="insert_form" action="agregar_convenio_modificatorio.php?folio=<?php echo $id_person; ?>">
      <label>FOLIO DEL EXPEDIENTE</label>
@@ -1007,9 +1008,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
      <br />
      <label>DESCRIPCIÓN</label>
      <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
-     <br />
+     <br /> -->
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
-     <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
+     <!-- <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
     </form>
    </div>
    <div class="modal-footer">
@@ -1017,17 +1018,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
    </div>
   </div>
  </div>
-</div>
+</div> -->
 <!-- fin modal  -->
 
 <!-- modal del convenio adhesion -->
-<div id="add_data_Modal_convenio" class="modal">
+<!-- <div id="add_data_Modal_convenio" class="modal">
  <div class="modal-dialog " role="document">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">AGREGAR EVALUACION DE SEGUIMIENTO</h4>
+    <h4 class="modal-title">AGREGAR EVALUACION DE SEGUIMIENTO</h4> -->
     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-   </div>
+   <!-- </div>
    <div class="modal-body">
     <form method="post" id="insert_form" action="agregar_convenio_adhesion.php?folio=<?php echo $id_person; ?>">
       <div class="form-group ">
@@ -1086,18 +1087,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
       </div>
       <div class="form-group">
         <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-      </div>
+      </div> -->
 
      <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
 
-    </form>
+    <!-- </form>
    </div>
    <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
    </div>
   </div>
  </div>
-</div>
+</div> -->
 <!-- fin modal  -->
 
 <!-- SCRIPT DE FECHAS  -->
@@ -1122,11 +1123,12 @@ document.getElementById("FECHA_DESINCORPORACION_UNO").setAttribute("max", today)
 document.getElementById("FECHA_AUTORIZACION_ANALISIS").setAttribute("max", today);
 document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").setAttribute("max", today);
 document.getElementById("FECHA_DESINCORPORACION_DOS").setAttribute("max", today);
+document.getElementById("FECHA_DESINCORPORACION_UNO").setAttribute("max", today);
 
 </script>
 
 
-<script>
+<!-- <script>
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
 
@@ -1182,7 +1184,7 @@ window.addEventListener('load', function () {
 
 });
 
-</script>
+</script> -->
 
 <script>
 
@@ -1251,7 +1253,7 @@ var diasVigencia;
 <script type="text/javascript">
 
 
-var conclusion_cancelacion = document.getElementById('CONCLUSION_CANCELACION');
+var conclusion_cancelacion = document.getElementById('CONCLUSION_CANCELACION_EXP');
 var con_can;
 
 
@@ -1262,8 +1264,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
       con_can = e.target.value;
 
       if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
-        document.getElementById("convenio_adhesion").style.display = "none";
-        document.getElementById("age").style.display = "none";
+        
 
       }
 
@@ -1274,7 +1275,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
 <script type="text/javascript">
 
 
-var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
+var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION_EXP').value;
 
       if (inputConclusioCancelacion === "CANCELACION" || inputConclusioCancelacion === "CONCLUSION"){
 
@@ -1308,7 +1309,7 @@ var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION'
 </script>
 
 <script type="text/javascript">
-var concluNone = document.getElementById('CONCLUSION_CANCELACION').value;
+var concluNone = document.getElementById('CONCLUSION_CANCELACION_EXP').value;
 
 if(concluNone === "" || concluNone === null){
         document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "none";
@@ -1335,7 +1336,7 @@ document.getElementById("FECHA_DESINCORPORACION_UNO").style.display = "";
 
 
 
-var concluCancel = document.getElementById('CONCLUSION_CANCELACION');
+var concluCancel = document.getElementById('CONCLUSION_CANCELACION_EXP');
 var conclu;
 
 
@@ -1369,23 +1370,26 @@ concluCancel.addEventListener('change', obtenerValores);
 <script type="text/javascript">
 
 
-var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').value;
+var inputConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION_EXP').value;
 
       if (inputConclusioCancelacion === "CANCELACION" || inputConclusioCancelacion === "CONCLUSION"){
 
 
         document.getElementById("NUEVA_MEDIDA").style.display = "none";
-        document.getElementById("convenio_adhesion").style.display = "none";
-        document.getElementById("age").style.display = "none";
         document.getElementById("enter").style.display = "none";
 
         document.getElementById("ANALISIS_MULTIDISCIPLINARIO").disabled = true;
         document.getElementById("INCORPORACION").disabled = true;
         document.getElementById("FECHA_AUTORIZACION").disabled = true;
+        document.getElementById("id_analisis").disabled = true;
         document.getElementById("CONVENIO_ENTENDIMIENTO").disabled = true;
         document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO_DOS").disabled = true;
+        document.getElementById("fecha_inicio").disabled = true;
         document.getElementById("VIGENCIA_CONVENIO").disabled = true;
-        document.getElementById("CONCLUSION_CANCELACION").disabled = true;
+        document.getElementById("id_convenio").disabled = true;
+        document.getElementById("CONCLUSION_CANCELACION_EXP").disabled = true;
+
+        document.getElementById("AGREGAR_CONVENIO").style.display = "none";
 
         document.getElementById("ESTATUS_PERSONA").disabled = true;
         document.getElementById("FUENTE").disabled = true;

@@ -281,7 +281,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">ID PERSONA</th>
-                        <th style="text-align:center">CONVENIO</th>
+                        <th style="text-align:center">CONVENIO DE ENTENDIMIENTO</th>
                         <th style="text-align:center">CONVENIO DE ADHESIÓN</th>
                         <th style="text-align:center">CONVENIO MODIFICATORIO</th>
             		  		</thead>
@@ -403,7 +403,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
-                    <input class="form-control" type="text" name="id_analisis" value="<?php echo $fila_analisis_expediente['id_analisis']; ?>">
+                    <input class="form-control" type="text" id="id_analisis" name="id_analisis" value="<?php echo $fila_analisis_expediente['id_analisis']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -427,7 +427,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="fecha_inicio">FECHA DE INICIO DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_analisis_expediente['fecha_inicio']; ?>">
+                    <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" value="<?php echo $fila_analisis_expediente['fecha_inicio']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -436,10 +436,14 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="id_convenio">ID DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" type="text" name="id_convenio" value="<?php echo $fila_analisis_expediente['id_convenio']; ?>">
+                    <label for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
+                    <input class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo $fila_analisis_expediente['fecha_termino_convenio']; ?>">
                   </div>
 
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="num_convenio">NÚMERO DE CONVENIOS FIRMADOS</label>
+                    <input class="form-control" type="text" id="num_convenio" name="num_convenio" value="<?php echo $fila_analisis_expediente['num_conmevios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                  </div>
                 </div>
 
                 <div class="row">
@@ -450,7 +454,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                     <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
-                    <a href="registrar_evaluacion_seg.php?folio=<?php echo $fol_exp; ?>"><button style="display: block; margin: 0 auto;" type="button" id="" class="btn btn-info">AGREGAR</button></a>
+                    <a href="registrar_evaluacion_seg.php?folio=<?php echo $fol_exp; ?>"><button style="display: block; margin: 0 auto;" type="button" id="btn_agregar" class="btn btn-info">AGREGAR</button></a>
             		  	<table class="table table-striped table-dark table-bordered">
                       <thead class="table-success">
             		  			<th style="text-align:center">No.</th>
@@ -1035,7 +1039,7 @@ concluCancel.addEventListener('change', obtenerValores);
   }
 
   </script>
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     var article35 = document.getElementById('CONCLUSION_ART35').value;
 
       if (article35 != "" || article35 != null){
@@ -1043,6 +1047,57 @@ concluCancel.addEventListener('change', obtenerValores);
       document.getElementById("OTHER_ART351").disabled = true;
 
           }
-    </script> -->
+    </script>
+
+<script type="text/javascript">
+var convenioDeEntendimiento = document.getElementById('CONVENIO_DE_ENTENDIMIENTO').value;
+
+if (convenioDeEntendimiento === "NO FORMALIZADO"){
+  document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+  document.getElementById("fecha_inicio").disabled = true;
+  document.getElementById("VIGENCIA_CONVENIO").disabled = true;
+  document.getElementById("TERMINO_CONVENIO").disabled = true;
+  document.getElementById("num_convenio").disabled = true;
+}
+</script>
+
+
+</script>
+
+  <script type="text/javascript">
+    var idAnalisis = document.getElementById('id_analisis').value;
+
+      if (idAnalisis != "" || idAnalisis != null){
+
+      document.getElementById('id_analisis').disabled = true;
+
+          }
+    </script>
+
+    
+  <script type="text/javascript">
+    // var  convenioEntendimiento= document.getElementById('CONVENIO_DE_ENTENDIMIENTO').value;
+    // var  estatusExpediente= document.getElementById('ESTATUS_EXPEDIENTE').value;
+
+    //   if (convenioEntendimiento === "NO FORMALIZADO" || estatusExpediente === "CONCLUIDO" || estatusExpediente === "CANCELADO"){
+
+    //   document.getElementById('btn_agregar').style.display = "none";
+      
+
+    //       }
+
+    //   if (convenioEntendimiento === "FORMALIZADO" || convenioEntendimiento === "PENDIENTE DE EJECICIÓN"){
+
+    //     document.getElementById('fecha_inicio').disabled = true;
+    //     document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+    //     document.getElementById("fecha_inicio").disabled = tr;
+    //     document.getElementById("VIGENCIA_CONVENIO").disabled = false;
+    //     document.getElementById("TERMINO_CONVENIO").disabled = false;
+    //     document.getElementById("num_convenio").disabled = false;
+
+    // }
+    
+    </script>
+
 </body>
 </html>

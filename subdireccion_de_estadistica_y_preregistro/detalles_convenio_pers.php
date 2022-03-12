@@ -76,7 +76,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
 			}
 			// echo $genero;
 			?>
-      <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+      <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -118,7 +118,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
+                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLSIIS MULTIDISCIPLINARIO</label>
                     <input disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -134,20 +134,20 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_firma">FECHA DE LA FIRMA</label>
+                    <label for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input disabled class="form-control" type="date" name="fecha_firma" id="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label>FECHA DE INICIO</label>
+                    <label>FECHA DE INICIO DEL CONVENIO</label>
                     <input disabled class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label>VIGENCIA</label>
+                    <label>VIGENCIA DEL CONVENIO</label>
                     <input disabled class="form-control" type="text" name="vigencia" id="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_termino">FECHA DE TERMINO DEL CONVENIO</label>
+                    <label for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
                     <input class="form-control" type="date" name="" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">

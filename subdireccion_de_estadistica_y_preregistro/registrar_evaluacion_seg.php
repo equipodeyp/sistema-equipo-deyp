@@ -76,7 +76,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
 			}
 			// echo $genero;
 			?>
-      <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+      <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -105,7 +105,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select class="form-select form-select-lg" name="analisis_m" required>
                       <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
@@ -114,11 +114,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
+                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input class="form-control" type="date" name="fecha_auto" value="" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
+                    <label for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input class="form-control" type="text" name="id_analisis" value="" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -130,16 +130,16 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_firma">FECHA DE LA FIRMA</label>
+                    <label for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_firma" id="fecha_firma" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label>FECHA DE INICIO</label>
+                    <label>FECHA DE INICIO DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" >
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label>VIGENCIA</label>
+                    <label>VIGENCIA DEL CONVENIO</label>
                     <input class="form-control" type="text" name="vigencia" id="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">

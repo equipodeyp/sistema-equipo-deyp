@@ -15,6 +15,13 @@ $consulta = "SELECT * FROM evaluacion_expediente WHERE id_analisis = '$id_analis
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
 // echo $fila_consulta['id'];
+
+$fol_exp = $_GET['id'];
+$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
+	$resultado = $mysqli->query($sql);
+	$row = $resultado->fetch_array(MYSQLI_ASSOC);  
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -77,7 +84,8 @@ $fila_consulta = $res_consulta->fetch_assoc();
 			}
 			// echo $genero;
 			?>
-      <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+      
+      <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -106,7 +114,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
+                    <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select disabled class="form-select form-select-lg" name="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
@@ -115,11 +123,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
+                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
+                    <label for="id_analisis">ID DEL ANÁLSIIS MULTIDISCIPLINARIO</label>
                     <input disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -131,20 +139,20 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_firma">FECHA DE LA FIRMA</label>
+                    <label for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input disabled class="form-control" type="date" name="fecha_firma" id="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label>FECHA DE INICIO</label>
+                    <label>FECHA DE INICIO DEL CONVENIO</label>
                     <input disabled class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_termino">FECHA DE TERMINO DEL CONVENIO</label>
+                    <label for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label>VIGENCIA</label>
+                    <label>VIGENCIA DEL CONVENIO</label>
                     <input disabled class="form-control" type="text" name="vigencia" id="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -179,7 +187,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   </div>
 </div>
 <div class="contenedor">
-
+<a href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>" class="btn-flotante">REGRESAR</a>
 </div>
 </body>
 </html>

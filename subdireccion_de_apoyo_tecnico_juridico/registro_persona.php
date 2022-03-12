@@ -605,7 +605,7 @@ $num_consecutivo =$row["id"];
           <div>
               <br>
               <br>
-          		<button style="display: block; margin: 0 auto;" onClick="Guardar()" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+          		<button style="display: block; margin: 0 auto;"  class="btn btn-success" id="enter" type="submit">GUARDAR</button>
           </div>
         </div>
       </form>
@@ -951,7 +951,7 @@ document.getElementById('FECHA_CAPTURA').value=ano+"-"+mes+"-"+dia;
 }
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var idUnico = document.getElementById('ID_UNICO').value;
 function Guardar() {
 if (idUnico == null || idUnico == ""){
@@ -963,4 +963,4 @@ if (idUnico == null || idUnico == ""){
   document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
 }
 }
-  </script>
+  </script> -->
