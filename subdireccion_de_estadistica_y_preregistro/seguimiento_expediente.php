@@ -706,7 +706,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div>
                       <br>
                       <br>
-                      <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                      <button style="display: block; margin: 0 auto;" class="btn btn-success" id="act_persona" type="submit">ACTUALIZAR</button>
                   </div>
                 </div>
               </form>
@@ -1006,7 +1006,11 @@ document.getElementById("INCORPORACION").disabled = true;
 document.getElementById("FECHA_AUTORIZACION_ANALISIS").disabled = true;
 document.getElementById("CONVENIO_DE_ENTENDIMIENTO").disabled = true;
 document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").disabled = true;
+document.getElementById("fecha_inicio").disabled =true;
 document.getElementById("VIGENCIA_CONVENIO").disabled = true;
+document.getElementById("TERMINO_CONVENIO").disabled =true;
+document.getElementById("num_convenio").disabled =true;
+document.getElementById("btn_agregar").hidden =true;
 
 document.getElementById("convenio_adhesion").style.display = "none";
 document.getElementById("age").style.display = "none";
@@ -1018,6 +1022,13 @@ else if(concluNone === "CONCLUSION"){
 document.getElementById("LABEL_FECHA_CANCELACION").style.display = "none";
 document.getElementById("LABEL_FECHA_CONCLUSION").style.display = "";
 document.getElementById("FECHA_DESINCORPORACION_DOS").style.display = "";
+
+document.getElementById("fecha_inicio").disabled =true;
+document.getElementById("TERMINO_CONVENIO").disabled =true;
+document.getElementById("num_convenio").disabled =true;
+document.getElementById("btn_agregar").hidden =true;
+document.getElementById("act_persona").hidden =true;
+
 
 
 document.getElementById("ESTATUS_EXPEDIENTE").disabled = true;
