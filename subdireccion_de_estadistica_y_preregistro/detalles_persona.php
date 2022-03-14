@@ -22,6 +22,7 @@ $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
+// echo $name_folio;
 $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
@@ -547,7 +548,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
   		  								</thead>
   		  								<?php
-  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio' AND id_persona = '$id_person' AND comentario_mascara = '1'";
+  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '2'";
   		       						$var_resultado = $mysqli->query($tabla);
   		      						while ($var_fila=$var_resultado->fetch_array())
   		      						{
@@ -707,7 +708,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		</div>
         		</div>
     			</article>
-    			
+
           <!-- <article id="tab3">
             <div class="container">
               <form class=" container well form-horizontal" action="update_seguim.php?folio=<?php echo $id_person; ?>" method="post">
@@ -1264,7 +1265,7 @@ conclusion_cancelacion.addEventListener('change', obtenerInfo);
       con_can = e.target.value;
 
       if (con_can === "CANCELACION" || con_can === "CONCLUSION"){
-        
+
 
       }
 

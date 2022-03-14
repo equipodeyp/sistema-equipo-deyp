@@ -99,8 +99,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
 $fuentemedida = "SELECT * FROM radicacion_mascara3 WHERE folioexpediente = '$fol_exp'";
 $resultadofuentemedida = $mysqli->query($fuentemedida);
 $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
-
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -659,8 +658,47 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
+                  <div id="contenido" class="">
+  									<div class="">
+  		  							<table class="table table-striped table-bordered " >
+  		  								<thead >
 
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
+  		  								</thead>
+  		  								<?php
+                        $comentario = "SELECT * FROM comentario WHERE folioexpediente = '$fol_exp' and comentario_mascara = '3'";
+                        $res_comentario = $mysqli->query($comentario);
+  		      						while ($fila_comentario = $res_comentario->fetch_array())
+  		      						{
+  		        					echo "<tr>";
+  		          				echo "<td>";
+                        echo "<ul>
+                              <li>
+
+                              <div>
+                              <span>
+                              usuario:".$fila_comentario['usuario']."
+                              </span>
+                              </div>
+                              <div>
+                              <span>
+                                ".$fila_comentario['comentario']."
+                              </span>
+                              </div>
+                              <div>
+                              <span>
+                              ".date("d/m/Y h:i:s", strtotime($fila_comentario['fecha']))."
+                              </span>
+                              </div>
+                              </li>
+                        </ul>";echo "</td>";
+  		          				echo "</tr>";
+
+  		      						}
+  		      					?>
+  		  							</table>
+  									</div>
+  		  					</div>
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"><?php echo $fila_comentario['comentario']; ?></textarea>
 
                 </div>
 
@@ -1074,7 +1112,7 @@ if (convenioDeEntendimiento === "NO FORMALIZADO"){
           }
     </script>
 
-    
+
   <script type="text/javascript">
     // var  convenioEntendimiento= document.getElementById('CONVENIO_DE_ENTENDIMIENTO').value;
     // var  estatusExpediente= document.getElementById('ESTATUS_EXPEDIENTE').value;
@@ -1082,7 +1120,7 @@ if (convenioDeEntendimiento === "NO FORMALIZADO"){
     //   if (convenioEntendimiento === "NO FORMALIZADO" || estatusExpediente === "CONCLUIDO" || estatusExpediente === "CANCELADO"){
 
     //   document.getElementById('btn_agregar').style.display = "none";
-      
+
 
     //       }
 
@@ -1096,7 +1134,7 @@ if (convenioDeEntendimiento === "NO FORMALIZADO"){
     //     document.getElementById("num_convenio").disabled = false;
 
     // }
-    
+
     </script>
 
 </body>
