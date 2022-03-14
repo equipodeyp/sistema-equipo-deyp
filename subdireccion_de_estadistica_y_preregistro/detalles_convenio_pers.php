@@ -165,7 +165,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
+                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
               </div>
               <div class="row">
                 <div>

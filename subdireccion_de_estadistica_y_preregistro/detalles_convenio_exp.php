@@ -19,7 +19,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
 $fol_exp = $_GET['id'];
 $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
-	$row = $resultado->fetch_array(MYSQLI_ASSOC);  
+	$row = $resultado->fetch_array(MYSQLI_ASSOC);
 
 
 ?>
@@ -84,7 +84,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 			}
 			// echo $genero;
 			?>
-      
+
       <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -169,8 +169,8 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                 <div class="alert alert-info">
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
-                  <label for="observaciones">OBSERVACIONES</label>
-                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
+                  <label for="observaciones">OBSERVACIONES</label>                  
+                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
               </div>
               <div class="row">
                 <div>
