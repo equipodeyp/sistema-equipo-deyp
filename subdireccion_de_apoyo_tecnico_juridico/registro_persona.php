@@ -129,7 +129,7 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA <span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="date" value="" readonly>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="" readonly>
           </div>
           <div class="alert alert-info">
             <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
@@ -947,7 +947,7 @@ if(dia<10)
   dia='0'+dia; //agrega cero si el menor de 10
 if(mes<10)
   mes='0'+mes //agrega cero si el menor de 10
-document.getElementById('FECHA_CAPTURA').value=ano+"-"+mes+"-"+dia;
+document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
 }
 </script>
 
