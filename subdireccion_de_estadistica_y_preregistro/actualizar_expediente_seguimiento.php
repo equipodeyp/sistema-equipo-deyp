@@ -28,9 +28,10 @@ if ($verifica_update_person == 1) {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
     // code...
+  }else {
+    $fecha_termino = '';
   }
 
-$fecha_termino = '';
   // $id_convenio= $_POST['id_convenio'];
   $personas_incorporadas = $_POST['personas_incorporadas'];
   $total_convenios = $_POST['num_convenio'];
