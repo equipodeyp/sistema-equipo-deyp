@@ -437,7 +437,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
-                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo $fila_analisis_expediente['fecha_termino_convenio']; ?>">
+                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio'])); ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -1074,7 +1074,7 @@ var diasVigencia;
     //       }
     </script>
 
-    
+
   <script type="text/javascript">
     // var  convenioEntendimiento= document.getElementById('CONVENIO_DE_ENTENDIMIENTO').value;
     // var  estatusExpediente= document.getElementById('ESTATUS_EXPEDIENTE').value;
@@ -1082,7 +1082,7 @@ var diasVigencia;
     //   if (convenioEntendimiento === "NO FORMALIZADO" || estatusExpediente === "CONCLUIDO" || estatusExpediente === "CANCELADO"){
 
     //   document.getElementById('btn_agregar').style.display = "none";
-      
+
 
     //       }
 
@@ -1096,17 +1096,17 @@ var diasVigencia;
     //     document.getElementById("num_convenio").disabled = false;
 
     // }
-    
+
     </script>
 
 <script type="text/javascript">
 var selectAnalisisMulti = document.getElementById('ANALISIS').value;
 function ocultarCampos() {
   if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
-        
+
         document.getElementById('LABEL_INCORPORACION').style.display = "none";
         document.getElementById('INCORPORACION').style.display = "none";
-        
+
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('FECHA_AUTORIZACION_ANALISIS').style.display = "none";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
@@ -1138,7 +1138,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-        
+
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INCORPORACION').style.display = "";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
@@ -1181,7 +1181,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('TERMINO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
         document.getElementById('num_convenio').style.display = "none";
-        
+
       }
 
       else if (respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
@@ -1205,18 +1205,18 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('TERMINO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
         document.getElementById('num_convenio').style.display = "none";
-        
+
       }
 
     }
 
 
 var analisisM = document.getElementById('ANALISIS').value;
-    
+
 function ocultarAnalisisM() {
-      
+
       if (analisisM === "ESTUDIO TECNICO") {
-        
+
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INCORPORACION').style.display = "";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
@@ -1259,7 +1259,7 @@ function ocultarAnalisisM() {
         document.getElementById('TERMINO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
         document.getElementById('num_convenio').style.display = "none";
-        
+
       }
 
       else if (analisisM === "EN ELABORACION"){
@@ -1283,7 +1283,7 @@ function ocultarAnalisisM() {
         document.getElementById('TERMINO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
         document.getElementById('num_convenio').style.display = "none";
-        
+
       }
 
     }
@@ -1298,7 +1298,7 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
 
     function obtenerInfoNoFormalizado(e) {
       respuestaInputNoFormalizado = e.target.value;
-      
+
       if (respuestaInputNoFormalizado === "NO FORMALIZADO" || respuestaInputNoFormalizado === "PENDIENTE DE EJECUCION") {
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INCORPORACION').style.display = "";
@@ -1316,7 +1316,7 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('TERMINO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
         document.getElementById('num_convenio').style.display = "none";
-        
+
       }
       else {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
