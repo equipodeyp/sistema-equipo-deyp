@@ -102,9 +102,11 @@ if ($verifica_update_person == 1) {
   $fecha_conv_ent =$_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
   $fecha_inicio = $_POST['fecha_inicio'];
   $vigencia=$_POST['VIGENCIA_CONVENIO'];
-  $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
-  $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
-  // echo $fecha_conv_ent.'*'.$vigencia.'*'.$fecha_vigencia.'*'.$fecha_termino;
+  if ($fecha_inicio != '') {    
+    $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
+    $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
+  }
+  $fecha_termino = '';
   $id_convenio=$_POST['id_convenio'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
   if ($acuerdo=='CONCLUSION') {
