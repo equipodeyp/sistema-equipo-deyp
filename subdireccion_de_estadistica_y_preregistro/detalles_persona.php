@@ -282,7 +282,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-                    <input id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" readonly placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
+                    <input id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -1455,8 +1455,7 @@ function ocultarCampos() {
         document.getElementById('LABEL_FECHA_CONCLUSION').style.display = "none";
         document.getElementById('LABEL_FECHA_CANCELACION').style.display = "none";
         document.getElementById('FECHA_DESINCORPORACION_UNO').style.display = "none";
-        
-        
+                
 
       }
 }
