@@ -436,23 +436,13 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-<<<<<<< HEAD
                     <label id="LABEL_FECHA_TERMINO" for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
                     <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo $fila_analisis_expediente['fecha_termino_convenio']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_NUMERO_CONVENIOS" for="num_convenio">NÚMERO DE CONVENIOS FIRMADOS</label>
-                    <input class="form-control" type="text" id="num_convenio" name="num_convenio" value="<?php echo $fila_analisis_expediente['num_conmevios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
-=======
-                    <label for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
-                    <input class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio'])); ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="num_convenio">NÚMERO DE CONVENIOS FIRMADOS</label>
                     <input class="form-control" type="text" id="num_convenio" name="num_convenio" value="<?php echo $fila_analisis_expediente['num_convenios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
->>>>>>> 9b829ecf8f9e6c38c5f4d61dbca6a7d2e13f45db
                   </div>
                 </div>
 
