@@ -106,7 +106,7 @@ if ($verifica_update_person == 1) {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
   }else {
-    $fecha_termino = '';    
+    $fecha_termino = '';
   }
   $id_convenio=$_POST['id_convenio'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION'];
@@ -140,7 +140,7 @@ if ($verifica_update_person == 1) {
   $res_fol = $mysqli->query($com_folio);
   $row_fol=$res_fol->fetch_assoc();
   $fol_exp = $row_fol['folioexpediente'];
-  $comment_mascara = '1';
+  $comment_mascara = '2';
   $id_medida = "N/A";
   // consulta del la autoridad
   // $sentencia=" SELECT id, nombre FROM nombreautoridad WHERE id='$nombre_autoridad'";

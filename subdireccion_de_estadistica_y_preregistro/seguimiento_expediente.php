@@ -661,6 +661,44 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
+                  <div class="">
+                    <table class="table table-striped table-bordered " >
+                      <thead >
+
+                      </thead>
+                      <?php
+                      $tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '3'";
+                      $var_resultado = $mysqli->query($tabla);
+                      while ($var_fila=$var_resultado->fetch_array())
+                      {
+                      echo "<tr>";
+                      echo "<td>";
+                      echo "<ul>
+                            <li>
+
+                            <div>
+                            <span>
+                            usuario:".$var_fila['usuario']."
+                            </span>
+                            </div>
+                            <div>
+                            <span>
+                              ".$var_fila['comentario']."
+                            </span>
+                            </div>
+                            <div>
+                            <span>
+                            ".$var_fila['fecha']."
+                            </span>
+                            </div>
+                            </li>
+                      </ul>";echo "</td>";
+                      echo "</tr>";
+
+                      }
+                    ?>
+                    </table>
+                  </div>
 
                   <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
 
