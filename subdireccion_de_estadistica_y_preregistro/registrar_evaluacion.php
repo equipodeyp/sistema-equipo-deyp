@@ -216,7 +216,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-      console.log(respuestaAlalisisMultidisiplinario);
+      
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
         
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
