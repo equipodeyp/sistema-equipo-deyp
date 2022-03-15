@@ -22,10 +22,16 @@ if ($verifica_update_person == 1) {
   $convenio = $_POST['CONVENIO_DE_ENTENDIMIENTO'];
   $fecha_convenio = $_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
   $fecha_inicio = $_POST['fecha_inicio'];
+  echo $fecha_inicio;
   $vigencia = $_POST['VIGENCIA_CONVENIO'];
-  $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
-  $fecha_termino = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
-  $id_convenio= $_POST['id_convenio'];
+  if ($fecha_inicio != '') {
+    $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
+    $fecha_termino = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
+    // code...
+  }
+
+$fecha_termino = '';
+  // $id_convenio= $_POST['id_convenio'];
   $personas_incorporadas = $_POST['personas_incorporadas'];
   $total_convenios = $_POST['num_convenio'];
 
@@ -35,7 +41,7 @@ if ($verifica_update_person == 1) {
 
   if ($fila_analisis_exp > 0) {
     $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', analisis = '$analisis', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
-                                                      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino', id_convenio='$id_convenio', personasincorporadas = '$personas_incorporadas',
+                                                      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
                                                       num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
     $res_analsis = $mysqli->query($update_analisis);
 
@@ -45,39 +51,8 @@ if ($verifica_update_person == 1) {
     $res_analsis = $mysqli->query($new_analisis);
   }
   // convenio de adhesion del expediente
-  $convenio_adh = $_POST['convenio_adhesion'];
-  $fecha_adh = $_POST['fecha_convenio_adhesion'];
-  $vigencia_adh = $_POST['vigencia_adhesion'];
-  $fecha_vigencia_adh = date("Y/m/d",strtotime($fecha_adh."+ $vigencia_adh days"));
-  $fecha_termino_adh = date("Y/m/d",strtotime($fecha_vigencia_adh."- 1 days"));
-  // echo $convenio_adh.'-'. $fecha_adh.'-'. $vigencia_adh.'-'.$fecha_termino_adh;
 
-  $convenio_adh1 = "SELECT * FROM convenio_adh_expediente WHERE folioexpediente = '$folio_expediente'";
-  $res_conv_adh = $conexion ->query($convenio_adh1);
-  $fila_convenio_adh = mysqli_fetch_array($res_conv_adh);
-
-  if ($fila_convenio_adh > 0) {
-    $update_convadh = "UPDATE convenio_adh_expediente SET convenio = '$convenio_adh', fecha = '$fecha_adh', vigencia = '$vigencia_adh', fecha_termino = '$fecha_termino_adh'";
-    $res_convenioadh = $mysqli->query($update_convadh);
-  }else {
-    $new_convadh = "INSERT INTO convenio_adh_expediente (folioexpediente, convenio, fecha, vigencia, fecha_termino)
-                    VALUES ('$folio_expediente', '$convenio_adh', '$fecha_adh', '$vigencia_adh', '$fecha_termino_adh')";
-    $res_convenioadh = $mysqli->query($new_convadh);
-    }
   //convenio modificatorio del EXPEDIENTE
-  $convenio_mod = $_POST['convenio_modificatorio'];
-  $fecha_mod = $_POST['fecha_modificatorio'];
-  $convenio_mod1 = "SELECT * FROM convenio_mod_expediente WHERE folioexpediente = '$folio_expediente'";
-  $res_convmod = $conexion->query($convenio_mod1);
-  $fila_conmod1 = mysqli_fetch_array($res_convmod);
-  if ($fila_conmod1 > 0) {
-    $update_convmod = "UPDATE convenio_mod_expediente SET convenio = '$convenio_mod', fecha = '$fecha_mod' WHERE folioexpediente = '$folio_expediente'";
-    $res_convmod = $mysqli->query($update_convmod);
-  }else {
-    $new_convmod = "INSERT INTO convenio_mod_expediente (folioexpediente, convenio, fecha)
-                    VALUES ('$folio_expediente', '$convenio_mod', '$fecha_mod')";
-    $res_convmod = $mysqli->query($new_convmod);
-  }
   // seguimiento del expediente
   $concl_canc = $_POST['CONCLUSION_CANCELACION'];
   $conclu_art = $_POST['CONCLUSION_ART35'];

@@ -437,7 +437,9 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
-                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio'])); ?>">
+                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php if ($fila_analisis_expediente['fecha_termino_convenio'] != '0000-00-00') {
+                      echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio']));
+                    } ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
