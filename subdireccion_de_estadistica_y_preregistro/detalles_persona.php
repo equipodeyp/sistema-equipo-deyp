@@ -97,6 +97,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -127,8 +129,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 </head>
 <body >
+
 <div class="contenedor">
+
   <div class="sidebar ancho">
+
     <div class="logo text-warning">
     </div>
     <div class="user">
@@ -150,15 +155,31 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 			 ?>
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
+
     <nav class="menu-nav">
+
     </nav>
+
   </div>
+
   <div class="main bg-light">
+
     <div class="barra">
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
+      <!--  -->
+
+
+  <div class="container sticky breadcrumb flat">
+    <a >EXPEDIENTES</a>
+    <a>DETALLES EXPEDIENTE</a>
+    <a class="actived">DATOS DE PERSONAS PROPUESTAS</a>
+  </div>
+
+
+
       <!--  -->
       <div class="wrap">
     		<ul class="tabs">
@@ -980,7 +1001,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           </article> -->
 
     		</div>
+
     	</div>
+
       <!--  -->
   </div>
 </div>
@@ -1431,7 +1454,7 @@ var diasVigencia;
 var selectAnalisisMulti = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
 function ocultarCampos() {
   if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
-        
+
         document.getElementById('LABEL_INCORPORACION').style.display = "none";
         document.getElementById('INCORPORACION').style.display = "none";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
@@ -1455,7 +1478,7 @@ function ocultarCampos() {
         document.getElementById('LABEL_FECHA_CONCLUSION').style.display = "none";
         document.getElementById('LABEL_FECHA_CANCELACION').style.display = "none";
         document.getElementById('FECHA_DESINCORPORACION_UNO').style.display = "none";
-                
+
 
       }
 }
@@ -1471,7 +1494,7 @@ ocultarCampos();
 //     function obtenerInfo(e) {
 //       respuestaAlalisisMultidisiplinario = e.target.value;
 //       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-        
+
 //         document.getElementById('LABEL_INCORPORACION').style.display = "";
 //         document.getElementById('INCORPORACION').style.display = "";
 //         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
@@ -1514,7 +1537,7 @@ ocultarCampos();
 //         document.getElementById('TERMINO_CONVENIO').style.display = "none";
 //         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
 //         document.getElementById('num_convenio').style.display = "none";
-        
+
 //       }
 
 //       else if (respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
@@ -1538,18 +1561,18 @@ ocultarCampos();
 //         document.getElementById('TERMINO_CONVENIO').style.display = "none";
 //         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
 //         document.getElementById('num_convenio').style.display = "none";
-        
+
 //       }
 
 //     }
 
 
 // var analisisM = document.getElementById('ANALISIS').value;
-    
+
 // function ocultarAnalisisM() {
-      
+
 //       if (analisisM === "ESTUDIO TECNICO") {
-        
+
 //         document.getElementById('LABEL_INCORPORACION').style.display = "";
 //         document.getElementById('INCORPORACION').style.display = "";
 //         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
@@ -1592,7 +1615,7 @@ ocultarCampos();
 //         document.getElementById('TERMINO_CONVENIO').style.display = "none";
 //         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
 //         document.getElementById('num_convenio').style.display = "none";
-        
+
 //       }
 
 //       else if (analisisM === "EN ELABORACION"){
@@ -1616,7 +1639,7 @@ ocultarCampos();
 //         document.getElementById('TERMINO_CONVENIO').style.display = "none";
 //         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
 //         document.getElementById('num_convenio').style.display = "none";
-        
+
 //       }
 
 //     }
@@ -1631,7 +1654,7 @@ ocultarCampos();
 
 //     function obtenerInfoNoFormalizado(e) {
 //       respuestaInputNoFormalizado = e.target.value;
-      
+
 //       if (respuestaInputNoFormalizado === "NO FORMALIZADO" || respuestaInputNoFormalizado === "PENDIENTE DE EJECUCION") {
 //         document.getElementById('LABEL_INCORPORACION').style.display = "";
 //         document.getElementById('INCORPORACION').style.display = "";
@@ -1649,7 +1672,7 @@ ocultarCampos();
 //         document.getElementById('TERMINO_CONVENIO').style.display = "none";
 //         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
 //         document.getElementById('num_convenio').style.display = "none";
-        
+
 //       }
 //       else {
 //         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";

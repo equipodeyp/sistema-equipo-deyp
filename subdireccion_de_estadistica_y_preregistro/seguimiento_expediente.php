@@ -116,6 +116,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -179,6 +180,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
       <!--  -->
+      <div class="container sticky breadcrumb flat">
+        <a >EXPEDIENTES</a>
+        <a>DETALLES EXPEDIENTE</a>
+        <a class="actived">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+      </div>
       <div class="wrap">
     		<ul class="tabs">
     			<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO DEL EXPEDIENTE</span></a></li>

@@ -29,6 +29,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -85,6 +86,12 @@ $fila_consulta = $res_consulta->fetch_assoc();
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+    </div>
+    <div class="container sticky breadcrumb flat">
+      <a >EXPEDIENTES</a>
+      <a>DETALLES EXPEDIENTE</a>
+      <a>DATOS DE PERSONAS PROPUESTAS</a>
+      <a class="actived">AGREGAR NUEVA EVALUACION DE SEGUIMIENTO A LA PERSONA</a>
     </div>
     <div class="wrap">
       <div class="secciones">
@@ -184,7 +191,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
 var selectAnalisisMulti = document.getElementById('ANALISIS_MULT').value;
 function ocultarCampos() {
   if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
-        
+
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
@@ -216,9 +223,9 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-      
+
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-        
+
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
@@ -235,14 +242,14 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
-        
+
         document.getElementById('row_observaciones').style.display = "";
         document.getElementById('row_enter').style.display = "";
 
 
       }
       else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION"){
-        
+
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";

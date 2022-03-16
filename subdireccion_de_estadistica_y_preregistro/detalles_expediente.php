@@ -13,9 +13,6 @@
 	$resultado = $mysqli->query($sql);
 	$row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 
-
-
-
 	?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,6 +30,7 @@
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   		<script src="../js/jquery.dataTables.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
+			<link rel="stylesheet" href="../css/breadcrumb.css">
       <link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
@@ -79,7 +77,13 @@
 		</div>
 
 		<!-- folio del expediente -->
-
+		<div class="sticky container">
+		  <div class="container sticky breadcrumb flat">
+		    <a >EXPEDIENTES</a>
+		    <a class="actived">DETALLES EXPEDIENTE</a>
+		    <!-- <a class="actived">DATOS DE PERSONAS PROPUESTAS</a> -->
+		  </div>
+		</div>
 			<div class="wrap">
 
 	    <div class="secciones">
