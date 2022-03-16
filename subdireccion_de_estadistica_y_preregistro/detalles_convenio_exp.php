@@ -38,6 +38,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -95,6 +96,12 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+    </div>
+    <div class="container sticky breadcrumb flat">
+      <a >EXPEDIENTES</a>
+      <a>DETALLES EXPEDIENTE</a>
+      <a >DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+      <a class="actived">DETALLES DE LA EVALUACION DE SEGUIMIENTO DEL EXPEDIENTE</a>
     </div>
     <div class="wrap">
       <div class="secciones">
@@ -169,7 +176,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                 <div class="alert alert-info">
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
-                  <label for="observaciones">OBSERVACIONES</label>                  
+                  <label for="observaciones">OBSERVACIONES</label>
                   <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
               </div>
               <div class="row">

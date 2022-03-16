@@ -116,6 +116,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -179,6 +180,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
       <!--  -->
+      <div class="container sticky breadcrumb flat">
+        <a >EXPEDIENTES</a>
+        <a>DETALLES EXPEDIENTE</a>
+        <a class="actived">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+      </div>
       <div class="wrap">
     		<ul class="tabs">
     			<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO DEL EXPEDIENTE</span></a></li>
@@ -437,7 +443,9 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
-                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio'])); ?>">
+                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php if ($fila_analisis_expediente['fecha_termino_convenio'] != '0000-00-00') {
+                      echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio']));
+                    } ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -658,6 +666,44 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">COMENTARIOS</h3>
+                  </div>
+                  <div class="">
+                    <table class="table table-striped table-bordered " >
+                      <thead >
+
+                      </thead>
+                      <?php
+                      $tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '3'";
+                      $var_resultado = $mysqli->query($tabla);
+                      while ($var_fila=$var_resultado->fetch_array())
+                      {
+                      echo "<tr>";
+                      echo "<td>";
+                      echo "<ul>
+                            <li>
+
+                            <div>
+                            <span>
+                            usuario:".$var_fila['usuario']."
+                            </span>
+                            </div>
+                            <div>
+                            <span>
+                              ".$var_fila['comentario']."
+                            </span>
+                            </div>
+                            <div>
+                            <span>
+                            ".$var_fila['fecha']."
+                            </span>
+                            </div>
+                            </li>
+                      </ul>";echo "</td>";
+                      echo "</tr>";
+
+                      }
+                    ?>
+                    </table>
                   </div>
 
                   <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>

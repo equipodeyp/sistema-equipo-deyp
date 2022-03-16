@@ -30,6 +30,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -86,6 +87,12 @@ $fila_consulta = $res_consulta->fetch_assoc();
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+    </div>
+    <div class="container sticky breadcrumb flat">
+      <a >EXPEDIENTES</a>
+      <a>DETALLES EXPEDIENTE</a>
+      <a >DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+      <a class="actived">AGREGAR EVALUACION DE SEGUIMIENTO DEL EXPEDIENTE</a>
     </div>
     <div class="wrap">
       <div class="secciones">
@@ -183,7 +190,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
 var selectAnalisisMulti = document.getElementById('ANALISIS_MULT').value;
 function ocultarCampos() {
   if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
-        
+
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
@@ -201,7 +208,7 @@ function ocultarCampos() {
 
         document.getElementById('ROW_OBSERVACIONES').style.display = "none";
         document.getElementById('ROW_GUARDAR').style.display = "none";
-        
+
       }
 }
 ocultarCampos();
@@ -215,9 +222,9 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-      
+
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-        
+
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
@@ -256,7 +263,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
         document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
       }
-      
+
 
     }
 

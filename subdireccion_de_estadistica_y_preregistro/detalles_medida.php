@@ -54,6 +54,7 @@ $validacion = $fil_val['validacion'];
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -113,6 +114,12 @@ $validacion = $fil_val['validacion'];
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+    </div>
+    <div class="container sticky breadcrumb flat">
+      <a >EXPEDIENTES</a>
+      <a>DETALLES EXPEDIENTE</a>
+      <a >DATOS DE PERSONAS PROPUESTAS</a>
+      <a class="actived">DETALLES DE LA MEDIDA DE LA PERSONA</a>
     </div>
     <div class="wrap">
     <div class="secciones">

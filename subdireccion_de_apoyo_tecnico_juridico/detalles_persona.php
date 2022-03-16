@@ -1046,7 +1046,7 @@ if (idUnico == null || idUnico == ""){
 
 
   alert("No se generó el id unico de la persona al registrar los datos. Soicitar su llenado.")
-} 
+}
 Id();
   </script>
 </body>
