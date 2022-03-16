@@ -120,7 +120,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <input id="INPUT_FECHA_AUTORIZACION" autocomplete="off" class="form-control" type="date" name="fecha_auto" value="" required>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
-                  <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLSIIS MULTIDISCIPLINARIO</label>
+                  <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
                   <input id="INPUT_ID_ANALISIS" autocomplete="off" class="form-control" type="text" name="id_analisis" value="" required>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
