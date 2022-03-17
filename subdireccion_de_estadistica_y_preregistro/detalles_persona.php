@@ -1118,7 +1118,7 @@ function ConclusionCancelacionArt(){
         document.getElementById('OTHER_ART351').style.display = "none";
 
       }
-else if (concluCanceArt === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluCanceArt === "OTRO"){
+else if (concluCanceArt === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluCanceArt === "OTRO" conlucarArt === "VIII. INCUMPLIMIENTO DE LAS OBLIGACIONES"){
 
       document.getElementById('LABEL_OTHER_ART351').style.display = "";
       document.getElementById('OTHER_ART351').style.display = "";
@@ -1141,7 +1141,7 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
     function obtenerConCaArt35(e) {
       conCaArt35 = e.target.value;
 
-      if (conCaArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || conCaArt35 === "OTRO"){
+      if (conCaArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || conCaArt35 === "OTRO" || conCaArt35 === "VIII. INCUMPLIMIENTO DE LAS OBLIGACIONES"){
 
         document.getElementById('LABEL_OTHER_ART351').style.display = "";
         document.getElementById('OTHER_ART351').style.display = "";
