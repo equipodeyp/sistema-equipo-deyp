@@ -78,11 +78,7 @@
 
 		<!-- folio del expediente -->
 		<div class="sticky container">
-		  <div class="container sticky breadcrumb flat">
-		    <a >EXPEDIENTES</a>
-		    <a class="actived">DETALLES EXPEDIENTE</a>
-		    <!-- <a class="actived">DATOS DE PERSONAS PROPUESTAS</a> -->
-		  </div>
+
 		</div>
 			<div class="wrap">
 
@@ -90,6 +86,11 @@
 
 	  <article id="tab1">
 			<div class="well form-horizontal" >
+				<div class="secciones sticky breadcrumb flat">
+					<a >EXPEDIENTES</a>
+					<a class="actived">DETALLES EXPEDIENTE</a>
+					<!-- <a class="actived">DATOS DE PERSONAS PROPUESTAS</a> -->
+				</div>
 				<div class="row">
 				<div class="alert alert-info">
 					<h3 style="text-align:center">DETALLES DEL EXPEDIENTE</h3>

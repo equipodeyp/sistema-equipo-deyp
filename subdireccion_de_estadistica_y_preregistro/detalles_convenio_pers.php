@@ -95,18 +95,19 @@ $id_persona = $fila_consulta_uno ['id'];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="container sticky breadcrumb flat">
-      <a >EXPEDIENTES</a>
-      <a>DETALLES EXPEDIENTE</a>
-      <a >DATOS DE PERSONAS PROPUESTAS</a>
-      <a class="actived">DETALLES DE EVALUACION DE LA PERSONA</a>
-    </div>
+
     <div class="wrap">
       <div class="secciones">
         <article id="tab1">
           <div class="container">
             <form class="container well form-horizontal" enctype= "multipart/form-data">
               <div class="row">
+                <div class="secciones form-horizontal sticky breadcrumb flat">
+                  <a >EXPEDIENTES</a>
+                  <a>DETALLES EXPEDIENTE</a>
+                  <a >DATOS DE PERSONAS PROPUESTAS</a>
+                  <a class="actived">DETALLES DE EVALUACION DE LA PERSONA</a>
+                </div>
                 <div class="row">
                   <hr class="mb-4">
                 </div>

@@ -97,19 +97,19 @@ $validacion = $fil_val['validacion'];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="container sticky breadcrumb flat">
-      <a >EXPEDIENTES</a>
-      <a>DETALLES EXPEDIENTE</a>
-      <a >DATOS DE PERSONAS PROPUESTAS</a>
-      <a class="actived">AGREGAR UNA NUEVA MEDIDA A LA PERSONA</a>
-    </div>
+
     <div class="wrap">
     <div class="secciones">
     <article id="tab1">
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="guardar_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
 
-
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a >EXPEDIENTES</a>
+          <a>DETALLES EXPEDIENTE</a>
+          <a >DATOS DE PERSONAS PROPUESTAS</a>
+          <a class="actived">AGREGAR UNA NUEVA MEDIDA A LA PERSONA</a>
+        </div>
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA</h3>

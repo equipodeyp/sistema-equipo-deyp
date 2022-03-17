@@ -115,17 +115,18 @@ $validacion = $fil_val['validacion'];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="container sticky breadcrumb flat">
-      <a >EXPEDIENTES</a>
-      <a>DETALLES EXPEDIENTE</a>
-      <a >DATOS DE PERSONAS PROPUESTAS</a>
-      <a class="actived">DETALLES DE LA MEDIDA DE LA PERSONA</a>
-    </div>
+
     <div class="wrap">
     <div class="secciones">
     <article id="tab1">
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a >EXPEDIENTES</a>
+          <a>DETALLES EXPEDIENTE</a>
+          <a >DATOS DE PERSONAS PROPUESTAS</a>
+          <a class="actived">DETALLES DE LA MEDIDA DE LA PERSONA</a>
+        </div>
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
