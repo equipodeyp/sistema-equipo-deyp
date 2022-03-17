@@ -1145,7 +1145,7 @@ var diasVigencia;
 
     </script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 var selectAnalisisMulti = document.getElementById('ANALISIS').value;
 function ocultarCampos() {
   if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
@@ -1403,7 +1403,7 @@ function ocultarCamposNoFormalizado() {
 
 }
 ocultarCamposNoFormalizado();
-</script> -->
+</script>
 
 </body>
 </html>
