@@ -87,17 +87,19 @@ $fila_consulta = $res_consulta->fetch_assoc();
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="container sticky breadcrumb flat">
-      <a >EXPEDIENTES</a>
-      <a>DETALLES EXPEDIENTE</a>
-      <a>DATOS DE PERSONAS PROPUESTAS</a>
-      <a class="actived">AGREGAR NUEVA EVALUACION DE SEGUIMIENTO A LA PERSONA</a>
-    </div>
+
     <div class="wrap">
       <div class="secciones">
         <article id="tab1">
           <div class="container">
+
             <form class="container well form-horizontal" method="POST" action="guardar_evaluacion_ind.php?folio=<?php echo $identificador; ?>" enctype= "multipart/form-data">
+              <div class="secciones sticky breadcrumb flat">
+                <a >EXPEDIENTES</a>
+                <a>DETALLES EXPEDIENTE</a>
+                <a>DATOS DE PERSONAS PROPUESTAS</a>
+                <a class="actived">AGREGAR NUEVA EVALUACION DE SEGUIMIENTO A LA PERSONA</a>
+              </div>
               <div class="row">
                 <div class="row">
                   <hr class="mb-4">

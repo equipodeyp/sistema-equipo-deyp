@@ -97,18 +97,19 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="container sticky breadcrumb flat">
-      <a >EXPEDIENTES</a>
-      <a>DETALLES EXPEDIENTE</a>
-      <a >DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
-      <a class="actived">DETALLES DE LA EVALUACION DE SEGUIMIENTO DEL EXPEDIENTE</a>
-    </div>
+
     <div class="wrap">
       <div class="secciones">
         <article id="tab1">
           <div class="container">
             <form class="container well form-horizontal" enctype= "multipart/form-data">
               <div class="row">
+                <div class="secciones form-horizontal sticky breadcrumb flat">
+                  <a >EXPEDIENTES</a>
+                  <a>DETALLES EXPEDIENTE</a>
+                  <a >DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+                  <a class="actived">DETALLES DE LA EVALUACION DE SEGUIMIENTO DEL EXPEDIENTE</a>
+                </div>
                 <div class="row">
                   <hr class="mb-4">
                 </div>

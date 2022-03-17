@@ -438,7 +438,9 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA" for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $fila_analisis_expediente['vigencia'];?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php if ($fila_analisis_expediente['vigencia'] != '0') {
+                      echo $fila_analisis_expediente['vigencia'];
+                    }?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -540,7 +542,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                       <option value="CONCLUSION">CONCLUSION</option>
                     </select>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar">
                      <label for="FECHA_DESINCORPORACION" id="LABEL_FECHA_CANCELACION">FECHA DE CANCELACIÓN<span class="required"></span></label>
                      <label for="FECHA_DESINCORPORACION" id="LABEL_FECHA_CONCLUSION">FECHA DE CONCLUSIÓN<span class="required"></span></label>
@@ -1213,7 +1215,7 @@ var concluNone = document.getElementById('ESTATUS_EXPEDIENTE').value;
 
 function ConclusionCancelacion(){
 if(concluNone === "" || concluNone === null || concluNone === "n/a" || concluNone === "SOLICITUD NO PROCEDENTE" || concluNone === "ANALISIS" || concluNone === "EN EJECUCION"){
-    
+
       document.getElementById('LABEL_CONCLUSION_CANCELACION').style.display = "none";
       document.getElementById('CONCLUSION_CANCELACION').style.display = "none";
 
@@ -1242,7 +1244,7 @@ conCa.addEventListener('change', obtenerEstatus);
 
     function obtenerEstatus(e) {
       estatusPersona = e.target.value;
-  
+
       if ( estatusPersona === "CONCLUIDO" || estatusPersona === "CANCELADO" ) {
         document.getElementById('LABEL_CONCLUSION_CANCELACION').style.display = "";
         document.getElementById('CONCLUSION_CANCELACION').style.display = "";
@@ -1290,7 +1292,7 @@ function ConclusionCancelacionExp(){
 
       }
 else if (concluCanceExp === "CONCLUSION"){
-      
+
       document.getElementById('LABEL_CONCLUSION_ART35').style.display = "";
       document.getElementById('CONCLUSION_ART35').style.display = "";
 
@@ -1299,7 +1301,7 @@ else if (concluCanceExp === "CONCLUSION"){
       document.getElementById('FECHA_DESINCORPORACION_DOS').style.display = "";
 }
 else if (concluCanceExp === "CANCELACION"){
-      
+
       document.getElementById('LABEL_CONCLUSION_ART35').style.display = "none";
       document.getElementById('CONCLUSION_ART35').style.display = "none";
 
@@ -1317,7 +1319,7 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
 
     function obtenerEstatusSeg(e) {
       estatusPersonaSeg = e.target.value;
-      
+
       if (estatusPersonaSeg === "CONCLUSION"){
       document.getElementById('LABEL_CONCLUSION_ART35').style.display = "";
       document.getElementById('CONCLUSION_ART35').style.display = "";
@@ -1326,7 +1328,7 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('LABEL_FECHA_CANCELACION').style.display = "none";
       document.getElementById('FECHA_DESINCORPORACION_DOS').style.display = "";
       }
-      
+
       else if (estatusPersonaSeg === "CANCELACION"){
       document.getElementById('LABEL_CONCLUSION_ART35').style.display = "none";
       document.getElementById('CONCLUSION_ART35').style.display = "none";
@@ -1338,7 +1340,7 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('LABEL_OTHER_ART351').style.display = "none";
       document.getElementById('OTHER_ART351').style.display = "none";
       }
-      
+
 }
 
 
@@ -1353,13 +1355,13 @@ function ConclusionCancelacionArt(){
 
       }
 else if (concluCanceArt === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluCanceArt === "OTRO" || concluCanceArt === "VIII. INCUMPLIMIENTO DE LAS OBLIGACIONES"){
-      
+
       document.getElementById('LABEL_OTHER_ART351').style.display = "";
       document.getElementById('OTHER_ART351').style.display = "";
 
 }
 else {
-      
+
       document.getElementById('LABEL_OTHER_ART351').style.display = "none";
       document.getElementById('OTHER_ART351').style.display = "none";
 }
@@ -1374,16 +1376,16 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 
     function obtenerConCaArt35(e) {
       conCaArt35 = e.target.value;
-      
+
       if (conCaArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || conCaArt35 === "OTRO" || conCaArt35 === "VIII. INCUMPLIMIENTO DE LAS OBLIGACIONES"){
 
         document.getElementById('LABEL_OTHER_ART351').style.display = "";
         document.getElementById('OTHER_ART351').style.display = "";
 
       }
-      
+
       else {
-        
+
         document.getElementById('LABEL_OTHER_ART351').style.display = "none";
         document.getElementById('OTHER_ART351').style.display = "none";
 
