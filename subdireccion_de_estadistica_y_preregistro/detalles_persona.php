@@ -388,7 +388,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   }
                   ?> -->
-                  
+
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                      <label id="LABEL_CONCLUSION_ART351" for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351">
@@ -1118,7 +1118,7 @@ function ConclusionCancelacionArt(){
         document.getElementById('OTHER_ART351').style.display = "none";
 
       }
-else if (concluCanceArt === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO"){
+else if (concluCanceArt === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluCanceArt === "OTRO"){
 
       document.getElementById('LABEL_OTHER_ART351').style.display = "";
       document.getElementById('OTHER_ART351').style.display = "";
@@ -1141,7 +1141,7 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
     function obtenerConCaArt35(e) {
       conCaArt35 = e.target.value;
 
-      if (conCaArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO"){
+      if (conCaArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || conCaArt35 === "OTRO"){
 
         document.getElementById('LABEL_OTHER_ART351').style.display = "";
         document.getElementById('OTHER_ART351').style.display = "";
