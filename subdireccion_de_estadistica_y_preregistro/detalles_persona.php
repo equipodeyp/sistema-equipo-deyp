@@ -1039,7 +1039,6 @@ conCa.addEventListener('change', obtenerEstatus);
         document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "none";
         document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "none";
 
-<<<<<<< HEAD
         document.getElementById('LABEL_CONCLUSION_ART351').style.display = "none";
         document.getElementById('CONCLUSION_ART351').style.display = "none";
 
@@ -1055,8 +1054,6 @@ conCa.addEventListener('change', obtenerEstatus);
         document.getElementById('OTHER_ART351').value='';
         document.getElementById('FECHA_DESINCORPORACION_UNO').value='';
 
-=======
->>>>>>> a24a6e8ef25879cf53470d865acfb1ce9264b586
       }
 }
 
