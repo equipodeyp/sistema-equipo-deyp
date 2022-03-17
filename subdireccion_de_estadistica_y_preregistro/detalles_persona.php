@@ -369,7 +369,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input id="FECHA_DESINCORPORACION_UNO" class="form-control"  name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
                   </div>
 
-<<<<<<< HEAD
                   <!-- <?php
                   $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
                   $resultadodetinc = $mysqli->query($detinc);
@@ -389,27 +388,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   }
                   ?> -->
-=======
-                  <?php
-                  // $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-                  // $resultadodetinc = $mysqli->query($detinc);
-                  // $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-                  // if ($rowdetinc['conclu_cancel'] == 'CONCLUSION') {
-                  //   echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
-                  //     <label for="CONCLUSION">CONCLUSION ARTICULO 35</label>
-                  //     <select class="form-select form-select-lg" id="CONCLUSION_ART35z" name="CONCLUSION_ART35z">
-                  //       <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowdetinc['conclusionart35'].'">'.$rowdetinc['conclusionart35'].'</option>';
-                  //       $art35 = "SELECT * FROM conclusionart35";
-                  //       $answerart35 = $mysqli->query($art35);
-                  //       while($art35s = $answerart35->fetch_assoc()){
-                  //         echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                  //       }
-                  //       echo '</select>
-                  //     </div>';
-                  //
-                  // }
-                  ?>
->>>>>>> a24a6e8ef25879cf53470d865acfb1ce9264b586
+                  
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                      <label id="LABEL_CONCLUSION_ART351" for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351">
