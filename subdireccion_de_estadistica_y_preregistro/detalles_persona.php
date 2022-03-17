@@ -290,75 +290,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input id="id_convenio" class="form-control" type="text"  name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
                   </div>
 
-                  <!-- <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_CONCLUSION_CANCELACION_EXP" for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
-                    <select id="CONCLUSION_CANCELACION_EXP" class="form-select form-select-lg" name="CONCLUSION_CANCELACION_EXP" onChange="openart35(this)" >
-                      <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowdetinc['conclu_cancel']; ?>"><?php echo $rowdetinc['conclu_cancel']; ?></option>
-                      <option value="CANCELACION">CANCELACION</option>
-                      <option value="CONCLUSION">CONCLUSION</option>
-                    </select>
-                  </div>
-
-                  <?php
-                  $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-                  $resultadodetinc = $mysqli->query($detinc);
-                  $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-                  if ($rowdetinc['conclu_cancel'] == 'CONCLUSION') {
-                    echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
-                      <label for="CONCLUSION">CONCLUSION ARTICULO 35</label>
-                      <select class="form-select form-select-lg" id="CONCLUSION_ART35z" name="CONCLUSION_ART35z" onChange="otherart35(this)">
-                        <option style="visibility: hidden" id="opt-conclusion-art35" value="'.$rowdetinc['conclusionart35'].'">'.$rowdetinc['conclusionart35'].'</option>';
-                        $art35 = "SELECT * FROM conclusionart35";
-                        $answerart35 = $mysqli->query($art35);
-                        while($art35s = $answerart35->fetch_assoc()){
-                          echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                        }
-                        echo '</select>
-                      </div>';
-
-                  }
-                  ?>
-                   <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                     <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
-                     <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351" onChange="otherart35(this)">
-                       <option  value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
-                       <?php
-                       $art35 = "SELECT * FROM conclusionart35";
-                       $answerart35 = $mysqli->query($art35);
-                       while($art35s = $answerart35->fetch_assoc()){
-                         echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                       }
-                       ?>
-                     </select>
-                   </div>
-
-                   <?php
-                   $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-                   $resultadodetinc = $mysqli->query($detinc);
-                   $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-                   if ($rowdetinc['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
-                       <label for="OTHER_ART35">ESPECIFIQUE</label>
-                       <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowdetinc['otroart35'].'" type="text">
-                     </div>';
-                   }
-                    ?>
-
-                    <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
-                      <label for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="<?php $rowdetinc['otroart35']; ?>" type="text">
-                    </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_FECHA_CONCLUSION" for="FECHA_DESINCORPORACION" >FECHA DE CONCLUSIÓN<span class="required"></span></label>
-                    <label id="LABEL_FECHA_CANCELACION" for="FECHA_DESINCORPORACION">FECHA DE CANCELACIÓN<span class="required"></span></label>
-                    <input id="FECHA_DESINCORPORACION_UNO" class="form-control"  name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_DESINCORPORACION_UNO" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
-                  </div> -->
+                 
 
                 </div>
 
@@ -377,12 +309,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         <th style="text-align:center">ID</th>
                         <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
                         <th style="text-align:center">DETALLES DEL CONVENIO</th>
-                        <!-- <th style="text-align:center">FECHA DE AUTORIZACION</th>
-                        <th style="text-align:center">TIPO DE CONVENIO</th>
-                        <th style="text-align:center">FECHA FIRMA</th>
-                        <th style="text-align:center">FECHA INICIO</th>
-                        <th style="text-align:center">VIGENCIA</th> -->
-                        <!-- <th style="text-align:center"><a href="registrar_evaluacion.php?folio=<?php echo $identificador; ?>"> <button type="button" id="" class="btn btn-info">AGREGAR</button> </a> </th> -->
+                        
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM evaluacion_persona WHERE id_unico ='$identificador'";
@@ -395,19 +322,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                           echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
                           echo "<td style='text-align:center'>  <a href='detalles_convenio_pers.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
-                        //   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_aut'])); echo "</td>";
-                        //   echo "<td style='text-align:center'>"; echo $var_fila['tipo_convenio']; echo "</td>";
-            		        //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_firma'] != '0000-00-00') {
-                        //     echo date("d/m/Y",strtotime($var_fila['fecha_firma']));
-                        //   } echo "</td>";
-                        //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_inicio'] != '0000-00-00') {
-                        //     echo date("d/m/Y", strtotime($var_fila['fecha_inicio']));
-                        //   } echo "</td>";
-            		        //   echo "<td style='text-align:center'>"; if ($var_fila['vigencia'] != '0') {
-                        //     echo $var_fila['vigencia'];
-                        //   } echo "</td>";
-                        //   // echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
-            		        // echo "</tr>";
+                        
             		      }
             		      ?>
             		  	</table>
@@ -454,7 +369,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input id="FECHA_DESINCORPORACION_UNO" class="form-control"  name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_desincorporacion']; ?>">
                   </div>
 
-                  <?php
+                  <!-- <?php
                   $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
                   $resultadodetinc = $mysqli->query($detinc);
                   $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
@@ -472,7 +387,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       </div>';
 
                   }
-                  ?>
+                  ?> -->
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                      <label id="LABEL_CONCLUSION_ART351" for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351">
@@ -777,400 +692,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		</div>
     			</article>
 
-          <!-- <article id="tab3">
-            <div class="container">
-              <form class=" container well form-horizontal" action="update_seguim.php?folio=<?php echo $id_person; ?>" method="post">
-                <div class="row">
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>
-                  </div>
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="SEDE" name="RESULTADO_VALORACION_JURIDICA" disabled>
-                      <option value=""><?php echo $rowvaljur['resultadovaloracion']; ?></option>
-                      <option value="SI_PROCEDE">SI_PROCEDE </option>
-                      <option value="NO_PROCEDE">NO_PROCEDE</option>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="MOTIVO_NO_PROCEDENCIA_JURIDICA">MOTIVO NO PROCEDENCIA JURÍDICA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="SEDE" name="MOTIVO_NO_PROCEDENCIA_JURIDICA" disabled>
-                      <option value=""><?php echo $rowvaljur['motivoprocedencia']; ?></option>
-                      <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL </option>
-                      <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
-                      <option value="AMBAS">AMBAS </option>
-                      <option value="NO APLICA">NO APLICA</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">ANÁLISIS</h3>
-                  </div>
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
-                      <option style="visibility: hidden" id="tab3-analisis-multidisiplñinario" value="<?php echo $rowseguimexp['multidisciplinario']; ?>"><?php echo $rowseguimexp['multidisciplinario']; ?></option>
-                      <?php
-                      $multidisciplinario = "SELECT * FROM multidisciplinario";
-                      $answermultidisciplinario = $mysqli->query($multidisciplinario);
-                      while($multidisciplinarios = $answermultidisciplinario->fetch_assoc()){
-                        echo "<option value='".$multidisciplinarios['nombre']."'>".$multidisciplinarios['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
-
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
-                      <option style="visibility: hidden" id="tab3-incorporacion" value="<?php echo $rowseguimexp['incorporacion']; ?>"><?php echo $rowseguimexp['incorporacion']; ?></option>
-                      <?php
-                      $inc = "SELECT * FROM incorporacion";
-                      $answerinc = $mysqli->query($inc);
-                      while($incs = $answerinc->fetch_assoc()){
-                        echo "<option value='".$incs['nombre']."'>".$incs['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_AUTORIZACION_ANALISIS">FECHA DE AUTORIZACIÓN DE ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_AUTORIZACION_ANALISIS" name="FECHA_AUTORIZACION_ANALISIS" placeholder=""  type="date" value="<?php echo $rowseguimexp['date_autorizacion']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="CONVENIO_DE_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="CONVENIO_DE_ENTENDIMIENTO" name="CONVENIO_DE_ENTENDIMIENTO">
-                      <option style="visibility: hidden" id="tab3-convenio-entendimiento" value="<?php echo $rowseguimexp['convenio']; ?>"><?php echo $rowseguimexp['convenio']; ?></option>
-                      <?php
-                      $convenio = "SELECT * FROM convenio";
-                      $answerconvenio = $mysqli->query($convenio);
-                      while($convenios = $answerconvenio->fetch_assoc()){
-                        echo "<option value='".$convenios['nombre']."'>".$convenios['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowseguimexp['vigencia']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA DEL CONVENIO ENTENDIMIENTO<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO_UNO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" type="date" value="<?php echo $rowseguimexp['date_convenio']; ?>">
-                  </div>
-
-                </div>
-
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">ESTATUS</h3>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
-                    <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open3art35zz(this)">
-                      <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $rowstatusexp['conclu_cancel']; ?>"><?php echo $rowstatusexp['conclu_cancel']; ?></option>
-                      <option value="CANCELACION">CANCELACIÓN</option>
-                      <option value="CONCLUSION">CONCLUSIÓN</option>
-                    </select>
-                  </div>
-
-                  <?php
-                  $statusseg = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-                  $resultadostatusseg = $mysqli->query($statusseg);
-                  $rowastatusseg = $resultadostatusseg->fetch_array(MYSQLI_ASSOC);
-                  if ($rowastatusseg['conclu_cancel']== 'CONCLUSION') {
-                    echo '<div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m">
-                      <label for="CONCLUSION">CONCLUSION ARTICULO 35</label>
-                      <select onclick="myFunctionHidden" class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35s(this)">
-                        <option id="tab3-art35" value="'.$rowastatusseg['conclusionart35'].'">'.$rowastatusseg['conclusionart35'].'</option>';
-                        $art35 = "SELECT * FROM conclusionart35";
-                        $answerart35 = $mysqli->query($art35);
-                        while($art35s = $answerart35->fetch_assoc()){
-                          echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                        }
-                        echo '
-                      </select>
-                    </div>';
-                    if ($rowastatusseg['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-                      echo '<div class="col-md-6 mb-3 validar" id="OTHER3ART35">
-                        <label for="OTHER_ART35">ESPECIFIQUE</label>
-                        <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowastatusseg['otherart35'].'" type="text">
-                      </div>';
-                    }
-                  }
-                   ?>
-
-                   <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35m" style="display:none;">
-                     <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
-                     <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35s(this)">
-                       <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
-                       <?php
-                       $art35 = "SELECT * FROM conclusionart35";
-                       $answerart35 = $mysqli->query($art35);
-                       while($art35s = $answerart35->fetch_assoc()){
-                         echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                       }
-                       ?>
-                     </select>
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar" id="OTHER3ART35" style="display:none;">
-                     <label for="OTHER_ART351">ESPECIFIQUE</label>
-                     <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar">
-                     <label for="FECHA_DESINCORPORACION">FECHA DE DESINCORPORACIÓN<span class="required"></span></label>
-                     <input class="form-control" id="FECHA_DESINCORPORACION_DOS" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowstatusexp['date_desincorporacion']; ?>">
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar">
-                     <label for="ESTATUS_EXPEDIENTE">ESTATUS DEL EXPEDIENTE<span class="required"></span></label>
-                     <select class="form-select form-select-lg" id="ESTATUS_EXPEDIENTE" name="ESTATUS_EXPEDIENTE" >
-                       <option style="visibility: hidden" id="tab3-estatus-expediente" value="<?php echo $rowstatusexp['status'] ?>"><?php echo $rowstatusexp['status']; ?></option>
-                       <?php
-                       $statusexp = "SELECT * FROM statusexpediente";
-                       $answerstatusexp = $mysqli->query($statusexp);
-                       while($statusexps = $answerstatusexp->fetch_assoc()){
-                         echo "<option value='".$statusexps['nombre']."'>".$statusexps['nombre']."</option>";
-                       }
-                       ?>
-                     </select>
-                   </div>
-
-                </div>
-
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">FUENTE</h3>
-                  </div>
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="FUENTE_S">FUENTE<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="FUENTE_S" name="FUENTE_S" onChange="radicacionfuenteS(this)" >
-                      <option style="visibility: hidden" id="tab3-fuente-seguimiento" value"<?php echo $rowfuente3['fuente']; ?>"><?php echo $rowfuente3['fuente']; ?></option>
-                      <?php
-                      $rad = "SELECT * FROM radicacion";
-                      $answerrad = $mysqli->query($rad);
-                      while($rads = $answerrad->fetch_assoc()){
-                        echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
-                  <?php
-                  $fuentemedida = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
-                  $resultadofuentemedida = $mysqli->query($fuentemedida);
-                  $rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
-                  if ($rowfuentemedida['fuente']=='OFICIO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OFICIO_S" >
-                      <label for="OFICIO_S">OFICIO<span class="required"></span></label>
-                      <input class="form-control" id="OFICIO_S" name="OFICIO_S" placeholder="" value="'.$rowfuentemedida['descripcion'].'"  type="text" >
-                    </div>';
-                  }elseif ($rowfuentemedida['fuente']=='CORREO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="CORREO_S">
-                      <label for="CORREO_S">CORREO<span class="required"></span></label>
-                      <input class="form-control" id="CORREO_S" name="CORREO_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                    </div>';
-                  }elseif ($rowfuentemedida['fuente']=='EXPEDIENTE') {
-                    echo '<div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_S">
-                      <label for="EXPEDIENTE_S">EXPEDIENTE<span class="required"></span></label>
-                      <input class="form-control" id="EXPEDIENTE_S" name="EXPEDIENTE_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                    </div>';
-                  }elseif ($rowfuentemedida['fuente']=='OTRO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OTRO_S">
-                      <label for="OTRO_S">OTRO<span class="required"></span></label>
-                      <input class="form-control" id="OTRO_S" name="OTRO_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                    </div>';
-                  }
-                   ?>
-
-                   <div class="col-md-6 mb-3 validar" id="OFICIO_S" style="display:none;">
-                     <label for="OFICIO_S">OFICIO<span class="required"></span></label>
-                     <input class="form-control" id="OFICIO_S1" name="OFICIO_S1" placeholder="" value=""  type="text" >
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_S" style="display:none;">
-                     <label for="EXPEDIENTE_S">EXPEDIENTE<span class="required"></span></label>
-                     <input class="form-control" id="EXPEDIENTE_S1" name="EXPEDIENTE_S1" placeholder=""  value="" type="text" >
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar"  id="CORREO_S" style="display:none;">
-                     <label for="EXPEDIENTE_S">CORREO<span class="required"></span></label>
-                     <input class="form-control" id="CORREO_S1" name="CORREO_S1" placeholder=""  value="" type="text" >
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar" id="OTRO_S" style="display:none;">
-                     <label for="OTRO_S">OTRO<span class="required"></span></label>
-                     <input class="form-control" id="OTRO_S1" name="OTRO_S1" placeholder=""  value="" type="text" >
-                   </div>
-
-                </div>
-                <div class="row">
-                  <div class="row">
-
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">COMENTARIOS</h3>
-                  </div>
-                  <section class="text-center" >
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-                </section>
-                </div>
-
-                <div class="row">
-                  <div>
-                      <br>
-                      <br>
-                      <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </article> -->
+         
 
     		</div>
     	</div>
-      <!--  -->
+
   </div>
 </div>
 <div class="contenedor">
 <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 
-<!-- modal del convenio MODIFICATORIO -->
-<!-- <div id="add_data_Modal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO MODIFICATORIO</h4> -->
-    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-   <!-- </div>
-   <div class="modal-body">
-    <form method="post" id="insert_form" action="agregar_convenio_modificatorio.php?folio=<?php echo $id_person; ?>">
-     <label>FOLIO DEL EXPEDIENTE</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
-     <br />
-     <label>ID ÚNICO DE LA PERSONA</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
-     <br />
-     <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
-     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
-     <br />
-     <label>DESCRIPCIÓN</label>
-     <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
-     <br /> -->
-     <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
-     <!-- <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-    </form>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-   </div>
-  </div>
- </div>
-</div> -->
-<!-- fin modal  -->
 
-<!-- modal del convenio adhesion -->
-<!-- <div id="add_data_Modal_convenio" class="modal">
- <div class="modal-dialog " role="document">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h4 class="modal-title">AGREGAR EVALUACION DE SEGUIMIENTO</h4> -->
-    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-   <!-- </div>
-   <div class="modal-body">
-    <form method="post" id="insert_form" action="agregar_convenio_adhesion.php?folio=<?php echo $id_person; ?>">
-      <div class="form-group ">
-        <label>FOLIO DEL EXPEDIENTE</label>
-        <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
-      </div>
-      <div class="form-group ">
-        <label>ID ÚNICO DE LA PERSONA </label>
-        <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
-      </div>
-      <div class="form-group ">
-        <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
-        <select class="form-select form-select-lg" name="anal_m">
-          <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
-          <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-          <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-          <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
-        </select>
-      </div>
-      <div class="form-group ">
-        <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN</label>
-        <input class="form-control" type="date" name="fecha_auto" value="">
-      </div>
-      <div class="form-group ">
-        <label for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
-        <input class="form-control" type="text" name="id_analisis" value="">
-      </div>
-      <div class="form-group ">
-        <label for="tipo_convenio">TIPO DE CONVENIO</label>
-        <select class="form-select form-select-lg" name="tipo_convenio">
-          <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
-          <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
-          <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
-        </select>
-      </div>
-      <div class="form-group ">
-        <label for="fecha_firma">FECHA DE LA FIRMA</label>
-        <input class="form-control" type="date" name="fecha_firma" id="fecha_firma"  required>
-      </div>
-
-      <div class="form-group">
-        <label>FECHA DE INICIO</label>
-        <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio"  required>
-      </div>
-      <div class="form-group">
-        <label>VIGENCIA</label>
-        <input class="form-control" type="text" name="vigencia" id="vigencia" required>
-      </div>
-      <div class="form-group">
-        <label for="id_convenio">ID DEL CONVENIO</label>
-        <input class="form-control" type="text" name="id_convenio" value="">
-      </div>
-      <div class="form-group">
-        <label for="observaciones">OBSERVACIONES</label>
-        <textarea name="observaciones" rows="8" cols="100" placeholder="OBSERVACIONES"></textarea>
-      </div>
-      <div class="form-group">
-        <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-      </div> -->
-
-     <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
-
-    <!-- </form>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-   </div>
-  </div>
- </div>
-</div> -->
-<!-- fin modal  -->
-
-<!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
@@ -1478,11 +1011,27 @@ conCa.addEventListener('change', obtenerEstatus);
       if ( estatusPersona === "DESINCORPORADO" || estatusPersona === "NO INCORPORADO" ) {
         document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "";
         document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "";
+
       }
       else if ( estatusPersona === "PERSONA PROPUESTA" || estatusPersona === "SUJETO PROTEGIDO" ){
         document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "none";
         document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "none";
-        
+
+        document.getElementById('LABEL_CONCLUSION_ART351').style.display = "none";
+        document.getElementById('CONCLUSION_ART351').style.display = "none";
+
+        document.getElementById('LABEL_OTHER_ART351').style.display = "none";
+        document.getElementById('OTHER_ART351').style.display = "none";
+
+        document.getElementById('LABEL_FECHA_CONCLUSION').style.display = "none";
+        document.getElementById('LABEL_FECHA_CANCELACION').style.display = "none";
+        document.getElementById('FECHA_DESINCORPORACION_UNO').style.display = "none";
+
+        document.getElementById('CONCLUSION_CANCELACION_EXP').value='';
+        document.getElementById('CONCLUSION_ART351').value='';
+        document.getElementById('OTHER_ART351').value='';
+        document.getElementById('FECHA_DESINCORPORACION_UNO').value='';
+
       }
 }
 
@@ -1550,7 +1099,11 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('LABEL_FECHA_CONCLUSION').style.display = "none";
       document.getElementById('LABEL_FECHA_CANCELACION').style.display = "";
       document.getElementById('FECHA_DESINCORPORACION_UNO').style.display = "";
+
+      document.getElementById('LABEL_OTHER_ART351').style.display = "none";
+      document.getElementById('OTHER_ART351').style.display = "none";
       }
+      
 }
 
 
@@ -1602,8 +1155,5 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
       }
 }
 </script>
-
-
-
 </body>
 </html>
