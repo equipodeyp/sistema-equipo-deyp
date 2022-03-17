@@ -15,7 +15,7 @@ if ($verifica == 1) {
   date_default_timezone_set('UTC');
   date_default_timezone_set("America/Mexico_City");
   $unidad =$_POST['unidad'];
-  $fecharecepcion = $_POST['FECHA_RECEPCION'];
+  $fecharecepcion = date("d/m/Y", strtotime($_POST['FECHA_RECEPCION']));
   $sede=$_POST['sede'];
   $r_sede= substr("$sede", 0,3);//obteniendo las tres primeras letras
   $municipio=$_POST['municipio'];
