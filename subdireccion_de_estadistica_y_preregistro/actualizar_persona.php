@@ -109,14 +109,14 @@ if ($verifica_update_person == 1) {
     $fecha_termino = '';
   }
   $id_convenio=$_POST['id_convenio'];
-  $acuerdo =$_POST['CONCLUSION_CANCELACION'];
+  $acuerdo =$_POST['CONCLUSION_CANCELACION_EXP'];
   if ($acuerdo=='CONCLUSION') {
     $conclusionart35=$_POST['CONCLUSION_ART35z'];
     if ($conclusionart35 == '') {
       $conclusionart35=$_POST['CONCLUSION_ART351'];
     }
     if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-      $otherart35=$_POST['OTHER_ART35'];
+      $otherart35=$_POST['OTHER_ART351'];
       if ($otherart35 == '') {
         $otherart35=$_POST['OTHER_ART351'];
       }
@@ -309,7 +309,8 @@ if ($verifica_update_person == 1) {
   // $det_inc = "INSERT INTO determinacionincorporacion (incorporacion, motivoincorporacion, convenioentendimiento, fechaconvenioentendimiento, folioexpediente, id_persona)
   //               VALUES('$incorporacion', '$mot_inc', '$name_convenio', '$fecha_conv_ent', '$fol_exp', '$id_persona')";
   // $res_det_inc = $mysqli->query($det_inc);
-  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio', conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+                                                    conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
   $res_det_inc = $mysqli->query($det_inc);
   if ($radicacion == 'OFICIO') {
     $des_rad = $_POST['OFICIO'];
