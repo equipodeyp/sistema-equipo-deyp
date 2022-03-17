@@ -1392,7 +1392,41 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 
       }
 }
+</script>
+<script type="text/javascript">
 
+var idAnalisis = document.getElementById('id_analisis');
+var fechaAutoAnalisis = document.getElementById('FECHA_AUTORIZACION_ANALISIS');
+var fechaDeFirma = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO');
+var fechaInicioConvenio = document.getElementById('fecha_inicio');
+var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO');
+var numeroDeConvenios = document.getElementById('num_convenio');
+
+function ReadOnlyInputs() {
+  if( !idAnalisis.value == null || !idAnalisis.value == "" ){
+    idAnalisis.readOnly = true;
+  }
+  if( !fechaAutoAnalisis.value == null || !fechaAutoAnalisis.value == "" ){
+    fechaAutoAnalisis.readOnly = true;
+  }
+  if( !fechaDeFirma.value == null || !fechaDeFirma.value == "" ){
+    fechaDeFirma.readOnly = true;
+  }
+  if( !fechaInicioConvenio.value == null || !fechaInicioConvenio.value == "" ){
+    fechaInicioConvenio.readOnly = true;
+    // console.log(fechaInicioConveni);
+  }
+  if( !fechaVigenciaConvenio.value == null || !fechaVigenciaConvenio == "" || fechaVigenciaConvenio === 0){
+    // fechaVigenciaConvenio.readOnly = true;
+    console.log(fechaVigenciaConveni);
+  }
+  if( !numeroDeConvenios.value == null || !numeroDeConvenios.value == "" ){
+    numeroDeConvenios.readOnly = true;
+    // console.log(numeroDeConvenios)
+  }
+
+}
+ReadOnlyInputs();
 </script>
 </body>
 </html>
