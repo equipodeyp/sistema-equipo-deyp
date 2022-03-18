@@ -1,7 +1,13 @@
 <?php
-	include("conexion.php");
-	session_start ();
-	$name = $_SESSION['usuario'];
+include("conexion.php");
+session_start ();
+$name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$name = $_SESSION['usuario'];
 	$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 	$result = $mysqli->query($sentencia);
 	$row=$result->fetch_assoc();
@@ -197,12 +203,12 @@
 		  		<thead >
 				  	<th style="text-align:center">No.</th>
 		  			<th style="text-align:center">ID PERSONA</th>
-					<th style="text-align:center">SEXO</th>
+						<th style="text-align:center">SEXO</th>
 		  			<th style="text-align:center">ESTATUS DE LA PERSONA PROPUESTA EN EL PROGRAMA</th>
 		  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
-					<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-					<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-					<th style="text-align:center">DETALLES </th>
+						<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+						<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
+						<th style="text-align:center">DETALLES </th>
 		  		</thead>
 			<?php
 			$cuenta = 0;

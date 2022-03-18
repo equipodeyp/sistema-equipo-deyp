@@ -1259,7 +1259,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
