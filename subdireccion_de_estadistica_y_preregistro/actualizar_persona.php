@@ -327,11 +327,14 @@ if ($verifica_update_person == 1) {
                                                       conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
   }
-  if ($$filachk['convenio'] === '' || $$filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
+  if ($filachk['convenio'] === '' || $filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
     $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
                                                       conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
   }
+  $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+                                                    conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+  $res_det_inc = $mysqli->query($det_inc);
   if ($radicacion == 'OFICIO') {
     $des_rad = $_POST['OFICIO'];
     if ($des_rad == '') {
