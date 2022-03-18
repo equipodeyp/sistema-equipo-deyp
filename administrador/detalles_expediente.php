@@ -2,6 +2,12 @@
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -73,13 +79,8 @@ $row=$result->fetch_assoc();
 				<img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     	</div>
 			<div class="wrap">
-
 	    <div class="secciones">
-
-	  <article id="tab1">
-		<!-- folio del expediente -->
-
-
+	  	<article id="tab1">
 							<div class="well form-horizontal" >
 								<div class="row">
 									<div class="alert alert-info">
@@ -121,7 +122,7 @@ $row=$result->fetch_assoc();
 									</div>
 									<!-- nombre del municipio -->
 									<div class="form-group">
-										<label for="sede" class="col-md-4 control-label">MUNICIPIO</label>
+										<label for="sede" style="font-size: 12px" class="col-md-4 control-label">MUNICIPIO DE RADICACIÓN <br>DE LA CARPETA DE INVESTIGACIÓN</label>
 										<div class="col-md-4 inputGroupContainer">
 											<div class="input-group">
 			      						<span class="input-group-addon"><i class="fas fa-map-marked-alt"></i></span>
@@ -139,7 +140,16 @@ $row=$result->fetch_assoc();
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="fecha" class="col-md-4 control-label">FECHA RECEPCION</label>
+										<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+								      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+								      			<input name="FECHA_RECEPCION" type="text" class="form-control"  id="FECHA_RECEPCION"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+								    		</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px">FECHA DE RECEPCIÓN DE LA SOLICITUD</label>
 										<div class="col-md-4 inputGroupContainer">
 											<div class="input-group">
 			      						<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
@@ -147,6 +157,22 @@ $row=$result->fetch_assoc();
 			    						</div>
 										</div>
 									</div>
+									<form method="post" action="actualizar_fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
+									<div class="form-group">
+										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+								      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+											  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
+
+								    		</div>
+										</div>
+									<div>
+									<div>
+										<button type="submit" id="fecha_acuerdo" class='btn btn-success'>ACTUALIZAR FECHA</button>
+									</div>
+
+									</form>
 								</div>
 							</div>
 
@@ -164,36 +190,65 @@ $row=$result->fetch_assoc();
 		  					<div id="contenido">
 									<div class="row">
 		  							<table class="table table-striped table-bordered ">
-		  								<thead >
-		  									<th>ID</th>
-		  									<th>nombre</th>
-		  									<th>apellido paterno</th>
-		        						<th>apellido materno</th>
-		  									<th>usuario</th>
-		  									<th>cargo</th>
-		  									<th> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">Nuevo</button> </a> </th>
-		  								</thead>
+											<thead >
+										  	<th style="text-align:center">No.</th>
+								  			<th style="text-align:center">ID PERSONA</th>
+												<th style="text-align:center">SEXO</th>
+								  			<th style="text-align:center">ESTATUS DE LA PERSONA PROPUESTA EN EL PROGRAMA</th>
+								  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
+												<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+												<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
+												<th style="text-align:center">DETALLES </th>
+								  		</thead>
 		  								<?php
-		      						$tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
-		       						$var_resultado = $mysqli->query($tabla);
-		      						while ($var_fila=$var_resultado->fetch_array())
-		      						{
-		        					echo "<tr>";
-		          				echo "<td>"; echo $var_fila['id']; echo "</td>";
-		          				echo "<td>"; echo $var_fila['nombrepersona']; echo "</td>";
-		          				echo "<td>"; echo $var_fila['paternopersona']; echo "</td>";
-		          				echo "<td>"; echo $var_fila['maternopersona']; echo "</td>";
-		          				echo "<td>"; echo $var_fila['edadpersona']; echo "</td>";
-		          				echo "<td>"; echo $var_fila['telefonocelular']; echo "</td>";
-		          				echo "<td>  <a href='modif_prod1.php?no=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Modificar</button> </a> </td>";
-		        					echo "</tr>";
-		      						}
+											$cuenta = 0;
+
+										    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
+										    $var_resultado = $mysqli->query($tabla);
+										      while ($var_fila=$var_resultado->fetch_array())
+										      {
+								            $id_persona = $var_fila['id'];
+
+											$cant_med="SELECT COUNT(*) AS cant FROM medidas WHERE id_persona = '$id_persona'";
+								            $res_cant_med=$mysqli->query($cant_med);
+								            $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+
+								            $datevalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+								            $res_val = $mysqli->query($datevalidar);
+								            while ($fila_val=$res_val->fetch_array()) {
+								              $cuenta = $cuenta + 1;
+
+								        		        echo "<tr>";
+								        		        echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
+								        		        echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
+								        				echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
+								        		        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+								        		        echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
+														echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
+								                      	echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
+								                        echo "<i class='fas fa-check'></i>";
+								                      } elseif ($fila_val['validacion'] == 'false') {
+								                        echo "<i class='fas fa-times'></i>";
+								                      } echo "</td>";
+								        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+								        		        echo "</tr>";
+								            }
+
+										      }
 		      					?>
 		  							</table>
 									</div>
 		  					</div>
 								<div id="footer">
 		  					</div>
+							</div>
+							<div class="well form-horizontal">
+								<div class="row">
+									<div class="alert alert-info">
+										<h3 style="text-align:center">SEGUIMIENTO</h3>
+									</div>
+									<a  href=""> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a>
+								</div>
 							</div>
 						</div>
 
