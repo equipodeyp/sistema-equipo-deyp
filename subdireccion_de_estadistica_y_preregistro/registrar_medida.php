@@ -105,9 +105,9 @@ $validacion = $fil_val['validacion'];
       <form class="container well form-horizontal" method="POST" action="guardar_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
 
         <div class="secciones form-horizontal sticky breadcrumb flat">
-          <a >EXPEDIENTES</a>
-          <a>DETALLES EXPEDIENTE</a>
-          <a >DATOS DE PERSONAS PROPUESTAS</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">DETALLES EXPEDIENTE</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fol_exp?>">DETALLES DE LA PERSONA PROPUESTA</a>
           <a class="actived">AGREGAR UNA NUEVA MEDIDA A LA PERSONA</a>
         </div>
         <div class="row">
