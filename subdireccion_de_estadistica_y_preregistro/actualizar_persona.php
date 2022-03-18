@@ -309,7 +309,30 @@ if ($verifica_update_person == 1) {
   // $det_inc = "INSERT INTO determinacionincorporacion (incorporacion, motivoincorporacion, convenioentendimiento, fechaconvenioentendimiento, folioexpediente, id_persona)
   //               VALUES('$incorporacion', '$mot_inc', '$name_convenio', '$fecha_conv_ent', '$fol_exp', '$id_persona')";
   // $res_det_inc = $mysqli->query($det_inc);
-  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+  // $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+  //                                                   conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+  // $res_det_inc = $mysqli->query($det_inc);
+  // consultar primero la informacion de los selects para poder actualizar
+  $check_det_incor = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona'";
+  $res_check_det_incor = $mysqli->query($check_det_incor);
+  $filachk = $res_check_det_incor->fetch_assoc();
+  if ($filachk['multidisciplinario'] === 'EN ELABORACION' || $filachk['multidisciplinario'] === '') {
+    // code...|| ($filachk['incorporacion'] === '') || ($$filachk['convenio'] === '' || $$filachk['convenio'] === 'PENDIENTE DE EJECUCION')
+    $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario',  date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+                                                      conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+    $res_det_inc = $mysqli->query($det_inc);
+  }
+  if ($filachk['incorporacion'] === '') {
+    $det_inc = "UPDATE determinacionincorporacion SET incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+                                                      conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+    $res_det_inc = $mysqli->query($det_inc);
+  }
+  if ($filachk['convenio'] === '' || $filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
+    $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
+                                                      conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+    $res_det_inc = $mysqli->query($det_inc);
+  }
+  $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
                                                     conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
   $res_det_inc = $mysqli->query($det_inc);
   if ($radicacion == 'OFICIO') {
@@ -348,7 +371,7 @@ if ($verifica_update_person == 1) {
   }
 
   // validacion de update correcto
-  if($res_det_inc && $res_radicacion){
+  if($res_radicacion){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=$id_persona';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')

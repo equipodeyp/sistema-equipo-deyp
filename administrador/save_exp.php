@@ -71,7 +71,7 @@ if ($verifica == 1) {
   if($resultado) {
         echo $verifica;
         echo ("<script type='text/javaScript'>
-         window.location.href='../administrador/exp_detalle.php?folio=$folio';
+         window.location.href='../administrador/detalles_expediente.php?folio=$folio';
          window.alert('!!!!!Registro exitoso¡¡¡¡¡')
        </script>");
         } else {  }
