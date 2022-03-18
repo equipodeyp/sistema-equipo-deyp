@@ -1395,37 +1395,79 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 <script type="text/javascript">
 
 var idAnalisis = document.getElementById('id_analisis');
+var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO');
+
+var numDeConvenios = document.getElementById('num_convenio');
+
+var analisisM = document.getElementById('ANALISIS');
+var incorporacion = document.getElementById('INCORPORACION');
 var fechaAutoAnalisis = document.getElementById('FECHA_AUTORIZACION_ANALISIS');
+var convenioDeEntendimiento = document.getElementById('CONVENIO_DE_ENTENDIMIENTO');
 var fechaDeFirma = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO');
 var fechaInicioConvenio = document.getElementById('fecha_inicio');
-var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO');
-var numeroDeConvenios = document.getElementById('num_convenio');
 
-function ReadOnlyInputs() {
+function ReadOnlyIdAnalisis() {
   if( !idAnalisis.value == null || !idAnalisis.value == "" ){
     idAnalisis.readOnly = true;
   }
-  if( !fechaAutoAnalisis.value == null || !fechaAutoAnalisis.value == "" ){
-    fechaAutoAnalisis.readOnly = true;
+}
+ReadOnlyIdAnalisis();
+
+function ReadOnlyVigenciaconvenio() {
+  if( !fechaVigenciaConvenio.value == null || !fechaVigenciaConvenio.value == "" ){
+    fechaVigenciaConvenio.readOnly = true;
   }
-  if( !fechaDeFirma.value == null || !fechaDeFirma.value == "" ){
-    fechaDeFirma.readOnly = true;
+}
+ReadOnlyVigenciaconvenio();
+
+function ReadOnlyNumConvenios() {
+  if( !numDeConvenios.value == null || !numDeConvenios.value == "" ){
+    numDeConvenios.readOnly = true;
+    analisisM.disabled = true;
+    incorporacion.disabled = true;
+    fechaAutoAnalisis.disabled = true;
+    convenioDeEntendimiento.disabled = true;
+    fechaDeFirma.disabled = true;
+    fechaInicioConvenio.disabled = true;
   }
-  if( !fechaInicioConvenio.value == null || !fechaInicioConvenio.value == "" ){
-    fechaInicioConvenio.readOnly = true;
-    // console.log(fechaInicioConveni);
-  }
-  if( !fechaVigenciaConvenio.value == null || !fechaVigenciaConvenio == "" || fechaVigenciaConvenio === 0){
-    // fechaVigenciaConvenio.readOnly = true;
-    console.log(fechaVigenciaConveni);
-  }
-  if( !numeroDeConvenios.value == null || !numeroDeConvenios.value == "" ){
-    numeroDeConvenios.readOnly = true;
-    // console.log(numeroDeConvenios)
+}
+ReadOnlyNumConvenios();
+
+
+
+</script>
+
+<script type="text/javascript">
+var readOnlyEstatus = document.getElementById('ESTATUS_EXPEDIENTE').value;
+var readOnlyCanceConclu = document.getElementById('CONCLUSION_CANCELACION').value;
+console.log(readOnlyEstatus);
+    console.log(readOnlyCanceConclu);
+
+function ReadOnlyConClu() {
+  if( readOnlyEstatus == "CONCLUIDO" && readOnlyCanceConclu == "CONCLUSION" || readOnlyEstatus === "CONCLUIDO" && readOnlyCanceConclu === "CANCELACION" || readOnlyEstatus === "CANCELADO" && rreadOnlyEstatus === "CANCELACION" || readOnlyEstatus === "CANCELADO" && rreadOnlyEstatus === "CONCLUSION" ){
+
+    document.getElementById('FECHA_DESINCORPORACION_DOS').readOnly = true;
+    document.getElementById('CONCLUSION_ART35').disabled = true;
+    document.getElementById('OTHER_ART351').readOnly = true;
+    document.getElementById('ESTATUS_EXPEDIENTE').disabled = true;
+    document.getElementById('CONCLUSION_CANCELACION').disabled = true;
+    document.getElementById('FUENTE_S').disabled = true;
+    document.getElementById('ESPECIFIQUE_FUENTE').readOnly = true;
+    document.getElementById('COMENTARIO').disabled = true;
+    document.getElementById('enter').style.display = "none";
+    document.getElementById('btn_agregar').style.display = "none";
+    // document.getElementById('ANALISIS').disabled = true;
+    // document.getElementById('INCORPORACION').disabled = true;
+    // document.getElementById('CONVENIO_DE_ENTENDIMIENTO').disabled = true;
+
+    
+
   }
 
+
 }
-ReadOnlyInputs();
+ReadOnlyConClu();
+
 </script>
 </body>
 </html>
