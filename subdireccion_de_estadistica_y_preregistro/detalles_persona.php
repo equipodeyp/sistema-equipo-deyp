@@ -1230,7 +1230,7 @@ function ReadOnlyConClu() {
     document.getElementById('ESTATUS_PERSONA').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = true;
     document.getElementById('FUENTE').disabled = true;
-    document.getElementById('OFICIO_VALIDAR').readOnly = true;
+    document.getElementById('ESPECIFIQUE_FUENTE').readOnly = true;
     document.getElementById('COMENTARIO').disabled = true;
     document.getElementById('UPDATE_FILE').style.display = "none";
     document.getElementById('enter').style.display = "none";

@@ -589,7 +589,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                    <div class="col-md-6 mb-3 validar" >
                      <label id="LABEL_OTHER_ART351" for="OTHER_ART351">ESPECIFIQUE</label>
-                     <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" type="text" value="<?php echo $fila_seguiimiento_exped['otherart35'] ?>">
+                     <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" type="text" value="<?php echo $fila_seguiimiento_exped['otherart35']; ?>">
                    </div>
 
 
@@ -643,22 +643,22 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                    <div class="col-md-6 mb-3 validar" id="OFICIO_S" style="display:none;">
                      <label for="OFICIO_S">OFICIO<span class="required"></span></label>
-                     <input class="form-control" id="OFICIO_S1" name="OFICIO_S1" placeholder="" value=""  type="text" >
+                     <input class="form-control" id="OFICIO_S1" name="OFICIO_S1" placeholder="" value="<?php echo $rowfuentemedida['descripcion']; ?>"  type="text" >
                    </div>
                    <div class="col-md-6 mb-3 validar"  id="CORREO_S" style="display:none;">
                      <label for="EXPEDIENTE_S">CORREO<span class="required"></span></label>
-                     <input class="form-control" id="CORREO_S1" name="CORREO_S1" placeholder=""  value="" type="text" >
+                     <input class="form-control" id="CORREO_S1" name="CORREO_S1" placeholder=""  value="<?php echo $rowfuentemedida['descripcion']; ?>" type="text" >
                    </div>
 
                    <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_S" style="display:none;">
                      <label for="EXPEDIENTE_S">EXPEDIENTE<span class="required"></span></label>
-                     <input class="form-control" id="EXPEDIENTE_S1" name="EXPEDIENTE_S1" placeholder=""  value="" type="text" >
+                     <input class="form-control" id="EXPEDIENTE_S1" name="EXPEDIENTE_S1" placeholder="<?php echo $rowfuentemedida['descripcion']; ?>"  value="" type="text" >
                    </div>
 
 
                    <div class="col-md-6 mb-3 validar" id="OTRO_S" style="display:none;">
                      <label for="OTRO_S">OTRO<span class="required"></span></label>
-                     <input class="form-control" id="OTRO_S1" name="OTRO_S1" placeholder=""  value="" type="text" >
+                     <input class="form-control" id="OTRO_S1" name="OTRO_S1" placeholder=""  value="<?php echo $rowfuentemedida['descripcion']; ?>" type="text" >
                    </div>
 
                 </div>
