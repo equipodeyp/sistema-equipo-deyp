@@ -45,15 +45,32 @@ $row=$result->fetch_assoc();
     <div class="logo text-warning">
     </div>
     <div class="user">
-      <img src="../image/USER.png" alt="" width="100" height="100">
-    	<span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+			<?php
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$result_user = $mysqli->query($sentencia_user);
+			$row_user=$result_user->fetch_assoc();
+			$genero = $row_user['sexo'];
+
+			if ($genero=='mujer') {
+				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+			}
+
+			if ($genero=='hombre') {
+				// $foto = ../image/user.png;
+				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+			}
+			// echo $genero;
+			?>
+			<h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
   </div>
   	<div class="main bg-light">
     	<div class="barra">
-        <img src="../image/ups.png" alt="" width="1400" height="150">
+				<img src="../image/fiscalia.png" alt="" width="150" height="150">
+				<img src="../image/ups2.png" alt="" width="1400" height="70">
+				<img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     	</div>
 			<div class="wrap">
 
