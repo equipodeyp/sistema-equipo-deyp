@@ -97,6 +97,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -161,6 +162,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!--  -->
       <div class="wrap">
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">DETALLES EXPEDIENTE</a>
+          <a class="actived">DETALLES DE LA PERSONA PROPUESTA</a>
+        </div>
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
@@ -290,7 +296,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input id="id_convenio" class="form-control" type="text"  name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
                   </div>
 
-                 
+
 
                 </div>
 
@@ -309,7 +315,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         <th style="text-align:center">ID</th>
                         <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
                         <th style="text-align:center">DETALLES DEL CONVENIO</th>
-                        
+
             		  		</thead>
                       <?php
             		      $tabla="SELECT * FROM evaluacion_persona WHERE id_unico ='$identificador'";
@@ -322,7 +328,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                           echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
                           echo "<td style='text-align:center'>  <a href='detalles_convenio_pers.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
-                        
+
             		      }
             		      ?>
             		  	</table>
@@ -693,7 +699,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		</div>
     			</article>
 
-         
+
 
     		</div>
     	</div>
@@ -1104,7 +1110,7 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('LABEL_OTHER_ART351').style.display = "none";
       document.getElementById('OTHER_ART351').style.display = "none";
       }
-      
+
 }
 
 

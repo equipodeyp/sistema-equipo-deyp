@@ -180,20 +180,21 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
       <!--  -->
-      <div class="container sticky breadcrumb flat">
-        <a >EXPEDIENTES</a>
-        <a>DETALLES EXPEDIENTE</a>
-        <a class="actived">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
-      </div>
+
       <div class="wrap">
-    		<ul class="tabs">
+    		<!-- <ul class="tabs">
     			<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO DEL EXPEDIENTE</span></a></li>
-    		</ul>
+    		</ul> -->
 
     		<div class="secciones">
     			<article id="tab3">
             <div class="container">
               <form class=" container well form-horizontal" action="actualizar_expediente_seguimiento.php?folio=<?php echo $fol_exp; ?>" method="post">
+                <div class="secciones form-horizontal sticky breadcrumb flat">
+                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>">DETALLES EXPEDIENTE</a>
+                  <a class="actived">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+                </div>
                 <div class="row">
                   <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>

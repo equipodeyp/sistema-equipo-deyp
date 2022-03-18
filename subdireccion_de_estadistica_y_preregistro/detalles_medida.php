@@ -122,9 +122,9 @@ $validacion = $fil_val['validacion'];
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
         <div class="secciones form-horizontal sticky breadcrumb flat">
-          <a >EXPEDIENTES</a>
-          <a>DETALLES EXPEDIENTE</a>
-          <a >DATOS DE PERSONAS PROPUESTAS</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$rowfol['folioexpediente']?>">DETALLES EXPEDIENTE</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$id_p?>">DETALLES DE LA PERSONA PROPUESTA</a>
           <a class="actived">DETALLES DE LA MEDIDA DE LA PERSONA</a>
         </div>
         <div class="row">

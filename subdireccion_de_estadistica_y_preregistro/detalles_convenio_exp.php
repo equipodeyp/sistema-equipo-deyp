@@ -105,9 +105,9 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
             <form class="container well form-horizontal" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a >EXPEDIENTES</a>
-                  <a>DETALLES EXPEDIENTE</a>
-                  <a >DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fila_consulta['folioexpediente']?>">DETALLES EXPEDIENTE</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
                   <a class="actived">DETALLES DE LA EVALUACION DE SEGUIMIENTO DEL EXPEDIENTE</a>
                 </div>
                 <div class="row">
