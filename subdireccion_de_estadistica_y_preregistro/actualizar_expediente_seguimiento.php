@@ -22,7 +22,7 @@ if ($verifica_update_person == 1) {
   $convenio = $_POST['CONVENIO_DE_ENTENDIMIENTO'];
   $fecha_convenio = $_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
   $fecha_inicio = $_POST['fecha_inicio'];
-  echo $fecha_inicio;
+  // echo $fecha_inicio;
   $vigencia = $_POST['VIGENCIA_CONVENIO'];
   if ($fecha_inicio != '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
@@ -41,10 +41,27 @@ if ($verifica_update_person == 1) {
   $fila_analisis_exp = mysqli_fetch_array($res_analsis_exp);
 
   if ($fila_analisis_exp > 0) {
-    $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', analisis = '$analisis', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
-                                                      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
-                                                      num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
-    $res_analsis = $mysqli->query($update_analisis);
+    $upd_analisis = $fila_analisis_exp['analisis'];
+    $upd_incorporacion = $fila_analisis_exp['incorporacion'];
+    $upd_convenio = $fila_analisis_exp['convenio'];
+    if ($upd_analisis === 'EN ELABORACION' || $upd_analisis === '') {
+      $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', analisis = '$analisis', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
+      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
+      num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
+      $res_analsis = $mysqli->query($update_analisis);
+    }
+    if ($upd_incorporacion === '') {
+      $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
+      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
+      num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
+      $res_analsis = $mysqli->query($update_analisis);
+    }
+    if ($upd_convenio === '' || $upd_convenio === 'PENDIENTE DE EJECUCION') {
+      $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
+      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
+      num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
+      $res_analsis = $mysqli->query($update_analisis);
+    }
 
   }else {
     $new_analisis = "INSERT INTO analisis_expediente (folioexpediente, personas_propuestas, analisis, incorporacion, fecha_analisis, id_analisis, convenio, fecha_convenio, fecha_inicio, vigencia, fecha_termino_convenio, id_convenio, personasincorporadas, num_convenios)
