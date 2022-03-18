@@ -1181,35 +1181,6 @@ function ocultarCamposNoFormalizado() {
 ocultarCamposNoFormalizado();
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script type="text/javascript">
 var concluNone = document.getElementById('ESTATUS_EXPEDIENTE').value;
 
@@ -1394,7 +1365,7 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 }
 </script>
 <script type="text/javascript">
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 var idAnalisis = document.getElementById('id_analisis');
 var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO');
 
@@ -1433,9 +1404,6 @@ function ReadOnlyNumConvenios() {
   }
 }
 ReadOnlyNumConvenios();
-
-
-
 </script>
 
 <script type="text/javascript">
@@ -1464,9 +1432,19 @@ function ReadOnlyConClu() {
     }
 
   }
+  
+  if ( analisisM.value == "ESTUDIO TECNICO" ){
+    if ( convenioDeEntendimiento.value == "NO FORMALIZADO" ){
+      analisisM.disabled = true;
+      incorporacion.disabled = true;
+      fechaAutoAnalisis.readOnly = true;
+      convenioDeEntendimiento.disabled = true;
+    }
+  }
+
 }
 ReadOnlyConClu();
-/////////////////////////////////////////////////////////////////////////////////////////////////
+
 </script>
 </body>
 </html>

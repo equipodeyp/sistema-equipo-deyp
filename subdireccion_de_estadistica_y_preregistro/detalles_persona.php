@@ -288,7 +288,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-                    <input id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
+                    <input readonly id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -799,7 +799,8 @@ function ocultarCampos() {
       }
 }
 ocultarCampos();
-
+</script>
+<script type="text/javascript">
 var analisisMultidisiplinario = document.getElementById('ANALISIS_MULTIDISCIPLINARIO');
 var respuestaAlalisisMultidisiplinario = '';
 
@@ -853,7 +854,8 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('id_convenio').style.display = "none";
       }
     }
-
+</script>
+<script type="text/javascript">
 var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
 
 function ocultarAnalisisM() {
@@ -906,6 +908,8 @@ function ocultarAnalisisM() {
 
     }
 ocultarAnalisisM();
+</script>
+<script type="text/javascript">
 
 var noFormalizado = document.getElementById('CONVENIO_ENTENDIMIENTO');
 var respuestaInputNoFormalizado = '';
@@ -950,7 +954,8 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('id_convenio').style.display = "";
       }
   }
-
+</script>
+<script type="text/javascript">
 var noFormalizadoInput = document.getElementById('CONVENIO_ENTENDIMIENTO').value;
 function ocultarCamposNoFormalizado() {
   if (noFormalizadoInput === "NO FORMALIZADO" || noFormalizadoInput === "PENDIENTE DE EJECUCION"){
@@ -979,7 +984,8 @@ function ocultarCamposNoFormalizado() {
 
 }
 ocultarCamposNoFormalizado();
-
+</script>
+<script type="text/javascript">
 var concluNone = document.getElementById('ESTATUS_PERSONA').value;
 
 
@@ -1006,7 +1012,8 @@ else if (concluNone === "DESINCORPORADO" || concluNone === "NO INCORPORADO"){
 }
 ConclusionCancelacion();
 
-
+</script>
+<script type="text/javascript">
 var conCa = document.getElementById('ESTATUS_PERSONA');
 var estatusPersona = '';
 
@@ -1042,7 +1049,8 @@ conCa.addEventListener('change', obtenerEstatus);
       }
 }
 
-
+</script>
+<script type="text/javascript">
 var concluCanceExp = document.getElementById('CONCLUSION_CANCELACION_EXP').value;
 
 function ConclusionCancelacionExp(){
@@ -1080,7 +1088,8 @@ else if (concluCanceExp === "CANCELACION"){
 }
 }
 ConclusionCancelacionExp();
-
+</script>
+<script type="text/javascript">
 var estatusPer = document.getElementById('CONCLUSION_CANCELACION_EXP');
 var estatusPersonaSeg;
 
@@ -1110,9 +1119,9 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('LABEL_OTHER_ART351').style.display = "none";
       document.getElementById('OTHER_ART351').style.display = "none";
       }
-
 }
-
+</script>
+<script type="text/javascript">
 
 var concluCanceArt = document.getElementById('CONCLUSION_ART351').value;
 
@@ -1137,7 +1146,8 @@ else {
 }
 }
 ConclusionCancelacionArt();
-
+</script>
+<script type="text/javascript">
 
 var conCaArt = document.getElementById('CONCLUSION_ART351');
 var conCaArt35 = '';
@@ -1162,5 +1172,95 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
       }
 }
 </script>
+
+
+
+
+<script type="text/javascript">
+
+var idAnalisis = document.getElementById('id_analisis');
+var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO');
+
+var numDeConvenios = document.getElementById('id_convenio');
+
+var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO');
+var incorporacion = document.getElementById('INPUT_INCORPORACION');
+var fechaAutoAnalisis = document.getElementById('FECHA_AUTORIZACION');
+var convenioDeEntendimiento = document.getElementById('CONVENIO_ENTENDIMIENTO');
+var fechaDeFirma = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS');
+var fechaInicioConvenio = document.getElementById('fecha_inicio');
+
+function ReadOnlyIdAnalisis() {
+  if( !idAnalisis.value == null || !idAnalisis.value == "" ){
+    idAnalisis.readOnly = true;
+  }
+}
+ReadOnlyIdAnalisis();
+
+function ReadOnlyVigenciaconvenio() {
+  if( !fechaVigenciaConvenio.value == null || !fechaVigenciaConvenio.value == "" ){
+    fechaVigenciaConvenio.readOnly = true;
+  }
+}
+ReadOnlyVigenciaconvenio();
+
+function ReadOnlyNumConvenios() {
+  if( !numDeConvenios.value == null || !numDeConvenios.value == "" ){
+    numDeConvenios.readOnly = true;
+    analisisM.disabled = true;
+    incorporacion.disabled = true;
+    fechaAutoAnalisis.readOnly = true;
+    convenioDeEntendimiento.disabled = true;
+    fechaDeFirma.readOnly = true;
+    fechaInicioConvenio.readOnly = true;
+  }
+}
+ReadOnlyNumConvenios();
+</script>
+
+<script type="text/javascript">
+var readOnlyEstatus = document.getElementById('ESTATUS_PERSONA').value;
+
+function ReadOnlyConClu() {
+  if( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
+
+    document.getElementById('FECHA_DESINCORPORACION_UNO').readOnly = true;
+    document.getElementById('CONCLUSION_ART351').disabled = true;
+    document.getElementById('OTHER_ART351').readOnly = true;
+    document.getElementById('ESTATUS_PERSONA').disabled = true;
+    document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = true;
+    document.getElementById('FUENTE').disabled = true;
+    document.getElementById('OFICIO_VALIDAR').readOnly = true;
+    document.getElementById('COMENTARIO').disabled = true;
+    document.getElementById('UPDATE_FILE').style.display = "none";
+    document.getElementById('enter').style.display = "none";
+    document.getElementById('AGREGAR_CONVENIO').style.display = "none";
+  }
+
+  if (analisisM.value == "ACUERDO DE CONCLUSION" || analisisM.value == "ACUERDO DE CANCELACION"){
+    if (readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
+      analisisM.disabled = true;
+      incorporacion.disabled = true;
+      fechaAutoAnalisis.readOnly = true;
+    }
+  }
+
+  if (analisisM.value == "ESTUDIO TECNICO"){
+    if (convenioDeEntendimiento.value == "NO FORMALIZADO" ){
+      analisisM.disabled = true;
+      incorporacion.disabled = true;
+      fechaAutoAnalisis.readOnly = true;
+      convenioDeEntendimiento.disabled = true;
+    }
+
+  }
+
+
+}
+ReadOnlyConClu();
+
+</script>
+
+
 </body>
 </html>
