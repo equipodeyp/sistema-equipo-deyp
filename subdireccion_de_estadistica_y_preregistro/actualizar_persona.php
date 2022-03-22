@@ -101,6 +101,7 @@ if ($verifica_update_person == 1) {
   $convenio= $_POST['CONVENIO_ENTENDIMIENTO'];
   $fecha_conv_ent =$_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
   $fecha_inicio = $_POST['fecha_inicio'];
+  echo $fecha_inicio;
   $vigencia=$_POST['VIGENCIA_CONVENIO'];
   if ($fecha_inicio != '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
