@@ -174,7 +174,7 @@ $validacion = $fil_val['validacion'];
           </div> -->
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo $rowmedida['fecha_captura']; ?>" readonly type="date">
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo date("d/m/Y" , strtotime($rowmedida['fecha_captura'])); ?>" readonly type="text">
             </select>
           </div>
 
