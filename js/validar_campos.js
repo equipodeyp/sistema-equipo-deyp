@@ -413,8 +413,12 @@ function domicilioactual(sel) {
         divC.style.display="none";
         divC = document.getElementById("reclusorio");
         divC.style.display="";
+        divC = document.getElementById("criterio_oport");
+        divC.style.display="";
       }else{
            divC = document.getElementById("reclusorio");
+           divC.style.display="none";
+           divC = document.getElementById("criterio_oport");
            divC.style.display="none";
            divC = document.getElementById("domestado");
            divC.style.display="";
@@ -491,3 +495,13 @@ var ConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').val
       else {
         document.getElementById("FECHA_DESINCORPORACION_UNO").disabled = true;
       }
+
+function fecha_criterio(sel){
+  if (sel.value === "EN ESPERA" || sel.value === "OTORGADO") {
+    divC = document.getElementById("fecha_crit");
+    divC.style.display="";
+  }else {
+    divC = document.getElementById("fecha_crit");
+    divC.style.display="none";
+  }
+}

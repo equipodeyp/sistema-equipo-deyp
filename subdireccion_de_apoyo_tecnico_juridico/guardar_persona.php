@@ -46,7 +46,7 @@ if ($verifica == 1) {
   $archivo = $_FILES['foto']['name'];
   $estatus= $_POST['ESTATUS_PERSONA'];
   if ($estatus == '') {
-    $estatus = 'n/a';
+    $estatus = 'PERSONA PROPUESTA';
   }
 
   // datos origen
@@ -235,6 +235,10 @@ if ($verifica == 1) {
     $res_domicilio = $mysqli->query($dom_actual);
   }else if ($domicilio == 'SI'){
     $reclusorio = $_POST['RECLUSORIO'];
+    $criterio = $_POST['criterio_oportunidad'];
+    echo $criterio;
+    $fecha_criterio = $_POST['fecha_cr_opor'];
+    echo $fecha_criterio;
     $name_recluso ="SELECT * FROM reclusorios WHERE denominacion='$reclusorio'";
     $r_recluso = $mysqli->query($name_recluso);
     $ro_recluso=$r_recluso->fetch_assoc();
@@ -243,8 +247,8 @@ if ($verifica == 1) {
     $localidad = '';
     $calle = '';
     $cp = '';
-    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar)
-                  VALUES ('$name_reclusorio', '$direccion', '$localidad', '$calle', '$cp', '$fol_exp', '$id_persona', '$domicilio')";
+    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar, criterio, fecha_criterio)
+                  VALUES ('$name_reclusorio', '$direccion', '$localidad', '$calle', '$cp', '$fol_exp', '$id_persona', '$domicilio', '$criterio', '$fecha_criterio')";
     $res_domicilio = $mysqli->query($dom_actual);
   } elseif ($domicilio == 'NO'){
     $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar)

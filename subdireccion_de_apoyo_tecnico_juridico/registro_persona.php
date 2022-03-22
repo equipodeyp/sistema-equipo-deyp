@@ -400,6 +400,19 @@ $num_consecutivo =$row["id"];
                 ?>
               </select>
             </div>
+            <div class="col-md-6 mb-3 validar" id="criterio_oport" style="display:none;">
+              <label for="criterio_oportunidad">CRITERIO DE OPORTUNIDAD</label>
+              <select class="form-select form-select-lg" name="criterio_oportunidad" onclick="fecha_criterio(this)">
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <option value="NO APLICA">NO APLICA</option>
+                <option value="EN ESPERA">EN ESPERA</option>
+                <option value="OTORGADO">OTORGADO</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3 validar" id="fecha_crit" style="display:none;">
+              <label for="fecha_c">FECHA DEL CRITERIO DE OPORTUNIDAD</label>
+              <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="">
+            </div>
             <!--  -->
             <div class="col-md-6 mb-3 validar" id="domestado" style="display:none;">
               <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
