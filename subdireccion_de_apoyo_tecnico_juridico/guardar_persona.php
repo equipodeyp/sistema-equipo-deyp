@@ -273,7 +273,7 @@ if ($verifica == 1) {
   $res_val_juridica = $mysqli->query($val_juridica);
   // // sql para la inserccion de la determinacion de la incorporacion
   $det_inc = "INSERT INTO determinacionincorporacion (multidisciplinario, incorporacion, date_autorizacion, convenio, vigencia, date_convenio, conclu_cancel, conclusionart35, otroart35, date_desincorporacion, folioexpediente, id_persona)
-                VALUES('$multidisciplinario', '$incorporacion', '$date_aut', '$convenio', '$vigencia', '$fecha_conv_ent', '$acuerdo', '$conclusionart35', '$otherart35', '$date_des', '$fol_exp', '$id_persona')";
+                VALUES('EN ELABORACION', '$incorporacion', '$date_aut', '$convenio', '$vigencia', '$fecha_conv_ent', '$acuerdo', '$conclusionart35', '$otherart35', '$date_des', '$fol_exp', '$id_persona')";
   $res_det_inc = $mysqli->query($det_inc);
   if ($radicacion == 'OFICIO') {
     $des_rad = $_POST['OFICIO'];
