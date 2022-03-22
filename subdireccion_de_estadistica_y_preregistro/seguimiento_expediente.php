@@ -1008,12 +1008,12 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
       else if (respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
 
-        document.getElementById('LABEL_INCORPORACION').style.display = "";
-        document.getElementById('INCORPORACION').style.display = "";
-        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('FECHA_AUTORIZACION_ANALISIS').style.display = "";
-        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
-        document.getElementById('id_analisis').style.display = "";
+        document.getElementById('LABEL_INCORPORACION').style.display = "none";
+        document.getElementById('INCORPORACION').style.display = "none";
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
+        document.getElementById('FECHA_AUTORIZACION_ANALISIS').style.display = "none";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
+        document.getElementById('id_analisis').style.display = "none";
 
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('CONVENIO_DE_ENTENDIMIENTO').style.display = "none";
@@ -1086,12 +1086,12 @@ function ocultarAnalisisM() {
 
       else if (analisisM === "EN ELABORACION"){
 
-        document.getElementById('LABEL_INCORPORACION').style.display = "";
-        document.getElementById('INCORPORACION').style.display = "";
-        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('FECHA_AUTORIZACION_ANALISIS').style.display = "";
-        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
-        document.getElementById('id_analisis').style.display = "";
+        document.getElementById('LABEL_INCORPORACION').style.display = "none";
+        document.getElementById('INCORPORACION').style.display = "none";
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
+        document.getElementById('FECHA_AUTORIZACION_ANALISIS').style.display = "none";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
+        document.getElementById('id_analisis').style.display = "none";
 
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('CONVENIO_DE_ENTENDIMIENTO').style.display = "none";
