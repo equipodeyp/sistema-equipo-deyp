@@ -502,7 +502,7 @@ $validacion = $fil_val['validacion'];
                           </div>
                           <div>
                           <span>
-                          ".$var_fila['fecha']."
+                          ".date("d/m/Y", strtotime($var_fila['fecha']))."
                           </span>
                           </div>
                           </li>
