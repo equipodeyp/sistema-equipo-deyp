@@ -1034,7 +1034,7 @@ var concluNone = document.getElementById('ESTATUS_PERSONA').value;
 
 
 function ConclusionCancelacion(){
-if(concluNone === "" || concluNone === null || concluNone === "n/a" || concluNone === "PERSONA PROPUESTA" || concluNone === "SUJETO PROTEGIDO"){
+if(concluNone === "" || concluNone === null || concluNone === "PERSONA PROPUESTA" || concluNone === "SUJETO PROTEGIDO"){
 
       document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "none";
       document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "none";
@@ -1222,34 +1222,38 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 
 <script type="text/javascript">
 
-var idAnalisis = document.getElementById('id_analisis');
-var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO');
+var idAnalisis = document.getElementById('id_analisis').value;
+var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO').value;
 
-var numDeConvenios = document.getElementById('id_convenio');
+var numDeConvenios = document.getElementById('id_convenio').value;
 
-var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO');
-var incorporacion = document.getElementById('INPUT_INCORPORACION');
-var fechaAutoAnalisis = document.getElementById('FECHA_AUTORIZACION');
-var convenioDeEntendimiento = document.getElementById('CONVENIO_ENTENDIMIENTO');
-var fechaDeFirma = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS');
-var fechaInicioConvenio = document.getElementById('fecha_inicio');
+var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
+var incorporacion = document.getElementById('INPUT_INCORPORACION').value;
+var fechaAutoAnalisis = document.getElementById('FECHA_AUTORIZACION').value;
+var convenioDeEntendimiento = document.getElementById('CONVENIO_ENTENDIMIENTO').value;
+var fechaDeFirma = document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value;
+var fechaInicioConvenio = document.getElementById('fecha_inicio').value;
+
+var readOnlyEstatus = document.getElementById('ESTATUS_PERSONA').value;
+console.log(analisisM);
+  console.log(readOnlyEstatus);
 
 function ReadOnlyIdAnalisis() {
-  if( !idAnalisis.value == null || !idAnalisis.value == "" ){
+  if( !idAnalisis == null || !idAnalisis == "" ){
     idAnalisis.readOnly = true;
   }
 }
 ReadOnlyIdAnalisis();
 
 function ReadOnlyVigenciaconvenio() {
-  if( !fechaVigenciaConvenio.value == null || !fechaVigenciaConvenio.value == "" ){
+  if( !fechaVigenciaConvenio == null || !fechaVigenciaConvenio == "" ){
     fechaVigenciaConvenio.readOnly = true;
   }
 }
 ReadOnlyVigenciaconvenio();
 
 function ReadOnlyNumConvenios() {
-  if( !numDeConvenios.value == null || !numDeConvenios.value == "" ){
+  if( !numDeConvenios == null || !numDeConvenios == "" ){
     numDeConvenios.readOnly = true;
     analisisM.disabled = true;
     incorporacion.disabled = true;
@@ -1260,10 +1264,8 @@ function ReadOnlyNumConvenios() {
   }
 }
 ReadOnlyNumConvenios();
-</script>
 
-<script type="text/javascript">
-var readOnlyEstatus = document.getElementById('ESTATUS_PERSONA').value;
+
 
 function ReadOnlyConClu() {
   if( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
@@ -1280,31 +1282,49 @@ function ReadOnlyConClu() {
     document.getElementById('enter').style.display = "none";
     document.getElementById('AGREGAR_CONVENIO').style.display = "none";
   }
+}
+ReadOnlyConClu();
 
-  if (analisisM.value == "ACUERDO DE CONCLUSION" || analisisM.value == "ACUERDO DE CANCELACION"){
-    if (readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
+
+// function ReadOnlyAcuerdo(){
+//   console.log(analisisM);
+//   console.log(readOnlyEstatus);
+//   if (analisisM == "ACUERDO DE CONCLUSION" || analisisM == "ACUERDO DE CANCELACION"){
+//     // if (readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
+//       analisisM.disabled = true;
+//       incorporacion.disabled = true;
+//       fechaAutoAnalisis.readOnly = true;
+//     // }
+//   }
+// }
+// ReadOnlyAcuerdo();
+
+function ReadOnlyAcuerdo(){
+  console.log(analisisM);
+  console.log(readOnlyEstatus);
+  if (analisisM == "ACUERDO DE CONCLUSION" || analisisM == "ACUERDO DE CANCELACION"){
+    // if (readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
       analisisM.disabled = true;
       incorporacion.disabled = true;
       fechaAutoAnalisis.readOnly = true;
-    }
+    // }
   }
+}
+ReadOnlyAcuerdo();
 
-  if (analisisM.value == "ESTUDIO TECNICO"){
-    if (convenioDeEntendimiento.value == "NO FORMALIZADO" ){
+
+function ReadOnlyEstudio(){
+  if (analisisM == "ESTUDIO TECNICO"){
+    if (convenioDeEntendimiento == "NO FORMALIZADO" ){
       analisisM.disabled = true;
       incorporacion.disabled = true;
       fechaAutoAnalisis.readOnly = true;
       convenioDeEntendimiento.disabled = true;
     }
-
   }
-
-
 }
 ReadOnlyConClu();
 
 </script>
-
-
 </body>
 </html>
