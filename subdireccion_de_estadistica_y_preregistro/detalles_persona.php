@@ -1176,15 +1176,13 @@ ReadOnlyNumConvenios();
 var readOnlyEstatus = document.getElementById('ESTATUS_PERSONA').value;
 
 function ReadOnlyConClu() {
-  if( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
+  if ( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
 
     document.getElementById('FECHA_DESINCORPORACION_UNO').readOnly = true;
     document.getElementById('CONCLUSION_ART351').disabled = true;
     document.getElementById('OTHER_ART351').readOnly = true;
     document.getElementById('ESTATUS_PERSONA').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = true;
-    document.getElementById('FUENTE').disabled = true;
-    document.getElementById('ESPECIFIQUE_FUENTE').readOnly = true;
     document.getElementById('COMENTARIO').disabled = true;
     document.getElementById('UPDATE_FILE').style.display = "none";
     document.getElementById('enter').style.display = "none";

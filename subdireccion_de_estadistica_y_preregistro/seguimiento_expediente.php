@@ -596,11 +596,12 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                 </div>
 
-                <div class="row">
-                  <div class="row">
+                 <div class="row">
+                  <!-- <div class="row">
                     <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
+                  </div> -->
+
+                  <!--<div class="alert alert-info">
                     <h3 style="text-align:center">FUENTE</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -659,7 +660,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                    <div class="col-md-6 mb-3 validar" id="OTRO_S" style="display:none;">
                      <label for="OTRO_S">OTRO<span class="required"></span></label>
                      <input class="form-control" id="OTRO_S1" name="OTRO_S1" placeholder=""  value="<?php echo $rowfuentemedida['descripcion']; ?>" type="text" >
-                   </div>
+                   </div> -->
 
                 </div>
                 <div class="row">
@@ -1417,8 +1418,8 @@ function ReadOnlyConClu() {
     document.getElementById('OTHER_ART351').readOnly = true;
     document.getElementById('ESTATUS_EXPEDIENTE').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION').disabled = true;
-    document.getElementById('FUENTE_S').disabled = true;
-    document.getElementById('ESPECIFIQUE_FUENTE').readOnly = true;
+    // document.getElementById('FUENTE_S').disabled = true;
+    // document.getElementById('ESPECIFIQUE_FUENTE').readOnly = true;
     document.getElementById('COMENTARIO').disabled = true;
     document.getElementById('enter').style.display = "none";
     document.getElementById('btn_agregar').style.display = "none";
@@ -1430,7 +1431,6 @@ function ReadOnlyConClu() {
       incorporacion.disabled = true;
       fechaAutoAnalisis.readOnly = true;
     }
-
   }
 
   if ( analisisM.value == "ESTUDIO TECNICO" ){
@@ -1441,7 +1441,6 @@ function ReadOnlyConClu() {
       convenioDeEntendimiento.disabled = true;
     }
   }
-
 }
 ReadOnlyConClu();
 
