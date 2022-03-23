@@ -427,77 +427,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
 
 
-                </div>
-
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">FUENTE</h3>
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="FUENTE">FUENTE<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="FUENTE" name="FUENTE" onChange="showInp()" >
-                      <option style="visibility: hidden" id="opt-fuente" value="<?php echo $rowradmas['fuente']; ?>"><?php echo $rowradmas['fuente']; ?></option>
-                      <?php
-                      $rad = "SELECT * FROM radicacion";
-                      $answerrad = $mysqli->query($rad);
-                      while($rads = $answerrad->fetch_assoc()){
-                        echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
-                  <?php
-                  $radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
-                  $resultadoradmas = $mysqli->query($radmas);
-                  $rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
-                  if ($rowradmas['fuente']=='OFICIO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OFICIO">
-                      <label for="OFICIO">OFICIO<span class="required"></span></label>
-                      <input class="form-control" id="OFICIO_VALIDAR" name="OFICIO" placeholder="" value="'.$rowradmas['descripcion'].'" value=""  type="text" >
-                    </div>';
-                  } else if ($rowradmas['fuente']=='CORREO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="CORREO">
-                      <label for="CORREO">CORREO<span class="required"></span></label>
-                      <input class="form-control" id="CORREO_VALIDAR" name="CORREO" placeholder=""  value="'.$rowradmas['descripcion'].'" type="text" >
-                    </div>';
-                  } elseif ($rowradmas['fuente']=='EXPEDIENTE') {
-                    echo '<div class="col-md-6 mb-3 validar"  id="EXPEDIENTE">
-                      <label for="EXPEDIENTE">EXPEDIENTE<span class="required"></span></label>
-                      <input class="form-control" id="EXPEDIENTE_VALIDAR" name="EXPEDIENTE" placeholder="" value="'.$rowradmas['descripcion'].'" type="text" >
-                    </div>';
-                  }elseif ($rowradmas['fuente']=='OTRO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OTRO">
-                      <label for="OTRO">OTRO<span class="required"></span></label>
-                      <input class="form-control" id="OTRO_VALIDAR" name="OTRO" placeholder=""  value="'.$rowradmas['descripcion'].'" type="text" >
-                    </div>';
-                  }
-                   ?>
-
-                  <div class="col-md-6 mb-3 validar" id="OFICIO" style="display:none;">
-                    <label for="OFICIO">OFICIO<span class="required"></span></label>
-                    <input class="form-control" id="OFICIO1" name="OFICIO1" placeholder="" value="<?php echo $rowradmas['descripcion']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar" id="CORREO" style="display:none;">
-                    <label for="CORREO">CORREO<span class="required"></span></label>
-                    <input class="form-control" id="CORREO1" name="CORREO1" placeholder=""  value="<?php echo $rowradmas['descripcion']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE" style="display:none;">
-                    <label for="EXPEDIENTE">EXPEDIENTE<span class="required"></span></label>
-                    <input class="form-control" id="EXPEDIENTE1" name="EXPEDIENTE1" placeholder="" value="<?php echo $rowradmas['descripcion']; ?>" type="text" >
-                  </div>
-
-                  <div class="col-md-6 mb-3 validar" id="OTRO" style="display:none;">
-                    <label for="OTRO">OTRO<span class="required"></span></label>
-                    <input class="form-control" id="OTRO1" name="OTRO1" placeholder=""  value="<?php echo $rowradmas['descripcion']; ?>" type="text" >
-                  </div>
-
-                </div>
+                </div>                
 
                 <div class="row">
                   <div class="row">
