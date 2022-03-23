@@ -95,10 +95,10 @@ $fila_consulta = $res_consulta->fetch_assoc();
             <form class="container well form-horizontal" method="POST" action="agregar_evaluacion_exp.php?folio=<?php echo $folioexpediente; ?>" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
-                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fila_consulta['folioexpediente']?>">DETALLES EXPEDIENTE</a>
-                  <a href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
-                  <a class="actived">AGREGAR EVALUACION DE SEGUIMIENTO DEL EXPEDIENTE</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">SEGUIMIENTO</a>
+                  <a class="actived">AGREGAR EVALUACION</a>
                 </div>
                 <div class="row">
                   <hr class="mb-4">

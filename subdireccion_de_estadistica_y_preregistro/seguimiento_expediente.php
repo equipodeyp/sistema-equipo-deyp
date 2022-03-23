@@ -191,9 +191,9 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
             <div class="container">
               <form class=" container well form-horizontal" action="actualizar_expediente_seguimiento.php?folio=<?php echo $fol_exp; ?>" method="post">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
-                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>">DETALLES EXPEDIENTE</a>
-                  <a class="actived">DETALLES DEL SEGUIMIENTO DEL EXPEDIENTE</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>">EXPEDIENTE</a>
+                  <a class="actived">SEGUIMIENTO</a>
                 </div>
                 <div class="row">
                   <div class="alert alert-info">

@@ -579,7 +579,7 @@ $validacion = $fil_val['validacion'];
       </div>";
     }
    ?>
-<a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
 <!-- SCRIPT DE FECHAS  -->
 

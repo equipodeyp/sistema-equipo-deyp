@@ -93,8 +93,8 @@ $name = $_SESSION['usuario'];
 	  <article id="tab1">
 			<div class="well form-horizontal" >
 				<div class="secciones sticky breadcrumb flat">
-					<a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
-					<a class="actived">DETALLES EXPEDIENTE</a>
+					<a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+					<a class="actived">EXPEDIENTE</a>
 					<!-- <a class="actived">DATOS DE PERSONAS PROPUESTAS</a> -->
 				</div>
 				<div class="row">

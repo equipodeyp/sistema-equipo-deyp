@@ -103,10 +103,10 @@ $id_persona = $fila_consulta_uno ['id'];
             <form class="container well form-horizontal" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
-                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fila_consulta['folioexpediente']?>">DETALLES EXPEDIENTE</a>
-                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>">DETALLES DE LA PERSONA PROPUESTA</a>
-                  <a class="actived">DETALLES DE EVALUACION DE LA PERSONA</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
+                  <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>">PERSONA</a>
+                  <a class="actived">DETALLES DE EVALUACION</a>
                 </div>
                 <div class="row">
                   <hr class="mb-4">

@@ -367,7 +367,7 @@ $validacion = $fil_val['validacion'];
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">CANCELAR</a>
+<a href="../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=<?=$fol_exp?>" class="btn-flotante">CANCELAR</a>
 </div>
 <script type="text/javascript">
 var today = new Date();
