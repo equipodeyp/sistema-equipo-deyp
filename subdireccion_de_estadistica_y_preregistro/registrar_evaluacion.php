@@ -259,6 +259,8 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
         document.getElementById('row_observaciones').style.display = "";
         document.getElementById('row_enter').style.display = "";
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
 
         document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
         document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
