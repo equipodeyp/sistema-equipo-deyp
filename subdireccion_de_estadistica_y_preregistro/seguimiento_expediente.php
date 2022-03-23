@@ -697,7 +697,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                             </div>
                             <div>
                             <span>
-                            ".$var_fila['fecha']."
+                            ".date("d/m/Y", strtotime($var_fila['fecha']))."
                             </span>
                             </div>
                             </li>
@@ -1432,7 +1432,7 @@ function ReadOnlyConClu() {
     }
 
   }
-  
+
   if ( analisisM.value == "ESTUDIO TECNICO" ){
     if ( convenioDeEntendimiento.value == "NO FORMALIZADO" ){
       analisisM.disabled = true;

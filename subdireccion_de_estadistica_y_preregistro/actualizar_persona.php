@@ -12,6 +12,7 @@ if ($verifica_update_person == 1) {
   $row=$result->fetch_assoc();
   // carga de datos
   $id_persona = $_GET['folio'];  //variable del folio al que se relaciona
+  echo $id_persona;
   // datos de la autoridad
   $id_solicitud =$_POST['ID_SOLICITUD'];
   $fecha_solicitud=$_POST['FECHA_SOLICITUD'];
@@ -101,6 +102,7 @@ if ($verifica_update_person == 1) {
   $convenio= $_POST['CONVENIO_ENTENDIMIENTO'];
   $fecha_conv_ent =$_POST['FECHA_CONVENIO_ENTENDIMIENTO'];
   $fecha_inicio = $_POST['fecha_inicio'];
+  echo $fecha_inicio;
   $vigencia=$_POST['VIGENCIA_CONVENIO'];
   if ($fecha_inicio != '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
@@ -269,8 +271,7 @@ if ($verifica_update_person == 1) {
   // $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona,  aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus)
   //                                          VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona',              '$g_persona', '$name_cal', '$s_persona', '$cu_persona', '$rfc_persona',  '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$name_estatus')";
   // $res_dat_per = $mysqli->query($datos_persona);
-  $datos_persona = "UPDATE datospersonales SET  foto='$userpic', estatus='$estatus'  WHERE id = '$id_persona'";
-  $res_dat_per = $mysqli->query($datos_persona);
+
   // sql para la inserccion de datos del sujeto de su origen
   // $origen = "INSERT INTO datosorigen(lugardenacimiento, municipiodenacimiento, nacionalidadpersona, folioexpediente, id_persona)
   //             VALUES ('$name_est', '$name_muni', '$na_persona', '$fol_exp', '$id_persona')";
@@ -319,22 +320,30 @@ if ($verifica_update_person == 1) {
   if ($filachk['multidisciplinario'] === 'EN ELABORACION' || $filachk['multidisciplinario'] === '') {
     // code...|| ($filachk['incorporacion'] === '') || ($$filachk['convenio'] === '' || $$filachk['convenio'] === 'PENDIENTE DE EJECUCION')
     $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario',  date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
-                                                      conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+                                                      WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
   }
   if ($filachk['incorporacion'] === '') {
     $det_inc = "UPDATE determinacionincorporacion SET incorporacion='$incorporacion', date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
-                                                      conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+                                                      WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
   }
   if ($filachk['convenio'] === '' || $filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
     $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion='$date_aut', id_analisis='$id_analisis', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
-                                                      conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+                                                      WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
   }
-  $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion='$date_aut', id_analisis='$id_analisis', vigencia='$vigencia', date_convenio='$fecha_conv_ent', fecha_inicio='$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio='$id_convenio',
-                                                    conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
-  $res_det_inc = $mysqli->query($det_inc);
+  $estatus_per = "SELECT * FROM datospersonales WHERE id='$id_persona'";
+  $res_estatus_pe = $mysqli->query($estatus_per);
+  $fila_estatus_per = $res_estatus_pe->fetch_assoc();
+  echo $fila_estatus_per['estatus'];
+  if ($fila_estatus_per['estatus'] === 'PERSONA PROPUESTA' || $fila_estatus_per['estatus'] === 'SUJETO PROTEGIDO' || $fila_estatus_per['estatus'] === '') {
+    $datos_persona = "UPDATE datospersonales SET  foto='$userpic', estatus='$estatus'  WHERE id = '$id_persona'";
+    $res_dat_per = $mysqli->query($datos_persona);
+    $det_inc = "UPDATE determinacionincorporacion SET conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+    $res_det_inc = $mysqli->query($det_inc);
+  }
+
   if ($radicacion == 'OFICIO') {
     $des_rad = $_POST['OFICIO'];
     if ($des_rad == '') {
