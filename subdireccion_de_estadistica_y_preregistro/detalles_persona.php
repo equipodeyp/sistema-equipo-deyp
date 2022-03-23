@@ -1,5 +1,4 @@
 <?php
-/*require 'conexion.php';*/
 error_reporting(0);
 include("conexion.php");
 session_start ();
@@ -31,8 +30,6 @@ $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
 $res_val1=$mysqli->query($valid1);
 $fil_val1 = $res_val1->fetch_assoc();
 $validacion1 = $fil_val1['id_persona'];
-
-
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
 $resultadoaut = $mysqli->query($aut);
@@ -42,7 +39,6 @@ $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
 $resultadoorigen = $mysqli->query($origen);
 $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
 $nameestadonac=$roworigen['lugardenacimiento'];
-
 // datos del TUTOR
 $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
 $resultadotutor = $mysqli->query($tutor);
@@ -79,9 +75,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 $fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
 $resultadofuente3 = $mysqli->query($fuente3);
 $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
-
-
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -110,22 +104,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="../css/registrosolicitud1.css">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <!-- <script src="JQuery.js"></script> -->
-  <!-- <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
-  <script src="../js/verificar_camposm1.js"></script>
-  <script src="../js/mascara2campos.js"></script>
-  <script src="../js/mod_medida.js"></script> -->
-  <!-- <link rel="stylesheet" href="../css/estilos.css">
-  <script src="../js/main.js"></script> -->
-  <!-- <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
-  <script src="../js/validarmascara3.js"></script> -->
-
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 </head>
 <body >
 <div class="contenedor">
@@ -138,17 +119,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
-
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
 			}
-
 			if ($genero=='hombre') {
-				// $foto = ../image/user.png;
 				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
 			}
-			// echo $genero;
-			 ?>
+			?>
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -160,12 +137,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-      <!--  -->
+      <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
         <div class="secciones form-horizontal sticky breadcrumb flat">
-          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">EXPEDIENTES</a>
-          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">DETALLES EXPEDIENTE</a>
-          <a class="actived">DETALLES DE LA PERSONA PROPUESTA</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+          <a class="actived">PERSONA</a>
         </div>
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
@@ -427,7 +404,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
 
 
-                </div>                
+                </div>
 
                 <div class="row">
                   <div class="row">
