@@ -208,7 +208,7 @@ $name = $_SESSION['usuario'];
 		  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
 						<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
 						<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-						<th style="text-align:center">DETALLES </th>
+						<th style="text-align:center">DETALLES PERSONA</th>
 		  		</thead>
 			<?php
 			$cuenta = 0;
@@ -256,9 +256,9 @@ $name = $_SESSION['usuario'];
 		<div class="well form-horizontal">
 			<div class="row">
 				<div class="alert alert-info">
-					<h3 style="text-align:center">SEGUIMIENTO</h3>
+					<h3 style="text-align:center">SEGUIMIENTO DEL EXPEDIENTE</h3>
 				</div>
-				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a>
+				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
 			</div>
 		</div>
 

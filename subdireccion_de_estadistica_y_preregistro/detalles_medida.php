@@ -571,10 +571,10 @@ $validacion = $fil_val['validacion'];
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
-    if (($estatus_medida != 'EN EJECUCION') && ($validacion != 'true')) {
+    if ($validacion === 'false' && $name === 'adrianahe') {
       echo "<div>
               <p>
-
+                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
               </p>
       </div>";
     }
