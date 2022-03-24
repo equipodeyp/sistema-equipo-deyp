@@ -145,7 +145,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">EXPEDIENTE</a>
           <a class="actived">PERSONA</a>
         </div>
-        
+
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp;?>';"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
@@ -403,7 +403,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                     <div class="col-md-6 mb-3 validar" >
                       <label id="LABEL_OTHER_ART351" for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowstatusexp['otherart35']; ?>" type="text">
+                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowdetinc['otroart35']; ?>" type="text">
                     </div>
 
 
