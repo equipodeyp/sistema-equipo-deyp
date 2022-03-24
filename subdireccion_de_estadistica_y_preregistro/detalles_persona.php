@@ -403,7 +403,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                     <div class="col-md-6 mb-3 validar" >
                       <label id="LABEL_OTHER_ART351" for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowdetinc['otroart35']; ?>" type="text">
+                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowstatusexp['otherart35']; ?>" type="text">
                     </div>
 
 
