@@ -34,7 +34,9 @@ $row=$result->fetch_assoc();
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   		<script src="../js/jquery.dataTables.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
-      <link rel="stylesheet" href="../css/expediente.css">
+		<!-- barra de navegacion -->
+		<link rel="stylesheet" href="../css/breadcrumb.css">
+      	<link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -67,7 +69,8 @@ $row=$result->fetch_assoc();
 			}
 			// echo $genero;
 			 ?>
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+	
+    <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -81,10 +84,13 @@ $row=$result->fetch_assoc();
 
 		<!-- folio del expediente -->
 
-			<div class="wrap">
-
-	    <div class="secciones">
-
+<div class="wrap">
+	<!-- menu de navegacion de la parte de arriba -->
+	<div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+            <a class="actived">EXPEDIENTE</a>
+      </div>
+	<div class="secciones">
 	<article id="tab1">
 			<div class="well form-horizontal" >
 				<div class="row">

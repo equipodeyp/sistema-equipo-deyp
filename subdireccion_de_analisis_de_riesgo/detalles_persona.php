@@ -105,6 +105,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -153,6 +155,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 			}
 			// echo $genero;
 			 ?>
+  
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -166,9 +169,15 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!--  -->
       <div class="wrap">
+      <!-- menu de navegacion de la parte de arriba -->
+	    <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+            <a href="../subdireccion_de_analisis_de_riesgo/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+            <a class="actived">PERSONA</a>
+      </div>
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
-    			<li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
+    			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp;?>';"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
     			<!-- <li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
     		</ul>
 

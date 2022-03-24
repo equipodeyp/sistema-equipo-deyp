@@ -27,6 +27,9 @@ $row=$result->fetch_assoc();
   <script src="../js/bootstrap.min.js"></script>
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
+  
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -69,7 +72,7 @@ $row=$result->fetch_assoc();
   			}
   			// echo $genero;
   			?>
-        <span class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -79,9 +82,18 @@ $row=$result->fetch_assoc();
         <img src="../image/fiscalia.png" alt="" width="150" height="150">
         <img src="../image/ups2.png" alt="" width="1400" height="70">
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
-      </div>
+    </div>
+
+  
       <!-- menu del expediente -->
       <div class="wrap">
+        
+          <!-- menu de navegacion de la parte de arriba -->
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
+            <a class="actived">NUEVO EXPEDIENTE</a>
+          </div>
+      
         <div class="secciones">
           <article id="tab1">
             <div class=" well form-horizontal">

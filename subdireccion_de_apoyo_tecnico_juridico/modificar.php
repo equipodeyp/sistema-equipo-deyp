@@ -36,6 +36,8 @@ $row=$result->fetch_assoc();
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   		<script src="../js/jquery.dataTables.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
+		<!-- barra de navegacion -->
+		<link rel="stylesheet" href="../css/breadcrumb.css">
       <link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
@@ -83,9 +85,14 @@ $row=$result->fetch_assoc();
 
 		<!-- folio del expediente -->
 
-			<div class="wrap">
+<div class="wrap">
+	<!-- menu de navegacion de la parte de arriba -->
+	<div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
+            <a class="actived">EXPEDIENTE</a>
+    </div>
 
-	    <div class="secciones">
+	<div class="secciones">
 
 	  <article id="tab1">
 			<div class="well form-horizontal" >

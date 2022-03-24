@@ -104,6 +104,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -168,6 +170,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!--  -->
       <div class="wrap">
+        <!-- menu de navegacion de la parte de arriba -->
+      <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
+            <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+            <a class="actived">PERSONA</a>
+      </div>
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<!-- <li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>

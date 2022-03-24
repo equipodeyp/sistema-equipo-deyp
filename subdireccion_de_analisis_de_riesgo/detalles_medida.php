@@ -54,6 +54,8 @@ $validacion = $fil_val['validacion'];
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -103,7 +105,8 @@ $validacion = $fil_val['validacion'];
 			}
 			// echo $genero;
 			?>
-      <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+      
+      <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -116,7 +119,16 @@ $validacion = $fil_val['validacion'];
     </div>
     <div class="wrap">
     <div class="secciones">
+
     <article id="tab1">
+
+    <div class="secciones form-horizontal sticky breadcrumb flat">
+              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=<?=$id_p?>">MEDIDAS</a>
+              <a class="actived">DETALLES</a>
+            </div>
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
         <div class="row">
@@ -515,7 +527,7 @@ $validacion = $fil_val['validacion'];
       </div>";
     }
    ?>
-<a href="detalles_persona.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
+<a href="detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
 <!-- SCRIPT DE FECHAS  -->
 

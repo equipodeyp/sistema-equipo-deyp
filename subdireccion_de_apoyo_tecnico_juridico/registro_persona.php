@@ -51,6 +51,8 @@ $num_consecutivo =$row["id"];
   		<script src="../js/jquery.dataTables.min.js"></script>
   		<script src="../js/bootstrap.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
+       <!-- barra de navegacion -->
+      <link rel="stylesheet" href="../css/breadcrumb.css">
       <link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
@@ -107,9 +109,14 @@ $num_consecutivo =$row["id"];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="wrap">
-
-    <div class="secciones">
+<div class="wrap">
+      <!-- menu de navegacion de la parte de arriba -->
+      <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
+            <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
+            <a class="actived">REGISTRO PERSONA</a>
+      </div>
+  <div class="secciones">
 
   <article id="tab1">
     <p><span><label ></label> * CAMPOS OBLIGATORIOS</span></p>
