@@ -85,13 +85,14 @@ $row=$result->fetch_assoc();
 		<!-- folio del expediente -->
 
 <div class="wrap">
-	<!-- menu de navegacion de la parte de arriba -->
+	
+	<div class="secciones">
+	<article id="tab1">
+		<!-- menu de navegacion de la parte de arriba -->
 	<div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
             <a class="actived">EXPEDIENTE</a>
       </div>
-	<div class="secciones">
-	<article id="tab1">
 			<div class="well form-horizontal" >
 				<div class="row">
 				<div class="alert alert-info">
