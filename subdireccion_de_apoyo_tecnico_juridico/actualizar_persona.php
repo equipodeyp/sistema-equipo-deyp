@@ -304,14 +304,14 @@ if ($verifica_update_person == 1) {
   $calle = '';
   $cp = '';
   if ($domicilio == '') {
-    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio', criterio='$criterio_portunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
+    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio', criterio='$criterio_oportunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
     $res_domicilio = $mysqli->query($dom_actual);
   }else if ($domicilio == 'SI'){
 
-    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_reclusorio', seleccionemunicipio='$direccion', seleccionelocalidad='$localidad', calle='$calle', cp='$cp', lugar='$domicilio', criterio='$criterio_portunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
+    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_reclusorio', seleccionemunicipio='$direccion', seleccionelocalidad='$localidad', calle='$calle', cp='$cp', lugar='$domicilio', criterio='$criterio_oportunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
     $res_domicilio = $mysqli->query($dom_actual);
   } elseif ($domicilio == 'NO'){
-    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio', criterio='$criterio_portunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
+    $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio', criterio='$criterio_oportunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
     $res_domicilio = $mysqli->query($dom_actual);
   }
   // $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona' WHERE id_persona = '$id_persona'";

@@ -657,7 +657,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   
                   <div class="col-md-6 mb-3 validar" id="fecha_crit">
                     <label id="label_fecha_cr_opor" for="fecha_c">FECHA DEL CRITERIO DE OPORTUNIDAD</label>
-                    <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="<?php echo $rowdomicilio['criterio_fecha']; ?>">
+                    <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="<?php echo $rowdomicilio['fecha_criterio']; ?>">
                   </div>
 
                   <!-- <div class="col-md-6 mb-3 validar">
