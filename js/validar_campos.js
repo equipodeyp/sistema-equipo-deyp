@@ -497,7 +497,7 @@ var ConclusioCancelacion = document.getElementById('CONCLUSION_CANCELACION').val
       }
 
 function fecha_criterio(sel){
-  if (sel.value === "EN ESPERA" || sel.value === "OTORGADO") {
+  if (sel.value === "OTORGADO") {
     divC = document.getElementById("fecha_crit");
     divC.style.display="";
   }else {

@@ -535,6 +535,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
+                  
+
                   <?php
 
                   $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
@@ -641,6 +643,21 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <div class="col-md-6 mb-3 validar" id="act_cp" style="display:none;">
                     <label for="CP">C.P.<span class="required"></span></label>
                     <input class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5" >
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar" id="criterio_oport">
+                    <label for="criterio_oportunidad" id="LABEL_CRITERIO_OPORTUNIDAD">CRITERIO DE OPORTUNIDAD</label>
+                    <select class="form-select form-select-lg" name="criterio_oportunidad" id="CRITERIO_OPORTUNIDAD">
+                      <option disabled selected value="<?php echo $rowdomicilio['criterio']; ?>"><?php echo $rowdomicilio['criterio']; ?></option>
+                      <option value="NO APLICA">NO APLICA</option>
+                      <option value="EN ESPERA">EN ESPERA</option>
+                      <option value="OTORGADO">OTORGADO</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-6 mb-3 validar" id="fecha_crit">
+                    <label id="label_fecha_cr_opor" for="fecha_c">FECHA DEL CRITERIO DE OPORTUNIDAD</label>
+                    <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="<?php echo $rowdomicilio['criterio_fecha']; ?>">
                   </div>
 
                   <!-- <div class="col-md-6 mb-3 validar">
@@ -962,6 +979,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 </p>
 </div>
 <!-- SCRIPT DE FECHAS  -->
+
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
@@ -977,7 +995,8 @@ today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_SOLICITUD").setAttribute("max", today);
 document.getElementById("FECHA_NACIMIENTO_PERSONA").setAttribute("max", today);
 </script>
-<script>
+
+<script type="text/javascript">
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
 
@@ -1029,13 +1048,14 @@ window.addEventListener('load', function () {
     });
 });
 </script>
+
 <script type="text/javascript">
 var separarFolio = [];
 var folio = document.getElementById('NUM_EXPEDIENTE').value;
 separarFolio = folio.split("/");
 
 var idFolio = separarFolio[3];
-console.log(idFolio);
+
 </script>
 
 
@@ -1047,7 +1067,160 @@ if (idUnico == null || idUnico == ""){
 
   alert("No se generó el id unico de la persona al registrar los datos. Soicitar su llenado.")
 }
+}
 Id();
-  </script>
+
+</script>
+
+<script type="text/javascript">
+
+var Ppl = document.getElementById("MOD_DOMICILIO").value;
+
+function CriterioOportunidad (){
+
+  if (Ppl === null || Ppl === ""){
+    document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
+    document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
+
+
+  }
+  else if (Ppl === "SI"){
+    document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
+    document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
+  }
+
+  else if (Ppl === "NO"){
+    document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
+    document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
+  }
+}
+CriterioOportunidad();
+</script>
+
+<script type="text/javascript">
+
+var criterioOport = document.getElementById("CRITERIO_OPORTUNIDAD").value;
+
+function CriterioOportunidad (){
+
+  if (criterioOport === null || criterioOport === ""){
+    document.getElementById("label_fecha_cr_opor").style.display = "none";
+    document.getElementById("fecha_cr_opor").style.display = "none";
+
+
+  }
+  else if (criterioOport === "OTORGADO"){
+    document.getElementById("label_fecha_cr_opor").style.display = "";
+    document.getElementById("fecha_cr_opor").style.display = "";
+  }
+
+  else if (criterioOport === "NO APLICA" || criterioOport === "EN ESPERA"){
+    document.getElementById("label_fecha_cr_opor").style.display = "none";
+    document.getElementById("fecha_cr_opor").style.display = "none";
+  }
+}
+CriterioOportunidad();
+</script>
+
+<!-- <script type="text/javascript">
+var ppl= document.getElementById("MOD_DOMICILIO");
+var pplCriterio;
+
+ppl.addEventListener('change', obtenerPpl);
+
+    function obtenerPpl(e) {
+      pplCriterio = e.target.value;
+      console.log(pplCriterio);
+      if (pplCriterio=== "SI"){
+        document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
+        document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
+      }
+
+      else (pplCriterio === "NO"){
+        document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
+        document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
+      }
+}
+</script>
+
+<script type="text/javascript">
+var criterioOp= document.getElementById("MOD_DOMICILIO");
+var criterioOprtunidad;
+
+criterioOp.addEventListener('change', obtenerCriterio);
+
+    function obtenerCriterio(e) {
+      criterioOprtunidad = e.target.value;
+      console.log(criterioOprtunidad);
+    if (criterioOprtunidad === null || criterioOport === ""){
+    document.getElementById("label_fecha_cr_opor").style.display = "none";
+    document.getElementById("fecha_cr_opor").style.display = "none";
+
+
+    }
+    else if (criterioOprtunidad === "OTORGADO"){
+      document.getElementById("label_fecha_cr_opor").style.display = "";
+      document.getElementById("fecha_cr_opor").style.display = "";
+    }
+
+    else if (criterioOprtunidad === "NO APLICA" || criterioOport === "EN ESPERA"){
+      document.getElementById("label_fecha_cr_opor").style.display = "none";
+      document.getElementById("fecha_cr_opor").style.display = "none";
+    }
+}
+</script> -->
+
+<script type="text/javascript">
+var pplCriterio = document.getElementById("MOD_DOMICILIO");
+var pplCriterioOport;
+
+pplCriterio.addEventListener('change', obtenerPplCriterioOport);
+
+    function obtenerPplCriterioOport(e) {
+      pplCriterioOport = e.target.value;
+      console.log(pplCriterioOport);
+      if (pplCriterioOport === "SI"){
+        document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
+        document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
+
+      } 
+
+      else {
+        document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
+        document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
+        document.getElementById("label_fecha_cr_opor").style.display = "none";
+        document.getElementById("fecha_cr_opor").style.display = "none";
+
+      }
+}
+
+
+</script>
+
+<script type="text/javascript">
+var criterioDeOportunidadUno = document.getElementById("CRITERIO_OPORTUNIDAD");
+var criterioDeOpotudidadDos;
+
+criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
+
+    function obtenerCriterioOport(e) {
+      criterioDeOpotudidadDos = e.target.value;
+      console.log(criterioDeOpotudidadDos);
+
+      if (criterioDeOpotudidadDos === "OTORGADO"){
+        document.getElementById("label_fecha_cr_opor").style.display = "";
+        document.getElementById("fecha_cr_opor").style.display = "";
+      }
+
+      else {
+        document.getElementById("label_fecha_cr_opor").style.display = "none";
+        document.getElementById("fecha_cr_opor").style.display = "none";
+      }
+}
+
+
+</script>
+
+
 </body>
 </html>

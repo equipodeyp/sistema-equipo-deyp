@@ -400,6 +400,7 @@ $num_consecutivo =$row["id"];
                 ?>
               </select>
             </div>
+
             <div class="col-md-6 mb-3 validar" id="criterio_oport" style="display:none;">
               <label for="criterio_oportunidad">CRITERIO DE OPORTUNIDAD</label>
               <select class="form-select form-select-lg" name="criterio_oportunidad" onclick="fecha_criterio(this)">
@@ -948,8 +949,7 @@ document.getElementById("next3").addEventListener("click", function() {
 
 });
 </script>
-</body>
-</html>
+
 <script type="text/javascript">
 window.onload = function(){
 var fecha = new Date(); //Fecha actual
@@ -977,3 +977,9 @@ if (idUnico == null || idUnico == ""){
 }
 }
   </script> -->
+
+  
+</script>
+
+</body>
+</html>

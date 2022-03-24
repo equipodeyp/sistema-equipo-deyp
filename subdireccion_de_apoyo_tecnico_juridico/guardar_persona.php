@@ -230,8 +230,8 @@ if ($verifica == 1) {
   // // sql para la inserccion de datos del lugar donde radica el Sujeto
   $domicilio = $_POST["DOMICILIO"];
   if ($domicilio == '') {
-    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar)
-                  VALUES ('$name_estac', '$name_muniac', '$lo_persona', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona', '$domicilio')";
+    $dom_actual ="INSERT INTO domiciliopersona(seleccioneestado, seleccionemunicipio, seleccionelocalidad, calle, cp, folioexpediente, id_persona, lugar, criterio, fecha_criterio)
+                  VALUES ('$name_estac', '$name_muniac', '$lo_persona', '$ca_persona', '$cp_persona', '$fol_exp', '$id_persona', '$domicilio', '$criterio', '$fecha_criterio')";
     $res_domicilio = $mysqli->query($dom_actual);
   }else if ($domicilio == 'SI'){
     $reclusorio = $_POST['RECLUSORIO'];
