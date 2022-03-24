@@ -142,7 +142,7 @@ $validacion = $fil_val['validacion'];
           // $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
           // $res_val=$mysqli->query($valid);
           // $fil_val = $res_val->fetch_assoc();
-          $validacion = $rowfol1['validacion'];
+          $validacion = $rowfol1['validar_datos'];
             if ($validacion == 'true') {
               echo "<div class='columns download'>
                       <p>
@@ -570,8 +570,7 @@ $validacion = $fil_val['validacion'];
   $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
-  $validacion = $fil_val['validacion'];
-    if ($validacion === 'false' && $name === 'adrianahe') {
+    if ($fil_val['validar_datos'] === 'false' && $name === 'adrianahe') {
       echo "<div>
               <p>
                 <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
