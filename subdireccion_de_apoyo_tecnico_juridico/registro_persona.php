@@ -110,15 +110,17 @@ $num_consecutivo =$row["id"];
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
 <div class="wrap">
-      <!-- menu de navegacion de la parte de arriba -->
+     
+  <div class="secciones">
+
+  <article id="tab1">
+    
+  <!-- menu de navegacion de la parte de arriba -->
       <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
             <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
             <a class="actived">REGISTRO PERSONA</a>
       </div>
-  <div class="secciones">
-
-  <article id="tab1">
     <p><span><label ></label> * CAMPOS OBLIGATORIOS</span></p>
     <div class="container">
       <form class="container well form-horizontal" id="myform" method="POST" action="guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
