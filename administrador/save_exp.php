@@ -44,7 +44,7 @@ if ($verifica == 1) {
     $num_consecutivo =$row_exp22['num_consecutivo'];
     $n=$num_consecutivo;
     $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
-    echo $n_con;
+    // echo $n_con;
   } else {
     $num_consecutivo = 0;
     $n=$num_consecutivo;
@@ -64,6 +64,12 @@ if ($verifica == 1) {
   $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion)
           VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion')";
   $resultado = $mysqli->query($sql);
+  $estatus_expediente = "INSERT INTO statusseguimiento(status, folioexpediente)
+          VALUES ('ANALISIS', '$folio_expediente')";
+  $res_esattus_exp = $mysqli->query($estatus_expediente);
+  $analisis_expediente = "INSERT INTO analisis_expediente (folioexpediente, analisis)
+          VALUES ('$folio_expediente', 'EN ELABORACION')";
+  $res_analisis_exp = $mysqli->query($analisis_expediente);
   $sent=" SELECT id, fol_exp FROM expediente WHERE fol_exp='$folio_expediente'";
   $resu = $mysqli->query($sent);
   $ro=$resu->fetch_assoc();
