@@ -247,7 +247,7 @@ $row=$result->fetch_assoc();
 									<div class="alert alert-info">
 										<h3 style="text-align:center">SEGUIMIENTO</h3>
 									</div>
-									<a  href=""> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a>
+									<a  href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a>
 								</div>
 							</div>
 						</div>
