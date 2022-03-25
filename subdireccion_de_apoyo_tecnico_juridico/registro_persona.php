@@ -173,22 +173,22 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR PUBLICO<span class="required"></span></label>
+            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR PÚBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR PUBLICO<span class="required"></span></label>
+            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PUBLICO<span class="required"></span></label>
+            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PÍBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR PUBLICO<span class="required"></span></label>
+            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
@@ -286,7 +286,7 @@ $num_consecutivo =$row["id"];
             <div class="col-md-6 mb-3 validar">
               <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
-                <option disabled selected value>SELECCIONE UNA OPCION</option>
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
                 $calidad = "SELECT * FROM calidadpersonaprocesopenal";
                 $answer = $mysqli->query($calidad);

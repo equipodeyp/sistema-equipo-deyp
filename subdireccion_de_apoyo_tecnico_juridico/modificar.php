@@ -38,7 +38,7 @@ $row=$result->fetch_assoc();
   		<script src="../js/jquery.dataTables.min.js"></script>
 		<!-- barra de navegacion -->
 		<link rel="stylesheet" href="../css/breadcrumb.css">
-      <link rel="stylesheet" href="../css/expediente.css">
+      	<link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">

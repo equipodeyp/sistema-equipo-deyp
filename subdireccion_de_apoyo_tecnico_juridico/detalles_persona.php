@@ -170,12 +170,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!--  -->
       <div class="wrap">
-        <!-- menu de navegacion de la parte de arriba -->
-      <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
-            <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
-            <a class="actived">PERSONA</a>
-      </div>
+        
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<!-- <li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
@@ -184,6 +179,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
     		<div class="secciones">
     			<article id="tab1">
+            
+          <!-- menu de navegacion de la parte de arriba -->
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+                <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
+                <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+                <a class="actived">PERSONA</a>
+          </div>
     				<div class="container">
               <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
@@ -1130,54 +1132,6 @@ function CriterioOportunidad (){
 CriterioOportunidad();
 </script>
 
-<!-- <script type="text/javascript">
-var ppl= document.getElementById("MOD_DOMICILIO");
-var pplCriterio;
-
-ppl.addEventListener('change', obtenerPpl);
-
-    function obtenerPpl(e) {
-      pplCriterio = e.target.value;
-      console.log(pplCriterio);
-      if (pplCriterio=== "SI"){
-        document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
-        document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
-      }
-
-      else (pplCriterio === "NO"){
-        document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
-        document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
-      }
-}
-</script>
-
-<script type="text/javascript">
-var criterioOp= document.getElementById("MOD_DOMICILIO");
-var criterioOprtunidad;
-
-criterioOp.addEventListener('change', obtenerCriterio);
-
-    function obtenerCriterio(e) {
-      criterioOprtunidad = e.target.value;
-      console.log(criterioOprtunidad);
-    if (criterioOprtunidad === null || criterioOport === ""){
-    document.getElementById("label_fecha_cr_opor").style.display = "none";
-    document.getElementById("fecha_cr_opor").style.display = "none";
-
-
-    }
-    else if (criterioOprtunidad === "OTORGADO"){
-      document.getElementById("label_fecha_cr_opor").style.display = "";
-      document.getElementById("fecha_cr_opor").style.display = "";
-    }
-
-    else if (criterioOprtunidad === "NO APLICA" || criterioOport === "EN ESPERA"){
-      document.getElementById("label_fecha_cr_opor").style.display = "none";
-      document.getElementById("fecha_cr_opor").style.display = "none";
-    }
-}
-</script> -->
-
 <script type="text/javascript">
 var pplCriterio = document.getElementById("MOD_DOMICILIO");
 var pplCriterioOport;
@@ -1186,7 +1140,6 @@ pplCriterio.addEventListener('change', obtenerPplCriterioOport);
 
     function obtenerPplCriterioOport(e) {
       pplCriterioOport = e.target.value;
-      console.log(pplCriterioOport);
       if (pplCriterioOport === "SI"){
         document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
         document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
@@ -1213,7 +1166,6 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
 
     function obtenerCriterioOport(e) {
       criterioDeOpotudidadDos = e.target.value;
-      console.log(criterioDeOpotudidadDos);
 
       if (criterioDeOpotudidadDos === "OTORGADO"){
         document.getElementById("label_fecha_cr_opor").style.display = "";
