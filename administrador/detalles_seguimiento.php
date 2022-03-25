@@ -167,8 +167,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
         <div class="container">
           <form class=" container well form-horizontal" action="actualizar_expediente_seguimiento.php?folio=<?php echo $fol_exp; ?>" method="post">
             <!-- <div class="secciones form-horizontal sticky breadcrumb flat">   AQUI ESTA LO DE LA BARRA  QUE SE AGREGA HASTA ARRIBA PARA SABER EN Q PAGINA ESTA
-              <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>">EXPEDIENTE</a>
+              <a href="../administrador/menu.php">REGISTROS</a>
+              <a href="../administrador/detalles_expediente.php?id=<?=$fol_exp?>">EXPEDIENTE</a>
               <a class="actived">SEGUIMIENTO</a>
             </div> -->
             <div class="row">
@@ -515,8 +515,8 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                 <label id="LABEL_CONCLUSION_CANCELACION" for="CONCLUSION_CANCELACION">CONCLUSIÓN / CANCELACIÓN</label>
                 <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" id="CONCLUSION_CANCELACION">
                   <option style="visibility: hidden" id="tab3-conclusion-cancelaciom" value="<?php echo $fila_seguiimiento_exped['conclu_cancel']; ?>"><?php echo $fila_seguiimiento_exped['conclu_cancel']; ?></option>
-                  <option value="CANCELACION">CANCELACION</option>
-                  <option value="CONCLUSION">CONCLUSION</option>
+                  <option value="CANCELACION">CANCELACIÓN</option>
+                  <option value="CONCLUSION">CONCLUSIÓN</option>
                 </select>
               </div>
 
@@ -707,7 +707,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="../administrador/detalles_expediente.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 <!-- modal del convenio MODIFICATORIO -->
