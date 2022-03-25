@@ -139,7 +139,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
-
     		<ul class="tabs">
     			<!-- <li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li> -->
     			<!-- <li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
@@ -148,15 +147,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     		</ul>
 
     		<div class="secciones">
-
     			<article id="tab2">
-
-            <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">EXPEDIENTE</a>
-              <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
+            <div class="secciones form-horizontal sticky breadcrumb flat">
+              <a href="../administrador/admin.php">REGISTROS</a>
+              <a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
+              <a href="../administrador/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
               <a class="actived">MEDIDAS</a>
-            </div> -->
+            </div>
             <div class="container">
         			<div class="well form-horizontal" >
         				<div class="row">
@@ -173,16 +170,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <label for="NOMRE_SUJETO">ID PERSONA PROPUESTA<span class="required"></span></label>
                   <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['identificador']; ?>" disabled>
                 </div>
-
-                <!-- <div class="col-md-6 mb-3 validar">
-                  <label for="APELLIDO_PATERNO">APELLIDO PATERNO<span class="required"></span></label>
-                  <input class="form-control" id="APELLIDO_PATERNO" name="APELLIDO_PATERNO" placeholder="" required="" type="text" value="<?php echo $rowfol['paternopersona']; ?>" disabled>
-                </div>
-
-                <div class="col-md-6 mb-3 validar">
-                  <label for="APELLIDO_MATERNO">APELLIDO MATERNO<span class="required"></span></label>
-                  <input class="form-control" id="APELLIDO_MATERNO" name="APELLIDO_MATERNO" placeholder="" required="" type="text" value="<?php echo $rowfol['maternopersona']; ?>" disabled>
-                </div> -->
 
                 <div class="col-md-6 mb-3 validar">
                   <label for="CALIDAD_DEL_SUJETO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
@@ -219,7 +206,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">MUNICIPIO</th>
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
-        		  			<th style="text-align:center"><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
+        		  			<th style="text-align:center"><a href="agregar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
         		  		</thead>
         		  		<?php
                   $cont_med = '0';
@@ -268,12 +255,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         		</div>
         		</div>
     			</article>
-
-
-
     		</div>
     	</div>
-
   </div>
 </div>
 <div class="contenedor">

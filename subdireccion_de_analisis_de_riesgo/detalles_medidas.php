@@ -149,9 +149,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     		</ul>
 
     		<div class="secciones">
-
     			<article id="tab2">
-
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
@@ -174,16 +172,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <label for="NOMRE_SUJETO">ID PERSONA PROPUESTA<span class="required"></span></label>
                   <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['identificador']; ?>" disabled>
                 </div>
-
-                <!-- <div class="col-md-6 mb-3 validar">
-                  <label for="APELLIDO_PATERNO">APELLIDO PATERNO<span class="required"></span></label>
-                  <input class="form-control" id="APELLIDO_PATERNO" name="APELLIDO_PATERNO" placeholder="" required="" type="text" value="<?php echo $rowfol['paternopersona']; ?>" disabled>
-                </div>
-
-                <div class="col-md-6 mb-3 validar">
-                  <label for="APELLIDO_MATERNO">APELLIDO MATERNO<span class="required"></span></label>
-                  <input class="form-control" id="APELLIDO_MATERNO" name="APELLIDO_MATERNO" placeholder="" required="" type="text" value="<?php echo $rowfol['maternopersona']; ?>" disabled>
-                </div> -->
 
                 <div class="col-md-6 mb-3 validar">
                   <label for="CALIDAD_DEL_SUJETO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
