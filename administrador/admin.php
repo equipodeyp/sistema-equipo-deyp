@@ -107,7 +107,7 @@ $row=$result->fetch_assoc();
         }
         // echo $genero;
          ?>
-        <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -125,9 +125,9 @@ $row=$result->fetch_assoc();
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
           </h1>
-          <h2 style="text-align:center">
+          <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h2>
+          </h5>
         </div>
         <div class="row">
           <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
@@ -140,6 +140,7 @@ $row=$result->fetch_assoc();
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
+                              <h3 style="text-align:center">Registros</h3>
                                 <tr>
                                     <th style="text-align:center">NO</th>
                                     <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
@@ -208,7 +209,7 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante">Cerrar Sesión</a>
+    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+// SELECT COUNT(*) FROM datospersonales WHERE folioexpediente = 'UPSIPPED/TOL/012/002/2021'
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -9,7 +10,6 @@ if (!isset($name)) {
 $verifica = 1;
 $_SESSION["verifica"] = $verifica;
 $name = $_SESSION['usuario'];
-
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -24,11 +24,16 @@ $fol_exp = $_GET['folio'];
 $exp=" SELECT *FROM expediente WHERE fol_exp = '$fol_exp'";
 $result_exp = $mysqli->query($exp);
 $row_exp=$result_exp->fetch_assoc();
+// echo ($fol_exp);
+
+
 
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
 $num_consecutivo =$row["id"];
+// date_default_timezone_set("America/Mexico_City");
+// $fecha = date('y/m/d H:i:sa');
 
  ?>
 <!DOCTYPE html>
@@ -46,6 +51,8 @@ $num_consecutivo =$row["id"];
   		<script src="../js/jquery.dataTables.min.js"></script>
   		<script src="../js/bootstrap.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
+       <!-- barra de navegacion -->
+      <link rel="stylesheet" href="../css/breadcrumb.css">
       <link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
@@ -66,8 +73,7 @@ $num_consecutivo =$row["id"];
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
+<link rel="stylesheet" href="../subdireccion_de_apoyo_tecnico_juridico/style/modal.css" rel="stylesheet">
 
 </head>
 <body >
@@ -92,7 +98,7 @@ $num_consecutivo =$row["id"];
 			}
 			// echo $genero;
 			?>
-    <span class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </span>
+    <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -103,42 +109,53 @@ $num_consecutivo =$row["id"];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-    <div class="wrap">
-
-    <div class="secciones">
+<div class="wrap">
+     
+  <div class="secciones">
 
   <article id="tab1">
-    <p><span><label ></label> * CAMPOS OBLIGATORIOS</span></p>
+  <!-- menu de navegacion de la parte de arriba -->   
+  <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../administrador/admin.php">REGISTROS</a>
+            <a href="../administrador/detalles_expediente.php?folio=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
+            <a class="actived">REGISTRO PERSONA</a>
+  </div>
+
+  <p><span><label ></label> * CAMPOS OBLIGATORIOS</span></p>
     <div class="container">
-      <form class="container well form-horizontal" id="myform" method="POST" action="save_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
+      <form class="container well form-horizontal" id="myform" method="POST" action="guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+            <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA <span class="required"></span></label>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="" readonly>
+          </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS DE LA AUTORIDAD</h3>
+            <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="ID_SOLICITUD" class="is-required">ID SOLICITUD<span ></span></label>
-            <input class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="" maxlength="20">
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" required type="text" value="">
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_SOLICITUD" class="is-required">FECHA DE SOLICITUD<span class="required"></span></label>
-            <input class="form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="" required>
+            <input onkeyup="validarfrm()" class="verific form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE AUTORIDAD<span class="required"></span></label>
-            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE EL MUNICIPIO" required>
+            <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE LA AUTORIDAD<span class="required"></span></label>
+            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE UNA OPCION" required>
             <datalist id="datalistOptions">
             <?php
             $autoridad = "SELECT * FROM nombreautoridad";
@@ -152,85 +169,126 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
             <label for="OTHER_AUTORIDAD" class="is-required">ESPECIFIQUE</label>
-            <input class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="" type="text">
+            <input autocomplete="off" class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="" type="text">
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
+            <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR PÚBLICO<span class="required"></span></label>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
+            <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
+            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PÍBLICO<span class="required"></span></label>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR<span class="required"></span></label>
-            <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
+            <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
           </div>
+
         </div>
-        <div class="row">
+        <div class="row" style="display:none;" id="persona_p">
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS DE LA PERSONA</h3>
-          </div>
 
-          <div>
-          <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
-          </div>
+            <div class="alert alert-info">
+              <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
+            </div>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="NOMBRE_PERSONA" class="is-required">NOMBRE(S) <span class="required"></span></label>
-            <input autocomplete="off"  onkeydown="validardiv2()" onclick="cleanNombre()" onkeyup="validarNombrePersona(this.form)" class="verificdiv2 form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
-            <!-- <input autocomplete="off" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required> -->
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="PATERNO_PERSONA" class="is-required">APELLIDO PATERNO <span class="required"></span></label>
-            <input autocomplete="off"  onkeydown="validardiv2()" onclick="cleanPaterno()" onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="verificdiv2 form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
-            <!-- <input autocomplete="off" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_PERSONA" class="is-required"> APELLIDO MATERNO <span class="required"></span></label>
-            <input autocomplete="off" onkeydown="validardiv2()" onclick="cleanMaterno()" disabled="disabled" class="verificdiv2 form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
-            <!-- <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
-          </div>
+            <div>
+            <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
+            </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="FECHA_NACIMIENTO_PERSONA" class="is-required">FECHA DE NACIMIENTO <span class="required"></span></label>
-              <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="" required>
+              <label for="NOMBRE_PERSONA" class="is-required">NOMBRE (S) <span class="required"></span></label>
+              <input autocomplete="off"  onkeydown="validardiv2()" onkeyup="validarNombrePersona(this.form)" class="verificdiv2 form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required>
+              <!-- <input autocomplete="off" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="" required> -->
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="PATERNO_PERSONA" class="is-required">APELLIDO PATERNO <span class="required"></span></label>
+              <input autocomplete="off"  onkeydown="validardiv2()"  onkeyup="validarApellidoPersona(this.form)" disabled="disabled" class="verificdiv2 form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <!-- <input autocomplete="off" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="MATERNO_PERSONA" class="is-required"> APELLIDO MATERNO <span class="required"></span></label>
+              <input autocomplete="off" onkeydown="validardiv2()" disabled="disabled" class="verificdiv2 form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required>
+              <!-- <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="" required> -->
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="FECHA_NACIMIENTO_PERSONA">FECHA DE NACIMIENTO <span class="required"></span></label>
+              <input onkeyup="validardiv2()" class="verificdiv2 form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
-              <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
+              <input autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="GRUPO_EDAD">GRUPO EDAD<span class="required">(*)</span></label>
+              <label for="GRUPO_EDAD">GRUPO DE EDAD<span class="required"></span></label>
               <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
-              <!-- <select class="form-select form-select-lg" id="GRUPO_EDAD" name="GRUPO_EDAD" required>
-                <option disabled selected value>SELECCIONE UNA OPCION</option>
-                <option value="MENOR">MENOR</option>
-                <option value="MAYOR">MAYOR</option>
-              </select> -->
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD DE LA PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
+              <label for="GRUPO_EDAD" class="is-required">SEXO<span class="required"></span></label>
+              <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" required>
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <option value="MUJER">MUJER</option>
+                <option value="HOMBRE">HOMBRE</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="NACIONALIDAD_PERSONA">NACIONALIDAD<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder=""  type="text">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="CURP_PERSONA" class="is-required">CURP <span class="required"></span></label>
+              <input autocomplete="off" onkeydown="validardiv2()" class="verificdiv2 form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" required type="text">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="RFC_PERSONA" class="is-required">R.F.C.<span class="required"></span></label>
+              <input autocomplete="off" onkeydown="validardiv2()" class="verificdiv2 form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder="" required type="text" maxlength="13">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="ALIAS_PERSONA">ALIAS <span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder=""  type="text">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="OCUPACION_PERSONA">OCUPACIÓN<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder=""  type="text">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="TELEFONO_FIJO">TELÉFONO FIJO <span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder=""  type="text" maxlength="10">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="TELEFONO_CELULAR">TELÉFONO CELULAR<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
+              <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                $calidad = "SELECT * FROM calidadpersona";
+                $calidad = "SELECT * FROM calidadpersonaprocesopenal";
                 $answer = $mysqli->query($calidad);
                 while($calidades = $answer->fetch_assoc()){
                   echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
@@ -239,7 +297,7 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
             <!-- calidad persona en el procedimiento -->
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA DENTRO PROCEDIMIENTO<span class="required"></span></label>
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
@@ -253,13 +311,15 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="GRUPO_EDAD">SEXO<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="SEXO_PERSONA" name="SEXO_PERSONA" required>
-                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                <option value="MUJER">MUJER</option>
-                <option value="HOMBRE">HOMBRE</option>
-              </select>
-            </div>
+                <label for="INCAPAZ" class="is-required">INCAPAZ<span class="required"></span></label>
+                <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
+                  <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                  <option value="SI">SI</option>
+                  <option value="NO">NO</option>
+                </select>
+              </div>
+
+
             <div class="col-md-6 mb-3 validar">
               <!-- <br> -->
               <br>
@@ -269,7 +329,6 @@ $num_consecutivo =$row["id"];
             <div class="alert alert-info">
               <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
             </div>
-
             <div class="col-md-6 mb-3 validar">
               <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado" id="cbx_estado" onChange="OTHERPAIS(this)">
@@ -290,45 +349,82 @@ $num_consecutivo =$row["id"];
               <select class="form-select form-select-lg" name="cbx_municipio" id="cbx_municipio"></select>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="NACIONALIDAD_PERSONA">NACIONALIDAD <span class="required"></span></label>
-              <input class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder=""  type="text">
+            <!-- <div class="col-md-6 mb-3 validar">
+              <label for="NACIONALIDAD_PERSONA">NACIONALIDAD<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="CURP_PERSONA">CURP <span class="required"></span></label>
-              <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder=""  type="text">
+              <label for="CURP_PERSONA" class="is-required">CURP <span class="required"></span></label>
+              <input autocomplete="off" onkeydown="validardiv2()" class="verificdiv2 form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" required type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="RFC_PERSONA">R.F.C <span class="required"></span></label>
-              <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" maxlength="13">
+              <label for="RFC_PERSONA" class="is-required">R.F.C.<span class="required"></span></label>
+              <input autocomplete="off" onkeydown="validardiv2()" class="verificdiv2 form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder="" required type="text" maxlength="13">
             </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="ALIAS_PERSONA">ALIAS <span class="required"></span></label>
-              <input class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder=""  type="text">
+              <input autocomplete="off" class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="OCUPACION_PERSONA">OCUPACIÓN <span class="required"></span></label>
-              <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder=""  type="text">
+              <label for="OCUPACION_PERSONA">OCUPACIÓN<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="TELEFONO_FIJO">TELEFONO FIJO <span class="required"></span></label>
-              <input class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder=""  type="text" maxlength="10">
+              <label for="TELEFONO_FIJO">TELÉFONO FIJO <span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder=""  type="text" maxlength="10">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="TELEFONO_CELULAR">TELEFONO CELULAR<span class="required"></span></label>
-              <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
-            </div>
+              <label for="TELEFONO_CELULAR">TELÉFONO CELULAR<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
+            </div> -->
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
             <div class="alert alert-info">
               <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
+              <label for="DOMICILIO" >P.P.L.<span class="required"></span></label>
+              <select  class="form-select form-select-lg" id="DOMICILIO" name="DOMICILIO"  onChange="domicilioactual(this)">
+                <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
+                <option value="SI">SI</option>
+                <option value="NO">NO</option>
+              </select>
+            </div>
+            <!-- centros de reclusorios -->
+            <div class="col-md-6 mb-3 validar" id="reclusorio" style="display:none;">
+              <label for="RECLUSORIO"  >CENTROS PENITENCIARIOS<span class="required"></span></label>
+              <select  class="form-select form-select-lg" id="RECLUSORIO" name="RECLUSORIO">
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                $reclusorio = "SELECT * FROM reclusorios";
+                $answer_reclusorio = $mysqli->query($reclusorio);
+                while($reclusorios = $answer_reclusorio->fetch_assoc()){
+                  echo "<option value='".$reclusorios['denominacion']."'>".$reclusorios['denominacion']."</option>";
+                }
+                ?>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3 validar" id="criterio_oport" style="display:none;">
+              <label for="criterio_oportunidad">CRITERIO DE OPORTUNIDAD</label>
+              <select class="form-select form-select-lg" name="criterio_oportunidad" onclick="fecha_criterio(this)">
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <option value="NO APLICA">NO APLICA</option>
+                <option value="EN ESPERA">EN ESPERA</option>
+                <option value="OTORGADO">OTORGADO</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3 validar" id="fecha_crit" style="display:none;">
+              <label for="fecha_c">FECHA DEL CRITERIO DE OPORTUNIDAD</label>
+              <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="">
+            </div>
+            <!--  -->
+            <div class="col-md-6 mb-3 validar" id="domestado" style="display:none;">
               <label for="NOMBRE_ESTADO">ESTADO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_estado1" id="cbx_estado1">
                 <option value="">Seleccionar Estado</option>
@@ -338,34 +434,34 @@ $num_consecutivo =$row["id"];
               </select>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
+            <div class="col-md-6 mb-3 validar" id="dommunicipio" style="display:none;">
               <label for="NOMBRE_MUNICIPIO">MUNICIPIO<span class="required"></span></label>
               <select class="form-select form-select-lg" name="cbx_municipio11" id="cbx_municipio11"></select>
               </div>
 
-              <div class="col-md-6 mb-3 validar">
+              <div class="col-md-6 mb-3 validar" id="domlocalidad" style="display:none;">
                 <label for="NOMBRE_LOCALIDAD">LOCALIDAD<span class="required"></span></label>
-                <select class="form-select form-select-lg" name="cbx_localidad11" id="cbx_localidad11"></select>
+                <input autocomplete="off" class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
               </div>
               <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
-              <div class="col-md-6 mb-3 validar">
-                <label for="CALLE">CALLE<span class="required"></span></label>
-                <input class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text">
+              <div class="col-md-6 mb-3 validar" id="domcalle" style="display:none;">
+                <label for="CALLE">CALLE Y NÚMERO<span class="required"></span></label>
+                <input autocomplete="off" class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text">
               </div>
 
-              <div class="col-md-6 mb-3 validar">
+              <div class="col-md-6 mb-3 validar" id="domcp" style="display:none;">
                 <label for="CP">C.P.<span class="required"></span></label>
-                <input class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5">
+                <input autocomplete="off" class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5">
               </div>
 
-              <div class="col-md-6 mb-3 validar">
-                <label for="INCAPAZ">INCAPAZ<span class="required"></span></label>
-                <select class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
+              <!-- <div class="col-md-6 mb-3 validar">
+                <label for="INCAPAZ" class="is-required">INCAPAZ<span class="required"></span></label>
+                <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
                   <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                   <option value="SI">SI</option>
                   <option value="NO">NO</option>
                 </select>
-              </div>
+              </div> -->
         </div>
 
         <div id="tutor" class="row" style="display:none;">
@@ -376,23 +472,23 @@ $num_consecutivo =$row["id"];
               <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
-              <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
-              <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder=""  type="text">
+              <label for="TUTOR_NOMBRE" class="is-required">NOMBRE TUTOR(A)<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
-              <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder=""  type="text">
+              <label for="COLONIA" class="is-required">APELLIDO PATERNO TUTOR(A)<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder=""  type="text">
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
-              <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder=""  type="text">
+              <label for="COLONIA" class="is-required">APELLIDO MATERNO TUTOR(A)<span class="required"></span></label>
+              <input autocomplete="off" class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder=""  type="text">
             </div>
 
         </div>
 
-        <div class="row">
+        <div class="row" style="display:none;" id="procesopenal">
           <div class="row">
             <hr class="mb-4">
           </div>
@@ -400,7 +496,7 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="DELITO_PRINCIPAL">DELITO PRINCIPAL<span class="required"></span></label>
+            <label for="DELITO_PRINCIPAL"  class="is-required">DELITO PRINCIPAL<span class="required"></span></label>
             <select class="form-select form-select-lg" id="DELITO_PRINCIPAL" name="DELITO_PRINCIPAL" onChange="otherdelito(this)" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <?php
@@ -438,7 +534,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="ETAPA_PROCEDIMIENTO">ETAPA PROCEDIMIENTO<span class="required">(*)</span></label>
+            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" required>
               <option disabled selected value>SELECCIONE UNA ETAPA</option>
               <?php
@@ -452,12 +548,12 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="NUC">NUC <span class="required"></span></label>
-            <input class="form-control" id="NUC" name="NUC" placeholder=""  type="text" required>
+            <label for="NUC" class="is-required">N.U.C. <span class="required"></span></label>
+            <input autocomplete="off" class="form-control" id="NUC" name="NUC" placeholder=""  type="text" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MUNICIPIO_PERSONA">MUNICIPIO RADICACIÓN<span class="required">(*)</span></label>
+            <label for="MUNICIPIO_RADICACION" class="is-required">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN <span class="required"></span></label>
             <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" required>
               <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
               <?php
@@ -471,7 +567,7 @@ $num_consecutivo =$row["id"];
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="display:none;" id="valoracionjuridica">
           <div class="row">
             <hr class="mb-4">
           </div>
@@ -479,7 +575,7 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
+            <label for="RESULTADO_VALORACION_JURIDICA" class="is-required">RESULTADO DE LA VALORACIÓN JURÍDICA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="SI PROCEDE">SI PROCEDE</option>
@@ -488,7 +584,7 @@ $num_consecutivo =$row["id"];
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MOTIVO_NO_PROCEDENCIA">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
+            <label for="MOTIVO_NO_PROCEDENCIA" class="is-required">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL</option>
@@ -499,176 +595,12 @@ $num_consecutivo =$row["id"];
           </div>
         </div>
 
-        <div class="row" >
+        <div class="row" style="display:none;" id="fotografia">
           <div class="row">
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">DETERMINACIÓN DE LA INCORPORACIÓN</h3>
-          </div>
-          <div class="col-md-6 mb-3 validar">
-            <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
-            <select class="form-select form-select-lg" name="ANALISIS_MULTIDISCIPLINARIO">
-              <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
-              <?php
-              $multidisciplinario = "SELECT * FROM multidisciplinario";
-              $answermultidisciplinario = $mysqli->query($multidisciplinario);
-              while($multidisciplinarios = $answermultidisciplinario->fetch_assoc()){
-                echo "<option value='".$multidisciplinarios['nombre']."'>".$multidisciplinarios['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION">
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-              <option value="SUJETO INCORPORADO">SUJETO INCORPORADO</option>
-              <option value="SUJETO NO INCORPORADO">SUJETO NO INCORPORADO</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_AUTORIZACION">FECHA AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO<span class="required"></span></label>
-            <input class="form-control" id="FECHA_AUTORIZACION" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="">
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="CONVENIO_ENTENDIMIENTO">CONVENIO ENTENDIMIENTO<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CONVENIO_ENTENDIMIENTO" name="CONVENIO_ENTENDIMIENTO">
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-              <?php
-              $convenioo = "SELECT * FROM convenio";
-              $answerconvenioo = $mysqli->query($convenioo);
-              while($convenioos = $answerconvenioo->fetch_assoc()){
-                echo "<option value='".$convenioos['nombre']."'>".$convenioos['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CONVENIO_ENTENDIMIENTO">FECHA INICIO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CONVENIO_ENTENDIMIENTO" name="FECHA_CONVENIO_ENTENDIMIENTO" placeholder="" value="" type="date" value="" >
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO<span class="required"></span></label>
-            <input placeholder="Cantidad en días" class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="">
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TERMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-            <input readonly placeholder="" class="form-control" id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="">
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="CONCLUSION_CANCELACION">CONCLUSIÓN/CANCELACIÓN</label>
-            <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="openart35(this)">
-              <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
-              <option value="CANCELACION">CANCELACIÓN</option>
-              <option value="CONCLUSION">CONCLUSIÓN</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-            <label for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
-            <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
-              <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
-              <?php
-              $art35 = "SELECT * FROM conclusionart35";
-              $answerart35 = $mysqli->query($art35);
-              while($art35s = $answerart35->fetch_assoc()){
-                echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
-            <label for="OTHER_ART35">ESPECIFIQUE</label>
-            <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="" type="text">
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_DESINCORPORACION">FECHA DESINCORPORACIÓN O CANCELACIÓN<span class="required"></span></label>
-            <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="row">
-            <hr class="mb-4">
-          </div>
-          <div class="alert alert-info">
-            <h3 style="text-align:center">ESTATUS DE LA PERSONA EN EL PROGRAMA</h3>
-          </div>
-          <div class="col-md-6 mb-3 validar">
-            <label for="ESTATUS_PERSONA">ESTATUS DE LA PERSONA<span ></span></label>
-            <select class="form-select form-select-lg" id="ESTATUS_PERSONA" name="ESTATUS_PERSONA" >
-              <option disabled selected value="n/a">SELECCIONE UNA OPCIÓN</option>
-              <?php
-              $estatus = "SELECT * FROM estatuspersona";
-              $answerestatus = $mysqli->query($estatus);
-              while($estatusperson = $answerestatus->fetch_assoc()){
-                echo "<option value='".$estatusperson['nombre']."'>".$estatusperson['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-        </div>
-
-        <div class="row" >
-          <div class="row">
-            <hr class="mb-4">
-          </div>
-          <div class="alert alert-info">
-            <h3 style="text-align:center">FUENTE</h3>
-          </div>
-          <div class="col-md-6 mb-3 validar">
-            <label for="FUENTE">FUENTE<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="FUENTE" name="FUENTE" onChange="radicacionfuente(this)">
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-              <?php
-              $rad = "SELECT * FROM radicacion";
-              $answerrad = $mysqli->query($rad);
-              while($rads = $answerrad->fetch_assoc()){
-                echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="OFICIO" style="display:none;">
-            <label for="OFICIO">OFICIO<span class="required"></span></label>
-            <input class="form-control" id="OFICIO" name="OFICIO" placeholder="" value=""  type="text" >
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="CORREO" style="display:none;">
-            <label for="CORREO">CORREO<span class="required"></span></label>
-            <input class="form-control" id="CORREO" name="CORREO" placeholder=""  value="" type="email" >
-          </div>
-
-          <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE" style="display:none;">
-            <label for="EXPEDIENTE">EXPEDIENTE<span class="required"></span></label>
-            <input class="form-control" id="EXPEDIENTE" name="EXPEDIENTE" placeholder=""  value="" type="text" >
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="OTRO" style="display:none;">
-            <label for="OTRO">OTRO<span class="required"></span></label>
-            <input class="form-control" id="OTRO" name="OTRO" placeholder=""  value="" type="text" >
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="row">
-            <hr class="mb-4">
-          </div>
-          <div class="alert alert-info">
-            <h3 style="text-align:center">FOTOGRAFÍA DE LA PERSONA</h3>
+            <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
           </div>
           <section class="text-center" >
             <input class="input-group" type="file" name="user_image" accept="image/*" />
@@ -679,7 +611,7 @@ $num_consecutivo =$row["id"];
           </section>
         </div>
 
-        <div class="row" id="comentarios">
+        <div class="row" style="display:none;" id="comentarios">
           <div class="row">
 
             <hr class="mb-4">
@@ -688,18 +620,39 @@ $num_consecutivo =$row["id"];
             <h3 style="text-align:center">COMENTARIOS</h3>
           </div>
 
-            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="100"></textarea>
+            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
 
         </div>
 
-        <div class="row">
+        <div class="row" style="display:none;" id="guardarfrm">
           <div>
               <br>
               <br>
-          		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+          		<button style="display: block; margin: 0 auto;"  class="btn btn-success" id="enter" type="submit">GUARDAR</button>
           </div>
         </div>
       </form>
+      <div class="row" id="btnnext1">
+        <div>
+          <br>
+          <br>
+          <button style="display: block ; margin: 0 auto;" class="btn btn-success" id="next" disabled>SIGUIENTE</button>
+        </div>
+      </div>
+      <div class="row" style="display:none;" id="btnnext2">
+        <div>
+          <br>
+          <br>
+          <button style="display: block ; margin: 0 auto;" class="btn btn-success" id="next2" disabled>SIGUIENTE</button>
+        </div>
+      </div>
+      <div class="row" style="display:none;" id="btnnext3">
+        <div>
+          <br>
+          <br>
+          <button style="display: block ; margin: 0 auto;" class="btn btn-success" id="next3" disabled>SIGUIENTE</button>
+        </div>
+      </div>
     </div>
   </article>
   </div>
@@ -709,10 +662,10 @@ $num_consecutivo =$row["id"];
 <div class="contenedor">
   <div class="columns download">
           <p>
-             <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
+            <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
           </p>
   </div>
-<a href="admin.php" class="btn-flotante">CANCELAR</a>
+<a href="../administrador/detalles_expediente.php?folio=<?php echo $fol_exp; ?>" class="btn-flotante">CANCELAR</a>
 </div>
 
 
@@ -820,19 +773,19 @@ window.addEventListener('load', function () {
 
     function obtenerNombre(e) {
       nombreIngresado = e.target.value;
-      console.log(nombreIngresado);
+      // console.log(nombreIngresado);
       document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function obtenerPaterno(e) {
       paternoIngresado = e.target.value;
-      console.log(paternoIngresado);
+      // console.log(paternoIngresado);
       document.getElementById("GENERAR_ID").disabled = true;
     }
 
     function obtenerMaterno(e) {
       maternoIngresado = e.target.value;
-      console.log(maternoIngresado);
+      // console.log(maternoIngresado);
       document.getElementById("GENERAR_ID").disabled = false;
     }
 
@@ -846,7 +799,7 @@ window.addEventListener('load', function () {
       }
 
       fullNombreCompleto = arrayNombreCompleto.filter(v => v);
-      console.log(fullNombreCompleto);
+      // console.log(fullNombreCompleto);
       document.getElementById("ID_UNICO").value = "";
 
       fullNombreCompleto.forEach(nombrePersona);
@@ -877,15 +830,7 @@ window.addEventListener('load', function () {
         form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
     }
 
-    function cleanNombre(){
-      document.getElementById('NOMBRE_PERSONA').value = '';
-    }
-    function cleanPaterno(){
-      document.getElementById('PATERNO_PERSONA').value = '';
-    }
-    function cleanMaterno(){
-      document.getElementById('MATERNO_PERSONA').value = '';
-    }
+
 </script>
 
 
@@ -1013,5 +958,37 @@ document.getElementById("next3").addEventListener("click", function() {
 
 });
 </script>
+
+<script type="text/javascript">
+window.onload = function(){
+var fecha = new Date(); //Fecha actual
+var mes = fecha.getMonth()+1; //obteniendo mes
+var dia = fecha.getDate(); //obteniendo dia
+var ano = fecha.getFullYear(); //obteniendo año
+if(dia<10)
+  dia='0'+dia; //agrega cero si el menor de 10
+if(mes<10)
+  mes='0'+mes //agrega cero si el menor de 10
+document.getElementById('FECHA_CAPTURA').value=dia+"/"+mes+"/"+ano;
+}
+</script>
+
+<!-- <script type="text/javascript">
+var idUnico = document.getElementById('ID_UNICO').value;
+function Guardar() {
+if (idUnico == null || idUnico == ""){
+  obtenerIniciales();
+  document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
+  // alert("No se ha generado el id unico de la persona, presiona el botón GENERAR ID.")
+} else {
+  obtenerIniciales();
+  document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
+}
+}
+  </script> -->
+
+  
+</script>
+
 </body>
 </html>
