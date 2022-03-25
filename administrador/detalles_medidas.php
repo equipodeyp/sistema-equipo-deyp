@@ -241,7 +241,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                         }elseif ($fila_valmeds['validacion'] === 'false') {
                           echo "<i class='fas fa-times'></i>";
                         } echo "</td>";
-          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+          		          echo "<td>  <a href='detalle_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
           		        echo "</tr>";
                     }
 
