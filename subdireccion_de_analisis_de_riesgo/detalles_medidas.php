@@ -126,7 +126,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
 			}
 			?>
-  
+
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">

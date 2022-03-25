@@ -37,7 +37,11 @@ $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
 $res_val=$mysqli->query($valid);
 $fil_val = $res_val->fetch_assoc();
 $validacion = $fil_val['validacion'];
-
+// verificar la validacion de las medidas
+$val_med = "SELECT * FROM validar_medida where id_medida = '$id_medida'";
+$res_val_med = $mysqli->query($val_med);
+$fila_val_med = $res_val_med->fetch_assoc();
+echo $fila_val_med['validar_datos'];
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -105,7 +109,7 @@ $validacion = $fil_val['validacion'];
 			}
 			// echo $genero;
 			?>
-      
+
       <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -146,7 +150,7 @@ $validacion = $fil_val['validacion'];
           // $res_val=$mysqli->query($valid);
           // $fil_val = $res_val->fetch_assoc();
           $validacion = $rowfol1['validacion'];
-            if ($validacion == 'true') {
+            if ($rowfol1['validar_datos'] === 'true' && $validacion == 'true') {
               echo "<div class='columns download'>
                       <p>
                       <img src='../image/true4.jpg' width='50' height='50' class='center'>
@@ -154,7 +158,7 @@ $validacion = $fil_val['validacion'];
 
                       </p>
               </div>";
-            }elseif ($validacion == 'false') {
+            }elseif ($rowfol1['validar_datos'] === 'false' || $rowfol1['validacion'] === 'false') {
               echo "<div class='columns download'>
                       <p>
 
@@ -462,7 +466,7 @@ $validacion = $fil_val['validacion'];
                <label for="OTHER_ART351">ESPECIFIQUE</label>
                <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
              </div>
- >>
+
           </div>
 
 
@@ -498,6 +502,17 @@ $validacion = $fil_val['validacion'];
                   </div>';
                 }
                ?>
+               <div class="row" style="display:none;">
+
+                 <div class="col-md-6 mb-3 validar">
+                   <label for="validar_est">validacion de estadistica</label>
+                   <input class="form-control" type="text" name="val_est" id="val_est" value="<?php echo $fila_val_med['validar_datos']; ?>">
+                 </div>
+                 <div class="col-md-6 mb-3 validar">
+                   <label for="validar_est">validacion de analisis</label>
+                   <input class="form-control" type="text" name="val_analisis" id="val_analisis" value="<?php echo $fila_val_med['validacion']; ?>">
+                 </div>
+               </div>
         </div>
       </form>
     </div>
@@ -518,11 +533,11 @@ $validacion = $fil_val['validacion'];
   $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
-  $validacion = $fil_val['validacion'];
-    if ($validacion != 'true') {
+  $validacion = $fil_val['validar_datos'];
+    if ($validacion != 'false') {
       echo "<div>
               <p>
-                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' id='btn_validar_medida'><i class=''></i>VALIDAR</a>
               </p>
       </div>";
     }
@@ -548,6 +563,19 @@ document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
 document.getElementById("FECHA_DESINCORPORACION1").setAttribute("max", today);
 document.getElementById("FECHA_INICIO").setAttribute("max", today);
 document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
+
+</script>
+<script type="text/javascript">
+var checkvalestadistica = document.getElementById('val_est').value;
+var checkvalanalisis = document.getElementById('val_analisis').value;
+function ReadOnlyConClu() {
+console.log(checkvalestadistica);
+console.log(checkvalanalisis);
+  if (checkvalestadistica === 'true' && checkvalanalisis === 'true') {
+    document.getElementById('btn_validar_medida').style.visibility = 'hidden';
+  }
+}
+ReadOnlyConClu();
 
 </script>
 </body>

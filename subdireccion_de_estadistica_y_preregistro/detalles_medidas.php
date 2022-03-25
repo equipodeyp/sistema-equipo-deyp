@@ -249,9 +249,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
                           echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
                         } echo "</td>";
-                        echo "<td style='text-align:center'>"; if ($fila_valmeds['validacion'] === 'true') {
+                        echo "<td style='text-align:center'>"; if ($fila_valmeds['validar_datos'] === 'true') {
                           echo "<i class='fas fa-check'></i>";
-                        }elseif ($fila_valmeds['validacion'] === 'false') {
+                        }elseif ($fila_valmeds['validar_datos'] === 'false') {
                           echo "<i class='fas fa-times'></i>";
                         } echo "</td>";
           		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
