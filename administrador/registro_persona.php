@@ -123,7 +123,7 @@ $num_consecutivo =$row["id"];
 
   <p><span><label ></label> * CAMPOS OBLIGATORIOS</span></p>
     <div class="container">
-      <form class="container well form-horizontal" id="myform" method="POST" action="guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
+      <form class="container well form-horizontal" id="myform" method="POST" action="../administrador/guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
@@ -236,7 +236,7 @@ $num_consecutivo =$row["id"];
 
             <div class="col-md-6 mb-3 validar">
               <label for="GRUPO_EDAD">GRUPO DE EDAD<span class="required"></span></label>
-              <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
+              <input class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">

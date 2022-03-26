@@ -161,7 +161,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             </div>
 
     				<div class="container">
-              <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="../administrador/actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                       <!-- <?php
                       $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";

@@ -237,7 +237,7 @@ $row=$result->fetch_assoc();
 								                      } elseif ($fila_val['validacion'] == 'false') {
 								                        echo "<i class='fas fa-times'></i>";
 								                      } echo "</td>";
-								        		        echo "<td style='text-align:center'><a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+								        		        echo "<td style='text-align:center'><a href='../administrador/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
 								        		        echo "</tr>";
 								            }
 

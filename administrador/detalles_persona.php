@@ -191,30 +191,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
               </div>
 
               <div class="container">
-              <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="../administrador/actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
-                  <!-- <?php
-                  $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-                  $resultfol = $mysqli->query($fol);
-                  $rowfol=$resultfol->fetch_assoc();
-                  $name_folio=$rowfol['folioexpediente'];
-                  $id_person=$rowfol['id'];
-                  $idunico= $rowfol['identificador'];
-                  $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
-                  $res_val=$mysqli->query($valid);
-                  $fil_val = $res_val->fetch_assoc();
-                  $validacion = $fil_val['validacion'];
 
-                    if ($validacion == 'true') {
-                      echo "<div class='columns download'>
-                              <p>
-                              <img src='../image/true4.jpg' width='50' height='50' class='center'>
-                              <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA VALIDADA</FONT></h3>
-
-                              </p>
-                      </div>";
-                    }
-                    ?> -->
                   <div class="alert alert-info">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
@@ -968,25 +947,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-  <!-- <?php
-  $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-  $resultfol = $mysqli->query($fol);
-  $rowfol=$resultfol->fetch_assoc();
-  $name_folio=$rowfol['folioexpediente'];
-  $id_person=$rowfol['id'];
 
-  $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
-  $res_val=$mysqli->query($valid);
-  $fil_val = $res_val->fetch_assoc();
-  $validacion = $fil_val['validacion'];
-    if ($name == 'diana' && $validacion != 'true') {
-      echo "<div class='columns download'>
-              <p>
-                <a href='validar_persona.php?folio= $id_person' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
-              </p>
-      </div>";
-    }
-   ?> -->
 
 <a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 <p>
