@@ -27,6 +27,8 @@ $row=$result->fetch_assoc();
   <script src="../js/bootstrap.min.js"></script>
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -61,7 +63,7 @@ $row=$result->fetch_assoc();
   			}
   			// echo $genero;
   			?>
-        <span class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </span>
+        <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -76,6 +78,13 @@ $row=$result->fetch_assoc();
       <div class="wrap">
         <div class="secciones">
           <article id="tab1">
+
+          <!-- menu de navegacion de la parte de arriba -->
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../administrador/admin.php">REGISTROS</a>
+            <a class="actived">NUEVO EXPEDIENTE</a>
+          </div>
+
             <div class=" well form-horizontal">
               <div class="row">
                 <form class="" method="POST" action="save_exp.php">

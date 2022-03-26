@@ -30,11 +30,13 @@ $row=$result->fetch_assoc();
   		<link href="../css/bootstrap-theme.css" rel="stylesheet">
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-			<script src="../js/jquery-3.1.1.min.js"></script>
+		<script src="../js/jquery-3.1.1.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
   		<script src="../js/bootstrap.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
-      <link rel="stylesheet" href="../css/expediente.css">
+		<!-- barra de navegacion -->
+		<link rel="stylesheet" href="../css/breadcrumb.css">
+      	<link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -81,6 +83,11 @@ $row=$result->fetch_assoc();
 			<div class="wrap">
 	    <div class="secciones">
 	  	<article id="tab1">
+			  	<!-- menu de navegacion de la parte de arriba -->
+				<div class="secciones form-horizontal sticky breadcrumb flat">
+						<a href="../administrador/admin.php">REGISTROS</a>
+						<a class="actived">EXPEDIENTE</a>
+				</div>
 							<div class="well form-horizontal" >
 								<div class="row">
 									<div class="alert alert-info">
@@ -198,7 +205,7 @@ $row=$result->fetch_assoc();
 								  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
 												<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
 												<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-												<th style="text-align:center">DETALLES PERSONA </th>
+												<th style="text-align:center"><a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">AGREGAR PERSONA</button> </a> </th>
 								  		</thead>
 		  								<?php
 											$cuenta = 0;
@@ -230,7 +237,7 @@ $row=$result->fetch_assoc();
 								                      } elseif ($fila_val['validacion'] == 'false') {
 								                        echo "<i class='fas fa-times'></i>";
 								                      } echo "</td>";
-								        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+								        		        echo "<td style='text-align:center'><a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
 								        		        echo "</tr>";
 								            }
 
