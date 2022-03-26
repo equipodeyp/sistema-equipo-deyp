@@ -252,9 +252,9 @@ $row=$result->fetch_assoc();
 							<div class="well form-horizontal">
 								<div class="row">
 									<div class="alert alert-info">
-										<h3 style="text-align:center">SEGUIMIENTO</h3>
+										<h3 style="text-align:center">SEGUIMIENTO DEL EXPEDIENTE</h3>
 									</div>
-									<a  href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">DETALLES</button> </a>
+									<a  href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
 								</div>
 							</div>
 						</div>
