@@ -189,22 +189,14 @@ $validacion = $fil_val['validacion'];
             </select>
           </div>
 
-          <?php
-            if ($rowmedida['estatus'] == 'EN EJECUCION') {
-              echo '<div class="col-md-6 mb-3 validar">
-                <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-                <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required="" onChange="act_datedef(this)">
-                  <option style="visibility: hidden" id="opt-tipo-medida" value="'.$rowmedida['tipo'].'">'.$rowmedida['tipo'].'</option>
-                  <option value="DEFINITIVA">DEFINITIVA</option>
-                </select>
-              </div>';
-            }else if ($rowmedida['estatus'] != 'EN EJECUCION') {
-              echo '<div class="col-md-6 mb-3 validar">
-                <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-                <input class="form-control" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" value="'.$rowmedida['tipo'].'" type="text">
-              </div>';
-            }
-           ?>
+          <div class="col-md-6 mb-3 validar">
+            <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required>
+              <option style="visibility: hidden" value="<?php echo $rowmedida['tipo']; ?>"><?php echo $rowmedida['tipo']; ?></option>
+              <option value="PROVISIONAL">PROVISIONAL</option>
+              <option value="DEFINITIVA">DEFINITIVA</option>
+            </select>
+          </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
@@ -214,100 +206,82 @@ $validacion = $fil_val['validacion'];
               <option value="RESGUARDO">RESGUARDO</option>
             </select>
           </div>
-          <?php
-          $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-          $resultadomedida = $mysqli->query($medida);
-          $rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
-          if ($rowmedida['clasificacion']=='ASISTENCIA') {
-            echo '<div class="col-md-6 mb-3 validar" id="asistencia" >';
-              echo '<label for="MEDIDAS_ASISTENCIA">INCISO DE LA MEDIDA DE ASISTENCIA<span class="required"></span></label>';
-              echo '<select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="modselectother(this)">';
-              echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
-                $asistencia = "SELECT * FROM medidaasistencia";
-                $answerasis = $mysqli->query($asistencia);
-                while($asistencias = $answerasis->fetch_assoc()){
-                 echo "<option value='".$asistencias['nombre']."'>".$asistencias['nombre']."</option>";
-                }
-              echo '</select>';
-            echo '</div>';
-            if ($rowmedida['medida']=='VI. OTRAS') {
-              echo '<div class="col-md-6 mb-3 validar" id="otherasistencia" >
-                <label for="OTRA_MEDIDA_ASISTENCIA">OTRA MEDIDA ASISTENCIA<span class="required"></span></label>
-                <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="'.$rowmedida['descripcion'].'" placeholder="" type="text">
-              </div>';
-            }
-          }  else if($rowmedida['clasificacion']=='RESGUARDO') {
-            echo '<div class="col-md-6 mb-3 validar" id="resguardo" >';
-              echo '<label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>';
-              echo '<select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="modselectmedidares(this)">';
-              echo '<option style="visibility: hidden" id="opt-medida" value="'.$rowmedida['medida'].'">'.$rowmedida['medida'].'</option>';
-                $resguardo = "SELECT * FROM medidaresguardo";
-                $answerres = $mysqli->query($resguardo);
-                while($resguardos = $answerres->fetch_assoc()){
-                 echo "<option value='".$resguardos['nombre']."'>".$resguardos['nombre']."</option>";
-                }
-                echo '</select>';
-            echo '</div>';
-            if ($rowmedida['medida']=='XI. EJECUCION DE MEDIDAS PROCESALES') {
-             echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
-               <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
-               <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI">
-                 <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
-                 $resguardoxi = "SELECT * FROM medidaresguardoxi";
-                 $answerresxi = $mysqli->query($resguardoxi);
-                 while($resguardosxi = $answerresxi->fetch_assoc()){
-                  echo "<option value='".$resguardosxi['nombre']."'>".$resguardosxi['nombre']."</option>";
-                 }
-               echo  '</select>
-             </div>';
-           } else if ($rowmedida['medida']=='XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
-             echo '<div class="col-md-6 mb-3 validar" id="resguardoxii">
-               <label for="RESGUARDO_XII">MEDIDAS OTORGADAS A SUJETOS RECLUIDOS<span class="required"></span></label>
-               <select class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII">
-                 <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
-                 $resguardoxii = "SELECT * FROM medidaresguardoxii";
-                 $answerresxii = $mysqli->query($resguardoxii);
-                 while($resguardosxii = $answerresxii->fetch_assoc()){
-                  echo "<option value='".$resguardosxii['nombre']."'>".$resguardosxii['nombre']."</option>";
-                 }
-                 echo '</select>
-             </div>';
-           }elseif ($rowmedida['medida']=='XIII. OTRAS MEDIDAS') {
-             echo '<div class="col-md-6 mb-3 validar" id="otherresguardo">
-               <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
-               <input class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="'.$rowmedida['descripcion'].'" placeholder="" type="text">
-             </div>';
-           }
-          }
+          <!-- medida de asistencia -->
+          <div class="col-md-6 mb-3 validar" id="asistencia">
+            <label for="MEDIDAS_ASISTENCIA">INCISO DE LA MEDIDA DE ASISTENCIA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="selectother(this)">
+              <option style="visibility: hidden" value="<?php echo $rowmedida['medida']; ?>"><?php echo $rowmedida['medida']; ?></option>
+              <?php
+              $asistencia = "SELECT * FROM medidaasistencia";
+              $answerasis = $mysqli->query($asistencia);
+              while($asistencias = $answerasis->fetch_assoc()){
+               echo "<option value='".$asistencias['nombre']."'>".$asistencias['nombre']."</option>";
+              }
+              ?>
+            </select>
+          </div>
 
-          ?>
+          <div class="col-md-6 mb-3 validar" id="otherasistencia">
+            <label for="OTRA_MEDIDA_ASISTENCIA">OTRA MEDIDA ASISTENCIA<span class="required"></span></label>
+            <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
+          </div>
 
+          <!-- medidas de resguardo -->
+          <div class="col-md-6 mb-3 validar" id="resguardo">
+            <label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="selectmedidares(this)" >
+              <option style="visibility: hidden" value="<?php echo $rowmedida['medida']; ?>"><?php echo $rowmedida['medida']; ?></option>
+              <?php
+              $resguardo = "SELECT * FROM medidaresguardo";
+              $answerres = $mysqli->query($resguardo);
+              while($resguardos = $answerres->fetch_assoc()){
+               echo "<option value='".$resguardos['nombre']."'>".$resguardos['nombre']."</option>";
+              }
+              ?>
+              </select>
+          </div>
 
+          <div class="col-md-6 mb-3 validar" id="otherresguardo" style="display:none;">
+            <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
+            <input class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
+          </div>
 
-          <?php
-            if ($rowmedida['date_provisional'] != '0000-00-00') {
-              echo '<div class="col-md-6 mb-3 validar">
-                <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA <span class="required"></span></label>
-                <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="'.$rowmedida['date_provisional'].'" placeholder="" type="date">
-              </div>';
-            }
-            if ($rowmedida['tipo'] != 'DEFINITIVA' && $rowmedida['date_definitva'] == '') {
-              // echo '<div class="col-md-6 mb-3 validar">
-              //   <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
-              //   <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
-              // </div>';
-            }elseif ($rowmedida['tipo'] == 'DEFINITIVA' && $rowmedida['date_definitva'] != '') {
-              echo '<div class="col-md-6 mb-3 validar">
-                <label for="FECHA_ACTUALIZACION_MEDIDA1">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
-                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA1" name="FECHA_ACTUALIZACION_MEDIDA1" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
-              </div>';
-            }
-           ?>
-           <div class="col-md-6 mb-3 validar" id="act_date_definitiva" style="display:none;">
+          <div class="col-md-6 mb-3 validar" id="resguardoxi" style="display:none;">
+            <label for="RESGUARDO_XI">EJECUCIÓN DE LA MEDIDA PROCESAL<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
+              <option style="visibility: hidden" value="<?php echo $rowmedida['descripcion']; ?>"><?php echo $rowmedida['descripcion']; ?></option>
+              <?php
+              $resguardoxi = "SELECT * FROM medidaresguardoxi";
+              $answerresxi = $mysqli->query($resguardoxi);
+              while($resguardosxi = $answerresxi->fetch_assoc()){
+               echo "<option value='".$resguardosxi['nombre']."'>".$resguardosxi['nombre']."</option>";
+              }
+              ?>
+              </select>
+          </div>
+
+          <div class="col-md-6 mb-3 validar" id="resguardoxii" style="display:none;">
+            <label for="RESGUARDO_XII">MEDIDA OTORGADA A SUJETOS RECLUIDOS<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
+              <option style="visibility: hidden" value="<?php echo $rowmedida['descripcion']; ?>"><?php echo $rowmedida['descripcion']; ?></option>
+              <?php
+              $resguardoxii = "SELECT * FROM medidaresguardoxii";
+              $answerresxii = $mysqli->query($resguardoxii);
+              while($resguardosxii = $answerresxii->fetch_assoc()){
+               echo "<option value='".$resguardosxii['nombre']."'>".$resguardosxii['nombre']."</option>";
+              }
+              ?>
+              </select>
+          </div>
+
+           <div class="col-md-6 mb-3 validar" id="act_date_definitiva">
               <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
-              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php if ($rowmedida['date_provisional'] === '0000-00-00') {
+                echo $rowmedida['date_definitva'];
+              }else {
+                echo $rowmedida['date_provisional'];
+              } ?>" type="date">
            </div>
-
 
           <div class="row">
             <div class="row">
@@ -317,25 +291,15 @@ $validacion = $fil_val['validacion'];
               <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
 
-            <?php
-              if ($rowmedida['estatus'] == 'EN EJECUCION') {
-                echo '<div class="col-md-6 mb-3 validar">
-                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
-                    <option style="visibility: hidden" id="opt-estatus-medida" value="'.$rowmedida['estatus'].'">'.$rowmedida['estatus'].'</option>
-                    <!-- <option value="EN EJECUCION" >EN EJECUCION</option> -->
-                    <option value="EJECUTADA">EJECUTADA</option>
-                    <option value="CANCELADA">CANCELADA</option>
-                    </select>
-                </div>';
-              }elseif ($rowmedida['estatus'] != 'EN EJECUCION') {
-                echo '<div class="col-md-6 mb-3 validar">
-                  <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-                  <input class="form-control" id="ESTATUS_MEDIDA" name="ESTATUS_MEDIDA" placeholder="" value="'.$rowmedida['estatus'].'" type="text">
-                </div>';
-              }
-             ?>
-
+            <div class="col-md-6 mb-3 validar">
+              <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
+              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
+                <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
+                <option value="EN EJECUCION" >EN EJECUCION</option>
+                <option value="EJECUTADA">EJECUTADA</option>
+                <option value="CANCELADA">CANCELADA</option>
+                </select>
+            </div>
 
             <div class="col-md-6 mb-3 validar">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
@@ -350,71 +314,25 @@ $validacion = $fil_val['validacion'];
                 ?>
               </select>
             </div>
-            <?php
-            if ($rowmedida['date_provisional'] == '0000-00-00') {
-              echo '';
-            }
-             ?>
+
              <div class="col-md-6 mb-3 validar">
                <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
-               <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php if ($rowmedida['date_provisional'] == '0000-00-00') {
+               <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php if ($rowmedida['date_provisional'] === '0000-00-00') {
                  echo $rowmedida['date_definitva'];
                }else {
                  echo $rowmedida['date_provisional'];
                } ?>" >
              </div>
-            <?php
 
-              if ($rowmedida['estatus'] == 'EJECUTADA') {
-                echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'">
-                </div>
-                <div class="row">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 validar">
-                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-                  <input class="form-control" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text">
-                </div>';
-                if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
-                  echo '<div class="col-md-6 mb-3 validar">
-                    <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text">
-                  </div>';
-                  if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
-                      <label for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['otherart35'].'" type="text">
-                    </div>';
-                  }
-                }
-              }
-              if ($rowmedida['estatus'] == 'CANCELADA') {
-                echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'">
-                </div>
-                <div class="col-md-6 mb-3 validar" id="MOTIVO">
-                  <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
-                  <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="'.$rowmedida['modificacion'].'" placeholder="" type="text">
-                </div>';
-              }
-             ?>
              <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
                <label for="FECHA_DE_EJECUCION" id="dat_ejec" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
                <label for="FECHA_DE_CANCELACION" id="dat_cancel" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="">
+               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>">
              </div>
 
              <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
                <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" placeholder="" type="text">
+               <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['modificacion']; ?>" type="text">
              </div>
 
           </div>
@@ -430,9 +348,9 @@ $validacion = $fil_val['validacion'];
 
             <div class="col-md-6 mb-3 validar">
               <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-              <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
+              <select class="form-select form-select-lg" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <!-- <option value="CANCELACION">CANCELACION</option> -->
+                <option value="CANCELACION">CANCELACION</option>
                 <option value="CONCLUSION">CONCLUSION</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
@@ -440,8 +358,8 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-               <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                 <option disabled selected value="">SELECCIONE UNA OPCION</option>
+               <select class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
+                 <option disabled selected value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
                  <?php
                  $art35 = "SELECT * FROM conclusionart35";
                  $answerart35 = $mysqli->query($art35);
@@ -454,7 +372,7 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
                <label for="OTHER_ART351">ESPECIFIQUE</label>
-               <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
+               <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['otherart35']; ?>" type="text">
              </div>
 
           </div>
@@ -599,7 +517,82 @@ if(estatusMedidas === "EN EJECUCION"){
   document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
 }
 </script>
-
+<script type="text/javascript">
+  var clasificacionmedida = document.getElementById('CLASIFICACION_MEDIDA').value;
+  function clasif_medida() {
+    console.log(clasificacionmedida);
+    if (clasificacionmedida === 'ASISTENCIA') {
+      document.getElementById('resguardo').style.display = "none";
+      document.getElementById('otherresguardo').style.display = "none";
+      document.getElementById('resguardoxi').style.display = "none";
+      document.getElementById('resguardoxii').style.display = "none";
+    }else if (clasificacionmedida === 'RESGUARDO') {
+      document.getElementById('asistencia').style.display = "none";
+      document.getElementById('otherasistencia').style.display = "none";
+      // document.getElementById('resguardoxi').style.display = "none";
+      // document.getElementById('resguardoxii').style.display = "none";
+    }
+  }
+  clasif_medida();
+  ////////////////////////////////////////////////////////////////////////
+  var incisoasistencia = document.getElementById('MEDIDAS_ASISTENCIA').value;
+  function inciso_asistencia(){
+    console.log(incisoasistencia);
+    if (incisoasistencia !== 'VI. OTRAS') {
+      document.getElementById('otherasistencia').style.display = "none";
+    }
+  }
+  inciso_asistencia();
+  ////////////////////////////////////////////////////////////////////////
+  var incisoresguardo = document.getElementById('MEDIDAS_RESGUARDO').value;
+  function inciso_resguardo() {
+    console.log(incisoresguardo);
+    if (incisoresguardo === 'XI. EJECUCION DE MEDIDAS PROCESALES') {
+      document.getElementById('resguardoxi').style.display = "";
+    }else if (incisoresguardo === 'XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
+      document.getElementById('resguardoxii').style.display = "";
+    }else if (incisoresguardo === 'XIII. OTRAS MEDIDAS') {
+      document.getElementById('otherresguardo').style.display = "";
+    }
+  }
+  inciso_resguardo();
+  /////////////////////////////////////////////////////////////////////////
+  // estatus de la medida ///////////
+  var estatus_medida = document.getElementById('ESTATUS_MEDIDA').value;
+  function mostrar_estatus_medida() {
+    console.log(estatus_medida);
+    if (estatus_medida === 'EJECUTADA') {
+      document.getElementById('dat_ejec').style.display = "";
+      document.getElementById('fecha_conclusion').style.display = "";
+      document.getElementById('conclu_cancel').style.display = "";
+    }else if (estatus_medida === 'CANCELADA') {
+      document.getElementById('dat_cancel').style.display = "";
+      document.getElementById('fecha_conclusion').style.display = "";
+      document.getElementById('MOTIVO').style.display = "";
+    }
+  }
+  mostrar_estatus_medida();
+///////////////////////////////////////////////////////////////////
+// motivo de cancelacion y/o conclusion
+  var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
+  function conclu_cancel_med() {
+    console.log(ejecutamed);
+    if (ejecutamed === 'CONCLUSION') {
+      document.getElementById('CONCLUSION_ART35').style.display = "";
+    }
+  }
+  conclu_cancel_med();
+  ///////////////////////////////////////////////////////////////////
+  // conclusion por articulo 35
+  var concluart = document.getElementById('CONCLUSION_ART35select').value;
+  function conclu_cancel_art35() {
+    console.log(concluart);
+    if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+      document.getElementById('OTHERART35').style.display = "";
+    }
+  }
+  conclu_cancel_art35();
+</script>
 
 </body>
 </html>
