@@ -182,7 +182,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar">
             <label for="CATEAGORIA_MEDIDA">CATEGORÍA DE LA MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA" onChange="selectmedida(this)">
+            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA">
               <option style="visibility: hidden" value="<?php echo $rowmedida['categoria']; ?>"><?php echo $rowmedida['categoria']; ?></option>
               <option value="INICIAL">INICIAL</option>
               <option value="AMPLIACION">AMPLIACIÓN</option>
@@ -321,7 +321,7 @@ $validacion = $fil_val['validacion'];
                  echo $rowmedida['date_definitva'];
                }else {
                  echo $rowmedida['date_provisional'];
-               } ?>" >
+               } ?>" readonly>
              </div>
 
              <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
@@ -359,7 +359,7 @@ $validacion = $fil_val['validacion'];
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
                <select class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                 <option disabled selected value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
+                 <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
                  <?php
                  $art35 = "SELECT * FROM conclusionart35";
                  $answerart35 = $mysqli->query($art35);

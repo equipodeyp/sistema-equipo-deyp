@@ -306,7 +306,7 @@ function fecha_ejecutada(sel) {
 }
 
 function actualizar_estatus_medida(sel) {
-  if (sel.value=="EJECUTADA") {
+  if (sel.value==="EJECUTADA") {
     divC = document.getElementById("fecha_conclusion");
     divC.style.display="";
     divC = document.getElementById("conclu_cancel");
@@ -317,7 +317,7 @@ function actualizar_estatus_medida(sel) {
     divC.style.display="none";
     divC = document.getElementById("MOTIVO");
     divC.style.display="none";
-  }else if (sel.value=="CANCELADA") {
+  }else if (sel.value==="CANCELADA") {
     divC = document.getElementById("fecha_conclusion");
     divC.style.display="";
     divC = document.getElementById("dat_ejec");
@@ -328,6 +328,13 @@ function actualizar_estatus_medida(sel) {
     divC.style.display="";
     divC = document.getElementById("conclu_cancel");
     divC.style.display="none";
+  }else if (sel.value === 'EN EJECUCION') {
+    divC = document.getElementById("fecha_conclusion");
+    divC.style.display="none";
+    divC = document.getElementById("MOTIVO");
+    divC.style.display="none";
+    divC = document.getElementById("conclu_cancel");
+    divC.style.display="none";    
   }
 }
 
