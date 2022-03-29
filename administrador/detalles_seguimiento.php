@@ -1397,7 +1397,7 @@ document.getElementById('CONCLUSION_CANCELACION').disabled = false;
 // document.getElementById('FUENTE_S').disabled = true;
 // document.getElementById('ESPECIFIQUE_FUENTE').readOnly = true;
 document.getElementById('COMENTARIO').disabled = false;
-document.getElementById('enter').style.display = "none";
+document.getElementById('enter').style.display = " ";
 document.getElementById('btn_agregar').style.display = "none";
 }
 
