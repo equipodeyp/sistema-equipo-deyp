@@ -58,11 +58,13 @@ if ($verifica_update_person == 1) {
   $estatus_exp = $_POST['ESTATUS_EXPEDIENTE'];
 
 
-  //
-  // $actualizar_med = "UPDATE statusseguimiento SET status = '$estatus_exp'  WHERE folioexpediente = '$folio_expediente'";
-  // $res_actualizar_med = $mysqli->query($actualizar_med);
 
+  $actualizar_med = "UPDATE statusseguimiento SET conclu_cancel = '$concl_canc',conclusionart35 = '$conclu_art', otherart35 = '$otro_art',
+  date_desincorporacion = '  $fecha_desincorporacion',  status ='$estatus_exp'
+  WHERE folioexpediente = '$folio_expediente'";
+  $res_actualizar_med = $mysqli->query($actualizar_med);
 
+//,
   // fuente del seguimiento del expediente
 
 
