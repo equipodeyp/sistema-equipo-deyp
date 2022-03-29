@@ -166,11 +166,11 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
       <article id="tab3">
         <div class="container">
           <form class=" container well form-horizontal" action="actualizar_expediente_seguimiento.php?folio=<?php echo $fol_exp; ?>" method="post">
-            <!-- <div class="secciones form-horizontal sticky breadcrumb flat">   AQUI ESTA LO DE LA BARRA  QUE SE AGREGA HASTA ARRIBA PARA SABER EN Q PAGINA ESTA
-              <a href="../administrador/menu.php">REGISTROS</a>
-              <a href="../administrador/detalles_expediente.php?id=<?=$fol_exp?>">EXPEDIENTE</a>
+            <div class="secciones form-horizontal sticky breadcrumb flat">
+              <a href="../administrador/admin.php">REGISTROS</a>
+              <a href="../administrador/detalles_expediente.php?folio=<?=$fol_exp?>">EXPEDIENTE</a>
               <a class="actived">SEGUIMIENTO</a>
-            </div> -->
+            </div>
             <div class="row">
               <div class="alert alert-info">
                 <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>

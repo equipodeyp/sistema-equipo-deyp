@@ -9,19 +9,11 @@ if (!isset($name)) {
   header("location: ../logout.php");
 }
 
-$id_analisis = $_GET['id'];
+$folioexpediente = $_GET['folio'];
 // echo $folioexpediente;
-$consulta = "SELECT * FROM evaluacion_expediente WHERE id_analisis = '$id_analisis'";
+$consulta = "SELECT * FROM datospersonales WHERE folioexpediente = '$folioexpediente'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
-// echo $fila_consulta['id'];
-
-$fol_exp = $_GET['id'];
-$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
-	$resultado = $mysqli->query($sql);
-	$row = $resultado->fetch_array(MYSQLI_ASSOC);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -85,7 +77,6 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 			}
 			// echo $genero;
 			?>
-
       <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -97,24 +88,23 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-
     <div class="wrap">
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" enctype= "multipart/form-data">
+            <form class="container well form-horizontal" method="POST" action="agregar_evaluacion_exp.php?folio=<?php echo $folioexpediente; ?>" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a href="../administrador/menu.php">REGISTROS</a>
+                  <a href="../administrador/admin.php">REGISTROS</a>
                   <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
                   <a href="../administrador/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>">SEGUIMIENTO</a>
-                  <a class="actived">DETALLES DE LA EVALUACIÓN</a>
+                  <a class="actived">AGREGAR EVALUACION</a>
                 </div>
                 <div class="row">
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">EVALUACIÓN DEL SEGUIMIENTO</h3>
+                  <h3 style="text-align:center">EVALUACION DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE</label>
@@ -123,54 +113,50 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select disabled class="form-select form-select-lg" name="analisis_m">
-                      <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
+                    <select id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m" required>
+                      <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
                       <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
                       <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
+                    <label id="LABEL_FECHA_AUTORIZACION" for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO</label>
+                    <input id="INPUT_FECHA_AUTORIZACION" class="form-control" type="date" name="fecha_auto" value="" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="id_analisis">ID DEL ANÁLSIS MULTIDISCIPLINARIO</label>
-                    <input disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
+                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
+                    <input id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="tipo_convenio">TIPO DE CONVENIO</label>
-                    <select disabled class="form-select form-select-lg" name="tipo_convenio">
-                      <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
+                    <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
+                    <select id="SELECT_TIPO_CONVENIO" class="form-select form-select-lg" name="tipo_convenio">
+                      <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
-                    <input disabled class="form-control" type="date" name="fecha_firma" id="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
+                    <label id="LABEL_FECHA_FIRMA" for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
+                    <input id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label>FECHA DE INICIO DEL CONVENIO</label>
-                    <input disabled class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
+                    <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
+                    <input id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" disabled>
+                    <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
+                    <input id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label>VIGENCIA DEL CONVENIO</label>
-                    <input disabled class="form-control" type="text" name="vigencia" id="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
-                  </div>
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
-                    <input disabled class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['total_convenios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <label id="LABEL_TOTAL_CONVENIOS" for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
+                    <input id="INPUT_TOTAL_CONVENIOS" class="form-control" type="text" name="id_convenio" value="" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                 </div>
 
               </div>
-              <div class="row">
+              <div id="ROW_OBSERVACIONES" class="row">
                 <div class="row">
                   <hr class="mb-4">
                 </div>
@@ -178,13 +164,13 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
+                  <textarea name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"></textarea>
               </div>
-              <div class="row">
+              <div id="ROW_GUARDAR" class="row">
                 <div>
                     <br>
                     <br>
-
+                    <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
                 </div>
               </div>
             </form>
@@ -195,11 +181,91 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>" class="btn-flotante">REGRESAR</a>
+<a href="../administrador/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>" class="btn-flotante">CANCELAR</a>
 </div>
 </body>
 </html>
 
 <script type="text/javascript">
+var selectAnalisisMulti = document.getElementById('ANALISIS_MULT').value;
+function ocultarCampos() {
+  if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
+
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "none";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "none";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
+        document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
+
+        document.getElementById('ROW_OBSERVACIONES').style.display = "none";
+        document.getElementById('ROW_GUARDAR').style.display = "none";
+
+      }
+}
+ocultarCampos();
+
+var analisisMultidisiplinario = document.getElementById('ANALISIS_MULT');
+var respuestaAlalisisMultidisiplinario = '';
+
+
+analisisMultidisiplinario.addEventListener('change', obtenerInfo);
+
+
+    function obtenerInfo(e) {
+      respuestaAlalisisMultidisiplinario = e.target.value;
+
+      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
+
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('LABEL_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').style.display = "";
+        document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "";
+        document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "";
+
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_GUARDAR').style.display = "";
+      }
+      else {
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_GUARDAR').style.display = "";
+
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
+        document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
+      }
+
+
+    }
+
 
 </script>
