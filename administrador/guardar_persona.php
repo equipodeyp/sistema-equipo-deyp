@@ -320,7 +320,7 @@ if ($verifica == 1) {
   // validacion de registro GUARDADO
   if($res_val_juridica){
     echo ("<script type='text/javaScript'>
-     window.location.href='../administrador/detalles_expediente.php?id=$fol_exp';
+     window.location.href='../administrador/detalles_expediente.php?folio=$fol_exp';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }

@@ -199,7 +199,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                         <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
-                        <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50">
+                        <input readonly class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
@@ -207,7 +207,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
-                    <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>">
+                    <input readonly class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>">
                   </div>
                   <div class="alert alert-info">
                     <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCOPORACIÓN AL PROGRAMA</h3>
@@ -281,21 +281,30 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
                   </div>
 
+                  <div>
+                  <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
+                  </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
-                    <input class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['nombrepersona']; ?>" required>
+                    <input onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['nombrepersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-                    <input class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
+                    <input disabled="disabled" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-                    <input class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
+                    <input disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
                   </div>
 
+                  <div class="col-md-6 mb-3 validar">
+                  <br>
+                  <button onclick="enviarId()" style="display: none; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
+                  </div>
+                  
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_NACIMIENTO_PERSONA">FECHA DE NACIMIENTO <span class="required"></span></label>
                     <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="<?php echo $rowfol['fechanacimientopersona']; ?>">
@@ -303,12 +312,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
-                    <input class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2">
+                    <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="GRUPO_EDAD">GRUPO EDAD<span class="required">(*)</span></label>
-                    <input class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>">
+                    <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder="" type="text" required value="<?php echo $rowfol['grupoedad']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -391,7 +400,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-
+                  
 
                 <?php
                 $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
@@ -549,7 +558,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       </div>
                       <div class="col-md-6 mb-3 validar" id="dir_reclusorio">
                         <label for="direccion_penal">DIRECCIÓN DEL CENTRO PENITENCIARIO<span class="required"></span></label>
-                        <input class="form-control" name="dir_penal" id="dir_penal" type="text" value="'.$rowdomicilio['seleccionemunicipio'].'">
+                        <input readonly class="form-control" name="dir_penal" id="dir_penal" type="text" value="'.$rowdomicilio['seleccionemunicipio'].'">
                       </div>';
                   }elseif ($rowdomicilio['lugar'] == 'NO') {
                     echo '<div class="col-md-6 mb-3 validar" id="estado_s" >
@@ -1035,18 +1044,6 @@ var idFolio = separarFolio[3];
 </script>
 
 
-<!-- <script type="text/javascript">
-var idUnico = document.getElementById('ID_UNICO').value;
-function Id() {
-if (idUnico == null || idUnico == ""){
-
-
-  alert("No se generó el id unico de la persona al registrar los datos. Soicitar su llenado.")
-}
-}
-Id();
-
-</script> -->
 
 <script type="text/javascript">
 
@@ -1068,6 +1065,9 @@ function CriterioOportunidad (){
   else if (Ppl === "NO"){
     document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
     document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
+    //////////////////////////////////////////////////////////////////
+    document.getElementById("CRITERIO_OPORTUNIDAD").value = "";
+    document.getElementById("fecha_cr_opor").value = "";
   }
 }
 CriterioOportunidad();
@@ -1120,6 +1120,9 @@ pplCriterio.addEventListener('change', obtenerPplCriterioOport);
         document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
         document.getElementById("label_fecha_cr_opor").style.display = "none";
         document.getElementById("fecha_cr_opor").style.display = "none";
+        /////////////////////////////////////////////////////////////////
+        document.getElementById("CRITERIO_OPORTUNIDAD").value = "";
+        document.getElementById("fecha_cr_opor").value = "";
 
       }
 }
@@ -1147,6 +1150,88 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
         document.getElementById("fecha_cr_opor").style.display = "none";
       }
 }
+
+
+</script>
+
+<script type="text/javascript">
+    // obtener folio
+    var separarFolio = [];
+    var folio = document.getElementById('NUM_EXPEDIENTE').value;
+    separarFolio = folio.split("/");
+    var idFolio = separarFolio[3];
+
+    // asignar id unico persona
+    var nombrePersona = document.getElementById('NOMBRE_PERSONA');
+    var paternoPersona = document.getElementById('PATERNO_PERSONA');
+    var maternoPersona = document.getElementById('MATERNO_PERSONA');
+    var nombreIngresado;
+    var paternoIngresado;
+    var maternoIngresado;
+    var nombreCompleto;
+    var arregloNombreCompleto;
+    var inicialesNombreCompleto;
+    var fullNombreCompleto;
+    var arrayNombreCompleto = [];
+    var text1 = "";
+
+    nombrePersona.addEventListener('change', obtenerNombre);
+    paternoPersona.addEventListener('change', obtenerPaterno);
+    maternoPersona.addEventListener('change', obtenerMaterno);
+
+    function obtenerNombre(e) {
+      nombreIngresado = e.target.value;
+      // console.log(nombreIngresado);
+    }
+
+    function obtenerPaterno(e) {
+      paternoIngresado = e.target.value;
+      // console.log(paternoIngresado);
+    }
+
+    function obtenerMaterno(e) {
+      maternoIngresado = e.target.value;
+      // console.log(maternoIngresado);
+    }
+
+    function obtenerIniciales() {
+      nombreCompleto = " " + nombreIngresado + " " + paternoIngresado + " " + maternoIngresado + " ";
+
+      arregloNombreCompleto = nombreCompleto.split(' ');
+      for (var i = 0; i < arregloNombreCompleto.length; i++){
+        inicialesNombreCompleto = arregloNombreCompleto[i].substring(0, 1).toUpperCase(0, 1);
+        arrayNombreCompleto.push(inicialesNombreCompleto);
+      }
+
+      fullNombreCompleto = arrayNombreCompleto.filter(v => v);
+      // console.log(fullNombreCompleto);
+      document.getElementById("ID_UNICO").value = "";
+
+      fullNombreCompleto.forEach(nombrePersona);
+
+      function nombrePersona(item1) {
+      text1 += item1;
+      }
+    }
+
+
+    function enviarId() {
+        obtenerIniciales();
+        document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
+        document.getElementById("GENERAR_ID").style.display = "none";
+    }
+
+    function validarNombrePersona(form) {
+        form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
+        document.getElementById("ID_UNICO").value="";
+    }
+
+    function validarApellidoPersona(form) {
+        form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
+        document.getElementById("ID_UNICO").value="";
+        document.getElementById("GENERAR_ID").style.display = "";
+
+    }
 
 
 </script>

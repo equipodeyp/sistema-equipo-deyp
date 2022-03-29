@@ -1102,6 +1102,9 @@ function CriterioOportunidad (){
   else if (Ppl === "NO"){
     document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
     document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
+
+    document.getElementById("CRITERIO_OPORTUNIDAD").value = "";
+    document.getElementById("fecha_cr_opor").value = "";
   }
 }
 CriterioOportunidad();
@@ -1151,6 +1154,9 @@ pplCriterio.addEventListener('change', obtenerPplCriterioOport);
         document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
         document.getElementById("label_fecha_cr_opor").style.display = "none";
         document.getElementById("fecha_cr_opor").style.display = "none";
+        
+        document.getElementById("CRITERIO_OPORTUNIDAD").value = "";
+        document.getElementById("fecha_cr_opor").value = "";
 
       }
 }

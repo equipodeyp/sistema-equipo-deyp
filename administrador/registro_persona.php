@@ -108,7 +108,7 @@ $num_consecutivo =$row["id"];
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
-    </div>
+    </div>|
 <div class="wrap">
      
   <div class="secciones">

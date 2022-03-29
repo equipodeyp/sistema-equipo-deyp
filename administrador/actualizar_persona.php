@@ -14,19 +14,20 @@ if ($verifica_update_person == 1) {
   $id_persona = $_GET['folio'];  //variable del folio al que se relaciona
   // echo $id_persona ;
   // datos de la autoridad
+  $id_unico =$_POST['ID_UNICO'];
   $id_solicitud =$_POST['ID_SOLICITUD'];
   $fecha_solicitud=$_POST['FECHA_SOLICITUD'];
-  // $nombre_autoridad=$_POST['NOMBRE_AUTORIDAD'];
+  $nombre_autoridad=$_POST['NOMBRE_AUTORIDAD'];
   // echo $nombre_autoridad;
-  // if ($nombre_autoridad =='OTRO') {
-  //
-  //   $other_autoridad= $_POST['OTHER_AUTORIDAD'];
-  //   if ($other_autoridad == '') {
-  //     $other_autoridad= $_POST['OTHER_AUTORIDAD1'];
-  //   }
-  // }else {
-  //   $other_autoridad='';
-  // }
+  if ($nombre_autoridad =='OTRO') {
+  
+    $other_autoridad= $_POST['OTHER_AUTORIDAD'];
+    if ($other_autoridad == '') {
+      $other_autoridad= $_POST['OTHER_AUTORIDAD1'];
+    }
+  }else {
+    $other_autoridad='';
+  }
   // echo $other_autoridad;
   $nombre_servidor =$_POST['NOMBRE_SERVIDOR'];
   $paterno_servidor=$_POST['PATERNO_SERVIDOR'];
@@ -34,21 +35,25 @@ if ($verifica_update_person == 1) {
   $cargo_servidor= $_POST['CARGO_SERVIDOR'];
   // datos de la persona PROPUESTA
   // datos perssonales
-  // $n_persona =$_POST['NOMBRE_PERSONA'];
-  // $p_persona=$_POST['PATERNO_PERSONA'];
-  // $m_persona=$_POST['MATERNO_PERSONA'];
+  $n_persona =$_POST['NOMBRE_PERSONA'];
+  $p_persona=$_POST['PATERNO_PERSONA'];
+  $m_persona=$_POST['MATERNO_PERSONA'];
   $f_persona= $_POST['FECHA_NACIMIENTO_PERSONA'];
   $e_persona =$_POST['EDAD_PERSONA'];
   $g_persona=$_POST['GRUPO_EDAD'];
-  // $c_persona=$_POST['CALIDAD_PERSONA'];
-  // $s_persona= $_POST['SEXO_PERSONA'];
+  $s_persona= $_POST['SEXO_PERSONA'];
   $cu_persona= $_POST['CURP_PERSONA'];
   $rfc_persona =$_POST['RFC_PERSONA'];
   $al_persona=$_POST['ALIAS_PERSONA'];
   $o_persona=$_POST['OCUPACION_PERSONA'];
   $t_fijo= $_POST['TELEFONO_FIJO'];
   $t_celular=$_POST['TELEFONO_CELULAR'];
-  $incapaz= $_POST['INCAPAZ'];
+  $incapaz= $_POST['INCAPAZ']; 
+  $c_persona=$_POST['CALIDAD_PERSONA_PROCEDIMIENTO'];
+  $pro_persona=$_POST['CALIDAD_PERSONA'];
+
+
+
   // echo $incapaz;
   // $archivo = $_FILES['foto1']['name'];
   // $estatus= $_POST['ESTATUS_PERSONA'];
@@ -78,37 +83,37 @@ if ($verifica_update_person == 1) {
     $cp_persona=$_POST['CP'];
   }
   // datos del tutor
-  // $t_nombre =$_POST['TUTOR_NOMBRE'];
-  // if ($t_nombre == '') {
-  //   $t_nombre =$_POST['TUTOR_NOMBRE1'];
-  // }
-  // $t_paterno=$_POST['TUTOR_PATERNO'];
-  // if ($t_paterno == '') {
-  //   $t_paterno=$_POST['TUTOR_PATERNO1'];
-  // }
-  // $t_materno=$_POST['TUTOR_MATERNO'];
-  // if ($t_materno == '') {
-  //   $t_materno=$_POST['TUTOR_MATERNO1'];
-  // }
+  $t_nombre =$_POST['TUTOR_NOMBRE'];
+  if ($t_nombre == '') {
+    $t_nombre =$_POST['TUTOR_NOMBRE1'];
+  }
+  $t_paterno=$_POST['TUTOR_PATERNO'];
+  if ($t_paterno == '') {
+    $t_paterno=$_POST['TUTOR_PATERNO1'];
+  }
+  $t_materno=$_POST['TUTOR_MATERNO'];
+  if ($t_materno == '') {
+    $t_materno=$_POST['TUTOR_MATERNO1'];
+  }
   // datos del proceso penal o investigacion
-  // $del_primario=$_POST['DELITO_PRINCIPAL'];
-  // $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL'];
-  // if ($otro_del_p == '') {
-  //   $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL1'];
-  // }
-  // echo $otro_del_p;
-  // $del_secundario= $_POST['DELITO_SECUNDARIO'];
-  // $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO'];
-  // if ($otro_del_s == '') {
-  //   $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO1'];
-  // }
-  // echo $otro_del_s;
-  // $etapa_p=$_POST['ETAPA_PROCEDIMIENTO'];
+  $del_primario=$_POST['DELITO_PRINCIPAL'];
+  $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL'];
+  if ($otro_del_p == '') {
+    $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL1'];
+  }
+  echo $otro_del_p;
+  $del_secundario= $_POST['DELITO_SECUNDARIO'];
+  $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO'];
+  if ($otro_del_s == '') {
+    $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO1'];
+  }
+  echo $otro_del_s;
+  $etapa_p=$_POST['ETAPA_PROCEDIMIENTO'];
   $nuc=$_POST['NUC'];
-  // $municipio_r= $_POST['MUNICIPIO_RADICACION'];
-  // datos de valoracion juridica
-  // $res_val_jur=$_POST['RESULTADO_VALORACION_JURIDICA'];
-  // $mot_no_proc=$_POST['MOTIVO_NO_PROCEDENCIA'];
+  $municipio_r= $_POST['MUNICIPIO_RADICACION'];
+  //datos de valoracion juridica
+  $res_val_jur=$_POST['RESULTADO_VALORACION_JURIDICA'];
+  $mot_no_proc=$_POST['MOTIVO_NO_PROCEDENCIA'];
   // datos de la determinacion de la INCORPORACION
   // $multidisciplinario=$_POST['ANALISIS_MULTIDISCIPLINARIO'];
   // $incorporacion=$_POST['INCORPORACION'];
@@ -222,8 +227,8 @@ if ($verifica_update_person == 1) {
   // $sql = "INSERT INTO autoridad (idsolicitud, nombreautoridad, otraautoridad, nombreservidor, apellidopaterno, apellidomaterno, cargoservidor, folioexpediente, fechasolicitud, id_persona)
   //                        VALUES ('$id_solicitud', '$name_mun', '$other_autoridad', '$nombre_servidor', '$paterno_servidor', '$materno_servidor', '$cargo_servidor', '$fol_exp', '$fecha_solicitud', '$id_persona')";
   // $resultado = $mysqli->query($sql);
-  // $sql = "UPDATE autoridad SET idsolicitud='$id_solicitud', nombreautoridad='$nombre_autoridad', otraautoridad='$other_autoridad', nombreservidor='$nombre_servidor', apellidopaterno='$paterno_servidor', apellidomaterno='$materno_servidor', cargoservidor='$cargo_servidor', fechasolicitud='$fecha_solicitud' WHERE id_persona = '$id_persona'";
-  // $resultado = $mysqli->query($sql);
+  $sql = "UPDATE autoridad SET idsolicitud='$id_solicitud', nombreautoridad='$nombre_autoridad', otraautoridad='$other_autoridad', nombreservidor='$nombre_servidor', apellidopaterno='$paterno_servidor', apellidomaterno='$materno_servidor', cargoservidor='$cargo_servidor', fechasolicitud='$fecha_solicitud' WHERE id_persona = '$id_persona'";
+  $resultado = $mysqli->query($sql);
 
   // sql de la inserccion de los datos de la persona
   // if(is_uploaded_file($_FILES['foto1']['tmp_name'])){
@@ -274,10 +279,17 @@ if ($verifica_update_person == 1) {
 		$userpic = $edit_row['foto']; // old image from database
 	}
   // $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, sexopersona, curppersona, rfcpersona,  aliaspersona, ocupacion, telefonofijo, telefonocelular, incapaz, folioexpediente, foto, estatus)
-  //                                          VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona',              '$g_persona', '$name_cal', '$s_persona', '$cu_persona', '$rfc_persona',  '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$name_estatus')";
+  //                                          VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$name_cal', '$s_persona', '$cu_persona', '$rfc_persona',  '$al_persona', '$o_persona', '$t_fijo', '$t_celular', '$incapaz', '$fol_exp', '$archivo', '$name_estatus')";
   // $res_dat_per = $mysqli->query($datos_persona);
-  $datos_persona = "UPDATE datospersonales SET  aliaspersona='$al_persona', ocupacion='$o_persona', telefonofijo='$t_fijo', telefonocelular='$t_celular',  foto='$userpic'  WHERE id = '$id_persona'";
-  $res_dat_per = $mysqli->query($datos_persona);
+/////////////////////////////
+
+// UPDATE DATOS PERSONALERS
+/////////////////////////////
+  $datos_persona = "UPDATE datospersonales SET  identificador='$id_unico', nombrepersona='$n_persona', paternopersona='$p_persona', maternopersona='$m_persona', fechanacimientopersona='$f_persona', edadpersona='$e_persona', grupoedad='$g_persona', sexopersona='$s_persona', 
+                    curppersona='$cu_persona', rfcpersona='$rfc_persona', aliaspersona='$m_persona', ocupacion='$o_persona', telefonofijo='$t_fijo', telefonocelular='$t_celular', incapaz='$incapaz', calidadpersona='$c_persona', calidadprocedimiento='$pro_persona', foto='$userpic'  WHERE id = '$id_persona'";
+                    $res_dat_per = $mysqli->query($datos_persona);
+
+
   // sql para la inserccion de datos del sujeto de su origen
   // $origen = "INSERT INTO datosorigen(lugardenacimiento, municipiodenacimiento, nacionalidadpersona, folioexpediente, id_persona)
   //             VALUES ('$name_est', '$name_muni', '$na_persona', '$fol_exp', '$id_persona')";
@@ -314,30 +326,33 @@ if ($verifica_update_person == 1) {
     $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona', lugar='$domicilio', criterio='$criterio_oportunidad', fecha_criterio='$fecha_criterio' WHERE id_persona = '$id_persona'";
     $res_domicilio = $mysqli->query($dom_actual);
   }
+
   // $dom_actual = "UPDATE domiciliopersona SET seleccioneestado='$name_estac', seleccionemunicipio='$name_muniac', seleccionelocalidad='$lo_persona', calle='$ca_persona', cp='$cp_persona' WHERE id_persona = '$id_persona'";
   // $res_domicilio = $mysqli->query($dom_actual);
-  // // sql para la inserccion de datos del TUTOR
-  // if ($incapaz == 'SI') {
-  //   $tutor = "INSERT INTO tutor (nombre, apellidopaterno, apellidomaterno, folioexpediente, id_persona)
-  //             VALUES ('$t_nombre', '$t_paterno', '$t_materno', '$fol_exp', '$id_persona')";
-  //   $res_tutor = $mysqli->query($tutor);
-  // }
-  // if ($incapaz == 'SI') {
-  //   $tutor = "UPDATE tutor SET nombre='$t_nombre', apellidopaterno='$t_paterno', apellidomaterno='$t_materno' WHERE id_persona = '$id_persona'";
-  //   $res_tutor = $mysqli->query($tutor);
-  // }
+
+  // sql para la inserccion de datos del TUTOR
+  if ($incapaz == 'SI') {
+    $tutor = "INSERT INTO tutor (nombre, apellidopaterno, apellidomaterno, folioexpediente, id_persona)
+              VALUES ('$t_nombre', '$t_paterno', '$t_materno', '$fol_exp', '$id_persona')";
+    $res_tutor = $mysqli->query($tutor);
+  }
+  if ($incapaz == 'SI') {
+    $tutor = "UPDATE tutor SET nombre='$t_nombre', apellidopaterno='$t_paterno', apellidomaterno='$t_materno' WHERE id_persona = '$id_persona'";
+    $res_tutor = $mysqli->query($tutor);
+  }
+
   // sql para inserccion de los datos de la investigacion o proceso penal
-  // $proceso_penal= "INSERT INTO procesopenal (delitoprincipal, otrodelitoprincipal, delitosecundario, otrodelitosecundario, etapaprocedimiento, nuc, numeroradicacion, folioexpediente, id_persona)
-  //                   VALUES ('$name_del', '$otro_del_p', '$name_del2', '$otro_del_s', '$etapa_p', '$nuc', '$name_muni_del', '$fol_exp', '$id_persona')";
-  // $res_proceso = $mysqli->query($proceso_penal);
-  // $proceso_penal ="UPDATE procesopenal SET delitoprincipal='$del_primario', otrodelitoprincipal='$otro_del_p', delitosecundario='$del_secundario', otrodelitosecundario='$otro_del_s', etapaprocedimiento='$etapa_p', nuc='$nuc', numeroradicacion='$municipio_r' WHERE id_persona = '$id_persona'";
-  // $res_proceso = $mysqli->query($proceso_penal);
+  $proceso_penal= "INSERT INTO procesopenal (delitoprincipal, otrodelitoprincipal, delitosecundario, otrodelitosecundario, etapaprocedimiento, nuc, numeroradicacion, folioexpediente, id_persona)
+                    VALUES ('$name_del', '$otro_del_p', '$name_del2', '$otro_del_s', '$etapa_p', '$nuc', '$name_muni_del', '$fol_exp', '$id_persona')";
+  $res_proceso = $mysqli->query($proceso_penal);
+  $proceso_penal ="UPDATE procesopenal SET delitoprincipal='$del_primario', otrodelitoprincipal='$otro_del_p', delitosecundario='$del_secundario', otrodelitosecundario='$otro_del_s', etapaprocedimiento='$etapa_p', nuc='$nuc', numeroradicacion='$municipio_r' WHERE id_persona = '$id_persona'";
+  $res_proceso = $mysqli->query($proceso_penal);
   // // sql para inserccion de valoracion juridica
   // $val_juridica = "INSERT INTO valoracionjuridica (resultadovaloracion, motivoprocedencia, folioexpediente, id_persona)
   //                   VALUES ('$res_val_jur', '$mot_no_proc', '$fol_exp', '$id_persona')";
   // $res_val_juridica = $mysqli->query($val_juridica);
-  // $val_juridica = "UPDATE valoracionjuridica SET resultadovaloracion='$res_val_jur', motivoprocedencia='$mot_no_proc' WHERE id_persona = '$id_persona'";
-  // $res_val_juridica = $mysqli->query($val_juridica);
+  $val_juridica = "UPDATE valoracionjuridica SET resultadovaloracion='$res_val_jur', motivoprocedencia='$mot_no_proc' WHERE id_persona = '$id_persona'";
+  $res_val_juridica = $mysqli->query($val_juridica);
   // sql para la inserccion de la determinacion de la incorporacion
   // $det_inc = "INSERT INTO determinacionincorporacion (incorporacion, motivoincorporacion, convenioentendimiento, fechaconvenioentendimiento, folioexpediente, id_persona)
   //               VALUES('$incorporacion', '$mot_inc', '$name_convenio', '$fecha_conv_ent', '$fol_exp', '$id_persona')";
