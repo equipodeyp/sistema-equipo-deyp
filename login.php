@@ -21,25 +21,25 @@ try {
                 alert("Bienvenido");
                 window.location.href="administrador/admin.php";
                 </script>';
-          }else if($login['id_cargo']==2){ //cliente
+          }else if($login['id_cargo']==2){ //validacion de medidas
                 echo'<script type="text/javascript">
                 alert("Bienvenido");
                 window.location.href="subdireccion_de_analisis_de_riesgo/menu.php";
                 </script>';
-          }else if($login['id_cargo']==3){ //registro mascara 1
+          }else if($login['id_cargo']==3){ //ingreso de datos de expediente y de sujetos
                 echo'<script type="text/javascript">
                 alert("Bienvenido");
                 window.location.href="subdireccion_de_apoyo_tecnico_juridico/menu.php";
                 </script>';
-          }else if($login['id_cargo']==4){ //registro mascara 1
+          }else if($login['id_cargo']==4){ //registro de medidas y seguimiento de expediente y de sujeto
                 echo'<script type="text/javascript">
                 alert("Bienvenido");
                 window.location.href="subdireccion_de_estadistica_y_preregistro/menu.php";
                 </script>';
-          }else if($login['id_cargo']==5){ //registro mascara 1
+          }else if($login['id_cargo']==5){ //solo lectura de expedientes
                 echo'<script type="text/javascript">
                 alert("Bienvenido");
-                window.location.href="modificar/mod.php";
+                window.location.href="consultores/admin.php";
                 </script>';
           }
       $contador++;
