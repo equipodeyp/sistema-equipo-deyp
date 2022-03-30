@@ -138,10 +138,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-     
+
       <div class="wrap">
-        
-        
+
+
         <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
@@ -161,7 +161,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             </div>
 
     				<div class="container">
-              <form class="container well form-horizontal" action="../administrador/actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="../administrador/actualizar_seguimiento_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                       <!-- <?php
                       $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
@@ -190,15 +190,15 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                 </div>
                 <div class="col-md-6 mb-3 validar">
                       <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                      <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50">
+                      <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
-                  <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
+                  <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>">
+                  <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
                 </div>
 
                 </div>
@@ -273,7 +273,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-                    <input id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
+                    <input id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE_TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -408,7 +408,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                     <div class="col-md-6 mb-3 validar" >
                       <label id="LABEL_OTHER_ART351" for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowstatusexp['otherart35']; ?>" type="text">
+                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowdetinc['otroart35']; ?>" type="text">
                     </div>
 
 
@@ -725,25 +725,34 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-
+        // console.log(respuestaAlalisisMultidisiplinario);
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INPUT_INCORPORACION').style.display = "";
+        document.getElementById('INPUT_INCORPORACION').value = "";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('FECHA_AUTORIZACION').value = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
         document.getElementById('id_analisis').style.display = "";
+        document.getElementById('id_analisis').value = "";
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "";
+        document.getElementById('CONVENIO_ENTENDIMIENTO').value = "";
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
         document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').style.display = "";
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
         document.getElementById('LABEL_FECHA_INICIO').style.display = "";
         document.getElementById('fecha_inicio').style.display = "";
+        document.getElementById('fecha_inicio').value = "";
         document.getElementById('LABEL_VIGENCIA').style.display = "";
         document.getElementById('VIGENCIA_CONVENIO').style.display = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
         document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('id_convenio').style.display = "";
+        document.getElementById('id_convenio').value = "";
 
 }
       else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION" ){
@@ -1193,7 +1202,7 @@ function ReadOnlyConClu() {
     document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = false;
     document.getElementById('COMENTARIO').disabled = false;
     document.getElementById('UPDATE_FILE').style.display = "none";
-    document.getElementById('enter').style.display = "none";
+    // document.getElementById('enter').style.display = "none";
     document.getElementById('AGREGAR_CONVENIO').style.display = "none";
   }
 }
