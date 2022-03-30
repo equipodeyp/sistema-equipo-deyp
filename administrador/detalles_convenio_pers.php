@@ -9,18 +9,21 @@ if (!isset($name)) {
   header("location: ../logout.php");
 }
 
-$id = $_GET['id'];
-// echo $folioexpediente;
-$consulta = "SELECT * FROM evaluacion_persona WHERE id = '$id'";
+$id_unico = $_GET['id'];
+// echo $id_unico;
+$consulta = "SELECT * FROM evaluacion_persona WHERE id = '$id_unico'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
 
-$id_unico = $fila_consulta['id_unico'];
 
-$consul = "SELECT * FROM datospersonales WHERE identificador = '$id_unico'";
+$consul = "SELECT * FROM datospersonales WHERE id = '$id_unico'";
 $res_consulta_uno = $mysqli->query($consul);
 $fila_consulta_uno = $res_consulta_uno->fetch_assoc();
 $id_persona = $fila_consulta_uno ['id'];
+//echo $id_persona; //1
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -100,7 +103,7 @@ $id_persona = $fila_consulta_uno ['id'];
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" enctype= "multipart/form-data">
+            <form class="container well form-horizontal" action="../administrador/actualizar_detalles_persona.php?id=<?php echo $id_unico; ?>" method="post" enctype="multipart/form-data">
               <div class="row">
                 <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -114,20 +117,20 @@ $id_persona = $fila_consulta_uno ['id'];
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">EVALUACION DEL SEGUIMIENTO</h3>
+                  <h3 style="text-align:center">EVALUACIÓN DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE</label>
-                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>">
+                  <input readonly type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>">
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label>ID ÚNICO DE LA PERSONA </label>
-                  <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['id_unico']; ?>">
+                  <input readonly type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['id_unico']; ?>">
                 </div>
-                <div class="row">
+
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
-                    <select id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m">
+                    <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
+                    <select autocomplete="off" required id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
                       <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
@@ -136,15 +139,15 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_AUTORIZACION" for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLSIIS MULTIDISCIPLINARIO</label>
-                    <input id="INPUT_FECHA_AUTORIZACION" class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
+                    <input autocomplete="off" id="INPUT_FECHA_AUTORIZACION" class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
-                    <input id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
+                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLSIIS MULTIDISCIPLINARIO</label>
+                    <input autocomplete="off" id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
-                    <select id="SELECT_TIPO_CONVENIO" class="form-select form-select-lg" name="tipo_convenio">
+                    <select autocomplete="off" id="SELECT_TIPO_CONVENIO" class="form-select form-select-lg" name="tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
@@ -152,46 +155,47 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_FIRMA" for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
+                    <input autocomplete="off" id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
+                    <input autocomplete="off" id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                    <input id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input autocomplete="off" id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
+                    <input autocomplete="off" id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
-                    <input id="INPUT_ID_CONVENIO" class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input autocomplete="off" id="INPUT_ID_CONVENIO" class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>">
                   </div>
-                </div>
+        
 
               </div>
 
-              <div id="row_observ" class="row">
+              <div id="ROW_OBSERVACIONES" class="row">
                 <div class="row">
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
-                  <label for="observaciones">OBSERVACIONES</label>
-                  <textarea name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
+                  <label id="LABEL_OBSERVACIONES" for="observaciones">OBSERVACIONES</label>
+                  <textarea id="TEXTAREA_OBSERVACIONES" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
               </div>
 
-              <div class="row">
-                <div>
-                    <br>
-                    <br>
-
-                </div>
+              <div id="BOTON_ACTUALIZAR" class="row">
+                  <div>
+                      <br>
+                      <br>
+                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                  </div>
+              </div>
             </form>
           </div>
         </article>
@@ -202,8 +206,7 @@ $id_persona = $fila_consulta_uno ['id'];
 <div class="contenedor">
 <a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>" class="btn-flotante">REGRESAR</a>
 </div>
-</body>
-</html>
+
 
 <script type="text/javascript">
 
@@ -211,8 +214,34 @@ $id_persona = $fila_consulta_uno ['id'];
 var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT').value;
 
     function ocultarInfo() {
+      if(respuestaAlalisisMultidisiplinario == "" || respuestaAlalisisMultidisiplinario == null){
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "none";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "none";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
+        document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
+        
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "none";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "none";
+        document.getElementById('ROW_OBSERVACIONES').style.display = "none";
+        document.getElementById('BOTON_ACTUALIZAR').style.display = "none";
+        
+
+      }
+
+      if (respuestaAlalisisMultidisiplinario == "ESTUDIO TECNICO") {
 
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
@@ -231,11 +260,20 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
 
-        document.getElementById('row_observ').style.display = "";
+        
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('BOTON_ACTUALIZAR').style.display = "";
+        
 
 
       }
-      else {
+      else if (respuestaAlalisisMultidisiplinario == "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario == "ACUERDO DE CANCELACION") {
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
         document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
         document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
@@ -248,8 +286,122 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+
+        
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('BOTON_ACTUALIZAR').style.display = "";
+        
       }
 
     }
 ocultarInfo();
+
+
+var analisisMultidisiplinario = document.getElementById('ANALISIS_MULT');
+var respuestaAlalisisMultidisiplinario = '';
+
+
+analisisMultidisiplinario.addEventListener('change', obtenerInfo);
+
+
+    function obtenerInfo(e) {
+      respuestaAlalisisMultidisiplinario = e.target.value;
+      
+
+      if (respuestaAlalisisMultidisiplinario == "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario == "ACUERDO DE CANCELACION") {
+
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
+        document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+
+        
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('BOTON_ACTUALIZAR').style.display = "";
+
+        document.getElementById('LABEL_FECHA_AUTORIZACION').value = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').value = "";
+        document.getElementById('LABEL_ID_ANALISIS').value = "";
+        document.getElementById('INPUT_ID_ANALISIS').value = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').value = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').value = "";
+        document.getElementById('LABEL_FECHA_FIRMA').value = "";
+        document.getElementById('INPUT_FECHA_FIRMA').value = "";
+        document.getElementById('LABEL_FECHA_INICIO').value = "";
+        document.getElementById('INPUT_FECHA_INICIO').value = "";
+        document.getElementById('LABEL_VIGENCIA').value = "";
+        document.getElementById('INPUT_VIGENCIA').value = "";
+        document.getElementById('LABEL_FECHA_TERMINO').value = "";
+        document.getElementById('INPUT_FECHA_TERMINO').value = "";
+        document.getElementById('LABEL_ID_CONVENIO').value = "";
+        document.getElementById('INPUT_ID_CONVENIO').value = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').value = "";
+
+
+      }
+      else if (respuestaAlalisisMultidisiplinario == "ESTUDIO TECNICO"){
+
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('LABEL_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').style.display = "";
+        document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
+        document.getElementById('INPUT_FECHA_TERMINO').style.display = "";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
+
+        
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('BOTON_ACTUALIZAR').style.display = "";
+
+        document.getElementById('LABEL_FECHA_AUTORIZACION').value = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').value = "";
+        document.getElementById('LABEL_ID_ANALISIS').value = "";
+        document.getElementById('INPUT_ID_ANALISIS').value = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').value = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').value = "";
+        document.getElementById('LABEL_FECHA_FIRMA').value = "";
+        document.getElementById('INPUT_FECHA_FIRMA').value = "";
+        document.getElementById('LABEL_FECHA_INICIO').value = "";
+        document.getElementById('INPUT_FECHA_INICIO').value = "";
+        document.getElementById('LABEL_VIGENCIA').value = "";
+        document.getElementById('INPUT_VIGENCIA').value = "";
+        document.getElementById('LABEL_FECHA_TERMINO').value = "";
+        document.getElementById('INPUT_FECHA_TERMINO').value = "";
+        document.getElementById('LABEL_ID_CONVENIO').value = "";
+        document.getElementById('INPUT_ID_CONVENIO').value = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').value = "";
+        
+      }
+
+    }
+
 </script>
+</body>
+</html>

@@ -101,13 +101,13 @@ if ($verifica_update_person == 1) {
   if ($otro_del_p == '') {
     $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL1'];
   }
-  echo $otro_del_p;
+  // echo $otro_del_p;
   $del_secundario= $_POST['DELITO_SECUNDARIO'];
   $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO'];
   if ($otro_del_s == '') {
     $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO1'];
   }
-  echo $otro_del_s;
+  // echo $otro_del_s;
   $etapa_p=$_POST['ETAPA_PROCEDIMIENTO'];
   $nuc=$_POST['NUC'];
   $municipio_r= $_POST['MUNICIPIO_RADICACION'];
@@ -402,7 +402,8 @@ if ($verifica_update_person == 1) {
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }
-}else {
+}
+else {
   echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=admin.php'>";
 }
 
