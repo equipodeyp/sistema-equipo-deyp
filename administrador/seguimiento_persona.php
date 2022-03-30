@@ -155,7 +155,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../administrador/admin.php">REGISTROS</a>
-              <a href="../administrador/detalles_expediente.php?folio=<?=$fol_exp?>">EXPEDIENTE</a>
+              <a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../administrador/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
               <a class="actived">SEGUIMIENTO</a>
             </div>
