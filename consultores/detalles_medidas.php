@@ -149,9 +149,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../administrador/admin.php">REGISTROS</a>
-              <a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
-              <a href="../administrador/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
+              <a href="../consultores/admin.php">REGISTROS</a>
+              <a href="../consultores/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
+              <a href="../consultores/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
               <a class="actived">MEDIDAS</a>
             </div>
             <div class="container">
@@ -206,7 +206,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">MUNICIPIO</th>
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
-        		  			<th style="text-align:center"><a href="agregar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
+        		  			<th style="text-align:center">DETALLES</th>
         		  		</thead>
         		  		<?php
                   $cont_med = '0';
@@ -260,7 +260,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="../consultores/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

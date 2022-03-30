@@ -103,14 +103,14 @@ $id_persona = $fila_consulta_uno ['id'];
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" action="../administrador/actualizar_detalles_persona.php?id=<?php echo $id_unico; ?>" method="post" enctype="multipart/form-data">
+            <form class="container well form-horizontal" action="../consultores/actualizar_detalles_persona.php?id=<?php echo $id_unico; ?>" method="post" enctype="multipart/form-data">
               <div class="row">
                 <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../administrador/admin.php">REGISTROS</a>
-              <a href="../administrador/detalles_expediente.php?id=<?=$fila_consulta_uno['folioexpediente']?>">EXPEDIENTE</a>
-              <a href="../administrador/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>">PERSONA</a>
-              <a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>">SEGUIMIENTO</a>
+              <a href="../consultores/admin.php">REGISTROS</a>
+              <a href="../consultores/detalles_expediente.php?id=<?=$fila_consulta_uno['folioexpediente']?>">EXPEDIENTE</a>
+              <a href="../consultores/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>">PERSONA</a>
+              <a href="../consultores/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>">SEGUIMIENTO</a>
               <a class="actived">EVALUACIÓN</a>
             </div>
                 <div class="row">
@@ -130,7 +130,7 @@ $id_persona = $fila_consulta_uno ['id'];
 
                   <div class="col-md-6 mb-3 validar ">
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select autocomplete="off" required id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m">
+                    <select disabled autocomplete="off" required id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
                       <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
@@ -139,15 +139,15 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_AUTORIZACION" for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLSIIS MULTIDISCIPLINARIO</label>
-                    <input autocomplete="off" id="INPUT_FECHA_AUTORIZACION" class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
+                    <input readonly autocomplete="off" id="INPUT_FECHA_AUTORIZACION" class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLSIIS MULTIDISCIPLINARIO</label>
-                    <input autocomplete="off" id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
+                    <input readonly autocomplete="off" id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
-                    <select autocomplete="off" id="SELECT_TIPO_CONVENIO" class="form-select form-select-lg" name="tipo_convenio">
+                    <select disabled autocomplete="off" id="SELECT_TIPO_CONVENIO" class="form-select form-select-lg" name="tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
@@ -155,24 +155,24 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_FIRMA" for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
+                    <input readonly autocomplete="off" id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
+                    <input readonly autocomplete="off" id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input readonly autocomplete="off" id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
+                    <input readonly autocomplete="off" id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_ID_CONVENIO" class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>">
+                    <input readonly autocomplete="off" id="INPUT_ID_CONVENIO" class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>">
                   </div>
         
 
@@ -186,14 +186,14 @@ $id_persona = $fila_consulta_uno ['id'];
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label id="LABEL_OBSERVACIONES" for="observaciones">OBSERVACIONES</label>
-                  <textarea id="TEXTAREA_OBSERVACIONES" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
+                  <textarea disabled id="TEXTAREA_OBSERVACIONES" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
               </div>
 
               <div id="BOTON_ACTUALIZAR" class="row">
                   <div>
                       <br>
                       <br>
-                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                  		<!-- <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button> -->
                   </div>
               </div>
             </form>
@@ -204,7 +204,7 @@ $id_persona = $fila_consulta_uno ['id'];
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>" class="btn-flotante">REGRESAR</a>
+<a href="../consultores/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

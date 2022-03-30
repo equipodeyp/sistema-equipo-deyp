@@ -59,28 +59,28 @@ $row=$result->fetch_assoc();
              "sProcessing":"Procesando...",
               },
           // para usar los botones
-          responsive: "true",
-          dom: 'Bfrtilp',
-          buttons:[
-        {
-          extend:    'excelHtml5',
-          text:      '<i class="fas fa-file-excel"></i> ',
-          titleAttr: 'Exportar a Excel',
-          className: 'btn btn-success'
-        },
-        {
-          extend:    'pdfHtml5',
-          text:      '<i class="fas fa-file-pdf"></i> ',
-          titleAttr: 'Exportar a PDF',
-          className: 'btn btn-danger'
-        },
-        {
-          extend:    'print',
-          text:      '<i class="fa fa-print"></i> ',
-          titleAttr: 'Imprimir',
-          className: 'btn btn-info'
-        },
-      ]
+      //     responsive: "true",
+      //     dom: 'Bfrtilp',
+      //     buttons:[
+      //   {
+      //     extend:    'excelHtml5',
+      //     text:      '<i class="fas fa-file-excel"></i> ',
+      //     titleAttr: 'Exportar a Excel',
+      //     className: 'btn btn-success'
+      //   },
+      //   {
+      //     extend:    'pdfHtml5',
+      //     text:      '<i class="fas fa-file-pdf"></i> ',
+      //     titleAttr: 'Exportar a PDF',
+      //     className: 'btn btn-danger'
+      //   },
+      //   {
+      //     extend:    'print',
+      //     text:      '<i class="fa fa-print"></i> ',
+      //     titleAttr: 'Imprimir',
+      //     className: 'btn btn-info'
+      //   },
+      // ]
       });
   });
   </script>
@@ -130,7 +130,7 @@ $row=$result->fetch_assoc();
           </h5>
         </div>
         <div class="row">
-          <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
+          <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->

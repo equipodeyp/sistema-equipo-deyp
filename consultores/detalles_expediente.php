@@ -85,7 +85,7 @@ $row=$result->fetch_assoc();
 	  	<article id="tab1">
 			  	<!-- menu de navegacion de la parte de arriba -->
 				<div class="secciones form-horizontal sticky breadcrumb flat">
-						<a href="../administrador/admin.php">REGISTROS</a>
+						<a href="../consultores/admin.php">REGISTROS</a>
 						<a class="actived">EXPEDIENTE</a>
 				</div>
 							<div class="well form-horizontal" >
@@ -170,14 +170,13 @@ $row=$result->fetch_assoc();
 										<div class="col-md-4 inputGroupContainer">
 											<div class="input-group">
 								      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-											  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
-
+											  	<input readonly name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
 								    		</div>
 										</div>
 									<div>
-									<div>
+									<!-- <div>
 										<button type="submit" id="fecha_acuerdo" class='btn btn-success'>ACTUALIZAR FECHA</button>
-									</div>
+									</div> -->
 
 									</form>
 								</div>
@@ -205,7 +204,7 @@ $row=$result->fetch_assoc();
 								  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
 												<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
 												<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-												<th style="text-align:center"><a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">AGREGAR PERSONA</button> </a> </th>
+												<th style="text-align:center"> DETALLES </th>
 								  		</thead>
 		  								<?php
 											$cuenta = 0;
@@ -237,7 +236,7 @@ $row=$result->fetch_assoc();
 								                      } elseif ($fila_val['validacion'] == 'false') {
 								                        echo "<i class='fas fa-times'></i>";
 								                      } echo "</td>";
-								        		        echo "<td style='text-align:center'><a href='../administrador/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+								        		        echo "<td style='text-align:center'><a href='../consultores/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
 								        		        echo "</tr>";
 								            }
 
@@ -254,7 +253,7 @@ $row=$result->fetch_assoc();
 									<div class="alert alert-info">
 										<h3 style="text-align:center">SEGUIMIENTO DEL EXPEDIENTE</h3>
 									</div>
-									<a  href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
+									<a  href="../consultores/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
 								</div>
 							</div>
 						</div>

@@ -105,9 +105,9 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
             <form class="container well form-horizontal" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a href="../administrador/menu.php">REGISTROS</a>
-                  <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
-                  <a href="../administrador/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>">SEGUIMIENTO</a>
+                  <a href="../consultores/menu.php">REGISTROS</a>
+                  <a href="../consultores/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
+                  <a href="../consultores/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>">SEGUIMIENTO</a>
                   <a class="actived">DETALLES DE LA EVALUACIÓN</a>
                 </div>
                 <div class="row">
@@ -195,7 +195,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
   </div>
 </div>
 <div class="contenedor">
-<a href="../administrador/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>" class="btn-flotante">REGRESAR</a>
+<a href="../consultores/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>" class="btn-flotante">REGRESAR</a>
 </div>
 </body>
 </html>
