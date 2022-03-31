@@ -10,16 +10,16 @@ if (!isset($name)) {
 }
 
 $id_analisis = $_GET['id'];
-// echo $folioexpediente;
+echo $id_analisis;
 $consulta = "SELECT * FROM evaluacion_expediente WHERE id_analisis = '$id_analisis'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
 // echo $fila_consulta['id'];
 
-$fol_exp = $_GET['id'];
-$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
-	$resultado = $mysqli->query($sql);
-	$row = $resultado->fetch_array(MYSQLI_ASSOC);
+// $fol_exp = $_GET['id'];
+// $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
+// 	$resultado = $mysqli->query($sql);
+// 	$row = $resultado->fetch_array(MYSQLI_ASSOC);
 
 
 ?>
@@ -102,7 +102,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" action="../administrador/actualizar_convenio_exp.php?id=<?php echo $id_analisis; ?>" enctype= "multipart/form-data">
+            <form class="container well form-horizontal" action="../administrador/actualizar_convenio_exp.php?id=<?php echo $id_analisis; ?>" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
                   <a href="../administrador/menu.php">REGISTROS</a>
@@ -184,7 +184,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                   <div>
                       <br>
                       <br>
-                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit">ACTUALIZAR</button>
                   </div>
               </div>
             </form>
@@ -224,12 +224,12 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "none";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "none";
         document.getElementById('ROW_OBSERVACIONES').style.display = "none";
         document.getElementById('BOTON_ACTUALIZAR').style.display = "none";
-        
+
 
       }
 
@@ -252,12 +252,12 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('BOTON_ACTUALIZAR').style.display = "";
-        
+
 
 
       }
@@ -279,12 +279,12 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('BOTON_ACTUALIZAR').style.display = "";
-        
+
       }
 
     }
@@ -300,7 +300,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-      
+
 
       if (respuestaAlalisisMultidisiplinario == "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario == "ACUERDO DE CANCELACION") {
 
@@ -321,7 +321,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
@@ -366,7 +366,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
@@ -389,7 +389,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_ID_CONVENIO').value = "";
         document.getElementById('INPUT_ID_CONVENIO').value = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').value = "";
-        
+
       }
 
     }
