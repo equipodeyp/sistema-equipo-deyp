@@ -151,6 +151,7 @@ $id_persona = $fila_consulta_uno ['id'];
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
                     </select>
                   </div>
+                  
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_FIRMA" for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input autocomplete="off" id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
@@ -158,15 +159,16 @@ $id_persona = $fila_consulta_uno ['id'];
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
+                    <input autocomplete="off" id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio_convenio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
+
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
                     <input autocomplete="off" id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input autocomplete="off" id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
+                    <input readonly autocomplete="off" id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>

@@ -20,11 +20,16 @@ if ($verifica_update_person == 1) {
   $ID_ANALSIIS = $_POST['id_analisis'];
   $TIPO_CONVENIO = $_POST['tipo_convenio'];
   $FECHA_FIRMA = $_POST['fecha_firma'];
-  $FECHA_INICIO = $POST['fecha_inicio'];
+  $FECHA_INICIO = $POST['fecha_inicio_convenio'];
   $VIGENCIA_CONVENIO = $_POST['vigencia'];
   $FECHA_TERMINO = $_POST['fecha_termino'];
   $ID_CONVENIO = $_POST['id_convenio'];
   $OBSERVACIONES = $_POST['observaciones'];
+
+// if ($FECHA_INICIO !== '' && $VIGENCIA_CONVENIO !== ''){
+//   $obtener_fecha = date("Y-m-d", strtotime($FECHA_INICIO."+$VIGENCIA_CONVENIO days"));
+//   $f_termino = date("Y/m/d", strtotime($obtener_fecha."- 1 days"));
+// }
 
 // UPDATE 
 /////////////////////////////

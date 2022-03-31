@@ -103,11 +103,12 @@ $fila_consulta = $res_consulta->fetch_assoc();
               <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../administrador/admin.php">REGISTROS</a>
-              <a href="../administrador/detalles_expediente.php?id=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
+              <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
               <a href="../administrador/detalles_persona.php?folio=<?=$fila_consulta['id']?>">PERSONA</a>
               <a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta['id']?>">SEGUIMIENTO</a>
               <a class="actived">EVALUACIÓN</a>
-            </div>
+              </div>
+
               <div class="row">
                 <div class="row">
                   <hr class="mb-4">
@@ -117,11 +118,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE</label>
-                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>">
+                  <input readonly type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>">
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label>ID ÚNICO DE LA PERSONA </label>
-                  <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['identificador']; ?>">
+                  <input readonly type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['identificador']; ?>">
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
