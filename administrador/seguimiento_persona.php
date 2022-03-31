@@ -453,7 +453,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
   		  								</thead>
   		  								<?php
-  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '1'";
+  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '3' && id_persona = '$id_person'";
   		       						$var_resultado = $mysqli->query($tabla);
   		      						while ($var_fila=$var_resultado->fetch_array())
   		      						{

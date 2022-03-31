@@ -53,8 +53,7 @@ if ($verifica_update_person == 1) {
   $date_des =$_POST['FECHA_DESINCORPORACION'];
   $mot_inc=$_POST['MOTIVO_NO_INCORPORACION'];
 
-  // datos del comentario
-  $comment = $_POST['COMENTARIO'];
+
   // consultar primero la informacion de los selects para poder actualizar
 
   // ACTUALIZAR CAMPOS QUE NO SON DISABLED
@@ -73,17 +72,21 @@ if ($verifica_update_person == 1) {
   $estatus_per = "SELECT * FROM datospersonales WHERE id='$id_persona'";
   $res_estatus_pe = $mysqli->query($estatus_per);
   $fila_estatus_per = $res_estatus_pe->fetch_assoc();
+  $folioexpediente_persona = $fila_estatus_per['folioexpediente'];
   // echo $fila_estatus_per['estatus'];
   // if ($fila_estatus_per['estatus'] === 'PERSONA PROPUESTA' || $fila_estatus_per['estatus'] === 'SUJETO PROTEGIDO' || $fila_estatus_per['estatus'] === '') {
   //   $datos_persona = "UPDATE datospersonales SET estatus='$estatus'  WHERE id = '$id_persona'";
   //   $res_dat_per = $mysqli->query($datos_persona);
   // }
   // insertar comentarios de cambios
+  // datos del comentario
+  $comment = $_POST['COMENTARIO'];
+  $comment_mascara = '3';
   $fechacomentario = date('y/m/d');
-  if ($comment != '') {
-    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
-                  VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
-    $res_comment = $mysqli->query($comment);
+  if ($comment !== '') {
+    $commenta = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, fecha)
+                  VALUES ('$comment', '$folioexpediente_persona', '$comment_mascara', '$name', '$id_persona', '$fechacomentario')";
+    $res_comment = $mysqli->query($commenta);
   }
   // validacion de update correcto
   if($res_det_inc){
