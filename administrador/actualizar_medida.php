@@ -67,7 +67,7 @@ if ($verifica_update_person == 1) {
   }
   // echo $fecha_ejecucion.'*'.$conclusion_cancel.'*'.$articulo35.'*'.$otherart35;
   $actualizar_medida = "UPDATE medidas SET categoria = '$categoria', tipo = '$tipo', clasificacion = '$clasificacion', medida ='$medida', descripcion = '$descripcion', date_provisional= '$fecha_definitiva', date_definitva = '$fecha_definitiva',
-                                           estatus = '$estatus', ejecucion = '$municipio', date_ejecucion = '$fecha_ejecucion' WHERE id = '$id_medida'";
+                                           tipo_modificacion = '$motivo_cancelacion', estatus = '$estatus', ejecucion = '$municipio', date_ejecucion = '$fecha_ejecucion' WHERE id = '$id_medida'";
   $res_actualizar_medida = $mysqli->query($actualizar_medida);
   // tabla multidisciplinario de la medida
   $actualizar_conclu_cancel = "UPDATE multidisciplinario_medidas SET acuerdo = '$conclusion_cancel', conclusionart35 = '$articulo35', otherart35 = '$otherart35', date_close = '$fecha_ejecucion'

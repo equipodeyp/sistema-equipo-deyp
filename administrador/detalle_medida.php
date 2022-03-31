@@ -332,7 +332,7 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
                <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['modificacion']; ?>" type="text">
+               <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['tipo_modificacion']; ?>" type="text">
              </div>
 
           </div>

@@ -14,16 +14,14 @@ $id_unico = $_GET['id'];
 $consulta = "SELECT * FROM evaluacion_persona WHERE id = '$id_unico'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
+$id_pe = $fila_consulta['id_unico'];
+// echo $id_pe;
 
-
-$consul = "SELECT * FROM datospersonales WHERE id = '$id_unico'";
+$consul = "SELECT * FROM datospersonales WHERE identificador = '$id_pe'";
 $res_consulta_uno = $mysqli->query($consul);
 $fila_consulta_uno = $res_consulta_uno->fetch_assoc();
 $id_persona = $fila_consulta_uno ['id'];
-//echo $id_persona; //1
-
-
-
+// echo $id_persona; //1
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -174,7 +172,7 @@ $id_persona = $fila_consulta_uno ['id'];
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
                     <input autocomplete="off" id="INPUT_ID_CONVENIO" class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>">
                   </div>
-        
+
 
               </div>
 
@@ -232,12 +230,12 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "none";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "none";
         document.getElementById('ROW_OBSERVACIONES').style.display = "none";
         document.getElementById('BOTON_ACTUALIZAR').style.display = "none";
-        
+
 
       }
 
@@ -260,12 +258,12 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('BOTON_ACTUALIZAR').style.display = "";
-        
+
 
 
       }
@@ -287,12 +285,12 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('BOTON_ACTUALIZAR').style.display = "";
-        
+
       }
 
     }
@@ -308,7 +306,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-      
+
 
       if (respuestaAlalisisMultidisiplinario == "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario == "ACUERDO DE CANCELACION") {
 
@@ -329,7 +327,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
@@ -374,7 +372,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
 
-        
+
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
@@ -397,7 +395,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('LABEL_ID_CONVENIO').value = "";
         document.getElementById('INPUT_ID_CONVENIO').value = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').value = "";
-        
+
       }
 
     }
