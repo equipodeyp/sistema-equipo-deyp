@@ -14,13 +14,14 @@ if ($verifica_update_person == 1) {
   $id_persona = $_GET['id'];  //variable del folio al que se relaciona
   // echo $id_persona ;
   // datos de la autoridad
-  
+
   $MULTIDISCIPLINARIO = $_POST['analisis_m'];
   $FECHA_AUTORIZACION = $_POST['fecha_auto'];
   $ID_ANALSIIS = $_POST['id_analisis'];
   $TIPO_CONVENIO = $_POST['tipo_convenio'];
   $FECHA_FIRMA = $_POST['fecha_firma'];
-  $FECHA_INICIO = $POST['fecha_inicio_convenio'];
+  $FECHA_INICIO = $_POST['fecha_inicio_convenio'];
+  echo $FECHA_INICIO;
   $VIGENCIA_CONVENIO = $_POST['vigencia'];
   $FECHA_TERMINO = $_POST['fecha_termino'];
   $ID_CONVENIO = $_POST['id_convenio'];
@@ -31,10 +32,10 @@ if ($verifica_update_person == 1) {
 //   $f_termino = date("Y/m/d", strtotime($obtener_fecha."- 1 days"));
 // }
 
-// UPDATE 
+// UPDATE
 /////////////////////////////
-  $datos_persona = "UPDATE evaluacion_persona SET analisis ='$MULTIDISCIPLINARIO', fecha_aut='$FECHA_AUTORIZACION', id_analisis='$ID_ANALSIIS', 
-                    tipo_convenio='$TIPO_CONVENIO', fecha_firma='$FECHA_FIRMA', fecha_inicio='$FECHA_INICIO', vigencia='$VIGENCIA_CONVENIO', 
+  $datos_persona = "UPDATE evaluacion_persona SET analisis ='$MULTIDISCIPLINARIO', fecha_aut='$FECHA_AUTORIZACION', id_analisis='$ID_ANALSIIS',
+                    tipo_convenio='$TIPO_CONVENIO', fecha_firma='$FECHA_FIRMA', fecha_inicio='$FECHA_INICIO', vigencia='$VIGENCIA_CONVENIO',
                     fecha_vigencia='$FECHA_TERMINO', id_convenio='$ID_CONVENIO', observaciones='$OBSERVACIONES' WHERE id = '$id_persona'";
                     $res_dat_per = $mysqli->query($datos_persona);
 
