@@ -203,7 +203,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
-                    <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
+                    <input readonly class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
@@ -214,7 +214,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID SOLICITUD<span class="required"></span></label>
-                    <input class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="<?php echo $rowaut['idsolicitud']; ?>" maxlength="20">
+                    <input autocomplete="off" class="form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" type="text" value="<?php echo $rowaut['idsolicitud']; ?>" maxlength="20">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -249,27 +249,27 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
                     <label for="OTHER_AUTORIDAD">ESPECIFIQUE</label>
-                    <input class="form-control" id="OTHER_AUTORIDAD1" name="OTHER_AUTORIDAD1" placeholder="" value="<?php echo $rowaut['otraautoridad']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="OTHER_AUTORIDAD1" name="OTHER_AUTORIDAD1" placeholder="" value="<?php echo $rowaut['otraautoridad']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NOMBRE_SERVIDOR">NOMBRE DEL SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" value="<?php echo $rowaut['nombreservidor']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" value="<?php echo $rowaut['nombreservidor']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="AÑO">APELLIDO PATERNO DEL SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidopaterno']; ?>" type="text">
+                    <input autocomplete="off" class="form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidopaterno']; ?>" type="text">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_SERVIDOR">APELLIDO MATERNO DEL SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidomaterno']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" value="<?php echo $rowaut['apellidomaterno']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CARGO_SERVIDOR">CARGO DEL SERVIDOR<span class="required"></span></label>
-                    <input class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" value="<?php echo $rowaut['cargoservidor']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" value="<?php echo $rowaut['cargoservidor']; ?>" type="text" >
                   </div>
 
                 </div>
@@ -287,17 +287,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">NOMBRE (S) <span class="required"></span></label>
-                    <input onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['nombrepersona']; ?>" required>
+                    <input autocomplete="off" onkeyup="validarNombrePersona(this.form)" class="form-control" id="NOMBRE_PERSONA" name="NOMBRE_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['nombrepersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-                    <input disabled="disabled" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
+                    <input autocomplete="off" disabled="disabled" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-                    <input disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
+                    <input autocomplete="off" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -331,37 +331,37 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NACIONALIDAD_PERSONA">NACIONALIDAD<span class="required"></span></label>
-                    <input class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder="" value="<?php echo $roworigen['nacionalidadpersona']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="NACIONALIDAD_PERSONA" name="NACIONALIDAD_PERSONA" placeholder="" value="<?php echo $roworigen['nacionalidadpersona']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="CURP_PERSONA">CURP<span class="required"></span></label>
-                    <input class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" value="<?php echo $rowfol['curppersona']; ?>" type="text">
+                    <input autocomplete="off" class="form-control" id="CURP_PERSONA" name="CURP_PERSONA" placeholder="" value="<?php echo $rowfol['curppersona']; ?>" type="text">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="RFC_PERSONA">R.F.C.<span class="required"></span></label>
-                    <input class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['rfcpersona']; ?>" maxlength="13">
+                    <input autocomplete="off" class="form-control" id="RFC_PERSONA" name="RFC_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['rfcpersona']; ?>" maxlength="13">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="ALIAS_PERSONA">ALIAS <span class="required"></span></label>
-                    <input class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder="" value="<?php echo $rowfol['aliaspersona']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="ALIAS_PERSONA" name="ALIAS_PERSONA" placeholder="" value="<?php echo $rowfol['aliaspersona']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="OCUPACION_PERSONA">OCUPACIÓN<span class="required"></span></label>
-                    <input class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder="" value="<?php echo $rowfol['ocupacion']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="OCUPACION_PERSONA" name="OCUPACION_PERSONA" placeholder="" value="<?php echo $rowfol['ocupacion']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="TELEFONO_FIJO">TELÉFONO FIJO <span class="required"></span></label>
-                    <input class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder="" value="<?php echo $rowfol['telefonofijo']; ?>" type="text" maxlength="10" >
+                    <input autocomplete="off" class="form-control" id="TELEFONO_FIJO" name="TELEFONO_FIJO" placeholder="" value="<?php echo $rowfol['telefonofijo']; ?>" type="text" maxlength="10" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="TELEFONO_CELULAR">TELÉFONO CELULAR<span class="required"></span></label>
-                    <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
+                    <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
@@ -415,18 +415,18 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                     </div>
                     <div class="col-md-6 mb-3 validar">
-                      <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text">
+                      <label for="TUTOR_NOMBRE">NOMBRE(S) <span class="required"></span></label>
+                      <input autocomplete="off" class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text">
                     </div>
 
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text">
+                      <input autocomplete="off" class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text">
                     </div>
 
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text">
+                      <input autocomplete="off" class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text">
                     </div>
 
                   </div>';
@@ -444,17 +444,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="TUTOR_NOMBRE">NOMBRE(S) <span class="required"></span></label>
-                    <input class="form-control" id="TUTOR_NOMBRE1" name="TUTOR_NOMBRE1" placeholder="" value="<?php echo $rowtutor['nombre']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="TUTOR_NOMBRE1" name="TUTOR_NOMBRE1" placeholder="" value="<?php echo $rowtutor['nombre']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
-                    <input class="form-control" id="TUTOR_PATERNO1" name="TUTOR_PATERNO1" placeholder="" value="<?php echo $rowtutor['apellidopaterno']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="TUTOR_PATERNO1" name="TUTOR_PATERNO1" placeholder="" value="<?php echo $rowtutor['apellidopaterno']; ?>" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
-                    <input class="form-control" id="TUTOR_MATERNO1" name="TUTOR_MATERNO1" placeholder="" value="<?php echo $rowtutor['apellidomaterno']; ?>" type="text" >
+                    <input autocomplete="off" class="form-control" id="TUTOR_MATERNO1" name="TUTOR_MATERNO1" placeholder="" value="<?php echo $rowtutor['apellidomaterno']; ?>" type="text" >
                   </div>
 
                 </div>
@@ -477,7 +477,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar" id="other_pais" style="display:none;">
                     <label for="OTHER_PAIS">ESPECIFIQUE</label>
-                    <input class="form-control" id="OTHER_PAIS" name="OTHER_PAIS" placeholder="" value="" type="text">
+                    <input autocomplete="off" class="form-control" id="OTHER_PAIS" name="OTHER_PAIS" placeholder="" value="" type="text">
                   </div>
 
                   <div class="col-md-6 mb-3 validar" id="municipio">
@@ -590,7 +590,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                     <div class="col-md-6 mb-3 validar" id="cp_s">
                       <label for="CP">C.P.<span class="required"></span></label>
-                      <input class="form-control" id="codigo_postal_s" name="codigo_postal_s" placeholder="" value="'.$rowdomicilio['cp'].'" type="text" maxlength="5">
+                      <input autocomplete="off" class="form-control" id="codigo_postal_s" name="codigo_postal_s" placeholder="" value="'.$rowdomicilio['cp'].'" type="text" maxlength="5">
                     </div>';
 
                   }
@@ -632,19 +632,19 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar" id="act_localidad" style="display:none;">
                     <label for="NOMBRE_LOCALIDAD">LOCALIDAD<span class="required"></span></label>
-                    <input class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
+                    <input autocomplete="off" class="form-control" name="localidadrad" id="localidadrad" placeholder="" value="" type="text">
                   </div>
 
 
                   <!-- XDFHSDFGHDFGHDFGHDFGHDFGH -->
                   <div class="col-md-6 mb-3 validar" id="act_calle" style="display:none;">
                     <label for="CALLE">CALLE Y NÚMERO<span class="required"></span></label>
-                    <input class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text" >
+                    <input autocomplete="off" class="form-control" id="CALLE" name="CALLE" placeholder="" value="" type="text" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar" id="act_cp" style="display:none;">
                     <label for="CP">C.P.<span class="required"></span></label>
-                    <input class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5" >
+                    <input autocomplete="off" class="form-control" id="CP" name="CP" placeholder="" value="" type="text" maxlength="5" >
                   </div>
 
                   <div class="col-md-6 mb-3 validar" id="criterio_oport">
@@ -686,17 +686,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </div>
                     <div class="col-md-6 mb-3 validar">
                       <label for="TUTOR_NOMBRE">NOMBRE <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text">
+                      <input autocomplete="off" class="form-control" id="TUTOR_NOMBRE" name="TUTOR_NOMBRE" placeholder="" value="' .$rowtutor['nombre'].'" type="text">
                     </div>
 
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">APELLIDO PATERNO <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text">
+                      <input autocomplete="off" class="form-control" id="TUTOR_PATERNO" name="TUTOR_PATERNO" placeholder="" value="'. $rowtutor['apellidopaterno'].'" type="text">
                     </div>
 
                     <div class="col-md-6 mb-3 validar">
                       <label for="COLONIA">APELLIDO MATERNO <span class="required"></span></label>
-                      <input class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text">
+                      <input autocomplete="off" class="form-control" id="TUTOR_MATERNO" name="TUTOR_MATERNO" placeholder="" value="'.$rowtutor['apellidomaterno'].'" type="text">
                     </div>
 
                   </div>';
@@ -765,7 +765,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                    <div id="otherdel" class="col-md-6 mb-3 validar"  style="display:none;">
                      <label for="OTRO_DELITO_PRINCIPAL">OTRO DELITO PRINCIPAL <span class="required"></span></label>
-                     <input class="form-control" id="OTRO_DELITO_PRINCIPAL1" name="OTRO_DELITO_PRINCIPAL1" placeholder="" value="<?php echo $rowprocess['otrodelitoprincipal']; ?>" type="text" value="">
+                     <input autocomplete="off" class="form-control" id="OTRO_DELITO_PRINCIPAL1" name="OTRO_DELITO_PRINCIPAL1" placeholder="" value="<?php echo $rowprocess['otrodelitoprincipal']; ?>" type="text" value="">
                    </div>
 
 
@@ -789,14 +789,14 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   if ($rowprocess['delitosecundario'] == 'OTRO') {
                     echo '<div id="delitosec" class="col-md-6 mb-3 validar">
                       <label for="OTRO_DELITO_SECUNDARIO">OTRO DELITO SECUNDARIO <span class="required"></span></label>
-                      <input class="form-control" id="OTRO_DELITO_SECUNDARIO" name="OTRO_DELITO_SECUNDARIO" placeholder="" value="'.$rowprocess['otrodelitosecundario'].'" type="text" value="">
+                      <input autocomplete="off" class="form-control" id="OTRO_DELITO_SECUNDARIO" name="OTRO_DELITO_SECUNDARIO" placeholder="" value="'.$rowprocess['otrodelitosecundario'].'" type="text" value="">
                     </div>';
                   }
                   ?>
 
                   <div id="delitosec" class="col-md-6 mb-3 validar" style="display:none;">
                     <label for="OTRO_DELITO_SECUNDARIO1">OTRO DELITO SECUNDARIO <span class="required"></span></label>
-                    <input class="form-control" id="OTRO_DELITO_SECUNDARIO1" name="OTRO_DELITO_SECUNDARIO1" placeholder="" value="<?php echo $rowprocess['otrodelitosecundario']; ?>" type="text" value="">
+                    <input autocomplete="off" class="form-control" id="OTRO_DELITO_SECUNDARIO1" name="OTRO_DELITO_SECUNDARIO1" placeholder="" value="<?php echo $rowprocess['otrodelitosecundario']; ?>" type="text" value="">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -815,7 +815,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="NUC">NUC <span class="required"></span></label>
-                    <input class="form-control" id="NUC" name="NUC" placeholder="" value="<?php echo $rowprocess['nuc']; ?>" type="text">
+                    <input autocomplete="off" class="form-control" id="NUC" name="NUC" placeholder="" value="<?php echo $rowprocess['nuc']; ?>" type="text">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -937,7 +937,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   		  					</div>
   								<div id="footer">
   		  					</div>
-                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
+                    <textarea autocomplete="off" name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
                   <!-- </div> -->
   							</div>
                 <div class="row">
@@ -1143,11 +1143,13 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
       if (criterioDeOpotudidadDos === "OTORGADO"){
         document.getElementById("label_fecha_cr_opor").style.display = "";
         document.getElementById("fecha_cr_opor").style.display = "";
+        document.getElementById("fecha_cr_opor").value = "";
       }
 
       else {
         document.getElementById("label_fecha_cr_opor").style.display = "none";
         document.getElementById("fecha_cr_opor").style.display = "none";
+        document.getElementById("fecha_cr_opor").value = "";
       }
 }
 

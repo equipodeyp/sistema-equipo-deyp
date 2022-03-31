@@ -243,7 +243,7 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="otherresguardo" style="display:none;">
             <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
-            <input class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
+            <input autocomplete="off" class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
           </div>
 
           <div class="col-md-6 mb-3 validar" id="resguardoxi" style="display:none;">
@@ -332,7 +332,7 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
                <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['modificacion']; ?>" type="text">
+               <input autocomplete="off" class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['modificacion']; ?>" type="text">
              </div>
 
           </div>
@@ -350,7 +350,7 @@ $validacion = $fil_val['validacion'];
               <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
               <select class="form-select form-select-lg" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <option value="CANCELACION">CANCELACION</option>
+                <!-- <option value="CANCELACION">CANCELACION</option> -->
                 <option value="CONCLUSION">CONCLUSION</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
@@ -520,7 +520,7 @@ if(estatusMedidas === "EN EJECUCION"){
 <script type="text/javascript">
   var clasificacionmedida = document.getElementById('CLASIFICACION_MEDIDA').value;
   function clasif_medida() {
-    console.log(clasificacionmedida);
+    // console.log(clasificacionmedida);
     if (clasificacionmedida === 'ASISTENCIA') {
       document.getElementById('resguardo').style.display = "none";
       document.getElementById('otherresguardo').style.display = "none";
@@ -537,7 +537,7 @@ if(estatusMedidas === "EN EJECUCION"){
   ////////////////////////////////////////////////////////////////////////
   var incisoasistencia = document.getElementById('MEDIDAS_ASISTENCIA').value;
   function inciso_asistencia(){
-    console.log(incisoasistencia);
+    // console.log(incisoasistencia);
     if (incisoasistencia !== 'VI. OTRAS') {
       document.getElementById('otherasistencia').style.display = "none";
     }
@@ -546,7 +546,7 @@ if(estatusMedidas === "EN EJECUCION"){
   ////////////////////////////////////////////////////////////////////////
   var incisoresguardo = document.getElementById('MEDIDAS_RESGUARDO').value;
   function inciso_resguardo() {
-    console.log(incisoresguardo);
+    // console.log(incisoresguardo);
     if (incisoresguardo === 'XI. EJECUCION DE MEDIDAS PROCESALES') {
       document.getElementById('resguardoxi').style.display = "";
     }else if (incisoresguardo === 'XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
@@ -560,7 +560,7 @@ if(estatusMedidas === "EN EJECUCION"){
   // estatus de la medida ///////////
   var estatus_medida = document.getElementById('ESTATUS_MEDIDA').value;
   function mostrar_estatus_medida() {
-    console.log(estatus_medida);
+    // console.log(estatus_medida);
     if (estatus_medida === 'EJECUTADA') {
       document.getElementById('dat_ejec').style.display = "";
       document.getElementById('fecha_conclusion').style.display = "";
@@ -576,7 +576,7 @@ if(estatusMedidas === "EN EJECUCION"){
 // motivo de cancelacion y/o conclusion
   var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
   function conclu_cancel_med() {
-    console.log(ejecutamed);
+    // console.log(ejecutamed);
     if (ejecutamed === 'CONCLUSION') {
       document.getElementById('CONCLUSION_ART35').style.display = "";
     }
@@ -586,13 +586,59 @@ if(estatusMedidas === "EN EJECUCION"){
   // conclusion por articulo 35
   var concluart = document.getElementById('CONCLUSION_ART35select').value;
   function conclu_cancel_art35() {
-    console.log(concluart);
+    // console.log(concluart);
     if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
       document.getElementById('OTHERART35').style.display = "";
     }
   }
   conclu_cancel_art35();
 </script>
+
+<script type="text/javascript">
+
+var medidasResguardo = document.getElementById("MEDIDAS_RESGUARDO");
+var medDeResguardo;
+
+medidasResguardo.addEventListener('change', obtenerMedDeResguardo);
+    function obtenerMedDeResguardo(e) {
+      medDeResguardo = e.target.value;
+      console.log(medDeResguardo);
+      if (medDeResguardo == "XI. EJECUCION DE MEDIDAS PROCESALES" || medDeResguardo == "XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS" || medDeResguardo =="XIII. OTRAS MEDIDAS"){
+      document.getElementById("RESGUARDO_XI").value = "";
+      document.getElementById("FECHA_ACTUALIZACION_MEDIDA").value = "";
+      }
+      
+}
+
+</script>
+
+<script type="text/javascript">
+
+var estatusMedida = document.getElementById("ESTATUS_MEDIDA");
+var estatusMed;
+
+estatusMedida.addEventListener('change', obtenerEstatusMed);
+    function obtenerEstatusMed(e) {
+      estatusMed = e.target.value;
+      console.log(estatusMed);
+      if (estatusMed == "EN EJECICION" ){
+        document.getElementById("FECHA_DESINCORPORACION").value = "";
+        document.getElementById("MOTIVO_CANCEL").value = "";
+        document.getElementById("CONCLUSION_CANCELACION").value = "";
+        document.getElementById("CONCLUSION_ART35select").value = "";
+        document.getElementById("OTHER_ART351").value = "";
+      } else{
+        document.getElementById("MOTIVO_CANCEL").value = "";
+        document.getElementById("FECHA_DESINCORPORACION").value = "";
+        document.getElementById("CONCLUSION_CANCELACION").value = "";
+        document.getElementById("CONCLUSION_ART35select").value = "";
+        document.getElementById("OTHER_ART351").value = "";
+      }
+      
+}
+
+</script>
+
 
 </body>
 </html>

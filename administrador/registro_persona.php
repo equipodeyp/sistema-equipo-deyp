@@ -230,12 +230,12 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
+              <label readonly for="EDAD_PERSONA">EDAD <span class="required"></span></label>
               <input autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label for="GRUPO_EDAD">GRUPO DE EDAD<span class="required"></span></label>
+              <label readonly for="GRUPO_EDAD">GRUPO DE EDAD<span class="required"></span></label>
               <input class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
             </div>
 

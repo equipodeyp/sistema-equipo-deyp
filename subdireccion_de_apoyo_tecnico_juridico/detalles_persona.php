@@ -1125,11 +1125,13 @@ function CriterioOportunidad (){
   else if (criterioOport === "OTORGADO"){
     document.getElementById("label_fecha_cr_opor").style.display = "";
     document.getElementById("fecha_cr_opor").style.display = "";
+    ocument.getElementById("fecha_cr_opor").value = "";
   }
 
   else if (criterioOport === "NO APLICA" || criterioOport === "EN ESPERA"){
     document.getElementById("label_fecha_cr_opor").style.display = "none";
     document.getElementById("fecha_cr_opor").style.display = "none";
+    ocument.getElementById("fecha_cr_opor").value = "";
   }
 }
 CriterioOportunidad();

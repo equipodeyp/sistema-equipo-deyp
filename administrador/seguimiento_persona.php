@@ -239,7 +239,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
-                    <input id="id_analisis" class="form-control" type="text" name="id_analisis" value="<?php echo $rowdetinc['id_analisis']; ?>">
+                    <input autocomplete="off" id="id_analisis" class="form-control" type="text" name="id_analisis" value="<?php echo $rowdetinc['id_analisis']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -268,17 +268,17 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA" for="VIGENCIA_CONVENIO">VIGENCIA DEL CONVENIO<span class="required"></span></label>
-                    <input id="VIGENCIA_CONVENIO" placeholder="Cantidad en días" class="form-control" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input autocomplete="off" id="VIGENCIA_CONVENIO" placeholder="Cantidad en días" class="form-control" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-                    <input id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE_TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
+                    <input readonly id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE_TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO DE ENTENDIMIENTO</label>
-                    <input id="id_convenio" class="form-control" type="text"  name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
+                    <input autocomplete="off" id="id_convenio" class="form-control" type="text"  name="id_convenio" value="<?php echo $rowdetinc['id_convenio']; ?>">
                   </div>
 
 
@@ -383,7 +383,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                    <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                      <label id="LABEL_CONCLUSION_ART351" for="CONCLUSION">CONCLUSIÓN ARTÍCULO 35</label>
                      <select class="form-select form-select-lg" id="CONCLUSION_ART351" name="CONCLUSION_ART351">
-                       <option  value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
+                       <option value="<?php echo $rowdetinc['conclusionart35']; ?>"><?php echo $rowdetinc['conclusionart35']; ?></option>
                        <?php
                        $art35 = "SELECT * FROM conclusionart35";
                        $answerart35 = $mysqli->query($art35);
@@ -408,7 +408,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                     <div class="col-md-6 mb-3 validar" >
                       <label id="LABEL_OTHER_ART351" for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowdetinc['otroart35']; ?>" type="text">
+                      <input autocomplete="off" id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowdetinc['otroart35']; ?>" type="text">
                     </div>
 
 
@@ -754,6 +754,16 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('id_convenio').style.display = "";
         document.getElementById('id_convenio').value = "";
 
+        document.getElementById('INPUT_INCORPORACION').value = "";
+        document.getElementById('FECHA_AUTORIZACION').value = "";
+        document.getElementById('id_analisis').value = "";
+        document.getElementById('CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('id_convenio').value = "";
+
 }
       else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION" ){
 
@@ -776,6 +786,13 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('id_convenio').style.display = "none";
+
+        document.getElementById('CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('id_convenio').value = "";
       }
 
       else if ( respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
@@ -798,6 +815,16 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('id_convenio').style.display = "none";
+
+        document.getElementById('INPUT_INCORPORACION').value = "";
+        document.getElementById('FECHA_AUTORIZACION').value = "";
+        document.getElementById('id_analisis').value = "";
+        document.getElementById('CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('id_convenio').value = "";
       }
     }
 </script>
@@ -908,6 +935,12 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('id_convenio').style.display = "none";
 
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('id_convenio').value = "";
+
       }
       else {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
@@ -920,6 +953,12 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('id_convenio').style.display = "";
+
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('id_convenio').value = "";
       }
   }
 </script>
@@ -993,6 +1032,11 @@ conCa.addEventListener('change', obtenerEstatus);
       if ( estatusPersona === "DESINCORPORADO" || estatusPersona === "NO INCORPORADO" ) {
         document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "";
         document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "";
+        
+        document.getElementById('CONCLUSION_CANCELACION_EXP').value='';
+        document.getElementById('CONCLUSION_ART351').value='';
+        document.getElementById('OTHER_ART351').value='';
+        document.getElementById('FECHA_DESINCORPORACION_UNO').value='';
 
       }
       else if ( estatusPersona === "PERSONA PROPUESTA" || estatusPersona === "SUJETO PROTEGIDO" ){
@@ -1013,6 +1057,8 @@ conCa.addEventListener('change', obtenerEstatus);
         document.getElementById('CONCLUSION_ART351').value='';
         document.getElementById('OTHER_ART351').value='';
         document.getElementById('FECHA_DESINCORPORACION_UNO').value='';
+
+
 
       }
 }
@@ -1067,16 +1113,22 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       estatusPersonaSeg = e.target.value;
 
       if (estatusPersonaSeg === "CONCLUSION"){
+      document.getElementById('CONCLUSION_ART351').value = "";
+      document.getElementById('OTHER_ART351').value= "";
+
       document.getElementById('LABEL_CONCLUSION_ART351').style.display = "";
       document.getElementById('CONCLUSION_ART351').style.display = "";
-
 
       document.getElementById('LABEL_FECHA_CONCLUSION').style.display = "";
       document.getElementById('LABEL_FECHA_CANCELACION').style.display = "none";
       document.getElementById('FECHA_DESINCORPORACION_UNO').style.display = "";
+      
       }
 
       else if (estatusPersonaSeg === "CANCELACION"){
+      document.getElementById('CONCLUSION_ART351').value = "";
+      document.getElementById('OTHER_ART351').value= "";
+      
       document.getElementById('LABEL_CONCLUSION_ART351').style.display = "none";
       document.getElementById('CONCLUSION_ART351').style.display = "none";
 
@@ -1086,6 +1138,7 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
 
       document.getElementById('LABEL_OTHER_ART351').style.display = "none";
       document.getElementById('OTHER_ART351').style.display = "none";
+      
       }
 }
 </script>
@@ -1131,6 +1184,7 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 
         document.getElementById('LABEL_OTHER_ART351').style.display = "";
         document.getElementById('OTHER_ART351').style.display = "";
+        document.getElementById('OTHER_ART351').value = "";
 
       }
 
@@ -1138,6 +1192,7 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 
         document.getElementById('LABEL_OTHER_ART351').style.display = "none";
         document.getElementById('OTHER_ART351').style.display = "none";
+        document.getElementById('OTHER_ART351').value = "";
 
       }
 }
