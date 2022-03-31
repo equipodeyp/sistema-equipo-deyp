@@ -1203,7 +1203,7 @@ function ReadOnlyConClu() {
     document.getElementById('COMENTARIO').disabled = false;
     document.getElementById('UPDATE_FILE').style.display = "none";
     // document.getElementById('enter').style.display = "none";
-    document.getElementById('AGREGAR_CONVENIO').style.display = "none";
+    //document.getElementById('AGREGAR_CONVENIO').style.display = "none";
   }
 }
 ReadOnlyConClu();
