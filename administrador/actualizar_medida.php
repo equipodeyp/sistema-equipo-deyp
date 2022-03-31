@@ -12,6 +12,11 @@ if ($verifica_update_person == 1) {
   // carga de datsos
   $id_medida = $_GET['folio'];   //variable del id de la medida
   // echo $id_medida;
+  $search = "SELECT * FROM medidas WHERE id = '$id_medida'";
+  $res_search = $mysqli->query($search);
+  $fila_search = $res_search->fetch_assoc();
+  $folioexpediente_medida = $fila_search['folioexpediente'];
+  $id_persona_medida = $fila_search['id_persona'];
   // datos de la medida que se actualizaran
   $categoria = $_POST['CATEAGORIA_MEDIDA']; //echo $categoria;
   $tipo = $_POST['TIPO_DE_MEDIDA']; //echo $tipo;
@@ -36,9 +41,9 @@ if ($verifica_update_person == 1) {
     }
   } //echo $medida.$descripcion;
   $fecha_definitiva = $_POST['FECHA_ACTUALIZACION_MEDIDA']; //echo $fecha_definitiva;
-  $estatus = $_POST['ESTATUS_MEDIDA']; echo $estatus;
-  $municipio = $_POST['MUNIPIO_EJECUCION_MEDIDA']; echo $municipio;
-  $fecha_inicio = $_POST['FECHA_INICIO']; echo $fecha_inicio;
+  $estatus = $_POST['ESTATUS_MEDIDA']; //echo $estatus;
+  $municipio = $_POST['MUNIPIO_EJECUCION_MEDIDA']; //echo $municipio;
+  $fecha_inicio = $_POST['FECHA_INICIO']; //echo $fecha_inicio;
   if ($estatus === 'EJECUTADA') {
     $fecha_ejecucion = $_POST['FECHA_DESINCORPORACION'];
     $conclusion_cancel = $_POST['CONCLUSION_CANCELACION'];
@@ -81,10 +86,10 @@ if ($verifica_update_person == 1) {
   $fecha_validacion = date('y/m/d H:i:sa');
   $fecha_captura = date('y/m/d H:i:sa');
   // insertar comentarios de cambios
-  if ($comment != '') {
-    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_medida, id_medida, fecha)
-                  VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$id_p', '$id_medida', '$fecha_captura')";
-    $res_comment = $mysqli->query($comment);
+  if ($comment !== '') {
+    $commenta = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
+                  VALUES ('$comment', '$folioexpediente_medida', '$comment_mascara', '$name', '$id_persona_medida', '$id_medida', '$fecha_captura')";
+    $res_comment = $mysqli->query($commenta);
   }
   // tabla para validar medida
   $datos_validacion = "UPDATE validar_medida SET validar_datos='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_medida'";
