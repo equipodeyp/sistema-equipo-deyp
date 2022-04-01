@@ -126,7 +126,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="" required>
+                    <input autocomplete="off" id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
@@ -147,11 +147,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                    <input id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input autocomplete="off" id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_TOTAL_CONVENIOS" for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
-                    <input id="INPUT_TOTAL_CONVENIOS" class="form-control" type="text" name="id_convenio" value="" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input autocomplete="off" id="INPUT_TOTAL_CONVENIOS" class="form-control" type="text" name="id_convenio" value="" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                 </div>
 
@@ -242,6 +242,14 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_GUARDAR').style.display = "";
+
+        document.getElementById('INPUT_FECHA_AUTORIZACION').value = "";
+        document.getElementById('INPUT_ID_ANALISIS').value = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').value = "";
+        document.getElementById('INPUT_FECHA_FIRMA').value = "";
+        document.getElementById('INPUT_FECHA_INICIO').value = "";
+        document.getElementById('INPUT_VIGENCIA').value = "";
+        document.getElementById('INPUT_TOTAL_CONVENIOS').value = "";
       }
       else {
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
@@ -262,6 +270,12 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('INPUT_VIGENCIA').style.display = "none";
         document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
         document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
+
+        document.getElementById('SELECT_TIPO_CONVENIO').value = "";
+        document.getElementById('INPUT_FECHA_FIRMA').value = "";
+        document.getElementById('INPUT_FECHA_INICIO').value = "";
+        document.getElementById('INPUT_VIGENCIA').value = "";
+        document.getElementById('INPUT_TOTAL_CONVENIOS').value = "";
       }
 
 

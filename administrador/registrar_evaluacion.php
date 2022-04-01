@@ -139,7 +139,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                  <input id="INPUT_ID_ANALISIS" autocomplete="off" class="form-control" type="text" name="id_analisis" value="" required>
+                  <input autocomplete="off" id="INPUT_ID_ANALISIS" autocomplete="off" class="form-control" type="text" name="id_analisis" value="" required>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
@@ -160,11 +160,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                  <input id="INPUT_VIGENCIA"autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
+                  <input autocomplete="off" id="INPUT_VIGENCIA"autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
-                  <input id="INPUT_ID_CONVENIO" autocomplete="off" class="form-control" type="text" name="id_convenio" value="">
+                  <input autocomplete="off" id="INPUT_ID_CONVENIO" autocomplete="off" class="form-control" type="text" name="id_convenio" value="">
                 </div>
               </div>
 
