@@ -49,9 +49,9 @@ if ($verifica_update_person == 1) {
   $concl_canc = $_POST['CONCLUSION_CANCELACION'];
   $conclu_art = $_POST['CONCLUSION_ART35'];
   $otro_art = $_POST['OTHER_ART351'];
-  if ($otro_art == '') {
-    $otro_art = $_POST['OTHER_ART3512'];
-  }
+  // if ($otro_art == '') {
+  //   $otro_art = $_POST['OTHER_ART3512'];
+  // }
   $fecha_desincorporacion = $_POST['FECHA_DESINCORPORACION'];
   $estatus_exp = $_POST['ESTATUS_EXPEDIENTE'];
 

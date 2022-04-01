@@ -552,7 +552,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                <div class="col-md-6 mb-3 validar">
                  <label id="LABEL_CONCLUSION_ART35" for="CONCLUSION_ART35">CONCLUSIÓN ARTÍCULO 35</label>
                  <select class="form-select form-select-lg" name="CONCLUSION_ART35" id="CONCLUSION_ART35">
-                   <option style="visibility: hidden" disabled selected value="<?php echo $fila_seguiimiento_exped['conclusionart35']; ?>"><?php echo $fila_seguiimiento_exped['conclusionart35']; ?></option>
+                   <option style="visibility: hidden"   value="<?php echo $fila_seguiimiento_exped['conclusionart35']; ?>"><?php echo $fila_seguiimiento_exped['conclusionart35']; ?></option>
                    <?php
                    $art35 = "SELECT * FROM conclusionart35";
                    $answerart35 = $mysqli->query($art35);
