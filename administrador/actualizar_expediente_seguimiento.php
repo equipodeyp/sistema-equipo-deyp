@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];
@@ -12,7 +12,7 @@ if ($verifica_update_person == 1) {
   $row=$result->fetch_assoc();
   // carga de datsos
   $folio_expediente = $_GET['folio'];   //variable del folio al que se relaciona
-  echo $folio_expediente;
+  // echo $folio_expediente;
   // analisis del expediente
   $personas_propuestas = $_POST['personas_propuestas'];
   $analisis = $_POST['ANALISIS_MULTIDISCIPLINARIO'];
@@ -24,12 +24,10 @@ if ($verifica_update_person == 1) {
   $fecha_inicio = $_POST['fecha_inicio'];
   // echo $fecha_inicio;
   $vigencia = $_POST['VIGENCIA_CONVENIO'];
-  if ($fecha_inicio != '' && $vigencia !== '') {
+  if ($fecha_inicio !== '' && $vigencia !== '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
     // code...
-  }else {
-    $fecha_termino = '';
   }
 
   // $id_convenio= $_POST['id_convenio'];
@@ -41,7 +39,7 @@ if ($verifica_update_person == 1) {
 
 
   $actualizar_medida = "UPDATE analisis_expediente SET analisis = '$analisis', incorporacion='$incorporacion',fecha_analisis ='$fecha_analisis',id_analisis = '$id_analisis',
-  convenio = '$convenio',fecha_convenio ='$fecha_convenio',fecha_inicio ='$fecha_inicio',vigencia = '$vigencia',num_convenios = '$total_convenios'
+  convenio = '$convenio',fecha_convenio ='$fecha_convenio',fecha_inicio ='$fecha_inicio',vigencia = '$vigencia', fecha_termino_convenio = '$fecha_termino', num_convenios = '$total_convenios'
   WHERE folioexpediente = '$folio_expediente'";
   $res_actualizar_medida = $mysqli->query($actualizar_medida);
   // convenio de adhesion del expediente
@@ -57,17 +55,10 @@ if ($verifica_update_person == 1) {
   $fecha_desincorporacion = $_POST['FECHA_DESINCORPORACION'];
   $estatus_exp = $_POST['ESTATUS_EXPEDIENTE'];
 
-
-
   $actualizar_med = "UPDATE statusseguimiento SET conclu_cancel = '$concl_canc',conclusionart35 = '$conclu_art', otherart35 = '$otro_art',
   date_desincorporacion = '  $fecha_desincorporacion',  status ='$estatus_exp'
   WHERE folioexpediente = '$folio_expediente'";
   $res_actualizar_med = $mysqli->query($actualizar_med);
-
-//,
-  // fuente del seguimiento del expediente
-
-
 
   // variables de los comentarios
   $comment = $_POST['COMENTARIO'];

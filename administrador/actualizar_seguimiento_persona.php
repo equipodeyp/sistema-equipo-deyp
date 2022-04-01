@@ -26,8 +26,6 @@ if ($verifica_update_person == 1) {
   if ($fecha_inicio != '' && $vigencia != '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
-  }else {
-    $fecha_termino = '';
   }
   $id_convenio=$_POST['id_convenio'];  // fin de determincaion de la incorporacion
 

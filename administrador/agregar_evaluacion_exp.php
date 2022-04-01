@@ -35,7 +35,7 @@ if ($verifica_update_person == 1) {
 // validacion del registro correcto
   if($res_add_evaluacion_exp){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=$folioexpediente';
+     window.location.href='../administrador/detalles_seguimiento.php?folio=$folioexpediente';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }
