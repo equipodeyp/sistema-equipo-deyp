@@ -23,14 +23,14 @@ if ($verifica_update_person == 1) {
   $FECHA_INICIO = $_POST['fecha_inicio_convenio'];
   echo $FECHA_INICIO;
   $VIGENCIA_CONVENIO = $_POST['vigencia'];
-  $FECHA_TERMINO = $_POST['fecha_termino'];
+  //$FECHA_TERMINO = $_POST['fecha_termino'];
   $ID_CONVENIO = $_POST['id_convenio'];
   $OBSERVACIONES = $_POST['observaciones'];
 
-// if ($FECHA_INICIO !== '' && $VIGENCIA_CONVENIO !== ''){
-//   $obtener_fecha = date("Y-m-d", strtotime($FECHA_INICIO."+$VIGENCIA_CONVENIO days"));
-//   $f_termino = date("Y/m/d", strtotime($obtener_fecha."- 1 days"));
-// }
+if ($FECHA_INICIO !== '' && $VIGENCIA_CONVENIO !== ''){
+  $obtener_fecha = date("Y/m/d", strtotime($FECHA_INICIO."+$VIGENCIA_CONVENIO days"));
+  $FECHA_TERMINO = date("Y/m/d", strtotime($obtener_fecha."- 1 days"));
+}
 
 // UPDATE
 /////////////////////////////
