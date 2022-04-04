@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html;charset=utf-8");
 /*require 'conexion.php';*/
 include("conexion.php");
 session_start ();
@@ -9,12 +10,13 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$A_PAT  = $row['apellido_m'];
  ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <script src="../js/botonatras.js"></script>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <title>SIPPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
@@ -123,7 +125,7 @@ $row=$result->fetch_assoc();
           <h1 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['nombre'])); ?> </span>
             <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
-            <?php echo utf8_decode(strtoupper($row['apellido_m'])); ?> </span>
+            <?php echo mb_strtoupper (html_entity_decode($A_PAT, ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
           </h1>
           <h5 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
