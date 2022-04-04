@@ -812,15 +812,15 @@ window.addEventListener('load', function () {
     function enviarId() {
         obtenerIniciales();
         document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
-        readOnlyNombreCompleto();
+        // readOnlyNombreCompleto();
         document.getElementById("GENERAR_ID").disabled = true;
     }
 
-    function readOnlyNombreCompleto() {
-      document.getElementById("NOMBRE_PERSONA").readOnly = true;
-      document.getElementById("PATERNO_PERSONA").readOnly = true;
-      document.getElementById("MATERNO_PERSONA").readOnly = true;
-    }
+    // function readOnlyNombreCompleto() {
+    //   document.getElementById("NOMBRE_PERSONA").readOnly = true;
+    //   document.getElementById("PATERNO_PERSONA").readOnly = true;
+    //   document.getElementById("MATERNO_PERSONA").readOnly = true;
+    // }
 
     function validarNombrePersona(form) {
         form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");

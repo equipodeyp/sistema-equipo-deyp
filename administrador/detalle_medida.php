@@ -606,6 +606,7 @@ medidasResguardo.addEventListener('change', obtenerMedDeResguardo);
       if (medDeResguardo == "XI. EJECUCION DE MEDIDAS PROCESALES" || medDeResguardo == "XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS" || medDeResguardo =="XIII. OTRAS MEDIDAS"){
       document.getElementById("RESGUARDO_XI").value = "";
       document.getElementById("FECHA_ACTUALIZACION_MEDIDA").value = "";
+      document.getElementById("OTRA_MEDIDA_RESGUARDO").value = "";
       }
       
 }
