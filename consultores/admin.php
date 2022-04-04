@@ -123,7 +123,7 @@ $row=$result->fetch_assoc();
         <div class="row">
           <h1 style="text-align:center">
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-            <?php echo utf8_decode(strtoupper($row['apellido_p'])); ?> </span>
+            <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
           </h1>
           <h5 style="text-align:center">
