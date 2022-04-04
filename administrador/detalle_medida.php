@@ -126,7 +126,7 @@ $validacion = $fil_val['validacion'];
           <a href="../administrador/detalles_expediente.php?folio=<?=$rowfol['folioexpediente']?>">EXPEDIENTE</a>
           <a href="../administrador/detalles_persona.php?folio=<?=$id_p?>">PERSONA</a>
           <a href="../administrador/detalles_medidas.php?folio=<?=$id_p?>">MEDIDAS</a>
-          <a class="actived">DETALLES</a>
+          <a class="actived">DETALLE DE LA MEDIDA</a>
         </div>
         <div class="row">
           <div class="alert alert-info">

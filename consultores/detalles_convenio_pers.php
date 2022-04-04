@@ -111,7 +111,7 @@ $id_persona = $fila_consulta_uno ['id'];
               <a href="../consultores/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
               <a href="../consultores/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>">PERSONA</a>
               <a href="../consultores/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>">SEGUIMIENTO</a>
-              <a class="actived">EVALUACIÓN</a>
+              <a class="actived">DETALLE DE LA EVALUACIÓN</a>
             </div>
                 <div class="row">
                   <hr class="mb-4">
