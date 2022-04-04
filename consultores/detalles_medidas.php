@@ -139,12 +139,12 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
+
       <ul class="tabs">
-    			<!-- <li><a href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
-    			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
-          <li><a><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
-    			<!-- <li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
-    		</ul>
+          <li><a href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
+          <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li>
+    	</ul>
 
     		<div class="secciones">
     			<article id="tab2">

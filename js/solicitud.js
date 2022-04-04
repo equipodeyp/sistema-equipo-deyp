@@ -4,7 +4,7 @@
 			var $this = $(this);
 			// on focus add cladd active to label
 			$this.focus(function(){
-				$this.next().addClass("active");
+				$this.next().addClass("");
 			});
 			//on blur check field and remove class if needed
 			$this.blur(function(){
