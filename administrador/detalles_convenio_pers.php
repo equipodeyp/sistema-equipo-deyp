@@ -106,7 +106,7 @@ $id_persona = $fila_consulta_uno ['id'];
                 <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../administrador/admin.php">REGISTROS</a>
-              <a href="../administrador/detalles_expediente.php?id=<?=$fila_consulta_uno['folioexpediente']?>">EXPEDIENTE</a>
+              <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta_uno['folioexpediente']?>">EXPEDIENTE</a>
               <a href="../administrador/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>">PERSONA</a>
               <a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta_uno['id']?>">SEGUIMIENTO</a>
               <a class="actived">EVALUACIÓN</a>
@@ -151,7 +151,7 @@ $id_persona = $fila_consulta_uno ['id'];
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
                     </select>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_FIRMA" for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input autocomplete="off" id="INPUT_FECHA_FIRMA" class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
