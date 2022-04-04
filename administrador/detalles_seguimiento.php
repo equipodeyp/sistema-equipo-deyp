@@ -461,26 +461,26 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   $cont_med = '0';
                   $tabla="SELECT * FROM evaluacion_expediente WHERE folioexpediente ='$fol_exp'";
                    $var_resultado = $mysqli->query($tabla);
-                  while ($var_fila=$var_resultado->fetch_array())
+                  while ($var_fila1=$var_resultado->fetch_array())
                   {
                     $cont_med = $cont_med + 1;
                     echo "<tr>";
                       echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-                      echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
-                      echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
-                      echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila['id_analisis']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
-                    //   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_aut'])); echo "</td>";
-                    //   echo "<td style='text-align:center'>"; echo $var_fila['tipo_convenio']; echo "</td>";
-                    //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_firma'] != '0000-00-00') {
-                    //     echo date("d/m/Y",strtotime($var_fila['fecha_firma']));
+                      echo "<td style='text-align:center'>"; echo $var_fila1['id_analisis']; echo "</td>";
+                      echo "<td style='text-align:center'>"; echo $var_fila1['analisis']; echo "</td>";
+                      echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila1['id_analisis']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
+                    //   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila1['fecha_aut'])); echo "</td>";
+                    //   echo "<td style='text-align:center'>"; echo $var_fila1['tipo_convenio']; echo "</td>";
+                    //   echo "<td style='text-align:center'>"; if ($var_fila1['fecha_firma'] != '0000-00-00') {
+                    //     echo date("d/m/Y",strtotime($var_fila1['fecha_firma']));
                     //   } echo "</td>";
-                    //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_inicio'] != '0000-00-00') {
-                    //     echo date("d/m/Y", strtotime($var_fila['fecha_inicio']));
+                    //   echo "<td style='text-align:center'>"; if ($var_fila1['fecha_inicio'] != '0000-00-00') {
+                    //     echo date("d/m/Y", strtotime($var_fila1['fecha_inicio']));
                     //   } echo "</td>";
-                    //   echo "<td style='text-align:center'>"; if ($var_fila['vigencia'] != '0') {
-                    //     echo $var_fila['vigencia'];
+                    //   echo "<td style='text-align:center'>"; if ($var_fila1['vigencia'] != '0') {
+                    //     echo $var_fila1['vigencia'];
                     //   } echo "</td>";
-                    //   // echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila['fecha_vigencia'])); echo "</td>";
+                    //   // echo "<td style='text-align:center'>"; echo date("d/m/Y",strtotime($var_fila1['fecha_vigencia'])); echo "</td>";
                     // echo "</tr>";
                   }
                   ?>
@@ -1262,7 +1262,7 @@ function obtenerEstatus(e) {
     document.getElementById('CONCLUSION_ART35').value='';
     document.getElementById('OTHER_ART351').value='';
     document.getElementById('FECHA_DESINCORPORACION_DOS').value='';
-    
+
 
   }
 }
@@ -1366,7 +1366,7 @@ else {
 
   document.getElementById('LABEL_OTHER_ART351').style.display = "none";
   document.getElementById('OTHER_ART351').style.display = "none";
-  
+
 }
 }
 ConclusionCancelacionArt();
