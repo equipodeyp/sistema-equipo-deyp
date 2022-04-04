@@ -105,7 +105,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
             <form class="container well form-horizontal" action="../administrador/actualizar_convenio_exp.php?id=<?php echo $id_analisis; ?>" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
-                  <a href="../administrador/menu.php">REGISTROS</a>
+                  <a href="../administrador/admin.php">REGISTROS</a>
                   <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
                   <a href="../administrador/detalles_seguimiento.php?folio=<?=$fila_consulta['folioexpediente']?>">SEGUIMIENTO</a>
                   <a class="actived">DETALLES DE LA EVALUACIÓN</a>
