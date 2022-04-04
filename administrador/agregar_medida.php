@@ -12,7 +12,7 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $id_persona_med = $_GET['folio'];
-echo $id_persona_med;
+// echo $id_persona_med;
 $fol=" SELECT * FROM datospersonales WHERE id='$id_persona_med'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -109,7 +109,7 @@ $validacion = $fil_val['validacion'];
           <a href="../administrador/detalles_expediente.php?folio=<?=$fol_expediente?>">EXPEDIENTE</a>
           <a href="../administrador/detalles_persona.php?folio=<?=$id_persona_exp?>">PERSONA</a>
           <a href="../administrador/detalles_medidas.php?folio=<?=$id_persona_med?>">MEDIDAS</a>
-          <a class="actived">AGREGAR</a>
+          <a class="actived">REGISTRAR MEDIDA</a>
         </div>
         <div class="row">
           <div class="alert alert-info">

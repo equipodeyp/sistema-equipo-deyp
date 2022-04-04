@@ -106,7 +106,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
               <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
               <a href="../administrador/detalles_persona.php?folio=<?=$fila_consulta['id']?>">PERSONA</a>
               <a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta['id']?>">SEGUIMIENTO</a>
-              <a class="actived">EVALUACIÓN</a>
+              <a class="actived">REGISTRAR EVALUACIÓN</a>
               </div>
 
               <div class="row">
