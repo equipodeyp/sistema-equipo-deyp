@@ -117,7 +117,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <h3 style="text-align:center">EVALUACIÓN DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label>FOLIO DEL EXPEDIENTE</label>
+                  <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
                   <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
                 </div>
                 <div class="row">
