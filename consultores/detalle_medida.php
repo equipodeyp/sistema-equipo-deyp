@@ -343,10 +343,10 @@ $validacion = $fil_val['validacion'];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
+              <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA </h3>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
+            <!-- <div class="col-md-6 mb-3 validar">
               <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
               <select disabled class="form-select form-select-lg" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
@@ -354,12 +354,12 @@ $validacion = $fil_val['validacion'];
                 <option value="CONCLUSION">CONCLUSION</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
-            </div>
+            </div> -->
 
-             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
+             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-               <select disabled class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                 <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
+               <select disabled class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" >
+                 <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['acuerdo']; ?>"><?php echo $rowmultidisciplinario['acuerdo']; ?></option>
                  <?php
                  $art35 = "SELECT * FROM conclusionart35";
                  $answerart35 = $mysqli->query($art35);
@@ -372,9 +372,9 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
                <label for="OTHER_ART351">ESPECIFIQUE</label>
-               <input readonly class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['otherart35']; ?>" type="text">
+               <input readonly class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>" type="text">
              </div>
-
+ 
           </div>
 
 
@@ -565,6 +565,9 @@ if(estatusMedidas === "EN EJECUCION"){
       document.getElementById('dat_ejec').style.display = "";
       document.getElementById('fecha_conclusion').style.display = "";
       document.getElementById('conclu_cancel').style.display = "";
+      document.getElementById('CONCLUSION_ART35select').style.display = "";
+      document.getElementById('OTHER_ART351').style.display = "";
+
     }else if (estatus_medida === 'CANCELADA') {
       document.getElementById('dat_cancel').style.display = "";
       document.getElementById('fecha_conclusion').style.display = "";
@@ -574,25 +577,28 @@ if(estatusMedidas === "EN EJECUCION"){
   mostrar_estatus_medida();
 ///////////////////////////////////////////////////////////////////
 // motivo de cancelacion y/o conclusion
-  var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
-  function conclu_cancel_med() {
-    console.log(ejecutamed);
-    if (ejecutamed === 'CONCLUSION') {
-      document.getElementById('CONCLUSION_ART35').style.display = "";
-    }
-  }
-  conclu_cancel_med();
+  // var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
+  // function conclu_cancel_med() {
+  //   console.log(ejecutamed);
+  //   if (ejecutamed === 'CONCLUSION') {
+  //     document.getElementById('CONCLUSION_ART35').style.display = "";
+  //   }
+  // }
+  // conclu_cancel_med();
   ///////////////////////////////////////////////////////////////////
   // conclusion por articulo 35
   var concluart = document.getElementById('CONCLUSION_ART35select').value;
   function conclu_cancel_art35() {
     console.log(concluart);
-    if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+    if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || concluart === 'OTRO') {
       document.getElementById('OTHERART35').style.display = "";
     }
   }
   conclu_cancel_art35();
 </script>
 
+
+
+</script>
 </body>
 </html>

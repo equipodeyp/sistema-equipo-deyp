@@ -317,6 +317,7 @@ function actualizar_estatus_medida(sel) {
     divC.style.display="none";
     divC = document.getElementById("MOTIVO");
     divC.style.display="none";
+    
   }else if (sel.value==="CANCELADA") {
     divC = document.getElementById("fecha_conclusion");
     divC.style.display="";
