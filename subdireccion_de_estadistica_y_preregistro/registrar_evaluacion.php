@@ -112,7 +112,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
-                  <label>ID ÚNICO DE LA PERSONA </label>
+                  <label>ID PERSONA </label>
                   <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['identificador']; ?>" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
