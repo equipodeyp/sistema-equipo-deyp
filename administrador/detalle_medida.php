@@ -343,32 +343,33 @@ $validacion = $fil_val['validacion'];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
+              <h3 style="text-align:center">MOTIVO CONCLUSIÓN</h3>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-              <select class="form-select form-select-lg" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
-                <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <!-- <option value="CANCELACION">CANCELACION</option> -->
-                <option value="CONCLUSION">CONCLUSION</option>
-                <option value="NO APLICA">NO APLICA</option>
+            <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
+              <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
+              <select class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
+                <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
+                <?php
+                $art35 = "SELECT * FROM conclusionart35";
+                $answerart35 = $mysqli->query($art35);
+                while($art35s = $answerart35->fetch_assoc()){
+                  echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
+                }
+                ?>
               </select>
             </div>
 
-             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-               <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-               <select class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                 <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
-                 <?php
-                 $art35 = "SELECT * FROM conclusionart35";
-                 $answerart35 = $mysqli->query($art35);
-                 while($art35s = $answerart35->fetch_assoc()){
-                   echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                 }
-                 ?>
-               </select>
-             </div>
+            <!-- <div class="col-md-6 mb-3 validar">
+              <label for="CONCLUSION_CANCELACION">MOTIVO CONCLUSIÓN</label>
+              <select class="form-select form-select-lg" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
+                <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
+                <option value="CANCELACION">CANCELACION</option>
+                <option value="CONCLUSION">CONCLUSION</option>
+                <option value="NO APLICA">NO APLICA</option>
+              </select>
+            </div> -->
+
 
              <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
                <label for="OTHER_ART351">ESPECIFIQUE</label>
@@ -511,6 +512,7 @@ if(dd<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 </script>
+
 <script type="text/javascript">
 var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
 if(estatusMedidas === "EN EJECUCION"){
@@ -565,6 +567,7 @@ if(estatusMedidas === "EN EJECUCION"){
       document.getElementById('dat_ejec').style.display = "";
       document.getElementById('fecha_conclusion').style.display = "";
       document.getElementById('conclu_cancel').style.display = "";
+      document.getElementById('CONCLUSION_ART35').style.display = "";
     }else if (estatus_medida === 'CANCELADA') {
       document.getElementById('dat_cancel').style.display = "";
       document.getElementById('fecha_conclusion').style.display = "";
@@ -574,20 +577,22 @@ if(estatusMedidas === "EN EJECUCION"){
   mostrar_estatus_medida();
 ///////////////////////////////////////////////////////////////////
 // motivo de cancelacion y/o conclusion
-  var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
-  function conclu_cancel_med() {
-    // console.log(ejecutamed);
-    if (ejecutamed === 'CONCLUSION') {
-      document.getElementById('CONCLUSION_ART35').style.display = "";
-    }
-  }
-  conclu_cancel_med();
+  // var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
+  // function conclu_cancel_med() {
+  //   // console.log(ejecutamed);
+  //   if (ejecutamed === 'CONCLUSION') {
+  //     document.getElementById('CONCLUSION_ART35').style.display = "";
+  //   }
+  // }
+  // conclu_cancel_med();
   ///////////////////////////////////////////////////////////////////
   // conclusion por articulo 35
+
+
   var concluart = document.getElementById('CONCLUSION_ART35select').value;
   function conclu_cancel_art35() {
     // console.log(concluart);
-    if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+    if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || concluart === 'OTRO') {
       document.getElementById('OTHERART35').style.display = "";
     }
   }
@@ -621,19 +626,38 @@ var estatusMed;
 estatusMedida.addEventListener('change', obtenerEstatusMed);
     function obtenerEstatusMed(e) {
       estatusMed = e.target.value;
-      console.log(estatusMed);
+      // console.log(estatusMed);
       if (estatusMed == "EN EJECICION" ){
         document.getElementById("FECHA_DESINCORPORACION").value = "";
         document.getElementById("MOTIVO_CANCEL").value = "";
         document.getElementById("CONCLUSION_CANCELACION").value = "";
         document.getElementById("CONCLUSION_ART35select").value = "";
         document.getElementById("OTHER_ART351").value = "";
-      } else{
+      }
+      
+      else{
         document.getElementById("MOTIVO_CANCEL").value = "";
         document.getElementById("FECHA_DESINCORPORACION").value = "";
         document.getElementById("CONCLUSION_CANCELACION").value = "";
         document.getElementById("CONCLUSION_ART35select").value = "";
         document.getElementById("OTHER_ART351").value = "";
+      }
+      
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+var conclusionArt35 = document.getElementById("CONCLUSION_ART35select");
+var concluArt35;
+
+conclusionArt35.addEventListener('change', obtenerConclusionArt35);
+    function obtenerConclusionArt35(e) {
+      concluArt35 = e.target.value;
+      if (concluArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluArt35 === "OTRO" ){
+        document.getElementById('OTHERART35').style.display = "";
       }
       
 }
