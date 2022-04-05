@@ -169,7 +169,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
       <!--  -->
-      
+
       <!--  -->
       <div class="wrap">
 
@@ -182,7 +182,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     		<div class="secciones">
     			<article id="tab1">
 
-              <!-- menu de navegacion de la parte de arriba -->   
+              <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
                         <a href="../administrador/admin.php">REGISTROS</a>
                         <a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
@@ -197,11 +197,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                        <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                        <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                         <input readonly class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
                     <input readonly class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -303,7 +303,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   <br>
                   <button onclick="enviarId()" style="display: none; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="FECHA_NACIMIENTO_PERSONA">FECHA DE NACIMIENTO <span class="required"></span></label>
                     <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="<?php echo $rowfol['fechanacimientopersona']; ?>">
@@ -399,7 +399,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  
+
 
                 <?php
                 $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
@@ -536,7 +536,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  
+
 
                   <?php
 
@@ -655,7 +655,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <option value="OTORGADO">OTORGADO</option>
                     </select>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar" id="fecha_crit">
                     <label id="label_fecha_cr_opor" for="fecha_c">FECHA DEL CRITERIO DE OPORTUNIDAD</label>
                     <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="<?php echo $rowdomicilio['fecha_criterio']; ?>">
@@ -1112,7 +1112,7 @@ pplCriterio.addEventListener('change', obtenerPplCriterioOport);
         document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
         document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
 
-      } 
+      }
 
       else {
         document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";

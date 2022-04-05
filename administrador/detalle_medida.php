@@ -162,11 +162,11 @@ $validacion = $fil_val['validacion'];
             }
             ?>
           <div class="col-md-6 mb-3 validar">
-                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" readonly value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50">
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" readonly value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
           </div>
 
@@ -613,7 +613,7 @@ medidasResguardo.addEventListener('change', obtenerMedDeResguardo);
       document.getElementById("FECHA_ACTUALIZACION_MEDIDA").value = "";
       document.getElementById("OTRA_MEDIDA_RESGUARDO").value = "";
       }
-      
+
 }
 
 </script>
@@ -634,7 +634,7 @@ estatusMedida.addEventListener('change', obtenerEstatusMed);
         document.getElementById("CONCLUSION_ART35select").value = "";
         document.getElementById("OTHER_ART351").value = "";
       }
-      
+
       else{
         document.getElementById("MOTIVO_CANCEL").value = "";
         document.getElementById("FECHA_DESINCORPORACION").value = "";
@@ -642,7 +642,7 @@ estatusMedida.addEventListener('change', obtenerEstatusMed);
         document.getElementById("CONCLUSION_ART35select").value = "";
         document.getElementById("OTHER_ART351").value = "";
       }
-      
+
 }
 
 </script>
@@ -659,7 +659,7 @@ conclusionArt35.addEventListener('change', obtenerConclusionArt35);
       if (concluArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluArt35 === "OTRO" ){
         document.getElementById('OTHERART35').style.display = "";
       }
-      
+
 }
 
 </script>
