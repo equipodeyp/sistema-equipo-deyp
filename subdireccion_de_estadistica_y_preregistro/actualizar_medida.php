@@ -177,7 +177,7 @@ if ($verifica_update_person == 1) {
   // validacion de update correcto
   if($res_radicacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=$id_p';
+     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=$id_p';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }
