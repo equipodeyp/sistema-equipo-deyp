@@ -36,14 +36,9 @@ if ($verifica_medida == 1) {
   $medida_mod=$_POST['MOTIVO_CANCEL'];
   // $fecha_mod= $_POST['FECHA_MODIFICACION'];
   // $tipo_mod= $_POST['TIPO_MODIFICACION'];
-  $acuerdo =$_POST['CONCLUSION_CANCELACION'];
-  if ($acuerdo == 'CONCLUSION') {
-    $conclusionart35=$_POST['CONCLUSION_ART35'];
-    if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-      $otherart35=$_POST['OTHER_ART35'];
-    }else {
-      $otherart35 ='';
-    }
+  $acuerdo =$_POST['CONCLUSION_ART35'];
+  if ($acuerdo == 'OTRO' || $acuerdo == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+    $conclusionart35=$_POST['OTHER_ART35'];
   }else {
     $conclusionart35='';
   }
@@ -80,8 +75,8 @@ if ($verifica_medida == 1) {
   $row = $result->fetch_assoc();
   $id_med =$row["id"];
 
-  $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, otherart35, date_close, folioexpediente, id_persona, id_medida)
-                VALUES ('$acuerdo', '$conclusionart35', '$otherart35', '$date_ejec', '$folio_expediente', '$id_persona', '$id_med')";
+  $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, date_close, folioexpediente, id_persona, id_medida)
+                VALUES ('$acuerdo', '$conclusionart35',  '$date_ejec', '$folio_expediente', '$id_persona', '$id_med')";
   $res_mult_meds = $mysqli->query($mult_meds);
 
 
