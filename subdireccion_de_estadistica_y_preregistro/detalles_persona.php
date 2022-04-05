@@ -863,6 +863,7 @@ function ocultarAnalisisM() {
     }
 ocultarAnalisisM();
 </script>
+
 <script type="text/javascript">
 
 var noFormalizado = document.getElementById('CONVENIO_ENTENDIMIENTO');
@@ -939,6 +940,8 @@ function ocultarCamposNoFormalizado() {
 }
 ocultarCamposNoFormalizado();
 </script>
+
+
 <script type="text/javascript">
 var concluNone = document.getElementById('ESTATUS_PERSONA').value;
 
@@ -1004,6 +1007,8 @@ conCa.addEventListener('change', obtenerEstatus);
 }
 
 </script>
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <script type="text/javascript">
 var concluCanceExp = document.getElementById('CONCLUSION_CANCELACION_EXP').value;
 

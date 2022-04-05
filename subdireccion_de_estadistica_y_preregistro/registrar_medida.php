@@ -292,17 +292,17 @@ $validacion = $fil_val['validacion'];
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN DE LA MEDIDA</h3>
+                  <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
                 </div>
 
-                <div class="col-md-6 mb-3 validar">
+                <!-- <div class="col-md-6 mb-3 validar">
                   <label for="CONCLUSION_CANCELACION">CONCLUSIÓN</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <option value="CONCLUSION">CONCLUSIÓN</option>
                     <option value="NO APLICA">NO APLICA</option>
                   </select>
-                </div>
+                </div> -->
 
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                   <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTICULO 35</label>
@@ -320,7 +320,7 @@ $validacion = $fil_val['validacion'];
 
                 <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
                   <label for="OTHER_ART35">ESPECIFIQUE</label>
-                  <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="" type="text">
+                  <input autocomplete="off" class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="" type="text">
                 </div>
 
 
