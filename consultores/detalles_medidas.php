@@ -167,7 +167,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                 <div class="col-md-6 mb-3 validar">
-                  <label for="NOMRE_SUJETO">ID PERSONA PROPUESTA<span class="required"></span></label>
+                  <label for="NOMRE_SUJETO">ID PERSONA<span class="required"></span></label>
                   <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['identificador']; ?>" disabled>
                 </div>
 
