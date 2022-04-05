@@ -231,11 +231,11 @@ function fecha_ejecutada(sel) {
         divC.style.display="";
         divC = document.getElementById("fech_inicio");
         divC.style.display="";
-
+        
         divC = document.getElementById("DIV_CONCLUSION_CANCELACION");
         divC.style.display="";
-        // divC = document.getElementById("CONCLUSION_ART35");
-        // divC.style.display="";
+        divC = document.getElementById("CONCLUSION_ART35");
+        divC.style.display="";
 
 
 
