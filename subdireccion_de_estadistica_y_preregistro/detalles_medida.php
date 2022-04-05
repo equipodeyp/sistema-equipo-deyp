@@ -453,7 +453,7 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
                <label for="OTHER_ART351">ESPECIFIQUE</label>
-               <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
+               <input autocomplete="off" class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
              </div>
 
           </div>
@@ -592,13 +592,21 @@ if(dd<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 </script>
+
 <script type="text/javascript">
 var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
 if(estatusMedidas === "EN EJECUCION"){
   document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
 }
+if(estatusMedidas === "EJECUTADA"){
+  document.getElementById("COMENTARIO").disabled = true;
+  document.getElementById("enter").style.display = "none";
+}
 </script>
+<script type="text/javascript">
 
+
+</script> 
 
 </body>
 </html>
