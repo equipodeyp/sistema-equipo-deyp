@@ -140,14 +140,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
-        <div class="secciones form-horizontal sticky breadcrumb flat">
-          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">EXPEDIENTE</a>
-          <a class="actived">PERSONA</a>
-        </div>
+        
 
     		<ul class="tabs">
-    			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp;?>';"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp;?>';"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
     			<!-- <li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
           <!-- <li onclick="location.href='detalles_medidas.php';" class="fas fa-book-open tab-text"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
@@ -155,6 +151,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
     		<div class="secciones">
     			<article id="tab1">
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+          <a class="actived">PERSONA</a>
+        </div>
     				<div class="container">
               <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">

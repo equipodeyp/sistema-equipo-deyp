@@ -112,7 +112,7 @@ if ($verifica_medida == 1) {
 // validacion del registro correcto
   if($res_addmedidas && $res_mult_meds && $res_radicacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=$id_persona';
+     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=$id_persona';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }

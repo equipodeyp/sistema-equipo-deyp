@@ -147,6 +147,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
           <!-- <li onclick="location.href='detalles_medidas.php';" class="fas fa-book-open tab-text"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
     		</ul>
 
+        <ul class="tabs">
+    			<li><a href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp;?>';"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp;?>';"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
+    			<!-- <li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
+          <!-- <li onclick="location.href='detalles_medidas.php';" class="fas fa-book-open tab-text"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
+    		</ul>
+
     		<div class="secciones">
 
     			<article id="tab2">
@@ -157,6 +164,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
               <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
               <a class="actived">MEDIDAS</a>
             </div>
+
             <div class="container">
         			<div class="well form-horizontal" >
         				<div class="row">
