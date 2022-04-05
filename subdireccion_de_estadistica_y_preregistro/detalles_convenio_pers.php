@@ -115,11 +115,11 @@ $id_persona = $fila_consulta_uno ['id'];
                   <h3 style="text-align:center">EVALUACION DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label>FOLIO DEL EXPEDIENTE</label>
+                  <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
                   <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
-                  <label>ID ÚNICO DE LA PERSONA </label>
+                  <label>ID PERSONA </label>
                   <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['id_unico']; ?>" readonly>
                 </div>
                 <div class="row">
