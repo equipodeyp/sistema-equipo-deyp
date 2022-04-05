@@ -46,36 +46,40 @@ if ($verifica_update_person == 1) {
   $fecha_inicio = $_POST['FECHA_INICIO']; //echo $fecha_inicio;
   if ($estatus === 'EJECUTADA') {
     $fecha_ejecucion = $_POST['FECHA_DESINCORPORACION'];
-    $conclusion_cancel = $_POST['CONCLUSION_CANCELACION'];
-    if ($conclusion_cancel === 'CONCLUSION') {
-      $articulo35 = $_POST['CONCLUSION_ART35'];
-      if ($articulo35 === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-        $otherart35 = $_POST['OTHER_ART351'];
-      }else {
-        $otherart35 = '';
-      }
-    }else {
-      $articulo35 = '';
-      $otherart35 = '';
+    // $conclusion = $_POST['CONCLUSION_CANCELACION'];
+    // if ($conclusion === 'CONCLUSION') {
+    //   $articulo35 = $_POST['CONCLUSION_ART35'];
+    //   if ($articulo35 === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+    //     $otroconclu = $_POST['OTHER_ART351'];
+    //   }else {
+    //     $otroconclu = '';
+    //   }
+    // }else {
+    //   $articulo35 = '';
+    //   $otroconclu = '';
+    // }
+    $conclusion = $_POST['CONCLUSION_ART35'];
+    if ($conclusion === 'OTRO' || $conclusion === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+      $otroconclu = $_POST['OTHER_ART351'];
     }
   }elseif ($estatus === 'CANCELADA') {
     $fecha_ejecucion = $_POST['FECHA_DESINCORPORACION'];
     $motivo_cancelacion = $_POST['MOTIVO_CANCEL'];
-    $conclusion_cancel = '';
+    $conclusion = '';
     $articulo35 = '';
-    $otherart35 = '';
+    $otroconclu = '';
   }else {
     $fecha_ejecucion = '';
-    $conclusion_cancel = '';
+    $conclusion = '';
     $articulo35 = '';
-    $otherart35 = '';
+    $otroconclu = '';
   }
-  // echo $fecha_ejecucion.'*'.$conclusion_cancel.'*'.$articulo35.'*'.$otherart35;
+  // echo $fecha_ejecucion.'*'.$conclusion.'*'.$articulo35.'*'.$otherart35;
   $actualizar_medida = "UPDATE medidas SET categoria = '$categoria', tipo = '$tipo', clasificacion = '$clasificacion', medida ='$medida', descripcion = '$descripcion', date_provisional= '$fecha_definitiva', date_definitva = '$fecha_definitiva',
                                            tipo_modificacion = '$motivo_cancelacion', estatus = '$estatus', ejecucion = '$municipio', date_ejecucion = '$fecha_ejecucion' WHERE id = '$id_medida'";
   $res_actualizar_medida = $mysqli->query($actualizar_medida);
   // tabla multidisciplinario de la medida
-  $actualizar_conclu_cancel = "UPDATE multidisciplinario_medidas SET acuerdo = '$conclusion_cancel', conclusionart35 = '$articulo35', otherart35 = '$otherart35', date_close = '$fecha_ejecucion'
+  $actualizar_conclu_cancel = "UPDATE multidisciplinario_medidas SET acuerdo = '$conclusion', conclusionart35 = '$otroconclu', date_close = '$fecha_ejecucion'
                                WHERE id_medida = '$id_medida'";
   $res_actualizar_conclu_cancel = $mysqli->query($actualizar_conclu_cancel);
   // datos del comentario

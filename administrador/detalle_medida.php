@@ -346,10 +346,10 @@ $validacion = $fil_val['validacion'];
               <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
             </div>
 
-            <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
+            <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
               <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
               <select class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>"><?php echo $rowmultidisciplinario['conclusionart35']; ?></option>
+                <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['acuerdo']; ?>"><?php echo $rowmultidisciplinario['acuerdo']; ?></option>
                 <?php
                 $art35 = "SELECT * FROM conclusionart35";
                 $answerart35 = $mysqli->query($art35);
@@ -360,20 +360,9 @@ $validacion = $fil_val['validacion'];
               </select>
             </div>
 
-            <!-- <div class="col-md-6 mb-3 validar">
-              <label for="CONCLUSION_CANCELACION">MOTIVO CONCLUSIÓN</label>
-              <select class="form-select form-select-lg" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
-                <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <option value="CANCELACION">CANCELACION</option>
-                <option value="CONCLUSION">CONCLUSION</option>
-                <option value="NO APLICA">NO APLICA</option>
-              </select>
-            </div> -->
-
-
-             <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
+             <div class="col-md-6 mb-3 validar" id="OTHERART35">
                <label for="OTHER_ART351">ESPECIFIQUE</label>
-               <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['otherart35']; ?>" type="text">
+               <input autocomplete="off" class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>" type="text">
              </div>
 
           </div>
@@ -591,9 +580,11 @@ if(estatusMedidas === "EN EJECUCION"){
 
   var concluart = document.getElementById('CONCLUSION_ART35select').value;
   function conclu_cancel_art35() {
-    // console.log(concluart);
+    console.log(concluart);
     if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || concluart === 'OTRO') {
       document.getElementById('OTHERART35').style.display = "";
+    }else {
+      document.getElementById('OTHERART35').style.display = "none";
     }
   }
   conclu_cancel_art35();
