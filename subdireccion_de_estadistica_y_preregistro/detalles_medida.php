@@ -385,7 +385,7 @@ $validacion = $fil_val['validacion'];
                     <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
                     <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
                   </div>';
-                
+
                   if ($rowmultidisciplinario['acuerdo'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || $rowmultidisciplinario['acuerdo'] == 'OTRO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
                       <label for="OTHER_ART35">ESPECIFIQUE</label>
@@ -393,7 +393,7 @@ $validacion = $fil_val['validacion'];
                     </div>';
                   }
                 }
-              
+
               if ($rowmedida['estatus'] == 'CANCELADA') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
@@ -437,7 +437,7 @@ $validacion = $fil_val['validacion'];
               </select>
             </div> -->
 
-             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
+             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
                  <option disabled selected value="">SELECCIONE UNA OPCION</option>
