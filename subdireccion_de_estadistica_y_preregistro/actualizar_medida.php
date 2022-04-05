@@ -58,23 +58,28 @@ if ($verifica_update_person == 1) {
   $medida_mod=$_POST['MOTIVO_CANCEL'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
-  $acuerdo =$_POST['CONCLUSION_CANCELACION'];
-  if ($acuerdo == 'CONCLUSION') {
-    $conclusionart35=$_POST['CONCLUSION_ART35'];
-    if ($conclusionart35 == '') {
-      $conclusionart35=$_POST['CONCLUSION_ART351'];
-    }
-    if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-      $otherart35=$_POST['OTHER_ART35'];
-      if ($otherart35 == '') {
-        $otherart35=$_POST['OTHER_ART351'];
-      }
-    }else {
-      $otherart35 ='';
-    }
+  $acuerdo =$_POST['CONCLUSION_ART35'];
+  if ($acuerdo === 'OTRO' || $acuerdo === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+    $conclusionart35 = $_POST['OTHER_ART351'];
   }else {
-    $conclusionart35='';
+    $conclusionart35 = '';
   }
+  // if ($acuerdo == 'CONCLUSION') {
+  //   $conclusionart35=$_POST['CONCLUSION_ART35'];
+  //   if ($conclusionart35 == '') {
+  //     $conclusionart35=$_POST['CONCLUSION_ART351'];
+  //   }
+  //   if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+  //     $otherart35=$_POST['OTHER_ART35'];
+  //     if ($otherart35 == '') {
+  //       $otherart35=$_POST['OTHER_ART351'];
+  //     }
+  //   }else {
+  //     $otherart35 ='';
+  //   }
+  // }else {
+  //   $conclusionart35='';
+  // }
   $date_conclusion=$_POST['FECHA_DESINCORPORACION'];
   if ($date_conclusion == '') {
     $date_conclusion=$_POST['FECHA_DESINCORPORACION1'];
@@ -143,7 +148,7 @@ if ($verifica_update_person == 1) {
   // $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, otherart35, date_close, folioexpediente, id_persona)
   //               VALUES ('$acuerdo', '$conclusionart35', '$otherart35', '$date_conclusion', '$folio_expediente', '$id_persona')";
   // $res_mult_meds = $mysqli->query($mult_meds);
-  $mult_meds = "UPDATE multidisciplinario_medidas SET acuerdo='$acuerdo', conclusionart35='$conclusionart35', otherart35='$otherart35', date_close='$date_conclusion' WHERE  id_medida = '$id_persona'";
+  $mult_meds = "UPDATE multidisciplinario_medidas SET acuerdo='$acuerdo', conclusionart35='$conclusionart35', date_close='$date_conclusion' WHERE  id_medida = '$id_persona'";
   $res_mult_meds = $mysqli->query($mult_meds);
   //
   // $fuente_rad = "INSERT INTO radicacion_mascara2(fuente, descripcion, id_persona, folioexpediente)

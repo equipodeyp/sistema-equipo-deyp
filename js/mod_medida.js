@@ -156,7 +156,7 @@ function modopen2art35(sel) {
 }
 
 function modotherart35(sel) {
-      if (sel.value=="IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO"){
+      if (sel.value=="IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || sel.value=="OTRO"){
            divC = document.getElementById("OTHERART35");
            divC.style.display = "";
            // document.getElementById("OTHER_ART35").value = '';
