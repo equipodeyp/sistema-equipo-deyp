@@ -170,7 +170,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!--  -->
       <div class="wrap">
-        
+
     		<ul class="tabs">
     			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<!-- <li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
@@ -179,7 +179,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
     		<div class="secciones">
     			<article id="tab1">
-            
+
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
@@ -215,11 +215,11 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                        <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                        <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                         <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
+                    <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
                     <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -545,7 +545,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  
+
 
                   <?php
 
@@ -664,7 +664,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <option value="OTORGADO">OTORGADO</option>
                     </select>
                   </div>
-                  
+
                   <div class="col-md-6 mb-3 validar" id="fecha_crit">
                     <label id="label_fecha_cr_opor" for="fecha_c">FECHA DEL CRITERIO DE OPORTUNIDAD</label>
                     <input class="form-control" type="date" name="fecha_cr_opor" id="fecha_cr_opor" value="<?php echo $rowdomicilio['fecha_criterio']; ?>">
@@ -1149,14 +1149,14 @@ pplCriterio.addEventListener('change', obtenerPplCriterioOport);
         document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "";
         document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "";
 
-      } 
+      }
 
       else {
         document.getElementById("LABEL_CRITERIO_OPORTUNIDAD").style.display = "none";
         document.getElementById("CRITERIO_OPORTUNIDAD").style.display = "none";
         document.getElementById("label_fecha_cr_opor").style.display = "none";
         document.getElementById("fecha_cr_opor").style.display = "none";
-        
+
         document.getElementById("CRITERIO_OPORTUNIDAD").value = "";
         document.getElementById("fecha_cr_opor").value = "";
 

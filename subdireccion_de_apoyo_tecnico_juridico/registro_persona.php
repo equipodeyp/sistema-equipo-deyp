@@ -110,11 +110,11 @@ $num_consecutivo =$row["id"];
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
 <div class="wrap">
-     
+
   <div class="secciones">
 
   <article id="tab1">
-    
+
   <!-- menu de navegacion de la parte de arriba -->
       <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
@@ -133,7 +133,7 @@ $num_consecutivo =$row["id"];
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $row_exp['fol_exp'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
@@ -987,7 +987,7 @@ if (idUnico == null || idUnico == ""){
 }
   </script> -->
 
-  
+
 </script>
 
 </body>

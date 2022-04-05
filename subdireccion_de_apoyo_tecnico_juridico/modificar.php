@@ -86,7 +86,7 @@ $row=$result->fetch_assoc();
 		<!-- folio del expediente -->
 
 <div class="wrap">
-	
+
 
 	<div class="secciones">
 
@@ -96,7 +96,7 @@ $row=$result->fetch_assoc();
             <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
             <a class="actived">EXPEDIENTE</a>
     </div>
-	
+
 			<div class="well form-horizontal" >
 				<div class="row">
 				<div class="alert alert-info">
@@ -104,7 +104,7 @@ $row=$result->fetch_assoc();
 				</div>
 				<!-- folio del expediente -->
 				<div class="form-group">
-					<label for="fol_exp" class="col-md-4 control-label">FOLIO DEL EXPEDIENTE</label>
+					<label for="fol_exp" class="col-md-4 control-label">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-folder"></i></span>
