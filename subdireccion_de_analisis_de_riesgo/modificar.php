@@ -69,7 +69,7 @@ $row=$result->fetch_assoc();
 			}
 			// echo $genero;
 			 ?>
-	
+
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -85,7 +85,7 @@ $row=$result->fetch_assoc();
 		<!-- folio del expediente -->
 
 <div class="wrap">
-	
+
 	<div class="secciones">
 	<article id="tab1">
 		<!-- menu de navegacion de la parte de arriba -->
@@ -100,7 +100,7 @@ $row=$result->fetch_assoc();
 				</div>
 				<!-- folio del expediente -->
 				<div class="form-group">
-					<label for="fol_exp" class="col-md-4 control-label">FOLIO DEL EXPEDIENTE</label>
+					<label for="fol_exp" class="col-md-4 control-label">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      <span class="input-group-addon"><i class="fas fa-folder"></i></span>
