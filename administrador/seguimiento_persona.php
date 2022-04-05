@@ -192,7 +192,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="SIGLAS DE LA UNIDAD">ID PERSONA PROPUESTA<span ></span></label>
+                  <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
                   <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -1031,7 +1031,7 @@ conCa.addEventListener('change', obtenerEstatus);
       if ( estatusPersona === "DESINCORPORADO" || estatusPersona === "NO INCORPORADO" ) {
         document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "";
         document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "";
-        
+
         document.getElementById('CONCLUSION_CANCELACION_EXP').value='';
         document.getElementById('CONCLUSION_ART351').value='';
         document.getElementById('OTHER_ART351').value='';
@@ -1121,13 +1121,13 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('LABEL_FECHA_CONCLUSION').style.display = "";
       document.getElementById('LABEL_FECHA_CANCELACION').style.display = "none";
       document.getElementById('FECHA_DESINCORPORACION_UNO').style.display = "";
-      
+
       }
 
       else if (estatusPersonaSeg === "CANCELACION"){
       document.getElementById('CONCLUSION_ART351').value = "";
       document.getElementById('OTHER_ART351').value= "";
-      
+
       document.getElementById('LABEL_CONCLUSION_ART351').style.display = "none";
       document.getElementById('CONCLUSION_ART351').style.display = "none";
 
@@ -1137,7 +1137,7 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
 
       document.getElementById('LABEL_OTHER_ART351').style.display = "none";
       document.getElementById('OTHER_ART351').style.display = "none";
-      
+
       }
 }
 </script>
