@@ -378,26 +378,22 @@ $validacion = $fil_val['validacion'];
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
+                    <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-                  <input class="form-control" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
-                </div>';
-                if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
-                  echo '<div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
+                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
                   </div>';
-                  if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+                
+                  if ($rowmultidisciplinario['acuerdo'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || $rowmultidisciplinario['acuerdo'] == 'OTRO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
                       <label for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['otherart35'].'" type="text" readonly>
+                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
                     </div>';
                   }
                 }
-              }
+              
               if ($rowmedida['estatus'] == 'CANCELADA') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
@@ -428,18 +424,18 @@ $validacion = $fil_val['validacion'];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
+              <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
             </div>
 
-            <div class="col-md-6 mb-3 validar">
+            <!-- <div class="col-md-6 mb-3 validar">
               <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
               <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <!-- <option value="CANCELACION">CANCELACION</option> -->
+                <option value="CANCELACION">CANCELACION</option>
                 <option value="CONCLUSION">CONCLUSION</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
-            </div>
+            </div> -->
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
