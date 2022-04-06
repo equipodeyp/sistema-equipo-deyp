@@ -240,6 +240,11 @@ $(document).ready(function() {
     </div>
   </div>
   <div class="contenedor">
+    <div class="columns download">
+            <p>
+              <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
+            </p>
+    </div>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 </body>

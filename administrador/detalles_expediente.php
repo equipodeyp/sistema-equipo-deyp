@@ -262,6 +262,9 @@ $row=$result->fetch_assoc();
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="contenedor">
+									<p>
+									<a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+									</p>
 									<a href="admin.php" class="btn-flotante">REGRESAR</a>
 								</div>
 							</div>

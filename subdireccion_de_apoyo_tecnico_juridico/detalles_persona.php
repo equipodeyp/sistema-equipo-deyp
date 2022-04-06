@@ -172,7 +172,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
       <div class="wrap">
 
     		<ul class="tabs">
-    			<li><a href="#tab1"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
+    			<li><a href="#" class="active"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
     			<!-- <li><a href="#tab2"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
     			<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
     		</ul>
@@ -984,9 +984,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     }
    ?>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
-<p>
+<!-- <p>
   <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
-</p>
+</p> -->
 </div>
 <!-- SCRIPT DE FECHAS  -->
 

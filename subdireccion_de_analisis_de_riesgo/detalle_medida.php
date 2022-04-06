@@ -517,7 +517,7 @@ document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 <script type="text/javascript">
 var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
 if(estatusMedidas === "EN EJECUCION"){
-  document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
+  document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = true;
 }
 </script>
 <script type="text/javascript">
