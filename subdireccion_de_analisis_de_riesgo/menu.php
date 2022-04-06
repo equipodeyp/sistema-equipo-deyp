@@ -98,16 +98,16 @@ $row=$result->fetch_assoc();
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img style'text-align:center' src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img style='text-align:center' src='../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
-        <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -118,7 +118,6 @@ $row=$result->fetch_assoc();
           <img src="../image/ups2.png" alt="" width="1400" height="70">
           <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
-
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
@@ -130,11 +129,9 @@ $row=$result->fetch_assoc();
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-
-        <!-- <h3 style="text-align:center">Tabla de Expedientes</h3> -->
-        <!-- <div class="row">
-          <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
-        </div> -->
+        <div class="row">
+          <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
+        </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
         <div class="">
@@ -143,18 +140,16 @@ $row=$result->fetch_assoc();
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                            <h3 style="text-align:center">Registros</h3>
+                              <h3 style="text-align:center">Registros</h3>
                                 <tr>
-                                    <th style="text-align:center">No.</th>
-                                    <!-- <th style="text-align:center">ID PERSONA</th>
-                                    <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</th> -->
-                                    <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
+                                    <th style="text-align:center">NO</th>
+                                    <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
+                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCION</th>
                                     <th style="text-align:center">PERSONAS PROPUESTAS</th>
                                     <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
+                                    <th style="text-align:center">VALIDACION DEL EXPEDIENTE DE PROTECCION</th>
                                     <th style="text-align:center">DETALLES</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -175,17 +170,15 @@ $row=$result->fetch_assoc();
                                 $r=$mysqli->query($cant);
                                 $row2 = $r->fetch_array(MYSQLI_ASSOC);
 
-
                                 $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
                                 $result=$mysqli->query($abc);
-
                                 if($result)
                                 {
                                   while($row=mysqli_fetch_assoc($result))
                                   {
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'.$var_fila['año']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
@@ -197,7 +190,7 @@ $row=$result->fetch_assoc();
                                     }elseif ($var_fila['validacion'] == 'false') {
                                       echo "<i class='fas fa-times'></i>";
                                     } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='modificar.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
 
                                     echo "</tr>";
 

@@ -11,15 +11,15 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
-$fol_exp = $_GET['folio'];
-// echo $fol_exp;
-$fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+$id_persona_med = $_GET['folio'];
+// echo $id_persona_med;
+$fol=" SELECT * FROM datospersonales WHERE id='$id_persona_med'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
-$name_folio=$rowfol['folioexpediente'];
-$id_person=$rowfol['id'];
+$fol_expediente=$rowfol['folioexpediente'];
+$id_persona_exp=$rowfol['id'];
 $idunico= $rowfol['identificador'];
-$valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
+$valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona_med'";
 $res_val=$mysqli->query($valid);
 $fil_val = $res_val->fetch_assoc();
 $validacion = $fil_val['validacion'];
@@ -39,6 +39,7 @@ $validacion = $fil_val['validacion'];
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -96,24 +97,31 @@ $validacion = $fil_val['validacion'];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
+
     <div class="wrap">
     <div class="secciones">
     <article id="tab1">
     <div class="container">
-      <form class="container well form-horizontal" method="POST" action="save_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
+      <form class="container well form-horizontal" method="POST" action="guardar_medida.php?folio=<?php echo $id_persona_med; ?>" enctype= "multipart/form-data">
 
-
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../administrador/admin.php">REGISTROS</a>
+          <a href="../administrador/detalles_expediente.php?folio=<?=$fol_expediente?>">EXPEDIENTE</a>
+          <a href="../administrador/detalles_persona.php?folio=<?=$id_persona_exp?>">PERSONA</a>
+          <a href="../administrador/detalles_medidas.php?folio=<?=$id_persona_med?>">MEDIDAS</a>
+          <a class="actived">REGISTRAR MEDIDA</a>
+        </div>
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA AL PROGRAMA</h3>
+            <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA</h3>
           </div>
 
           <div class="col-md-6 mb-3 validar">
-                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE<span ></span></label>
+                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                 <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
           </div>
           <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID ÚNICO DE LA PERSONA INCORPORADA AL PROGRAMA<span ></span></label>
+            <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
 
@@ -129,6 +137,11 @@ $validacion = $fil_val['validacion'];
               <option value="AMPLIACION">AMPLIACIÓN</option>
             </select>
           </div>
+
+          <!-- <div class="col-md-6 mb-3 validar">
+            <label for="CATEAGORIA_MEDIDA">FOLIO MEDIDA<span class="required"></span></label>
+            <input class="form-control" id="FOLIO_MEDIDA" name="FOLIO_MEDIDA" placeholder="" type="text" readonly>
+          </div> -->
 
           <div class="col-md-6 mb-3 validar">
             <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
@@ -279,20 +292,20 @@ $validacion = $fil_val['validacion'];
                   <hr class="mb-4">
                 </div>
                 <div class="alert alert-info">
-                  <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN DE LA MEDIDA</h3>
+                  <h3 style="text-align:center">MOTIVO CONCLUSIÓN DE LA MEDIDA</h3>
                 </div>
 
-                <div class="col-md-6 mb-3 validar">
+                <!-- <div class="col-md-6 mb-3 validar">
                   <label for="CONCLUSION_CANCELACION">CONCLUSIÓN</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <option value="CONCLUSION">CONCLUSIÓN</option>
                     <option value="NO APLICA">NO APLICA</option>
                   </select>
-                </div>
+                </div> -->
 
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
-                  <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTÍCULO 35</label>
+                  <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTICULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
                     <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                     <?php
@@ -354,7 +367,7 @@ $validacion = $fil_val['validacion'];
   </div>
 </div>
 <div class="contenedor">
-<a href="menu.php" class="btn-flotante">CANCELAR</a>
+<a href="../administrador/detalles_medidas.php?folio=<?=$id_persona_med?>" class="btn-flotante">CANCELAR</a>
 </div>
 <script type="text/javascript">
 var today = new Date();

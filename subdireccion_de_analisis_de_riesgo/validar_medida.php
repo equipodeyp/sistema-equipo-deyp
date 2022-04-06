@@ -32,7 +32,7 @@ if ($verifica_update_person == 1) {
   // validacion de update correcto
   if($res_validacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_analisis_de_riesgo/detalles_medida.php?id=$id_medida';
+     window.location.href='../subdireccion_de_analisis_de_riesgo/detalle_medida.php?id=$id_medida';
      window.alert('!!!!!VALIDACION EXITOSA¡¡¡¡¡')
    </script>");
   }
