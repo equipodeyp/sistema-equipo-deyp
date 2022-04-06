@@ -37,7 +37,11 @@ $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
 $res_val=$mysqli->query($valid);
 $fil_val = $res_val->fetch_assoc();
 $validacion = $fil_val['validacion'];
-
+// verificar la validacion de las medidas
+$val_med = "SELECT * FROM validar_medida where id_medida = '$id_medida'";
+$res_val_med = $mysqli->query($val_med);
+$fila_val_med = $res_val_med->fetch_assoc();
+// echo $fila_val_med['validar_datos'];
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,6 +58,7 @@ $validacion = $fil_val['validacion'];
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
@@ -104,6 +109,7 @@ $validacion = $fil_val['validacion'];
 			}
 			// echo $genero;
 			?>
+
       <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
@@ -115,22 +121,23 @@ $validacion = $fil_val['validacion'];
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-
     <div class="wrap">
     <div class="secciones">
+
     <article id="tab1">
+
+    <div class="secciones form-horizontal sticky breadcrumb flat">
+              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=<?=$id_p?>">MEDIDA</a>
+              <a class="actived">DETALLE</a>
+            </div>
     <div class="container">
       <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
-        <div class="secciones form-horizontal sticky breadcrumb flat">
-          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$rowfol['folioexpediente']?>">EXPEDIENTE</a>
-          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$id_p?>">PERSONA</a>
-          <a href="../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=<?=$id_p?>">MEDIDAS</a>
-          <a class="actived">DETALLES</a>
-        </div>
         <div class="row">
           <div class="alert alert-info">
-            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
+            <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           </div>
           <?php
           $fol=" SELECT * FROM validar_medida WHERE id_medida='$id_medida'";
@@ -142,8 +149,8 @@ $validacion = $fil_val['validacion'];
           // $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
           // $res_val=$mysqli->query($valid);
           // $fil_val = $res_val->fetch_assoc();
-          $validacion = $rowfol1['validar_datos'];
-            if ($validacion == 'true') {
+          $validacion = $rowfol1['validacion'];
+            if ($rowfol1['validar_datos'] === 'true' && $validacion == 'true') {
               echo "<div class='columns download'>
                       <p>
                       <img src='../image/true4.jpg' width='50' height='50' class='center'>
@@ -151,7 +158,7 @@ $validacion = $fil_val['validacion'];
 
                       </p>
               </div>";
-            }elseif ($validacion == 'false') {
+            }elseif ($rowfol1['validar_datos'] === 'false' || $rowfol1['validacion'] === 'false') {
               echo "<div class='columns download'>
                       <p>
 
@@ -175,7 +182,7 @@ $validacion = $fil_val['validacion'];
           </div> -->
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo date("d/m/Y h:i:sa", strtotime($rowmedida['fecha_captura'])); ?>" readonly type="text">
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo $rowmedida['fecha_captura']; ?>" readonly type="text">
             </select>
           </div>
 
@@ -253,7 +260,7 @@ $validacion = $fil_val['validacion'];
             echo '</div>';
             if ($rowmedida['medida']=='XI. EJECUCION DE MEDIDAS PROCESALES') {
              echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
-               <label for="RESGUARDO_XI">EJECUCION DE MEDIDAS PROCESALES<span class="required"></span></label>
+               <label for="RESGUARDO_XI">EJECUCIÓN DE MEDIDAS PROCESALES<span class="required"></span></label>
                <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" disabled>
                  <option style="visibility: hidden" id="opt-medida-resguardo" value="'.$rowmedida['descripcion'].'">'.$rowmedida['descripcion'].'</option>';
                  $resguardoxi = "SELECT * FROM medidaresguardoxi";
@@ -370,7 +377,7 @@ $validacion = $fil_val['validacion'];
 
               if ($rowmedida['estatus'] == 'EJECUTADA') {
                 echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION<span class="required"></span></label>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="row">
@@ -378,22 +385,26 @@ $validacion = $fil_val['validacion'];
                     <hr class="mb-4">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
+                    <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 validar">
+                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
+                  <input class="form-control" id="CONCLUSION_CANCELACION" name="CONCLUSION_CANCELACION" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
+                </div>';
+                if ($rowmultidisciplinario['acuerdo'] == 'CONCLUSION') {
+                  echo '<div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
+                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
                   </div>';
-
-                  if ($rowmultidisciplinario['acuerdo'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || $rowmultidisciplinario['acuerdo'] == 'OTRO') {
+                  if ($rowmultidisciplinario['conclusionart35'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
                       <label for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
+                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['otherart35'].'" type="text" readonly>
                     </div>';
                   }
                 }
-
+              }
               if ($rowmedida['estatus'] == 'CANCELADA') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
@@ -424,20 +435,20 @@ $validacion = $fil_val['validacion'];
               <hr class="mb-4">
             </div>
             <div class="alert alert-info">
-              <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
+              <h3 style="text-align:center">CONCLUSIÓN / CANCELACIÓN </h3>
             </div>
 
-            <!-- <div class="col-md-6 mb-3 validar">
+            <div class="col-md-6 mb-3 validar">
               <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
               <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
                 <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <option value="CANCELACION">CANCELACION</option>
+                <!-- <option value="CANCELACION">CANCELACION</option> -->
                 <option value="CONCLUSION">CONCLUSION</option>
                 <option value="NO APLICA">NO APLICA</option>
               </select>
-            </div> -->
+            </div>
 
-             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
+             <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
                <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
                  <option disabled selected value="">SELECCIONE UNA OPCION</option>
@@ -453,7 +464,7 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="OTHERART35" style="display:none;">
                <label for="OTHER_ART351">ESPECIFIQUE</label>
-               <input autocomplete="off" class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
+               <input class="form-control" id="OTHER_ART351" name="OTHER_ART351" placeholder="" value="" type="text">
              </div>
 
           </div>
@@ -461,76 +472,23 @@ $validacion = $fil_val['validacion'];
 
 
               </div>
-              <div class="row">
-                <div class="row">
-
-                  <hr class="mb-4">
-                </div>
-
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">COMENTARIOS</h3>
-                </div>
-
-              <div id="contenido" class="">
-                <div class="">
-                  <table class="table table-striped table-bordered " >
-                    <thead >
-
-                    </thead>
-                    <?php
-                    $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida' AND comentario_mascara = '2'";
-                    $var_resultado = $mysqli->query($tabla);
-                    while ($var_fila=$var_resultado->fetch_array())
-                    {
-                    echo "<tr>";
-                    echo "<td>";
-                    echo "<ul>
-                          <li>
-
-                          <div>
-                          <span>
-                          usuario:".$var_fila['usuario']."
-                          </span>
-                          </div>
-                          <div>
-                          <span>
-                            ".$var_fila['comentario']."
-                          </span>
-                          </div>
-                          <div>
-                          <span>
-                          ".date("d/m/Y", strtotime($var_fila['fecha']))."
-                          </span>
-                          </div>
-                          </li>
-                    </ul>";echo "</td>";
-                    echo "</tr>";
-
-                    }
-                  ?>
-                  </table>
-                </div>
-              </div>
 
 
 
               <?php
               $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
               $resultadomedida = $mysqli->query($medida);
-              $rowmedida1 = $resultadomedida->fetch_array(MYSQLI_ASSOC);
-              $id_p = $rowmedida1['id_persona'];
-              $fol_exp =$rowmedida1['folioexpediente'];
-              $id_m = $rowmedida1['id'];
-              $estatus_medida = $rowmedida1['estatus'];
-              $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-              $resultadomedida = $mysqli->query($medida);
               $rowmedida12 = $resultadomedida->fetch_array();
-              $valid13 = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
-              $res_val13=$mysqli->query($valid13);
-              $fil_val13 = $res_val13->fetch_assoc();
-              $validacion13 = $fil_val13['validacion'];
-                if ($validacion13 != 'true') {
-                  echo '
+                if ($rowmedida12['estatus'] == 'EN EJECUCION') {
+                  echo '<div class="row">
+                    <div class="row">
+
+                      <hr class="mb-4">
+                    </div>
+
+                    <div class="alert alert-info">
+                      <h3 style="text-align:center">COMENTARIOS</h3>
+                    </div>
 
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
 
@@ -544,8 +502,17 @@ $validacion = $fil_val['validacion'];
                   </div>';
                 }
                ?>
+               <div class="row" style="display:none;">
 
-
+                 <div class="col-md-6 mb-3 validar">
+                   <label for="validar_est">validacion de estadistica</label>
+                   <input class="form-control" type="text" name="val_est" id="val_est" value="<?php echo $fila_val_med['validar_datos']; ?>">
+                 </div>
+                 <div class="col-md-6 mb-3 validar">
+                   <label for="validar_est">validacion de analisis</label>
+                   <input class="form-control" type="text" name="val_analisis" id="val_analisis" value="<?php echo $fila_val_med['validacion']; ?>">
+                 </div>
+               </div>
         </div>
       </form>
     </div>
@@ -566,15 +533,16 @@ $validacion = $fil_val['validacion'];
   $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
-    if ($fil_val['validar_datos'] === 'false' && $name === 'e-adriana') {
+  $validacion = $fil_val['validar_datos'];
+    if ($validacion != 'false') {
       echo "<div>
               <p>
-                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
+                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' id='btn_validar_medida'><i class=''></i>VALIDAR</a>
               </p>
       </div>";
     }
    ?>
-<a href="../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
+<a href="detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
 <!-- SCRIPT DE FECHAS  -->
 
@@ -589,24 +557,26 @@ if(dd<10){
   if(mm<10){
       mm='0'+mm
   }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
-</script>
+today = dd+'/'+mm+'/'+yyyy;
 
-<script type="text/javascript">
-var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
-if(estatusMedidas === "EN EJECUCION"){
-  document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
-}
-if(estatusMedidas === "EJECUTADA"){
-  document.getElementById("COMENTARIO").disabled = true;
-  document.getElementById("enter").style.display = "none";
-}
+document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
+document.getElementById("FECHA_DESINCORPORACION1").setAttribute("max", today);
+document.getElementById("FECHA_INICIO").setAttribute("max", today);
+document.getElementById("FECHA_CAPTURA").setAttribute("max", today);
+
 </script>
 <script type="text/javascript">
+var checkvalestadistica = document.getElementById('val_est').value;
+var checkvalanalisis = document.getElementById('val_analisis').value;
+function ReadOnlyConClu() {
+console.log(checkvalestadistica);
+console.log(checkvalanalisis);
+  if (checkvalestadistica === 'true' && checkvalanalisis === 'true') {
+    document.getElementById('btn_validar_medida').style.visibility = 'hidden';
+  }
+}
+ReadOnlyConClu();
 
-
-</script> 
-
+</script>
 </body>
 </html>

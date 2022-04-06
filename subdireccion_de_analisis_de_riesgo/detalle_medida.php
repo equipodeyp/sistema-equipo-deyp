@@ -433,7 +433,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
                 </div>
               </div>
 
-              <!-- <div class="row" style="display:none;">
+              <div class="row" style="display:none;">
 
                  <div class="col-md-6 mb-3 validar">
                    <label for="validar_est">validacion de estadistica</label>
@@ -443,7 +443,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
                    <label for="validar_est">validacion de analisis</label>
                    <input class="form-control" type="text" name="val_analisis" id="val_analisis" value="<?php echo $fila_val_med['validacion']; ?>">
                  </div>
-               </div>     -->
+               </div>    
 
               <?php
                 $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
@@ -482,6 +482,21 @@ $fila_val_med = $res_val_med->fetch_assoc();
    ?>
 <a href="../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
+
+
+<script type="text/javascript">
+var checkvalestadistica = document.getElementById('val_est').value;
+var checkvalanalisis = document.getElementById('val_analisis').value;
+function ReadOnlyConClu() {
+console.log(checkvalestadistica);
+console.log(checkvalanalisis);
+  if (checkvalestadistica === 'true' && checkvalanalisis === 'true') {
+    document.getElementById('btn_validar_medida').style.visibility = 'hidden';
+  }
+}
+ReadOnlyConClu();
+
+</script>
 <!-- SCRIPT DE FECHAS  -->
 
 <script type="text/javascript">
