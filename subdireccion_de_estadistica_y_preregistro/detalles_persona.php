@@ -1196,6 +1196,15 @@ function ReadOnlyConClu() {
     document.getElementById('UPDATE_FILE').style.display = "none";
     document.getElementById('enter').style.display = "none";
     document.getElementById('AGREGAR_CONVENIO').style.display = "none";
+    document.getElementById('ANALISIS_MULTIDISCIPLINARIO').disabled = true;
+    document.getElementById('INPUT_INCORPORACION').disabled = true;
+    document.getElementById('FECHA_AUTORIZACION').disabled = true;
+    document.getElementById('CONVENIO_ENTENDIMIENTO').disabled = true;
+    document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').disabled = true;
+    document.getElementById('fecha_inicio').disabled = true;
+    document.getElementById('VIGENCIA_CONVENIO').disabled = true;
+    document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').disabled = true;
+    document.getElementById('id_convenio').disabled = true;
   }
 }
 ReadOnlyConClu();
