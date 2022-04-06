@@ -62,7 +62,7 @@ if ($verifica_update_person == 1) {
 
   // variables de los comentarios
   $comment = $_POST['COMENTARIO'];
-  $comment_mascara = '3';
+  $comment_mascara = '4';
   date_default_timezone_set("America/Mexico_City");
   $fecha_captura = date('y/m/d H:i:sa');
 

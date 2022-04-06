@@ -677,7 +677,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                       </thead>
                       <?php
-                      $tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '3'";
+                      $tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '4'";
                       $var_resultado = $mysqli->query($tabla);
                       while ($var_fila=$var_resultado->fetch_array())
                       {

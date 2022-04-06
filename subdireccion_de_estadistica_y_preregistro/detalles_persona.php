@@ -140,7 +140,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
     </div>
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
-        
+
 
     		<ul class="tabs">
     			<li><a href="#" class="active" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp;?>';"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
@@ -449,7 +449,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
   		  								</thead>
   		  								<?php
-  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '1'";
+  		      						$tabla="SELECT * FROM comentario WHERE folioexpediente ='$name_folio'  AND comentario_mascara = '3' && id_persona = '$id_person'";
   		       						$var_resultado = $mysqli->query($tabla);
   		      						while ($var_fila=$var_resultado->fetch_array())
   		      						{
@@ -1219,7 +1219,7 @@ function Acuerdo(){
   }
 }
 Acuerdo();
-export {AcuerdoEstatus}; 
+export {AcuerdoEstatus};
 </script>
 
 <script type="text/javascript">

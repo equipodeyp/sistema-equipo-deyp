@@ -14,6 +14,7 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $id_medida = $_GET['id'];
+// echo $id_medida;
 $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
 $resultadomedida = $mysqli->query($medida);
 $rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
@@ -529,7 +530,7 @@ $validacion = $fil_val['validacion'];
               $res_val13=$mysqli->query($valid13);
               $fil_val13 = $res_val13->fetch_assoc();
               $validacion13 = $fil_val13['validacion'];
-                if ($validacion13 != 'true') {
+                if ($validacion13 != '') {
                   echo '
 
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
@@ -602,11 +603,17 @@ if(estatusMedidas === "EJECUTADA"){
   document.getElementById("COMENTARIO").disabled = true;
   document.getElementById("enter").style.display = "none";
 }
+if (estatusMedidas === 'CANCELADA') {
+  document.getElementById("COMENTARIO").disabled = true;
+  document.getElementById("enter").style.display = "none";
+}
 </script>
 <script type="text/javascript">
-
-
-</script> 
+  var tipomedida = document.getElementById("TIPO_DE_MEDIDA").value;
+  if (tipomedida === 'DEFINITIVA') {
+    document.getElementById("TIPO_DE_MEDIDA").disabled = true;
+  }
+</script>
 
 </body>
 </html>
