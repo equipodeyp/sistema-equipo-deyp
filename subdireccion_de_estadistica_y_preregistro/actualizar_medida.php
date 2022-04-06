@@ -172,7 +172,7 @@ if ($verifica_update_person == 1) {
 
 
 
-  $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_medida = '$id_persona'";
+  $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha', validar_datos = '$validacion' WHERE id_medida = '$id_persona'";
   $res_validacion = $mysqli->query($datos_validacion);
   $municipio_ejecucio_med = $_POST['MUNIPIO_EJECUCION_MEDIDA'];
   if ($municipio_ejecucio_med != '') {
