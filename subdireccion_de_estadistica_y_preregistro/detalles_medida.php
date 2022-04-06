@@ -439,7 +439,7 @@ $validacion = $fil_val['validacion'];
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-               <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="modotherart35(this)">
+               <select class="form-select form-select-lg" id="selectconclusionart35" name="CONCLUSION_ART35" onChange="modotherart35(this)">
                  <option disabled selected value="">SELECCIONE UNA OPCION</option>
                  <?php
                  $art35 = "SELECT * FROM conclusionart35";
@@ -604,9 +604,37 @@ if(estatusMedidas === "EJECUTADA"){
 }
 </script>
 <script type="text/javascript">
-
-
-</script> 
-
+  var tipomedida = document.getElementById("TIPO_DE_MEDIDA").value;
+  if (tipomedida === 'DEFINITIVA') {
+    document.getElementById("TIPO_DE_MEDIDA").disabled = true;
+  }
+</script>
+<script type="text/javascript">
+///////////////////////////////////////////////////hacer required inputs al cambiar el estatus de la medida
+var stmedida = document.getElementById("ESTATUS_MEDIDA");
+var stmed = '';
+stmedida.addEventListener('change', obtenerstmedida);
+function obtenerstmedida(e) {
+  stmed = e.target.value;
+  if (stmed === 'EJECUTADA') {
+    document.getElementById("FECHA_DESINCORPORACION").required = true;
+    document.getElementById("selectconclusionart35").required = true;
+  }else if (stmed === 'CANCELADA') {
+    document.getElementById("FECHA_DESINCORPORACION").required = true;
+    document.getElementById("MOTIVO_CANCEL").required = true;
+  }
+}
+//////////////////////////////////select de conclusion
+var conc35 = document.getElementById("selectconclusionart35");
+var slconc35 = '';
+conc35.addEventListener('change', selectconclu);
+function selectconclu(e){
+  slconc35 = e.target.value;
+  console.log(slconc35);
+  if (slconc35 === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || slconc35 === 'OTRO') {
+    document.getElementById("OTHER_ART351").required = true;
+  }
+}
+</script>
 </body>
 </html>
