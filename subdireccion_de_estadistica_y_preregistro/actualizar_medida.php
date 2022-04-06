@@ -16,6 +16,9 @@ if ($verifica_update_person == 1) {
   $resultadomedida = $mysqli->query($medida);
   $rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
   $id_p = $rowmedida['id_persona'];
+  $tipomedi = $rowmedida['tipo'];
+  // echo $id_persona;
+  // echo $tipomedi;
 // echo 'id persona ='. $id_p;
   // datos de la autoridad
   $tipo_medida =$_POST['TIPO_DE_MEDIDA'];
@@ -64,22 +67,7 @@ if ($verifica_update_person == 1) {
   }else {
     $conclusionart35 = '';
   }
-  // if ($acuerdo == 'CONCLUSION') {
-  //   $conclusionart35=$_POST['CONCLUSION_ART35'];
-  //   if ($conclusionart35 == '') {
-  //     $conclusionart35=$_POST['CONCLUSION_ART351'];
-  //   }
-  //   if ($conclusionart35 == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
-  //     $otherart35=$_POST['OTHER_ART35'];
-  //     if ($otherart35 == '') {
-  //       $otherart35=$_POST['OTHER_ART351'];
-  //     }
-  //   }else {
-  //     $otherart35 ='';
-  //   }
-  // }else {
-  //   $conclusionart35='';
-  // }
+
   $date_conclusion=$_POST['FECHA_DESINCORPORACION'];
   if ($date_conclusion == '') {
     $date_conclusion=$_POST['FECHA_DESINCORPORACION1'];
@@ -93,29 +81,6 @@ if ($verifica_update_person == 1) {
   $date_ejec = $_POST['FECHA_DE_EJECUCION'];
   // analisis multidisciplinario
 
-  // fuente
-  $radicacion_m=$_POST['FUENTE_M'];
-  if ($radicacion_m == 'OFICIO') {
-    $des_rad = $_POST['OFICIO_M'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['OFICIO_M1'];
-    }
-  }elseif ($radicacion_m == 'CORREO') {
-    $des_rad = $_POST['CORREO_M'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['CORREO_M1'];
-    }
-  }elseif ($radicacion_m == 'EXPEDIENTE') {
-    $des_rad = $_POST['EXPEDIENTE_M'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['EXPEDIENTE_M1'];
-    }
-  }elseif ($radicacion_m == 'OTRO') {
-    $des_rad = $_POST['OTRO_M'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['OTRO_M1'];
-    }
-  }
   // datos del comentario
   $comment = $_POST['COMENTARIO'];
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
@@ -142,7 +107,12 @@ if ($verifica_update_person == 1) {
   // $addmedidas = "INSERT INTO medidas (tipo, clasificacion, medida, descripcion, date_provisional, date_definitva, modificacion, date_modificada, tipo_modificacion, estatus, ejecucion, date_ejecucion, folioexpediente, id_persona)
   //                VALUES('$tipo_medida', '$clasificacion_medida', '$medida', '$med_res', '$inicio_medida', '$act_medida', '$medida_mod', '$fecha_mod', '$tipo_mod', '$estatus', '$municipio_medida', '$date_ejec', '$folio_expediente', '$id_persona')";
   // $res_addmedidas = $mysqli->query($addmedidas);
-  $addmedidas = "UPDATE medidas SET tipo='$tipo_medida', date_definitva='$act_medida', estatus='$estatus', modificacion='$medida_mod', date_ejecucion='$date_conclusion' WHERE id = '$id_persona'";
+  if ($tipomedi === 'PROVISIONAL') {
+    // code...
+    $addmedidas2 = "UPDATE medidas SET tipo='$tipo_medida', date_definitva='$act_medida'  WHERE id = '$id_persona'";
+    $res_addmedidas2 = $mysqli->query($addmedidas2);
+  }
+  $addmedidas = "UPDATE medidas SET estatus='$estatus', modificacion='$medida_mod', date_ejecucion='$date_conclusion' WHERE id = '$id_persona'";
   $res_addmedidas = $mysqli->query($addmedidas);
   //
   // $mult_meds = "INSERT INTO multidisciplinario_medidas(acuerdo, conclusionart35, otherart35, date_close, folioexpediente, id_persona)
@@ -182,7 +152,7 @@ if ($verifica_update_person == 1) {
   // validacion de update correcto
   if($res_radicacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=$id_p';
+     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medida.php?id=$id_persona';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
    </script>");
   }
