@@ -1202,7 +1202,7 @@ ReadOnlyConClu();
 
 </script>
 
-<script type="text/javascript">
+<script type="module">
 
 function Acuerdo(){
   var AcuerdoAnalisis = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
@@ -1219,7 +1219,7 @@ function Acuerdo(){
   }
 }
 Acuerdo();
-
+export {AcuerdoEstatus}; 
 </script>
 
 <script type="text/javascript">

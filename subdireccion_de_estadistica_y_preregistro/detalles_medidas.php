@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -21,7 +21,9 @@ $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
+$tipo_status=$rowfol['estatus'];
+// echo $tipo_status;
+
 $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
@@ -126,7 +128,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
 			}
 			?>
-    <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
+     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
     </nav>
@@ -227,7 +229,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">MUNICIPIO</th>
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
-        		  			<th style="text-align:center"><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
+                    <th style="text-align:center">
+                    <?php
+                    if ($tipo_status === 'SUJETO PROTEGIDO' || $tipo_status === 'PERSONA PROPUESTA'){
+                      echo '<a href="registrar_medida.php?folio='.$fol_exp.'"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> ';
+                    }
+                    ?>
+                    </th>
         		  		</thead>
         		  		<?php
                   $cont_med = '0';
@@ -901,6 +909,14 @@ function ReadOnlyEstudio(){
   }
 }
 ReadOnlyConClu();
+</script>
+<script type="text/javascript">
+  import { AcuerdoEstatus } from './detalles_persona.php';
+  var status = <?php echo $tipo_status;?>;
+  console.log(status);
+  if (){
+
+  }
 </script>
 </body>
 </html>
