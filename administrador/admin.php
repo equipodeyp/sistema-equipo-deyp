@@ -209,9 +209,9 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <p>
+    
     <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
-    </p>
+    
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 </body>

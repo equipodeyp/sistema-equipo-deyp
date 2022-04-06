@@ -661,9 +661,9 @@ $num_consecutivo =$row["id"];
 </div>
 <div class="contenedor">
   <div class="columns download">
-          <p>
-            <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
-          </p>
+
+            <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
+          
   </div>
 <a href="../administrador/detalles_expediente.php?folio=<?php echo $fol_exp; ?>" class="btn-flotante">CANCELAR</a>
 </div>

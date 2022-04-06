@@ -949,9 +949,9 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 
 <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
-<p>
+
   <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
-</p>
+
 </div>
 <!-- SCRIPT DE FECHAS  -->
 
