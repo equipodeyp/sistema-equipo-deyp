@@ -24,11 +24,13 @@ if ($verifica_update_person == 1) {
   $fecha_inicio = $_POST['fecha_inicio'];
   // echo $fecha_inicio;
   $vigencia = $_POST['VIGENCIA_CONVENIO'];
-  if ($fecha_inicio != '') {
+  if ($fecha_inicio != '' && $vigencia !== '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
     // code...
   }else {
+    $fecha_inicio = '';
+    $vigencia = '';
     $fecha_termino = '';
   }
 

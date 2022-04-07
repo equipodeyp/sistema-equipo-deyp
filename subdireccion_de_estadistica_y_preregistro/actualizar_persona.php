@@ -12,11 +12,11 @@ if ($verifica_update_person == 1) {
   $row=$result->fetch_assoc();
   // carga de datos
   $id_persona = $_GET['folio'];  //variable del folio al que se relaciona
-  echo $id_persona;
+  // echo $id_persona;
   $estatus= $_POST['ESTATUS_PERSONA'];
   // datos de la determinacion de la INCORPORACION
   $multidisciplinario=$_POST['ANALISIS_MULTIDISCIPLINARIO'];
-  echo $multidisciplinario;
+  // echo $multidisciplinario;
   $incorporacion=$_POST['INCORPORACION'];
   $date_aut =$_POST['FECHA_AUTORIZACION'];
   $id_analisis =$_POST['id_analisis'];
@@ -29,6 +29,8 @@ if ($verifica_update_person == 1) {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
   }else {
+    $fecha_inicio = '';
+    $vigencia = '';
     $fecha_termino = '';
   }
   $id_convenio=$_POST['id_convenio'];
