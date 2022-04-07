@@ -443,7 +443,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
                    <label for="validar_est">validacion de analisis</label>
                    <input class="form-control" type="text" name="val_analisis" id="val_analisis" value="<?php echo $fila_val_med['validacion']; ?>">
                  </div>
-               </div>    
+               </div>
 
               <?php
                 $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
@@ -460,7 +460,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
                   if ($validacion != 'false') {
                     echo "<div>
                             <p>
-                              <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' id='btn_validar_medida'><i class=''></i>VALIDAR</a>
+                              <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-validar' id='btn_validar_medida'><i class=''></i>VALIDAR</a>
                             </p>
                     </div>";
                   }
