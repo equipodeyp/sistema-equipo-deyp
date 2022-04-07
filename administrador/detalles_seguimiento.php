@@ -368,7 +368,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
               </div>
 
               <div class="col-md-6 mb-3 validar">
-                <label id="LABEL_INCORPORACION" for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
+                <label id="LABEL_INCORPORACION" for="INCORPORACION"> PROCEDENCIA DE LA INCORPORACIÓN<span class="required"></span></label>
                 <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
                   <option style="visibility: hidden" id="tab3-incorporacion" value="<?php echo $fila_analisis_expediente['incorporacion'];?>"><?php echo $fila_analisis_expediente['incorporacion'];?></option>
                   <?php
