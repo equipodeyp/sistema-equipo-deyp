@@ -179,7 +179,7 @@ $name = $_SESSION['usuario'];
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
 			      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-						  <input name="fecha_acuerdo" type="text" class="form-control"  id="fecha_acuerdo"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" disabled>
+						  <input name="fecha_acuerdo" type="date" class="form-control"  id="fecha_acuerdo"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" disabled>
 			    		</div>
 					</div>
 				</div>
