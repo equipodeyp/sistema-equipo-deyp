@@ -225,6 +225,12 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
+              <!-- <br> -->
+              <br>
+              <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
               <label for="FECHA_NACIMIENTO_PERSONA">FECHA DE NACIMIENTO <span class="required"></span></label>
               <input onkeyup="validardiv2()" class="verificdiv2 form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="">
             </div>
@@ -319,12 +325,12 @@ $num_consecutivo =$row["id"];
                 </select>
               </div>
 
-
+<!-- 
             <div class="col-md-6 mb-3 validar">
-              <!-- <br> -->
+            
               <br>
               <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
-            </div>
+            </div> -->
 
             <div class="alert alert-info">
               <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
