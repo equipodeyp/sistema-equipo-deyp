@@ -300,6 +300,12 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
             		      while ($var_fila=$var_resultado->fetch_array())
             		      {
                         $id_persona_convenio = $var_fila['id'];
+                        $id_in_p = $var_fila['identificador'];
+                        // $cant_med11="SELECT COUNT(*) AS cant FROM evaluacion_persona WHERE id_unico = '$id_in_p' && tipo_convenio = 'CONVENIO MODIFICATORIO'";
+                        // $res_cant_med11=$mysqli->query($cant_med11);
+                        // $row_med11 = $res_cant_med11->fetch_array(MYSQLI_ASSOC);
+                        // echo $row_med11['cant'];
+                        // echo $id_persona_convenio;
                         $cont_med = $cont_med + 1;
                         $convenio = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona_convenio'";
                         $res_convenio = $mysqli->query($convenio);
@@ -315,20 +321,23 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                               }
                             "</td>";
                             echo "<td style='text-align:center'>";
-                              $convenio_adhesion = "SELECT * FROM convenio_adhesion WHERE id_persona = '$id_persona_convenio'";
-                              $res_convenio_adhesion = $conexion->query($convenio_adhesion);
-                              $fila_convenio_adhesion = mysqli_fetch_array($res_convenio_adhesion);
-                              if ($fila_convenio_adhesion > 0) {
-                                echo "<i class='fas fa-check'></i>";
+                            $cant_med11="SELECT COUNT(*) AS cant FROM evaluacion_persona WHERE id_unico = '$id_in_p' && tipo_convenio = 'CONVENIO DE ADHESION'";
+                            $res_cant_med11=$mysqli->query($cant_med11);
+                            $row_med11 = $res_cant_med11->fetch_array(MYSQLI_ASSOC);
+                            // echo $row_med11['cant'];
+                              if ($row_med11['cant'] > 0) {
+                                for ($i=0; $i < $row_med11['cant']; $i++) {
+                                  echo "<i class='fas fa-check'></i>";
+                                }
                               }else {
                                 echo "<i class='fas fa-times'></i>";
                               }
                             echo "</td>";
                             echo "<td style='text-align:center'>";
-                              $convenio_modificatorio = "SELECT * FROM convenio_modificatorio WHERE id_persona = '$id_persona_convenio'";
-                              $res_convenio_modificatorio = $conexion->query($convenio_modificatorio);
-                              $fila_convenio_modificatorio = mysqli_fetch_array($res_convenio_modificatorio);
-                              if ($fila_convenio_modificatorio > 0) {
+                            $cant_med12="SELECT COUNT(*) AS cant FROM evaluacion_persona WHERE id_unico = '$id_in_p' && tipo_convenio = 'CONVENIO MODIFICATORIO'";
+                            $res_cant_med12=$mysqli->query($cant_med12);
+                            $row_med12 = $res_cant_med12->fetch_array(MYSQLI_ASSOC);
+                              if ($row_med12['cant'] > 0) {
                                 echo "<i class='fas fa-check'></i>";
                               }else {
                                 echo "<i class='fas fa-times'></i>";
@@ -390,7 +399,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_INCORPORACION" for="INCORPORACION">INCORPORACIÓN<span class="required"></span></label>
+                    <label id="LABEL_INCORPORACION" for="INCORPORACION">PROCEDENCIA DE LA INCORPORACIÓN<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="INCORPORACION" name="INCORPORACION" >
                       <option style="visibility: hidden" id="tab3-incorporacion" value="<?php echo $fila_analisis_expediente['incorporacion'];?>"><?php echo $fila_analisis_expediente['incorporacion'];?></option>
                       <?php
