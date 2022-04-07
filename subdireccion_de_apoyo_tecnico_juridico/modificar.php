@@ -324,11 +324,11 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if ($name == 'diana' && $valexp == 'SI' && $exp_validado == 'false') {
+            if ($valexp == 'SI' && $exp_validado == 'false') {
               echo "<div class='columns download'>
-                      <p>
-                        <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
-                      </p>
+
+                        <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
+
               </div>";
             }
 

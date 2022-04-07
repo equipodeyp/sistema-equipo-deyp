@@ -975,11 +975,13 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
-    if ($name == 'diana' && $validacion != 'true') {
+  // nota regresar el nombre del usuario que solo puede validar
+    if ($validacion === 'false') {
+
       echo "<div class='columns download'>
-              <p>
-                <a href='validar_persona.php?folio= $id_person' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
-              </p>
+
+                <a href='validar_persona.php?folio= $id_person' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
+
       </div>";
     }
    ?>
