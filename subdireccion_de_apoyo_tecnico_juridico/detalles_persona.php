@@ -28,7 +28,10 @@ $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
 
-
+$staexp = "SELECT * FROM statusseguimiento WHERE folioexpediente = '$name_folio'";
+$resstaexp = $mysqli->query($staexp);
+$filastaexp = $resstaexp->fetch_assoc();
+// echo $filastaexp['status'];
 // echo $name_folio;
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
@@ -36,10 +39,7 @@ $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
 $res_val1=$mysqli->query($valid1);
 $fil_val1 = $res_val1->fetch_assoc();
 $validacion1 = $fil_val1['id_persona'];
-
-
 // echo $id_person;
-
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
 $resultadoaut = $mysqli->query($aut);
@@ -49,7 +49,6 @@ $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
 $resultadoorigen = $mysqli->query($origen);
 $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
 $nameestadonac=$roworigen['lugardenacimiento'];
-
 // datos del TUTOR
 $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
 $resultadotutor = $mysqli->query($tutor);
@@ -86,8 +85,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 $fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
 $resultadofuente3 = $mysqli->query($fuente3);
 $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
-
-
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -537,7 +534,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="MOD_DOMICILIO" >P.P.L.<span class="required"></span></label>
+                    <label for="" >P.P.L.<span class="required"></span></label>
                     <select  class="form-select form-select-lg" id="MOD_DOMICILIO" name="MOD_DOMICILIO"  onclick="mod_domicilioactual(this)">
                       <option style="visibility: hidden" value="<?php echo $rowdomicilio['lugar']; ?>"><?php echo $rowdomicilio['lugar']; ?></option>
                       <option value="SI">SI</option>
@@ -892,7 +889,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
-                    <input class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
+                    <input class="col-md-offset-3 col-md-7" type="file" id="fotografiaperson" name="user_image" accept="image/*" />
                   </section>
                 </div>
 
@@ -948,6 +945,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
                   <!-- </div> -->
   							</div>
+                <div class="col-md-6 mb-3 validar" style="display:none;">
+                  <label for="">estatus expediente</label>
+                  <input class="form-control" type="text" name="staexpediente" id="staexpediente" value="<?php echo $filastaexp['status']; ?>">
+                </div>
                 <div class="row">
                   <div>
                       <br>
@@ -1190,7 +1191,51 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
 
 
 </script>
-
+<script type="text/javascript">
+  var statusexpe = document.getElementById('staexpediente').value;
+  function disabledallinputs () {
+    console.log(statusexpe);
+    if (statusexpe === 'CONCLUIDO') {
+      document.getElementById('enter').style.visibility = 'hidden';
+      document.getElementById('COMENTARIO').disabled = true;
+      document.getElementById('fotografiaperson').style.visibility = 'hidden';
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').disabled = true;
+      document.getElementById('RESULTADO_VALORACION_JURIDICA').disabled = true;
+      document.getElementById('fecha_cr_opor').disabled = true;
+      document.getElementById('CRITERIO_OPORTUNIDAD').disabled = true;
+      document.getElementById('CP').disabled = true;
+      document.getElementById('CALLE').disabled = true;
+      document.getElementById('localidadrad').disabled = true;
+      document.getElementById('cbx_municipio11').disabled = true;
+      document.getElementById('cbx_estado1').disabled = true;
+      document.getElementById('RECLUSORIO1').disabled = true;
+      document.getElementById('codigo_postal_s').disabled = true;
+      document.getElementById('calle_suj').disabled = true;
+      document.getElementById('localidad_suj').disabled = true;
+      document.getElementById('municipio_suj').disabled = true;
+      document.getElementById('estado_suj').disabled = true;
+      // document.getElementById('dir_penal').disabled = true;
+      // document.getElementById('RECLUSORIO').disabled = true;
+      // document.getElementById('MOD_DOMICILIO').disabled = true;
+      document.getElementById('cbx_municipio').disabled = true;
+      document.getElementById('OTHER_PAIS').disabled = true;
+      document.getElementById('cbx_estado').disabled = true;
+      document.getElementById('NACIONALIDAD_PERSONA').disabled = true;
+      document.getElementById('ALIAS_PERSONA').disabled = true;
+      document.getElementById('OCUPACION_PERSONA').disabled = true;
+      document.getElementById('TELEFONO_FIJO').disabled = true;
+      document.getElementById('TELEFONO_CELULAR').disabled = true;
+      document.getElementById('MOD_DOMICILIO').disabled = true;
+      document.getElementById('').disabled = true;
+      document.getElementById('').disabled = true;
+      document.getElementById('').disabled = true;
+      document.getElementById('').disabled = true;
+      document.getElementById('').disabled = true;
+      document.getElementById('').disabled = true;
+    }
+  }
+  disabledallinputs();
+</script>
 
 </body>
 </html>
