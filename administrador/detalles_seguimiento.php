@@ -1443,7 +1443,7 @@ ReadOnlyNumConvenios();
 var readOnlyEstatus = document.getElementById('ESTATUS_EXPEDIENTE').value;
 
 function ReadOnlyConClu() {
-if( readOnlyEstatus == "CONCLUIDO" || readOnlyEstatus == "CANCELADO" ){
+if( readOnlyEstatus == "CONCLUIDO" || readOnlyEstatus == "CANCELADO" || readOnlyEstatus == "SOLICITUD NO PROCEDENTE" ){
 
 document.getElementById('FECHA_DESINCORPORACION_DOS').readOnly = false;
 document.getElementById('CONCLUSION_ART35').disabled = false;
@@ -1458,7 +1458,7 @@ document.getElementById('COMENTARIO').disabled = false;
 }
 
 if (analisisM.value == "ACUERDO DE CONCLUSION" || analisisM.value == "ACUERDO DE CANCELACION"){
-if (readOnlyEstatus == "CONCLUIDO" || readOnlyEstatus == "CANCELADO" ){
+if (readOnlyEstatus == "CONCLUIDO" || readOnlyEstatus == "CANCELADO" || readOnlyEstatus == "SOLICITUD NO PROCEDENTE"){
   analisisM.disabled = false;
   incorporacion.disabled = false;
   fechaAutoAnalisis.readOnly = false;
