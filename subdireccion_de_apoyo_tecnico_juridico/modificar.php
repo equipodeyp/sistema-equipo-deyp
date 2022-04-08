@@ -190,6 +190,13 @@ $row=$result->fetch_assoc();
     		    $var_exp = $mysqli->query($ver_exp);
             $row_exp = $var_exp->fetch_assoc();
             $exp_validado = $row_exp['validacion'];
+            $staexp = "SELECT * FROM statusseguimiento WHERE folioexpediente = '$fol_exp'";
+            $resstaexp = $mysqli->query($staexp);
+            $filastaexp = $resstaexp->fetch_assoc();
+            // echo $filastaexp['status'];
+            if ($filastaexp['status'] === 'CANCELADO' || $filastaexp['status'] === 'CONCLUIDO') {
+              echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>¡ EXPEDIENTE ".$filastaexp['status']."! </FONT></h3><br><h3 style='text-align:left'><FONT COLOR='red' size=6 align='center'></FONT></h3>";
+            }
             // echo $exp_validado;
     		    $tabla="SELECT * FROM datospersonales WHERE folioexpediente ='$fol_exp'";
     		    $var_resultado = $mysqli->query($tabla);
@@ -219,7 +226,7 @@ $row=$result->fetch_assoc();
               echo "<h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>¡ EXISTE INFORMACIÓN POR VALIDAR ! </FONT></h3><br><h3 style='text-align:left'><FONT COLOR='red' size=6 align='center'>Para validar el expediente, es necesario validar la información de las personas incorporadas al programa.</FONT></h3>";
             }   ;echo "</h3>";
             }
-            if ($exp_validado == 'true') {
+            if (($exp_validado == 'true') && ($filastaexp['status'] === 'ANALISIS' || $filastaexp['status'] === 'EN EJECUCION')) {
               echo "<div class='columns download'>
                       <p>
                       <img src='../image/true4.jpg' width='50' height='50' class='center'>
@@ -246,7 +253,15 @@ $row=$result->fetch_assoc();
 		  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
 					<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
             		<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-		  			<th style="text-align:center"> <a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">AGREGAR PERSONA</button> </a> </th>
+		  			<th style="text-align:center">
+              <?php
+                if ($filastaexp['status'] === 'ANALISIS' || $filastaexp['status'] === 'EN EJECUCION') {
+                  echo '<a href="registro_persona.php?folio='.$fol_exp.'"> <button type="button" class="btn btn-info">AGREGAR PERSONA</button> </a>';
+                }else {
+                  echo "DETALLES";
+                }
+               ?>
+            </th>
 		  		</thead>
 		  		<?php
 			$cuenta = 0;
