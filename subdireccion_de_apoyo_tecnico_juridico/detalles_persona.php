@@ -977,7 +977,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
   // nota regresar el nombre del usuario que solo puede validar
-    if ($validacion === 'false') {
+    if ($validacion === 'false' && $name === 'diana') {
 
       echo "<div class='columns download'>
 
