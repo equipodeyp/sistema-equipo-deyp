@@ -448,7 +448,7 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA" for="VIGENCIA_CONVENIO">VIGENCIA CONVENIO</label>
-                    <input class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php if ($fila_analisis_expediente['vigencia'] != '0') {
+                    <input autocomplete="off" class="form-control" id="VIGENCIA_CONVENIO" type="text" name="VIGENCIA_CONVENIO" value="<?php if ($fila_analisis_expediente['vigencia'] != '0') {
                       echo $fila_analisis_expediente['vigencia'];
                     }?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
@@ -1181,6 +1181,12 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "none";
         document.getElementById('num_convenio').style.display = "none";
 
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('TERMINO_CONVENIO').value = "";
+        document.getElementById('num_convenio').value = "";
+
       }
       else {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
@@ -1193,6 +1199,12 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('TERMINO_CONVENIO').style.display = "";
         document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "";
         document.getElementById('num_convenio').style.display = "";
+
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('TERMINO_CONVENIO').value = "";
+        document.getElementById('num_convenio').value = "";
       }
   }
 

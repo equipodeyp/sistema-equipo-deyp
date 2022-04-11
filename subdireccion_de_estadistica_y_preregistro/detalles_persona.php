@@ -264,7 +264,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA" for="VIGENCIA_CONVENIO">VIGENCIA DEL CONVENIO<span class="required"></span></label>
-                    <input id="VIGENCIA_CONVENIO" placeholder="Cantidad en días" class="form-control" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input autocomplete="off" id="VIGENCIA_CONVENIO" placeholder="Cantidad en días" class="form-control" type="text" name="VIGENCIA_CONVENIO" value="<?php echo $rowdetinc['vigencia']; ?>" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -926,6 +926,12 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('id_convenio').style.display = "none";
 
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = ""
+        document.getElementById('id_convenio').value = "";
+
       }
       else {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
@@ -938,6 +944,12 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('id_convenio').style.display = "";
+        
+        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
+        document.getElementById('fecha_inicio').value = "";
+        document.getElementById('VIGENCIA_CONVENIO').value = "";
+        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = ""
+        document.getElementById('id_convenio').value = "";
       }
   }
 </script>

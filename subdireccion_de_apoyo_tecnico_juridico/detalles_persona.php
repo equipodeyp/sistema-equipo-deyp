@@ -372,7 +372,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                   </div>
 
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
+                                    <!-- calidad persona en el procedimiento -->
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadprocedimiento']; ?></option>
                       <?php
@@ -385,8 +386,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  <!-- calidad persona en el procedimiento -->
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO" disabled>
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
@@ -399,6 +399,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
+
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCAPAZ">INCAPAZ<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)" disabled>
@@ -407,7 +408,6 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       <option value="NO">NO</option>
                     </select>
                   </div>
-
 
 
                 <?php
@@ -808,7 +808,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO<span class="required"></span></label>
+                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO / RECURSOS<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" disabled>
                       <option style="visibility: hidden" id="opt-etapa-procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>"><?php echo $rowprocess['etapaprocedimiento']; ?></option>
                       <?php

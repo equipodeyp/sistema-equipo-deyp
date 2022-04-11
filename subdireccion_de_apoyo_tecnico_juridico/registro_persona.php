@@ -289,8 +289,8 @@ $num_consecutivo =$row["id"];
               <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
             </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
+            <!-- calidad persona en el procedimiento -->
+            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
@@ -301,9 +301,20 @@ $num_consecutivo =$row["id"];
                 }
                 ?>
               </select>
+              <!-- <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                $calidad = "SELECT * FROM calidadpersona";
+                $answer = $mysqli->query($calidad);
+                while($calidades = $answer->fetch_assoc()){
+                  echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
+                }
+                ?>
+              </select> -->
             </div>
-            <!-- calidad persona en el procedimiento -->
-            <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
