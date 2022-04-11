@@ -18,7 +18,7 @@ disabledcampos();
 
  var delprimary = document.getElementById('DELITO_PRINCIPAL').value;
  function delitoprimary () {
-   console.log(delprimary);
+   // console.log(delprimary);
    if (delprimary === 'OTRO') {
      document.getElementById('otherdel').style.display="";
    }
@@ -40,7 +40,7 @@ disabledcampos();
 
  var delsecondary = document.getElementById('DELITO_SECUNDARIO').value;
  function delitosecondary() {
-   console.log(delsecondary);
+   // console.log(delsecondary);
    if (delsecondary === 'OTRO') {
      document.getElementById('delitosec').style.display = "";
    }
@@ -52,7 +52,7 @@ disabledcampos();
 
  var processetapa = document.getElementById('ETAPA_PROCEDIMIENTO').value;
  function etpprocess () {
-   console.log(processetapa);
+   // console.log(processetapa);
    if (processetapa === '') {
      document.getElementById('opt-etapa-proc').text = "SELECCIONE UNA OPCIÓN";
    }
@@ -61,7 +61,7 @@ disabledcampos();
 
  var radmunicipio = document.getElementById('MUNICIPIO_RADICACION').value;
  function municipiorad () {
-   console.log(radmunicipio);
+   // console.log(radmunicipio);
    if (radmunicipio === '') {
      document.getElementById('opt-mun-rad').text = "SELECCIONE UNA OPCIÓN";
    }
@@ -70,7 +70,7 @@ disabledcampos();
 
  var valjurid = document.getElementById('RESULTADO_VALORACION_JURIDICA').value;
  function valorjuridica () {
-   console.log(valjurid);
+   // console.log(valjurid);
    if (valjurid === '') {
      document.getElementById('opt-val-jurid').text = "SELECCIONE UNA OPCIÓN";
    }
@@ -83,7 +83,7 @@ disabledcampos();
 
  var motproc = document.getElementById('MOTIVO_NO_PROCEDENCIA').value;
  function motivoproc () {
-   console.log(motproc);
+   // console.log(motproc);
    if (motproc === '') {
      document.getElementById('opt-no-proc').text = "SELECCIONE UNA OPCIÓN";
    }

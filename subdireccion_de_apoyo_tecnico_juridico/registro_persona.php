@@ -55,11 +55,11 @@ $filacheckproceso = $rescheckproceso->fetch_assoc();
 $checkvalorjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp'";
 $rescheckvalorjuridica = $mysqli->query($checkvalorjuridica);
 $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
-if ($filavalorjuridica > 0) {
-  echo "existe registro previo";
-}else {
-  echo "no existe ningun dato";
-}
+// if ($filavalorjuridica > 0) {
+//   echo "existe registro previo";
+// }else {
+//   echo "no existe ningun dato";
+// }
  ?>
 <!DOCTYPE html>
 <html lang="es">
