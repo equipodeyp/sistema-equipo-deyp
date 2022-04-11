@@ -1,6 +1,7 @@
 <?php
 /*require 'conexion.php';*/
 // SELECT COUNT(*) FROM datospersonales WHERE folioexpediente = 'UPSIPPED/TOL/012/002/2021'
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -26,8 +27,6 @@ $result_exp = $mysqli->query($exp);
 $row_exp=$result_exp->fetch_assoc();
 // echo ($fol_exp);
 
-
-
 $qry = "select max(ID) As id from datospersonales";
 $result = $mysqli->query($qry);
 $row = $result->fetch_assoc();
@@ -35,6 +34,32 @@ $num_consecutivo =$row["id"];
 // date_default_timezone_set("America/Mexico_City");
 // $fecha = date('y/m/d H:i:sa');
 
+$checkautoridad = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp'";
+$rescheckautoridad = $mysqli->query($checkautoridad);
+$filacheckautoridad = $rescheckautoridad->fetch_assoc();
+// if ($filacheckautoridad > 0) {
+//   echo "existe un registro";
+// }else {
+//   echo "no existe registro aun";
+// }
+// <!-- proceso penal -->
+$checkproceso = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
+$rescheckproceso = $mysqli->query($checkproceso);
+$filacheckproceso = $rescheckproceso->fetch_assoc();
+// if ($filacheckproceso > 0) {
+//   echo "existe registro previo";
+// }else {
+//   echo "no existe ningun dato";
+// }
+// <!-- valoracion juridica -->
+$checkvalorjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp'";
+$rescheckvalorjuridica = $mysqli->query($checkvalorjuridica);
+$filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
+if ($filavalorjuridica > 0) {
+  echo "existe registro previo";
+}else {
+  echo "no existe ningun dato";
+}
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -69,6 +94,7 @@ $num_consecutivo =$row["id"];
         <!-- <script src="JQuery.js"></script> -->
 <script src="../js/validar_campos.js"></script>
 <script src="../js/Javascript.js"></script>
+
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -145,17 +171,17 @@ $num_consecutivo =$row["id"];
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="ID_SOLICITUD" class="is-required">ID SOLICITUD<span ></span></label>
-            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" required type="text" value="">
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" required type="text" value="<?php echo $filacheckautoridad['idsolicitud']; ?>">
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_SOLICITUD" class="is-required">FECHA DE SOLICITUD<span class="required"></span></label>
-            <input onkeyup="validarfrm()" class="verific form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="" required>
+            <input onkeyup="validarfrm()" class="verific form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" placeholder="" type="date" value="<?php echo $filacheckautoridad['fechasolicitud']; ?>" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE LA AUTORIDAD<span class="required"></span></label>
-            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE UNA OPCION" required>
+            <input list="datalistOptions" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_AUTORIDAD" name="NOMBRE_AUTORIDAD" onChange="openOther(this)" placeholder="SELECCIONE UNA OPCION" value="<?php echo $filacheckautoridad['nombreautoridad']; ?>" required>
             <datalist id="datalistOptions">
             <?php
             $autoridad = "SELECT * FROM nombreautoridad";
@@ -169,27 +195,27 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar" id="other" style="display:none;">
             <label for="OTHER_AUTORIDAD" class="is-required">ESPECIFIQUE</label>
-            <input autocomplete="off" class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="" type="text">
+            <input autocomplete="off" class="form-control" id="OTHER_AUTORIDAD" name="OTHER_AUTORIDAD" placeholder="" value="<?php echo $filacheckautoridad['otraautoridad']; ?>" type="text">
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_SERVIDOR" class="is-required">NOMBRE DEL SERVIDOR PÚBLICO<span class="required"></span></label>
-            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="NOMBRE_SERVIDOR" name="NOMBRE_SERVIDOR" placeholder="" type="text" value="<?php echo $filacheckautoridad['nombreservidor']; ?>" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="PATERNO_SERVIDOR" class="is-required">APELLIDO PATERNO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
-            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="PATERNO_SERVIDOR" name="PATERNO_SERVIDOR" placeholder="" type="text" value="<?php echo $filacheckautoridad['apellidopaterno']; ?>" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PÍBLICO<span class="required"></span></label>
-            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" placeholder="" type="text" value="<?php echo $filacheckautoridad['apellidomaterno']; ?>" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="CARGO_SERVIDOR" class="is-required">CARGO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
-            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" placeholder="" type="text" required>
+            <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="CARGO_SERVIDOR" name="CARGO_SERVIDOR" value="<?php echo $filacheckautoridad['cargoservidor']; ?>" type="text" required>
           </div>
 
         </div>
@@ -325,9 +351,9 @@ $num_consecutivo =$row["id"];
                 </select>
               </div>
 
-<!-- 
+<!--
             <div class="col-md-6 mb-3 validar">
-            
+
               <br>
               <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
             </div> -->
@@ -504,7 +530,8 @@ $num_consecutivo =$row["id"];
           <div class="col-md-6 mb-3 validar">
             <label for="DELITO_PRINCIPAL"  class="is-required">DELITO PRINCIPAL<span class="required"></span></label>
             <select class="form-select form-select-lg" id="DELITO_PRINCIPAL" name="DELITO_PRINCIPAL" onChange="otherdelito(this)" required>
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option style="visibility: hidden" selected id="opt-delito-principal" value="<?php echo $filacheckproceso['delitoprincipal']; ?>"><?php echo $filacheckproceso['delitoprincipal']; ?></option>
+              <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
               <?php
               $delito = "SELECT * FROM delito";
               $answer = $mysqli->query($delito);
@@ -517,13 +544,14 @@ $num_consecutivo =$row["id"];
 
           <div id="otherdel" class="col-md-6 mb-3 validar"  style="display:none;">
             <label for="OTRO_DELITO_PRINCIPAL">OTRO DELITO PRINCIPAL <span class="required"></span></label>
-            <input class="form-control" id="OTRO_DELITO_PRINCIPAL" name="OTRO_DELITO_PRINCIPAL" placeholder="" type="text" value="">
+            <input class="form-control" id="OTRO_DELITO_PRINCIPAL" name="OTRO_DELITO_PRINCIPAL" placeholder="" type="text" value="<?php echo $filacheckproceso['otrodelitoprincipal']; ?>">
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="DELITO_SECUNDARIO">DELITO SECUNDARIO<span class="required"></span></label>
             <select class="form-select form-select-lg" id="DELITO_SECUNDARIO" name="DELITO_SECUNDARIO" onChange="delito_secundario(this)">
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option style="visibility: hidden" selected id="opt-delito-secundario" value="<?php echo $filacheckproceso['delitosecundario']; ?>"><?php echo $filacheckproceso['delitoprincipal']; ?></option>
+              <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
               <?php
               $delito = "SELECT * FROM delito";
               $answer = $mysqli->query($delito);
@@ -536,13 +564,14 @@ $num_consecutivo =$row["id"];
 
           <div id="delitosec" class="col-md-6 mb-3 validar" style="display:none;">
             <label for="OTRO_DELITO_SECUNDARIO">OTRO DELITO SECUNDARIO <span class="required"></span></label>
-            <input class="form-control" id="OTRO_DELITO_SECUNDARIO" name="OTRO_DELITO_SECUNDARIO" placeholder=""  type="text" value="">
+            <input class="form-control" id="OTRO_DELITO_SECUNDARIO" name="OTRO_DELITO_SECUNDARIO" type="text" value="<?php echo $filacheckproceso['otrodelitosecundario']; ?>">
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" required>
-              <option disabled selected value>SELECCIONE UNA ETAPA</option>
+              <option style="visibility: hidden" selected id="opt-etapa-proc" value="<?php echo $filacheckproceso['etapaprocedimiento']; ?>"><?php echo $filacheckproceso['etapaprocedimiento']; ?></option>
+              <!-- <option disabled selected value>SELECCIONE UNA ETAPA</option> -->
               <?php
               $etapaproc = "SELECT * FROM etapa_proc";
               $answeretapa = $mysqli->query($etapaproc);
@@ -555,13 +584,14 @@ $num_consecutivo =$row["id"];
 
           <div class="col-md-6 mb-3 validar">
             <label for="NUC" class="is-required">N.U.C. <span class="required"></span></label>
-            <input autocomplete="off" class="form-control" id="NUC" name="NUC" placeholder=""  type="text" required>
+            <input autocomplete="off" class="form-control" id="NUC" name="NUC" type="text"value="<?php echo $filacheckproceso['nuc']; ?>" required>
           </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="MUNICIPIO_RADICACION" class="is-required">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN <span class="required"></span></label>
             <select class="form-select form-select-lg" id="MUNICIPIO_RADICACION" name="MUNICIPIO_RADICACION" required>
-              <option disabled selected value>SELECCIONE EL MUNICIPIO</option>
+              <option style="visibility: hidden" selected id="opt-mun-rad" value="<?php echo $filacheckproceso['numeroradicacion']; ?>"><?php echo $filacheckproceso['numeroradicacion']; ?></option>
+              <!-- <option disabled selected value>SELECCIONE EL MUNICIPIO</option> -->
               <?php
               $select = "SELECT * FROM municipios";
               $answer = $mysqli->query($select);
@@ -583,7 +613,8 @@ $num_consecutivo =$row["id"];
           <div class="col-md-6 mb-3 validar">
             <label for="RESULTADO_VALORACION_JURIDICA" class="is-required">RESULTADO DE LA VALORACIÓN JURÍDICA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" required>
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option style="visibility: hidden" selected id="opt-val-jurid" value="<?php echo $filavalorjuridica['resultadovaloracion']; ?>"><?php echo $filavalorjuridica['resultadovaloracion']; ?></option>
+              <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
               <option value="SI PROCEDE">SI PROCEDE</option>
               <option value="NO PROCEDE">NO PROCEDE</option>
             </select>
@@ -592,7 +623,8 @@ $num_consecutivo =$row["id"];
           <div class="col-md-6 mb-3 validar">
             <label for="MOTIVO_NO_PROCEDENCIA" class="is-required">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" required>
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option style="visibility: hidden" selected id="opt-no-proc" value="<?php echo $filavalorjuridica['motivoprocedencia']; ?>"><?php echo $filavalorjuridica['motivoprocedencia']; ?></option>
+              <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
               <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL</option>
               <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
               <option value="AMBAS">AMBAS</option>
@@ -996,5 +1028,6 @@ if (idUnico == null || idUnico == ""){
 
 </script>
 
+<script src="../js/pruebadisabled.js" charset="utf-8"></script>
 </body>
 </html>

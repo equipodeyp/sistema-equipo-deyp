@@ -12,19 +12,39 @@ if ($verifica == 1) {
   // carga de datsos
   $fol_exp = $_GET['folio'];   //variable del folio al que se relaciona
   // datos de la autoridad
-  $id_solicitud =$_POST['ID_SOLICITUD'];
-  $fecha_solicitud=$_POST['FECHA_SOLICITUD'];
-  $nombre_autoridad=$_POST['NOMBRE_AUTORIDAD'];
-  if ($nombre_autoridad =='OTRO') {
-    // code...
-    $other_autoridad= $_POST['OTHER_AUTORIDAD'];
+  $checkautoridad = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp'";
+  $rescheckautoridad = $mysqli->query($checkautoridad);
+  $filacheckautoridad = $rescheckautoridad->fetch_assoc();
+  if ($filacheckautoridad > 0) {
+    // echo "existe un registro";
+    $id_solicitud = $filacheckautoridad['idsolicitud'];
+    $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
+    $nombre_autoridad = $filacheckautoridad['nombreautoridad'];
+    if ($nombre_autoridad === 'OTRO') {
+      $other_autoridad = $filacheckautoridad['otraautoridad'];
+    }else {
+      $other_autoridad = '';
+    }
+    $nombre_servidor = $filacheckautoridad['nombreservidor'];
+    $paterno_servidor = $filacheckautoridad['apellidopaterno'];
+    $materno_servidor = $filacheckautoridad['apellidomaterno'];
+    $cargo_servidor = $filacheckautoridad['cargoservidor'];
   }else {
-    $other_autoridad='';
+    // echo "no existe registro aun";
+    $id_solicitud =$_POST['ID_SOLICITUD'];
+    $fecha_solicitud=$_POST['FECHA_SOLICITUD'];
+    $nombre_autoridad=$_POST['NOMBRE_AUTORIDAD'];
+    if ($nombre_autoridad =='OTRO') {
+      // code...
+      $other_autoridad= $_POST['OTHER_AUTORIDAD'];
+    }else {
+      $other_autoridad='';
+    }
+    $nombre_servidor =$_POST['NOMBRE_SERVIDOR'];
+    $paterno_servidor=$_POST['PATERNO_SERVIDOR'];
+    $materno_servidor=$_POST['MATERNO_SERVIDOR'];
+    $cargo_servidor= $_POST['CARGO_SERVIDOR'];
   }
-  $nombre_servidor =$_POST['NOMBRE_SERVIDOR'];
-  $paterno_servidor=$_POST['PATERNO_SERVIDOR'];
-  $materno_servidor=$_POST['MATERNO_SERVIDOR'];
-  $cargo_servidor= $_POST['CARGO_SERVIDOR'];
   // datos de la persona PROPUESTA
   // datos perssonales
   $n_persona =$_POST['NOMBRE_PERSONA'];
@@ -64,16 +84,43 @@ if ($verifica == 1) {
   $t_paterno=$_POST['TUTOR_PATERNO'];
   $t_materno=$_POST['TUTOR_MATERNO'];
   // datos del proceso penal o investigacion
-  $del_primario=$_POST['DELITO_PRINCIPAL'];
-  $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL'];
-  $del_secundario= $_POST['DELITO_SECUNDARIO'];
-  $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO'];
-  $etapa_p=$_POST['ETAPA_PROCEDIMIENTO'];
-  $nuc=$_POST['NUC'];
-  $municipio_r= $_POST['MUNICIPIO_RADICACION'];
+  // <!-- proceso penal -->
+  $checkproceso = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
+  $rescheckproceso = $mysqli->query($checkproceso);
+  $filacheckproceso = $rescheckproceso->fetch_assoc();
+  if ($filacheckproceso > 0) {
+    // echo "existe registro previo";
+    $del_primario = $filacheckproceso['delitoprincipal'];
+    $otro_del_p  = $filacheckproceso['otrodelitoprincipal'];
+    $del_secundario = $filacheckproceso['delitosecundario'];
+    $otro_del_s = $filacheckproceso['otrodelitosecundario'];
+    $etapa_p = $filacheckproceso['etapaprocedimiento'];
+    $nuc = $filacheckproceso['nuc'];
+    $municipio_r = $filacheckproceso['numeroradicacion'];
+  }else {
+    // echo "no existe ningun dato";
+    $del_primario=$_POST['DELITO_PRINCIPAL'];
+    $otro_del_p=$_POST['OTRO_DELITO_PRINCIPAL'];
+    $del_secundario= $_POST['DELITO_SECUNDARIO'];
+    $otro_del_s =$_POST['OTRO_DELITO_SECUNDARIO'];
+    $etapa_p=$_POST['ETAPA_PROCEDIMIENTO'];
+    $nuc=$_POST['NUC'];
+    $municipio_r= $_POST['MUNICIPIO_RADICACION'];
+  }
   // datos de valoracion juridica
-  $res_val_jur=$_POST['RESULTADO_VALORACION_JURIDICA'];
-  $mot_no_proc=$_POST['MOTIVO_NO_PROCEDENCIA'];
+  // <!-- valoracion juridica -->
+  $checkvalorjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp'";
+  $rescheckvalorjuridica = $mysqli->query($checkvalorjuridica);
+  $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
+  if ($filavalorjuridica > 0) {
+    // echo "existe registro previo";
+    $res_val_jur = $filavalorjuridica['resultadovaloracion'];
+    $mot_no_proc = $filavalorjuridica['motivoprocedencia'];
+  }else {
+    // echo "no existe ningun dato";
+    $res_val_jur=$_POST['RESULTADO_VALORACION_JURIDICA'];
+    $mot_no_proc=$_POST['MOTIVO_NO_PROCEDENCIA'];
+  }
   // datos de la determinacion de la INCORPORACION
   $multidisciplinario=$_POST['ANALISIS_MULTIDISCIPLINARIO'];
   $incorporacion=$_POST['INCORPORACION'];
