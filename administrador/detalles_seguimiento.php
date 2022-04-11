@@ -948,16 +948,16 @@ function obtenerInfo(e) {
     document.getElementById('id_analisis').style.display = "";
     document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "";
     document.getElementById('CONVENIO_DE_ENTENDIMIENTO').style.display = "";
-    document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
-    document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO').style.display = "";
-    document.getElementById('LABEL_FECHA_INICIO').style.display = "";
-    document.getElementById('fecha_inicio').style.display = "";
-    document.getElementById('LABEL_VIGENCIA').style.display = "";
-    document.getElementById('VIGENCIA_CONVENIO').style.display = "";
-    document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
-    document.getElementById('TERMINO_CONVENIO').style.display = "";
-    document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "";
-    document.getElementById('num_convenio').style.display = "";
+    // document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+    // document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO').style.display = "";
+    // document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+    // document.getElementById('fecha_inicio').style.display = "";
+    // document.getElementById('LABEL_VIGENCIA').style.display = "";
+    // document.getElementById('VIGENCIA_CONVENIO').style.display = "";
+    // document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
+    // document.getElementById('TERMINO_CONVENIO').style.display = "";
+    // document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "";
+    // document.getElementById('num_convenio').style.display = "";
 
 
     document.getElementById('INCORPORACION').value = "";

@@ -380,6 +380,23 @@ if ($verifica_update_person == 1) {
     $res_comment = $mysqli->query($comment);
   }
 
+  $validacion = 'false';
+  date_default_timezone_set("America/Mexico_City");
+  $fecha = date('y/m/d H:i:sa');
+  $updvalidar = "SELECT * FROM validar_persona WHERE id_persona = '$id_persona'";
+  $res_updvalidar = $mysqli->query($updvalidar);
+  $row_updvalidar=$res_updvalidar->fetch_assoc();
+
+
+  $validacion = 'false';
+  date_default_timezone_set("America/Mexico_City");
+  $fecha = date('y/m/d H:i:sa');
+
+  $datos_validacion_exp = "UPDATE expediente SET validacion='$validacion', fecha_validacion = '$fecha' WHERE fol_exp = '$fol_exp'";
+  $res_validacion_exp = $mysqli->query($datos_validacion_exp);
+
+  $datos_validacion = "UPDATE validar_persona SET validacion='$validacion', fecha_validacion = '$fecha' WHERE id_persona = '$id_persona'";
+  $res_validacion = $mysqli->query($datos_validacion);
   // validacion de update correcto
   if($res_dat_per){
     echo ("<script type='text/javaScript'>
