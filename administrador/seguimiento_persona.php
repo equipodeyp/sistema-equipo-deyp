@@ -227,8 +227,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <label id="LABEL_INCORPORACION" for="INCORPORACION">PROCEDENCIA DE LA INCORPORACIÓN<span class="required"></span></label>
                     <select id="INPUT_INCORPORACION" class="form-select form-select-lg"  name="INCORPORACION" >
                       <option style="visibility: hidden" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
-                      <option value="SUJETO INCORPORADO">INCORPORACION PROCEDENTE</option>
-                      <option value="SUJETO NO INCORPORADO">INCORPORACION NO PROCEDENTE</option>
+                      <option value="INCORPORACION PROCEDENTE">INCORPORACION PROCEDENTE</option>
+                      <option value="INCORPORACION NO PROCEDENTE">INCORPORACION NO PROCEDENTE</option>
                     </select>
                   </div>
 
