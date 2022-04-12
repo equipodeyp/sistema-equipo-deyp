@@ -790,7 +790,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO<span class="required"></span></label>
+                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO / RECURSOS<span class="required"></span></label>
                     <select disabled class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO">
                       <option style="visibility: hidden" id="opt-etapa-procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>"><?php echo $rowprocess['etapaprocedimiento']; ?></option>
                       <?php

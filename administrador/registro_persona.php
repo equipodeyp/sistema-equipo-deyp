@@ -561,7 +561,7 @@ if ($filavalorjuridica > 0) {
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO<span class="required"></span></label>
+            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO / RECURSOS<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" required>
               <option style="visibility: hidden" selected id="opt-etapa-proc" value="<?php echo $filacheckproceso['etapaprocedimiento']; ?>"><?php echo $filacheckproceso['etapaprocedimiento']; ?></option>
               <!-- <option disabled selected value>SELECCIONE UNA ETAPA</option> -->
