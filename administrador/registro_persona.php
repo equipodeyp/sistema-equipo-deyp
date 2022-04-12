@@ -311,7 +311,7 @@ $num_consecutivo =$row["id"];
             </div>
 
             <div class="col-md-6 mb-3 validar">
-                <label for="INCAPAZ" class="is-required">INCAPAZ<span class="required"></span></label>
+                <label for="INCAPAZ" class="is-required">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
                 <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
                   <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                   <option value="SI">SI</option>

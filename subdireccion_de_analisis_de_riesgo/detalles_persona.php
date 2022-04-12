@@ -382,7 +382,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="INCAPAZ">INCAPAZ<span class="required"></span></label>
+                    <label for="INCAPAZ">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
                     <select disabled class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)">
                       <option style="visibility: hidden" id="opt-incapaz" value="<?php echo $rowfol['incapaz']; ?>"><?php echo $rowfol['incapaz']; ?></option>
                       <option value="SI">SI</option>
