@@ -263,7 +263,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 
             <div class="col-md-6 mb-3 validar">
               <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
-              <input autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
+              <input autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required readonly>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -354,7 +354,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             </div>
 
             <div class="col-md-6 mb-3 validar">
-                <label for="INCAPAZ" class="is-required">INCAPAZ<span class="required"></span></label>
+                <label for="INCAPAZ" class="is-required">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
                 <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
                   <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                   <option value="SI">SI</option>
@@ -579,7 +579,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO<span class="required"></span></label>
+            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO/RECURSOS<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" required>
               <option style="visibility: hidden" selected id="opt-etapa-proc" value="<?php echo $filacheckproceso['etapaprocedimiento']; ?>"><?php echo $filacheckproceso['etapaprocedimiento']; ?></option>
               <!-- <option disabled selected value>SELECCIONE UNA ETAPA</option> -->
