@@ -561,7 +561,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div class="col-md-6 mb-3 validar">
             <label for="DELITO_SECUNDARIO">DELITO SECUNDARIO<span class="required"></span></label>
             <select class="form-select form-select-lg" id="DELITO_SECUNDARIO" name="DELITO_SECUNDARIO" onChange="delito_secundario(this)">
-              <option style="visibility: hidden" selected id="opt-delito-secundario" value="<?php echo $filacheckproceso['delitosecundario']; ?>"><?php echo $filacheckproceso['delitoprincipal']; ?></option>
+              <option style="visibility: hidden" selected id="opt-delito-secundario" value="<?php echo $filacheckproceso['delitosecundario']; ?>"><?php echo $filacheckproceso['delitosecundario']; ?></option>
               <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
               <?php
               $delito = "SELECT * FROM delito";
