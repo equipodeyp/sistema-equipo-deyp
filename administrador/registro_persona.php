@@ -208,7 +208,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PÍBLICO<span class="required"></span></label>
+            <label for="MATERNO_SERVIDOR" class="is-required">APELLIDO MATERNO DEL SERVIDOR PÚBLICO<span class="required"></span></label>
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="MATERNO_SERVIDOR" name="MATERNO_SERVIDOR" value="<?php echo $filacheckautoridad['apellidomaterno']; ?>" type="text" required>
           </div>
 

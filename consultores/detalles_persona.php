@@ -375,6 +375,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       ?>
                     </select>
                   </div>
+                  <div class="col-md-6 mb-3 validar" id="getprocess">
+                    <label for="getp">ESPECIFIQUE</label>
+                    <input class="form-control" type="text" name="getproceesspenal" value="<?php echo $rowfol['especifique']; ?>" readonly>
+                  </div>
 
                   <!-- calidad persona en el procedimiento -->
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
@@ -1240,7 +1244,18 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
 
 
 </script>
-
+<script type="text/javascript">
+  var calpprocess = document.getElementById('CALIDAD_PERSONA').value;
+  function callprocess() {
+    console.log(calpprocess);
+    if (calpprocess === 'OTROS') {
+      document.getElementById('getprocess').style.display = "";
+    }else {
+      document.getElementById('getprocess').style.display = "none";
+    }
+  }
+  callprocess();
+</script>
 
 </body>
 </html>
