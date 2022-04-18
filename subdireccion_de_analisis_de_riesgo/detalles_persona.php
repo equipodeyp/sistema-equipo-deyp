@@ -366,6 +366,10 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                       ?>
                     </select>
                   </div>
+                  <div class="col-md-6 mb-3 validar" id="procpen">
+                    <label for="procpenal">ESPECIFIQUE</label>
+                    <input  autocomplete="off" class="form-control" type="text" name="procespenal" value="<?php echo $rowfol['especifique']; ?>" readonly>
+                  </div>
 
                   <!-- calidad persona en el procedimiento -->
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
@@ -1145,7 +1149,18 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
 
 
 </script>
-
+<script type="text/javascript">
+  var proc = document.getElementById('CALIDAD_PERSONA').value;
+  function process () {
+    console.log(proc);
+    if (proc === 'OTROS') {
+      document.getElementById('procpen').style.display = "";
+    }else {
+      document.getElementById('procpen').style.display = "none";
+    }
+  }
+  process();
+</script>
 
 </body>
 </html>
