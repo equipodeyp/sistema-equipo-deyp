@@ -227,8 +227,8 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <label id="LABEL_INCORPORACION" for="INCORPORACION">PROCEDENCIA DE LA INCORPORACIÓN<span class="required"></span></label>
                     <select id="INPUT_INCORPORACION" class="form-select form-select-lg"  name="INCORPORACION" >
                       <option style="visibility: hidden" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
-                      <option value="INCORPORACION PROCEDENTE">INCORPORACION PROCEDENTE</option>
-                      <option value="INCORPORACION NO PROCEDENTE">INCORPORACION NO PROCEDENTE</option>
+                      <option value="INCORPORACION PROCEDENTE">INCORPORACIÓN PROCEDENTE</option>
+                      <option value="INCORPORACION NO PROCEDENTE">INCORPORACIÓN NO PROCEDENTE</option>
                     </select>
                   </div>
 
@@ -237,7 +237,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input id="FECHA_AUTORIZACION" class="form-control" name="FECHA_AUTORIZACION" placeholder=""  type="date" value="<?php echo $rowdetinc['date_autorizacion']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DE AUTORIZACION DEL ANALISIS MULTIDISCIPLINARIO</label>
+                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input autocomplete="off" id="id_analisis" class="form-control" type="text" name="id_analisis" value="<?php echo $rowdetinc['id_analisis']; ?>">
                   </div>
 
@@ -297,7 +297,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
             		  		<thead class="table-success">
             		  			<th style="text-align:center">No.</th>
                         <th style="text-align:center">ID</th>
-                        <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
+                        <th style="text-align:center">ANÁLISIS MULTIDISCIPLINARIO</th>
                         <th style="text-align:center">DETALLES DEL CONVENIO</th>
 
             		  		</thead>

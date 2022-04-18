@@ -157,7 +157,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
         			<div class="well form-horizontal" >
         				<div class="row">
                   <div class="row alert alert-info">
-                    <h3 style="text-align:center">INFORMACION GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           				</div>
 
                   <div class="col-md-6 mb-3 validar">

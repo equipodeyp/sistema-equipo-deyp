@@ -142,12 +142,12 @@ $row=$result->fetch_assoc();
                             <thead>
                               <h3 style="text-align:center">Registros</h3>
                                 <tr>
-                                    <th style="text-align:center">NO</th>
-                                    <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCION</th>
+                                    <th style="text-align:center">No.</th>
+                                    <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
+                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
                                     <th style="text-align:center">PERSONAS PROPUESTAS</th>
                                     <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACION DEL EXPEDIENTE DE PROTECCION</th>
+                                    <th style="text-align:center">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
                                     <th style="text-align:center">DETALLES</th>
 
                                 </tr>
@@ -209,9 +209,9 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    
+
     <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
-    
+
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 </body>
