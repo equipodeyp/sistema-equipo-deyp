@@ -36,29 +36,29 @@ $num_consecutivo =$row["id"];
 $checkautoridad = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp'";
 $rescheckautoridad = $mysqli->query($checkautoridad);
 $filacheckautoridad = $rescheckautoridad->fetch_assoc();
-if ($filacheckautoridad > 0) {
-  echo "existe un registro de autoridad";
-}else {
-  echo "no existe registro aun";
-}
+// if ($filacheckautoridad > 0) {
+//   echo "existe un registro de autoridad";
+// }else {
+//   echo "no existe registro aun";
+// }
 // <!-- proceso penal -->
 $checkproceso = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
 $rescheckproceso = $mysqli->query($checkproceso);
 $filacheckproceso = $rescheckproceso->fetch_assoc();
-if ($filacheckproceso > 0) {
-  echo "existe registro previo en el proceso penal";
-}else {
-  echo "no existe ningun dato";
-}
+// if ($filacheckproceso > 0) {
+//   echo "existe registro previo en el proceso penal";
+// }else {
+//   echo "no existe ningun dato";
+// }
 // <!-- valoracion juridica -->
 $checkvalorjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp'";
 $rescheckvalorjuridica = $mysqli->query($checkvalorjuridica);
 $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
-if ($filavalorjuridica > 0) {
-  echo "existe registro previo de valoracion juridica";
-}else {
-  echo "no existe ningun dato";
-}
+// if ($filavalorjuridica > 0) {
+//   echo "existe registro previo de valoracion juridica";
+// }else {
+//   echo "no existe ningun dato";
+// }
 
  ?>
 <!DOCTYPE html>
@@ -313,7 +313,7 @@ if ($filavalorjuridica > 0) {
               <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                $calidad = "SELECT * FROM calidadpersonaprocesopenal";
+                $calidad = "SELECT * FROM calidadpersona";
                 $answer = $mysqli->query($calidad);
                 while($calidades = $answer->fetch_assoc()){
                   echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
@@ -326,7 +326,7 @@ if ($filavalorjuridica > 0) {
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                $calidad = "SELECT * FROM calidadpersona";
+                $calidad = "SELECT * FROM calidadpersonaprocesopenal";
                 $answer = $mysqli->query($calidad);
                 while($calidades = $answer->fetch_assoc()){
                   echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
