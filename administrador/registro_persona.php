@@ -255,13 +255,13 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label readonly for="EDAD_PERSONA">EDAD <span class="required"></span></label>
-              <input autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
+              <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
+              <input readonly autocomplete="off" class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="" maxlength="2" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
-              <label readonly for="GRUPO_EDAD">GRUPO DE EDAD<span class="required"></span></label>
-              <input class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
+              <label for="GRUPO_EDAD">GRUPO DE EDAD<span class="required"></span></label>
+              <input readonly class="form-control" id="GRUPO_EDAD" name="GRUPO_EDAD" placeholder=""  type="text" required>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -308,19 +308,6 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
               <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
             </div>
 
-            <div class="col-md-6 mb-3 validar">
-              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
-              <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
-                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                <?php
-                $calidad = "SELECT * FROM calidadpersona";
-                $answer = $mysqli->query($calidad);
-                while($calidades = $answer->fetch_assoc()){
-                  echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
-                }
-                ?>
-              </select>
-            </div>
             <!-- calidad persona en el procedimiento -->
             <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
@@ -334,6 +321,26 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
                 ?>
               </select>
             </div>
+
+            <div class="col-md-6 mb-3 validar" id="otracalidadproceso" style="display: none;">
+                <label for="otracalp">ESPECIFIQUE</label>
+                <input class="form-control" type="text" id="OTRACALIDADPROCESO" name="calprocesoother" value="<?php echo $rowfol['especifique']; ?>">
+            </div>
+
+            <div class="col-md-6 mb-3 validar">
+              <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
+              <select onkeydown="validardiv2()" class="verificdiv2 form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA" required>
+                <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                $calidad = "SELECT * FROM calidadpersona";
+                $answer = $mysqli->query($calidad);
+                while($calidades = $answer->fetch_assoc()){
+                  echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
+                }
+                ?>
+              </select>
+            </div>
+
 
             <div class="col-md-6 mb-3 validar">
                 <label for="INCAPAZ" class="is-required">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
@@ -1021,5 +1028,30 @@ if (idUnico == null || idUnico == ""){
 
 </script>
 <script src="../js/habiltar_botones.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+var calidadProcesoPenal = document.getElementById('CALIDAD_PERSONA_PROCEDIMIENTO');
+var calidadProceso = '';
+
+calidadProcesoPenal.addEventListener('change', obtenerCalidadProcesoPenal);
+
+    function obtenerCalidadProcesoPenal(e) {
+      calidadProceso = e.target.value;
+
+      if (calidadProceso === "OTROS" ){
+
+        document.getElementById('otracalidadproceso').style.display = "";
+
+      }
+
+      else {
+
+        document.getElementById('otracalidadproceso').style.display = "none";
+        document.getElementById('OTRACALIDADPROCESO').value = "";
+
+      }
+}
+</script>
 </body>
 </html>

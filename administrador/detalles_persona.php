@@ -363,9 +363,29 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                   </div>
 
+
+                  <!-- calidad persona en el procedimiento -->
+                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
+                    <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
+                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadprocedimiento']; ?></option>
+                      <?php
+                      $calidad = "SELECT * FROM calidadpersonaprocesopenal";
+                      $answer = $mysqli->query($calidad);
+                      while($calidades = $answer->fetch_assoc()){
+                        echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
+                      }
+                      ?>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar" id="otracalidadproceso" style="display: none;">
+                    <label for="otracalp">ESPECIFIQUE</label>
+                    <input class="form-control" type="text" id="OTRACALIDADPROCESO" name="calprocesoother" value="<?php echo $rowfol['especifique']; ?>">
+                  </div>
+
                   <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA">
-                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadprocedimiento']; ?></option>
+                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
                       $calidad = "SELECT * FROM calidadpersona";
                       $answer = $mysqli->query($calidad);
@@ -376,19 +396,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  <!-- calidad persona en el procedimiento -->
-                  <div class="col-md-6 mb-3 validar"><label for="CALIDAD_PERSONA_PROCEDIMIENTO">CALIDAD DE LA PERSONA PROPUESTA DENTRO DEL PROCESO PENAL<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
-                      <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
-                      <?php
-                      $calidad = "SELECT * FROM calidadpersonaprocesopenal";
-                      $answer = $mysqli->query($calidad);
-                      while($calidades = $answer->fetch_assoc()){
-                        echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
+                  
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCAPAZ">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
@@ -963,6 +971,19 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 </div>
 <!-- SCRIPT DE FECHAS  -->
+<script type="text/javascript">
+var calidadProcesoPenal = document.getElementById("CALIDAD_PERSONA_PROCEDIMIENTO").value;
+function disabledInput () {
+    
+    if (calidadProcesoPenal === 'OTROS') {
+      document.getElementById("otracalidadproceso").style.display = "";
+    }
+    else{
+      document.getElementById("otracalidadproceso").style.display = "none";
+    }
+}
+disabledInput ();
+</script>
 
 <script type="text/javascript">
 var today = new Date();
@@ -1154,7 +1175,6 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
 
 
 </script>
-
 <script type="text/javascript">
     // obtener folio
     var separarFolio = [];
@@ -1235,6 +1255,32 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
     }
 
 
+</script>
+
+
+<script type="text/javascript">
+
+var calidadProcesoPenal = document.getElementById('CALIDAD_PERSONA_PROCEDIMIENTO');
+var calidadProceso = '';
+
+calidadProcesoPenal.addEventListener('change', obtenerCalidadProcesoPenal);
+
+    function obtenerCalidadProcesoPenal(e) {
+      calidadProceso = e.target.value;
+
+      if (calidadProceso === "OTROS" ){
+
+        document.getElementById('otracalidadproceso').style.display = "";
+
+      }
+
+      else {
+
+        document.getElementById('otracalidadproceso').style.display = "none";
+        document.getElementById('OTRACALIDADPROCESO').value = "";
+
+      }
+}
 </script>
 
 

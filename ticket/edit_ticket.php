@@ -33,12 +33,15 @@ if (isset($_POST['update'])) {
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
                 <form action="edit_ticket.php?id=<?php echo $_GET['id']; ?>" method="POST">
+
                     <div class="form-group">
                         <input name="tipo" type="text" class="form-control" value="<?php echo $tipo; ?>" placeholder="Tipo">
                     </div>
+
                     <div class="form-group">
                     <textarea name="descripcion" class="form-control" rows="5" placeholder="Descripción"><?php echo $descripcion;?></textarea>
                     </div>
+                    
                     <button class="btn btn-success" name="update">
                     Actualizar
                     </button>

@@ -91,7 +91,7 @@ disabledcampos();
  motivoproc();
 
 // input para mencionar otro tipo de calidad dentro del proceso PENAL
-  var calpp = document.getElementById('CALIDAD_PERSONA');
+  var calpp = document.getElementById('CALIDAD_PERSONA_PROCEDIMIENTO');
   var callpproc = '';
   calpp.addEventListener('change', obtenercalproc);
   function obtenercalproc (e) {

@@ -32,14 +32,14 @@ if (isset($_POST['update'])) {
 
 ?>
 
-<!-- <div> -->
+<div> 
 <div class="container p-4">
 
     <div class="row">
 
         <div class="col-md-4">
 
-            <!-- <?php if (isset ($_SESSION ['message'])){?>
+            <?php if (isset ($_SESSION ['message'])){?>
 
                 <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
                 <?= $_SESSION['message']?>
@@ -146,9 +146,9 @@ if (isset($_POST['update'])) {
                                 <td><?php echo $row['descripcion']?></td>
                                 <td>
 
-                                    <!-- <a href="../ticket/edit_ticket.php?id=<?php echo $row['id']?>" class="btn btn-secondary"> -->
-                                        <i class="fas fa-marker btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal"></i>
-                                    <!-- </a> -->
+                                    <a href="../ticket/edit_ticket.php?id=<?php echo $row['id']?>" class="fas fa-marker btn btn-primary">
+                                        <!-- <i  class="fas fa-marker btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal"></i> -->
+                                    </a>
 
                                     <a href="../ticket/delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
                                         <i class="far fa-trash-alt"></i>
@@ -161,10 +161,10 @@ if (isset($_POST['update'])) {
             </table>
         </div>
     </div>
-</div> -->
+</div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -174,7 +174,7 @@ if (isset($_POST['update'])) {
                 </button>
             </div>
             <div class="modal-body">
-                <form action="create_ticket.php?id=<?php echo $_GET['id']; ?>" method="POST">
+                <form action="edit_ticket.php?id=<?php echo $_GET['id']; ?>" method="POST">
 
                     <div class="form-group">
                         <label >Tipo de error:<span ></span></label>
@@ -207,7 +207,7 @@ if (isset($_POST['update'])) {
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <?php include("./includes/footer.php")?>
 
