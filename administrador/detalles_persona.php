@@ -367,7 +367,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA" name="CALIDAD_PERSONA">
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadprocedimiento']; ?>"><?php echo $rowfol['calidadprocedimiento']; ?></option>
                       <?php
-                      $calidad = "SELECT * FROM calidadpersonaprocesopenal";
+                      $calidad = "SELECT * FROM calidadpersona";
                       $answer = $mysqli->query($calidad);
                       while($calidades = $answer->fetch_assoc()){
                         echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";
@@ -381,7 +381,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
                       <option style="visibility: hidden" id="opt-calidad-persona" value="<?php echo $rowfol['calidadpersona']; ?>"><?php echo $rowfol['calidadpersona']; ?></option>
                       <?php
-                      $calidad = "SELECT * FROM calidadpersona";
+                      $calidad = "SELECT * FROM calidadpersonaprocesopenal";
                       $answer = $mysqli->query($calidad);
                       while($calidades = $answer->fetch_assoc()){
                         echo "<option value='".$calidades['nombre']."'>".$calidades['nombre']."</option>";

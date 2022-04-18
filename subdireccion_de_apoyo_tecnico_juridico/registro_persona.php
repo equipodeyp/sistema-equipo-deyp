@@ -339,6 +339,11 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
               </select> -->
             </div>
 
+            <div class="col-md-6 mb-3 validar" id="otracalproceso" style="display: none;">
+              <label for="otracalidad">ESPECIFIQUE</label>
+              <input class="form-control" type="text" name="otracalidad" value="">
+            </div>
+
             <div class="col-md-6 mb-3 validar">
               <label for="CALIDAD_PERSONA" class="is-required">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="CALIDAD_PERSONA_PROCEDIMIENTO" name="CALIDAD_PERSONA_PROCEDIMIENTO">
