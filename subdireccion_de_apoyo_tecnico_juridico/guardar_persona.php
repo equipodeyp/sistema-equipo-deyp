@@ -55,6 +55,7 @@ if ($verifica == 1) {
   $g_persona=$_POST['GRUPO_EDAD'];
   $c_persona=$_POST['CALIDAD_PERSONA'];
   $p_procedimiento = $_POST['CALIDAD_PERSONA_PROCEDIMIENTO'];
+  $otroacalp = $_POST['otracalidad'];
   $s_persona= $_POST['SEXO_PERSONA'];
   $cu_persona= $_POST['CURP_PERSONA'];
   $rfc_persona =$_POST['RFC_PERSONA'];
@@ -254,9 +255,9 @@ if ($verifica == 1) {
   }
   $identificador = $_POST['ID_UNICO'];
   $fecha_captura = $_POST['FECHA_CAPTURA'];
-  $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, calidadprocedimiento, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular,
+  $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, calidadprocedimiento, especifique, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular,
                                 incapaz, folioexpediente, foto, estatus, identificador, fecha_captura)
-                    VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$p_procedimiento','$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular',
+                    VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$p_procedimiento', '$otroacalp', '$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular',
                            '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador', '$fecha_captura')";
   $res_dat_per = $mysqli->query($datos_persona);
   $qry = "select max(ID) As id from datospersonales";

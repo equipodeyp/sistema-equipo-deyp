@@ -89,3 +89,18 @@ disabledcampos();
    }
  }
  motivoproc();
+
+// input para mencionar otro tipo de calidad dentro del proceso PENAL
+  var calpp = document.getElementById('CALIDAD_PERSONA');
+  var callpproc = '';
+  calpp.addEventListener('change', obtenercalproc);
+  function obtenercalproc (e) {
+    callpproc = e.target.value;
+    // console.log(callpproc);
+    if (callpproc === 'OTROS') {
+      document.getElementById('otracalproceso').style.display= "";
+    }else {
+      document.getElementById('otracalproceso').style.display= "none";
+    }
+  }
+  callpp();
