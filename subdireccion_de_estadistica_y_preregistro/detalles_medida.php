@@ -23,10 +23,7 @@ $fol_exp =$rowmedida['folioexpediente'];
 $multidisciplinario = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
 $resultadomultidisciplinario = $mysqli->query($multidisciplinario);
 $rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
-
-$fuentemedida = "SELECT * FROM radicacion_mascara2 WHERE id_medida = '$id_medida'";
-$resultadofuentemedida = $mysqli->query($fuentemedida);
-$rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
+//
 $fol=" SELECT * FROM datospersonales WHERE id='$id_p'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();

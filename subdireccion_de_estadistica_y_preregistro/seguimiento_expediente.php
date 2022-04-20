@@ -59,10 +59,6 @@ $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
 $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
 $resultadodetinc = $mysqli->query($detinc);
 $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-// datos de la radicacion de la informacion
-$radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
-$resultadoradmas = $mysqli->query($radmas);
-// $rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
 //consulta de los datos de origen de la persona
 $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
 $resultadodomicilio = $mysqli->query($domicilio);
@@ -71,10 +67,6 @@ $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
 $seguimexp = "SELECT * FROM seguimientoexp WHERE id_persona = '$id_person'";
 $resultadoseguimexp = $mysqli->query($seguimexp);
 $rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
-// consulta de la fuente de la mascara 3
-// $fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
-// $resultadofuente3 = $mysqli->query($fuente3);
-// $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 
 $expediente = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $res_expediente = $mysqli->query($expediente);
@@ -84,23 +76,10 @@ $analisis_exp = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$fol
 $res_analsis_expediente = $mysqli->query($analisis_exp);
 $fila_analisis_expediente = $res_analsis_expediente->fetch_assoc();
 
-$convadh1 = "SELECT * FROM convenio_adh_expediente WHERE folioexpediente = '$fol_exp'";
-$res_convadh1 = $mysqli->query($convadh1);
-$fila_convadh1 = $res_convadh1->fetch_assoc();
-
-$convmod1 = "SELECT * FROM convenio_mod_expediente WHERE folioexpediente = '$fol_exp'";
-$res_convmod1 = $mysqli->query($convmod1);
-$fila_convmod1 = $res_convmod1->fetch_assoc();
-
 $seguimiento_exped = "SELECT * FROM statusseguimiento WHERE folioexpediente = '$fol_exp'";
 $res_seguimiento_exped = $mysqli->query($seguimiento_exped);
 $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
-
-$fuentemedida = "SELECT * FROM radicacion_mascara3 WHERE folioexpediente = '$fol_exp'";
-$resultadofuentemedida = $mysqli->query($fuentemedida);
-$rowfuentemedida = $resultadofuentemedida->fetch_assoc();
-
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -605,73 +584,6 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 
                 </div>
 
-                 <div class="row">
-                  <!-- <div class="row">
-                    <hr class="mb-4">
-                  </div> -->
-
-                  <!--<div class="alert alert-info">
-                    <h3 style="text-align:center">FUENTE</h3>
-                  </div>
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="FUENTE_S">FUENTE<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="FUENTE_S" name="FUENTE_S" onChange="radicacionfuenteS(this)" >
-                      <option style="visibility: hidden" id="tab3-fuente-seguimiento" value="<?php echo $rowfuentemedida['fuente']; ?>"><?php echo $rowfuentemedida['fuente']; ?></option>
-                      <?php
-                      $rad = "SELECT * FROM radicacion";
-                      $answerrad = $mysqli->query($rad);
-                      while($rads = $answerrad->fetch_assoc()){
-                        echo "<option value='".$rads['nombre']."'>".$rads['nombre']."</option>";
-                      }
-                      ?>
-                    </select>
-                  </div>
-                  <?php
-                  if ($rowfuentemedida['fuente']=='OFICIO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OFICIO_S" >
-                      <label for="OFICIO_S">ESPECIFIQUE<span class="required"></span></label>
-                      <input class="form-control" id="ESPECIFIQUE_FUENTE" name="OFICIO_S" placeholder="" value="'.$rowfuentemedida['descripcion'].'"  type="text" >
-                    </div>';
-                  }
-                  elseif ($rowfuentemedida['fuente']=='CORREO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="CORREO_S">
-                      <label for="CORREO_S">CORREO<span class="required"></span></label>
-                      <input class="form-control" id="CORREO_S" name="CORREO_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                    </div>';
-                  }elseif ($rowfuentemedida['fuente']=='EXPEDIENTE') {
-                    echo '<div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_S">
-                      <label for="EXPEDIENTE_S">EXPEDIENTE<span class="required"></span></label>
-                      <input class="form-control" id="EXPEDIENTE_S" name="EXPEDIENTE_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                    </div>';
-                  }elseif ($rowfuentemedida['fuente']=='OTRO') {
-                    echo '<div class="col-md-6 mb-3 validar" id="OTRO_S">
-                      <label for="OTRO_S">OTRO<span class="required"></span></label>
-                      <input class="form-control" id="OTRO_S" name="OTRO_S" placeholder=""  value="'.$rowfuentemedida['descripcion'].'" type="text" >
-                    </div>';
-                  }
-                  ?>
-
-                   <div class="col-md-6 mb-3 validar" id="OFICIO_S" style="display:none;">
-                     <label for="OFICIO_S">OFICIO<span class="required"></span></label>
-                     <input class="form-control" id="OFICIO_S1" name="OFICIO_S1" placeholder="" value="<?php echo $rowfuentemedida['descripcion']; ?>"  type="text" >
-                   </div>
-                   <div class="col-md-6 mb-3 validar"  id="CORREO_S" style="display:none;">
-                     <label for="EXPEDIENTE_S">CORREO<span class="required"></span></label>
-                     <input class="form-control" id="CORREO_S1" name="CORREO_S1" placeholder=""  value="<?php echo $rowfuentemedida['descripcion']; ?>" type="text" >
-                   </div>
-
-                   <div class="col-md-6 mb-3 validar"  id="EXPEDIENTE_S" style="display:none;">
-                     <label for="EXPEDIENTE_S">EXPEDIENTE<span class="required"></span></label>
-                     <input class="form-control" id="EXPEDIENTE_S1" name="EXPEDIENTE_S1" placeholder="<?php echo $rowfuentemedida['descripcion']; ?>"  value="" type="text" >
-                   </div>
-
-
-                   <div class="col-md-6 mb-3 validar" id="OTRO_S" style="display:none;">
-                     <label for="OTRO_S">OTRO<span class="required"></span></label>
-                     <input class="form-control" id="OTRO_S1" name="OTRO_S1" placeholder=""  value="<?php echo $rowfuentemedida['descripcion']; ?>" type="text" >
-                   </div> -->
-
-                </div>
                 <div class="row">
                   <div class="row">
 
@@ -742,75 +654,6 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 <div class="contenedor">
 <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
-
-<!-- modal del convenio MODIFICATORIO -->
-<div id="add_data_Modal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO MODIFICATORIO</h4>
-    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-   </div>
-   <div class="modal-body">
-    <form method="post" id="insert_form" action="agregar_convenio_modificatorio_expediente.php?folio=<?php echo $id_person; ?>">
-     <label>FOLIO DEL EXPEDIENTE</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
-     <br />
-     <label>ID ÚNICO DE LA PERSONA</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
-     <br />
-     <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
-     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
-     <br />
-     <label>DESCRIPCIÓN</label>
-     <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
-     <br />
-     <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
-     <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-    </form>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-   </div>
-  </div>
- </div>
-</div>
-<!-- fin modal  -->
-
-<!-- modal del convenio adhesion -->
-<div id="add_data_Modal_convenio" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h4 class="modal-title">AGREGAR CONVENIO DE ADHESIÓN</h4>
-    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-   </div>
-   <div class="modal-body">
-    <form method="post" id="insert_form" action="agregar_convenio_adhesion_expediente.php?folio=<?php echo $id_person; ?>">
-     <label>FOLIO DEL EXPEDIENTE</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
-     <br />
-     <label>ID ÚNICO DE LA PERSONA</label>
-     <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
-     <br />
-     <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESIÓN</label>
-     <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
-     <br />
-     <label>VIGENCIA</label>
-     <input type="text" name="vigencia_con_adh" id="vigencia_con_adh" class="form-control" required>
-     <br />
-     <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
-     <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-    </form>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-   </div>
-  </div>
- </div>
-</div>
-<!-- fin modal  -->
-
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var today = new Date();
@@ -989,7 +832,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         // document.getElementById('TERMINO_CONVENIO').style.display = "";
         // document.getElementById('LABEL_NUMERO_CONVENIOS').style.display = "";
         // document.getElementById('num_convenio').style.display = "";
-       
+
         document.getElementById('INCORPORACION').value = "";
         document.getElementById('FECHA_AUTORIZACION_ANALISIS').value = "";
         document.getElementById('id_analisis').value = "";
@@ -1001,7 +844,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('num_convenio').value = "";
 
 
-        
+
 
       }
       else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION"){

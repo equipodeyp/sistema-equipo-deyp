@@ -95,42 +95,6 @@ if ($verifica_update_person == 1) {
                     VALUES ('$concl_canc', '$conclu_art', '$otro_art', '$fecha_desincorporacion', '$estatus_exp', '$folio_expediente')";
     $res_segexpediente = $mysqli->query($new_segesped);
   }
-
-  // fuente del seguimiento del expediente
-  $fuente = $_POST['FUENTE_S'];
-  if ($fuente == 'OFICIO') {
-    $descripcion = $_POST['OFICIO_S1'];
-    if ($descripcion == '') {
-      $descripcion = $_POST['OFICIO_S'];
-    }
-  }elseif ($fuente == 'CORREO') {
-    $descripcion = $_POST['CORREO_S1'];
-    if ($descripcion == '') {
-      $descripcion = $_POST['CORREO_S'];
-    }
-  }elseif ($fuente == 'EXPEDIENTE') {
-    $descripcion = $_POST['EXPEDIENTE_S1'];
-    if ($descripcion == '') {
-      $descripcion = $_POST['EXPEDIENTE_S'];
-    }
-  }elseif ($fuente == 'OTRO') {
-    $descripcion = $_POST['OTRO_S1'];
-    if ($descripcion == '') {
-      $descripcion = $_POST['OTRO_S'];
-    }
-  }
-  $fuente_exp = "SELECT * FROM radicacion_mascara3 WHERE folioexpediente = '$folio_expediente'";
-  $res_fuente_segexp = $conexion->query($fuente_exp);
-  $fila_fuente_segexp = mysqli_fetch_array($res_fuente_segexp);
-  if ($fila_fuente_segexp > 0) {
-    $update_fuente = "UPDATE radicacion_mascara3 SET fuente = '$fuente', descripcion = '$descripcion' WHERE folioexpediente = '$folio_expediente'";
-    $res_fuente_exp = $mysqli->query($update_fuente);
-  }else {
-    $new_fuente_exped = "INSERT INTO radicacion_mascara3 (fuente, descripcion, folioexpediente)
-                         VALUES ('$fuente', '$descripcion', '$folio_expediente')";
-    $res_fuente_exp = $mysqli->query($new_fuente_exped);
-  }
-
   // variables de los comentarios
   $comment = $_POST['COMENTARIO'];
   $comment_mascara = '4';
@@ -145,7 +109,7 @@ if ($verifica_update_person == 1) {
   }
 
     // validacion del update correcto
-  if($res_fuente_exp){
+  if($res_segexpediente){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=$folio_expediente';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')

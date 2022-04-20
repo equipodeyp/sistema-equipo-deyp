@@ -92,11 +92,7 @@ if ($verifica_update_person == 1) {
   $fol_exp = $row_fol['folioexpediente'];
   // echo $fol_exp;
   $comment_mascara = '2';
-  // consulta de  la fuente de radicacion
-  // $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion_m'";
-  // $r_rad = $mysqli->query($radcon);
-  // $ro_rad=$r_rad->fetch_assoc();
-  // $name_radicacion_m=$ro_rad['nombre'];
+
   $folio_exp=" SELECT * FROM datospersonales WHERE id='$id_p'";
   $resultfolio_exp = $mysqli->query($folio_exp);
   $rowfolio_exp=$resultfolio_exp->fetch_assoc();
@@ -120,13 +116,6 @@ if ($verifica_update_person == 1) {
   // $res_mult_meds = $mysqli->query($mult_meds);
   $mult_meds = "UPDATE multidisciplinario_medidas SET acuerdo='$acuerdo', conclusionart35='$conclusionart35', date_close='$date_conclusion' WHERE  id_medida = '$id_persona'";
   $res_mult_meds = $mysqli->query($mult_meds);
-  //
-  // $fuente_rad = "INSERT INTO radicacion_mascara2(fuente, descripcion, id_persona, folioexpediente)
-  // VALUES ('$radicacion_m', '$des_rad', '$id_persona', '$folio_expediente')";
-  // $res_radicacion = $mysqli->query($fuente_rad);
-  $fuente_rad = "UPDATE radicacion_mascara2 SET fuente='$radicacion_m', descripcion='$des_rad' WHERE id_medida = '$id_persona'";
-  $res_radicacion = $mysqli->query($fuente_rad);
-
  // regresa la validacion a false para validar nuevamente la informacion
  $validacion = 'false';
  date_default_timezone_set("America/Mexico_City");
@@ -150,7 +139,7 @@ if ($verifica_update_person == 1) {
     $res_mun_med = $mysqli->query($mun_med);
   }
   // validacion de update correcto
-  if($res_radicacion){
+  if($res_addmedidas){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medida.php?id=$id_persona';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')

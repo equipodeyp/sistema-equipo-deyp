@@ -55,10 +55,6 @@ $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
 $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
 $resultadodetinc = $mysqli->query($detinc);
 $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-// datos de la radicacion de la informacion
-$radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
-$resultadoradmas = $mysqli->query($radmas);
-$rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
 //consulta de los datos de origen de la persona
 $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
 $resultadodomicilio = $mysqli->query($domicilio);
@@ -71,10 +67,6 @@ $rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
 $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
 $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-// consulta de la fuente de la mascara 3
-$fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
-$resultadofuente3 = $mysqli->query($fuente3);
-$rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -740,7 +732,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         // document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         // document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         // document.getElementById('id_convenio').style.display = "";
-        
+
         document.getElementById('INPUT_INCORPORACION').value = "";
         document.getElementById('FECHA_AUTORIZACION').value = "";
         document.getElementById('id_analisis').value = "";
@@ -944,7 +936,7 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('id_convenio').style.display = "";
-        
+
         document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
         document.getElementById('fecha_inicio').value = "";
         document.getElementById('VIGENCIA_CONVENIO').value = "";

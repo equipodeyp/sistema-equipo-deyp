@@ -51,24 +51,7 @@ if ($verifica_medida == 1) {
   // $ro_muniac=$r_muniac->fetch_assoc();
   // $name_muniac=$ro_muniac['nombre'];
   $date_ejec = $_POST['FECHA_DE_EJECUCION'];
-  // analisis multidisciplinario
 
-  // fuente
-  $radicacion_m=$_POST['FUENTE_M'];
-  if ($radicacion_m == 'OFICIO') {
-    $des_rad = $_POST['OFICIO_M'];
-  }elseif ($radicacion_m == 'CORREO') {
-    $des_rad = $_POST['CORREO_M'];
-  }elseif ($radicacion_m == 'EXPEDIENTE') {
-    $des_rad = $_POST['EXPEDIENTE_M'];
-  }elseif ($radicacion_m == 'OTRO') {
-    $des_rad = $_POST['OTRO_M'];
-  }
-  // consulta de  la fuente de radicacion
-  // $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion_m'";
-  // $r_rad = $mysqli->query($radcon);
-  // $ro_rad=$r_rad->fetch_assoc();
-  // $name_radicacion_m=$ro_rad['nombre'];
   $folio_exp=" SELECT * FROM datospersonales WHERE id='$id_persona'";
   $resultfolio_exp = $mysqli->query($folio_exp);
   $rowfolio_exp=$resultfolio_exp->fetch_assoc();
@@ -89,9 +72,6 @@ if ($verifica_medida == 1) {
                 VALUES ('$acuerdo', '$conclusionart35',  '$date_ejec', '$folio_expediente', '$id_persona', '$id_med')";
   $res_mult_meds = $mysqli->query($mult_meds);
 
-  $fuente_rad = "INSERT INTO radicacion_mascara2(fuente, descripcion, id_persona, folioexpediente, id_medida)
-  VALUES ('$radicacion_m', '$des_rad', '$id_persona', '$folio_expediente', '$id_med')";
-  $res_radicacion = $mysqli->query($fuente_rad);
   // datos del comentario
     $comment = $_POST['COMENTARIO'];
     $comment_mascara = '2';
@@ -110,7 +90,7 @@ if ($verifica_medida == 1) {
                     VALUES ('$folio_expediente', '$id_persona', '$id_med', '$validar', '$fecha_captura', '$validar_datos')";
     $res_validar_medida = $mysqli->query($val_medida);
 // validacion del registro correcto
-  if($res_addmedidas && $res_mult_meds && $res_radicacion){
+  if($res_addmedidas && $res_mult_meds){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=$id_persona';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
