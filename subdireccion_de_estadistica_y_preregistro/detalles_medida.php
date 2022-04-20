@@ -370,7 +370,7 @@ $validacion = $fil_val['validacion'];
 
               if ($rowmedida['estatus'] == 'EJECUTADA') {
                 echo '<div class="col-md-6 mb-3 validar">
-                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCION<span class="required"></span></label>
+                  <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCIÓN<span class="required"></span></label>
                   <input class="form-control" id="FECHA_DESINCORPORACION1" name="FECHA_DESINCORPORACION1" placeholder=""  type="date" value="'.$rowmultidisciplinario['date_close'].'" readonly>
                 </div>
                 <div class="row">
