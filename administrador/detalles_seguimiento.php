@@ -73,10 +73,6 @@ $analisis_exp = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$fol
 $res_analsis_expediente = $mysqli->query($analisis_exp);
 $fila_analisis_expediente = $res_analsis_expediente->fetch_assoc();
 
-$convadh1 = "SELECT * FROM convenio_adh_expediente WHERE folioexpediente = '$fol_exp'";
-$res_convadh1 = $mysqli->query($convadh1);
-$fila_convadh1 = $res_convadh1->fetch_assoc();
-
 $convmod1 = "SELECT * FROM convenio_mod_expediente WHERE folioexpediente = '$fol_exp'";
 $res_convmod1 = $mysqli->query($convmod1);
 $fila_convmod1 = $res_convmod1->fetch_assoc();
@@ -278,6 +274,12 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                   while ($var_fila=$var_resultado->fetch_array())
                   {
                     $id_persona_convenio = $var_fila['id'];
+                    $id_in_p = $var_fila['identificador'];
+                    // $cant_med11="SELECT COUNT(*) AS cant FROM evaluacion_persona WHERE id_unico = '$id_in_p' && tipo_convenio = 'CONVENIO MODIFICATORIO'";
+                    // $res_cant_med11=$mysqli->query($cant_med11);
+                    // $row_med11 = $res_cant_med11->fetch_array(MYSQLI_ASSOC);
+                    // echo $row_med11['cant'];
+                    // echo $id_persona_convenio;
                     $cont_med = $cont_med + 1;
                     $convenio = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona_convenio'";
                     $res_convenio = $mysqli->query($convenio);
@@ -293,20 +295,23 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
                           }
                         "</td>";
                         echo "<td style='text-align:center'>";
-                          $convenio_adhesion = "SELECT * FROM convenio_adhesion WHERE id_persona = '$id_persona_convenio'";
-                          $res_convenio_adhesion = $conexion->query($convenio_adhesion);
-                          $fila_convenio_adhesion = mysqli_fetch_array($res_convenio_adhesion);
-                          if ($fila_convenio_adhesion > 0) {
-                            echo "<i class='fas fa-check'></i>";
+                        $cant_med11="SELECT COUNT(*) AS cant FROM evaluacion_persona WHERE id_unico = '$id_in_p' && tipo_convenio = 'CONVENIO DE ADHESION'";
+                        $res_cant_med11=$mysqli->query($cant_med11);
+                        $row_med11 = $res_cant_med11->fetch_array(MYSQLI_ASSOC);
+                        // echo $row_med11['cant'];
+                          if ($row_med11['cant'] > 0) {
+                            for ($i=0; $i < $row_med11['cant']; $i++) {
+                              echo "<i class='fas fa-check'></i>";
+                            }
                           }else {
                             echo "<i class='fas fa-times'></i>";
                           }
                         echo "</td>";
                         echo "<td style='text-align:center'>";
-                          $convenio_modificatorio = "SELECT * FROM convenio_modificatorio WHERE id_persona = '$id_persona_convenio'";
-                          $res_convenio_modificatorio = $conexion->query($convenio_modificatorio);
-                          $fila_convenio_modificatorio = mysqli_fetch_array($res_convenio_modificatorio);
-                          if ($fila_convenio_modificatorio > 0) {
+                        $cant_med12="SELECT COUNT(*) AS cant FROM evaluacion_persona WHERE id_unico = '$id_in_p' && tipo_convenio = 'CONVENIO MODIFICATORIO'";
+                        $res_cant_med12=$mysqli->query($cant_med12);
+                        $row_med12 = $res_cant_med12->fetch_array(MYSQLI_ASSOC);
+                          if ($row_med12['cant'] > 0) {
                             echo "<i class='fas fa-check'></i>";
                           }else {
                             echo "<i class='fas fa-times'></i>";
@@ -711,75 +716,6 @@ $rowfuentemedida = $resultadofuentemedida->fetch_assoc();
 <div class="contenedor">
 <a href="../administrador/detalles_expediente.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
-
-<!-- modal del convenio MODIFICATORIO -->
-<div id="add_data_Modal" class="modal fade">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title">AGREGAR CONVENIO MODIFICATORIO</h4>
-<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-</div>
-<div class="modal-body">
-<form method="post" id="insert_form" action="agregar_convenio_modificatorio_expediente.php?folio=<?php echo $id_person; ?>">
- <label>FOLIO DEL EXPEDIENTE</label>
- <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
- <br />
- <label>ID ÚNICO DE LA PERSONA</label>
- <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
- <br />
- <label>FECHA DE LA FIRMA DEL CONVENIO MODIFICATORIO</label>
- <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
- <br />
- <label>DESCRIPCIÓN</label>
- <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>
- <br />
- <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
- <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-</form>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-</div>
-</div>
-</div>
-</div>
-<!-- fin modal  -->
-
-<!-- modal del convenio adhesion -->
-<div id="add_data_Modal_convenio" class="modal fade">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title">AGREGAR CONVENIO DE ADHESIÓN</h4>
-<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-</div>
-<div class="modal-body">
-<form method="post" id="insert_form" action="agregar_convenio_adhesion_expediente.php?folio=<?php echo $id_person; ?>">
- <label>FOLIO DEL EXPEDIENTE</label>
- <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
- <br />
- <label>ID ÚNICO DE LA PERSONA</label>
- <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $rowfol['identificador']; ?>" readonly>
- <br />
- <label>FECHA DE LA FIRMA DEL CONVENIO DE ADHESIÓN</label>
- <input type="date" name="fecha_firma_mod" id="fecha_firma_mod" class="form-control" required>
- <br />
- <label>VIGENCIA</label>
- <input type="text" name="vigencia_con_adh" id="vigencia_con_adh" class="form-control" required>
- <br />
- <!-- <input type="submit" name="agregar" id="agregar"  class="btn btn-success" > -->
- <button style="display: block; margin: 0 auto;" class="btn btn-success" type="submit" name="button">agregar</button>
-</form>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-</div>
-</div>
-</div>
-</div>
-<!-- fin modal  -->
-
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var today = new Date();
