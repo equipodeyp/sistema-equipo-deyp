@@ -121,8 +121,6 @@ if ($verifica_update_person == 1) {
   // echo $otherart35;
   $date_des =$_POST['FECHA_DESINCORPORACION'];
   $mot_inc=$_POST['MOTIVO_NO_INCORPORACION'];
-  //
-  $radicacion=$_POST['FUENTE'];
   // datos del comentario
   $comment = $_POST['COMENTARIO'];
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
@@ -198,11 +196,6 @@ if ($verifica_update_person == 1) {
   $r_estatus = $mysqli->query($est_per);
   $ro_est_per=$r_estatus->fetch_assoc();
   $name_estatus=$ro_est_per['nombre'];
-  // consulta de  la fuente de radicacion
-  $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion'";
-  $r_rad = $mysqli->query($radcon);
-  $ro_rad=$r_rad->fetch_assoc();
-  $name_radicacion=$ro_rad['nombre'];
   // sql para insercion de los datos de la autoridad
   // $sql = "INSERT INTO autoridad (idsolicitud, nombreautoridad, otraautoridad, nombreservidor, apellidopaterno, apellidomaterno, cargoservidor, folioexpediente, fechasolicitud, id_persona)
   //                        VALUES ('$id_solicitud', '$name_mun', '$other_autoridad', '$nombre_servidor', '$paterno_servidor', '$materno_servidor', '$cargo_servidor', '$fol_exp', '$fecha_solicitud', '$id_persona')";
@@ -304,33 +297,6 @@ if ($verifica_update_person == 1) {
   // $res_det_inc = $mysqli->query($det_inc);
   $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario', incorporacion='$incorporacion', date_autorizacion='$date_aut', convenio='$convenio', vigencia='$vigencia', date_convenio='$fecha_conv_ent', conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
   $res_det_inc = $mysqli->query($det_inc);
-  if ($radicacion == 'OFICIO') {
-    $des_rad = $_POST['OFICIO'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['OFICIO1'];
-    }
-  }elseif ($radicacion == 'CORREO') {
-    $des_rad = $_POST['CORREO'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['CORREO1'];
-    }
-  }elseif ($radicacion == 'EXPEDIENTE') {
-    $des_rad = $_POST['EXPEDIENTE'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['EXPEDIENTE1'];
-    }
-  }elseif ($radicacion == 'OTRO') {
-    $des_rad = $_POST['OTRO'];
-    if ($des_rad == '') {
-      $des_rad = $_POST['OTRO1'];
-    }
-  }
-
-  // $fuente_rad = "INSERT INTO radicacion_mascara1(fuente, descripcion, id_persona, folioexpediente)
-  //               VALUES ('$name_radicacion', '$des_rad', '$id_persona', '$fol_exp')";
-  // $res_radicacion = $mysqli->query($fuente_rad);
-  $fuente_rad = "UPDATE radicacion_mascara1 SET fuente='$radicacion', descripcion='$des_rad' WHERE id_persona = '$id_persona'";
-  $res_radicacion = $mysqli->query($fuente_rad);
   // insertar comentarios de cambios
   $fechacomentario = date('y/m/d');
   if ($comment != '') {
@@ -340,7 +306,7 @@ if ($verifica_update_person == 1) {
   }
 
   // validacion de update correcto
-  if($res_det_inc && $res_radicacion){
+  if($res_det_inc){
     echo ("<script type='text/javaScript'>
      window.location.href='../administrador/mod_persona.php?folio=$id_persona';
      window.alert('!!!!!Registro exitoso¡¡¡¡¡')

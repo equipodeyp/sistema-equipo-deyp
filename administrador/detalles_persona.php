@@ -66,29 +66,15 @@ $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
 $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
 $resultadodetinc = $mysqli->query($detinc);
 $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-// datos de la radicacion de la informacion
-$radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
-$resultadoradmas = $mysqli->query($radmas);
-$rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
 //consulta de los datos de origen de la persona
 $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
 $resultadodomicilio = $mysqli->query($domicilio);
 $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// consulta del seguimiento del EXPEDIENTE
-$seguimexp = "SELECT * FROM seguimientoexp WHERE id_persona = '$id_person'";
-$resultadoseguimexp = $mysqli->query($seguimexp);
-$rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
 // consulta del estatus del expediente
 $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
 $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-// consulta de la fuente de la mascara 3
-$fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
-$resultadofuente3 = $mysqli->query($fuente3);
-$rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
-
-
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -396,7 +382,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  
+
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCAPAZ">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
@@ -974,7 +960,7 @@ $rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
 <script type="text/javascript">
 var calidadProcesoPenal = document.getElementById("CALIDAD_PERSONA_PROCEDIMIENTO").value;
 function disabledInput () {
-    
+
     if (calidadProcesoPenal === 'OTROS') {
       document.getElementById("otracalidadproceso").style.display = "";
     }

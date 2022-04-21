@@ -50,15 +50,7 @@ if ($verifica_medida == 1) {
   // $ro_muniac=$r_muniac->fetch_assoc();
   // $name_muniac=$ro_muniac['nombre'];
   $date_ejec = $_POST['FECHA_DE_EJECUCION'];
-  // analisis multidisciplinario
 
-  // fuente
-
-  // consulta de  la fuente de radicacion
-  // $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion_m'";
-  // $r_rad = $mysqli->query($radcon);
-  // $ro_rad=$r_rad->fetch_assoc();
-  // $name_radicacion_m=$ro_rad['nombre'];
   $folio_exp=" SELECT * FROM datospersonales WHERE id='$id_persona'";
   $resultfolio_exp = $mysqli->query($folio_exp);
   $rowfolio_exp=$resultfolio_exp->fetch_assoc();
