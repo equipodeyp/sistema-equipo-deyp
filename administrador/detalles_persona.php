@@ -277,12 +277,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-                    <input autocomplete="off" disabled="disabled" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
+                    <input autocomplete="off"  onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-                    <input autocomplete="off" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
+                    <input autocomplete="off"  class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
