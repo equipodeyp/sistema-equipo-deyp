@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -74,10 +74,10 @@ $rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
 $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
 $resultadodomicilio = $mysqli->query($domicilio);
 $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// consulta del seguimiento del EXPEDIENTE
-$seguimexp = "SELECT * FROM seguimientoexp WHERE id_persona = '$id_person'";
-$resultadoseguimexp = $mysqli->query($seguimexp);
-$rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
+// // consulta del seguimiento del EXPEDIENTE
+// $seguimexp = "SELECT * FROM seguimientoexp WHERE id_persona = '$id_person'";
+// $resultadoseguimexp = $mysqli->query($seguimexp);
+// $rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
 // consulta del estatus del expediente
 $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
