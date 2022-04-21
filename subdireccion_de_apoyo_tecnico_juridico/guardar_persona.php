@@ -142,18 +142,6 @@ if ($verifica == 1) {
   }
   $date_des =$_POST['FECHA_DESINCORPORACION'];
   $mot_inc=$_POST['MOTIVO_NO_INCORPORACION'];
-  //
-  $radicacion=$_POST['FUENTE'];
-  // consulta del la autoridad
-  // $sentencia=" SELECT id, nombre FROM nombreautoridad WHERE id='$nombre_autoridad'";
-  // $result = $mysqli->query($sentencia);
-  // $row=$result->fetch_assoc();
-  // $name_mun=$row['nombre'];
-  //consulta de la calidad de la persona
-  // $calidad_p= "SELECT id, nombre FROM calidadpersona WHERE id='$c_persona'";
-  // $r_cal = $mysqli->query($calidad_p);
-  // $ro=$r_cal->fetch_assoc();
-  // $name_cal=$ro['nombre'];
   // consulta del nombre del estado
   $name_estado = "SELECT id_estado, estado FROM t_estado WHERE id_estado='$e_nacimiento'";
   $r_estado = $mysqli->query($name_estado);
@@ -195,37 +183,6 @@ if ($verifica == 1) {
   // $fol_exp = $row_fol['folioexpediente'];
   $comment_mascara = '1';
   $id_medida = "N/A";
-  // consulta del delito primario
-  // $name_delito= "SELECT id, nombre FROM delito WHERE id= '$del_primario'";
-  // $r_delito = $mysqli->query($name_delito);
-  // $ro_delito=$r_delito->fetch_assoc();
-  // $name_del=$ro_delito['nombre'];
-  // consulta del delito secundario
-  // $name_delito2 = "SELECT id, nombre FROM delito WHERE id = '$del_secundario'";
-  // $r_delito2 = $mysqli->query($name_delito2);
-  // $ro_delito2=$r_delito2->fetch_assoc();
-  // $name_del2=$ro_delito2['nombre'];
-  // consulta del municipio de radicacion del delito
-  // $mun_del= "SELECT id, nombre, clave FROM municipios WHERE clave = '$municipio_r'";
-  // $r_mu = $mysqli->query($mun_del);
-  // $ro_muni=$r_mu->fetch_assoc();
-  // $name_muni_del=$ro_muni['nombre'];
-  // consulta del convenio del entendimiento
-  // $convenio= "SELECT id, nombre FROM convenio WHERE id = '$convenio'";
-  // $r_convenio = $mysqli->query($convenio);
-  // $ro_convenio=$r_convenio->fetch_assoc();
-  // $name_convenio=$ro_convenio['nombre'];
-  // consulta del estatus de la persona
-  // $est_per= "SELECT id, nombre, descripcion FROM estatuspersona WHERE id = '$estatus'";
-  // $r_estatus = $mysqli->query($est_per);
-  // $ro_est_per=$r_estatus->fetch_assoc();
-  // $name_estatus=$ro_est_per['nombre'];
-  // consulta de  la fuente de radicacion
-  // $radcon= "SELECT id, nombre FROM radicacion WHERE id = '$radicacion'";
-  // $r_rad = $mysqli->query($radcon);
-  // $ro_rad=$r_rad->fetch_assoc();
-  // $name_radicacion=$ro_rad['nombre'];
-
   // sql de la inserccion de los datos de la persona
   $imgFile = $_FILES['user_image']['name'];
   $tmp_dir = $_FILES['user_image']['tmp_name'];
@@ -323,18 +280,6 @@ if ($verifica == 1) {
   $det_inc = "INSERT INTO determinacionincorporacion (multidisciplinario, incorporacion, date_autorizacion, convenio, vigencia, date_convenio, conclu_cancel, conclusionart35, otroart35, date_desincorporacion, folioexpediente, id_persona)
                 VALUES('EN ELABORACION', '$incorporacion', '$date_aut', '$convenio', '$vigencia', '$fecha_conv_ent', '$acuerdo', '$conclusionart35', '$otherart35', '$date_des', '$fol_exp', '$id_persona')";
   $res_det_inc = $mysqli->query($det_inc);
-  if ($radicacion == 'OFICIO') {
-    $des_rad = $_POST['OFICIO'];
-  }elseif ($radicacion == 'CORREO') {
-    $des_rad = $_POST['CORREO'];
-  }elseif ($radicacion == 'EXPEDIENTE') {
-    $des_rad = $_POST['EXPEDIENTE'];
-  }elseif ($radicacion == 'OTRO') {
-    $des_rad = $_POST['OTRO'];
-  }
-  $fuente_rad = "INSERT INTO radicacion_mascara1(fuente, descripcion, id_persona, folioexpediente)
-                VALUES ('$radicacion', '$des_rad', '$id_persona', '$fol_exp')";
-  $res_radicacion = $mysqli->query($fuente_rad);
   // insertar comentarios de cambios
   $fechacomentario = date('y/m/d H:i:sa');
   if ($comment != '') {
