@@ -24,9 +24,6 @@ $multidisciplinario = "SELECT * FROM multidisciplinario_medidas WHERE id_medida 
 $resultadomultidisciplinario = $mysqli->query($multidisciplinario);
 $rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
 
-$fuentemedida = "SELECT * FROM radicacion_mascara2 WHERE id_medida = '$id_medida'";
-$resultadofuentemedida = $mysqli->query($fuentemedida);
-$rowfuentemedida = $resultadofuentemedida->fetch_array(MYSQLI_ASSOC);
 $fol=" SELECT * FROM datospersonales WHERE id='$id_p'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -374,7 +371,7 @@ $validacion = $fil_val['validacion'];
                <label for="OTHER_ART351">ESPECIFIQUE</label>
                <input readonly class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>" type="text">
              </div>
- 
+
           </div>
 
 
