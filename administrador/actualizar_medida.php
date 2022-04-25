@@ -40,7 +40,8 @@ if ($verifica_update_person == 1) {
       $descripcion = '';
     }
   } //echo $medida.$descripcion;
-  $fecha_definitiva = $_POST['FECHA_ACTUALIZACION_MEDIDA']; //echo $fecha_definitiva;
+  $FECHA_P = $_POST['FECHA_ACTUALIZACION_MEDIDA'];
+  $fecha_definitiva = $_POST['FECHA_ACTUALIZACION_MEDIDA_DEF']; //echo $fecha_definitiva;
   $estatus = $_POST['ESTATUS_MEDIDA']; //echo $estatus;
   $municipio = $_POST['MUNIPIO_EJECUCION_MEDIDA']; //echo $municipio;
   $fecha_inicio = $_POST['FECHA_INICIO']; //echo $fecha_inicio;
@@ -75,7 +76,7 @@ if ($verifica_update_person == 1) {
     $otroconclu = '';
   }
   // echo $fecha_ejecucion.'*'.$conclusion.'*'.$articulo35.'*'.$otherart35;
-  $actualizar_medida = "UPDATE medidas SET categoria = '$categoria', tipo = '$tipo', clasificacion = '$clasificacion', medida ='$medida', descripcion = '$descripcion', date_provisional= '$fecha_definitiva', date_definitva = '$fecha_definitiva',
+  $actualizar_medida = "UPDATE medidas SET categoria = '$categoria', tipo = '$tipo', clasificacion = '$clasificacion', medida ='$medida', descripcion = '$descripcion', date_provisional= '$FECHA_P', date_definitva = '$fecha_definitiva',
                                            tipo_modificacion = '$motivo_cancelacion', estatus = '$estatus', ejecucion = '$municipio', date_ejecucion = '$fecha_ejecucion' WHERE id = '$id_medida'";
   $res_actualizar_medida = $mysqli->query($actualizar_medida);
   // tabla multidisciplinario de la medida

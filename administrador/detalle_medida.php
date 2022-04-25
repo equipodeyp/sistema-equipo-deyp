@@ -272,12 +272,17 @@ $validacion = $fil_val['validacion'];
           </div>
 
            <div class="col-md-6 mb-3 validar" id="act_date_definitiva">
-              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php if ($rowmedida['date_provisional'] === '0000-00-00') {
                 echo $rowmedida['date_definitva'];
               }else {
                 echo $rowmedida['date_provisional'];
-              } ?>" type="date">
+              }?>" type="date">
+           </div>
+
+           <div class="col-md-6 mb-3 validar" id="act_date_definitiva_def" style="display:none;">
+              <label for="FECHA_ACTUALIZACION_MEDIDA_DEF">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_DEF" name="FECHA_ACTUALIZACION_MEDIDA_DEF" placeholder="" value="<?php echo $rowmedida['date_definitva']; ?>" type="date">
            </div>
 
           <div class="row">
@@ -651,7 +656,30 @@ conclusionArt35.addEventListener('change', obtenerConclusionArt35);
 }
 
 </script>
-
+<script type="text/javascript">
+  var fech_p = document.getElementById('TIPO_DE_MEDIDA');
+  var fecha_p= '';
+  fech_p.addEventListener('change', gettipomedida);
+  function gettipomedida (e) {
+    fecha_p = e.target.value;
+    console.log(fecha_p);
+    if (fecha_p === 'DEFINITIVA') {
+      document.getElementById('act_date_definitiva_def').style.display="";
+    }else {
+      document.getElementById('act_date_definitiva_def').style.display="none";
+    }
+  }
+  var checkfech = document.getElementById('TIPO_DE_MEDIDA').value;
+  function disfech () {
+    console.log(checkfech);
+    if (checkfech === 'DEFINITIVA') {
+      document.getElementById('act_date_definitiva_def').style.display="";
+    }else {
+      document.getElementById('act_date_definitiva_def').style.display="none";
+    }
+  }
+  disfech();
+</script>
 
 </body>
 </html>
