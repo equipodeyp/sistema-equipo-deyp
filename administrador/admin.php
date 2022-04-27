@@ -39,6 +39,9 @@ $row=$result->fetch_assoc();
   <script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
   <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -110,7 +113,15 @@ $row=$result->fetch_assoc();
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
+           <ul>
+
+              <li class="menu-items"><a href="#"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>reportar incidencia</span></a></li>
+              <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">ver glosario</span></a></li>
+              <li class="menu-items"><a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda avanzada</span></a></li>
+
+            </ul>
       </nav>
+
     </div>
     <div class="main bg-light">
       <div class="barra">
@@ -210,9 +221,32 @@ $row=$result->fetch_assoc();
   </div>
   <div class="contenedor">
 
-    <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
+    <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
 
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
+
+  <!-- modal del glosario -->
+  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
 </body>
 </html>
