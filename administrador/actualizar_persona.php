@@ -284,9 +284,9 @@ if ($verifica_update_person == 1) {
   }
 
   // sql para inserccion de los datos de la investigacion o proceso penal
-  $proceso_penal= "INSERT INTO procesopenal (delitoprincipal, otrodelitoprincipal, delitosecundario, otrodelitosecundario, etapaprocedimiento, nuc, numeroradicacion, folioexpediente, id_persona)
-                    VALUES ('$name_del', '$otro_del_p', '$name_del2', '$otro_del_s', '$etapa_p', '$nuc', '$name_muni_del', '$fol_exp', '$id_persona')";
-  $res_proceso = $mysqli->query($proceso_penal);
+  // $proceso_penal= "INSERT INTO procesopenal (delitoprincipal, otrodelitoprincipal, delitosecundario, otrodelitosecundario, etapaprocedimiento, nuc, numeroradicacion, folioexpediente, id_persona)
+  //                   VALUES ('$name_del', '$otro_del_p', '$name_del2', '$otro_del_s', '$etapa_p', '$nuc', '$name_muni_del', '$fol_exp', '$id_persona')";
+  // $res_proceso = $mysqli->query($proceso_penal);
   $proceso_penal ="UPDATE procesopenal SET delitoprincipal='$del_primario', otrodelitoprincipal='$otro_del_p', delitosecundario='$del_secundario', otrodelitosecundario='$otro_del_s', etapaprocedimiento='$etapa_p', nuc='$nuc', numeroradicacion='$municipio_r' WHERE id_persona = '$id_persona'";
   $res_proceso = $mysqli->query($proceso_penal);
   // // sql para inserccion de valoracion juridica
