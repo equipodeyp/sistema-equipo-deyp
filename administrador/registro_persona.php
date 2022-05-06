@@ -343,7 +343,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 
 
             <div class="col-md-6 mb-3 validar">
-                <label for="INCAPAZ" class="is-required">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
+                <label for="INCAPAZ" class="is-required">MENOR DE EDAD O PERSONA EN SITUACION DE DISCAPACIDAD<span class="required"></span></label>
                 <select onclick="validardiv2()" class="verificdiv2 form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChange(this)" required>
                   <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                   <option value="SI">SI</option>
@@ -568,7 +568,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           </div>
 
           <div class="col-md-6 mb-3 validar">
-            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO / RECURSOS<span class="required"></span></label>
+            <label for="ETAPA_PROCEDIMIENTO" class="is-required">ETAPA DEL PROCEDIMIENTO O RECURSO<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" required>
               <option style="visibility: hidden" selected id="opt-etapa-proc" value="<?php echo $filacheckproceso['etapaprocedimiento']; ?>"><?php echo $filacheckproceso['etapaprocedimiento']; ?></option>
               <!-- <option disabled selected value>SELECCIONE UNA ETAPA</option> -->

@@ -391,7 +391,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="INCAPAZ">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
+                    <label for="INCAPAZ">MENOR DE EDAD O PERSONA EN SITUACION DE DISCAPACIDAD<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)" disabled>
                       <option style="visibility: hidden" id="opt-incapaz" value="<?php echo $rowfol['incapaz']; ?>"><?php echo $rowfol['incapaz']; ?></option>
                       <option value="SI">SI</option>
@@ -798,7 +798,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO / RECURSOS<span class="required"></span></label>
+                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO O RECURSO<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO" disabled>
                       <option style="visibility: hidden" id="opt-etapa-procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>"><?php echo $rowprocess['etapaprocedimiento']; ?></option>
                       <?php
