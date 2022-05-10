@@ -10,19 +10,12 @@ if (!isset($name)) {
 }
 
 $id_analisis = $_GET['id'];
-echo $id_analisis;
+// echo $id_analisis;
 // echo $folioexpediente;
 $consulta = "SELECT * FROM evaluacion_expediente WHERE id_analisis = '$id_analisis'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
-// echo $fila_consulta['id'];
-
-$fol_exp = $_GET['id'];
-$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
-	$resultado = $mysqli->query($sql);
-	$row = $resultado->fetch_array(MYSQLI_ASSOC);
-
-
+$id_con_exp = $fila_consulta['id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -103,7 +96,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" method="post" action="actualizar_convenio_expediente.php?id=<?php echo $id; ?>" enctype= "multipart/form-data">
+            <form class="container well form-horizontal" method="post" action="actualizar_convenio_expediente.php?id=<?php echo $id_con_exp; ?>" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
                   <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
@@ -141,7 +134,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label for="tipo_convenio">TIPO DE CONVENIO</label>
-                    <select class="form-select form-select-lg" name="tipo_convenio">
+                    <select class="form-select form-select-lg" name="tipo_convenio" id="select_tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
@@ -166,7 +159,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
-                    <input class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['total_convenios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input class="form-control" type="text" id="input_id_convenio" name="id_convenio" value="<?php echo $fila_consulta['total_convenios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                 </div>
 
@@ -179,7 +172,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
+                  <textarea id="textarea_observaciones" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
               </div>
               <div class="row">
                 <div>
@@ -199,6 +192,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 <div class="contenedor">
 <a href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>" class="btn-flotante">REGRESAR</a>
 </div>
+<script src="../js/evaluacion_expediente.js" charset="utf-8"></script>
 </body>
 </html>
 

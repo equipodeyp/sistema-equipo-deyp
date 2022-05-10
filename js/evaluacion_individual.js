@@ -8,8 +8,7 @@ function disabledcampos() {
     document.getElementById('INPUT_VIGENCIA').disabled= true;
     document.getElementById('INPUT_ID_CONVENIO').disabled= true;
     document.getElementById('input_observaciones').disabled= true;
-    document.getElementById('enter').style.visibility = "hidden";
-    document.getElementById('').disabled= true;
+    document.getElementById('enter').style.visibility = "hidden";    
   }
 }
 disabledcampos();
