@@ -168,7 +168,7 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
-                    <input id="INPUT_ID_CONVENIO"  class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input id="INPUT_ID_CONVENIO"  class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>">
                   </div>
                 </div>
 
