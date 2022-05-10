@@ -68,8 +68,10 @@ if ($verifica == 1) {
           VALUES ('ANALISIS', '$folio_expediente')";
   $res_esattus_exp = $mysqli->query($estatus_expediente);
   $analisis_expediente = "INSERT INTO analisis_expediente (folioexpediente, analisis)
-          VALUES ('$folio_expediente', 'EN ELABORACION')";
+                          VALUES ('$folio_expediente', 'EN ELABORACION')";
   $res_analisis_exp = $mysqli->query($analisis_expediente);
+
+  
   $sent=" SELECT id, fol_exp FROM expediente WHERE fol_exp='$folio_expediente'";
   $resu = $mysqli->query($sent);
   $ro=$resu->fetch_assoc();

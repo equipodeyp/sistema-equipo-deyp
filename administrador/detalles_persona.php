@@ -66,15 +66,29 @@ $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
 $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
 $resultadodetinc = $mysqli->query($detinc);
 $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
+// datos de la radicacion de la informacion
+$radmas = "SELECT * FROM radicacion_mascara1 WHERE id_persona = '$id_person'";
+$resultadoradmas = $mysqli->query($radmas);
+$rowradmas = $resultadoradmas->fetch_array(MYSQLI_ASSOC);
 //consulta de los datos de origen de la persona
 $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
 $resultadodomicilio = $mysqli->query($domicilio);
 $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
+// consulta del seguimiento del EXPEDIENTE
+$seguimexp = "SELECT * FROM seguimientoexp WHERE id_persona = '$id_person'";
+$resultadoseguimexp = $mysqli->query($seguimexp);
+$rowseguimexp = $resultadoseguimexp->fetch_array(MYSQLI_ASSOC);
 // consulta del estatus del expediente
 $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
 $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-?>
+// consulta de la fuente de la mascara 3
+$fuente3 = "SELECT * FROM radicacion_mascara3 WHERE id_persona = '$id_person'";
+$resultadofuente3 = $mysqli->query($fuente3);
+$rowfuente3 = $resultadofuente3->fetch_array(MYSQLI_ASSOC);
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -277,12 +291,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-                    <input autocomplete="off"  onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
+                    <input autocomplete="off" disabled="disabled" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-                    <input autocomplete="off"  class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
+                    <input autocomplete="off" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -382,10 +396,10 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-
+                  
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="INCAPAZ">MENOR DE EDAD O PERSONA EN SITUACION DE DISCAPACIDAD<span class="required"></span></label>
+                    <label for="INCAPAZ">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="INCAPAZ" name="INCAPAZ"  onChange="pagoOnChangemod(this)">
                       <option style="visibility: hidden" id="opt-incapaz" value="<?php echo $rowfol['incapaz']; ?>"><?php echo $rowfol['incapaz']; ?></option>
                       <option value="SI">SI</option>
@@ -793,7 +807,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO O RECURSO<span class="required"></span></label>
+                    <label for="ETAPA_PROCEDIMIENTO">ETAPA DEL PROCEDIMIENTO / RECURSOS<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="ETAPA_PROCEDIMIENTO" name="ETAPA_PROCEDIMIENTO">
                       <option style="visibility: hidden" id="opt-etapa-procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>"><?php echo $rowprocess['etapaprocedimiento']; ?></option>
                       <?php
@@ -953,14 +967,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 <a href="../administrador/detalles_expediente.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 
-  <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+  <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
 
 </div>
 <!-- SCRIPT DE FECHAS  -->
 <script type="text/javascript">
 var calidadProcesoPenal = document.getElementById("CALIDAD_PERSONA_PROCEDIMIENTO").value;
 function disabledInput () {
-
+    
     if (calidadProcesoPenal === 'OTROS') {
       document.getElementById("otracalidadproceso").style.display = "";
     }

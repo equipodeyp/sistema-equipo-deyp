@@ -1,4 +1,4 @@
-<?php
+  <?php
 error_reporting(0);
 include("conexion.php");
 session_start ();

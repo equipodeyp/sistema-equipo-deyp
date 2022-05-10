@@ -254,7 +254,7 @@ $row=$result->fetch_assoc();
 									<div class="alert alert-info">
 										<h3 style="text-align:center">SEGUIMIENTO DEL EXPEDIENTE</h3>
 									</div>
-									<a  href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
+									<a href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
 								</div>
 							</div>
 						</div>
@@ -263,7 +263,7 @@ $row=$result->fetch_assoc();
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="contenedor">
 									<p>
-									<a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+									<!-- <a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a> -->
 									</p>
 									<a href="admin.php" class="btn-flotante">REGRESAR</a>
 								</div>

@@ -351,7 +351,7 @@ $row=$result->fetch_assoc();
 				   <a href="menu.php" class="btn-flotante">REGRESAR</a>
            <div class="columns download">
                    <p>
-                     <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a>
+				   <!-- <a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a> -->
                    </p>
            </div>
 				</div>
