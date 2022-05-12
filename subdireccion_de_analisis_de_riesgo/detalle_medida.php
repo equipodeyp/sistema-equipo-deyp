@@ -96,6 +96,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+      $user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -111,6 +112,13 @@ $fila_val_med = $res_val_med->fetch_assoc();
       <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           		<ul>
+                <?php
+                    if ($user=='guillermogv') {
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                  ";}
+                ?>
+            	</ul>
     </nav>
   </div>
   <div class="main bg-light">

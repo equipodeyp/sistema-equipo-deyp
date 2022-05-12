@@ -26,8 +26,11 @@ $row=$result->fetch_assoc();
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
-  		<link href="../css/bootstrap.min.css" rel="stylesheet">
+		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
   		<link href="../css/bootstrap-theme.css" rel="stylesheet">
+		<script src="../js/bootstrap.min.js"></script>
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
 		<script src="../js/jquery-3.1.1.min.js"></script>
@@ -39,7 +42,6 @@ $row=$result->fetch_assoc();
       	<link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
-    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script src="../js/expediente.js"></script>
       <script src="../js/solicitud.js"></script>
@@ -58,6 +60,7 @@ $row=$result->fetch_assoc();
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+			$user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -72,6 +75,13 @@ $row=$result->fetch_assoc();
 			<h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           		<ul>
+				   <?php
+		   				if ($user=='guillermogv') {
+							echo "<a style='text-align:center' href='create_ticket.php?folio=<?php echo $fol_exp; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+						";}
+					?>
+            	</ul>
     </nav>
   </div>
   	<div class="main bg-light">
@@ -257,7 +267,7 @@ $row=$result->fetch_assoc();
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="contenedor">
 									<p>
-									<a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a>
+									<!-- <a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a> -->
 									</p>
 									<a href="menu.php" class="btn-flotante">REGRESAR</a>
 								</div>
