@@ -107,10 +107,6 @@ $num_incidencia = 0 . $suma;
       $row_apellido_m=$result_apellido_m->fetch_assoc();
 			$apellido_m = $row_apellido_m['apellido_m'];
 
-			if ($genero=='mujer') {
-				echo "<img src='../image/mujerup.png' width='100' height='100'>";
-			}
-
 			if ($genero=='hombre') {
 				// $foto = ../image/user.png;
 				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
@@ -118,6 +114,7 @@ $num_incidencia = 0 . $suma;
 			// echo $genero;
 			?>
     <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
+    
     </div>
     <nav class="menu-nav">
     </nav>

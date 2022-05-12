@@ -17,6 +17,7 @@ if ($verifica == 1) {
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
+ 
 
   $fol_exp = $_GET['folio'];
   // echo $fol_exp;
@@ -27,6 +28,7 @@ if ($verifica == 1) {
   $folio_reporte = $_POST['folio_reporte'];
   // $folio_expediente = $_POST['folio_expediente'];
   $usuario = $_POST['usuario'];
+
   $subdireccion_usuario = $_POST['subdireccion'];
   $tipo_error = $_POST['tipo'];
   $descripcion_error = $_POST['descripcion'];
@@ -40,13 +42,15 @@ if ($verifica == 1) {
   $folio_expediente = $_POST["folio_expediente"];
   $nombre_usuario = $_POST["usuario"];
   $subdireccion = $_POST["subdireccion"];
+  $tipo = $_POST["tipo"];
   $descripcion = $_POST["descripcion"];
-
+  
   $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br><br>" . 
           "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario se a generado una nueva incidencia con los siguientes datos: </h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" . "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" . 
-          "<h4 style='color: #722F37; font-weight: bold;'>$folio_expediente</h4>" . "<h4 style='color: #000000;'>NOMBRE DE USUARIO: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nombre_usuario</h4>" . "<h4 style='color: #000000;'>SUBDIRECCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$subdireccion</h4>" . "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>";
+          "<h4 style='color: #722F37; font-weight: bold;'>$folio_expediente</h4>" . "<h4 style='color: #000000;'>NOMBRE DE USUARIO: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nombre_usuario</h4>" . "<h4 style='color: #000000;'>SUBDIRECCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$subdireccion</h4>" . 
+          "<h4 style='color: #000000;'>TIPO DE FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$tipo</h4>" . "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>";
 
-  $asunto = "Incidencia Generada: " . $folio_incidencia;
+  $asunto = "Nueva Incidencia: " . $folio_incidencia;
 
   //Create an instance; passing `true` enables exceptions
   $mail = new PHPMailer(true);
@@ -70,9 +74,9 @@ if ($verifica == 1) {
       $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
       //Recipients
-      $mail->setFrom('dpye_principal@gmail.com', 'SIPPSIPPED - SISTEMA DE INCIDENCIAS');
-      $mail->addAddress('adrihespinoza@gmail.com');     //Add a recipient
-      $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
+      $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+      $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+      // $mail->addAddress = ('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
       // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
       // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
       // $mail->addReplyTo('info@example.com', 'Information');
@@ -112,6 +116,7 @@ if ($verifica == 1) {
   //      </script>");
   // } else {  }       
 }
+
 // else {
 //         echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=admin.php'>";
 //       }

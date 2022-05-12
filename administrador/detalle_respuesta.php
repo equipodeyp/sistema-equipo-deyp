@@ -107,9 +107,9 @@ if (isset($_POST['update'])) {
       $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
       //Recipients
-      $mail->setFrom('dpye_principal@gmail.com', 'SIPPSIPPED - SISTEMA DE INCIDENCIAS');
+      $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
       // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-      $mail->addAddress('adrihespinoza@gmail.com');              //Name is optional
+      $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
       // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
       // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
       // $mail->addReplyTo('info@example.com', 'Information');

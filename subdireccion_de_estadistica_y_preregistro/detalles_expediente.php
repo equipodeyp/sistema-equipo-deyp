@@ -25,11 +25,12 @@ $name = $_SESSION['usuario'];
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
-			<script src="../js/jquery-3.1.1.min.js"></script>
-			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-			<script src="../js/bootstrap.min.js"></script>
+		  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<script src="../js/bootstrap.min.js"></script>
   		<link href="../css/bootstrap.min.css" rel="stylesheet">
   		<link href="../css/bootstrap-theme.css" rel="stylesheet">
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
@@ -59,6 +60,7 @@ $name = $_SESSION['usuario'];
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+			$user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -73,6 +75,9 @@ $name = $_SESSION['usuario'];
     <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           		<ul>
+				   	<a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+            	</ul>
     </nav>
   </div>
   <div class="main bg-light">
@@ -267,7 +272,7 @@ $name = $_SESSION['usuario'];
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="contenedor">
 				<p>
-				<a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a>
+				<!-- <a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a> -->
 				</p>
 				<a href="menu.php" class="btn-flotante">REGRESAR</a>
 				</div>
