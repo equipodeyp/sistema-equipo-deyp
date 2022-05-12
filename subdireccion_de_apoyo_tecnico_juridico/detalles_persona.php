@@ -131,6 +131,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+      $user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -145,6 +146,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           		<ul>
+				   <?php
+		   				if ($user=='diana') {
+							echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+						";}
+					?>
+            	</ul>
     </nav>
   </div>
   <div class="main bg-light">
