@@ -185,15 +185,11 @@ $num_incidencia = 0 . $suma;
                   
                 <div class="col-md-6 mb-3">
                   <label>TIPO DE FALLA O ERROR<span></span></label>
-                  <select class="form-select form-select-lg" id="" name="tipo" required autofocus>
+                  <select class="form-select form-select-lg" id="" name="tipo" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="ACCESO">ACCESO</option>
-                    <option value="CAPTURA">CAPTURA</option>
-                    <option value="ELIMINAR REGISTRO">ELIMINAR REGISTRO</option>
-                    <option value="INFORMACÍON INCORRECTA">INFORMACÍON INCORRECTA</option>
+                    <option value="CAPTURA">CAPTURA DE LOS DATOS</option>
                     <option value="FUNCIONALIDAD">FUNCIONALIDAD</option>
-                    <option value="NO SE MUESTRA LA INFORMACIÓN">NO SE MUESTRA LA INFORMACIÓN</option>
-                    <option value="REALIZAR UNA CORRECCIÓN">REALIZAR UNA CORRECCIÓN</option>
                     <option value="OTRO">OTRO</option>
                   </select>
                 </div>

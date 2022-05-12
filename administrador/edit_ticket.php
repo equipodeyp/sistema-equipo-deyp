@@ -21,7 +21,7 @@ $area = $row_area['area'];
 
 $result_nombre = $mysqli->query($sentencia);
 $row_nombre=$result_nombre->fetch_assoc();
-			$nombre = $row_nombre['nombre'];
+$nombre = $row_nombre['nombre'];
 
 $result_apellido_p = $mysqli->query($sentencia);
 $row_apellido_p=$result_apellido_p->fetch_assoc();
@@ -57,7 +57,10 @@ if  (isset($_GET['id'])) {
     $usuario_atencion = $row['usuario_atencion'];
     $respuesta = $row['respuesta'];
     $estatus = $row['estatus'];
-    // echo $estatus;
+    $user = $row['usuario'];
+    $subdirec = $row['subdireccion'];
+
+    // echo $user;
     
 }
 }
@@ -187,12 +190,12 @@ if  (isset($_GET['id'])) {
 
                   <div class="col-md-6 mb-3">
                     <label>NOMBRE DEL USUARIO<span ></span></label>
-                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_nombre['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_p['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_m['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?> ">
+                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo $user;?> ">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label>SUBDIRECCIÓN ADSCRITA<span></span></label>
-                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> ">
+                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo $subdirec; ?> ">
                   </div>
 
                   <div class="row">

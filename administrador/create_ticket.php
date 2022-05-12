@@ -11,6 +11,11 @@ $name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$row_nombre = $row['nombre'];
+$apellido_p = $row['apellido_p'];
+$apellido_m = $row['apellido_m'];
+$name_user = $row_nombre . " " . $apellido_p . " " . $apellido_m;
+$full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML401, "UTF-8"));
 
 
 $fol_exp = $_GET['folio'];
@@ -20,7 +25,11 @@ $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC); 
 
 
-
+$sql_inc = "SELECT * FROM tickets WHERE usuario = '$full_name'";
+$result = mysqli_query($mysqli, $sql_inc);
+$rowcount = mysqli_num_rows( $result );
+$suma = $rowcount + 1;
+$num_incidencia = 0 . $suma;
  ?>
 
 
@@ -174,12 +183,8 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
                   <select class="form-select form-select-lg" id="" name="tipo" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="ACCESO">ACCESO</option>
-                    <option value="CAPTURA">CAPTURA</option>
-                    <option value="ELIMINAR REGISTRO">ELIMINAR REGISTRO</option>
-                    <option value="INFORMACÍON INCORRECTA">INFORMACÍON INCORRECTA</option>
+                    <option value="CAPTURA">CAPTURA DE LOS DATOS</option>
                     <option value="FUNCIONALIDAD">FUNCIONALIDAD</option>
-                    <option value="NO SE MUESTRA LA INFORMACIÓN">NO SE MUESTRA LA INFORMACIÓN</option>
-                    <option value="REALIZAR UNA CORRECCIÓN">REALIZAR UNA CORRECCIÓN</option>
                     <option value="OTRO">OTRO</option>
                   </select>
                 </div>
@@ -227,13 +232,14 @@ const  generateRandomString = (num) => {
         var numExp = separarFolio[3];
         var añoExp = separarFolio[4]
         var unidad = separarFolio[0]
-        var incidencia = "INC-"
+        var incidencia = "INC"
 
         const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let result1= Math.random().toString(36).substring(2,num);       
 
         var n1 = result1.toUpperCase();
-        var folioIncidencia = unidad + "-" + numExp + "-" + añoExp + "-" + incidencia + n1; 
+        // var folioIncidencia = unidad + "-" + numExp + "-" + añoExp + "-" + incidencia + n1; 
+        var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + folio; 
         document.getElementById("folio_reporte").value = folioIncidencia;
 
     }

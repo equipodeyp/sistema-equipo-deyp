@@ -70,6 +70,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
   		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link href="../css/bootstrap.min.css" rel="stylesheet">
   		<link href="../css/bootstrap-theme.css" rel="stylesheet">
+		  <script src="../js/bootstrap.min.js"></script>
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
       <script src="../js/jquery-3.1.1.min.js"></script>
@@ -99,6 +100,8 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../subdireccion_de_apoyo_tecnico_juridico/style/modal.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
 
 </head>
 <body >
@@ -126,6 +129,12 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           <ul>
+              <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'> <button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+              <!-- <a  href='create_ticket.php?folio=<?php echo $row_exp['fol_exp'];?>'><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>Incidencia</span></a> -->
+              <!-- <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">Glosario</span></a></li> -->
+              <!-- <li class="menu-items"><a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda</span></a></li> -->
+            </ul>
     </nav>
   </div>
   <div class="main bg-light">
@@ -133,7 +142,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
       <img src="../image/fiscalia.png" alt="" width="150" height="150">
       <img src="../image/ups2.png" alt="" width="1400" height="70">
       <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
-    </div>|
+    </div>
 <div class="wrap">
 
   <div class="secciones">
