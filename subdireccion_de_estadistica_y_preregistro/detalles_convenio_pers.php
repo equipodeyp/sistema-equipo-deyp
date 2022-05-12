@@ -10,6 +10,7 @@ if (!isset($name)) {
 }
 
 $id = $_GET['id'];
+// echo $id;
 // echo $folioexpediente;
 $consulta = "SELECT * FROM evaluacion_persona WHERE id = '$id'";
 $res_consulta = $mysqli->query($consulta);
@@ -100,7 +101,7 @@ $id_persona = $fila_consulta_uno ['id'];
       <div class="secciones">
         <article id="tab1">
           <div class="container">
-            <form class="container well form-horizontal" enctype= "multipart/form-data">
+            <form class="container well form-horizontal" method="POST" action="actualizar_convenio_persona.php?id=<?php echo $id; ?>" enctype= "multipart/form-data">
               <div class="row">
                 <div class="secciones form-horizontal sticky breadcrumb flat">
                   <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
@@ -142,7 +143,7 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
-                    <select id="SELECT_TIPO_CONVENIO" disabled class="form-select form-select-lg" name="tipo_convenio">
+                    <select id="SELECT_TIPO_CONVENIO"  class="form-select form-select-lg" name="tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
@@ -150,24 +151,24 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_FIRMA" for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_FIRMA" disabled class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
+                    <input id="INPUT_FECHA_FIRMA"  class="form-control" type="date" name="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_INICIO" disabled class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
+                    <input id="INPUT_FECHA_INICIO"  class="form-control" type="date" name="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                    <input id="INPUT_VIGENCIA" disabled class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input id="INPUT_VIGENCIA"  class="form-control" type="text" name="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_TERMINO" class="form-control" type="date" name="" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" disabled>
+                    <input id="INPUT_FECHA_TERMINO"  readonly class="form-control" type="date" name="" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" >
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
-                    <input id="INPUT_ID_CONVENIO" disabled class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                    <input id="INPUT_ID_CONVENIO"  class="form-control" type="text" name="id_convenio" value="<?php echo $fila_consulta['id_convenio']; ?>">
                   </div>
                 </div>
 
@@ -181,14 +182,13 @@ $id_persona = $fila_consulta_uno ['id'];
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea disabled name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
+                  <textarea id="input_observaciones" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['observaciones']; ?></textarea>
               </div>
 
               <div class="row">
                 <div>
-                    <br>
-                    <br>
-
+                  <br>
+                    <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
                 </div>
             </form>
           </div>
@@ -200,18 +200,13 @@ $id_persona = $fila_consulta_uno ['id'];
 <div class="contenedor">
 <a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$fila_consulta_uno['id']?>" class="btn-flotante">REGRESAR</a>
 </div>
+<script src="../js/evaluacion_individual.js" charset="utf-8"></script>
 </body>
 </html>
-
 <script type="text/javascript">
-
-
 var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT').value;
-
     function ocultarInfo() {
-
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
@@ -228,10 +223,7 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
         document.getElementById('INPUT_FECHA_TERMINO').style.display = "";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
-
         document.getElementById('row_observ').style.display = "";
-
-
       }
       else {
         document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
