@@ -66,6 +66,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+      $user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -80,6 +81,9 @@ $fila_consulta = $res_consulta->fetch_assoc();
       <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           		<ul>
+				   	      <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $fila_consulta['folioexpediente']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+            	</ul>
     </nav>
   </div>
   <div class="main bg-light">
@@ -107,7 +111,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <h3 style="text-align:center">EVALUACION DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
-                  <label>FOLIO DEL EXPEDIENTE</label>
+                  <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
                   <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
                 </div>
                 <div class="row">

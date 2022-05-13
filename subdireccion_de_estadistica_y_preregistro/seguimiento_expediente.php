@@ -132,6 +132,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+      $user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -146,6 +147,9 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
     <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
     </div>
     <nav class="menu-nav">
+           		<ul>
+				   	    <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $fila_expediente['fol_exp']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+            	</ul>
     </nav>
   </div>
   <div class="main bg-light">
@@ -175,7 +179,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                     <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
-                    <label for="expediente">ID DEL EXPEDIENTE</label>
+                    <label for="expediente">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
                     <input class="form-control" type="text" name="idexpediente" value="<?php echo $fila_expediente['fol_exp']; ?>" readonly>
                   </div>
                   <div class="col-md-6 mb-3 validar">
