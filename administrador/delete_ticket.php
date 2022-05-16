@@ -21,7 +21,7 @@
         } else{
                 echo ("<script type='text/javaScript'>
                 window.location.href='../administrador/tickets.php?folio=$resul_folio';
-                window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                window.alert('!!!!!Registro Eliminado¡¡¡¡¡')
                 </script>");
                 
                 

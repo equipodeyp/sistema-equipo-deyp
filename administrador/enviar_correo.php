@@ -17,7 +17,7 @@ require '../phpmailer/Exception.php';
 require '../phpmailer/PHPMailer.php';
 require '../phpmailer/SMTP.php';
 
-$sub = 2;
+$sub = 3;
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
@@ -174,4 +174,54 @@ else{
     echo "¡ Hubo un error en el envio del mensaje !";
 }
 
+
+
+
+
 ?>
+
+
+<?php
+// $json = '[
+//     {
+//         "id": "1",
+//         "name": "AZAEL OLIVAR GARCIA",
+//         "correo": "azolivarg@fiscaliaedomex.gob.mx"
+//     },
+//     {
+//         "id": "2",
+//         "name": "JESUS ALEJANDRO ARCHUNDIA ZEPEDA",
+//         "correo": "jearchundiaz@fiscaliaedomex.gob.mx"      
+//     },
+//     {
+//         "id": "3",
+//         "name": "ADRIANA HERNÁNDEZ ESPINOZA",
+//         "correo": "ahernandeze@fiscaliaedomex.gob.mx"      
+//     }
+// ]';
+// $user1 = "ADRIANA HERNÁNDEZ ESPINOZA";
+// // Como objetos
+// $datos = json_decode($json);
+
+//     foreach($datos as $fila) {
+
+//         if ($fila->name == $user1){
+
+        
+//         echo $fila->name;
+//         // echo $fila->vtas;
+//         // echo $fila->nomb_terc_;
+//     }
+//     }
+
+//     $a=5;
+//     $b=1;
+
+//     if ($a > $b) {
+//         echo "a es mayor que b";
+//     } elseif ($a == $b) {
+//         echo "a es igual que b";
+//     } else {
+//         echo "a es menor que b";
+//     }
+    ?>

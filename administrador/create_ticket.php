@@ -14,9 +14,8 @@ $row=$result->fetch_assoc();
 $row_nombre = $row['nombre'];
 $apellido_p = $row['apellido_p'];
 $apellido_m = $row['apellido_m'];
-$name_user = $row_nombre . " " . $apellido_p . " " . $apellido_m;
+$name_user = $row_nombre." ".$apellido_p." ". $apellido_m;
 $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML401, "UTF-8"));
-
 
 $fol_exp = $_GET['folio'];
 // echo $fol_exp;
@@ -30,6 +29,8 @@ $result = mysqli_query($mysqli, $sql_inc);
 $rowcount = mysqli_num_rows( $result );
 $suma = $rowcount + 1;
 $num_incidencia = 0 . $suma;
+
+"JONATHAN EDUARDO SANTIAGO JIMÉNEZ"
  ?>
 
 
@@ -111,6 +112,8 @@ $num_incidencia = 0 . $suma;
 				// $foto = ../image/user.png;
 				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
 			}
+
+      "JONATHAN EDUARDO SANTIAGO JIMÉNEZ "
 			// echo $genero;
 			?>
     <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
@@ -157,12 +160,12 @@ $num_incidencia = 0 . $suma;
 
                   <div class="col-md-6 mb-3">
                     <label>NOMBRE DEL USUARIO<span ></span></label>
-                    <input readonly class="form-control" id="" name="usuario" type="text" maxlength="50" value="<?php echo mb_strtoupper (html_entity_decode($row_nombre['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_p['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_m['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?> ">
+                    <input readonly class="form-control" id="" name="usuario" type="text" maxlength="50" value="<?php echo $full_name;?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label>SUBDIRECCIÓN ADSCRITA<span></span></label>
-                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> ">
+                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>">
                   </div>
 
                   <div class="alert alert-info">

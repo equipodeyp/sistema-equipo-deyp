@@ -52,70 +52,62 @@ if ($verifica == 1) {
 
   $asunto = "Nueva Incidencia: " . $folio_incidencia;
 
-  //Create an instance; passing `true` enables exceptions
-  $mail = new PHPMailer(true);
-
-  // try {
 
       
   $sent=" SELECT id, folio_expediente FROM tickets WHERE folio_expediente='$folio_expediente'";
   $resu = $mysqli->query($sent);
   $ro=$resu->fetch_assoc();
   $folio=$ro["fol_exp"];
-    if($result) {
-              //Server settings
-      $mail->SMTPDebug = 0;                      //Enable verbose debug output
-      $mail->isSMTP();                                            //Send using SMTP
-      $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-      $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-      $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-      $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-      //Recipients
-      $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-      $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-      // $mail->addAddress = ('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
-      // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-      // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-      // $mail->addReplyTo('info@example.com', 'Information');
-      // $mail->addCC('cc@example.com');
-      // $mail->addBCC('bcc@example.com');
 
-      //Attachments
-      // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-      // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+  
+    
+    if($sent) {
+    $mail = new PHPMailer(true);  
+              
+        if ($nombre_usuario = 'AZAEL OLIVAR GARCIA'){
+          //Server settings
+          $mail->SMTPDebug = 0;                      //Enable verbose debug output
+          $mail->isSMTP();                                            //Send using SMTP
+          $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+          $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+          $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+          $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+          $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+          $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-      //Content
-      $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = $asunto;
-      $mail->Body    = $body;
-      // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-      $mail->CharSet = 'UTF-8';
-      $mail->send();
-      echo $verifica;
-      echo ("<script type='text/javaScript'>
-                window.location.href='../administrador/tickets.php?folio=$fol_exp';
-                window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                </script>");
-      // } 
-  // catch (Exception $e) {
-  //     echo "¡ Hubo un error en el envio del mensaje !: {$mail->ErrorInfo}";
-  // }
+          //Recipients
+          $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+          // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+          // $mail->addAddress = ('azolivargg@fiscaliaedomex.gob.mx');              //Name is optional
+          $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+          // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+          // $mail->addReplyTo('info@example.com', 'Information');
+          // $mail->addCC('cc@example.com');
+          // $mail->addBCC('bcc@example.com');
 
-  // $sent=" SELECT id, folio_expediente FROM tickets WHERE folio_expediente='$folio_expediente'";
-  // $resu = $mysqli->query($sent);
-  // $ro=$resu->fetch_assoc();
-  // $folio=$ro["fol_exp"];
-  // if($result) {
-  //       echo $verifica;
-  //       echo ("<script type='text/javaScript'>
-  //        window.location.href='../administrador/tickets.php?folio=$fol_exp';
-  //        window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-  //      </script>");
-  // } else {  }       
-}
+          //Attachments
+          // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+          // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+          //Content
+          $mail->isHTML(true);                                  //Set email format to HTML
+          $mail->Subject = $asunto;
+          $mail->Body    = $body;
+          // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+          $mail->CharSet = 'UTF-8';
+          $mail->send();
+          echo $verifica;
+          echo ("<script type='text/javaScript'>
+                    window.location.href='../administrador/tickets.php?folio=$fol_exp';
+                    window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                    </script>");
+        }
+
+        
+
+      
+  }
 
 // else {
 //         echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=admin.php'>";
@@ -123,3 +115,4 @@ if ($verifica == 1) {
       // echo $folio;
 }
 ?>
+

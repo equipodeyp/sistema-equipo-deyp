@@ -278,12 +278,12 @@ if (isset($_POST['update'])) {
 
                   <div class="col-md-6 mb-3">
                     <label>NOMBRE DEL USUARIO<span ></span></label>
-                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_nombre['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_p['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_m['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?> " maxlength="50">
+                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_nombre['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?><?php echo mb_strtoupper (html_entity_decode($row_apellido_p['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?><?php echo mb_strtoupper (html_entity_decode($row_apellido_m['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?>" maxlength="50">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label>SUBDIRECCIÓN ADSCRITA<span></span></label>
-                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> ">
+                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?>">
                   </div>
 
                   <div class="row">
@@ -296,20 +296,20 @@ if (isset($_POST['update'])) {
 
                   <div class="col-md-6 mb-3">
                     <label>FOLIO DE LA INCIDENCIA<span></span></label>
-                    <input readonly class="form-control" id="" name="folio_reporte" type="text" value="<?php echo $folio_reporte; ?>">
+                    <input readonly class="form-control" id="" name="folio_reporte" type="text" value="<?php echo $folio_reporte;?>">
                   </div>
 
 
                 <div class="col-md-6 mb-3">
                     <label>TIPO DE FALLA O ERROR<span></span></label>
-                    <input readonly class="form-control" id="" name="tipo" type="text" value="<?php echo $tipo; ?>">
+                    <input readonly class="form-control" id="" name="tipo" type="text" value="<?php echo $tipo;?>">
                 </div>
 
                 <div class="row">
   			        <div id="">
   		  			</div>
                         <label>DESCRIPCIÓN BREVE DE LA FALLA O ERROR<span></span></label>
-                        <textarea disabled id="" name="descripcion" rows="8" cols="80" maxlength="300"><?php echo $descripcion; ?></textarea>
+                        <textarea disabled id="" name="descripcion" rows="8" cols="80" maxlength="300"><?php echo $descripcion;?></textarea>
   				</div>
 
                   
@@ -323,7 +323,7 @@ if (isset($_POST['update'])) {
 
                   <div class="col-md-6 mb-3">
                     <label>ESTATUS DE LA INCIDENCIA<span ></span></label>
-                    <input class="form-control" id="ESTATUS_INCIDENCIA" name="estatus" type="text" value="<?php echo $estatus; ?>" readonly>
+                    <input class="form-control" id="ESTATUS_INCIDENCIA" name="estatus" type="text" value="<?php echo $estatus;?>" readonly>
                   </div>
 
                   <div id="FECHA_ATENCION" class="col-md-6 mb-3">
@@ -333,14 +333,14 @@ if (isset($_POST['update'])) {
 
                 <div id="ATENCION" class="col-md-6 mb-3">
                   <label>USUARIO QUE ATIENDE LA INCIDENCIA<span></span></label>
-                  <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion; ?>" readonly>
+                  <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion;?>" readonly>
                 </div>
 
                 <div id="RESPUESTA" class="row">
                   <div id="footer">
                   </div>
                         <label>RESPUESTA A LA INCIDENCIA<span></span></label>
-                        <textarea disabled id="" name="respuesta" rows="8" cols="80" placeholder="" maxlength="300" required><?php echo $respuesta; ?></textarea>
+                        <textarea disabled id="" name="respuesta" rows="8" cols="80" placeholder="" maxlength="300" required><?php echo $respuesta;?></textarea>
                 </div>
 
 

@@ -73,7 +73,7 @@ if ($verifica == 1) {
       $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
       $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
       $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
-      // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+      // $mail->addAddress('aolivargarcia35@gmail.com');              //Name is optional
       // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
       // $mail->addReplyTo('info@example.com', 'Information');
       // $mail->addCC('cc@example.com');

@@ -1,11 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require '../phpmailer/Exception.php';
-require '../phpmailer/PHPMailer.php';
-require '../phpmailer/SMTP.php';
-
 /*require 'conexion.php';*/
 // error_reporting(0);
 include("conexion.php");
@@ -66,95 +59,9 @@ if  (isset($_GET['id'])) {
 }
 }
 
-$mail = new PHPMailer(true);
 
-if (isset($_POST['update'])) {    
-      $folio_incidencia = $_POST["folio_reporte"];
-      $folio_exp = $_POST["folio_expediente"];
-      $nom_usuario = $_POST["usuario"];
-      $sub = $_POST["subdireccion"];
-      $descripcion_falla = $_POST['descripcion'];
-      // echo $descripcion_falla;
-      $id = $_GET['id'];
-      $fecha_atencion= $_POST['fecha_atencion'];
-      $estatus = $_POST['estatus'];
-      $atendido_por= $_POST['atendido_por'];
-      $respuesta = $_POST['respuesta'];
 
-      $consul = "SELECT* FROM tickets WHERE id='$id'";
-      $resultado_consul = $mysqli->query($consul);
-      $fila_resul =  $resultado_consul->fetch_assoc();
-      $folio_resul = $fila_resul['folio_expediente'];
-      
-      $query = "UPDATE tickets set fecha_atencion = '$fecha_atencion', estatus = '$estatus', usuario_atencion = '$atendido_por', respuesta = '$respuesta' WHERE id=$id";
-      mysqli_query($mysqli, $query);
-      // echo $verifica;
 
-      $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br></br>" . 
-              "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario su incidencia a sido atendida con éxito, solicitamos de tu ayuda para corroborar la información en el SIPPSIPED.</h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" .
-              "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_exp</h4>" . "<h4 style='color: #000000;'>USUARIO QUE REPORTA LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nom_usuario</h4>" . "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>" .
-              "<h4 style='color: #000000;'>ESTATUS DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$estatus</h4>" . "<h4 style='color: #000000;'>FECHA Y HORA DE ATENCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$fecha_atencion</h4>" . "<h4 style='color: #000000;'>INCIDENCIA ATENDIDA POR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$atendido_por</h4>" . "<h4 style='color: #000000;'>RESPUESTA A LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$respuesta</h4>";
-
-      $asunto = "Respuesta de la incidencia: " . $folio_incidencia;
-
-      $mail->SMTPDebug = 0;                      //Enable verbose debug output
-      $mail->isSMTP();                                            //Send using SMTP
-      $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-      $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-      $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-      $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-      //Recipients
-      $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-      // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-      $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
-      // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-      // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-      // $mail->addReplyTo('info@example.com', 'Information');
-      // $mail->addCC('cc@example.com');
-      // $mail->addBCC('bcc@example.com');
-
-      //Attachments
-      // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-      // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-      //Content
-      $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = $asunto;
-      // $mail->Body    = '<b>¡ Hola !</b> Este es un mensaje de prueba...';
-      $mail->Body = $body;
-      // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-      $mail->CharSet = 'UTF-8';
-      $mail->send();
-      echo $verifica;
-      echo ("<script type='text/javaScript'>
-                window.location.href='tickets.php?folio=$folio_resul';
-                window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                </script>");
-      // } 
-    // catch (Exception $e) {
-    //     echo "¡ Hubo un error en el envio del mensaje !: {$mail->ErrorInfo}";
-    // }
-
-    // $sent=" SELECT id, folio_expediente FROM tickets WHERE folio_expediente='$folio_expediente'";
-    // $resu = $mysqli->query($sent);
-    // $ro=$resu->fetch_assoc();
-    // $folio=$ro["fol_exp"];
-    // if($result) {
-    //       echo $verifica;
-    //       echo ("<script type='text/javaScript'>
-    //        window.location.href='../administrador/tickets.php?folio=$fol_exp';
-    //        window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-    //      </script>");
-    // } else {  }   
-
-      // echo ("<script type='text/javaScript'>
-      //       window.location.href='tickets.php?folio=$folio_resul';
-      //       window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-      //       </script>");
-            } else {  }    
 
 ?>
 <!DOCTYPE html>
@@ -281,12 +188,12 @@ if (isset($_POST['update'])) {
 
                   <div class="col-md-6 mb-3">
                     <label>NOMBRE DEL USUARIO<span ></span></label>
-                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo $user;?> " maxlength="50">
+                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo $user;?>" maxlength="50">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label>SUBDIRECCIÓN ADSCRITA<span></span></label>
-                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo $subdirec; ?> ">
+                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo $subdirec; ?>">
                   </div>
 
                   <div class="row">

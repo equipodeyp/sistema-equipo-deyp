@@ -176,7 +176,7 @@ if  (isset($_GET['id'])) {
           </div>
 
     	    <div class="container">
-              <form class="container well form-horizontal" action="detalle_respuesta.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="respuesta_ticket.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
                   <div class="alert alert-info">
@@ -190,12 +190,12 @@ if  (isset($_GET['id'])) {
 
                   <div class="col-md-6 mb-3">
                     <label>NOMBRE DEL USUARIO<span ></span></label>
-                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo $user;?> ">
+                    <input readonly class="form-control" id="" name="usuario" type="text" value="<?php echo $user;?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label>SUBDIRECCIÓN ADSCRITA<span></span></label>
-                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo $subdirec; ?> ">
+                    <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo $subdirec; ?>">
                   </div>
 
                   <div class="row">
@@ -244,7 +244,7 @@ if  (isset($_GET['id'])) {
                     <option value="JONATHAN EDUARDO SANTIAGO JIMÉNEZ">JONATHAN EDUARDO SANTIAGO JIMÉNEZ</option>
                     <option value="AZAEL OLIVAR GARCIA">AZAEL OLIVAR GARCIA</option>
                   </select> -->
-                  <input readonly class="form-control" id="" name="atendido_por" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_nombre['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_p['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_m['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?> ">
+                  <input readonly class="form-control" id="" name="atendido_por" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_nombre['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_p['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> <?php echo mb_strtoupper (html_entity_decode($row_apellido_m['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?>">
                   </div>
 
                   <div class="col-md-6 mb-3" id="FECHA_HORA_ATENCION">
@@ -254,10 +254,19 @@ if  (isset($_GET['id'])) {
                   </div>
                 
 
-                <div class="col-md-6 mb-3" style="display: none">
+                <!-- <div class="col-md-6 mb-3">
                     <label>ESTATUS DE LA INCIDENCIA<span ></span></label>
                     <input class="form-control" id="" name="estatus" type="text" value="ATENDIDA" readonly>
                     <input  id="ESTATUS_INCIDENCIA" type="text" value="<?php echo $estatus; ?>" readonly>
+                </div> -->
+
+                <div class="col-md-6 mb-3">
+                  <label>ESTATUS DE LA INCIDENCIA<span></span></label>
+                  <select class="form-select form-select-lg" id="ESTATUS_INCIDENCIA" name="estatus" required type="text">
+                    <option disabled selected value="<?php echo $estatus; ?>"><?php echo $estatus; ?></option>
+                    <option value="ATENDIDA">ATENDIDA</option>
+                    <option value="CANCELADA">CANCELADA</option>
+                  </select>
                 </div>
 
                 <div class="row" id="RESPUESTA" >
@@ -313,15 +322,16 @@ ocultarInfo();
 </script>
 <script type="text/javascript">
 var estatus = document.getElementById('ESTATUS_INCIDENCIA').value;
-console.log(estatus);
+// console.log(estatus);
 function ocultarAtencion() {
 
-if (estatus === "ATENDIDA") {
+if (estatus === "ATENDIDA" || estatus === "CANCELADA") {
   document.getElementById('TEXTO').style.display = "";
   document.getElementById('FECHA_HORA_ATENCION').style.display = "none";
   document.getElementById('USUARIO_ATENCION').style.display = "none";
   document.getElementById('RESPUESTA').style.display = "none";
   document.getElementById('GUARDAR_RESPUESTA').style.display = "none";
+  document.getElementById('ESTATUS_INCIDENCIA').disabled = true;
 
 }
 // else {

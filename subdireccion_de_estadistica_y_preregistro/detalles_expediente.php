@@ -14,6 +14,7 @@ $name = $_SESSION['usuario'];
 	require 'conexion.php';
 
 	$fol_exp = $_GET['id'];
+	// echo $fol_exp;
 
 	$sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 	$resultado = $mysqli->query($sql);
@@ -76,7 +77,7 @@ $name = $_SESSION['usuario'];
     </div>
     <nav class="menu-nav">
            		<ul>
-				   	<a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+				   	<a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $fol_exp; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
             	</ul>
     </nav>
   </div>
