@@ -79,8 +79,6 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -120,9 +118,6 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('santiagoj@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
   
@@ -160,8 +155,6 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -200,9 +193,6 @@ if ($verifica == 1) {
         //Recipients
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -242,8 +232,6 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('dcuenca@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -283,8 +271,6 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
