@@ -91,7 +91,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     // echo $nom_usuario;
     $mail = new PHPMailer(true);
 
-            if ($nom_usuario == 'JONATHAN EDUARDO SANTIAGO JIMÉNEZ'){
+            if ($nom_usuario === 'JONATHAN EDUARDO SANTIAGO JIMÉNEZ'){
 
               ////////////////////////
               // echo 'hola';
@@ -107,7 +107,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
               $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
               // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
@@ -135,7 +135,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'GABRIELA PICHARDO GARCÍA') { 
+            elseif ($nom_usuario === 'GABRIELA PICHARDO GARCÍA') { 
               $mail->SMTPDebug = 0;                      //Enable verbose debug output
               $mail->isSMTP();                                            //Send using SMTP
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -148,7 +148,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
               $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
               // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
@@ -176,7 +176,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'AZAEL OLIVAR GARCIA') { 
+            elseif ($nom_usuario === 'AZAEL OLIVAR GARCIA') { 
               $mail->SMTPDebug = 0;                      //Enable verbose debug output
               $mail->isSMTP();                                            //Send using SMTP
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -189,7 +189,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
               $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
               // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
@@ -217,7 +217,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'DIRCE YERED CUENCA ESTRADA') { 
+            elseif ($nom_usuario === 'DIRCE YERED CUENCA ESTRADA') { 
             
             $mail->SMTPDebug = 0;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
@@ -231,7 +231,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
             //Recipients
             $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
             // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+            // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
             $mail->addAddress('dcuenca@fiscaliaedomex.gob.mx');              //Name is optional
             // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
             // $mail->addReplyTo('info@example.com', 'Information');
@@ -259,7 +259,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'JESÚS ALEJANDRO ARCHUNDIA ZEPEDA') { 
+            elseif ($nom_usuario === 'JESÚS ALEJANDRO ARCHUNDIA ZEPEDA') { 
               $mail->SMTPDebug = 0;                      //Enable verbose debug output
               $mail->isSMTP();                                            //Send using SMTP
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -272,7 +272,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
               $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
               // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
@@ -300,7 +300,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'ADRIANA HERNÁNDEZ ESPINOZA') { 
+            elseif ($nom_usuario === 'ADRIANA HERNÁNDEZ ESPINOZA') { 
               $mail->SMTPDebug = 0;                      //Enable verbose debug output
               $mail->isSMTP();                                            //Send using SMTP
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -341,7 +341,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'DIANA GONZÁLEZ VALLEJO') { 
+            elseif ($nom_usuario === 'DIANA GONZÁLEZ VALLEJO') { 
               $mail->SMTPDebug = 0;                      //Enable verbose debug output
               $mail->isSMTP();                                            //Send using SMTP
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -354,9 +354,9 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
-              $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
-              // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
+              $mail->addAddress('aolivargarcia35@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');
@@ -382,7 +382,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
 
 
 
-            elseif ($nom_usuario == 'JUAN GUILLERMO GUERRERO VARGAS') { 
+            elseif ($nom_usuario === 'JUAN GUILLERMO GUERRERO VARGAS') { 
               $mail->SMTPDebug = 0;                      //Enable verbose debug output
               $mail->isSMTP();                                            //Send using SMTP
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -395,9 +395,9 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
-              $mail->addAddress('jgguerrerov@fiscaliaedomex.gob.mx');              //Name is optional
-              // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('jgguerrerov@fiscaliaedomex.gob.mx');              //Name is optional
+              $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');

@@ -254,19 +254,17 @@ if  (isset($_GET['id'])) {
                   </div>
                 
 
-                <!-- <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3" id="ESTATUS">
                     <label>ESTATUS DE LA INCIDENCIA<span ></span></label>
-                    <input class="form-control" id="" name="estatus" type="text" value="ATENDIDA" readonly>
-                    <input  id="ESTATUS_INCIDENCIA" type="text" value="<?php echo $estatus; ?>" readonly>
-                </div> -->
+                    <!-- <input class="form-control" id="" name="estatus" type="text" value="ATENDIDA" readonly> -->
+                    <select class="form-select form-select-lg" name="estatus" required type="text" readonly>
+                      <option value="ATENDIDA">ATENDIDA</option>
+                      <option value="CANCELADA">CANCELADA</option>
+                    </select>
+                </div>
 
-                <div class="col-md-6 mb-3">
-                  <label>ESTATUS DE LA INCIDENCIA<span></span></label>
-                  <select class="form-select form-select-lg" id="ESTATUS_INCIDENCIA" name="estatus" required type="text">
-                    <option disabled selected value="<?php echo $estatus; ?>"><?php echo $estatus; ?></option>
-                    <option value="ATENDIDA">ATENDIDA</option>
-                    <option value="CANCELADA">CANCELADA</option>
-                  </select>
+                <div class="col-md-6 mb-3" style="display: none">
+                  <input class="form-control" id="ESTATUS_INCIDENCIA" type="text" value="<?php echo $estatus; ?>" readonly> 
                 </div>
 
                 <div class="row" id="RESPUESTA" >
@@ -304,23 +302,27 @@ var respuesta = document.getElementById('ESTATUS_INCIDENCIA').value;
     function ocultarInfo() {
 
       if (respuesta === "EN PROCESO" || respuesta === "" || respuesta === null) {
-
-        document.getElementById('FECHA_ATENCION').style.display = "none";
-        document.getElementById('ATENCION').style.display = "none";
-        document.getElementById('RESPUESTA').style.display = "none";
+        document.getElementById('USUARIO_ATENCION').style.display = "";
+        document.getElementById('FECHA_ATENCION').style.display = "";
+        document.getElementById('ESTATUS').style.display = "";
+        document.getElementById('RESPUESTA').style.display = "";
 
       }
       else {
-        document.getElementById('FECHA_ATENCION').style.display = "";
-        document.getElementById('ATENCION').style.display = "";
-        document.getElementById('RESPUESTA').style.display = "";
-
+        // console.log("hola");
+        document.getElementById('USUARIO_ATENCION').style.display = "none";
+        document.getElementById('FECHA_HORA_ATENCION').style.display = "none";
+        document.getElementById('ESTATUS').style.display = "none";
+        document.getElementById('RESPUESTA').style.display = "none";
+        document.getElementById('GUARDAR_RESPUESTA').style.display = "none";
+        document.getElementById('TEXTO').style.display = "";
       }
 
     }
 ocultarInfo();
 </script>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 var estatus = document.getElementById('ESTATUS_INCIDENCIA').value;
 // console.log(estatus);
 function ocultarAtencion() {
@@ -342,7 +344,7 @@ if (estatus === "ATENDIDA" || estatus === "CANCELADA") {
 // }
 
 }
-ocultarAtencion();
+ocultarAtencion(); -->
 
 </script>
 </body>

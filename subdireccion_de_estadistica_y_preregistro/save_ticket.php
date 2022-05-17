@@ -272,6 +272,7 @@ if ($verifica == 1) {
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
+        // $mail->addAddress('aolivargarcia35@gmail.com');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
   
