@@ -178,7 +178,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
 
-    
+
       <!--  -->
 
       <!--  -->
@@ -220,7 +220,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <input readonly class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCOPORACIÓN AL PROGRAMA</h3>
+                    <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID SOLICITUD<span class="required"></span></label>
@@ -407,7 +407,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </select>
                   </div>
 
-                  
+
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="INCAPAZ">INCAPAZ O MENOR DE EDAD<span class="required"></span></label>
@@ -985,7 +985,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 <script type="text/javascript">
 var calidadProcesoPenal = document.getElementById("CALIDAD_PERSONA_PROCEDIMIENTO").value;
 function disabledInput () {
-    
+
     if (calidadProcesoPenal === 'OTROS') {
       document.getElementById("otracalidadproceso").style.display = "";
     }
