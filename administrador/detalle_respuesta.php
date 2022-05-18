@@ -219,7 +219,7 @@ if  (isset($_GET['id'])) {
   			        <div id="">
   		  			</div>
                         <label>DESCRIPCIÓN BREVE DE LA FALLA O ERROR<span></span></label>
-                        <textarea disabled id="" name="descripcion" rows="8" cols="80" maxlength="300"><?php echo $descripcion; ?></textarea>
+                        <textarea disabled id="" name="descripcion" rows="8" cols="80" maxlength="400"><?php echo $descripcion; ?></textarea>
   				</div>
 
                   
@@ -250,7 +250,7 @@ if  (isset($_GET['id'])) {
                   <div id="footer">
                   </div>
                         <label>RESPUESTA A LA INCIDENCIA<span></span></label>
-                        <textarea disabled id="" name="respuesta" rows="8" cols="80" placeholder="" maxlength="300" required><?php echo $respuesta; ?></textarea>
+                        <textarea disabled id="" name="respuesta" rows="8" cols="80" placeholder="" maxlength="400" required><?php echo $respuesta; ?></textarea>
                 </div>
 
 

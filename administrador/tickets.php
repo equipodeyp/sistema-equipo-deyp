@@ -156,7 +156,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
                                 <!-- <th>Subdirección</th> -->
                                 <!-- <th>Tipo</th> -->
                                 <th>Estatus</th>
-                                <th>Detalle / Responder / Eliminar</th>
+                                <th>Detalle  /  Responder </th>
                                 
                                 
                             </tr>
@@ -185,9 +185,9 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
                                             <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn btn-info">
                                                 <i  class="fas fa-send"></i>
                                             </a>
-                                            <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
+                                            <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
                                                 <i class="fas fa-trash-alt"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
 

@@ -201,7 +201,7 @@ $num_incidencia = 0 . $suma;
   								<div id="footer">
   		  					</div>
                   <label>DESCRIPCIÓN BREVE DE LA FALLA O ERROR<span></span></label>
-                  <textarea id="" name="descripcion" rows="8" cols="80" placeholder="" maxlength="300" required></textarea>
+                  <textarea id="" name="descripcion" rows="8" cols="80" placeholder="" maxlength="400" required></textarea>
   							</div>
                 </div>
                 <div class="row">
