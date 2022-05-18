@@ -354,9 +354,9 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
-              // $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
-              $mail->addAddress('aolivargarcia35@gmail.com');              //Name is optional
+              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('aolivargarcia35@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');
@@ -395,9 +395,9 @@ $apellido_m = $row_apellido_m['apellido_m'];
               //Recipients
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-              // $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
-              // $mail->addAddress('jgguerrerov@fiscaliaedomex.gob.mx');              //Name is optional
-              $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+              $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');              //Name is optional
+              $mail->addAddress('jgguerrerov@fiscaliaedomex.gob.mx');              //Name is optional
+              // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');
