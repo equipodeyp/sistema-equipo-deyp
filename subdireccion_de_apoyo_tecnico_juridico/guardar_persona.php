@@ -17,6 +17,9 @@ if ($verifica == 1) {
   $filacheckautoridad = $rescheckautoridad->fetch_assoc();
   if ($filacheckautoridad > 0) {
     // echo "existe un registro";
+    $exp_rel =$_POST['sel_relacional'];
+
+    // echo $exp_rel;
     $id_solicitud = $filacheckautoridad['idsolicitud'];
     $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
     $nombre_autoridad = $filacheckautoridad['nombreautoridad'];
@@ -213,9 +216,9 @@ if ($verifica == 1) {
   $identificador = $_POST['ID_UNICO'];
   $fecha_captura = $_POST['FECHA_CAPTURA'];
   $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, calidadprocedimiento, especifique, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular,
-                                incapaz, folioexpediente, foto, estatus, identificador, fecha_captura)
+                                incapaz, folioexpediente, foto, estatus, identificador, fecha_captura, relacional, usuario)
                     VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$p_procedimiento', '$otroacalp', '$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular',
-                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador', '$fecha_captura')";
+                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador', '$fecha_captura', 'NO', '$name')";
   $res_dat_per = $mysqli->query($datos_persona);
   $qry = "select max(ID) As id from datospersonales";
   $result = $mysqli->query($qry);
@@ -228,7 +231,7 @@ if ($verifica == 1) {
   $resultado = $mysqli->query($sql);
 
 
-  // // sql para la inserccion de datos del sujeto de su origen
+  // sql para la inserccion de datos del sujeto de su origen
   $origen = "INSERT INTO datosorigen(lugardenacimiento, municipiodenacimiento, nacionalidadpersona, folioexpediente, id_persona)
               VALUES ('$name_est', '$name_muni', '$na_persona', '$fol_exp', '$id_persona')";
   $res_origen = $mysqli->query($origen);
@@ -282,6 +285,7 @@ if ($verifica == 1) {
   $res_det_inc = $mysqli->query($det_inc);
   // insertar comentarios de cambios
   $fechacomentario = date('y/m/d H:i:sa');
+
   if ($comment != '') {
     $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
                   VALUES ('$comment', '$fol_exp', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
@@ -296,6 +300,19 @@ if ($verifica == 1) {
   $validacion = 'false';
   date_default_timezone_set("America/Mexico_City");
   $fecha = date('y/m/d H:i:sa');
+  $fechacap = date('Y/m/d');
+
+  if ($exp_rel != '') {
+    echo "expediente relacional";
+    $dato_relacional = "UPDATE datospersonales SET relacional='SI' WHERE id = '$id_persona'";
+    $re_relacional = $mysqli->query($dato_relacional);
+    for ($i=0;$i<count($exp_rel);$i++){
+      $frel = $exp_rel[$i];
+      $rel = "INSERT INTO relacion_suj_exp(id_usuario, id_unico, folioexpediente, espedienterelacional, fecha_captura, usuario)
+      VALUES ('$id_persona', '$id_unico', '$fol_exp', '$frel', '$fechacap', '$name')";
+      $rrel = $mysqli->query($rel);
+    }
+  }
 
   $datos_validacion = "INSERT INTO validar_persona (folioexpediente, validacion, id_persona, fecha, id_unico)
                                            VALUES('$fol_exp', '$validacion', '$id_persona', '$fecha', '$id_unico')";
