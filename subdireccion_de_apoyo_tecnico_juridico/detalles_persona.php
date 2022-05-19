@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-// error_reporting(0);
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -22,7 +22,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
@@ -77,7 +77,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 $exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
 $rexprel1 = $mysqli->query($exprel1);
 $fexprel1 = $rexprel1->fetch_assoc();
-echo $fexprel1;
+// echo $fexprel1;
 ?>
 <!DOCTYPE html>
 <html lang="es">
