@@ -101,6 +101,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../subdireccion_de_apoyo_tecnico_juridico/style/modal.css" rel="stylesheet">
 
+
 </head>
 <body >
 <div class="contenedor">
@@ -657,6 +658,29 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             </select>
           </div>
         </div>
+        <div class="row" style="display:none;" id="expedientes_relacionales">
+          <div class="row">
+            <hr class="mb-4">
+          </div>
+          <div class="alert alert-info">
+            <h3 style="text-align:center">expedientes relacionados</h3>
+          </div>
+          <div class="col-md-12 mb-3 validar">
+            <label for="">SELECCIONA EXPEDIENTE(S) QUE SE RELACIONAN</label>
+            <br>
+            <br>
+            <select class="mul-select form-select form-select-lg mb-3" multiple="true" name="sel_relacional[]" style="width:950px">
+              <?php
+              $ex = "SELECT * FROM expediente";
+              $rex =$mysqli->query($ex);
+              while ($fex = $rex->fetch_assoc()) {
+                echo $fex['fol_exp'];
+                echo '<option value='.$fex['fol_exp'].'>"'.$fex['fol_exp'].'"</option>';
+              }
+              ?>
+            </select>
+          </div>
+        </div>
 
         <div class="row" style="display:none;" id="fotografia">
           <div class="row">
@@ -1017,6 +1041,7 @@ document.getElementById("next3").addEventListener("click", function() {
     document.getElementById("fotografia").style.display="";
     document.getElementById("comentarios").style.display="";
     document.getElementById("guardarfrm").style.display="";
+    document.getElementById("expedientes_relacionales").style.display="";
     document.getElementById("btnnext3").style.display="none";
 
 });
@@ -1052,7 +1077,21 @@ if (idUnico == null || idUnico == ""){
 
 
 </script>
-
+<script type="text/javascript">
+$(document).ready(function(){
+          $(".mul-select").select2({
+                  placeholder: "SELECCIONA", //placeholder
+                  tags: true,
+                  tokenSeparators: ['/',',',';'," "]
+              });
+          })
+</script>
 <script src="../js/pruebadisabled.js" charset="utf-8"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
