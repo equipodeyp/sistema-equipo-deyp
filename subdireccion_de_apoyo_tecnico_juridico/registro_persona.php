@@ -663,7 +663,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <hr class="mb-4">
           </div>
           <div class="alert alert-info">
-            <h3 style="text-align:center">expedientes relacionados</h3>
+            <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
           </div>
           <div class="col-md-12 mb-3 validar">
             <label for="">SELECCIONA EXPEDIENTE(S) QUE SE RELACIONAN</label>
@@ -671,7 +671,9 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <br>
             <select class="mul-select form-select form-select-lg mb-3" multiple="true" name="sel_relacional[]" style="width:950px">
               <?php
-              $ex = "SELECT * FROM expediente";
+              $ex = "SELECT * FROM expediente
+              INNER JOIN statusseguimiento ON expediente.fol_exp = statusseguimiento.folioexpediente
+              WHERE statusseguimiento.status = 'EN EJECUCION'";
               $rex =$mysqli->query($ex);
               while ($fex = $rex->fetch_assoc()) {
                 echo $fex['fol_exp'];
