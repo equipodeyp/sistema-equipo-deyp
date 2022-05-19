@@ -48,11 +48,8 @@ if ($verifica == 1) {
 
   $asunto = "Nueva Incidencia: " . $folio_incidencia;
 
-  //Create an instance; passing `true` enables exceptions
+  $num_user=rand(1,3);
   $mail = new PHPMailer(true);
-
-  // try {
-
       
   $sent=" SELECT id, folio_expediente FROM tickets WHERE folio_expediente='$folio_expediente'";
   $resu = $mysqli->query($sent);
@@ -61,245 +58,721 @@ if ($verifica == 1) {
 
   if($result) {
 
-      // $mail = new PHPMailer(true);
+      if ($num_user === 1){
 
-      if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
+          if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
-      //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+          //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
 
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
 
-      }
+          }
 
-      elseif ($nombre_usuario === 'JONATHAN EDUARDO SANTIAGO JIMÉNEZ'){
+          elseif ($nombre_usuario === 'JONATHAN EDUARDO SANTIAGO JIMÉNEZ'){
 
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-  
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        $mail->addAddress('santiagoj@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
-  
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-  
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
-      }
-        
-        elseif ($nombre_usuario === 'GABRIELA PICHARDO GARCÍA'){
-
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-  
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
-  
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-  
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
-      }
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
       
-
-        elseif ($nombre_usuario === 'ADRIANA HERNÁNDEZ ESPINOZA'){
-
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-  
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
-  
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-  
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx'); 
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
       
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
+            
+            elseif ($nombre_usuario === 'GABRIELA PICHARDO GARCÍA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx'); 
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
+          
+
+            elseif ($nombre_usuario === 'ADRIANA HERNÁNDEZ ESPINOZA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx'); 
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+
+          elseif ($nombre_usuario === 'DIRCE YERED CUENCA ESTRADA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('dcuenca@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx'); 
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+
+          elseif ($nombre_usuario === 'JESÚS ALEJANDRO ARCHUNDIA ZEPEDA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx'); 
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addAddress('aolivargarcia35@gmail.com');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+      }
+      elseif ($num_user === 2){
+
+        if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
+
+          //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+
+          }
+
+          elseif ($nombre_usuario === 'JONATHAN EDUARDO SANTIAGO JIMÉNEZ'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
+            
+            elseif ($nombre_usuario === 'GABRIELA PICHARDO GARCÍA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
+          
+
+            elseif ($nombre_usuario === 'ADRIANA HERNÁNDEZ ESPINOZA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+
+          elseif ($nombre_usuario === 'DIRCE YERED CUENCA ESTRADA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('dcuenca@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+
+          elseif ($nombre_usuario === 'JESÚS ALEJANDRO ARCHUNDIA ZEPEDA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addAddress('aolivargarcia35@gmail.com');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
       }
 
-      elseif ($nombre_usuario === 'DIRCE YERED CUENCA ESTRADA'){
+      elseif ($num_user === 3){
 
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-  
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        $mail->addAddress('dcuenca@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
-  
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-  
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
+        if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
+
+          //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+
+          }
+
+          elseif ($nombre_usuario === 'JONATHAN EDUARDO SANTIAGO JIMÉNEZ'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
       
-      }
-
-      elseif ($nombre_usuario === 'JESÚS ALEJANDRO ARCHUNDIA ZEPEDA'){
-
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-  
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
-        $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addAddress('aolivargarcia35@gmail.com');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
-  
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-  
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
       
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
+            
+            elseif ($nombre_usuario === 'GABRIELA PICHARDO GARCÍA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
+          
+
+            elseif ($nombre_usuario === 'ADRIANA HERNÁNDEZ ESPINOZA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+
+          elseif ($nombre_usuario === 'DIRCE YERED CUENCA ESTRADA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('dcuenca@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          
+          }
+
+          elseif ($nombre_usuario === 'JESÚS ALEJANDRO ARCHUNDIA ZEPEDA'){
+
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+            $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      
+            //Recipients
+            $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+            $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
+            $mail->addAddress('jearchundiaz@fiscaliaedomex.gob.mx');              //Name is optional
+            $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addAddress('aolivargarcia35@gmail.com');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+      
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $asunto;
+            $mail->Body    = $body;
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+            echo $verifica;
+            echo ("<script type='text/javaScript'>
+                      window.location.href='../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=$fol_exp';
+                      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                      </script>");
+          }
       }
-
-
-  }
-// else {
-//         echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=menu.php'>";
-//       }
-      // echo $folio;
+    }
 }
 ?>
