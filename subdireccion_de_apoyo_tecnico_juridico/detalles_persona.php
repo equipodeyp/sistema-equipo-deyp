@@ -889,12 +889,12 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         $exprel = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
                         $rexprel = $mysqli->query($exprel);
                         while ($fexprel = $rexprel->fetch_assoc()) {
-                            echo '<button style="width:250px" class="btn btn-danger" id="" disabled>'.$fexprel['espedienterelacional'].'</button> &nbsp &nbsp';
+                            echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fexprel['espedienterelacional'].'</b></button> &nbsp &nbsp';
                         }
                         if ($fexprel1) {
                           // echo "hay registro";
                         }else {
-                          echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA NO RELACIONADA CON EXPEDIENTE(S)</FONT></h3>";
+                          echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA NO RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
                         }
                         ?>
                   </div>
