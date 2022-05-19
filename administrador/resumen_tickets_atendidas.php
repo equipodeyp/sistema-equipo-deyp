@@ -121,9 +121,9 @@ $row=$result->fetch_assoc();
 
         <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" onclick="location.href='resumen_tickets_enproceso.php'"><span class="fas fa-book-open"></span><span class="tab-text">INCIDENCIAS EN PROCESO</span></a></li>
-          <li><a href="#" class="active" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">INCIDENCIAS ATENDIDAS</span></a></li>
-          <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">INCIDENCIAS CANCELADAS</span></a></li>
+          <li><a href="#" onclick="location.href='resumen_tickets_enproceso.php'"><span class="fas fa-book-open"></span><span class="tab-text">PROCESO</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
+          <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li>
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
         </ul>
 
@@ -132,9 +132,9 @@ $row=$result->fetch_assoc();
 
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a class="actived" href="../administrador/admin.php">REGISTROS</a>
-                <!-- <a href="../administrador/detalles_expediente.php?folio=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
-                <a class="actived">INCIDENCIAS</a> -->
+                <a  href="../administrador/admin.php">REGISTROS</a>
+                <a class="actived" href="#">RESUMEN INCIDENCIAS</a>
+                <!-- <a class="actived">INCIDENCIAS</a> -->
           </div>
     				<div class="container">
               <form class="container well form-horizontal" action="save_ticket.php" method="POST" enctype="multipart/form-data">
