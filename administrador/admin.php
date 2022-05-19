@@ -115,9 +115,9 @@ $row=$result->fetch_assoc();
       <nav class="menu-nav">
           <ul>
 
-              <!-- <li class="menu-items"><a  href="#" onclick="location.href='create_ticket.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>Reportar Incidencia</span></a></li> -->
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">Glosario</span></a>
-              <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda</span></a>
+              <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span> Incidencia</span></a></li>
+              <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a>
+              <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items"> Busqueda</span></a>
 
           </ul>
       </nav>
