@@ -130,11 +130,10 @@ $row=$result->fetch_assoc();
     		<div class="secciones">
     			<article id="tab1">
 
-          <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a href="../administrador/admin.php">REGISTROS</a>
+                <a  href="../administrador/admin.php">REGISTROS</a>
                 <a class="actived" href="#">RESUMEN INCIDENCIAS</a>
-                <!--<a class="actived">INCIDENCIAS</a> -->
+                <!-- <a class="actived">INCIDENCIAS</a> -->
           </div>
     				<div class="container">
               <form class="container well form-horizontal" action="save_ticket.php" method="POST" enctype="multipart/form-data">
