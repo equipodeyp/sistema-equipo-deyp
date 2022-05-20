@@ -199,7 +199,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <input readonly class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>">
                   </div>
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCOPORACIÓN AL PROGRAMA</h3>
+                    <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID SOLICITUD<span class="required"></span></label>
