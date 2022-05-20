@@ -132,7 +132,7 @@ $row=$result->fetch_assoc();
 
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a class="actived" href="../administrador/admin.php">REGISTROS</a>
+                <a href="../administrador/admin.php">REGISTROS</a>
                 <a class="actived" href="#">RESUMEN INCIDENCIAS</a>
                 <!--<a class="actived">INCIDENCIAS</a> -->
           </div>
@@ -141,7 +141,7 @@ $row=$result->fetch_assoc();
                 <div class="row">
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">TABLA DE INCIDENCIAS EN PROCESO</h3>
+                    <h3 style="text-align:center">TABLA DE INCIDENCIAS CANCELADAS</h3>
                   </div>
 
 
@@ -181,10 +181,10 @@ $row=$result->fetch_assoc();
                                         <td><?php echo $row['estatus']?></td>
                                         <td style="text-align:center">
 
-                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn btn-success">
+                                            <a href="detalle_respuesta_uno.php?id=<?php echo $row['id']?>" class="btn btn-success">
                                                 <i  class="fas fa-marker" ></i>
                                             </a>
-                                            <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                            <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
                                                 <i  class="fas fa-send"></i>
                                             </a>
                                             <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">

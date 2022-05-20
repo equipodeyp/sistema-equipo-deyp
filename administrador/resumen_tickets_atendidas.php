@@ -141,7 +141,7 @@ $row=$result->fetch_assoc();
                 <div class="row">
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">TABLA DE INCIDENCIAS EN PROCESO</h3>
+                    <h3 style="text-align:center">TABLA DE INCIDENCIAS ATENDIDAS</h3>
                   </div>
 
 
@@ -181,10 +181,10 @@ $row=$result->fetch_assoc();
                                         <td><?php echo $row['estatus']?></td>
                                         <td style="text-align:center">
 
-                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn btn-success">
+                                            <a href="detalle_respuesta_uno.php?id=<?php echo $row['id']?>" class="btn btn-success">
                                                 <i  class="fas fa-marker" ></i>
                                             </a>
-                                            <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                            <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
                                                 <i  class="fas fa-send"></i>
                                             </a>
                                             <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
