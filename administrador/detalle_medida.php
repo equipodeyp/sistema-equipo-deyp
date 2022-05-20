@@ -280,7 +280,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
            <div class="col-md-6 mb-3 validar" id="act_date_definitiva">
-              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
+              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php if ($rowmedida['date_provisional'] === '0000-00-00') {
                 echo $rowmedida['date_definitva'];
               }else {
@@ -289,7 +289,7 @@ $validacion = $fil_val['validacion'];
            </div>
 
            <div class="col-md-6 mb-3 validar" id="act_date_definitiva_def" style="display:none;">
-              <label for="FECHA_ACTUALIZACION_MEDIDA_DEF">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
+              <label for="FECHA_ACTUALIZACION_MEDIDA_DEF">FECHA DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_DEF" name="FECHA_ACTUALIZACION_MEDIDA_DEF" placeholder="" value="<?php echo $rowmedida['date_definitva']; ?>" type="date">
            </div>
 
