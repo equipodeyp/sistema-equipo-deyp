@@ -74,6 +74,10 @@ $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
 $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
 $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
+// CONSULTA DE LOS EXPEDIENTES relacionados
+$exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
+$rexprel1 = $mysqli->query($exprel1);
+$fexprel1 = $rexprel1->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -858,6 +862,31 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   </div>
                 </div>
 
+                <div class="row" id="expedientes_relacionales">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
+                  </div>
+                  <div class="col-md-12 mb-3 validar">
+                    <label for="">RELACION CON OTRO(S) EXPEDIENTE(S)</label>
+                    <br>
+                    <br>
+                        <?php
+                        $exprel = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
+                        $rexprel = $mysqli->query($exprel);
+                        while ($fexprel = $rexprel->fetch_assoc()) {
+                            echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fexprel['espedienterelacional'].'</b></button> &nbsp &nbsp';
+                        }
+                        if ($fexprel1) {
+                          // echo "hay registro";
+                        }else {
+                          echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA NO RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                        }
+                        ?>
+                  </div>
+                </div>
 
                 <div class="row">
                   <div class="row">
