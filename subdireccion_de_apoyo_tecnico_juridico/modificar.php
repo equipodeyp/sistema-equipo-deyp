@@ -83,6 +83,13 @@ $row=$result->fetch_assoc();
 							echo "<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
 						";}
 					?>
+
+
+          <?php
+         if ($user=='diana') {
+         echo "<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>FORMATOS</button> </a>
+       ";}
+     ?>
             	</ul>
     </nav>
   </div>
