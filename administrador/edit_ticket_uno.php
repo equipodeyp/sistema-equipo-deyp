@@ -170,13 +170,14 @@ if  (isset($_GET['id'])) {
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../administrador/admin.php">REGISTROS</a>
-                <a class="actived" href="#">RESUMEN INCIDENCIAS</a>
+                <a href="../administrador/resumen_tickets_enproceso.php">RESUMEN INCIDENCIAS</a>
+                <a class="actived" href="#">RESPONDER INCIDENCIA</a>
                 <!-- <a href="../administrador/tickets.php?folio=<?php echo $folio_expediente; ?>">INCIDENCIAS</a>
                 <a class="actived">RESPONDER INCIDENCIA</a> -->
           </div>
 
     	    <div class="container">
-              <form class="container well form-horizontal" action="respuesta_ticket.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="respuesta_ticket_uno.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
                   <div class="alert alert-info">
@@ -308,7 +309,7 @@ var respuesta = document.getElementById('ESTATUS_INCIDENCIA').value;
         document.getElementById('RESPUESTA').style.display = "";
 
       }
-      else {
+      else if(respuesta === "CANCELADA" || respuesta === "ATENDIDA") {
         // console.log("hola");
         document.getElementById('USUARIO_ATENCION').style.display = "none";
         document.getElementById('FECHA_HORA_ATENCION').style.display = "none";

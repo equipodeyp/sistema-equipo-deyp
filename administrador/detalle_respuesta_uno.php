@@ -168,7 +168,8 @@ if  (isset($_GET['id'])) {
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../administrador/admin.php">REGISTROS</a>
-                <a class="actived" href="#">RESUMEN INCIDENCIAS</a>
+                <a href="../administrador/resumen_tickets_enproceso.php">RESUMEN INCIDENCIAS</a>
+                <a class="actived" href="#">DETALLE INCIDENCIA</a>
                 <!-- <a href="../administrador/tickets.php?folio=<?php echo $folio_expediente; ?>">INCIDENCIAS</a>
                 <a >DETALLE DE LA INCIDENCIA</a> -->
           </div>
