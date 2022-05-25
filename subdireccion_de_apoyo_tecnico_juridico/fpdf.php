@@ -19,24 +19,8 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
-// $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
-// $resultado = $mysqli->query($sql);
-// $row = $resultado->fetch_array(MYSQLI_ASSOC);
-
-
-//
-// $sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
-// $result = mysqli_query($mysqli, $sql);
-// $rowcount = mysqli_num_rows( $result );
-// $suma = $rowcount + 1;
-// $num_incidencia = 0 . $suma;
-// // echo $num_incidencia;
-
-
 
  ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -127,163 +111,26 @@ $fol_exp = $_GET['folio'];
     <nav class="menu-nav">
     </nav>
   </div>
-  <div class="main bg-light">
+  <!-- <div class="main bg-light">
     <div class="barra">
         <img src="../image/fiscalia.png" alt="" width="150" height="150">
         <img src="../image/ups2.png" alt="" width="1400" height="70">
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
-      <div class="wrap">
+      <div class="wrap"> -->
 
-    		<ul class="tabs">
+    		<!-- <ul class="tabs">
           <li><a href="#" class="active" onclick="location.href='crear_formato.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">FORMATOS</span></a></li>
         <!-- <li><a href="#" onclick="location.href='tickets.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INCIDENCIAS GENERADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
-    		</ul>
-
-    		<div class="secciones">
-    			<article id="tab1">
-
-          <!-- menu de navegacion de la parte de arriba -->
-          <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
-                <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
-                <a class="actived">LISTA DE FORMATOS</a>
-          </div>
-    				<div class="container">
-              <form class="container well form-horizontal" action="save_ticket.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
-                <div class="row">
-
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">FORMATOS DISPONIBLES POR EXPEDIENTE</h3>
-                  </div>
-
-                  <div>
-
-                    <table class="table table-bordered" id="table-formatos">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Nombre del Archivo</th>
-                                <!-- <th>Generar archivo</th> -->
-
-                        </thead>
-                        <tbody>
-                          <?php
-                          echo "<tr>";
-                            echo "<th>"; echo "1"; echo "</th>";
-                            echo "<th>"; echo "SINTESIS DE SOLICITUD"; echo "</th>";
-                            // echo "<th>"; echo "BOTON"; echo "</th>";
-                            //  <?php
-
-
-                  					?>
-                        </tbody>
-                    </table>
-
-                    <?php
-                          echo "<a style='text-align:center' href='../subdireccion_de_apoyo_tecnico_juridico/fpdf.php?folio=$fol_exp'><button type='button' class='btn btn-light'> GENERAR ARCHIVO</button> </a>	";
-                            ?>
-                            <!-- [
-                          }
-                            // para usar los botones
-                            responsive: "true",
-                            dom: 'Bfrtilp',
-                            buttons:[
-                          {
-                            extend:    'excelHtml5',
-                            text:      '<i class="fas fa-file-excel"></i> ',
-                            titleAttr: 'Exportar a Excel',
-                            className: 'btn btn-success'
-                          },
-                          {
-                            extend:    'pdfHtml5',
-                            text:      '<i class="fas fa-file-pdf"></i> ',
-                            titleAttr: 'Exportar a PDF',
-                            className: 'btn btn-danger'
-                          },
-                          {
-                            extend:    'print',
-                            text:      '<i class="fa fa-print"></i> ',
-                            titleAttr: 'Imprimir',
-                            className: 'btn btn-info'
-                          },
-                        ]
-                        });
-                    }); -->
-                </div>
-
-
-                <div class="alert alert-info">
-                  <h3 style="text-align:center">FORMATOS DISPONIBLES POR PERSONA</h3>
-                </div>
-
-                <div>
-
-                  <table class="table table-bordered" id="table-formatos">
-                      <thead>
-                          <tr>
-                              <th>No.</th>
-                              <th>Nombre del Archivo</th>
-                              <!-- <th>Generar archivo</th> -->
-
-                      </thead>
-                      <tbody>
-                        <?php
-                        echo "<tr>";
-                          echo "<th>"; echo "1"; echo "</th>";
-                          echo "<th>"; echo "VALORACIÓN JURÍDICA"; echo "</th>";
-                          // echo "<th>"; echo "BOTON"; echo "</th>";
-                        echo "</tr>";
-                        ?>
-                      </tbody>
-
-                  </table>
-
-                  <?php
-                        echo "<a style='text-align:center' href='fpdf.php?folio=$fol_exp'><button type='button' class='btn btn-light'> GENERAR ARCHIVO</button> </a>	";
-                          ?>
-              </div>
+    		</ul> -->
 
 
 
+<?php
+include 'fpdf.php'; // Incluímos la clase fpdf.php para poder utilizar sus métodos para generar nuestro pdf
 
-
-
-
-
-
-  </div>
-</div>
-<div class="contenedor">
-
-<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">REGRESAR</a>
-
-</div>
-
-<script type="text/javascript">
-
-const  generateRandomString = (num) => {
-
-        var separarFolio = [];
-        var folio = document.getElementById('folio_expediente').value;
-        separarFolio = folio.split("/");
-        var numExp = separarFolio[3];
-        var añoExp = separarFolio[4]
-        var unidad = separarFolio[0]
-        var incidencia = "INC"
-
-        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result1= Math.random().toString(36).substring(2,num);
-
-        var n1 = result1.toUpperCase();
-        // var folioIncidencia = unidad + "-" + numExp + "-" + añoExp + "-" + incidencia + n1;
-        var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + folio;
-        document.getElementById("folio_reporte").value = folioIncidencia;
-
-    }
-
-generateRandomString(7);
-</script>
-</body>
-</html>
+$pdf = new FPDF();
+$pdf->AliasNbPages();
+$pdf->Output();
+?>

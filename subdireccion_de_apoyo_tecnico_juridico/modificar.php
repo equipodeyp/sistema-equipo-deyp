@@ -87,7 +87,7 @@ $row=$result->fetch_assoc();
 
           <?php
          if ($user=='diana') {
-         echo "<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>FORMATOS</button> </a>
+         echo "<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>GENERACIÓN DE<br>FORMATO</button> </a>
        ";}
      ?>
             	</ul>
