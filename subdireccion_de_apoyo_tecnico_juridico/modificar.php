@@ -100,7 +100,7 @@ $row=$result->fetch_assoc();
 			<img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
 
-		<!-- folio del expediente -->
+
 
 <div class="wrap">
 
