@@ -5,7 +5,7 @@
         function Header(){
             $this->SetFont("Arial", "", 12);
             $this->Image("../image/formatos/lge.png", 0, 0);
-            $this->Cell(6);
+            $this->Cell(8);
             $this->Cell(10, 2, utf8_decode("FISCALÍA GENERAL DE JUSTICIA DEL ESTADO DE MÉXICO"), 1, 1, 'C');
 
             // -$this->Image("../image/formatos/ups5.png", 5, 5);
