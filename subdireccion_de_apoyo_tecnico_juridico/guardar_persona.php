@@ -11,13 +11,13 @@ if ($verifica == 1) {
   $row=$result->fetch_assoc();
   // carga de datsos
   $fol_exp = $_GET['folio'];   //variable del folio al que se relaciona
+  $exp_rel =$_POST['sel_relacional'];
   // datos de la autoridad
   $checkautoridad = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp'";
   $rescheckautoridad = $mysqli->query($checkautoridad);
   $filacheckautoridad = $rescheckautoridad->fetch_assoc();
   if ($filacheckautoridad > 0) {
     // echo "existe un registro";
-    $exp_rel =$_POST['sel_relacional'];
 
     // echo $exp_rel;
     $id_solicitud = $filacheckautoridad['idsolicitud'];
