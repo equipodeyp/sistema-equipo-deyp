@@ -86,7 +86,7 @@ while ($fmas = $rmas->fetch_assoc()) {
   }
 }
 echo "<tr bgcolor= 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalex['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotaleje['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalcancel['t']; echo "</td>";

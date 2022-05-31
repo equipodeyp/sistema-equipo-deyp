@@ -45,7 +45,7 @@ $rautt2022 = $mysqli->query($autt2022);
 $fautt2022 = $rautt2022->fetch_assoc();
 //
 echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fautt2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fautt2022['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $total = $fautt2021['t'] + $fautt2022['t']; echo "</td>";

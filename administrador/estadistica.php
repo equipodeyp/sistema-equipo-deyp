@@ -171,7 +171,7 @@ $row=$result->fetch_assoc();
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 style="text-align:center" class="modal-title" id="myModalLabel1">GLOSARIO SIPPSIPPED</h4>
+                <h2 style="text-align:center" class="modal-title" id="myModalLabel1">MEDIDAS</h2>
               </div>
               <div class="modal-body">
                 <div className="modal">
@@ -182,11 +182,11 @@ $row=$result->fetch_assoc();
                           <thead>
                             <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO OTORGADAS</h3>
                             <tr>
-                              <th>CLASIFICACION DE LA MEDIDA</th>
-                              <th >EN EJECUCION</th>
-                              <th>EJECUTADA</th>
-                              <th>CANCELADA</th>
-                              <th>TOTAL</th>
+                              <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
+                              <th style="text-align:center">EN EJECUCION</th>
+                              <th style="text-align:center">EJECUTADA</th>
+                              <th style="text-align:center">CANCELADA</th>
+                              <th style="text-align:center">TOTAL</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -205,16 +205,16 @@ $row=$result->fetch_assoc();
                           <thead>
                             <h3 style="text-align:center">MEDIDAS DE APOYO EJECUTADAS</h3>
                             <tr>
-                              <th  style="text-align:center"rowspan="2">concepto</th>
+                              <th  style="text-align:center"rowspan="2">CONCEPTO</th>
                               <th  style="text-align:center"colspan="6">2022</th>
                             </tr>
                             <tr>
-                              <th style="text-align:center">enero</th>
-                              <th style="text-align:center">febrero</th>
-                              <th style="text-align:center">marzo</th>
-                              <th style="text-align:center">abril</th>
-                              <th style="text-align:center">mayo</th>
-                              <th style="text-align:center">acumulado</th>
+                              <th style="text-align:center">ENERO</th>
+                              <th style="text-align:center">FEBRERO</th>
+                              <th style="text-align:center">MARZO</th>
+                              <th style="text-align:center">ABRIL</th>
+                              <th style="text-align:center">MAYO</th>
+                              <th style="text-align:center">ACUMULADO</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -225,16 +225,16 @@ $row=$result->fetch_assoc();
                         </table>
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                       <div class="">
                         <table id="ejecutadasmunicipio" border="1px" cellspacing="0" width="100%" bordered>
                           <thead>
                             <h3 style="text-align:center">MEDIDAS DE APOYO EJECUTADAS POR MUNICIPIO</h3>
                             <tr>
                               <th style="text-align:center">MUNICIPIO</th>
-                              <th style="text-align:center">asistencia</th>
-                              <th style="text-align:center">resguardo</th>
-                              <th style="text-align:center">total</th>
+                              <th style="text-align:center">ASISTENCIA</th>
+                              <th style="text-align:center">RESGUARDO</th>
+                              <th style="text-align:center">TOTAL</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -253,11 +253,11 @@ $row=$result->fetch_assoc();
                           <thead>
                             <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DE ASISTENCIA</h3>
                             <tr>
-                              <th style="text-align:center">CLASIFICACION de la MEDIDA</th>
-                              <th style="text-align:center">en EJECUCION</th>
+                              <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
+                              <th style="text-align:center">EN EJECUCION</th>
                               <th style="text-align:center">EJECUTADA</th>
                               <th style="text-align:center">CANCELADA</th>
-                              <th style="text-align:center">total</th>
+                              <th style="text-align:center">TOTAL</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -272,13 +272,13 @@ $row=$result->fetch_assoc();
                       <div class="">
                         <table id="medidasresguardo" border="1px" cellspacing="0" width="100%" bordered>
                           <thead>
-                            <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DE resguardo</h3>
+                            <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DE RESGUARDO</h3>
                             <tr>
-                              <th style="text-align:center">CLASIFICACION de la MEDIDA</th>
-                              <th style="text-align:center">en EJECUCION</th>
+                              <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
+                              <th style="text-align:center">EN EJECUCION</th>
                               <th style="text-align:center">EJECUTADA</th>
                               <th style="text-align:center">CANCELADA</th>
-                              <th style="text-align:center">total</th>
+                              <th style="text-align:center">TOTAL</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -293,8 +293,8 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
               <div class="modal-footer">
-                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarmedidas();">Exportar a Excel</button>
-                <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarmedidas();">EXPORTAR</button>
+                <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@ $row=$result->fetch_assoc();
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+                <h2 style="text-align:center" class="modal-title" id="myModalLabel">EXPEDIENTES</h2>
               </div>
               <div class="modal-body">
                 <div className="modal">
@@ -340,7 +340,7 @@ $row=$result->fetch_assoc();
                           <thead>
                             <!-- <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3> -->
                             <tr>
-                              <th style="text-align:center">sede</th>
+                              <th style="text-align:center">SEDE</th>
                               <th style="text-align:center">2021</th>
                               <th style="text-align:center">2022</th>
                               <th style="text-align:center">TOTAL</th>
@@ -361,7 +361,7 @@ $row=$result->fetch_assoc();
                           <thead>
                             <!-- <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3> -->
                             <tr>
-                              <th style="text-align:center">delito principal</th>
+                              <th style="text-align:center">DELITO PRINCIPAL</th>
                               <th style="text-align:center">2021</th>
                               <th style="text-align:center">2022</th>
                               <th style="text-align:center">TOTAL</th>
@@ -416,7 +416,7 @@ $row=$result->fetch_assoc();
                           </tbody>
                         </table>
                       </div>
-                      <div class="col-lg-6">
+                      <div class="col-lg-12">
                         <div class="">
                           <table id="procedemientorecurso" border="1px" cellspacing="0" width="100%" bordered>
                             <thead>
@@ -441,8 +441,8 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
               <div class="modal-footer">
-                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarexpedientes();">Exportar a Excel</button>
-                <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarexpedientes();">EXPORTAR</button>
+                <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
               </div>
             </div>
           </div>
@@ -454,7 +454,7 @@ $row=$result->fetch_assoc();
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+                <h2 style="text-align:center" class="modal-title" id="myModalLabel">RESUMEN</h2>
               </div>
               <div class="modal-body">
                 <div className="modal">
@@ -497,8 +497,8 @@ $row=$result->fetch_assoc();
                         <table id="resumenprograma" border="1px" cellspacing="0" width="100%" bordered>
                           <thead>
                             <tr>
-                              <th>concepto</th>
-                              <th>total</th>
+                              <th style="text-align:center">CONCEPTO</th>
+                              <th style="text-align:center">TOTAL</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -513,8 +513,8 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
               <div class="modal-footer">
-                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">Exportar a Excel</button>
-                <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">EXPORTAR</button>
+                <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
               </div>
             </div>
           </div>
@@ -526,7 +526,7 @@ $row=$result->fetch_assoc();
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+                <h2 style="text-align:center" class="modal-title" id="myModalLabel">RESUMEN DIARIO</h2>
               </div>
               <div class="modal-body">
                 <div className="modal">
@@ -566,8 +566,8 @@ $row=$result->fetch_assoc();
                         <thead>
                           <h3></h3>
                           <tr>
-                            <th>CONCEPTO</th>
-                            <th>TOTAL</th>
+                            <th style="text-align:center">CONCEPTO</th>
+                            <th style="text-align:center">TOTAL</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -582,8 +582,8 @@ $row=$result->fetch_assoc();
                         <thead>
                           <h3></h3>
                           <tr>
-                            <th>Estatus de los Expedientes de Protección</th>
-                            <th>TOTAL</th>
+                            <th style="text-align:center">ESTATUS DE LOS EXPEDIENTES DE PROTECCIÓN</th>
+                            <th style="text-align:center">TOTAL</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -598,8 +598,8 @@ $row=$result->fetch_assoc();
                         <thead>
                           <h3></h3>
                           <tr>
-                            <th>Estatus de las Personas que solicitaron Incorporarse al Programa</th>
-                            <th>TOTAL</th>
+                            <th style="text-align:center">ESTATUS DE LAS PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</th>
+                            <th style="text-align:center">TOTAL</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -616,11 +616,11 @@ $row=$result->fetch_assoc();
                         <thead>
                           <h3></h3>
                           <tr>
-                            <th>Estatus de las Medidas de apoyo dictaminadas</th>
-                            <th>EN EJECUCION</th>
-                            <th>EJECUTADA</th>
-                            <th>CANCELADA</th>
-                            <th>TOTAL</th>
+                            <th style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DICTAMINADAS</th>
+                            <th style="text-align:center">EN EJECUCION</th>
+                            <th style="text-align:center">EJECUTADA</th>
+                            <th style="text-align:center">CANCELADA</th>
+                            <th style="text-align:center">TOTAL</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -635,8 +635,8 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
               <div class="modal-footer">
-                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">Exportar a Excel</button>
-                <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">EXPORTAR</button>
+                <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
               </div>
             </div>
           </div>
@@ -676,28 +676,28 @@ $row=$result->fetch_assoc();
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h4>
+          <h2 style="text-align:center" class="modal-title" id="myModalLabel">SOLICITUDES</h2>
         </div>
         <div class="modal-body">
           <div className="modal">
-            <!-- <h3 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h3> -->
+            <h3 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h3>
             <div class="row">
               <div class="col-lg-12">
                 <div class="table-responsive">
                   <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
                     <thead>
                       <tr >
-                        <th style="text-align:center" rowspan="2">concepto</th>
+                        <th style="text-align:center" rowspan="2">CONCEPTO</th>
                         <th style="text-align:center" rowspan="2">2021</th>
                         <th style="text-align:center" colspan="5">2022</th>
-                        <th style="text-align:center" rowspan="2">acumulado</th>
+                        <th style="text-align:center" rowspan="2">ACUMULADO</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center">enero</th>
-                        <th style="text-align:center">febrero</th>
-                        <th style="text-align:center">marzo</th>
-                        <th style="text-align:center">abril</th>
-                        <th style="text-align:center">mayo</th>
+                        <th style="text-align:center">ENERO</th>
+                        <th style="text-align:center">FEBRERO</th>
+                        <th style="text-align:center">MARZO</th>
+                        <th style="text-align:center">ABRIL</th>
+                        <th style="text-align:center">MAYO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -717,17 +717,17 @@ $row=$result->fetch_assoc();
                     <thead>
                       <!-- <h3 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h3> -->
                       <tr >
-                        <th style="text-align:center" rowspan="2">concepto</th>
+                        <th style="text-align:center" rowspan="2">CONCEPTO</th>
                         <th style="text-align:center" rowspan="2">2021</th>
                         <th style="text-align:center" colspan="5">2022</th>
-                        <th style="text-align:center" rowspan="2">acumulado</th>
+                        <th style="text-align:center" rowspan="2">ACUMULADO</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center">enero</th>
-                        <th style="text-align:center">febrero</th>
-                        <th style="text-align:center">marzo</th>
-                        <th style="text-align:center">abril</th>
-                        <th style="text-align:center">mayo</th>
+                        <th style="text-align:center">ENERO</th>
+                        <th style="text-align:center">FEBRERO</th>
+                        <th style="text-align:center">MARZO</th>
+                        <th style="text-align:center">ABRIL</th>
+                        <th style="text-align:center">MAYO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -742,8 +742,8 @@ $row=$result->fetch_assoc();
           </div>
         </div>
         <div class="modal-footer">
-          <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarExcelv2();">Exportar a Excel</button>
-          <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarExcelv2();">EXPORTAR</button>
+          <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
         </div>
       </div>
     </div>
@@ -755,7 +755,7 @@ $row=$result->fetch_assoc();
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h2 style="text-align:center" class="modal-title" id="myModalLabel">PERSONAS</h2>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -772,14 +772,14 @@ $row=$result->fetch_assoc();
                       <tr>
                         <th style="text-align:center" rowspan="2">2021</th>
                         <th style="text-align:center" style="text-align:center" colspan="5">2022</th>
-                        <th style="text-align:center" style="text-align:center" rowspan="2">total</th>
+                        <th style="text-align:center" style="text-align:center" rowspan="2">TOTAL</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center">enero</th>
-                        <th style="text-align:center">febrero</th>
-                        <th style="text-align:center">marzo</th>
-                        <th style="text-align:center">abril</th>
-                        <th style="text-align:center">mayo</th>
+                        <th style="text-align:center">ENERO</th>
+                        <th style="text-align:center">FEBRERO</th>
+                        <th style="text-align:center">MARZO</th>
+                        <th style="text-align:center">ABRIL</th>
+                        <th style="text-align:center">MAYO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -798,13 +798,13 @@ $row=$result->fetch_assoc();
                     <thead>
                       <h3 style="text-align:center">ESTATUS DE LAS PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</h3>
                       <tr>
-                        <th rowspan="2" style="text-align:center">estatus en el programa</th>
-                        <th colspan="3" style="text-align:center">periodo de solicitud de INCORPORACIÓN</th>
+                        <th rowspan="2" style="text-align:center">ESTATUS EN EL PROGRAMA</th>
+                        <th colspan="3" style="text-align:center">PERIODO DE SOLICITUD DE INCORPORACIÓN</th>
                       </tr>
                       <tr>
                         <th style="text-align:center">2021</th>
                         <th style="text-align:center">2022</th>
-                        <th style="text-align:center">total</th>
+                        <th style="text-align:center">TOTAL</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -829,14 +829,14 @@ $row=$result->fetch_assoc();
                       <tr>
                         <th style="text-align:center" rowspan="2">2021</th>
                         <th style="text-align:center" style="text-align:center" colspan="5">2022</th>
-                        <th style="text-align:center" style="text-align:center" rowspan="2">total</th>
+                        <th style="text-align:center" style="text-align:center" rowspan="2">TOTAL</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center">enero</th>
-                        <th style="text-align:center">febrero</th>
-                        <th style="text-align:center">marzo</th>
-                        <th style="text-align:center">abril</th>
-                        <th style="text-align:center">mayo</th>
+                        <th style="text-align:center">ENERO</th>
+                        <th style="text-align:center">FEBRERO</th>
+                        <th style="text-align:center">MARZO</th>
+                        <th style="text-align:center">ABRIL</th>
+                        <th style="text-align:center">MAYO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -857,7 +857,7 @@ $row=$result->fetch_assoc();
                     <thead>
                       <!-- <h3 style="text-align:center">SUJETOS PROTEGIDOS ACTIVOS EN EL PROGRAMA</h3> -->
                       <tr>
-                        <th colspan="2">SUJETOS PROTEGIDOS POR edad</th>
+                        <th colspan="2">SUJETOS PROTEGIDOS POR EDAD</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -891,8 +891,8 @@ $row=$result->fetch_assoc();
           </div>
         </div>
         <div class="modal-footer">
-          <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarpersonas();">Exportar a Excel</button>
-          <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarpersonas();">EXPORTAR</button>
+          <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
         </div>
       </div>
     </div>

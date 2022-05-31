@@ -39,7 +39,7 @@ $rrtotal2022 = $mysqli->query($rtotal2022);
 $frtotal2022 = $rrtotal2022->fetch_assoc();
 //
 echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $frtotal2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $frtotal2022['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $total = $frtotal2021['t'] + $frtotal2022['t']; echo "</td>";

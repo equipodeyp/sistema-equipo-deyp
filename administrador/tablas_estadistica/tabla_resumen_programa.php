@@ -22,27 +22,27 @@ $rmeds = $mysqli->query($meds);
 $fmeds = $rmeds->fetch_assoc();
 //
 echo "<tr bgcolor='cyan'>";
-echo "<td style='text-align:center'>"; echo 'expedientes iniciados'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'EXPEDIENTES INICIADOS'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fexp['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor='chartreuse'>";
-echo "<td style='text-align:center'>"; echo 'sujetos incorporados'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'SUJETOS INCORPORADOS'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fsuj['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor='cyan'>";
-echo "<td style='text-align:center'>"; echo 'sujetos protegidos activos'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'SUJETOS PROTEGIDOS ACTIVOS'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fsujact['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor='greenyellow'>";
-echo "<td style='text-align:center'>"; echo 'sujetos en resguardo'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'SUJETOS EN RESGUARDO'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fsujresg['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor='cyan'>";
-echo "<td style='text-align:center'>"; echo 'medidas dictaminadas'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'MEDIDAS DICTAMINADAS'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fmeds['t']; echo "</td>";
 echo "</tr>";
 ?>

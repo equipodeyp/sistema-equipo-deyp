@@ -49,7 +49,7 @@ $rcttotal = $mysqli->query($cttotal);
 $fcttotal = $rcttotal->fetch_assoc();
 //
 echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fct2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fct2022['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fcttotal['t']; echo "</td>";

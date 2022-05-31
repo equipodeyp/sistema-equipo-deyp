@@ -19,7 +19,7 @@ $rtotexp = $mysqli->query($totexp);
 $ftotexp = $rtotexp->fetch_assoc();
 //
 echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'total de expedientes'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotexp['t']; echo "</td>";
 echo "</tr>";
 ?>

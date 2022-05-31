@@ -90,7 +90,7 @@ $rtcancelprovresg = $mysqli->query($tcancelprovresg);
 $ftcancelprovresg = $rtcancelprovresg->fetch_assoc();
 //
 echo "<tr bgcolor = 'Lime'>";
-echo "<td style='text-align:center'>"; echo "definitvas"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "DEFINITIVAS"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftex['total']; "</td>";
 echo "<td style='text-align:center'>"; echo $fteje['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftcancel['total']; echo "</td>";
@@ -98,7 +98,7 @@ echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tdef = $ftex['to
 echo "</tr>";
 //
 echo "<tr>";
-echo "<td style='text-align:center'>"; echo "medidas de asistencia"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "MEDIDAS DE ASISTENCIA"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftexasis['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftejeasis['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftcancelasis['total']; echo "</td>";
@@ -106,7 +106,7 @@ echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tdefasis = $ftex
 echo "</tr>";
 //
 echo "<tr>";
-echo "<td style='text-align:center'>"; echo "medidas de resguardo"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "MEDIDAS DE RESGUARDO"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftexresg['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftejeresg['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftcancelresg['total']; echo "</td>";
@@ -114,7 +114,7 @@ echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tdefresg = $ftex
 echo "</tr>";
 //
 echo "<tr bgcolor = 'Lime'>";
-echo "<td style='text-align:center'>"; echo "provisionales"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "PROVISIONALES"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftexprov['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftejeprov['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftcancelprov['total']; echo "</td>";
@@ -122,7 +122,7 @@ echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tprov = $ftexpro
 echo "</tr>";
 //
 echo "<tr>";
-echo "<td style='text-align:center'>"; echo "medidas de asistencia"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "MEDIDAS DE ASISTENCIA"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftexprovasis['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftejeasisdef['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftcancelprovasis ['total']; echo "</td>";
@@ -130,7 +130,7 @@ echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tprovasis = $fte
 echo "</tr>";
 //
 echo "<tr>";
-echo "<td style='text-align:center'>"; echo "medidas de resguardo"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "MEDIDAS DE RESGUARDO"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftexprovresg['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftejeprovresg['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftcancelprovresg['total']; echo "</td>";
@@ -138,7 +138,7 @@ echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tprovresg = $fte
 echo "</tr>";
 //
 echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo "TOTAL DE medidas"; echo "</td>";
+echo "<td style='text-align:center'>"; echo "TOTAL DE MEDIDAS"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $tenejec = $ftex['total'] + $ftexprov['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $tejecs = $fteje['total'] + $ftejeprov['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $tcanc = $ftcancel['total'] + $ftcancelprov['total']; echo "</td>";

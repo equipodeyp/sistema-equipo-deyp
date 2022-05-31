@@ -44,7 +44,7 @@ while ($fmunicipio = $rmunicipio->fetch_assoc()) {
   }
 }
 echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fmasistotal['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fmresgtotal['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fmtotal2022['t']; echo "</td>";

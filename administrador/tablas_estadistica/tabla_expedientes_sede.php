@@ -1,6 +1,6 @@
 <?php
-$array = array('valle de toluca', 'valle de mexico zona oriente', 'valle de mexico zona nororiente');
-$nsede = array('toluca', 'oriente', 'nororiente');
+$array = array('VALLE DE TOLUCA', 'VALLE DE MÉXICO ZONA ORIENTE', 'VALLE DE MÉXICO ZON NORORIENTE');
+$nsede = array('TOLUCA', 'ORIENTE', 'NORORIENTE');
 // $tol = "SELECT COUNT(*) as t FROM expediente
 // WHERE sede = 'toluca' AND año = '2021'"
 // foreach ($codes as $code and $names as $name) {
@@ -46,7 +46,7 @@ $rcttotal = $mysqli->query($cttotal);
 $fcttotal = $rcttotal->fetch_assoc();
 //
 echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fct2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fct2022['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fcttotal['t']; echo "</td>";

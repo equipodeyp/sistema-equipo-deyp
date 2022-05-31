@@ -65,7 +65,7 @@ echo "<td style='text-align:center'>"; echo $fresg['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'total de medidas de apoyo'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL DE MEDIDAS DE APOYO'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $feneject['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $feject['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fcanceltot['t']; echo "</td>";

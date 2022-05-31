@@ -44,7 +44,7 @@ $rdelt2022 = $mysqli->query($delt2022);
 $fdelt2022 = $rdelt2022->fetch_assoc();
 //
 echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'total'; echo "</td>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdelt2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdelt2022['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $dtotales = $fdelt2021['t'] + $fdelt2022['t']; echo "</td>";
