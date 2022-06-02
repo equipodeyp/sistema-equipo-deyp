@@ -65,15 +65,30 @@ WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '
 $rdefmayo = $mysqli->query($defmayo);
 $fdefmayo = $rdefmayo->fetch_assoc();
 //
+$defjunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rdefjunio = $mysqli->query($defjunio);
+$fdefjunio = $rdefjunio->fetch_assoc();
+//
 $defasismayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rdefasismayo = $mysqli->query($defasismayo);
 $fdefasismayo = $rdefasismayo->fetch_assoc();
 //
+$defasisjunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rdefasisjunio = $mysqli->query($defasisjunio);
+$fdefasisjunio = $rdefasisjunio->fetch_assoc();
+//
 $defresgmayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rdefresgmayo = $mysqli->query($defresgmayo);
 $fdefresgmayo = $rdefresgmayo->fetch_assoc();
+//
+$defresgjunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rdefresgjunio = $mysqli->query($defresgjunio);
+$fdefresgjunio = $rdefresgjunio->fetch_assoc();
 //totales
 $deftotal = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -155,15 +170,30 @@ WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN 
 $rprovmayo = $mysqli->query($provmayo);
 $fprovmayo = $rprovmayo->fetch_assoc();
 //
+$provjunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rprovjunio = $mysqli->query($provjunio);
+$fprovjunio = $rprovjunio->fetch_assoc();
+//
 $resgasismayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rresgasismayo = $mysqli->query($resgasismayo);
 $fresgasismayo = $rresgasismayo->fetch_assoc();
 //
+$resgasisjunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rresgasisjunio = $mysqli->query($resgasisjunio);
+$fresgasisjunio = $rresgasisjunio->fetch_assoc();
+//
 $resgresgmayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rresgresgmayo = $mysqli->query($resgresgmayo);
 $fresgresgmayo = $rresgresgmayo->fetch_assoc();
+//
+$resgresgjunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rresgresgjunio = $mysqli->query($resgresgjunio);
+$fresgresgjunio = $rresgresgjunio->fetch_assoc();
 //
 $provtotal = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -205,6 +235,11 @@ WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05
 $rtotalmayo = $mysqli->query($totalmayo);
 $ftotalmayo = $rtotalmayo->fetch_assoc();
 //
+$totaljunio = "SELECT COUNT(*) as t FROM `medidas`
+WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-06-01' AND '2022-06-30'";
+$rtotaljunio = $mysqli->query($totaljunio);
+$ftotaljunio = $rtotaljunio->fetch_assoc();
+//
 $total2022 = "SELECT COUNT(*) as t FROM `medidas`
 WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
 $rtotal2022 = $mysqli->query($total2022);
@@ -217,6 +252,7 @@ echo "<td style='text-align:center'>"; echo $fdeffebrero['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefmarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefabril['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefjunio['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdeftotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -226,7 +262,8 @@ echo "<td style='text-align:center'>"; echo $fdefasisenero['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefasisfebrero['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefasismarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefasisabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasismayo ['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasismayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasisjunio['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefasistotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -237,6 +274,7 @@ echo "<td style='text-align:center'>"; echo $fdefresgfebrero['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefresgmarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefresgabril['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefresgmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgjunio['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefresgtotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -247,6 +285,7 @@ echo "<td style='text-align:center'>"; echo $fprovfebrero['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fprovmarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fprovabril['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fprovmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovjunio['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fprovtotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -257,6 +296,7 @@ echo "<td style='text-align:center'>"; echo $fprovasisfebrero['t']; echo "</td>"
 echo "<td style='text-align:center'>"; echo $fprovasismarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgasisabril['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgasismayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgasisjunio['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgasistotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -267,6 +307,7 @@ echo "<td style='text-align:center'>"; echo $fprovresgfebrero['t']; echo "</td>"
 echo "<td style='text-align:center'>"; echo $fprovresgmarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgresgabril['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgresgmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgresgjunio['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgresgtotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -277,6 +318,7 @@ echo "<td style='text-align:center'>"; echo $ftotalfebrero['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalmarzo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalabril['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotaljunio['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal2022['t']; echo "</td>";
 echo "</tr>";
 ?>

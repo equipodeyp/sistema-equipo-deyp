@@ -219,7 +219,7 @@ $row=$result->fetch_assoc();
                             <h3 style="text-align:center">MEDIDAS DE APOYO EJECUTADAS</h3>
                             <tr>
                               <th  style="text-align:center"rowspan="2">CONCEPTO</th>
-                              <th  style="text-align:center"colspan="6">2022</th>
+                              <th  style="text-align:center"colspan="7">2022</th>
                             </tr>
                             <tr>
                               <th style="text-align:center">ENERO</th>
@@ -227,6 +227,7 @@ $row=$result->fetch_assoc();
                               <th style="text-align:center">MARZO</th>
                               <th style="text-align:center">ABRIL</th>
                               <th style="text-align:center">MAYO</th>
+                              <th style="text-align:center">JUNIO</th>
                               <th style="text-align:center">ACUMULADO</th>
                             </tr>
                           </thead>
@@ -815,7 +816,7 @@ $row=$result->fetch_assoc();
                       <tr >
                         <th style="text-align:center" rowspan="2">CONCEPTO</th>
                         <th style="text-align:center" rowspan="2">2021</th>
-                        <th style="text-align:center" colspan="5">2022</th>
+                        <th style="text-align:center" colspan="6">2022</th>
                         <th style="text-align:center" rowspan="2">ACUMULADO</th>
                       </tr>
                       <tr>
@@ -824,6 +825,7 @@ $row=$result->fetch_assoc();
                         <th style="text-align:center">MARZO</th>
                         <th style="text-align:center">ABRIL</th>
                         <th style="text-align:center">MAYO</th>
+                        <th style="text-align:center">JUNIO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -845,7 +847,7 @@ $row=$result->fetch_assoc();
                       <tr >
                         <th style="text-align:center" rowspan="2">CONCEPTO</th>
                         <th style="text-align:center" rowspan="2">2021</th>
-                        <th style="text-align:center" colspan="5">2022</th>
+                        <th style="text-align:center" colspan="6">2022</th>
                         <th style="text-align:center" rowspan="2">ACUMULADO</th>
                       </tr>
                       <tr>
@@ -854,6 +856,7 @@ $row=$result->fetch_assoc();
                         <th style="text-align:center">MARZO</th>
                         <th style="text-align:center">ABRIL</th>
                         <th style="text-align:center">MAYO</th>
+                        <th style="text-align:center">JUNIO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -893,11 +896,11 @@ $row=$result->fetch_assoc();
                       <h3 style="text-align:center">CALIDAD DE LAS PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</h3>
                       <tr >
                         <th style="text-align:center" rowspan="3">CALIDAD EN EL PROGRAMA</th>
-                        <th style="text-align:center" colspan="7"> MES DE SOLICITUD DE INCORPORACIÓN</th>
+                        <th style="text-align:center" colspan="8"> MES DE SOLICITUD DE INCORPORACIÓN</th>
                       </tr>
                       <tr>
                         <th style="text-align:center" rowspan="2">2021</th>
-                        <th style="text-align:center" style="text-align:center" colspan="5">2022</th>
+                        <th style="text-align:center" style="text-align:center" colspan="6">2022</th>
                         <th style="text-align:center" style="text-align:center" rowspan="2">TOTAL</th>
                       </tr>
                       <tr>
@@ -906,6 +909,7 @@ $row=$result->fetch_assoc();
                         <th style="text-align:center">MARZO</th>
                         <th style="text-align:center">ABRIL</th>
                         <th style="text-align:center">MAYO</th>
+                        <th style="text-align:center">JUNIO</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -950,11 +954,11 @@ $row=$result->fetch_assoc();
                     <thead>
                       <tr >
                         <th style="text-align:center" rowspan="3">CALIDAD EN EL PROGRAMA</th>
-                        <th style="text-align:center" colspan="7"> MES DE INCORPORACIÓN</th>
+                        <th style="text-align:center" colspan="8"> MES DE INCORPORACIÓN</th>
                       </tr>
                       <tr>
                         <th style="text-align:center" rowspan="2">2021</th>
-                        <th style="text-align:center" style="text-align:center" colspan="5">2022</th>
+                        <th style="text-align:center" style="text-align:center" colspan="6">2022</th>
                         <th style="text-align:center" style="text-align:center" rowspan="2">TOTAL</th>
                       </tr>
                       <tr>
@@ -963,6 +967,7 @@ $row=$result->fetch_assoc();
                         <th style="text-align:center">MARZO</th>
                         <th style="text-align:center">ABRIL</th>
                         <th style="text-align:center">MAYO</th>
+                        <th style="text-align:center">JUNIO</th>
                       </tr>
                     </thead>
                     <tbody>

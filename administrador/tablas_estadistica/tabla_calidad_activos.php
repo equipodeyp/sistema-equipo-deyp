@@ -39,6 +39,12 @@ while ($fila = $res->fetch_assoc()) {
     $restmayo = $mysqli->query($tmayo);
     $filatmayo = $restmayo->fetch_assoc();
     //
+    $tjunio = "SELECT COUNT(*) AS t FROM datospersonales
+    INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-06-01' AND '2022-06-30'";
+    $restjunio = $mysqli->query($tjunio);
+    $filatjunio = $restjunio->fetch_assoc();
+    //
     $ttotalcalidad = "SELECT COUNT(*) AS ttotalcalidad FROM datospersonales
     INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
     WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND datospersonales.estatus = 'SUJETO PROTEGIDO'";
@@ -75,6 +81,12 @@ while ($fila = $res->fetch_assoc()) {
     $restcalidadmayo = $mysqli->query($tcalidadmayo);
     $filatcalidadmayo = $restcalidadmayo->fetch_assoc();
     //
+    $tcalidadjunio = "SELECT COUNT(*) AS t FROM datospersonales
+    INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-06-01' AND '2022-06-30'";
+    $restcalidadjunio = $mysqli->query($tcalidadjunio);
+    $filatcalidadjunio = $restcalidadjunio->fetch_assoc();
+    //
     $tcalidadtotal = "SELECT COUNT(*) AS tcalidadtotal FROM datospersonales
     INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
     WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PROTEGIDO'";
@@ -97,6 +109,7 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $filatmarzo['tmarzo']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filatabril['tabril']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filatmayo['tmayo']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $filatjunio['t']; echo "</td>";
         echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $filattotalcalidad['ttotalcalidad']; echo "</td>";
         echo "</tr>";
       }
@@ -110,6 +123,7 @@ echo "<td style='text-align:center'>"; echo $filatcalidadfebrero['tcalidadfebrer
 echo "<td style='text-align:center'>"; echo $filatcalidadmarzo['tcalidadmarzo']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadabril['tcalidadabril'];echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadmayo['tcalidadmayo']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $filatcalidadjunio['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; echo "</td>";
 echo "</tr>";
  ?>
