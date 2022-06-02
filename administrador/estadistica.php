@@ -546,7 +546,7 @@ $row=$result->fetch_assoc();
                 <div className="modal">
                   <div class="row">
                     <div class="col-lg-12">
-                      <table border="1px" cellspacing="0" width="100%" bordered>
+                      <table id="rdexpedientes" border="1px" cellspacing="0" width="100%" bordered>
                         <thead>
                           <h3 style="text-align:center">RESUMEN DE LOS EXPEDIENTES</h3>
                           <tr>
@@ -576,7 +576,7 @@ $row=$result->fetch_assoc();
                   </div>
                   <div class="row">
                     <div class="col-lg-4">
-                      <table border="1px" cellspacing="0" width="100%" bordered>
+                      <table id="resumendiario" border="1px" cellspacing="0" width="100%" bordered>
                         <thead>
                           <h3></h3>
                           <tr>
@@ -592,7 +592,7 @@ $row=$result->fetch_assoc();
                       </table>
                     </div>
                     <div class="col-lg-4">
-                      <table border="1px" cellspacing="0" width="100%" bordered>
+                      <table id="rdestatusexpedientes" border="1px" cellspacing="0" width="100%" bordered>
                         <thead>
                           <h3></h3>
                           <tr>
@@ -608,7 +608,7 @@ $row=$result->fetch_assoc();
                       </table>
                     </div>
                     <div class="col-lg-4">
-                      <table border="1px" cellspacing="0" width="100%" bordered>
+                      <table id="rdestatuspersonas" border="1px" cellspacing="0" width="100%" bordered>
                         <thead>
                           <h3></h3>
                           <tr>
@@ -626,7 +626,7 @@ $row=$result->fetch_assoc();
                   </div>
                   <div class="row" style="display: flex; justify-content: center;">
                     <div class="col-lg-10" >
-                      <table border="1px" cellspacing="0" width="100%" bordered>
+                      <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered>
                         <thead>
                           <h3></h3>
                           <tr>
@@ -649,7 +649,7 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
               <div class="modal-footer">
-                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">EXPORTAR</button>
+                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumendiario();">EXPORTAR</button>
                 <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
               </div>
             </div>
@@ -670,7 +670,7 @@ $row=$result->fetch_assoc();
                       <div class="row">
                               <div class="col-lg-12">
                                   <div class="table-responsive">
-                                      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                      <table id="expedientestotales" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                       <thead>
                                         <!-- <h3 style="text-align:center">Registros</h3> -->
                                           <tr>
@@ -762,7 +762,7 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
               <div class="modal-footer">
-                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarmedidas();">EXPORTAR</button>
+                <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarexpedientestotales();">EXPORTAR</button>
                 <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
               </div>
             </div>
