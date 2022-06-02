@@ -1,0 +1,79 @@
+<div class="modal fade" id="add_data_Modal_solicitudes" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 style="text-align:center" class="modal-title" id="myModalLabel">SOLICITUDES</h2>
+      </div>
+      <div class="modal-body">
+        <div className="modal">
+          <h3 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-responsive">
+                <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
+                  <thead>
+                    <tr >
+                      <th style="text-align:center" rowspan="2">CONCEPTO</th>
+                      <th style="text-align:center" rowspan="2">2021</th>
+                      <th style="text-align:center" colspan="6">2022</th>
+                      <th style="text-align:center" rowspan="2">ACUMULADO</th>
+                    </tr>
+                    <tr>
+                      <th style="text-align:center">ENERO</th>
+                      <th style="text-align:center">FEBRERO</th>
+                      <th style="text-align:center">MARZO</th>
+                      <th style="text-align:center">ABRIL</th>
+                      <th style="text-align:center">MAYO</th>
+                      <th style="text-align:center">JUNIO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla1.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-responsive">
+                <table id="tabla2" border="1px" cellspacing="0" width="100%" bordered>
+                  <thead>
+                    <!-- <h3 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h3> -->
+                    <tr >
+                      <th style="text-align:center" rowspan="2">CONCEPTO</th>
+                      <th style="text-align:center" rowspan="2">2021</th>
+                      <th style="text-align:center" colspan="6">2022</th>
+                      <th style="text-align:center" rowspan="2">ACUMULADO</th>
+                    </tr>
+                    <tr>
+                      <th style="text-align:center">ENERO</th>
+                      <th style="text-align:center">FEBRERO</th>
+                      <th style="text-align:center">MARZO</th>
+                      <th style="text-align:center">ABRIL</th>
+                      <th style="text-align:center">MAYO</th>
+                      <th style="text-align:center">JUNIO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla2.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarExcelv2();">EXPORTAR</button>
+        <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+      </div>
+    </div>
+  </div>
+</div>
