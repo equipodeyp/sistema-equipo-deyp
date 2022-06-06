@@ -61,8 +61,6 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 </head>
@@ -77,6 +75,7 @@ $row=$result->fetch_assoc();
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
+      $user = $row_user['usuario'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -114,9 +113,9 @@ $row=$result->fetch_assoc();
 
         <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='repo.php'"><span class="fas fa-address-card"></span><span class="tab-text">APOYO TÉCNICO</span></a></li>
-          <li><a href="#" onclick="location.href='repo_analisis.php'"><span class="fa-solid fa-magnifying-glass-chart"></span><span class="tab-text">ANÁLISIS DE RIESGO</span></a></li>
-          <li><a href="#" onclick="location.href='repo_estadistica.php'"><span class="fa-solid fa-square-poll-horizontal"></span><span class="tab-text">ESTADISTICA</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='repo.php'"><span class="fas fa-book-open"></span><span class="tab-text">REPOSITORIO</span></a></li>
+          <!-- <li><a href="#" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
+          <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
     		</ul>
 
@@ -129,7 +128,7 @@ $row=$result->fetch_assoc();
                 <!-- <a class="actived">INCIDENCIAS</a> -->
           </div>
     				<div class="container">
-              <form class="container well form-horizontal" method="POST" action="cargar_archivo.php" enctype="multipart/form-data">
+              <form class="container well form-horizontal" method="POST" action="cargar_archivo.php" enctype="multipart/form-data"">
                 <div class="row">
 
                   <!-- <div class="alert alert-info">
@@ -141,6 +140,23 @@ $row=$result->fetch_assoc();
                         <input required="" type="file" name="file" id="exampleInputFile"></label>
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
+
+                  <?php
+                    if ($user=='diana') {
+                    echo "
+                    <div class='alert alert-info'>
+                      <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
+                    </div>
+                    ";
+                    echo "
+                    <div class='col-md-10 mb-3' style='display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;'>
+                        <label for='my-file-selector'><span ></span>
+                        <input required='' type='file' name='file' id='exampleInputFile'></label>
+                        <button class='btn btn-success' type='submit'>Agregar archivo</button>
+                    </div>
+                    ";
+                  }
+                  ?>
                   
 
                   <div class="alert alert-info">
@@ -156,25 +172,31 @@ $row=$result->fetch_assoc();
                                 <th style="text-align:center" width="10%">No.</th>
                                 <th style="text-align:center" width="50%">Nombre del archivo</th>
                                 <th style="text-align:center" width="20%">Descargar</th>
-                                <th style="text-align:center" width="20%">Eliminar</th>
+                                <?php
+                                  if ($user=='diana') {
+                                  echo "<th style='text-align:center' width='20%'>Eliminar</th>";}
+                                ?>
+                                <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                        $documetos = '../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo';
-                        $archivos = scandir($documetos);
+                        $archivos = scandir("archivos_subidos_apoyo");
                         $num=0;
                         for ($i=2; $i<count($archivos); $i++)
                         {$num++;
                         ?>
                         <p>  
                         </p>
-                                
                             <tr>
                               <th style="text-align:center" scope="row"><?php echo $num;?></th>
                               <td><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                              <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
+                              <td style="text-align:center"><a title="Descargar Archivo" href="archivos_subidos_apoyo/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
+                              <?php
+                                  if ($user=='diana') {
+                                  echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=archivos_subidos_apoyo/$archivos[$i]' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a></td>";}
+                              ?>
+                              <!-- <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=archivos_subidos_apoyo/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td> -->
                             </tr>
                         <?php }?> 
                         </tbody>
@@ -190,7 +212,7 @@ $row=$result->fetch_assoc();
 </div>
 <div class="contenedor">
 
-<a href="../administrador/admin.php" class="btn-flotante">REGRESAR</a>
+<a href="menu.php" class="btn-flotante">REGRESAR</a>
 
 </div>
 

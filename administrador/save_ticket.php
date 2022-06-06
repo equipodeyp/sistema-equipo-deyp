@@ -63,10 +63,10 @@ if ($verifica == 1) {
   
     
     if($sent) {
-        $num_user=rand(1,3);
+        $num_user=rand(1,9);
         $mail = new PHPMailer(true);  
 
-        if ($num_user === 1){
+        if ($num_user === 1 || $num_user === 4 || $num_user === 7){
 
             if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -232,7 +232,7 @@ if ($verifica == 1) {
       }
 
 
-      elseif ($num_user === 2){
+      elseif ($num_user === 2 || $num_user === 5 || $num_user === 8){
 
         if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -397,7 +397,7 @@ if ($verifica == 1) {
     }
 
 
-    elseif ($num_user === 3){
+    elseif ($num_user === 3 || $num_user === 6 || $num_user === 9){
 
       if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
