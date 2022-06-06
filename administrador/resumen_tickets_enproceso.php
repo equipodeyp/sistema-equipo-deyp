@@ -183,9 +183,9 @@ $row=$result->fetch_assoc();
                                             <a href="detalle_respuesta_uno.php?id=<?php echo $row['id']?>" class="btn btn-success">
                                                 <i  class="fas fa-marker" ></i>
                                             </a>
-                                            <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                            <!-- <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
                                                 <i  class="fas fa-send"></i>
-                                            </a>
+                                            </a> -->
                                             <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a> -->
