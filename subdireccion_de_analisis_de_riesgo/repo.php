@@ -123,7 +123,7 @@ $row=$result->fetch_assoc();
     			<article id="tab1">
 
           <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a  href="../administrador/admin.php">REGISTROS</a>
+                <a  href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
                 <a class="actived" href="#">REPOSITORIO</a>
                 <!-- <a class="actived">INCIDENCIAS</a> -->
           </div>
