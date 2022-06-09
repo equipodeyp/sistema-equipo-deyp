@@ -171,6 +171,13 @@ $row=$result->fetch_assoc();
               </li>
           </ul>
         </div>
+        <?php
+        date_default_timezone_set("America/Mexico_City");
+        $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+        ?>
 
         <div class="contenedor">
 

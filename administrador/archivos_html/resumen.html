@@ -60,6 +60,13 @@
             </div>
           </div>
         </div>
+        <br>
+        <em>DEL 01 DE ENERO AL <?php
+          $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+          $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+          echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+        ?></em>
       </div>
       <div class="modal-footer">
         <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">EXPORTAR</button>

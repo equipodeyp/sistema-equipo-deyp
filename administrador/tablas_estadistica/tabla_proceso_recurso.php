@@ -1,4 +1,28 @@
 <?php
+$ptotal2021 = "SELECT COUNT(DISTINCT folioexpediente) as t from procesopenal
+INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp
+WHERE expediente.año = '2021'";
+$rptotal2021 = $mysqli->query($ptotal2021);
+$fptotal2021 = $rptotal2021->fetch_assoc();
+//
+$ptotal2022 = "SELECT COUNT(DISTINCT folioexpediente) as t from procesopenal
+INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp
+WHERE expediente.año = '2022'";
+$rptotal2022 = $mysqli->query($ptotal2022);
+$fptotal2022 = $rptotal2022->fetch_assoc();
+//
+$ptotalp = "SELECT COUNT(DISTINCT folioexpediente) as t from procesopenal
+INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp";
+$rptotalp = $mysqli->query($ptotalp);
+$fptotalp = $rptotalp->fetch_assoc();
+//
+echo "<tr bgcolor = 'yellow'>";
+echo "<td style='text-align:center'>"; echo 'TOTAL  DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fptotal2021['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fptotal2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fptotalp['t']; echo "</td>";
+echo "</tr>";
+//
 $epr = "SELECT * FROM etapa_proc";
 $repr = $mysqli->query($epr);
 while ($ferp = $repr->fetch_assoc()) {
@@ -23,35 +47,13 @@ while ($ferp = $repr->fetch_assoc()) {
   if ($p2021) {
     while ($fp2021 = mysqli_fetch_assoc($rp2021)) {
       echo "<tr >";
-      echo "<td style='text-align:center'>"; echo $ferp['nombre']; echo "</td>";
+      echo "<td style='text-align:left'>"; echo $ferp['nombre']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fp2021['t']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fp2022['t']; echo "</td>";
-      echo "<td style='text-align:center'>"; echo $fptotal['t']; echo "</td>";
+      echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fptotal['t']; echo "</td>";
       echo "</tr>";
     }
   }
 }
-$ptotal2021 = "SELECT COUNT(DISTINCT folioexpediente) as t from procesopenal
-INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp
-WHERE expediente.año = '2021'";
-$rptotal2021 = $mysqli->query($ptotal2021);
-$fptotal2021 = $rptotal2021->fetch_assoc();
-//
-$ptotal2022 = "SELECT COUNT(DISTINCT folioexpediente) as t from procesopenal
-INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp
-WHERE expediente.año = '2022'";
-$rptotal2022 = $mysqli->query($ptotal2022);
-$fptotal2022 = $rptotal2022->fetch_assoc();
-//
-$ptotalp = "SELECT COUNT(DISTINCT folioexpediente) as t from procesopenal
-INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp";
-$rptotalp = $mysqli->query($ptotalp);
-$fptotalp = $rptotalp->fetch_assoc();
-//
-echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fptotal2021['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fptotal2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fptotalp['t']; echo "</td>";
-echo "</tr>";
+
 ?>

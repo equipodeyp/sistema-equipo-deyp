@@ -150,8 +150,21 @@ WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN
 $res_exp_det3_junio = $mysqli->query($exp_det3_junio);
 $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
 
+
+  echo "<tr bgcolor = 'yellow'>";
+  echo "<td style='text-align:left'>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS"; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_enero['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_febrero['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_marzo['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_abril['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_mayo['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_junio['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $tt = $fila_exp_det['total'] + $fila_exp_det_enero['total'] + $fila_exp_det_febrero['total'] + $fila_exp_det_marzo['total'] + $fila_exp_det_abril['total'] +$fila_exp_det_mayo['total']; echo "</td>";
+  echo "</tr>";
+
   echo "<tr>";
-  echo "<td style='text-align:center'>"; echo "INCORPORACION PROCEDENTE"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "INCORPORACION PROCEDENTE"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1['t_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_enero['t_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_febrero['t_procedentes']; echo "</td>";
@@ -163,7 +176,7 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "</tr>";
 
   echo "<tr>";
-  echo "<td style='text-align:center'>"; echo "INCORPORACION NO PROCEDENTE"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "INCORPORACION NO PROCEDENTE"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2['t_no_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_enero['t_no_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_febrero['t_no_procedentes']; echo "</td>";
@@ -175,7 +188,7 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "</tr>";
 
   echo "<tr>";
-  echo "<td style='text-align:center'>"; echo "EN ANALISIS"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "EN ANALISIS"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_enero['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_febrero['en_analisis']; echo "</td>";
@@ -184,18 +197,6 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_mayo['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_junio['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $restotal = $fila_exp_det3['en_analisis'] + $fila_exp_det3_enero['en_analisis'] + $fila_exp_det3_febrero['en_analisis'] + $fila_exp_det3_marzo['en_analisis'] + $fila_exp_det3_abril['en_analisis'] + $fila_exp_det3_mayo['en_analisis']; "</td>";
-  echo "</tr>";
-
-  echo "<tr bgcolor = 'yellow'>";
-  echo "<td style='text-align:center'>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS"; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_enero['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_febrero['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_marzo['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_abril['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_mayo['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_junio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $tt = $fila_exp_det['total'] + $fila_exp_det_enero['total'] + $fila_exp_det_febrero['total'] + $fila_exp_det_marzo['total'] + $fila_exp_det_abril['total'] +$fila_exp_det_mayo['total']; echo "</td>";
   echo "</tr>";
 
  ?>

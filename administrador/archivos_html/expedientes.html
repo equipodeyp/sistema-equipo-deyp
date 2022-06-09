@@ -1,5 +1,5 @@
 <div class="modal fade" id="add_data_Modal_expedientes" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="overflow-y: scroll; max-height:80%;  margin-top: 50px; margin-bottom:50px;">
+  <div class="modal-dialog modal-lg" style="overflow-y: scroll; max-height:80%;  margin-top: 50px; margin-bottom:50px; width:60%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -24,6 +24,7 @@
                     <?php
                     include("../administrador/tablas_estadistica/tabla_expedientes.php");
                     ?>
+
                   </tbody>
                 </table>
               </div>
@@ -74,11 +75,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <div class="">
                 <table id="radicacionexpediente" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
-                    <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3>
+                    <h3 style="text-align:center"></h3>
                     <tr>
                       <th style="text-align:center">MUNICIPIO DE RADICACION DE LA CARPETA DE INVESTIGACIÓN</th>
                       <th style="text-align:center">2021</th>
@@ -94,11 +95,11 @@
                 </table>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
               <div class="">
                 <table id="autoridadsolicitante" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
-                    <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3>
+                    <h3 style="text-align:center"></h3>
                     <tr>
                       <th style="text-align:center">AUTORIDAD SOLICITANTE</th>
                       <th style="text-align:center">2021</th>
@@ -113,29 +114,40 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-lg-12">
-                <div class="">
-                  <table id="procedemientorecurso" border="1px" cellspacing="0" width="100%" bordered>
-                    <thead>
-                      <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3>
-                      <tr>
-                        <th style="text-align:center">ETAPA DEL PROCEDIMIENTO / RECURSO</th>
-                        <th style="text-align:center">2021</th>
-                        <th style="text-align:center">2022</th>
-                        <th style="text-align:center">TOTAL</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla_proceso_recurso.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="">
+                <table id="procedemientorecurso" border="1px" cellspacing="0" width="100%" bordered>
+                  <thead>
+                    <h3 style="text-align:center"></h3>
+                    <tr>
+                      <th style="text-align:center">ETAPA DEL PROCEDIMIENTO / RECURSO</th>
+                      <th style="text-align:center">2021</th>
+                      <th style="text-align:center">2022</th>
+                      <th style="text-align:center">TOTAL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla_proceso_recurso.php");
+                    ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
+        <br>
+        <em>DEL 01 DE ENERO AL <?php
+          date_default_timezone_set("America/Mexico_City");
+          $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+          $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+          echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+        ?></em>
       </div>
       <div class="modal-footer">
         <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarexpedientes();">EXPORTAR</button>

@@ -14,6 +14,7 @@
                   <thead>
                     <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO OTORGADAS</h3>
                     <tr>
+                      
                       <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
                       <th style="text-align:center">EN EJECUCION</th>
                       <th style="text-align:center">EJECUTADA</th>
@@ -124,6 +125,13 @@
             </div>
           </div>
         </div>
+        <br>
+        <em>DEL 01 DE ENERO AL <?php
+          $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+          $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+          echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+        ?></em>
       </div>
       <div class="modal-footer">
         <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarmedidas();">EXPORTAR</button>
