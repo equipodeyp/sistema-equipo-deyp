@@ -114,8 +114,8 @@ $row=$result->fetch_assoc();
 
         <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='repo.php'"><span class="fas fa-address-card"></span><span class="tab-text">APOYO TÉCNICO</span></a></li>
-          <li><a href="#" onclick="location.href='repo_analisis.php'"><span class="fa-solid fa-magnifying-glass-chart"></span><span class="tab-text">ANÁLISIS DE RIESGO</span></a></li>
+          <li><a href="#" onclick="location.href='repo.php'"><span class="fas fa-address-card"></span><span class="tab-text">APOYO TÉCNICO</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='repo_analisis.php'"><span class="fa-solid fa-magnifying-glass-chart"></span><span class="tab-text">ANÁLISIS DE RIESGO</span></a></li>
           <li><a href="#" onclick="location.href='repo_estadistica.php'"><span class="fa-solid fa-square-poll-horizontal"></span><span class="tab-text">ESTADISTICA</span></a></li>
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
     		</ul>
@@ -161,7 +161,7 @@ $row=$result->fetch_assoc();
                         </thead>
                         <tbody>
                         <?php
-                        $documetos = '../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo';
+                        $documetos = '../subdireccion_de_analisis_de_riesgo/archivos_subidos_analisis';
                         $archivos = scandir($documetos);
                         $num=0;
                         for ($i=2; $i<count($archivos); $i++)
@@ -173,8 +173,8 @@ $row=$result->fetch_assoc();
                             <tr>
                               <th style="text-align:center" scope="row"><?php echo $num;?></th>
                               <td><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                              <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
+                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_analisis_de_riesgo/archivos_subidos_analisis/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
+                              <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=../subdireccion_de_analisis_de_riesgo/archivos_subidos_analisis/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
                             </tr>
                         <?php }?> 
                         </tbody>

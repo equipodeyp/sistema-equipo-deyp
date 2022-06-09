@@ -305,12 +305,12 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="PATERNO_PERSONA">APELLIDO PATERNO <span class="required"></span></label>
-                    <input autocomplete="off" disabled="disabled" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
+                    <input autocomplete="off" onkeyup="validarApellidoPersona(this.form)" class="form-control" id="PATERNO_PERSONA" name="PATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['paternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="MATERNO_PERSONA"> APELLIDO MATERNO <span class="required"></span></label>
-                    <input autocomplete="off" disabled="disabled" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
+                    <input autocomplete="off" class="form-control" id="MATERNO_PERSONA" name="MATERNO_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['maternopersona']; ?>" required>
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -1274,20 +1274,25 @@ criterioDeOportunidadUno.addEventListener('change', obtenerCriterioOport);
       }
     }
 
+    function cleanInputId() {
+      document.getElementById("ID_UNICO").value="";
+    }
 
+    
     function enviarId() {
+        cleanInputId();
         obtenerIniciales();
         document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
         document.getElementById("GENERAR_ID").style.display = "none";
     }
 
     function validarNombrePersona(form) {
-        form.PATERNO_PERSONA.disabled=(form.NOMBRE_PERSONA.value=="");
+        form.PATERNO_PERSONA.readonly=(form.NOMBRE_PERSONA.value=="");
         document.getElementById("ID_UNICO").value="";
     }
 
     function validarApellidoPersona(form) {
-        form.MATERNO_PERSONA.disabled=(form.PATERNO_PERSONA.value=="");
+        form.MATERNO_PERSONA.readonly=(form.PATERNO_PERSONA.value=="");
         document.getElementById("ID_UNICO").value="";
         document.getElementById("GENERAR_ID").style.display = "";
 

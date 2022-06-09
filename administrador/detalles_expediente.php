@@ -18,7 +18,23 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 // echo $fol_exp;
-	?>
+// $fol = $fol_exp
+
+$name_carpeta = $fol_exp;
+$resultado = str_replace("/", "-", $name_carpeta);
+// echo $resultado;
+
+// Estructura de la carpeta deseada
+$estructura = "./$resultado";
+
+// Para crear una estructura anidada se debe especificar
+// el parámetro $recursive en mkdir().
+
+//mkdir($estructura, 0700, true);
+// if(!mkdir($estructura, 0700, true)) {
+//     die('Fallo al crear las carpetas...');
+// }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
