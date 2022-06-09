@@ -41,6 +41,11 @@ INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpedient
 WHERE analisis_expediente.fecha_analisis BETWEEN '2022-06-01' AND '2022-06-30'";
 $res_exp_det_junio = $mysqli->query($exp_det_junio);
 $fila_exp_det_junio = $res_exp_det_junio->fetch_assoc();
+//
+$exp_det_total = "SELECT COUNT(*) AS t FROM analisis_expediente
+INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente";
+$res_exp_det_total = $mysqli->query($exp_det_total);
+$fila_exp_det_total = $res_exp_det_total->fetch_assoc();
 //total incorporacion procedente 2021
 $exp_det1 = "SELECT COUNT(*) AS t_procedentes FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
@@ -77,6 +82,11 @@ WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '20
 $res_exp_det1_junio = $mysqli->query($exp_det1_junio);
 $fila_exp_det1_junio = $res_exp_det1_junio->fetch_assoc();
 //
+$exp_det1_total = "SELECT COUNT(*) AS t FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION PROCEDENTE'";
+$res_exp_det1_total = $mysqli->query($exp_det1_total);
+$fila_exp_det1_total = $res_exp_det1_total->fetch_assoc();
+//
 $exp_det2 = "SELECT COUNT(*) AS t_no_procedentes FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
 $res_exp_det2 = $mysqli->query($exp_det2);
@@ -111,6 +121,11 @@ $exp_det2_junio = "SELECT COUNT(*) AS t FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2022-06-01' AND '2022-06-30'";
 $res_exp_det2_junio = $mysqli->query($exp_det2_junio);
 $fila_exp_det2_junio = $res_exp_det2_junio->fetch_assoc();
+//
+$exp_det2_total = "SELECT COUNT(*) AS t FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION NO PROCEDENTE'";
+$res_exp_det2_total = $mysqli->query($exp_det2_total);
+$fila_exp_det2_total = $res_exp_det2_total->fetch_assoc();
 //
 $exp_det3 = "SELECT COUNT(*) AS en_analisis FROM analisis_expediente
 WHERE incorporacion = '' AND  fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
@@ -149,7 +164,12 @@ INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpedient
 WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN '2022-06-01' AND '2022-06-30'";
 $res_exp_det3_junio = $mysqli->query($exp_det3_junio);
 $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
-
+//
+$exp_det3_total = "SELECT COUNT(*) AS t FROM analisis_expediente
+INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
+WHERE analisis_expediente.incorporacion = ''";
+$res_exp_det3_total = $mysqli->query($exp_det3_total);
+$fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
 
   echo "<tr bgcolor = 'yellow'>";
   echo "<td style='text-align:left'>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS"; echo "</td>";
@@ -160,7 +180,7 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det_abril['total']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_mayo['total']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_junio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $tt = $fila_exp_det['total'] + $fila_exp_det_enero['total'] + $fila_exp_det_febrero['total'] + $fila_exp_det_marzo['total'] + $fila_exp_det_abril['total'] +$fila_exp_det_mayo['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_total['t']; echo "</td>";
   echo "</tr>";
 
   echo "<tr>";
@@ -172,7 +192,7 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_abril['t_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_mayo['t_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_junio['t']; echo "</td>";
-  echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $tinc = $fila_exp_det1['t_procedentes'] + $fila_exp_det1_enero['t_procedentes'] + $fila_exp_det1_enero['t_procedentes'] + $fila_exp_det1_febrero['t_procedentes'] + $fila_exp_det1_marzo['t_procedentes'] + $fila_exp_det1_abril['t_procedentes'] + $fila_exp_det1_mayo['t_procedentes']; echo "</td>";
+  echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det1_total['t']; echo "</td>";
   echo "</tr>";
 
   echo "<tr>";
@@ -184,7 +204,7 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_abril['t_no_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_mayo['t_no_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_junio['t']; echo "</td>";
-  echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $noi = $fila_exp_det2['t_no_procedentes'] + $fila_exp_det2_enero['t_no_procedentes'] + $fila_exp_det2_febrero['t_no_procedentes'] + $fila_exp_det2_marzo['t_no_procedentes'] + $fila_exp_det2_abril['t_no_procedentes'] + $fila_exp_det2_mayo['t_no_procedentes']; "</td>";
+  echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det2_total['t']; "</td>";
   echo "</tr>";
 
   echo "<tr>";
@@ -196,7 +216,7 @@ $fila_exp_det3_junio = $res_exp_det3_junio->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_abril['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_mayo['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_junio['t']; echo "</td>";
-  echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $restotal = $fila_exp_det3['en_analisis'] + $fila_exp_det3_enero['en_analisis'] + $fila_exp_det3_febrero['en_analisis'] + $fila_exp_det3_marzo['en_analisis'] + $fila_exp_det3_abril['en_analisis'] + $fila_exp_det3_mayo['en_analisis']; "</td>";
+  echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det3_total['t']; echo "</td>";
   echo "</tr>";
 
  ?>
