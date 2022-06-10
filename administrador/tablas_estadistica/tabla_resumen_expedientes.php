@@ -8,8 +8,7 @@ $fol_exp =$row['fol_exp'];
 $tabla="SELECT * FROM expediente";
 $var_resultado = $mysqli->query($tabla);
 
-while ($var_fila=$var_resultado->fetch_array())
-{
+while ($var_fila=$var_resultado->fetch_array()){
   $fol_exp2=$var_fila['fol_exp'];
   $consecutivo = $consecutivo + 1;
   $aut = "SELECT * from autoridad WHERE folioexpediente = '$fol_exp2'";
@@ -39,14 +38,47 @@ while ($var_fila=$var_resultado->fetch_array())
   $delp = "SELECT DISTINCT delitoprincipal FROM procesopenal WHERE folioexpediente = '$fol_exp2'";
   $rdelp = $mysqli->query($delp);
   $fdelp = $rdelp->fetch_assoc();
+  //
+  $v1="SELECT nombrepersona,  COUNT(DISTINCT folioexpediente) as t FROM datospersonales
+  WHERE relacional = 'si'
+  GROUP BY nombrepersona
+  HAVING COUNT(*)>0
+  ORDER BY 't'  DESC";
+  $rv1=$mysqli->query($v1);
+  $fv1 = $rv1->fetch_assoc();
+  // echo $fv1['t'];
+  //
   $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
   $result=$mysqli->query($abc);
   if($result)
   {
     while($row=mysqli_fetch_assoc($result))
     {
+      $v="SELECT * FROM datospersonales WHERE folioexpediente='$fol_exp2'";
+      $rv=$mysqli->query($v);
+      $fv = $rv->fetch_assoc();
+      $n = $fv['nombrepersona'];
+      $p = $fv['paternopersona'];
+      $m = $fv['maternopersona'];
+      // $v2="SELECT COUNT(*) as t  FROM datospersonales
+      // WHERE nombrepersona = '$n' and paternopersona = '$p' and maternopersona = '$m' and relacional = 'SI'";
+      // $rv2=$mysqli->query($v2);
+      // $fv2 = $rv2->fetch_assoc();
+      // echo $fv2['t'];
+      // echo $fv['relacional'].'<br>';
+
       echo "<tr>";
-        echo "<td style='text-align:center'>"; echo $consecutivo; echo "</td>";
+        echo "<td style='text-align:center' width='50'>"; echo $consecutivo; if ($fv['relacional'] === 'SI') {
+          // echo "*SI";
+          $v2="SELECT COUNT(*) as t  FROM datospersonales
+          WHERE nombrepersona = '$n' and paternopersona = '$p' and maternopersona = '$m' and relacional = 'SI'";
+          $rv2=$mysqli->query($v2);
+          $fv2 = $rv2->fetch_assoc();
+          // echo $fv2['t'];
+          for ($i=0; $i < $fv2['t']; $i++) {
+            echo "*";
+          }
+        } echo "</td>";
         echo "<td style='text-align:center' width='50'>"; echo $var_fila['fol_exp']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fila_aut['nombreautoridad']; echo "</td>";
         echo "<td style='text-align:center' width='50'>"; echo $var_fila['fecharecep']; echo "</td>";

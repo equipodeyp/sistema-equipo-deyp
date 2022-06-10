@@ -32,13 +32,13 @@ $fila_exp_det_abril = $res_exp_det_abril->fetch_assoc();
 //total mayo 2022
 $exp_det_mayo = "SELECT COUNT(*) AS total FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
-WHERE analisis_expediente.fecha_analisis BETWEEN '2022-05-01' AND '2022-05-31' OR analisis_expediente.analisis = 'EN ELABORACION'";
+WHERE analisis_expediente.fecha_analisis BETWEEN '2022-05-01' AND '2022-05-31' OR (analisis_expediente.analisis = 'EN ELABORACION' AND analisis_expediente.fecha_inicio BETWEEN '2022-05-01' AND '2022-05-31')";
 $res_exp_det_mayo = $mysqli->query($exp_det_mayo);
 $fila_exp_det_mayo = $res_exp_det_mayo->fetch_assoc();
 //
 $exp_det_junio = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
-WHERE analisis_expediente.fecha_analisis BETWEEN '2022-06-01' AND '2022-06-30'";
+WHERE analisis_expediente.fecha_analisis BETWEEN '2022-06-01' AND '2022-06-30' OR (analisis_expediente.analisis = 'EN ELABORACION' AND analisis_expediente.fecha_inicio BETWEEN '2022-06-01' AND '2022-06-30')";
 $res_exp_det_junio = $mysqli->query($exp_det_junio);
 $fila_exp_det_junio = $res_exp_det_junio->fetch_assoc();
 //
@@ -208,7 +208,7 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "</tr>";
 
   echo "<tr>";
-  echo "<td style='text-align:right'>"; echo "EN ANALISIS"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "EN ANALISIS *"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_enero['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_febrero['en_analisis']; echo "</td>";
@@ -218,5 +218,5 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_junio['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det3_total['t']; echo "</td>";
   echo "</tr>";
-
+  echo "";
  ?>

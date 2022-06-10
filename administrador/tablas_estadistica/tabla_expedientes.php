@@ -47,7 +47,11 @@ while ($fexp = $rexp->fetch_assoc()) {
   if ($c2021) {
     while ($fc2021 = mysqli_fetch_assoc($rc2021)) {
       echo "<tr>";
-      echo "<td style='text-align:left'>"; echo $fexp['nombre']; echo "</td>";
+      echo "<td style='text-align:left'>"; echo $fexp['nombre']; if ($fexp['nombre'] === 'ANALISIS') {
+        echo "*";
+      }elseif ($fexp['nombre'] === 'EN EJECUCION') {
+        echo "**";
+      } echo "</td>";
       echo "<td style='text-align:center'>"; echo $fc2021['t']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fc2022['t']; echo "</td>";
       echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fctotal['t']; echo "</td>";
