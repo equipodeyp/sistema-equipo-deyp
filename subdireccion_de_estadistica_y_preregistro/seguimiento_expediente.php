@@ -847,7 +847,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
 
 
       }
-      else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION"){
+      else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE ACUMULACIÓN"){
 
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INCORPORACION').style.display = "";
