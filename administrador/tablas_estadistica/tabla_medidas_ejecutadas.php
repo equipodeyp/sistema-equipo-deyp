@@ -245,72 +245,6 @@ WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12
 $rtotal2022 = $mysqli->query($total2022);
 $ftotal2022 = $rtotal2022->fetch_assoc();
 //
-echo "<tr bgcolor = 'Lime'>";
-echo "<td style='text-align:center'>"; echo "DEFINITIVAS"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefenero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdeffebrero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefmarzo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefmayo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefjunio['t']; echo "</td>";
-echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdeftotal['t']; echo "</td>";
-echo "</tr>";
-//
-echo "<tr>";
-echo "<td style='text-align:center'>"; echo "MEDIDAS DE ASISTENCIA"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasisenero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasisfebrero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasismarzo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasisabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasismayo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefasisjunio['t']; echo "</td>";
-echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefasistotal['t']; echo "</td>";
-echo "</tr>";
-//
-echo "<tr>";
-echo "<td style='text-align:center'>"; echo "MEDIDAS DE RESGUARDO"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefresgenero ['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefresgfebrero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefresgmarzo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefresgabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefresgmayo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdefresgjunio['t']; echo "</td>";
-echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefresgtotal['t']; echo "</td>";
-echo "</tr>";
-//
-echo "<tr bgcolor = 'Lime'>";
-echo "<td style='text-align:center'>"; echo "PROVISIONALES"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovenero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovfebrero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovmarzo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovmayo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovjunio['t']; echo "</td>";
-echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fprovtotal['t']; echo "</td>";
-echo "</tr>";
-//
-echo "<tr>";
-echo "<td style='text-align:center'>"; echo "MEDIDAS DE ASISTENCIA"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovasisenero ['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovasisfebrero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovasismarzo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresgasisabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresgasismayo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresgasisjunio['t']; echo "</td>";
-echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgasistotal['t']; echo "</td>";
-echo "</tr>";
-//
-echo "<tr>";
-echo "<td style='text-align:center'>"; echo "MEDIDAS DE RESGUARDO"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovasisenero ['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovresgfebrero['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fprovresgmarzo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresgresgabril['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresgresgmayo['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresgresgjunio['t']; echo "</td>";
-echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgresgtotal['t']; echo "</td>";
-echo "</tr>";
-//
 echo "<tr bgcolor = 'yellow'>";
 echo "<td style='text-align:center'>"; echo "TOTAL DE MEDIDAS"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalenero['t']; echo "</td>";
@@ -321,4 +255,71 @@ echo "<td style='text-align:center'>"; echo $ftotalmayo['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotaljunio['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal2022['t']; echo "</td>";
 echo "</tr>";
+//
+echo "<tr bgcolor = 'Lime'>";
+echo "<td style='text-align:right'>"; echo "DEFINITIVAS"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefenero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdeffebrero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefmarzo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefabril['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefjunio['t']; echo "</td>";
+echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdeftotal['t']; echo "</td>";
+echo "</tr>";
+//
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "MEDIDAS DE ASISTENCIA"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasisenero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasisfebrero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasismarzo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasisabril['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasismayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasisjunio['t']; echo "</td>";
+echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefasistotal['t']; echo "</td>";
+echo "</tr>";
+//
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "MEDIDAS DE RESGUARDO"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgenero ['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgfebrero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgmarzo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgabril['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgjunio['t']; echo "</td>";
+echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefresgtotal['t']; echo "</td>";
+echo "</tr>";
+//
+echo "<tr bgcolor = 'Lime'>";
+echo "<td style='text-align:right'>"; echo "PROVISIONALES"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovenero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovfebrero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovmarzo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovabril['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovjunio['t']; echo "</td>";
+echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fprovtotal['t']; echo "</td>";
+echo "</tr>";
+//
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "MEDIDAS DE ASISTENCIA"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovasisenero ['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovasisfebrero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovasismarzo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgasisabril['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgasismayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgasisjunio['t']; echo "</td>";
+echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgasistotal['t']; echo "</td>";
+echo "</tr>";
+//
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "MEDIDAS DE RESGUARDO"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovasisenero ['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovresgfebrero['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovresgmarzo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgresgabril['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgresgmayo['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgresgjunio['t']; echo "</td>";
+echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgresgtotal['t']; echo "</td>";
+echo "</tr>";
+//
 ?>

@@ -17,7 +17,7 @@ if ($verifica == 1) {
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
   $result = $mysqli->query($sentencia);
   $row=$result->fetch_assoc();
- 
+
 
   $fol_exp = $_GET['folio'];
   // echo $fol_exp;
@@ -33,8 +33,8 @@ if ($verifica == 1) {
   $tipo_error = $_POST['tipo'];
   $descripcion_error = $_POST['descripcion'];
   $status = $_POST['estatus'];
-        
-  $query = "INSERT INTO tickets (folio_reporte, folio_expediente, usuario, subdireccion, tipo, descripcion, estatus) 
+
+  $query = "INSERT INTO tickets (folio_reporte, folio_expediente, usuario, subdireccion, tipo, descripcion, estatus)
   VALUES ('$folio_reporte', '$fol_exp', '$usuario', '$subdireccion_usuario', '$tipo_error', '$descripcion_error', '$status')";
   $result = $mysqli->query($query);
 
@@ -44,29 +44,29 @@ if ($verifica == 1) {
   $subdireccion = $_POST["subdireccion"];
   $tipo = $_POST["tipo"];
   $descripcion = $_POST["descripcion"];
-  
-  $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br><br>" . 
-          "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario usted ha registrado una nueva incidencia con los siguientes datos: </h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" . "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" . 
-          "<h4 style='color: #722F37; font-weight: bold;'>$folio_expediente</h4>" . "<h4 style='color: #000000;'>NOMBRE DE USUARIO: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nombre_usuario</h4>" . "<h4 style='color: #000000;'>SUBDIRECCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$subdireccion</h4>" . 
+
+  $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br><br>" .
+          "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario usted ha registrado una nueva incidencia con los siguientes datos: </h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" . "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" .
+          "<h4 style='color: #722F37; font-weight: bold;'>$folio_expediente</h4>" . "<h4 style='color: #000000;'>NOMBRE DE USUARIO: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nombre_usuario</h4>" . "<h4 style='color: #000000;'>SUBDIRECCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$subdireccion</h4>" .
           "<h4 style='color: #000000;'>TIPO DE FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$tipo</h4>" . "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>";
 
   $asunto = "Nueva Incidencia: " . $folio_incidencia;
 
 
-      
+
   $sent=" SELECT id, folio_expediente FROM tickets WHERE folio_expediente='$folio_expediente'";
   $resu = $mysqli->query($sent);
   $ro=$resu->fetch_assoc();
   $folio=$ro["fol_exp"];
 
 
-  
-    
-    if($sent) {
-        $num_user=rand(1,3);
-        $mail = new PHPMailer(true);  
 
-        if ($num_user === 1){
+
+    if($sent) {
+        $num_user=rand(1,9);
+        $mail = new PHPMailer(true);
+
+        if ($num_user === 1 || $num_user === 4 || $num_user === 7){
 
             if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -77,7 +77,7 @@ if ($verifica == 1) {
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
               $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
               $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-              $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+              $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
               $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
               $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -118,7 +118,7 @@ if ($verifica == 1) {
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
               $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
               $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-              $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+              $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
               $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
               $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -127,6 +127,7 @@ if ($verifica == 1) {
               $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
               $mail->addAddress ('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
               $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
+              // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');
@@ -159,7 +160,7 @@ if ($verifica == 1) {
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
               $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
               $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-              $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+              $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
               $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
               $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -168,7 +169,7 @@ if ($verifica == 1) {
               $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
               $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
               $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
-              
+              // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');
@@ -200,7 +201,7 @@ if ($verifica == 1) {
               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
               $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
               $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-              $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+              $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
               $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
               $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -208,6 +209,7 @@ if ($verifica == 1) {
               $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
               $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
               $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
+              // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
               // $mail->addReplyTo('info@example.com', 'Information');
               // $mail->addCC('cc@example.com');
               // $mail->addBCC('bcc@example.com');
@@ -232,7 +234,7 @@ if ($verifica == 1) {
       }
 
 
-      elseif ($num_user === 2){
+      elseif ($num_user === 2 || $num_user === 5 || $num_user === 8){
 
         if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -242,7 +244,7 @@ if ($verifica == 1) {
           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-          $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+          $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -284,7 +286,7 @@ if ($verifica == 1) {
           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-          $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+          $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -293,6 +295,7 @@ if ($verifica == 1) {
           $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
           $mail->addAddress ('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
           $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+          // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
           // $mail->addReplyTo('info@example.com', 'Information');
           // $mail->addCC('cc@example.com');
           // $mail->addBCC('bcc@example.com');
@@ -325,7 +328,7 @@ if ($verifica == 1) {
           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-          $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+          $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -333,7 +336,7 @@ if ($verifica == 1) {
           $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
           $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
           $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
-          
+          // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
           // $mail->addReplyTo('info@example.com', 'Information');
           // $mail->addCC('cc@example.com');
           // $mail->addBCC('bcc@example.com');
@@ -365,7 +368,7 @@ if ($verifica == 1) {
           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-          $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+          $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -373,6 +376,7 @@ if ($verifica == 1) {
           $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
           $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
           $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');
+          // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
           // $mail->addReplyTo('info@example.com', 'Information');
           // $mail->addCC('cc@example.com');
           // $mail->addBCC('bcc@example.com');
@@ -397,7 +401,7 @@ if ($verifica == 1) {
     }
 
 
-    elseif ($num_user === 3){
+    elseif ($num_user === 3 || $num_user === 6 || $num_user === 9){
 
       if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -408,7 +412,7 @@ if ($verifica == 1) {
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+        $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
         $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -450,7 +454,7 @@ if ($verifica == 1) {
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+        $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
         $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -458,6 +462,7 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress ('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
+        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -490,7 +495,7 @@ if ($verifica == 1) {
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+        $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
         $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -499,7 +504,7 @@ if ($verifica == 1) {
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
         $mail->addAddress ('jsantiagoj@fiscaliaedomex.gob.mx');
-        
+        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -531,7 +536,7 @@ if ($verifica == 1) {
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = '34596_Dir.Estadistica&Prevencion';                               //SMTP password
+        $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
         $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -539,6 +544,7 @@ if ($verifica == 1) {
         $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
         $mail->addAddress('ahernandeze@fiscaliaedomex.gob.mx');     //Add a recipient
         $mail->addAddress ('jsantiagoj@fiscaliaedomex.gob.mx');
+        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
         // $mail->addCC('cc@example.com');
         // $mail->addBCC('bcc@example.com');
@@ -564,4 +570,3 @@ if ($verifica == 1) {
   }
 }
 ?>
-

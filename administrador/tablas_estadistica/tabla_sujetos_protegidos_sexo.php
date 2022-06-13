@@ -17,19 +17,20 @@ WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PR
 $restcalidadhombre = $mysqli->query($tcalidadhombre);
 $filatcalidadhombre = $restcalidadhombre->fetch_assoc();
 //
-
-echo "<tr>";
-echo "<td style='text-align:center'>"; echo "MUJER"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $filatcalidadmujer['tcalidadmujer']; "</td>";
-echo "</tr>";
-
-echo "<tr>";
-echo "<td style='text-align:center'>"; echo "HOMBRE"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $filatcalidadhombre['tcalidadhombre']; "</td>";
-echo "</tr>";
-
 echo "<tr bgcolor='yellow'>";
 echo "<td style='text-align:center'>"; echo "TOTAL"; "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; "</td>";
 echo "</tr>";
+
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "MUJER"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>"; echo $filatcalidadmujer['tcalidadmujer']; "</td>";
+echo "</tr>";
+
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "HOMBRE"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>"; echo $filatcalidadhombre['tcalidadhombre']; "</td>";
+echo "</tr>";
+
+
 ?>

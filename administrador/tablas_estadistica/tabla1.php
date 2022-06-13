@@ -146,8 +146,20 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 $restotal = $mysqli->query($total);
 $fila_total = $restotal->fetch_assoc();
 
+  echo "<tr bgcolor = 'yellow'>";
+  echo "<td style='text-align:left'>"; echo "TOTAL SOLICITUDES RECIBIDAS"; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_year2021total['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_enerototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_febrerototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_marzototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_abriltotal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_mayototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total['t'];  echo "</td>";
+  echo "</tr>";
+
   echo "<tr>";
-  echo "<td style='text-align:center'>"; echo "JURIDICAMENTE PROCEDENTES"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "JURIDICAMENTE PROCEDENTES"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_yaer2021['cant']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_enero['total_enero']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_febrero['total_febrero']; echo "</td>";
@@ -159,7 +171,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "</tr>";
 
   echo "<tr>";
-  echo "<td style='text-align:center'>"; echo "JURIDICAMENTE NO PROCEDENTES"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "JURIDICAMENTE NO PROCEDENTES"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_year2021NOPROC['cant1']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalenero['enerototal']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalfebrero['febrerototal']; echo "</td>";
@@ -170,16 +182,6 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022no['t']; echo "</td>";
   echo "</tr>";
 
-  echo "<tr bgcolor = 'yellow'>";
-  echo "<td style='text-align:center'>"; echo "TOTAL SOLICITUDES RECIBIDAS"; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_year2021total['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_enerototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_febrerototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_marzototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_abriltotal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_mayototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total['t'];  echo "</td>";
-  echo "</tr>";
+
 
  ?>

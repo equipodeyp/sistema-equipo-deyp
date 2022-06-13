@@ -121,7 +121,7 @@ $id_con_exp = $fila_consulta['id'];
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select disabled class="form-select form-select-lg" name="analisis_m">
+                    <select disabled class="form-select form-select-lg" name="analisis_m" id="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
                       <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
@@ -136,7 +136,7 @@ $id_con_exp = $fila_consulta['id'];
                     <label for="id_analisis">ID DEL ANÁLSIIS MULTIDISCIPLINARIO</label>
                     <input disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
-                  <div class="col-md-6 mb-3 validar ">
+                  <div class="col-md-6 mb-3 validar " id="tconve">
                     <label for="tipo_convenio">TIPO DE CONVENIO</label>
                     <select class="form-select form-select-lg" name="tipo_convenio" id="select_tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
@@ -144,31 +144,34 @@ $id_con_exp = $fila_consulta['id'];
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
                     </select>
                   </div>
-                  <div class="col-md-6 mb-3 validar ">
+                  <div class="col-md-6 mb-3 validar" id="ffirma">
                     <label for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_firma" id="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="finicio">
                     <label>FECHA DE INICIO DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="vigen">
                     <label>VIGENCIA DEL CONVENIO</label>
                     <input class="form-control" type="text" name="vigencia" id="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="fterm">
                     <label for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
                     <input readonly class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
                   </div>
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="tconvenios">
                     <label for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
                     <input class="form-control" type="text" id="input_id_convenio" name="id_convenio" value="<?php echo $fila_consulta['total_convenios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                 </div>
-
               </div>
               <div class="row">
+                <label for="observaciones">OBSERVACIONES</label>
+                <textarea disabled id="textarea_observaciones" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
+              </div>
+              <div class="row" id="textobserv">
                 <div class="row">
                   <hr class="mb-4">
                 </div>
@@ -178,7 +181,7 @@ $id_con_exp = $fila_consulta['id'];
                   <label for="observaciones">OBSERVACIONES</label>
                   <textarea id="textarea_observaciones" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
               </div>
-              <div class="row">
+              <div class="row" id="btnact">
                 <div>
                   <div>
                     <br>

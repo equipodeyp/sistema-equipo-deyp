@@ -40,7 +40,7 @@
               </div>
           </div>
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <h3 style="text-align:center">RESUMEN DEL PROGRAMA</h3>
               <div class="">
                 <table id="resumenprograma" border="1px" cellspacing="0" width="100%" bordered>
@@ -60,6 +60,13 @@
             </div>
           </div>
         </div>
+        <br>
+        <em>DEL 01 DE JUNIO DEL 2021 AL <?php
+          $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+          $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+          echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+        ?></em>
       </div>
       <div class="modal-footer">
         <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportarresumen();">EXPORTAR</button>
