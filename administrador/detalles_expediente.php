@@ -30,10 +30,17 @@ $estructura = "./$resultado";
 // Para crear una estructura anidada se debe especificar
 // el parámetro $recursive en mkdir().
 
-//mkdir($estructura, 0700, true);
+// mkdir($estructura, 0700, true);
 // if(!mkdir($estructura, 0700, true)) {
 //     die('Fallo al crear las carpetas...');
 // }
+
+
+if (!file_exists($estructura)) {
+    mkdir($estructura, 0777, true);
+	// die('Fallo al crear las carpetas...');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

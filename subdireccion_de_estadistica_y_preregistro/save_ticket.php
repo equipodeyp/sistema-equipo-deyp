@@ -57,9 +57,9 @@ if ($verifica == 1) {
 
   if($result) {
 
-    $num_user=rand(1,9);
+    $num_user=rand(1,24);
       
-      if ($num_user === 1 || $num_user === 4 || $num_user === 7){
+      if ($num_user === 1 || $num_user === 4 || $num_user === 7 || $num_user === 10 || $num_user === 13 || $num_user === 16 || $num_user === 19 || $num_user === 22){
 
           if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -297,7 +297,7 @@ if ($verifica == 1) {
 
           }
       }
-      elseif ($num_user === 2 || $num_user === 5 || $num_user === 8){
+      elseif ($num_user === 2 || $num_user === 5 || $num_user === 8 || $num_user === 11 || $num_user === 14 || $num_user === 17 || $num_user === 20 || $num_user === 23){
 
         if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
@@ -536,7 +536,7 @@ if ($verifica == 1) {
           }
       }
 
-      elseif ($num_user === 3 || $num_user === 6 || $num_user === 9){
+      elseif ($num_user === 3 || $num_user === 6 || $num_user === 9 || $num_user === 12 || $num_user === 15 || $num_user === 18 || $num_user === 21 || $num_user === 24){
 
         if ($nombre_usuario === 'AZAEL OLIVAR GARCIA'){
 
