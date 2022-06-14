@@ -39,6 +39,13 @@ while ($var_fila=$var_resultado->fetch_array()){
   $rdelp = $mysqli->query($delp);
   $fdelp = $rdelp->fetch_assoc();
   //
+  $convformal = "SELECT * FROM analisis_expediente
+  INNER JOIN statusseguimiento on analisis_expediente.folioexpediente = statusseguimiento.folioexpediente
+  WHERE analisis_expediente.analisis= 'estudio tecnico' and analisis_expediente.incorporacion= 'incorporacion procedente'
+  and analisis_expediente.convenio = '' AND statusseguimiento.conclu_cancel != 'conclusion'";
+  $rconvformal = $mysqli->query($convformal);
+  $fconvformal = $rconvformal->fetch_assoc();
+  //
   $v1="SELECT nombrepersona,  COUNT(DISTINCT folioexpediente) as t FROM datospersonales
   WHERE relacional = 'si'
   GROUP BY nombrepersona
@@ -60,12 +67,6 @@ while ($var_fila=$var_resultado->fetch_array()){
       $n = $fv['nombrepersona'];
       $p = $fv['paternopersona'];
       $m = $fv['maternopersona'];
-      // $v2="SELECT COUNT(*) as t  FROM datospersonales
-      // WHERE nombrepersona = '$n' and paternopersona = '$p' and maternopersona = '$m' and relacional = 'SI'";
-      // $rv2=$mysqli->query($v2);
-      // $fv2 = $rv2->fetch_assoc();
-      // echo $fv2['t'];
-      // echo $fv['relacional'].'<br>';
 
       echo "<tr>";
         echo "<td style='text-align:center' width='50'>"; echo $consecutivo; if ($fv['relacional'] === 'SI') {
@@ -78,6 +79,9 @@ while ($var_fila=$var_resultado->fetch_array()){
           for ($i=0; $i < $fv2['t']; $i++) {
             echo "*";
           }
+        }
+        if ($fconvformal) {
+          echo "/";
         } echo "</td>";
         echo "<td style='text-align:center' width='50'>"; echo $var_fila['fol_exp']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fila_aut['nombreautoridad']; echo "</td>";
