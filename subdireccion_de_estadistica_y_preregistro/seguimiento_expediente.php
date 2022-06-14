@@ -945,7 +945,7 @@ function ocultarAnalisisM() {
 
 
       }
-      else if (analisisM === "ACUERDO DE CONCLUSION" || analisisM === "ACUERDO DE CANCELACION"){
+      else if (analisisM === "ACUERDO DE CONCLUSION" || analisisM === "ACUERDO DE CANCELACION" || analisisM === "ACUERDO DE ACUMULACIÓN"){
 
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INCORPORACION').style.display = "";
@@ -1321,7 +1321,7 @@ function ReadOnlyConClu() {
     document.getElementById('btn_agregar').style.display = "none";
   }
 
-  if (analisisM.value == "ACUERDO DE CONCLUSION" || analisisM.value == "ACUERDO DE CANCELACION"){
+  if (analisisM.value == "ACUERDO DE CONCLUSION" || analisisM.value == "ACUERDO DE CANCELACION" || analisisM.value == "ACUERDO DE ACUMULACIÓN"){
     if (readOnlyEstatus == "CONCLUIDO" || readOnlyEstatus == "CANCELADO" || readOnlyEstatus === "SOLICITUD NO PROCEDENTE"){
       analisisM.disabled = true;
       incorporacion.disabled = true;
