@@ -80,16 +80,13 @@ $row=$result->fetch_assoc();
            		<ul>
 				   <?php
 		   				if ($user=='diana') {
-							echo "<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-						";}
+							echo "
+								<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+								<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>GENERACIÓN DE<br>FORMATO</button> </a>
+								<a style='text-align:center' href='repo_exp.php?folio=$fol_exp'><button type='button' class='btn btn-light'>REPOSITORIO<br>EXPEDIENTE</button> </a>
+							";
+						}
 					?>
-
-
-          <?php
-         if ($user=='diana') {
-         echo "<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>GENERACIÓN DE<br>FORMATO</button> </a>
-       ";}
-     ?>
             	</ul>
     </nav>
   </div>

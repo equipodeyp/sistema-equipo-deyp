@@ -78,8 +78,11 @@ $row=$result->fetch_assoc();
            		<ul>
 				   <?php
 		   				if ($user=='guillermogv') {
-							echo "<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-						";}
+							echo "
+								<a style='text-align:center' class='user-nombre' href='repo_exp.php?folio=$fol_exp'><button type='button' class='btn btn-light'>REPOSITORIO <br> EXPEDIENTE</button> </a>
+								<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+							";
+						}
 					?>
             	</ul>
     </nav>

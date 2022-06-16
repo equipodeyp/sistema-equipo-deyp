@@ -161,7 +161,7 @@ $row=$result->fetch_assoc();
                         </thead>
                         <tbody>
                         <?php
-                        $documetos = '../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo';
+                        // $documetos = '../subdireccion_de_apoyo_tecnico_juridico/archivos_subidos_apoyo';
                         $documetos = '../subdireccion_de_estadistica_y_preregistro/archivos_subidos_estadistica';
                         $archivos = scandir($documetos);
                         $num=0;

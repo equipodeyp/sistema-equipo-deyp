@@ -326,6 +326,35 @@ if ($verifica == 1) {
   $datos_validacion_exp = "UPDATE expediente SET validacion='$validacion', fecha_validacion = '$fecha' WHERE fol_exp = '$fol_exp'";
   $res_validacion_exp = $mysqli->query($datos_validacion_exp);
 
+
+  
+
+  $name_carpeta = $fol_exp;
+  $resultado = str_replace("/", "-", $name_carpeta);
+  
+
+
+  $estructura_uno = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$identificador";
+
+  if (!file_exists($estructura_uno)) {
+      mkdir($estructura_uno, 0777, true);
+  }
+
+  $estructura_dos = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$identificador";
+
+  if (!file_exists($estructura_dos)) {
+      mkdir($estructura_dos, 0777, true);
+  }
+
+
+  $estructura_tres = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$identificador";
+
+  if (!file_exists($estructura_tres)) {
+      mkdir($estructura_tres, 0777, true);
+  }
+
+  
+
   // validacion de registro GUARDADO
   if($res_val_juridica){
     echo ("<script type='text/javaScript'>

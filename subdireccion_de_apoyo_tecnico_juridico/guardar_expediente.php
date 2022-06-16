@@ -40,6 +40,7 @@ if ($verifica == 1) {
   $m = date("m");
   $d = date("d");
 
+
   if ($a == $row_exp22['año']){
     $num_consecutivo =$row_exp22['num_consecutivo'];
     $n=$num_consecutivo;
@@ -61,6 +62,55 @@ if ($verifica == 1) {
   // estado inicial de validacion
   $validacion = 'false';
   $folio_expediente = $unidad.'/'.$r_sede.'/'.$claveMunicipio.'/'.$n_con.'/'.$año;
+
+  $name_carpeta = $folio_expediente;
+  $resultado = str_replace("/", "-", $name_carpeta);
+
+
+  // $estructura = "./$resultado";
+  $estructura_uno = "../subdireccion_de_analisis_de_riesgo/repo/$resultado";
+
+  if (!file_exists($estructura_uno)) {
+      mkdir($estructura_uno, 0777, true);
+  }
+
+  $estructura_dos = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado";
+
+  if (!file_exists($estructura_dos)) {
+      mkdir($estructura_dos, 0777, true);
+  }
+
+  $estructura_tres = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado";
+
+  if (!file_exists($estructura_tres)) {
+      mkdir($estructura_tres, 0777, true);
+  }
+
+
+
+
+    // $estructura = "./$resultado";
+    $estructura_cuatro = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado";
+
+    if (!file_exists($estructura_cuatro)) {
+        mkdir($estructura_cuatro, 0777, true);
+    }
+  
+    $estructura_cinco = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado";
+  
+    if (!file_exists($estructura_cinco)) {
+        mkdir($estructura_cinco, 0777, true);
+    }
+  
+    $estructura_seis = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado";
+  
+    if (!file_exists($estructura_seis)) {
+        mkdir($estructura_seis, 0777, true);
+    }
+
+  
+
+
   $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion)
           VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion')";
   $resultado = $mysqli->query($sql);

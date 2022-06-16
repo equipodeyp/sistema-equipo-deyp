@@ -22,6 +22,10 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
+$folio_del_expediente = $fol_exp;
+$_SESSION['folio_expediente'] = $folio_del_expediente;
+
+// echo $fol_exp;
 
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
@@ -34,7 +38,6 @@ $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 
 $name_folio=$rowfol['folioexpediente'];
-$_SESSION['folio_expediente'] = $name_folio;
 
 $id_pers=$rowfol['identificador'];
 $_SESSION['idpersona'] = $id_pers;
@@ -43,7 +46,7 @@ $_SESSION['idpersona'] = $id_pers;
 // echo $id_pers;
 // echo $name_folio;
 
-$name_carpeta = $name_folio;
+$name_carpeta = $fol_exp;
 $resultado = str_replace("/", "-", $name_carpeta);
 // echo $resultado;
 
@@ -176,8 +179,8 @@ $fexprel1 = $rexprel1->fetch_assoc();
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    if ($user=='diana') {
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
             	</ul>
@@ -196,7 +199,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
       <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='repo.php?folio=<?php echo $fol_exp; ?>'"><span class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></span><span class="tab-text">REPOSITORIO PERSONA</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='repo_exp.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></span><span class="tab-text">REPOSITORIO EXPEDIENTE</span></a></li>
           <!-- <li><a href="#" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
           <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
@@ -207,21 +210,20 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
               <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
-                        <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-                        <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
-                        <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$id_person?>">PERSONA</a>
-                        <a class="actived">REPOSITORIO PERSONA</a>
+                        <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
+                        <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$fol_exp?>">EXPEDIENTE</a>
+                        <a class="actived">REPOSITORIO EXPEDIENTE</a>
               </div>
 
               <div class="container">
-              <form class="container well form-horizontal" action="../subdireccion_de_analisis_de_riesgo/cargar_archivo.php?id=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="../subdireccion_de_apoyo_tecnico_juridico/cargar_archivo_exp.php?folio=<?php echo $fol_exp; ?>" method="post" enctype="multipart/form-data">
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
-                  <h5 style='text-align:justify'>
-                  En este apartado deberás agregar los archivos cuya información sea única y exclusivamente de la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad 
-                  de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto 
-                  que mantendrán este nombre, es buena práctica colocar un nombre en específico, irrepetible y fácil de comprender.
-                  </h5>
+                <h5 style='text-align:justify'>
+                En este apartado deberás agregar los archivos cuya información esté relacionada entre la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad 
+                de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto 
+                que mantendrán este nombre, es buena práctica colocar un nombre en específico, irrepetible y fácil de comprender.
+                </h5>
 
                   <!-- <div class="alert alert-info">
                     <h3 style="text-align:center">AÑADIR ARCHIVOS</h3>
@@ -232,8 +234,9 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         <input required="" type="file" name="file" id="exampleInputFile"></label>
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
+                  
                   <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='diana') {
                     echo "
                     <div class='alert alert-info'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
@@ -242,7 +245,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     echo "
                     <div class='col-md-10 mb-3' style='display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;'>
                         <label for='my-file-selector'><span ></span>
-                        <input required='' type='file' name='file' id='exampleInputFile'></label>
+                        <input required='' accept='application/pdf' type='file' name='file' id='exampleInputFile'></label>
                         <button class='btn btn-success' type='submit'>Agregar archivo</button>
                     </div>
                     ";
@@ -264,7 +267,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                                 <th style="text-align:center" width="50%">Nombre del archivo</th>
                                 <th style="text-align:center" width="20%">Descargar</th>
                                 <?php
-                                  if ($user=='guillermogv') {
+                                  if ($user=='diana') {
                                   echo "<th style='text-align:center' width='20%'>Eliminar</th>";}
                                 ?>
                                 <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
@@ -272,7 +275,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         </thead>
                         <tbody>
                         <?php
-                        $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$id_pers/");
+                        $archivos = scandir("../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado/");
                         $num=0;
                         for ($i=2; $i<count($archivos); $i++)
                         {$num++;
@@ -283,10 +286,10 @@ $fexprel1 = $rexprel1->fetch_assoc();
                             <tr>
                               <th style="text-align:center" scope="row"><?php echo $num;?></th>
                               <td><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_analisis_de_riesgo/repo/<?php echo $resultado ?>/<?php echo $id_pers ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
+                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_apoyo_tecnico_juridico/repo/<?php echo $resultado ?>/<?php echo $resultado ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
                               <?php
-                                  if ($user=='guillermogv') {
-                                  echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/$resultado/$id_pers/$archivos[$i]' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a></td>";}
+                                  if ($user=='diana') {
+                                  echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=repo/$resultado/$resultado/$archivos[$i]' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a></td>";}
                               ?>
                               <!-- <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=archivos_subidos_analisis/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td> -->
                             </tr>
@@ -305,7 +308,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 <div class="contenedor">
 
 
-<a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$id_person?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$folio_del_expediente?>" class="btn-flotante">REGRESAR</a>
 
   <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
 
