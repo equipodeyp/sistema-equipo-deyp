@@ -264,7 +264,7 @@ $row=$result->fetch_assoc();
                               echo "*";
                             }
                             echo "  ";
-                            echo '   '.$expediente = $ft['folioexpediente'] .' se relaciona con el expediente ' .$ft['espedienterelacional'].'<br />';
+                            echo 'El sujeto del expediente   '.$expediente = $ft['folioexpediente'] .' se relaciona con el expediente ' .$ft['espedienterelacional'].'<br />';
                           }
                           ?>
                         </div>

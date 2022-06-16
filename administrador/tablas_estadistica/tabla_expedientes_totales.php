@@ -1,4 +1,13 @@
 <?php
+// error_reporting(0);
+$v1 = "SELECT folioexpediente, COUNT( folioexpediente ) AS total
+FROM  evaluacion_expediente
+GROUP BY folioexpediente
+ORDER BY total DESC
+LIMIT 1";
+$rv1 = $mysqli->query($v1);
+$fv1 = $rv1->fetch_assoc();
+$iterac = $fv1['total'].'<br />';
 $cont = 0;
 $exps = "SELECT DISTINCT a.fol_exp, a.fecharecep, a.sede,
 b.nombreautoridad,
@@ -16,6 +25,16 @@ ORDER by a.id ASC";
 $rexps = $mysqli->query($exps);
 while ($fexps = $rexps->fetch_assoc()) {
   $cont = $cont + 1;
+  $expedienteest = $fexps['fol_exp'];
+  // echo $expedienteest;
+  $v = "SELECT COUNT(*) as t
+  FROM  evaluacion_expediente
+  WHERE folioexpediente = '$expedienteest'";
+  $rv = $mysqli->query($v);
+  $fv = $rv->fetch_assoc();
+
+  // echo $fv['t'].'<br />';
+
   echo "<tr>";
   echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['fol_exp']; echo "</td>";
@@ -38,6 +57,53 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $fexps['fecha_convenio']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['vigencia']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['fecha_termino_convenio']; echo "</td>";
+  if ($fv) {
+    // echo 'el '. $expedienteest ."tiene ". $fv['t']. '  estudios'. '<br />';
+    // if ($fv['t'] > 0) {
+      $t = "SELECT * FROM evaluacion_expediente
+      WHERE folioexpediente = '$expedienteest'";
+      $rt = $mysqli->query($t);
+      while ($ft = $rt->fetch_assoc()) {
+        // code...
+        // echo $ft['fecha_aut'].'<br />';
+        echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['fecha_aut']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['fecha_firma']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['fecha_inicio']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $ft['total_convenios']; echo "</td>";
+      }
+
+        for ($i=$fv['t']+1; $i < $iterac; $i++) {
+          // code...
+          // echo "*";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        }
+
+    // }
+  }
+  // if ($fv['t'] <= $iterac) {
+  //   for ($i=0; $i < $iterac; $i++) {
+  //     echo "<td style='text-align:center' bgcolor='yellow'>"; echo "prueba";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //     echo "<td style='text-align:center'>";  echo "</td>";
+  //   }
+  // }
+
   echo "<td style='text-align:center'>"; echo $fexps['conclu_cancel']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['conclusionart35']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['otherart35']; echo "</td>";
