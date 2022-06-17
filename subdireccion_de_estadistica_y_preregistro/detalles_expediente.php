@@ -78,6 +78,7 @@ $name = $_SESSION['usuario'];
     <nav class="menu-nav">
            		<ul>
 				   	<a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $fol_exp; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+					   <a style="text-align:center" class='user-nombre' href='repo_exp.php?folio=<?php echo $fol_exp; ?>'><button type='button' class='btn btn-light'>REPOSITORIO <BR> EXPEDIENTE</button> </a>
             	</ul>
     </nav>
   </div>

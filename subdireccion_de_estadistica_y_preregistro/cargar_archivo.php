@@ -11,7 +11,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 $fichero = $_FILES["file"];
 
 
-move_uploaded_file($fichero["tmp_name"], "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$id_pers/".$fichero["name"]);
+move_uploaded_file($fichero["tmp_name"], "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$id_pers/".$fichero["name"]);
 
 header("Location: " . $_SERVER["HTTP_REFERER"]);
 

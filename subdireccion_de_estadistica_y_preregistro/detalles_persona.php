@@ -17,12 +17,14 @@ $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
 // echo $fol_exp;
+$_SESSION['idfolioexp'] = $fol_exp;
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
 // echo $name_folio;
 $identificador = $rowfol['identificador'];
+$_SESSION['idpersona'] = $identificador;
 // echo $identificador;
 $id_person=$rowfol['id'];
 $foto=$rowfol['foto'];
@@ -121,6 +123,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
     <nav class="menu-nav">
           <ul>
 				   	<a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+            <a style="text-align:center" class='user-nombre' href='repo.php?folio=<?php echo $rowfol['folioexpediente']; ?>'><button type='button' class='btn btn-light'>REPOSITORIO <br> PERSONA</button> </a>
           </ul>
     </nav>
   </div>

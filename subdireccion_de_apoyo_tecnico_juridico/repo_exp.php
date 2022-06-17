@@ -180,8 +180,10 @@ $fexprel1 = $rexprel1->fetch_assoc();
            		<ul>
                 <?php
                     if ($user=='diana') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-                  ";}
+                    echo "
+                      <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    ";
+                    }
                 ?>
             	</ul>
     </nav>

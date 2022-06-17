@@ -37,10 +37,10 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 // }
 
 
-if (!file_exists($estructura)) {
-    mkdir($estructura, 0777, true);
-	// die('Fallo al crear las carpetas...');
-}
+// if (!file_exists($estructura)) {
+//     mkdir($estructura, 0777, true);
+// 	// die('Fallo al crear las carpetas...');
+// }
 
 ?>
 <!DOCTYPE html>
