@@ -302,7 +302,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 <div class="contenedor">
 
 
-<a href="../subdireccion_de_estadistica_y_preregistro/modificar.php?folio=<?=$id_person?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_estadistica_y_preregistro/detalles_persona.php?folio=<?=$idfolpers?>" class="btn-flotante">REGRESAR</a>
 
   <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
 
