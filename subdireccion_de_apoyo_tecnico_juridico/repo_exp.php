@@ -50,7 +50,10 @@ $name_carpeta = $fol_exp;
 $resultado = str_replace("/", "-", $name_carpeta);
 // echo $resultado;
 
-
+date_default_timezone_set('UTC');
+date_default_timezone_set("America/Mexico_City");
+$hoy = date("d-m-Y H:i:s a");  
+// echo $hoy;
 
 // echo $name_folio;
 $id_person=$rowfol['id'];
@@ -221,6 +224,20 @@ $fexprel1 = $rexprel1->fetch_assoc();
               <form class="container well form-horizontal" action="../subdireccion_de_apoyo_tecnico_juridico/cargar_archivo_exp.php?folio=<?php echo $fol_exp; ?>" method="post" enctype="multipart/form-data">
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
+
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                  </div>
+                    
+                  <div class="col-md-6 mb-3 ">
+                        <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
+                        <input readonly class="form-control" type="text" value="<?php echo $fol_exp;?>">
+                  </div>
+
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">INFORMACIÓN A CONSIDERAR</h3>
+                </div>
+
                 <h5 style='text-align:justify'>
                 En este apartado deberás agregar los archivos cuya información esté relacionada entre la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad 
                 de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto 
@@ -265,12 +282,13 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <table class="table table-bordered" id="table-tickets">
                         <thead>
                             <tr>
-                                <th style="text-align:center" width="10%">No.</th>
-                                <th style="text-align:center" width="50%">Nombre del archivo</th>
-                                <th style="text-align:center" width="20%">Descargar</th>
+                                <th style="text-align:center" width="5%">No.</th>
+                                <th style="text-align:center" width="15">Fecha</th>
+                                <th style="text-align:center" width="60%">Nombre del archivo</th>
+                                <th style="text-align:center" width="10%">Descargar</th>
                                 <?php
                                   if ($user=='diana') {
-                                  echo "<th style='text-align:center' width='20%'>Eliminar</th>";}
+                                  echo "<th style='text-align:center' width='10%'>Eliminar</th>";}
                                 ?>
                                 <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
                             </tr>
@@ -287,7 +305,8 @@ $fexprel1 = $rexprel1->fetch_assoc();
                                 
                             <tr>
                               <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <td><?php echo $archivos[$i]; ?></td>
+                              <th style="text-align:center;" scope="row"><?php echo $hoy;?></th>
+                              <td style="font-weight: bold;" scope="row"><?php echo $archivos[$i]; ?></td>
                               <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_apoyo_tecnico_juridico/repo/<?php echo $resultado ?>/<?php echo $resultado ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
                               <?php
                                   if ($user=='diana') {
