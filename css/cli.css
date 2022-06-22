@@ -18,7 +18,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  background: #990033;
+  background: #717c7d;
   min-height: 100vh;
   z-index: 5;
   top: 0;
