@@ -37,8 +37,8 @@ $res_val1=$mysqli->query($valid1);
 $fil_val1 = $res_val1->fetch_assoc();
 $validacion1 = $fil_val1['id_persona'];
 
-
-// echo $id_person;
+$_SESSION['numpersonas'] = $id_person;
+// echo $_SESSION['numpersonas'];
 
 // consulta de los datos de la autoridad
 $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
@@ -168,6 +168,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
     <nav class="menu-nav">
            <ul>
               <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente'];?>'> <button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+              <a style="text-align:center" class='user-nombre' href='sub_persona.php?folio=<?php echo $rowfol['folioexpediente'];?>'> <button type='button' class='btn btn-light'>REPOSITORIO <BR> PERSONA</button> </a>
               <!-- <a  href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente'];?>'><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>Incidencia</span></a> -->
               <!-- <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">Glosario</span></a></li> -->
               <!-- <li class="menu-items"><a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda</span></a></li> -->

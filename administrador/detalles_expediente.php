@@ -107,6 +107,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 			<nav class="menu-nav">
            		<ul>
 				   	<a style="text-align:center" href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+					<a style="text-align:center" href='sub_expediente.php?folio=<?php echo $row['fol_exp']; ?>'><button type='button' class='btn btn-light'>REPOSITORIO <br> EXPEDIENTE</button> </a>
 				   	<!-- <a href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'> <button type='button' class='btn btn-light'>INCIDENCIA</button> </a> -->
 				   	<!-- <a href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'> <button type='button' class='btn btn-light'>INCIDENCIA</button> </a> -->
 					<!-- <a href='create_ticket.php?folio=<?php echo $row['fol_exp']; ?>'><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>Incidencia</span></a> -->
