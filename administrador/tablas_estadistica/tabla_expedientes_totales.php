@@ -9,7 +9,7 @@ $rv1 = $mysqli->query($v1);
 $fv1 = $rv1->fetch_assoc();
 $iterac = $fv1['total'].'<br />';
 $cont = 0;
-$exps = "SELECT DISTINCT a.fol_exp, a.fecharecep, a.sede,
+$exps = "SELECT DISTINCT a.fol_exp, a.fecha_nueva, a.sede,
 b.nombreautoridad,
 c.delitoprincipal, c.otrodelitoprincipal, c.etapaprocedimiento, c.nuc, c.numeroradicacion,
 e.resultadovaloracion, e.motivoprocedencia,
@@ -38,7 +38,7 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<tr>";
   echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['fol_exp']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['fecharecep']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fexps['fecha_nueva']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['sede']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['nombreautoridad']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['delitoprincipal']; echo "</td>";
@@ -77,8 +77,6 @@ while ($fexps = $rexps->fetch_assoc()) {
       }
 
         for ($i=$fv['t']+1; $i < $iterac; $i++) {
-          // code...
-          // echo "*";
           echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
           echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
           echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";

@@ -56,7 +56,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
   		<link href="../css/bootstrap-theme.css" rel="stylesheet">
 		<script src="../js/bootstrap.min.js"></script>
   		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-  		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">		
+  		<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
 
 		<script src="../js/jquery-3.1.1.min.js"></script>
   		<script src="../js/jquery.dataTables.min.js"></script>
@@ -202,7 +202,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 										<div class="col-md-4 inputGroupContainer">
 											<div class="input-group">
 			      						<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-			      						<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
+			      						<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecharecep']; ?>" disabled>
 			    						</div>
 										</div>
 									</div>

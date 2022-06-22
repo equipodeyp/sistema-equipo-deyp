@@ -10,8 +10,7 @@ $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -73,14 +72,14 @@ $row=$result->fetch_assoc();
          ?>
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
-      <!-- <nav class="menu-nav">
+      <nav class="menu-nav">
            <ul>
-              <li class="menu-items"><a href="#"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>reportar incidencia</span></a></li>
-              <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">ver glosario</span></a></li>
+              <li class="menu-items"><a href="../administrador/archivos_html/total_personas.php"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>TOTAL SUJETOS</span></a></li>
+              <!-- <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">ver glosario</span></a></li>
               <li class="menu-items"><a href="../administrador/busqueda_avanzada.php"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda avanzada</span></a></li>
-              <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li>
+              <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
             </ul>
-      </nav> -->
+      </nav>
     </div>
     <div class="main bg-light">
       <div class="barra">
@@ -291,6 +290,9 @@ $row=$result->fetch_assoc();
                     </div>
                   </div>
                 </div>
+                <?php
+
+                ?>
                 <br>
                 <em>DEL 01 DE JUNIO DEL 2021 AL <?php
                   $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
@@ -315,7 +317,7 @@ $row=$result->fetch_assoc();
         <!-- fin resumen diario -->
         <!-- resumen expedientes -->
         <?php
-        include("../administrador/archivos_html/tabla_expedientes_totales.html");
+        include("../administrador/archivos_html/tabla_expedientes_totales.php");
         ?>
         <!-- fin resumen expedintes -->
         <!-- fin Ejemplo tabla con DataTables-->
