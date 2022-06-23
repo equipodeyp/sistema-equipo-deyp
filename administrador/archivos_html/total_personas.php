@@ -143,6 +143,8 @@ $row=$result->fetch_assoc();
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
+      </div>
+      <div class="container">
         <h2 style="text-align:center">PERSONAS</h2>
         <div class="">
             <div class="row">

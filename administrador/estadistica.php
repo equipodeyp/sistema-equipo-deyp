@@ -74,10 +74,10 @@ $result = $mysqli->query($sentencia);
       </div>
       <nav class="menu-nav">
            <ul>
-              <li class="menu-items"><a href="../administrador/archivos_html/total_personas.php"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>TOTAL SUJETOS</span></a></li>
-              <!-- <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">ver glosario</span></a></li>
-              <li class="menu-items"><a href="../administrador/busqueda_avanzada.php"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda avanzada</span></a></li>
-              <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
+             <li class="menu-items"><a href="../administrador/archivos_html/total_expedientes.php"><i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items"> EXPEDIENTES</span></a></li>
+              <li class="menu-items"><a href="../administrador/archivos_html/total_personas.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span> SUJETOS</span></a></li>
+              <li class="menu-items"><a href="../administrador/archivos_html/total_medidas.php"><i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items"> MEDIDAS</span></a></li>
+              <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
             </ul>
       </nav>
     </div>
