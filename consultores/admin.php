@@ -42,6 +42,7 @@ $row=$result->fetch_assoc();
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
+    
   $(document).ready(function() {
       $('#example').DataTable({
           language: {
