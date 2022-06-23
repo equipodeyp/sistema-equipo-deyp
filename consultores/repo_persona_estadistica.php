@@ -39,7 +39,7 @@ $_SESSION['folio_expediente'] = $name_folio;
 $id_pers=$rowfol['identificador'];
 $_SESSION['idpersona'] = $id_pers;
 
-echo $fol_exp;
+// echo $fol_exp;
 // echo $id_pers;
 // echo $name_folio;
 
