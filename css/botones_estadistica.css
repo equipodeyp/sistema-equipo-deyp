@@ -1,18 +1,18 @@
 a {
-  color: #990033;
+  color: blue;
   text-decoration: underline;
 }
 
 a:visited {
-  color: #990033;
+  color: #000000;
 }
 
 a:active {
-  color: #990033;
+  color: #red;
 }
 
 a:hover {
-  color: #990033;
+  color: red;
   text-decoration: underline;
 }
 
@@ -36,7 +36,7 @@ a:hover {
   height: 100px;
   background: #dcdcdc;
   margin-right: 20px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #000000;
   border-radius: 5px;
   -webkit-transition: all 300ms ease-in-out;
   -moz-transition: all 300ms ease-in-out;
@@ -56,12 +56,12 @@ a:hover {
   display: block;
   width: 100%;
   height: 100%;
-  color: #60595f;
+  color: #ffffff;
   position: absolute;
 }
 
 .ca-menu li a h2 {
-  color: #60595f;
+  color: #000000;
   padding-top: 5px;
 }
 
@@ -117,7 +117,7 @@ a:hover {
   font-size: 9px;
   font-weight: normal;
   font-style: normal;
-  color: #990033;
+  color: #000000;
   -webkit-transition: all 500ms linear;
   -moz-transition: all 500ms linear;
   -o-transition: all 500ms linear;
@@ -126,7 +126,7 @@ a:hover {
 }
 
 .ca-menu li:hover {
-  border-color: #d3d3d3;
+  border-color: yellow;
   background: #d3d3d3;
   z-index: 9999;
   -webkit-transition: scale(1.1);
@@ -145,7 +145,7 @@ a:hover {
 }
 
 .ca-menu li:hover .ca-sub {
-  color: #990033;
+  color: #000000;
 }
 
 /* Estili menú dispositivos pequeños*/
