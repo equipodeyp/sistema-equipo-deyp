@@ -279,9 +279,9 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <table class="table table-bordered" id="table-tickets">
                         <thead>
                             <tr>
-                                <th style="text-align:center" width="5%">No.</th>
-                                <th style="text-align:center" width="15%">Fecha</th>
-                                <th style="text-align:center" width="60%">Nombre del archivo</th>
+                                <th style="text-align:center" width="10%">No.</th>
+                                <!-- <th style="text-align:center" width="15%">Fecha</th> -->
+                                <th style="text-align:center" width="70%">Nombre del archivo</th>
                                 <th style="text-align:center" width="10%">Descargar</th>
                                 <th style='text-align:center' width='10%'>Eliminar</th>
                           
@@ -300,7 +300,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                                 
                             <tr>
                               <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <th style="text-align:center;" scope="row"><?php echo $hoy;?></th>
+                              <!-- <th style="text-align:center;" scope="row"><?php echo $hoy;?></th> -->
                               <td style="font-weight: bold;"><?php echo $archivos[$i]; ?></td>
                               <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_estadistica_y_preregistro/repo/<?php echo $resultado; ?>/<?php echo $iniciales_persona; ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
                               
