@@ -158,19 +158,7 @@ $result = $mysqli->query($sentencia);
               </li>
           </ul>
         </div>
-        <div class="contenedor" style="display: flex; justify-content: center;">
-          <ul class="ca-menu" >
-            <li >
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_resumenexpedientes">
-                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/EXPT.png" style="width:90px;height:60px;"></span>
-                <div class="ca-content">
-                  <h2 class="ca-main">INFORMACIÓN DE EXPEDIENTES</h2>
-                  <h3 class="ca-sub"></h3></div>
-                </a>
-              </li>
-          </ul>
-        </div>
-        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
         <?php
         date_default_timezone_set("America/Mexico_City");
         $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
@@ -315,11 +303,6 @@ $result = $mysqli->query($sentencia);
         include("../administrador/archivos_html/resumendiario.html");
         ?>
         <!-- fin resumen diario -->
-        <!-- resumen expedientes -->
-        <?php
-        include("../administrador/archivos_html/tabla_expedientes_totales.php");
-        ?>
-        <!-- fin resumen expedintes -->
         <!-- fin Ejemplo tabla con DataTables-->
     </div>
   </div>
