@@ -148,7 +148,79 @@ $row=$result->fetch_assoc();
         <h2 style="text-align:center">MEDIDAS</h2>
         <div class="">
             <div class="row">
+              <div class="">
+                  <div class="row">
+                          <div class="col-lg-12">
+                              <div class="table-responsive">
+                                  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                  <thead>
+                                    <h3 style="text-align:center">Registros</h3>
+                                      <tr>
+                                          <th style="text-align:center">No.</th>
+                                          <th style="text-align:center">ID EXPEDIENTE</th>
+                                          <th style="text-align:center">NOMBRE SUJETO PROTEGIDO</th>
+                                          <th style="text-align:center">PATERNO SUJETO PROTEGIDO</th>
+                                          <th style="text-align:center">MATERNO SUJETO PROTEGIDO</th>
+                                          <th style="text-align:center">CALIDAD DE LA PERSONA</th>
+                                          <th style="text-align:center">ID PERSONA/SUJETO</th>
+                                          <th style="text-align:center">CONSECUTIVO MEDIDA</th>
+                                          <th style="text-align:center">CATEGORIA MEDIDA</th>
+                                          <th style="text-align:center">TIPO DE MEDIDA</th>
+                                          <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
+                                          <th style="text-align:center">FRACCION DE LA MEDIDA</th>
+                                          <th style="text-align:center">INCISO DE LA MEDIDA</th>
+                                          <th style="text-align:center">ESPECIFICAR OTRAS MEDIDAS</th>
+                                          <th style="text-align:center">FECHA MEDIDA PROVISIONAL</th>
+                                          <th style="text-align:center">FECHA MEDIDA DEFINITIVA</th>
+                                          <th style="text-align:center">CONCLUSION CANCELACION MEDIDA</th>
+                                          <th style="text-align:center">ART. 35 CONCLUSION DESINCORPORACION</th>
+                                          <th style="text-align:center">ESPECIFICAR ART. 35</th>
+                                          <th style="text-align:center">FECHA CONCLUSION DESINCORPORACION</th>
+                                          <th style="text-align:center">ESTATUS DE LA MEDIDA</th>
+                                          <th style="text-align:center">MUNICIPIO DE EJECUCION</th>
+                                          <th style="text-align:center">FECHA DE EJECUCION</th>
+                                          <th style="text-align:center">FUENTE ACTUALIZACION</th>
+                                          <th style="text-align:center">ID FUENTE ACTUALIZACION</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                                    $cont = 0;
+                                    $tabla="SELECT * FROM medidas";
+                                    $var_resultado = $mysqli->query($tabla);
 
+                                    while ($var_fila=$var_resultado->fetch_array())
+                                    {
+                                      $cont = $cont + 1;
+                                          echo "<tr>";
+                                          echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['folioexpediente'].'/'. $var_fila['año']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
+                                          // echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
+                                          //   echo "<i class='fas fa-check'></i>";
+                                          // }elseif ($var_fila['validacion'] == 'false') {
+                                          //   echo "<i class='fas fa-times'></i>";
+                                          // } echo "</td>";
+                                          // echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+
+                                          echo "</tr>";
+                                    //
+                                    //     }
+                                    //
+                                    //   }
+                                    }
+                                  ?>
+                                  </tbody>
+                                 </table>
+                              </div>
+                          </div>
+                  </div>
+              </div>
             </div>
         </div>
       </div>
