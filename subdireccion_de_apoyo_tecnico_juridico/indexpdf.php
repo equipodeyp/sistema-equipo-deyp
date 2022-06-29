@@ -253,15 +253,7 @@ $anio = $row['año'];
                                            <label for="confi-si" class="form-check-label">Si</label>
                                            <input type="radio" name="confi" class="form-check-input"  id="confi-no" value="0" checked>
                                            <label for="confi-no" class="form-check-label">No</label>
-                                         </div>
-                                         <div class="col-lg-6  validar"><br>
-                                             <label for="clasi" class="form-label">Fecha de Clasificación</label><br>
-                                             <input type="text" class="form-control" id="clasi">
-                                         </div>
-                                         <div class="col-lg-6  validar"><br>
-                                             <label for="periodo" class="form-label">Periodo de Reserva</label><br>
-                                             <input type="text" class="form-control" id="periodo">
-                                         </div>
+                                         </div>                                         
 
                                        </div>
 
