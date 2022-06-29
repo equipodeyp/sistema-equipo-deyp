@@ -1011,7 +1011,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
   // nota regresar el nombre del usuario que solo puede validar
-    if ($validacion === 'false' && $name === 'diana') {
+    if ($validacion === 'false' && ($name === 'diana' || $name === 'araceliby' || $name === 'carloscl')) {
 
       echo "<div class='columns download'>
 

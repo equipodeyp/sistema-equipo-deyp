@@ -233,7 +233,7 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if ($name == 'diana' && $exp_validado == 'false') {
+            if (($name === 'diana' || $name === 'araceliby' || $name === 'carloscl') && $exp_validado == 'false') {
               echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
               echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>¡ YA PUEDE VALIDAR EL EXPEDIENTE !</FONT></h3>";
             }elseif ($valexp == 'NO') {
