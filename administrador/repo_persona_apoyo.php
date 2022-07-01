@@ -2,7 +2,7 @@
 /*require 'conexion.php';*/
 error_reporting(0);
 include("conexion.php");
-session_start ();
+session_start ();   
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");

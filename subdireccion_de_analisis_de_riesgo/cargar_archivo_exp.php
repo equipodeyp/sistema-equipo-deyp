@@ -14,5 +14,6 @@ move_uploaded_file($fichero["tmp_name"], "../subdireccion_de_analisis_de_riesgo/
 
 header("Location: " . $_SERVER["HTTP_REFERER"]);
 
+// echo $fichero["tmp_name"];
 
 ?>

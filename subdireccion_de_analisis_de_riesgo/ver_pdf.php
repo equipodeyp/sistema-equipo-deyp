@@ -24,10 +24,11 @@ $resultado1=$mysqli->query($query1);
 $fol_exp = $_GET['folio'];
 $folio_del_expediente = $fol_exp;
 $_SESSION['folio_expediente'] = $folio_del_expediente;
-$folio_del_expedientev = $fol_exp;
-$_SESSION['folio_expedientev'] = $folio_del_expedientev;
-// echo $fol_exp;
-$exped =
+$name_folio = $_SESSION['folio_expedientev'];
+// echo $name_folio;
+$name_carpetav = $name_folio;
+$resultadov = str_replace("/", "-", $name_carpetav);
+// echo $resultadov;
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
@@ -111,6 +112,7 @@ $hoy = date("d-m-Y H:i:s a");
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -155,8 +157,12 @@ $hoy = date("d-m-Y H:i:s a");
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <style type="text/css">
+    #biframe { position: absolute; width: 980px; height: 600px;}
+    #iframe { width: 980px; height: 600px; }
+  </style>
 </head>
-<body >
+<body onload="disableContextMenu();" oncontextmenu="return false">
 <div class="contenedor">
   <div class="sidebar ancho">
     <div class="logo text-warning">
@@ -185,7 +191,7 @@ $hoy = date("d-m-Y H:i:s a");
            		<ul>
                 <?php
                     if ($user=='guillermogv') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
             	</ul>
@@ -204,7 +210,7 @@ $hoy = date("d-m-Y H:i:s a");
 
       <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='repo_exp.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></span><span class="tab-text">REPOSITORIO EXPEDIENTE</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='../subdireccion_de_analisis_de_riesgo/ver_pdf.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-eye"></span><span class="tab-text">VISTA PREVIA</span></a></li>
           <!-- <li><a href="#" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
           <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
@@ -216,8 +222,9 @@ $hoy = date("d-m-Y H:i:s a");
               <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
                         <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-                        <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$fol_exp?>">EXPEDIENTE</a>
-                        <a class="actived">REPOSITORIO EXPEDIENTE</a>
+                        <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio;?>">EXPEDIENTE</a>
+                        <a href="../subdireccion_de_analisis_de_riesgo/repo_exp.php?folio=<?=$name_folio?>">REPOSITORIO EXPEDIENTE</a>
+                        <a class="actived">DOCUMENTO</a>
               </div>
 
               <form class="container well form-horizontal" action="../subdireccion_de_analisis_de_riesgo/cargar_archivo_exp.php?folio=<?php echo $fol_exp; ?>" method="post" enctype="multipart/form-data">
@@ -230,104 +237,43 @@ $hoy = date("d-m-Y H:i:s a");
 
                   <div class="col-md-6 mb-3 ">
                         <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                        <input readonly class="form-control" type="text" value="<?php echo $fol_exp;?>">
+                        <input readonly class="form-control" type="text" value="<?php echo $name_folio;?>">
                   </div>
 
-                <div class="alert alert-info">
-                    <h3 style="text-align:center">INFORMACIÓN A CONSIDERAR</h3>
-                </div>
-
-                <h5 style='text-align:justify'>
-                En este apartado deberás agregar los archivos cuya información esté relacionada entre la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad
-                de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto
-                que mantendrán este nombre, es buena práctica colocar un nombre en específico, irrepetible y fácil de comprender.
-                </h5>
-
-                  <!-- <div class="alert alert-info">
-                    <h3 style="text-align:center">AÑADIR ARCHIVOS</h3>
-                  </div> -->
-
-                  <!-- <div class="col-md-10 mb-3" style="display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;">
-                        <label for="my-file-selector"><span ></span>
-                        <input required="" type="file" name="file" id="exampleInputFile"></label>
-                        <button class="btn btn-success" type="submit">Agregar archivo</button>
-                  </div> -->
-
-                  <?php
-                    if ($user=='guillermogv') {
-                    echo "
-                    <div class='alert alert-info'>
-                      <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
-                    </div>
-                    ";
-                    echo "
-                    <div class='col-md-10 mb-3' style='display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;'>
-                        <label for='my-file-selector'><span ></span>
-                        <input required='' accept='application/pdf' type='file' name='file' id='exampleInputFile'></label>
-                        <button class='btn btn-success' type='submit'>Agregar archivo</button>
-                    </div>
-                    ";
-                  }
-
-                  ?>
-
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">TABLA DE ARCHIVOS DISPONIBLES</h3>
+                  <div class="col-md-6 mb-3 ">
+                        <label>NOMBRE DEL DOCUMENTO<span ></span></label>
+                        <input readonly class="form-control" type="text" value="<?php echo $fol_exp; ?>">
                   </div>
+                  <!-- <div style="text-align:center;"> -->
+                          <?php
+                          $path  = "../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/";
+                          // Obtienes tu variable mediante GET
+                          // Arreglo con todos los nombres de los archivos
+                          $files = array_diff(scandir($path), array('.', '..'));
 
+                          foreach($files as $file){
 
-                  <div>
-
-                    <table class="table table-bordered" id="table-tickets">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center" width="10%">No.</th>
-                                <!-- <th style="text-align:center" width="15">Fecha</th> -->
-                                <th style="text-align:center" width="70%">Nombre del Archivo</th>
-                                <th style="text-align:center" width="10%">Vista Previa</th>
-                                <?php
-                                  if ($user=='guillermogv') {
-                                  echo "<th style='text-align:center' width='10%'>Descargar</th>";
-                                  echo "<th style='text-align:center' width='10%'>Eliminar</th>";
-                                }
-                                ?>
-                                <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/");
-                        $num=0;
-                        // Ruta del directorio donde están los archivos
-                        $path  = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/";
-                        // Obtienes tu variable mediante GET
-                        // Arreglo con todos los nombres de los archivos
-                        $files = array_diff(scandir($path), array('.', '..'));
-
-                        foreach($files as $file){
-                          $num++;
-                          // Divides en dos el nombre de tu archivo utilizando el .
-                          $data          = explode(".", $file);
-                          // Nombre del archivo
-                          $fileName      = $data[0];
-                          // echo $fileName;
-                          // Extensión del archivo
-                          $fileExtension = $data[1];
-                          $arg = $fileName.'.'.$fileExtension;
-                          echo '<tr>';
-                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
-                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
-                          echo "<td style='text-align:center'><a href='ver_pdf.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
-                          if ($user=='guillermogv') {
-                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
-                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                            // Divides en dos el nombre de tu archivo utilizando el .
+                            $data          = explode(".", $file);
+                            // Nombre del archivo
+                            $fileName      = $data[0];
+                            // echo $fileName;
+                            // Extensión del archivo
+                            $fileExtension = $data[1];
+                            $arg = $fileName.'.'.$fileExtension;
+                            if ($fol_exp === $arg) {
+                              // echo "si";
+                              // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
+                              echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png"></div>';
+                              echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
+                              echo '</div>';
+                              break;
+                            }
                           }
-                          echo '</tr>';
-                        }
-                        ?>
-                        </tbody>
-                    </table>
-                </div>
+                          ?>
+                        
+                      
+                <!-- </div> -->
               </form>
             </div>
     			</article>
@@ -339,11 +285,13 @@ $hoy = date("d-m-Y H:i:s a");
 <div class="contenedor">
 
 
-<a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$folio_del_expediente?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/repo_exp.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 
-  <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
+ 
 
 </div>
+
+
 
 </body>
 </html>

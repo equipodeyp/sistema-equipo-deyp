@@ -24,10 +24,10 @@ $resultado1=$mysqli->query($query1);
 $fol_exp = $_GET['folio'];
 $folio_del_expediente = $fol_exp;
 $_SESSION['folio_expediente'] = $folio_del_expediente;
-$folio_del_expedientev = $fol_exp;
-$_SESSION['folio_expedientev'] = $folio_del_expedientev;
-// echo $fol_exp;
-$exped =
+
+
+echo $fol_exp;
+
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
@@ -50,11 +50,12 @@ $rowfol=$resultfol->fetch_assoc();
 
 $name_carpeta = $fol_exp;
 $resultado = str_replace("/", "-", $name_carpeta);
-// echo $resultado;
+echo $resultado;
+$_SESSION['folio_repo'] = $resultado;
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");
+$hoy = date("d-m-Y H:i:s a");  
 // echo $hoy;
 
 // echo $name_folio;
@@ -70,43 +71,7 @@ $hoy = date("d-m-Y H:i:s a");
 // echo $id_person;
 
 // consulta de los datos de la autoridad
-// $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
-// $resultadoaut = $mysqli->query($aut);
-// $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
-// // consulta de los datos de origen del SUJETO
-// $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
-// $resultadoorigen = $mysqli->query($origen);
-// $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
-// $nameestadonac=$roworigen['lugardenacimiento'];
-//
-// // datos del TUTOR
-// $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-// $resultadotutor = $mysqli->query($tutor);
-// $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-// // datos del proceso penal
-// $process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
-// $resultadoprocess = $mysqli->query($process);
-// $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
-// // datos de la valoracion juridica
-// $valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
-// $resultadovaljur = $mysqli->query($valjur);
-// $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
-// // datos de la determinacion de la incorporacion
-// $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-// $resultadodetinc = $mysqli->query($detinc);
-// $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-// //consulta de los datos de origen de la persona
-// $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
-// $resultadodomicilio = $mysqli->query($domicilio);
-// $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// // consulta del estatus del expediente
-// $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-// $resultadostatusexp = $mysqli->query($statusexp);
-// $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-// // CONSULTA DE LOS EXPEDIENTES relacionados
-// $exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
-// $rexprel1 = $mysqli->query($exprel1);
-// $fexprel1 = $rexprel1->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -227,7 +192,7 @@ $hoy = date("d-m-Y H:i:s a");
                   <div class="alert alert-info">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
-
+                    
                   <div class="col-md-6 mb-3 ">
                         <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                         <input readonly class="form-control" type="text" value="<?php echo $fol_exp;?>">
@@ -238,8 +203,8 @@ $hoy = date("d-m-Y H:i:s a");
                 </div>
 
                 <h5 style='text-align:justify'>
-                En este apartado deberás agregar los archivos cuya información esté relacionada entre la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad
-                de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto
+                En este apartado deberás agregar los archivos cuya información esté relacionada entre la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad 
+                de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto 
                 que mantendrán este nombre, es buena práctica colocar un nombre en específico, irrepetible y fácil de comprender.
                 </h5>
 
@@ -252,7 +217,7 @@ $hoy = date("d-m-Y H:i:s a");
                         <input required="" type="file" name="file" id="exampleInputFile"></label>
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
-
+                  
                   <?php
                     if ($user=='guillermogv') {
                     echo "
@@ -268,7 +233,7 @@ $hoy = date("d-m-Y H:i:s a");
                     </div>
                     ";
                   }
-
+                  
                   ?>
 
                   <div class="alert alert-info">
@@ -283,50 +248,85 @@ $hoy = date("d-m-Y H:i:s a");
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
                                 <!-- <th style="text-align:center" width="15">Fecha</th> -->
-                                <th style="text-align:center" width="70%">Nombre del Archivo</th>
+                                <th style="text-align:center" width="60%">Nombre del archivo</th>
                                 <th style="text-align:center" width="10%">Vista Previa</th>
+                                <th style="text-align:center" width="10%">Descargar</th>
                                 <?php
                                   if ($user=='guillermogv') {
-                                  echo "<th style='text-align:center' width='10%'>Descargar</th>";
-                                  echo "<th style='text-align:center' width='10%'>Eliminar</th>";
-                                }
+                                  echo "<th style='text-align:center' width='10%'>Eliminar</th>";}
                                 ?>
-                                <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
                             </tr>
                         </thead>
                         <tbody>
                         <?php
                         $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/");
                         $num=0;
-                        // Ruta del directorio donde están los archivos
-                        $path  = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/";
-                        // Obtienes tu variable mediante GET
-                        // Arreglo con todos los nombres de los archivos
-                        $files = array_diff(scandir($path), array('.', '..'));
+                        for ($i=2; $i<count($archivos); $i++)
+                        // echo $archivos;
+                        {$num++;
 
-                        foreach($files as $file){
-                          $num++;
-                          // Divides en dos el nombre de tu archivo utilizando el .
-                          $data          = explode(".", $file);
-                          // Nombre del archivo
-                          $fileName      = $data[0];
-                          // echo $fileName;
-                          // Extensión del archivo
-                          $fileExtension = $data[1];
-                          $arg = $fileName.'.'.$fileExtension;
-                          echo '<tr>';
-                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
-                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
-                          echo "<td style='text-align:center'><a href='ver_pdf.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
-                          if ($user=='guillermogv') {
-                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
-                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
-                          }
-                          echo '</tr>';
-                        }
+                        $array_doc = $archivos[$i];
+                        // $_SESSION['array_doc'] = $array_doc;
+                        $_SESSION ['array_archivos'] = $array_doc;
+                        // echo $array_doc;
                         ?>
+                        <p>  
+                        </p>
+                                
+                            <tr>
+                              <th style="text-align:center;" scope="row"><?php echo $num;?></th>
+                              <td style="font-weight: bold;" scope="row"><?php echo $archivos[$i]; ?></td>
+                              <!-- <td style="text-align:center"><a title="Vista Previa" href="../subdireccion_de_analisis_de_riesgo/vista_previa_archivo.php?name=repo/<?php echo $resultado; ?>/<?php echo $resultado; ?>/<?php echo $array_doc; ?>" style="color: green; font-size:18px;"> <span class="fa-solid fa-eye" aria-hidden="true"></span> </a></td> -->
+                              <!-- <td style="text-align:center"><a title="Vista Previa" href="./repo/<?php echo $resultado; ?>/<?php echo $resultado; ?>/<?php echo $archivos[$i]; ?>" style="color: green; font-size:18px;"> <span class="fa-solid fa-eye" aria-hidden="true"></span> </a></td> -->
+                              <!-- <td style="text-align:center"><a title="Vista Previa" href="../subdireccion_de_analisis_de_riesgo/vista_previa_archivo.php?folio=<?=$fol_exp?>" style="color: green; font-size:18px;"> <span class="fa-solid fa-eye" aria-hidden="true"></span> </a></td> -->
+                              <td style="text-align:center"><a title="Vista Previa" href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" style="color: green; font-size:18px;"> <span class="fa-solid fa-eye" aria-hidden="true"></span> </a></td>
+                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_analisis_de_riesgo/repo/<?php echo $resultado; ?>/<?php echo $resultado; ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
+                              <?php
+                                  if ($user=='guillermogv') {
+                                  echo "
+                                  <td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/$resultado/$resultado/$archivos[$i]' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a></td>
+                                  ";}
+                              ?>
+                            </tr>
+
+
+
+                               <!-- modal del glosario -->
+                                    <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 style="text-align:center" class="modal-title" id="myModalLabel">NOMBRE DEL DOCUMENTO: <?php echo $archivos[$i]; ?></h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div className="modal">
+                                              <div className="modalContent">
+                                              <!-- <?php 
+                                              echo $archivos[$i]; 
+                                              echo $resultado;
+                                              echo $fol_exp;
+                                              ?> -->
+                                                <iframe src="./repo/<?php echo $resultado; ?>/<?php echo $resultado; ?>/<?php echo $archivos[$i]; ?>" style="width:870px; height:600px;" ></iframe>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button style="display: block; margin: 0 auto;" type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                              <!-- fin modal  -->
+
+
+                        <?php }?> 
+                        
                         </tbody>
                     </table>
+                    <?php 
+
+                    ?>
                 </div>
               </form>
             </div>
@@ -337,13 +337,10 @@ $hoy = date("d-m-Y H:i:s a");
   </div>
 </div>
 <div class="contenedor">
-
-
 <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$folio_del_expediente?>" class="btn-flotante">REGRESAR</a>
-
-  <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
-
 </div>
 
 </body>
 </html>
+
+
