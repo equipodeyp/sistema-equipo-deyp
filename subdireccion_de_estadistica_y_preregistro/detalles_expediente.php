@@ -195,7 +195,38 @@ $name = $_SESSION['usuario'];
 			</div>
 
 		<!-- fin del folio del expediente  e inicio para agrewgar persona-->
+      <div class="well form-horizontal">
+        <div id="cabecera">
+  				<div class="row">
+  				<div class="alert alert-info">
+  					<h3 style="text-align:center">EXPEDIENTE RELACIONADO</h3>
+  				</div>
+          <?php
+          $er = "SELECT * FROM datospersonales WHERE folioexpediente = '$fol_exp'";
+          $rer = $mysqli->query($er);
+          while ($fer = $rer->fetch_assoc()) {
+            // echo $fer['relacional'];
+            $id_persona = $fer['id'];
+            if ($fer['relacional'] === 'SI') {
+              echo "<h3 style='text-align:center'><FONT COLOR='black' size=6 align='center'>EXPEDIENTE RELACIONADO CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+            }else {
+              echo "<h3 style='text-align:center'><FONT COLOR='black' size=6 align='center'>EXPEDIENTE NO RELACIONADO CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+            }
+          }
 
+          ?>
+          <br>
+          <br>
+              <?php
+              $exprel = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_persona'";
+              $rexprel = $mysqli->query($exprel);
+              while ($fexprel = $rexprel->fetch_assoc()) {
+                  echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fexprel['espedienterelacional'].'</b></button> &nbsp &nbsp';
+              }
+              ?>
+  				</div>
+  		  </div>
+      </div>
 			<div class="well form-horizontal">
 		  <div id="cabecera">
 				<div class="row">
@@ -285,7 +316,3 @@ $name = $_SESSION['usuario'];
 	</div>
 	</div>
 	</div>
-
-
-
-

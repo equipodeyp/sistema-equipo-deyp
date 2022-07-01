@@ -188,11 +188,11 @@ $anio = $row['año'];
 
                    <div class="row mb-12">
                        <div class="row">
-                           <h3>Descripcion del Contenido</h3>
+                           <h3>Descripción del Contenido</h3>
                            <p>
                              <div class="row">
                                <div class="col-sm-3  validar">
-                                 <label for="">Solicitud de Incorporacion</label><br><br>
+                                 <label for="">Solicitud de Incorporación</label><br><br>
                                  <input type="radio" name="inc" class="form-check-input" id="inc-si" value="1">
                                  <label for="inc-si" class="form-check-label">Si</label>
                                  <input type="radio" name="inc" class="form-check-input" id="inc-no" value="0"
@@ -200,14 +200,14 @@ $anio = $row['año'];
                                  <label for="inc-no" class="form-check-label">No</label>
                                </div>
                                <div class="col-sm-3  validar">
-                                 <label for="">Valoracion Juridica</label><br><br><br>
+                                 <label for="">Valoración Jurídica</label><br><br>
                                  <input type="radio" name="val" class="form-check-input" id="val-si" value="1">
                                  <label for="val-si" class="form-check-label">Si</label>
                                  <input type="radio" name="val" class="form-check-input"  id="val-no" value="0" checked>
                                  <label for="val-no" class="form-check-label">No</label>
                                </div>
                                <div class="col-lg-3  validar">
-                                 <label for="">Oficio Análisis de Riesgo</label><br><br><br>
+                                 <label for="">Oficio Análisis de Riesgo</label><br><br>
                                  <input type="radio" name="ofi" class="form-check-input" id="ofi-si" value="1">
                                  <label for="ofi-si" class="form-check-label">Si</label>
                                  <input type="radio" name="ofi" class="form-check-input"  id="ofi-no" value="0" checked>
@@ -253,25 +253,15 @@ $anio = $row['año'];
                                            <label for="confi-si" class="form-check-label">Si</label>
                                            <input type="radio" name="confi" class="form-check-input"  id="confi-no" value="0" checked>
                                            <label for="confi-no" class="form-check-label">No</label>
-                                         </div>
-                                         <div class="col-lg-6  validar"><br>
-                                             <label for="clasi" class="form-label">Fecha de Clasificacion</label><br>
-                                             <input type="text" class="form-control" id="clasi">
-                                         </div>
-                                         <div class="col-lg-6  validar"><br>
-                                             <label for="periodo" class="form-label">Periodo de Reserva</label><br>
-                                             <input type="text" class="form-control" id="periodo">
-                                         </div>
-
-
-
+                                         </div>                                         
 
                                        </div>
 
+<p>
+  <br />
+</p>
 
-
-                   <button type="submit" class="btn btn-primary mb-4">Generar PDF</button>
-
+                   <button type="submit" class="btn btn-primary mb-4">Generar PDF</button><br><br><br>
                    <span class="d-block pb-2" style="visibility:hidden">Firma digital aqui</span>
                    <div class="signature mb-2" style="visibility:hidden width: 100%; height: 200px;">
                        <canvas id="signature-canvas"

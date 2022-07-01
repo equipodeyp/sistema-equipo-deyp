@@ -42,16 +42,15 @@ window.addEventListener('load', async () => {
         let reservada = document.querySelector('input[name="reservada"]:checked').value;
         let confi = document.querySelector('input[name="confi"]:checked').value;
         let anex = document.getElementById('anex').value;
-        let clasi = document.getElementById('clasi').value;
-        let periodo = document.getElementById('periodo').value;
+
         // let area = document.getElementById('area').value;
 
-        generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica, reservada, confi, clasi, periodo);
+        generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica, reservada, confi);
     })
 
 });
 
-async function generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica, reservada, confi, clasi, periodo) {
+async function generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica, reservada, confi) {
     const image = await loadImage("../image/formatos/CaratulaExpediente.png");
 
     const signatureImage = signaturePad.toDataURL();
@@ -61,7 +60,7 @@ async function generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica
     pdf.addImage(image, 'PNG', 0, 0, 215.9, 279.4);
     pdf.addImage(signatureImage, 'PNG', 200, 605, 300, 60);
 
-    pdf.setFontSize(16);
+    pdf.setFontSize(18);
     // pdf.text(curso, 260, 125);
 
 
@@ -72,14 +71,13 @@ async function generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica
 
 
 
-     pdf.setFontSize(16);
+     pdf.setFontSize(18);
      pdf.text(exp, 65, 85);
      pdf.text(tomo, 90, 100);
      pdf.text(anioa, 79, 114);
      pdf.text(anioc, 163, 114);
      pdf.text(anex, 128, 154);
-     pdf.text(clasi, 115, 210);
-     pdf.text(periodo, 123, 228);
+    
     // pdf.text(area, 20, 20);
 
 

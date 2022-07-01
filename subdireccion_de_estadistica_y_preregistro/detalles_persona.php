@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -65,6 +65,10 @@ $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
 $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
 $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
+
+$exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
+$rexprel1 = $mysqli->query($exprel1);
+$fexprel1 = $rexprel1->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -176,6 +180,33 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                           </div>";
                         }
                 //         ?>
+                <div class="row" id="expedientes_relacionales">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert alert-info">
+                    <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
+                  </div>
+                  <div class="col-md-12 mb-3 validar">
+                    <?php
+                    if ($fexprel1) {
+                      echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                    }else {
+                      echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA NO RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                    }
+                    ?>
+                    <!-- <label for="">RELACION CON OTRO(S) EXPEDIENTE(S)</label> -->
+                    <br>
+                    <br>
+                        <?php
+                        $exprel = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
+                        $rexprel = $mysqli->query($exprel);
+                        while ($fexprel = $rexprel->fetch_assoc()) {
+                            echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fexprel['espedienterelacional'].'</b></button> &nbsp &nbsp';
+                        }
+                        ?>
+                  </div>
+                </div>
                 <div class="alert alert-info">
                   <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                 </div>
@@ -294,6 +325,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
             		  		</thead>
                       <?php
+                      $cont_med = 0;
             		      $tabla="SELECT * FROM evaluacion_persona WHERE id_unico ='$identificador'";
             		       $var_resultado = $mysqli->query($tabla);
             		      while ($var_fila=$var_resultado->fetch_array())
@@ -558,7 +590,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         		  			<th style="text-align:center"><a href="registrar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
         		  		</thead>
         		  		<?php
-                  $cont_med = '0';
+                  $cont_med = 0;
         		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
                   $var_resultado = $mysqli->query($tabla);
 
