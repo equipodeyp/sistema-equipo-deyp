@@ -179,8 +179,7 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">ESTATUS DE LA MEDIDA</th>
                                           <th style="text-align:center">MUNICIPIO DE EJECUCION</th>
                                           <th style="text-align:center">FECHA DE EJECUCION</th>
-                                          <th style="text-align:center">FUENTE ACTUALIZACION</th>
-                                          <th style="text-align:center">ID FUENTE ACTUALIZACION</th>
+                                        
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -192,21 +191,47 @@ $row=$result->fetch_assoc();
                                     while ($var_fila=$var_resultado->fetch_array())
                                     {
                                       $cont = $cont + 1;
+                                      $id_persona = $var_fila['id_persona'];
+                                      $id_medida = $var_fila['id'];
+                                      $p = "SELECT * FROM datospersonales WHERE id= '$id_persona'";
+                                      $rp = $mysqli->query($p);
+                                      $fp = $rp->fetch_assoc();
+                                      // multidisciplinario de la medida
+                                      $mm = "SELECT * FROM multidisciplinario_medidas WHERE id = '$id_medida'";
+                                      $rmm = $mysqli->query($mm);
+                                      $fmm = $rmm->fetch_assoc();
                                           echo "<tr>";
                                           echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['folioexpediente'].'/'. $var_fila['año']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
-                                          //   echo "<i class='fas fa-check'></i>";
-                                          // }elseif ($var_fila['validacion'] == 'false') {
-                                          //   echo "<i class='fas fa-times'></i>";
-                                          // } echo "</td>";
-                                          // echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['folioexpediente']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fp['nombrepersona']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fp['paternopersona']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fp['maternopersona']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fp['calidadpersona']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fp['identificador']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['categoria']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['medida']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'XIII. OTRAS MEDIDAS' || $var_fila['medida'] === 'VI. OTRAS') {
+                                            echo ''; echo "</td>";
+                                          }else {
+                                            echo $var_fila['descripcion']; echo "</td>";
+                                          }
+                                          echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'XIII. OTRAS MEDIDAS' || $var_fila['medida'] === 'VI. OTRAS') {
+                                            echo $var_fila['descripcion']; echo "</td>";
+                                          }else {
+                                            echo ''; echo "</td>";
+                                          }
+                                          echo "<td style='text-align:center'>"; echo $var_fila['date_provisional']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['date_definitva']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fmm['acuerdo']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fmm['conclusionart35']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fmm['otherart35']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $fmm['date_close']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+                                          echo "<td style='text-align:center'>"; echo $var_fila['date_ejecucion']; echo "</td>";
 
                                           echo "</tr>";
                                     //
