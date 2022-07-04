@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-// error_reporting(0);
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -27,7 +27,7 @@ $_SESSION['folio_expediente'] = $folio_del_expediente;
 $folio_del_expedientev = $fol_exp;
 $_SESSION['folio_expedientev'] = $folio_del_expedientev;
 // echo $fol_exp;
-$exped =
+// $exped =
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
@@ -283,7 +283,7 @@ $hoy = date("d-m-Y H:i:s a");
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
                                 <!-- <th style="text-align:center" width="15">Fecha</th> -->
-                                <th style="text-align:center" width="70%">Nombre del Archivo</th>
+                                <th style="text-align:center" width="60%">Nombre del Archivo</th>
                                 <th style="text-align:center" width="10%">Vista Previa</th>
                                 <?php
                                   if ($user=='guillermogv') {
