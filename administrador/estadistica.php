@@ -46,6 +46,9 @@ $result = $mysqli->query($sentencia);
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/shim.min.js" integrity="sha512-nPnkC29R0sikt0ieZaAkk28Ib7Y1Dz7IqePgELH30NnSi1DzG4x+envJAOHz8ZSAveLXAHTR3ai2E9DZUsT8pQ==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js" integrity="sha512-NerWxp37F9TtBS1k1cr2TjyC9c8Qh6ghgqVBOYXaahgnBkVT6a8KVbO05Z8+LnIIom4CJSSQTZ3VbL396scK5w==" crossorigin="anonymous"></script>
+<!-- barra de navegacion -->
+<link rel="stylesheet" href="../css/breadcrumb.css">
+<link rel="stylesheet" href="../css/expediente.css">
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
 </head>
 <body>
@@ -101,7 +104,14 @@ $result = $mysqli->query($sentencia);
         <br>
         </div>
         <!-- <button   id="exportarExcelN" onclick="exportarExcelv2();">Exportar a Excel</button> -->
-
+        <div class="container">
+          <article class="">
+            <div class="secciones form-horizontal sticky breadcrumb flat">
+              <a href="../administrador/admin.php">REGISTROS</a>
+              <a class="actived">ESTADISTICA</a>
+            </div>
+          </article>
+        </div>
         <div class="container">
           <ul class="ca-menu">
             <li>

@@ -16,7 +16,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>SIPPSIPPED</title>
+  <title>EXPEDIENTES</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -43,6 +43,9 @@ $row=$result->fetch_assoc();
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../../css/breadcrumb.css">
+  <link rel="stylesheet" href="../../css/expediente.css">
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -145,77 +148,78 @@ $row=$result->fetch_assoc();
         <!--Ejemplo tabla con DataTables-->
       </div>
       <div class="container">
-        <h2 style="text-align:center">EXPEDIENTES</h2>
-        <div class="">
-            <div class="row">
-              <div class="">
-                  <div class="row">
-                          <div class="col-lg-12">
-                              <div class="table-responsive">
-                                  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                  <thead>
-                                    <!-- <h3 style="text-align:center">Registros</h3> -->
-                                      <tr>
-                                          <th style="text-align:center">No.</th>
-                                          <th style="text-align:center">ID EXPEDIENTE</th>
-                                          <th style="text-align:center">FECHA RECEPCION</th>
-                                          <th style="text-align:center">SEDE</th>
-                                          <th style="text-align:center">NOMBRE AUTORIDAD</th>
-                                          <th style="text-align:center">DELITO PRINCIPAL</th>
-                                          <th style="text-align:center">OTRO DELITO PRINCIPAL</th>
-                                          <th style="text-align:center">ETAPA PROCEDIMIENTO/RECURSO</th>
-                                          <th style="text-align:center">NUC</th>
-                                          <th style="text-align:center">MUNICIPIO RADICACION</th>
-                                          <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
-                                          <th style="text-align:center">MOTIVO NO PROCEDENCIA JURIDICA</th>
-                                          <th style="text-align:center">PERSONAS PROPUESTAS</th>
-                                          <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
-                                          <th style="text-align:center">INCORPORACIÓN</th>
-                                          <th style="text-align:center">FECHA ANALISIS</th>
-                                          <th style="text-align:center">ID ANALISIS</th>
-                                          <th style="text-align:center">CONVENIO</th>
-                                          <th style="text-align:center">FECHA CONVENIO</th>
-                                          <th style="text-align:center">VIGENCIA</th>
-                                          <th style="text-align:center">FECHA TERMINO</th>
-                                          <?php
-                                          $v = "SELECT folioexpediente, COUNT( folioexpediente ) AS total
-                                          FROM  evaluacion_expediente
-                                          GROUP BY folioexpediente
-                                          ORDER BY total DESC
-                                          LIMIT 1";
-                                          $rv = $mysqli->query($v);
-                                          $fv = $rv->fetch_assoc();
-                                          // echo $fv['total'];
-                                          for ($i=1; $i < $fv['total']+ 1; $i++) {
-                                            echo '<th style="text-align:center">'; echo 'analisis multidisciplinario'.'<br>'.$i; echo'</th>';
-                                            echo '<th style="text-align:center">'; echo 'FECHA AUTORIZACIÓN'; echo '</th>';
-                                            echo '<th style="text-align:center">'; echo 'ID ANALISIS'; echo '</th>';
-                                            echo '<th style="text-align:center">'; echo 'TIPO DE CONVENIO'; echo '</th>';
-                                            echo '<th style="text-align:center">'; echo 'FECHA FIRMA'; echo '</th>';
-                                            echo '<th style="text-align:center">'; echo 'FECHA INICIO'; echo '</th>';
-                                            echo '<th style="text-align:center">'; echo 'VIGENCIA'; echo '</th>';
-                                            echo '<th style="text-align:center">'; echo 'ID CONVENIO'; echo '</th>';
-                                          }
-                                          ?>
-                                          <th style="text-align:center">CONCLUSIÓN / CANCELACIÓN</th>
-                                          <th style="text-align:center">CONCLUSIÓN ART. 35</th>
-                                          <th style="text-align:center">OTRO ART. 35</th>
-                                          <th style="text-align:center">FECHA DESINCORPORACIÓN</th>
-                                          <th style="text-align:center">ESTATUS</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                    include("../../administrador/tablas_estadistica/tabla_expedientes_totales.php");
-                                    ?>
-                                  </tbody>
-                                 </table>
-                              </div>
-                          </div>
+          <article>
+            <div class="secciones form-horizontal sticky breadcrumb flat">
+              <a href="../../administrador/admin.php">REGISTROS</a>
+              <a href="../../administrador/estadistica.php">ESTADISTICA</a>
+              <a class="actived">EXPEDIENTES</a>
+            </div>
+            <div class="container">
+              <h2 style="text-align:center">EXPEDIENTES</h2>
+              <div class="col-lg-12">
+                  <div class="table-responsive">
+                      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                      <thead>
+                        <!-- <h3 style="text-align:center">Registros</h3> -->
+                          <tr>
+                              <th style="text-align:center">No.</th>
+                              <th style="text-align:center">ID EXPEDIENTE</th>
+                              <th style="text-align:center">FECHA RECEPCION</th>
+                              <th style="text-align:center">SEDE</th>
+                              <th style="text-align:center">NOMBRE AUTORIDAD</th>
+                              <th style="text-align:center">DELITO PRINCIPAL</th>
+                              <th style="text-align:center">OTRO DELITO PRINCIPAL</th>
+                              <th style="text-align:center">ETAPA PROCEDIMIENTO/RECURSO</th>
+                              <th style="text-align:center">NUC</th>
+                              <th style="text-align:center">MUNICIPIO RADICACION</th>
+                              <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
+                              <th style="text-align:center">MOTIVO NO PROCEDENCIA JURIDICA</th>
+                              <th style="text-align:center">PERSONAS PROPUESTAS</th>
+                              <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
+                              <th style="text-align:center">INCORPORACIÓN</th>
+                              <th style="text-align:center">FECHA ANALISIS</th>
+                              <th style="text-align:center">ID ANALISIS</th>
+                              <th style="text-align:center">CONVENIO</th>
+                              <th style="text-align:center">FECHA CONVENIO</th>
+                              <th style="text-align:center">VIGENCIA</th>
+                              <th style="text-align:center">FECHA TERMINO</th>
+                              <?php
+                              $v = "SELECT folioexpediente, COUNT( folioexpediente ) AS total
+                              FROM  evaluacion_expediente
+                              GROUP BY folioexpediente
+                              ORDER BY total DESC
+                              LIMIT 1";
+                              $rv = $mysqli->query($v);
+                              $fv = $rv->fetch_assoc();
+                              // echo $fv['total'];
+                              for ($i=1; $i < $fv['total']+ 1; $i++) {
+                                echo '<th style="text-align:center">'; echo 'analisis multidisciplinario'.'<br>'.$i; echo'</th>';
+                                echo '<th style="text-align:center">'; echo 'FECHA AUTORIZACIÓN'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'ID ANALISIS'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'TIPO DE CONVENIO'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'FECHA FIRMA'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'FECHA INICIO'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'VIGENCIA'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'ID CONVENIO'; echo '</th>';
+                              }
+                              ?>
+                              <th style="text-align:center">CONCLUSIÓN / CANCELACIÓN</th>
+                              <th style="text-align:center">CONCLUSIÓN ART. 35</th>
+                              <th style="text-align:center">OTRO ART. 35</th>
+                              <th style="text-align:center">FECHA DESINCORPORACIÓN</th>
+                              <th style="text-align:center">ESTATUS</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        include("../../administrador/tablas_estadistica/tabla_expedientes_totales.php");
+                        ?>
+                      </tbody>
+                     </table>
                   </div>
               </div>
             </div>
-        </div>
+          </article>
       </div>
     </div>
   </div>
@@ -223,27 +227,5 @@ $row=$result->fetch_assoc();
     <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
-  <!-- modal del glosario -->
-  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
 </body>
 </html>
