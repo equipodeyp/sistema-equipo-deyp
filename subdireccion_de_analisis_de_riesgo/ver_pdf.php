@@ -264,7 +264,7 @@ $hoy = date("d-m-Y H:i:s a");
                             if ($fol_exp === $arg) {
                               // echo "si";
                               // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
-                              echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png"></div>';
+                              echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png" width="900" height="600"></div>';
                               echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
                               echo '</div>';
                               break;
