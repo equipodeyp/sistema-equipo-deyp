@@ -37,10 +37,10 @@ $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 
-$name_folio=$rowfol['folioexpediente'];
+// $name_folio=$rowfol['folioexpediente'];
 
-$id_pers=$rowfol['identificador'];
-$_SESSION['idpersona'] = $id_pers;
+// $id_pers=$rowfol['identificador'];
+// $_SESSION['idpersona'] = $id_pers;
 
 // echo $fol_exp;
 // echo $id_pers;
@@ -56,55 +56,55 @@ $hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
-$id_person=$rowfol['id'];
-// echo $id_person;
-$foto=$rowfol['foto'];
-$valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
-$res_val1=$mysqli->query($valid1);
-$fil_val1 = $res_val1->fetch_assoc();
-$validacion1 = $fil_val1['id_persona'];
+// $id_person=$rowfol['id'];
+// // echo $id_person;
+// $foto=$rowfol['foto'];
+// $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
+// $res_val1=$mysqli->query($valid1);
+// $fil_val1 = $res_val1->fetch_assoc();
+// $validacion1 = $fil_val1['id_persona'];
 
 
 // echo $id_person;
 
 // consulta de los datos de la autoridad
-$aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
-$resultadoaut = $mysqli->query($aut);
-$rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
-// consulta de los datos de origen del SUJETO
-$origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
-$resultadoorigen = $mysqli->query($origen);
-$roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
-$nameestadonac=$roworigen['lugardenacimiento'];
+// $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
+// $resultadoaut = $mysqli->query($aut);
+// $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
+// // consulta de los datos de origen del SUJETO
+// $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
+// $resultadoorigen = $mysqli->query($origen);
+// $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
+// $nameestadonac=$roworigen['lugardenacimiento'];
 
-// datos del TUTOR
-$tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-$resultadotutor = $mysqli->query($tutor);
-$rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-// datos del proceso penal
-$process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
-$resultadoprocess = $mysqli->query($process);
-$rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
-// datos de la valoracion juridica
-$valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
-$resultadovaljur = $mysqli->query($valjur);
-$rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
-// datos de la determinacion de la incorporacion
-$detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-$resultadodetinc = $mysqli->query($detinc);
-$rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-//consulta de los datos de origen de la persona
-$domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
-$resultadodomicilio = $mysqli->query($domicilio);
-$rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// consulta del estatus del expediente
-$statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-$resultadostatusexp = $mysqli->query($statusexp);
-$rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-// CONSULTA DE LOS EXPEDIENTES relacionados
-$exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
-$rexprel1 = $mysqli->query($exprel1);
-$fexprel1 = $rexprel1->fetch_assoc();
+// // datos del TUTOR
+// $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
+// $resultadotutor = $mysqli->query($tutor);
+// $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
+// // datos del proceso penal
+// $process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
+// $resultadoprocess = $mysqli->query($process);
+// $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
+// // datos de la valoracion juridica
+// $valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
+// $resultadovaljur = $mysqli->query($valjur);
+// $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
+// // datos de la determinacion de la incorporacion
+// $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
+// $resultadodetinc = $mysqli->query($detinc);
+// $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
+// //consulta de los datos de origen de la persona
+// $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
+// $resultadodomicilio = $mysqli->query($domicilio);
+// $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
+// // consulta del estatus del expediente
+// $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
+// $resultadostatusexp = $mysqli->query($statusexp);
+// $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
+// // CONSULTA DE LOS EXPEDIENTES relacionados
+// $exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
+// $rexprel1 = $mysqli->query($exprel1);
+// $fexprel1 = $rexprel1->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -181,7 +181,13 @@ $fexprel1 = $rexprel1->fetch_assoc();
     </div>
     <nav class="menu-nav">
            		<ul>
-                    <a style="text-align:center" class="user-nombre" href="create_ticket.php?folio=<?php echo $fol_exp; ?>"><button type="button" class="btn btn-light">INCIDENCIA</button> </a>
+                <?php
+                    if ($user=='e-adriana') {
+                    echo "
+                      <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    ";
+                    }
+                ?>
             	</ul>
     </nav>
   </div>
@@ -219,7 +225,11 @@ $fexprel1 = $rexprel1->fetch_assoc();
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
-                <div class="col-md-6 mb-3 ">
+                <div class="alert alert-info">
+                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                  </div>
+                    
+                  <div class="col-md-6 mb-3 ">
                         <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                         <input readonly class="form-control" type="text" value="<?php echo $fol_exp;?>">
                   </div>
@@ -244,20 +254,23 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
                   
-                
-                    
-                  
+                  <?php
+                    if ($user=='e-adriana') {
+                    echo "
                     <div class='alert alert-info'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
                     </div>
-                
+                    ";
+                    echo "
                     <div class='col-md-10 mb-3' style='display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;'>
                         <label for='my-file-selector'><span ></span>
                         <input required='' accept='application/pdf' type='file' name='file' id='exampleInputFile'></label>
                         <button class='btn btn-success' type='submit'>Agregar archivo</button>
                     </div>
-           
-               
+                    ";
+                  }
+                  
+                  ?>
 
                   <div class="alert alert-info">
                     <h3 style="text-align:center">TABLA DE ARCHIVOS DISPONIBLES</h3>
@@ -271,10 +284,13 @@ $fexprel1 = $rexprel1->fetch_assoc();
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
                                 <!-- <th style="text-align:center" width="15">Fecha</th> -->
-                                <th style="text-align:center" width="70%">Nombre del archivo</th>
-                                <th style="text-align:center" width="10%">Descargar</th>
-                                <th style='text-align:center' width='10%'>Eliminar</th>
-                              
+                                <th style="text-align:center" width="60%">Nombre del archivo</th>
+                                <th style="text-align:center" width="10%">Vista Previa</th>
+                                <?php
+                                  if ($user=='e-adriana') {
+                                    echo "<th style='text-align:center' width='10%'>Descargar</th>";
+                                    echo "<th style='text-align:center' width='10%'>Eliminar</th>";}
+                                ?>
                                 <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
                             </tr>
                         </thead>
@@ -282,22 +298,36 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         <?php
                         $archivos = scandir("../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado/");
                         $num=0;
-                        for ($i=2; $i<count($archivos); $i++)
-                        {$num++;
+
+                        // Ruta del directorio donde están los archivos
+                        $path  = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado/";
+                        // Obtienes tu variable mediante GET
+                        // Arreglo con todos los nombres de los archivos
+                        $files = array_diff(scandir($path), array('.', '..'));
+
+                        foreach($files as $file){
+                          $num++;
+                          // Divides en dos el nombre de tu archivo utilizando el .
+                          $data          = explode(".", $file);
+                          // Nombre del archivo
+                          $fileName      = $data[0];
+                          // echo $fileName;
+                          // Extensión del archivo
+                          $fileExtension = $data[1];
+                          $arg = $fileName.'.'.$fileExtension;
+                          echo '<tr>';
+                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
+                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
+                          echo "<td style='text-align:center'><a href='ver_pdf.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          if ($user=='e-adriana') {
+                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_estadistica_y_preregistro/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
+                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_estadistica_y_preregistro/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                          }
+                          echo '</tr>';
+                        }
                         ?>
-                        <p>  
-                        </p>
-                                
-                            <tr>
-                              <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <!-- <th style="text-align:center;" scope="row"><?php echo $hoy;?></th> -->
-                              <td style="font-weight: bold;" scope="row"><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_estadistica_y_preregistro/repo/<?php echo $resultado ?>/<?php echo $resultado ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                              <td style="text-align:center"><a title="Eliminar Archiv" href="../subdireccion_de_estadistica_y_preregistro/eliminar_archivo.php?name=repo/<?php echo $resultado ?>/<?php echo$resultado?>/<?php echo $archivos[$i]; ?>"" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
-                            
-                              <!-- <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=archivos_subidos_analisis/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td> -->
-                            </tr>
-                        <?php }?> 
+
+
                         </tbody>
                     </table>
                 </div>
@@ -320,3 +350,4 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
 </body>
 </html>
+
