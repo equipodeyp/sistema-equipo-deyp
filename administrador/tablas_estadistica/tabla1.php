@@ -49,6 +49,12 @@ WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha
 $res_total_junio = $mysqli->query($total_junio);
 $fila_total_junio = $res_total_junio->fetch_assoc();
 //
+$total_julio = "SELECT COUNT(DISTINCT folioexpediente) AS total_julio FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-07-01' AND '2022-07-31'";
+$res_total_julio = $mysqli->query($total_julio);
+$fila_total_julio = $res_total_julio->fetch_assoc();
+//
 $total2022si = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion = 'si procede'";
@@ -91,6 +97,12 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-06-01' AND '2022-06-30'";
 $restotaljunio = $mysqli->query($totaljunio);
 $fila_totaljunio = $restotaljunio->fetch_assoc();
+//
+$totaljulio = "SELECT COUNT(DISTINCT folioexpediente) AS juliototal FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-06-01' AND '2022-06-30'";
+$restotaljulio = $mysqli->query($totaljulio);
+$fila_totaljulio = $restotaljulio->fetch_assoc();
 //
 $total2022no = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -141,6 +153,12 @@ WHERE expediente.fecha_nueva BETWEEN '2022-06-01' AND '2022-06-30'";
 $resjuniototal = $mysqli->query($juniototal);
 $fila_juniototal = $resjuniototal->fetch_assoc();
 //
+$juliototal = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE expediente.fecha_nueva BETWEEN '2022-07-01' AND '2022-07-31'";
+$resjuliototal = $mysqli->query($juliototal);
+$fila_juliototal = $resjuliototal->fetch_assoc();
+//
 $total = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp";
 $restotal = $mysqli->query($total);
@@ -155,6 +173,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_abriltotal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_mayototal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_juliototal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total['t'];  echo "</td>";
   echo "</tr>";
 
@@ -167,6 +186,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_total_abril['total_abril']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_mayo['total_mayo']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_junio['total_junio']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total_julio['total_julio']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022si['t']; echo "</td>";
   echo "</tr>";
 
@@ -179,6 +199,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_totalabril['abriltotal']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalmayo['mayototal']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totaljunio['juniototal']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_totaljulio['juliototal']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022no['t']; echo "</td>";
   echo "</tr>";
 

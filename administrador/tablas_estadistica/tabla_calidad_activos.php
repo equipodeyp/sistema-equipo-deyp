@@ -41,12 +41,18 @@ WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PR
 $restcalidadjunio = $mysqli->query($tcalidadjunio);
 $filatcalidadjunio = $restcalidadjunio->fetch_assoc();
 //
+$tcalidadjulio = "SELECT COUNT(*) AS t FROM datospersonales
+INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-07-01' AND '2022-07-31'";
+$restcalidadjulio = $mysqli->query($tcalidadjulio);
+$filatcalidadjulio = $restcalidadjulio->fetch_assoc();
+//
 $tcalidadtotal = "SELECT COUNT(*) AS tcalidadtotal FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PROTEGIDO'";
 $restcalidadtotal = $mysqli->query($tcalidadtotal);
 $filatcalidadtotal = $restcalidadtotal->fetch_assoc();
-// 
+//
 echo "<tr bgcolor='yellow'>";
 echo "<td style='text-align:left'>"; echo " TOTAL DE SUJETOS PROTEGIDOS"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidad2021['tcalidad2021']; echo "</td>";
@@ -56,6 +62,7 @@ echo "<td style='text-align:center'>"; echo $filatcalidadmarzo['tcalidadmarzo'];
 echo "<td style='text-align:center'>"; echo $filatcalidadabril['tcalidadabril'];echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadmayo['tcalidadmayo']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadjunio['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $filatcalidadjulio['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; echo "</td>";
 echo "</tr>";
 //
@@ -105,17 +112,17 @@ while ($fila = $res->fetch_assoc()) {
     $restjunio = $mysqli->query($tjunio);
     $filatjunio = $restjunio->fetch_assoc();
     //
+    $tjulio = "SELECT COUNT(*) AS t FROM datospersonales
+    INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-07-01' AND '2022-07-31'";
+    $restjulio = $mysqli->query($tjulio);
+    $filatjulio = $restjulio->fetch_assoc();
+    //
     $ttotalcalidad = "SELECT COUNT(*) AS ttotalcalidad FROM datospersonales
     INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
     WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND datospersonales.estatus = 'SUJETO PROTEGIDO'";
     $resttotalcalidad = $mysqli->query($ttotalcalidad);
     $filattotalcalidad = $resttotalcalidad->fetch_assoc();
-    //
-
-    //
-
-    //
-
     //
     if ($t2021) {
       while ($fila_t2021=mysqli_fetch_assoc($rest2021)) {
@@ -128,6 +135,7 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $filatabril['tabril']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filatmayo['tmayo']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filatjunio['t']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $filatjulio['t']; echo "</td>";
         echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $filattotalcalidad['ttotalcalidad']; echo "</td>";
         echo "</tr>";
       }

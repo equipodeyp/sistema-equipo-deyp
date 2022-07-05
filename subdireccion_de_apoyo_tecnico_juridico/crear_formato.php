@@ -215,7 +215,7 @@ $fol_exp = $_GET['folio'];
                   </table>
 
                   <?php
-                        echo "<a style='text-align:center' href='indexpdf.php><button type='button' class='btn btn-light'> GENERAR ARCHIVO</button> </a>	";
+                        echo "<a style='text-align:center' href='../subdireccion_de_apoyo_tecnico_juridico/indexpdfval.php?folio=$fol_exp'><button type='button' class='btn btn-light'> GENERAR ARCHIVO</button> </a>	";
                           ?>
               </div>
 

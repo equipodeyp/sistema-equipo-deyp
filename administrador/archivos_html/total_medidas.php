@@ -16,7 +16,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>SIPPSIPPED</title>
+  <title>MEDIDAS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -43,6 +43,9 @@ $row=$result->fetch_assoc();
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../../css/breadcrumb.css">
+  <link rel="stylesheet" href="../../css/expediente.css">
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -145,109 +148,112 @@ $row=$result->fetch_assoc();
         <!--Ejemplo tabla con DataTables-->
       </div>
       <div class="container">
-        <h2 style="text-align:center">MEDIDAS</h2>
-        <div class="">
-            <div class="row">
-              <div class="">
-                  <div class="row">
-                          <div class="col-lg-12">
-                              <div class="table-responsive">
-                                  <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                  <thead>
-                                    <h3 style="text-align:center">Registros</h3>
-                                      <tr>
-                                          <th style="text-align:center">No.</th>
-                                          <th style="text-align:center">ID EXPEDIENTE</th>
-                                          <th style="text-align:center">NOMBRE SUJETO PROTEGIDO</th>
-                                          <th style="text-align:center">PATERNO SUJETO PROTEGIDO</th>
-                                          <th style="text-align:center">MATERNO SUJETO PROTEGIDO</th>
-                                          <th style="text-align:center">CALIDAD DE LA PERSONA</th>
-                                          <th style="text-align:center">ID PERSONA/SUJETO</th>
-                                          <th style="text-align:center">CONSECUTIVO MEDIDA</th>
-                                          <th style="text-align:center">CATEGORIA MEDIDA</th>
-                                          <th style="text-align:center">TIPO DE MEDIDA</th>
-                                          <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
-                                          <th style="text-align:center">FRACCION DE LA MEDIDA</th>
-                                          <th style="text-align:center">INCISO DE LA MEDIDA</th>
-                                          <th style="text-align:center">ESPECIFICAR OTRAS MEDIDAS</th>
-                                          <th style="text-align:center">FECHA MEDIDA PROVISIONAL</th>
-                                          <th style="text-align:center">FECHA MEDIDA DEFINITIVA</th>
-                                          <th style="text-align:center">CONCLUSION CANCELACION MEDIDA</th>
-                                          <th style="text-align:center">ART. 35 CONCLUSION DESINCORPORACION</th>
-                                          <th style="text-align:center">ESPECIFICAR ART. 35</th>
-                                          <th style="text-align:center">FECHA CONCLUSION DESINCORPORACION</th>
-                                          <th style="text-align:center">ESTATUS DE LA MEDIDA</th>
-                                          <th style="text-align:center">MUNICIPIO DE EJECUCION</th>
-                                          <th style="text-align:center">FECHA DE EJECUCION</th>
-                                        
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                    $cont = 0;
-                                    $tabla="SELECT * FROM medidas";
-                                    $var_resultado = $mysqli->query($tabla);
+        <article class="">
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../../administrador/admin.php">REGISTROS</a>
+            <a href="../../administrador/estadistica.php">ESTADISTICA</a>
+            <a class="actived">MEDIDAS</a>
+          </div>
+          <div class="container">
+            <h2 style="text-align:center">MEDIDAS</h2>
+            <div class="">
+                <div class="row">
+                  <div class="">
+                      <div class="row">
+                              <div class="col-lg-12">
+                                  <div class="table-responsive">
+                                      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                      <thead>
+                                          <tr>
+                                              <th style="text-align:center">No.</th>
+                                              <th style="text-align:center">ID EXPEDIENTE</th>
+                                              <th style="text-align:center">NOMBRE SUJETO PROTEGIDO</th>
+                                              <th style="text-align:center">PATERNO SUJETO PROTEGIDO</th>
+                                              <th style="text-align:center">MATERNO SUJETO PROTEGIDO</th>
+                                              <th style="text-align:center">CALIDAD DE LA PERSONA</th>
+                                              <th style="text-align:center">ID PERSONA/SUJETO</th>
+                                              <th style="text-align:center">CONSECUTIVO MEDIDA</th>
+                                              <th style="text-align:center">CATEGORIA MEDIDA</th>
+                                              <th style="text-align:center">TIPO DE MEDIDA</th>
+                                              <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
+                                              <th style="text-align:center">FRACCION DE LA MEDIDA</th>
+                                              <th style="text-align:center">INCISO DE LA MEDIDA</th>
+                                              <th style="text-align:center">ESPECIFICAR OTRAS MEDIDAS</th>
+                                              <th style="text-align:center">FECHA MEDIDA PROVISIONAL</th>
+                                              <th style="text-align:center">FECHA MEDIDA DEFINITIVA</th>
+                                              <th style="text-align:center">CONCLUSION CANCELACION MEDIDA</th>
+                                              <th style="text-align:center">ART. 35 CONCLUSION DESINCORPORACION</th>
+                                              <th style="text-align:center">ESPECIFICAR ART. 35</th>
+                                              <th style="text-align:center">FECHA CONCLUSION DESINCORPORACION</th>
+                                              <th style="text-align:center">ESTATUS DE LA MEDIDA</th>
+                                              <th style="text-align:center">MUNICIPIO DE EJECUCION</th>
+                                              <th style="text-align:center">FECHA DE EJECUCION</th>
 
-                                    while ($var_fila=$var_resultado->fetch_array())
-                                    {
-                                      $cont = $cont + 1;
-                                      $id_persona = $var_fila['id_persona'];
-                                      $id_medida = $var_fila['id'];
-                                      $p = "SELECT * FROM datospersonales WHERE id= '$id_persona'";
-                                      $rp = $mysqli->query($p);
-                                      $fp = $rp->fetch_assoc();
-                                      // multidisciplinario de la medida
-                                      $mm = "SELECT * FROM multidisciplinario_medidas WHERE id = '$id_medida'";
-                                      $rmm = $mysqli->query($mm);
-                                      $fmm = $rmm->fetch_assoc();
-                                          echo "<tr>";
-                                          echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['folioexpediente']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fp['nombrepersona']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fp['paternopersona']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fp['maternopersona']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fp['calidadpersona']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fp['identificador']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['categoria']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['medida']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'XIII. OTRAS MEDIDAS' || $var_fila['medida'] === 'VI. OTRAS') {
-                                            echo ''; echo "</td>";
-                                          }else {
-                                            echo $var_fila['descripcion']; echo "</td>";
-                                          }
-                                          echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'XIII. OTRAS MEDIDAS' || $var_fila['medida'] === 'VI. OTRAS') {
-                                            echo $var_fila['descripcion']; echo "</td>";
-                                          }else {
-                                            echo ''; echo "</td>";
-                                          }
-                                          echo "<td style='text-align:center'>"; echo $var_fila['date_provisional']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['date_definitva']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fmm['acuerdo']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fmm['conclusionart35']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fmm['otherart35']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $fmm['date_close']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
-                                          echo "<td style='text-align:center'>"; echo $var_fila['date_ejecucion']; echo "</td>";
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <?php
+                                        $cont = 0;
+                                        $tabla="SELECT * FROM medidas";
+                                        $var_resultado = $mysqli->query($tabla);
 
-                                          echo "</tr>";
-                                    //
-                                    //     }
-                                    //
-                                    //   }
-                                    }
-                                  ?>
-                                  </tbody>
-                                 </table>
+                                        while ($var_fila=$var_resultado->fetch_array())
+                                        {
+                                          $cont = $cont + 1;
+                                          $id_persona = $var_fila['id_persona'];
+                                          $id_medida = $var_fila['id'];
+                                          $p = "SELECT * FROM datospersonales WHERE id= '$id_persona'";
+                                          $rp = $mysqli->query($p);
+                                          $fp = $rp->fetch_assoc();
+                                          // multidisciplinario de la medida
+                                          $mm = "SELECT * FROM multidisciplinario_medidas WHERE id = '$id_medida'";
+                                          $rmm = $mysqli->query($mm);
+                                          $fmm = $rmm->fetch_assoc();
+                                              echo "<tr>";
+                                              echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['folioexpediente']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['nombrepersona']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['paternopersona']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['maternopersona']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['calidadpersona']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['identificador']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['categoria']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['medida']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'XIII. OTRAS MEDIDAS' || $var_fila['medida'] === 'VI. OTRAS') {
+                                                echo ''; echo "</td>";
+                                              }else {
+                                                echo $var_fila['descripcion']; echo "</td>";
+                                              }
+                                              echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'XIII. OTRAS MEDIDAS' || $var_fila['medida'] === 'VI. OTRAS') {
+                                                echo $var_fila['descripcion']; echo "</td>";
+                                              }else {
+                                                echo ''; echo "</td>";
+                                              }
+                                              echo "<td style='text-align:center'>"; echo $var_fila['date_provisional']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['date_definitva']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fmm['acuerdo']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fmm['conclusionart35']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fmm['otherart35']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fmm['date_close']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $var_fila['date_ejecucion']; echo "</td>";
+                                              echo "</tr>";
+                                        }
+                                      ?>
+                                      </tbody>
+                                     </table>
+                                  </div>
                               </div>
-                          </div>
+                      </div>
                   </div>
-              </div>
+                </div>
             </div>
-        </div>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -255,27 +261,5 @@ $row=$result->fetch_assoc();
     <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
-  <!-- modal del glosario -->
-  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
 </body>
 </html>
