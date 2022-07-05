@@ -23,12 +23,16 @@ $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
 $folio_del_expediente = $fol_exp;
-$_SESSION['folio_expediente'] = $folio_del_expediente;
-$name_folio = $_SESSION['folio_expedientev'];
+
+
+// $_SESSION['folio_expediente'] = $folio_del_expediente;
+$name_folio = $_SESSION['folio_expediente'];
+
+
 echo $name_folio;
 $name_carpetav = $name_folio;
 $resultadov = str_replace("/", "-", $name_carpetav);
-echo $resultadov;
+// echo $resultadov;
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
@@ -263,8 +267,8 @@ $hoy = date("d-m-Y H:i:s a");
                             $arg = $fileName.'.'.$fileExtension;
                             if ($fol_exp === $arg) {
                               // echo "si";
-                              // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_estadistica_y_preregistro/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
-                              echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png"></div>';
+                              // echo "<embed id='pdfs' style='width:870px; height:680px;' src='..subdireccion_de_estadistica_y_preregistro/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
+                              echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png" width="965" height="600"></div>';
                               echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_estadistica_y_preregistro/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
                               echo '</div>';
                               break;
@@ -295,3 +299,4 @@ $hoy = date("d-m-Y H:i:s a");
 
 </body>
 </html>
+

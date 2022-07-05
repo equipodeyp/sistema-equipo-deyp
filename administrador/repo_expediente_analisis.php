@@ -25,7 +25,7 @@ $fol_exp = $_GET['folio'];
 $folio_del_expediente = $fol_exp;
 $_SESSION['folio_expediente'] = $folio_del_expediente;
 
-// echo $fol_exp;
+// echo $_SESSION['folio_expediente'];
 
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
@@ -198,7 +198,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
       <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='repo_expediente_apoyo.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></span><span class="tab-text">REPOSITORIO EXPEDIENTE</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='repo_expediente_analisis.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></span><span class="tab-text">REPOSITORIO EXPEDIENTE</span></a></li>
           <!-- <li><a href="#" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
           <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
@@ -240,26 +240,43 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         <thead>
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
-                                <th style="text-align:center" width="80%">Nombre del archivo</th>
-                                <th style="text-align:center" width="10%">Descargar</th>
+                                <th style="text-align:center" width="80%">Nombre del Archivo</th>
+                                <th style="text-align:center" width="10%">Vista Previa</th>
                             </tr>
                         </thead>
                         <tbody>
+
+
                         <?php
-                        $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/");
+                        // $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/");
                         $num=0;
-                        for ($i=2; $i<count($archivos); $i++)
-                        {$num++;
+                        // Ruta del directorio donde están los archivos
+                        $path  = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/";
+                        // Obtienes tu variable mediante GET
+                        // Arreglo con todos los nombres de los archivos
+                        $files = array_diff(scandir($path), array('.', '..'));
+
+                        foreach($files as $file){
+                          $num++;
+                          // Divides en dos el nombre de tu archivo utilizando el .
+                          $data          = explode(".", $file);
+                          // Nombre del archivo
+                          $fileName      = $data[0];
+                          // echo $fileName;
+                          // Extensión del archivo
+                          $fileExtension = $data[1];
+                          $arg = $fileName.'.'.$fileExtension;
+                          echo '<tr>';
+                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
+                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
+                          echo "<td style='text-align:center'><a href='ver_pdf_analisis.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                        //   if ($user=='guillermogv') {
+                        //     echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
+                        //     echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                        //   }
+                        //   echo '</tr>';
+                        }
                         ?>
-                        <p>  
-                        </p>
-                                
-                            <tr>
-                              <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <td style="font-weight: bold;" scope="row"><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_analisis_de_riesgo/repo/<?php echo $resultado ?>/<?php echo $resultado ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                            </tr>
-                        <?php }?> 
                         </tbody>
                     </table>
                 </div>
@@ -274,7 +291,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 <div class="contenedor">
 
 
-<a href="sub_expediente.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="sub_expediente.php?folio=<?=$folio_del_expediente?>" class="btn-flotante">REGRESAR</a>
 
   <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
 
@@ -282,5 +299,3 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
 </body>
 </html>
-
-

@@ -22,13 +22,12 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-$folio_del_expediente = $fol_exp;
-$_SESSION['folio_expediente'] = $folio_del_expediente;
-$name_folio = $_SESSION['folio_expedientev'];
-// echo $name_folio;
-$name_carpetav = $name_folio;
-$resultadov = str_replace("/", "-", $name_carpetav);
-// echo $resultadov;
+// echo $fol_exp;
+
+$folio_del_expediente = $_SESSION['folio_expediente'];
+
+// echo $folio_del_expediente;
+
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
@@ -41,26 +40,23 @@ $rowfol=$resultfol->fetch_assoc();
 
 // $name_folio=$rowfol['folioexpediente'];
 
-
 // $id_pers=$rowfol['identificador'];
 // $_SESSION['idpersona'] = $id_pers;
 
-// echo $fol_exp;
-// echo $id_pers;
-// echo $name_folio;
 
-$name_carpeta = $fol_exp;
+
+$name_carpeta = $folio_del_expediente;
 $resultado = str_replace("/", "-", $name_carpeta);
 // echo $resultado;
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");
+$hoy = date("d-m-Y H:i:s a");  
 // echo $hoy;
 
 // echo $name_folio;
 // $id_person=$rowfol['id'];
-// echo $id_person;
+// // echo $id_person;
 // $foto=$rowfol['foto'];
 // $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
 // $res_val1=$mysqli->query($valid1);
@@ -68,9 +64,9 @@ $hoy = date("d-m-Y H:i:s a");
 // $validacion1 = $fil_val1['id_persona'];
 
 
-// echo $id_person;
+// // echo $id_person;
 
-// consulta de los datos de la autoridad
+// // consulta de los datos de la autoridad
 // $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
 // $resultadoaut = $mysqli->query($aut);
 // $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
@@ -79,7 +75,7 @@ $hoy = date("d-m-Y H:i:s a");
 // $resultadoorigen = $mysqli->query($origen);
 // $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
 // $nameestadonac=$roworigen['lugardenacimiento'];
-//
+
 // // datos del TUTOR
 // $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
 // $resultadotutor = $mysqli->query($tutor);
@@ -112,7 +108,6 @@ $hoy = date("d-m-Y H:i:s a");
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -189,11 +184,7 @@ $hoy = date("d-m-Y H:i:s a");
     </div>
     <nav class="menu-nav">
            		<ul>
-                <?php
-                    if ($user=='guillermogv') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-                  ";}
-                ?>
+                  <!-- <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=<?php echo $folio_del_expediente; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a> -->
             	</ul>
     </nav>
   </div>
@@ -210,7 +201,8 @@ $hoy = date("d-m-Y H:i:s a");
 
       <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='../subdireccion_de_analisis_de_riesgo/ver_pdf.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-eye"></span><span class="tab-text">VISTA PREVIA</span></a></li>
+          <!-- <li><a href="#" class="active" onclick="location.href='repo_expediente_apoyo.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></span><span class="tab-text">REPOSITORIO EXPEDIENTE</span></a></li> -->
+          <li><a href="#" class="active" onclick="location.href='ver_pdf_apoyo.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-eye"></span><span class="tab-text">VISTA PREVIA</span></a></li>
           <!-- <li><a href="#" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
           <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
@@ -219,79 +211,77 @@ $hoy = date("d-m-Y H:i:s a");
     		<div class="secciones">
     			<article id="tab1">
 
-              <!-- menu de navegacion de la parte de arriba -->
-              <div class="secciones form-horizontal sticky breadcrumb flat">
-                        <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-                        <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio;?>">EXPEDIENTE</a>
-                        <a href="../subdireccion_de_analisis_de_riesgo/repo_exp.php?folio=<?=$name_folio?>">REPOSITORIO EXPEDIENTE</a>
-                        <a class="actived">DOCUMENTO</a>
-              </div>
+                    <!-- menu de navegacion de la parte de arriba -->
+                    <div class="secciones form-horizontal sticky breadcrumb flat">
+                                <a href="admin.php">REGISTROS</a>
+                                <a href="detalles_expediente.php?folio=<?=$folio_del_expediente?>">EXPEDIENTE</a>
+                                <a href="sub_expediente.php?folio=<?=$folio_del_expediente?>">SUBDIRECCIÓN</a>
+                                <a href="repo_expediente_apoyo.php?folio=<?=$folio_del_expediente?>">APOYO TÉCNICO Y JURÍDICO</a>
+                                <a class="actived">DOCUMENTO</a>
+                    </div>
 
-              <form class="container well form-horizontal" action="../subdireccion_de_analisis_de_riesgo/cargar_archivo_exp.php?folio=<?php echo $fol_exp; ?>" method="post" enctype="multipart/form-data">
-              <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
-                <div class="row">
+                    <div class="container">
+                        <form class="container well form-horizontal" method="post" enctype="multipart/form-data">
 
-                  <div class="alert alert-info">
-                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
-                  </div>
+                            <div class="row">
 
-                  <div class="col-md-6 mb-3 ">
-                        <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                        <input readonly class="form-control" type="text" value="<?php echo $name_folio;?>">
-                  </div>
+                            <div class="alert alert-info">
+                                <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                            </div>
 
-                  <div class="col-md-6 mb-3 ">
-                        <label>NOMBRE DEL DOCUMENTO<span ></span></label>
-                        <input readonly class="form-control" type="text" value="<?php echo $fol_exp; ?>">
-                  </div>
-                  <!-- <div style="text-align:center;"> -->
-                          <?php
-                          $path  = "../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/";
-                          // Obtienes tu variable mediante GET
-                          // Arreglo con todos los nombres de los archivos
-                          $files = array_diff(scandir($path), array('.', '..'));
+                            <div class="col-md-6 mb-3 ">
+                                    <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
+                                    <input readonly class="form-control" type="text" value="<?php echo $folio_del_expediente;?>">
+                            </div>
 
-                          foreach($files as $file){
+                            <div class="col-md-6 mb-3 ">
+                                    <label>NOMBRE DEL DOCUMENTO<span ></span></label>
+                                    <input readonly class="form-control" type="text" value="<?php echo $fol_exp; ?>">
+                            </div>
 
-                            // Divides en dos el nombre de tu archivo utilizando el .
-                            $data          = explode(".", $file);
-                            // Nombre del archivo
-                            $fileName      = $data[0];
-                            // echo $fileName;
-                            // Extensión del archivo
-                            $fileExtension = $data[1];
-                            $arg = $fileName.'.'.$fileExtension;
-                            if ($fol_exp === $arg) {
-                              // echo "si";
-                              // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
-                              echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png" width="965" height="600"></div>';
-                              echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
-                              echo '</div>';
-                              break;
-                            }
-                          }
-                          ?>
-                        
-                      
-                <!-- </div> -->
-              </form>
-            </div>
-    			</article>
+                                <?php
+                                $path  = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado/";
+                                
+                                // Obtienes tu variable mediante GET
+                                // Arreglo con todos los nombres de los archivos
+                                $files = array_diff(scandir($path), array('.', '..'));
+
+                                foreach($files as $file){
+
+                                    // Divides en dos el nombre de tu archivo utilizando el .
+                                    $data          = explode(".", $file);
+                                    // Nombre del archivo
+                                    $fileName      = $data[0];
+                                    // echo $fileName;
+                                    // Extensión del archivo
+                                    $fileExtension = $data[1];
+                                    $arg = $fileName.'.'.$fileExtension;
+                                    // echo $arg;
+                                    if ($fol_exp === $arg) {
+                                    // echo "si";
+                                    // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
+                                    echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png" width="965" height="600"></div>';
+                                    echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
+                                    echo '</div>';
+                                    break;
+                                    }
+                                }
+                                ?>
+
+                        </form>
+                    </div>
+    		    </article>
     		</div>
     	</div>
-      <!--  -->
   </div>
 </div>
 <div class="contenedor">
 
 
-<a href="../subdireccion_de_analisis_de_riesgo/repo_exp.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="repo_expediente_apoyo.php?folio=<?=$folio_del_expediente?>" class="btn-flotante">REGRESAR</a>
 
- 
 
 </div>
-
-
 
 </body>
 </html>

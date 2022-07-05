@@ -26,7 +26,8 @@ $folio_del_expediente = $fol_exp;
 $_SESSION['folio_expediente'] = $folio_del_expediente;
 
 // echo $fol_exp;
-
+echo $_SESSION['folio_expediente'];
+echo $folio_del_expediente;
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
@@ -65,9 +66,9 @@ $hoy = date("d-m-Y H:i:s a");
 // $validacion1 = $fil_val1['id_persona'];
 
 
-// echo $id_person;
+// // echo $id_person;
 
-// consulta de los datos de la autoridad
+// // consulta de los datos de la autoridad
 // $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
 // $resultadoaut = $mysqli->query($aut);
 // $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
@@ -181,13 +182,8 @@ $hoy = date("d-m-Y H:i:s a");
     </div>
     <nav class="menu-nav">
            		<ul>
-                <?php
-                    if ($user=='e-adriana') {
-                    echo "
-                      <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-                    ";
-                    }
-                ?>
+                    <a style="text-align:center" class="user-nombre" href="create_ticket.php?folio=<?php echo $fol_exp; ?>"><button type="button" class="btn btn-light">INCIDENCIA</button> </a>
+
             	</ul>
     </nav>
   </div>
@@ -220,16 +216,16 @@ $hoy = date("d-m-Y H:i:s a");
                         <a class="actived">REPOSITORIO EXPEDIENTE</a>
               </div>
 
-              <div class="container">
+              <!-- <div class="container"> -->
               <form class="container well form-horizontal" action="../subdireccion_de_estadistica_y_preregistro/cargar_archivo_exp.php?folio=<?php echo $fol_exp; ?>" method="post" enctype="multipart/form-data">
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
                 <div class="alert alert-info">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
-                  </div>
-                    
-                  <div class="col-md-6 mb-3 ">
+                </div>
+
+                <div class="col-md-6 mb-3 ">
                         <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                         <input readonly class="form-control" type="text" value="<?php echo $fol_exp;?>">
                   </div>
@@ -254,23 +250,20 @@ $hoy = date("d-m-Y H:i:s a");
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
                   
-                  <?php
-                    if ($user=='e-adriana') {
-                    echo "
+                
+                    
+                  
                     <div class='alert alert-info'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
                     </div>
-                    ";
-                    echo "
+                
                     <div class='col-md-10 mb-3' style='display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;'>
                         <label for='my-file-selector'><span ></span>
                         <input required='' accept='application/pdf' type='file' name='file' id='exampleInputFile'></label>
                         <button class='btn btn-success' type='submit'>Agregar archivo</button>
                     </div>
-                    ";
-                  }
-                  
-                  ?>
+           
+               
 
                   <div class="alert alert-info">
                     <h3 style="text-align:center">TABLA DE ARCHIVOS DISPONIBLES</h3>
@@ -279,26 +272,29 @@ $hoy = date("d-m-Y H:i:s a");
 
                   <div>
 
-                    <table class="table table-bordered" id="table-tickets">
+                  <table class="table table-bordered" id="table-tickets">
                         <thead>
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
                                 <!-- <th style="text-align:center" width="15">Fecha</th> -->
-                                <th style="text-align:center" width="60%">Nombre del archivo</th>
+                                <th style="text-align:center" width="60%">Nombre del Archivo</th>
                                 <th style="text-align:center" width="10%">Vista Previa</th>
                                 <?php
                                   if ($user=='e-adriana') {
-                                    echo "<th style='text-align:center' width='10%'>Descargar</th>";
-                                    echo "<th style='text-align:center' width='10%'>Eliminar</th>";}
+                                  echo "<th style='text-align:center' width='10%'>Descargar</th>";
+                                  echo "<th style='text-align:center' width='10%'>Eliminar</th>";
+                                }
                                 ?>
                                 <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        $archivos = scandir("../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado/");
-                        $num=0;
 
+
+
+                        <?php
+                        // $archivos = scandir("..subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado/");
+                        $num=0;
                         // Ruta del directorio donde están los archivos
                         $path  = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado/";
                         // Obtienes tu variable mediante GET
@@ -328,6 +324,8 @@ $hoy = date("d-m-Y H:i:s a");
                         ?>
 
 
+
+
                         </tbody>
                     </table>
                 </div>
@@ -350,4 +348,3 @@ $hoy = date("d-m-Y H:i:s a");
 
 </body>
 </html>
-

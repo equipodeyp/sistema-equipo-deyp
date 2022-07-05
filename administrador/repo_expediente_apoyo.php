@@ -25,7 +25,7 @@ $fol_exp = $_GET['folio'];
 $folio_del_expediente = $fol_exp;
 $_SESSION['folio_expediente'] = $folio_del_expediente;
 
-// echo $fol_exp;
+// echo $_SESSION['folio_expediente'];
 
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
@@ -217,7 +217,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
               <div class="container">
               <form class="container well form-horizontal" method="post" enctype="multipart/form-data">
-              <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
+             
                 <div class="row">
 
                 <div class="alert alert-info">
@@ -240,26 +240,43 @@ $fexprel1 = $rexprel1->fetch_assoc();
                         <thead>
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
-                                <th style="text-align:center" width="80%">Nombre del archivo</th>
-                                <th style="text-align:center" width="10%">Descargar</th>
+                                <th style="text-align:center" width="80%">Nombre del Archivo</th>
+                                <th style="text-align:center" width="10%">Vista Previa</th>
                             </tr>
                         </thead>
                         <tbody>
+
+
                         <?php
-                        $archivos = scandir("../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado/");
+                        // $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$resultado/");
                         $num=0;
-                        for ($i=2; $i<count($archivos); $i++)
-                        {$num++;
+                        // Ruta del directorio donde están los archivos
+                        $path  = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado/";
+                        // Obtienes tu variable mediante GET
+                        // Arreglo con todos los nombres de los archivos
+                        $files = array_diff(scandir($path), array('.', '..'));
+
+                        foreach($files as $file){
+                          $num++;
+                          // Divides en dos el nombre de tu archivo utilizando el .
+                          $data          = explode(".", $file);
+                          // Nombre del archivo
+                          $fileName      = $data[0];
+                          // echo $fileName;
+                          // Extensión del archivo
+                          $fileExtension = $data[1];
+                          $arg = $fileName.'.'.$fileExtension;
+                          echo '<tr>';
+                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
+                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
+                          echo "<td style='text-align:center'><a href='ver_pdf_apoyo.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                        //   if ($user=='guillermogv') {
+                        //     echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
+                        //     echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                        //   }
+                        //   echo '</tr>';
+                        }
                         ?>
-                        <p>  
-                        </p>
-                                
-                            <tr>
-                              <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <td style="font-weight: bold;" scope="row"><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_apoyo_tecnico_juridico/repo/<?php echo $resultado ?>/<?php echo $resultado ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                            </tr>
-                        <?php }?> 
                         </tbody>
                     </table>
                 </div>
