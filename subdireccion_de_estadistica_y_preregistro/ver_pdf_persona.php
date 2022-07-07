@@ -239,12 +239,12 @@ $id_person=$rowfol['id'];
 
                   <div class="col-md-6 mb-3 validar">
                         <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                        <input readonly class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $fol; ?>" maxlength="50">
+                        <input readonly class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $fol_exp; ?>" maxlength="50">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
-                    <input readonly class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $iniciales; ?>" maxlength="50">
+                    <input readonly class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $iniciales_persona; ?>" maxlength="50">
                   </div>
 
                   <div class="col-md-6 mb-3 ">
