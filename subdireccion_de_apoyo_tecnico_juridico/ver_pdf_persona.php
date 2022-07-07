@@ -11,9 +11,9 @@ $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
 // echo $name;
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
-$result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
+// $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+// $result = $mysqli->query($sentencia);
+// $row=$result->fetch_assoc();
 
 // $query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
 // $resultado23=$mysqli->query($query);
@@ -21,48 +21,39 @@ $row=$result->fetch_assoc();
 // $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 // $resultado1=$mysqli->query($query1);
 
-$fol_exp = $_GET['folio'];
-// echo $fol_exp;
-// $folio_del_expediente = $fol_exp;
-// $_SESSION['folio_expediente'] = $folio_del_expediente;
-$name_folio = $_SESSION['folioExp'];
-// echo $name_folio;
-
-$name_carpetav = $name_folio;
-$resultadov = str_replace("/", "-", $name_carpetav);
-// echo $resultadov;
-
+$name_doc = $_GET['folio'];
+// echo $name_doc;
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
 // $name_folio=$rowfol['folioexpediente'];
 
-
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 
-// $name_folio=$rowfol['folioexpediente'];
+$fol = $_SESSION['folio_expediente'];
 
+$id_pers = $_SESSION['idpersona'];
 
-// $id_pers=$rowfol['identificador'];
-// $_SESSION['idpersona'] = $id_pers;
+$iniciales = $_SESSION['iniciales_pers'];
 
-// echo $fol_exp;
-// echo $id_pers;
-// echo $name_folio;
-
-$name_carpeta = $fol_exp;
+$name_carpeta = $fol;
 $resultado = str_replace("/", "-", $name_carpeta);
+
+// echo $fol;
+// echo $id_pers;
+// echo $iniciales;
 // echo $resultado;
+//UPSIPPED/SAR/TOL-TOL/001/2021 1 JAMA-001 UPSIPPED-SAR-TOL-TOL-001-2021
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");
+$hoy = date("d-m-Y H:i:s a");  
 // echo $hoy;
 
 // echo $name_folio;
-// $id_person=$rowfol['id'];
+$id_person=$rowfol['id'];
 // echo $id_person;
 // $foto=$rowfol['foto'];
 // $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
@@ -82,7 +73,7 @@ $hoy = date("d-m-Y H:i:s a");
 // $resultadoorigen = $mysqli->query($origen);
 // $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
 // $nameestadonac=$roworigen['lugardenacimiento'];
-//
+
 // // datos del TUTOR
 // $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
 // $resultadotutor = $mysqli->query($tutor);
@@ -115,7 +106,6 @@ $hoy = date("d-m-Y H:i:s a");
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,7 +155,7 @@ $hoy = date("d-m-Y H:i:s a");
     #iframe { width: 980px; height: 600px; }
   </style>
 </head>
-<body onload="disableContextMenu();" oncontextmenu="return false">
+<body  onload="disableContextMenu();" oncontextmenu="return false">
 <div class="contenedor">
   <div class="sidebar ancho">
     <div class="logo text-warning">
@@ -194,7 +184,8 @@ $hoy = date("d-m-Y H:i:s a");
            		<ul>
                 <?php
                     if ($user=='diana') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    // echo $fol;
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
             	</ul>
@@ -213,7 +204,7 @@ $hoy = date("d-m-Y H:i:s a");
 
       <ul class="tabs">
     			<!-- <li><a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR INCIDENCIA</span></a></li> -->
-          <li><a href="#" class="active" onclick="location.href='../subdireccion_de_apoyo_tecnico_juridico/ver_pdf.php?folio=<?=$fol_exp?>'"><span class="fa-solid fa-eye"></span><span class="tab-text">VISTA PREVIA</span></a></li>
+          <li><a href="#" class="active" onclick="location.href='ver_pdf_persona.php?folio=<?php echo $name_doc; ?>'"><span class="fa-solid fa-eye"></span><span class="tab-text">VISTA PREVIA</span></a></li>
           <!-- <li><a href="#" onclick="location.href='resumen_tickets_atendidas.php'"><span class="far fa-address-card"></span><span class="tab-text">ATENDIDAS</span></a></li>
           <li><a href="#" onclick="location.href='resumen_tickets_canceladas.php'"><span class="far fa-address-card"></span><span class="tab-text">CANCELADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
@@ -224,32 +215,39 @@ $hoy = date("d-m-Y H:i:s a");
 
               <!-- menu de navegacion de la parte de arriba -->
               <div class="secciones form-horizontal sticky breadcrumb flat">
-                        <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
-                        <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio;?>">EXPEDIENTE</a>
-                        <a href="../subdireccion_de_apoyo_tecnico_juridico/repo_exp.php?folio=<?=$name_folio?>">REPOSITORIO EXPEDIENTE</a>
+                        <a href="menu.php">REGISTROS</a>
+                        <a href="modificar.php?id=<?=$fol?>">EXPEDIENTE</a>
+                        <a href="detalles_persona.php?folio=<?=$id_pers?>">PERSONA</a>
+                        <a href="repo.php?folio=<?=$id_pers?>">REPOSITORIO PERSONA</a>
                         <a class="actived">DOCUMENTO</a>
               </div>
 
-              <form class="container well form-horizontal" action="../subdireccion_de_apoyo_tecnico_juridico/cargar_archivo_exp.php?folio=<?php echo $fol_exp; ?>" method="post" enctype="multipart/form-data">
+              <div class="container">
+              <form class="container well form-horizontal" action="" method="post" enctype="multipart/form-data">
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
                   <div class="alert alert-info">
-                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
 
-                  <div class="col-md-6 mb-3 ">
-                        <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                        <input readonly class="form-control" type="text" value="<?php echo $name_folio;?>">
+                  <div class="col-md-6 mb-3 validar">
+                        <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
+                        <input readonly class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $fol; ?>" maxlength="50">
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
+                    <input readonly class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $iniciales; ?>" maxlength="50">
                   </div>
 
                   <div class="col-md-6 mb-3 ">
                         <label>NOMBRE DEL DOCUMENTO<span ></span></label>
-                        <input readonly class="form-control" type="text" value="<?php echo $fol_exp; ?>">
+                        <input readonly class="form-control" type="text" value="<?php echo $name_doc; ?>">
                   </div>
-                  <!-- <div style="text-align:center;"> -->
-                          <?php
-                          $path  = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultadov/$resultadov/";
+
+                  <?php
+                          $path  = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$iniciales";
                           // Obtienes tu variable mediante GET
                           // Arreglo con todos los nombres de los archivos
                           $files = array_diff(scandir($path), array('.', '..'));
@@ -264,18 +262,20 @@ $hoy = date("d-m-Y H:i:s a");
                             // Extensión del archivo
                             $fileExtension = $data[1];
                             $arg = $fileName.'.'.$fileExtension;
-                            if ($fol_exp === $arg) {
+                            // echo $arg;
+                            // echo $name_doc;
+                            if ($name_doc === $arg) {
                               // echo "si";
                               // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_apoyo_tecnico_juridico/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";
                               echo '<div id="ciframe"><div id="biframe"><img src="../image/marca_agua_fgjem.png" width="965" height="600"></div>';
-                              echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_apoyo_tecnico_juridico/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
+                              echo "<iframe style='width:990px; height:600px; border: none;' src='../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$iniciales/$arg#toolbar=0&navpanes=0&scrollbar=0&embedded=true&navpanes=0' id='iframe_id' onload='disableContextMenu();' onMyLoad='disableContextMenu();'>"; echo "</iframe>";
                               echo '</div>';
                               break;
                             }
                           }
-                          ?>
-                        
-                      
+                  ?>
+
+                  
                 <!-- </div> -->
               </form>
             </div>
@@ -288,13 +288,12 @@ $hoy = date("d-m-Y H:i:s a");
 <div class="contenedor">
 
 
-<a href="../subdireccion_de_apoyo_tecnico_juridico/repo_exp.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="repo.php?folio=<?=$id_pers?>" class="btn-flotante">REGRESAR</a>
 
- 
+  <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
 
 </div>
 
-
-
 </body>
 </html>
+

@@ -15,11 +15,11 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
-$resultado23=$mysqli->query($query);
+// $query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
+// $resultado23=$mysqli->query($query);
 
-$query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
-$resultado1=$mysqli->query($query1);
+// $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
+// $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
 
@@ -35,19 +35,19 @@ $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 
 $name_folio=$rowfol['folioexpediente'];
-$_SESSION['folio_expediente'] = $fol_exp;
-
-
-
 
 $id_pers=$rowfol['identificador'];
+
 $iniciales_persona = $_SESSION['idpersona'];
-// echo $iniciales_persona;
+echo $iniciales_persona;
 
 $idfolpers = $_SESSION['idfolioexp'];
-// echo $idfolpers;
+echo $idfolpers;
 
-// echo $fol_exp;
+$_SESSION['folio_expediente'] = $fol_exp;
+echo $fol_exp;
+
+// JAMA-001 1 UPSIPPED/SAR/TOL-TOL/001/2021
 // echo $id_pers;
 // echo $name_folio;
 
@@ -281,35 +281,56 @@ $fexprel1 = $rexprel1->fetch_assoc();
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
                                 <!-- <th style="text-align:center" width="15%">Fecha</th> -->
-                                <th style="text-align:center" width="70%">Nombre del archivo</th>
-                                <th style="text-align:center" width="10%">Descargar</th>
-                                <th style='text-align:center' width='10%'>Eliminar</th>
-                          
-                                <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
+                                <th style="text-align:center" width="60%">Nombre del archivo</th>
+                                <th style="text-align:center" width="10%">Vista Previa</th>
+                                <?php
+                                  if ($user=='e-adriana') {
+                                    echo "<th style='text-align:center' width='10%'>Descargar</th>";
+                                    echo "<th style='text-align:center' width='10%'>Eliminar</th>";
+                                }
+                                ?>
                             </tr>
                         </thead>
                         <tbody>
+
+
+
+
+
+
                         <?php
-                        $archivos = scandir("../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$iniciales_persona/");
+                        // $archivos = scandir("../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$id_pers/");
                         $num=0;
-                        for ($i=2; $i<count($archivos); $i++)
-                        {$num++;
+                        // Ruta del directorio donde están los archivos
+                        $path  = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$iniciales_persona/";
+                        // Obtienes tu variable mediante GET
+                        // Arreglo con todos los nombres de los archivos
+                        $files = array_diff(scandir($path), array('.', '..'));
+
+                        foreach($files as $file){
+                          $num++;
+                          // Divides en dos el nombre de tu archivo utilizando el .
+                          $data          = explode(".", $file);
+                          // Nombre del archivo
+                          $fileName      = $data[0];
+                          // echo $fileName;
+                          // Extensión del archivo
+                          $fileExtension = $data[1];
+                          $arg = $fileName.'.'.$fileExtension;
+                          // echo $arg;
+                          echo '<tr>';
+                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
+                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
+                          echo "<td style='text-align:center'><a href='ver_pdf_persona.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          if ($user=='e-adriana') {
+                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_estadistica_y_preregistro/repo/".$resultado."/".$iniciales_persona."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
+                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_estadistica_y_preregistro/eliminar_archivo.php?name=repo/".$resultado."/".$iniciales_persona."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                          }
+                          echo '</tr>';
+                        }
                         ?>
-                        <p>  
-                        </p>
-                                
-                            <tr>
-                              <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <!-- <th style="text-align:center;" scope="row"><?php echo $hoy;?></th> -->
-                              <td style="font-weight: bold;"><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_estadistica_y_preregistro/repo/<?php echo $resultado; ?>/<?php echo $iniciales_persona; ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                              
-                          
-                              <td style="text-align:center"><a title="Eliminar Archivo" href="../subdireccion_de_estadistica_y_preregistro/eliminar_archivo.php?name=repo/<?php echo $resultado; ?>/<?php echo $iniciales_persona; ?>/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td>
-                              
-                              <!-- <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=archivos_subidos_analisis/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td> -->
-                            </tr>
-                        <?php }?> 
+
+
                         </tbody>
                     </table>
                 </div>

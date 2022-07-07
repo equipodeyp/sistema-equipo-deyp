@@ -259,8 +259,14 @@ $hoy = date("d-m-Y H:i:s a");
                             $fileName      = $data[0];
                             // echo $fileName;
                             // Extensión del archivo
+                            
                             $fileExtension = $data[1];
                             $arg = $fileName.'.'.$fileExtension;
+
+                            echo $arg;
+                            echo $fol_exp;
+                        
+
                             if ($fol_exp === $arg) {
                               // echo "si";
                               // echo "<embed id='pdfs' style='width:870px; height:680px;' src='../subdireccion_de_analisis_de_riesgo/repo/$resultadov/$resultadov/$arg#toolbar=0&navpanes=0&scrollbar=0'/>";

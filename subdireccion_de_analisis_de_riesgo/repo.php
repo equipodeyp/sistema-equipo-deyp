@@ -11,23 +11,24 @@ $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
 // echo $name;
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
-$result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
+// $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+// $result = $mysqli->query($sentencia);
+// $row=$result->fetch_assoc();
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
-$resultado23=$mysqli->query($query);
+// $query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
+// $resultado23=$mysqli->query($query);
 
-$query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
-$resultado1=$mysqli->query($query1);
-
-$fol_exp = $_GET['folio'];
+// $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
+// $resultado1=$mysqli->query($query1);
 
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();
 // $name_folio=$rowfol['folioexpediente'];
 
+
+$fol_exp = $_GET['folio'];
+$_SESSION['folio_expediente_id'] = $fol_exp;
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
@@ -39,9 +40,9 @@ $_SESSION['folio_expediente'] = $name_folio;
 $id_pers=$rowfol['identificador'];
 $_SESSION['idpersona'] = $id_pers;
 
-// echo $fol_exp;
-// echo $id_pers;
-// echo $name_folio;
+echo $fol_exp;
+echo $id_pers;
+echo $name_folio;
 
 $name_carpeta = $name_folio;
 $resultado = str_replace("/", "-", $name_carpeta);
@@ -55,53 +56,53 @@ $hoy = date("d-m-Y H:i:s a");
 // echo $name_folio;
 $id_person=$rowfol['id'];
 // echo $id_person;
-$foto=$rowfol['foto'];
-$valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
-$res_val1=$mysqli->query($valid1);
-$fil_val1 = $res_val1->fetch_assoc();
-$validacion1 = $fil_val1['id_persona'];
+// $foto=$rowfol['foto'];
+// $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
+// $res_val1=$mysqli->query($valid1);
+// $fil_val1 = $res_val1->fetch_assoc();
+// $validacion1 = $fil_val1['id_persona'];
 
 
 // echo $id_person;
 
 // consulta de los datos de la autoridad
-$aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
-$resultadoaut = $mysqli->query($aut);
-$rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
-// consulta de los datos de origen del SUJETO
-$origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
-$resultadoorigen = $mysqli->query($origen);
-$roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
-$nameestadonac=$roworigen['lugardenacimiento'];
+// $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
+// $resultadoaut = $mysqli->query($aut);
+// $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
+// // consulta de los datos de origen del SUJETO
+// $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
+// $resultadoorigen = $mysqli->query($origen);
+// $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
+// $nameestadonac=$roworigen['lugardenacimiento'];
 
-// datos del TUTOR
-$tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-$resultadotutor = $mysqli->query($tutor);
-$rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-// datos del proceso penal
-$process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
-$resultadoprocess = $mysqli->query($process);
-$rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
-// datos de la valoracion juridica
-$valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
-$resultadovaljur = $mysqli->query($valjur);
-$rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
-// datos de la determinacion de la incorporacion
-$detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-$resultadodetinc = $mysqli->query($detinc);
-$rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-//consulta de los datos de origen de la persona
-$domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
-$resultadodomicilio = $mysqli->query($domicilio);
-$rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// consulta del estatus del expediente
-$statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-$resultadostatusexp = $mysqli->query($statusexp);
-$rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-// CONSULTA DE LOS EXPEDIENTES relacionados
-$exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
-$rexprel1 = $mysqli->query($exprel1);
-$fexprel1 = $rexprel1->fetch_assoc();
+// // datos del TUTOR
+// $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
+// $resultadotutor = $mysqli->query($tutor);
+// $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
+// // datos del proceso penal
+// $process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
+// $resultadoprocess = $mysqli->query($process);
+// $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
+// // datos de la valoracion juridica
+// $valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
+// $resultadovaljur = $mysqli->query($valjur);
+// $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
+// // datos de la determinacion de la incorporacion
+// $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
+// $resultadodetinc = $mysqli->query($detinc);
+// $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
+// //consulta de los datos de origen de la persona
+// $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
+// $resultadodomicilio = $mysqli->query($domicilio);
+// $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
+// // consulta del estatus del expediente
+// $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
+// $resultadostatusexp = $mysqli->query($statusexp);
+// $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
+// // CONSULTA DE LOS EXPEDIENTES relacionados
+// $exprel1 = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
+// $rexprel1 = $mysqli->query($exprel1);
+// $fexprel1 = $rexprel1->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -282,37 +283,54 @@ $fexprel1 = $rexprel1->fetch_assoc();
                             <tr>
                                 <th style="text-align:center" width="10%">No.</th>
                                 <!-- <th style="text-align:center" width="15%">Fecha</th> -->
-                                <th style="text-align:center" width="70%">Nombre del archivo</th>
-                                <th style="text-align:center" width="10%">Descargar</th>
+                                <th style="text-align:center" width="60%">Nombre del Archivo</th>
+                                <th style="text-align:center" width="10%">Vista Previa</th>
                                 <?php
                                   if ($user=='guillermogv') {
-                                  echo "<th style='text-align:center' width='10%'>Eliminar</th>";}
+                                    echo "<th style='text-align:center' width='10%'>Descargar</th>";
+                                    echo "<th style='text-align:center' width='10%'>Eliminar</th>";
+                                  }
                                 ?>
                                 <!-- <th style="text-align:center" width="20%">Eliminar</th> -->
                             </tr>
                         </thead>
                         <tbody>
+
+
+
+
                         <?php
                         $archivos = scandir("../subdireccion_de_analisis_de_riesgo/repo/$resultado/$id_pers/");
                         $num=0;
-                        for ($i=2; $i<count($archivos); $i++)
-                        {$num++;
+                        // Ruta del directorio donde están los archivos
+                        $path  = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$id_pers/";
+                        // Obtienes tu variable mediante GET
+                        // Arreglo con todos los nombres de los archivos
+                        $files = array_diff(scandir($path), array('.', '..'));
+
+                        foreach($files as $file){
+                          $num++;
+                          // Divides en dos el nombre de tu archivo utilizando el .
+                          $data          = explode(".", $file);
+                          // Nombre del archivo
+                          $fileName      = $data[0];
+                          // echo $fileName;
+                          // Extensión del archivo
+                          $fileExtension = $data[1];
+                          $arg = $fileName.'.'.$fileExtension;
+                          echo '<tr>';
+                          echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
+                          echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
+                          echo "<td style='text-align:center'><a href='ver_pdf_persona.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          if ($user=='guillermogv') {
+                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$id_pers."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
+                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$id_pers."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                          }
+                          echo '</tr>';
+                        }
                         ?>
-                        <p>  
-                        </p>
-                                
-                            <tr>
-                              <th style="text-align:center" scope="row"><?php echo $num;?></th>
-                              <!-- <th style="text-align:center;" scope="row"><?php echo $hoy;?></th> -->
-                              <td style="font-weight: bold;" scope="row"><?php echo $archivos[$i]; ?></td>
-                              <td style="text-align:center"><a title="Descargar Archivo" href="../subdireccion_de_analisis_de_riesgo/repo/<?php echo $resultado ?>/<?php echo $id_pers ?>/<?php echo $archivos[$i]; ?>" download="<?php echo $archivos[$i]; ?>" style="color: blue; font-size:18px;"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> </a></td>
-                              <?php
-                                  if ($user=='guillermogv') {
-                                  echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/$resultado/$id_pers/$archivos[$i]' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a></td>";}
-                              ?>
-                              <!-- <td style="text-align:center"><a title="Eliminar Archivo" href="eliminar_archivo.php?name=archivos_subidos_analisis/<?php echo $archivos[$i]; ?>" style="color: red; font-size:18px;" onclick="return confirm('Esta seguro de eliminar el archivo?');"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </a></td> -->
-                            </tr>
-                        <?php }?> 
+
+
                         </tbody>
                     </table>
                 </div>

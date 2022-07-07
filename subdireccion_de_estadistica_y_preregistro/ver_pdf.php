@@ -29,7 +29,7 @@ $folio_del_expediente = $fol_exp;
 $name_folio = $_SESSION['folio_expediente'];
 
 
-echo $name_folio;
+// echo $name_folio;
 $name_carpetav = $name_folio;
 $resultadov = str_replace("/", "-", $name_carpetav);
 // echo $resultadov;

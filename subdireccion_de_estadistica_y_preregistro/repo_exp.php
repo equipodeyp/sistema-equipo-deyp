@@ -26,8 +26,8 @@ $folio_del_expediente = $fol_exp;
 $_SESSION['folio_expediente'] = $folio_del_expediente;
 
 // echo $fol_exp;
-echo $_SESSION['folio_expediente'];
-echo $folio_del_expediente;
+// echo $_SESSION['folio_expediente'];
+// echo $folio_del_expediente;
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
 // $rowfol=$resultfol->fetch_assoc();

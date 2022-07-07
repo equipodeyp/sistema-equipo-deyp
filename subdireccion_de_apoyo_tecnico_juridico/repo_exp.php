@@ -15,17 +15,16 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
-$resultado23=$mysqli->query($query);
+// $query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
+// $resultado23=$mysqli->query($query);
 
-$query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
-$resultado1=$mysqli->query($query1);
+// $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
+// $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-$folio_del_expediente = $fol_exp;
-$_SESSION['folio_expediente'] = $folio_del_expediente;
-
 // echo $fol_exp;
+$_SESSION['folioExp'] = $fol_exp;
+
 
 // $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 // $resultfol = $mysqli->query($fol);
