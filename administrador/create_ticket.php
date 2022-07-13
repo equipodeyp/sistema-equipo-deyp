@@ -30,7 +30,7 @@ $rowcount = mysqli_num_rows( $result );
 $suma = $rowcount + 1;
 $num_incidencia = 0 . $suma;
 
-"JONATHAN EDUARDO SANTIAGO JIMÉNEZ"
+
  ?>
 
 
