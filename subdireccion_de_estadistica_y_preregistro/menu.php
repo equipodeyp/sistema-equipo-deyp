@@ -41,6 +41,9 @@ $row=$result->fetch_assoc();
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
+  <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
+  <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+  <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -138,6 +141,10 @@ $row=$result->fetch_assoc();
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
+        <div class="dropdown">
+                <!-- <button id="btnmedidaspendientes" class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">pendientes por validar<span class="caret"></span></button> -->
+                <a id="" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn btn-danger">pendientes por validar</button> </a>
+        </div>
 
         <br>
         <!--Ejemplo tabla con DataTables-->
@@ -225,5 +232,66 @@ $row=$result->fetch_assoc();
     </div>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
+  <?php
+  $var = $name;
+  $tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
+  $rtmf = $mysqli->query($tmf);
+  $ftmf = $rtmf->fetch_assoc();
+  $mmed =  $ftmf['t'];
+  ?>
+  <script type="text/javascript">
+  <?php
+  echo "var jsvar ='$var';";
+  echo "var jsvmedidasfalse ='$mmed';";
+  ?>
+  console.log(jsvar);
+  console.log(jsvmedidasfalse);
+  if (jsvar === 'e-adriana') {
+    if (jsvmedidasfalse > 0) {
+      document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
+      console.log(jsvar);
+      console.log(jsvmedidasfalse);
+      (function(window, document) { // asilamos el componente
+      // creamos el contedor de las tostadas o la tostadora
+      var container = document.createElement('div');
+      container.className = 'toast-container';
+      document.body.appendChild(container);
+
+      // esta es la funcion que hace la tostada
+      window.doToast = function(message) {
+        // creamos tostada
+        var toast = document.createElement('div');
+        toast.className = 'toast-toast';
+        toast.innerHTML = message;
+
+        // agregamos a la tostadora
+        container.appendChild(toast);
+
+        // programamos su eliminación
+        setTimeout(function() {
+          // cuando acabe de desaparecer, lo eliminamos del dom.
+          toast.addEventListener("transitionend", function() {
+             container.removeChild(toast);
+          }, false);
+
+          // agregamos un estilo que inicie la "transition".
+          toast.classList.add("fadeout");
+        }, 10000); // OP dijo, "solo dos segundos"
+      }
+      })(window, document);
+
+      // ejempo de uso
+      doToast("¡ATENCIÓN!");
+
+      // ejemplo retardado de uso
+      setTimeout(function() {
+       doToast("FALTAN MEDIDAS POR VALIDAR");
+      }, 1200);
+      // fin de mostrar alerta
+    }
+  }else {
+    document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
+  }
+  </script>
 </body>
 </html>
