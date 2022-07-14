@@ -18,6 +18,7 @@ $row=$result->fetch_assoc();
   <title>SIPPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
@@ -89,6 +90,14 @@ $row=$result->fetch_assoc();
       });
   });
   </script>
+  <style media="screen">
+  .submenu {
+    display: none;
+  }
+  .opacity {
+    /* opacity: 100%; */
+  }
+  </style>
 </head>
 <body>
   <div class="contenedor">
@@ -115,13 +124,25 @@ $row=$result->fetch_assoc();
         <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-      <ul>
-              <!-- <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span> Incidencia</span></a></li> -->
-              <!-- <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw  "></i><span> Repositorio </span></a></li> -->
-              <!-- <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a> -->
-              <!-- <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items"> Busqueda</span></a> -->
-              <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items"> ESTADISTICA</span></a></li> -->
-          </ul>
+        <ul>
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"style="color: white; font-weight:bold;" >GLOSARIO</span></a></li>
+          <li id="liestadistica" class="subtitle">
+      			<a href="#" class="action"><i class='fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
+      			<ul class="submenu">
+              <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li>
+              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li>
+
+      			</ul>
+      		</li>
+        </ul>
+        <!-- <ul>
+          <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php"><i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items"> EXPEDIENTES</span></a></li>
+          <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span> SUJETOS</span></a></li>
+          <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php"><i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items"> MEDIDAS</span></a></li>
+          <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
+        </ul>
+
       </nav>
     </div>
     <div class="main bg-light">
@@ -225,13 +246,30 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <div class="columns download">
-
-                <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
-
-    </div>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
+  <!-- modal del glosario -->
+  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
   <?php
   $var = $name;
   $tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
@@ -292,6 +330,31 @@ $row=$result->fetch_assoc();
   }else {
     document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
   }
+  if (jsvar === 'jesusaz' || jsvar === 'dircece') {
+    document.getElementById('liexpediente').style.visibility = "visible"; // visible
+    document.getElementById('lipersonas').style.visibility = "visible"; // visible
+    document.getElementById('limedidas').style.visibility = "visible"; // visible
+    document.getElementById('liestadistica').style.visibility = "visible"; // visible
+  }else {
+    document.getElementById('liexpediente').style.visibility = "hidden"; // hide
+    document.getElementById('lipersonas').style.visibility = "hidden"; // hide
+    document.getElementById('limedidas').style.visibility = "hidden"; // hide
+    document.getElementById('liestadistica').style.visibility = "hidden"; // hide
+  }
+  // CODIGO DE MENU CON submenu
+  $(".subtitle .action").click(function(event){
+   var subtitle = $(this).parents(".subtitle");
+   var submenu = $(subtitle).find(".submenu");
+
+   $(".submenu").not($(submenu)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle)).removeClass("open");
+
+   $(subtitle).toggleClass("open");
+   $(submenu).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+  //
   </script>
 </body>
 </html>
