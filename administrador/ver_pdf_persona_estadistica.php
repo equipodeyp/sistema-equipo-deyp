@@ -54,7 +54,7 @@ $name_folio=$rowfol['folioexpediente'];
 
 
 
-$name_carpeta = $folio_expediente;
+$name_carpeta = $name_folio;
 $resultado = str_replace("/", "-", $name_carpeta);
 // echo $resultado;
 
@@ -225,7 +225,7 @@ $hoy = date("d-m-Y H:i:s a");
                                 <a href="admin.php">REGISTROS</a>
                                 <a href="detalles_expediente.php?folio=<?=$folio_expediente?>">EXPEDIENTE</a>
                                 <a href="detalles_persona.php?folio=<?=$id?>">PERSONA</a>
-                                <a href="sub_persona.php?folio=<?=$name_folio?>">SUBDIRECCIÓN</a>
+                                <a href="sub_persona.php?folio=<?php echo $name_folio;?>">SUBDIRECCIÓN</a>
                                 <a href="repo_persona_estadistica.php?folio=<?=$id?>">ESTADÍSTICA Y PRE-REGISTRO</a>
                                 <a class="actived">DOCUMENTO</a>
                     </div>

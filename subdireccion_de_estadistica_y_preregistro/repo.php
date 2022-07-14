@@ -39,13 +39,13 @@ $name_folio=$rowfol['folioexpediente'];
 $id_pers=$rowfol['identificador'];
 
 $iniciales_persona = $_SESSION['idpersona'];
-echo $iniciales_persona;
+// echo $iniciales_persona;
 
 $idfolpers = $_SESSION['idfolioexp'];
-echo $idfolpers;
+// echo $idfolpers;
 
 $_SESSION['folio_expediente'] = $fol_exp;
-echo $fol_exp;
+// echo $fol_exp;
 
 // JAMA-001 1 UPSIPPED/SAR/TOL-TOL/001/2021
 // echo $id_pers;

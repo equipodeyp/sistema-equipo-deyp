@@ -37,13 +37,19 @@ $folio_expediente = $_SESSION['folio_expediente'];
 // echo $iniciales;
 // echo $folio_expediente;
 
-// $name_folio=$rowfol['folioexpediente'];
-// $id_pers=$rowfol['identificador'];
-// $_SESSION['idpersona'] = $id_pers;
+$folexpedient=" SELECT * FROM datospersonales WHERE id='$id'";
+$resultfol = $mysqli->query($folexpedient);
+$rowfol=$resultfol->fetch_array(MYSQLI_ASSOC);
+$name_folio=$rowfol['folioexpediente'];
 
 
 
-$name_carpeta = $folio_expediente;
+
+// echo $name_folio;
+
+
+
+$name_carpeta = $name_folio;
 $resultado = str_replace("/", "-", $name_carpeta);
 // echo $resultado;
 
@@ -214,7 +220,7 @@ $hoy = date("d-m-Y H:i:s a");
                                 <a href="admin.php">REGISTROS</a>
                                 <a href="detalles_expediente.php?folio=<?=$folio_expediente?>">EXPEDIENTE</a>
                                 <a href="detalles_persona.php?folio=<?=$id?>">PERSONA</a>
-                                <a href="sub_persona.php?folio=<?=$folio_expediente?>">SUBDIRECCIÓN</a>
+                                <a href="sub_persona.php?folio=<?php echo $name_folio;?>">SUBDIRECCIÓN</a>
                                 <a href="repo_persona_apoyo.php?folio=<?=$id?>">APOYO TÉCNICO Y JURÍDICO</a>
                                 <a class="actived">DOCUMENTO</a>
                     </div>
@@ -230,7 +236,7 @@ $hoy = date("d-m-Y H:i:s a");
 
                             <div class="col-md-6 mb-3 ">
                                     <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                                    <input readonly class="form-control" type="text" value="<?php echo $folio_expediente;?>">
+                                    <input readonly class="form-control" type="text" value="<?php echo $name_folio;?>">
                             </div>
 
                             <div class="col-md-6 mb-3 validar">
