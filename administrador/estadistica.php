@@ -78,8 +78,8 @@ $result = $mysqli->query($sentencia);
       <nav class="menu-nav">
            <ul>
              <li class="menu-items"><a href="../administrador/archivos_html/total_expedientes.php"><i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items"> EXPEDIENTES</span></a></li>
-              <li class="menu-items"><a href="../administrador/archivos_html/total_personas.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span> SUJETOS</span></a></li>
-              <li class="menu-items"><a href="../administrador/archivos_html/total_medidas.php"><i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items"> MEDIDAS</span></a></li>
+             <li class="menu-items"><a href="../administrador/archivos_html/total_personas.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span> SUJETOS</span></a></li>
+             <li class="menu-items"><a href="../administrador/archivos_html/total_medidas.php"><i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items"> MEDIDAS</span></a></li>
               <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
             </ul>
       </nav>
