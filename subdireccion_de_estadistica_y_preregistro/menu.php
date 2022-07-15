@@ -132,17 +132,9 @@ $row=$result->fetch_assoc();
               <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li>
               <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li>
-
       			</ul>
       		</li>
         </ul>
-        <!-- <ul>
-          <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php"><i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items"> EXPEDIENTES</span></a></li>
-          <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span> SUJETOS</span></a></li>
-          <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php"><i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items"> MEDIDAS</span></a></li>
-          <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
-        </ul>
-
       </nav>
     </div>
     <div class="main bg-light">

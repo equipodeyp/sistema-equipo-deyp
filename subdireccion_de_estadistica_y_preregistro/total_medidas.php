@@ -79,6 +79,15 @@ $row=$result->fetch_assoc();
       });
   });
   </script>
+</script>
+<style media="screen">
+.submenu {
+  display: none;
+}
+.opacity {
+  /* opacity: 100%; */
+}
+</style>
 </head>
 <body>
   <div class="contenedor">
@@ -105,14 +114,17 @@ $row=$result->fetch_assoc();
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-          <ul>
-
-              <!-- <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span> Incidencia</span></a></li>
-              <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw  "></i><span> Repositorio </span></a></li>
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a>
-              <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items"> Busqueda</span></a>
-              <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items"> ESTADISTICA</span></a></li> -->
-          </ul>
+        <ul>
+          <!-- <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"style="color: white; font-weight:bold;" >GLOSARIO</span></a></li> -->
+          <li id="liestadistica" class="subtitle">
+      			<a href="#" class="action"><i class='fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
+      			<ul class="submenu">
+              <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li>
+              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li>
+              <li id="limedidas" class="menu-items"><a>&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: lime;"> MEDIDAS</span></a></li>
+      			</ul>
+      		</li>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">
@@ -248,5 +260,21 @@ $row=$result->fetch_assoc();
     <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
+  <script type="text/javascript">
+  // CODIGO DE MENU CON submenu
+  $(".subtitle .action").click(function(event){
+   var subtitle = $(this).parents(".subtitle");
+   var submenu = $(subtitle).find(".submenu");
+
+   $(".submenu").not($(submenu)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle)).removeClass("open");
+
+   $(subtitle).toggleClass("open");
+   $(submenu).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+  //
+  </script>
 </body>
 </html>
