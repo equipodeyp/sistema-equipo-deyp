@@ -150,7 +150,7 @@ $row=$result->fetch_assoc();
         <article class="">
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-            <a class="actived">ESTADISTICA</a>
+            <a class="actived">SUJETOS</a>
           </div>
           <div class="container">
             <h2 style="text-align:center">PERSONAS</h2>
@@ -307,9 +307,9 @@ $row=$result->fetch_assoc();
                                     echo "<td style='text-align:center'>"; echo $fsuj['id']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['folioexpediente']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fproc['sede']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fproc['fecha_nueva']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $faut['idsolicitud']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $faut['fechasolicitud']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($faut['fechasolicitud'])); echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $faut['nombreautoridad']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $faut['nombreservidor']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $faut['apellidopaterno']; echo "</td>";
@@ -318,7 +318,7 @@ $row=$result->fetch_assoc();
                                     echo "<td style='text-align:center'>"; echo $fsuj['nombrepersona']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['paternopersona']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['maternopersona']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fsuj['fechanacimientopersona']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fsuj['fechanacimientopersona'])); echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['edadpersona']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['grupoedad']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['calidadpersona']; echo "</td>";
@@ -355,11 +355,17 @@ $row=$result->fetch_assoc();
                                     echo "<td style='text-align:center'>"; echo $fdeti['multidisciplinario']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['incorporacion']; echo "</td>";
                                     echo "<td style='text-align:center'>";  echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fdeti['date_autorizacion']; echo "</td>";
+                                    echo "<td style='text-align:center'>";
+                                    if ($fdeti['date_autorizacion'] != '0000-00-00') {
+                                      echo date("d/m/Y", strtotime($fdeti['date_autorizacion']));
+                                    } echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['id_analisis']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['convenio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['vigencia']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fdeti['date_convenio']; echo "</td>";
+                                    echo "<td style='text-align:center'>";
+                                    if ($fdeti['date_convenio'] != '0000-00-00') {
+                                      echo date("d/m/Y", strtotime($fdeti['date_convenio']));
+                                    } echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['id_convenio']; echo "</td>";
                                     if ($fv) {
                                       $t = "SELECT * FROM evaluacion_persona
@@ -367,11 +373,20 @@ $row=$result->fetch_assoc();
                                       $rt = $mysqli->query($t);
                                       while ($ft = $rt->fetch_assoc()) {
                                         echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $ft['fecha_aut']; echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_aut'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_aut']));
+                                        } echo "</td>";
                                         echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
                                         echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $ft['fecha_firma']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $ft['fecha_inicio']; echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_firma'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_firma']));
+                                        } echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_inicio'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_inicio']));
+                                        } echo "</td>";
                                         echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
                                         echo "<td style='text-align:center'>"; echo $ft['id_convenio']; echo "</td>";
                                       }
@@ -389,7 +404,9 @@ $row=$result->fetch_assoc();
                                     echo "<td style='text-align:center'>"; echo $fdeti['conclu_cancel']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['conclusionart35']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['otroart35']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fdeti['date_desincorporacion']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; if ($fdeti['date_desincorporacion'] != '0000-00-00') {
+                                      echo date("d/m/Y", strtotime($fdeti['date_desincorporacion']));
+                                    } echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['estatus']; echo "</td>";
                                     echo "</tr>";
                                     // echo "<td style='text-align:center'>";  echo "</td>";

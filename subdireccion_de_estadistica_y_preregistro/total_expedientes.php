@@ -153,7 +153,7 @@ $row=$result->fetch_assoc();
           <article>
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-              <a class="actived">ESTADISTICA</a>
+              <a class="actived">EXPEDIENTES</a>
             </div>
             <div class="container">
               <h2 style="text-align:center">EXPEDIENTES</h2>
