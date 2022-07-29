@@ -81,7 +81,7 @@ while ($var_fila=$var_resultado->fetch_array()){
           }
         }
         if ($fconvformal) {
-          echo "/";
+          // echo "/";
         } echo "</td>";
         echo "<td style='text-align:center' width='50'>"; echo $var_fila['fol_exp']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fila_aut['nombreautoridad']; echo "</td>";
