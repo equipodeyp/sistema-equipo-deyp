@@ -1,5 +1,5 @@
 <div class="modal fade" id="add_data_Modal_personas" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="overflow-y: scroll; max-height:80%;  margin-top: 50px; margin-bottom:50px;">
+  <div class="modal-dialog modal-lg"  style="overflow-y: scroll; max-height:80%;  margin-top: 50px; margin-bottom:50px; width:80%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -15,11 +15,11 @@
                     <h3 style="text-align:center">CALIDAD DE LAS PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</h3>
                     <tr >
                       <th style="text-align:center" rowspan="3">CALIDAD EN EL PROGRAMA</th>
-                      <th style="text-align:center" colspan="9"> MES DE SOLICITUD DE INCORPORACIÓN</th>
+                      <th style="text-align:center" colspan="10"> MES DE SOLICITUD DE INCORPORACIÓN</th>
                     </tr>
                     <tr>
                       <th style="text-align:center" rowspan="2">2021</th>
-                      <th style="text-align:center" style="text-align:center" colspan="7">2022</th>
+                      <th style="text-align:center" style="text-align:center" colspan="8">2022</th>
                       <th style="text-align:center" style="text-align:center" rowspan="2">TOTAL</th>
                     </tr>
                     <tr>
@@ -30,6 +30,7 @@
                       <th style="text-align:center">MAYO</th>
                       <th style="text-align:center">JUNIO</th>
                       <th style="text-align:center">JULIO</th>
+                      <th style="text-align:center">AGOSTO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -78,11 +79,11 @@
                   <thead>
                     <tr >
                       <th style="text-align:center" rowspan="3">CALIDAD EN EL PROGRAMA</th>
-                      <th style="text-align:center" colspan="9"> MES DE INCORPORACIÓN</th>
+                      <th style="text-align:center" colspan="10"> MES DE INCORPORACIÓN</th>
                     </tr>
                     <tr>
                       <th style="text-align:center" rowspan="2">2021</th>
-                      <th style="text-align:center" style="text-align:center" colspan="7">2022</th>
+                      <th style="text-align:center" style="text-align:center" colspan="8">2022</th>
                       <th style="text-align:center" style="text-align:center" rowspan="2">TOTAL</th>
                     </tr>
                     <tr>
@@ -93,6 +94,7 @@
                       <th style="text-align:center">MAYO</th>
                       <th style="text-align:center">JUNIO</th>
                       <th style="text-align:center">JULIO</th>
+                      <th style="text-align:center">AGOSTO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -110,25 +112,6 @@
               <div class="">
                 <br>
                 <br>
-                <table id="protegidoseedadp" border="1px" cellspacing="0" width="100%" bordered>
-                  <thead>
-                    <!-- <h3 style="text-align:center">SUJETOS PROTEGIDOS ACTIVOS EN EL PROGRAMA</h3> -->
-                    <tr>
-                      <th colspan="2">SUJETOS PROTEGIDOS POR EDAD</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    include("../administrador/tablas_estadistica/tabla_sujetos_protegidos_edad.php");
-                    ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="">
-                <br>
-                <br>
                 <table id="protegidossexop" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
                     <!-- <h3 style="text-align:center">SUJETOS PROTEGIDOS ACTIVOS EN EL PROGRAMA</h3> -->
@@ -139,6 +122,25 @@
                   <tbody>
                     <?php
                     include("../administrador/tablas_estadistica/tabla_sujetos_protegidos_sexo.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="">
+                <br>
+                <br>
+                <table id="protegidoseedadp" border="1px" cellspacing="0" width="100%" bordered>
+                  <thead>
+                    <!-- <h3 style="text-align:center">SUJETOS PROTEGIDOS ACTIVOS EN EL PROGRAMA</h3> -->
+                    <tr>
+                      <th colspan="2">SUJETOS PROTEGIDOS POR EDAD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla_sujetos_protegidos_edad.php");
                     ?>
                   </tbody>
                 </table>
