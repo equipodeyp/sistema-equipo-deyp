@@ -231,15 +231,27 @@ $row=$result->fetch_assoc();
                                               }else {
                                                 echo ''; echo "</td>";
                                               }
-                                              echo "<td style='text-align:center'>"; echo $var_fila['date_provisional']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['date_definitva']; echo "</td>";
+                                              echo "<td style='text-align:center'>";
+                                              if ($var_fila['date_provisional'] != '0000-00-00') {
+                                                echo date("d/m/Y", strtotime($var_fila['date_provisional']));
+                                              } echo "</td>";
+                                              echo "<td style='text-align:center'>";
+                                              if ($var_fila['date_definitva'] != '') {
+                                                echo date("d/m/Y", strtotime($var_fila['date_definitva']));
+                                              } echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fmm['acuerdo']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fmm['conclusionart35']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fmm['otherart35']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $fmm['date_close']; echo "</td>";
+                                              echo "<td style='text-align:center'>";
+                                              if ($fmm['date_close'] != '0000-00-00') {
+                                                echo date("d/m/Y", strtotime($fmm['date_close']));
+                                              } echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['date_ejecucion']; echo "</td>";
+                                              echo "<td style='text-align:center'>";
+                                              if ($var_fila['date_ejecucion'] != '0000-00-00') {
+                                                echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
+                                              } echo "</td>";
                                               echo "</tr>";
                                         }
                                       ?>
