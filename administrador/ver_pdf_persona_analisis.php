@@ -45,7 +45,7 @@ $name_folio=$rowfol['folioexpediente'];
 
 
 
-echo $name_folio;
+// echo $name_folio;
 
 
 
