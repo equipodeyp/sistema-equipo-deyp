@@ -197,40 +197,176 @@ $anio = $row['año'];
                            <h3>Datos de la Persona Propuesta</h3>
                            <p>
                              <div class="row">
-                               <!-- <div class="col-sm-3  validar">
-                                 <label for="">Solicitud de Incorporación</label><br><br>
-                                 <input type="radio" name="inc" class="form-check-input" id="inc-si" value="1">
-                                 <label for="inc-si" class="form-check-label">Si</label>
-                                 <input type="radio" name="inc" class="form-check-input" id="inc-no" value="0"
+
+                               <div class="col-lg-3  validar">
+                                   <label for="nom" class="form-label">Nombre</label><br>
+                                   <input type="text" class="form-control" id="nom">
+                                   </div>
+
+                                    <h5>Tipo de Intervención</h5><br><br>
+
+                                <div class="col-sm-3  validar">
+                                 <label for="">Victima</label><br>
+                                 <input type="radio" name="vic" class="form-check-input" id="vic-si" value="1">
+                                 <label for="vic-si" class="form-check-label">Si</label>
+                                 <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0"
                                      checked>
-                                 <label for="inc-no" class="form-check-label">No</label>
-                               </div> -->
-                               <!-- <div class="col-sm-3  validar">
-                                 <label for="">Valoración Jurídica</label><br><br>
-                                 <input type="radio" name="val" class="form-check-input" id="val-si" value="1">
-                                 <label for="val-si" class="form-check-label">Si</label>
-                                 <input type="radio" name="val" class="form-check-input"  id="val-no" value="0" checked>
-                                 <label for="val-no" class="form-check-label">No</label>
-                               </div> -->
-                               <!-- <div class="col-lg-3  validar">
-                                 <label for="">Oficio Análisis de Riesgo</label><br><br>
-                                 <input type="radio" name="ofi" class="form-check-input" id="ofi-si" value="1">
-                                 <label for="ofi-si" class="form-check-label">Si</label>
-                                 <input type="radio" name="ofi" class="form-check-input"  id="ofi-no" value="0" checked>
-                                 <label for="ofi-no" class="form-check-label">No</label>
-                               </div> -->
-                               <!-- <div class="col-lg-3  validar">
-                                   <label for="anex" class="form-label">ANEXOS/OTROS (DESCRIBIR)</label><br>
+                                 <label for="vic-no" class="form-check-label">No</label>
+                               </div>
+
+                                <div class="col-sm-3  validar">
+                                 <label for="">Defensor</label><br>
+                                 <input type="radio" name="def" class="form-check-input" id="def-si" value="1">
+                                 <label for="def-si" class="form-check-label">Si</label>
+                                 <input type="radio" name="def" class="form-check-input"  id="def-no" value="0" checked>
+                                 <label for="def-no" class="form-check-label">No</label>
+                               </div>
+
+                                <div class="col-lg-3  validar">
+                                 <label for="">Ofendido</label><br>
+                                 <input type="radio" name="ofe" class="form-check-input" id="ofe-si" value="1">
+                                 <label for="ofe-si" class="form-check-label">Si</label>
+                                 <input type="radio" name="ofe" class="form-check-input"  id="ofe-no" value="0" checked>
+                                 <label for="ofe-no" class="form-check-label">No</label>
+                               </div>
+
+                               <div class="col-lg-3  validar">
+                                <label for="">Policia</label><br>
+                                <input type="radio" name="pol" class="form-check-input" id="pol-si" value="1">
+                                <label for="pol-si" class="form-check-label">Si</label>
+                                <input type="radio" name="pol" class="form-check-input"  id="pol-no" value="0" checked>
+                                <label for="pol-no" class="form-check-label">No</label>
+                              </div>
+
+                              <div class="col-lg-3  validar">
+                               <label for="">Testigo/Colaborador</label><br>
+                               <input type="radio" name="tes" class="form-check-input" id="tes-si" value="1">
+                               <label for="tes-si" class="form-check-label">Si</label>
+                               <input type="radio" name="tes" class="form-check-input"  id="tes-no" value="0" checked>
+                               <label for="tes-no" class="form-check-label">No</label>
+                             </div>
+
+                             <div class="col-lg-3  validar">
+                              <label for="">Juez</label><br>
+                              <input type="radio" name="jue" class="form-check-input" id="jue-si" value="1">
+                              <label for="jue-si" class="form-check-label">Si</label>
+                              <input type="radio" name="jue" class="form-check-input"  id="jue-no" value="0" checked>
+                              <label for="jue-no" class="form-check-label">No</label>
+                            </div>
+
+
+                            <div class="col-lg-3  validar">
+                             <label for="">Perito</label><br>
+                             <input type="radio" name="per" class="form-check-input" id="per-si" value="1">
+                             <label for="per-si" class="form-check-label">Si</label>
+                             <input type="radio" name="per" class="form-check-input"  id="per-no" value="0" checked>
+                             <label for="per-no" class="form-check-label">No</label>
+                           </div>
+
+
+                           <div class="col-lg-3  validar">
+                            <label for="">Magistrado</label><br>
+                            <input type="radio" name="mag" class="form-check-input" id="mag-si" value="1">
+                            <label for="mag-si" class="form-check-label">Si</label>
+                            <input type="radio" name="mag" class="form-check-input"  id="mag-no" value="0" checked>
+                            <label for="mag-no" class="form-check-label">No</label>
+                          </div>
+
+
+                          <div class="col-lg-3  validar">
+                           <label for="">Ministerio Publico</label><br>
+                           <input type="radio" name="min" class="form-check-input" id="min-si" value="1">
+                           <label for="min-si" class="form-check-label">Si</label>
+                           <input type="radio" name="min" class="form-check-input"  id="min-no" value="0" checked>
+                           <label for="min-no" class="form-check-label">No</label>
+                         </div>
+
+                                <div class="col-lg-5  validar">
+                                   <label for="otr" class="form-label">Otro</label><br>
                                    <input type="text" class="form-control" id="anex">,
-                               </div> -->
+                               </div>
+
+                               <div class="col-lg-12  validar">
+                                   <label for="del" class="form-label">Delito</label><br>
+                                   <input type="text" class="form-control" id="del">
+                                   </div>
+
+                                   <div class="col-lg-12  validar">
+                                       <label for="car" class="form-label">Carpeta de Investigación y/o Causa penal</label><br>
+                                       <input type="text" class="form-control" id="car">
+                                       </div>
+
+
+                                       <div class="col-lg-3  validar">
+                                        <label for="">Privado de la Libertad</label><br>
+                                        <input type="radio" name="priv" class="form-check-input" id="priv-si" value="1">
+                                        <label for="priv-si" class="form-check-label">Si</label>
+                                        <input type="radio" name="priv" class="form-check-input"  id="priv-no" value="0" checked>
+                                        <label for="priv-no" class="form-check-label">No</label>
+                                      </div>
+
+
+                                     <div class="col-lg-12  validar">
+                                     <label for="ubi" class="form-label">Ubicación de la Persona</label><br>
+                                      <input type="text" class="form-control" id="ubi">
+                                      </div>
+
+
+                                      <div class="col-lg-3  validar">
+                                       <label for="">Asistencia Legal</label><br>
+                                       <input type="radio" name="asis" class="form-check-input" id="asis-si" value="1">
+                                       <label for="asis-si" class="form-check-label">Si</label>
+                                       <input type="radio" name="asis" class="form-check-input"  id="asis-no" value="0" checked>
+                                       <label for="asis-no" class="form-check-label">No</label>
+                                     </div>
+
+                                     <div class="col-lg-12  validar">
+                                     <label for="nope" class="form-label">Nombre de la Persona que lo asiste</label><br>
+                                      <input type="text" class="form-control" id="nope">
+                                      </div>
+
+
+                                      <div class="col-lg-12  validar">
+                                      <label for="sit" class="form-label">Situación de Riesgo</label><br>
+                                       <input type="text" class="form-control" id="sit">
+                                       </div>
+
+
+                                       <div class="col-lg-12  validar">
+                                       <label for="zon" class="form-label">Zona Geografica</label><br>
+                                       <input type="text" class="form-control" id="zon">
+                                        </div>
+
+                                        <div class="col-lg-12  validar">
+                                        <label for="cau" class="form-label">Causa de Vulnerabilidad</label><br>
+                                        <input type="text" class="form-control" id="cua">
+                                         </div>
+
+
+                                         <div class="col-lg-12  validar">
+                                         <label for="pree" class="form-label">Presenta alguna enfermedad</label><br>
+                                         <input type="text" class="form-control" id="pree">
+                                          </div>
+
+                                          <div class="col-lg-12  validar">
+                                          <label for="pred" class="form-label">Presenta alguna discapacidad</label><br>
+                                          <input type="text" class="form-control" id="pred">
+                                           </div>
+
+                                           <div class="col-lg-12  validar">
+                                           <label for="nec" class="form-label">Necesidad del porque llevar su testimonio a juicio</label><br>
+                                           <input type="text" class="form-control" id="nec">
+                                            </div>
+
+
+                                            <div class="col-lg-12  validar">
+                                            <label for="med" class="form-label">Medidas de apoyo solicitadas</label><br>
+                                            <input type="text" class="form-control" id="med">
+                                             </div>
                              </div>
                              <p>
 
                              </p><br />
-
-
-
-
 
 
                              <div class="row mb-12">
@@ -238,30 +374,111 @@ $anio = $row['año'];
                                      <h3>Datos del Solicitante</h3>
                                      <p>
                                        <div class="row">
-                                         <!-- <div class="col-sm-3  validar">
-                                           <label for="">Pública</label><br><br>
-                                           <input type="radio" name="publica" class="form-check-input" id="publica-si" value="1">
-                                           <label for="publica-si" class="form-check-label">Si</label>
-                                           <input type="radio" name="publica" class="form-check-input" id="publica-no" value="0"
+                                          <div class="col-sm-3  validar">
+                                           <label for="">Agenten del Ministerio Publico</label><br><br>
+                                           <input type="radio" name="age" class="form-check-input" id="age-si" value="1">
+                                           <label for="age-si" class="form-check-label">Si</label>
+                                           <input type="radio" name="age" class="form-check-input" id="age-no" value="0"
                                                checked>
-                                           <label for="publica-no" class="form-check-label">No</label>
-                                         </div> -->
-                                         <!-- <div class="col-sm-3  validar">
-                                           <label for="">Reservada</label><br><br>
-                                           <input type="radio" name="reservada" class="form-check-input" id="reservada-si" value="1">
-                                           <label for="reservada-si" class="form-check-label">Si</label>
-                                           <input type="radio" name="reservada" class="form-check-input"  id="reservada-no" value="0" checked>
-                                           <label for="reservada-no" class="form-check-label">No</label>
-                                         </div> -->
-                                         <!-- <div class="col-lg-3  validar">
-                                           <label for="">Confidencial</label><br><br>
-                                           <input type="radio" name="confi" class="form-check-input" id="confi-si" value="1">
-                                           <label for="confi-si" class="form-check-label">Si</label>
-                                           <input type="radio" name="confi" class="form-check-input"  id="confi-no" value="0" checked>
-                                           <label for="confi-no" class="form-check-label">No</label>
-                                         </div> -->
+                                           <label for="age-no" class="form-check-label">No</label>
+                                         </div>
 
+                                          <div class="col-sm-3  validar">
+                                           <label for="">Órgano Jurisdiccional</label><br><br><br>
+                                           <input type="radio" name="org" class="form-check-input" id="org-si" value="1">
+                                           <label for="org-si" class="form-check-label">Si</label>
+                                           <input type="radio" name="org" class="form-check-input"  id="org-no" value="0" checked>
+                                           <label for="org-no" class="form-check-label">No</label>
+                                         </div>
+
+                                         <div class="col-lg-12  validar">
+                                         <label for="nom" class="form-label">Nombre</label><br>
+                                         <input type="text" class="form-control" id="nom">
+                                          </div>
+
+                                          <div class="col-lg-12  validar">
+                                          <label for="car" class="form-label">Cargo</label><br>
+                                          <input type="text" class="form-control" id="car">
+                                           </div>
+
+                                           <div class="col-lg-12  validar">
+                                           <label for="ads" class="form-label">Adscripción</label><br>
+                                           <input type="text" class="form-control" id="ads">
+                                            </div>
+
+                                            <div class="col-lg-12  validar">
+                                            <label for="tel" class="form-label">Tel. Oficina</label><br>
+                                            <input type="text" class="form-control" id="tel">
+                                             </div>
+
+                                             <div class="col-lg-12  validar">
+                                             <label for="cel" class="form-label">Celular</label><br>
+                                             <input type="text" class="form-control" id="cel">
+                                              </div>
+
+
+                                              <div class="col-lg-12  validar">
+                                              <label for="cor" class="form-label">Correo Electronico</label><br>
+                                              <input type="text" class="form-control" id="cor">
+                                               </div>
                                        </div>
+
+
+
+                                          <div class="row mb-12">
+                                          <div class="row">
+                                          <h3>Dictamen</h3>
+                                          <p>
+
+                                          <div class="row">
+                                          <div class="col-lg-12  validar">
+                                          <label for="ini" class="form-label">Iniciales</label><br>
+                                          <input type="text" class="form-control" id="ini">
+                                           </div>
+
+
+                                           <div class="col-sm-3  validar">
+                                            <label for="">Procedente</label><br>
+                                            <input type="radio" name="pro" class="form-check-input" id="pro-si" value="1">
+                                            <label for="pro-si" class="form-check-label">Si</label>
+                                            <input type="radio" name="pro" class="form-check-input"  id="pro-no" value="0" checked>
+                                            <label for="pro-no" class="form-check-label">No</label>
+                                          </div>
+
+
+                                          <div class="col-sm-3  validar">
+                                           <label for="">Toluca</label><br>
+                                           <input type="radio" name="tol" class="form-check-input" id="tol-si" value="1">
+                                           <label for="tol-si" class="form-check-label">Si</label>
+                                           <input type="radio" name="tol" class="form-check-input"  id="tol-no" value="0" checked>
+                                           <label for="tol-no" class="form-check-label">No</label>
+                                         </div>
+
+
+                                         <div class="col-sm-3  validar">
+                                          <label for="">Ecatepec</label><br>
+                                          <input type="radio" name="eca" class="form-check-input" id="eca-si" value="1">
+                                          <label for="eca-si" class="form-check-label">Si</label>
+                                          <input type="radio" name="eca" class="form-check-input"  id="eca-no" value="0" checked>
+                                          <label for="eca-no" class="form-check-label">No</label>
+                                        </div>
+
+
+                                        <div class="col-sm-3  validar">
+                                         <label for="">Nezahualcoyotol</label><br>
+                                         <input type="radio" name="nez" class="form-check-input" id="nez-si" value="1">
+                                         <label for="nez-si" class="form-check-label">Si</label>
+                                         <input type="radio" name="nez" class="form-check-input"  id="nez-no" value="0" checked>
+                                         <label for="nez-no" class="form-check-label">No</label>
+                                       </div>
+
+                                                                                <div class="col-lg-12  validar">
+                                                                                 <label for="nic" class="form-label">Nombre Lic</label><br>
+                                                                                 <input type="text" class="form-control" id="nic">
+                                                                                  </div>
+
+                                        </div>
+
 
 <p>
   <br />
