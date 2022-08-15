@@ -113,40 +113,34 @@ $row=$result->fetch_assoc();
                   <tr>
                       <th style="text-align:center">NO.</th>
                       <th style="text-align:center">FOLIO EXPEDIENTE</th>
-                      <th style="text-align:center">PERSONA</th>
-                      <th style="text-align:center">CATEGORIA</th>
-                      <th style="text-align:center">TIPO</th>
-                      <th style="text-align:center">CLASIFICACION</th>
-                      <th style="text-align:center">MEDIDA</th>
-                      <th style="text-align:center">DESCRIPCION</th>
+                      <th style="text-align:center">ID PERSONA</th>
+                      <th style="text-align:center">ID MEDIDA</th>
                       <th style="text-align:center">VER</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php
-
+                    $contador = 0;
                           $query= "SELECT * FROM MEDIDAS
                           inner join validar_medida on medidas.id = validar_medida.id_medida
                           WHERE validar_medida.validar_datos = 'false'";
                           $rq = $mysqli->query($query);
                              while($row = $rq->fetch_assoc()){
+                               $contador = $contador + 1;
                                    ?>
+
                                        <tr>
-                                          <td><?php echo $row['id']; ?></span></td>
-                                          <td><?php echo $row['medida']; ?></span></td>
-                                          <td><?php echo $row['tipo']; ?></span></td>
-                                          <td><?php echo $row['medida']; ?></span></td>
-                                          <td><?php echo $row['tipo']; ?></span></td>
-                                          <td><?php echo $row['medida']; ?></span></td>
-                                          <td><?php echo $row['tipo']; ?></span></td>
-                                          <td><?php echo $row['tipo']; ?></span></td>
-                                          <td>
-                              							<a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                                          <td style="text-align:center"><?php echo $contador ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['folioexpediente']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['id_persona']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['id_medida']; ?></span></td>
+                                          <td style="text-align:center">
+                              							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
                               							<?php
                               							echo "<a href='#edit_".$row['id']."' class='btn btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Editar</a>";
 
                               							 ?>
-                              							<a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
+                              							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
                               						</td>
                                           <?php include('BorrarEditarModal.php'); ?>
                                         </tr>

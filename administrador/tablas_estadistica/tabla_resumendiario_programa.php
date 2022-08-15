@@ -7,7 +7,9 @@ $sujtts = "SELECT COUNT(*) as t from datospersonales WHERE relacional = 'NO'";
 $rsujtts = $mysqli->query($sujtts);
 $fsujtts = $rsujtts->fetch_assoc();
 //
-$suj = "SELECT COUNT(*) as t from determinacionincorporacion WHERE  convenio = 'formalizado'";
+$suj = "SELECT COUNT(*) as t from determinacionincorporacion
+INNER JOIN datospersonales ON datospersonales.id = determinacionincorporacion.id_persona
+WHERE  convenio = 'formalizado' AND datospersonales.relacional = 'NO'";
 $rsuj = $mysqli->query($suj);
 $fsuj = $rsuj->fetch_assoc();
 //
