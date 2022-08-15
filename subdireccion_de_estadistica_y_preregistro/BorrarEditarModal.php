@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <center><h4 class="modal-title" id="myModalLabel">Editar Empleado</h4></center>
+                <center><h4 class="modal-title" id="myModalLabel">VALIDAR MEDIDA</h4></center>
             </div>
             <div class="modal-body">
 			<div class="container-fluid">
@@ -24,46 +24,46 @@
         $fil_val = $res_val->fetch_assoc();
         $validacion = $fil_val['validacion'];
         ?>
-				<div class="row form-group">
+				<!-- <div class="row form-group">
 					<div class="col-sm-2">
 						<label class="control-label" style="position:relative; top:7px;">nombre:</label>
 					</div>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="nombres" value="<?php echo $row['folioexpediente']; ?>">
 					</div>
-				</div>
-				<div class="row form-group">
+				</div> -->
+				<!-- <div class="row form-group">
 					<div class="col-sm-2">
 						<label class="control-label" style="position:relative; top:7px;">Apellidos:</label>
 					</div>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="apellidos" value="<?php echo $row['categoria']; ?>">
 					</div>
-				</div>
-				<div class="row form-group">
+				</div> -->
+				<!-- <div class="row form-group">
 					<div class="col-sm-2">
 						<label class="control-label" style="position:relative; top:7px;">Telefono:</label>
 					</div>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="telefono" value="<?php echo $row['tipo']; ?>">
 					</div>
-				</div>
-				<div class="row form-group">
+				</div> -->
+				<!-- <div class="row form-group">
 					<div class="col-sm-2">
 						<label class="control-label" style="position:relative; top:7px;">Carrera:</label>
 					</div>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="carrera" value="<?php echo $row['clasificacion']; ?>">
 					</div>
-				</div>
-				<div class="row form-group">
+				</div> -->
+				<!-- <div class="row form-group">
 					<div class="col-sm-2">
 						<label class="control-label" style="position:relative; top:7px;">Pais:</label>
 					</div>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="pais" value="<?php echo $row['medida']; ?>">
 					</div>
-				</div>
+				</div> -->
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
@@ -112,16 +112,27 @@
           </div>
 
         </div>
+        <br>
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="CATEAGORIA_MEDIDA">CATEGORÍA DE LA MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA">
+            <br>
+            <select class="form-control" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA">
               <option style="visibility: hidden" value="<?php echo $row['categoria']; ?>"><?php echo $row['categoria']; ?></option>
               <option value="INICIAL">INICIAL</option>
               <option value="AMPLIACION">AMPLIACIÓN</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="TIPO_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
+            <br>
+            <select class="form-control" id="TIPO_MEDIDA" name="TIPO_MEDIDA">
+              <option style="visibility: hidden" value="<?php echo $row['tipo']; ?>"><?php echo $row['tipo']; ?></option>
+              <option value="PROVISIONAL">PROVISIONAL</option>
+              <option value="DEFINITIVA">DEFINITIVA</option>
             </select>
           </div>
         </div>
