@@ -113,8 +113,8 @@ $row=$result->fetch_assoc();
                   <tr>
                       <th style="text-align:center">NO.</th>
                       <th style="text-align:center">FOLIO EXPEDIENTE</th>
-                      <th style="text-align:center">PERSONA</th>
-                      <th style="text-align:center">CATEGORIA</th>
+                      <th style="text-align:center">ID PERSONA</th>
+                      <th style="text-align:center">ID MEDIDA</th>
                       <th style="text-align:center">TIPO</th>
                       <th style="text-align:center">CLASIFICACION</th>
                       <th style="text-align:center">MEDIDA</th>
