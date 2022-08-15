@@ -289,7 +289,7 @@ $hoy = date("d-m-Y H:i:s a");
 <div class="contenedor">
 
 
-<a href="repo_persona_analisis.php?folio=<?=$id?>" class="btn-flotante">REGRESAR</a>
+<a href="repo_persona_apoyo.php?folio=<?=$id?>" class="btn-flotante">REGRESAR</a>
 
 
 </div>

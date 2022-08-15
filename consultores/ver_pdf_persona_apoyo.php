@@ -41,7 +41,7 @@ $resultfol = $mysqli->query($folexpedient);
 $rowfol=$resultfol->fetch_array(MYSQLI_ASSOC);
 $fol_expediente=$rowfol['folioexpediente'];
 
-// echo $fol_expediente;
+echo $fol_expediente;
 
 
 $name_carpeta = $fol_expediente;
@@ -215,7 +215,7 @@ $hoy = date("d-m-Y H:i:s a");
                                 <a href="admin.php">REGISTROS</a>
                                 <a href="detalles_expediente.php?folio=<?=$folio_expediente?>">EXPEDIENTE</a>
                                 <a href="detalles_persona.php?folio=<?=$id?>">PERSONA</a>
-                                <a href="sub_persona.php?folio=<?php echo $fol_expediente;?>">SUBDIRECCIÓN</a>
+                                <a href="sub_persona.php?folio=<?php echo  $id;?>">SUBDIRECCIÓN</a>
                                 <a href="repo_persona_apoyo.php?folio=<?=$id?>">APOYO TÉCNICO Y JURÍDICO</a>
                                 <a class="actived">DOCUMENTO</a>
                     </div>

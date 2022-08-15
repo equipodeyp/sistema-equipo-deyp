@@ -29,6 +29,5 @@
 
     
         
-        // header('window.location.href='tickets.php?folio=$fol_exp');
     }
 ?>

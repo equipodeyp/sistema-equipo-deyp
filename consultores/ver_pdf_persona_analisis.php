@@ -215,7 +215,7 @@ $hoy = date("d-m-Y H:i:s a");
                                 <a href="admin.php">REGISTROS</a>
                                 <a href="detalles_expediente.php?folio=<?=$folio_expediente?>">EXPEDIENTE</a>
                                 <a href="detalles_persona.php?folio=<?=$id?>">PERSONA</a>
-                                <a href="sub_persona.php?folio=<?php echo $fol_expediente;?>">SUBDIRECCIÓN</a>
+                                <a href="sub_persona.php?folio=<?php echo $id;?>">SUBDIRECCIÓN</a>
                                 <a href="repo_persona_analisis.php?folio=<?=$id?>">ANÁLISIS DE RIESGO</a>
                                 <a class="actived">DOCUMENTO</a>
                     </div>
