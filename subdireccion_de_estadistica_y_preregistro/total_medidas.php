@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -193,9 +193,7 @@ $row=$result->fetch_assoc();
                                       <tbody>
                                         <?php
                                         $cont = 0;
-                                        $tabla="SELECT * FROM medidas
-INNER JOIN expediente on expediente.fol_exp = medidas.folioexpediente
-ORDER by expediente.id, medidas.id_persona";
+                                        $tabla="SELECT * FROM medidas";
                                         $var_resultado = $mysqli->query($tabla);
 
                                         while ($var_fila=$var_resultado->fetch_array())
@@ -206,10 +204,11 @@ ORDER by expediente.id, medidas.id_persona";
                                           $p = "SELECT * FROM datospersonales WHERE id= '$id_persona'";
                                           $rp = $mysqli->query($p);
                                           $fp = $rp->fetch_assoc();
-                                          // multidisciplinario de la medida
-                                          $mm = "SELECT * FROM multidisciplinario_medidas WHERE id = '$id_medida'";
+                                          $mm = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
                                           $rmm = $mysqli->query($mm);
                                           $fmm = $rmm->fetch_assoc();
+
+                                          // multidisciplinario de la medida
                                               echo "<tr>";
                                               echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['folioexpediente']; echo "</td>";
@@ -245,9 +244,10 @@ ORDER by expediente.id, medidas.id_persona";
                                               echo "<td style='text-align:center'>"; echo $fmm['conclusionart35']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fmm['otherart35']; echo "</td>";
                                               echo "<td style='text-align:center'>";
-                                              if ($fmm['date_close'] != '0000-00-00') {
+                                              if ($fmm['date_close'] !== '0000-00-00') {
                                                 echo date("d/m/Y", strtotime($fmm['date_close']));
-                                              } echo "</td>";
+                                              }
+                                               echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
                                               echo "<td style='text-align:center'>";
