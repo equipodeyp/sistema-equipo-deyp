@@ -193,7 +193,9 @@ $row=$result->fetch_assoc();
                                       <tbody>
                                         <?php
                                         $cont = 0;
-                                        $tabla="SELECT * FROM medidas";
+                                        $tabla="SELECT * FROM medidas
+INNER JOIN expediente on expediente.fol_exp = medidas.folioexpediente
+ORDER by expediente.id, medidas.id_persona";
                                         $var_resultado = $mysqli->query($tabla);
 
                                         while ($var_fila=$var_resultado->fetch_array())

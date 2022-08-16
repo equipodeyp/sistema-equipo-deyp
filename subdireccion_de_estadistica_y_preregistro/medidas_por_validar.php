@@ -37,7 +37,7 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../css/cli.css">
   <link rel="stylesheet" href="../css/registrosolicitud1.css">
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <script src="../js/mod_medida.js"></script>
@@ -127,12 +127,16 @@ $row=$result->fetch_assoc();
                           $rq = $mysqli->query($query);
                              while($row = $rq->fetch_assoc()){
                                $contador = $contador + 1;
+                               $id_per = $row['id_persona'];
+                               $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
+                               $rdper = $mysqli->query($dper);
+                               $fdper = $rdper->fetch_assoc();
                                    ?>
 
                                        <tr>
                                           <td style="text-align:center"><?php echo $contador ?></span></td>
                                           <td style="text-align:center"><?php echo $row['folioexpediente']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['id_persona']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $fdper['identificador']; ?></span></td>
                                           <td style="text-align:center"><?php echo $row['id_medida']; ?></span></td>
                                           <td style="text-align:center">
                               							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->

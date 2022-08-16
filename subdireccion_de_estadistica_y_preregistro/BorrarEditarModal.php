@@ -135,6 +135,35 @@
               <option value="DEFINITIVA">DEFINITIVA</option>
             </select>
           </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
+            <br>
+            <select class="form-control" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA">
+              <option style="visibility: hidden" value="<?php echo $row['clasificacion']; ?>"><?php echo $row['clasificacion']; ?></option>
+              <option value="ASISTENCIA">ASISTENCIA</option>
+              <option value="RESGUARDO">RESGUARDO</option>
+            </select>
+          </div>
+          <?php
+          $clas = $row['clasificacion'];
+          if ($clas === 'RESGUARDO') {
+            echo '<div class="col-md-6 mb-3 validar" id="resguardo">
+              <label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>
+              <select class="form-control" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="selectmedidares(this)" >
+                <option style="visibility: hidden" value=" '.$row['medida'].'">'.$row['medida'].'</option>';
+
+                $resguardo = "SELECT * FROM medidaresguardo";
+                $answerres = $mysqli->query($resguardo);
+                while($resguardos = $answerres->fetch_assoc()){
+                 echo "<option value='".$resguardos['nombre']."'>".$resguardos['nombre']."</option>";
+                }
+                echo '</select>
+            </div>';
+            if ($row['medida'] === 'XIII. OTRAS MEDIDAS') {
+              echo 'si';
+            }
+          }
+          ?>
         </div>
       </div>
 			</div>
@@ -143,7 +172,6 @@
                 <button type="submit" name="editar" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar</a>
 			</form>
             </div>
-
         </div>
     </div>
 </div>
