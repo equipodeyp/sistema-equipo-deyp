@@ -11,7 +11,7 @@
 			<form method="POST" action="EditarRegistro.php?id=<?php echo $row['id']; ?>">
         <?php
         $fol_exp = $row['folioexpediente'];
-        $id_medida = $row['id'];
+        $id_medida = $row['id_medida'];
         $id_p = $row['id_persona'];
         $fol=" SELECT * FROM datospersonales WHERE id='$id_p'";
         $resultfol = $mysqli->query($fol);
@@ -24,46 +24,6 @@
         $fil_val = $res_val->fetch_assoc();
         $validacion = $fil_val['validacion'];
         ?>
-				<!-- <div class="row form-group">
-					<div class="col-sm-2">
-						<label class="control-label" style="position:relative; top:7px;">nombre:</label>
-					</div>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="nombres" value="<?php echo $row['folioexpediente']; ?>">
-					</div>
-				</div> -->
-				<!-- <div class="row form-group">
-					<div class="col-sm-2">
-						<label class="control-label" style="position:relative; top:7px;">Apellidos:</label>
-					</div>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="apellidos" value="<?php echo $row['categoria']; ?>">
-					</div>
-				</div> -->
-				<!-- <div class="row form-group">
-					<div class="col-sm-2">
-						<label class="control-label" style="position:relative; top:7px;">Telefono:</label>
-					</div>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="telefono" value="<?php echo $row['tipo']; ?>">
-					</div>
-				</div> -->
-				<!-- <div class="row form-group">
-					<div class="col-sm-2">
-						<label class="control-label" style="position:relative; top:7px;">Carrera:</label>
-					</div>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="carrera" value="<?php echo $row['clasificacion']; ?>">
-					</div>
-				</div> -->
-				<!-- <div class="row form-group">
-					<div class="col-sm-2">
-						<label class="control-label" style="position:relative; top:7px;">Pais:</label>
-					</div>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="pais" value="<?php echo $row['medida']; ?>">
-					</div>
-				</div> -->
         <div class="row">
           <div class="alert alert-info">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
@@ -146,7 +106,25 @@
           </div>
           <?php
           $clas = $row['clasificacion'];
-          if ($clas === 'RESGUARDO') {
+          if ($clas === 'ASISTENCIA') {
+            echo '<div class="col-md-6 mb-3 validar" id="asistencia">
+              <label for="MEDIDAS_ASISTENCIA">INCISO DE LA MEDIDA DE ASISTENCIA<span class="required"></span></label>
+              <select class="form-control" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="selectother(this)">
+                <option style="visibility: hidden" value="'.$row['medida'].'">'.$row['medida'].'</option>';
+                $asistencia = "SELECT * FROM medidaasistencia";
+                $answerasis = $mysqli->query($asistencia);
+                while($asistencias = $answerasis->fetch_assoc()){
+                 echo "<option value='".$asistencias['nombre']."'>".$asistencias['nombre']."</option>";
+                }
+              echo '</select>
+            </div>';
+            if ($row['medida'] === 'VI. OTRAS') {
+              echo '<div class="col-md-6 mb-3 validar" id="otherasistencia">
+                <label for="OTRA_MEDIDA_ASISTENCIA">OTRA MEDIDA ASISTENCIA<span class="required"></span></label>
+                <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="'.$row['descripcion'].'" type="text">
+              </div>';
+            }
+          }elseif ($clas === 'RESGUARDO') {
             echo '<div class="col-md-6 mb-3 validar" id="resguardo">
               <label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>
               <select class="form-control" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="selectmedidares(this)" >
@@ -159,9 +137,48 @@
                 }
                 echo '</select>
             </div>';
-            if ($row['medida'] === 'XIII. OTRAS MEDIDAS') {
-              echo 'si';
+            if ($row['medida'] === 'XI. EJECUCION DE MEDIDAS PROCESALES') {
+              echo '<div class="col-md-6 mb-3 validar" id="resguardoxi">
+                <label for="RESGUARDO_XI">EJECUCIÓN DE LA MEDIDA PROCESAL<span class="required"></span></label>
+                <select class="form-control" id="RESGUARDO_XI" name="RESGUARDO_XI" >
+                  <option style="visibility: hidden" value="'.$row['descripcion'].'">'.$row['descripcion'].'</option>';
+                  $resguardoxi = "SELECT * FROM medidaresguardoxi";
+                  $answerresxi = $mysqli->query($resguardoxi);
+                  while($resguardosxi = $answerresxi->fetch_assoc()){
+                   echo "<option value='".$resguardosxi['nombre']."'>".$resguardosxi['nombre']."</option>";
+                  }
+                  echo '</select>
+              </div>';
+            }elseif ($row['medida'] === 'XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
+              echo '<div class="col-md-6 mb-3 validar" id="resguardoxii">
+                <label for="RESGUARDO_XII">MEDIDA OTORGADA A SUJETOS RECLUIDOS<span class="required"></span></label>
+                <select class="form-control" id="RESGUARDO_XII" name="RESGUARDO_XII" >
+                  <option style="visibility: hidden" value="'.$row['descripcion'].'">'.$row['descripcion'].'</option>';
+                  $resguardoxii = "SELECT * FROM medidaresguardoxii";
+                  $answerresxii = $mysqli->query($resguardoxii);
+                  while($resguardosxii = $answerresxii->fetch_assoc()){
+                   echo "<option value='".$resguardosxii['nombre']."'>".$resguardosxii['nombre']."</option>";
+                  }
+                  echo '</select>
+              </div>';
+            }elseif ($row['medida'] === 'XIII. OTRAS MEDIDAS') {
+              echo '<div class="col-md-6 mb-3 validar" id="otherresguardo">
+                <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
+                <input autocomplete="off" class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="'.$row['descripcion'].'" type="text">
+              </div>';
             }
+          }  // fin de tipo de medida
+          if ($row['date_provisional'] !== '0000-00-00'){
+            echo '<div class="col-md-6 mb-3 validar" id="act_date_definitiva_def">
+               <label for="FECHA_ACTUALIZACION_MEDIDA_PROV">FECHA DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
+               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_PROV" name="FECHA_ACTUALIZACION_MEDIDA_PROV" placeholder="" value="'.$row['date_provisional'].'" type="date">
+            </div>';
+          }
+          if ($row['date_definitva'] !== '0000-00-00'){
+            echo '<div class="col-md-6 mb-3 validar" id="act_date_definitiva_def">
+               <label for="FECHA_ACTUALIZACION_MEDIDA_DEF">FECHA DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
+               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_DEF" name="FECHA_ACTUALIZACION_MEDIDA_DEF" placeholder="" value="'.$row['date_definitva'].'" type="date">
+            </div>';
           }
           ?>
         </div>
