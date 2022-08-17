@@ -4,7 +4,7 @@
   box-sizing: border-box; }
 
 html {
-  background: #330000;
+  background: #5F6D6B;
   background-size: cover;
   font-size: 10px;
   height: 100%;
@@ -71,7 +71,7 @@ Log in form
   border-radius: 5px;
   display: inline-block;
   height: 220px;
-  margin: 400px auto 0;
+  margin: 160px auto 0;
   position: relative;
   z-index: 4;
   width: 500px;
@@ -105,17 +105,17 @@ Log in form
   color: #efe;
   outline: none; }
 .stark-login input:invalid {
-  border: 2px solid #990033;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.2), inset 0 0 5px rgba(255, 0, 0, 0.1), 0 2px 0 black; }
+  border: 2px solid #000000;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 255), inset 0 0 5px rgba(255, 255, 255, 255), 0 2px 0 black; }
   .stark-login button {
   animation: input-entry 3s ease-in;
   background: #cccccc;
-  background: linear-gradient(#990033, #990033);
+  background: linear-gradient(#000000, #000000);
   box-sizing: content-box;
-  border: 1px solid #990033;
-  border-left-color: #990033;
+  border: 1px solid #000000;
+  border-left-color: #000000;
   border-radius: 5px;
-  box-shadow: 0 2px 0 #990033;
+  box-shadow: 0 2px 0 #000000;
   color: #cccccc;
   display: block;
   font-family: 'Cabin', helvetica, arial, sans-serif;
@@ -132,14 +132,14 @@ Log in form
 .stark-login button:hover,
 .stark-login button:focus {
   background: #cccccc;
-  background: linear-gradient(#990033, #990033);
+  background: linear-gradient(#000000, #000000);
   color: #cccccc;
   outline: none;
   transition: 1s all; }
 .stark-login button:active {
-  background: #990033;
-  background: linear-gradient(#990033, #990033);
-  box-shadow: 0 1px 0 #990033, inset 1px 0 1px #990033;
+  background: #000000;
+  background: linear-gradient(#000000, #000000);
+  box-shadow: 0 1px 0 #000000, inset 1px 0 1px #000000;
   top: 1px; }
 
 /* =========================================
@@ -147,14 +147,14 @@ Spinner
 ========================================= */
 #circle1 {
   animation: circle1 4s linear infinite, circle-entry 6s ease-in-out;
-  background: #990033;
+  background: #000000;
   border-radius: 50%;
   border: 10px solid #cccccc;
-  box-shadow: 0 0 0 2px #990033, 0 0 0 6px #cccccc;
+  box-shadow: 0 0 0 2px #000000, 0 0 0 6px #cccccc;
   height: 500px;
   width: 500px;
   position: absolute;
-  top: 400px;
+  top: 250px;
   left: 50%;
   margin-left: -250px;
   overflow: hidden;
@@ -162,7 +162,7 @@ Spinner
   z-index: -3; }
 
 #inner-cirlce1 {
-  background: #330000;
+  background: #5F6D6B;
   border-radius: 50%;
   border: 36px solid #cccccc;
   height: 460px;
@@ -172,7 +172,7 @@ Spinner
     content: ' ';
     width: 240px;
     height: 480px;
-    background: #330000;
+    background: #5F6D6B;
     position: absolute;
     top: 0;
     left: 0; }
@@ -180,7 +180,7 @@ Spinner
     content: ' ';
     width: 480px;
     height: 240px;
-    background: #330000;
+    background: #5F6D6B;
     position: absolute;
     top: 0;
     left: 0; }
@@ -197,7 +197,7 @@ Hexagon Mesh
   line-height: 0.7;
   position: absolute;
   text-shadow: 0 0 6px #cccccc;
-  top: 710px;
+  top: 600px;
   width: 100%;
   transform: perspective(600px) rotateX(60deg) scale(1.4);
   z-index: -3; }
@@ -274,16 +274,16 @@ Animation Keyframes
     text-shadow: 0 0 20px rgba(0, 255, 253, 0.6), 0 0 10px rgba(0, 255, 253, 0.4), 0 2px 0 #cccccc; } }
 @keyframes before-glow {
   0% {
-    border-bottom: 10px solid #990033; }
+    border-bottom: 10px solid #000000; }
 
   100% {
-    border-bottom: 10px solid #990033; } }
+    border-bottom: 10px solid #000000; } }
 @keyframes after-glow {
   0% {
-    border-top: 16px solid #990033; }
+    border-top: 16px solid #000000; }
 
   100% {
-    border-top: 16px solid #990033; } }
+    border-top: 16px solid #000000; } }
 @keyframes circle1 {
   0% {
     -moz-transform: rotate(0deg);
