@@ -6,7 +6,7 @@ header{
 
 /*estilos para la tabla*/
 table th {
-    background-color: #97999b !important;
+    background-color: #5F6D6B !important;
     color: white;
 }
 table>tbody>tr>td {
@@ -16,4 +16,13 @@ table>tbody>tr>td {
 /*para alinear los botones y cuadro de busqueda*/
 .btn-group, .btn-group-vertical {
     position: absolute !important;
+}
+.color-icon{
+    /* background-color: #5F6D6B !important; */
+    color: #5F6D6B !important;
+}
+
+.color-page-link{
+    background-color: #5F6D6B !important;
+    color: #5F6D6B !important;
 }

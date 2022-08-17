@@ -141,7 +141,7 @@ $row=$result->fetch_assoc();
           </h5>
         </div>
         <div class="row">
-          <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a>
+          <a href="new_exp.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
@@ -201,7 +201,7 @@ $row=$result->fetch_assoc();
                                     }elseif ($var_fila['validacion'] == 'false') {
                                       echo "<i class='fas fa-times'></i>";
                                     } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open color-icon'></span></a></td>";
 
                                     echo "</tr>";
 

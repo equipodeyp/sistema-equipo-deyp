@@ -13,9 +13,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../phpmailer/Exception.php';
-require '../phpmailer/PHPMailer.php';
-require '../phpmailer/SMTP.php';
+require '../phpmailer/src/Exception.php';
+require '../phpmailer/src/PHPMailer.php';
+require '../phpmailer/src/SMTP.php';
 
 // $sub = 3;
 //Create an instance; passing `true` enables exceptions
@@ -27,19 +27,19 @@ $mail = new PHPMailer(true);
     $mail->SMTPDebug = 0;                      //Enable verbose debug output
     $mail->SMTPAuth = true;         // Connection with the SMTP does require authorization
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'fiscaliaedomex.gob.mx';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
-    $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->Username   = 'sippsipped@fiscaliaedomex.gob.mx';                     //SMTP username
+    $mail->Password   = '53/G79@-';                               //SMTP password
+    $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+    $mail->Port       = 25;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     $mail->Encoding = '7bit';       // SMS uses 7-bit encoding
 
     //Recipients
-    $mail->setFrom('dpye.principal@gmail.com', 'SIPPSIPPED');
+    $mail->setFrom('sippsipped@fiscaliaedomex.gob.mx', 'SIPPSIPPED');
     // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
-    $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-    // $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
+    // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+    $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
     // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
     // $mail->addCC('cc@example.com');
