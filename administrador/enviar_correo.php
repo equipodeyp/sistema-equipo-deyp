@@ -27,13 +27,14 @@ $mail = new PHPMailer(true);
     $mail->SMTPDebug = 0;                      //Enable verbose debug output
     $mail->SMTPAuth = true;         // Connection with the SMTP does require authorization
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'fiscaliaedomex.gob.mx';                     //Set the SMTP server to send through
+    $mail->Host       = 'mail.fiscaliaedomex.gob.mx';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'sippsipped@fiscaliaedomex.gob.mx';                     //SMTP username
     $mail->Password   = '53/G79@-';                               //SMTP password
-    $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  
+    $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     $mail->Port       = 25;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->Encoding = '7bit';       // SMS uses 7-bit encoding
+    // $mail->Encoding = '7bit';       // SMS uses 7-bit encoding
 
     //Recipients
     $mail->setFrom('sippsipped@fiscaliaedomex.gob.mx', 'SIPPSIPPED');
