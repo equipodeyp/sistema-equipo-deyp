@@ -69,19 +69,19 @@ $row=$result->fetch_assoc();
           extend:    'excelHtml5',
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
-          className: 'btn color-btn-export' 
+          className: 'btn color-btn-export-xls' 
         },
         {
           extend:    'pdfHtml5',
           text:      '<i class="fas fa-file-pdf"></i> ',
           titleAttr: 'Exportar a PDF',
-          className: 'btn color-btn-export'
+          className: 'btn color-btn-export-ppt'
         },
         {
           extend:    'print',
           text:      '<i class="fa fa-print"></i> ',
           titleAttr: 'Imprimir',
-          className: 'btn color-btn-export'
+          className: 'btn color-btn-export-imp'
         },
       ]
       });
@@ -105,7 +105,7 @@ $row=$result->fetch_assoc();
   padding: 6px 12px;
   margin-left: -1px;
   line-height: 1.42857143;
-  color: #5F6D6B;
+  color: #63696D;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -126,7 +126,7 @@ $row=$result->fetch_assoc();
 .pagination > li > a:focus,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #5F6D6B;
+  color: #63696D;
   background-color: #eee;
   border-color: #ddd;
 }
@@ -139,7 +139,7 @@ $row=$result->fetch_assoc();
   z-index: 3;
   color: #fff;
   cursor: default;
-  background-color: #5F6D6B;
+  background-color: #63696D;
   border-color: #5F6D6B;
 }
 .pagination > .disabled > span,
@@ -184,6 +184,12 @@ $row=$result->fetch_assoc();
 .pagination-sm > li:last-child > span {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+a:hover,
+a:focus {
+  color: #FFFFFF;
+  text-decoration: underline;
 }
   </style>
 </head>

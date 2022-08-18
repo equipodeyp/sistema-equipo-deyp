@@ -67,13 +67,14 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
       	<link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
+		<link rel="stylesheet" href="../css/main2.css">
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script src="../js/expediente.js"></script>
       	<script src="../js/solicitud.js"></script>
 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-		<link rel="stylesheet" href="../css/cli.css">
+
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
 
@@ -133,7 +134,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 				</div>
 							<div class="well form-horizontal" >
 								<div class="row">
-									<div class="alert alert-info">
+									<div class="alert div-title">
 										<h3 style="text-align:center">DETALLES DEL EXPEDIENTE</h3>
 									</div>
 									<!-- folio del expediente -->
@@ -189,6 +190,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 			    						</div>
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label for="fecha" class="col-md-4 control-label">FECHA DE CAPTURA</label>
 										<div class="col-md-4 inputGroupContainer">
@@ -198,6 +200,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 								    		</div>
 										</div>
 									</div>
+
 									<div class="form-group">
 										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px">FECHA DE RECEPCIÓN DE LA SOLICITUD</label>
 										<div class="col-md-4 inputGroupContainer">
@@ -207,21 +210,20 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 			    						</div>
 										</div>
 									</div>
+
 									<form method="post" action="actualizar_fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
-									<div class="form-group">
-										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
-										<div class="col-md-4 inputGroupContainer">
-											<div class="input-group">
-								      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-											  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
-
-								    		</div>
+										<div class="form-group">
+											<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
+											<div class="col-md-4 inputGroupContainer">
+												<div class="input-group">
+								      				<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+											  		<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
+								    			</div>
+											</div>
+										<div>
+										<div>
+											<button type="submit" id="fecha_acuerdo" class='btn color-btn-success'>ACTUALIZAR FECHA</button>
 										</div>
-									<div>
-									<div>
-										<button type="submit" id="fecha_acuerdo" class='btn btn-success'>ACTUALIZAR FECHA</button>
-									</div>
-
 									</form>
 								</div>
 							</div>
@@ -230,10 +232,10 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 
 							<div class="well form-horizontal">
 		  					<div id="cabecera">
-									<div class="row alert alert-info">
-										<div class="alert alert-info">
+									<div class="row alert div-title">
+										
 											<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
-										</div>
+									
 									</div>
 		  					</div>
 
@@ -248,7 +250,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 								  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
 												<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
 												<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-												<th style="text-align:center"><a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn btn-info">AGREGAR PERSONA</button> </a> </th>
+												<th style="text-align:center"><a href="registro_persona.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn color-btn-success-white">AGREGAR PERSONA</button> </a> </th>
 								  		</thead>
 		  								<?php
 											$cuenta = 0;
@@ -280,7 +282,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 								                      } elseif ($fila_val['validacion'] == 'false') {
 								                        echo "<i class='fas fa-times'></i>";
 								                      } echo "</td>";
-								        		        echo "<td style='text-align:center'><a href='../administrador/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+								        		        echo "<td style='text-align:center'><a href='../administrador/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
 								        		        echo "</tr>";
 								            }
 
@@ -294,10 +296,10 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 							</div>
 							<div class="well form-horizontal">
 								<div class="row">
-									<div class="alert alert-info">
+									<div class="alert div-title">
 										<h3 style="text-align:center">SEGUIMIENTO DEL EXPEDIENTE</h3>
 									</div>
-									<a href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
+									<a href="../administrador/detalles_seguimiento.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">SEGUIMIENTO</button> </a>
 								</div>
 							</div>
 						</div>

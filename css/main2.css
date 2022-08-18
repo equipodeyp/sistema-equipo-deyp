@@ -18,11 +18,42 @@ table>tbody>tr>td {
     position: absolute !important;
 }
 .color-icon{
-    /* background-color: #5F6D6B !important; */
+    background-color: #FFFFFF !important;
+    color: #97897D !important;
+}
+
+.color-btn-export-eye{
+    background-color: #f8fdfc !important;
+    color: #63696D !important;
+}
+.color-btn-export-xls{
+    background-color: #63696D !important;
+    color: #f8fdfc !important;
+}
+.color-btn-export-ppt{
+    background-color: #97897D !important;
+    color: #f8fdfc !important;
+}
+.color-btn-export-imp{
+    background-color: #A19E9F !important;
+    color: #f8fdfc !important;
+}
+
+.color-btn-success{
+    background-color: #97897D !important;
+    color: #f8fdfc !important;
+}
+.div-title{
+    background-color: #5F6D6B !important;
+    color: #f8fdfc !important;
+}
+
+.color-btn-success-white{
+    background-color: #FFFFFF !important;
     color: #5F6D6B !important;
 }
 
-.color-btn-export{
-    background-color: #5F6D6B !important;
-    color: #f8fdfc !important;
+.color-btn-success-gray{
+    background-color: #63696D !important;
+    color: #FFFFFF !important;
 }

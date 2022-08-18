@@ -129,6 +129,7 @@ $id_person=$rowfol['id'];
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -224,7 +225,7 @@ $id_person=$rowfol['id'];
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_pers; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
-                <div class="alert alert-info">
+                <div class="alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -239,7 +240,7 @@ $id_person=$rowfol['id'];
                   
 
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">ARCHIVOS AÑADIDOS A LA PERSONA DENTRO DEL PROGRAMA</h3>
                   </div>
 
@@ -280,7 +281,7 @@ $id_person=$rowfol['id'];
                           echo '<tr>';
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
-                          echo "<td style='text-align:center'><a href='ver_pdf_persona_apoyo.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          echo "<td style='text-align:center'><a href='ver_pdf_persona_apoyo.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='color-btn-export-eye fa-solid fa-eye'></span></a></td>";
                         //   if ($user=='guillermogv') {
                         //     echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
                         //     echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";

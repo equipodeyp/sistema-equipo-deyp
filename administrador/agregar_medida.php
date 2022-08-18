@@ -43,6 +43,7 @@ $validacion = $fil_val['validacion'];
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -121,7 +122,7 @@ $validacion = $fil_val['validacion'];
           <a class="actived">REGISTRAR MEDIDA</a>
         </div>
         <div class="row">
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">DATOS LA PERSONA INCORPORADA</h3>
           </div>
 
@@ -134,7 +135,7 @@ $validacion = $fil_val['validacion'];
             <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
           </div>
 
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
 
@@ -251,7 +252,7 @@ $validacion = $fil_val['validacion'];
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
           </div>
 
@@ -300,7 +301,7 @@ $validacion = $fil_val['validacion'];
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">MOTIVO CONCLUSIÓN DE LA MEDIDA</h3>
                 </div>
 
@@ -351,7 +352,7 @@ $validacion = $fil_val['validacion'];
 
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">COMENTARIOS</h3>
                 </div>
 
@@ -363,7 +364,7 @@ $validacion = $fil_val['validacion'];
                 <div>
                     <br>
                     <br>
-                		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+                		<button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="enter" type="submit">GUARDAR</button>
                 </div>
 
               </div>

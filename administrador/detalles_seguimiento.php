@@ -89,6 +89,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -161,7 +162,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <a class="actived">SEGUIMIENTO</a>
             </div>
             <div class="row">
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">DATOS GENERALES DEL EXPEDIENTE</h3>
               </div>
               <div class="col-md-6 mb-3 validar">
@@ -185,7 +186,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div class="row">
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
               </div>
               <div class="col-md-6 mb-3 validar">
@@ -218,7 +219,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div class="row">
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
               </div>
                 <div class="col-md-6 mb-3 validar">
@@ -247,7 +248,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div class="row">
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">CONVENIOS</h3>
               </div>
               <div id="contenido">
@@ -325,7 +326,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div class="row">
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">ANÁLISIS</h3>
               </div>
               <?php
@@ -437,11 +438,11 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div class="row">
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
               </div>
               <div id="contenido">
-                <a href="registrar_evaluacion_seg.php?folio=<?php echo $fol_exp; ?>"><button style="display: block; margin: 0 auto;" type="button" id="btn_agregar" class="btn btn-info">AGREGAR</button></a>
+                <a href="registrar_evaluacion_seg.php?folio=<?php echo $fol_exp; ?>"><button style="display: block; margin: 0 auto;" type="button" id="btn_agregar" class="btn color-btn-success">AGREGAR</button></a>
                 <table class="table table-striped table-dark table-bordered">
                   <thead class="table-success">
                     <th style="text-align:center">No.</th>
@@ -466,7 +467,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                       echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
                       echo "<td style='text-align:center'>"; echo $var_fila1['id_analisis']; echo "</td>";
                       echo "<td style='text-align:center'>"; echo $var_fila1['analisis']; echo "</td>";
-                      echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila1['id_analisis']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
+                      echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila1['id_analisis']."'> <button type='button' class='btn color-btn-success-white'>Detalles</button> </a> </td>";
                     //   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila1['fecha_aut'])); echo "</td>";
                     //   echo "<td style='text-align:center'>"; echo $var_fila1['tipo_convenio']; echo "</td>";
                     //   echo "<td style='text-align:center'>"; if ($var_fila1['fecha_firma'] != '0000-00-00') {
@@ -492,7 +493,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div class="row">
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">ESTATUS</h3>
               </div>
 
@@ -574,7 +575,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
 
                 <hr class="mb-4">
               </div>
-              <div class="alert alert-info">
+              <div class="alert div-title">
                 <h3 style="text-align:center">COMENTARIOS</h3>
               </div>
               <div class="">
@@ -624,7 +625,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
               <div>
                   <br>
                   <br>
-                  <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                  <button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="enter" type="submit">ACTUALIZAR</button>
               </div>
             </div>
           </form>

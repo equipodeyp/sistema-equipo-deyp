@@ -83,6 +83,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -153,7 +154,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
             <div class="container">
         			<div class="well form-horizontal" >
         				<div class="row">
-                  <div class="row alert alert-info">
+                  <div class="row alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           				</div>
 
@@ -183,78 +184,77 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         			</div>
               </div>
         		</div>
-            <div class="container ">
+            <div class="container">
         			<div class="well form-horizontal">
-        		  <div id="cabecera">
-        				<div class="row alert alert-info">
-        					<h3 style="text-align:center">MEDIDAS</h3>
-        				</div>
-        		  </div>
+                  <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">MEDIDAS</h3>
+                    </div>
+                  </div>
 
-        		  <div id="contenido">
-        		  	<table class="table table-striped table-bordered ">
-        		  		<thead >
-        		  			<th style="text-align:center">No.</th>
-                    <th style="text-align:center">FOLIO</th>
-                    <th style="text-align:center">TIPO DE MEDIDA</th>
-                    <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
-                    <th style="text-align:center">ESTATUS</th>
-                    <th style="text-align:center">MUNICIPIO</th>
-                    <th style="text-align:center">FECHA DE EJECUCIÓN</th>
-                    <th style="text-align:center">VALIDACIÓN</th>
-        		  			<th style="text-align:center"><a href="agregar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn btn-info">NUEVA MEDIDA</button> </a> </th>
-        		  		</thead>
-        		  		<?php
-                  $cont_med = '0';
-        		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
-                  $var_resultado = $mysqli->query($tabla);
+                    <div id="contenido">
+                      <table class="table table-striped table-bordered ">
+                        <thead >
+                          <th style="text-align:center">No.</th>
+                          <th style="text-align:center">FOLIO</th>
+                          <th style="text-align:center">TIPO DE MEDIDA</th>
+                          <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
+                          <th style="text-align:center">ESTATUS</th>
+                          <th style="text-align:center">MUNICIPIO</th>
+                          <th style="text-align:center">FECHA DE EJECUCIÓN</th>
+                          <th style="text-align:center">VALIDACIÓN</th>
+                          <th style="text-align:center"><a href="agregar_medida.php?folio=<?php echo $fol_exp; ?>"> <button type="button" id="NUEVA_MEDIDA" class="btn color-btn-success-white">NUEVA MEDIDA</button> </a> </th>
+                        </thead>
+                        <?php
+                        $cont_med = '0';
+                        $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
+                        $var_resultado = $mysqli->query($tabla);
 
-                  $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-                  $resultfol = $mysqli->query($fol);
-                  $rowfol=$resultfol->fetch_assoc();
-                  $idUnicoPersona = $rowfol['identificador'];
+                        $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+                        $resultfol = $mysqli->query($fol);
+                        $rowfol=$resultfol->fetch_assoc();
+                        $idUnicoPersona = $rowfol['identificador'];
 
-        		      while ($var_fila=$var_resultado->fetch_array())
-        		      {
+                        while ($var_fila=$var_resultado->fetch_array())
+                        {
 
-                    $id_medida = $var_fila['id'];
-                    $cont_med = $cont_med + 1;
-                    $val_meds = "SELECT * FROM validar_medida WHERE folioexpediente = '$name_folio' AND id_persona = '$id_person' AND id_medida = '$id_medida'";
-                    $res_valmeds = $mysqli->query($val_meds);
-                    while ($fila_valmeds = $res_valmeds->fetch_array()){
-                      echo "<tr>";
-          		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-                        echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
-                          echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
-                        } echo "</td>";
-                        echo "<td style='text-align:center'>"; if ($fila_valmeds['validar_datos'] === 'true') {
-                          echo "<i class='fas fa-check'></i>";
-                          if ($fila_valmeds['validacion'] === 'true') {
-                            echo "<i class='fas fa-check'></i>";
-                          }elseif ($fila_valmeds['validacion'] === 'false') {
-                            echo "<i class='fas fa-times'></i>";
+                          $id_medida = $var_fila['id'];
+                          $cont_med = $cont_med + 1;
+                          $val_meds = "SELECT * FROM validar_medida WHERE folioexpediente = '$name_folio' AND id_persona = '$id_person' AND id_medida = '$id_medida'";
+                          $res_valmeds = $mysqli->query($val_meds);
+                          while ($fila_valmeds = $res_valmeds->fetch_array()){
+                            echo "<tr>";
+                              echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+                              echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
+                                echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
+                              } echo "</td>";
+                              echo "<td style='text-align:center'>"; if ($fila_valmeds['validar_datos'] === 'true') {
+                                echo "<i class='fas fa-check'></i>";
+                                if ($fila_valmeds['validacion'] === 'true') {
+                                  echo "<i class='fas fa-check'></i>";
+                                }elseif ($fila_valmeds['validacion'] === 'false') {
+                                  echo "<i class='fas fa-times'></i>";
+                                }
+                              }elseif ($fila_valmeds['validar_datos'] === 'false') {
+                                echo "<i class='fas fa-times'></i>";
+                              }
+                              echo "</td>";
+                              echo "<td>  <a href='detalle_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success-gray'>Detalle</button> </a> </td>";
+                            echo "</tr>";
                           }
-                        }elseif ($fila_valmeds['validar_datos'] === 'false') {
-                          echo "<i class='fas fa-times'></i>";
+
                         }
-                         echo "</td>";
-          		          echo "<td>  <a href='detalle_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
-          		        echo "</tr>";
-                    }
+                        ?>
+                      </table>
+        		        </div>
 
-        		      }
-        		      ?>
-        		  	</table>
-        		  </div>
-        			<div id="footer">
-        		  </div>
 
-        		</div>
+        		    </div>
         		</div>
     			</article>
     		</div>
