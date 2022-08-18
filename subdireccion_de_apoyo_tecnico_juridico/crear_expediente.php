@@ -29,7 +29,7 @@ $row=$result->fetch_assoc();
   <script src="../js/jquery.dataTables.min.js"></script>
   <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
-  
+
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -47,7 +47,7 @@ $row=$result->fetch_assoc();
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
+<link rel="stylesheet" href="../css/main2.css">
 
 </head>
 <body >
@@ -84,15 +84,15 @@ $row=$result->fetch_assoc();
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
     </div>
 
-  
+
       <!-- menu del expediente -->
       <div class="wrap">
-        
-          
-      
+
+
+
         <div class="secciones">
           <article id="tab1">
-            
+
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
@@ -102,7 +102,7 @@ $row=$result->fetch_assoc();
             <div class=" well form-horizontal">
               <div class="row">
                 <form class="" method="POST" action="guardar_expediente.php">
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">NUEVO EXPEDIENTE</h3>
                   </div>
                   <div class="form-group">
@@ -173,7 +173,7 @@ $row=$result->fetch_assoc();
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn btn-primary">Guardar</button>
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">Guardar</button>
                     </div>
                   </div>
                 </form>
@@ -185,7 +185,7 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante">CANCELAR</a>
+    <a href="menu.php" class="btn-flotante color-btn-success-gray">CANCELAR</a>
   </div>
 <script type="text/javascript">
 

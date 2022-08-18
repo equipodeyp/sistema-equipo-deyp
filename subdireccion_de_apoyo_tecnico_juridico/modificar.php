@@ -49,6 +49,7 @@ $row=$result->fetch_assoc();
       <script src="../js/solicitud.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/cli.css">
+<link rel="stylesheet" href="../css/main2.css">
 
 </head>
 <body >
@@ -113,7 +114,7 @@ $row=$result->fetch_assoc();
 
 			<div class="well form-horizontal" >
 				<div class="row">
-				<div class="alert alert-info">
+				<div class="alert div-title">
 					<h3 style="text-align:center">DETALLES DEL EXPEDIENTE</h3>
 				</div>
 				<!-- folio del expediente -->
@@ -251,7 +252,7 @@ $row=$result->fetch_assoc();
             }
 
            ?>
-				<div class="alert alert-info">
+				<div class="alert div-title">
 					<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
 				</div>
 				</div>
@@ -270,7 +271,7 @@ $row=$result->fetch_assoc();
 		  			<th style="text-align:center">
               <?php
                 if ($filastaexp['status'] === 'ANALISIS' || $filastaexp['status'] === 'EN EJECUCION') {
-                  echo '<a href="registro_persona.php?folio='.$fol_exp.'"> <button type="button" class="btn btn-info">AGREGAR PERSONA</button> </a>';
+                  echo '<a href="registro_persona.php?folio='.$fol_exp.'"> <button type="button" class="btn color-btn-success-white">AGREGAR PERSONA</button> </a>';
                 }else {
                   echo "DETALLES";
                 }
@@ -307,7 +308,7 @@ $row=$result->fetch_assoc();
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";
                       } echo "</td>";
-        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>ACTUALIZAR</button> </a> </td>";
+        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>ACTUALIZAR</button> </a> </td>";
         		        echo "</tr>";
             }
 
@@ -356,7 +357,7 @@ $row=$result->fetch_assoc();
             if ($valexp == 'SI' && $exp_validado == 'false' && $name === 'diana') {
               echo "<div class='columns download'>
 
-                        <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
+                        <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-validar color-btn-success' ><i class=''></i>VALIDAR</a>
 
               </div>";
             }

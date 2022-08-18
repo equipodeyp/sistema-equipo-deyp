@@ -124,6 +124,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -212,7 +213,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                       </div>";
                     }
                     ?>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -227,7 +228,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
                     <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -295,7 +296,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA</h3>
                   </div>
 
@@ -425,7 +426,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <div class="row">
                       <hr class="mb-4">
                     </div>
-                    <div class="alert alert-info">
+                    <div class="alert div-title">
                       <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                     </div>
                     <div class="col-md-6 mb-3 validar">
@@ -452,7 +453,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <hr class="mb-4">
                   </div>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                   </div>
 
@@ -475,7 +476,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
 
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
                   </div>
 
@@ -538,7 +539,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <input class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder="" value="<?php echo $rowfol['telefonocelular']; ?>" type="text" maxlength="10" >
                   </div> -->
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
                   </div>
 
@@ -695,7 +696,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <div class="row">
                       <hr class="mb-4">
                     </div>
-                    <div class="alert alert-info">
+                    <div class="alert div-title">
                       <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                     </div>
                     <div class="col-md-6 mb-3 validar">
@@ -722,7 +723,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <hr class="mb-4">
                   </div>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
                   </div>
 
@@ -748,7 +749,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
                   </div>
 
@@ -852,7 +853,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
                   </div>
 
@@ -881,7 +882,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
                   </div>
                   <div class="col-md-12 mb-3 validar">
@@ -907,7 +908,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
                   </div>
                   <section class="text-center" >
@@ -931,7 +932,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
                   <div id="contenido" class="">
@@ -987,7 +988,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div>
                       <br>
                       <br>
-                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                  		<button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="enter" type="submit">ACTUALIZAR</button>
                   </div>
                 </div>
               </form>
@@ -1015,7 +1016,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
       echo "<div class='columns download'>
 
-                <a href='validar_persona.php?folio= $id_person' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
+                <a href='validar_persona.php?folio= $id_person' class='btn-flotante-validar color-btn-success' ><i class=''></i>VALIDAR</a>
 
       </div>";
     }

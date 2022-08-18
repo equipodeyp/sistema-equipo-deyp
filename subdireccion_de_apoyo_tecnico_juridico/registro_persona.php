@@ -100,7 +100,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../subdireccion_de_apoyo_tecnico_juridico/style/modal.css" rel="stylesheet">
-
+<link rel="stylesheet" href="../css/main2.css">
 
 </head>
 <body >
@@ -161,7 +161,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
     <div class="container">
       <form class="container well form-horizontal" id="myform" method="POST" action="guardar_persona.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
         <div class="row">
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
@@ -176,7 +176,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA <span class="required"></span></label>
             <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="" readonly>
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">AUTORIDAD QUE INGRESA LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
@@ -234,7 +234,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <hr class="mb-4">
           </div>
 
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
             </div>
 
@@ -263,7 +263,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <div class="col-md-6 mb-3 validar">
               <!-- <br> -->
               <br>
-              <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
+              <button class="color-btn-success" onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -384,7 +384,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
               <button onclick="enviarId()" disabled="true" style="display: block; margin: 0 auto; justify-content: center;" id="GENERAR_ID" type="button"> GENERAR ID </button>
             </div> -->
 
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">LUGAR DE NACIMIENTO DE LA PERSONA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
@@ -442,7 +442,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
               <input autocomplete="off" class="form-control" id="TELEFONO_CELULAR" name="TELEFONO_CELULAR" placeholder=""  type="text" maxlength="10">
             </div> -->
             <!-- XFBXFDVNBXFCNBXCVNCVB -->
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">DOMICILIO ACTUAL DE LA PERSONA</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
@@ -526,7 +526,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <div class="row">
               <hr class="mb-4">
             </div>
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">DATOS DEL PADRE/MADRE Y/O TUTOR</h3>
             </div>
             <div class="col-md-6 mb-3 validar">
@@ -550,7 +550,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">DATOS DE LA INVESTIGACIÓN O PROCESO PENAL</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
@@ -633,7 +633,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">VALORACIÓN JURÍDICA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
@@ -662,7 +662,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
           </div>
           <div class="col-md-12 mb-3 validar">
@@ -688,7 +688,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div class="row">
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
           </div>
           <section class="text-center" >
@@ -705,7 +705,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 
             <hr class="mb-4">
           </div>
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">COMENTARIOS</h3>
           </div>
 
@@ -717,7 +717,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div>
               <br>
               <br>
-          		<button style="display: block; margin: 0 auto;"  class="btn btn-success" id="enter" type="submit">GUARDAR</button>
+          		<button style="display: block; margin: 0 auto;"  class="btn color-btn-success" id="enter" type="submit">GUARDAR</button>
           </div>
         </div>
       </form>
@@ -725,21 +725,21 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
         <div>
           <br>
           <br>
-          <button style="display: block ; margin: 0 auto;" class="btn btn-success" id="next" disabled>SIGUIENTE</button>
+          <button style="display: block ; margin: 0 auto;" class="btn color-btn-success" id="next" disabled>SIGUIENTE</button>
         </div>
       </div>
       <div class="row" style="display:none;" id="btnnext2">
         <div>
           <br>
           <br>
-          <button style="display: block ; margin: 0 auto;" class="btn btn-success" id="next2" disabled>SIGUIENTE</button>
+          <button style="display: block ; margin: 0 auto;" class="btn color-btn-success" id="next2" disabled>SIGUIENTE</button>
         </div>
       </div>
       <div class="row" style="display:none;" id="btnnext3">
         <div>
           <br>
           <br>
-          <button style="display: block ; margin: 0 auto;" class="btn btn-success" id="next3" disabled>SIGUIENTE</button>
+          <button style="display: block ; margin: 0 auto;" class="btn color-btn-success" id="next3" disabled>SIGUIENTE</button>
         </div>
       </div>
     </div>
