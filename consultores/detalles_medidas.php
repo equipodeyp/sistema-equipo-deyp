@@ -95,6 +95,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -145,7 +146,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
             <div class="container">
         			<div class="well form-horizontal" >
         				<div class="row">
-                  <div class="row alert alert-info">
+                  <div class="row alert div-title">
                     <h3 style="text-align:center">INFORMACION GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           				</div>
 
@@ -178,7 +179,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
             <div class="container ">
         			<div class="well form-horizontal">
         		  <div id="cabecera">
-        				<div class="row alert alert-info">
+        				<div class="row alert div-title">
         					<h3 style="text-align:center">MEDIDAS</h3>
         				</div>
         		  </div>
@@ -229,7 +230,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         }elseif ($fila_valmeds['validacion'] === 'false') {
                           echo "<i class='fas fa-times'></i>";
                         } echo "</td>";
-          		          echo "<td>  <a href='detalle_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+          		          echo "<td>  <a href='detalle_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
           		        echo "</tr>";
                     }
 

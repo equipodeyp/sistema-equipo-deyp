@@ -62,6 +62,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -113,7 +114,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">EVALUACIÓN DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -174,7 +175,7 @@ $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>

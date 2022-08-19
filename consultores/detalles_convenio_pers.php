@@ -64,6 +64,7 @@ $id_persona = $fila_consulta_uno ['id'];
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -116,7 +117,7 @@ $id_persona = $fila_consulta_uno ['id'];
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">EVALUACIÓN DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -182,7 +183,7 @@ $id_persona = $fila_consulta_uno ['id'];
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label id="LABEL_OBSERVACIONES" for="observaciones">OBSERVACIONES</label>
