@@ -52,7 +52,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");  
+$hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
@@ -153,6 +153,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -220,16 +221,16 @@ $fexprel1 = $rexprel1->fetch_assoc();
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
-                <div class="alert alert-info">
+                <div class="alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
-                    
+
                   <div class="col-md-6 mb-3 ">
                         <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
                         <input readonly class="form-control" type="text" value="<?php echo $fol_exp;?>">
                   </div>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">ARCHIVOS AÑADIDOS AL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
 
@@ -269,7 +270,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                           echo '<tr>';
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
-                          echo "<td style='text-align:center'><a href='ver_pdf_analisis.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          echo "<td style='text-align:center'><a href='ver_pdf_analisis.php?folio=".$arg."' style='color: #63696D; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
                         //   if ($user=='guillermogv') {
                         //     echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
                         //     echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";

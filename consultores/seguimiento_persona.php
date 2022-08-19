@@ -96,6 +96,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -172,7 +173,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                           </div>";
                         }
                        ?> -->
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -193,7 +194,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DETERMINACIÓN DE LA INCORPORACIÓN</h3>
                   </div>
 
@@ -276,7 +277,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">EVALUACIONES DE SEGUIMIENTO</h3>
                   </div>
                   <div id="contenido">
@@ -299,7 +300,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
             		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
-                          echo "<td style='text-align:center'>  <a href='../consultores/detalles_convenio_pers.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalles</button> </a> </td>";
+                          echo "<td style='text-align:center'>  <a href='../consultores/detalles_convenio_pers.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalles</button> </a> </td>";
 
             		      }
             		      ?>
@@ -313,7 +314,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">ESTATUS DE LA PERSONA DENTRO DEL PROGRAMA</h3>
                   </div>
 
@@ -405,7 +406,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <div class="row">
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">FOTOGRAFÍA DEL SUJETO</h3>
                   </div>
                   <section class="text-center" >
@@ -430,7 +431,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">COMENTARIOS</h3>
                   </div>
                   <div id="contenido" class="">
@@ -481,7 +482,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <div>
                       <br>
                       <br>
-                  		<!-- <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button> -->
+                  		<!-- <button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="enter" type="submit">ACTUALIZAR</button> -->
                   </div>
                 </div>
               </form>
@@ -492,7 +493,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
         			<div class="well form-horizontal" >
         				<div class="row">
-                  <div class="row alert alert-info">
+                  <div class="row alert div-title">
                     <h3 style="text-align:center">INFORMACION GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
           				</div>
 
@@ -535,7 +536,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
             <div class="container ">
         			<div class="well form-horizontal">
         		  <div id="cabecera">
-        				<div class="row alert alert-info">
+        				<div class="row alert div-title">
         					<h3 style="text-align:center">MEDIDAS</h3>
         				</div>
         		  </div>
@@ -586,7 +587,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         }elseif ($fila_valmeds['validacion'] === 'false') {
                           echo "<i class='fas fa-times'></i>";
                         } echo "</td>";
-          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
           		        echo "</tr>";
                     }
 

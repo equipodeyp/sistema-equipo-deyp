@@ -77,7 +77,7 @@ $validacion = $fil_val['validacion'];
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -126,7 +126,7 @@ $validacion = $fil_val['validacion'];
           <a class="actived">DETALLE DE LA MEDIDA</a>
         </div>
         <div class="row">
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
           </div>
           <?php
@@ -173,7 +173,7 @@ $validacion = $fil_val['validacion'];
             </select>
           </div>
 
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
 
@@ -284,7 +284,7 @@ $validacion = $fil_val['validacion'];
             <div class="row">
               <hr class="mb-4">
             </div>
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
 
@@ -339,7 +339,7 @@ $validacion = $fil_val['validacion'];
             <div class="row">
               <hr class="mb-4">
             </div>
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA </h3>
             </div>
 
@@ -383,7 +383,7 @@ $validacion = $fil_val['validacion'];
                   <hr class="mb-4">
                 </div>
 
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">COMENTARIOS</h3>
                 </div>
 
