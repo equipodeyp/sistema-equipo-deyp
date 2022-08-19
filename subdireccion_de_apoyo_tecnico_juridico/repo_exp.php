@@ -318,7 +318,7 @@ $hoy = date("d-m-Y H:i:s a");
                           echo '<tr>';
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
-                          echo "<td style='text-align:center'><a href='ver_pdf.php?folio=".$arg."' style='#63696D: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          echo "<td style='text-align:center'><a href='ver_pdf.php?folio=".$arg."' style='#63696D: green; font-size:18px;'><span class='color-btn-export-eye fa-solid fa-eye'></span></a></td>";
                           if ($user=='diana') {
                             echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: #97897D; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
                             echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: #A19E9F; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
