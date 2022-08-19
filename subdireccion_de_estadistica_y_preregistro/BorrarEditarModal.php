@@ -25,7 +25,7 @@
         $validacion = $fil_val['validacion'];
         ?>
         <div class="row">
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
           </div>
           <?php
@@ -74,7 +74,7 @@
         </div>
         <br>
         <div class="row">
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
           <div class="col-md-6 mb-3 validar">
@@ -174,7 +174,7 @@
                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_PROV" name="FECHA_ACTUALIZACION_MEDIDA_PROV" placeholder="" value="'.$row['date_provisional'].'" type="date">
             </div>';
           }
-          if ($row['date_definitva'] !== '0000-00-00'){
+          if ($row['date_definitva'] !== ''){
             echo '<div class="col-md-6 mb-3 validar" id="act_date_definitiva_def">
                <label for="FECHA_ACTUALIZACION_MEDIDA_DEF">FECHA DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_DEF" name="FECHA_ACTUALIZACION_MEDIDA_DEF" placeholder="" value="'.$row['date_definitva'].'" type="date">
@@ -182,11 +182,56 @@
           }
           ?>
         </div>
+        <br>
+        <div class="row">
+          <div class="alert div-title">
+            <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
+            <select class="form-control" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" onchange="fecha_ejecutada(this)">
+              <option disabled selected value="<?php echo $row['estatus']; ?>"><?php echo $row['estatus']; ?></option>
+              <option value="EN EJECUCION">EN EJECUCIÓN</option>
+              <option value="EJECUTADA">EJECUTADA</option>
+              <option value="CANCELADA">CANCELADA</option>
+              </select>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
+            <select class="form-control" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
+              <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $row['ejecucion']; ?>"><?php echo $row['ejecucion']; ?></option>
+              <?php
+              $municipio = "SELECT * FROM municipios";
+              $answermun = $mysqli->query($municipio);
+              while($municipios = $answermun->fetch_assoc()){
+               echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+              }
+              ?>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3 validar">
+            <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
+            <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php if ($row['date_provisional'] == '0000-00-00') {
+              echo $row['date_definitva'];
+            }else {
+              echo $row['date_provisional'];
+            } ?>">
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <div class="alert div-title">
+            <h3 style="text-align:center">COMENTARIOS</h3>
+          </div>
+        </div>
+
+        
       </div>
 			</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                <button type="submit" name="editar" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar</a>
+                <button type="submit" name="editar" class="btn color-btn-success"><span class="glyphicon glyphicon-check"></span> Actualizar</a>
 			</form>
             </div>
         </div>
