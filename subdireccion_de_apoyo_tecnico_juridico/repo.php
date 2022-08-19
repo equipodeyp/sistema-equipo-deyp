@@ -49,7 +49,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");  
+$hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
@@ -150,6 +150,7 @@ $hoy = date("d-m-Y H:i:s a");
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -221,7 +222,7 @@ $hoy = date("d-m-Y H:i:s a");
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
-                <div class="alert alert-info">
+                <div class="alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
                   <div class="col-md-6 mb-3 validar">
@@ -233,17 +234,17 @@ $hoy = date("d-m-Y H:i:s a");
                     <input readonly class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
                   </div>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN A CONSIDERAR</h3>
                 </div>
 
                   <h5 style='text-align:justify'>
-                  En este apartado deberás agregar los archivos cuya información sea única y exclusivamente de la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad 
-                  de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto 
+                  En este apartado deberás agregar los archivos cuya información sea única y exclusivamente de la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad
+                  de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto
                   que mantendrán este nombre, es buena práctica colocar un nombre en específico, irrepetible y fácil de comprender.
                   </h5>
 
-                  <!-- <div class="alert alert-info">
+                  <!-- <div class="alert div-title">
                     <h3 style="text-align:center">AÑADIR ARCHIVOS</h3>
                   </div> -->
 
@@ -255,7 +256,7 @@ $hoy = date("d-m-Y H:i:s a");
                   <?php
                     if ($user=='diana') {
                     echo "
-                    <div class='alert alert-info'>
+                    <div class='alert div-title'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
                     </div>
                     ";
@@ -263,14 +264,14 @@ $hoy = date("d-m-Y H:i:s a");
                     <div class='col-md-10 mb-3' style='display: flex; align-items: center; flex-wrap: wrap;  justify-content: center;'>
                         <label for='my-file-selector'><span ></span>
                         <input required='' accept='application/pdf' type='file' name='file' id='exampleInputFile'></label>
-                        <button class='btn btn-success' type='submit'>Agregar archivo</button>
+                        <button class='btn color-btn-success' type='submit'>Agregar archivo</button>
                     </div>
                     ";
                   }
-                  
+
                   ?>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">TABLA DE ARCHIVOS DISPONIBLES</h3>
                   </div>
 
@@ -317,10 +318,10 @@ $hoy = date("d-m-Y H:i:s a");
                           echo '<tr>';
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
-                          echo "<td style='text-align:center'><a href='ver_pdf_persona.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
+                          echo "<td style='text-align:center'><a href='ver_pdf_persona.php?folio=".$arg."' style='color: #63696D; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
                           if ($user=='diana') {
-                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/repo/".$resultado."/".$id_pers."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
-                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=repo/".$resultado."/".$id_pers."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
+                            echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/repo/".$resultado."/".$id_pers."/".$arg."' download='$arg' style='color: #97897D; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
+                            echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=repo/".$resultado."/".$id_pers."/".$arg."' style='color: #A19E9F; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
                           }
                           echo '</tr>';
                         }

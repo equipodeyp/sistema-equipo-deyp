@@ -22,7 +22,7 @@ $fol_exp = $_GET['folio'];
 // echo $fol_exp;
 // $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 // $resultado = $mysqli->query($sql);
-// $row = $resultado->fetch_array(MYSQLI_ASSOC); 
+// $row = $resultado->fetch_array(MYSQLI_ASSOC);
 
 
 
@@ -83,6 +83,7 @@ $num_incidencia = 0 . $suma;
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -154,7 +155,7 @@ $num_incidencia = 0 . $suma;
               <form class="container well form-horizontal" action="save_ticket.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS GENERALES</h3>
                   </div>
 
@@ -173,7 +174,7 @@ $num_incidencia = 0 . $suma;
                     <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8"));?>">
                   </div>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
                   </div>
 
@@ -182,7 +183,7 @@ $num_incidencia = 0 . $suma;
                     <input readonly class="form-control" id="folio_reporte" name="folio_reporte" type="text" value="">
                   </div>
 
-                  
+
                 <div class="col-md-6 mb-3">
                   <label>TIPO DE FALLA O ERROR<span></span></label>
                   <select class="form-select form-select-lg" id="" name="tipo" required>
@@ -210,7 +211,7 @@ $num_incidencia = 0 . $suma;
                   <div>
                       <br>
                       <br>
-                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="" name="save_ticket" type="submit">Registrar incidencia</button>
+                  		<button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="" name="save_ticket" type="submit">Registrar incidencia</button>
                   </div>
                 </div>
               </form>
@@ -223,7 +224,7 @@ $num_incidencia = 0 . $suma;
 </div>
 <div class="contenedor">
 
-<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante ">REGRESAR</a>
 
 </div>
 
@@ -240,11 +241,11 @@ const  generateRandomString = (num) => {
         var incidencia = "INC"
 
         const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result1= Math.random().toString(36).substring(2,num);       
+        let result1= Math.random().toString(36).substring(2,num);
 
         var n1 = result1.toUpperCase();
-        // var folioIncidencia = unidad + "-" + numExp + "-" + añoExp + "-" + incidencia + n1; 
-        var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + folio; 
+        // var folioIncidencia = unidad + "-" + numExp + "-" + añoExp + "-" + incidencia + n1;
+        var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + folio;
         document.getElementById("folio_reporte").value = folioIncidencia;
 
     }

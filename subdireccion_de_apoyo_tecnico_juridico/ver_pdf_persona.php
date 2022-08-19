@@ -49,7 +49,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");  
+$hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
@@ -150,6 +150,7 @@ $id_person=$rowfol['id'];
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
   <style type="text/css">
     #biframe { position: absolute; width: 980px; height: 600px;}
     #iframe { width: 980px; height: 600px; }
@@ -227,7 +228,7 @@ $id_person=$rowfol['id'];
               <!-- <form class="container well form-horizontal" method="POST" action="cargar_archivo.php?folio=<?php echo $id_person; ?>" enctype="multipart/form-data""> -->
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                       <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                   </div>
 
@@ -275,7 +276,7 @@ $id_person=$rowfol['id'];
                           }
                   ?>
 
-                  
+
                 <!-- </div> -->
               </form>
             </div>
@@ -296,4 +297,3 @@ $id_person=$rowfol['id'];
 
 </body>
 </html>
-

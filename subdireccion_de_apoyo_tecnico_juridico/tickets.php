@@ -76,7 +76,7 @@ $fol_exp = $_GET['folio'];
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -143,7 +143,7 @@ $fol_exp = $_GET['folio'];
               <form class="container well form-horizontal" action="save_ticket.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">TABLA DE INCIDENCIAS GENERADAS</h3>
                   </div>
 
@@ -157,17 +157,17 @@ $fol_exp = $_GET['folio'];
                                 <th>Fecha</th>
                                 <th>Folio Incidencia</th>
                                 <th>Folio Expediente</th>
-                                <th>Usuario</th> 
+                                <th>Usuario</th>
                                 <!-- <th>Subdirección</th> -->
                                 <!-- <th>Tipo</th> -->
                                 <th>Estatus</th>
                                 <th>Detalles</th>
-                                
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
+                            <?php
                                 $count = 0;
                                 $query = "SELECT * FROM tickets WHERE folio_expediente = '$fol_exp' AND usuario = '$full_name'";
                                 $result_tickets = mysqli_query($mysqli, $query);
@@ -184,10 +184,10 @@ $fol_exp = $_GET['folio'];
                                         <td><?php echo $row['estatus']?></td>
                                         <td style="text-align:center">
 
-                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn btn-success">
+                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn color-btn-success-gray">
                                                 <i  class="fas fa-marker" ></i>Detalle
                                             </a>
-                                            
+
                                         </td>
                                     </tr>
                                 <?php } ?>
