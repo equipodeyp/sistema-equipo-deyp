@@ -42,6 +42,7 @@ $name = $_SESSION['usuario'];
       <link rel="stylesheet" href="../css/expediente.css">
     	<link rel="stylesheet" href="../css/font-awesome.css">
     	<link rel="stylesheet" href="../css/cli.css">
+		<link rel="stylesheet" href="../css/main2.css">
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script src="../js/expediente.js"></script>
@@ -105,7 +106,7 @@ $name = $_SESSION['usuario'];
 					<!-- <a class="actived">DATOS DE PERSONAS PROPUESTAS</a> -->
 				</div>
 				<div class="row">
-				<div class="alert alert-info">
+				<div class="alert div-title">
 					<h3 style="text-align:center">DETALLES DEL EXPEDIENTE</h3>
 				</div>
 				<!-- folio del expediente -->
@@ -198,7 +199,7 @@ $name = $_SESSION['usuario'];
       <div class="well form-horizontal">
         <div id="cabecera">
   				<div class="row">
-  				<div class="alert alert-info">
+  				<div class="alert div-title">
   					<h3 style="text-align:center">EXPEDIENTE RELACIONADO</h3>
   				</div>
           <?php
@@ -230,7 +231,7 @@ $name = $_SESSION['usuario'];
 			<div class="well form-horizontal">
 		  <div id="cabecera">
 				<div class="row">
-				<div class="alert alert-info">
+				<div class="alert div-title">
 					<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
 				</div>
 				</div>
@@ -278,7 +279,7 @@ $name = $_SESSION['usuario'];
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";
                       } echo "</td>";
-        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
         		        echo "</tr>";
             }
 
@@ -293,10 +294,10 @@ $name = $_SESSION['usuario'];
 
 		<div class="well form-horizontal">
 			<div class="row">
-				<div class="alert alert-info">
+				<div class="alert div-title">
 					<h3 style="text-align:center">SEGUIMIENTO DEL EXPEDIENTE</h3>
 				</div>
-				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn btn-success">SEGUIMIENTO</button> </a>
+				<a  href="../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=<?php echo $fol_exp; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">SEGUIMIENTO</button> </a>
 			</div>
 		</div>
 

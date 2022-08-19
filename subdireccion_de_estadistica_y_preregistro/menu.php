@@ -97,6 +97,111 @@ $row=$result->fetch_assoc();
   .opacity {
     /* opacity: 100%; */
   }
+
+  <style>
+    .pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #63696D;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #63696D;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #63696D;
+  border-color: #5F6D6B;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+a:hover,
+a:focus {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+  </style>
   </style>
 </head>
 <body>
@@ -125,13 +230,13 @@ $row=$result->fetch_assoc();
       </div>
       <nav class="menu-nav">
         <ul>
-          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"style="color: white; font-weight:bold;" >GLOSARIO</span></a></li>
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;" >GLOSARIO</span></a></li>
           <li id="liestadistica" class="subtitle">
-      			<a href="#" class="action"><i class='fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
+      			<a href="#" class="action"><i class='color-icon fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
       			<ul class="submenu">
-              <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li>
-              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li>
-              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li>
+              <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li>
+              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li>
       			</ul>
       		</li>
         </ul>
@@ -219,7 +324,7 @@ $row=$result->fetch_assoc();
                                     }elseif ($var_fila['validacion'] == 'false') {
                                       echo "<i class='fas fa-times'></i>";
                                     } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?id=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open'></span></a></td>";
+                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?id=".$var_fila['fol_exp']."'><span class='color-icon glyphicon glyphicon-folder-open'></span></a></td>";
 
                                     echo "</tr>";
 
@@ -256,7 +361,7 @@ $row=$result->fetch_assoc();
           </div>
         </div>
         <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
         </div>
       </div>
     </div>

@@ -220,11 +220,11 @@ a:focus {
       <nav class="menu-nav">
           <ul>
 
-              <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span> Incidencia</span></a></li>
+              <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIA</span></a></li>
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw  "></i><span> Repositorio </span></a></li> -->
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a>
-              <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items"> Busqueda</span></a>
-              <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items"> ESTADISTICA</span></a></li>
+              <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf  menu-nav--icon fa-fw'></i><span style="color: white; font-weight:bold;" class="menu-items">GLOSARIO</span></a>
+              <a href="#"><i class='color-icon fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span style="color: white; font-weight:bold;" class="menu-items">BUSQUEDA</span></a>
+              <li class="menu-items"><a href="../administrador/estadistica.php"><i class="color-icon fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;"class="menu-items"> ESTADISTICA</span></a></li>
           </ul>
       </nav>
     </div>
@@ -245,9 +245,9 @@ a:focus {
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <a href="new_exp.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>
-        </div>
+        </div> -->
         <br>
         <!--Ejemplo tabla con DataTables-->
         <div class="">

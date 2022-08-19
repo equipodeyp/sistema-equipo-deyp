@@ -180,10 +180,10 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
                                         <td><?php echo $row['estatus']?></td>
                                         <td style="text-align:center">
 
-                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn btn-success">
+                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn color-btn-success">
                                                 <i  class="fas fa-marker" ></i>
                                             </a>
-                                            <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                            <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn color-btn-gray">
                                                 <i  class="fas fa-send"></i>
                                             </a>
                                             <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">

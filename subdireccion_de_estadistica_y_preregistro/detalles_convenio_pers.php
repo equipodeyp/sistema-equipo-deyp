@@ -42,6 +42,7 @@ $id_persona = $fila_consulta_uno ['id'];
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -116,7 +117,7 @@ $id_persona = $fila_consulta_uno ['id'];
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">EVALUACION DEL SEGUIMIENTO</h3>
                 </div>
                 <div class="col-md-6 mb-3 validar">
@@ -182,7 +183,7 @@ $id_persona = $fila_consulta_uno ['id'];
                 <div class="row">
                   <hr class="mb-4">
                 </div>
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>

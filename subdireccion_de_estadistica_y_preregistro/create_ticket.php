@@ -62,6 +62,7 @@ $num_incidencia = 0 . $suma;
   <script src="../js/solicitud.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="../css/registrosolicitud1.css">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -152,7 +153,7 @@ $num_incidencia = 0 . $suma;
               <form class="container well form-horizontal" action="save_ticket.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS GENERALES</h3>
                   </div>
 
@@ -171,7 +172,7 @@ $num_incidencia = 0 . $suma;
                     <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_area['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>">
                   </div>
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
                   </div>
 
@@ -208,7 +209,7 @@ $num_incidencia = 0 . $suma;
                   <div>
                       <br>
                       <br>
-                  		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="" name="save_ticket" type="submit">Registrar incidencia</button>
+                  		<button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="" name="save_ticket" type="submit">Registrar incidencia</button>
                   </div>
                 </div>
               </form>

@@ -51,6 +51,7 @@ $fol_exp = $_GET['folio'];
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
@@ -143,7 +144,7 @@ $fol_exp = $_GET['folio'];
               <form class="container well form-horizontal" action="save_ticket.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">TABLA DE INCIDENCIAS GENERADAS</h3>
                   </div>
 
@@ -184,7 +185,7 @@ $fol_exp = $_GET['folio'];
                                         <td><?php echo $row['estatus']?></td>
                                         <td style="text-align:center">
 
-                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn btn-success">
+                                            <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn color-btn-success">
                                                 <i  class="fas fa-marker" ></i>Detalle
                                             </a>
                                         </td>
