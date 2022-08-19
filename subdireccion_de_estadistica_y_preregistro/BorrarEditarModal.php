@@ -225,8 +225,35 @@
             <h3 style="text-align:center">COMENTARIOS</h3>
           </div>
         </div>
+        <div  class="">
+            <?php
+            $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida' AND comentario_mascara = '2'";
+            $var_resultado = $mysqli->query($tabla);
+            while ($var_fila=$var_resultado->fetch_array()){              
+              echo "<ul>
+                    <li>
 
-        
+                    <div>
+                    <span>
+                    usuario:".$var_fila['usuario']."
+                    </span>
+                    </div>
+                    <div>
+                    <span>
+                      ".$var_fila['comentario']."
+                    </span>
+                    </div>
+                    <div>
+                    <span>
+                    ".date("d/m/Y", strtotime($var_fila['fecha']))."
+                    </span>
+                    </div>
+                    </li>
+              </ul>";
+            }
+            ?>
+        </div>
+
       </div>
 			</div>
             <div class="modal-footer">
