@@ -51,7 +51,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");  
+$hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
@@ -156,6 +156,7 @@ $hoy = date("d-m-Y H:i:s a");
     #biframe { position: absolute; width: 980px; height: 600px;}
     #iframe { width: 980px; height: 600px; }
   </style>
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body onload="disableContextMenu();" oncontextmenu="return false">
 <div class="contenedor">
@@ -241,7 +242,7 @@ $hoy = date("d-m-Y H:i:s a");
 
                                 <?php
                                 $path  = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado/";
-                                
+
                                 // Obtienes tu variable mediante GET
                                 // Arreglo con todos los nombres de los archivos
                                 $files = array_diff(scandir($path), array('.', '..'));
