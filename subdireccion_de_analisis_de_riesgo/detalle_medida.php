@@ -83,6 +83,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 
 </head>
 <body >
@@ -143,7 +144,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
           <a class="actived">DETALLE DE LA MEDIDA</a>
         </div>
         <div class="row">
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
           </div>
           <?php
@@ -193,7 +194,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
             </select>
           </div>
 
-          <div class="alert alert-info">
+          <div class="alert div-title">
             <h3 style="text-align:center">MEDIDA OTORGADA</h3>
           </div>
 
@@ -304,7 +305,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
             <div class="row">
               <hr class="mb-4">
             </div>
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
 
@@ -359,7 +360,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
             <div class="row">
               <hr class="mb-4">
             </div>
-            <div class="alert alert-info">
+            <div class="alert div-title">
               <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
             </div>
 
@@ -393,7 +394,7 @@ $fila_val_med = $res_val_med->fetch_assoc();
                   <hr class="mb-4">
                 </div>
 
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">COMENTARIOS</h3>
                 </div>
 

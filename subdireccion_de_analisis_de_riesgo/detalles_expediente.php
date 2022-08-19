@@ -47,7 +47,7 @@ $row=$result->fetch_assoc();
       <script src="../js/solicitud.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/cli.css">
-
+<link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -103,7 +103,7 @@ $row=$result->fetch_assoc();
 				</div>
 							<div class="well form-horizontal" >
 								<div class="row">
-									<div class="alert alert-info">
+									<div class="alert div-title">
 										<h3 style="text-align:center">DETALLES DEL EXPEDIENTE</h3>
 									</div>
 									<!-- folio del expediente -->
@@ -189,7 +189,7 @@ $row=$result->fetch_assoc();
 										</div>
 									<div>
 									<div>
-										<button type="submit" id="fecha_acuerdo" class='btn btn-success'>ACTUALIZAR FECHA</button>
+										<button type="submit" id="fecha_acuerdo" class='btn color-btn-success'>ACTUALIZAR FECHA</button>
 									</div>
 
 									</form>
@@ -200,8 +200,8 @@ $row=$result->fetch_assoc();
 
 							<div class="well form-horizontal">
 		  					<div id="cabecera">
-									<div class="row alert alert-info">
-										<div class="alert alert-info">
+									<div class="row alert div-title">
+										<div class="alert div-title">
 											<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
 										</div>
 									</div>
@@ -252,7 +252,7 @@ $row=$result->fetch_assoc();
 								                      } elseif ($fila_val['validacion'] == 'false') {
 								                        echo "<i class='fas fa-times'></i>";
 								                      } echo "</td>";
-								        		        echo "<td style='text-align:center'><a href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn btn-success'>Detalle</button> </a> </td>";
+								        		        echo "<td style='text-align:center'><a href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
 								        		        echo "</tr>";
 								            }
 
@@ -264,7 +264,7 @@ $row=$result->fetch_assoc();
 								<div id="footer">
 		  					</div>
 							</div>
-							
+
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
