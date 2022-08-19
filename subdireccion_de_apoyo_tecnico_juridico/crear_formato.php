@@ -83,6 +83,7 @@ $fol_exp = $_GET['folio'];
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -154,7 +155,7 @@ $fol_exp = $_GET['folio'];
               <form class="container well form-horizontal" action="save_ticket.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">FORMATOS DISPONIBLES POR EXPEDIENTE</h3>
                   </div>
 
@@ -182,13 +183,13 @@ $fol_exp = $_GET['folio'];
                     </table>
 
                     <?php
-                          echo "<a style='text-align:center' href='../subdireccion_de_apoyo_tecnico_juridico/indexpdf.php?folio=$fol_exp'><button type='button' class='btn btn-light'> GENERAR ARCHIVO</button> </a>	";
+                          echo "<a style='text-align:center' href='../subdireccion_de_apoyo_tecnico_juridico/indexpdf.php?folio=$fol_exp'><button type='button' class='btn color-btn-success'> GENERAR ARCHIVO</button> </a>	";
                             ?>
 
+                            <br><br>
                 </div>
 
-
-                <div class="alert alert-info">
+                <div class="alert div-title">
                   <h3 style="text-align:center">FORMATOS DISPONIBLES POR PERSONA</h3>
                 </div>
 
@@ -215,7 +216,7 @@ $fol_exp = $_GET['folio'];
                   </table>
 
                   <?php
-                        echo "<a style='text-align:center' href='../subdireccion_de_apoyo_tecnico_juridico/indexpdfval.php?folio=$fol_exp'><button type='button' class='btn btn-light'> GENERAR ARCHIVO</button> </a>	";
+                        echo "<a style='text-align:center' href='../subdireccion_de_apoyo_tecnico_juridico/indexpdfval.php?folio=$fol_exp'><button type='button' class='btn color-btn-success'> GENERAR ARCHIVO</button> </a>	";
                           ?>
               </div>
 

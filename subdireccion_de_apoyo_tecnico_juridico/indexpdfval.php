@@ -85,6 +85,7 @@ $anio = $row['año'];
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -484,7 +485,7 @@ $anio = $row['año'];
   <br />
 </p>
 
-                   <button type="submit" class="btn btn-primary mb-4">Generar PDF</button><br><br><br>
+                   <button type="submit" class="btn color-btn-success mb-4">Generar PDF</button><br><br><br>
                    <span class="d-block pb-2" style="visibility:hidden">Firma digital aqui</span>
                    <div class="signature mb-2" style="visibility:hidden width: 100%; height: 200px;">
                        <canvas id="signature-canvas"

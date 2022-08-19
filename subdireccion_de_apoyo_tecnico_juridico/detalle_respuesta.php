@@ -59,13 +59,13 @@ if  (isset($_GET['id'])) {
     $usuario_atencion = $row['usuario_atencion'];
     $respuesta = $row['respuesta'];
     $estatus = $row['estatus'];
-    
+
 }
 }
 
 // $mail = new PHPMailer(true);
 
-if (isset($_POST['update'])) {    
+if (isset($_POST['update'])) {
       $folio_incidencia = $_POST["folio_reporte"];
       $folio_exp = $_POST["folio_expediente"];
       $nom_usuario = $_POST["usuario"];
@@ -82,12 +82,12 @@ if (isset($_POST['update'])) {
       $resultado_consul = $mysqli->query($consul);
       $fila_resul =  $resultado_consul->fetch_assoc();
       $folio_resul = $fila_resul['folio_expediente'];
-      
+
       $query = "UPDATE tickets set fecha_atencion = '$fecha_atencion', estatus = '$estatus', usuario_atencion = '$atendido_por', respuesta = '$respuesta' WHERE id=$id";
       mysqli_query($mysqli, $query);
       // echo $verifica;
 
-      // $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br></br>" . 
+      // $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br></br>" .
       //         "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario su incidencia a sido atendida con éxito, solicitamos de tu ayuda para corroborar la información en el SIPPSIPED.</h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" .
       //         "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_exp</h4>" . "<h4 style='color: #000000;'>USUARIO QUE REPORTA LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nom_usuario</h4>" . "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>" .
       //         "<h4 style='color: #000000;'>ESTATUS DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$estatus</h4>" . "<h4 style='color: #000000;'>FECHA Y HORA DE ATENCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$fecha_atencion</h4>" . "<h4 style='color: #000000;'>INCIDENCIA ATENDIDA POR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$atendido_por</h4>" . "<h4 style='color: #000000;'>RESPUESTA A LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$respuesta</h4>";
@@ -130,7 +130,7 @@ if (isset($_POST['update'])) {
       //           window.location.href='tickets.php?folio=$folio_resul';
       //           window.alert('!!!!!Registro exitoso¡¡¡¡¡')
       //           </script>");
-      // } 
+      // }
     // catch (Exception $e) {
     //     echo "¡ Hubo un error en el envio del mensaje !: {$mail->ErrorInfo}";
     // }
@@ -145,13 +145,13 @@ if (isset($_POST['update'])) {
     //        window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
     //        window.alert('!!!!!Registro exitoso¡¡¡¡¡')
     //      </script>");
-    // } else {  }   
+    // } else {  }
 
       // echo ("<script type='text/javaScript'>
       //       window.location.href='tickets.php?folio=$folio_resul';
       //       window.alert('!!!!!Registro exitoso¡¡¡¡¡')
       //       </script>");
-            } else {  }    
+            } else {  }
 
 ?>
 <!DOCTYPE html>
@@ -199,6 +199,7 @@ if (isset($_POST['update'])) {
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -267,7 +268,7 @@ if (isset($_POST['update'])) {
               <form class="container well form-horizontal" action="detalle_respuesta.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS GENERALES</h3>
                   </div>
 
@@ -290,7 +291,7 @@ if (isset($_POST['update'])) {
                     <br>
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
                   </div>
 
@@ -312,12 +313,12 @@ if (isset($_POST['update'])) {
                         <textarea disabled id="" name="descripcion" rows="8" cols="80" maxlength="400"><?php echo $descripcion;?></textarea>
   				</div>
 
-                  
+
                   <div class="row">
                     <br>
                     <hr class="mb-4">
                   </div>
-                  <div class="alert alert-info">
+                  <div class="alert div-title">
                     <h3 style="text-align:center">ATENCIÓN DE LA INCIDENCIA</h3>
                   </div>
 
