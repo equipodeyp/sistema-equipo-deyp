@@ -226,7 +226,7 @@ $hoy = date("d-m-Y H:i:s a");
 
                             <div class="row">
 
-                            <div class="alert alert-info">
+                            <div class="alert div-title">
                                 <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
                             </div>
 
