@@ -261,7 +261,7 @@ a:focus {
         </div>
         <div class="dropdown">
                 <!-- <button id="btnmedidaspendientes" class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">pendientes por validar<span class="caret"></span></button> -->
-                <a id="" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn btn-danger">pendientes por validar</button> </a>
+                <a id="" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn color-btn-success">pendientes por validar</button> </a>
         </div>
 
         <br>
