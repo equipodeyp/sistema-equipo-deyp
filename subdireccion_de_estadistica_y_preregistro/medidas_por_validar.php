@@ -6,6 +6,9 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -160,6 +163,13 @@ $row=$result->fetch_assoc();
       </div>
     </div>
   </div>
+  <a href="menu.php" class="btn-flotante">REGRESAR</a>
+  <!-- <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="contenedor">
+      </div>
+    </div>
+  </div> -->
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
