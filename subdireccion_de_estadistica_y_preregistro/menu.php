@@ -98,7 +98,7 @@ $row=$result->fetch_assoc();
     /* opacity: 100%; */
   }
 
-  <style>
+
     .pagination {
   display: inline-block;
   padding-left: 0;
@@ -201,7 +201,7 @@ a:focus {
   color: #FFFFFF;
   text-decoration: underline;
 }
-  </style>
+
   </style>
 </head>
 <body>
