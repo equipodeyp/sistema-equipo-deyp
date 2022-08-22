@@ -7,3 +7,8 @@
 /docs
 /fotos
 /phpmailer2
+/administrador/enviar_correo
+/administrador/save_ticket
+/subdireccion_de_apoyo_tecnico_juridico/
+/subdireccion_de_estadistica_y_preregistro/save_ticket
+/subdireccion_de_analisis_de_riesgo/save_ticket
