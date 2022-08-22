@@ -112,7 +112,7 @@ $row=$result->fetch_assoc();
               <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                   <thead>
-                  <h3 style="text-align:center">medidas faltantes por validar</h3>
+                  <h3 style="text-align:center">MEDIDAS RESTANTES POR VALIDAR</h3>
                   <tr>
                       <th style="text-align:center">NO.</th>
                       <th style="text-align:center">FOLIO EXPEDIENTE</th>
