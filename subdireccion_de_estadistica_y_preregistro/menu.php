@@ -9,7 +9,7 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -261,7 +261,14 @@ a:focus {
         </div>
         <div class="dropdown">
                 <!-- <button id="btnmedidaspendientes" class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">pendientes por validar<span class="caret"></span></button> -->
-                <a id="" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn color-btn-success">pendientes por validar</button> </a>
+                <?php
+                $mpv = "SELECT COUNT(*) as t FROM validar_medida WHERE validar_datos = 'false'";
+                $rmpv = $mysqli->query($mpv);
+                $fmpv = $rmpv->fetch_assoc();
+                if ($fmpv['t'] > 0) {
+                  echo '<a id="" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn color-btn-success">pendientes por validar</button> </a>';
+                }
+                ?>
         </div>
 
         <br>
