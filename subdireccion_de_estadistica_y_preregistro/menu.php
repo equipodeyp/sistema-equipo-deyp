@@ -431,6 +431,8 @@ a:focus {
        doToast("FALTAN MEDIDAS POR VALIDAR");
       }, 1200);
       // fin de mostrar alerta
+    }else {
+      document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
     }
   }else {
     document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
