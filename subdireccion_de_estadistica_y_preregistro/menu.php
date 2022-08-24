@@ -260,14 +260,15 @@ a:focus {
           </h5>
         </div>
         <div class="dropdown">
+          <a id="btnmedidaspendientes" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="" type="button" class="btn color-btn-success">pendientes por validar</button> </a>
                 <!-- <button id="btnmedidaspendientes" class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">pendientes por validar<span class="caret"></span></button> -->
                 <?php
-                $mpv = "SELECT COUNT(*) as t FROM validar_medida WHERE validar_datos = 'false'";
-                $rmpv = $mysqli->query($mpv);
-                $fmpv = $rmpv->fetch_assoc();
-                if ($fmpv['t'] > 0) {
-                  echo '<a id="" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn color-btn-success">pendientes por validar</button> </a>';
-                }
+                // $mpv = "SELECT COUNT(*) as t FROM validar_medida WHERE validar_datos = 'false'";
+                // $rmpv = $mysqli->query($mpv);
+                // $fmpv = $rmpv->fetch_assoc();
+                // if ($fmpv['t'] > 0) {
+                //   echo '<a id="btnmedidaspendientes" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="btnmedidaspendientes" type="button" class="btn color-btn-success">pendientes por validar</button> </a>';
+                // }
                 ?>
         </div>
 
