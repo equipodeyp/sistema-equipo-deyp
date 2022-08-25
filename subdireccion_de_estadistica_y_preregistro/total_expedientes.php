@@ -307,7 +307,7 @@ a:focus {
                                 echo '<th style="text-align:center">'; echo 'FECHA INICIO'; echo '</th>';
                                 echo '<th style="text-align:center">'; echo 'VIGENCIA'; echo '</th>';
                                 echo '<th style="text-align:center">'; echo 'FECHA TERMINO'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'ID CONVENIO'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'NUMERO DE CONVENIOS FIRMADOS'; echo '</th>';
                               }
                               ?>
                               <th style="text-align:center">CONCLUSIÓN / CANCELACIÓN</th>
