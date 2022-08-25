@@ -342,7 +342,9 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                     <h3 style="text-align:center">ANÁLISIS</h3>
                   </div>
                   <?php
-                  $cant_med="SELECT COUNT(*) AS cant FROM determinacionincorporacion WHERE folioexpediente = '$fol_exp'";
+                  $cant_med="SELECT COUNT(*) AS cant FROM determinacionincorporacion
+                  INNER JOIN datospersonales ON determinacionincorporacion.id_persona = datospersonales.id
+                  WHERE determinacionincorporacion.folioexpediente = '$fol_exp' AND datospersonales.relacional = 'NO'";
                   $res_cant_med=$mysqli->query($cant_med);
                   $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
                   $cant_med1="SELECT COUNT(*) AS cant FROM determinacionincorporacion WHERE folioexpediente = '$fol_exp' AND convenio = 'FORMALIZADO'";
