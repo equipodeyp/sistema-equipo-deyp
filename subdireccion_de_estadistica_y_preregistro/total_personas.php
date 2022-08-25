@@ -356,6 +356,7 @@ a:focus {
                                 </thead>
                                 <tbody>
                                   <?php
+                                  $contador = 0;
                                   $suj = "SELECT * FROM datospersonales";
                                   $rsuj = $mysqli->query($suj);
                                   while ($fsuj = $rsuj->fetch_assoc()) {
@@ -410,8 +411,9 @@ a:focus {
                                     $fv = $rv->fetch_assoc();
                                     // echo $fv['t'];
                                     //
+                                    $contador = $contador + 1;
                                     echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $fsuj['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['folioexpediente']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fproc['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
@@ -476,7 +478,7 @@ a:focus {
                                     if ($fdeti['fecha_inicio'] != '0000-00-00') {
                                       echo date("d/m/Y", strtotime($fdeti['fecha_inicio']));
                                     } echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fdeti['vigencia']; echo "</td>";                                    
+                                    echo "<td style='text-align:center'>"; echo $fdeti['vigencia']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['fecha_termino']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['id_convenio']; echo "</td>";
                                     if ($fv) {
