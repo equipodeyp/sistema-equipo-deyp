@@ -61,6 +61,12 @@ WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha
 $res_total_agosto = $mysqli->query($total_agosto);
 $fila_total_agosto = $res_total_agosto->fetch_assoc();
 //
+$total_septiembre = "SELECT COUNT(DISTINCT folioexpediente) AS total_septiembre FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-09-01' AND '2022-09-30'";
+$res_total_septiembre = $mysqli->query($total_septiembre);
+$fila_total_septiembre = $res_total_septiembre->fetch_assoc();
+//
 $total2022si = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion = 'si procede'";
@@ -115,6 +121,12 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-08-01' AND '2022-08-31'";
 $restotalagosto = $mysqli->query($totalagosto);
 $fila_totalagosto = $restotalagosto->fetch_assoc();
+//
+$totalseptiembre = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-09-01' AND '2022-09-30'";
+$restotalseptiembre = $mysqli->query($totalseptiembre);
+$fila_totalseptiembre = $restotalseptiembre->fetch_assoc();
 //
 $total2022no = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -177,6 +189,12 @@ WHERE expediente.fecha_nueva BETWEEN '2022-08-01' AND '2022-08-31'";
 $resagostototal = $mysqli->query($agostototal);
 $fila_agostototal = $resagostototal->fetch_assoc();
 //
+$septiembretotal = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE expediente.fecha_nueva BETWEEN '2022-09-01' AND '2022-09-30'";
+$resseptiembretotal = $mysqli->query($septiembretotal);
+$fila_septiembretotal = $resseptiembretotal->fetch_assoc();
+//
 $total = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp";
 $restotal = $mysqli->query($total);
@@ -193,6 +211,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_juliototal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_agostototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_septiembretotal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total['t'];  echo "</td>";
   echo "</tr>";
 
@@ -207,6 +226,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_total_junio['total_junio']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_julio['total_julio']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_agosto['total_agosto']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total_septiembre['total_septiembre']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022si['t']; echo "</td>";
   echo "</tr>";
 
@@ -221,6 +241,7 @@ $fila_total = $restotal->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_totaljunio['juniototal']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totaljulio['juliototal']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalagosto['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_totalseptiembre['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022no['t']; echo "</td>";
   echo "</tr>";
 

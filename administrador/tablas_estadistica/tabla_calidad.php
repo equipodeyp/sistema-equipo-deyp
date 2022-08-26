@@ -53,6 +53,12 @@ WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '20
 $rtotal_wagosto = $mysqli->query($total_wagosto);
 $ftotal_wagosto = $rtotal_wagosto->fetch_assoc();
 //
+$total_wseptiembre = "SELECT COUNT(*) AS total FROM datospersonales
+INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '2022-09-01' AND '2022-09-30' ORDER BY `calidadpersona`";
+$rtotal_wseptiembre = $mysqli->query($total_wseptiembre);
+$ftotal_wseptiembre = $rtotal_wseptiembre->fetch_assoc();
+//
 $wtotalcompleto = "SELECT COUNT(*) AS total FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
 WHERE datospersonales.relacional = 'NO'";
@@ -70,6 +76,7 @@ echo "<td style='text-align:center'>"; echo $ftotal_wmayo['total']; echo "</td>"
 echo "<td style='text-align:center'>"; echo $ftotal_wjunio['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_wjulio['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_wagosto['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wseptiembre['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fwtotalcompleto['total']; "</td>";
 echo "</tr>";
 $calidadpersona = "SELECT * FROM calidadpersona";
@@ -128,6 +135,12 @@ while ($fila = $res->fetch_assoc()) {
     $rwagosto = $mysqli->query($wagosto);
     $fwagosto = $rwagosto->fetch_assoc();
     //
+    $wseptiembre = "SELECT COUNT(*) AS calidad FROM datospersonales
+    INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2022-09-01' AND '2022-09-30' ORDER BY `calidadpersona`";
+    $rwseptiembre = $mysqli->query($wseptiembre);
+    $fwseptiembre = $rwseptiembre->fetch_assoc();
+    //
     $wtotal = "SELECT COUNT(*) AS total FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
     WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r'";
@@ -148,6 +161,7 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $fwjunio['calidad']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fwjulio['calidad']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fwagosto['calidad']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fwseptiembre['calidad']; echo "</td>";
         echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fwtotal['total']; "</td>";
         echo "</tr>";
       }
