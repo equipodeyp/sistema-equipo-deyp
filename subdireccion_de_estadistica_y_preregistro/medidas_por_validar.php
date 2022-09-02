@@ -107,6 +107,10 @@ $row=$result->fetch_assoc();
         </div>
         <br>
         <div class="container">
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+            <a class="actived">EXPEDIENTES</a>
+          </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="table-responsive">
