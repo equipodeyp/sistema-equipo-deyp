@@ -474,7 +474,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="col-md-6 mb-3 validar" >
                     <label id="rel_suj_exp" for="OTHER_ART35">ESPECIFIQUE SI HAY RELACION</label>
                     <!-- <input id="relacionper" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowfol2['relacional']; ?>" type="text"> -->
-                    <select id="relpersuj" class="form-select form-select-lg" name="relacionpersuj">
+                    <select id="relpersuj" class="form-select form-select-lg" name="relpersuj">
                       <option disabled selected value>SELECCIONE UNA OPCION</option>
                       <option value="SI">SI</option>
                       <option value="NO">NO</option>
@@ -1384,7 +1384,7 @@ ReadOnlyConClu();
     function cambiarsta(e) {
       versta = e.target.value;
       console.log(versta);
-      if (versta == 'PERSONA PROPUESTA') {
+      if (versta == 'DESINCORPORADO' || versta == 'NO INCORPORADO') {
         document.getElementById("relpersuj").required = true;
         // relpersuj.attributes.required = "required"; //the attribute's canonical name
       }

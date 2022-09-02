@@ -14,6 +14,7 @@ if ($verifica_update_person == 1) {
   $id_persona = $_GET['folio'];  //variable del folio al que se relaciona
   // echo $id_persona;
   $estatus= $_POST['ESTATUS_PERSONA'];
+  // echo $estatus;
   // datos de la determinacion de la INCORPORACION
   $multidisciplinario=$_POST['ANALISIS_MULTIDISCIPLINARIO'];
   // echo $multidisciplinario;
@@ -108,7 +109,7 @@ if ($verifica_update_person == 1) {
   $check_det_incor = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona'";
   $res_check_det_incor = $mysqli->query($check_det_incor);
   $filachk = $res_check_det_incor->fetch_assoc();
-  echo $filachk['multidisciplinario'];
+  // echo $filachk['multidisciplinario'];
   if ($filachk['multidisciplinario'] === 'EN ELABORACION' || $filachk['multidisciplinario'] === '') {
       $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario' WHERE id_persona = '$id_persona'";
       $res_det_inc = $mysqli->query($det_inc);
@@ -145,6 +146,39 @@ if ($verifica_update_person == 1) {
                   VALUES ('$comment', '$folioexpediente_persona', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
     $res_comment = $mysqli->query($comment);
   }
+  $camrel = $_POST['relpersuj'];
+  // echo $estatus;
+  // echo $id_persona;
+
+  if ($estatus === 'DESINCORPORADO' || $estatus === 'NO INCORPORADO') {
+    if ($camrel === 'SI') {
+      $infoper = "SELECT * FROM datospersonales WHERE id = '$id_persona'";
+      $rinfoper = $mysqli->query($infoper);
+      $finfoper = $rinfoper->fetch_assoc();
+      $nameper = $finfoper['nombrepersona'];
+      $patper = $finfoper['paternopersona'];
+      $matper = $finfoper['maternopersona'];
+      $checkrel = "SELECT COUNT(*) as t FROM datospersonales WHERE nombrepersona = '$nameper' AND paternopersona = '$patper'
+      AND maternopersona = '$matper' AND relacional = 'SI' AND (estatus = 'PERSONA PROPUESTA' OR estatus = 'SUJETO PROTEGIDO')";
+      $rcheckrel = $mysqli->query($checkrel);
+      $fcheckrel = $rcheckrel->fetch_assoc();
+      // echo $fcheckrel['t'];
+      if ($fcheckrel['t'] > 0) {
+        $checkrel2 = "SELECT * FROM datospersonales WHERE nombrepersona = '$nameper' AND paternopersona = '$patper'
+        AND maternopersona = '$matper' AND relacional = 'SI' AND (estatus = 'PERSONA PROPUESTA' OR estatus = 'SUJETO PROTEGIDO')
+        ORDER BY id ASC LIMIT 1";
+        $rcheckrel2 = $mysqli->query($checkrel2);
+        while ($fcheckrel2 = $rcheckrel2->fetch_assoc()) {
+          echo $actidrel = $fcheckrel2['id'];
+          $actrel = "UPDATE datospersonales set relacional = 'NO' WHERE id = '$actidrel'";
+          $ractrel = $mysqli->query($actrel);
+          $actrel2 = "UPDATE datospersonales set relacional = 'SI' WHERE id = '$id_persona'";
+          $ractrel2 = $mysqli->query($actrel2);
+        }
+      }
+    }
+  }
+  echo $camrel;
   // validacion de update correcto
   if($res_det_inc){
     echo ("<script type='text/javaScript'>
