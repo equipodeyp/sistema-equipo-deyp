@@ -66,12 +66,7 @@
   $rmtotal2022 = $mysqli->query($mtotal2022);
   $fmtotal2022 = $rmtotal2022->fetch_assoc();
 //
-echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fmasistotal['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fmresgtotal['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fmtotal2022['t']; echo "</td>";
-echo "</tr>";
+
 $p = "SELECT ejecucion, COUNT(*) as t FROM medidas
 WHERE clasificacion = 'resguardo' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
 GROUP BY ejecucion
@@ -93,6 +88,12 @@ while ($fp = $rp->fetch_assoc()) {
     // code...
   }
 }
+echo "<tr bgcolor = 'yellow'>";
+echo "<td style='text-align:center'>"; echo 'TOTAL'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fmasistotal['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fmresgtotal['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fmtotal2022['t']; echo "</td>";
+echo "</tr>";
 ?>
 <!-- SELECT ejecucion, COUNT(*) as t FROM medidas
 WHERE clasificacion = 'asistencia' estatus='ejecutada' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'

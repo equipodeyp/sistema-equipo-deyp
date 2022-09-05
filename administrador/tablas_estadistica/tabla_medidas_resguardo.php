@@ -16,14 +16,8 @@ WHERE clasificacion = 'resguardo' AND estatus = 'cancelada' and date_ejecucion B
 ORDER BY `medidas`.`folioexpediente` ASC";
 $rtotalcancel = $mysqli->query($totalcancel);
 $ftotalcancel = $rtotalcancel->fetch_assoc();
-// 
-echo "<tr bgcolor= 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE MEDIDAS DE RESGUARDO'; "</td>";
-echo "<td style='text-align:center'>"; echo $ftotalex['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotaleje['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotalcancel['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $tmeda = $ftotalex['t'] + $ftotaleje['t'] + $ftotalcancel['t']; echo "</td>";
-echo "</tr>";
+//
+
 //
 $mas = "SELECT * FROM medidaresguardo";
 $rmas = $mysqli->query($mas);
@@ -70,5 +64,11 @@ while ($fmas = $rmas->fetch_assoc()) {
     }
   }
 }
-
+echo "<tr bgcolor= 'yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE MEDIDAS DE RESGUARDO'; "</td>";
+echo "<td style='text-align:center'>"; echo $ftotalex['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotaleje['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotalcancel['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $tmeda = $ftotalex['t'] + $ftotaleje['t'] + $ftotalcancel['t']; echo "</td>";
+echo "</tr>";
 ?>
