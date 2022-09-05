@@ -17,10 +17,6 @@ WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PR
 $restcalidadhombre = $mysqli->query($tcalidadhombre);
 $filatcalidadhombre = $restcalidadhombre->fetch_assoc();
 //
-echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo "TOTAL"; "</td>";
-echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; "</td>";
-echo "</tr>";
 
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "MENOR"; "</td>";
@@ -32,4 +28,8 @@ echo "<td style='text-align:left'>"; echo "MAYOR"; "</td>";
 echo "<td style='text-align:center' bgcolor='yellow'>"; echo $filatcalidadhombre['tcalidadhombre']; "</td>";
 echo "</tr>";
 
+echo "<tr bgcolor='yellow'>";
+echo "<td style='text-align:center'>"; echo "TOTAL"; "</td>";
+echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; "</td>";
+echo "</tr>";
 ?>

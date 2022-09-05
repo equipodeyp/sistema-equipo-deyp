@@ -17,13 +17,8 @@ INNER JOIN expediente ON expediente.fol_exp = datospersonales.folioexpediente
 WHERE datospersonales.relacional = 'NO'";
 $res_stptotalexp = $mysqli->query($st_ptotalexp);
 $fila_st_ptotalexp = $res_stptotalexp->fetch_assoc();
-// 
-echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:left'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fila_st_ptotal2021['total2021']; "</td>";
-echo "<td style='text-align:center'>"; echo $fila_st_ptotal2022['total2022']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fila_st_ptotalexp['totalexp']; "</td>";
-echo "</tr>";
+//
+
 //
 $estatus_persona = "SELECT * from estatuspersona";
 $res_est = $mysqli->query($estatus_persona);
@@ -46,13 +41,7 @@ while ($fila_est = $res_est ->fetch_assoc()) {
   WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = '$rtp'";
   $res_stptotal = $mysqli->query($st_ptotal);
   $fila_st_ptotal = $res_stptotal->fetch_assoc();
-  //
 
-  //
-
-  //
-
-  //
   if ($res_stp) {
     while ($fila_stp = mysqli_fetch_assoc($res_stp)) {
       echo "<tr>";
@@ -64,4 +53,11 @@ while ($fila_est = $res_est ->fetch_assoc()) {
     }
   }
 }
+
+echo "<tr bgcolor='yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fila_st_ptotal2021['total2021']; "</td>";
+echo "<td style='text-align:center'>"; echo $fila_st_ptotal2022['total2022']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fila_st_ptotalexp['totalexp']; "</td>";
+echo "</tr>";
 ?>
