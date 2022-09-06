@@ -6,6 +6,9 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -104,12 +107,16 @@ $row=$result->fetch_assoc();
         </div>
         <br>
         <div class="container">
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+            <a class="actived">EXPEDIENTES</a>
+          </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                   <thead>
-                  <h3 style="text-align:center">medidas faltantes por validar</h3>
+                  <h3 style="text-align:center">MEDIDAS RESTANTES POR VALIDAR</h3>
                   <tr>
                       <th style="text-align:center">NO.</th>
                       <th style="text-align:center">FOLIO EXPEDIENTE</th>
@@ -141,7 +148,7 @@ $row=$result->fetch_assoc();
                                           <td style="text-align:center">
                               							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
                               							<?php
-                              							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Editar</a>";
+                              							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
 
                               							 ?>
                               							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
@@ -160,6 +167,13 @@ $row=$result->fetch_assoc();
       </div>
     </div>
   </div>
+  <a href="menu.php" class="btn-flotante">REGRESAR</a>
+  <!-- <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="contenedor">
+      </div>
+    </div>
+  </div> -->
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>

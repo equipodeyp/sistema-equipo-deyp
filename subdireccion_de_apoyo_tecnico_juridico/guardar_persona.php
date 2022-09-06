@@ -327,11 +327,11 @@ if ($verifica == 1) {
   $res_validacion_exp = $mysqli->query($datos_validacion_exp);
 
 
-  
+
 
   $name_carpeta = $fol_exp;
   $resultado = str_replace("/", "-", $name_carpeta);
-  
+
 
 
   $estructura_uno = "../subdireccion_de_analisis_de_riesgo/repo/$resultado/$identificador";
@@ -353,7 +353,7 @@ if ($verifica == 1) {
       mkdir($estructura_tres, 0777, true);
   }
 
-  
+
 
   // validacion de registro GUARDADO
   if($res_val_juridica){

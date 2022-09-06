@@ -12,7 +12,7 @@
     font-size: 10px; /* Cambiar el tamaño de la tipografia */
     text-transform: uppercase; /* Texto en mayusculas */
     font-weight: bold; /* Fuente en negrita o bold */
-    color: blue; /* Color del texto */
+    color: black ; /* Color del texto */
     border-radius: 5px; /* Borde del boton */
     letter-spacing: 2px; /* Espacio entre letras */
     /* background-color: green; /* Color de fondo */ */
@@ -29,8 +29,8 @@
 font-size: 250%;
 margin-bottom: 3px;
 border-radius: 2px;
-border: 1px orange;
-background: orange;
+border: 1px #A19E9F;
+background: #A19E9F;
 text-align: center;
 line-height: 1;
 transition: all 0.5s;

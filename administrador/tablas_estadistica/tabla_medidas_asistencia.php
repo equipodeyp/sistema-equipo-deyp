@@ -16,14 +16,8 @@ WHERE clasificacion = 'asistencia' AND estatus = 'cancelada' and date_ejecucion 
 ORDER BY `medidas`.`folioexpediente` ASC";
 $rtotalcancel = $mysqli->query($totalcancel);
 $ftotalcancel = $rtotalcancel->fetch_assoc();
-// 
-echo "<tr bgcolor= 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE MEDIDAS DE ASISTENCIA'; "</td>";
-echo "<td style='text-align:center'>"; echo $ftotalex['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotaleje['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotalcancel['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $tmeda = $ftotalex['t'] + $ftotaleje['t'] + $ftotalcancel['t']; echo "</td>";
-echo "</tr>";
+//
+
 //
 $t1 = "SELECT COUNT(*) as t FROM `medidas`
 WHERE (clasificacion = 'asistencia' AND estatus = 'en ejecucion' and medida = 'TRATAMIENTO PSICOLOGICO')
@@ -101,5 +95,11 @@ while ($fmas = $rmas->fetch_assoc()) {
     }
   }
 }
-
+echo "<tr bgcolor= 'yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE MEDIDAS DE ASISTENCIA'; "</td>";
+echo "<td style='text-align:center'>"; echo $ftotalex['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotaleje['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotalcancel['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $tmeda = $ftotalex['t'] + $ftotaleje['t'] + $ftotalcancel['t']; echo "</td>";
+echo "</tr>";
 ?>

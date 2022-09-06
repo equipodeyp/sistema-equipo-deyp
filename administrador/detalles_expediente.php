@@ -229,13 +229,69 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 							</div>
 
 						<!-- fin del folio del expediente  e inicio para agrewgar persona-->
+            <div class="well form-horizontal">
+              <div id="cabecera">
+                <div class="row">
+                <div class="alert div-title">
+                  <h3 style="text-align:center">EXPEDIENTE RELACIONADO</h3>
+                </div>
+                <?php
+                $er = "SELECT * FROM datospersonales WHERE folioexpediente = '$fol_exp'";
+                $rer = $mysqli->query($er);
+                while ($fer = $rer->fetch_assoc()) {
+                  // echo $fer['relacional'];
+                  $id_persona = $fer['id'];
+                  if ($fer['relacional'] === 'SI') {
+                    // echo "<h3 style='text-align:center'><FONT COLOR='black' size=6 align='center'>EXPEDIENTE RELACIONADO CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                  }else {
+                    // echo "<h3 style='text-align:center'><FONT COLOR='black' size=6 align='center'>EXPEDIENTE NO RELACIONADO CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                  }
 
+                  $ifrelacion = "SELECT COUNT(*) AS t FROM relacion_suj_exp WHERE espedienterelacional = '$fol_exp' or folioexpediente = '$fol_exp'";
+                  $rifrelacion = $mysqli->query($ifrelacion);
+                    while ($fifrelacion = $rifrelacion->fetch_assoc()) {
+                      // echo "prueba";
+                      // echo $fifrelacion['t'];
+                      if ($fifrelacion['t'] > 0) {
+                        echo "<h3 style='text-align:center'><FONT COLOR='black' size=6 align='center'>EXPEDIENTE RELACIONADO CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                        $ifrelacion2 = "SELECT * FROM relacion_suj_exp WHERE espedienterelacional = '$fol_exp' or folioexpediente = '$fol_exp'";
+                        $rifrelacion2 = $mysqli->query($ifrelacion2);
+                        while ($fifrelacion2 = $rifrelacion2->fetch_assoc()) {
+                          // echo $fifrelacion2['folioexpediente'];
+                          if ($fifrelacion2['folioexpediente'] !== $fol_exp) {
+                            // code...
+                            echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fifrelacion2['folioexpediente'].'</b></button> &nbsp &nbsp';
+                          }else {
+                            echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fifrelacion2['espedienterelacional'].'</b></button> &nbsp &nbsp';
+                            // code...
+                          }
+                        }
+                      }else {
+                        echo "<h3 style='text-align:center'><FONT COLOR='black' size=6 align='center'>EXPEDIENTE NO RELACIONADO CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                      }
+                    }
+                    break;
+                }
+                ?>
+                <br>
+                <br>
+                    <?php
+                    // $exprel = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_persona'";
+                    // $rexprel = $mysqli->query($exprel);
+                    // while ($fexprel = $rexprel->fetch_assoc()) {
+                    //     echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fexprel['espedienterelacional'].'</b></button> &nbsp &nbsp';
+                    // }
+                    ?>
+                </div>
+              </div>
+            </div>
+            <!-- fin de infromacion de expediente relacionado -->
 							<div class="well form-horizontal">
 		  					<div id="cabecera">
 									<div class="row alert div-title">
-										
+
 											<h3 style="text-align:center">PERSONAS PROPUESTAS</h3>
-									
+
 									</div>
 		  					</div>
 

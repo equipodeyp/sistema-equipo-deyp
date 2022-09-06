@@ -53,25 +53,24 @@ WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '20
 $rtotal_wagosto = $mysqli->query($total_wagosto);
 $ftotal_wagosto = $rtotal_wagosto->fetch_assoc();
 //
+$total_wseptiembre = "SELECT COUNT(*) AS total FROM datospersonales
+INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '2022-09-01' AND '2022-09-30' ORDER BY `calidadpersona`";
+$rtotal_wseptiembre = $mysqli->query($total_wseptiembre);
+$ftotal_wseptiembre = $rtotal_wseptiembre->fetch_assoc();
+//
+$wtotalcompleto2022 = "SELECT COUNT(*) AS total FROM datospersonales
+INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '2022-01-01' AND '2022-12-31'";
+$rwtotalcompleto2022 = $mysqli->query($wtotalcompleto2022);
+$fwtotalcompleto2022 = $rwtotalcompleto2022->fetch_assoc();
+//
 $wtotalcompleto = "SELECT COUNT(*) AS total FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
 WHERE datospersonales.relacional = 'NO'";
 $rwtotalcompleto = $mysqli->query($wtotalcompleto);
 $fwtotalcompleto = $rwtotalcompleto->fetch_assoc();
 //
-echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:left'>"; echo " TOTAL DE PERSONAS"; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wenero['total2021']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wenero1['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wfebrero['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wmarzo['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wabril['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wmayo['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wjunio['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wjulio['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotal_wagosto['total']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fwtotalcompleto['total']; "</td>";
-echo "</tr>";
 $calidadpersona = "SELECT * FROM calidadpersona";
 $res = $mysqli->query($calidadpersona);
 while ($fila = $res->fetch_assoc()) {
@@ -128,6 +127,18 @@ while ($fila = $res->fetch_assoc()) {
     $rwagosto = $mysqli->query($wagosto);
     $fwagosto = $rwagosto->fetch_assoc();
     //
+    $wseptiembre = "SELECT COUNT(*) AS calidad FROM datospersonales
+    INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2022-09-01' AND '2022-09-30' ORDER BY `calidadpersona`";
+    $rwseptiembre = $mysqli->query($wseptiembre);
+    $fwseptiembre = $rwseptiembre->fetch_assoc();
+    //
+    $wtotal2022 = "SELECT COUNT(*) AS total FROM datospersonales
+    INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2022-01-01' AND '2022-12-31'";
+    $rwtotal2022 = $mysqli->query($wtotal2022);
+    $fwtotal2022 = $rwtotal2022->fetch_assoc();
+    //
     $wtotal = "SELECT COUNT(*) AS total FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
     WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r'";
@@ -148,10 +159,28 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $fwjunio['calidad']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fwjulio['calidad']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fwagosto['calidad']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fwseptiembre['calidad']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fwtotal2022['total']; "</td>";
         echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fwtotal['total']; "</td>";
         echo "</tr>";
       }
     }
 }
+
+echo "<tr bgcolor = 'yellow'>";
+echo "<td style='text-align:right'>"; echo " TOTAL DE PERSONAS"; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wenero['total2021']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wenero1['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wfebrero['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wmarzo['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wabril['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wmayo['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wjunio['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wjulio['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wagosto['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wseptiembre['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fwtotalcompleto2022['total']; "</td>";
+echo "<td style='text-align:center'>"; echo $fwtotalcompleto['total']; "</td>";
+echo "</tr>";
 
  ?>

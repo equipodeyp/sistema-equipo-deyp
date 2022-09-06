@@ -12,14 +12,14 @@
               <div class="">
                 <table id="medidasapoyo" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
-                    <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO OTORGADAS</h3>
+                    <h3 style="text-align:center">ESTATUS ACTUAL DE LAS MEDIDAS DE APOYO OTORGADAS</h3>
                     <tr>
 
-                      <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
-                      <th style="text-align:center">EN EJECUCION</th>
-                      <th style="text-align:center">EJECUTADA</th>
-                      <th style="text-align:center">CANCELADA</th>
-                      <th style="text-align:center">TOTAL</th>
+                      <th style="width: 220px; text-align:center">CLASIFICACION DE LA MEDIDA</th>
+                      <th style="width: 170px; text-align:center">EN EJECUCION*</th>
+                      <th style="width: 170px; text-align:center">EJECUTADA**</th>
+                      <th style="width: 170px; text-align:center">CANCELADA**</th>
+                      <th style="width: 130px; text-align:center">TOTAL ACUMULADO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -28,6 +28,8 @@
                     ?>
                   </tbody>
                 </table>
+                <h5>*Incluye las medidas de apoyo otorgadas durante 2021 y 2022 que a la fecha del corte se encuentran en ejecución</h5>
+                <h5>**Incluye las medidas de apoyo otorgadas durante 2021 y 2022 que han sido ejecutadas o canceladas durante el año 2022</h5>
               </div>
             </div>
           </div>
@@ -37,20 +39,27 @@
                 <table id="medidasejecutadas" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
                     <h3 style="text-align:center">MEDIDAS DE APOYO EJECUTADAS</h3>
+                    <h4 style="text-align:center">DEL 01 DE ENERO AL <?php
+                    $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+            $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+            echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+                    ?></h4>
                     <tr>
-                      <th  style="text-align:center"rowspan="2">CONCEPTO</th>
-                      <th  style="text-align:center"colspan="9">2022</th>
+                      <th  style="width: 320px; text-align:center" rowspan="2">CONCEPTO</th>
+                      <th  style="width: 130px; text-align:center" colspan="9">2022</th>
+                      <th style="text-align:center" rowspan="2">TOTAL</th>
                     </tr>
                     <tr>
-                      <th style="text-align:center">ENERO</th>
-                      <th style="text-align:center">FEBRERO</th>
-                      <th style="text-align:center">MARZO</th>
-                      <th style="text-align:center">ABRIL</th>
-                      <th style="text-align:center">MAYO</th>
-                      <th style="text-align:center">JUNIO</th>
-                      <th style="text-align:center">JULIO</th>
-                      <th style="text-align:center">AGOSTO</th>
-                      <th style="text-align:center">ACUMULADO</th>
+                      <th style="text-align:center">ENE.</th>
+                      <th style="text-align:center">FEB.</th>
+                      <th style="text-align:center">MAR.</th>
+                      <th style="text-align:center">ABR.</th>
+                      <th style="text-align:center">MAY.</th>
+                      <th style="text-align:center">JUN.</th>
+                      <th style="text-align:center">JUL.</th>
+                      <th style="text-align:center">AGO.</th>
+                      <th style="text-align:center">SEP.</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -87,13 +96,13 @@
               <div class="">
                 <table id="medidasasistencia" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
-                    <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DE ASISTENCIA</h3>
+                    <h3 style="text-align:center">ESTATUS ACTUAL DE LAS MEDIDAS DE APOYO DE ASISTENCIA</h3>
                     <tr>
                       <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
-                      <th style="text-align:center">EN EJECUCION</th>
-                      <th style="text-align:center">EJECUTADA</th>
-                      <th style="text-align:center">CANCELADA</th>
-                      <th style="text-align:center">TOTAL</th>
+                      <th style="text-align:center">EN EJECUCION*</th>
+                      <th style="text-align:center">EJECUTADA**</th>
+                      <th style="text-align:center">CANCELADA**</th>
+                      <th style="width: 130px; text-align:center">TOTAL ACUMULADO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -102,19 +111,21 @@
                     ?>
                   </tbody>
                 </table>
+                <h5>*Incluye las medidas de apoyo otorgadas durante 2021 y 2022 que a la fecha del corte se encuentran en ejecución</h5>
+                <h5>**Incluye las medidas de apoyo otorgadas durante 2021 y 2022 que han sido ejecutadas o canceladas durante el año 2022</h5>
               </div>
             </div>
             <div class="col-lg-12">
               <div class="">
                 <table id="medidasresguardo" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
-                    <h3 style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DE RESGUARDO</h3>
+                    <h3 style="text-align:center">ESTATUS ACTUAL DE LAS MEDIDAS DE APOYO DE RESGUARDO</h3>
                     <tr>
                       <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
-                      <th style="text-align:center">EN EJECUCION</th>
-                      <th style="text-align:center">EJECUTADA</th>
-                      <th style="text-align:center">CANCELADA</th>
-                      <th style="text-align:center">TOTAL</th>
+                      <th style="text-align:center">EN EJECUCION*</th>
+                      <th style="text-align:center">EJECUTADA**</th>
+                      <th style="text-align:center">CANCELADA**</th>
+                      <th style="width: 130px; text-align:center">TOTAL ACUMULADO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -123,6 +134,8 @@
                     ?>
                   </tbody>
                 </table>
+                <h5>*Incluye las medidas de apoyo otorgadas durante 2021 y 2022 que a la fecha del corte se encuentran en ejecución</h5>
+                <h5>**Incluye las medidas de apoyo otorgadas durante 2021 y 2022 que han sido ejecutadas o canceladas durante el año 2022</h5>
               </div>
             </div>
           </div>

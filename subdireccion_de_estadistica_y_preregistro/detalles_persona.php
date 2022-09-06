@@ -160,12 +160,12 @@ $fexprel1 = $rexprel1->fetch_assoc();
               <form class="container well form-horizontal" action="actualizar_persona.php?folio=<?php echo $id_person; ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                       <?php
-                      $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-                      $resultfol = $mysqli->query($fol);
-                      $rowfol=$resultfol->fetch_assoc();
-                      $name_folio=$rowfol['folioexpediente'];
-                      $id_person=$rowfol['id'];
-                      $idunico= $rowfol['identificador'];
+                      $fol2=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+                      $resultfol2 = $mysqli->query($fol2);
+                      $rowfol2=$resultfol2->fetch_assoc();
+                      $name_folio=$rowfol2['folioexpediente'];
+                      $id_person=$rowfol2['id'];
+                      $idunico= $rowfol2['identificador'];
                       $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
                       $res_val=$mysqli->query($valid);
                       $fil_val = $res_val->fetch_assoc();
@@ -189,22 +189,49 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
                   </div>
                   <div class="col-md-12 mb-3 validar">
-                    <?php
-                    if ($fexprel1) {
-                      echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
-                    }else {
-                      echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA NO RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
-                    }
-                    ?>
+
                     <!-- <label for="">RELACION CON OTRO(S) EXPEDIENTE(S)</label> -->
-                    <br>
-                    <br>
+
                         <?php
-                        $exprel = "SELECT * FROM relacion_suj_exp WHERE id_usuario = '$id_person'";
-                        $rexprel = $mysqli->query($exprel);
-                        while ($fexprel = $rexprel->fetch_assoc()) {
-                            echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fexprel['espedienterelacional'].'</b></button> &nbsp &nbsp';
+                        $rowfol2['relacional'];
+                        $nombrep = $rowfol2['nombrepersona'];
+                        $apaterno = $rowfol2['paternopersona'];
+                        $amaterno =  $rowfol2['maternopersona'];
+                        $nombrecompleto = $nombrep .' '. $apaterno .' '. $amaterno;
+                        $cl = "SELECT COUNT(*) as t FROM datospersonales WHERE nombrepersona = '$nombrep' AND paternopersona = '$apaterno'
+                                                                   AND maternopersona = '$amaterno' AND relacional = 'SI'";
+                        $rcl = $mysqli->query($cl);
+                        $fcl = $rcl->fetch_assoc();
+                        echo '  <div class="col-md-6 mb-3 validar" style="display:none">
+                                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
+                                <input class="form-control" id="ifrelacionalsuj" name="NUM_EXPEDIENTE" placeholder="" type="text" value="'.$fcl['t'].'" maxlength="50" readonly>
+                          </div>';
+                        if ($fcl['t'] > 0) {
+                          // echo "si";
+                          echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
+                          $ifrelacion1 = "SELECT * FROM relacion_suj_exp WHERE folioexpediente = '$name_folio' OR espedienterelacional = '$name_folio'";
+                          $rifrelacion1 = $mysqli->query($ifrelacion1);
+                          while ($fifrelacion1 = $rifrelacion1->fetch_assoc()) {
+                            // code...
+                            if ($fifrelacion1['espedienterelacional'] === $name_folio) {
+                              // echo $fifrelacion1['folioexpediente'].'++++';
+                              echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fifrelacion1['folioexpediente'].'</b></button> &nbsp &nbsp';
+                            }else {
+                              // echo $fifrelacion1['espedienterelacional'].'++++';
+                              echo '<button style="width:250px" class="btn btn-danger" style="" disabled><b>'.$fifrelacion1['espedienterelacional'].'</b></button> &nbsp &nbsp';
+                            }
+                          }
+                        }else {
+                          echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>PERSONA NO RELACIONADA CON OTRO(S) EXPEDIENTE(S)</FONT></h3>";
                         }
+
+
+
+
+
+
+
+
                         ?>
                   </div>
                 </div>
@@ -436,6 +463,33 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     </div>
 
 
+                </div>
+                <div class="row" id="ver_relacion">
+                  <div class="row">
+                    <hr class="mb-4">
+                  </div>
+                  <div class="alert div-title">
+                    <h3 style="text-align:center">ESTATUS DE RELACION CON OTROS EXPEDIENTES</h3>
+                  </div>
+                  <div class="col-md-6 mb-3 validar" >
+                    <label id="rel_suj_exp" for="OTHER_ART35">ESPECIFIQUE SI HAY RELACION</label>
+                    <!-- <input id="relacionper" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowfol2['relacional']; ?>" type="text"> -->
+                    <select id="relpersuj" class="form-select form-select-lg" name="relpersuj">
+                      <option disabled selected value>SELECCIONE UNA OPCION</option>
+                      <option value="SI">SI</option>
+                      <option value="NO">NO</option>
+                    </select>
+                  </div>
+                  <?php
+                  // echo $nombrep;
+                  $clsuj = "SELECT COUNT(*) as t FROM datospersonales WHERE nombrepersona = '$nombrep' AND paternopersona = '$apaterno'
+                                                             AND maternopersona = '$amaterno' AND relacional = 'SI'";
+                  $rclsuj = $mysqli->query($clsuj);
+                  $fclsuj = $rclsuj->fetch_assoc();
+                  if ($fclsuj['t'] > 0) {
+                    // echo 'si hay relacion';
+                  }
+                  ?>
                 </div>
 
                 <div class="row">
@@ -1261,6 +1315,7 @@ function ReadOnlyConClu() {
     document.getElementById('CONCLUSION_ART351').disabled = true;
     document.getElementById('OTHER_ART351').readOnly = true;
     document.getElementById('ESTATUS_PERSONA').disabled = true;
+    document.getElementById('relpersuj').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = true;
     document.getElementById('COMENTARIO').disabled = true;
     document.getElementById('UPDATE_FILE').style.display = "none";
@@ -1316,6 +1371,29 @@ function ReadOnlyEstudio(){
   }
 }
 ReadOnlyConClu();
+</script>
+<script type="text/javascript">
+  var relac = document.getElementById('relpersuj').value;
+  var estrel = document.getElementById('ESTATUS_PERSONA').value;
+  var ifrel = document.getElementById('ifrelacionalsuj').value;
+  if (ifrel > 0) {
+    document.getElementById('ver_relacion').style.display = "block";
+    var sista = document.getElementById('ESTATUS_PERSONA');
+    var versta = '';
+    sista.addEventListener('change', cambiarsta);
+    function cambiarsta(e) {
+      versta = e.target.value;
+      console.log(versta);
+      if (versta == 'DESINCORPORADO' || versta == 'NO INCORPORADO') {
+        document.getElementById("relpersuj").required = true;
+        // relpersuj.attributes.required = "required"; //the attribute's canonical name
+      }
+    }
+  }else {
+    document.getElementById('ver_relacion').style.display = "none";
+  }
+
+
 </script>
 </body>
 </html>

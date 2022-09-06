@@ -319,8 +319,10 @@ a:focus {
                                         <th style="text-align:center">FECHA AUTORIZACION ANALISIS</th>
                                         <th style="text-align:center">ID AUTORIZACION ANALISIS</th>
                                         <th style="text-align:center">CONVENIO DE ENTENDIMIENTO</th>
+                                        <th style="text-align:center">FECHA FIRMA DEL CONVENIO</th>
+                                        <th style="text-align:center">FECHA INICIO</th>
                                         <th style="text-align:center">VIGENCIA</th>
-                                        <th style="text-align:center">FECHA FIRMA</th>
+                                        <th style="text-align:center">FECHA TERMINO</th>
                                         <th style="text-align:center">ID CONVENIO ENTENDIMIENTO</th>
                                         <!-- INICIO DE ESTUDIOS TECNICOS -->
                                         <?php
@@ -340,6 +342,7 @@ a:focus {
                                           echo '<th style="text-align:center">'; echo "FECHA FIRMA"; echo '</th>';
                                           echo '<th style="text-align:center">'; echo "FECHA INICIO"; echo '</th>';
                                           echo '<th style="text-align:center">'; echo "VIGENCIA"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "FECHA TERMINO"; echo '</th>';
                                           echo '<th style="text-align:center">'; echo "ID CONVENIO"; echo '</th>';
                                         }
                                         ?>
@@ -348,10 +351,12 @@ a:focus {
                                         <th style="text-align:center">ESPECIFICAR ARTICULO 35</th>
                                         <th style="text-align:center">FECHA DESINCORPORACION</th>
                                         <th style="text-align:center">ESTATUS SUJETO PROGRAMA</th>
+                                        <th style="text-align:center">RELACIONADO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   <?php
+                                  $contador = 0;
                                   $suj = "SELECT * FROM datospersonales";
                                   $rsuj = $mysqli->query($suj);
                                   while ($fsuj = $rsuj->fetch_assoc()) {
@@ -406,8 +411,9 @@ a:focus {
                                     $fv = $rv->fetch_assoc();
                                     // echo $fv['t'];
                                     //
+                                    $contador = $contador + 1;
                                     echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $fsuj['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['folioexpediente']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fproc['sede']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
@@ -464,11 +470,16 @@ a:focus {
                                     } echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['id_analisis']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['convenio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $fdeti['vigencia']; echo "</td>";
                                     echo "<td style='text-align:center'>";
                                     if ($fdeti['date_convenio'] != '0000-00-00') {
                                       echo date("d/m/Y", strtotime($fdeti['date_convenio']));
                                     } echo "</td>";
+                                    echo "<td style='text-align:center'>";
+                                    if ($fdeti['fecha_inicio'] != '0000-00-00') {
+                                      echo date("d/m/Y", strtotime($fdeti['fecha_inicio']));
+                                    } echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $fdeti['vigencia']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $fdeti['fecha_termino']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fdeti['id_convenio']; echo "</td>";
                                     if ($fv) {
                                       $t = "SELECT * FROM evaluacion_persona
@@ -491,9 +502,14 @@ a:focus {
                                           echo date("d/m/Y", strtotime($ft['fecha_inicio']));
                                         } echo "</td>";
                                         echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_vigencia'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_vigencia']));
+                                        } echo "</td>";
                                         echo "<td style='text-align:center'>"; echo $ft['id_convenio']; echo "</td>";
                                       }
                                       for ($i=$fv['t']+1; $i < $iterac; $i++) {
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
                                         echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
                                         echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
                                         echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
@@ -511,6 +527,7 @@ a:focus {
                                       echo date("d/m/Y", strtotime($fdeti['date_desincorporacion']));
                                     } echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $fsuj['estatus']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
                                     echo "</tr>";
                                     // echo "<td style='text-align:center'>";  echo "</td>";
                                   }

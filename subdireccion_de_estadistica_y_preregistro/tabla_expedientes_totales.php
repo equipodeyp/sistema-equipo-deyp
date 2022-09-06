@@ -27,6 +27,10 @@ while ($fexps = $rexps->fetch_assoc()) {
   $cont = $cont + 1;
   $expedienteest = $fexps['fol_exp'];
   // echo $expedienteest;
+  $aexp = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$expedienteest'";
+  $raexp = $mysqli->query($aexp);
+  $faexp = $raexp->fetch_assoc();
+  // echo $faexp['fecha_inicio'];
   $v = "SELECT COUNT(*) as t
   FROM  evaluacion_expediente
   WHERE folioexpediente = '$expedienteest'";
@@ -58,6 +62,10 @@ while ($fexps = $rexps->fetch_assoc()) {
   if ($fexps['fecha_convenio'] != '0000-00-00') {
     echo date("d/m/Y", strtotime($fexps['fecha_convenio']));
   } echo "</td>";
+  echo "<td style='text-align:center'>";
+  if ($faexp['fecha_inicio'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($faexp['fecha_inicio']));
+  } echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['vigencia']; echo "</td>";
   echo "<td style='text-align:center'>";
   if ($fexps['fecha_termino_convenio'] != '0000-00-00') {
@@ -85,10 +93,15 @@ while ($fexps = $rexps->fetch_assoc()) {
           echo date("d/m/Y", strtotime($ft['fecha_inicio']));
         }echo "</td>";
         echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
+        echo "<td style='text-align:center'>";
+        if ($ft['fecha_vigencia'] != '0000-00-00') {
+          echo date("d/m/Y", strtotime($ft['fecha_vigencia']));
+        }echo "</td>";
         echo "<td style='text-align:center'>"; echo $ft['total_convenios']; echo "</td>";
       }
 
         for ($i=$fv['t']+1; $i < $iterac; $i++) {
+          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
           echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
           echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
           echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";

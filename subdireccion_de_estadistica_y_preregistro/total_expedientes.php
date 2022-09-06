@@ -285,7 +285,8 @@ a:focus {
                               <th style="text-align:center">FECHA ANALISIS</th>
                               <th style="text-align:center">ID ANALISIS</th>
                               <th style="text-align:center">CONVENIO</th>
-                              <th style="text-align:center">FECHA CONVENIO</th>
+                              <th style="text-align:center">FECHA FIRMA CONVENIO</th>
+                              <th style="text-align:center">FECHA INICIO</th>
                               <th style="text-align:center">VIGENCIA</th>
                               <th style="text-align:center">FECHA TERMINO</th>
                               <?php
@@ -305,7 +306,8 @@ a:focus {
                                 echo '<th style="text-align:center">'; echo 'FECHA FIRMA'; echo '</th>';
                                 echo '<th style="text-align:center">'; echo 'FECHA INICIO'; echo '</th>';
                                 echo '<th style="text-align:center">'; echo 'VIGENCIA'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'ID CONVENIO'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'FECHA TERMINO'; echo '</th>';
+                                echo '<th style="text-align:center">'; echo 'NUMERO DE CONVENIOS FIRMADOS'; echo '</th>';
                               }
                               ?>
                               <th style="text-align:center">CONCLUSIÓN / CANCELACIÓN</th>
