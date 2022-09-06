@@ -55,12 +55,7 @@ WHERE año = '2022'";
 $rrtotal2022 = $mysqli->query($rtotal2022);
 $frtotal2022 = $rrtotal2022->fetch_assoc();
 //
-echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $frtotal2021['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $frtotal2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $total = $frtotal2021['t'] + $frtotal2022['t']; echo "</td>";
-echo "</tr>";
+
 $r = "SELECT numeroradicacion, COUNT(DISTINCT fol_exp) as t FROM procesopenal
 INNER JOIN expediente ON procesopenal.folioexpediente = expediente.fol_exp
 GROUP BY numeroradicacion
@@ -94,4 +89,10 @@ while ($fr = $rr->fetch_assoc()) {
     echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fconmuntotal['t']; echo "</td>";
   echo "</tr>";
 }
+echo "<tr bgcolor = 'yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $frtotal2021['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $frtotal2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $total = $frtotal2021['t'] + $frtotal2022['t']; echo "</td>";
+echo "</tr>";
 ?>

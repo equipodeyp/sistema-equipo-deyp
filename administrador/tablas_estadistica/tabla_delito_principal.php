@@ -11,12 +11,7 @@ WHERE expediente.año = '2022'";
 $rdelt2022 = $mysqli->query($delt2022);
 $fdelt2022 = $rdelt2022->fetch_assoc();
 //
-echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdelt2021['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdelt2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $dtotales = $fdelt2021['t'] + $fdelt2022['t']; echo "</td>";
-echo "</tr>";
+
 //
 $del = "SELECT * FROM delito";
 $rdel = $mysqli->query($del);
@@ -42,7 +37,9 @@ while ($fdel = $rdel ->fetch_assoc()) {
   if ($del2021) {
     while ($fdel2021 = mysqli_fetch_assoc($rdel2021)) {
       echo "<tr >";
-      echo "<td style='text-align:left'>"; echo $fdel['nombre']; echo "</td>";
+      echo "<td style='text-align:left'>"; echo $fdel['nombre']; if ($fdel['nombre'] === 'OTRO') {
+        echo "*";
+      } echo "</td>";
       echo "<td style='text-align:center'>"; echo $fdel2021['t']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fdel2022['t']; echo "</td>";
       echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fdeltotal['t']; echo "</td>";
@@ -50,5 +47,10 @@ while ($fdel = $rdel ->fetch_assoc()) {
     }
   }
 }
-
+echo "<tr bgcolor='yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdelt2021['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdelt2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $dtotales = $fdelt2021['t'] + $fdelt2022['t']; echo "</td>";
+echo "</tr>";
 ?>

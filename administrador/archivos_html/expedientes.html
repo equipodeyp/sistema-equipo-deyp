@@ -8,16 +8,23 @@
       <div class="modal-body">
         <div className="modal">
           <div class="row">
-            <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3>
+            <h3 style="text-align:center">ESTATUS ACTUAL DENTRO DEL PROGRAMA DE LOS EXPEDIENTES DE PROTECCION INICIADOS</h3>
             <div class="col-lg-12">
               <div class="">
                 <table id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
                     <tr>
-                      <th style="text-align:center">ESTATUS</th>
+                      <th style="text-align:center" rowspan="3">ESTATUS DENTRO DEL PROGRAMA</th>
+
+                      <!-- <th style="text-align:center">TOTAL</th> -->
+                    </tr>
+                    <tr>
+                      <th style="text-align:center" colspan="2">AÑO DE INICIO DEL EXPPEDIENTE</th>
+                      <th style="text-align:center" rowspan="2">TOTAL <br> ACUMULADO</th>
+                    </tr>
+                    <tr>
                       <th style="text-align:center">2021</th>
                       <th style="text-align:center">2022</th>
-                      <th style="text-align:center">TOTAL</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -27,19 +34,19 @@
                   </tbody>
                 </table>
                 <h6>
-                  * Comprende los Expedientes de protección en proceso de determinación de procedencia <br>
-                  **Actualmente se encuentran en ejecución 6 expedientes determinados en el ejercicio 2021
+                  * Se encuentra en elaboración el Estudio Técnico <br>
+
                 </h6>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
               <div class="">
                 <br>
                 <table id="sedeexpediente" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
-                    <!-- <h3 style="text-align:center">DESCRIPCIÓN DE LOS EXPEDIENTES INICIADOS</h3> -->
+
                     <tr>
                       <th style="text-align:center">SEDE</th>
                       <th style="text-align:center">2021</th>
@@ -54,8 +61,8 @@
                   </tbody>
                 </table>
               </div>
-            </div>
-            <div class="col-lg-6">
+            </div> -->
+            <div class="col-lg-12">
               <div class="">
                 <br>
                 <table id="delitoprincipalexpediente" border="1px" cellspacing="0" width="100%" bordered>
@@ -65,7 +72,7 @@
                       <th style="text-align:center">DELITO PRINCIPAL</th>
                       <th style="text-align:center">2021</th>
                       <th style="text-align:center">2022</th>
-                      <th style="text-align:center">TOTAL</th>
+                      <th style="text-align:center">TOTAL <br /> ACUMULADO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -74,11 +81,22 @@
                     ?>
                   </tbody>
                 </table>
+                <?php
+                echo '*  ';
+                $del = "SELECT DISTINCT folioexpediente, delitoprincipal, otrodelitoprincipal FROM expediente
+                  INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
+                  WHERE procesopenal.delitoprincipal= 'otro'";
+                $rdel = $mysqli->query($del);
+                while ($fdel = $rdel->fetch_assoc()) {
+
+                  echo mb_strtoupper (html_entity_decode($fdel['otrodelitoprincipal'], ENT_QUOTES | ENT_HTML401, "UTF-8")).', ';
+                }
+                ?>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <div class="">
                 <table id="radicacionexpediente" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
@@ -87,7 +105,7 @@
                       <th style="text-align:center">MUNICIPIO DE RADICACION DE LA CARPETA DE INVESTIGACIÓN</th>
                       <th style="text-align:center">2021</th>
                       <th style="text-align:center">2022</th>
-                      <th style="text-align:center">TOTAL</th>
+                      <th style="text-align:center">TOTAL<br  />ACUMULADO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,7 +116,7 @@
                 </table>
               </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
               <div class="">
                 <table id="autoridadsolicitante" border="1px" cellspacing="0" width="100%" bordered>
                   <thead>
@@ -107,7 +125,7 @@
                       <th style="text-align:center">AUTORIDAD SOLICITANTE</th>
                       <th style="text-align:center">2021</th>
                       <th style="text-align:center">2022</th>
-                      <th style="text-align:center">TOTAL</th>
+                      <th style="text-align:center">TOTAL<br />ACUMULADO</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -120,7 +138,7 @@
 
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-lg-4">
               <div class="">
                 <table id="procedemientorecurso" border="1px" cellspacing="0" width="100%" bordered>
@@ -141,10 +159,10 @@
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <br>
-        <em>DEL 01 DE ENERO AL <?php
+        <em>DEL 01 DE JUNIO DEL 2021 AL <?php
           date_default_timezone_set("America/Mexico_City");
           $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
           $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");

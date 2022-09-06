@@ -16,12 +16,7 @@ INNER JOIN statusseguimiento ON expediente.fol_exp = statusseguimiento.folioexpe
 $rcttotal = $mysqli->query($cttotal);
 $fcttotal = $rcttotal->fetch_assoc();
 //
-echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fct2021['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fct2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fcttotal['t']; echo "</td>";
-echo "</tr>";
+
 //
 $exp = "SELECT * FROM statusexpediente";
 $rexp = $mysqli->query($exp);
@@ -50,7 +45,7 @@ while ($fexp = $rexp->fetch_assoc()) {
       echo "<td style='text-align:left'>"; echo $fexp['nombre']; if ($fexp['nombre'] === 'ANALISIS') {
         echo "*";
       }elseif ($fexp['nombre'] === 'EN EJECUCION') {
-        echo "**";
+        echo "";
       } echo "</td>";
       echo "<td style='text-align:center'>"; echo $fc2021['t']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fc2022['t']; echo "</td>";
@@ -59,5 +54,10 @@ while ($fexp = $rexp->fetch_assoc()) {
     }
   }
 }
-
+echo "<tr bgcolor='yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fct2021['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fct2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fcttotal['t']; echo "</td>";
+echo "</tr>";
 ?>

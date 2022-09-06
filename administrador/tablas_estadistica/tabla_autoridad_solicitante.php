@@ -44,12 +44,7 @@ WHERE expediente.año = '2022'";
 $rautt2022 = $mysqli->query($autt2022);
 $fautt2022 = $rautt2022->fetch_assoc();
 //
-echo "<tr bgcolor = 'yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fautt2021['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fautt2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $total = $fautt2021['t'] + $fautt2022['t']; echo "</td>";
-echo "</tr>";
+
 
 $au = "SELECT nombreautoridad, COUNT(DISTINCT folioexpediente) as t FROM autoridad
 INNER JOIN expediente ON autoridad.folioexpediente = expediente.fol_exp
@@ -84,4 +79,10 @@ while ($fau = $rau->fetch_assoc()) {
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fauttotal ['t']; echo "</td>";
   echo "</tr>";
 }
+echo "<tr bgcolor = 'yellow'>";
+echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fautt2021['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fautt2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $total = $fautt2021['t'] + $fautt2022['t']; echo "</td>";
+echo "</tr>";
 ?>
