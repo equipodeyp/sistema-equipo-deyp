@@ -27,17 +27,19 @@ $mail = new PHPMailer(true);
     $mail->SMTPDebug = 0;                      //Enable verbose debug output
     $mail->SMTPAuth = true;         // Connection with the SMTP does require authorization
     $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->Host       = '10.51.0.215';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    // $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+    $mail->Username   = 'azolivarg@fiscaliaedomex.gob.mx';                     //SMTP username
+    $mail->Password   = 'azolivargFGJEM';                               //SMTP password
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  
-    $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+    $mail->Port       = 25;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     // $mail->Encoding = '7bit';       // SMS uses 7-bit encoding
 
     //Recipients
-    $mail->setFrom('sippsipped@fiscaliaedomex.gob.mx', 'SIPPSIPPED');
+    $mail->setFrom('azolivarg@fiscaliaedomex.gob.mx', 'SIPPSIPPED');
     // $mail->addAddress('7226585110@vtext.com');     //Add a recipient
     // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
     $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
