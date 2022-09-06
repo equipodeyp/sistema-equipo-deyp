@@ -4,10 +4,7 @@ $totexp = "SELECT COUNT(*) AS t from expediente";
 $rtotexp = $mysqli->query($totexp);
 $ftotexp = $rtotexp->fetch_assoc();
 //
-echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotexp['t']; echo "</td>";
-echo "</tr>";
+
 //
 $stexp = "SELECT * FROM statusexpediente";
 $rstexp = $mysqli->query($stexp);
@@ -23,5 +20,8 @@ while ($fstexp = $rstexp->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $ftotst['t']; echo "</td>";
   echo "</tr>";
 }
-
+echo "<tr bgcolor='yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotexp['t']; echo "</td>";
+echo "</tr>";
 ?>

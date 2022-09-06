@@ -5,10 +5,7 @@ WHERE relacional = 'NO'";
 $rtotexp = $mysqli->query($totexp);
 $ftotexp = $rtotexp->fetch_assoc();
 //
-echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotexp['t']; echo "</td>";
-echo "</tr>";
+
 // /
 $stexp = "SELECT * FROM estatuspersona";
 $rstexp = $mysqli->query($stexp);
@@ -23,5 +20,8 @@ while ($fstexp = $rstexp->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $fper['t']; echo "</td>";
   echo "</tr>";
 }
-
+echo "<tr bgcolor='yellow'>";
+echo "<td style='text-align:right'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotexp['t']; echo "</td>";
+echo "</tr>";
 ?>
