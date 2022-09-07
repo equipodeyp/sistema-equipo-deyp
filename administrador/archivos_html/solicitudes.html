@@ -8,7 +8,12 @@
       <div class="modal-body">
         <div className="modal">
           <h1 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h1>
-          <!-- <h2 style="text-align:center">SOLICITUDES RECIBIDAS Y EXPEDIENTES DETERMINADOS</h2> -->
+          <h2 style="text-align:center">DEL 01 DE JUNIO DEL 2021 AL <?php
+          $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+  $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+  echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+          ?></h2>
           <div class="row">
             <div class="col-lg-12">
               <div class="table-responsive">
@@ -22,7 +27,7 @@
                       <th style="text-align:center" rowspan="3">TOTAL <br> ACUMULADO</th>
                     </tr>
                     <tr>
-                      <th style="text-align:center" rowspan="2">TOTAL <br> 2021</th>
+                      <th style="text-align:center" rowspan="2">TOTAL <br> 2021 *</th>
                       <th style="text-align:center" colspan="9">2022</th>
                       <th style="text-align:center" rowspan="2">TOTAL  <br> 2022</th>
                     </tr>
@@ -62,7 +67,7 @@
                       <th style="text-align:center" rowspan="3">TOTAL <br> ACUMULADO</th>
                     </tr>
                     <tr>
-                      <th style="text-align:center" rowspan="2">TOTAL <br> 2021</th>
+                      <th style="text-align:center" rowspan="2">TOTAL <br> 2021 *</th>
                       <th style="text-align:center" colspan="9">2022</th>
                       <th style="text-align:center" rowspan="2">TOTAL  <br> 2022</th>
                     </tr>
@@ -84,17 +89,20 @@
                     ?>
                   </tbody>
                 </table>
-                <h6>*Se encuentra en elaboración el estudio multidisciplinario mediante el cual se determinará la procedencia de incorporación del sujeto propuesto</h6>
               </div>
+              <ul class="list-group col-lg-5">
+                <li class="list-group-item"><em>* COMPRENDE DEL 01 DE JUNIO AL 31 DE DICIEMBRE DEL 2021</em></li>
+              </ul>
             </div>
           </div>
+
           <br>
-          <em>COMPRENDE DEL 01 DE JUNIO AL <?php
+          <!-- <em>COMPRENDE DEL 01 DE JUNIO AL <?php
           $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
   $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 
   echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-          ?></em>
+          ?></em> -->
         </div>
       </div>
       <div class="modal-footer">
