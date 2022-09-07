@@ -292,7 +292,7 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "</tr>";
 
   echo "<tr>";
-  echo "<td style='text-align:right'>"; echo "EN ANALISIS *"; echo "</td>";
+  echo "<td style='text-align:right'>"; echo "EN ANALISIS **"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_enero['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_febrero['en_analisis']; echo "</td>";
