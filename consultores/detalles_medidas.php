@@ -191,8 +191,8 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">FOLIO</th>
                     <th style="text-align:center">TIPO DE MEDIDA</th>
                     <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
+                    <th style="text-align:center">INCISO DE LA MEDIDA</th>
                     <th style="text-align:center">ESTATUS</th>
-                    <th style="text-align:center">MUNICIPIO</th>
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
         		  			<th style="text-align:center">DETALLES</th>
@@ -220,8 +220,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+                        echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'VI. OTRAS' || $var_fila['medida'] === 'XIII. OTRAS MEDIDAS') {
+                          echo $var_fila['descripcion'];
+                        }else {
+                          echo $var_fila['medida'];
+                        } echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
           		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
                           echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
                         } echo "</td>";
