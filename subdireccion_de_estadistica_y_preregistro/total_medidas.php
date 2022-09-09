@@ -282,6 +282,7 @@ a:focus {
                                               <th style="text-align:center">FRACCION DE LA MEDIDA</th>
                                               <th style="text-align:center">INCISO DE LA MEDIDA</th>
                                               <th style="text-align:center">ESPECIFICAR OTRAS MEDIDAS</th>
+                                              <th style="text-align:center">FECHA DE INICIO DE LA MEDIDA</th>
                                               <th style="text-align:center">FECHA MEDIDA PROVISIONAL</th>
                                               <th style="text-align:center">FECHA MEDIDA DEFINITIVA</th>
                                               <th style="text-align:center">CONCLUSION CANCELACION MEDIDA</th>
@@ -336,6 +337,13 @@ a:focus {
                                               }else {
                                                 echo ''; echo "</td>";
                                               }
+                                              echo "<td style='text-align:center'>";
+                                              if ($var_fila['date_provisional'] == '0000-00-00') {
+                                                echo date("d/m/Y", strtotime($var_fila['date_definitva']));
+                                              }else {
+                                                echo date("d/m/Y", strtotime($var_fila['date_provisional']));
+                                              }
+                                              echo "</td>";
                                               echo "<td style='text-align:center'>";
                                               if ($var_fila['date_provisional'] != '0000-00-00') {
                                                 echo date("d/m/Y", strtotime($var_fila['date_provisional']));
