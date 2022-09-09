@@ -45,7 +45,13 @@ while ($fila_est = $res_est ->fetch_assoc()) {
   if ($res_stp) {
     while ($fila_stp = mysqli_fetch_assoc($res_stp)) {
       echo "<tr>";
-      echo "<td style='text-align:left'>"; echo $fila_est['nombre']; echo "</td>";
+      echo "<td style='text-align:left'>"; if ($fila_est['nombre'] === 'PERSONA PROPUESTA') {
+        echo 'PERSONA PROPUESTA ***';
+      }elseif ($fila_est['nombre'] === 'SUJETO PROTEGIDO') {
+        echo 'SUJETOS PROTEGIDOS INCORPORADOS';
+      }else {
+        echo $fila_est['nombre'];
+      } echo "</td>";
       echo "<td style='text-align:center'>"; echo $fila_stp['total']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fila_st_p2022['total']; echo "</td>";
       echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_st_ptotal['total']; echo "</td>";
