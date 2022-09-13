@@ -19,12 +19,20 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+echo $fol_exp.'<br />';
 $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);
-$anio = $row['año'];
+setlocale(LC_TIME, "spanish");
+$fecharep = $row['fecha'];
+$fechares = str_replace("/", "-", $fecharep);
+$newDate = date("d-m-Y", strtotime($fechares));
+$mesDesc = strftime("%d de %B de %Y", strtotime($newDate));
 
+$fecharep1 = $row['fecharecep'];
+$fechares1 = str_replace("/", "-", $fecharep1);
+$newDate1 = date("d-m-Y", strtotime($fechares1));
+$mesDesc1 = strftime("%d de %B de %Y", strtotime($newDate1));
 //
 // $sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
 // $result = mysqli_query($mysqli, $sql);
@@ -216,45 +224,40 @@ margin-left:auto; margin-right:0;
                        </ul>
                        <br><br><br><br><br>
                        <div class="container">
-  <div class="row">
-    <div class="col-md-6"></div><div class="col-md-6">
-      <span class="pull-right">
-        <ul class="list-group " >
-          <li id="" class="list-group-item col-lg-12">
-            <center>
-              <h3 class=""><?php echo $fol_exp; ?></h3>
-            </center>
-          </li>
-        </ul>
-      </span>
-    </div>
-  </div>
-</div>
-                       <div class="two fields">
-                         <div class="two fields">
-
-
-                         <!-- <div class="col-lg-12">
-
-                             <input style="float:right" class="pull-right"   type="text" name="first-name" placeholder="EXPEDIENTE">
-                         </div> -->
-
-
-
-                           <div class="col-lg-12">
-                               <label for="">Fecha de captura de datos</label>
-                               <input type="text" name="first-name">
+                         <div class="row">
+                           <div class="col-md-6"></div><div class="col-md-6">
+                             <span class="pull-right">
+                               <ul class="list-group " >
+                                 <li id="" class="list-group-item col-lg-12">
+                                   <center>
+                                     <h3 class=""><?php echo $fol_exp; ?></h3>
+                                   </center>
+                                 </li>
+                               </ul>
+                             </span>
                            </div>
-
-
-                           <div class="col-lg-12">
-                               <label for="">Fecha de solicitud</label>
-                               <input type="text" name="last-name">
-                           </div>
-
+                         </div>
                        </div>
-                     </div>
-
+                       <br>
+                       <div class="container">
+                         <div class="row">
+                           <div class=""></div><div class="">
+                             <span class="pull-right">
+                               Toluca de Lerdo, Estado de México, a <?php echo $mesDesc; ?>
+                             </span>
+                           </div>
+                         </div>
+                       </div>
+                       <br>
+                       <div class="container">
+                         <div class="row">
+                           <div class=""></div><div class="">
+                             <span class="pull-right">
+                               Fecha de solicitud: <?php echo $mesDesc1; ?>
+                             </span>
+                           </div>
+                         </div>
+                       </div>
 
                        <form class="ui form">
                            <h4 class="ui dividing header">Datos de la persona propuesta
