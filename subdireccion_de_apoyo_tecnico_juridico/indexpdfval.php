@@ -19,7 +19,7 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
+echo $fol_exp;
 $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -87,6 +87,33 @@ $anio = $row['año'];
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css" />
+  <style media="screen">
+  #container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border:1px solid;
+  background-color: #e4e3e4;
+}
+
+#resultado1,#resultado2,#resultado3,#resultado4 {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+margin-left:auto; margin-right:0;
+
+}
+
+
+#sidebar{
+        width: 25%;
+        margin-bottom: 30px;
+        background: orange;
+        padding: 30px;
+        border: orange;
+    }
+  </style>
 </head>
 <body >
 <div class="contenedor">
@@ -175,23 +202,42 @@ $anio = $row['año'];
 
                      <div class="ui segment">
                           <div class="main bg-light">
-                          <img src="../image/ESCUDO.png" alt="" width="150" height="100">
-                          <img src="../image/FGJEM.png" alt="" width="150" height="100" align = "right">
-                        </div>
+                            <img src="../image/ESCUDO.png" alt="" width="150" height="100">
+                            <img src="../image/FGJEM.png" alt="" width="150" height="100" align = "right">
+                          </div>
 
-
-                       <h4 class="ui dividing header aligned center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO” </h4>
+                       <h4 class="align:center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO” </h4>
+                       <ul class="list-group col-lg-12" >
+                         <li id="container" class="list-group-item col-lg-12">
+                           <center>
+                             <h3 class="">VALORACIÓN JURÍDICA DE LA SOLICITUD DE INGRESO AL PROGRAMA </h3>
+                           </center>
+                         </li>
+                       </ul>
+                       <br><br><br><br><br>
+                       <div class="container">
+  <div class="row">
+    <div class="col-md-6"></div><div class="col-md-6">
+      <span class="pull-right">
+        <ul class="list-group " >
+          <li id="" class="list-group-item col-lg-12">
+            <center>
+              <h3 class=""><?php echo $fol_exp; ?></h3>
+            </center>
+          </li>
+        </ul>
+      </span>
+    </div>
+  </div>
+</div>
                        <div class="two fields">
-
-
-                         <h2 class="ui dividing header aligned center">VALORACIÓN JURÍDICA DE LA SOLICITUD DE INGRESO AL PROGRAMA </h2>
                          <div class="two fields">
 
 
-                         <div class="col-lg-12">
-                             <label for="">Expediente</label>
-                             <input type="text" name="first-name">
-                         </div>
+                         <!-- <div class="col-lg-12">
+
+                             <input style="float:right" class="pull-right"   type="text" name="first-name" placeholder="EXPEDIENTE">
+                         </div> -->
 
 
 
