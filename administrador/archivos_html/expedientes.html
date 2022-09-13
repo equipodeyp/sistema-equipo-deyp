@@ -33,10 +33,11 @@
                     ?>
                   </tbody>
                 </table>
-                <h6>
-                  * Se encuentra en elaboración el Estudio Técnico <br>
-
-                </h6>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <em>*Ccomprende los Expedientes de Protección sobre los cuales se determinará la incorporación del sujeto propuesto al Programa, así como los que se encuentran en proceso de formalizar su ingreso al mismo.</em>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -88,7 +89,6 @@
                   WHERE procesopenal.delitoprincipal= 'otro'";
                 $rdel = $mysqli->query($del);
                 while ($fdel = $rdel->fetch_assoc()) {
-
                   echo mb_strtoupper (html_entity_decode($fdel['otrodelitoprincipal'], ENT_QUOTES | ENT_HTML401, "UTF-8")).', ';
                 }
                 ?>
