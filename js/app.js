@@ -60,6 +60,7 @@ async function generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica
     pdf.addImage(image, 'PNG', 0, 0, 215.9, 279.4);
     pdf.addImage(signatureImage, 'PNG', 200, 605, 300, 60);
 
+
     pdf.setFontSize(18);
     // pdf.text(curso, 260, 125);
 
@@ -77,7 +78,7 @@ async function generatePDF(exp, tomo, anioa, anioc, inc, val, ofi, anex, publica
      pdf.text(anioa, 79, 114);
      pdf.text(anioc, 163, 114);
      pdf.text(anex, 128, 154);
-    
+
     // pdf.text(area, 20, 20);
 
 

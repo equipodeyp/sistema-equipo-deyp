@@ -256,6 +256,8 @@ $anio = $row['año'];
                                            <label for="confi-no" class="form-check-label">No</label>
                                          </div>
 
+                                         <pagebreak/><pagebreak/>
+
                                        </div>
 
 <p>
