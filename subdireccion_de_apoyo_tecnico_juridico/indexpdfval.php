@@ -32,7 +32,7 @@ $mesDesc = strftime("%d de %B de %Y", strtotime($newDate));
 $fecharep1 = $row['fecharecep'];
 $fechares1 = str_replace("/", "-", $fecharep1);
 $newDate1 = date("d-m-Y", strtotime($fechares1));
-$mesDesc1 = strftime("%d de %B de %Y", strtotime($newDate1));
+$mesDesc1 = strftime("%B de %Y", strtotime($newDate1));
 //
 // $sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
 // $result = mysqli_query($mysqli, $sql);
@@ -40,10 +40,23 @@ $mesDesc1 = strftime("%d de %B de %Y", strtotime($newDate1));
 // $suma = $rowcount + 1;
 // $num_incidencia = 0 . $suma;
 // // echo $num_incidencia;
-
-
-
- ?>
+$miFecha = $newDate;
+$miFecha2 = $newDate1;
+function fechaEs($fecha) {
+$fecha = substr($fecha, 0, 10);
+$numeroDia = date('d', strtotime($fecha));
+$dia = date('l', strtotime($fecha));
+$mes = date('F', strtotime($fecha));
+$anio = date('Y', strtotime($fecha));
+$dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+$dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+$nombredia = str_replace($dias_EN, $dias_ES, $dia);
+$meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+$meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+$nombreMes = str_replace($meses_EN, $meses_ES, $mes);
+return $numeroDia." de ".$nombreMes." de ".$anio;
+}
+?>
 
 
 <!DOCTYPE html>
@@ -206,8 +219,6 @@ margin-left:auto; margin-right:0;
                    <!-- <div class="ui divider">
                    </div> -->
                    <form class="ui form">
-
-
                      <div class="ui segment">
                           <div class="main bg-light">
                             <img src="../image/ESCUDO.png" alt="" width="150" height="100">
@@ -222,7 +233,7 @@ margin-left:auto; margin-right:0;
                            </center>
                          </li>
                        </ul>
-                       <br><br><br><br><br>
+                       <br><br><br><br>
                        <div class="container">
                          <div class="row">
                            <div class="col-md-6"></div><div class="col-md-6">
@@ -243,7 +254,7 @@ margin-left:auto; margin-right:0;
                          <div class="row">
                            <div class=""></div><div class="">
                              <span class="pull-right">
-                               Toluca de Lerdo, Estado de México, a <?php echo $mesDesc; ?>
+                               Toluca de Lerdo, Estado de México, a <?php echo fechaEs($miFecha); ?>
                              </span>
                            </div>
                          </div>
@@ -253,54 +264,126 @@ margin-left:auto; margin-right:0;
                          <div class="row">
                            <div class=""></div><div class="">
                              <span class="pull-right">
-                               Fecha de solicitud: <?php echo $mesDesc1; ?>
+                               Fecha de solicitud: <?php echo fechaEs($miFecha2); ?>
                              </span>
                            </div>
                          </div>
                        </div>
+                       <br><br>
+                       <center>
+                         <h3 class="ui ">DATOS DE LA PERSONA PROPUESTA</h3>
+                       </center>
+                       <br>
 
+                       <ul class="list-group col-lg-12" >
+                         <li id="" class="list-group-item col-lg-12">
+                           <label for="">Iniciales:
+                             <?php
+                             $inicialescont = "SELECT count(*) as t FROM datospersonales WHERE folioexpediente = '$fol_exp'";
+                             $rinicialescont = $mysqli->query($inicialescont);
+                             $finicialescont = $rinicialescont->fetch_assoc();
+                             // echo $finicialescont['t'];
+                             $contar = 0;
+                             $iniciales = "SELECT * FROM datospersonales WHERE folioexpediente = '$fol_exp'";
+                             $riniciales = $mysqli->query($iniciales);
+                             while ($finiciales = $riniciales->fetch_assoc()) {
+                               echo $finiciales['identificador'];
+                               $contar = $contar + 1;
+                               if ($contar < $finicialescont['t']) {
+                                 echo ',    ';
+                               }
+                             }
+                             ?>
+                           </label>
+                         </li>
+                       </ul>
+                       <br><br><br>
                        <form class="ui form">
-                           <h4 class="ui dividing header">Datos de la persona propuesta
-                           </h4>
-                           <div class="two fields">
-                               <div class="field">
-                                   <label for="">Nombre(Iniciales)</label>
-                                   <input type="text" name="first-name">
-                               </div>
-                               </div>
+                         <div class="row">
+                           <div class="col-lg-12">
+                             <div class="table-responsive">
+                              <table id="tabla1" border="2px" cellspacing="0" width="100%">
+                                 <thead class="">
+                                   <!-- <tr>
+                                     <th style="border-color: red; width: 20px; text-align:center" rowspan="3">TIPO DE INTERVENCIÓN</th>
+                                   </tr>
+                                   <tr>
+                                     <th style="border: 1px solid black; border-collapse: collapse; text-align:center" >SOLICITUDES RECIBIDAS</th>
+                                     <th style="border-color: red; text-align:center" >TOTAL <br> ACUMULADO</th>
+                                     <th style="border-color: red; text-align:center" >SOLICITUDES RECIBIDAS</th>
+                                     <th style="border-color: red; text-align:center" >TOTAL <br> ACUMULADO</th>
+                                     <th style="border-color: red; text-align:center" >SOLICITUDES RECIBIDAS</th>
+                                   </tr>
+                                   <tr>
+                                     <th style="width: 110px; text-align:center" >SOLICITUDES RECIBIDAS</th>
+                                     <th style="width: 110px; text-align:center" >TOTAL <br> ACUMULADO</th>
+                                     <th style="text-align:center" >SOLICITUDES RECIBIDAS</th>
+                                     <th style="text-align:center" >TOTAL <br> ACUMULADO</th>
+                                     <th style="text-align:center" >SOLICITUDES RECIBIDAS</th>
+                                   </tr> -->
 
-
-                                   <h4 class="ui dividing header">Intervencion
-                                   </h4>
+                                 </thead>
+                                 <tbody>
+                                   <tr>
+                                     <td style="background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;  width: 20px; text-align:center" rowspan="3">TIPO DE INTERVENCIÓN</td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-si" value="1">
+                                       <label for="vic-si" class="form-check-label">Victima</label>
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Ofendido</label>&nbsp &nbsp
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Testigo/Colaborador</label>&nbsp &nbsp
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Perito</label>&nbsp &nbsp &nbsp
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Ministerio Público </label> &nbsp &nbsp
+                                     </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Defensor</label>&nbsp &nbsp
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Policía</label>&nbsp &nbsp &nbsp
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Juez</label>&nbsp &nbsp
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
+                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <label for="vic-no" class="form-check-label">Magistrado</label>
+                                     </td>
+                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
+                                       <label for="otr" class="form-label">Otro</label><br>
+                                       <input type="text" class="form-control" id="anex">
+                                     </td>
+                                   </tr>
+                                 </tbody>
+                               </table>
+                             </div>
+                           </div>
+                         </div>
                                    <div class="two fields">
 
-                                     <div class="col-sm-5  validar">
-                                    <label for="">Tipo de Intervencion</label><br><br>
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-si" value="1">
-                                    <label for="vic-si" class="form-check-label">Victima</label>&nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Ofendido</label>&nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Testigo/Colaborador</label>&nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Perito</label>&nbsp &nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Ministerio Público </label> &nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Defensor</label>&nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Policía</label>&nbsp &nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Juez</label>&nbsp &nbsp
-                                    <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                    <label for="vic-no" class="form-check-label">Magistrado</label>
-                                  </div>
+
 
 
 
                             <div class="col-lg-5  validar"><br>
-                                        <label for="otr" class="form-label">Otro</label><br>
-                                        <input type="text" class="form-control" id="anex">
+
                                     </div>
 
 
