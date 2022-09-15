@@ -325,50 +325,52 @@ margin-left:auto; margin-right:0;
                                  </thead>
                                  <tbody>
                                    <tr>
-                                     <td style="background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;  width: 20px; text-align:center" rowspan="3">TIPO DE INTERVENCIÓN</td>
+                                     <td style="background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;  width: 20px; text-align:center" rowspan="3">TIPO <br> DE <br> INTERVENCIÓN</td>
                                    </tr>
                                    <tr>
                                      <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-si" value="1">
-                                       <label for="vic-si" class="form-check-label">Victima</label>
+                                       <label for="vic-si" class="form-check-label">Victima</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-si" value="1"><br>
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Ofendido</label>&nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Ofendido</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Testigo/Colaborador</label>&nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Testigo/<br>Colaborador</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
+                                       <br><br>
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Perito</label>&nbsp &nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Perito</label><br> &nbsp
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Ministerio Público </label> &nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Ministerio Público </label> <br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                    </tr>
                                    <tr>
                                      <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Defensor</label>&nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Defensor</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Policía</label>&nbsp &nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Policía</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Juez</label>&nbsp &nbsp
+                                       <label for="vic-no" class="form-check-label">Juez</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <input type="radio" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <label for="vic-no" class="form-check-label">Magistrado</label>
+                                       <label for="vic-no" class="form-check-label">Magistrado</label><br>
+                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
                                      </td>
                                      <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
                                        <label for="otr" class="form-label">Otro</label><br>
                                        <input type="text" class="form-control" id="anex">
+                                       <br>
                                      </td>
                                    </tr>
                                  </tbody>
