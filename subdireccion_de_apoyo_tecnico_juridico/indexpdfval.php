@@ -304,24 +304,6 @@ margin-left:auto; margin-right:0;
                              <div class="table-responsive">
                               <table id="tabla1" border="2px" cellspacing="0" width="100%">
                                  <thead class="">
-                                   <!-- <tr>
-                                     <th style="border-color: red; width: 20px; text-align:center" rowspan="3">TIPO DE INTERVENCIÓN</th>
-                                   </tr>
-                                   <tr>
-                                     <th style="border: 1px solid black; border-collapse: collapse; text-align:center" >SOLICITUDES RECIBIDAS</th>
-                                     <th style="border-color: red; text-align:center" >TOTAL <br> ACUMULADO</th>
-                                     <th style="border-color: red; text-align:center" >SOLICITUDES RECIBIDAS</th>
-                                     <th style="border-color: red; text-align:center" >TOTAL <br> ACUMULADO</th>
-                                     <th style="border-color: red; text-align:center" >SOLICITUDES RECIBIDAS</th>
-                                   </tr>
-                                   <tr>
-                                     <th style="width: 110px; text-align:center" >SOLICITUDES RECIBIDAS</th>
-                                     <th style="width: 110px; text-align:center" >TOTAL <br> ACUMULADO</th>
-                                     <th style="text-align:center" >SOLICITUDES RECIBIDAS</th>
-                                     <th style="text-align:center" >TOTAL <br> ACUMULADO</th>
-                                     <th style="text-align:center" >SOLICITUDES RECIBIDAS</th>
-                                   </tr> -->
-
                                  </thead>
                                  <tbody>
                                    <tr>
@@ -378,15 +360,51 @@ margin-left:auto; margin-right:0;
                              </div>
                            </div>
                          </div>
+                         <br><br><br><br><br>
                                    <div class="two fields">
 
 
 
 
 
-                            <div class="col-lg-5  validar"><br>
-
-                                    </div>
+                                     <div class="row">
+                                       <div class="col-lg-12">
+                                         <div class="table-responsive">
+                                          <table id="tabla1" border="2px" cellspacing="0" >
+                                             <thead class="">
+                                               <tr>
+                                                 <!-- <th style="width: 30%; text-align:center"></th>
+                                                 <th style="width: 70%; text-align:center"></th> -->
+                                               </tr>
+                                             </thead>
+                                             <tbody>
+                                               <tr>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">DELITO<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                               </tr>
+                                               <tr>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">CARPETA DE INVESTIGACIÓN Y/O CAUSA PENAL<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                               </tr>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">¿PRIVADO DELA LIBERTAD?<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                               <tr>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">UBICACIÓN D ELA PERSONA<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                               </tr>
+                                               <tr>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">¿ASISTENCIA LEGAL? NOMBRE DE LA PERSONA QUE LO ASISTE<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                               </tr>
+                                               <tr>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">SITUACIÓN DEL RIESGO<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                               </tr>
+                                             </tbody>
+                                           </table>
+                                         </div>
+                                       </div>
+                                     </div>
 
 
 
