@@ -209,7 +209,7 @@ margin-left:auto; margin-right:0;
           </div>
         </div>
       </div>
-    
+
        <!--  -->
 
 
@@ -406,52 +406,6 @@ margin-left:auto; margin-right:0;
                                          </div>
                                        </div>
                                      </div>
-
-
-
-                                    <div class="col-lg-12  validar"><br>
-                                    <label for="del" class="form-label">Delito</label><br>
-                                    <textarea></textarea>
-                                    </div>
-
-                                    <div class="col-lg-12  validar"><br><br>
-                                    <label for="car" class="form-label">Carpeta de Investigación y/o Causa penal</label><br>
-                                    <input type="text" class="form-control" id="car">
-                                    </div>
-
-
-                                   <div class="col-lg-3  validar"><br>
-                                   <label for="">Privado de la Libertad</label><br>
-                                   <input type="radio" name="priv" class="form-check-input" id="priv-si" value="1">
-                                  <label for="priv-si" class="form-check-label">Si</label>
-                                   <input type="radio" name="priv" class="form-check-input"  id="priv-no" value="0" checked>
-                                   <label for="priv-no" class="form-check-label">No</label>
-                                   </div>
-
-
-                                  <div class="col-lg-12  validar"><br>
-                                  <label for="ubi" class="form-label">Ubicación de la Persona</label><br>
-                                  <textarea></textarea>
-                                 </div>
-
-                                   <div class="col-lg-12  validar"><br>
-                                   <label for="">Asistencia Legal</label><br>
-                                  <input type="radio" name="asis" class="form-check-input" id="asis-si" value="1">
-                                  <label for="asis-si" class="form-check-label">Si</label>
-                                  <input type="radio" name="asis" class="form-check-input"  id="asis-no" value="0" checked>
-                                  <label for="asis-no" class="form-check-label">No</label>
-                                   </div>
-
-                                 <div class="col-lg-12  validar"><br>
-                                 <label for="nope" class="form-label">Nombre de la Persona que lo asiste</label><br>
-                                 <input type="text" class="form-control" id="nope">
-                                 </div>
-
-
-                                 <div class="col-lg-3  validar"><br>
-                                 <label>Situación de Riesgo</label>
-                                 <textarea></textarea>
-                                 </div>
 
                                  <div class="col-lg-12  validar"><br>
                                  <label for="zon" class="form-label">Zona Geografica</label><br>
