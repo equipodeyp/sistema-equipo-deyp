@@ -56,9 +56,15 @@ $meses_EN = array("January", "February", "March", "April", "May", "June", "July"
 $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
 return $numeroDia." de ".$nombreMes." de ".$anio;
 }
+// proceso penal
+$penal = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
+$rpenal = $mysqli->query($penal);
+$fpenal = $rpenal->fetch_assoc();
+// domicio actual
+$dom = "SELECT * FROM domiciliopersona WHERE folioexpediente = '$fol_exp'";
+$rdom = $mysqli->query($dom);
+$fdom = $rdom->fetch_assoc();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -380,25 +386,25 @@ margin-left:auto; margin-right:0;
                                              <tbody>
                                                <tr>
                                                  <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">DELITO<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"><?php echo $fpenal['delitoprincipal']; ?></td>
                                                </tr>
                                                <tr>
                                                  <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">CARPETA DE INVESTIGACIÓN Y/O CAUSA PENAL<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
                                                </tr>
                                                  <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">¿PRIVADO DELA LIBERTAD?<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"><?php echo $fdom['lugar']; ?></td>
                                                <tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">UBICACIÓN D ELA PERSONA<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">UBICACIÓN DE LA PERSONA<br><br></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
                                                </tr>
                                                <tr>
                                                  <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">¿ASISTENCIA LEGAL? NOMBRE DE LA PERSONA QUE LO ASISTE<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
                                                </tr>
                                                <tr>
                                                  <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">SITUACIÓN DEL RIESGO<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse;"></td>
+                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
                                                </tr>
                                              </tbody>
                                            </table>
