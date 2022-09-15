@@ -200,7 +200,6 @@ margin-left:auto; margin-right:0;
     		</ul>
 
     		<div class="secciones">
-    			<article id="tab1">
 
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -208,27 +207,23 @@ margin-left:auto; margin-right:0;
                 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
                 <a class="actived">LISTA DE FORMATOS</a>
           </div>
-       </div>
-
+        </div>
+      </div>
+    
        <!--  -->
-       <div class="secciones">
+
 
 
        <div class="ui page grid col-lg-12">
-           <div class="wide column"><br><br><br><br>
+           <div class="wide column"><br>
                <!-- <h3 class="ui header aligned center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO”</h3> -->
                <div class="ui divider hidden">
                </div>
-
-
-
-                   <!-- <div class="ui divider">
-                   </div> -->
                    <form class="ui form">
                      <div class="ui segment">
-                          <div class="main bg-light">
-                            <img src="../image/ESCUDO.png" alt="" width="150" height="100">
-                            <img src="../image/FGJEM.png" alt="" width="150" height="100" align = "right">
+                          <div class="main ">
+                            <img src="../image/ESCUDO.png" alt="" width="100" height="50">
+                            <img src="../image/FGJEM.png" alt="" width="100" height="50" align = "right">
                           </div>
 
                        <h4 class="align:center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO” </h4>
@@ -366,7 +361,7 @@ margin-left:auto; margin-right:0;
                              </div>
                            </div>
                          </div>
-                         <br><br><br><br><br>
+                         <br><br><br>
                                    <div class="two fields">
 
 
