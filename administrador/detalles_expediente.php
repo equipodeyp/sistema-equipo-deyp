@@ -375,3 +375,16 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
 					</div>
 		</div>
 	</div>
+  <script type="text/javascript">
+  var inputFecha = document.getElementById("FECHA_ACUERDO").value;
+
+  var botonGuardar = document.getElementById("fecha_acuerdo");
+  if (inputFecha == null || inputFecha == ""){
+  botonGuardar.disabled = false;
+  }
+  else {
+  botonGuardar.style.display = "none";
+  document.getElementById("FECHA_ACUERDO").disabled = true;
+  }
+
+  </script>
