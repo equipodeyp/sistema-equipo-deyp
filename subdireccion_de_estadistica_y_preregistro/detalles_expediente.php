@@ -181,7 +181,7 @@ $name = $_SESSION['usuario'];
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group" id="ver_fecha_inicio">
 					<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
 					<div class="col-md-4 inputGroupContainer">
 						<div class="input-group">
@@ -340,3 +340,9 @@ $name = $_SESSION['usuario'];
 	</div>
 	</div>
 	</div>
+  <script type="text/javascript">
+    var fec = document.getElementById("fecha_acuerdo").value;
+    if (fec === null || fec === '') {
+      document.getElementById("ver_fecha_inicio").style.display = "none";
+    }
+  </script>
