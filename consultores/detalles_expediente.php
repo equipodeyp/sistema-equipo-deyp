@@ -176,8 +176,7 @@ $row=$result->fetch_assoc();
 			    						</div>
 										</div>
 									</div>
-									<form method="post" action="actualizar_fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
-									<div class="form-group">
+									<div class="form-group" id="ver_fecha_inicio">
 										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
 										<div class="col-md-4 inputGroupContainer">
 											<div class="input-group">
@@ -186,11 +185,6 @@ $row=$result->fetch_assoc();
 								    		</div>
 										</div>
 									<div>
-									<!-- <div>
-										<button type="submit" id="fecha_acuerdo" class='btn color-btn-success'>ACTUALIZAR FECHA</button>
-									</div> -->
-
-									</form>
 								</div>
 							</div>
 
@@ -341,3 +335,9 @@ $row=$result->fetch_assoc();
 					</div>
 		</div>
 	</div>
+  <script type="text/javascript">
+    var fec = document.getElementById("FECHA_ACUERDO").value;
+    if (fec === null || fec === '') {
+      document.getElementById("ver_fecha_inicio").style.display = "none";
+    }
+  </script>
