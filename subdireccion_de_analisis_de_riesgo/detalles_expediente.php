@@ -176,23 +176,7 @@ $row=$result->fetch_assoc();
 			      						<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
 			    						</div>
 										</div>
-									</div>
-									<form method="post" action="actualizar_fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
-									<div class="form-group">
-										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
-										<div class="col-md-4 inputGroupContainer">
-											<div class="input-group">
-								      			<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-											  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
-
-								    		</div>
-										</div>
-									<div>
-									<div>
-										<button type="submit" id="fecha_acuerdo" class='btn color-btn-success'>ACTUALIZAR FECHA</button>
-									</div>
-
-									</form>
+									</div>									
 								</div>
 							</div>
 
@@ -337,35 +321,6 @@ $row=$result->fetch_assoc();
 					</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-      dd='0'+dd
-  }
-  if(mm<10){
-      mm='0'+mm
-  }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
-</script>
-
-
-<script type="text/javascript">
-var inputFecha = document.getElementById("FECHA_ACUERDO").value;
-
-var botonGuardar = document.getElementById("fecha_acuerdo");
-if (inputFecha == null || inputFecha == ""){
-	botonGuardar.disabled = false;
-}
-else {
-	botonGuardar.disabled = true;
-}
-
-</script>
 <script type="text/javascript">
 var d = document.getElementById("FECHA_RECEPCION").value;
 var date = d;
@@ -376,7 +331,6 @@ let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.g
  document.getElementById("FECHA_RECEPCION").value ="";
  document.getElementById("FECHA_RECEPCION").value = formatted_date;
 }
-
 </script>
 </body>
 </html>

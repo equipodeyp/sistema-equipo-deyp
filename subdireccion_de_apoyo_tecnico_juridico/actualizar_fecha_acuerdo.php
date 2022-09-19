@@ -16,7 +16,7 @@ $fecha_acu=$_POST['FECHA_ACUERDO']; echo $fecha_acu;
   $res_fecha_acuerdo = $mysqli->query($fecha_acuerdo);
   if($res_fecha_acuerdo){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=$folio_expediente';
+     window.location.href='../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=$folio_expediente';
      window.alert('!!!!! FECHA GUARDADA CORRECTAMENTE ¡¡¡¡¡')
    </script>");
   }
