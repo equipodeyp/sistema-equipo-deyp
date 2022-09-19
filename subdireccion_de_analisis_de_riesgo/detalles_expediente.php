@@ -176,7 +176,19 @@ $row=$result->fetch_assoc();
 			      						<input name="fecha" type="text" class="form-control"  id="fecha"  placeholder="fecha" value="<?php echo $row['fecha']; ?>" disabled>
 			    						</div>
 										</div>
-									</div>									
+									</div>
+									<!-- <form method="post" action="actualizar_fecha_acuerdo.php?folio=<?php echo $fol_exp;?>"> -->
+									<div class="form-group" id="ver_fecha_inicio">
+										<label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+								      		<span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+											  	<input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" disabled>
+								    		</div>
+										</div>
+									<div>
+
+									<!-- </form> -->
 								</div>
 							</div>
 
@@ -331,6 +343,12 @@ let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.g
  document.getElementById("FECHA_RECEPCION").value ="";
  document.getElementById("FECHA_RECEPCION").value = formatted_date;
 }
+</script>
+<script type="text/javascript">
+  var fec = document.getElementById("FECHA_ACUERDO").value;
+  if (fec === null || fec === '') {    
+    document.getElementById("ver_fecha_inicio").style.display = "none";
+  }
 </script>
 </body>
 </html>
