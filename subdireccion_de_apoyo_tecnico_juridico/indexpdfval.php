@@ -363,11 +363,6 @@ margin-left:auto; margin-right:0;
                          </div>
                          <br><br><br>
                                    <div class="two fields">
-
-
-
-
-
                                      <div class="row">
                                        <div class="col-lg-12">
                                          <div class="table-responsive">
@@ -406,10 +401,20 @@ margin-left:auto; margin-right:0;
                                          </div>
                                        </div>
                                      </div>
-
-                                 <div class="col-lg-12  validar"><br>
+                                     <br><br>
+                                 <!-- <div class="col-lg-12  validar"><br>
                                  <label for="zon" class="form-label">Zona Geografica</label><br>
                                  <input type="text" class="form-control" id="zon">
+                                 </div> -->
+
+                                 <div class="ui labeled input">
+                                   <div class="ui label">
+                                     Zona Geografica
+                                   </div>
+                                   <input type="text" placeholder="">
+                                   <div class="ui label">
+                                     Estado de México
+                                   </div>
                                  </div>
 
                                  <div class="col-lg-12  validar"><br>
