@@ -85,9 +85,10 @@ if ($verifica_medida == 1) {
     // creacion de la medida para validacion posterior
     $validar = 'false';
     $validar_datos = 'false';
+    $primerval = 'false';
     $fecha_captura = date('y/m/d H:i:sa');
-    $val_medida = "INSERT INTO validar_medida(folioexpediente, id_persona, id_medida, validacion, fecha_captura, validar_datos)
-                    VALUES ('$folio_expediente', '$id_persona', '$id_med', '$validar', '$fecha_captura', '$validar_datos')";
+    $val_medida = "INSERT INTO validar_medida(folioexpediente, id_persona, id_medida, validacion, fecha_captura, validar_datos, 1ervalidacion)
+                    VALUES ('$folio_expediente', '$id_persona', '$id_med', '$validar', '$fecha_captura', '$validar_datos', '$primerval')";
     $res_validar_medida = $mysqli->query($val_medida);
 // validacion del registro correcto
   if($res_addmedidas && $res_mult_meds){
