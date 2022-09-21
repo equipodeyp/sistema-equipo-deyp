@@ -151,7 +151,7 @@ $validacion = $fil_val['validacion'];
 
                       </p>
               </div>";
-            }elseif ($validacion == 'false') {
+            }elseif ($validacion == 'false' || $validacion == '') {
               echo "<div class='columns download'>
                       <p>
 
@@ -565,7 +565,7 @@ $validacion = $fil_val['validacion'];
   $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
-    if ($fil_val['validar_datos'] === 'true') {
+    if ($fil_val['validar_datos'] === 'true' && $fil_val['1ervalidacion'] === 'false') {
       echo "<div>
 
                 <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>

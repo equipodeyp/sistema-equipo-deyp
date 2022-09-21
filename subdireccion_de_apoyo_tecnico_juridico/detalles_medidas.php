@@ -295,7 +295,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_expediente.php?id=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_persona.php?folio=<?=$id_person?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
