@@ -68,7 +68,7 @@ $row=$result->fetch_assoc();
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
-
+  <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -273,7 +273,7 @@ text-decoration: underline;
         <br>
         <div class="row">
           <a href="crear_expediente.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a id="btnmedidaspendientes" class="btn-flotante-nuevo-exp" href="../subdireccion_de_apoyo_tecnico_juridico/medidas_por_validar.php">pendientes por validar</a>
+          <a style="visibility:hidden;" id="btnmedidaspendientes" class="btn-flotante-nuevo-exp" href="../subdireccion_de_apoyo_tecnico_juridico/medidas_por_validar.php">pendientes por validar</a>
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
@@ -360,5 +360,66 @@ text-decoration: underline;
     </div>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
+  <?php
+  $var = $name;
+  $tmf = "SELECT COUNT(*) as t from validar_medida
+  INNER JOIN medidas ON medidas.id = validar_medida.id_medida
+  WHERE validar_medida.validar_datos = 'true' AND validar_medida.1ervalidacion = 'false' AND medidas.tipo = 'PROVISIONAL'";
+  $rtmf = $mysqli->query($tmf);
+  $ftmf = $rtmf->fetch_assoc();
+  $mmed =  $ftmf['t'];
+  ?>
+  <script type="text/javascript">
+  <?php
+  echo "var jsvar ='$var';";
+  echo "var jsvmedidasfalse ='$mmed';";
+  ?>
+  console.log(jsvar);
+  console.log(jsvmedidasfalse);
+
+    if (jsvmedidasfalse > 0) {
+      document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
+      console.log(jsvar);
+      console.log(jsvmedidasfalse);
+      (function(window, document) { // asilamos el componente
+      // creamos el contedor de las tostadas o la tostadora
+      var container = document.createElement('div');
+      container.className = 'toast-container';
+      document.body.appendChild(container);
+
+      // esta es la funcion que hace la tostada
+      window.doToast = function(message) {
+        // creamos tostada
+        var toast = document.createElement('div');
+        toast.className = 'toast-toast';
+        toast.innerHTML = message;
+
+        // agregamos a la tostadora
+        container.appendChild(toast);
+
+        // programamos su eliminación
+        setTimeout(function() {
+          // cuando acabe de desaparecer, lo eliminamos del dom.
+          toast.addEventListener("transitionend", function() {
+             container.removeChild(toast);
+          }, false);
+
+          // agregamos un estilo que inicie la "transition".
+          toast.classList.add("fadeout");
+        }, 10000); // OP dijo, "solo dos segundos"
+      }
+      })(window, document);
+
+      // ejempo de uso
+      doToast("¡ATENCIÓN!");
+
+      // ejemplo retardado de uso
+      setTimeout(function() {
+       doToast("FALTAN MEDIDAS");
+       doToast("PROVISIONALES POR VALIDAR");
+      }, 1200);
+      // fin de mostrar alerta
+    }
+  </script>
 </body>
 </html>
