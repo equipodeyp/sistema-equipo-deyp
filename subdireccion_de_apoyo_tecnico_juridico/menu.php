@@ -270,12 +270,12 @@ text-decoration: underline;
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
+        <br>
         <div class="row">
-          <a href="crear_expediente.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>
+          <a href="crear_expediente.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a id="btnmedidaspendientes" class="btn-flotante-nuevo-exp" href="../subdireccion_de_apoyo_tecnico_juridico/medidas_por_validar.php">pendientes por validar</a>
         </div>
         <br>
-
-
         <!--Ejemplo tabla con DataTables-->
         <div class="">
             <div class="row">
