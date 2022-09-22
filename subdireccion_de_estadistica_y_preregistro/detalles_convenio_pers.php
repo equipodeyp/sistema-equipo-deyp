@@ -299,22 +299,29 @@ ocultarInfo();
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
         document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
         document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').required = false;
+        document.getElementById('INPUT_FECHA_INICIO').required = false;
+        document.getElementById("INPUT_VIGENCIA").required = false;
+        document.getElementById('INPUT_ID_CONVENIO').required = false;
+        document.getElementById('INPUT_FECHA_FIRMA').value = "";
+        document.getElementById('INPUT_FECHA_INICIO').value = "";
+        document.getElementById("INPUT_VIGENCIA").value = "";
+        document.getElementById('INPUT_ID_CONVENIO').value = "";
       }else {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
         document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
-        document.getElementById('INPUT_FECHA_FIRMA').required = true;
         document.getElementById('LABEL_FECHA_INICIO').style.display = "";
         document.getElementById('INPUT_FECHA_INICIO').style.display = "";
-        document.getElementById('INPUT_FECHA_INICIO').required = true;
         document.getElementById('LABEL_VIGENCIA').style.display = "";
         document.getElementById('INPUT_VIGENCIA').style.display = "";
-
-        document.getElementById("INPUT_VIGENCIA").required = true;
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
-        document.getElementById('INPUT_ID_CONVENIO').required = true;
         document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
         document.getElementById('INPUT_FECHA_TERMINO').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').required = true;
+        document.getElementById('INPUT_FECHA_INICIO').required = true;
+        document.getElementById("INPUT_VIGENCIA").required = true;
+        document.getElementById('INPUT_ID_CONVENIO').required = true;
       }
     }
 
