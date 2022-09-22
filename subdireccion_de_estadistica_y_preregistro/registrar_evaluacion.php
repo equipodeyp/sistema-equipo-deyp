@@ -142,6 +142,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
                     <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                     <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                    <option value="NO APLICA">3.- NO APLICA</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
@@ -155,7 +156,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                  <input id="INPUT_VIGENCIA"autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
+                  <input id="INPUT_VIGENCIA" autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
@@ -192,7 +193,51 @@ $fila_consulta = $res_consulta->fetch_assoc();
 </div>
 </body>
 </html>
+<script type="text/javascript">
+  var tipconv = document.getElementById('SELECT_TIPO_CONVENIO');
+  var camtipconv = '';
+  tipconv.addEventListener('change', obtcamtipconv);
+    function obtcamtipconv(e){
+      camtipconv = e.target.value;
+      // console.log(camtipconv);
+      if (camtipconv === 'NO APLICA') {
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
 
+        document.getElementById('row_observaciones').style.display = "";
+        document.getElementById('row_enter').style.display = "";
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+
+        // document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        // document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+      }else {
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').required = true;
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').required = true;
+        document.getElementById('LABEL_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').required = true;
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').required = true;
+      }
+    }
+
+</script>
 <script type="text/javascript">
 var selectAnalisisMulti = document.getElementById('ANALISIS_MULT').value;
 function ocultarCampos() {

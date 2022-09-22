@@ -54,7 +54,7 @@ $id_persona = $fila_consulta_uno ['id'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
@@ -152,6 +152,7 @@ $id_persona = $fila_consulta_uno ['id'];
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                      <option value="NO APLICA">3.- NO APLICA</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -209,6 +210,26 @@ $id_persona = $fila_consulta_uno ['id'];
 </body>
 </html>
 <script type="text/javascript">
+  var vertipconv = document.getElementById('SELECT_TIPO_CONVENIO').value;
+  function ocultipconv(){
+    // console.log(vertipconv);
+    if (vertipconv === "NO APLICA") {
+      // console.log('error');
+      document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+      document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+      document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+      document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+      document.getElementById('LABEL_VIGENCIA').style.display = "none";
+      document.getElementById('INPUT_VIGENCIA').style.display = "none";
+      document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
+      document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+      document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+      document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+    }
+  }
+  ocultipconv();
+</script>
+<!-- <script type="text/javascript">
 var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT').value;
     function ocultarInfo() {
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
@@ -247,4 +268,54 @@ var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT'
 
     }
 ocultarInfo();
+</script> -->
+<script type="text/javascript">
+  var tipconv = document.getElementById('SELECT_TIPO_CONVENIO');
+  var camtipconv = '';
+  tipconv.addEventListener('change', obtcamtipconv);
+    function obtcamtipconv(e){
+      camtipconv = e.target.value;
+      // console.log(camtipconv);
+      if (camtipconv === 'NO APLICA') {
+        // document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        // document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        // document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        // document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+
+        // document.getElementById('row_observaciones').style.display = "";
+        // document.getElementById('row_enter').style.display = "";
+        // document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        // document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+
+        // document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        // document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
+        document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+      }else {
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').required = true;
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').required = true;
+        document.getElementById('LABEL_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').style.display = "";
+
+        document.getElementById("INPUT_VIGENCIA").required = true;
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').required = true;
+        document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
+        document.getElementById('INPUT_FECHA_TERMINO').style.display = "";
+      }
+    }
+
 </script>

@@ -1,6 +1,6 @@
 var tipo = document.getElementById('SELECT_TIPO_CONVENIO').value;
 function disabledcampos() {
-  // console.log(tipo);
+  console.log(tipo);
   if (tipo !== '') {
     document.getElementById('SELECT_TIPO_CONVENIO').disabled= true;
     document.getElementById('INPUT_FECHA_FIRMA').disabled= true;
@@ -9,6 +9,21 @@ function disabledcampos() {
     document.getElementById('INPUT_ID_CONVENIO').disabled= true;
     document.getElementById('input_observaciones').disabled= true;
     document.getElementById('enter').style.visibility = "hidden";
+  }
+   if (tipo === 'NO APLICA') {
+    console.log('error');
+    document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+    // document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+    document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+    // document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+    document.getElementById('LABEL_VIGENCIA').style.display = "none";
+    // document.getElementById('INPUT_VIGENCIA').style.display = "none";
+    document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
+    // document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+    document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+    // document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+  }else {
+    console.log('rr');
   }
 }
 disabledcampos();
