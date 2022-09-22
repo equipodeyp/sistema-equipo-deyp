@@ -139,11 +139,11 @@ $id_persona = $fila_consulta_uno ['id'];
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label id="LABEL_FECHA_AUTORIZACION" for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLSIIS MULTIDISCIPLINARIO</label>
+                    <label id="LABEL_FECHA_AUTORIZACION" for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input id="INPUT_FECHA_AUTORIZACION" disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANALSIIS MULTIDISCIPLINARIO</label>
+                    <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input id="INPUT_ID_ANALISIS" disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">

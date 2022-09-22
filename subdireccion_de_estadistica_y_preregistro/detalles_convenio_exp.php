@@ -134,7 +134,7 @@ $id_con_exp = $fila_consulta['id'];
                     <input disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
-                    <label for="id_analisis">ID DEL ANÁLSIIS MULTIDISCIPLINARIO</label>
+                    <label for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
                     <input disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar " id="tconve">
