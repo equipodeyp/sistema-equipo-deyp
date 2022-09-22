@@ -291,18 +291,26 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
       document.getElementById('INPUT_VIGENCIA').style.display = "none";
       document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
       document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
+      document.getElementById('INPUT_FECHA_FIRMA').required = false;
+      document.getElementById('INPUT_FECHA_INICIO').required = false;
+      document.getElementById('INPUT_VIGENCIA').required = false;
+      document.getElementById('INPUT_TOTAL_CONVENIOS').required = false;
+      document.getElementById('INPUT_FECHA_FIRMA').value = "";
+      document.getElementById('INPUT_FECHA_INICIO').value = "";
+      document.getElementById('INPUT_VIGENCIA').value = "";
+      document.getElementById('INPUT_TOTAL_CONVENIOS').value = "";
     }else {
       document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
       document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
-      document.getElementById('INPUT_FECHA_FIRMA').required = true;
       document.getElementById('LABEL_FECHA_INICIO').style.display = "";
       document.getElementById('INPUT_FECHA_INICIO').style.display = "";
-      document.getElementById('INPUT_FECHA_INICIO').required = true;
       document.getElementById('LABEL_VIGENCIA').style.display = "";
       document.getElementById('INPUT_VIGENCIA').style.display = "";
-      document.getElementById('INPUT_VIGENCIA').required = true;
       document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "";
       document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "";
+      document.getElementById('INPUT_FECHA_FIRMA').required = true;
+      document.getElementById('INPUT_FECHA_INICIO').required = true;
+      document.getElementById('INPUT_VIGENCIA').required = true;
       document.getElementById('INPUT_TOTAL_CONVENIOS').required = true;
     }
   }
