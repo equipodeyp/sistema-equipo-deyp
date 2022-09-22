@@ -127,37 +127,47 @@ $row=$result->fetch_assoc();
                   </thead>
                   <tbody>
                     <?php
-                    $contador = 0;
-                          $query= "SELECT * FROM MEDIDAS
-                          inner join validar_medida on medidas.id = validar_medida.id_medida
-                          WHERE validar_medida.validar_datos = 'true' AND validar_medida.1ervalidacion = 'false' AND medidas.tipo = 'PROVISIONAL'";
-                          $rq = $mysqli->query($query);
-                             while($row = $rq->fetch_assoc()){
-                               $contador = $contador + 1;
-                               $id_per = $row['id_persona'];
-                               $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
-                               $rdper = $mysqli->query($dper);
-                               $fdper = $rdper->fetch_assoc();
-                                   ?>
+                    $checarstatus = "SELECT COUNT(*) as t FROM statusseguimiento WHERE status = 'ANALISIS'";
+                    $rchecarstatus = $mysqli->query($checarstatus);
+                    $fchecarstatus = $rchecarstatus->fetch_assoc();
+                    $ifestatus = $fchecarstatus['t'];
+                    // echo $ifestatus;
+                    if ($ifestatus > 0) {
+                      $contador = 0;
+                            $query= "SELECT * FROM MEDIDAS
+                            inner join validar_medida on medidas.id = validar_medida.id_medida
+                            WHERE validar_medida.validar_datos = 'true' AND validar_medida.1ervalidacion = 'false' AND medidas.tipo = 'PROVISIONAL'";
+                            $rq = $mysqli->query($query);
+                               while($row = $rq->fetch_assoc()){
+                                 $contador = $contador + 1;
+                                 $id_per = $row['id_persona'];
+                                 $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
+                                 $rdper = $mysqli->query($dper);
+                                 $fdper = $rdper->fetch_assoc();
+                                     ?>
 
-                                       <tr>
-                                          <td style="text-align:center"><?php echo $contador ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['folioexpediente']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $fdper['identificador']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['id_medida']; ?></span></td>
-                                          <td style="text-align:center">
-                              							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
-                              							<?php
-                              							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
+                                         <tr>
+                                            <td style="text-align:center"><?php echo $contador ?></span></td>
+                                            <td style="text-align:center"><?php echo $row['folioexpediente']; ?></span></td>
+                                            <td style="text-align:center"><?php echo $fdper['identificador']; ?></span></td>
+                                            <td style="text-align:center"><?php echo $row['id_medida']; ?></span></td>
+                                            <td style="text-align:center">
+                                							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
+                                							<?php
+                                							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
 
-                              							 ?>
-                              							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
-                              						</td>
-                                          <?php include('BorrarEditarModal.php'); ?>
-                                        </tr>
-                                   <?php
-                                   }
-                               ?>
+                                							 ?>
+                                							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
+                                						</td>
+                                            <?php include('BorrarEditarModal.php'); ?>
+                                          </tr>
+                                     <?php
+                                     }
+                    }else {
+                      // echo "no hay ";
+                    }
+
+                    ?>
                   </tbody>
                 </table>
               </div>

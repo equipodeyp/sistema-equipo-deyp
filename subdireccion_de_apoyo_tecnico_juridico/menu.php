@@ -364,7 +364,8 @@ text-decoration: underline;
   $var = $name;
   $tmf = "SELECT COUNT(*) as t from validar_medida
   INNER JOIN medidas ON medidas.id = validar_medida.id_medida
-  WHERE validar_medida.validar_datos = 'true' AND validar_medida.1ervalidacion = 'false' AND medidas.tipo = 'PROVISIONAL'";
+  INNER JOIN statusseguimiento on statusseguimiento.folioexpediente = validar_medida.folioexpediente
+  WHERE statusseguimiento.status = 'ANALISIS' AND validar_medida.validar_datos = 'true' AND validar_medida.1ervalidacion = 'false' AND medidas.tipo = 'PROVISIONAL'";
   $rtmf = $mysqli->query($tmf);
   $ftmf = $rtmf->fetch_assoc();
   $mmed =  $ftmf['t'];

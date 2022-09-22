@@ -21,6 +21,7 @@ $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
+// echo $name_folio;
 $tipo_status=$rowfol['estatus'];
 // echo $tipo_status;
 
@@ -234,49 +235,63 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </th>
         		  		</thead>
         		  		<?php
-                  $cont_med = '0';
-        		      $tabla="SELECT * FROM medidas
-                  INNER JOIN validar_medida ON validar_medida.id_medida = medidas.id
-                  WHERE medidas.id_persona ='$fol_exp' AND medidas.tipo ='PROVISIONAL' AND validar_medida.validar_datos = 'TRUE'";
-                  $var_resultado = $mysqli->query($tabla);
+                  $checarstatus = "SELECT * FROM statusseguimiento WHERE folioexpediente = '$name_folio'";
+                  $rchecarstatus = $mysqli->query($checarstatus);
+                  $fchecarstatus = $rchecarstatus->fetch_assoc();
+                  $ifestatus = $fchecarstatus['status'];
+                  if ($ifestatus === 'ANALISIS') {
+                    $cont_med = '0';
+          		      $tabla="SELECT * FROM medidas
+                    INNER JOIN validar_medida ON validar_medida.id_medida = medidas.id
+                    WHERE medidas.id_persona ='$fol_exp' AND medidas.tipo ='PROVISIONAL' AND validar_medida.validar_datos = 'TRUE'";
+                    $var_resultado = $mysqli->query($tabla);
 
-                  $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-                  $resultfol = $mysqli->query($fol);
-                  $rowfol=$resultfol->fetch_assoc();
-                  $idUnicoPersona = $rowfol['identificador'];
+                    $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+                    $resultfol = $mysqli->query($fol);
+                    $rowfol=$resultfol->fetch_assoc();
+                    $idUnicoPersona = $rowfol['identificador'];
 
-        		      while ($var_fila=$var_resultado->fetch_array())
-        		      {
+          		      while ($var_fila=$var_resultado->fetch_array())
+          		      {
 
-                    $id_medida = $var_fila['id'];
-                    $cont_med = $cont_med + 1;
-                    $val_meds = "SELECT * FROM validar_medida WHERE folioexpediente = '$name_folio' AND id_persona = '$id_person' AND id_medida = '$id_medida'";
-                    $res_valmeds = $mysqli->query($val_meds);
-                    while ($fila_valmeds = $res_valmeds->fetch_array()){
-                      echo "<tr>";
-          		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-                        echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
-                        echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'VI. OTRAS' || $var_fila['medida'] === 'XIII. OTRAS MEDIDAS') {
-                          echo $var_fila['descripcion'];
-                        }else {
-                          echo $var_fila['medida'];
-                        } echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
-                          echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
-                        } echo "</td>";
-                        echo "<td style='text-align:center'>"; if ($fila_valmeds['1ervalidacion'] === 'true') {
-                          echo "<i class='fas fa-check'></i>";
-                        }elseif ($fila_valmeds['1ervalidacion'] === 'false') {
-                          echo "<i class='fas fa-times'></i>";
-                        } echo "</td>";
-          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
-          		        echo "</tr>";
-                    }
+                      $id_medida = $var_fila['id'];
+                      $cont_med = $cont_med + 1;
+                      $val_meds = "SELECT * FROM validar_medida WHERE folioexpediente = '$name_folio' AND id_persona = '$id_person' AND id_medida = '$id_medida'";
+                      $res_valmeds = $mysqli->query($val_meds);
+                      while ($fila_valmeds = $res_valmeds->fetch_array()){
+                        echo "<tr>";
+            		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+                          echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+                          echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'VI. OTRAS' || $var_fila['medida'] === 'XIII. OTRAS MEDIDAS') {
+                            echo $var_fila['descripcion'];
+                          }else {
+                            echo $var_fila['medida'];
+                          } echo "</td>";
+            		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+            		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
+                            echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
+                          } echo "</td>";
+                          echo "<td style='text-align:center'>"; if ($fila_valmeds['1ervalidacion'] === 'true') {
+                            echo "<i class='fas fa-check'></i>";
+                          }elseif ($fila_valmeds['1ervalidacion'] === 'false') {
+                            echo "<i class='fas fa-times'></i>";
+                          } echo "</td>";
+            		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+            		        echo "</tr>";
+                      }
 
-        		      }
+          		      }
+                  }else {
+                    echo "<div class='columns download'>
+                            <p>
+
+                            <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>EL SUJETO YA NO CUENTA CON MEDIDAS PROVISIONALES</FONT></h3>
+
+                            </p>
+                    </div>";
+                  }
         		      ?>
         		  	</table>
         		  </div>
