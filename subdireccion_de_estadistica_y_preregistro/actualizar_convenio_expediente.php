@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];

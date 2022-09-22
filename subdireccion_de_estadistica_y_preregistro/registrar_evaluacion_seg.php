@@ -46,7 +46,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
@@ -139,6 +139,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                       <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                      <option value="NO APLICA">3.- NO APLICA</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -273,4 +274,36 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
     }
 
 
+</script>
+<script type="text/javascript">
+  var vertipconv = document.getElementById('SELECT_TIPO_CONVENIO');
+  var cambioconv = '';
+  vertipconv.addEventListener('change', obtenerconv);
+  function obtenerconv(e){
+    cambioconv = e.target.value;
+    console.log(cambioconv);
+    if (cambioconv === 'NO APLICA') {
+      document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+      document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+      document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+      document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+      document.getElementById('LABEL_VIGENCIA').style.display = "none";
+      document.getElementById('INPUT_VIGENCIA').style.display = "none";
+      document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
+      document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
+    }else {
+      document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+      document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+      document.getElementById('INPUT_FECHA_FIRMA').required = true;
+      document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+      document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+      document.getElementById('INPUT_FECHA_INICIO').required = true;
+      document.getElementById('LABEL_VIGENCIA').style.display = "";
+      document.getElementById('INPUT_VIGENCIA').style.display = "";
+      document.getElementById('INPUT_VIGENCIA').required = true;
+      document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "";
+      document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "";
+      document.getElementById('INPUT_TOTAL_CONVENIOS').required = true;
+    }
+  }
 </script>

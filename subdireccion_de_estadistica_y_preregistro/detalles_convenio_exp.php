@@ -48,7 +48,7 @@ $id_con_exp = $fila_consulta['id'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
@@ -143,6 +143,7 @@ $id_con_exp = $fila_consulta['id'];
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                      <option value="NO APLICA">3.- NO APLICA</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar" id="ffirma">
@@ -203,7 +204,59 @@ $id_con_exp = $fila_consulta['id'];
 <script src="../js/evaluacion_expediente.js" charset="utf-8"></script>
 </body>
 </html>
-
 <script type="text/javascript">
-
+  var vertipconvenio = document.getElementById('select_tipo_convenio').value;
+  function tipoconveniocam(){
+    console.log(vertipconvenio);
+    if (vertipconvenio === 'NO APLICA') {
+      // document.getElementById('tconve').style.display = "none";
+      document.getElementById('ffirma').style.display = "none";
+      document.getElementById('finicio').style.display = "none";
+      document.getElementById('vigen').style.display = "none";
+      document.getElementById('fterm').style.display = "none";
+      document.getElementById('tconvenios').style.display = "none";
+      // document.getElementById('textobserv').style.display = "none";
+      // document.getElementById('enter').style.visibility = "hidden";
+    }else {
+      document.getElementById('ffirma').style.display = "";
+      document.getElementById('finicio').style.display = "";
+      document.getElementById('vigen').style.display = "";
+      document.getElementById('fterm').style.display = "";
+      document.getElementById('tconvenios').style.display = "";
+    }
+  }
+  tipoconveniocam();
+  // cambio de tipo de convenio
+  var cambioconvenio = document.getElementById('select_tipo_convenio');
+  var acttipoconv = '';
+  cambioconvenio.addEventListener('change', obtentipo);
+  function obtentipo(e){
+    acttipoconv = e.target.value;
+    console.log(acttipoconv);
+    if (acttipoconv === 'NO APLICA') {
+      document.getElementById('ffirma').style.display = "none";
+      document.getElementById('finicio').style.display = "none";
+      document.getElementById('vigen').style.display = "none";
+      document.getElementById('fterm').style.display = "none";
+      document.getElementById('tconvenios').style.display = "none";
+      document.getElementById('fecha_firma').required = false;
+      document.getElementById('fecha_inicio').required = false;
+      document.getElementById('vigencia').required = false;
+      document.getElementById('input_id_convenio').required = false;
+      document.getElementById('fecha_firma').value = "";
+      document.getElementById('fecha_inicio').value = "";
+      document.getElementById('vigencia').value = "";
+      document.getElementById('input_id_convenio').value = "";
+    }else {
+      document.getElementById('ffirma').style.display = "";
+      document.getElementById('finicio').style.display = "";
+      document.getElementById('vigen').style.display = "";
+      document.getElementById('fterm').style.display = "";
+      document.getElementById('tconvenios').style.display = "";
+      document.getElementById('fecha_firma').required = true;
+      document.getElementById('fecha_inicio').required = true;
+      document.getElementById('vigencia').required = true;
+      document.getElementById('input_id_convenio').required = true;
+    }
+  }
 </script>
