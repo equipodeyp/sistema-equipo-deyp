@@ -29,7 +29,7 @@ echo "<td style='text-align:center' bgcolor='yellow'>"; echo $filatcalidadhombre
 echo "</tr>";
 
 echo "<tr bgcolor='yellow'>";
-echo "<td style='text-align:center'>"; echo "TOTAL"; "</td>";
+echo "<td style='text-align:right'>"; echo "TOTAL"; "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; "</td>";
 echo "</tr>";
 ?>
