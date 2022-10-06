@@ -272,21 +272,21 @@ margin-left:auto; margin-right:0;
                      </thead>
                      <tbody>
                        <tr >
-                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
                          <!-- <input type="text" name="fname" class="form-control" placeholder="First Name"> -->
-                         <input style="text-align:center; width: 100%" type="text" name="fname">
+                         <input style="text-align:center; width: 100%" type="text" name="fname" autocomplete="off">
                          </font>
                          </td>
-                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
-                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="email" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="email" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -305,19 +305,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" class="form-control" name="message">
+                           <input style="text-align:center; width: 100%" type="text" name="message">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -337,19 +337,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -368,19 +368,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -398,13 +398,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -422,13 +422,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -441,14 +441,14 @@ margin-left:auto; margin-right:0;
                          <th width="2%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
                          <th width="48%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
                          <th width="2%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
                          <th width="48%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
@@ -465,7 +465,7 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -482,7 +482,7 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -502,13 +502,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -527,19 +527,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -558,19 +558,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -585,14 +585,14 @@ margin-left:auto; margin-right:0;
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                           <input style="text-align:center; width: 100%" type="text" name="lname">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
@@ -633,17 +633,17 @@ margin-left:auto; margin-right:0;
 
                        <div style="float: right; width: 40%;"><BR /><BR /><BR />
 
-                       <table align="right" class="table" id="estatusexpediente" border="1px" cellspacing="0" width="70%" bordered>
+                       <table align="right" width="70%">
                          <thead>
                            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-                             <th style="height:2vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SEDE</font></th>
+                             <th style="height:3vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SEDE</font></th>
                            </tr>
                          </thead>
                          <tbody>
                            <tr >
                              <td style="height:3vh; border: 1px solid black; text-align:center">
                              <font style="font-family: gothambook">
-                             TOLUCA
+                             <input style="text-align:center; width: 100%" type="text" name="lname" value="TOLUCA">
                              </font>
                              </td>
                            </tr>
@@ -680,11 +680,6 @@ margin-left:auto; margin-right:0;
                    </p>
                    </div>
                  <button class="btn btn-success" type="submit">Create PDF</button>
-
-
-
-
-
                  </div>
              </div>
          </div>
