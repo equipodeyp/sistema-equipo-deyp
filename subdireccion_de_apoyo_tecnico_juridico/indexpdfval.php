@@ -43,18 +43,18 @@ $mesDesc1 = strftime("%B de %Y", strtotime($newDate1));
 $miFecha = $newDate;
 $miFecha2 = $newDate1;
 function fechaEs($fecha) {
-$fecha = substr($fecha, 0, 10);
-$numeroDia = date('d', strtotime($fecha));
-$dia = date('l', strtotime($fecha));
-$mes = date('F', strtotime($fecha));
-$anio = date('Y', strtotime($fecha));
-$dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
-$dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
-$nombredia = str_replace($dias_EN, $dias_ES, $dia);
-$meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-$meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-$nombreMes = str_replace($meses_EN, $meses_ES, $mes);
-return $numeroDia." de ".$nombreMes." de ".$anio;
+  $fecha = substr($fecha, 0, 10);
+  $numeroDia = date('d', strtotime($fecha));
+  $dia = date('l', strtotime($fecha));
+  $mes = date('F', strtotime($fecha));
+  $anio = date('Y', strtotime($fecha));
+  $dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+  $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+  $nombredia = str_replace($dias_EN, $dias_ES, $dia);
+  $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+  $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+  $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
+  return $nombreMes."  ".$numeroDia." del ".$anio;
 }
 // proceso penal
 $penal = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
@@ -71,49 +71,52 @@ $fdom = $rdom->fetch_assoc();
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
-  <script src="../js/jquery-3.1.1.min.js"></script>
-  <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-  <script src="../js/jquery.dataTables.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <!-- <script src="../js/jquery-3.1.1.min.js"></script> -->
+  <!-- <link href="../css/jquery.dataTables.min.css" rel="stylesheet"> -->
+  <!-- <script src="../js/jquery.dataTables.min.js"></script> -->
+  <!-- <script src="../js/bootstrap.min.js"></script> -->
   <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="../js/expediente.js"></script>
-  <script src="../js/solicitud.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/cli.css">
-  <link rel="stylesheet" href="../css/registrosolicitud1.css">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+  <!-- <script src="../js/expediente.js"></script> -->
+  <!-- <script src="../js/solicitud.js"></script> -->
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+  <!-- <link rel="stylesheet" href="../css/cli.css"> -->
+  <!-- <link rel="stylesheet" href="../css/registrosolicitud1.css"> -->
   <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
   <!-- <script src="JQuery.js"></script> -->
-  <script src="../js/Javascript.js"></script>
+  <!-- <script src="../js/Javascript.js"></script> -->
   <!-- <script src="../js/validar_campos.js"></script> -->
-  <script src="../js/verificar_camposm1.js"></script>
-  <script src="../js/mascara2campos.js"></script>
-  <script src="../js/mod_medida.js"></script>
+  <!-- <script src="../js/verificar_camposm1.js"></script> -->
+  <!-- <script src="../js/mascara2campos.js"></script> -->
+  <!-- <script src="../js/mod_medida.js"></script> -->
   <!-- <link rel="stylesheet" href="../css/estilos.css">
   <script src="../js/main.js"></script> -->
-  <script src="../js/Javascript.js"></script>
+  <!-- <script src="../js/Javascript.js"></script> -->
   <!-- <script src="../js/validar_campos.js"></script> -->
-  <script src="../js/validarmascara3.js"></script>
+  <!-- <script src="../js/validarmascara3.js"></script> -->
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> -->
+  <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+  <!-- <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script> -->
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/main2.css">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+  <!-- <link rel="stylesheet" href="../css/main2.css"> -->
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
   <style media="screen">
   #container {
   display: flex;
@@ -122,17 +125,13 @@ $fdom = $rdom->fetch_assoc();
   border:1px solid;
   background-color: #e4e3e4;
 }
-
 #resultado1,#resultado2,#resultado3,#resultado4 {
   background-color: red;
   width: 100px;
   height: 100px;
   margin: 10px;
 margin-left:auto; margin-right:0;
-
 }
-
-
 #sidebar{
         width: 25%;
         margin-bottom: 30px;
@@ -140,7 +139,29 @@ margin-left:auto; margin-right:0;
         padding: 30px;
         border: orange;
     }
-  </style>
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 0;
+
+      /* Por ejemplo, agregar una altura
+         en la celda */
+      height: 30px;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      padding: 0 10px;
+
+      /* El detalle que faltaba que funcione */
+      box-sizing: border-box;
+    }
+</style>
 </head>
 <body >
 <div class="contenedor">
@@ -200,7 +221,6 @@ margin-left:auto; margin-right:0;
     		</ul>
 
     		<div class="secciones">
-
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
@@ -209,387 +229,468 @@ margin-left:auto; margin-right:0;
           </div>
         </div>
       </div>
-
        <!--  -->
+         <div class="ui page grid">
+             <div class="wide column" >
+                 <div class="ui segment" style="text-align: center;">
+                   <table width="100%">
+                     <tr>
+                       <td width="10%"><img  src="../image/ESCUDO.png" width="70" height="70"></td>
+                       <td width="80%" style="font-family: gothambook" align="center"><br /><br /><br /><BR /><h5 align="center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO” </h5></td>
+                       <td width="10%" style="text-align: right;"><img  src="../image/FGJEM.png" width="70" height="70"></td>
+                     </tr>
+                   </table>
+                   <table width="100%">
+                     <tr>
+                       <td width="33%" align="center" bgcolor="#A19E9F" style="height:3vh;"><h3 class=""><font color ="#FFFFFF" style="font-family: gothambook">VALORACIÓN JURÍDICA DE LA SOLICITUD DE INGRESO AL PROGRAMA</font></h3></td>
+                     </tr>
+                   </table>
+                   <br />
+                   <table width="100%" >
+                     <tr >
+                       <td width="25%"></td>
+                       <td width="25%" align="center" ></td>
+                       <td width="50%" style="text-align: center; height:3vh;" bgcolor="#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook"><h4><?php echo $fol_exp; ?></h4></font></td>
+                     </tr>
+                   </table>
+                   <br />
+                   <p align="right">
+                   <span style="align:right;width:200px"><font style="font-family: gothambook">
+                   Toluca de Lerdo, Estado de México,
+                   </font></span><br />
+                   <span style="align:right;width:200px"><font style="font-family: gothambook">
+                   <?php echo fechaEs($miFecha); ?>.</font></span>
+                   </p>
+                   <h3 style="font-family: gothambook" align="center">DATOS GENERALES DEL EXPEDIENTE</h3>
+                   <table id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">OFICIO DE SOLICITUD</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">FECHA DE SOLICITUD</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ZONA GEOGRÁFICA</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                         <!-- <input type="text" name="fname" class="form-control" placeholder="First Name"> -->
+                         <input style="text-align:center; width: 100%" type="text" name="fname">
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="email" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table><BR />
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="33%" style="border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">DELITO</font></th>
+                         <th width="33%" style="border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CARPETA DE INVESTIGACION Y/O CAUSA PENAL</font></th>
+                         <th width="33%" style="border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ETAPA DE PROCEDMIENTO PENAL</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" class="form-control" name="message">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table><br><br />
+                   <h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA</h3>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">INICIALES</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">TIPO DE INTERVENCION</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRIVADO DE LA LIBERTAD?</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table><br />
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SITUACION DE RIESGO</font></th>
+                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CAUSA DE VULNERABILIDAD</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table><br />
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
+                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" >
+                         <th width="2%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
+                         <th width="48%" style="height:4vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </th>
+                         <th width="2%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
+                         <th width="48%" style="height:4vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </th>
+                       </tr>
+                     </thead>
+                   </table><br>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NECESIDAD DEL PORQUE LLEVAR SU TESTIMONIO A JUICIO</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <table width="105%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th style="height:4vh; border: 1px solid black;"><font color ="#FFFFFF" style="font-family: gothambook">MEDIDAS SOLICITADAS POR EL AGENTE DEL MINISTERIO PUBLICO DE LA INVESTIGACION</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <br><br>
+                   <h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">AGENTE DEL MINISTERIO PUBLICO</font></th>
+                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ORGANO JURISDICCIONAL</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table><br>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CARGO</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ADSCRIPCION</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">TEL. OFICINA</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CELULAR</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CORREO ELECTRONICO</font></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <tr >
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <br><br><br>
+                   <h3 style="font-family: gothambook" align="center">VALORACION JURIDICA</h3>
+                   <table width="100%">
+                     <thead>
+                       <tr style="border: 1px solid black;" >
+                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
+                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </th>
+                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
+                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
+                         <font style="font-family: gothambook">
+                           <input style="text-align:center;" type="text" name="lname" class="form-control">
+                         <!-- // aqui va la variable que se trae desde el front-end -->
+                         </font>
+                         </th>
+                       </tr>
+                     </thead>
+                   </table><br>
+                   <h3 style="font-family: gothambook" align="center">ACUERDO</h3>
+                   <p align="justify">
+                   <span style="font-size: 1em;"><font style="font-family: gothambook">
+                   Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, de las Personas Propuestas de identidad reservada de iniciales XXX y XXX, se determinó que cumple con los requisitos de ley, por lo que se dio inicio al Expediente de Protección registrado bajo el número UPSSIPPED/XXX/XXX/XXX/20XX; y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes; lo anterior, con fundamento en los artículos XXX Constitución Política de los Estados Unidos Mexicanos; XXX del Código Nacional de Procedimientos Penales; XXXX de la Ley para la Protección de Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio del Estado de México y demás relativos aplicables.
+                   </font></span>
+                   </p>
+                   <div>
 
-
-
-       <div class="ui page grid col-lg-12">
-           <div class="wide column"><br>
-               <!-- <h3 class="ui header aligned center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO”</h3> -->
-               <div class="ui divider hidden">
-               </div>
-                   <form class="ui form">
-                     <div class="ui segment">
-                          <div class="main ">
-                            <img src="../image/ESCUDO.png" alt="" width="100" height="50">
-                            <img src="../image/FGJEM.png" alt="" width="100" height="50" align = "right">
-                          </div>
-
-                       <h4 class="align:center">“2022. AÑO DEL QUINCENTENARIO DE TOLUCA, CAPITAL DEL ESTADO DE MÉXICO” </h4>
-                       <ul class="list-group col-lg-12" >
-                         <li id="container" class="list-group-item col-lg-12">
-                           <center>
-                             <h3 class="">VALORACIÓN JURÍDICA DE LA SOLICITUD DE INGRESO AL PROGRAMA </h3>
-                           </center>
-                         </li>
-                       </ul>
-                       <br><br><br><br>
-                       <div class="container">
-                         <div class="row">
-                           <div class="col-md-6"></div><div class="col-md-6">
-                             <span class="pull-right">
-                               <ul class="list-group " >
-                                 <li id="" class="list-group-item col-lg-12">
-                                   <center>
-                                     <h3 class=""><?php echo $fol_exp; ?></h3>
-                                   </center>
-                                 </li>
-                               </ul>
-                             </span>
-                           </div>
-                         </div>
+                       <div style="float: left; width: 60%;">
+                       <p align="center">
+                       <span style="align:center;width:200px">____________________________________________________</span><br />
+                       <span style="align:center;width:200px"><font style="font-family: gothambook">
+                       LIC. XXXXXXXX
+                       </font></span><br />
+                       <span style="align:center;width:200px"><font style="font-family: gothambook">
+                       AGENTE DEL MINISTERIO PUBLICO
+                       </font></span><br />
+                       </p>
+                       <p align="center">
+                       <span style="align:center;width:200px">____________________________________________________</span><br />
+                       <span style="align:center;width:200px"><font style="font-family: gothambook">
+                       V.°B.°
+                       </font></span><br />
+                       <span style="align:center;width:200px"><font style="font-family: gothambook">
+                       LIC. XXXXXXXX
+                       </font></span><br />
+                       <span style="align:center;width:200px"><font style="font-family: gothambook">
+                       ADSCRITO A LA SUBDIRECCION DE APOYO TECNICO Y JURIDICO
+                       </font></span><br />
+                       </p>
                        </div>
-                       <br>
-                       <div class="container">
-                         <div class="row">
-                           <div class=""></div><div class="">
-                             <span class="pull-right">
-                               Toluca de Lerdo, Estado de México, a <?php echo fechaEs($miFecha); ?>
-                             </span>
-                           </div>
-                         </div>
-                       </div>
-                       <br>
-                       <div class="container">
-                         <div class="row">
-                           <div class=""></div><div class="">
-                             <span class="pull-right">
-                               Fecha de solicitud: <?php echo fechaEs($miFecha2); ?>
-                             </span>
-                           </div>
-                         </div>
-                       </div>
-                       <br><br>
-                       <center>
-                         <h3 class="ui ">DATOS DE LA PERSONA PROPUESTA</h3>
-                       </center>
-                       <br>
 
-                       <ul class="list-group col-lg-12" >
-                         <li id="" class="list-group-item col-lg-12">
-                           <label for="">Iniciales:
-                             <?php
-                             $inicialescont = "SELECT count(*) as t FROM datospersonales WHERE folioexpediente = '$fol_exp'";
-                             $rinicialescont = $mysqli->query($inicialescont);
-                             $finicialescont = $rinicialescont->fetch_assoc();
-                             // echo $finicialescont['t'];
-                             $contar = 0;
-                             $iniciales = "SELECT * FROM datospersonales WHERE folioexpediente = '$fol_exp'";
-                             $riniciales = $mysqli->query($iniciales);
-                             while ($finiciales = $riniciales->fetch_assoc()) {
-                               echo $finiciales['identificador'];
-                               $contar = $contar + 1;
-                               if ($contar < $finicialescont['t']) {
-                                 echo ',    ';
-                               }
-                             }
-                             ?>
-                           </label>
-                         </li>
-                       </ul>
-                       <br><br><br>
-                       <form class="ui form">
-                         <div class="row">
-                           <div class="col-lg-12">
-                             <div class="table-responsive">
-                              <table id="tabla1" border="2px" cellspacing="0" width="100%">
-                                 <thead class="">
-                                 </thead>
-                                 <tbody>
-                                   <tr>
-                                     <td style="background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;  width: 20px; text-align:center" rowspan="3">TIPO <br> DE <br> INTERVENCIÓN</td>
-                                   </tr>
-                                   <tr>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <label for="vic-si" class="form-check-label">Victima</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-si" value="1"><br>
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Ofendido</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Testigo/<br>Colaborador</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                       <br><br>
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Perito</label><br> &nbsp
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Ministerio Público </label> <br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                   </tr>
-                                   <tr>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Defensor</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  width: 110px; text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Policía</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Juez</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <label for="vic-no" class="form-check-label">Magistrado</label><br>
-                                       <input type="checkbox" name="vic" class="form-check-input" id="vic-no" value="0">
-                                     </td>
-                                     <td style="border: 1px solid black; border-collapse: collapse;  text-align:center" >
-                                       <label for="otr" class="form-label">Otro</label><br>
-                                       <input type="text" class="form-control" id="anex">
-                                       <br>
-                                     </td>
-                                   </tr>
-                                 </tbody>
-                               </table>
-                             </div>
-                           </div>
-                         </div>
-                         <br><br><br>
-                                   <div class="two fields">
-                                     <div class="row">
-                                       <div class="col-lg-12">
-                                         <div class="table-responsive">
-                                          <table id="tabla1" border="2px" cellspacing="0" >
-                                             <thead class="">
-                                               <tr>
-                                                 <!-- <th style="width: 30%; text-align:center"></th>
-                                                 <th style="width: 70%; text-align:center"></th> -->
-                                               </tr>
-                                             </thead>
-                                             <tbody>
-                                               <tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">DELITO<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"><?php echo $fpenal['delitoprincipal']; ?></td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">CARPETA DE INVESTIGACIÓN Y/O CAUSA PENAL<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
-                                               </tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">¿PRIVADO DELA LIBERTAD?<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"><?php echo $fdom['lugar']; ?></td>
-                                               <tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">UBICACIÓN DE LA PERSONA<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">¿ASISTENCIA LEGAL? NOMBRE DE LA PERSONA QUE LO ASISTE<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="width: 35%; background-color:#A19E9F; border: 1px solid black; border-collapse: collapse;   text-align:center">SITUACIÓN DEL RIESGO<br><br></td>
-                                                 <td style="width: 65%; border: 1px solid black; border-collapse: collapse; text-align:center"></td>
-                                               </tr>
-                                             </tbody>
-                                           </table>
-                                         </div>
-                                       </div>
-                                     </div>
-                                     <br><br>
-                                 <!-- <div class="col-lg-12  validar"><br>
-                                 <label for="zon" class="form-label">Zona Geografica</label><br>
-                                 <input type="text" class="form-control" id="zon">
-                                 </div> -->
+                       <div style="float: right; width: 40%;"><BR /><BR /><BR />
 
-                                 <div class="ui labeled input">
-                                   <div class="ui label">
-                                     Zona Geografica
-                                   </div>
-                                   <input type="text" placeholder="">
-                                   <div class="ui label">
-                                     Estado de México
-                                   </div>
-                                 </div>
-
-                                 <div class="col-lg-12  validar"><br>
-                                 <label for="cau" class="form-label">Causa de Vulnerabilidad</label><br>
-                                 <textarea></textarea>
-                                 </div>
-
-
-                                 <div class="col-lg-12  validar"><br><br><br>
-                                 <label for="pree" class="form-label">Presenta alguna enfermedad</label><br>
-                                 <input type="text" class="form-control" id="pree">
-                                 </div>
-
-                                 <div class="col-lg-12  validar"><br>
-                                 <label for="pred" class="form-label">Presenta alguna discapacidad</label><br>
-                                 <input type="text" class="form-control" id="pred">
-                                 </div>
-
-                                 <div class="col-lg-12  validar"><br>
-                                 <label for="nec" class="form-label">Necesidad del porque llevar su testimonio a juicio</label><br>
-                                 <textarea></textarea>
-                                 </div>
-
-
-                                 <div class="col-lg-12  validar"><br>
-                                 <label for="med" class="form-label">Medidas de apoyo solicitadas</label><br>
-                                 <textarea></textarea>
-                                 </div>
-
-                     </div>
-
-                     <form class="ui form">
-                         <h4 class="ui dividing header">Datos del solicitante
-                         </h4>
-                                                                   <div class="col-sm-3  validar"><br>
-                                                                    <label for="">Agenten del Ministerio Publico</label><br>
-                                                                    <input type="radio" name="age" class="form-check-input" id="age-si" value="1">
-                                                                    <label for="age-si" class="form-check-label">Si</label>
-                                                                    <input type="radio" name="age" class="form-check-input" id="age-no" value="0"
-                                                                        checked>
-                                                                    <label for="age-no" class="form-check-label">No</label>
-                                                                  </div>
-
-                                                                   <div class="col-sm-3  validar"><br>
-                                                                    <label for="">Órgano Jurisdiccional</label><br>
-                                                                    <input type="radio" name="org" class="form-check-input" id="org-si" value="1">
-                                                                    <label for="org-si" class="form-check-label">Si</label>
-                                                                    <input type="radio" name="org" class="form-check-input"  id="org-no" value="0" checked>
-                                                                    <label for="org-no" class="form-check-label">No</label>
-                                                                  </div>
-
-
-                                                                  <div class="col-lg-12  validar"><br>
-                                                                  <label for="pred" class="form-label">Nombre</label><br>
-                                                                  <input type="text" class="form-control" id="pred">
-                                                                  </div>
-
-                                                                  <div class="col-lg-12  validar"><br>
-                                                                  <label for="pred" class="form-label">Cargo</label><br>
-                                                                  <input type="text" class="form-control" id="pred">
-                                                                  </div>
-
-                                                                  <div class="col-lg-12  validar"><br>
-                                                                  <label for="pred" class="form-label">Adscripcion</label><br>
-                                                                  <input type="text" class="form-control" id="pred">
-                                                                  </div>
-
-                                                                  <div class="col-lg-12  validar"><br><br><br>
-                                                                  <label for="pred" class="form-label">Tel. Oficina</label><br>
-                                                                  <input type="text" class="form-control" id="pred">
-                                                                  </div>
-
-
-                                                                  <div class="col-lg-12  validar"><br>
-                                                                  <label for="pred" class="form-label">Celular</label><br>
-                                                                  <input type="text" class="form-control" id="pred">
-                                                                  </div>
-
-
-                                                                  <div class="col-lg-12  validar"><br>
-                                                                  <label for="pred" class="form-label">Correo Electronico</label><br>
-                                                                  <input type="text" class="form-control" id="pred">
-                                                                  </div>
-
-
-
-
-
-
-                      <form class="ui form">
-                      <h4 class="ui dividing header">Dictamen
-                      </h4>
-                      <div class="col-sm-3  validar">
-
-
-                                <div class="main bg-light">
-                                <img src="../image/dictamen.png" alt="" width="700" height="250">
-                                 </div>
-
-
-                                       <div class="field">
-                                      <label for="">Nombre(Iniciales)</label>
-                                       <input type="text" name="first-name" >
-                                        </div>
-
-
-                                        <div class="col-sm-3  validar">
-                                         <label for="">Procedente</label><br>
-                                         <input type="radio" name="org" class="form-check-input" id="org-si" value="1">
-                                         <label for="org-si" class="form-check-label">Si</label>
-                                         <input type="radio" name="org" class="form-check-input"  id="org-no" value="0" checked>
-                                         <label for="org-no" class="form-check-label">No</label>
-                                       </div>
-
-
-
-
-                                       <div class="col-sm-3  validar"><br>
-                                            <label for="">Municipio</label><br>
-                                            <input type="radio" name="org" class="form-check-input" id="org-si" value="1">
-                                            <label for="org-si" class="form-check-label">TOLUCA</label>&nbsp &nbsp
-                                            <input type="radio" name="org" class="form-check-input"  id="org-no" value="0" checked>
-                                            <label for="org-no" class="form-check-label">ECATEPEC</label>&nbsp &nbsp
-                                            <input type="radio" name="org" class="form-check-input"  id="org-no" value="0" checked>
-                                            <label for="org-no" class="form-check-label">NEZAHUALCOYÓTL</label>&nbsp &nbsp
-                                          </div>
-
-
-
-                                          <div class="ui segment"><br>
-                                               <img src="../image/firma.png" alt="" width="300" height="100">
-                                             </div>
-
-
-                                          <div class="field"><br>
-                                         <label for="">LIC.ADSCRITO A LA SUBDIRECCIÓN DE APOYO TÉCNICO Y JURÍDICO</label>
-                                          <input type="text" name="first-name" >
-                                           </div>
-
-
-                                           <div class="ui segment"><br>
-                                                <div class="main bg-light">
-                                                <img src="../image/pie.png" alt="" width="700" height="100">
-                                              </div>
-
+                       <table align="right" class="table" id="estatusexpediente" border="1px" cellspacing="0" width="70%" bordered>
+                         <thead>
+                           <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                             <th style="height:2vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SEDE</font></th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                           <tr >
+                             <td style="height:3vh; border: 1px solid black; text-align:center">
+                             <font style="font-family: gothambook">
+                             TOLUCA
+                             </font>
+                             </td>
+                           </tr>
+                         </tbody>
+                       </table>
 
                        </div>
+                   </div>
+                   <div>
+                     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                   <p align="right">
+                   <span style="font-size: .55em; align:center;width:10px"><font style="font-family: gothambook">
+                   FISCALÍA GENERAL DE JUSTICIA DEL ESTADO DE MÉXICO
+                   </font></span><br />
+                   <span style="font-size: .55em; align:center;width:10px"><font style="font-family: gothambook">
+                   UNIDAD DE PROTECCIÓN DE SUJETOS QUE INTERVIENEN EN UN PROCEDMIENTO PENAL O DE EXTINCIÓN DE DOMINIO
+                   </font></span><br />
+                   <span style="font-size: .55em; align:center;width:10px"><font style="font-family: gothambook">
+                   SUBDIRECCIÓN DE APOYO TÉCNICO Y JURÍDICO
+                   </font></span>
+                   <table width="100%">
+                   <tr>
+                   <td width="33%" align="center" bgcolor="#A19E9F" style="height: .5vh;"><h3 class=""></h3></td>
+                   </tr>
+                   </table>
+                   <p align="center">
+                   <span style="font-size: .55em; align:center;width:10px">MANUEL MA. CONTRERAS N° 201 COL. VÉRTICE, TOLUCA, ESTADO DE MÉXICO, C.P. 50090,
+                   TELS. 722 226 16 00, EXT. 3215
+                   </span>
+                   </p>
+                   <p align="center">
+                   <span style="font-size: .55em;">Pagina 1 de n</span>
+                   </p>
+                   </p>
+                   </div>
+                 <button class="btn btn-success" type="submit">Create PDF</button>
 
-                       <br><br>
-
-
-       </div>
 
 
 
 
-                   </form>
-               </div><br><br>
-               <div class="ui button aligned center teal" id="create_pdf">Generar PDF
-               </div>
+                 </div>
+             </div>
+         </div>
 
-           </div>
-       </div>
-       </div>
-
-       <!-- <script src="./lib/jquery.min.js"></script> -->
-       <script type="text/javascript" src="../js/jspdf.min.js"></script>
-       <script type="text/javascript" src="../js/html2canvas.min.js"></script>
-       <script type="text/javascript" src="../js/appval.js"></script>
-
-       <!--  -->
-
+  </div>
+</div>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">REGRESAR</a>
-<script src="../js/jspdf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
-<script src="../js/app.js"></script>
 </body>
 </html>
