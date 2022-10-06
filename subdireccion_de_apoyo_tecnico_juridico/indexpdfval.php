@@ -64,6 +64,7 @@ $fpenal = $rpenal->fetch_assoc();
 $dom = "SELECT * FROM domiciliopersona WHERE folioexpediente = '$fol_exp'";
 $rdom = $mysqli->query($dom);
 $fdom = $rdom->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -230,6 +231,16 @@ margin-left:auto; margin-right:0;
         </div>
       </div>
        <!--  -->
+       <?php
+
+       // autoridad competente
+       $autoridad = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp' limit 1";
+       $rautoridad = $mysqli->query($autoridad);
+       while ($fautoridad = $rautoridad->fetch_assoc()) {
+         // code...
+
+       ?>
+
          <div class="ui page grid">
              <div class="wide column" >
                  <div class="ui segment" style="text-align: center;">
@@ -275,12 +286,12 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
                          <!-- <input type="text" name="fname" class="form-control" placeholder="First Name"> -->
-                         <input style="text-align:center; width: 100%" type="text" name="fname" autocomplete="off">
+                         <input style="text-align:center; width: 100%" type="text" name="fname" autocomplete="off" value="<?php echo $fautoridad['idsolicitud']; ?>">
                          </font>
                          </td>
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fautoridad['fechasolicitud']; ?>">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -683,7 +694,9 @@ margin-left:auto; margin-right:0;
                  </div>
              </div>
          </div>
-
+         <?php
+          }
+         ?>
   </div>
 </div>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">REGRESAR</a>
