@@ -60,10 +60,6 @@ function fechaEs($fecha) {
 $penal = "SELECT * FROM procesopenal WHERE folioexpediente = '$fol_exp'";
 $rpenal = $mysqli->query($penal);
 $fpenal = $rpenal->fetch_assoc();
-// domicio actual
-$dom = "SELECT * FROM domiciliopersona WHERE folioexpediente = '$fol_exp'";
-$rdom = $mysqli->query($dom);
-$fdom = $rdom->fetch_assoc();
 
 ?>
 <!DOCTYPE html>
@@ -297,7 +293,7 @@ margin-left:auto; margin-right:0;
                          </td>
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="email" autocomplete="off" value="<?php echo $row['sede']; ?>" readonly>
+                           <input style="text-align:center; width: 100%" type="text" name="email" autocomplete="off" value="<?php echo $fpenal['numeroradicacion']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -343,6 +339,11 @@ margin-left:auto; margin-right:0;
                    while ($fdatepersona = $rdatepersona->fetch_assoc()) {
                      // echo $fdatepersona['identificador'].'<br />';
                      $consecutivo = $consecutivo + 1;
+                     $inicialessuj = $fdatepersona['id'];
+                     // domicio actual
+                     $dom = "SELECT * FROM domiciliopersona WHERE id_persona = '$inicialessuj'";
+                     $rdom = $mysqli->query($dom);
+                     $fdom = $rdom->fetch_assoc();
                    ?>
                    <h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA <?php echo $consecutivo; ?></h3>
                    <table width="100%">
@@ -363,13 +364,17 @@ margin-left:auto; margin-right:0;
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php if ($fdatepersona['calidadprocedimiento'] === 'OTROS') {
+                             echo $fdatepersona['especifique'];
+                           }else {
+                            echo $fdatepersona['calidadprocedimiento'];
+                           }?>">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fdom['lugar'];?>">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
