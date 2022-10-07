@@ -286,18 +286,18 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
                          <!-- <input type="text" name="fname" class="form-control" placeholder="First Name"> -->
-                         <input style="text-align:center; width: 100%" type="text" name="fname" autocomplete="off" value="<?php echo $fautoridad['idsolicitud']; ?>">
+                         <input style="text-align:center; width: 100%" type="text" name="fname" autocomplete="off" value="<?php echo $fautoridad['idsolicitud']; ?>" readonly>
                          </font>
                          </td>
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo date("d/m/Y", strtotime($fautoridad['fechasolicitud'])); ?>">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo date("d/m/Y", strtotime($fautoridad['fechasolicitud'])); ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="email" autocomplete="off" value="<?php echo $row['sede']; ?>">
+                           <input style="text-align:center; width: 100%" type="text" name="email" autocomplete="off" value="<?php echo $row['sede']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -316,26 +316,35 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="message" autocomplete="off" value="<?php echo $fpenal['delitoprincipal']; ?>">
+                           <input style="text-align:center; width: 100%" type="text" name="message" autocomplete="off" value="<?php echo $fpenal['delitoprincipal']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fpenal['nuc']; ?>">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fpenal['nuc']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fpenal['etapaprocedimiento']; ?>">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fpenal['etapaprocedimiento']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                        </tr>
                      </tbody>
                    </table><br><br />
-                   <h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA</h3>
+                   <?php
+                   $consecutivo = 0;
+                   // datos personales de cada sujeto
+                   $datepersona = "SELECT * FROM datospersonales WHERE folioexpediente = '$fol_exp'";
+                   $rdatepersona = $mysqli->query($datepersona);
+                   while ($fdatepersona = $rdatepersona->fetch_assoc()) {
+                     // echo $fdatepersona['identificador'].'<br />';
+                     $consecutivo = $consecutivo + 1;
+                   ?>
+                   <h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA <?php echo $consecutivo; ?></h3>
                    <table width="100%">
                      <thead>
                        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
@@ -348,19 +357,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fdatepersona['identificador']; ?>">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -379,19 +388,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -409,13 +418,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -433,13 +442,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -449,17 +458,17 @@ margin-left:auto; margin-right:0;
                    <table width="100%">
                      <thead>
                        <tr style="border: 1px solid black;" >
-                         <th width="2%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-                         <th width="48%" style="height:4vh; border: 1px solid black; text-align:center">
+                         <th width="8%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
+                         <th width="42%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
-                         <th width="2%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-                         <th width="48%" style="height:4vh; border: 1px solid black; text-align:center">
+                         <th width="8%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
+                         <th width="42%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
@@ -476,7 +485,7 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -493,7 +502,7 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -501,6 +510,9 @@ margin-left:auto; margin-right:0;
                      </tbody>
                    </table>
                    <br><br>
+                   <?php
+                   }
+                   ?>
                    <h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>
                    <table width="100%">
                      <thead>
@@ -513,13 +525,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -538,19 +550,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -569,19 +581,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -596,14 +608,14 @@ margin-left:auto; margin-right:0;
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname">
+                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
@@ -616,6 +628,7 @@ margin-left:auto; margin-right:0;
                    Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, de las Personas Propuestas de identidad reservada de iniciales XXX y XXX, se determinó que cumple con los requisitos de ley, por lo que se dio inicio al Expediente de Protección registrado bajo el número UPSSIPPED/XXX/XXX/XXX/20XX; y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes; lo anterior, con fundamento en los artículos XXX Constitución Política de los Estados Unidos Mexicanos; XXX del Código Nacional de Procedimientos Penales; XXXX de la Ley para la Protección de Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio del Estado de México y demás relativos aplicables.
                    </font></span>
                    </p>
+                   <br /><br /><br /><br /><br />
                    <div>
 
                        <div style="float: left; width: 60%;">
@@ -628,6 +641,7 @@ margin-left:auto; margin-right:0;
                        AGENTE DEL MINISTERIO PUBLICO
                        </font></span><br />
                        </p>
+                       <br /><br /><br />
                        <p align="center">
                        <span style="align:center;width:200px">____________________________________________________</span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
@@ -654,7 +668,7 @@ margin-left:auto; margin-right:0;
                            <tr >
                              <td style="height:3vh; border: 1px solid black; text-align:center">
                              <font style="font-family: gothambook">
-                             <input style="text-align:center; width: 100%" type="text" name="lname" value="TOLUCA">
+                             <input style="text-align:center; width: 100%" type="text" name="lname" value="TOLUCA" autocomplete="off" readonly>
                              </font>
                              </td>
                            </tr>
