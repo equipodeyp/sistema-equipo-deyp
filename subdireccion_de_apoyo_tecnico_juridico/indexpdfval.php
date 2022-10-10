@@ -68,6 +68,7 @@ $fpenal = $rpenal->fetch_assoc();
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
@@ -227,6 +228,7 @@ margin-left:auto; margin-right:0;
         </div>
       </div>
        <!--  -->
+       <form action="crear_pdf.php" method="POST">
        <?php
 
        // autoridad competente
@@ -236,7 +238,6 @@ margin-left:auto; margin-right:0;
          // code...
 
        ?>
-
          <div class="ui page grid">
              <div class="wide column" >
                  <div class="ui segment" style="text-align: center;">
@@ -282,18 +283,18 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
                          <!-- <input type="text" name="fname" class="form-control" placeholder="First Name"> -->
-                         <input style="text-align:center; width: 100%" type="text" name="fname" autocomplete="off" value="<?php echo $fautoridad['idsolicitud']; ?>" readonly>
+                         <input style="text-align:center; width: 100%" type="text" name="oficiosolicitud" autocomplete="off" value="<?php echo $fautoridad['idsolicitud']; ?>" readonly>
                          </font>
                          </td>
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo date("d/m/Y", strtotime($fautoridad['fechasolicitud'])); ?>" readonly>
+                           <input style="text-align:center; width: 100%" type="text" name="fechasolicitud" autocomplete="off" value="<?php echo date("d/m/Y", strtotime($fautoridad['fechasolicitud'])); ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 0px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="email" autocomplete="off" value="<?php echo $fpenal['numeroradicacion']; ?>" readonly>
+                           <input style="text-align:center; width: 100%" type="text" name="zonageografica" autocomplete="off" value="<?php echo $fpenal['numeroradicacion']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -312,19 +313,33 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="message" autocomplete="off" value="<?php echo $fpenal['delitoprincipal']; ?>" readonly>
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="delito" autocomplete="off" value="<?php if ($fpenal['delitoprincipal'] === 'OTRO') {
+                           //   echo $fpenal['otrodelitoprincipal'];
+                           // }else {
+                           //  echo $fpenal['delitoprincipal'];
+                           }?>" readonly> -->
+                           <textarea style="text-align:center; width: 100%" name="delito" autocomplete="off" rows="4" cols="80" readonly>&#13;&#10;<?php if ($fpenal['delitoprincipal'] === 'OTRO') {
+                             echo $fpenal['otrodelitoprincipal']."\n";
+                           }else {
+                            echo $fpenal['delitoprincipal']."\n";
+                           }
+                           if ($fpenal['delitosecundario'] === 'OTRO') {
+                             echo $fpenal['otrodelitosecundario']."\n";
+                           }else {
+                             echo $fpenal['delitosecundario']."\n";
+                           }?></textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fpenal['nuc']; ?>" readonly>
+                           <input style="text-align:center; width: 100%" type="text" name="carpetainv" autocomplete="off" value="<?php echo $fpenal['nuc']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fpenal['etapaprocedimiento']; ?>" readonly>
+                           <input style="text-align:center; width: 100%" type="text" name="procpenal" autocomplete="off" value="<?php echo $fpenal['etapaprocedimiento']; ?>" readonly>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -358,13 +373,13 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fdatepersona['identificador']; ?>">
+                           <input style="text-align:center; width: 100%" type="text" name="inicialessuj[]" autocomplete="off" value="<?php echo $fdatepersona['identificador']; ?>">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php if ($fdatepersona['calidadprocedimiento'] === 'OTROS') {
+                           <input style="text-align:center; width: 100%" type="text" name="tipointervencion[]" autocomplete="off" value="<?php if ($fdatepersona['calidadprocedimiento'] === 'OTROS') {
                              echo $fdatepersona['especifique'];
                            }else {
                             echo $fdatepersona['calidadprocedimiento'];
@@ -374,7 +389,7 @@ margin-left:auto; margin-right:0;
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off" value="<?php echo $fdom['lugar'];?>">
+                           <input style="text-align:center; width: 100%" type="text" name="privadolibertad[]" autocomplete="off" value="<?php echo $fdom['lugar'];?>">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -386,26 +401,35 @@ margin-left:auto; margin-right:0;
                        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
                          <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
                          <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
-                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
+                         <th id="div1" width="33%" style="display:none; height:4vh; border: 1px solid black; text-align:center;"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
                        </tr>
                      </thead>
                      <tbody>
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="ubicacion[]" autocomplete="off"> -->
+                           <textarea style="text-align:center; width: 100%" name="ubicacion[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="asistencialegal" autocomplete="off"> -->
+                           <div class="form-check form-check-inline">
+                             <label class="form-check-label" for="inlineRadio1">SI</label>
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ASISTENCIA_SI">
+                           </div>
+                           <div class="form-check form-check-inline">
+                             <label class="form-check-label" for="inlineRadio2">NO</label>
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="ASISTENCIA_NO">
+                           </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
-                         <td style="height:5vh; border: 1px solid black; text-align:center">
+                         <td id="div2" style="display:none; height:5vh; border: 1px solid black; text-align:center;">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="personaasiste" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -423,63 +447,101 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="situacionriesgo" autocomplete="off"> -->
+                           <textarea style="text-align:center; width: 100%" name="situacionriesgo" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="causavulnerabilidad" autocomplete="off"> -->
+                           <textarea style="text-align:center; width: 100%" name="causavulnerabilidad" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                        </tr>
                      </tbody>
                    </table><br />
-                   <table width="100%">
-                     <thead>
-                       <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
-                         <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
-                       </tr>
-                     </thead>
-                     <tbody>
-                       <tr >
-                         <td style="height:5vh; border: 1px solid black; text-align:center">
-                         <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
-                         <!-- // aqui va la variable que se trae desde el front-end -->
-                         </font>
-                         </td>
-                         <td style="height:5vh; border: 1px solid black; text-align:center">
-                         <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
-                         <!-- // aqui va la variable que se trae desde el front-end -->
-                         </font>
-                         </td>
-                       </tr>
-                     </tbody>
-                   </table>
-                   <table width="100%">
-                     <thead>
-                       <tr style="border: 1px solid black;" >
-                         <th width="8%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-                         <th width="42%" style="height:4vh; border: 1px solid black; text-align:center">
-                         <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
-                         <!-- // aqui va la variable que se trae desde el front-end -->
-                         </font>
-                         </th>
-                         <th width="8%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-                         <th width="42%" style="height:4vh; border: 1px solid black; text-align:center">
-                         <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
-                         <!-- // aqui va la variable que se trae desde el front-end -->
-                         </font>
-                         </th>
-                       </tr>
-                     </thead>
-                   </table><br>
+                   <div class="input-group">
+                     <div class="" style="width: 50%;">
+                       <table >
+                         <thead>
+                           <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                             <th  style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
+                             <!-- <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th> -->
+                           </tr>
+                         </thead>
+                         <tbody>
+                           <tr >
+                             <td style="height:5vh; border: 1px solid black; text-align:center">
+                             <font style="font-family: gothambook">
+                               <!-- <input style="text-align:center; width: 100%" type="text" name="enfermedad" autocomplete="off"> -->
+                               <div class="form-check form-check-inline">
+                                 <label class="form-check-label" for="inlineRadio1">SI</label>
+                                 <input class="enfermo form-check-input" type="radio" name="enfermedad" id="inlineRadio1" value="ENFERMEDAD_SI">
+                               </div>
+                               <div class="form-check form-check-inline">
+                                 <label class="form-check-label" for="inlineRadio2">NO</label>
+                                 <input class="enfermo form-check-input" type="radio" name="enfermedad" id="inlineRadio2" value="ENFERMEDAD_NO">
+                               </div>
+                             <!-- // aqui va la variable que se trae desde el front-end -->
+                             </font>
+                             </td>
+                           </tr>
+                         </tbody>
+                       </table>
+                       <div class="input-group" >
+                         <div class="" style="width: 100%; display:none;" id="tipoenfermedad">
+                           <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
+                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
+                         </div>
+                         <!-- <div class="" style="width: 50%; display:none;" id="tipodiscapacidad">
+                           <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
+                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
+                         </div> -->
+                       </div>
+                     </div>
+                     <div class="" style="width: 50%;">
+                       <table >
+                         <thead>
+                           <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+                             <!-- <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th> -->
+                             <th width="50%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                           <tr >
+                             <td style="height:5vh; border: 1px solid black; text-align:center">
+                             <font style="font-family: gothambook">
+                               <!-- <input style="text-align:center; width: 100%" type="text" name="discapacidad" autocomplete="off"> -->
+                               <div class="form-check form-check-inline">
+                                 <label class="form-check-label" for="inlineRadio1">SI</label>
+                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad" id="inlineRadio1" value="DISCAPACIDAD_SI">
+                               </div>
+                               <div class="form-check form-check-inline">
+                                 <label class="form-check-label" for="inlineRadio2">NO</label>
+                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad" id="inlineRadio2" value="DISCAPACIDAD_NO">
+                               </div>
+                             <!-- // aqui va la variable que se trae desde el front-end -->
+                             </font>
+                             </td>
+                           </tr>
+                         </tbody>
+                       </table>
+                       <div class="input-group" >
+                         <!-- <div class="" style="width: 50%; display:none;" id="tipoenfermedad">
+                           <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
+                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
+                         </div> -->
+                         <div class="" style="width: 100%; display:none;" id="tipodiscapacidad">
+                           <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
+                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+
+                   <br>
                    <table width="100%">
                      <thead>
                        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
@@ -490,7 +552,8 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="testimonio" autocomplete="off"> -->
+                           <textarea style="text-align:center; width: 100%" name="testimonio" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -507,7 +570,8 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="medidas" autocomplete="off"> -->
+                           <textarea style="text-align:center; width: 100%" name="medidas" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -530,13 +594,21 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="agenteministerio" autocomplete="off"> -->
+                           <div class="form-check form-check-inline">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                             <label class="form-check-label" for="inlineCheckbox1"></label>
+                           </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <!-- <input style="text-align:center; width: 100%" type="text" name="organojurisdiccional" autocomplete="off"> -->
+                           <div class="form-check form-check-inline">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                             <label class="form-check-label" for="inlineCheckbox1"></label>
+                           </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -555,19 +627,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="nombreagente" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="cargoagente" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="adscripcionagente" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -586,19 +658,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="teloficina" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="celular" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="correoelectronico" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -613,14 +685,14 @@ margin-left:auto; margin-right:0;
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="procedente" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
                          <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="lname" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="noprocedente" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </th>
@@ -716,8 +788,51 @@ margin-left:auto; margin-right:0;
          <?php
           }
          ?>
+         </form>
   </div>
 </div>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">REGRESAR</a>
+<script type="text/javascript">
+$(document).ready(function(){
+        $(".pago").click(function(evento){
+            var valor = $(this).val();
+            if(valor == 'ASISTENCIA_SI'){
+              $("#div1").show();
+              $("#div2").show();
+                console.log('si hay asistencialegal');
+            }else{
+              $("#div1").hide();
+              $("#div2").hide();
+                console.log('no hay asistencialegal');
+            }
+    });
+});
+//
+$(document).ready(function(){
+        $(".enfermo").click(function(evento){
+            var valor = $(this).val();
+            if(valor == 'ENFERMEDAD_SI'){
+              $("#tipoenfermedad").show();
+                console.log('si hay enfermedad');
+            }else{
+              $("#tipoenfermedad").hide();
+                console.log('no hay enfermedad');
+            }
+    });
+});
+//
+$(document).ready(function(){
+        $(".discapacitado").click(function(evento){
+            var valor = $(this).val();
+            if(valor == 'DISCAPACIDAD_SI'){
+              $("#tipodiscapacidad").show();
+                console.log('si hay discapacidad');
+            }else{
+              $("#tipodiscapacidad").hide();
+                console.log('no hay discapacidad');
+            }
+    });
+});
+</script>
 </body>
 </html>
