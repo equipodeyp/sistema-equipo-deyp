@@ -88,6 +88,7 @@ $fpenal = $rpenal->fetch_assoc();
   <!-- <script src="../js/expediente.js"></script> -->
   <!-- <script src="../js/solicitud.js"></script> -->
   <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- <link rel="stylesheet" href="../css/cli.css"> -->
   <!-- <link rel="stylesheet" href="../css/registrosolicitud1.css"> -->
   <!-- CSS only -->
@@ -230,13 +231,19 @@ margin-left:auto; margin-right:0;
        <!--  -->
        <form action="crear_pdf.php" method="POST">
        <?php
-
+       // CONTAR CUANTAS PERSONAS HAY EN EL EXPEDIENTE
+       $contarper = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";
+       $rcontarper = $mysqli->query($contarper);
+       $fcontarper = $rcontarper->fetch_assoc();
+       echo $fcontarper['t'];
+       // valoracion juridica
+       $valjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp' limit 1";
+       $rvaljuridica = $mysqli->query($valjuridica);
+       $fvaljuridica = $rvaljuridica->fetch_assoc();
        // autoridad competente
        $autoridad = "SELECT * FROM autoridad WHERE folioexpediente = '$fol_exp' limit 1";
        $rautoridad = $mysqli->query($autoridad);
        while ($fautoridad = $rautoridad->fetch_assoc()) {
-         // code...
-
        ?>
          <div class="ui page grid">
              <div class="wide column" >
@@ -462,8 +469,8 @@ margin-left:auto; margin-right:0;
                        </tr>
                      </tbody>
                    </table><br />
-                   <div class="input-group">
-                     <div class="" style="width: 50%;">
+
+
                        <table >
                          <thead>
                            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
@@ -499,9 +506,9 @@ margin-left:auto; margin-right:0;
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
                            <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
                          </div> -->
-                       </div>
-                     </div>
-                     <div class="" style="width: 50%;">
+                       </div><br />
+
+
                        <table >
                          <thead>
                            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
@@ -538,8 +545,8 @@ margin-left:auto; margin-right:0;
                            <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
                          </div>
                        </div>
-                     </div>
-                   </div>
+
+
 
                    <br>
                    <table width="100%">
@@ -596,7 +603,7 @@ margin-left:auto; margin-right:0;
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="agenteministerio" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
-                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onchange="javascript:showContent()">
                              <label class="form-check-label" for="inlineCheckbox1"></label>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -606,7 +613,7 @@ margin-left:auto; margin-right:0;
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="organojurisdiccional" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
-                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox12" value="option1" onchange="javascript:showContent2()">
                              <label class="form-check-label" for="inlineCheckbox1"></label>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -679,32 +686,74 @@ margin-left:auto; margin-right:0;
                    </table>
                    <br><br><br>
                    <h3 style="font-family: gothambook" align="center">VALORACION JURIDICA</h3>
-                   <table width="100%">
-                     <thead>
-                       <tr style="border: 1px solid black;" >
-                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
-                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
-                         <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="procedente" autocomplete="off">
-                         <!-- // aqui va la variable que se trae desde el front-end -->
-                         </font>
-                         </th>
-                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
-                         <th width="25%" style="height:4vh; border: 1px solid black; text-align:center">
-                         <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="noprocedente" autocomplete="off">
-                         <!-- // aqui va la variable que se trae desde el front-end -->
-                         </font>
-                         </th>
-                       </tr>
-                     </thead>
-                   </table><br>
+                   <?php
+                   if ($fvaljuridica['resultadovaloracion'] === 'SI PROCEDE') {
+                     ?>
+                     <table width="100%">
+                       <thead>
+                         <tr style="border: 1px solid black;" >
+                           <th width="20%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
+                           <th width="80%" style="height:4vh; border: 1px solid black; text-align:center">
+                           <font style="font-family: gothambook">
+                             <!-- <input style="text-align:center; width: 100%" type="text" name="procedente" autocomplete="off"> -->
+                             <i class="fa fa-check" aria-hidden="true" style="font-size:30px;color:green;"></i>
+                           <!-- // aqui va la variable que se trae desde el front-end -->
+                           </font>
+                           </th>
+                         </tr>
+                       </thead>
+                     </table><br>
+                     <?php
+                   }else {
+                     ?>
+
+                     <table width="50%" class="col-lg-12">
+                       <thead>
+                         <tr style="border: 1px solid black;" >
+                           <th width="20%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
+                           <th width="80%" style="height:4vh; border: 1px solid black; text-align:center">
+                           <font style="font-family: gothambook">
+                             <!-- <input style="text-align:center; width: 100%" type="text" name="noprocedente" autocomplete="off"> -->
+                             <i class="fa fa-check" aria-hidden="true" style="font-size:30px;color:green;"></i>
+                           <!-- // aqui va la variable que se trae desde el front-end -->
+                           </font>
+                           </th>
+                         </tr>
+                       </thead>
+                     </table><br>
+                     <?php
+                   }
+                   ?>
+
+                   <br>
                    <h3 style="font-family: gothambook" align="center">ACUERDO</h3>
-                   <p align="justify">
-                   <span style="font-size: 1em;"><font style="font-family: gothambook">
-                   Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, de las Personas Propuestas de identidad reservada de iniciales XXX y XXX, se determinó que cumple con los requisitos de ley, por lo que se dio inicio al Expediente de Protección registrado bajo el número UPSSIPPED/XXX/XXX/XXX/20XX; y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes; lo anterior, con fundamento en los artículos XXX Constitución Política de los Estados Unidos Mexicanos; XXX del Código Nacional de Procedimientos Penales; XXXX de la Ley para la Protección de Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio del Estado de México y demás relativos aplicables.
-                   </font></span>
-                   </p>
+                   <div class="form-group">
+                     <textarea style="text-align:justify;" class="form-control" id="exampleFormControlTextarea1" rows="10">Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, <?php
+                     $contarper = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";
+                     $rcontarper = $mysqli->query($contarper);
+                     $fcontarper = $rcontarper->fetch_assoc();
+                     $tper = $fcontarper['t'];
+                     if ($tper === '1') {
+                       echo 'la Persona Propuesta';
+                     }else {
+                       echo ' las Personas Propuestas';
+                     }
+                     ?> de identidad reservada de iniciales <?php
+                     $mostrarcont = 0;
+                     $datepersona2 = "SELECT identificador FROM datospersonales WHERE folioexpediente = '$fol_exp'";
+                     $rdatepersona2 = $mysqli->query($datepersona2);
+                     while ($fdatepersona2 = $rdatepersona2->fetch_assoc()) {
+                       $mostrarcont = $mostrarcont + 1;
+                       echo $fdatepersona2['identificador'].', ';
+                       if ($mostrarcont === $tper - 1) {
+                         echo " y ";
+                       }
+                     }
+                     ?> se determinó que cumple con los requisitos de ley, por lo que se dio inicio al Expediente de Protección registrado bajo el número <?php
+                     echo $fol_exp.';';
+                     ?> y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes;
+                   </textarea>
+                   </div>
                    <br /><br /><br /><br /><br />
                    <div>
 
@@ -833,6 +882,30 @@ $(document).ready(function(){
             }
     });
 });
+//
+function showContent() {
+       check = document.getElementById("inlineCheckbox1");
+       if (check.checked) {
+           console.log('seleccionado');
+           document.getElementById("inlineCheckbox12").disabled = true;
+       }
+       else {
+         console.log('no seleccionado');
+           document.getElementById("inlineCheckbox12").disabled = false;
+       }
+   }
+//
+function showContent2() {
+       check2 = document.getElementById("inlineCheckbox12");
+       if (check2.checked) {
+           console.log('seleccionado');
+           document.getElementById("inlineCheckbox1").disabled = true;
+       }
+       else {
+         console.log('no seleccionado');
+           document.getElementById("inlineCheckbox1").disabled = false;
+       }
+   }
 </script>
 </body>
 </html>
