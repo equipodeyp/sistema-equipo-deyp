@@ -754,14 +754,14 @@ margin-left:auto; margin-right:0;
                      ?> y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes;
                    </textarea>
                    </div>
-                   <br /><br /><br /><br /><br />
+                   <br /><br />
                    <div>
 
                        <div style="float: left; width: 60%;">
                        <p align="center">
-                       <span style="align:center;width:200px">____________________________________________________</span><br />
+                       <span style="align:center;width:200px">____________________________________________________</span><br /><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
-                       LIC. XXXXXXXX
+                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="" placeholder="LIC." value="">
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
                        AGENTE DEL MINISTERIO PUBLICO
@@ -774,7 +774,7 @@ margin-left:auto; margin-right:0;
                        V.°B.°
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
-                       LIC. XXXXXXXX
+                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="" placeholder="LIC." autocomplete="off" value="">
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
                        ADSCRITO A LA SUBDIRECCION DE APOYO TECNICO Y JURIDICO
