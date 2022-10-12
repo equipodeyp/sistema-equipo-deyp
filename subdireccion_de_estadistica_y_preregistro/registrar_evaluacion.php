@@ -45,7 +45,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
@@ -126,6 +126,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
                     <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
                     <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                    <option value="ACTUALIZACION">4.- ACTUALIZACION</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
@@ -283,7 +284,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
 
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
+      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO" || respuestaAlalisisMultidisiplinario === "ACTUALIZACION") {
 
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
