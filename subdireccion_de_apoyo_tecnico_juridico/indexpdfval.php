@@ -235,7 +235,7 @@ margin-left:auto; margin-right:0;
        $contarper = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";
        $rcontarper = $mysqli->query($contarper);
        $fcontarper = $rcontarper->fetch_assoc();
-       echo $fcontarper['t'];
+       // echo $fcontarper['t'];
        // valoracion juridica
        $valjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp' limit 1";
        $rvaljuridica = $mysqli->query($valjuridica);
@@ -354,12 +354,18 @@ margin-left:auto; margin-right:0;
                      </tbody>
                    </table><br><br />
                    <?php
+                   $contarper21 = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";
+                   $rcontarper21 = $mysqli->query($contarper21);
+                   $fcontarper21 = $rcontarper21->fetch_assoc();
+                   $tper21 = $fcontarper21['t'];
+                   // echo $tper21;
                    $consecutivo = 0;
                    // datos personales de cada sujeto
                    $datepersona = "SELECT * FROM datospersonales WHERE folioexpediente = '$fol_exp'";
                    $rdatepersona = $mysqli->query($datepersona);
                    while ($fdatepersona = $rdatepersona->fetch_assoc()) {
                      // echo $fdatepersona['identificador'].'<br />';
+                     $tper21 = $tper21 + 1;
                      $consecutivo = $consecutivo + 1;
                      $inicialessuj = $fdatepersona['id'];
                      // domicio actual
@@ -429,7 +435,7 @@ margin-left:auto; margin-right:0;
                            </div>
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio2" value="no<?php echo $consecutivo;?>">
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
@@ -859,11 +865,11 @@ $(document).ready(function(){
             console.log(valor);
             // console.log('no'+valor);
             for (var i = 0; i < jsvar; i++) {
-              if (valor !== 'no'+valor) {
+              if (valor <= 3) {
                 console.log('has seleccionado el radio button de la persona ', valor);
                 $("#div1").show();
                 $("#div2").show();
-              }else {
+              }else{
                 $("#div1").hide();
                 $("#div2").hide();
               }
