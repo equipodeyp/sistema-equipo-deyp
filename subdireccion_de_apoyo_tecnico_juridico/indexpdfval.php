@@ -407,7 +407,7 @@ margin-left:auto; margin-right:0;
                      <thead>
                        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
                          <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
-                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
+                         <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL? <?php echo $consecutivo;?></font></th>
                          <th id="div1" width="33%" style="display:none; height:4vh; border: 1px solid black; text-align:center;"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
                        </tr>
                      </thead>
@@ -425,11 +425,11 @@ margin-left:auto; margin-right:0;
                            <!-- <input style="text-align:center; width: 100%" type="text" name="asistencialegal" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio1">SI</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ASISTENCIA_SI">
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
                            </div>
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="ASISTENCIA_NO">
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio2" value="no<?php echo $consecutivo;?>">
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
@@ -751,8 +751,7 @@ margin-left:auto; margin-right:0;
                      }
                      ?> se determinó que cumple con los requisitos de ley, por lo que se dio inicio al Expediente de Protección registrado bajo el número <?php
                      echo $fol_exp.';';
-                     ?> y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes;
-                   </textarea>
+                     ?> y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes;</textarea>
                    </div>
                    <br /><br />
                    <div>
@@ -841,19 +840,43 @@ margin-left:auto; margin-right:0;
   </div>
 </div>
 <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $fol_exp; ?>" class="btn-flotante">REGRESAR</a>
+<?php
+$contarper2 = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";
+$rcontarper2 = $mysqli->query($contarper2);
+$fcontarper2 = $rcontarper2->fetch_assoc();
+$tper2 = $fcontarper2['t'];
+// echo $tper2;
+?>
 <script type="text/javascript">
+<?php
+echo "var jsvar ='$tper2';";
+?>
+// console.log(jsvar);
+
 $(document).ready(function(){
         $(".pago").click(function(evento){
             var valor = $(this).val();
-            if(valor == 'ASISTENCIA_SI'){
-              $("#div1").show();
-              $("#div2").show();
-                console.log('si hay asistencialegal');
-            }else{
-              $("#div1").hide();
-              $("#div2").hide();
-                console.log('no hay asistencialegal');
+            console.log(valor);
+            // console.log('no'+valor);
+            for (var i = 0; i < jsvar; i++) {
+              if (valor !== 'no'+valor) {
+                console.log('has seleccionado el radio button de la persona ', valor);
+                $("#div1").show();
+                $("#div2").show();
+              }else {
+                $("#div1").hide();
+                $("#div2").hide();
+              }
             }
+            // if(valor == 'ASISTENCIA_SI'){
+            //   $("#div1").show();
+            //   $("#div2").show();
+            //     console.log('si hay asistencialegal');
+            // }else{
+            //   $("#div1").hide();
+            //   $("#div2").hide();
+            //     console.log('no hay asistencialegal');
+            // }
     });
 });
 //
@@ -907,5 +930,22 @@ function showContent2() {
        }
    }
 </script>
+<!-- <script type="text/javascript">
+    window.onload = function() {
+
+        var ex1 = document.getElementById('example1');
+        var ex2 = document.getElementById('example2');
+        var ex3 = document.getElementById('example3');
+
+        ex1.onclick = handler;
+        ex2.onclick = handler;
+        ex3.onclick = handler;
+
+    }
+
+    function handler() {
+        alert('clicked');
+    }
+  </script> -->
 </body>
 </html>
