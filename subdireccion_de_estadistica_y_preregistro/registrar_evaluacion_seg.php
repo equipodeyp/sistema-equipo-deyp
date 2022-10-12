@@ -123,6 +123,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                       <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
                       <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
                       <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                      <option value="ACTUALIZACION">4.- ACTUALIZACION</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -229,7 +230,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
 
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
+      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO" || respuestaAlalisisMultidisiplinario === "ACTUALIZACION") {
 
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
