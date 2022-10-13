@@ -207,7 +207,10 @@ $id_con_exp = $fila_consulta['id'];
 <script type="text/javascript">
   var vertipconvenio = document.getElementById('select_tipo_convenio').value;
   function tipoconveniocam(){
-    console.log(vertipconvenio);
+    // console.log(vertipconvenio);
+    if (vertipconvenio === 'CONVENIO MODIFICATORIO') {
+      document.getElementById('vigen').style.display = "none";
+    }
     if (vertipconvenio === 'NO APLICA') {
       // document.getElementById('tconve').style.display = "none";
       document.getElementById('ffirma').style.display = "none";
@@ -220,7 +223,7 @@ $id_con_exp = $fila_consulta['id'];
     }else {
       document.getElementById('ffirma').style.display = "";
       document.getElementById('finicio').style.display = "";
-      document.getElementById('vigen').style.display = "";
+      // document.getElementById('vigen').style.display = "";
       document.getElementById('fterm').style.display = "";
       document.getElementById('tconvenios').style.display = "";
     }

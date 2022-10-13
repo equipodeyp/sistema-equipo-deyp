@@ -152,7 +152,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
                     <input id="INPUT_FECHA_INICIO" class="form-control" type="date" name="fecha_inicio">
                   </div>
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-6 mb-3 validar" id="convmodific">
                     <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
                     <input id="INPUT_VIGENCIA" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
@@ -283,6 +283,9 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
   function obtenerconv(e){
     cambioconv = e.target.value;
     console.log(cambioconv);
+    if (cambioconv === 'CONVENIO MODIFICATORIO') {
+      document.getElementById('convmodific').style.display = "none";
+    }
     if (cambioconv === 'NO APLICA') {
       document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
       document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
