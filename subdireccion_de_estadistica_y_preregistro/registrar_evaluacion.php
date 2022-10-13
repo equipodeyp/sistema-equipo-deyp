@@ -155,7 +155,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
                   <input id="INPUT_FECHA_INICIO"autocomplete="off"class="form-control" type="date" name="fecha_inicio">
                 </div>
-                <div class="col-md-6 mb-3 validar">
+                <div class="col-md-6 mb-3 validar" id="vermodific">
                   <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
                   <input id="INPUT_VIGENCIA" autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
                 </div>
@@ -243,6 +243,12 @@ $fila_consulta = $res_consulta->fetch_assoc();
         document.getElementById('INPUT_FECHA_INICIO').required = true;
         document.getElementById('INPUT_VIGENCIA').required = true;
         document.getElementById('INPUT_ID_CONVENIO').required = true;
+        document.getElementById('vermodific').style.display = "";
+      }
+      if (camtipconv === 'CONVENIO MODIFICATORIO') {
+        console.log('MODIFICATORIO');
+        document.getElementById('vermodific').style.display = "none";
+        // document.getElementById('INPUT_VIGENCIA').style.display = "none";
       }
     }
 

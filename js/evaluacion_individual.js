@@ -24,6 +24,9 @@ function disabledcampos() {
     // document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
   }else {
     console.log('rr');
+    // if (camtipconv === 'CONVENIO MODIFICATORIO') {
+      document.getElementById('convmodific').style.display = "none";
+    // }
   }
 }
 disabledcampos();
