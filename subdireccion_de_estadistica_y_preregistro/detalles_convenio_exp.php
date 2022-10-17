@@ -250,7 +250,7 @@ $id_con_exp = $fila_consulta['id'];
       document.getElementById('fecha_inicio').value = "";
       document.getElementById('vigencia').value = "";
       document.getElementById('input_id_convenio').value = "";
-    }else {
+    }else if (acttipoconv === 'CONVENIO DE ADHESIÓN') {
       document.getElementById('ffirma').style.display = "";
       document.getElementById('finicio').style.display = "";
       document.getElementById('vigen').style.display = "";
@@ -258,7 +258,17 @@ $id_con_exp = $fila_consulta['id'];
       document.getElementById('tconvenios').style.display = "";
       document.getElementById('fecha_firma').required = true;
       document.getElementById('fecha_inicio').required = true;
-      // document.getElementById('vigencia').required = true;
+      document.getElementById('vigencia').required = true;
+      document.getElementById('input_id_convenio').required = true;
+    }else if (acttipoconv === 'CONVENIO MODIFICATORIO') {
+      document.getElementById('ffirma').style.display = "";
+      document.getElementById('finicio').style.display = "";
+      document.getElementById('vigen').style.display = "none";
+      document.getElementById('fterm').style.display = "";
+      document.getElementById('tconvenios').style.display = "";
+      document.getElementById('fecha_firma').required = true;
+      document.getElementById('fecha_inicio').required = true;
+      document.getElementById('vigencia').required = false;
       document.getElementById('input_id_convenio').required = true;
     }
   }
