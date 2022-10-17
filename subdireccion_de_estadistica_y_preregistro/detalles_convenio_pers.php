@@ -275,7 +275,7 @@ ocultarInfo();
   tipconv.addEventListener('change', obtcamtipconv);
     function obtcamtipconv(e){
       camtipconv = e.target.value;
-      // console.log(camtipconv);
+      console.log(camtipconv);
       if (camtipconv === 'NO APLICA') {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
         document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
