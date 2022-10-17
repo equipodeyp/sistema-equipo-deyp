@@ -258,7 +258,7 @@ $id_con_exp = $fila_consulta['id'];
       document.getElementById('tconvenios').style.display = "";
       document.getElementById('fecha_firma').required = true;
       document.getElementById('fecha_inicio').required = true;
-      document.getElementById('vigencia').required = true;
+      // document.getElementById('vigencia').required = true;
       document.getElementById('input_id_convenio').required = true;
     }
   }

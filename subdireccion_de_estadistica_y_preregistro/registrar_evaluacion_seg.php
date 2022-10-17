@@ -314,7 +314,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
       document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "";
       document.getElementById('INPUT_FECHA_FIRMA').required = true;
       document.getElementById('INPUT_FECHA_INICIO').required = true;
-      document.getElementById('INPUT_VIGENCIA').required = true;
+      // document.getElementById('INPUT_VIGENCIA').required = true;
       document.getElementById('INPUT_TOTAL_CONVENIOS').required = true;
     }
   }

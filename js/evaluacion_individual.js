@@ -22,12 +22,11 @@ function disabledcampos() {
     // document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
     document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
     // document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
-  }else {
+  }else if (tipo === 'CONVENIO MODIFICATORIO') {
     console.log('rr');
-    // if (camtipconv === 'CONVENIO MODIFICATORIO') {
-      document.getElementById('convmodific').style.display = "none";
-    // }
+      document.getElementById('convmodific').style.display = "none";      
   }
+
 }
 disabledcampos();
 // desactivar todo cuando sea ACUERDO de CONCLUSION
