@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];
@@ -11,7 +11,7 @@ if ($verifica_update_person == 1) {
   $row=$result->fetch_assoc();
   // carga de datsos
   $identificador = $_GET['folio'];   //variable del folio al que se relaciona
-  // echo $identificador;
+  // echo $identificador.'<br />';
   $datos_personales = "SELECT * FROM datospersonales WHERE identificador='$identificador'";
   $result_datos_personales = $mysqli->query($datos_personales);
   $fila_datos_personales=$result_datos_personales->fetch_assoc();
@@ -28,11 +28,36 @@ if ($verifica_update_person == 1) {
   $fecha_firma = $_POST['fecha_firma'];
   $fecha_inicio = $_POST['fecha_inicio'];
   $vigencia = $_POST['vigencia'];
-  // obtener fecha de la vigencia en automatico
-  if ($fecha_inicio != '') {
-    $fecha_mas = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
-    $fecha_vigencia = date("Y/m/d",strtotime($fecha_mas."- 1 days"));
+  // echo $tipo_convenio.'<br />';
+  if ($tipo_convenio === 'CONVENIO MODIFICATORIO') {
+    $checkconvns = "SELECT COUNT(*) as t FROM evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'";
+    $fcheckconvns = $mysqli->query($checkconvns);
+    $rcheckconvns = $fcheckconvns->fetch_assoc();    
+    if ($rcheckconvns['t'] > 0) {
+      $checkconvns2 = "SELECT * from  evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'
+      ORDER BY evaluacion_persona.id DESC limit 1";
+      $fcheckconvns2 = $mysqli->query($checkconvns2);
+      while ($rcheckconvns2 = $fcheckconvns2->fetch_assoc()) {
+         $vigencia = 0;
+         $fecha_vigencia = $rcheckconvns2['fecha_vigencia'];
+      }
+    }else {
+      $checkconvns3 = "SELECT * from  determinacionincorporacion WHERE folioexpediente = '$folioexpediente' AND id = '$id'";
+      $fcheckconvns3 = $mysqli->query($checkconvns3);
+      while ($rcheckconvns3 = $fcheckconvns3->fetch_assoc()) {
+         $vigencia = 0;
+         $orgDate = $rcheckconvns3['fecha_termino'];
+         $datefin = str_replace('/', '-', $orgDate);
+         $fecha_vigencia = date("Y-m-d",strtotime($datefin));
+      }
+    }
+  }elseif ($tipo_convenio === 'CONVENIO DE ADHESIÓN') {
+    if ($fecha_inicio != '') {
+      $fecha_mas = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
+      $fecha_vigencia = date("Y/m/d",strtotime($fecha_mas."- 1 days"));
+    }
   }
+
   $id_convenio = $_POST['id_convenio'];
   $observaciones = $_POST['observaciones'];
   $usuario =$name;
@@ -41,6 +66,8 @@ if ($verifica_update_person == 1) {
   $add_evaluacion_p = "INSERT INTO evaluacion_persona(folioexpediente, id_unico, analisis, fecha_aut, id_analisis, tipo_convenio, fecha_firma, fecha_inicio, vigencia, fecha_vigencia, id_convenio, observaciones, usuario, fecha_alta)
                  VALUES('$folioexpediente', '$id_unico', '$analisis', '$fecha_aut', '$id_analisis', '$tipo_convenio', '$fecha_firma', '$fecha_inicio', '$vigencia', '$fecha_vigencia', '$id_convenio', '$observaciones', '$usuario', '$fecha_alta')";
   $res_add_evaluacion_p = $mysqli->query($add_evaluacion_p);
+
+
 // validacion del registro correcto
   if($res_add_evaluacion_p){
     echo ("<script type='text/javaScript'>
