@@ -11,7 +11,7 @@ if ($verifica_update_person == 1) {
   $row=$result->fetch_assoc();
   // carga de datsos
    $id_convenio_ind = $_GET['id'];  //variable del id de la medida
-  
+
   // variables para la carga de la informacion
   $getvars = "SELECT * FROM evaluacion_persona WHERE id = '$id_convenio_ind' limit 1";
   $fgetvars = $mysqli->query($getvars);
@@ -24,8 +24,6 @@ if ($verifica_update_person == 1) {
   $fgetvars2 = $mysqli->query($getvars2);
   while ($rgetvars2 = $fgetvars2->fetch_assoc()) {
      $id = $rgetvars2['id'];
-
-    // code...
   }
   $tipo_convenio = $_POST['tipo_convenio'];
   //echo $tipo_convenio;
@@ -36,7 +34,6 @@ if ($verifica_update_person == 1) {
   $vigencia = $_POST['vigencia'];
   // echo $vigencia;
   // echo $tipo_convenio.'<br />';
-
   if ($tipo_convenio === 'CONVENIO MODIFICATORIO') {
 
     $checkconvns = "SELECT COUNT(*) as t FROM evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'";
@@ -44,13 +41,31 @@ if ($verifica_update_person == 1) {
     $rcheckconvns = $fcheckconvns->fetch_assoc();
 
     if ($rcheckconvns['t'] > 0) {
-      $checkconvns2 = "SELECT * from  evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'
+      $checkconvns23 = "SELECT COUNT(*) as t from  evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico' AND analisis != 'ACTUALIZACION'
       AND tipo_convenio != '' ORDER BY evaluacion_persona.id DESC limit 1";
-      $fcheckconvns2 = $mysqli->query($checkconvns2);
-      while ($rcheckconvns2 = $fcheckconvns2->fetch_assoc()) {
-          $vigencia = 0;
-          $fecha_vigencia = $rcheckconvns2['fecha_vigencia'];
+      $fcheckconvns23 = $mysqli->query($checkconvns23);
+      $rcheckconvns23 = $fcheckconvns23->fetch_assoc();
+      // echo $rcheckconvns23['t'];
+      if ($rcheckconvns23['t'] > 0) {
+        $checkconvns2 = "SELECT * from  evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'
+        AND tipo_convenio != '' ORDER BY evaluacion_persona.id DESC limit 1";
+        $fcheckconvns2 = $mysqli->query($checkconvns2);
+        while ($rcheckconvns2 = $fcheckconvns2->fetch_assoc()) {
+             $vigencia = 0;
+             $fecha_vigencia = $rcheckconvns2['fecha_vigencia'];
+        }
+      }else {
+        $checkconvns34 = "SELECT * from  determinacionincorporacion WHERE folioexpediente = '$folioexpediente' AND id = '$id'";
+        $fcheckconvns34 = $mysqli->query($checkconvns34);
+        while ($rcheckconvns34 = $fcheckconvns34->fetch_assoc()) {
+             $vigencia = 0;
+             $orgDate = $rcheckconvns34['fecha_termino'];
+             $datefin = str_replace('/', '-', $orgDate);
+             $fecha_vigencia = date("Y-m-d",strtotime($datefin));
+        }
       }
+
+
     }else {
       $checkconvns3 = "SELECT * from  determinacionincorporacion WHERE folioexpediente = '$folioexpediente' AND id = '$id'";
       $fcheckconvns3 = $mysqli->query($checkconvns3);
