@@ -32,7 +32,7 @@ if ($verifica_update_person == 1) {
   if ($tipo_convenio === 'CONVENIO MODIFICATORIO') {
     $checkconvns = "SELECT COUNT(*) as t FROM evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'";
     $fcheckconvns = $mysqli->query($checkconvns);
-    $rcheckconvns = $fcheckconvns->fetch_assoc();    
+    $rcheckconvns = $fcheckconvns->fetch_assoc();
     if ($rcheckconvns['t'] > 0) {
       $checkconvns2 = "SELECT * from  evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'
       ORDER BY evaluacion_persona.id DESC limit 1";
