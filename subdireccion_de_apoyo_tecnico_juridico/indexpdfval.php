@@ -409,12 +409,12 @@ margin-left:auto; margin-right:0;
                        </tr>
                      </tbody>
                    </table>
-                   <table width="100%">
+                   <table width="100%" id="tabla">
                      <thead>
                        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
                          <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
                          <th width="33%" style="height:4vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL? <?php echo $consecutivo;?></font></th>
-                         <th id="div1" width="33%" style="display:none; height:4vh; border: 1px solid black; text-align:center;"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
+                         <th id="div1<?php echo $consecutivo;?>" width="33%" style="display:none; height:4vh; border: 1px solid black; text-align:center;"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
                        </tr>
                      </thead>
                      <tbody>
@@ -436,11 +436,11 @@ margin-left:auto; margin-right:0;
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
                              <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
-                           </div>
+                           </div>                           
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
-                         <td id="div2" style="display:none; height:5vh; border: 1px solid black; text-align:center;">
+                         <td id="div2<?php echo $consecutivo;?>" style="display:none; height:5vh; border: 1px solid black; text-align:center;">
                          <font style="font-family: gothambook">
                            <input style="text-align:center; width: 100%" type="text" name="personaasiste" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -867,11 +867,11 @@ $(document).ready(function(){
             for (var i = 0; i < jsvar; i++) {
               if (valor <= 3) {
                 console.log('has seleccionado el radio button de la persona ', valor);
-                $("#div1").show();
-                $("#div2").show();
+                $("#div1"+valor).show();
+                $("#div2"+valor).show();
               }else{
-                $("#div1").hide();
-                $("#div2").hide();
+                $("#div1"+valor).hide();
+                $("#div2"+valor).hide();
               }
             }
             // if(valor == 'ASISTENCIA_SI'){
@@ -935,6 +935,9 @@ function showContent2() {
            document.getElementById("inlineCheckbox1").disabled = false;
        }
    }
+
+   //
+
 </script>
 <!-- <script type="text/javascript">
     window.onload = function() {
