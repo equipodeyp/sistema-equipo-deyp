@@ -292,7 +292,9 @@ a:focus {
                                               <th style="text-align:center">ESTATUS DE LA MEDIDA</th>
                                               <th style="text-align:center">MUNICIPIO DE EJECUCION</th>
                                               <th style="text-align:center">FECHA DE EJECUCION</th>
-
+                                              <th style="text-align:center">EDAD DEL SUJETO PROTEGIDO</th>
+                                              <th style="text-align:center">SEXO DEL SUJETO PROTEGIDO</th>
+                                              <th style="text-align:center">GRUPO DE EDAD DEL SUJETO PROTEGIDO</th>
                                           </tr>
                                       </thead>
                                       <tbody>
@@ -366,6 +368,9 @@ a:focus {
                                               if ($var_fila['date_ejecucion'] != '0000-00-00') {
                                                 echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
                                               } echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['edadpersona']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['sexopersona']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['grupoedad']; echo "</td>";
                                               echo "</tr>";
                                         }
                                       ?>
