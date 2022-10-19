@@ -431,12 +431,12 @@ margin-left:auto; margin-right:0;
                            <!-- <input style="text-align:center; width: 100%" type="text" name="asistencialegal" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio1">SI</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
                            </div>
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
-                           </div>                           
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_[]" id="inlineRadio2" value="<?php echo $tper21;?>">
+                           </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
