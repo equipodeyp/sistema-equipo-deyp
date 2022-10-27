@@ -275,7 +275,7 @@ a:focus {
                                               <th style="text-align:center">MATERNO SUJETO PROTEGIDO</th>
                                               <th style="text-align:center">CALIDAD DE LA PERSONA</th>
                                               <th style="text-align:center">ID PERSONA/SUJETO</th>
-                                              <th style="text-align:center">CONSECUTIVO MEDIDA</th>
+                                              <!-- <th style="text-align:center">CONSECUTIVO MEDIDA</th> -->
                                               <th style="text-align:center">CATEGORIA MEDIDA</th>
                                               <th style="text-align:center">TIPO DE MEDIDA</th>
                                               <th style="text-align:center">CLASIFICACION DE LA MEDIDA</th>
@@ -324,7 +324,7 @@ a:focus {
                                               echo "<td style='text-align:center'>"; echo $fp['maternopersona']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fp['calidadpersona']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fp['identificador']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo "</td>";
+                                              // echo "<td style='text-align:center'>"; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['categoria']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
