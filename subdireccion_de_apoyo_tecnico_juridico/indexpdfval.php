@@ -442,7 +442,7 @@ margin-left:auto; margin-right:0;
                          </td>
                          <td id="div2<?php echo $consecutivo;?>" style="display:none; height:5vh; border: 1px solid black; text-align:center;">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="personaasiste" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="personaasiste[]" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
