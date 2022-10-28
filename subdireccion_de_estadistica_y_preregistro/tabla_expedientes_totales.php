@@ -55,7 +55,9 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $fexps['personas_propuestas']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['incorporacion']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fexps['fecha_analisis'])); echo "</td>";
+  echo "<td style='text-align:center'>"; if ($fexps['fecha_analisis'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($fexps['fecha_analisis']));
+  } echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['id_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['convenio']; echo "</td>";
   echo "<td style='text-align:center'>";
