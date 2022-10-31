@@ -90,6 +90,14 @@ $row=$result->fetch_assoc();
     /* opacity: 100%; */
   }
 
+  /*  */
+  .submenu2 {
+    display: none;
+  }
+  .opacity2 {
+    /* opacity: 100%; */
+  }
+  /*  */
 
   .pagination {
   display: inline-block;
@@ -225,9 +233,19 @@ a:focus {
           <li id="liestadistica" class="subtitle">
       			<a href="#" class="action"><i class='color-icon fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
       			<ul class="submenu">
-              <li id="liexpediente" class="menu-items"><a >&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> EXPEDIENTES</span></a></li>
+              <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> EXPEDIENTES</span></a></li>
               <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class=" color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white; font-weight:bold;"> SUJETOS</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> MEDIDAS</span></a></li>
+              <li id="liestadistica2" class="subtitle2">
+                <a href="#" class="action2">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-circle-right menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> SEGUIMIENTO</span></a>
+                <ul class="submenu2">
+                  <!-- <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li> -->
+                  <li id="limedidas" class="menu-items"><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-file-export menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXPEDIENTES</span></a></li>
+                  <!-- <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li> -->
+                  <li id="limedidas" class="menu-items"><a href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-walking-dashed-line-arrow-right menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SUJETOS</span></a></li>
+                  <!-- <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
+                </ul>
+              </li>
       			</ul>
       		</li>
         </ul>
@@ -270,22 +288,22 @@ a:focus {
                               <th style="text-align:center">No.</th>
                               <th style="text-align:center">ID EXPEDIENTE</th>
                               <th style="text-align:center">FECHA RECEPCION</th>
-                              <th style="text-align:center">SEDE</th>
+                              <!-- <th style="text-align:center">SEDE</th> -->
                               <th style="text-align:center">NOMBRE AUTORIDAD</th>
                               <th style="text-align:center">DELITO PRINCIPAL</th>
                               <th style="text-align:center">OTRO DELITO PRINCIPAL</th>
                               <th style="text-align:center">ETAPA PROCEDIMIENTO/RECURSO</th>
-                              <th style="text-align:center">NUC</th>
+                              <!-- <th style="text-align:center">NUC</th> -->
                               <th style="text-align:center">MUNICIPIO RADICACION</th>
                               <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
                               <th style="text-align:center">MOTIVO NO PROCEDENCIA JURIDICA</th>
-                              <th style="text-align:center">PERSONAS PROPUESTAS</th>
+                              <!-- <th style="text-align:center">PERSONAS PROPUESTAS</th> -->
                               <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
                               <th style="text-align:center">INCORPORACIÓN</th>
                               <th style="text-align:center">FECHA ANALISIS</th>
-                              <th style="text-align:center">ID ANALISIS</th>
+                              <!-- <th style="text-align:center">ID ANALISIS</th> -->
                               <th style="text-align:center">CONVENIO</th>
-                              <th style="text-align:center">FECHA FIRMA CONVENIO</th>
+                              <!-- <th style="text-align:center">FECHA FIRMA CONVENIO</th> -->
                               <th style="text-align:center">FECHA INICIO</th>
                               <th style="text-align:center">VIGENCIA</th>
                               <th style="text-align:center">FECHA TERMINO</th>
@@ -319,7 +337,7 @@ a:focus {
                       </thead>
                       <tbody>
                         <?php
-                        include("../subdireccion_de_estadistica_y_preregistro/tabla_expedientes_totales.php");
+                        include("../subdireccion_de_estadistica_y_preregistro/tabla_evaluaciones_expedientes.php");
                         ?>
                       </tbody>
                      </table>
@@ -345,6 +363,20 @@ a:focus {
 
    $(subtitle).toggleClass("open");
    $(submenu).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+  //
+  // CODIGO DE MENU CON submenu2
+  $(".subtitle2 .action2").click(function(event){
+   var subtitle2 = $(this).parents(".subtitle2");
+   var submenu2 = $(subtitle2).find(".submenu2");
+
+   $(".submenu2").not($(submenu2)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle2)).removeClass("open");
+
+   $(subtitle2).toggleClass("open");
+   $(submenu2).slideToggle("slow").toggleClass("opacity");
 
    return false;
   });
