@@ -27,6 +27,10 @@ while ($fexps = $rexps->fetch_assoc()) {
   $cont = $cont + 1;
   $expedienteest = $fexps['fol_exp'];
   // echo $expedienteest;
+  $aexp = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$expedienteest'";
+  $raexp = $mysqli->query($aexp);
+  $faexp = $raexp->fetch_assoc();
+  // echo $faexp['fecha_inicio'];
   $v = "SELECT COUNT(*) as t
   FROM  evaluacion_expediente
   WHERE folioexpediente = '$expedienteest'";
@@ -38,7 +42,7 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<tr>";
   echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['fol_exp']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['fecha_nueva']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fexps['fecha_nueva'])); echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['sede']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['nombreautoridad']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['delitoprincipal']; echo "</td>";
@@ -51,12 +55,24 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $fexps['personas_propuestas']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['incorporacion']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['fecha_analisis']; echo "</td>";
+  echo "<td style='text-align:center'>"; if ($fexps['fecha_analisis'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($fexps['fecha_analisis']));
+  } echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['id_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['convenio']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['fecha_convenio']; echo "</td>";
+  echo "<td style='text-align:center'>";
+  if ($fexps['fecha_convenio'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($fexps['fecha_convenio']));
+  } echo "</td>";
+  echo "<td style='text-align:center'>";
+  if ($faexp['fecha_inicio'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($faexp['fecha_inicio']));
+  } echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['vigencia']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['fecha_termino_convenio']; echo "</td>";
+  echo "<td style='text-align:center'>";
+  if ($fexps['fecha_termino_convenio'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($fexps['fecha_termino_convenio']));
+  } echo "</td>";
   if ($fv) {
     // echo 'el '. $expedienteest ."tiene ". $fv['t']. '  estudios'. '<br />';
     // if ($fv['t'] > 0) {
@@ -66,26 +82,37 @@ while ($fexps = $rexps->fetch_assoc()) {
       while ($ft = $rt->fetch_assoc()) {
         // code...
         // echo $ft['fecha_aut'].'<br />';
-        echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['fecha_aut']; echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['fecha_firma']; echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['fecha_inicio']; echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
-        echo "<td style='text-align:center'>"; echo $ft['total_convenios']; echo "</td>";
+        // echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
+        // echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($ft['fecha_aut'])); echo "</td>";
+        // echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
+        // echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
+        // echo "<td style='text-align:center'>";
+        // if ($ft['fecha_firma'] != '0000-00-00') {
+        //   echo date("d/m/Y", strtotime($ft['fecha_firma']));
+        // }echo "</td>";
+        // echo "<td style='text-align:center'>";
+        // if ($ft['fecha_inicio'] != '0000-00-00') {
+        //   echo date("d/m/Y", strtotime($ft['fecha_inicio']));
+        // }echo "</td>";
+        // echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
+        // echo "<td style='text-align:center'>";
+        // if ($ft['fecha_vigencia'] != '0000-00-00') {
+        //   echo date("d/m/Y", strtotime($ft['fecha_vigencia']));
+        // }echo "</td>";
+        // echo "<td style='text-align:center'>"; echo $ft['total_convenios']; echo "</td>";
       }
 
-        for ($i=$fv['t']+1; $i < $iterac; $i++) {
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-          echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-        }
+        // for ($i=$fv['t']+1; $i < $iterac; $i++) {
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+        // }
 
     // }
   }
@@ -105,7 +132,10 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $fexps['conclu_cancel']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['conclusionart35']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['otherart35']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['date_desincorporacion']; echo "</td>";
+  echo "<td style='text-align:center'>";
+  if ($fexps['date_desincorporacion'] != '0000-00-00') {
+    echo date("d/m/Y", strtotime($fexps['date_desincorporacion']));
+  }echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['status']; echo "</td>";
   echo "</tr>";
 }
