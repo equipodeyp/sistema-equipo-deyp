@@ -431,11 +431,11 @@ margin-left:auto; margin-right:0;
                            <!-- <input style="text-align:center; width: 100%" type="text" name="asistencialegal" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio1">SI</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
                            </div>
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions_[]" id="inlineRadio2" value="<?php echo $tper21;?>">
+                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions2[]" id="inlineRadio2" value="<?php echo $tper21;?>">
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
@@ -760,6 +760,8 @@ margin-left:auto; margin-right:0;
                      ?> y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes;</textarea>
                    </div>
                    <br /><br />
+
+
                    <div>
 
                        <div style="float: left; width: 60%;">
