@@ -26,20 +26,11 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/cli.css">
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../../css/main2.css">
-  <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="../../datatables/datatables.min.css"/>
-  <!--datables estilo bootstrap 4 CSS-->
-  <link rel="stylesheet"  type="text/css" href="../../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-  <!--font awesome con CDN-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <!-- datatables JS -->
-  <script type="text/javascript" src="../../datatables/datatables.min.js"></script>
-  <!-- para usar botones en datatables JS -->
-  <script src="../../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-  <script src="../../datatables/JSZip-2.5.0/jszip.min.js"></script>
-  <script src="../../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-  <script src="../../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-  <script src="../../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+  <!-- dataTables 1.12 -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.js"></script>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
@@ -49,48 +40,15 @@ $row=$result->fetch_assoc();
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
-      $('#example').DataTable({
-          language: {
-                  "lengthMenu": "Mostrar _MENU_ registros",
-                  "zeroRecords": "No se encontraron resultados",
-                  "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                  "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                  "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                  "sSearch": "Buscar:",
-                  "oPaginate": {
-                      "sFirst": "Primero",
-                      "sLast":"Último",
-                      "sNext":"Siguiente",
-                      "sPrevious": "Anterior"
-             },
-             "sProcessing":"Procesando...",
-              },
-          // para usar los botones
-          responsive: "true",
-          dom: 'Bfrtilp',
-          buttons:[
-        {
-          extend:    'excelHtml5',
-          text:      '<i class="fas fa-file-excel"></i> ',
-          titleAttr: 'Exportar a Excel',
-          className: 'btn btn-success'
-        },
-        {
-          extend:    'pdfHtml5',
-          text:      '<i class="fas fa-file-pdf"></i> ',
-          titleAttr: 'Exportar a PDF',
-          className: 'btn btn-danger'
-        },
-        {
-          extend:    'print',
-          text:      '<i class="fa fa-print"></i> ',
-          titleAttr: 'Imprimir',
-          className: 'btn btn-info'
-        },
+  $('#example').DataTable( {
+      dom: 'Bfrtip',
+      buttons: [
+           'excel', 'pdf', 'print'
       ]
-      });
-  });
+    } );
+  } );
   </script>
+
 </head>
 <body>
   <div class="contenedor">
@@ -165,6 +123,7 @@ $row=$result->fetch_assoc();
                                 <th style="text-align:center">No.</th>
                                 <th style="text-align:center">ID EXPEDIENTE</th>
                                 <th style="text-align:center">FECHA RECEPCION</th>
+                                <th style="text-align:center">FECHA RECEPCION 2</th>
                                 <th style="text-align:center">SEDE</th>
                                 <th style="text-align:center">NOMBRE AUTORIDAD</th>
                                 <th style="text-align:center">DELITO PRINCIPAL</th>

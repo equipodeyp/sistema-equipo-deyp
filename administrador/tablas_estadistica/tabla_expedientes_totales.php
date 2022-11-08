@@ -43,6 +43,7 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $cont; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['fol_exp']; echo "</td>";
   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fexps['fecha_nueva'])); echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fexps['fecha_nueva']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['sede']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['nombreautoridad']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['delitoprincipal']; echo "</td>";
