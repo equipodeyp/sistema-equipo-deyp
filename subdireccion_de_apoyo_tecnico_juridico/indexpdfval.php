@@ -431,11 +431,11 @@ margin-left:auto; margin-right:0;
                            <!-- <input style="text-align:center; width: 100%" type="text" name="asistencialegal" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio1">SI</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
+                             <input class="pago form-check-input" type="radio" name="ASISTENCIA_LEGAL<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
                            </div>
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
-                             <input class="pago form-check-input" type="radio" name="inlineRadioOptions2[]" id="inlineRadio2" value="<?php echo $tper21;?>">
+                             <input class="pago form-check-input" type="radio" name="ASISTENCIA_LEGAL<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
@@ -461,14 +461,14 @@ margin-left:auto; margin-right:0;
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="situacionriesgo" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="situacionriesgo" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="situacionriesgo[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="causavulnerabilidad" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="causavulnerabilidad" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="causavulnerabilidad[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -853,13 +853,13 @@ $contarper2 = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente =
 $rcontarper2 = $mysqli->query($contarper2);
 $fcontarper2 = $rcontarper2->fetch_assoc();
 $tper2 = $fcontarper2['t'];
-// echo $tper2;
+echo $tper2;
 ?>
 <script type="text/javascript">
 <?php
 echo "var jsvar ='$tper2';";
 ?>
-// console.log(jsvar);
+console.log(jsvar);
 
 $(document).ready(function(){
         $(".pago").click(function(evento){
@@ -867,7 +867,7 @@ $(document).ready(function(){
             console.log(valor);
             // console.log('no'+valor);
             for (var i = 0; i < jsvar; i++) {
-              if (valor <= 3) {
+              if (valor <= jsvar) {
                 console.log('has seleccionado el radio button de la persona ', valor);
                 $("#div1"+valor).show();
                 $("#div2"+valor).show();
