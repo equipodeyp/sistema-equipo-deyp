@@ -14,3 +14,9 @@
 /subdireccion_de_apoyo_tecnico_juridico/save_ticket
 /subdireccion_de_estadistica_y_preregistro/save_ticket
 /subdireccion_de_analisis_de_riesgo/save_ticket
+
+/administrador/fpdf
+/administrador/images_reports/
+
+/administrador/reportesFPDF-main/
+/subdireccion_de_apoyo_tecnico_juridico/new_pdf.php

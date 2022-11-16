@@ -70,7 +70,7 @@ $validacion = $fil_val['validacion'];
   <script src="../js/Javascript.js"></script>
   <script src="../js/validar_campos.js"></script>
   <script src="../js/verificar_camposm1.js"></script>
-  <script src="../js/mascara2campos.js"></script>
+  <!-- <script src="../js/mascara2campos.js"></script> -->
   <script src="../js/mod_medida.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
   <script src="../js/main.js"></script> -->

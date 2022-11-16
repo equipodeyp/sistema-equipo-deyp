@@ -114,6 +114,7 @@ $result = $mysqli->query($sentencia);
         </div>
         <div class="container">
           <ul class="ca-menu">
+
             <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_solicitudes">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/SOLICITUDES.png" style="width:55px;height:55px;"></span>
@@ -122,6 +123,7 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">PROCEDENTES - NO PROCEDENTES</h3></div>
               </a>
             </li>
+
             <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_personas">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/PERSONAS.png" style="width:60px;height:60px;"></span>
@@ -169,6 +171,40 @@ $result = $mysqli->query($sentencia);
           </ul>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div class="contenedor" style="display: flex; justify-content: center;">
+          <ul class="ca-menu">
+
+            <li >
+              <a href="../administrador/report_day.php">
+                <span class="ca-icon"><img alt="" src="" style="width:50px;height:50px;"></span>
+                <div class="ca-content">
+                  <h2 class="ca-main">RESUMEN DIARIO</h2>
+                  <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
+                </a>
+            </li>
+
+            <li >
+              <a href="../administrador/report_week.php">
+                <span class="ca-icon"><img alt="" src="" style="width:70px;height:70px;"></span>
+                <div class="ca-content">
+                  <h2 class="ca-main">RESUMEN SEMANAL</h2>
+                   <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div> -->
+                </a>
+            </li>
+
+            <li >
+              <a href="../administrador/report_month.php">
+                <span class="ca-icon"><img alt="" src="" style="width:70px;height:70px;"></span>
+                <div class="ca-content">
+                  <h2 class="ca-main">RESUMEN MENSUAL</h2>
+                  <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
+                </a>
+            </li>
+
+          </ul>
+        </div>
+
         <?php
         date_default_timezone_set("America/Mexico_City");
         $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
