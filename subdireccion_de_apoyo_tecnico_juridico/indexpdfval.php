@@ -19,7 +19,7 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp.'<br />';
+// echo $fol_exp.'<br />';
 $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -491,11 +491,11 @@ margin-left:auto; margin-right:0;
                                <!-- <input style="text-align:center; width: 100%" type="text" name="enfermedad" autocomplete="off"> -->
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio1">SI</label>
-                                 <input class="enfermo form-check-input" type="radio" name="enfermedad" id="inlineRadio1" value="ENFERMEDAD_SI">
+                                 <input class="enfermo form-check-input" type="radio" name="enfermedad<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
                                </div>
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio2">NO</label>
-                                 <input class="enfermo form-check-input" type="radio" name="enfermedad" id="inlineRadio2" value="ENFERMEDAD_NO">
+                                 <input class="enfermo form-check-input" type="radio" name="enfermedad<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
                                </div>
                              <!-- // aqui va la variable que se trae desde el front-end -->
                              </font>
@@ -504,16 +504,12 @@ margin-left:auto; margin-right:0;
                          </tbody>
                        </table>
                        <div class="input-group" >
-                         <div class="" style="width: 100%; display:none;" id="tipoenfermedad">
+                         <div class="" style="display:none; width: 100%;" id="nombreenfermedad<?php echo $consecutivo;?>">
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
                            <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
                          </div>
-                         <!-- <div class="" style="width: 50%; display:none;" id="tipodiscapacidad">
-                           <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
-                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
-                         </div> -->
-                       </div><br />
-
+                       </div>
+                       <br />
 
                        <table >
                          <thead>
@@ -529,11 +525,11 @@ margin-left:auto; margin-right:0;
                                <!-- <input style="text-align:center; width: 100%" type="text" name="discapacidad" autocomplete="off"> -->
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio1">SI</label>
-                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad" id="inlineRadio1" value="DISCAPACIDAD_SI">
+                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
                                </div>
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio2">NO</label>
-                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad" id="inlineRadio2" value="DISCAPACIDAD_NO">
+                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
                                </div>
                              <!-- // aqui va la variable que se trae desde el front-end -->
                              </font>
@@ -542,18 +538,11 @@ margin-left:auto; margin-right:0;
                          </tbody>
                        </table>
                        <div class="input-group" >
-                         <!-- <div class="" style="width: 50%; display:none;" id="tipoenfermedad">
-                           <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
-                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
-                         </div> -->
-                         <div class="" style="width: 100%; display:none;" id="tipodiscapacidad">
+                         <div class="" style="width: 100%; display:none;" id="tipodiscapacidad<?php echo $consecutivo;?>">
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
                            <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
                          </div>
                        </div>
-
-
-
                    <br>
                    <table width="100%">
                      <thead>
@@ -853,7 +842,7 @@ $contarper2 = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente =
 $rcontarper2 = $mysqli->query($contarper2);
 $fcontarper2 = $rcontarper2->fetch_assoc();
 $tper2 = $fcontarper2['t'];
-echo $tper2;
+// echo $tper2;
 ?>
 <script type="text/javascript">
 <?php
@@ -866,37 +855,38 @@ $(document).ready(function(){
             var valor = $(this).val();
             console.log(valor);
             // console.log('no'+valor);
+
             for (var i = 0; i < jsvar; i++) {
               if (valor <= jsvar) {
                 console.log('has seleccionado el radio button de la persona ', valor);
                 $("#div1"+valor).show();
                 $("#div2"+valor).show();
-              }else{
-                $("#div1"+valor).hide();
-                $("#div2"+valor).hide();
+              }else if (valor > jsvar){
+                var t = valor - jsvar;
+                console.log('has seleccionado el div numero',t);
+                console.log('has seleccionado el radio button de la persona ', valor);
+                $("#div1"+t).hide();
+                $("#div2"+t).hide();
               }
+              t = t+1;
             }
-            // if(valor == 'ASISTENCIA_SI'){
-            //   $("#div1").show();
-            //   $("#div2").show();
-            //     console.log('si hay asistencialegal');
-            // }else{
-            //   $("#div1").hide();
-            //   $("#div2").hide();
-            //     console.log('no hay asistencialegal');
-            // }
     });
 });
 //
 $(document).ready(function(){
         $(".enfermo").click(function(evento){
             var valor = $(this).val();
-            if(valor == 'ENFERMEDAD_SI'){
-              $("#tipoenfermedad").show();
-                console.log('si hay enfermedad');
-            }else{
-              $("#tipoenfermedad").hide();
-                console.log('no hay enfermedad');
+            console.log(valor);
+            for (var i = 0; i < jsvar; i++) {
+              if (valor <= jsvar) {
+                console.log('has seleccionado que tiene una enfermedad', valor);
+                $("#nombreenfermedad"+valor).show();
+              }else{
+                h = valor - jsvar;
+                console.log('has seleccionado el div numero',h);
+                console.log('has seleccionado que noooo tiene una enfermedad', valor);
+                $("#nombreenfermedad"+h).hide();
+              }
             }
     });
 });
@@ -904,13 +894,19 @@ $(document).ready(function(){
 $(document).ready(function(){
         $(".discapacitado").click(function(evento){
             var valor = $(this).val();
-            if(valor == 'DISCAPACIDAD_SI'){
-              $("#tipodiscapacidad").show();
-                console.log('si hay discapacidad');
-            }else{
-              $("#tipodiscapacidad").hide();
-                console.log('no hay discapacidad');
+            console.log(valor);
+            for (var i = 0; i < jsvar; i++) {
+              if (valor <= jsvar) {
+                console.log('has seleccionado que tiene una discapacidad', valor);
+                $("#tipodiscapacidad"+valor).show();
+              }else{
+                h = valor - jsvar;
+                console.log('has seleccionado el div numero',h);
+                console.log('has seleccionado que noooo tiene una discapacidad', valor);
+                $("#tipodiscapacidad"+h).hide();
+              }
             }
+
     });
 });
 //
