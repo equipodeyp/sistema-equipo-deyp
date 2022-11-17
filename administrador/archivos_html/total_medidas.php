@@ -192,6 +192,7 @@ $row=$result->fetch_assoc();
                                             <th style="text-align:center">EDAD DEL SUJETO PROTEGIDO</th>
                                             <th style="text-align:center">SEXO DEL SUJETO PROTEGIDO</th>
                                             <th style="text-align:center">GRUPO DE EDAD DEL SUJETO PROTEGIDO</th>
+                                            <th style="text-align:center">ESTATUS ACTUAL DEL SUJETO PROTEGIDO</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -268,6 +269,7 @@ $row=$result->fetch_assoc();
                                             echo "<td style='text-align:center'>"; echo $fp['edadpersona']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $fp['sexopersona']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $fp['grupoedad']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $fp['estatus']; echo "</td>";
                                             echo "</tr>";
                                       }
                                     ?>
