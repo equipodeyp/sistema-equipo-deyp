@@ -140,6 +140,7 @@ $validacion = $fil_val['validacion'];
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="INICIAL">INICIAL</option>
               <option value="AMPLIACION">AMPLIACIÓN</option>
+              <option value="MODIFICATORIA">MODIFICATORIA</option>
             </select>
           </div>
 

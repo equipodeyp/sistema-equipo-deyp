@@ -193,6 +193,7 @@ $validacion = $fil_val['validacion'];
               <option style="visibility: hidden" value="<?php echo $rowmedida['categoria']; ?>"><?php echo $rowmedida['categoria']; ?></option>
               <option value="INICIAL">INICIAL</option>
               <option value="AMPLIACION">AMPLIACIÓN</option>
+              <option value="MODIFICATORIA">MODIFICATORIA</option>
             </select>
           </div>
 
