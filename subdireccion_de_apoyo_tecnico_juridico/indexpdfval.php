@@ -598,7 +598,7 @@ margin-left:auto; margin-right:0;
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="agenteministerio" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
-                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onchange="javascript:showContent()">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" name="solicitante" value="agente" onchange="javascript:showContent()">
                              <label class="form-check-label" for="inlineCheckbox1"></label>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -608,7 +608,7 @@ margin-left:auto; margin-right:0;
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="organojurisdiccional" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
-                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox12" value="option1" onchange="javascript:showContent2()">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox12" name="solicitante" value="organo" onchange="javascript:showContent2()">
                              <label class="form-check-label" for="inlineCheckbox1"></label>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -690,7 +690,7 @@ margin-left:auto; margin-right:0;
                            <th width="20%" style="height:4vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
                            <th width="80%" style="height:4vh; border: 1px solid black; text-align:center">
                            <font style="font-family: gothambook">
-                             <!-- <input style="text-align:center; width: 100%" type="text" name="procedente" autocomplete="off"> -->
+                             <input style="display:none; text-align:center; width: 100%" type="text" name="procedente" value="<?php echo $fvaljuridica['resultadovaloracion']; ?>" autocomplete="off">
                              <i class="fa fa-check" aria-hidden="true" style="font-size:30px;color:green;"></i>
                            <!-- // aqui va la variable que se trae desde el front-end -->
                            </font>
@@ -723,7 +723,7 @@ margin-left:auto; margin-right:0;
                    <br>
                    <h3 style="font-family: gothambook" align="center">ACUERDO</h3>
                    <div class="form-group">
-                     <textarea style="text-align:justify;" class="form-control" id="exampleFormControlTextarea1" rows="10">Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, <?php
+                     <textarea style="text-align:justify;" class="form-control" name="acuerdopersona" id="exampleFormControlTextarea1" rows="10">Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, <?php
                      $contarper = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";
                      $rcontarper = $mysqli->query($contarper);
                      $fcontarper = $rcontarper->fetch_assoc();
@@ -757,7 +757,7 @@ margin-left:auto; margin-right:0;
                        <p align="center">
                        <span style="align:center;width:200px">____________________________________________________</span><br /><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
-                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="" placeholder="LIC." value="">
+                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="nombreministerio" placeholder="LIC." value="">
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
                        AGENTE DEL MINISTERIO PUBLICO
@@ -770,7 +770,7 @@ margin-left:auto; margin-right:0;
                        V.°B.°
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
-                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="" placeholder="LIC." autocomplete="off" value="">
+                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="nombresubdireccion" placeholder="LIC." autocomplete="off" value="">
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
                        ADSCRITO A LA SUBDIRECCION DE APOYO TECNICO Y JURIDICO
@@ -790,7 +790,7 @@ margin-left:auto; margin-right:0;
                            <tr >
                              <td style="height:3vh; border: 1px solid black; text-align:center">
                              <font style="font-family: gothambook">
-                             <input style="text-align:center; width: 100%" type="text" name="lname" value="TOLUCA" autocomplete="off" readonly>
+                             <input style="text-align:center; width: 100%" type="text" name="sede" value="TOLUCA" autocomplete="off" readonly>
                              </font>
                              </td>
                            </tr>
