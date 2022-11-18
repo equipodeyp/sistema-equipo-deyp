@@ -506,7 +506,7 @@ margin-left:auto; margin-right:0;
                        <div class="input-group" >
                          <div class="" style="display:none; width: 100%;" id="nombreenfermedad<?php echo $consecutivo;?>">
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
-                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
+                           <textarea class="form-control " aria-label="With textarea" rows="3" name="tipoenfermedad[]"></textarea>
                          </div>
                        </div>
                        <br />
@@ -540,7 +540,7 @@ margin-left:auto; margin-right:0;
                        <div class="input-group" >
                          <div class="" style="width: 100%; display:none;" id="tipodiscapacidad<?php echo $consecutivo;?>">
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
-                           <textarea class="form-control " aria-label="With textarea" rows="3"></textarea>
+                           <textarea class="form-control " aria-label="With textarea" rows="3" name="nombrediscapacidad[]"></textarea>
                          </div>
                        </div>
                    <br>
@@ -555,7 +555,7 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="testimonio" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="testimonio" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="testimonio[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -573,7 +573,7 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="medidas" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="medidas" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="medidas[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
