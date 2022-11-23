@@ -422,7 +422,7 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="ubicacion[]" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="ubicacion[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="ubicacion[]" id=vars<?php echo $consecutivo; ?> autocomplete="off" rows="4" cols="80" required></textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -431,18 +431,18 @@ margin-left:auto; margin-right:0;
                            <!-- <input style="text-align:center; width: 100%" type="text" name="asistencialegal" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio1">SI</label>
-                             <input class="pago form-check-input" type="radio" name="ASISTENCIA_LEGAL<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
+                             <input class="pago form-check-input" type="radio" name="ASISTENCIA_LEGAL<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>" required>
                            </div>
                            <div class="form-check form-check-inline">
                              <label class="form-check-label" for="inlineRadio2">NO</label>
-                             <input class="pago form-check-input" type="radio" name="ASISTENCIA_LEGAL<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
+                             <input class="pago form-check-input" type="radio" name="ASISTENCIA_LEGAL<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>" required>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td id="div2<?php echo $consecutivo;?>" style="display:none; height:5vh; border: 1px solid black; text-align:center;">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="personaasiste[]" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="personaasiste[]" id="nameasis<?php echo $consecutivo;?>" autocomplete="off">
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -461,14 +461,14 @@ margin-left:auto; margin-right:0;
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="situacionriesgo" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="situacionriesgo[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="situacionriesgo[]" autocomplete="off" rows="4" cols="80" required></textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td width="50%" style="word-break: break-all; height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="causavulnerabilidad" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="causavulnerabilidad[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="causavulnerabilidad[]" autocomplete="off" rows="4" cols="80" required></textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -491,11 +491,11 @@ margin-left:auto; margin-right:0;
                                <!-- <input style="text-align:center; width: 100%" type="text" name="enfermedad" autocomplete="off"> -->
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio1">SI</label>
-                                 <input class="enfermo form-check-input" type="radio" name="enfermedad<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
+                                 <input class="enfermo form-check-input" type="radio" name="enfermedad<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>" required>
                                </div>
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio2">NO</label>
-                                 <input class="enfermo form-check-input" type="radio" name="enfermedad<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
+                                 <input class="enfermo form-check-input" type="radio" name="enfermedad<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>" required>
                                </div>
                              <!-- // aqui va la variable que se trae desde el front-end -->
                              </font>
@@ -506,7 +506,7 @@ margin-left:auto; margin-right:0;
                        <div class="input-group" >
                          <div class="" style="display:none; width: 100%;" id="nombreenfermedad<?php echo $consecutivo;?>">
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
-                           <textarea class="form-control " aria-label="With textarea" rows="3" name="tipoenfermedad[]"></textarea>
+                           <textarea class="form-control " aria-label="With textarea" rows="3" name="tipoenfermedad[]" id="nameenfermedad<?php echo $consecutivo; ?>"></textarea>
                          </div>
                        </div>
                        <br />
@@ -525,11 +525,11 @@ margin-left:auto; margin-right:0;
                                <!-- <input style="text-align:center; width: 100%" type="text" name="discapacidad" autocomplete="off"> -->
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio1">SI</label>
-                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>">
+                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad<?php echo $consecutivo;?>[]" id="inlineRadio1" value="<?php echo $consecutivo;?>" required>
                                </div>
                                <div class="form-check form-check-inline">
                                  <label class="form-check-label" for="inlineRadio2">NO</label>
-                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>">
+                                 <input class="discapacitado form-check-input" type="radio" name="discapacidad<?php echo $consecutivo;?>[]" id="inlineRadio2" value="<?php echo $tper21;?>" required>
                                </div>
                              <!-- // aqui va la variable que se trae desde el front-end -->
                              </font>
@@ -540,7 +540,7 @@ margin-left:auto; margin-right:0;
                        <div class="input-group" >
                          <div class="" style="width: 100%; display:none;" id="tipodiscapacidad<?php echo $consecutivo;?>">
                            <span class="input-group-text" style="background: #A19E9F; color:#FFFFFF;"><b>TIPO</b></span>
-                           <textarea class="form-control " aria-label="With textarea" rows="3" name="nombrediscapacidad[]"></textarea>
+                           <textarea class="form-control " aria-label="With textarea" rows="3" name="nombrediscapacidad[]" id="namedisc<?php echo $consecutivo; ?>"></textarea>
                          </div>
                        </div>
                    <br>
@@ -555,7 +555,7 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="testimonio" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="testimonio[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="testimonio[]" autocomplete="off" rows="4" cols="80" required></textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -573,7 +573,7 @@ margin-left:auto; margin-right:0;
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="medidas" autocomplete="off"> -->
-                           <textarea style="text-align:center; width: 100%" name="medidas[]" autocomplete="off" rows="4" cols="80">&#13;&#10;</textarea>
+                           <textarea style="text-align:center; width: 100%" name="medidas[]" autocomplete="off" rows="4" cols="80" required></textarea>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -598,7 +598,7 @@ margin-left:auto; margin-right:0;
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="agenteministerio" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
-                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" name="solicitante" value="agente" onchange="javascript:showContent()">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox1" name="solicitante" value="agente" onchange="javascript:showContent()" required>
                              <label class="form-check-label" for="inlineCheckbox1"></label>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -608,7 +608,7 @@ margin-left:auto; margin-right:0;
                          <font style="font-family: gothambook">
                            <!-- <input style="text-align:center; width: 100%" type="text" name="organojurisdiccional" autocomplete="off"> -->
                            <div class="form-check form-check-inline">
-                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox12" name="solicitante" value="organo" onchange="javascript:showContent2()">
+                             <input style="width: 30px; height: 30px" class="form-check-input" type="checkbox" id="inlineCheckbox12" name="solicitante" value="organo" onchange="javascript:showContent2()" required>
                              <label class="form-check-label" for="inlineCheckbox1"></label>
                            </div>
                          <!-- // aqui va la variable que se trae desde el front-end -->
@@ -629,19 +629,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="nombreagente" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="nombreagente" autocomplete="off" required>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="cargoagente" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="cargoagente" autocomplete="off" required>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="adscripcionagente" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="adscripcionagente" autocomplete="off" required>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -660,19 +660,19 @@ margin-left:auto; margin-right:0;
                        <tr >
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="teloficina" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="teloficina" autocomplete="off" required>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="celular" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="celular" autocomplete="off" required>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
                          <td style="height:5vh; border: 1px solid black; text-align:center">
                          <font style="font-family: gothambook">
-                           <input style="text-align:center; width: 100%" type="text" name="correoelectronico" autocomplete="off">
+                           <input style="text-align:center; width: 100%" type="text" name="correoelectronico" autocomplete="off" required>
                          <!-- // aqui va la variable que se trae desde el front-end -->
                          </font>
                          </td>
@@ -757,7 +757,7 @@ margin-left:auto; margin-right:0;
                        <p align="center">
                        <span style="align:center;width:200px">____________________________________________________</span><br /><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
-                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="nombreministerio" placeholder="LIC." value="">
+                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="nombreministerio" placeholder="LIC." required>
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
                        AGENTE DEL MINISTERIO PUBLICO
@@ -770,7 +770,7 @@ margin-left:auto; margin-right:0;
                        V.°B.°
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
-                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="nombresubdireccion" placeholder="LIC." autocomplete="off" value="">
+                       <input style="text-align:center; width: 70%" class="form-control" type="text" name="nombresubdireccion" placeholder="LIC." autocomplete="off" required>
                        </font></span><br />
                        <span style="align:center;width:200px"><font style="font-family: gothambook">
                        ADSCRITO A LA SUBDIRECCION DE APOYO TECNICO Y JURIDICO
@@ -848,28 +848,32 @@ $tper2 = $fcontarper2['t'];
 <?php
 echo "var jsvar ='$tper2';";
 ?>
-console.log(jsvar);
-
+// console.log(jsvar);
+// for (var d = 1; d <= jsvar; d++){
+//   document.getElementById('vars'+d).required = true;
+// }
 $(document).ready(function(){
         $(".pago").click(function(evento){
             var valor = $(this).val();
             console.log(valor);
-            // console.log('no'+valor);
-
-            for (var i = 0; i < jsvar; i++) {
+            // console.log(jsvar);
+            for (var i = 1; i <= jsvar; i++) {
+              // console.log(i);
               if (valor <= jsvar) {
                 console.log('has seleccionado el radio button de la persona ', valor);
                 $("#div1"+valor).show();
                 $("#div2"+valor).show();
+                document.getElementById('nameasis'+valor).required = true;
               }else if (valor > jsvar){
                 var t = valor - jsvar;
-                console.log('has seleccionado el div numero',t);
-                console.log('has seleccionado el radio button de la persona ', valor);
+                // console.log('has seleccionado el div numero',t);
+                // console.log('has seleccionado el radio button de la persona ', valor);
                 $("#div1"+t).hide();
                 $("#div2"+t).hide();
               }
               t = t+1;
             }
+            // console.log(i);
     });
 });
 //
@@ -881,6 +885,7 @@ $(document).ready(function(){
               if (valor <= jsvar) {
                 console.log('has seleccionado que tiene una enfermedad', valor);
                 $("#nombreenfermedad"+valor).show();
+                document.getElementById('nameenfermedad'+valor).required = true;
               }else{
                 h = valor - jsvar;
                 console.log('has seleccionado el div numero',h);
@@ -899,6 +904,7 @@ $(document).ready(function(){
               if (valor <= jsvar) {
                 console.log('has seleccionado que tiene una discapacidad', valor);
                 $("#tipodiscapacidad"+valor).show();
+                document.getElementById('namedisc'+valor).required = true;
               }else{
                 h = valor - jsvar;
                 console.log('has seleccionado el div numero',h);
