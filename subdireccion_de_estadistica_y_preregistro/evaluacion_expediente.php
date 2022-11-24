@@ -16,7 +16,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>EXPEDIENTES</title>
+  <title>SEGUIMIENTO DE EXPEDIENTES</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -275,7 +275,7 @@ a:focus {
           <article>
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-              <a class="actived">EXPEDIENTES</a>
+              <a class="actived">SEGUIMIENTO DE EXPEDIENTES</a>
             </div>
             <div class="container">
               <h2 style="text-align:center">EXPEDIENTES</h2>

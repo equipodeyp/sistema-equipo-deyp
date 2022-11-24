@@ -16,7 +16,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>SUJETOS</title>
+  <title>SEGUIMIENTO DE SUJETOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -272,7 +272,7 @@ a:focus {
         <article class="">
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-            <a class="actived">SUJETOS</a>
+            <a class="actived">SEGUIMIENTO DE SUJETOS</a>
           </div>
           <div class="container">
             <h2 style="text-align:center">PERSONAS</h2>
@@ -345,25 +345,25 @@ a:focus {
                                         <!-- <th style="text-align:center">ID CONVENIO ENTENDIMIENTO</th> -->
                                         <!-- INICIO DE ESTUDIOS TECNICOS -->
                                         <?php
-                                        // $est = "SELECT id_unico, COUNT(id_unico) AS t
-                                        //   FROM  evaluacion_persona
-                                        //   GROUP BY id_unico
-                                        //   ORDER BY t DESC
-                                        //   LIMIT 1";
-                                        // $rest = $mysqli->query($est);
-                                        // $fest = $rest->fetch_assoc();
-                                        // $iterac = $fest['t'].'<br />';
-                                        // for ($i=2; $i < $fest['t']+2; $i++) {
-                                        //   echo '<th style="text-align:center">'; echo "ANALISIS MULTIDISCIPLINARIO ". $i; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "FECHA AUTORIZACION ANALISIS"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "ID ANALISIS"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "TIPO DE CONVENIO"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "FECHA FIRMA"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "FECHA INICIO"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "VIGENCIA"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "FECHA TERMINO"; echo '</th>';
-                                        //   echo '<th style="text-align:center">'; echo "ID CONVENIO"; echo '</th>';
-                                        // }
+                                        $est = "SELECT id_unico, COUNT(id_unico) AS t
+                                          FROM  evaluacion_persona
+                                          GROUP BY id_unico
+                                          ORDER BY t DESC
+                                          LIMIT 1";
+                                        $rest = $mysqli->query($est);
+                                        $fest = $rest->fetch_assoc();
+                                        $iterac = $fest['t'].'<br />';
+                                        for ($i=2; $i < $fest['t']+2; $i++) {
+                                          echo '<th style="text-align:center">'; echo "ANALISIS MULTIDISCIPLINARIO ". $i; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "FECHA AUTORIZACION ANALISIS"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "ID ANALISIS"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "TIPO DE CONVENIO"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "FECHA FIRMA"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "FECHA INICIO"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "VIGENCIA"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "FECHA TERMINO"; echo '</th>';
+                                          echo '<th style="text-align:center">'; echo "ID CONVENIO"; echo '</th>';
+                                        }
                                         ?>
                                         <!-- <th style="text-align:center">TERMINACION</th> -->
                                         <!-- <th style="text-align:center">CONCLUSION ARTICULO 35</th> -->
@@ -505,39 +505,39 @@ a:focus {
                                       WHERE id_unico = '$ident_per'";
                                       $rt = $mysqli->query($t);
                                       while ($ft = $rt->fetch_assoc()) {
-                                        // echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
-                                        // echo "<td style='text-align:center'>";
-                                        // if ($ft['fecha_aut'] != '0000-00-00') {
-                                        //   echo date("d/m/Y", strtotime($ft['fecha_aut']));
-                                        // } echo "</td>";
-                                        // echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
-                                        // echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
-                                        // echo "<td style='text-align:center'>";
-                                        // if ($ft['fecha_firma'] != '0000-00-00') {
-                                        //   echo date("d/m/Y", strtotime($ft['fecha_firma']));
-                                        // } echo "</td>";
-                                        // echo "<td style='text-align:center'>";
-                                        // if ($ft['fecha_inicio'] != '0000-00-00') {
-                                        //   echo date("d/m/Y", strtotime($ft['fecha_inicio']));
-                                        // } echo "</td>";
-                                        // echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
-                                        // echo "<td style='text-align:center'>";
-                                        // if ($ft['fecha_vigencia'] != '0000-00-00') {
-                                        //   echo date("d/m/Y", strtotime($ft['fecha_vigencia']));
-                                        // } echo "</td>";
-                                        // echo "<td style='text-align:center'>"; echo $ft['id_convenio']; echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_aut'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_aut']));
+                                        } echo "</td>";
+                                        echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
+                                        echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_firma'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_firma']));
+                                        } echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_inicio'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_inicio']));
+                                        } echo "</td>";
+                                        echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
+                                        echo "<td style='text-align:center'>";
+                                        if ($ft['fecha_vigencia'] != '0000-00-00') {
+                                          echo date("d/m/Y", strtotime($ft['fecha_vigencia']));
+                                        } echo "</td>";
+                                        echo "<td style='text-align:center'>"; echo $ft['id_convenio']; echo "</td>";
                                       }
-                                      // for ($i=$fv['t']+1; $i < $iterac; $i++) {
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                      // }
+                                      for ($i=$fv['t']+1; $i < $iterac; $i++) {
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                        echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
+                                      }
                                     }
                                     // echo "<td style='text-align:center'>"; echo $fdeti['conclu_cancel']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $fdeti['conclusionart35']; echo "</td>";
