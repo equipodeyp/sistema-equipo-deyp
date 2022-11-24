@@ -1,5 +1,7 @@
 <?php
-
+// variables que se envian por el mnetodo post para agrgarlas al pdf
+$oficiosolicitud =$_POST['oficiosolicitud'];
+//
 require_once __DIR__ . '/vendor/autoload.php';
 // Grab variables
 
@@ -112,8 +114,8 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
   <tbody>
     <tr >
       <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      <font style="font-family: gothambook">      
+      '.$oficiosolicitud.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
