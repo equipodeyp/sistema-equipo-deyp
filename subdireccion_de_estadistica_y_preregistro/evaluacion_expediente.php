@@ -316,8 +316,8 @@ a:focus {
                               $rv = $mysqli->query($v);
                               $fv = $rv->fetch_assoc();
                               // echo $fv['total'];
-                              for ($i=1; $i < $fv['total']+ 1; $i++) {
-                                echo '<th style="text-align:center">'; echo 'analisis multidisciplinario'.'<br>'.$i; echo'</th>';
+                              for ($i=2; $i < $fv['total']+ 2; $i++) {
+                                echo '<th style="text-align:center">'; echo 'ANALISIS MULTIDISCIPLINARIO   '.'<br>'.$i; echo'</th>';
                                 echo '<th style="text-align:center">'; echo 'FECHA AUTORIZACIÓN'; echo '</th>';
                                 echo '<th style="text-align:center">'; echo 'ID ANALISIS'; echo '</th>';
                                 echo '<th style="text-align:center">'; echo 'TIPO DE CONVENIO'; echo '</th>';
