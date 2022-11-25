@@ -6,6 +6,11 @@ $zonageografica =$_POST['zonageografica'];
 $delito =$_POST['delito'];
 $carpetainv =$_POST['carpetainv'];
 $procpenal =$_POST['procpenal'];
+// DATOS DE LAS PERSONAS Propuestas
+$inicialespersona =$_POST['inicialessuj'];
+$vv =count($inicialespersona);
+$tipintervencion =$_POST['tipointervencion'];
+$privadoliber =$_POST['privadolibertad'];
 //datos del solicitante
 $solicitante =$_POST['solicitante'];
 $nombresolicitante =$_POST['nombreagente'];
@@ -178,184 +183,168 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
     </tr>
   </tbody>
 </table><br><br />';
+$aux = 1;
+for ($i=0;$i<count($inicialespersona);$i++) {
+  $data .='<h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA '.$aux.'</h3>';
+  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+    <thead>
+      <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">INICIALES</font></th>
+        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">TIPO DE INTERVENCION</font></th>
+        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRIVADO DE LA LIBERTAD?</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+        '.$inicialespersona[$i].'
+        </font>
+        </td>
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+        '.$tipintervencion[$i].'
+        </font>
+        </td>
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+        '.$privadoliber[$i].'
+        </font>
+        </td>
+      </tr>
+    </tbody>
+  </table>';
 
-$data .='<h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA</h3>';
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">INICIALES</font></th>
-      <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">TIPO DE INTERVENCION</font></th>
-      <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRIVADO DE LA LIBERTAD?</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table>';
+  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+    <thead>
+      <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
+        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
+        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+        // aqui va la variable que se trae desde el front-end
+        </font>
+        </td>
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+        // aqui va la variable que se trae desde el front-end
+        </font>
+        </td>
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+        // aqui va la variable que se trae desde el front-end
+        </font>
+        </td>
+      </tr>
+    </tbody>
+  </table><br />';
+  $aux = $aux + 1 ;
+}
 
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
-      <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
-      <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table><br />';
 
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SITUACION DE RIESGO</font></th>
-      <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CAUSA DE VULNERABILIDAD</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table><br />';
-// word-break: break-all; --- estilo para que la fila de la tabla mantenga su pocision sin importar el tamaño del texto
-// for ($i=0; $i < 4 ; $i++) {
-//   $data .='<table class="table table-dark" id="estatusexpediente" border="0.2px" cellspacing="0" width="100%" bordered>
-//     <thead>
-//       <tr style="border: 0.5px solid black;" bgcolor = "#A19E9F">
-//         <th width="50%" style="border: 0.2px solid black; text-align:center">SITUACION DE RIESGO</th>
-//         <th width="50%" style="border: 0.2px solid black; text-align:center">CAUSA DE VULNERABILIDAD</th>
-//       </tr>
-//     </thead>
-//     <tbody>
-//       <tr >
-//         <td style="border: 0.2px solid black; text-align:center">
-//         df
-//         </td>
-//         <td style="border: 0.2px solid black; text-align:center">
-//         sdf
-//         </td>
-//       </tr>
-//     </tbody>
-//   </table><BR />';
-// }
-
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
-      <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table>';
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" >
-      <th width="2%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-      <th width="48%" style="height:40vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </th>
-      <th width="2%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-      <th width="48%" style="height:40vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </th>
-    </tr>
-  </thead>
-</table><br>';
-
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NECESIDAD DEL PORQUE LLEVAR SU TESTIMONIO A JUICIO</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table>';
-
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="105%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th style="height:40vh; border: 1px solid black;"><font color ="#FFFFFF" style="font-family: gothambook">MEDIDAS SOLICITADAS POR EL AGENTE DEL MINISTERIO PUBLICO DE LA INVESTIGACION</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table>';
+//
+// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+//   <thead>
+//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SITUACION DE RIESGO</font></th>
+//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CAUSA DE VULNERABILIDAD</font></th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr >
+//       <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </td>
+//       <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </td>
+//     </tr>
+//   </tbody>
+// </table><br />';
+//
+// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+//   <thead>
+//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
+//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr >
+//       <td style="height:50vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </td>
+//       <td style="height:50vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </td>
+//     </tr>
+//   </tbody>
+// </table>';
+// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+//   <thead>
+//     <tr style="border: 1px solid black;" >
+//       <th width="2%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
+//       <th width="48%" style="height:40vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </th>
+//       <th width="2%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
+//       <th width="48%" style="height:40vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </th>
+//     </tr>
+//   </thead>
+// </table><br>';
+//
+// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+//   <thead>
+//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+//       <th style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NECESIDAD DEL PORQUE LLEVAR SU TESTIMONIO A JUICIO</font></th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr >
+//       <td style="height:50vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </td>
+//     </tr>
+//   </tbody>
+// </table>';
+//
+// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="105%" bordered>
+//   <thead>
+//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+//       <th style="height:40vh; border: 1px solid black;"><font color ="#FFFFFF" style="font-family: gothambook">MEDIDAS SOLICITADAS POR EL AGENTE DEL MINISTERIO PUBLICO DE LA INVESTIGACION</font></th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr >
+//       <td style="height:50vh; border: 1px solid black; text-align:center">
+//       <font style="font-family: gothambook">
+//       // aqui va la variable que se trae desde el front-end
+//       </font>
+//       </td>
+//     </tr>
+//   </tbody>
+// </table>';
 
 $data .='<br><br><h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>';
 if ($solicitante === 'agente') {
@@ -551,6 +540,4 @@ $data .='<div>
 
 $mpdf->WriteHtml($data);
 $mpdf->output("myfile.pdf",'D');
-
-
 ?>

@@ -108,6 +108,9 @@ if ($verifica_update_person == 1) {
     $res_comment = $mysqli->query($comment);
   }
 
+  $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas' WHERE folioexpediente = '$folio_expediente'";
+  $res_analsis = $mysqli->query($update_analisis);
+
     // validacion del update correcto
   if($res_segexpediente){
     echo ("<script type='text/javaScript'>
