@@ -1,6 +1,24 @@
 <?php
-// variables que se envian por el mnetodo post para agrgarlas al pdf
+// variables que se envian por el metodo post para agregarlas al pdf
 $oficiosolicitud =$_POST['oficiosolicitud'];
+$fechasolicitud =$_POST['fechasolicitud'];
+$zonageografica =$_POST['zonageografica'];
+$delito =$_POST['delito'];
+$carpetainv =$_POST['carpetainv'];
+$procpenal =$_POST['procpenal'];
+//datos del solicitante
+$solicitante =$_POST['solicitante'];
+$nombresolicitante =$_POST['nombreagente'];
+$cargosolicitante =$_POST['cargoagente'];
+$adscripcionsolicitante =$_POST['adscripcionagente'];
+$teloficina =$_POST['teloficina'];
+$celular =$_POST['celular'];
+$correoelectronico =$_POST['correoelectronico'];
+$procedente =$_POST['procedente'];
+$acuerdopersona =$_POST['acuerdopersona'];
+$nombreministerio =$_POST['nombreministerio'];
+$nombresubdireccion =$_POST['nombresubdireccion'];
+$sede =$_POST['sede'];
 //
 require_once __DIR__ . '/vendor/autoload.php';
 // Grab variables
@@ -114,18 +132,18 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
   <tbody>
     <tr >
       <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">      
+      <font style="font-family: gothambook">
       '.$oficiosolicitud.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$fechasolicitud.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$zonageografica.'
       </font>
       </td>
     </tr>
@@ -144,17 +162,17 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
     <tr >
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$delito.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$carpetainv.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$procpenal.'
       </font>
       </td>
     </tr>
@@ -340,29 +358,54 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
 </table>';
 
 $data .='<br><br><h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>';
+if ($solicitante === 'agente') {
+  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+    <thead>
+      <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+        <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">AGENTE DEL MINISTERIO PUBLICO</font></th>
+        <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ORGANO JURISDICCIONAL</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+          X
+        </font>
+        </td>
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
 
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-      <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">AGENTE DEL MINISTERIO PUBLICO</font></th>
-      <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ORGANO JURISDICCIONAL</font></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-      <td style="height:50vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </td>
-    </tr>
-  </tbody>
-</table><br>';
+        </font>
+        </td>
+      </tr>
+    </tbody>
+  </table><br>';
+}elseif ($solicitante === 'organo') {
+  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+    <thead>
+      <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+        <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">AGENTE DEL MINISTERIO PUBLICO</font></th>
+        <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">ORGANO JURISDICCIONAL</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+
+        </font>
+        </td>
+        <td style="height:50vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+          X
+        </font>
+        </td>
+      </tr>
+    </tbody>
+  </table><br>';
+}
+
 
 $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
   <thead>
@@ -376,17 +419,17 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
     <tr >
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$nombresolicitante.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$cargosolicitante.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$adscripcionsolicitante.'
       </font>
       </td>
     </tr>
@@ -405,17 +448,17 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
     <tr >
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$teloficina.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$celular.'
       </font>
       </td>
       <td style="height:50vh; border: 1px solid black; text-align:center">
       <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
+      '.$correoelectronico.'
       </font>
       </td>
     </tr>
@@ -423,31 +466,39 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
 </table>';
 
 $data .='<br><br><br><h3 style="font-family: gothambook" align="center">VALORACION JURIDICA</h3>';
-
-$data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-  <thead>
-    <tr style="border: 1px solid black;" >
-      <th width="25%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
-      <th width="25%" style="height:40vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </th>
-      <th width="25%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
-      <th width="25%" style="height:40vh; border: 1px solid black; text-align:center">
-      <font style="font-family: gothambook">
-      // aqui va la variable que se trae desde el front-end
-      </font>
-      </th>
-    </tr>
-  </thead>
-</table><br>';
+if ($procedente === 'SI PROCEDE') {
+  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+    <thead>
+      <tr style="border: 1px solid black;" >
+        <th width="25%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">PROCEDENTE</font></th>
+        <th width="25%" style="height:40vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+          X
+        </font>
+        </th>
+      </tr>
+    </thead>
+  </table><br>';
+}else {
+  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+    <thead>
+      <tr style="border: 1px solid black;" >
+        <th width="25%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">NO PROCEDENTE</font></th>
+        <th width="25%" style="height:40vh; border: 1px solid black; text-align:center">
+        <font style="font-family: gothambook">
+          X
+        </font>
+        </th>
+      </tr>
+    </thead>
+  </table><br>';
+}
 
 $data .='<h3 style="font-family: gothambook" align="center">ACUERDO</h3>';
 
 $data .='<p align="justify">
 <span style="font-size: 1em;"><font style="font-family: gothambook">
-Una vez que se realizó el análisis de la solicitud de incorporación al Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio, de las Personas Propuestas de identidad reservada de iniciales XXX y XXX, se determinó que cumple con los requisitos de ley, por lo que se dio inicio al Expediente de Protección registrado bajo el número UPSSIPPED/XXX/XXX/XXX/20XX; y al no existir impedimento legal alguno, se remite solicitud de la incorporación y el inicio del expediente de protección correspondiente, así como, la valoración jurídica a la Subdirección de Análisis de Riesgo, para que gire las instrucciones respectivas, a efecto, de que se realicen los Estudios multidisciplinarios correspondientes; lo anterior, con fundamento en los artículos XXX Constitución Política de los Estados Unidos Mexicanos; XXX del Código Nacional de Procedimientos Penales; XXXX de la Ley para la Protección de Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio del Estado de México y demás relativos aplicables.
+'.$acuerdopersona.'
 </font></span>
 </p>';
 $data .='<div>
@@ -456,7 +507,7 @@ $data .='<div>
     <p align="center">
     <span style="align:center;width:200px">____________________________________________________</span><br />
     <span style="align:center;width:200px"><font style="font-family: gothambook">
-    LIC. XXXXXXXX
+    LIC. '.$nombreministerio.'
     </font></span><br />
     <span style="align:center;width:200px"><font style="font-family: gothambook">
     AGENTE DEL MINISTERIO PUBLICO
@@ -468,7 +519,7 @@ $data .='<div>
     V.°B.°
     </font></span><br />
     <span style="align:center;width:200px"><font style="font-family: gothambook">
-    LIC. XXXXXXXX
+    LIC. '.$nombresubdireccion.'
     </font></span><br />
     <span style="align:center;width:200px"><font style="font-family: gothambook">
     ADSCRITO A LA SUBDIRECCION DE APOYO TECNICO Y JURIDICO
@@ -488,7 +539,7 @@ $data .='<div>
         <tr >
           <td style="height:30vh; border: 1px solid black; text-align:center">
           <font style="font-family: gothambook">
-          TOLUCA
+          '.$sede.'
           </font>
           </td>
         </tr>
