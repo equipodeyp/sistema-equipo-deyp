@@ -105,80 +105,84 @@ if ($verifica_update_person == 1) {
 		// if no image selected the old image remain as it is.
 		$userpic = $edit_row['foto']; // old image from database
 	}
-  // consultar primero la informacion de los selects para poder actualizar
-  $check_det_incor = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona'";
-  $res_check_det_incor = $mysqli->query($check_det_incor);
-  $filachk = $res_check_det_incor->fetch_assoc();
-  // echo $filachk['multidisciplinario'];
-  if ($filachk['multidisciplinario'] === 'EN ELABORACION' || $filachk['multidisciplinario'] === '') {
-      $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario' WHERE id_persona = '$id_persona'";
-      $res_det_inc = $mysqli->query($det_inc);
-  }
-  if ($filachk['incorporacion'] === '') {
-    $det_inc = "UPDATE determinacionincorporacion SET incorporacion = '$incorporacion' WHERE id_persona = '$id_persona' ";
-    $res_det_inc = $mysqli->query($det_inc);
-  }
-  if ($filachk['convenio'] === '' || $filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
-    $det_inc = "UPDATE determinacionincorporacion SET convenio='$convenio' WHERE id_persona = '$id_persona' ";
-    $res_det_inc = $mysqli->query($det_inc);
-  }
-  // ACTUALIZAR CAMPOS QUE NO SON DISABLED
-  $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion = '$date_aut', id_analisis = '$id_analisis', vigencia = '$vigencia', date_convenio = '$fecha_conv_ent', fecha_inicio = '$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio = '$id_convenio'
-                                                WHERE id_persona = '$id_persona' ";
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // // consultar primero la informacion de los selects para poder actualizar
+  // $check_det_incor = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_persona'";
+  // $res_check_det_incor = $mysqli->query($check_det_incor);
+  // $filachk = $res_check_det_incor->fetch_assoc();
+  // // echo $filachk['multidisciplinario'];
+  // if ($filachk['multidisciplinario'] === 'EN ELABORACION' || $filachk['multidisciplinario'] === '') {
+  //     $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario' WHERE id_persona = '$id_persona'";
+  //     $res_det_inc = $mysqli->query($det_inc);
+  // }
+  // if ($filachk['incorporacion'] === '') {
+  //   $det_inc = "UPDATE determinacionincorporacion SET incorporacion = '$incorporacion' WHERE id_persona = '$id_persona' ";
+  //   $res_det_inc = $mysqli->query($det_inc);
+  // }
+  // if ($filachk['convenio'] === '' || $filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
+  //   $det_inc = "UPDATE determinacionincorporacion SET convenio='$convenio' WHERE id_persona = '$id_persona' ";
+  //   $res_det_inc = $mysqli->query($det_inc);
+  // }
+  // // ACTUALIZAR CAMPOS QUE NO SON DISABLED
+  // $det_inc = "UPDATE determinacionincorporacion SET date_autorizacion = '$date_aut', id_analisis = '$id_analisis', vigencia = '$vigencia', date_convenio = '$fecha_conv_ent', fecha_inicio = '$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio = '$id_convenio'
+  //                                               WHERE id_persona = '$id_persona' ";
+  // $res_det_inc = $mysqli->query($det_inc);
+  //
+  // $estatus_per = "SELECT * FROM datospersonales WHERE id='$id_persona'";
+  // $res_estatus_pe = $mysqli->query($estatus_per);
+  // $fila_estatus_per = $res_estatus_pe->fetch_assoc();
+  // $folioexpediente_persona = $fila_estatus_per['folioexpediente'];
+  // // echo $fila_estatus_per['estatus'];
+  // if ($fila_estatus_per['estatus'] === 'PERSONA PROPUESTA' || $fila_estatus_per['estatus'] === 'SUJETO PROTEGIDO' || $fila_estatus_per['estatus'] === '') {
+  //   $datos_persona = "UPDATE datospersonales SET estatus='$estatus'  WHERE id = '$id_persona'";
+  //   $res_dat_per = $mysqli->query($datos_persona);
+  // }
+  // $det_inc = "UPDATE determinacionincorporacion SET conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
+  // $res_det_inc = $mysqli->query($det_inc);
+  // // insertar comentarios de cambios
+  // $comment_mascara = '3';
+  // $fechacomentario = date('y/m/d');
+  // if ($comment != '') {
+  //   $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
+  //                 VALUES ('$comment', '$folioexpediente_persona', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
+  //   $res_comment = $mysqli->query($comment);
+  // }
+  // $camrel = $_POST['relpersuj'];
+  // // echo $estatus;
+  // // echo $id_persona;
+  //
+  // if ($estatus === 'DESINCORPORADO' || $estatus === 'NO INCORPORADO') {
+  //   if ($camrel === 'SI') {
+  //     $infoper = "SELECT * FROM datospersonales WHERE id = '$id_persona'";
+  //     $rinfoper = $mysqli->query($infoper);
+  //     $finfoper = $rinfoper->fetch_assoc();
+  //     $nameper = $finfoper['nombrepersona'];
+  //     $patper = $finfoper['paternopersona'];
+  //     $matper = $finfoper['maternopersona'];
+  //     $checkrel = "SELECT COUNT(*) as t FROM datospersonales WHERE nombrepersona = '$nameper' AND paternopersona = '$patper'
+  //     AND maternopersona = '$matper' AND relacional = 'SI' AND (estatus = 'PERSONA PROPUESTA' OR estatus = 'SUJETO PROTEGIDO')";
+  //     $rcheckrel = $mysqli->query($checkrel);
+  //     $fcheckrel = $rcheckrel->fetch_assoc();
+  //     // echo $fcheckrel['t'];
+  //     if ($fcheckrel['t'] > 0) {
+  //       $checkrel2 = "SELECT * FROM datospersonales WHERE nombrepersona = '$nameper' AND paternopersona = '$patper'
+  //       AND maternopersona = '$matper' AND relacional = 'SI' AND (estatus = 'PERSONA PROPUESTA' OR estatus = 'SUJETO PROTEGIDO')
+  //       ORDER BY id ASC LIMIT 1";
+  //       $rcheckrel2 = $mysqli->query($checkrel2);
+  //       while ($fcheckrel2 = $rcheckrel2->fetch_assoc()) {
+  //         echo $actidrel = $fcheckrel2['id'];
+  //         $actrel = "UPDATE datospersonales set relacional = 'NO' WHERE id = '$actidrel'";
+  //         $ractrel = $mysqli->query($actrel);
+  //         $actrel2 = "UPDATE datospersonales set relacional = 'SI' WHERE id = '$id_persona'";
+  //         $ractrel2 = $mysqli->query($actrel2);
+  //       }
+  //     }
+  //   }
+  // }
+  // echo $camrel;
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario' WHERE id_persona = '$id_persona'";
   $res_det_inc = $mysqli->query($det_inc);
-
-  $estatus_per = "SELECT * FROM datospersonales WHERE id='$id_persona'";
-  $res_estatus_pe = $mysqli->query($estatus_per);
-  $fila_estatus_per = $res_estatus_pe->fetch_assoc();
-  $folioexpediente_persona = $fila_estatus_per['folioexpediente'];
-  // echo $fila_estatus_per['estatus'];
-  if ($fila_estatus_per['estatus'] === 'PERSONA PROPUESTA' || $fila_estatus_per['estatus'] === 'SUJETO PROTEGIDO' || $fila_estatus_per['estatus'] === '') {
-    $datos_persona = "UPDATE datospersonales SET estatus='$estatus'  WHERE id = '$id_persona'";
-    $res_dat_per = $mysqli->query($datos_persona);
-  }
-  $det_inc = "UPDATE determinacionincorporacion SET conclu_cancel='$acuerdo', conclusionart35='$conclusionart35', otroart35='$otherart35', date_desincorporacion='$date_des' WHERE id_persona = '$id_persona' ";
-  $res_det_inc = $mysqli->query($det_inc);
-  // insertar comentarios de cambios
-  $comment_mascara = '3';
-  $fechacomentario = date('y/m/d');
-  if ($comment != '') {
-    $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, id_persona, id_medida, fecha)
-                  VALUES ('$comment', '$folioexpediente_persona', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
-    $res_comment = $mysqli->query($comment);
-  }
-  $camrel = $_POST['relpersuj'];
-  // echo $estatus;
-  // echo $id_persona;
-
-  if ($estatus === 'DESINCORPORADO' || $estatus === 'NO INCORPORADO') {
-    if ($camrel === 'SI') {
-      $infoper = "SELECT * FROM datospersonales WHERE id = '$id_persona'";
-      $rinfoper = $mysqli->query($infoper);
-      $finfoper = $rinfoper->fetch_assoc();
-      $nameper = $finfoper['nombrepersona'];
-      $patper = $finfoper['paternopersona'];
-      $matper = $finfoper['maternopersona'];
-      $checkrel = "SELECT COUNT(*) as t FROM datospersonales WHERE nombrepersona = '$nameper' AND paternopersona = '$patper'
-      AND maternopersona = '$matper' AND relacional = 'SI' AND (estatus = 'PERSONA PROPUESTA' OR estatus = 'SUJETO PROTEGIDO')";
-      $rcheckrel = $mysqli->query($checkrel);
-      $fcheckrel = $rcheckrel->fetch_assoc();
-      // echo $fcheckrel['t'];
-      if ($fcheckrel['t'] > 0) {
-        $checkrel2 = "SELECT * FROM datospersonales WHERE nombrepersona = '$nameper' AND paternopersona = '$patper'
-        AND maternopersona = '$matper' AND relacional = 'SI' AND (estatus = 'PERSONA PROPUESTA' OR estatus = 'SUJETO PROTEGIDO')
-        ORDER BY id ASC LIMIT 1";
-        $rcheckrel2 = $mysqli->query($checkrel2);
-        while ($fcheckrel2 = $rcheckrel2->fetch_assoc()) {
-          echo $actidrel = $fcheckrel2['id'];
-          $actrel = "UPDATE datospersonales set relacional = 'NO' WHERE id = '$actidrel'";
-          $ractrel = $mysqli->query($actrel);
-          $actrel2 = "UPDATE datospersonales set relacional = 'SI' WHERE id = '$id_persona'";
-          $ractrel2 = $mysqli->query($actrel2);
-        }
-      }
-    }
-  }
-  echo $camrel;
   // validacion de update correcto
   if($res_det_inc){
     echo ("<script type='text/javaScript'>

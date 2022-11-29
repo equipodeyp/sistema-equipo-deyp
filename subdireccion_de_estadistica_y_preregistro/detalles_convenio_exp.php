@@ -122,20 +122,22 @@ $id_con_exp = $fila_consulta['id'];
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select disabled class="form-select form-select-lg" name="analisis_m" id="analisis_m">
+                    <select  class="form-select form-select-lg" name="analisis_m" id="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
-                      <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-                      <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-                      <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
+                      <option value="ESTUDIO TECNICO DE CANCELACION">2.- ESTUDIO TECNICO DE CANCELACION</option>
+                      <option value="ESTUDIO TECNICO DE CONCLUSION">3.- ESTUDIO TECNICO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
+                      <option value="AUTORIZACION DEL TITULAR">5.- AUTORIZACION DEL TITULAR</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
+                    <input  class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
+                    <input  class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar " id="tconve">
                     <label for="tipo_convenio">TIPO DE CONVENIO</label>
@@ -204,7 +206,8 @@ $id_con_exp = $fila_consulta['id'];
 <script src="../js/evaluacion_expediente.js" charset="utf-8"></script>
 </body>
 </html>
-<script type="text/javascript">
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo -->
+<!-- <script type="text/javascript">
   var vertipconvenio = document.getElementById('select_tipo_convenio').value;
   function tipoconveniocam(){
     // console.log(vertipconvenio);
@@ -272,4 +275,4 @@ $id_con_exp = $fila_consulta['id'];
       document.getElementById('input_id_convenio').required = true;
     }
   }
-</script>
+</script> -->

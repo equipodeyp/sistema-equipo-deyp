@@ -45,18 +45,18 @@ $id_persona = $fila_consulta_uno ['id'];
   <link rel="stylesheet" href="../css/main2.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="../js/expediente.js"></script>
-  <script src="../js/solicitud.js"></script>
+  <!-- <script src="../js/expediente.js"></script> -->
+  <!-- <script src="../js/solicitud.js"></script> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/cli.css">
-  <link rel="stylesheet" href="../css/registrosolicitud1.css">
+  <!-- <link rel="stylesheet" href="../css/cli.css"> -->
+  <!-- <link rel="stylesheet" href="../css/registrosolicitud1.css"> -->
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
-  <script src="../js/Javascript.js"></script>
+  <!-- <script src="../js/Javascript.js"></script> -->
   <!-- <script src="../js/validar_campos.js"></script> -->
-  <script src="../js/verificar_camposm1.js"></script>
-  <script src="../js/mascara2campos.js"></script>
+  <!-- <script src="../js/verificar_camposm1.js"></script> -->
+  <!-- <script src="../js/mascara2campos.js"></script> -->
   <!-- <link rel="stylesheet" href="../css/estilos.css">
   <script src="../js/main.js"></script> -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -131,20 +131,22 @@ $id_persona = $fila_consulta_uno ['id'];
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
                     <label for="analisis_m">ANALISIS MULTIDISCIPLINARIO</label>
-                    <select id="ANALISIS_MULT" disabled class="form-select form-select-lg" name="analisis_m">
+                    <select id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
-                      <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-                      <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-                      <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
+                      <option value="ESTUDIO TECNICO DE CANCELACION">2.- ESTUDIO TECNICO DE CANCELACION</option>
+                      <option value="ESTUDIO TECNICO DE CONCLUSION">3.- ESTUDIO TECNICO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
+                      <option value="AUTORIZACION DEL TITULAR">5.- AUTORIZACION DEL TITULAR</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_FECHA_AUTORIZACION" for="fecha_autorizacion">FECHA DE AUTORIZACIÓN ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input id="INPUT_FECHA_AUTORIZACION" disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
+                    <input id="INPUT_FECHA_AUTORIZACION" class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input id="INPUT_ID_ANALISIS" disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
+                    <input id="INPUT_ID_ANALISIS" class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
@@ -209,7 +211,8 @@ $id_persona = $fila_consulta_uno ['id'];
 <script src="../js/evaluacion_individual.js" charset="utf-8"></script>
 </body>
 </html>
-<script type="text/javascript">
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo -->
+<!-- <script type="text/javascript">
   var vertipconv = document.getElementById('SELECT_TIPO_CONVENIO').value;
   function ocultipconv(){
     // console.log(vertipconv);
@@ -229,46 +232,6 @@ $id_persona = $fila_consulta_uno ['id'];
   }
   ocultipconv();
 </script>
-<!-- <script type="text/javascript">
-var respuestaAlalisisMultidisiplinario = document.getElementById('ANALISIS_MULT').value;
-    function ocultarInfo() {
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
-        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
-        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "";
-        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "";
-        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
-        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
-        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
-        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
-        document.getElementById('LABEL_VIGENCIA').style.display = "";
-        document.getElementById('INPUT_VIGENCIA').style.display = "";
-        document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
-        document.getElementById('INPUT_FECHA_TERMINO').style.display = "";
-        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
-        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
-        document.getElementById('row_observ').style.display = "";
-      }
-      else {
-        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
-        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
-        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
-        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
-        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
-        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
-        document.getElementById('LABEL_VIGENCIA').style.display = "none";
-        document.getElementById('INPUT_VIGENCIA').style.display = "none";
-        document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
-        document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
-        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
-        document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
-      }
-
-    }
-ocultarInfo();
-</script> -->
 <script type="text/javascript">
   var tipconv = document.getElementById('SELECT_TIPO_CONVENIO');
   var camtipconv = '';
@@ -328,8 +291,5 @@ ocultarInfo();
         document.getElementById('INPUT_ID_CONVENIO').required = true;
         document.getElementById('convmodific').style.display = "none";
       }
-
-
     }
-
-</script>
+</script> -->

@@ -868,7 +868,7 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
       }
     }
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
 function ocultarAnalisisM() {
       if (analisisM === "ESTUDIO TECNICO") {
@@ -934,9 +934,9 @@ function ocultarAnalisisM() {
       }
     }
 ocultarAnalisisM();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var noFormalizado = document.getElementById('CONVENIO_ENTENDIMIENTO');
 var respuestaInputNoFormalizado = '';
 noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
@@ -985,8 +985,8 @@ noFormalizado.addEventListener('change', obtenerInfoNoFormalizado);
         document.getElementById('id_convenio').value = "";
       }
   }
-</script>
-<script type="text/javascript">
+</script> -->
+<!-- <script type="text/javascript">
 var noFormalizadoInput = document.getElementById('CONVENIO_ENTENDIMIENTO').value;
 function ocultarCamposNoFormalizado() {
   if (noFormalizadoInput === "NO FORMALIZADO" || noFormalizadoInput === "PENDIENTE DE EJECUCION"){
@@ -1011,9 +1011,9 @@ function ocultarCamposNoFormalizado() {
       }
 }
 ocultarCamposNoFormalizado();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var concluNone = document.getElementById('ESTATUS_PERSONA').value;
 function ConclusionCancelacion(){
 if(concluNone === "" || concluNone === null || concluNone === "PERSONA PROPUESTA" || concluNone === "SUJETO PROTEGIDO"){
@@ -1032,9 +1032,9 @@ else if (concluNone === "DESINCORPORADO" || concluNone === "NO INCORPORADO"){
 }
 }
 ConclusionCancelacion();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var conCa = document.getElementById('ESTATUS_PERSONA');
 var estatusPersona = '';
 conCa.addEventListener('change', obtenerEstatus);
@@ -1060,9 +1060,9 @@ conCa.addEventListener('change', obtenerEstatus);
         document.getElementById('FECHA_DESINCORPORACION_UNO').value='';
       }
 }
-</script>
+</script> -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var concluCanceExp = document.getElementById('CONCLUSION_CANCELACION_EXP').value;
 function ConclusionCancelacionExp(){
   if (concluCanceExp === "" || concluCanceExp === null){
@@ -1090,9 +1090,9 @@ else if (concluCanceExp === "CANCELACION"){
 }
 }
 ConclusionCancelacionExp();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var estatusPer = document.getElementById('CONCLUSION_CANCELACION_EXP');
 var estatusPersonaSeg;
 estatusPer.addEventListener('change', obtenerEstatusSeg);
@@ -1115,9 +1115,9 @@ estatusPer.addEventListener('change', obtenerEstatusSeg);
       document.getElementById('OTHER_ART351').style.display = "none";
       }
 }
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var concluCanceArt = document.getElementById('CONCLUSION_ART351').value;
 function ConclusionCancelacionArt(){
 if (concluCanceArt === "" || concluCanceArt === null){
@@ -1134,9 +1134,9 @@ else {
 }
 }
 ConclusionCancelacionArt();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var conCaArt = document.getElementById('CONCLUSION_ART351');
 var conCaArt35 = '';
 conCaArt.addEventListener('change', obtenerConCaArt35);
@@ -1151,9 +1151,9 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
         document.getElementById('OTHER_ART351').style.display = "none";
       }
 }
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var idAnalisis = document.getElementById('id_analisis').value;
 function ReadOnlyIdAnalisis() {
   if( !idAnalisis == null || !idAnalisis == "" ){
@@ -1161,9 +1161,9 @@ function ReadOnlyIdAnalisis() {
   }
 }
 ReadOnlyIdAnalisis();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO').value;
 function ReadOnlyVigenciaconvenio() {
   if( !fechaVigenciaConvenio == null || !fechaVigenciaConvenio == "" ){
@@ -1171,9 +1171,9 @@ function ReadOnlyVigenciaconvenio() {
   }
 }
 ReadOnlyVigenciaconvenio();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var numDeConvenios = document.getElementById('id_convenio').value;
 function ReadOnlyNumConvenios() {
   if( !numDeConvenios == null || !numDeConvenios == "" ){
@@ -1187,9 +1187,9 @@ function ReadOnlyNumConvenios() {
   }
 }
 ReadOnlyNumConvenios();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var readOnlyEstatus = document.getElementById('ESTATUS_PERSONA').value;
 function ReadOnlyConClu() {
   if ( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
@@ -1215,9 +1215,9 @@ function ReadOnlyConClu() {
   }
 }
 ReadOnlyConClu();
-</script>
+</script> -->
 
-<script type="module">
+<!-- <script type="module">
 function Acuerdo(){
   var AcuerdoAnalisis = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
   var AcuerdoEstatus = document.getElementById('ESTATUS_PERSONA').value;
@@ -1232,9 +1232,9 @@ function Acuerdo(){
 }
 Acuerdo();
 export {AcuerdoEstatus};
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
 function ReadOnlyEstudio(){
   if (analisisM == "ESTUDIO TECNICO"){
@@ -1247,9 +1247,9 @@ function ReadOnlyEstudio(){
   }
 }
 ReadOnlyConClu();
-</script>
+</script> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   var relac = document.getElementById('relpersuj').value;
   var estrel = document.getElementById('ESTATUS_PERSONA').value;
   var ifrel = document.getElementById('ifrelacionalsuj').value;
@@ -1269,6 +1269,6 @@ ReadOnlyConClu();
   }else {
     document.getElementById('ver_relacion').style.display = "none";
   }
-</script>
+</script> -->
 </body>
 </html>

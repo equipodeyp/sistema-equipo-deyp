@@ -51,7 +51,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
@@ -116,7 +116,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
               <a href="../administrador/detalles_expediente.php?folio=<?=$fila_consulta['folioexpediente']?>">EXPEDIENTE</a>
               <a href="../administrador/detalles_persona.php?folio=<?=$fila_consulta['id']?>">PERSONA</a>
               <a href="../administrador/seguimiento_persona.php?folio=<?=$fila_consulta['id']?>">SEGUIMIENTO</a>
-              <a class="actived">REGISTRAR EVALUACIÓN</a>
+              <a class="actived">AGREGAR EVALUACIÓN</a>
               </div>
 
               <div class="row">
@@ -128,19 +128,21 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
-                  <input readonly type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>">
+                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label>ID PERSONA </label>
-                  <input readonly type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['identificador']; ?>">
+                  <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['identificador']; ?>" readonly>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
                   <select class="form-select form-select-lg" name="analisis_m" required id="ANALISIS_MULT">
                     <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
-                    <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-                    <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-                    <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                    <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
+                    <option value="ESTUDIO TECNICO DE CANCELACION">2.- ESTUDIO TECNICO DE CANCELACION</option>
+                    <option value="ESTUDIO TECNICO DE CONCLUSION">3.- ESTUDIO TECNICO DE CONCLUSION</option>
+                    <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
+                    <option value="AUTORIZACION DEL TITULAR">5.- AUTORIZACION DEL TITULAR</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
@@ -149,7 +151,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label id="LABEL_ID_ANALISIS" for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                  <input autocomplete="off" id="INPUT_ID_ANALISIS" autocomplete="off" class="form-control" type="text" name="id_analisis" value="" required>
+                  <input id="INPUT_ID_ANALISIS" autocomplete="off" class="form-control" type="text" name="id_analisis" value="" required>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
@@ -157,6 +159,7 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
                     <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
                     <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                    <option value="NO APLICA">3.- NO APLICA</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
@@ -168,13 +171,13 @@ $fila_consulta = $res_consulta->fetch_assoc();
                   <label id="LABEL_FECHA_INICIO">FECHA DE INICIO DEL CONVENIO</label>
                   <input id="INPUT_FECHA_INICIO"autocomplete="off"class="form-control" type="date" name="fecha_inicio">
                 </div>
-                <div class="col-md-6 mb-3 validar">
+                <div class="col-md-6 mb-3 validar" id="vermodific">
                   <label id="LABEL_VIGENCIA">VIGENCIA DEL CONVENIO</label>
-                  <input autocomplete="off" id="INPUT_VIGENCIA"autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
+                  <input id="INPUT_VIGENCIA" autocomplete="off" class="form-control" type="text" name="vigencia" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>
-                  <input autocomplete="off" id="INPUT_ID_CONVENIO" autocomplete="off" class="form-control" type="text" name="id_convenio" value="">
+                  <input id="INPUT_ID_CONVENIO" autocomplete="off" class="form-control" type="text" name="id_convenio" value="">
                 </div>
               </div>
 
@@ -207,12 +210,76 @@ $fila_consulta = $res_consulta->fetch_assoc();
 </div>
 </body>
 </html>
+<script type="text/javascript">
+  var tipconv = document.getElementById('SELECT_TIPO_CONVENIO');
+  var camtipconv = '';
+  tipconv.addEventListener('change', obtcamtipconv);
+    function obtcamtipconv(e){
+      camtipconv = e.target.value;
+      // console.log(camtipconv);
+      if (camtipconv === 'NO APLICA') {
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+        document.getElementById('row_observaciones').style.display = "";
+        document.getElementById('row_enter').style.display = "";
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+        // document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+        // document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+        document.getElementById('LABEL_VIGENCIA').style.display = "none";
+        document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+        document.getElementById('INPUT_FECHA_FIRMA').required = false;
+        document.getElementById('INPUT_FECHA_INICIO').required = false;
+        document.getElementById('INPUT_VIGENCIA').required = false;
+        document.getElementById('INPUT_ID_CONVENIO').required = false;
+        document.getElementById('INPUT_FECHA_FIRMA').value = "";
+        document.getElementById('INPUT_FECHA_INICIO').value = "";
+        document.getElementById('INPUT_VIGENCIA').value = "";
+        document.getElementById('INPUT_ID_CONVENIO').value = "";
+      }else if (camtipconv === 'CONVENIO DE ADHESIÓN') {
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('LABEL_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').style.display = "";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').required = true;
+        document.getElementById('INPUT_FECHA_INICIO').required = true;
+        document.getElementById('INPUT_VIGENCIA').required = true;
+        document.getElementById('INPUT_ID_CONVENIO').required = true;
+        document.getElementById('vermodific').style.display = "";
+      }else if (camtipconv === 'CONVENIO MODIFICATORIO') {
+        document.getElementById('vermodific').style.display = "none";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('LABEL_VIGENCIA').style.display = "";
+        document.getElementById('INPUT_VIGENCIA').style.display = "";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').required = true;
+        document.getElementById('INPUT_FECHA_INICIO').required = true;
+        document.getElementById('INPUT_VIGENCIA').required = false;
+        document.getElementById('INPUT_ID_CONVENIO').required = true;
+      }
+    }
 
+</script>
 <script type="text/javascript">
 var selectAnalisisMulti = document.getElementById('ANALISIS_MULT').value;
 function ocultarCampos() {
   if (selectAnalisisMulti === "" || selectAnalisisMulti === null ){
-
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
@@ -234,19 +301,13 @@ function ocultarCampos() {
       }
 }
 ocultarCampos();
-
 var analisisMultidisiplinario = document.getElementById('ANALISIS_MULT');
 var respuestaAlalisisMultidisiplinario = '';
-
-
 analisisMultidisiplinario.addEventListener('change', obtenerInfo);
-
-
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-
+      console.log(respuestaAlalisisMultidisiplinario);
+      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE EVALUACION DE RIESGO" || respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE MODIFICACION") {
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
@@ -259,28 +320,23 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('INPUT_FECHA_INICIO').style.display = "";
         document.getElementById('LABEL_VIGENCIA').style.display = "";
         document.getElementById('INPUT_VIGENCIA').style.display = "";
+        document.getElementById('vermodific').style.display = "";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "";
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
-
         document.getElementById('row_observaciones').style.display = "";
         document.getElementById('row_enter').style.display = "";
-
-
       }
-      else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION"){
-
+      else if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE CANCELACION"){
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
         document.getElementById('INPUT_ID_ANALISIS').style.display = "";
-
         document.getElementById('row_observaciones').style.display = "";
         document.getElementById('row_enter').style.display = "";
         document.getElementById('LABEL_OBSERVACIONES').style.display = "";
         document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
-
         document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
         document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
@@ -291,9 +347,25 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('INPUT_VIGENCIA').style.display = "none";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+      }else if (respuestaAlalisisMultidisiplinario === "AUTORIZACION DEL TITULAR") {
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('vermodific').style.display = "none";
+        // document.getElementById('INPUT_VIGENCIA').style.display = "none";
+        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
+        document.getElementById('INPUT_ID_CONVENIO').style.display = "";
+        document.getElementById('LABEL_OBSERVACIONES').style.display = "";
+        document.getElementById('TEXTAREA_OBSERVACIONES').style.display = "";
+        document.getElementById('row_observaciones').style.display = "";
+        document.getElementById('row_enter').style.display = "";
       }
-
     }
-
-
 </script>

@@ -428,7 +428,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                     }else {
 
-                      echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
+                      // echo '<img src ="../imagenesbdd/'.$rowfol['foto'].'" style="width:400px">';
                     }
                     ?>
                     <input id="UPDATE_FILE" class="col-md-offset-3 col-md-7" type="file" name="user_image" accept="image/*" />
@@ -715,53 +715,35 @@ ocultarCampos();
 <script type="text/javascript">
 var analisisMultidisiplinario = document.getElementById('ANALISIS_MULTIDISCIPLINARIO');
 var respuestaAlalisisMultidisiplinario = '';
-
 analisisMultidisiplinario.addEventListener('change', obtenerInfo);
-
-
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
-        // console.log(respuestaAlalisisMultidisiplinario);
+      console.log(respuestaAlalisisMultidisiplinario);
+      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE ANALISIS DE RIESGO") {
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INPUT_INCORPORACION').style.display = "";
-        document.getElementById('INPUT_INCORPORACION').value = "";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('FECHA_AUTORIZACION').value = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
         document.getElementById('id_analisis').style.display = "";
-        document.getElementById('id_analisis').value = "";
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "";
+        document.getElementById('INPUT_INCORPORACION').value = "";
+        document.getElementById('FECHA_AUTORIZACION').value = "";
+        document.getElementById('id_analisis').value = "";
         document.getElementById('CONVENIO_ENTENDIMIENTO').value = "";
-        // document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
-        // document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').style.display = "";
         document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
-        // document.getElementById('LABEL_FECHA_INICIO').style.display = "";
-        // document.getElementById('fecha_inicio').style.display = "";
         document.getElementById('fecha_inicio').value = "";
-        // document.getElementById('LABEL_VIGENCIA').style.display = "";
-        // document.getElementById('VIGENCIA_CONVENIO').style.display = "";
         document.getElementById('VIGENCIA_CONVENIO').value = "";
-        // document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
-        // document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
-        // document.getElementById('LABEL_ID_CONVENIO').style.display = "";
-        // document.getElementById('id_convenio').style.display = "";
         document.getElementById('id_convenio').value = "";
-
-
-}
-      else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION" ){
-
+      }else if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE CANCELACION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE ACUMULACION"){
         document.getElementById('LABEL_INCORPORACION').style.display = "";
         document.getElementById('INPUT_INCORPORACION').style.display = "";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
         document.getElementById('id_analisis').style.display = "";
-
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
@@ -774,23 +756,22 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('id_convenio').style.display = "none";
-
+        document.getElementById('INPUT_INCORPORACION').value = "";
+        document.getElementById('FECHA_AUTORIZACION').value = "";
+        document.getElementById('id_analisis').value = "";
         document.getElementById('CONVENIO_ENTENDIMIENTO').value = "";
         document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').value = "";
         document.getElementById('fecha_inicio').value = "";
         document.getElementById('VIGENCIA_CONVENIO').value = "";
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').value = "";
         document.getElementById('id_convenio').value = "";
-      }
-
-      else if ( respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
+      }else if (respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
         document.getElementById('LABEL_INCORPORACION').style.display = "none";
         document.getElementById('INPUT_INCORPORACION').style.display = "none";
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('FECHA_AUTORIZACION').style.display = "none";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
         document.getElementById('id_analisis').style.display = "none";
-
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
@@ -803,7 +784,6 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
         document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
         document.getElementById('id_convenio').style.display = "none";
-
         document.getElementById('INPUT_INCORPORACION').value = "";
         document.getElementById('FECHA_AUTORIZACION').value = "";
         document.getElementById('id_analisis').value = "";
