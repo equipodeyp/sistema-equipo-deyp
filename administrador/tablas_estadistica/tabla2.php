@@ -72,6 +72,12 @@ WHERE analisis_expediente.fecha_analisis BETWEEN '2022-11-01' AND '2022-11-30' O
 $res_exp_det_noviembre = $mysqli->query($exp_det_noviembre);
 $fila_exp_det_noviembre = $res_exp_det_noviembre->fetch_assoc();
 //
+$exp_det_diciembre = "SELECT COUNT(*) AS t FROM analisis_expediente
+INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
+WHERE analisis_expediente.fecha_analisis BETWEEN '2022-12-01' AND '2022-12-31' OR (analisis_expediente.analisis != 'EN ELABORACION' AND analisis_expediente.fecha_analisis = '0000-00-00')";
+$res_exp_det_diciembre = $mysqli->query($exp_det_diciembre);
+$fila_exp_det_diciembre = $res_exp_det_diciembre->fetch_assoc();
+//
 $exp_det_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
 WHERE analisis_expediente.fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31' OR analisis_expediente.analisis = 'EN ELABORACION'";
@@ -143,6 +149,11 @@ WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '20
 $res_exp_det1_noviembre = $mysqli->query($exp_det1_noviembre);
 $fila_exp_det1_noviembre = $res_exp_det1_noviembre->fetch_assoc();
 //
+$exp_det1_diciembre = "SELECT COUNT(*) AS t FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2022-12-01' AND '2022-12-31'";
+$res_exp_det1_diciembre = $mysqli->query($exp_det1_diciembre);
+$fila_exp_det1_diciembre = $res_exp_det1_diciembre->fetch_assoc();
+//
 $exp_det1_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
 $res_exp_det1_total2022 = $mysqli->query($exp_det1_total2022);
@@ -212,6 +223,11 @@ $exp_det2_noviembre = "SELECT COUNT(*) AS t FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2022-11-01' AND '2022-11-30'";
 $res_exp_det2_noviembre = $mysqli->query($exp_det2_noviembre);
 $fila_exp_det2_noviembre = $res_exp_det2_noviembre->fetch_assoc();
+//
+$exp_det2_diciembre = "SELECT COUNT(*) AS t FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2022-12-01' AND '2022-12-31'";
+$res_exp_det2_diciembre = $mysqli->query($exp_det2_diciembre);
+$fila_exp_det2_diciembre = $res_exp_det2_diciembre->fetch_assoc();
 //
 $exp_det2_total = "SELECT COUNT(*) AS t FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION NO PROCEDENTE'";
@@ -291,6 +307,12 @@ WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN
 $res_exp_det3_noviembre = $mysqli->query($exp_det3_noviembre);
 $fila_exp_det3_noviembre = $res_exp_det3_noviembre->fetch_assoc();
 //
+$exp_det3_diciembre = "SELECT COUNT(*) AS t FROM analisis_expediente
+INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
+WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$res_exp_det3_diciembre = $mysqli->query($exp_det3_diciembre);
+$fila_exp_det3_diciembre = $res_exp_det3_diciembre->fetch_assoc();
+//
 $exp_det3_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
 WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -317,6 +339,7 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_septiembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_octubre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_noviembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det1_diciembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_total2022['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det1_total['t']; echo "</td>";
   echo "</tr>";
@@ -335,6 +358,7 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_septiembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_octubre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_noviembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det2_diciembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_total2022['t']; "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det2_total['t']; "</td>";
   echo "</tr>";
@@ -353,6 +377,7 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_septiembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_octubre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_noviembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det3_diciembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_total2022['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det3_total['t']; echo "</td>";
   echo "</tr>";
@@ -372,6 +397,7 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_exp_det_septiembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_octubre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_noviembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_diciembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_total2022['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_total['t']; echo "</td>";
   echo "</tr>";

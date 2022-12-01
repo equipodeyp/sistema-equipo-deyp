@@ -71,6 +71,12 @@ WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PR
 $restcalidadnoviembre = $mysqli->query($tcalidadnoviembre);
 $filatcalidadnoviembre = $restcalidadnoviembre->fetch_assoc();
 //
+$tcalidaddiciembre = "SELECT COUNT(*) AS t FROM datospersonales
+INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-12-01' AND '2022-12-31'";
+$restcalidaddiciembre = $mysqli->query($tcalidaddiciembre);
+$filatcalidaddiciembre = $restcalidaddiciembre->fetch_assoc();
+//
 $tcalidadtotal2022 = "SELECT COUNT(*) AS t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -160,6 +166,12 @@ while ($fila = $res->fetch_assoc()) {
     $restnoviembre = $mysqli->query($tnoviembre);
     $filatnoviembre = $restnoviembre->fetch_assoc();
     //
+    $tdiciembre = "SELECT COUNT(*) AS t FROM datospersonales
+    INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-12-01' AND '2022-12-31'";
+    $restdiciembre = $mysqli->query($tdiciembre);
+    $filatdiciembre = $restdiciembre->fetch_assoc();
+    //
     $ttotalcalidad2022 = "SELECT COUNT(*) AS t FROM datospersonales
     INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
     WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND determinacionincorporacion.date_convenio BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -188,6 +200,7 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $filatseptiembre['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filatoctubre['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filatnoviembre['t']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $filatdiciembre['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $filattotalcalidad2022['t']; echo "</td>";
         echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $filattotalcalidad['ttotalcalidad']; echo "</td>";
         echo "</tr>";
@@ -209,6 +222,7 @@ echo "<td style='text-align:center'>"; echo $filatcalidadagosto['t']; echo "</td
 echo "<td style='text-align:center'>"; echo $filatcalidadseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $filatcalidaddiciembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadtotal2022['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $filatcalidadtotal['tcalidadtotal']; echo "</td>";
 echo "</tr>";

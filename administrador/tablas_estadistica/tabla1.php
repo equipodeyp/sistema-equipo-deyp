@@ -79,6 +79,12 @@ WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha
 $res_total_noviembre = $mysqli->query($total_noviembre);
 $fila_total_noviembre = $res_total_noviembre->fetch_assoc();
 //
+$total_diciembre = "SELECT COUNT(DISTINCT folioexpediente) AS total_diciembre FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$res_total_diciembre = $mysqli->query($total_diciembre);
+$fila_total_diciembre = $res_total_diciembre->fetch_assoc();
+//
 $total2022si = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -157,6 +163,12 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-11-01' AND '2022-11-30'";
 $restotalnoviembre = $mysqli->query($totalnoviembre);
 $fila_totalnoviembre = $restotalnoviembre->fetch_assoc();
+//
+$totaldiciembre = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$restotaldiciembre = $mysqli->query($totaldiciembre);
+$fila_totaldiciembre = $restotaldiciembre->fetch_assoc();
 //
 $total2022no = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -242,6 +254,12 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE expediente.fecha_nueva BETWEEN '2022-11-01' AND '2022-11-30'";
 $resnoviembretotal = $mysqli->query($noviembretotal);
 $fila_noviembretotal = $resnoviembretotal->fetch_assoc();
+//
+$diciembretotal = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$resdiciembretotal = $mysqli->query($diciembretotal);
+$fila_diciembretotal = $resdiciembretotal->fetch_assoc();
 //total 2022
 $total2022 = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -269,6 +287,7 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_total_septiembre['total_septiembre']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_octubre['total_octubre']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_noviembre['total_noviembre']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total_diciembre['total_diciembre']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total2022si['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022sistema['t']; echo "</td>";
   echo "</tr>";
@@ -287,6 +306,7 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_totalseptiembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totaloctubre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalnoviembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_totaldiciembre['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total2022no['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022nosistema['t']; echo "</td>";
   echo "</tr>";
@@ -305,6 +325,7 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_septiembretotal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_octubretotal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_noviembretotal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_diciembretotal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total2022['t'];  echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalsistema['t'];  echo "</td>";
   echo "</tr>";

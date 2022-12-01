@@ -95,6 +95,11 @@ WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '
 $rdefnoviembre = $mysqli->query($defnoviembre);
 $fdefnoviembre = $rdefnoviembre->fetch_assoc();
 //
+$defdiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rdefdiciembre = $mysqli->query($defdiciembre);
+$fdefdiciembre = $rdefdiciembre->fetch_assoc();
+//
 $defasismayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rdefasismayo = $mysqli->query($defasismayo);
@@ -130,6 +135,11 @@ WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUT
 $rdefasisnoviembre = $mysqli->query($defasisnoviembre);
 $fdefasisnoviembre = $rdefasisnoviembre->fetch_assoc();
 //
+$defasisdiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rdefasisdiciembre = $mysqli->query($defasisdiciembre);
+$fdefasisdiciembre = $rdefasisdiciembre->fetch_assoc();
+//
 $defresgmayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rdefresgmayo = $mysqli->query($defresgmayo);
@@ -164,6 +174,11 @@ $defresgnoviembre = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-11-01' AND '2022-11-30'";
 $rdefresgnoviembre = $mysqli->query($defresgnoviembre);
 $fdefresgnoviembre = $rdefresgnoviembre->fetch_assoc();
+//
+$defresgdiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rdefresgdiciembre = $mysqli->query($defresgdiciembre);
+$fdefresgdiciembre = $rdefresgdiciembre->fetch_assoc();
 //totales
 $deftotal = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -275,6 +290,11 @@ WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN 
 $rprovnoviembre = $mysqli->query($provnoviembre);
 $fprovnoviembre = $rprovnoviembre->fetch_assoc();
 //
+$provdiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rprovdiciembre = $mysqli->query($provdiciembre);
+$fprovdiciembre = $rprovdiciembre->fetch_assoc();
+//
 $resgasismayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rresgasismayo = $mysqli->query($resgasismayo);
@@ -310,6 +330,11 @@ WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECU
 $rresgasisnoviembre = $mysqli->query($resgasisnoviembre);
 $fresgasisnoviembre = $rresgasisnoviembre->fetch_assoc();
 //
+$resgasisdiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rresgasisdiciembre = $mysqli->query($resgasisdiciembre);
+$fresgasisdiciembre = $rresgasisdiciembre->fetch_assoc();
+//
 $resgresgmayo = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-05-01' AND '2022-05-31'";
 $rresgresgmayo = $mysqli->query($resgresgmayo);
@@ -344,6 +369,11 @@ $resgresgnoviembre = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-11-01' AND '2022-11-30'";
 $rresgresgnoviembre = $mysqli->query($resgresgnoviembre);
 $fresgresgnoviembre = $rresgresgnoviembre->fetch_assoc();
+//
+$resgresgdiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rresgresgdiciembre = $mysqli->query($resgresgdiciembre);
+$fresgresgdiciembre = $rresgresgdiciembre->fetch_assoc();
 //
 $provtotal = "SELECT COUNT(*) as t FROM `medidas`
 WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
@@ -415,6 +445,11 @@ WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-11-01' AND '2022-11
 $rtotalnoviembre = $mysqli->query($totalnoviembre);
 $ftotalnoviembre = $rtotalnoviembre->fetch_assoc();
 //
+$totaldiciembre = "SELECT COUNT(*) as t FROM `medidas`
+WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-12-01' AND '2022-12-31'";
+$rtotaldiciembre = $mysqli->query($totaldiciembre);
+$ftotaldiciembre = $rtotaldiciembre->fetch_assoc();
+//
 $total2022 = "SELECT COUNT(*) as t FROM `medidas`
 WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
 $rtotal2022 = $mysqli->query($total2022);
@@ -435,6 +470,7 @@ echo "<td style='text-align:center'>"; echo $fdefagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefdiciembre['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdeftotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -451,6 +487,7 @@ echo "<td style='text-align:center'>"; echo $fdefasisagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefasisseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefasisoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefasisnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefasisdiciembre['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefasistotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -467,6 +504,7 @@ echo "<td style='text-align:center'>"; echo $fdefresgagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefresgseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefresgoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fdefresgnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fdefresgdiciembre['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fdefresgtotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -483,6 +521,7 @@ echo "<td style='text-align:center'>"; echo $fprovagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fprovseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fprovoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fprovnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fprovdiciembre['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fprovtotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -499,6 +538,7 @@ echo "<td style='text-align:center'>"; echo $fresgasisagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgasisseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgasisoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgasisnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgasisdiciembre['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgasistotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -515,6 +555,7 @@ echo "<td style='text-align:center'>"; echo $fresgresgagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgresgseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgresgoctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fresgresgnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fresgresgdiciembre['t']; echo "</td>";
 echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fresgresgtotal['t']; echo "</td>";
 echo "</tr>";
 //
@@ -531,6 +572,7 @@ echo "<td style='text-align:center'>"; echo $ftotalagosto['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalseptiembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotaloctubre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalnoviembre['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotaldiciembre['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal2022['t']; echo "</td>";
 echo "</tr>";
 ?>
