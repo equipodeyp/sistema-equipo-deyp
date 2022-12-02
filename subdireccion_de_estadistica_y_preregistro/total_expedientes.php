@@ -337,6 +337,8 @@ a:focus {
                               <th style="text-align:center">OTRO ART. 35</th>
                               <th style="text-align:center">FECHA DESINCORPORACIÓN</th>
                               <th style="text-align:center">ESTATUS</th>
+                              <th style="text-align:center">PERSONAS INCORPORADAS</th>
+                              <th style="text-align:center">PERSONAS VIGENTES</th>
                           </tr>
                       </thead>
                       <tbody>
