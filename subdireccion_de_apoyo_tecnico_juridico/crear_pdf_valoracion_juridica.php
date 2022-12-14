@@ -434,7 +434,7 @@ for ($i=0;$i<count($inicialespersona);$i++) {
   $hh = $hh+1;
 }
 
-$data .='<br><br><h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>';
+$data .='<h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>';
 if ($solicitante === 'agente') {
   $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
     <thead>
