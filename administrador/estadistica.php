@@ -168,8 +168,17 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
                 </a>
               </li>
+              <li >
+                <a href="#" data-toggle="modal" data-target="#add_data_Modal_alojamiento_temporal">
+                  <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/ALTEM.png" style="width:100px;height:70px;"></span>
+                  <div class="ca-content">
+                    <h2 class="ca-main">ALOJAMIENTO TEMPORAL</h2>
+                    <h3 class="ca-sub"></h3></div>
+                  </a>
+                </li>
           </ul>
         </div>
+
         <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         <div class="contenedor" style="display: flex; justify-content: center;">
@@ -349,6 +358,11 @@ $result = $mysqli->query($sentencia);
         include("../administrador/archivos_html/resumendiario.html");
         ?>
         <!-- fin resumen diario -->
+        <!-- MEDIDAS de ALOJAMIENTO TEMPORAL -->
+        <?php
+        include("../administrador/archivos_html/medidas_alojamiento_temporal.html");
+        ?>
+        <!-- fin MEDIDAS de ALOJAMIENTO TEMPORAL -->
         <!-- fin Ejemplo tabla con DataTables-->
     </div>
   </div>
