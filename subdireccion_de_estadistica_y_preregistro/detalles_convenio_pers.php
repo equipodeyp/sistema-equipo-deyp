@@ -212,7 +212,7 @@ $id_persona = $fila_consulta_uno ['id'];
 </body>
 </html>
 <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
   var vertipconv = document.getElementById('SELECT_TIPO_CONVENIO').value;
   function ocultipconv(){
     // console.log(vertipconv);
@@ -292,4 +292,4 @@ $id_persona = $fila_consulta_uno ['id'];
         document.getElementById('convmodific').style.display = "none";
       }
     }
-</script> -->
+</script>
