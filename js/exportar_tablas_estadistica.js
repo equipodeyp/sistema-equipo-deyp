@@ -124,3 +124,14 @@ function exportarexpedientestotales() {
   /* exportamos en el libro con los worksheets */
   XLSX.writeFile(workbook, "expedientestotales.xlsx");
 }
+
+//
+function exportaralojamientotemporal() {
+  /* creamos el nuevo workbook */
+  var workbook = XLSX.utils.book_new();
+  /* convertimos tabla 'tablaOriginal' a un  worksheet llamado "Flota Sana" */
+  var ws1 = XLSX.utils.table_to_sheet(document.getElementById('alojamientotemporal'));
+  XLSX.utils.book_append_sheet(workbook, ws1, "expedientes");
+  /* exportamos en el libro con los worksheets */
+  XLSX.writeFile(workbook, "alojamientotemporal.xlsx");
+}

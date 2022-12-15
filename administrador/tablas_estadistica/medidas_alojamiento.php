@@ -42,14 +42,14 @@ while ($falotem = $ralotem->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2022['t']; echo "</td>";
         echo "<td style='text-align:center'>"; if ($falotem3['date_provisional'] === '0000-00-00') {
-          echo date("d/m/Y", strtotime($falotem3['date_definitva']));
+          echo $falotem3['date_definitva'];
         }else {
-          echo date("d/m/Y", strtotime($falotem3['date_provisional']));
+          echo $falotem3['date_provisional'];
         }  echo "</td>";
         echo "<td style='text-align:center'>"; if ($falotem4['date_ejecucion'] === '0000-00-00') {
           echo "en ejecucion";
         }else {
-          echo date("d/m/Y", strtotime($falotem4['date_ejecucion']));
+          echo $falotem4['date_ejecucion'];
         } echo "</td>";
         echo "<td style='text-align:center'>";
         if ($falotem3['date_provisional'] === '0000-00-00') {
