@@ -232,15 +232,15 @@ $fexprel1 = $rexprel1->fetch_assoc();
                 </div>
                 <div class="col-md-6 mb-3 validar">
                       <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                      <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
+                      <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" disabled>
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
-                  <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
+                  <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" disabled>
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label for="FECHA_CAPTURA" >FECHA DE REGISTRO DE LA PERSONA PROPUESTA<span class="required"></span></label>
-                  <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
+                  <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" disabled>
                 </div>
 
                 </div>
@@ -315,7 +315,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO">FECHA TÉRMINO DEL CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
-                    <input readonly id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
+                    <input disabled id="FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO" placeholder="" class="form-control" type="text" name="FECHA_DE _TERMINO_DEL_CONVENIO ENTENDIMIENTO" value="<?php echo $rowdetinc['fecha_termino']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -1143,7 +1143,7 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 var idAnalisis = document.getElementById('id_analisis').value;
 function ReadOnlyIdAnalisis() {
   if( !idAnalisis == null || !idAnalisis == "" ){
-    document.getElementById('id_analisis').readOnly = true;
+    document.getElementById('id_analisis').disabled = true;
   }
 }
 ReadOnlyIdAnalisis();
@@ -1153,7 +1153,7 @@ ReadOnlyIdAnalisis();
 var fechaVigenciaConvenio = document.getElementById('VIGENCIA_CONVENIO').value;
 function ReadOnlyVigenciaconvenio() {
   if( !fechaVigenciaConvenio == null || !fechaVigenciaConvenio == "" ){
-    document.getElementById('VIGENCIA_CONVENIO').readOnly = true;
+    document.getElementById('VIGENCIA_CONVENIO').disabled = true;
   }
 }
 ReadOnlyVigenciaconvenio();
@@ -1163,13 +1163,13 @@ ReadOnlyVigenciaconvenio();
 var numDeConvenios = document.getElementById('id_convenio').value;
 function ReadOnlyNumConvenios() {
   if( !numDeConvenios == null || !numDeConvenios == "" ){
-    document.getElementById('id_convenio').readOnly = true;
+    document.getElementById('id_convenio').disabled = true;
     document.getElementById('ANALISIS_MULTIDISCIPLINARIO').disabled = true;
     document.getElementById('INPUT_INCORPORACION').disabled = true;
-    document.getElementById('FECHA_AUTORIZACION').readOnly = true;
+    document.getElementById('FECHA_AUTORIZACION').disabled = true;
     document.getElementById('CONVENIO_ENTENDIMIENTO').disabled = true;
-    document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').readOnly = true;
-    document.getElementById('fecha_inicio').readOnly = true;
+    document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').disabled = true;
+    document.getElementById('fecha_inicio').disabled = true;
   }
 }
 ReadOnlyNumConvenios();
@@ -1179,9 +1179,9 @@ ReadOnlyNumConvenios();
 var readOnlyEstatus = document.getElementById('ESTATUS_PERSONA').value;
 function ReadOnlyConClu() {
   if ( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
-    document.getElementById('FECHA_DESINCORPORACION_UNO').readOnly = true;
+    document.getElementById('FECHA_DESINCORPORACION_UNO').disabled = true;
     document.getElementById('CONCLUSION_ART351').disabled = true;
-    document.getElementById('OTHER_ART351').readOnly = true;
+    document.getElementById('OTHER_ART351').disabled = true;
     document.getElementById('ESTATUS_PERSONA').disabled = true;
     document.getElementById('relpersuj').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = true;
@@ -1227,7 +1227,7 @@ function ReadOnlyEstudio(){
     if (convenioDeEntendimiento == "NO FORMALIZADO" ){
       document.getElementById('ANALISIS_MULTIDISCIPLINARIO').disabled = true;
       document.getElementById('INPUT_INCORPORACION').disabled = true;
-      document.getElementById('FECHA_AUTORIZACION').readOnly = true;
+      document.getElementById('FECHA_AUTORIZACION').disabled = true;
       document.getElementById('CONVENIO_ENTENDIMIENTO').disabled = true;
     }
   }

@@ -117,7 +117,7 @@ $id_con_exp = $fila_consulta['id'];
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
-                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
+                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" disabled>
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
@@ -163,7 +163,7 @@ $id_con_exp = $fila_consulta['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar" id="fterm">
                     <label for="fecha_termino" id="lblfechaterminoc">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input readonly class="form-control" type="date" id="fechaterminoc" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
+                    <input disabled class="form-control" type="date" id="fechaterminoc" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar" id="tconvenios">
                     <label for="id_convenio" id="lblinput_id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>

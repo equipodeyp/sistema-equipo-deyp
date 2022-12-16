@@ -122,11 +122,11 @@ $id_persona = $fila_consulta_uno ['id'];
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
-                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
+                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" disabled>
                 </div>
                 <div class="col-md-6 mb-3 validar ">
                   <label>ID PERSONA </label>
-                  <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['id_unico']; ?>" readonly>
+                  <input type="text" name="nombre" id="name" class="form-control" value="<?php echo $fila_consulta['id_unico']; ?>" disabled>
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
@@ -172,7 +172,7 @@ $id_persona = $fila_consulta_uno ['id'];
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input id="INPUT_FECHA_TERMINO"  readonly class="form-control" type="date" name="" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" >
+                    <input id="INPUT_FECHA_TERMINO"  disabled class="form-control" type="date" name="" value="<?php echo $fila_consulta['fecha_vigencia']; ?>" >
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_ID_CONVENIO" for="id_convenio">ID DEL CONVENIO</label>

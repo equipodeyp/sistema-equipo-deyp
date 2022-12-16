@@ -181,19 +181,19 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="expediente">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
-                    <input class="form-control" type="text" name="idexpediente" value="<?php echo $fila_expediente['fol_exp']; ?>" readonly>
+                    <input class="form-control" type="text" name="idexpediente" value="<?php echo $fila_expediente['fol_exp']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="fecha_recepcion">FECHA DE RECEPCIÓN</label>
-                    <input class="form-control" type="text" name="fecha_recepcion" value="<?php echo $fila_expediente['fecharecep']; ?>" readonly>
+                    <input class="form-control" type="text" name="fecha_recepcion" value="<?php echo $fila_expediente['fecharecep']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="sede">SEDE</label>
-                    <input class="form-control" type="text" name="sede" value="<?php echo $fila_expediente['sede']; ?>" readonly>
+                    <input class="form-control" type="text" name="sede" value="<?php echo $fila_expediente['sede']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="autoridad">NOMBRE DE LA AUTORIDAD</label>
-                    <input class="form-control" type="text" name="autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>" readonly>
+                    <input class="form-control" type="text" name="autoridad" value="<?php echo $rowaut['nombreautoridad']; ?>" disabled>
                   </div>
                 </div>
                 <div class="row">
@@ -205,28 +205,28 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="delito_principal">DELITO PRINCIPAL</label>
-                    <input class="form-control" type="text" name="delito_principal" value="<?php echo $rowprocess['delitoprincipal']; ?>" readonly>
+                    <input class="form-control" type="text" name="delito_principal" value="<?php echo $rowprocess['delitoprincipal']; ?>" disabled>
                   </div>
                   <?php
                     if ($rowprocess['delitoprincipal'] == 'OTRO') {
                       echo
                       '<div class="col-md-6 mb-3 validar">
                         <label for="delito_principal">OTRO DELITO PRINCIPAL</label>
-                        <input class="form-control" type="text" name="delito_principal" value="'.$rowprocess['otrodelitoprincipal'].'" readonly>
+                        <input class="form-control" type="text" name="delito_principal" value="'.$rowprocess['otrodelitoprincipal'].'" disabled>
                         </div>';
                       }
                   ?>
                   <div class="col-md-6 mb-3 validar">
                     <label for="etapa_procedimiento">ETAPA DEL PROCEDIMIENTO</label>
-                    <input class="form-control" type="text" name="atapa_procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>" readonly>
+                    <input class="form-control" type="text" name="atapa_procedimiento" value="<?php echo $rowprocess['etapaprocedimiento']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="nuc">NUC</label>
-                    <input class="form-control" type="text" name="nuc" value="<?php echo $rowprocess['nuc']; ?>" readonly>
+                    <input class="form-control" type="text" name="nuc" value="<?php echo $rowprocess['nuc']; ?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="municipio_radicacion">MUNICIPIO DE RADICACIÓN</label>
-                    <input class="form-control" type="text" name="municipio_radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>" readonly>
+                    <input class="form-control" type="text" name="municipio_radicacion" value="<?php echo $rowprocess['numeroradicacion']; ?>" disabled>
                   </div>
                 </div>
                 <div class="row">
@@ -356,15 +356,15 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                    ?>
                   <div class="col-md-4 mb-3 validar">
                     <label for="personas_propuestas">PERSONAS PROPUESTAS</label>
-                    <input class="form-control" type="text" name="personas_propuestas" value="<?php echo $row_med['cant'];?>" readonly>
+                    <input class="form-control" type="text" name="personas_propuestas" value="<?php echo $row_med['cant'];?>" disabled>
                   </div>
                   <div class="col-md-4 mb-3 validar">
                     <label for="personas_incorporadas">PERSONAS INCORPORADAS</label>
-                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>" readonly>
+                    <input class="form-control" type="text" name="personas_incorporadas" value="<?php echo $row_med1['cant'];?>" disabled>
                   </div>
                   <div class="col-md-4 mb-3 validar">
                     <label for="personas_vigentes">PERSONAS VIGENTES</label>
-                    <input class="form-control" type="text" name="personas_vigentes" value="<?php echo $row_med2['cant'];?>" readonly>
+                    <input class="form-control" type="text" name="personas_vigentes" value="<?php echo $row_med2['cant'];?>" disabled>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                     <label for="ANALISIS_MULTIDISCIPLINARIO">ANÁLISIS MULTIDISCIPLINARIO</label>
@@ -437,7 +437,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
 
                   <div class="col-md-6 mb-3 validar">
                     <label id="LABEL_FECHA_TERMINO" for="TERMINO_CONVENIO">FECHA DE TÉRMINO DE CONVENIO DE ENTENDIMIENTO</label>
-                    <input readonly="true" class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php if ($fila_analisis_expediente['fecha_termino_convenio'] != '0000-00-00') {
+                    <input disabled class="form-control" id="TERMINO_CONVENIO" type="text" name="TERMINO_CONVENIO" value="<?php if ($fila_analisis_expediente['fecha_termino_convenio'] != '0000-00-00') {
                       echo date("d/m/Y", strtotime($fila_analisis_expediente['fecha_termino_convenio']));
                     } ?>">
                   </div>
@@ -1076,9 +1076,9 @@ conCaArt.addEventListener('change', obtenerConCaArt35);
 var readOnlyEstatus = document.getElementById('ESTATUS_EXPEDIENTE').value;
 function ReadOnlyConClu() {
   if( readOnlyEstatus === "CONCLUIDO" || readOnlyEstatus === "CANCELADO" || readOnlyEstatus === "SOLICITUD NO PROCEDENTE"){
-    document.getElementById('FECHA_DESINCORPORACION_DOS').readOnly = true;
+    document.getElementById('FECHA_DESINCORPORACION_DOS').disabled = true;
     document.getElementById('CONCLUSION_ART35').disabled = true;
-    document.getElementById('OTHER_ART351').readOnly = true;
+    document.getElementById('OTHER_ART351').disabled = true;
     document.getElementById('ESTATUS_EXPEDIENTE').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION').disabled = true;
     document.getElementById('COMENTARIO').disabled = true;
@@ -1090,7 +1090,7 @@ function ReadOnlyConClu() {
     if (readOnlyEstatus == "CONCLUIDO" || readOnlyEstatus == "CANCELADO" || readOnlyEstatus === "SOLICITUD NO PROCEDENTE"){
       analisisM.disabled = true;
       incorporacion.disabled = true;
-      fechaAutoAnalisis.readOnly = true;
+      fechaAutoAnalisis.disabled = true;
     }
   }
 
@@ -1098,7 +1098,7 @@ function ReadOnlyConClu() {
     if ( convenioDeEntendimiento.value == "NO FORMALIZADO" ){
       analisisM.disabled = true;
       incorporacion.disabled = true;
-      fechaAutoAnalisis.readOnly = true;
+      fechaAutoAnalisis.disabled = true;
       convenioDeEntendimiento.disabled = true;
     }
   }
