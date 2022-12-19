@@ -1,5 +1,7 @@
 <?php
 //
+
+$auxcontador = 0;
 $alotem = "SELECT DISTINCT id_persona FROM medidas
 WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL'";
 $ralotem = $mysqli->query($alotem);
@@ -31,12 +33,13 @@ while ($falotem = $ralotem->fetch_assoc()) {
   WHERE id = '$idsujeto'";
   $ralotem2 = $mysqli->query($alotem2);
   while ($falotem2 = $ralotem2->fetch_assoc()) {
-
+      $auxcontador = $auxcontador + 1;
       echo "<tr bgcolor="; if($falotem4['estatus'] === 'CANCELADA'){
         echo 'yellow';
       } else{
         echo 'white';
       } echo ">";
+        echo "<td style='text-align:center'>"; echo $auxcontador; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['folioexpediente']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['identificador']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
