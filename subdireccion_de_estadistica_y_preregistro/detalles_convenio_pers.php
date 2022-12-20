@@ -215,8 +215,21 @@ $id_persona = $fila_consulta_uno ['id'];
 <script type="text/javascript">
   var vertipconv = document.getElementById('SELECT_TIPO_CONVENIO').value;
   function ocultipconv(){
-    // console.log(vertipconv);
+    console.log(vertipconv);
     if (vertipconv === "NO APLICA") {
+      // console.log('error');
+      document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
+      document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
+      document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
+      document.getElementById('INPUT_FECHA_INICIO').style.display = "none";
+      document.getElementById('LABEL_VIGENCIA').style.display = "none";
+      document.getElementById('INPUT_VIGENCIA').style.display = "none";
+      document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
+      document.getElementById('INPUT_FECHA_TERMINO').style.display = "none";
+      document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
+      document.getElementById('INPUT_ID_CONVENIO').style.display = "none";
+    }
+    if (vertipconv === "") {
       // console.log('error');
       document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
       document.getElementById('INPUT_FECHA_FIRMA').style.display = "none";
@@ -231,6 +244,22 @@ $id_persona = $fila_consulta_uno ['id'];
     }
   }
   ocultipconv();
+  //////////////////////////////////////////////////////////////////////
+  var vertipanalisis = document.getElementById('ANALISIS_MULT').value;
+  function disabledcampos(){
+    console.log(vertipanalisis);
+    if (vertipanalisis === 'ACUERDO DE CONCLUSION' || vertipanalisis === 'ESTUDIO TECNICO DE CONCLUSION' || vertipanalisis === 'ESTUDIO TECNICO DE CANCELACION') {
+      document.getElementById('ANALISIS_MULT').disabled = true;
+      document.getElementById('INPUT_FECHA_AUTORIZACION').disabled = true;
+      document.getElementById('INPUT_ID_ANALISIS').disabled = true;
+      document.getElementById('input_observaciones').disabled = true;
+      document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
+      document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
+      document.getElementById('enter').style.display = "none";
+    }
+
+  }
+  disabledcampos();
 </script>
 <script type="text/javascript">
   var tipconv = document.getElementById('SELECT_TIPO_CONVENIO');

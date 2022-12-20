@@ -140,7 +140,7 @@ $id_con_exp = $fila_consulta['id'];
                     <input  class="form-control" type="text" id="id_analisiss" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar " id="tconve">
-                    <label for="tipo_convenio">TIPO DE CONVENIO</label>
+                    <label for="tipo_convenio" id="lbltipconv">TIPO DE CONVENIO</label>
                     <select class="form-select form-select-lg" name="tipo_convenio" id="select_tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
@@ -183,7 +183,7 @@ $id_con_exp = $fila_consulta['id'];
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea id="textarea_observaciones" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
+                  <textarea id="textarea_observacioness" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
               </div>
               <div class="row" id="btnact">
                 <div>
@@ -240,6 +240,23 @@ $id_con_exp = $fila_consulta['id'];
     }
   }
   tipoconveniocam();
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  var vertipanalisis = document.getElementById('analisis_m').value;
+  function disabledcampos(){
+    console.log(vertipanalisis);
+    if (vertipanalisis === 'ACUERDO DE CANCELACION' || vertipanalisis === 'ACUERDO DE CONCLUSION' || vertipanalisis === 'ESTUDIO TECNICO DE CONCLUSION' || vertipanalisis === 'ESTUDIO TECNICO DE CANCELACION') {
+      document.getElementById('analisis_m').disabled = true;
+      document.getElementById('fecha_autoe').disabled = true;
+      document.getElementById('id_analisiss').disabled = true;
+      document.getElementById('textarea_observacioness').disabled = true;
+      document.getElementById('tconve').style.display = "none";
+      // document.getElementById('tconve ').style.display = "none";
+      document.getElementById('enter').style.display = "none";
+    }
+
+  }
+  disabledcampos();
   // cambio de tipo de convenio
   var cambioconvenio = document.getElementById('select_tipo_convenio');
   var acttipoconv = '';
