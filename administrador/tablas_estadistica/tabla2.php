@@ -5,6 +5,12 @@ INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpedient
 WHERE analisis_expediente.fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
 $res_exp_det = $mysqli->query($exp_det);
 $fila_exp_det = $res_exp_det->fetch_assoc();
+// total del año 2022
+$exp_det = "SELECT COUNT(*) AS total FROM analisis_expediente
+INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
+WHERE analisis_expediente.fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
+$res_exp_det = $mysqli->query($exp_det);
+$fila_exp_det2022 = $res_exp_det->fetch_assoc();
 // total del mes de enero 2022
 $exp_det_enero = "SELECT COUNT(*) AS total FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
@@ -78,11 +84,11 @@ WHERE analisis_expediente.fecha_analisis BETWEEN '2022-12-01' AND '2022-12-31' O
 $res_exp_det_diciembre = $mysqli->query($exp_det_diciembre);
 $fila_exp_det_diciembre = $res_exp_det_diciembre->fetch_assoc();
 //
-$exp_det_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
+$exp_det_total2023 = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
-WHERE analisis_expediente.fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31' OR analisis_expediente.analisis = 'EN ELABORACION'";
-$res_exp_det_total2022 = $mysqli->query($exp_det_total2022);
-$fila_exp_det_total2022 = $res_exp_det_total2022->fetch_assoc();
+WHERE analisis_expediente.fecha_analisis BETWEEN '2023-01-01' AND '2023-12-31' OR analisis_expediente.analisis = 'EN ELABORACION'";
+$res_exp_det_total2023 = $mysqli->query($exp_det_total2023);
+$fila_exp_det_total2023 = $res_exp_det_total2023->fetch_assoc();
 //
 $exp_det_total = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente";
@@ -93,9 +99,14 @@ $exp_det1 = "SELECT COUNT(*) AS t_procedentes FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
 $res_exp_det1 = $mysqli->query($exp_det1);
 $fila_exp_det1 = $res_exp_det1->fetch_assoc();
+//total incorporacion procedente 2022
+$exp_det12022 = "SELECT COUNT(*) AS t_procedentes FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
+$res_exp_det12022 = $mysqli->query($exp_det12022);
+$fila_exp_det12022 = $res_exp_det12022->fetch_assoc();
 //
 $exp_det1_enero = "SELECT COUNT(*) AS t_procedentes FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2023-01-01' AND '2023-01-31'";
 $res_exp_det1_enero = $mysqli->query($exp_det1_enero);
 $fila_exp_det1_enero = $res_exp_det1_enero->fetch_assoc();
 //
@@ -154,10 +165,10 @@ WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '20
 $res_exp_det1_diciembre = $mysqli->query($exp_det1_diciembre);
 $fila_exp_det1_diciembre = $res_exp_det1_diciembre->fetch_assoc();
 //
-$exp_det1_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
-$res_exp_det1_total2022 = $mysqli->query($exp_det1_total2022);
-$fila_exp_det1_total2022 = $res_exp_det1_total2022->fetch_assoc();
+$exp_det1_total2023 = "SELECT COUNT(*) AS t FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION PROCEDENTE' AND  fecha_analisis BETWEEN '2023-01-01' AND '2023-12-31'";
+$res_exp_det1_total2023 = $mysqli->query($exp_det1_total2023);
+$fila_exp_det1_total2023 = $res_exp_det1_total2023->fetch_assoc();
 //
 $exp_det1_total = "SELECT COUNT(*) AS t FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION PROCEDENTE'";
@@ -168,9 +179,14 @@ $exp_det2 = "SELECT COUNT(*) AS t_no_procedentes FROM analisis_expediente
 WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
 $res_exp_det2 = $mysqli->query($exp_det2);
 $fila_exp_det2 = $res_exp_det2->fetch_assoc();
+// 2022
+$exp_det22022 = "SELECT COUNT(*) AS t_no_procedentes FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
+$res_exp_det22022 = $mysqli->query($exp_det22022);
+$fila_exp_det22022 = $res_exp_det22022->fetch_assoc();
 //
 $exp_det2_enero = "SELECT COUNT(*) AS t_no_procedentes FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND  fecha_analisis BETWEEN '2023-01-01' AND '2023-01-31'";
 $res_exp_det2_enero = $mysqli->query($exp_det2_enero);
 $fila_exp_det2_enero = $res_exp_det2_enero->fetch_assoc();
 //
@@ -234,18 +250,23 @@ WHERE incorporacion = 'INCORPORACION NO PROCEDENTE'";
 $res_exp_det2_total = $mysqli->query($exp_det2_total);
 $fila_exp_det2_total = $res_exp_det2_total->fetch_assoc();
 //
-$exp_det2_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
-$res_exp_det2_total2022 = $mysqli->query($exp_det2_total2022);
-$fila_exp_det2_total2022 = $res_exp_det2_total2022->fetch_assoc();
+$exp_det2_total2023 = "SELECT COUNT(*) AS t FROM analisis_expediente
+WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' AND fecha_analisis BETWEEN '2023-01-01' AND '2023-12-31'";
+$res_exp_det2_total2023 = $mysqli->query($exp_det2_total2023);
+$fila_exp_det2_total2023 = $res_exp_det2_total2023->fetch_assoc();
 //
 $exp_det3 = "SELECT COUNT(*) AS en_analisis FROM analisis_expediente
 WHERE incorporacion = '' AND  fecha_analisis BETWEEN '2021-01-01' AND '2021-12-31'";
 $res_exp_det3 = $mysqli->query($exp_det3);
 $fila_exp_det3 = $res_exp_det3->fetch_assoc();
+// 2022
+$exp_det32022 = "SELECT COUNT(*) AS en_analisis FROM analisis_expediente
+WHERE incorporacion = '' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-12-31'";
+$res_exp_det32022 = $mysqli->query($exp_det32022);
+$fila_exp_det32022 = $res_exp_det32022->fetch_assoc();
 //
 $exp_det3_enero = "SELECT COUNT(*) AS en_analisis FROM analisis_expediente
-WHERE incorporacion = '' AND  fecha_analisis BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE incorporacion = '' AND  fecha_analisis BETWEEN '2023-01-01' AND '2023-01-31'";
 $res_exp_det3_enero = $mysqli->query($exp_det3_enero);
 $fila_exp_det3_enero = $res_exp_det3_enero->fetch_assoc();
 //
@@ -313,11 +334,11 @@ WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN
 $res_exp_det3_diciembre = $mysqli->query($exp_det3_diciembre);
 $fila_exp_det3_diciembre = $res_exp_det3_diciembre->fetch_assoc();
 //
-$exp_det3_total2022 = "SELECT COUNT(*) AS t FROM analisis_expediente
+$exp_det3_total2023 = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
-WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
-$res_exp_det3_total2022 = $mysqli->query($exp_det3_total2022);
-$fila_exp_det3_total2022 = $res_exp_det3_total2022->fetch_assoc();
+WHERE analisis_expediente.incorporacion = '' AND  expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-12-31'";
+$res_exp_det3_total2023 = $mysqli->query($exp_det3_total2023);
+$fila_exp_det3_total2023 = $res_exp_det3_total2023->fetch_assoc();
 //
 $exp_det3_total = "SELECT COUNT(*) AS t FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
@@ -328,57 +349,60 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<tr>";
   echo "<td style='text-align:right'>"; echo "INCORPORACION PROCEDENTE"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1['t_procedentes']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det12022['t_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det1_enero['t_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_febrero['t_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_marzo['t_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_abril['t_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_mayo['t_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_junio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_julio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_agosto['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_septiembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_octubre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_noviembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_diciembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det1_total2022['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_febrero['t_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_marzo['t_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_abril['t_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_mayo['t_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_junio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_julio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_agosto['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_septiembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_octubre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_noviembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det1_diciembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det1_total2023['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det1_total['t']; echo "</td>";
   echo "</tr>";
 
   echo "<tr>";
   echo "<td style='text-align:right'>"; echo "INCORPORACION NO PROCEDENTE"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2['t_no_procedentes']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det22022['t_no_procedentes']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det2_enero['t_no_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_febrero['t_no_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_marzo['t_no_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_abril['t_no_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_mayo['t_no_procedentes']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_junio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_julio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_agosto['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_septiembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_octubre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_noviembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_diciembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det2_total2022['t']; "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_febrero['t_no_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_marzo['t_no_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_abril['t_no_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_mayo['t_no_procedentes']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_junio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_julio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_agosto['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_septiembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_octubre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_noviembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det2_diciembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det2_total2023['t']; "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det2_total['t']; "</td>";
   echo "</tr>";
 
   echo "<tr>";
   echo "<td style='text-align:right'>"; echo "EN ANALISIS **"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3['en_analisis']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det32022['en_analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det3_enero['en_analisis']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_febrero['en_analisis']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_marzo['en_analisis']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_abril['en_analisis']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_mayo['en_analisis']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_junio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_julio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_agosto['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_septiembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_octubre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_noviembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_diciembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det3_total2022['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_febrero['en_analisis']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_marzo['en_analisis']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_abril['en_analisis']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_mayo['en_analisis']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_junio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_julio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_agosto['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_septiembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_octubre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_noviembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det3_diciembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det3_total2023['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_exp_det3_total['t']; echo "</td>";
   echo "</tr>";
   echo "";
@@ -386,19 +410,20 @@ $fila_exp_det3_total = $res_exp_det3_total->fetch_assoc();
   echo "<tr bgcolor = 'yellow'>";
   echo "<td style='text-align:left'>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det['total']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det2022['total']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_enero['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_febrero['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_marzo['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_abril['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_mayo['total']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_junio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_julio['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_agosto['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_septiembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_octubre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_noviembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_diciembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_exp_det_total2022['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_febrero['total']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_marzo['total']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_abril['total']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_mayo['total']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_junio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_julio['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_agosto['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_septiembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_octubre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_noviembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_exp_det_diciembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_exp_det_total2023['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_exp_det_total['t']; echo "</td>";
   echo "</tr>";
  ?>
