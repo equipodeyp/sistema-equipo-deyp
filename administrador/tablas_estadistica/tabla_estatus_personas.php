@@ -12,6 +12,12 @@ WHERE datospersonales.relacional = 'NO' AND expediente.fecha_nueva BETWEEN '2022
 $res_stptotal2022 = $mysqli->query($st_ptotal2022);
 $fila_st_ptotal2022 = $res_stptotal2022->fetch_assoc();
 //
+$st_ptotal2023 = "SELECT COUNT(*) as total2023 FROM datospersonales
+INNER JOIN expediente ON expediente.fol_exp = datospersonales.folioexpediente
+WHERE datospersonales.relacional = 'NO' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-12-31'";
+$res_stptotal2023 = $mysqli->query($st_ptotal2023);
+$fila_st_ptotal2023 = $res_stptotal2023->fetch_assoc();
+//
 $st_ptotalexp = "SELECT COUNT(*) as totalexp FROM datospersonales
 INNER JOIN expediente ON expediente.fol_exp = datospersonales.folioexpediente
 WHERE datospersonales.relacional = 'NO'";
@@ -36,6 +42,12 @@ while ($fila_est = $res_est ->fetch_assoc()) {
   $res_stp2022 = $mysqli->query($st_p2022);
   $fila_st_p2022 = $res_stp2022->fetch_assoc();
   //
+  $st_p2023 = "SELECT COUNT(*) as total FROM datospersonales
+  INNER JOIN expediente ON expediente.fol_exp = datospersonales.folioexpediente
+  WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = '$rtp' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-12-31'";
+  $res_stp2023 = $mysqli->query($st_p2023);
+  $fila_st_p2023 = $res_stp2023->fetch_assoc();
+  //
   $st_ptotal = "SELECT COUNT(*) as total FROM datospersonales
   INNER JOIN expediente ON expediente.fol_exp = datospersonales.folioexpediente
   WHERE datospersonales.relacional = 'NO' AND datospersonales.estatus = '$rtp'";
@@ -54,6 +66,7 @@ while ($fila_est = $res_est ->fetch_assoc()) {
       } echo "</td>";
       echo "<td style='text-align:center'>"; echo $fila_stp['total']; echo "</td>";
       echo "<td style='text-align:center'>"; echo $fila_st_p2022['total']; echo "</td>";
+      echo "<td style='text-align:center'>"; echo $fila_st_p2023['total']; echo "</td>";
       echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_st_ptotal['total']; echo "</td>";
       echo "</tr>";
     }
@@ -64,6 +77,7 @@ echo "<tr bgcolor='yellow'>";
 echo "<td style='text-align:right'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fila_st_ptotal2021['total2021']; "</td>";
 echo "<td style='text-align:center'>"; echo $fila_st_ptotal2022['total2022']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fila_st_ptotal2023['total2023']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fila_st_ptotalexp['totalexp']; "</td>";
 echo "</tr>";
 ?>
