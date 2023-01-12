@@ -14,7 +14,7 @@ $fila_exp_det2022 = $res_exp_det->fetch_assoc();
 // total del mes de enero 2022
 $exp_det_enero = "SELECT COUNT(*) AS total FROM analisis_expediente
 INNER JOIN expediente ON expediente.fol_exp = analisis_expediente.folioexpediente
-WHERE analisis_expediente.fecha_analisis BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE analisis_expediente.fecha_analisis BETWEEN '2023-01-01' AND '2023-01-31' or analisis_expediente.fecha_analisis BETWEEN '0000-00-00' AND '0000-00-00'";
 $res_exp_det_enero = $mysqli->query($exp_det_enero);
 $fila_exp_det_enero = $res_exp_det_enero->fetch_assoc();
 //total febrero 2022
@@ -266,7 +266,7 @@ $res_exp_det32022 = $mysqli->query($exp_det32022);
 $fila_exp_det32022 = $res_exp_det32022->fetch_assoc();
 //
 $exp_det3_enero = "SELECT COUNT(*) AS en_analisis FROM analisis_expediente
-WHERE incorporacion = '' AND  fecha_analisis BETWEEN '2023-01-01' AND '2023-01-31'";
+WHERE incorporacion = ''";
 $res_exp_det3_enero = $mysqli->query($exp_det3_enero);
 $fila_exp_det3_enero = $res_exp_det3_enero->fetch_assoc();
 //
