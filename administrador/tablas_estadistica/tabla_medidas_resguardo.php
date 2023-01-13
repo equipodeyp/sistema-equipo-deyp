@@ -6,13 +6,13 @@ $rtotalex = $mysqli->query($totalex);
 $ftotalex = $rtotalex->fetch_assoc();
 //
 $totaleje = "SELECT  COUNT(*) as t FROM `medidas`
-WHERE clasificacion = 'resguardo' AND estatus = 'ejecutada' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE clasificacion = 'resguardo' AND estatus = 'ejecutada' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
 ORDER BY `medidas`.`folioexpediente` ASC";
 $rtotaleje = $mysqli->query($totaleje);
 $ftotaleje = $rtotaleje->fetch_assoc();
 //
 $totalcancel = "SELECT  COUNT(*) as t FROM `medidas`
-WHERE clasificacion = 'resguardo' AND estatus = 'cancelada' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE clasificacion = 'resguardo' AND estatus = 'cancelada' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
 ORDER BY `medidas`.`folioexpediente` ASC";
 $rtotalcancel = $mysqli->query($totalcancel);
 $ftotalcancel = $rtotalcancel->fetch_assoc();
@@ -25,19 +25,19 @@ while ($fmas = $rmas->fetch_assoc()) {
   $ma = $fmas['nombre'];
   //
   $eje = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE clasificacion = 'resguardo' AND estatus = 'ejecutada'  AND medida = '$ma' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+  WHERE clasificacion = 'resguardo' AND estatus = 'ejecutada'  AND medida = '$ma' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
   ORDER BY `medidas`.`folioexpediente` ASC";
   $reje = $mysqli->query($eje);
   $feje = $reje->fetch_assoc();
   //
   $cancel = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE clasificacion = 'resguardo' AND estatus = 'cancelada' AND medida = '$ma' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+  WHERE clasificacion = 'resguardo' AND estatus = 'cancelada' AND medida = '$ma' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
   ORDER BY `medidas`.`folioexpediente` ASC";
   $rcancel = $mysqli->query($cancel);
   $fcancel = $rcancel->fetch_assoc();
   //
   $totalma = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE clasificacion = 'resguardo' AND medida = '$ma' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+  WHERE clasificacion = 'resguardo' AND medida = '$ma' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
   ORDER BY `medidas`.`folioexpediente` ASC";
   $rtotalma = $mysqli->query($totalma);
   $ftotalma = $rtotalma->fetch_assoc();
