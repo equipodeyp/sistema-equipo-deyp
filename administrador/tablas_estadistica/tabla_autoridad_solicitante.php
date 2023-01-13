@@ -44,6 +44,12 @@ WHERE expediente.año = '2022'";
 $rautt2022 = $mysqli->query($autt2022);
 $fautt2022 = $rautt2022->fetch_assoc();
 //
+$autt2023 = "SELECT COUNT(DISTINCT folioexpediente) as t from autoridad
+INNER JOIN expediente on autoridad.folioexpediente = expediente.fol_exp
+WHERE expediente.año = '2023'";
+$rautt2023 = $mysqli->query($autt2023);
+$fautt2023 = $rautt2023->fetch_assoc();
+//
 
 
 $au = "SELECT nombreautoridad, COUNT(DISTINCT folioexpediente) as t FROM autoridad
@@ -66,6 +72,12 @@ while ($fau = $rau->fetch_assoc()) {
   $raut2022 = $mysqli->query($aut2022);
   $faut2022 = $raut2022->fetch_assoc();
   //
+  $aut2023 = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  autoridad
+  INNER JOIN expediente on autoridad.folioexpediente = expediente.fol_exp
+  WHERE autoridad.nombreautoridad = '$autoridad' AND expediente.año= 2023";
+  $raut2023 = $mysqli->query($aut2023);
+  $faut2023 = $raut2023->fetch_assoc();
+  //
   $auttotal = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  autoridad
   INNER JOIN expediente on autoridad.folioexpediente = expediente.fol_exp
   WHERE autoridad.nombreautoridad = '$autoridad'";
@@ -76,6 +88,7 @@ while ($fau = $rau->fetch_assoc()) {
   echo "<td style='text-align:left'>"; echo $fau['nombreautoridad']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $faut2021['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $faut2022['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $faut2023['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fauttotal ['t']; echo "</td>";
   echo "</tr>";
 }
@@ -83,6 +96,7 @@ echo "<tr bgcolor = 'yellow'>";
 echo "<td style='text-align:center'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fautt2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fautt2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $total = $fautt2021['t'] + $fautt2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fautt2023['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $total = $fautt2021['t'] + $fautt2022['t'] + $fautt2023['t']; echo "</td>";
 echo "</tr>";
 ?>
