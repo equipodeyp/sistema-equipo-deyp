@@ -18,6 +18,11 @@ while ($falotem = $ralotem->fetch_assoc()) {
   $rsuj2022 = $mysqli->query($suj2022);
   $fsuj2022 = $rsuj2022->fetch_assoc();
 
+  $suj2023 = "SELECT COUNT(*) as t FROM `medidas`
+  WHERE id_persona = '$idsujeto' AND estatus != 'CANCELADA' AND medida = 'VIII. ALOJAMIENTO TEMPORAL' AND (date_provisional BETWEEN '2023-01-01' AND '2023-12-31' OR date_definitva BETWEEN '2023-01-01' AND '2023-12-31')";
+  $rsuj2023 = $mysqli->query($suj2023);
+  $fsuj2023 = $rsuj2023->fetch_assoc();
+
   $alotem3 = "SELECT * FROM medidas
   WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND id_persona = '$idsujeto'";
   $ralotem3 = $mysqli->query($alotem3);
@@ -42,8 +47,11 @@ while ($falotem = $ralotem->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $auxcontador; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['folioexpediente']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['identificador']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $falotem2['sexopersona']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $falotem2['edadpersona']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2022['t']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fsuj2023['t']; echo "</td>";
         echo "<td style='text-align:center'>"; if ($falotem3['date_provisional'] === '0000-00-00') {
           echo $falotem3['date_definitva'];
         }else {
