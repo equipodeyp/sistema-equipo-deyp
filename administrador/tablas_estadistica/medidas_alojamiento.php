@@ -39,6 +39,12 @@ while ($falotem = $ralotem->fetch_assoc()) {
   $ralotem2 = $mysqli->query($alotem2);
   while ($falotem2 = $ralotem2->fetch_assoc()) {
       $auxcontador = $auxcontador + 1;
+
+      $conveniosuj = "SELECT * FROM determinacionincorporacion
+      WHERE id = '$idsujeto'";
+      $rconveniosuj = $mysqli->query($conveniosuj);
+      $fconveniosuj = $rconveniosuj->fetch_assoc();
+
       echo "<tr bgcolor="; if($falotem4['estatus'] === 'CANCELADA'){
         echo 'yellow';
       } else{
@@ -49,6 +55,7 @@ while ($falotem = $ralotem->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $falotem2['identificador']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['sexopersona']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['edadpersona']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fconveniosuj['convenio']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2022['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2023['t']; echo "</td>";
