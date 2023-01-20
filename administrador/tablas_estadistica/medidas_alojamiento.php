@@ -77,7 +77,7 @@ while ($falotem = $ralotem->fetch_assoc()) {
           $date11 = $falotem3['date_provisional'];
         }
         if ($falotem4['date_ejecucion'] === '0000-00-00') {
-          $date22 = '2023-01-19';
+          $date22 = date('Y/m/d');        
         }else {
           $date22 = $falotem4['date_ejecucion'];
         }
