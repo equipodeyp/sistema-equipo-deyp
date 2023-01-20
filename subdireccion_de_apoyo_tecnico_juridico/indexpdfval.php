@@ -229,7 +229,7 @@ margin-left:auto; margin-right:0;
         </div>
       </div>
        <!--  -->
-       <form action="crear_pdf_valoracion_juridica.php" method="POST">
+       <form action="crear_pdf_valoracion_juridica.php?expediente=<?php echo $fol_exp;?>" method="POST">
        <?php
        // CONTAR CUANTAS PERSONAS HAY EN EL EXPEDIENTE
        $contarper = "SELECT COUNT(*) as t from datospersonales WHERE folioexpediente = '$fol_exp'";

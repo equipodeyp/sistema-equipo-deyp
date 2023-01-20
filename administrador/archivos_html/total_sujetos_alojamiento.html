@@ -1,0 +1,87 @@
+<div class="modal fade" id="add_data_Modal_total_sujetos_alojamiento" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg"  style="overflow-y: scroll; max-height:80%;  margin-top: 50px; margin-bottom:50px; width:80%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h2 style="text-align:center" class="modal-title" id="myModalLabel">TOTAL DE SUJETOS EN ALOJAMIENTO TEMPORAL POR AÑO</h2>
+        <h2 style="text-align:center" class="modal-title" id="myModalLabel"></h2>
+      </div>
+      <div class="modal-body">
+        <div className="modal">
+          <div class="row">
+          </div>
+          <div class="row">
+          </div>
+          <div class="row" style="display: flex; justify-content: center;">
+            <div class="col-lg-8" >
+              <table id="alojamientotemporal" border="1px" cellspacing="0" width="100%" bordered>
+                <thead>
+                  <h3></h3>
+                  <tr>
+                    <th style="width: 310px; text-align:center" rowspan="3" class="bg-success">CONCEPTO</th>
+                  </tr>
+                  <tr>
+                    <th style="text-align:center" colspan="4">SUJETOS QUE SE ALOJARON EN CENTROS DE RESGUARDO</th>
+                  </tr>
+                  <tr>
+                    <!-- <th style="text-align:center"></th> -->
+                    <th style="text-align:center">2021</th>
+                    <th style="text-align:center">2022</th>
+                    <th style="text-align:center">2023*</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/total_sujetos_alojamiento.php");
+                  ?>
+                </tbody>
+              </table>
+              <em>* Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal"
+                    que se encuentren activos dentro del Programa
+              </em>
+            </div>
+            <div class="col-lg-8" >
+              <table id="" border="1px" cellspacing="0" width="100%" bordered>
+                <thead>
+                  <h3></h3>
+                    <tr>
+                      <!-- <th style="text-align:center"></th> -->
+                      <th style="text-align:center">DESCRIPCION</th>
+                      <th style="text-align:center">SUJETOS <br> INCORPORADOS *</th>
+                      <th style="text-align:center">SUJETOS EN CENTROS <br> DE RESGUARDO **</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/total_sujetos_activos_y_en_resguardo.php");
+                  ?>
+                </tbody>
+              </table>
+              <em>
+                * Comprende todos los sujetos incorporados independientemente de su estatus actual dentro del Programa <br>
+                ** Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal"
+                ya sea que se encuentren activos o no dentro del Programa
+
+              </em>
+            </div>
+          </div>
+          <br>
+          <em>DEL 01 DE ENERO AL <?php
+            date_default_timezone_set("America/Mexico_City");
+            $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+            $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+
+            echo " ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+          ?></em>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button  type="button" class="btn btn-success" id="exportarExcelN" onclick="exportaralojamientotemporal();">EXPORTAR</button> -->
+        <button  type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    console.log("hola");
+  </script>
+</div>

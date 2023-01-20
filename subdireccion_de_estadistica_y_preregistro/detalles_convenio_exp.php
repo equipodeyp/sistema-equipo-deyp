@@ -117,28 +117,30 @@ $id_con_exp = $fila_consulta['id'];
                 </div>
                 <div class="col-md-6 mb-3 validar">
                   <label>FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
-                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" readonly>
+                  <input type="text" name="nombres" id="name" class="form-control" value="<?php echo $fila_consulta['folioexpediente']; ?>" disabled>
                 </div>
                 <div class="row">
                   <div class="col-md-6 mb-3 validar ">
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <select disabled class="form-select form-select-lg" name="analisis_m" id="analisis_m">
+                    <select  class="form-select form-select-lg" name="analisis_m" id="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
-                      <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-                      <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-                      <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
+                      <option value="ESTUDIO TECNICO DE CANCELACION">2.- ESTUDIO TECNICO DE CANCELACION</option>
+                      <option value="ESTUDIO TECNICO DE CONCLUSION">3.- ESTUDIO TECNICO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
+                      <option value="AUTORIZACION DEL TITULAR">5.- AUTORIZACION DEL TITULAR</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label for="fecha_autorizacion">FECHA DE AUTORIZACIÓN DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input disabled class="form-control" type="date" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
+                    <input  class="form-control" type="date" id="fecha_autoe" name="fecha_auto" value="<?php echo $fila_consulta['fecha_aut']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
                     <label for="id_analisis">ID DEL ANÁLISIS MULTIDISCIPLINARIO</label>
-                    <input disabled class="form-control" type="text" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
+                    <input  class="form-control" type="text" id="id_analisiss" name="id_analisis" value="<?php echo $fila_consulta['id_analisis']; ?>" required>
                   </div>
                   <div class="col-md-6 mb-3 validar " id="tconve">
-                    <label for="tipo_convenio">TIPO DE CONVENIO</label>
+                    <label for="tipo_convenio" id="lbltipconv">TIPO DE CONVENIO</label>
                     <select class="form-select form-select-lg" name="tipo_convenio" id="select_tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
                       <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
@@ -147,24 +149,24 @@ $id_con_exp = $fila_consulta['id'];
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar" id="ffirma">
-                    <label for="fecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
+                    <label for="fecha_firma" id="lblfecha_firma">FECHA DE LA FIRMA DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_firma" id="fecha_firma" value="<?php echo $fila_consulta['fecha_firma']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3 validar" id="finicio">
-                    <label>FECHA DE INICIO DEL CONVENIO</label>
+                    <label id="lblfecha_inicio">FECHA DE INICIO DEL CONVENIO</label>
                     <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" value="<?php echo $fila_consulta['fecha_inicio']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar" id="vigen">
-                    <label>VIGENCIA DEL CONVENIO</label>
+                    <label id="lblvigencia">VIGENCIA DEL CONVENIO</label>
                     <input class="form-control" type="text" name="vigencia" id="vigencia" value="<?php echo $fila_consulta['vigencia']; ?>" placeholder="dias" maxlength="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                   <div class="col-md-6 mb-3 validar" id="fterm">
-                    <label for="fecha_termino">FECHA DE TÉRMINO DEL CONVENIO</label>
-                    <input readonly class="form-control" type="date" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
+                    <label for="fecha_termino" id="lblfechaterminoc">FECHA DE TÉRMINO DEL CONVENIO</label>
+                    <input disabled class="form-control" type="date" id="fechaterminoc" name="fecha_termino" value="<?php echo $fila_consulta['fecha_vigencia']; ?>">
                   </div>
                   <div class="col-md-6 mb-3 validar" id="tconvenios">
-                    <label for="id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
+                    <label for="id_convenio" id="lblinput_id_convenio">TOTAL DE CONVENIOS FIRMADOS</label>
                     <input class="form-control" type="text" id="input_id_convenio" name="id_convenio" value="<?php echo $fila_consulta['total_convenios']; ?>" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
                   </div>
                 </div>
@@ -181,7 +183,7 @@ $id_con_exp = $fila_consulta['id'];
                   <h3 style="text-align:center">OBSERVACIONES</h3>
                 </div>
                   <label for="observaciones">OBSERVACIONES</label>
-                  <textarea id="textarea_observaciones" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
+                  <textarea id="textarea_observacioness" name="observaciones" rows="8" cols="238" placeholder="OBSERVACIONES"><?php echo $fila_consulta['obseervaciones']; ?></textarea>
               </div>
               <div class="row" id="btnact">
                 <div>
@@ -204,10 +206,19 @@ $id_con_exp = $fila_consulta['id'];
 <script src="../js/evaluacion_expediente.js" charset="utf-8"></script>
 </body>
 </html>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo -->
 <script type="text/javascript">
   var vertipconvenio = document.getElementById('select_tipo_convenio').value;
   function tipoconveniocam(){
-    // console.log(vertipconvenio);
+    console.log(vertipconvenio);
+    // if (vertipconvenio === '') {
+    //   console.log('sin nada');
+    //   document.getElementById('lblfecha_firma').style.display = "none";
+    //   document.getElementById('fecha_firma').style.display = "none";
+    //   document.getElementById('vigen').style.display = "none";
+    //   document.getElementById('fterm').style.display = "none";
+    //   document.getElementById('tconvenios').style.display = "none";
+    // }
     if (vertipconvenio === 'CONVENIO MODIFICATORIO') {
       document.getElementById('vigen').style.display = "none";
     }
@@ -220,15 +231,32 @@ $id_con_exp = $fila_consulta['id'];
       document.getElementById('tconvenios').style.display = "none";
       // document.getElementById('textobserv').style.display = "none";
       // document.getElementById('enter').style.visibility = "hidden";
-    }else {
-      document.getElementById('ffirma').style.display = "";
-      document.getElementById('finicio').style.display = "";
-      // document.getElementById('vigen').style.display = "";
-      document.getElementById('fterm').style.display = "";
-      document.getElementById('tconvenios').style.display = "";
+    }else if(vertipconvenio === ''){
+      document.getElementById('ffirma').style.display = "none";
+      document.getElementById('finicio').style.display = "none";
+      document.getElementById('vigen').style.display = "none";
+      document.getElementById('fterm').style.display = "none";
+      document.getElementById('tconvenios').style.display = "none";
     }
   }
   tipoconveniocam();
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  var vertipanalisis = document.getElementById('analisis_m').value;
+  function disabledcampos(){
+    console.log(vertipanalisis);
+    if (vertipanalisis === 'ACUERDO DE CANCELACION' || vertipanalisis === 'ACUERDO DE CONCLUSION' || vertipanalisis === 'ESTUDIO TECNICO DE CONCLUSION' || vertipanalisis === 'ESTUDIO TECNICO DE CANCELACION') {
+      document.getElementById('analisis_m').disabled = true;
+      document.getElementById('fecha_autoe').disabled = true;
+      document.getElementById('id_analisiss').disabled = true;
+      document.getElementById('textarea_observacioness').disabled = true;
+      document.getElementById('tconve').style.display = "none";
+      // document.getElementById('tconve ').style.display = "none";
+      document.getElementById('enter').style.display = "none";
+    }
+
+  }
+  disabledcampos();
   // cambio de tipo de convenio
   var cambioconvenio = document.getElementById('select_tipo_convenio');
   var acttipoconv = '';

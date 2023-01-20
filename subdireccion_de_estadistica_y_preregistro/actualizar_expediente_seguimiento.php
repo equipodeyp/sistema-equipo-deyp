@@ -41,26 +41,18 @@ if ($verifica_update_person == 1) {
   $analisis_expediente = "SELECT * FROM analisis_expediente WHERE folioexpediente = '$folio_expediente'";
   $res_analsis_exp = $conexion -> query($analisis_expediente);
   $fila_analisis_exp = mysqli_fetch_array($res_analsis_exp);
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
   if ($fila_analisis_exp > 0) {
     $upd_analisis = $fila_analisis_exp['analisis'];
     $upd_incorporacion = $fila_analisis_exp['incorporacion'];
     $upd_convenio = $fila_analisis_exp['convenio'];
     if ($upd_analisis === 'EN ELABORACION' || $upd_analisis === '') {
-      $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', analisis = '$analisis', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
-      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
-      num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
-      $res_analsis = $mysqli->query($update_analisis);
-    }
-    if ($upd_incorporacion === '') {
-      $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
-      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
-      num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
+      $update_analisis = "UPDATE analisis_expediente SET analisis = '$analisis', incorporacion = '$incorporacion', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis'
+      WHERE folioexpediente = '$folio_expediente'";
       $res_analsis = $mysqli->query($update_analisis);
     }
     if ($upd_convenio === '' || $upd_convenio === 'PENDIENTE DE EJECUCION') {
-      $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas', fecha_analisis = '$fecha_analisis', id_analisis='$id_analisis', convenio = '$convenio',
-      fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
+      $update_analisis = "UPDATE analisis_expediente SET convenio = '$convenio', fecha_convenio = '$fecha_convenio', fecha_inicio='$fecha_inicio', vigencia = '$vigencia' , fecha_termino_convenio = '$fecha_termino',  personasincorporadas = '$personas_incorporadas',
       num_convenios = '$total_convenios' WHERE folioexpediente = '$folio_expediente'";
       $res_analsis = $mysqli->query($update_analisis);
     }
@@ -70,6 +62,7 @@ if ($verifica_update_person == 1) {
                      VALUES('$folio_expediente', '$personas_propuestas', '$analisis', '$incorporacion', '$fecha_analisis', '$id_analisis', '$convenio', '$fecha_convenio', '$fecha_inicio', '$vigencia', '$fecha_termino', '$id_convenio', '$personas_incorporadas', '$total_convenios')";
     $res_analsis = $mysqli->query($new_analisis);
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // convenio de adhesion del expediente
 
   //convenio modificatorio del EXPEDIENTE
@@ -82,7 +75,7 @@ if ($verifica_update_person == 1) {
   }
   $fecha_desincorporacion = $_POST['FECHA_DESINCORPORACION'];
   $estatus_exp = $_POST['ESTATUS_EXPEDIENTE'];
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
   $segexped = "SELECT * FROM statusseguimiento WHERE folioexpediente = '$folio_expediente'";
   $res_segexped = $conexion->query($segexped);
   $fila_segexped = mysqli_fetch_array($res_segexped);
@@ -95,6 +88,8 @@ if ($verifica_update_person == 1) {
                     VALUES ('$concl_canc', '$conclu_art', '$otro_art', '$fecha_desincorporacion', '$estatus_exp', '$folio_expediente')";
     $res_segexpediente = $mysqli->query($new_segesped);
   }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // variables de los comentarios
   $comment = $_POST['COMENTARIO'];
   $comment_mascara = '4';
@@ -102,6 +97,7 @@ if ($verifica_update_person == 1) {
   $fecha_captura = date('y/m/d H:i:sa');
 
   // insertar comentarios de cambios
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
   if ($comment != '') {
     $comment = "INSERT INTO comentario(comentario, folioexpediente, comentario_mascara, usuario, fecha)
                   VALUES ('$comment', '$folio_expediente', '$comment_mascara', '$name', '$fecha_captura')";
@@ -110,8 +106,12 @@ if ($verifica_update_person == 1) {
 
   $update_analisis = "UPDATE analisis_expediente SET personas_propuestas = '$personas_propuestas' WHERE folioexpediente = '$folio_expediente'";
   $res_analsis = $mysqli->query($update_analisis);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // validacion del update correcto
+    /////////////////////////////////////////////////////////////////////////////
+    // $update_analisis = "UPDATE analisis_expediente SET analisis = '$analisis' WHERE folioexpediente = '$folio_expediente'";
+    //      $res_segexpediente = $mysqli->query($update_analisis);
+    ////////////////////////////////////////////////////////////////////////////////////////
   if($res_segexpediente){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_estadistica_y_preregistro/seguimiento_expediente.php?folio=$folio_expediente';

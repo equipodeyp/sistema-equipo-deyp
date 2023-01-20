@@ -55,7 +55,11 @@ WHERE año = '2022'";
 $rrtotal2022 = $mysqli->query($rtotal2022);
 $frtotal2022 = $rrtotal2022->fetch_assoc();
 //
-
+$rtotal2023 = "SELECT COUNT(*) as t FROM expediente
+WHERE año = '2023'";
+$rrtotal2023 = $mysqli->query($rtotal2023);
+$frtotal2023 = $rrtotal2023->fetch_assoc();
+//
 $r = "SELECT numeroradicacion, COUNT(DISTINCT fol_exp) as t FROM procesopenal
 INNER JOIN expediente ON procesopenal.folioexpediente = expediente.fol_exp
 GROUP BY numeroradicacion
@@ -76,6 +80,12 @@ while ($fr = $rr->fetch_assoc()) {
   $rconmun2022 = $mysqli->query($conmun2022);
   $fconmun2022 = $rconmun2022->fetch_assoc();
   //
+  $conmun2023 = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  procesopenal
+  INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp
+  WHERE procesopenal.numeroradicacion = '$municipio' AND expediente.año= 2023";
+  $rconmun2023 = $mysqli->query($conmun2023);
+  $fconmun2023 = $rconmun2023->fetch_assoc();
+  //
   $conmuntotal = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  procesopenal
   INNER JOIN expediente on procesopenal.folioexpediente = expediente.fol_exp
   WHERE procesopenal.numeroradicacion = '$municipio'";
@@ -86,6 +96,7 @@ while ($fr = $rr->fetch_assoc()) {
     echo "<td style='text-align:left'>"; echo $fr['numeroradicacion']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fconmun2021['t']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fconmun2022['t']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo $fconmun2023['t']; echo "</td>";
     echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fconmuntotal['t']; echo "</td>";
   echo "</tr>";
 }
@@ -93,6 +104,7 @@ echo "<tr bgcolor = 'yellow'>";
 echo "<td style='text-align:right'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $frtotal2021['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $frtotal2022['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $total = $frtotal2021['t'] + $frtotal2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $frtotal2023['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $total = $frtotal2021['t'] + $frtotal2022['t'] + $frtotal2023['t']; echo "</td>";
 echo "</tr>";
 ?>

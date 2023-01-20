@@ -122,8 +122,8 @@ $row=$result->fetch_assoc();
                             <tr>
                                 <th style="text-align:center">No.</th>
                                 <th style="text-align:center">ID EXPEDIENTE</th>
+                                <!-- <th style="text-align:center">FECHA RECEPCION</th> -->
                                 <th style="text-align:center">FECHA RECEPCION</th>
-                                <th style="text-align:center">FECHA RECEPCION 2</th>
                                 <th style="text-align:center">SEDE</th>
                                 <th style="text-align:center">NOMBRE AUTORIDAD</th>
                                 <th style="text-align:center">DELITO PRINCIPAL</th>
@@ -169,6 +169,8 @@ $row=$result->fetch_assoc();
                                 <th style="text-align:center">OTRO ART. 35</th>
                                 <th style="text-align:center">FECHA DESINCORPORACIÓN</th>
                                 <th style="text-align:center">ESTATUS</th>
+                                <th style="text-align:center">PERSONAS INCORPORADAS</th>
+                                <th style="text-align:center">PERSONAS VIGENTES</th>
                             </tr>
                         </thead>
                       <tbody>

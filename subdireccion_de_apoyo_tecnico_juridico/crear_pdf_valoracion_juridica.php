@@ -1,5 +1,6 @@
 <?php
 // variables que se envian por el metodo post para agregarlas al pdf
+$expediente = $_GET['expediente'];
 $oficiosolicitud =$_POST['oficiosolicitud'];
 $fechasolicitud =$_POST['fechasolicitud'];
 $zonageografica =$_POST['zonageografica'];
@@ -11,6 +12,14 @@ $inicialespersona =$_POST['inicialessuj'];
 $vv =count($inicialespersona);
 $tipintervencion =$_POST['tipointervencion'];
 $privadoliber =$_POST['privadolibertad'];
+$ubicacion =$_POST['ubicacion'];
+$perasis = $_POST['personaasiste'];
+$sitriesgo = $_POST['situacionriesgo'];
+$vulnerabilidad = $_POST['causavulnerabilidad'];
+$tenfermedad = $_POST['tipoenfermedad'];
+$tdiscapacidad = $_POST['nombrediscapacidad'];
+$testimonio = $_POST['testimonio'];
+$medidas = $_POST['medidas'];
 //datos del solicitante
 $solicitante =$_POST['solicitante'];
 $nombresolicitante =$_POST['nombreagente'];
@@ -113,7 +122,7 @@ $data .= '<table width="100%" >
 <tr >
 <td width="25%"></td>
 <td width="25%" align="center" ></td>
-<td width="50%" style="text-align: center; height:35vh;" bgcolor="#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook"><h4>UPSIPPED/SAR/TOL-TOL/001/2021</h4></font></td>
+<td width="50%" style="text-align: center; height:35vh;" bgcolor="#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook"><h4>'.$expediente.'</h4></font></td>
 </tr>
 </table>';
 $data .='<p align="right">
@@ -184,6 +193,9 @@ $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cel
   </tbody>
 </table><br><br />';
 $aux = 1;
+$j=1;
+$h=1;
+$hh=1;
 for ($i=0;$i<count($inicialespersona);$i++) {
   $data .='<h3 style="font-family: gothambook" align="center">DATOS DE LA PERSONA PROPUESTA '.$aux.'</h3>';
   $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
@@ -214,139 +226,215 @@ for ($i=0;$i<count($inicialespersona);$i++) {
       </tr>
     </tbody>
   </table>';
+  $stuff = $_POST['ASISTENCIA_LEGAL'.$j.''];
+  foreach ($stuff as $value){
+    $stuff2 = $_POST['enfermedad'.$h.''];
+    $stuff3 = $_POST['discapacidad'.$hh.''];
+    if ($value <= count($inicialespersona)) {
+      $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+        <thead>
+          <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+            <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
+            <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
+            <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td style="height:50vh; border: 1px solid black; text-align:center">
+            <font style="font-family: gothambook">
+            '.$ubicacion[$i].'
+            </font>
+            </td>
+            <td style="height:50vh; border: 1px solid black; text-align:center">
+            <font style="font-family: gothambook">
+            SI
+            </font>
+            </td>
+            <td style="height:50vh; border: 1px solid black; text-align:center">
+            <font style="font-family: gothambook">
+            '.$perasis[$i].'
+            </font>
+            </td>
+          </tr>
+        </tbody>
+      </table><br />';
+    }else {
+      $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+        <thead>
+          <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+            <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
+            <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td style="height:50vh; border: 1px solid black; text-align:center">
+            <font style="font-family: gothambook">
+            '.$ubicacion[$i].'
+            </font>
+            </td>
+            <td style="height:50vh; border: 1px solid black; text-align:center">
+            <font style="font-family: gothambook">
+            NO
+            </font>
+            </td>
+          </tr>
+        </tbody>
+      </table><br />';
+    }
+    $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+      <thead>
+        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+          <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SITUACION DE RIESGO</font></th>
+          <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CAUSA DE VULNERABILIDAD</font></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
+          <font style="font-family: gothambook">
+          '.$sitriesgo[$i].'
+          </font>
+          </td>
+          <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
+          <font style="font-family: gothambook">
+          '.$vulnerabilidad[$i].'
+          </font>
+          </td>
+        </tr>
+      </tbody>
+    </table><br />';
+    foreach ($stuff2 as $value2){
+      if ($value2 <= count($inicialespersona)) {
+        $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+          <thead>
+            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+              <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
+              <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">TIPO</font></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td style="height:50vh; border: 1px solid black; text-align:center">
+              <font style="font-family: gothambook">
+                SI
+              </font>
+              </td>
+              <td style="height:50vh; border: 1px solid black; text-align:center">
+              <font style="font-family: gothambook">
+                '.$tenfermedad[$i].'
+              </font>
+              </td>
+            </tr>
+          </tbody>
+        </table><br />';
+      }else {
+        $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+          <thead>
+            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+              <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td style="height:50vh; border: 1px solid black; text-align:center">
+              <font style="font-family: gothambook">
+                NO
+              </font>
+              </td>
+            </tr>
+          </tbody>
+        </table><br />';
+      }
+    }
+    foreach ($stuff3 as $value3){
+      // echo $value3;
+      if ($value3 <= count($inicialespersona)) {
+        $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+          <thead>
+            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+              <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
+              <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">TIPO</font></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td style="height:50vh; border: 1px solid black; text-align:center">
+              <font style="font-family: gothambook">
+                SI
+              </font>
+              </td>
+              <td style="height:50vh; border: 1px solid black; text-align:center">
+              <font style="font-family: gothambook">
+                '.$tdiscapacidad[$i].'
+              </font>
+              </td>
+            </tr>
+          </tbody>
+        </table><br />';
+      }else {
+        $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+          <thead>
+            <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+              <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td style="height:50vh; border: 1px solid black; text-align:center">
+              <font style="font-family: gothambook">
+                NO
+              </font>
+              </td>
+            </tr>
+          </tbody>
+        </table><br />';
+      }
+    }
+    $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
+      <thead>
+        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+          <th style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NECESIDAD DEL PORQUE LLEVAR SU TESTIMONIO A JUICIO</font></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td style="height:50vh; border: 1px solid black; text-align:center">
+          <font style="font-family: gothambook">
+          '.$testimonio[$i].'
+          </font>
+          </td>
+        </tr>
+      </tbody>
+    </table><br />';
 
-  $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-    <thead>
-      <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">UBICACION DE LA PERSONA</font></th>
-        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿ASISTENCIA LEGAL?</font></th>
-        <th width="33%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NOMBRE DE LA PERSONA QUE LO ASISTE</font></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr >
-        <td style="height:50vh; border: 1px solid black; text-align:center">
-        <font style="font-family: gothambook">
-        // aqui va la variable que se trae desde el front-end
-        </font>
-        </td>
-        <td style="height:50vh; border: 1px solid black; text-align:center">
-        <font style="font-family: gothambook">
-        // aqui va la variable que se trae desde el front-end
-        </font>
-        </td>
-        <td style="height:50vh; border: 1px solid black; text-align:center">
-        <font style="font-family: gothambook">
-        // aqui va la variable que se trae desde el front-end
-        </font>
-        </td>
-      </tr>
-    </tbody>
-  </table><br />';
+    $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="105%" bordered>
+      <thead>
+        <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
+          <th style="height:40vh; border: 1px solid black;"><font color ="#FFFFFF" style="font-family: gothambook">MEDIDAS SOLICITADAS POR EL AGENTE DEL MINISTERIO PUBLICO DE LA INVESTIGACION</font></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td style="height:50vh; border: 1px solid black; text-align:center">
+          <font style="font-family: gothambook">
+          '.$medidas[$i].'
+          </font>
+          </td>
+        </tr>
+      </tbody>
+    </table><br />';
+
+  }
+
   $aux = $aux + 1 ;
+  $j = $j+1;
+  $h = $h+1;
+  $hh = $hh+1;
 }
 
-
-//
-// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-//   <thead>
-//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">SITUACION DE RIESGO</font></th>
-//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">CAUSA DE VULNERABILIDAD</font></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr >
-//       <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </td>
-//       <td width="50%" style="word-break: break-all; height:50vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </td>
-//     </tr>
-//   </tbody>
-// </table><br />';
-//
-// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-//   <thead>
-//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA ENFERMEDAD?</font></th>
-//       <th width="50%" style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">¿PRESENTA ALGUNA DISCAPACIDAD?</font></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr >
-//       <td style="height:50vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </td>
-//       <td style="height:50vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </td>
-//     </tr>
-//   </tbody>
-// </table>';
-// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-//   <thead>
-//     <tr style="border: 1px solid black;" >
-//       <th width="2%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-//       <th width="48%" style="height:40vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </th>
-//       <th width="2%" style="height:40vh; border: 1px solid black; text-align:center" bgcolor = "#A19E9F"><font color ="#FFFFFF" style="font-family: gothambook">TIPO:</font></th>
-//       <th width="48%" style="height:40vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </th>
-//     </tr>
-//   </thead>
-// </table><br>';
-//
-// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
-//   <thead>
-//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-//       <th style="height:40vh; border: 1px solid black; text-align:center"><font color ="#FFFFFF" style="font-family: gothambook">NECESIDAD DEL PORQUE LLEVAR SU TESTIMONIO A JUICIO</font></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr >
-//       <td style="height:50vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </td>
-//     </tr>
-//   </tbody>
-// </table>';
-//
-// $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="105%" bordered>
-//   <thead>
-//     <tr style="border: 1px solid black;" bgcolor = "#A19E9F">
-//       <th style="height:40vh; border: 1px solid black;"><font color ="#FFFFFF" style="font-family: gothambook">MEDIDAS SOLICITADAS POR EL AGENTE DEL MINISTERIO PUBLICO DE LA INVESTIGACION</font></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr >
-//       <td style="height:50vh; border: 1px solid black; text-align:center">
-//       <font style="font-family: gothambook">
-//       // aqui va la variable que se trae desde el front-end
-//       </font>
-//       </td>
-//     </tr>
-//   </tbody>
-// </table>';
-
-$data .='<br><br><h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>';
+$data .='<h3 style="font-family: gothambook" align="center">DATOS DEL SOLICITANTE</h3>';
 if ($solicitante === 'agente') {
   $data .='<table class="table table-dark" id="estatusexpediente" border="1px" cellspacing="0" width="100%" bordered>
     <thead>
@@ -536,8 +624,8 @@ $data .='<div>
     </table>
 
     </div>
-</div>';
+</div><br />';
 
 $mpdf->WriteHtml($data);
-$mpdf->output("myfile.pdf",'D');
+$mpdf->output("VALORACION_JURIDICA $expediente.pdf",'D');
 ?>

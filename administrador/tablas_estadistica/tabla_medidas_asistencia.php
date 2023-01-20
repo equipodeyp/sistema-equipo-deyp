@@ -6,13 +6,13 @@ $rtotalex = $mysqli->query($totalex);
 $ftotalex = $rtotalex->fetch_assoc();
 //
 $totaleje = "SELECT  COUNT(*) as t FROM `medidas`
-WHERE clasificacion = 'asistencia' AND estatus = 'ejecutada' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE clasificacion = 'asistencia' AND estatus = 'ejecutada' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
 ORDER BY `medidas`.`folioexpediente` ASC";
 $rtotaleje = $mysqli->query($totaleje);
 $ftotaleje = $rtotaleje->fetch_assoc();
 //
 $totalcancel = "SELECT  COUNT(*) as t FROM `medidas`
-WHERE clasificacion = 'asistencia' AND estatus = 'cancelada' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE clasificacion = 'asistencia' AND estatus = 'cancelada' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
 ORDER BY `medidas`.`folioexpediente` ASC";
 $rtotalcancel = $mysqli->query($totalcancel);
 $ftotalcancel = $rtotalcancel->fetch_assoc();
@@ -28,16 +28,16 @@ $rt1 = $mysqli->query($t1);
 $ft1 = $rt1->fetch_assoc();
 //
 $t2 = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE (clasificacion = 'asistencia' AND estatus = 'ejecutada' and medida = 'TRATAMIENTO PSICOLOGICO' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31')
-  OR (clasificacion = 'asistencia' AND estatus = 'ejecutada' and medida = 'TRATAMIENTO MEDICO' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31')
-  OR (clasificacion = 'asistencia' AND estatus = 'ejecutada' and medida = 'TRATAMIENTO SANITARIO' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31')";
+  WHERE (clasificacion = 'asistencia' AND estatus = 'ejecutada' and medida = 'TRATAMIENTO PSICOLOGICO' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31')
+  OR (clasificacion = 'asistencia' AND estatus = 'ejecutada' and medida = 'TRATAMIENTO MEDICO' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31')
+  OR (clasificacion = 'asistencia' AND estatus = 'ejecutada' and medida = 'TRATAMIENTO SANITARIO' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31')";
 $rt2 = $mysqli->query($t2);
 $ft2 = $rt2->fetch_assoc();
 //
 $t3 = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE (clasificacion = 'asistencia' AND estatus = 'cancelada' and medida = 'TRATAMIENTO PSICOLOGICO' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31')
-  OR (clasificacion = 'asistencia' AND estatus = 'cancelada' and medida = 'TRATAMIENTO MEDICO' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31')
-  OR (clasificacion = 'asistencia' AND estatus = 'cancelada' and medida = 'TRATAMIENTO SANITARIO' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31')";
+  WHERE (clasificacion = 'asistencia' AND estatus = 'cancelada' and medida = 'TRATAMIENTO PSICOLOGICO' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31')
+  OR (clasificacion = 'asistencia' AND estatus = 'cancelada' and medida = 'TRATAMIENTO MEDICO' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31')
+  OR (clasificacion = 'asistencia' AND estatus = 'cancelada' and medida = 'TRATAMIENTO SANITARIO' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31')";
 $rt3 = $mysqli->query($t3);
 $ft3 = $rt3->fetch_assoc();
 //
@@ -56,19 +56,19 @@ while ($fmas = $rmas->fetch_assoc()) {
   $ma = $fmas['nombre'];
   //
   $eje = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE clasificacion = 'asistencia' AND estatus = 'ejecutada'  AND medida = '$ma' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+  WHERE clasificacion = 'asistencia' AND estatus = 'ejecutada'  AND medida = '$ma' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
   ORDER BY `medidas`.`folioexpediente` ASC";
   $reje = $mysqli->query($eje);
   $feje = $reje->fetch_assoc();
   //
   $cancel = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE clasificacion = 'asistencia' AND estatus = 'cancelada' AND medida = '$ma' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+  WHERE clasificacion = 'asistencia' AND estatus = 'cancelada' AND medida = '$ma' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
   ORDER BY `medidas`.`folioexpediente` ASC";
   $rcancel = $mysqli->query($cancel);
   $fcancel = $rcancel->fetch_assoc();
   //
   $totalma = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE clasificacion = 'asistencia' AND medida = '$ma' and date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+  WHERE clasificacion = 'asistencia' AND medida = '$ma' and date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
   ORDER BY `medidas`.`folioexpediente` ASC";
   $rtotalma = $mysqli->query($totalma);
   $ftotalma = $rtotalma->fetch_assoc();

@@ -52,23 +52,23 @@
 
 //
   $masistotal = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE estatus = 'ejecutada' AND clasificacion = 'asistencia' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+  WHERE estatus = 'ejecutada' AND clasificacion = 'asistencia' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
   $rmasistotal = $mysqli->query($masistotal);
   $fmasistotal = $rmasistotal->fetch_assoc();
 //
   $mresgtotal = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE estatus = 'ejecutada' AND clasificacion = 'resguardo' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+  WHERE estatus = 'ejecutada' AND clasificacion = 'resguardo' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
   $rmresgtotal = $mysqli->query($mresgtotal);
   $fmresgtotal = $rmresgtotal->fetch_assoc();
 //
-  $mtotal2022 = "SELECT  COUNT(*) as t FROM `medidas`
-  WHERE estatus = 'ejecutada' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
-  $rmtotal2022 = $mysqli->query($mtotal2022);
-  $fmtotal2022 = $rmtotal2022->fetch_assoc();
+  $mtotal2023 = "SELECT  COUNT(*) as t FROM `medidas`
+  WHERE estatus = 'ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
+  $rmtotal2023 = $mysqli->query($mtotal2023);
+  $fmtotal2023 = $rmtotal2023->fetch_assoc();
 //
 
 $p = "SELECT ejecucion, COUNT(*) as t FROM medidas
-WHERE clasificacion = 'resguardo' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE clasificacion = 'resguardo' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
 GROUP BY ejecucion
 HAVING COUNT(*)>0
 ORDER BY `t`  DESC";
@@ -76,7 +76,7 @@ $rp = $mysqli->query($p);
 while ($fp = $rp->fetch_assoc()) {
   $clasif = $fp['ejecucion'];
   $pa = "SELECT COUNT(*) as t FROM medidas
-  WHERE ejecucion = '$clasif' AND clasificacion = 'asistencia' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+  WHERE ejecucion = '$clasif' AND clasificacion = 'asistencia' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
   $rpa = $mysqli->query($pa);
   while ($fpa = $rpa->fetch_assoc()) {
     echo "<tr>";
@@ -92,7 +92,7 @@ echo "<tr bgcolor = 'yellow'>";
 echo "<td style='text-align:right'>"; echo 'TOTAL'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fmasistotal['t']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fmresgtotal['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fmtotal2022['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fmtotal2023['t']; echo "</td>";
 echo "</tr>";
 ?>
 <!-- SELECT ejecucion, COUNT(*) as t FROM medidas

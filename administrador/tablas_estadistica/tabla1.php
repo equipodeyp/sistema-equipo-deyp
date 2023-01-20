@@ -5,6 +5,12 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2021-01-01' AND '2021-12-31'";
 $resyear2021 = $mysqli->query($year2021);
 $fila_yaer2021 = $resyear2021->fetch_assoc();
+// año total2022
+$year2022 = "SELECT COUNT(DISTINCT folioexpediente) AS cant FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
+$resyear2022 = $mysqli->query($year2022);
+$fila_year2022 = $resyear2022->fetch_assoc();
 //
 $year2021NOPROC = "SELECT COUNT(DISTINCT folioexpediente) AS cant1 FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -12,10 +18,16 @@ WHERE valoracionjuridica.resultadovaloracion = 'no procede' AND expediente.fecha
 $resyear2021NOPROC = $mysqli->query($year2021NOPROC);
 $fila_year2021NOPROC = $resyear2021NOPROC->fetch_assoc();
 // fin  del año 2021
+// inicio de no procedentes del año 2022
+$year2022NOPROC = "SELECT COUNT(DISTINCT folioexpediente) AS cant1 FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion = 'no procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
+$resyear2022NOPROC = $mysqli->query($year2022NOPROC);
+$fila_year2022NOPROC = $resyear2022NOPROC->fetch_assoc();
 // inicio de si procedentes del año 2022
 $total_enero = "SELECT COUNT(DISTINCT folioexpediente) AS total_enero FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-01-31'";
 $res_total_enero = $mysqli->query($total_enero);
 $fila_total_enero = $res_total_enero->fetch_assoc();
 //
@@ -79,11 +91,17 @@ WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha
 $res_total_noviembre = $mysqli->query($total_noviembre);
 $fila_total_noviembre = $res_total_noviembre->fetch_assoc();
 //
-$total2022si = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+$total_diciembre = "SELECT COUNT(DISTINCT folioexpediente) AS total_diciembre FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
-$res_total2022si = $mysqli->query($total2022si);
-$fila_total2022si = $res_total2022si->fetch_assoc();
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$res_total_diciembre = $mysqli->query($total_diciembre);
+$fila_total_diciembre = $res_total_diciembre->fetch_assoc();
+//
+$total2023si = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-12-31'";
+$res_total2023si = $mysqli->query($total2023si);
+$fila_total2023si = $res_total2023si->fetch_assoc();
 //
 $total2022si = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -94,7 +112,7 @@ $fila_total2022sistema = $res_total2022si->fetch_assoc();
 // inicio de no procedentes del año 2022
 $totalenero = "SELECT COUNT(DISTINCT folioexpediente) AS enerototal FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-01-31'";
 $restotalenero = $mysqli->query($totalenero);
 $fila_totalenero = $restotalenero->fetch_assoc();
 //
@@ -158,11 +176,17 @@ WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fech
 $restotalnoviembre = $mysqli->query($totalnoviembre);
 $fila_totalnoviembre = $restotalnoviembre->fetch_assoc();
 //
-$total2022no = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+$totaldiciembre = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-01-31'";
-$restotal2022no = $mysqli->query($total2022no);
-$fila_total2022no = $restotal2022no->fetch_assoc();
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$restotaldiciembre = $mysqli->query($totaldiciembre);
+$fila_totaldiciembre = $restotaldiciembre->fetch_assoc();
+//
+$total2023no = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-01-31'";
+$restotal2023no = $mysqli->query($total2023no);
+$fila_total2023no = $restotal2023no->fetch_assoc();
 //
 $total2022nosistema = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
@@ -177,9 +201,15 @@ WHERE expediente.fecha_nueva BETWEEN '2021-01-01' AND '2021-12-31'";
 $resyear2021total = $mysqli->query($year2021total);
 $fila_year2021total = $resyear2021total->fetch_assoc();
 //
+$year2022total = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
+$resyear2022total = $mysqli->query($year2022total);
+$fila_year2022total = $resyear2022total->fetch_assoc();
+//
 $enerototal = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-01-31'";
+WHERE expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-01-31'";
 $resenerototal = $mysqli->query($enerototal);
 $fila_enerototal = $resenerototal->fetch_assoc();
 //
@@ -242,12 +272,18 @@ INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
 WHERE expediente.fecha_nueva BETWEEN '2022-11-01' AND '2022-11-30'";
 $resnoviembretotal = $mysqli->query($noviembretotal);
 $fila_noviembretotal = $resnoviembretotal->fetch_assoc();
-//total 2022
-$total2022 = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+//
+$diciembretotal = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE expediente.fecha_nueva BETWEEN '2022-01-01' AND '2022-12-31'";
-$restotal2022 = $mysqli->query($total2022);
-$fila_total2022 = $restotal2022->fetch_assoc();
+WHERE expediente.fecha_nueva BETWEEN '2022-12-01' AND '2022-12-31'";
+$resdiciembretotal = $mysqli->query($diciembretotal);
+$fila_diciembretotal = $resdiciembretotal->fetch_assoc();
+//total 2022
+$total2023 = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
+INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
+WHERE expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-12-31'";
+$restotal2023 = $mysqli->query($total2023);
+$fila_total2023 = $restotal2023->fetch_assoc();
 // total del sistema
 $totalsistema = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp";
@@ -258,54 +294,60 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "JURIDICAMENTE PROCEDENTES"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_yaer2021['cant']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_year2022['cant']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_enero['total_enero']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_febrero['total_febrero']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_marzo['total_marzo']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_abril['total_abril']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_mayo['total_mayo']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_junio['total_junio']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_julio['total_julio']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_agosto['total_agosto']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_septiembre['total_septiembre']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_octubre['total_octubre']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total_noviembre['total_noviembre']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total2022si['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_febrero['total_febrero']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_marzo['total_marzo']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_abril['total_abril']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_mayo['total_mayo']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_junio['total_junio']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_julio['total_julio']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_agosto['total_agosto']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_septiembre['total_septiembre']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_octubre['total_octubre']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_noviembre['total_noviembre']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_total_diciembre['total_diciembre']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total2023si['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022sistema['t']; echo "</td>";
   echo "</tr>";
 
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "JURIDICAMENTE NO PROCEDENTES"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_year2021NOPROC['cant1']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_year2022NOPROC['cant1']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalenero['enerototal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalfebrero['febrerototal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalmarzo['marzototal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalabril['abriltotal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalmayo['mayototal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totaljunio['juniototal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totaljulio['juliototal']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalagosto['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalseptiembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totaloctubre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_totalnoviembre['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total2022no['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalfebrero['febrerototal']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalmarzo['marzototal']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalabril['abriltotal']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalmayo['mayototal']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totaljunio['juniototal']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totaljulio['juliototal']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalagosto['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalseptiembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totaloctubre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totalnoviembre['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_totaldiciembre['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total2023no['t']; echo "</td>";
   echo "<td style='text-align:center' bgcolor = 'yellow'>"; echo $fila_total2022nosistema['t']; echo "</td>";
   echo "</tr>";
 
   echo "<tr bgcolor = 'yellow'>";
   echo "<td style='text-align:right'>"; echo "TOTAL SOLICITUDES RECIBIDAS"; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_year2021total['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_year2022total['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_enerototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_febrerototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_marzototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_abriltotal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_mayototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_juliototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_agostototal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_septiembretotal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_octubretotal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_noviembretotal['t']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fila_total2022['t'];  echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_febrerototal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_marzototal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_abriltotal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_mayototal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_juliototal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_agostototal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_septiembretotal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_octubretotal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_noviembretotal['t']; echo "</td>";
+  // echo "<td style='text-align:center'>"; echo $fila_diciembretotal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total2023['t'];  echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalsistema['t'];  echo "</td>";
   echo "</tr>";
 

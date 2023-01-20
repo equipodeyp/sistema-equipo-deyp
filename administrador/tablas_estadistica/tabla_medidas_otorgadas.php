@@ -1,91 +1,91 @@
 <?php
 $tex = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND estatus = 'en ejecucion' AND date_definitva BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND estatus = 'en ejecucion' AND date_definitva BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtex = $mysqli->query($tex);
 $ftex = $rtex->fetch_assoc();
 //
 $texasis = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'en ejecucion' AND date_definitva BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'en ejecucion' AND date_definitva BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtexasis = $mysqli->query($texasis);
 $ftexasis = $rtexasis->fetch_assoc();
 //
 $texresg = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'en ejecucion' AND date_definitva BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'en ejecucion' AND date_definitva BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtexresg = $mysqli->query($texresg);
 $ftexresg = $rtexresg->fetch_assoc();
 //
 $texprov = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND estatus = 'en ejecucion' AND date_provisional BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND estatus = 'en ejecucion' AND date_provisional BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtexprov = $mysqli->query($texprov);
 $ftexprov = $rtexprov->fetch_assoc();
 //
 $texprovasis = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'en ejecucion' AND date_provisional BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'en ejecucion' AND date_provisional BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtexprovasis = $mysqli->query($texprovasis);
 $ftexprovasis = $rtexprovasis->fetch_assoc();
 //
 $texprovresg = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'en ejecucion' AND date_provisional BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'en ejecucion' AND date_provisional BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtexprovresg = $mysqli->query($texprovresg);
 $ftexprovresg = $rtexprovresg->fetch_assoc();
 //
 $teje = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rteje = $mysqli->query($teje);
 $fteje = $rteje->fetch_assoc();
 //
 $tejeasis = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtejeasis = $mysqli->query($tejeasis);
 $ftejeasis = $rtejeasis->fetch_assoc();
 //
 $tejeresg = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtejeresg = $mysqli->query($tejeresg);
 $ftejeresg = $rtejeresg->fetch_assoc();
 //
 $tejeasisdef = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtejeasisdef = $mysqli->query($tejeasisdef);
 $ftejeasisdef = $rtejeasisdef->fetch_assoc();
 //
 $tejeprovresg = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtejeprovresg = $mysqli->query($tejeprovresg);
 $ftejeprovresg = $rtejeprovresg->fetch_assoc();
 //
 $tejeprov = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtejeprov = $mysqli->query($tejeprov);
 $ftejeprov = $rtejeprov->fetch_assoc();
 //
 $tcancel = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtcancel = $mysqli->query($tcancel);
 $ftcancel = $rtcancel->fetch_assoc();
 //
 $tcancelasis = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND clasificacion = 'asistencia' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtcancelasis = $mysqli->query($tcancelasis);
 $ftcancelasis = $rtcancelasis->fetch_assoc();
 //
 $tcancelresg = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'definitiva' AND clasificacion = 'resguardo' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtcancelresg = $mysqli->query($tcancelresg);
 $ftcancelresg = $rtcancelresg->fetch_assoc();
 //
 $tcancelprov = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtcancelprov = $mysqli->query($tcancelprov);
 $ftcancelprov = $rtcancelprov->fetch_assoc();
 //
 $tcancelprovasis = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND clasificacion = 'asistencia' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtcancelprovasis = $mysqli->query($tcancelprovasis);
 $ftcancelprovasis = $rtcancelprovasis->fetch_assoc();
 //
 $tcancelprovresg = "SELECT COUNT(*) as total FROM `medidas`
-WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2022-01-01' AND '2022-12-31'";
+WHERE tipo = 'provisional' AND clasificacion = 'resguardo' AND estatus = 'CANCELADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'";
 $rtcancelprovresg = $mysqli->query($tcancelprovresg);
 $ftcancelprovresg = $rtcancelprovresg->fetch_assoc();
 //

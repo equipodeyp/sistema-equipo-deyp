@@ -159,8 +159,25 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
                 </a>
               </li>
+              <li >
+                <a href="#" data-toggle="modal" data-target="#add_data_Modal_alojamiento_temporal">
+                  <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/ALTEM.png" style="width:100px;height:70px;"></span>
+                  <div class="ca-content">
+                    <h2 class="ca-main">ALOJAMIENTO TEMPORAL</h2>
+                    <h3 class="ca-sub"></h3></div>
+                  </a>
+              </li>
+              <li >
+                <a href="#" data-toggle="modal" data-target="#add_data_Modal_total_sujetos_alojamiento">
+                  <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/refugio.png" style="width:100px;height:60px;"></span>
+                  <div class="ca-content">
+                    <h2 class="ca-main">TOTAL DE SUJETOS EN ALOJAMIENTO</h2>
+                    <h3 class="ca-sub"></h3></div>
+                  </a>
+              </li>
           </ul>
         </div>
+
         <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         <div class="contenedor" style="display: flex; justify-content: center;">
@@ -333,14 +350,13 @@ $result = $mysqli->query($sentencia);
             </div>
           </div>
         </div>
-
         <!-- fin resumen -->
         <!-- inicio resumen diario -->
         <?php
-        include("../administrador/archivos_html/resumendiario.html");
+        include("../administrador/archivos_html/resumendiario.html");//RESUMEN DIARO DEL SISTEMA
+        include("../administrador/archivos_html/medidas_alojamiento_temporal.html");//SUJETOS CON ALOJAMIENTO TEMPORAL
+        include("../administrador/archivos_html/total_sujetos_alojamiento.html");//TOTAL DE SUJETOS POR AÑO EN ALOJAMIENTO TEMPORAL
         ?>
-        <!-- fin resumen diario -->
-        <!-- fin Ejemplo tabla con DataTables-->
     </div>
   </div>
   <div class="contenedor">

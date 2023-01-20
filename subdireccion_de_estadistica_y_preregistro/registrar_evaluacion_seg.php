@@ -120,10 +120,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m" required>
                       <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
-                      <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
-                      <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
-                      <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
-                      <option value="ACTUALIZACION">4.- ACTUALIZACION</option>
+                      <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
+                      <option value="ESTUDIO TECNICO DE CANCELACION">2.- ESTUDIO TECNICO DE CANCELACION</option>
+                      <option value="ESTUDIO TECNICO DE CONCLUSION">3.- ESTUDIO TECNICO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
+                      <option value="AUTORIZACION DEL TITULAR">5.- AUTORIZACION DEL TITULAR</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -222,16 +223,11 @@ ocultarCampos();
 
 var analisisMultidisiplinario = document.getElementById('ANALISIS_MULT');
 var respuestaAlalisisMultidisiplinario = '';
-
-
 analisisMultidisiplinario.addEventListener('change', obtenerInfo);
-
-
     function obtenerInfo(e) {
       respuestaAlalisisMultidisiplinario = e.target.value;
-
-      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO" || respuestaAlalisisMultidisiplinario === "ACTUALIZACION") {
-
+      console.log(respuestaAlalisisMultidisiplinario);
+      if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE EVALUACION DE RIESGO" || respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE MODIFICACION") {
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
@@ -242,23 +238,20 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
         document.getElementById('LABEL_FECHA_INICIO').style.display = "";
         document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('convmodific').style.display = "";
         document.getElementById('LABEL_VIGENCIA').style.display = "";
         document.getElementById('INPUT_VIGENCIA').style.display = "";
         document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "";
         document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "";
-
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_GUARDAR').style.display = "";
-      }
-      else {
+      }else if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO DE CANCELACION") {
         document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
         document.getElementById('LABEL_ID_ANALISIS').style.display = "";
         document.getElementById('INPUT_ID_ANALISIS').style.display = "";
-
         document.getElementById('ROW_OBSERVACIONES').style.display = "";
         document.getElementById('ROW_GUARDAR').style.display = "";
-
         document.getElementById('LABEL_TIPO_CONVENIO').style.display = "none";
         document.getElementById('SELECT_TIPO_CONVENIO').style.display = "none";
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
@@ -269,12 +262,24 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
         document.getElementById('INPUT_VIGENCIA').style.display = "none";
         document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "none";
         document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "none";
+      }else if (respuestaAlalisisMultidisiplinario === "AUTORIZACION DEL TITULAR") {
+        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('INPUT_FECHA_AUTORIZACION').style.display = "";
+        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
+        document.getElementById('INPUT_ID_ANALISIS').style.display = "";
+        document.getElementById('LABEL_TIPO_CONVENIO').style.display = "";
+        document.getElementById('SELECT_TIPO_CONVENIO').style.display = "";
+        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
+        document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
+        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
+        document.getElementById('INPUT_FECHA_INICIO').style.display = "";
+        document.getElementById('convmodific').style.display = "none";
+        document.getElementById('LABEL_TOTAL_CONVENIOS').style.display = "";
+        document.getElementById('INPUT_TOTAL_CONVENIOS').style.display = "";
+        document.getElementById('ROW_OBSERVACIONES').style.display = "";
+        document.getElementById('ROW_GUARDAR').style.display = "";
       }
-
-
     }
-
-
 </script>
 <script type="text/javascript">
   var vertipconv = document.getElementById('SELECT_TIPO_CONVENIO');

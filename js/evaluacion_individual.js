@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
 var tipo = document.getElementById('SELECT_TIPO_CONVENIO').value;
 function disabledcampos() {
   console.log(tipo);
@@ -36,6 +37,10 @@ function activaracuerdo() {
   if (analisis === 'ACUERDO DE CONCLUSION' || analisis === 'ACUERDO DE CANCELACION') {
     document.getElementById('row_observ').style.display = "none";
     document.getElementById('enter').style.visibility = "hidden";
+  }else if (analisis !== '') {
+    document.getElementById('ANALISIS_MULT').disabled = true;
+    document.getElementById('INPUT_FECHA_AUTORIZACION').disabled = true;
+    document.getElementById('INPUT_ID_ANALISIS').disabled = true;
   }
 }
 activaracuerdo();

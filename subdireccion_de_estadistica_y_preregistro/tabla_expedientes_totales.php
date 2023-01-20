@@ -36,6 +36,20 @@ while ($fexps = $rexps->fetch_assoc()) {
   WHERE folioexpediente = '$expedienteest'";
   $rv = $mysqli->query($v);
   $fv = $rv->fetch_assoc();
+  ////////////////CONTAR CUANTAS PERSONAS PROPUESTAS SE ENCUENTRAN DENTRO DEL EXPEDIENTE////////////////////////////////////////////////////////////////////////
+  $cant_med="SELECT COUNT(*) AS cant FROM determinacionincorporacion
+  INNER JOIN datospersonales ON determinacionincorporacion.id_persona = datospersonales.id
+  WHERE determinacionincorporacion.folioexpediente = '$expedienteest' AND datospersonales.relacional = 'NO'";
+  $res_cant_med=$mysqli->query($cant_med);
+  $row_med = $res_cant_med->fetch_array(MYSQLI_ASSOC);
+  ////////////////CONTAR CUANTAS PERSONAS FIRMARON CONVENIO FORMALIZADO SE ENCUENTRAN DENTRO DEL EXPEDIENTE////////////////////////////////////////////////////////////////////////
+  $cant_med1="SELECT COUNT(*) AS cant FROM determinacionincorporacion WHERE folioexpediente = '$expedienteest' AND convenio = 'FORMALIZADO'";
+  $res_cant_med1=$mysqli->query($cant_med1);
+  $row_med1 = $res_cant_med1->fetch_array(MYSQLI_ASSOC);
+  ////////////////CONTAR CUANTAS PERSONAS VIGENTES SE ENCUENTRAN DENTRO DEL EXPEDIENTE////////////////////////////////////////////////////////////////////////
+  $cant_med2="SELECT COUNT(*) AS cant FROM datospersonales WHERE folioexpediente = '$expedienteest' AND estatus = 'SUJETO PROTEGIDO'";
+  $res_cant_med2=$mysqli->query($cant_med2);
+  $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
 
   // echo $fv['t'].'<br />';
 
@@ -52,7 +66,7 @@ while ($fexps = $rexps->fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $fexps['numeroradicacion']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['resultadovaloracion']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['motivoprocedencia']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $fexps['personas_propuestas']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['analisis']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['incorporacion']; echo "</td>";
   echo "<td style='text-align:center'>"; if ($fexps['fecha_analisis'] != '0000-00-00') {
@@ -137,6 +151,8 @@ while ($fexps = $rexps->fetch_assoc()) {
     echo date("d/m/Y", strtotime($fexps['date_desincorporacion']));
   }echo "</td>";
   echo "<td style='text-align:center'>"; echo $fexps['status']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $row_med1['cant']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $row_med2['cant']; echo "</td>";
   echo "</tr>";
 }
 ?>

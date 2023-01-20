@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];
@@ -34,6 +34,7 @@ if ($verifica_update_person == 1) {
   $vigencia = $_POST['vigencia'];
   // echo $vigencia;
   // echo $tipo_convenio.'<br />';
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
   if ($tipo_convenio === 'CONVENIO MODIFICATORIO') {
 
     $checkconvns = "SELECT COUNT(*) as t FROM evaluacion_persona WHERE folioexpediente = '$folioexpediente' AND id_unico = '$id_unico'";
@@ -95,7 +96,10 @@ if ($verifica_update_person == 1) {
   $act_eva_ind = "UPDATE evaluacion_persona SET  tipo_convenio= '$tipo_convenio', fecha_firma = '$fecha_firma', fecha_inicio = '$fecha_inicio', vigencia = '$vigencia', fecha_vigencia = '$fecha_vigencia',
                                                  id_convenio = '$id_convenio', observaciones = '$observaciones', fecha_modificacion = '$fecha_modificacion', usuario_mod = '$usuario' WHERE id = '$id_convenio_ind'";
   $res_act_eva_ind = $mysqli->query($act_eva_ind);
-
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // $analisisMultidisiplinario = $_POST['analisis_m'];
+  // $act_eva_ind = "UPDATE evaluacion_persona SET  analisis= '$analisisMultidisiplinario' WHERE id = '$id_convenio_ind'";
+  // $res_act_eva_ind = $mysqli->query($act_eva_ind);
   // validacion de update correcto
   if($res_act_eva_ind){
     echo ("<script type='text/javaScript'>

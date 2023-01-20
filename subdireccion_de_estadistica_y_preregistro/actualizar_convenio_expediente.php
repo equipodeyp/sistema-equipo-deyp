@@ -28,6 +28,7 @@ if ($verifica_update_person == 1) {
   // echo $fecha_inicio;
   $vigencia = $_POST['vigencia'];
   // echo $vigencia;
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
   if ($tipo_convenio === 'CONVENIO MODIFICATORIO') {
     $checkconvns = "SELECT COUNT(*) as t FROM evaluacion_expediente WHERE folioexpediente = '$folioexpediente'";
     $fcheckconvns = $mysqli->query($checkconvns);
@@ -70,6 +71,7 @@ if ($verifica_update_person == 1) {
       $fecha_vigencia = date("Y/m/d",strtotime($fecha_mas."- 1 days"));
     }
   }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // echo $fecha_vigencia;
   $total_convenios = $_POST['id_convenio'];
   $total_convenios;
@@ -79,13 +81,17 @@ if ($verifica_update_person == 1) {
   // echo $usuario;
   $fecha_modificacion = date('y/m/d');
   // echo $fecha_modificacion;
-
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////descomentar una vez que se haiga actualizado todo
   $act_eva_exp = "UPDATE evaluacion_expediente SET  tipo_convenio= '$tipo_convenio', fecha_firma = '$fecha_firma', fecha_inicio = '$fecha_inicio', vigencia = '$vigencia', fecha_vigencia = '$fecha_vigencia',
                                                  total_convenios = '$total_convenios', obseervaciones = '$observaciones', fecha_modificacion = '$fecha_modificacion', usuario_mod = '$usuario' WHERE id = '$id_convenio_exp'";
   $res_act_eva_exp = $mysqli->query($act_eva_exp);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
   // validacion de update correcto
+  /////////////////////////////////////////////////////////////////////////////////
+  // $analisisM = $_POST['analisis_m'];
+  // $act_eva_exp = "UPDATE evaluacion_expediente SET  analisis= '$analisisM' WHERE id = '$id_convenio_exp'";
+  // $res_act_eva_exp = $mysqli->query($act_eva_exp);
+  //////////////////////////////////////////////////////////////////////////////////
   if($res_act_eva_exp){
     echo ("<script type='text/javaScript'>
      window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_convenio_exp.php?id=$id_convenio_evaluacion';
