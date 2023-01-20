@@ -370,13 +370,29 @@ text-decoration: underline;
   $ftmf = $rtmf->fetch_assoc();
   $mmed =  $ftmf['t'];
   ?>
-  <script type="text/javascript">
-  <?php
+
+<?php
+
+$sqltic = "SELECT COUNT(*) as ti FROM tickets WHERE estatus='ATENDIDA' AND usuario='DIANA GONZÁLEZ VALLEJO'";
+$rt = $mysqli->query($sqltic);
+$num_ti = $rt->fetch_assoc();
+$counti = $num_ti['ti'];
+echo 'tickets en proceso: ' . $counti;
+?>
+
+
+  <!-- <?php
   echo "var jsvar ='$var';";
   echo "var jsvmedidasfalse ='$mmed';";
-  ?>
-  console.log(jsvar);
-  console.log(jsvmedidasfalse);
+  ?> -->
+
+
+
+
+
+    <script type="text/javascript">
+    console.log(jsvar);
+    console.log(jsvmedidasfalse);
 
     if (jsvmedidasfalse > 0) {
       document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible

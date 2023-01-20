@@ -253,4 +253,5 @@ const  generateRandomString = (num) => {
 generateRandomString(7);
 </script>
 </body>
-</html>
+</html>}
+
