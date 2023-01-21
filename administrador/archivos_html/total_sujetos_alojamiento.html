@@ -35,9 +35,33 @@
                   include("../administrador/tablas_estadistica/total_sujetos_alojamiento.php");
                   ?>
                 </tbody>
-              </table>            
+              </table>
               <em>* Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal"
                     que se encuentren activos dentro del Programa
+              </em>
+            </div>
+            <div class="col-lg-8" >
+              <table id="" border="1px" cellspacing="0" width="100%" bordered>
+                <thead>
+                  <h3></h3>
+                    <tr>
+                      <!-- <th style="text-align:center"></th> -->
+                      <th style="text-align:center">DESCRIPCION</th>
+                      <th style="text-align:center">SUJETOS <br> INCORPORADOS *</th>
+                      <th style="text-align:center">SUJETOS EN CENTROS <br> DE RESGUARDO **</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/total_sujetos_activos_y_en_resguardo.php");
+                  ?>
+                </tbody>
+              </table>
+              <em>
+                * Comprende todos los sujetos incorporados independientemente de su estatus actual dentro del Programa <br>
+                ** Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal"
+                ya sea que se encuentren activos o no dentro del Programa
+
               </em>
             </div>
           </div>
