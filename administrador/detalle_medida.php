@@ -68,7 +68,7 @@ $validacion = $fil_val['validacion'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <!-- <script src="../js/mascara2campos.js"></script> -->
   <script src="../js/mod_medida.js"></script>
@@ -217,7 +217,7 @@ $validacion = $fil_val['validacion'];
           <!-- medida de asistencia -->
           <div class="col-md-6 mb-3 validar" id="asistencia">
             <label for="MEDIDAS_ASISTENCIA">INCISO DE LA MEDIDA DE ASISTENCIA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA" onChange="selectother(this)">
+            <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA">
               <option style="visibility: hidden" value="<?php echo $rowmedida['medida']; ?>"><?php echo $rowmedida['medida']; ?></option>
               <?php
               $asistencia = "SELECT * FROM medidaasistencia";
@@ -237,7 +237,7 @@ $validacion = $fil_val['validacion'];
           <!-- medidas de resguardo -->
           <div class="col-md-6 mb-3 validar" id="resguardo">
             <label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO" onChange="selectmedidares(this)" >
+            <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO">
               <option style="visibility: hidden" value="<?php echo $rowmedida['medida']; ?>"><?php echo $rowmedida['medida']; ?></option>
               <?php
               $resguardo = "SELECT * FROM medidaresguardo";
@@ -306,7 +306,7 @@ $validacion = $fil_val['validacion'];
 
             <div class="col-md-6 mb-3 validar">
               <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA" onchange="actualizar_estatus_medida(this)">
+              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA">
                 <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
                 <option value="EN EJECUCION" >EN EJECUCION</option>
                 <option value="EJECUTADA">EJECUTADA</option>
@@ -340,7 +340,9 @@ $validacion = $fil_val['validacion'];
              <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
                <label for="FECHA_DE_EJECUCION" id="dat_ejec" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
                <label for="FECHA_DE_CANCELACION" id="dat_cancel" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php echo $rowmedida['date_ejecucion']; ?>">
+               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php if ($rowmedida['date_ejecucion'] !== '0000-00-00') {
+                 echo $rowmedida['date_ejecucion'];
+               } ?>">
              </div>
 
              <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
@@ -451,7 +453,7 @@ $validacion = $fil_val['validacion'];
               $res_val13=$mysqli->query($valid13);
               $fil_val13 = $res_val13->fetch_assoc();
               $validacion13 = $fil_val13['validacion'];
-                if ($validacion13 != 'true') {
+
                   echo '
 
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
@@ -464,7 +466,7 @@ $validacion = $fil_val['validacion'];
                     		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
                     </div>
                   </div>';
-                }
+
                ?>
 
 
@@ -516,10 +518,10 @@ document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
 </script>
 
 <script type="text/javascript">
-var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
-if(estatusMedidas === "EN EJECUCION"){
-  document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
-}
+// var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
+// if(estatusMedidas === "EN EJECUCION"){
+//   document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
+// }
 </script>
 <script type="text/javascript">
   var clasificacionmedida = document.getElementById('CLASIFICACION_MEDIDA').value;
@@ -562,21 +564,23 @@ if(estatusMedidas === "EN EJECUCION"){
   inciso_resguardo();
   /////////////////////////////////////////////////////////////////////////
   // estatus de la medida ///////////
-  var estatus_medida = document.getElementById('ESTATUS_MEDIDA').value;
-  function mostrar_estatus_medida() {
-    // console.log(estatus_medida);
-    if (estatus_medida === 'EJECUTADA') {
-      document.getElementById('dat_ejec').style.display = "";
-      document.getElementById('fecha_conclusion').style.display = "";
-      document.getElementById('conclu_cancel').style.display = "";
-      document.getElementById('CONCLUSION_ART35').style.display = "";
-    }else if (estatus_medida === 'CANCELADA') {
-      document.getElementById('dat_cancel').style.display = "";
-      document.getElementById('fecha_conclusion').style.display = "";
-      document.getElementById('MOTIVO').style.display = "";
-    }
-  }
-  mostrar_estatus_medida();
+  // var estatus_medida = document.getElementById('ESTATUS_MEDIDA').value;
+  // function mostrar_estatus_medida() {
+  //   // console.log(estatus_medida);
+  //   if (estatus_medida === 'EJECUTADA') {
+  //     document.getElementById('dat_ejec').style.display = "";
+  //     document.getElementById('fecha_conclusion').style.display = "";
+  //     document.getElementById('conclu_cancel').style.display = "";
+  //     document.getElementById('CONCLUSION_ART35').style.display = "";
+  //   }else if (estatus_medida === 'CANCELADA') {
+  //     document.getElementById('dat_cancel').style.display = "";
+  //     document.getElementById('fecha_conclusion').style.display = "";
+  //     document.getElementById('MOTIVO').style.display = "";
+  //   }
+  // }
+  // mostrar_estatus_medida();
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 // motivo de cancelacion y/o conclusion
   // var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
@@ -605,6 +609,24 @@ if(estatusMedidas === "EN EJECUCION"){
 
 <script type="text/javascript">
 
+
+// medidas asistencia
+var medidasAsistencia = document.getElementById("MEDIDAS_ASISTENCIA");
+var medDeAsistencia;
+
+medidasAsistencia.addEventListener('change', obtenerMedDeAsistencia);
+    function obtenerMedDeAsistencia(e) {
+      medDeAsistencia = e.target.value;
+      console.log(medDeAsistencia);
+      if (medDeAsistencia === 'VI. OTRAS') {
+        document.getElementById("otherasistencia").style.display = "";
+      }else {
+        document.getElementById("otherasistencia").style.display = "none";
+      }
+    }
+
+// medidas de resguardo
+
 var medidasResguardo = document.getElementById("MEDIDAS_RESGUARDO");
 var medDeResguardo;
 
@@ -612,10 +634,22 @@ medidasResguardo.addEventListener('change', obtenerMedDeResguardo);
     function obtenerMedDeResguardo(e) {
       medDeResguardo = e.target.value;
       console.log(medDeResguardo);
-      if (medDeResguardo == "XI. EJECUCION DE MEDIDAS PROCESALES" || medDeResguardo == "XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS" || medDeResguardo =="XIII. OTRAS MEDIDAS"){
-      document.getElementById("RESGUARDO_XI").value = "";
-      document.getElementById("FECHA_ACTUALIZACION_MEDIDA").value = "";
-      document.getElementById("OTRA_MEDIDA_RESGUARDO").value = "";
+      if (medDeResguardo == "XI. EJECUCION DE MEDIDAS PROCESALES"){
+        document.getElementById("resguardoxi").style.display = "";
+        document.getElementById("resguardoxii").style.display = "none";
+        document.getElementById("otherresguardo").style.display = "none";
+      }else if (medDeResguardo === 'XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
+        document.getElementById("resguardoxi").style.display = "none";
+        document.getElementById("resguardoxii").style.display = "";
+        document.getElementById("otherresguardo").style.display = "none";
+      }else if (medDeResguardo === 'XIII. OTRAS MEDIDAS') {
+        document.getElementById("resguardoxi").style.display = "none";
+        document.getElementById("resguardoxii").style.display = "none";
+        document.getElementById("otherresguardo").style.display = "";
+      }else {
+        document.getElementById("resguardoxi").style.display = "none";
+        document.getElementById("resguardoxii").style.display = "none";
+        document.getElementById("otherresguardo").style.display = "none";
       }
 
 }
@@ -630,21 +664,32 @@ var estatusMed;
 estatusMedida.addEventListener('change', obtenerEstatusMed);
     function obtenerEstatusMed(e) {
       estatusMed = e.target.value;
-      // console.log(estatusMed);
-      if (estatusMed == "EN EJECICION" ){
-        document.getElementById("FECHA_DESINCORPORACION").value = "";
-        document.getElementById("MOTIVO_CANCEL").value = "";
-        document.getElementById("CONCLUSION_CANCELACION").value = "";
+      console.log(estatusMed);
+      if (estatusMed == "EN EJECUCION" ){
+        document.getElementById("fecha_conclusion").style.display = "none";
+        document.getElementById("dat_ejec").style.display = "none";
+        document.getElementById("dat_cancel").style.display = "none";
+        document.getElementById("FECHA_DESINCORPORACION").style.display = "none";
+        document.getElementById("conclu_cancel").style.display = "none";
+        document.getElementById("MOTIVO").style.display = "none";
         document.getElementById("CONCLUSION_ART35select").value = "";
-        document.getElementById("OTHER_ART351").value = "";
-      }
-
-      else{
-        document.getElementById("MOTIVO_CANCEL").value = "";
-        document.getElementById("FECHA_DESINCORPORACION").value = "";
-        document.getElementById("CONCLUSION_CANCELACION").value = "";
+        document.getElementById("OTHERART35").style.display = "none";
+      }else if (estatusMed == "EJECUTADA") {
+        document.getElementById("fecha_conclusion").style.display = "";
+        document.getElementById("dat_ejec").style.display = "";
+        document.getElementById("dat_cancel").style.display = "none";
+        document.getElementById("FECHA_DESINCORPORACION").style.display = "";
+        document.getElementById("conclu_cancel").style.display = "";
+        document.getElementById("MOTIVO").style.display = "none";
+      }else if (estatusMed == "CANCELADA") {
+        document.getElementById("fecha_conclusion").style.display = "";
+        document.getElementById("dat_ejec").style.display = "none";
+        document.getElementById("dat_cancel").style.display = "";
+        document.getElementById("FECHA_DESINCORPORACION").style.display = "";
+        document.getElementById("conclu_cancel").style.display = "none";
+        document.getElementById("MOTIVO").style.display = "";
         document.getElementById("CONCLUSION_ART35select").value = "";
-        document.getElementById("OTHER_ART351").value = "";
+        document.getElementById("OTHERART35").style.display = "none";
       }
 
 }
