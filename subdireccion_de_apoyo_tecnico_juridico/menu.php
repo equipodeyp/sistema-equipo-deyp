@@ -369,8 +369,6 @@ text-decoration: underline;
   $rtmf = $mysqli->query($tmf);
   $ftmf = $rtmf->fetch_assoc();
   $mmed =  $ftmf['t'];
-  echo "var jsvar ='$var';";
-  echo "var jsvmedidasfalse ='$mmed';";
   ?>
 
 <?php
@@ -383,14 +381,16 @@ echo 'tickets en proceso: ' . $counti;
 ?>
 
 
-  <!-- <?php
-  ?> -->
 
 
 
 
 
     <script type="text/javascript">
+    <?php
+    echo "var jsvar ='$var';";
+    echo "var jsvmedidasfalse ='$mmed';";
+    ?>
     console.log(jsvar);
     console.log(jsvmedidasfalse);
 
