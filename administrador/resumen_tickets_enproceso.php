@@ -10,7 +10,7 @@ if (!isset($name)) {
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
-// echo $name;
+echo $name;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -22,6 +22,8 @@ $row=$result->fetch_assoc();
 // $resultado = $mysqli->query($sql);
 // $row = $resultado->fetch_array(MYSQLI_ASSOC);
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ?>

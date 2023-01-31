@@ -68,14 +68,14 @@ $num_incidencia = 0 . $suma;
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <script src="../js/mod_medida.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
   <script src="../js/main.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/validarmascara3.js"></script>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -176,6 +176,11 @@ $num_incidencia = 0 . $suma;
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
                   </div>
 
+                  <div class="col-md-6 mb-3" style="display: none">
+                    <label>USUARIO EN ATENCION<span ></span></label>
+                    <input readonly class="form-control" id="atencion" name="atencion" type="text" value="">
+                  </div>
+
                   <div class="col-md-6 mb-3">
                     <label>FOLIO DE LA INCIDENCIA<span></span></label>
                     <input readonly class="form-control" id="folio_reporte" name="folio_reporte" type="text" value="">
@@ -249,6 +254,33 @@ const  generateRandomString = (num) => {
     }
 
 generateRandomString(7);
+
+</script>
+
+<script type="text/javascript">
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+let alea = getRandomInt(23);
+
+console.log(alea);
+
+if (alea === 1 || alea === 4 || alea === 7 || alea === 10 || alea === 13 || alea === 16 || alea === 19 || alea === 22){
+  const azael = "AZAEL OLIVAR GARCIA";
+  document.getElementById("atencion").value = azael;
+  console.log(azael);
+}
+else if (alea === 2 || alea === 5 || alea === 8 || alea === 11 || alea === 14 || alea === 17 || alea === 20 || alea === 23){
+  const jon = "JONATHAN EDUARDO SANTIAGO JIMENEZ";
+  document.getElementById("atencion").value = jon;
+  console.log(jon);
+}
+else if(alea === 3 || alea === 6 || alea === 9 || alea === 12 || alea === 15 || alea === 18 || alea === 21 || alea === 0){
+  const gab = "GABRIELA PICHARDO GARCIA";
+  document.getElementById("atencion").value = gab;
+  console.log(gab);
+}
 </script>
 </body>
 </html>

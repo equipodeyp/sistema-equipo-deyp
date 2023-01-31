@@ -64,12 +64,12 @@ if ($verifica == 1) {
 
     if($result) {
       
-      $num_user=rand(1,24);
-      // $num_user=rand(1,3);
+      // $num_user=rand(1,24);
+      $num_user=rand(1,3);
       $mail = new PHPMailer(true);
 
-      // if ($num_user === 1 || $num_user === 2 || $num_user === 3 ){
-      if ($num_user === 1 || $num_user === 4 || $num_user === 7 || $num_user === 10 || $num_user === 13 || $num_user === 16 || $num_user === 19 || $num_user === 22){
+      if ($num_user === 1 || $num_user === 2 || $num_user === 3 ){
+      // if ($num_user === 1 || $num_user === 4 || $num_user === 7 || $num_user === 10 || $num_user === 13 || $num_user === 16 || $num_user === 19 || $num_user === 22){
 
       //Server settings
       $mail->SMTPDebug = 0;                      //Enable verbose debug output
@@ -113,92 +113,92 @@ if ($verifica == 1) {
 
 
 
-      if ($num_user === 2 || $num_user === 5 || $num_user === 8 || $num_user === 11 || $num_user === 14 || $num_user === 17 || $num_user === 20 || $num_user === 23){
+      // if ($num_user === 2 || $num_user === 5 || $num_user === 8 || $num_user === 11 || $num_user === 14 || $num_user === 17 || $num_user === 20 || $num_user === 23){
 
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      //   //Server settings
+      //   $mail->SMTPDebug = 0;                      //Enable verbose debug output
+      //   $mail->isSMTP();                                            //Send using SMTP
+      //   $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+      //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+      //   $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+      //   $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
+      //   $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+      //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('dpye_principal@gmail.com');     //Add a recipient
-        $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
-        $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
+      //   //Recipients
+      //   $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+      //   $mail->addAddress('dpye_principal@gmail.com');     //Add a recipient
+      //   $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
+      //   $mail->addAddress('gapichardoga@fiscaliaedomex.gob.mx');              //Name is optional
+      //   // $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
+      //   // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+      //   // $mail->addReplyTo('info@example.com', 'Information');
+      //   // $mail->addCC('cc@example.com');
+      //   // $mail->addBCC('bcc@example.com');
   
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      //   //Attachments
+      //   // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+      //   // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
   
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
+      //   //Content
+      //   $mail->isHTML(true);                                  //Set email format to HTML
+      //   $mail->Subject = $asunto;
+      //   $mail->Body    = $body;
+      //   // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+      //   $mail->CharSet = 'UTF-8';
+      //   $mail->send();
+      //   echo $verifica;
+      //   echo ("<script type='text/javaScript'>
+      //             window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
+      //             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+      //             </script>");
   
-        }
+      //   }
 
 
 
         
-      if ($num_user === 3 || $num_user === 6 || $num_user === 9 || $num_user === 12 || $num_user === 15 || $num_user === 18 || $num_user === 21 || $num_user === 24){
+      // if ($num_user === 3 || $num_user === 6 || $num_user === 9 || $num_user === 12 || $num_user === 15 || $num_user === 18 || $num_user === 21 || $num_user === 24){
 
-        //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-        $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      //   //Server settings
+      //   $mail->SMTPDebug = 0;                      //Enable verbose debug output
+      //   $mail->isSMTP();                                            //Send using SMTP
+      //   $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+      //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+      //   $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+      //   $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
+      //   $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+      //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
-        //Recipients
-        $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-        $mail->addAddress('dpye_principal@gmail.com');     //Add a recipient
-        $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
-        $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
-        // $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
-        // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
-        // $mail->addReplyTo('info@example.com', 'Information');
-        // $mail->addCC('cc@example.com');
-        // $mail->addBCC('bcc@example.com');
+      //   //Recipients
+      //   $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+      //   $mail->addAddress('dpye_principal@gmail.com');     //Add a recipient
+      //   $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
+      //   $mail->addAddress('jsantiagoj@fiscaliaedomex.gob.mx');              //Name is optional
+      //   // $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');
+      //   // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
+      //   // $mail->addReplyTo('info@example.com', 'Information');
+      //   // $mail->addCC('cc@example.com');
+      //   // $mail->addBCC('bcc@example.com');
   
-        //Attachments
-        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+      //   //Attachments
+      //   // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+      //   // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
   
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = $asunto;
-        $mail->Body    = $body;
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        $mail->CharSet = 'UTF-8';
-        $mail->send();
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                  </script>");
+      //   //Content
+      //   $mail->isHTML(true);                                  //Set email format to HTML
+      //   $mail->Subject = $asunto;
+      //   $mail->Body    = $body;
+      //   // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+      //   $mail->CharSet = 'UTF-8';
+      //   $mail->send();
+      //   echo $verifica;
+      //   echo ("<script type='text/javaScript'>
+      //             window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
+      //             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+      //             </script>");
   
-        }
+      //   }
     }
 
 }

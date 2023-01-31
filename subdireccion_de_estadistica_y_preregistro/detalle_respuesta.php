@@ -187,14 +187,14 @@ if (isset($_POST['update'])) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <script src="../js/mod_medida.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
   <script src="../js/main.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/validarmascara3.js"></script>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -260,7 +260,7 @@ if (isset($_POST['update'])) {
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-                <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?folio=<?php echo $folio_expediente; ?>">EXPEDIENTE</a>
+                <a href="../subdireccion_de_estadistica_y_preregistro/detalles_expediente.php?id=<?php echo $folio_expediente; ?>">EXPEDIENTE</a>
                 <a href="../subdireccion_de_estadistica_y_preregistro/tickets.php?folio=<?php echo $folio_expediente; ?>">INCIDENCIAS</a>
                 <a class="actived">DETALLE DE LA INCIDENCIA</a>
           </div>
@@ -335,7 +335,7 @@ if (isset($_POST['update'])) {
 
                 <div id="ATENCION" class="col-md-6 mb-3">
                   <label>USUARIO QUE ATIENDE LA INCIDENCIA<span></span></label>
-                  <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion;?>" readonly>
+                  <input class="form-control" id="" name="atendido_por" value="<?php echo $usuario_atencion;?>" readonly>
                 </div>
 
                 <div id="RESPUESTA" class="row">

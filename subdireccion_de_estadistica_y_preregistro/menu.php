@@ -9,6 +9,7 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+// echo"$name";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -239,7 +240,17 @@ a:focus {
       </div>
       <nav class="menu-nav">
         <ul>
-          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;" >GLOSARIO</span></a></li>
+          
+        <!-- <?php
+
+          if ($name=='e-gabriela' || $name=='e-azael' || $name=='e-jonathan') {
+            echo "<a style='text-align:center' class='user-nombre' href='./incidencias_por_atender.php'><button type='button' class='btn btn-light'>INCIDENCIAS</button> </a>";
+          }
+
+          ?> -->
+
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
+          <!-- <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;" >GLOSARIO</span></a></li> -->
           <li id="liestadistica" class="subtitle">
       			<a href="#" class="action"><i class='color-icon fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
       			<ul class="submenu">
