@@ -68,6 +68,10 @@ while ($var_fila=$var_resultado->fetch_array()){
       $p = $fv['paternopersona'];
       $m = $fv['maternopersona'];
 
+      $v23="SELECT COUNT(*) as t FROM datospersonales WHERE folioexpediente='$fol_exp2'";
+      $rv23=$mysqli->query($v23);
+      $fv23 = $rv23->fetch_assoc();
+
       echo "<tr>";
         echo "<td style='text-align:center' width='50'>"; echo $consecutivo; if ($fv['relacional'] === 'SI') {
           // echo "*SI";
@@ -87,7 +91,7 @@ while ($var_fila=$var_resultado->fetch_array()){
         echo "<td style='text-align:center'>"; echo $fila_aut['nombreautoridad']; echo "</td>";
         echo "<td style='text-align:center' width='50'>"; echo $var_fila['fecharecep']; echo "</td>";
         echo "<td style='text-align:center' >"; echo $fdelp['delitoprincipal']; echo "</td>";
-        echo "<td style='text-align:center' width='50'>"; echo $fila_p_p['personas_propuestas']; echo "</td>";
+        echo "<td style='text-align:center' width='50'>"; echo $fv23['t']; echo "</td>";
         echo "<td style='text-align:center' width='50'>"; echo $row_med1['sujetos_protegidos']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fila_med_ejec['medidas_ejecutadas']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fila_med_enejecucion['medidas_en_ejecucion']; echo "</td>";

@@ -132,6 +132,15 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">SUJETOS - ESTATUS - CALIDAD</h3></div>
               </a>
             </li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#add_data_Modal_medidas1">
+                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/MEDIDAS.png" style="width:60px;height:60px;"></span>
+                <div class="ca-content">
+                  <h2 class="ca-main">MEDIDAS</h2>
+                  <h3 class="ca-sub">PROVISIONALES - DEFINITIVAS - ASISTENCIA - RESGUARDO- EJECUTADAS </h3></div>
+              </a>
+            </li>
+            <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_expedientes">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/EXPEDIENTES.png" style="width:60px;height:60px;"></span>
                 <div class="ca-content">

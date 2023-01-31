@@ -381,16 +381,16 @@ echo 'tickets en proceso: ' . $counti;
 ?>
 
 
-  <!-- <?php
-  echo "var jsvar ='$var';";
-  echo "var jsvmedidasfalse ='$mmed';";
-  ?> -->
 
 
 
 
 
     <script type="text/javascript">
+    <?php
+    echo "var jsvar ='$var';";
+    echo "var jsvmedidasfalse ='$mmed';";
+    ?>
     console.log(jsvar);
     console.log(jsvmedidasfalse);
 
