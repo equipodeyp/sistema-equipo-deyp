@@ -6,7 +6,9 @@ $alotem = "SELECT DISTINCT id_persona FROM medidas
 WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL'";
 $ralotem = $mysqli->query($alotem);
 while ($falotem = $ralotem->fetch_assoc()) {
+  // $folsujeto = $falotem['folioexpediente'];
   $idsujeto = $falotem['id_persona'];
+
 
   $suj2021 = "SELECT COUNT(*) as t FROM `medidas`
   WHERE id_persona = '$idsujeto' AND estatus != 'CANCELADA' AND medida = 'VIII. ALOJAMIENTO TEMPORAL' AND (date_provisional BETWEEN '2021-06-01' AND '2021-12-31' OR date_definitva BETWEEN '2021-01-01' AND '2021-12-31')";
@@ -38,7 +40,13 @@ while ($falotem = $ralotem->fetch_assoc()) {
   WHERE id = '$idsujeto'";
   $ralotem2 = $mysqli->query($alotem2);
   while ($falotem2 = $ralotem2->fetch_assoc()) {
+      $folsujeto = $falotem2['folioexpediente'];
       $auxcontador = $auxcontador + 1;
+
+      $expedientesuj = "SELECT * FROM expediente
+      WHERE fol_exp = '$folsujeto'";
+      $rexpedientesuj = $mysqli->query($expedientesuj);
+      $fexpedientesuj = $rexpedientesuj->fetch_assoc();
 
       $conveniosuj = "SELECT * FROM determinacionincorporacion
       WHERE id = '$idsujeto'";
@@ -52,11 +60,14 @@ while ($falotem = $ralotem->fetch_assoc()) {
       } echo ">";
         echo "<td style='text-align:center'>"; echo $auxcontador; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['folioexpediente']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fexpedientesuj['fecha_nueva']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['identificador']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $falotem2['estatus']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['sexopersona']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['edadpersona']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $falotem2['grupoedad']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fconveniosuj['convenio']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fconveniosuj['fecha_inicio']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2022['t']; echo "</td>";
         echo "<td style='text-align:center'>"; echo $fsuj2023['t']; echo "</td>";
@@ -77,7 +88,7 @@ while ($falotem = $ralotem->fetch_assoc()) {
           $date11 = $falotem3['date_provisional'];
         }
         if ($falotem4['date_ejecucion'] === '0000-00-00') {
-          $date22 = date('Y/m/d');        
+          $date22 = date('Y/m/d');
         }else {
           $date22 = $falotem4['date_ejecucion'];
         }
@@ -89,6 +100,7 @@ while ($falotem = $ralotem->fetch_assoc()) {
          // Total amount of days
          echo $interval->days . " dias";
         echo "</td>";
+        echo "<td style='text-align:center'>"; echo $falotem4['estatus']; echo "</td>";
         echo "</tr>";
 
   }
