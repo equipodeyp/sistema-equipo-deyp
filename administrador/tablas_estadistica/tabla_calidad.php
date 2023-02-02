@@ -14,13 +14,13 @@ $ftotal_calper2022 = $rtotal_calper2022->fetch_assoc();
 //
 $total_wenero1 = "SELECT COUNT(*) AS total FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE autoridad.fechasolicitud BETWEEN '2022-01-01' AND '2022-01-31' ORDER BY `calidadpersona`";
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '2023-01-01' AND '2023-01-31' ORDER BY `calidadpersona`";
 $rtotal_wenero1 = $mysqli->query($total_wenero1);
 $ftotal_wenero1 = $rtotal_wenero1->fetch_assoc();
 //
 $total_wfebrero = "SELECT COUNT(*) AS total FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE autoridad.fechasolicitud BETWEEN '2022-02-01' AND '2022-02-28' ORDER BY `calidadpersona`";
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '2023-02-01' AND '2023-02-28' ORDER BY `calidadpersona`";
 $rtotal_wfebrero = $mysqli->query($total_wfebrero);
 $ftotal_wfebrero = $rtotal_wfebrero->fetch_assoc();
 //
@@ -107,13 +107,13 @@ while ($fila = $res->fetch_assoc()) {
     //
     $wenero = "SELECT COUNT(*) AS calidad FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-    WHERE datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2023-01-01' AND '2023-01-31' ORDER BY `calidadpersona`";
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2023-01-01' AND '2023-01-31' ORDER BY `calidadpersona`";
     $rwenero = $mysqli->query($wenero);
     $fwenero = $rwenero->fetch_assoc();
     //
     $wfebrero = "SELECT COUNT(*) AS calidad FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-    WHERE datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2022-02-01' AND '2022-02-28' ORDER BY `calidadpersona`";
+    WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2023-02-01' AND '2023-02-28' ORDER BY `calidadpersona`";
     $rwfebrero = $mysqli->query($wfebrero);
     $fwfebrero = $rwfebrero->fetch_assoc();
     //
@@ -203,7 +203,7 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $www['calidad']; "</td>";
         echo "<td style='text-align:center'>"; echo $fwtotal2022['total']; "</td>";
         echo "<td style='text-align:center'>"; echo $fwenero['calidad']; "</td>";
-        // echo "<td style='text-align:center'>"; echo $fwfebrero['calidad']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fwfebrero['calidad']; echo "</td>";
         // echo "<td style='text-align:center'>"; echo $fwmarzo['calidad']; echo "</td>";
         // echo "<td style='text-align:center'>"; echo $fwabril['calidad']; echo "</td>";
         // echo "<td style='text-align:center'>"; echo $fwmayo['calidad']; echo "</td>";
@@ -226,7 +226,7 @@ echo "<td style='text-align:right'>"; echo " TOTAL DE PERSONAS"; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_wenero['total2021']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_calper2022['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_wenero1['total']; echo "</td>";
-// echo "<td style='text-align:center'>"; echo $ftotal_wfebrero['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wfebrero['total']; echo "</td>";
 // echo "<td style='text-align:center'>"; echo $ftotal_wmarzo['total']; echo "</td>";
 // echo "<td style='text-align:center'>"; echo $ftotal_wabril['total']; echo "</td>";
 // echo "<td style='text-align:center'>"; echo $ftotal_wmayo['total']; echo "</td>";
