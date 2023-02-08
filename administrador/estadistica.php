@@ -187,9 +187,10 @@ $result = $mysqli->query($sentencia);
           </ul>
         </div>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
+        <!-- <br><br><br><br><br><br> -->
 
-        <div class="contenedor" style="display: flex; justify-content: center;">
+        <!-- <div class="contenedor" style="display: flex; justify-content: center;">
           <ul class="ca-menu">
 
             <li >
@@ -206,7 +207,7 @@ $result = $mysqli->query($sentencia);
                 <span class="ca-icon"><img alt="" src="" style="width:70px;height:70px;"></span>
                 <div class="ca-content">
                   <h2 class="ca-main">RESUMEN SEMANAL</h2>
-                   <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div> -->
+                   <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
                 </a>
             </li>
 
@@ -220,7 +221,7 @@ $result = $mysqli->query($sentencia);
             </li>
 
           </ul>
-        </div>
+        </div> -->
 
         <?php
         date_default_timezone_set("America/Mexico_City");

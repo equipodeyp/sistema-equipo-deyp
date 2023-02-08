@@ -51,6 +51,7 @@ if  (isset($_GET['id'])) {
     $fecha_atencion = $row['fecha_atencion'];
     $usuario_atencion = $row['usuario_atencion'];
     $respuesta = $row['respuesta'];
+    $en_atencion = $row['usuario_atencion'];
     $estatus = $row['estatus'];
     $user = $row['usuario'];
     $subdirec = $row['subdireccion'];
@@ -231,6 +232,11 @@ if  (isset($_GET['id'])) {
                   <div class="alert alert-info">
                     <h3 style="text-align:center">ATENCIÓN DE LA INCIDENCIA</h3>
                   </div>
+
+                  <!-- <div class="col-md-6 mb-3">
+                    <label>USUARIO EN ATENCIÓN<span ></span></label>
+                    <input class="form-control" id="USUARIO_ATENCION" name="atencion" type="text" value="<?php echo $en_atencion; ?>" readonly>
+                  </div> -->
 
                   <div class="col-md-6 mb-3">
                     <label>ESTATUS DE LA INCIDENCIA<span ></span></label>
