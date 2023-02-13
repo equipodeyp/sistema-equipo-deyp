@@ -99,6 +99,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+  <!-- modal confirmacion -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </head>
 <body >
 <div class="contenedor">
@@ -224,12 +230,25 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
                     <th style="text-align:center">INCISO DE LA MEDIDA</th>
                     <th style="text-align:center">ESTATUS</th>
-                    <th style="text-align:center">FECHA DE EJECUCIÓN</th>
-                    <th style="text-align:center">VALIDACIÓN</th>
+                    <!-- <th style="text-align:center">FECHA DE EJECUCIÓN</th> -->
+                    <!-- <th style="text-align:center">VALIDACIÓN</th> -->
                     <th style="text-align:center">
+
+
+                      </div>
                     <?php
-                    if ($tipo_status === 'SUJETO PROTEGIDO' || $tipo_status === 'PERSONA PROPUESTA'){
-                      echo '<a href="registrar_medida.php?folio='.$fol_exp.'"> <button type="button" id="NUEVA_MEDIDA" class="btn color-btn-success-white">NUEVA MEDIDA</button> </a> ';
+                    $contarmedidas = "SELECT COUNT(*) AS t FROM medidas WHERE id_persona = '$fol_exp'";
+                    $rcontarmedidas = $mysqli->query($contarmedidas);
+                    $fcontarmedidas = $rcontarmedidas->fetch_assoc();
+                    $nummedidas = $fcontarmedidas['t'];
+                    // echo $nummedidas;
+                    if ($tipo_status === 'PERSONA PROPUESTA' && $nummedidas === '0'){
+                      // echo '<a href="registrar_medida.php?folio='.$fol_exp.'"> <button type="button" id="NUEVA_MEDIDA" class="btn color-btn-success-white">NUEVA MEDIDA</button> </a> ';
+                      // echo '<a href="#basicModal" class="btn btn-lg btn-success" data-toggle="modal">Click to open Modal</a>';
+                      echo "<a href='#basicModal".$fol_exp."' class='btn color-btn-success-white' data-toggle='modal'>AGREGAR MEDIDAS</a>";
+                      // echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      // Launch demo modal
+                      // </button>';
                     }
                     ?>
                     </th>
@@ -239,11 +258,11 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   $rchecarstatus = $mysqli->query($checarstatus);
                   $fchecarstatus = $rchecarstatus->fetch_assoc();
                   $ifestatus = $fchecarstatus['status'];
-                  if ($ifestatus === 'ANALISIS') {
+                  if ($tipo_status === 'PERSONA PROPUESTA') {
                     $cont_med = '0';
           		      $tabla="SELECT * FROM medidas
                     INNER JOIN validar_medida ON validar_medida.id_medida = medidas.id
-                    WHERE medidas.id_persona ='$fol_exp' AND medidas.tipo ='PROVISIONAL' AND validar_medida.validar_datos = 'TRUE'";
+                    WHERE medidas.id_persona ='$fol_exp' AND medidas.tipo ='PROVISIONAL'";
                     $var_resultado = $mysqli->query($tabla);
 
                     $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
@@ -270,15 +289,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                             echo $var_fila['medida'];
                           } echo "</td>";
             		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-            		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
-                            echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
-                          } echo "</td>";
-                          echo "<td style='text-align:center'>"; if ($fila_valmeds['1ervalidacion'] === 'true') {
-                            echo "<i class='fas fa-check'></i>";
-                          }elseif ($fila_valmeds['1ervalidacion'] === 'false') {
-                            echo "<i class='fas fa-times'></i>";
-                          } echo "</td>";
-            		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+                          if ($var_fila['clasificacion'] === '') {
+                            echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+                          }else {
+                            echo "<td>  <a href='detalles_medidavistacondatos.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";                            
+                          }
+
+
             		        echo "</tr>";
                       }
 
@@ -294,6 +311,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   }
         		      ?>
         		  	</table>
+
         		  </div>
         			<div id="footer">
         		  </div>
@@ -312,7 +330,51 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 <div class="contenedor">
 <a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_persona.php?folio=<?=$id_person?>" class="btn-flotante">REGRESAR</a>
 </div>
+<div class="modal fade" id="basicModal<?php echo $fol_exp?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+        <h4 class="modal-title" id="myModalLabel">AGREGAR MEDIDA</h4>
+      </div>
+      <div class="form-container" style="text-align: center">
 
+        <form class="container well form-horizontal" method="POST" action="for_guardar_medida.php?folio=<?php echo $fol_exp; ?>">
+          <div class="modal-body">
+            <h3 align="center">¿CUANTAS MEDIDAS DESEA AGREGAR?</h3>
+            <input  class="" style="text-align:center" type="text" name="num_medidas" autocomplete="off" required>
+          </div>
+          <div class="form-container" >
+            <!-- <button align="center" type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button> -->
+            <!-- <button type="button" class="btn btn-success" data-dismiss="modal">NO</button> -->
+            <!-- <a align="center" href="registrar_medida.php?folio=<?php echo $fol_exp?>"> <button type="button" id="NUEVA_MEDIDA" class="btn color-btn-success">AGREGAR MEDIDAS</button> </a> -->
+            <!-- <button align="center" type="submit" class="btn color-btn-success" data-dismiss="modal" name="savemeds" >AGREGAR MEDIDAS</button> -->
+            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> CANCELAR</button>&nbsp&nbsp&nbsp&nbsp
+            <button style="width:140px; height:25px" type="submit" name="editar" class="btn color-btn-success"><span class="glyphicon glyphicon-check"></span>  AGREGAR MEDIDAS</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<!-- <div class="modal fade" id="basicModal" tabindex="-1" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
 
 <script type="text/javascript">
 var today = new Date();
@@ -328,6 +390,68 @@ if(dd<10){
 today = yyyy+'-'+mm+'-'+dd;
 
 </script>
+<script type="text/javascript">
+function action1() {
+    var result = "Action 1 has been clicked";
+    var action_display = $('#action_display')
+    action_display.find('.modal-body').html(result)
+    action_display.modal('show')
+}
 
+function action2() {
+    var result = "Action 2 has been clicked";
+    var action_display = $('#action_display')
+    action_display.find('.modal-body').html(result)
+    action_display.modal('show')
+}
+
+function action3($param1 = '') {
+    var result = "Action 3 has been clicked. Parameter = " + $param1;
+    var action_display = $('#action_display')
+    action_display.find('.modal-body').html(result)
+    action_display.modal('show')
+
+}
+
+function action4($param1 = '', $param2 = '') {
+    var result = "Action 1 has been clicked. parameter 1 = \'" + $param1 + "\', parameter 2 = \'" + $param2 + "\'";
+    var action_display = $('#action_display')
+    action_display.find('.modal-body').html(result)
+    action_display.modal('show')
+
+}
+window._confirm = function($message = '', $func = '', $param = []) {
+    if ($func != '' && typeof window[$func] == 'function') {
+
+        var modal_el = $('#confirm_modal')
+        modal_el.find('.modal-body').html($message)
+        modal_el.modal('show')
+        modal_el.find('#confirm-btn').click(function(e) {
+            e.preventDefault()
+            if ($param.length > 0 && !!$.isArray($param))
+                window[$func].apply(this, $param)
+            else
+                window[$func]($param)
+            modal_el.modal('hide')
+        })
+    } else {
+        alert("Function does not exists.")
+    }
+}
+$(function() {
+    $("#action1").click(function() {
+        _confirm("Desea Seguir?", 'action1')
+    })
+    $("#action2").click(function() {
+        _confirm("Are you sure to continue to execute action 2?", 'Modal 2')
+    })
+    $("#action3").click(function() {
+        _confirm("Are you sure to continue to execute action 3?", 'action3', 'Single Parameter')
+    })
+    $("#action4").click(function() {
+        _confirm("Are you sure to continue to execute action 4?", 'action4', ['Hello World!', "SourceCodester"])
+    })
+})
+</script>
 </body>
 </html>
