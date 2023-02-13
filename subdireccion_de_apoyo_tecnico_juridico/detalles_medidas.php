@@ -237,7 +237,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                       </div>
                     <?php
-                    $contarmedidas = "SELECT COUNT(*) AS t FROM medidas WHERE id_persona = '$fol_exp'";
+                    $contarmedidas = "SELECT COUNT(*) AS t FROM medidas WHERE id_persona = '$fol_exp' AND tipo = 'PROVISIONAL'";
                     $rcontarmedidas = $mysqli->query($contarmedidas);
                     $fcontarmedidas = $rcontarmedidas->fetch_assoc();
                     $nummedidas = $fcontarmedidas['t'];
@@ -292,7 +292,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                           if ($var_fila['clasificacion'] === '') {
                             echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                           }else {
-                            echo "<td>  <a href='detalles_medidavistacondatos.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";                            
+                            echo "<td>  <a href='detalles_medidavistacondatos.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                           }
 
 
