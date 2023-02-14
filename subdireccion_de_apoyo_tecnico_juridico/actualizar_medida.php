@@ -48,8 +48,11 @@ if ($verifica_medida == 1) {
       $med_res = '';
     }
   }
-  $inicio_medida=$_POST['INICIO_EJECUCION_MEDIDA'];
-
+  echo $inicio_medida=$_POST['INICIO_EJECUCION_MEDIDA'];
+  echo '<br>';
+  // echo $inicio_medida2 = date("Y-d-m", strtotime($inicio_medida));
+  $date = str_replace('/', '-', $inicio_medida);
+echo $inicio_medida2 = date('Y-m-d', strtotime($date));
   // datos del comentario
   $comment = $_POST['COMENTARIO'];
   $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
@@ -69,7 +72,7 @@ if ($verifica_medida == 1) {
   $persona = $rowfolio_exp['id'];
   // echo $folio_expediente.'<br>'. $persona;
 
-    $addmedidas2 = "UPDATE medidas SET clasificacion = '$clasificacion_medida', medida = '$medida', descripcion = '$med_res', date_provisional = ' $inicio_medida'   WHERE id = '$id_persona'";
+    $addmedidas2 = "UPDATE medidas SET clasificacion = '$clasificacion_medida', medida = '$medida', descripcion = '$med_res', date_provisional = ' $inicio_medida2'   WHERE id = '$id_persona'";
     $res_addmedidas2 = $mysqli->query($addmedidas2);
 
  // regresa la validacion a false para validar nuevamente la informacion

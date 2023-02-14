@@ -290,9 +290,9 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                           } echo "</td>";
             		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
                           if ($var_fila['clasificacion'] === '') {
-                            echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+                            echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>ACTUALIZAR</button> </a> </td>";
                           }else {
-                            echo "<td>  <a href='detalles_medidavistacondatos.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+                            echo "<td>  <a href='detalles_medidavistacondatos.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>DETALLES</button> </a> </td>";
                           }
 
 
@@ -342,7 +342,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         <form class="container well form-horizontal" method="POST" action="for_guardar_medida.php?folio=<?php echo $fol_exp; ?>">
           <div class="modal-body">
             <h3 align="center">¿CUANTAS MEDIDAS DESEA AGREGAR?</h3>
-            <input  class="" style="text-align:center" type="text" name="num_medidas" autocomplete="off" required>
+            <input  class="" style="text-align:center" type="text" name="num_medidas" autocomplete="off" maxlength="2" required onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
           </div>
           <div class="form-container" >
             <!-- <button align="center" type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button> -->

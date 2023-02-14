@@ -29,6 +29,8 @@ $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
 $id_person=$rowfol['id'];
 $idunico= $rowfol['identificador'];
+echo $fecha_inicio_p = $rowfol['fecha_captura'];
+
 $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
 $res_val=$mysqli->query($valid);
 $fil_val = $res_val->fetch_assoc();
@@ -241,13 +243,13 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="date_provisional">
             <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
-            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="date">
+            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="text" value="<?php echo $fecha_inicio_p; ?>" readonly>
           </div>
 
-          <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
+          <!-- <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
             <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
-          </div>
+          </div> -->
         </div>
 
         <div class="row">
