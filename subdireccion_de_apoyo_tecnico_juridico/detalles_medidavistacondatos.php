@@ -143,7 +143,7 @@ $validacion = $fil_val['validacion'];
           // $res_val=$mysqli->query($valid);
           // $fil_val = $res_val->fetch_assoc();
           $validacion = $rowfol1['1ervalidacion'];
-            
+
             ?>
           <div class="col-md-6 mb-3 validar">
                 <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
@@ -159,7 +159,7 @@ $validacion = $fil_val['validacion'];
           </div> -->
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo date("d/m/Y h:i:sa", strtotime($rowmedida['fecha_captura'])); ?>" readonly type="text">
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo date("d/m/Y", strtotime($rowmedida['fecha_captura'])); ?>" readonly type="text">
             </select>
           </div>
 
