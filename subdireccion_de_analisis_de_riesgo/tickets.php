@@ -169,6 +169,7 @@ $fol_exp = $_GET['folio'];
                                 <!-- <th>Subdirección</th> -->
                                 <!-- <th>Tipo</th> -->
                                 <th>Estatus</th>
+                                <th>En Atención</th>
                                 <th>Detalles</th>
                                 
                                 
@@ -194,6 +195,7 @@ $fol_exp = $_GET['folio'];
                                         <!-- <td><?php echo $row['subdireccion']?></td> -->
                                         <!-- <td><?php echo $row['tipo']?></td> -->
                                         <td><?php echo $row['estatus']?></td>
+                                        <td><?php echo $row['usuario_atencion']?></td>
                                         <td style="text-align:center">
 
                                             <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn btn-success">

@@ -242,8 +242,13 @@ if  (isset($_GET['id'])) {
                   </div>
 
                 <div id="ATENCION" class="col-md-6 mb-3">
-                  <label>USUARIO QUE ATIENDE LA INCIDENCIA<span></span></label>
+                  <label>USUARIO QUE ATENDIÓ LA INCIDENCIA<span></span></label>
                   <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion; ?>" readonly>
+                </div>
+
+                <div id="ATENCION2" class="col-md-6 mb-3">
+                  <label>USUARIO EN ATENCIÓN<span></span></label>
+                  <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion;?>" readonly>
                 </div>
 
                 <div id="RESPUESTA" class="row">
@@ -279,12 +284,14 @@ var respuesta = document.getElementById('ESTATUS_INCIDENCIA').value;
         document.getElementById('FECHA_ATENCION').style.display = "none";
         document.getElementById('ATENCION').style.display = "none";
         document.getElementById('RESPUESTA').style.display = "none";
+        document.getElementById('ATENCION2').style.display = "";
 
       }
       else {
         document.getElementById('FECHA_ATENCION').style.display = "";
         document.getElementById('ATENCION').style.display = "";
         document.getElementById('RESPUESTA').style.display = "";
+        document.getElementById('ATENCION2').style.display = "none";
 
       }
 

@@ -173,6 +173,11 @@ $num_incidencia = 0 . $suma;
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
                   </div>
 
+                  <div class="col-md-6 mb-3" style="display: none">
+                    <label>USUARIO EN ATENCION<span ></span></label>
+                    <input readonly class="form-control" id="atencion" name="atencion" type="text" value="">
+                  </div>
+
                   <div class="col-md-6 mb-3">
                     <label>FOLIO DE LA INCIDENCIA<span></span></label>
                     <input readonly class="form-control" id="folio_reporte" name="folio_reporte" type="text" value="">
@@ -247,5 +252,32 @@ const  generateRandomString = (num) => {
 
 generateRandomString(7);
 </script>
+
+<script type="text/javascript">
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+let alea = getRandomInt(23);
+
+console.log(alea);
+
+if (alea === 1 || alea === 4 || alea === 7 || alea === 10 || alea === 13 || alea === 16 || alea === 19 || alea === 22){
+  const azael = "AZAEL OLIVAR GARCIA";
+  document.getElementById("atencion").value = azael;
+  console.log(azael);
+}
+else if (alea === 2 || alea === 5 || alea === 8 || alea === 11 || alea === 14 || alea === 17 || alea === 20 || alea === 23){
+  const jon = "JONATHAN EDUARDO SANTIAGO JIMENEZ";
+  document.getElementById("atencion").value = jon;
+  console.log(jon);
+}
+else if(alea === 3 || alea === 6 || alea === 9 || alea === 12 || alea === 15 || alea === 18 || alea === 21 || alea === 0){
+  const gab = "GABRIELA PICHARDO GARCIA";
+  document.getElementById("atencion").value = gab;
+  console.log(gab);
+}
+</script>
+
 </body>
 </html>

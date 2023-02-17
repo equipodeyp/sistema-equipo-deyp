@@ -99,7 +99,7 @@ if (isset($_POST['update'])) {
       // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
       // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
       // $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-      // $mail->Password   = 'bepnsedjwpkpincr';                               //SMTP password
+      // $mail->Password   = '*******************';                               //SMTP password
       // $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
       // $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -259,7 +259,7 @@ if (isset($_POST['update'])) {
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
-                <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?folio=<?php echo $folio_expediente; ?>">EXPEDIENTE</a>
+                <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?php echo $folio_expediente; ?>">EXPEDIENTE</a>
                 <a href="../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=<?php echo $folio_expediente; ?>">INCIDENCIAS</a>
                 <a class="actived">DETALLE DE LA INCIDENCIA</a>
           </div>
@@ -295,7 +295,7 @@ if (isset($_POST['update'])) {
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
                   </div>
 
-                  <div class="col-md-6 mb-3">
+                  <div class="col-md-6 mb-3">                                                                                                                                                    
                     <label>FOLIO DE LA INCIDENCIA<span></span></label>
                     <input readonly class="form-control" id="" name="folio_reporte" type="text" value="<?php echo $folio_reporte;?>">
                   </div>
@@ -333,7 +333,12 @@ if (isset($_POST['update'])) {
                   </div>
 
                 <div id="ATENCION" class="col-md-6 mb-3">
-                  <label>USUARIO QUE ATIENDE LA INCIDENCIA<span></span></label>
+                  <label>USUARIO QUE ATENDIÓ LA INCIDENCIA<span></span></label>
+                  <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion;?>" readonly>
+                </div>
+
+                <div id="ATENCION2" class="col-md-6 mb-3">
+                  <label>USUARIO EN ATENCIÓN<span></span></label>
                   <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion;?>" readonly>
                 </div>
 
@@ -370,12 +375,14 @@ var respuesta = document.getElementById('ESTATUS_INCIDENCIA').value;
         document.getElementById('FECHA_ATENCION').style.display = "none";
         document.getElementById('ATENCION').style.display = "none";
         document.getElementById('RESPUESTA').style.display = "none";
+        document.getElementById('ATENCION2').style.display = "";
 
       }
       else {
         document.getElementById('FECHA_ATENCION').style.display = "";
         document.getElementById('ATENCION').style.display = "";
         document.getElementById('RESPUESTA').style.display = "";
+        document.getElementById('ATENCION2').style.display = "none";
 
       }
 

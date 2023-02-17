@@ -1,11 +1,11 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
-require '../phpmailer2/Exception.php';
-require '../phpmailer2/PHPMailer.php';
-require '../phpmailer2/SMTP.php';
+// require '../phpmailer2/Exception.php';
+// require '../phpmailer2/PHPMailer.php';
+// require '../phpmailer2/SMTP.php';
 // require '../phpmailer2/PHPMailerAutoload.php';
 
 error_reporting(0);
@@ -32,14 +32,15 @@ if ($verifica == 1) {
   $tipo_error = $_POST['tipo'];
   $descripcion_error = $_POST['descripcion'];
   $status = $_POST['estatus'];
+  $atencion_usuario =$_POST['atencion'];
 
   date_default_timezone_set('UTC');
   date_default_timezone_set("America/Mexico_City");
   $hoy = date("d-m-Y H:i:s a");  
   // echo $hoy;
         
-  $query = "INSERT INTO tickets (folio_reporte, folio_expediente, usuario, subdireccion, tipo, descripcion, estatus) 
-  VALUES ('$folio_reporte', '$fol_exp', '$usuario', '$subdireccion_usuario', '$tipo_error', '$descripcion_error', '$status')";
+  $query = "INSERT INTO tickets (folio_reporte, folio_expediente, usuario, subdireccion, usuario_atencion, tipo, descripcion, estatus) 
+  VALUES ('$folio_reporte', '$fol_exp', '$usuario', '$subdireccion_usuario', '$atencion_usuario', '$tipo_error', '$descripcion_error', '$status')";
   $result = $mysqli->query($query);
 
   $folio_incidencia = $_POST["folio_reporte"];
@@ -48,13 +49,13 @@ if ($verifica == 1) {
   $subdireccion = $_POST["subdireccion"];
   $descripcion = $_POST["descripcion"];
 
-  $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br><br>" . 
-          "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario usted ha registrado una nueva incidencia con los siguientes datos: </h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" . 
-          "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_expediente</h4>" . "<h4 style='color: #000000;'>NOMBRE DE USUARIO: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nombre_usuario</h4>" . 
-          "<h4 style='color: #000000;'>SUBDIRECCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$subdireccion</h4>" . "<h4 style='color: #000000;'>FECHA Y HORA DE LA SOLICITUD: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$hoy</h4>" . 
-          "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>";
+  // $body = "<h1 style='text-align:center; color: #FFF; font-weight: bold; background-color: #722F37;'>SISTEMA INFORMÁTICO DEL PROGRAMA DE PROTECCIÓN A SUJETOS QUE INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE EXTINCIÓN DE DOMINIO (SIPPSIPPED).</h1><br><br>" . 
+  //         "<h2 style='color: #000000; font-weight: bold;'>Estimado usuario usted ha registrado una nueva incidencia con los siguientes datos: </h2><br>" . "<h4 style='color: #000000;'>FOLIO DE LA INCIDENCIA: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_incidencia</h4>" . 
+  //         "<h4 style='color: #000000;'>FOLIO DEL EXPEDIENTE: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$folio_expediente</h4>" . "<h4 style='color: #000000;'>NOMBRE DE USUARIO: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$nombre_usuario</h4>" . 
+  //         "<h4 style='color: #000000;'>SUBDIRECCIÓN: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$subdireccion</h4>" . "<h4 style='color: #000000;'>FECHA Y HORA DE LA SOLICITUD: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$hoy</h4>" . 
+  //         "<h4 style='color: #000000;'>DESCRIPCIÓN BREVE DE LA FALLA O ERROR: </h4>" . "<h4 style='color: #722F37; font-weight: bold;'>$descripcion</h4>";
 
-  $asunto = "Nueva Incidencia: " . $folio_incidencia;
+  // $asunto = "Nueva Incidencia: " . $folio_incidencia;
     
   $sent=" SELECT id, folio_expediente FROM tickets WHERE folio_expediente='$folio_expediente'";
   $resu = $mysqli->query($sent);
@@ -65,27 +66,27 @@ if ($verifica == 1) {
     if($result) {
       
       // $num_user=rand(1,24);
-      $num_user=rand(1,3);
-      $mail = new PHPMailer(true);
+      // $num_user=rand(1,3);
+      // $mail = new PHPMailer(true);
 
-      if ($num_user === 1 || $num_user === 2 || $num_user === 3 ){
+      // if ($num_user === 1 || $num_user === 2 || $num_user === 3 ){
       // if ($num_user === 1 || $num_user === 4 || $num_user === 7 || $num_user === 10 || $num_user === 13 || $num_user === 16 || $num_user === 19 || $num_user === 22){
 
       //Server settings
-      $mail->SMTPDebug = 0;                      //Enable verbose debug output
-      $mail->isSMTP();                                            //Send using SMTP
-      $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-      $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-      $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
-      $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-      $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+      // $mail->SMTPDebug = 0;                      //Enable verbose debug output
+      // $mail->isSMTP();                                            //Send using SMTP
+      // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+      // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+      // $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
+      // $mail->Password   = '*******************';                               //SMTP password
+      // $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+      // $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
       //Recipients
-      $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
-      $mail->addAddress('dpye_principal@gmail.com');     //Add a recipient
-      $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
-      $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
+      // $mail->setFrom('dpye_principal@gmail.com', 'INCIDENCIAS - SIPPSIPPED');
+      // $mail->addAddress('dpye_principal@gmail.com');     //Add a recipient
+      // $mail->addAddress('dgonzalezv@fiscaliaedomex.gob.mx');              //Name is optional
+      // $mail->addAddress('azolivarg@fiscaliaedomex.gob.mx');              //Name is optional
       // $mail->addAddress('7226585110@mmode.com');              //Name is optional
       // $mail->addAddress('azaelitoop89@gmail.com');              //Name is optional
       // $mail->addReplyTo('info@example.com', 'Information');
@@ -97,19 +98,19 @@ if ($verifica == 1) {
       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
       //Content
-      $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = $asunto;
-      $mail->Body    = $body;
-      // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-      $mail->CharSet = 'UTF-8';
-      $mail->send();
-      echo $verifica;
-      echo ("<script type='text/javaScript'>
-                window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
-                window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-                </script>");
+      // $mail->isHTML(true);                                  //Set email format to HTML
+      // $mail->Subject = $asunto;
+      // $mail->Body    = $body;
+      // // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+      // $mail->CharSet = 'UTF-8';
+      // $mail->send();
+      // echo $verifica;
+      // echo ("<script type='text/javaScript'>
+      //           window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
+      //           window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+      //           </script>");
 
-      }
+      // }
 
 
 
@@ -121,7 +122,7 @@ if ($verifica == 1) {
       //   $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
       //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
       //   $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-      //   $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
+      //   $mail->Password   = '*******************';                               //SMTP password
       //   $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
       //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -166,7 +167,7 @@ if ($verifica == 1) {
       //   $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
       //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
       //   $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-      //   $mail->Password   = 'swnlfknbuhwglfrn';                               //SMTP password
+      //   $mail->Password   = '*******************';                               //SMTP password
       //   $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
       //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -192,13 +193,13 @@ if ($verifica == 1) {
       //   // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
       //   $mail->CharSet = 'UTF-8';
       //   $mail->send();
-      //   echo $verifica;
-      //   echo ("<script type='text/javaScript'>
-      //             window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
-      //             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-      //             </script>");
+        echo $verifica;
+        echo ("<script type='text/javaScript'>
+                  window.location.href='../subdireccion_de_apoyo_tecnico_juridico/tickets.php?folio=$fol_exp';
+                  window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                  </script>");
   
-      //   }
+        // }
     }
 
 }

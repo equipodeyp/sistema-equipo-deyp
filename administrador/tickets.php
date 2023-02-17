@@ -1,3 +1,4 @@
+
 <?php
 /*require 'conexion.php';*/
 // error_reporting(0);
@@ -157,6 +158,7 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
                                 <!-- <th>Subdirección</th> -->
                                 <!-- <th>Tipo</th> -->
                                 <th>Estatus</th>
+                                <th>En Atención</th>
                                 <th>Detalle  /  Responder </th>
                                 
                                 
@@ -178,14 +180,15 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);
                                         <!-- <td><?php echo $row['subdireccion']?></td> -->
                                         <!-- <td><?php echo $row['tipo']?></td> -->
                                         <td><?php echo $row['estatus']?></td>
+                                        <td><?php echo $row['usuario_atencion']?></td>
                                         <td style="text-align:center">
 
                                             <a href="detalle_respuesta.php?id=<?php echo $row['id']?>" class="btn color-btn-success">
                                                 <i  class="fas fa-marker" ></i>
                                             </a>
-                                            <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn color-btn-gray">
+                                            <!-- <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn color-btn-gray">
                                                 <i  class="fas fa-send"></i>
-                                            </a>
+                                            </a> -->
                                             <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a> -->

@@ -249,7 +249,7 @@ if  (isset($_GET['id'])) {
                   </div>
 
                 <div id="ATENCION" class="col-md-6 mb-3">
-                  <label>USUARIO QUE ATIENDE LA INCIDENCIA<span></span></label>
+                  <label>USUARIO EN ATENCIÓN<span></span></label>
                   <input class="form-control" id="" name="atendido_por" required value="<?php echo $usuario_atencion; ?>" readonly>
                 </div>
 
@@ -284,7 +284,7 @@ var respuesta = document.getElementById('ESTATUS_INCIDENCIA').value;
       if (respuesta === "EN PROCESO" || respuesta === "" || respuesta === null) {
 
         document.getElementById('FECHA_ATENCION').style.display = "none";
-        document.getElementById('ATENCION').style.display = "none";
+        document.getElementById('ATENCION').style.display = "";
         document.getElementById('RESPUESTA').style.display = "none";
 
       }

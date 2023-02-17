@@ -99,7 +99,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -139,7 +139,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -179,7 +179,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -220,7 +220,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //         $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //         $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //         $mail->Password   = '*******************';                               //SMTP password
     //         $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -260,7 +260,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -300,7 +300,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -340,7 +340,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -380,7 +380,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //           $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //           $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //           $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //           $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //           $mail->Password   = '*******************';                               //SMTP password
     //           $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //           $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
@@ -420,7 +420,7 @@ $apellido_m = $row_apellido_m['apellido_m'];
     //         //   $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //         //   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     //         //   $mail->Username   = 'dpye.principal@gmail.com';                     //SMTP username
-    //         //   $mail->Password   = 'gpfpcklmhcsvlpce';                               //SMTP password
+    //         //   $mail->Password   = '*******************';                               //SMTP password
     //         //   $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //         //   $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
