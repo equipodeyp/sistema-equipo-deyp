@@ -11,31 +11,18 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
-$id_medida = $_GET['id'];
-// echo $id_medida;
-$medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-$resultadomedida = $mysqli->query($medida);
-$rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
-$id_p = $rowmedida['id_persona'];
-$fol_exp =$rowmedida['folioexpediente'];
-
-$multidisciplinario = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
-$resultadomultidisciplinario = $mysqli->query($multidisciplinario);
-$rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
-//
-$fol=" SELECT * FROM datospersonales WHERE id='$id_p'";
+$fol_exp = $_GET['folio'];
+// echo $fol_exp;
+$fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
 $id_person=$rowfol['id'];
 $idunico= $rowfol['identificador'];
-echo $fecha_inicio_p = $rowfol['fecha_captura'];
-
 $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
 $res_val=$mysqli->query($valid);
 $fil_val = $res_val->fetch_assoc();
 $validacion = $fil_val['validacion'];
-
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,7 +55,7 @@ $validacion = $fil_val['validacion'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <!-- <script src="../js/validar_campos.js"></script> -->
+  <script src="../js/validar_campos.js"></script>
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <!-- <link rel="stylesheet" href="../css/estilos.css">
@@ -120,14 +107,14 @@ $validacion = $fil_val['validacion'];
     <div class="secciones">
     <article id="tab1">
     <div class="container">
-      <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
+      <form class="container well form-horizontal" method="POST" action="guardar_medida.php?folio=<?php echo $fol_exp; ?>" enctype= "multipart/form-data">
 
         <div class="secciones form-horizontal sticky breadcrumb flat">
           <a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php">REGISTROS</a>
           <a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$name_folio?>">EXPEDIENTE</a>
-          <a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_persona.php?folio=<?=$id_p?>">PERSONA</a>
-          <a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_medidas.php?folio=<?=$id_p?>">MEDIDAS</a>
-          <a class="actived">DETALLES MEDIDA</a>
+          <a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
+          <a href="../subdireccion_de_apoyo_tecnico_juridico/detalles_medidas.php?folio=<?=$fol_exp?>">MEDIDAS</a>
+          <a class="actived">AGREGAR</a>
         </div>
         <div class="row">
           <div class="alert div-title">
@@ -243,13 +230,13 @@ $validacion = $fil_val['validacion'];
 
           <div class="col-md-6 mb-3 validar" id="date_provisional">
             <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
-            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="text" value="<?php echo $fecha_inicio_p; ?>" readonly>
+            <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="date">
           </div>
 
-          <!-- <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
+          <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
             <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
             <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
-          </div> -->
+          </div>
         </div>
 
         <div class="row">
@@ -368,7 +355,7 @@ $validacion = $fil_val['validacion'];
                 <div>
                     <br>
                     <br>
-                		<button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                		<button style="display: block; margin: 0 auto;" class="btn color-btn-success" id="enter" type="submit">GUARDAR</button>
                 </div>
 
               </div>
@@ -411,7 +398,7 @@ window.onload = function(){
     dia='0'+dia;
   if(mes<10)
     mes='0'+mes
-  // document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
+  document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
 }
 </script>
 

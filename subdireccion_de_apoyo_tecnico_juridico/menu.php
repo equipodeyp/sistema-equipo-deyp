@@ -272,8 +272,7 @@ text-decoration: underline;
         </div>
         <br>
         <div class="row">
-          <a href="crear_expediente.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a style="visibility:hidden;" id="btnmedidaspendientes" class="btn-flotante-nuevo-exp" href="../subdireccion_de_apoyo_tecnico_juridico/medidas_por_validar.php">pendientes por validar</a>
+          <a href="crear_expediente.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
@@ -360,16 +359,6 @@ text-decoration: underline;
     </div>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
-  <?php
-  $var = $name;
-  $tmf = "SELECT COUNT(*) as t from validar_medida
-  INNER JOIN medidas ON medidas.id = validar_medida.id_medida
-  INNER JOIN statusseguimiento on statusseguimiento.folioexpediente = validar_medida.folioexpediente
-  WHERE statusseguimiento.status = 'ANALISIS' AND validar_medida.validar_datos = 'true' AND validar_medida.1ervalidacion = 'false' AND medidas.tipo = 'PROVISIONAL'";
-  $rtmf = $mysqli->query($tmf);
-  $ftmf = $rtmf->fetch_assoc();
-  $mmed =  $ftmf['t'];
-  ?>
 
 <?php
 
@@ -379,64 +368,5 @@ $num_ti = $rt->fetch_assoc();
 $counti = $num_ti['ti'];
 echo 'tickets en proceso: ' . $counti;
 ?>
-
-
-
-
-
-
-
-    <script type="text/javascript">
-    <?php
-    echo "var jsvar ='$var';";
-    echo "var jsvmedidasfalse ='$mmed';";
-    ?>
-    console.log(jsvar);
-    console.log(jsvmedidasfalse);
-
-    if (jsvmedidasfalse > 0) {
-      document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
-      console.log(jsvar);
-      console.log(jsvmedidasfalse);
-      (function(window, document) { // asilamos el componente
-      // creamos el contedor de las tostadas o la tostadora
-      var container = document.createElement('div');
-      container.className = 'toast-container';
-      document.body.appendChild(container);
-
-      // esta es la funcion que hace la tostada
-      window.doToast = function(message) {
-        // creamos tostada
-        var toast = document.createElement('div');
-        toast.className = 'toast-toast';
-        toast.innerHTML = message;
-
-        // agregamos a la tostadora
-        container.appendChild(toast);
-
-        // programamos su eliminación
-        setTimeout(function() {
-          // cuando acabe de desaparecer, lo eliminamos del dom.
-          toast.addEventListener("transitionend", function() {
-             container.removeChild(toast);
-          }, false);
-
-          // agregamos un estilo que inicie la "transition".
-          toast.classList.add("fadeout");
-        }, 10000); // OP dijo, "solo dos segundos"
-      }
-      })(window, document);
-
-      // ejempo de uso
-      doToast("¡ATENCIÓN!");
-
-      // ejemplo retardado de uso
-      setTimeout(function() {
-       doToast("FALTAN MEDIDAS");
-       doToast("PROVISIONALES POR VALIDAR");
-      }, 1200);
-      // fin de mostrar alerta
-    }
-  </script>
 </body>
 </html>
