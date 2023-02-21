@@ -59,7 +59,7 @@
       $menedadaloj = "SELECT COUNT(*) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO'
+      WHERE datospersonales.grupoedad = 'MENOR DE EDAD'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'";
       $rmenedadaloj = $mysqli -> query($menedadaloj);
       $fmenedadaloj = $rmenedadaloj ->fetch_assoc();
@@ -67,7 +67,7 @@
       $menedadalojmujer = "SELECT COUNT(*) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO'
+      WHERE datospersonales.grupoedad = 'MENOR DE EDAD'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.sexopersona = 'MUJER'";
       $rmenedadalojmujer = $mysqli -> query($menedadalojmujer);
       $fmenedadalojmujer = $rmenedadalojmujer ->fetch_assoc();
@@ -75,7 +75,7 @@
       $menedadalojhombre = "SELECT COUNT(*) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO'
+      WHERE datospersonales.grupoedad = 'MENOR DE EDAD'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.sexopersona = 'HOMBRE'";
       $rmenedadalojhombre = $mysqli -> query($menedadalojhombre);
       $fmenedadalojhombre = $rmenedadalojhombre ->fetch_assoc();
@@ -83,7 +83,7 @@
       $mayedadaloj = "SELECT COUNT(DISTINCT medidas.id_persona) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE datospersonales.grupoedad = 'MAYOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.relacional = 'NO'
+      WHERE datospersonales.grupoedad = 'MAYOR DE EDAD' AND datospersonales.relacional = 'NO'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'";
       $rmayedadaloj = $mysqli -> query($mayedadaloj);
       $fmayedadaloj = $rmayedadaloj ->fetch_assoc();
@@ -91,7 +91,7 @@
       $mayedadalojmujer = "SELECT COUNT(DISTINCT medidas.id_persona) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE datospersonales.grupoedad = 'MAYOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.relacional = 'NO'
+      WHERE datospersonales.grupoedad = 'MAYOR DE EDAD' AND datospersonales.relacional = 'NO'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.sexopersona = 'MUJER'";
       $rmayedadalojmujer = $mysqli -> query($mayedadalojmujer);
       $fmayedadalojmujer = $rmayedadalojmujer ->fetch_assoc();
@@ -99,7 +99,7 @@
       $mayedadalojhombre = "SELECT COUNT(DISTINCT medidas.id_persona) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE datospersonales.grupoedad = 'MAYOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.relacional = 'NO'
+      WHERE datospersonales.grupoedad = 'MAYOR DE EDAD' AND datospersonales.relacional = 'NO'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.sexopersona = 'HOMBRE'";
       $rmayedadalojhombre = $mysqli -> query($mayedadalojhombre);
       $fmayedadalojhombre = $rmayedadalojhombre ->fetch_assoc();
@@ -107,7 +107,7 @@
       $totalaloj = "SELECT COUNT(DISTINCT medidas.id_persona) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.relacional = 'NO'
+      WHERE datospersonales.relacional = 'NO'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'";
       $rtotalaloj = $mysqli -> query($totalaloj);
       $ftotalaloj = $rtotalaloj ->fetch_assoc();
@@ -115,7 +115,7 @@
       $totalalojmujer = "SELECT COUNT(DISTINCT medidas.id_persona) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.relacional = 'NO'
+      WHERE datospersonales.relacional = 'NO'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.sexopersona = 'MUJER'";
       $rtotalalojmujer = $mysqli -> query($totalalojmujer);
       $ftotalalojmujer = $rtotalalojmujer ->fetch_assoc();
@@ -123,7 +123,7 @@
       $totalalojhombre = "SELECT COUNT(DISTINCT medidas.id_persona) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
       INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-      WHERE determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.relacional = 'NO'
+      WHERE datospersonales.relacional = 'NO'
       AND medidas.estatus != 'CANCELADA' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.sexopersona = 'HOMBRE'";
       $rtotalalojhombre = $mysqli -> query($totalalojhombre);
       $ftotalalojhombre = $rtotalalojhombre ->fetch_assoc();
