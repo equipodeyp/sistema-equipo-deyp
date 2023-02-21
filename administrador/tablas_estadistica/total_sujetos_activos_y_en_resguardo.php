@@ -2,19 +2,19 @@
       ////////////////////////////conteo de sujetos incorporados al programa
       $menoredad = "SELECT COUNT(*) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-      WHERE datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO'";
+      WHERE datospersonales.relacional = 'NO' AND datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO'";
       $rmenoredad = $mysqli->query($menoredad);
       $fmenoredad = $rmenoredad->fetch_assoc();
       //
       $menoredadmujer = "SELECT COUNT(*) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-      WHERE datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.sexopersona = 'MUJER'";
+      WHERE datospersonales.relacional = 'NO' AND datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.sexopersona = 'MUJER'";
       $rmenoredadmujer = $mysqli->query($menoredadmujer);
       $fmenoredadmujer = $rmenoredadmujer->fetch_assoc();
       //
       $menoredadhombre = "SELECT COUNT(*) AS t FROM `datospersonales`
       INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-      WHERE datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.sexopersona = 'HOMBRE'";
+      WHERE datospersonales.relacional = 'NO' AND datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND datospersonales.sexopersona = 'HOMBRE'";
       $rmenoredadhombre = $mysqli->query($menoredadhombre);
       $fmenoredadhombre = $rmenoredadhombre->fetch_assoc();
       //
