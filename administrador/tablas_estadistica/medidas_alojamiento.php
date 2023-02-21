@@ -1,58 +1,58 @@
 <?php
 //
-$numconsec = 0;
-$selecpersnorel = "SELECT * FROM datospersonales WHERE relacional = 'NO'";
-$rselecpersnorel = $mysqli->query($selecpersnorel);
-while ($fselecpersnorel = $rselecpersnorel->fetch_assoc()) {
-
-
-  $id_sujp = $fselecpersnorel['id'];
-  $name = $fselecpersnorel['nombrepersona'];
-  $primerapell = $fselecpersnorel['paternopersona'];
-  $segundoapell = $fselecpersnorel['maternopersona'];
-  // echo $id_sujp;
-  // echo '<br>';
-  $alotem = "SELECT DISTINCT id_persona FROM medidas
-  WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA' AND id_persona = '$id_sujp'";
-  $ralotem = $mysqli->query($alotem);
-  while ($falotem = $ralotem->fetch_assoc()) {
-    // $folsujeto = $falotem['folioexpediente'];
-    $idsujeto = $falotem['id_persona'];
-    // echo '<br>';
-    $alotem2 = "SELECT * FROM datospersonales
-    WHERE id = '$idsujeto'";
-    $ralotem2 = $mysqli->query($alotem2);
-    while ($falotem2 = $ralotem2->fetch_assoc()) {
-        $folsujeto = $falotem2['folioexpediente'];
-        // echo $idsujeto.'*****'.$name.'*****'.$primerapell.'*****'.$segundoapell.'*****'.$folsujeto.'<br>';
-        $selecpersnorel2 = "SELECT * FROM datospersonales WHERE relacional = 'SI'";
-        $rselecpersnorel2 = $mysqli->query($selecpersnorel2);
-        while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()) {
-          $id_sujp2 = $fselecpersnorel2['id'];
-          $name2 = $fselecpersnorel2['nombrepersona'];
-          $primerapell2 = $fselecpersnorel2['paternopersona'];
-          $segundoapell2 = $fselecpersnorel2['maternopersona'];
-          $folsujeto2 = $fselecpersnorel2['folioexpediente'];
-          // echo $id_sujp2;
-          // echo '<br>';
-          $alotem2 = "SELECT DISTINCT id_persona FROM medidas
-          WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA' AND id_persona = '$id_sujp2'";
-          $ralotem2 = $mysqli->query($alotem2);
-          while ($falotem2 = $ralotem2->fetch_assoc()) {
-            $numconsec = $numconsec +1;
-            // $folsujeto = $falotem2['folioexpediente'];
-            $idsujeto2 = $falotem2['id_persona'];
-            echo $numconsec.'----->';
-            if ($name === $name2 && $primerapell === $primerapell2 && $segundoapell === $segundoapell2) {
-              echo $idsujeto2.'*****'.$name2.'*****'.$primerapell2.'*****'.$segundoapell2.'*****'.$folsujeto2.'<br>';
-            }else {
-              echo $idsujeto.'*****'.$name.'*****'.$primerapell.'*****'.$segundoapell.'*****'.$folsujeto.'<br>';
-            }
-          }
-        }
-    }
-  }
-}
+// $numconsec = 0;
+// $selecpersnorel = "SELECT * FROM datospersonales WHERE relacional = 'NO'";
+// $rselecpersnorel = $mysqli->query($selecpersnorel);
+// while ($fselecpersnorel = $rselecpersnorel->fetch_assoc()) {
+//
+//
+//   $id_sujp = $fselecpersnorel['id'];
+//   $name = $fselecpersnorel['nombrepersona'];
+//   $primerapell = $fselecpersnorel['paternopersona'];
+//   $segundoapell = $fselecpersnorel['maternopersona'];
+//   // echo $id_sujp;
+//   // echo '<br>';
+//   $alotem = "SELECT DISTINCT id_persona FROM medidas
+//   WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA' AND id_persona = '$id_sujp'";
+//   $ralotem = $mysqli->query($alotem);
+//   while ($falotem = $ralotem->fetch_assoc()) {
+//     // $folsujeto = $falotem['folioexpediente'];
+//     $idsujeto = $falotem['id_persona'];
+//     // echo '<br>';
+//     $alotem2 = "SELECT * FROM datospersonales
+//     WHERE id = '$idsujeto'";
+//     $ralotem2 = $mysqli->query($alotem2);
+//     while ($falotem2 = $ralotem2->fetch_assoc()) {
+//         $folsujeto = $falotem2['folioexpediente'];
+//         // echo $idsujeto.'*****'.$name.'*****'.$primerapell.'*****'.$segundoapell.'*****'.$folsujeto.'<br>';
+//         $selecpersnorel2 = "SELECT * FROM datospersonales WHERE relacional = 'SI'";
+//         $rselecpersnorel2 = $mysqli->query($selecpersnorel2);
+//         while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()) {
+//           $id_sujp2 = $fselecpersnorel2['id'];
+//           $name2 = $fselecpersnorel2['nombrepersona'];
+//           $primerapell2 = $fselecpersnorel2['paternopersona'];
+//           $segundoapell2 = $fselecpersnorel2['maternopersona'];
+//           $folsujeto2 = $fselecpersnorel2['folioexpediente'];
+//           // echo $id_sujp2;
+//           // echo '<br>';
+//           $alotem2 = "SELECT DISTINCT id_persona FROM medidas
+//           WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA' AND id_persona = '$id_sujp2'";
+//           $ralotem2 = $mysqli->query($alotem2);
+//           while ($falotem2 = $ralotem2->fetch_assoc()) {
+//             $numconsec = $numconsec +1;
+//             // $folsujeto = $falotem2['folioexpediente'];
+//             $idsujeto2 = $falotem2['id_persona'];
+//             echo $numconsec.'----->';
+//             if ($name === $name2 && $primerapell === $primerapell2 && $segundoapell === $segundoapell2) {
+//               echo $idsujeto2.'*****'.$name2.'*****'.$primerapell2.'*****'.$segundoapell2.'*****'.$folsujeto2.'<br>';
+//             }else {
+//               echo $idsujeto.'*****'.$name.'*****'.$primerapell.'*****'.$segundoapell.'*****'.$folsujeto.'<br>';
+//             }
+//           }
+//         }
+//     }
+//   }
+// }
 
 // $selecpersnorel2 = "SELECT * FROM datospersonales WHERE relacional = 'SI'";
 // $rselecpersnorel2 = $mysqli->query($selecpersnorel2);
