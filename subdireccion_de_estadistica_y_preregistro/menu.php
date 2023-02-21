@@ -240,7 +240,7 @@ a:focus {
       </div>
       <nav class="menu-nav">
         <ul>
-          
+
         <!-- <?php
 
           if ($name=='e-gabriela' || $name=='e-azael' || $name=='e-jonathan') {
@@ -293,7 +293,7 @@ a:focus {
           </h5>
         </div>
         <div class="dropdown">
-          <a id="btnmedidaspendientes" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="" type="button" class="btn color-btn-success">pendientes por validar</button> </a>                
+          <a id="btnmedidaspendientes" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="" type="button" class="btn color-btn-success">pendientes por validar</button> </a>
         </div>
 
         <br>
