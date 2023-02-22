@@ -259,6 +259,7 @@ a:focus {
               <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li>
               <!-- <li id="limedidas" class="menu-items"><a href="">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEGUIMIENTO <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SUJETOS</span></a></li> -->
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-briefcase-medical menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li>
+              <li id="lialojamientotemporal" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/alojamiento_temporal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-house-lock menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ALOJAMIENTO <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEMPORAL</span></a></li>
 
               <li id="liestadistica2" class="subtitle2">
                 <a href="#" class="action2">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-circle-right menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> SEGUIMIENTO</span></a>
@@ -461,17 +462,17 @@ a:focus {
   }else {
     document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
   }
-  if (jsvar === 'jesusaz' || jsvar === 'dircece') {
-    document.getElementById('liexpediente').style.visibility = "visible"; // visible
-    document.getElementById('lipersonas').style.visibility = "visible"; // visible
-    document.getElementById('limedidas').style.visibility = "visible"; // visible
-    document.getElementById('liestadistica').style.visibility = "visible"; // visible
-  }else {
-    document.getElementById('liexpediente').style.visibility = "hidden"; // hide
-    document.getElementById('lipersonas').style.visibility = "hidden"; // hide
-    document.getElementById('limedidas').style.visibility = "hidden"; // hide
-    document.getElementById('liestadistica').style.visibility = "hidden"; // hide
-  }
+  // if (jsvar === 'jesusaz' || jsvar === 'dircece') {
+  //   document.getElementById('liexpediente').style.visibility = "visible"; // visible
+  //   document.getElementById('lipersonas').style.visibility = "visible"; // visible
+  //   document.getElementById('limedidas').style.visibility = "visible"; // visible
+  //   document.getElementById('liestadistica').style.visibility = "visible"; // visible
+  // }else {
+  //   document.getElementById('liexpediente').style.visibility = "hidden"; // hide
+  //   document.getElementById('lipersonas').style.visibility = "hidden"; // hide
+  //   document.getElementById('limedidas').style.visibility = "hidden"; // hide
+  //   document.getElementById('liestadistica').style.visibility = "hidden"; // hide
+  // }
   // CODIGO DE MENU CON submenu
   $(".subtitle .action").click(function(event){
    var subtitle = $(this).parents(".subtitle");

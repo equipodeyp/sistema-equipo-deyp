@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-// error_reporting(0);
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -16,7 +16,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>SEGUIMIENTO DE EXPEDIENTES</title>
+  <title>SUJETOS EN CENTROS DE RESGUARDO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -46,7 +46,6 @@ $row=$result->fetch_assoc();
   <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
-  <!-- <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script> -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -75,31 +74,30 @@ $row=$result->fetch_assoc();
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn color-btn-export-xls'
-        }
-
-
+        },
       ]
       });
   });
   </script>
-  <style media="screen">
-  .submenu {
-    display: none;
-  }
-  .opacity {
-    /* opacity: 100%; */
-  }
+</script>
+<style media="screen">
+.submenu {
+  display: none;
+}
+.opacity {
+  /* opacity: 100%; */
+}
 
-  /*  */
-  .submenu2 {
-    display: none;
-  }
-  .opacity2 {
-    /* opacity: 100%; */
-  }
-  /*  */
+/*  */
+.submenu2 {
+  display: none;
+}
+.opacity2 {
+  /* opacity: 100%; */
+}
+/*  */
 
-  .pagination {
+.pagination {
   display: inline-block;
   padding-left: 0;
   margin: 20px 0;
@@ -201,7 +199,7 @@ a:focus {
   color: #FFFFFF;
   text-decoration: underline;
 }
-  </style>
+</style>
 </head>
 <body>
   <div class="contenedor">
@@ -234,14 +232,14 @@ a:focus {
       			<a href="#" class="action"><i class='color-icon fa-solid fa-chart-line menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ESTADISTICA</span></a>
       			<ul class="submenu">
               <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> EXPEDIENTES</span></a></li>
-              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class=" color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white; font-weight:bold;"> SUJETOS</span></a></li>
+              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white; font-weight:bold;"> SUJETOS</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> MEDIDAS</span></a></li>
-              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/alojamiento_temporal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-house-lock menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ALOJAMIENTO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEMPORAL</span></a></li>
+              <li id="limedidas" class="menu-items"><a>&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-house-lock menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> ALOJAMIENTO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEMPORAL</span></a></li>
               <li id="liestadistica2" class="subtitle2">
                 <a href="#" class="action2">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-circle-right menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> SEGUIMIENTO</span></a>
                 <ul class="submenu2">
                   <!-- <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_expedientes.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-folder-open  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EXPEDIENTES</span></a></li> -->
-                  <li id="limedidas" class="menu-items"><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-file-export menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXPEDIENTES</span></a></li>
+                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/evaluacion_expediente.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-file-export menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXPEDIENTES</span></a></li>
                   <!-- <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_personas.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-users menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> SUJETOS</span></a></li> -->
                   <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/evaluacion_personas.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-walking-dashed-line-arrow-right menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SUJETOS</span></a></li>
                   <!-- <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
@@ -273,79 +271,55 @@ a:focus {
         <!--Ejemplo tabla con DataTables-->
       </div>
       <div class="container">
-          <article>
-            <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-              <a class="actived">SEGUIMIENTO DE EXPEDIENTES</a>
-            </div>
-            <div class="container">
-              <h2 style="text-align:center">EXPEDIENTES</h2>
-              <div class="col-lg-12">
-                  <div class="table-responsive">
-                      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                      <thead>
-                        <!-- <h3 style="text-align:center">Registros</h3> -->
-                          <tr>
-                              <th style="text-align:center">No.</th>
-                              <th style="text-align:center">ID EXPEDIENTE</th>
-                              <th style="text-align:center">FECHA RECEPCION</th>
-                              <!-- <th style="text-align:center">SEDE</th> -->
-                              <th style="text-align:center">NOMBRE AUTORIDAD</th>
-                              <th style="text-align:center">DELITO PRINCIPAL</th>
-                              <th style="text-align:center">OTRO DELITO PRINCIPAL</th>
-                              <th style="text-align:center">ETAPA PROCEDIMIENTO/RECURSO</th>
-                              <!-- <th style="text-align:center">NUC</th> -->
-                              <th style="text-align:center">MUNICIPIO RADICACION</th>
-                              <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
-                              <th style="text-align:center">MOTIVO NO PROCEDENCIA JURIDICA</th>
-                              <!-- <th style="text-align:center">PERSONAS PROPUESTAS</th> -->
-                              <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
-                              <th style="text-align:center">INCORPORACIÓN</th>
-                              <th style="text-align:center">FECHA ANALISIS</th>
-                              <!-- <th style="text-align:center">ID ANALISIS</th> -->
-                              <th style="text-align:center">CONVENIO</th>
-                              <!-- <th style="text-align:center">FECHA FIRMA CONVENIO</th> -->
-                              <th style="text-align:center">FECHA INICIO</th>
-                              <th style="text-align:center">VIGENCIA</th>
-                              <th style="text-align:center">FECHA TERMINO</th>
-                              <?php
-                              $v = "SELECT folioexpediente, COUNT( folioexpediente ) AS total
-                              FROM  evaluacion_expediente
-                              GROUP BY folioexpediente
-                              ORDER BY total DESC
-                              LIMIT 1";
-                              $rv = $mysqli->query($v);
-                              $fv = $rv->fetch_assoc();
-                              // echo $fv['total'];
-                              for ($i=2; $i < $fv['total']+ 2; $i++) {
-                                echo '<th style="text-align:center">'; echo 'ANALISIS MULTIDISCIPLINARIO   '.'<br>'.$i; echo'</th>';
-                                echo '<th style="text-align:center">'; echo 'FECHA AUTORIZACIÓN'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'ID ANALISIS'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'TIPO DE CONVENIO'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'FECHA FIRMA'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'FECHA INICIO'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'VIGENCIA'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'FECHA TERMINO'; echo '</th>';
-                                echo '<th style="text-align:center">'; echo 'NUMERO DE CONVENIOS FIRMADOS'; echo '</th>';
-                              }
-                              ?>
-                              <th style="text-align:center">CONCLUSIÓN / CANCELACIÓN</th>
-                              <th style="text-align:center">CONCLUSIÓN ART. 35</th>
-                              <th style="text-align:center">OTRO ART. 35</th>
-                              <th style="text-align:center">FECHA DESINCORPORACIÓN</th>
-                              <th style="text-align:center">ESTATUS</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        include("../subdireccion_de_estadistica_y_preregistro/tabla_evaluaciones_expedientes.php");
-                        ?>
-                      </tbody>
-                     </table>
+        <article class="">
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+            <a class="actived">ESTADISTICA</a>
+          </div>
+          <div class="container">
+            <h2 style="text-align:center">SUJETOS EN CENTROS DE RESGUARDO</h2>
+            <div class="">
+                <div class="row">
+                  <div class="">
+                      <div class="row">
+                              <div class="col-lg-12">
+                                  <div class="table-responsive">
+                                      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                      <thead>
+                                          <tr>
+                                            <th style="text-align:center">NO.</th>
+                                            <th style="text-align:center">EXPEDIENTE</th>
+                                            <th style="text-align:center">FECHA DE RECEPCION</th>
+                                            <th style="text-align:center">IDENTIFICADOR</th>
+                                            <th style="text-align:center">ESTATUS PERSONA</th>
+                                            <th style="text-align:center">SEXO</th>
+                                            <th style="text-align:center">EDAD</th>
+                                            <th style="text-align:center">GRUPO EDAD</th>
+                                            <th style="text-align:center">CONVENIO</th>
+                                            <th style="text-align:center">FECHA DE INICIO DEL CONVENIO</th>
+                                            <th style="text-align:center">2021</th>
+                                            <th style="text-align:center">2022</th>
+                                            <th style="text-align:center">2023</th>
+                                            <th style="text-align:center">INICIO DEL RESGUARDO</th>
+                                            <th style="text-align:center">FIN DEL RESGUARDO</th>
+                                            <th style="text-align:center">TIEMPO EN RESGUARDO</th>
+                                            <th style="text-align:center">ESTATUS MEDIDA</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <?php
+                                        include("../subdireccion_de_estadistica_y_preregistro/medidas_alojamiento.php");
+                                        ?>
+                                      </tbody>
+                                     </table>
+                                  </div>
+                              </div>
+                      </div>
                   </div>
-              </div>
+                </div>
             </div>
-          </article>
+          </div>
+        </article>
       </div>
     </div>
   </div>
