@@ -671,9 +671,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <br>
             <select class="mul-select form-select form-select-lg mb-3" multiple="true" name="sel_relacional[]" style="width:950px">
               <?php
-              $ex = "SELECT * FROM expediente
-              INNER JOIN statusseguimiento ON expediente.fol_exp = statusseguimiento.folioexpediente
-              WHERE statusseguimiento.status = 'EN EJECUCION' OR statusseguimiento.status = 'ANALISIS'";
+              $ex = "SELECT * FROM expediente";
               $rex =$mysqli->query($ex);
               while ($fex = $rex->fetch_assoc()) {
                 echo $fex['fol_exp'];
