@@ -246,10 +246,16 @@ $validacion = $fil_val['validacion'];
             <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" placeholder="" type="text" value="<?php echo $fecha_inicio_p; ?>" readonly>
           </div>
 
-          <!-- <div class="col-md-6 mb-3 validar" id="date_definitva" style="display:none;">
-            <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE INICIO DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder=""  type="date">
-          </div> -->
+          <div class="col-md-6 mb-3 validar" style="display:none;" id="DIVALOJAMIENTO">
+            <label for="medaloamientotemp">MEDIDA RELACIONADA<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="medaloamientotemp" name="medaloamientotemp" onChange="selectmedida(this)">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+              <option value="INICIAL">INICIAL</option>
+            </select>
+          </div>
+
         </div>
 
         <div class="row">
@@ -263,10 +269,7 @@ $validacion = $fil_val['validacion'];
           <div class="col-md-6 mb-3 validar">
             <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="ESTATUS_MEDIDA" required="" name="ESTATUS_MEDIDA" disabled>
-              <!-- <option disabled selected value>SELECCIONE UN ESTATUS</option> -->
               <option disabled selected value="EN EJECUCION">EN EJECUCIÓN</option>
-              <!-- <option value="EJECUTADA">EJECUTADA</option>
-              <option value="CANCELADA">CANCELADA</option> -->
               </select>
           </div>
 
@@ -309,15 +312,6 @@ $validacion = $fil_val['validacion'];
                   <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
                 </div>
 
-                <!-- <div class="col-md-6 mb-3 validar">
-                  <label for="CONCLUSION_CANCELACION">CONCLUSIÓN</label>
-                  <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="open2art35(this)">
-                    <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
-                    <option value="CONCLUSION">CONCLUSIÓN</option>
-                    <option value="NO APLICA">NO APLICA</option>
-                  </select>
-                </div> -->
-
                 <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" style="display:none;">
                   <label for="CONCLUSION_ART35">CONCLUSIÓN DEL ARTICULO 35</label>
                   <select class="form-select form-select-lg" name="CONCLUSION_ART35" onChange="otherart35(this)">
@@ -337,12 +331,7 @@ $validacion = $fil_val['validacion'];
                   <input autocomplete="off" class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="" type="text">
                 </div>
 
-
-
               </div>
-
-
-
 
               <div class="row">
                 <div class="row">
@@ -384,67 +373,22 @@ $validacion = $fil_val['validacion'];
 <a href="../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=<?=$fol_exp?>" class="btn-flotante">CANCELAR</a>
 </div>
 <script type="text/javascript">
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-      dd='0'+dd
+  var medalojamiento = document.getElementById('MEDIDAS_RESGUARDO');
+  var medaloj = '';
+  medalojamiento.addEventListener('change', obteneralojamiento);
+      function obteneralojamiento(e) {
+        medaloj = e.target.value;
+        // console.log(medaloj);
+        if (medaloj === 'VIII. ALOJAMIENTO TEMPORAL') {
+          console.log('entra relacional');
+          document.getElementById('DIVALOJAMIENTO').style.display = "";
+          document.getElementById('medaloamientotemp').required = true;
+        }else {
+          console.log('no entra en relacional');
+          document.getElementById('DIVALOJAMIENTO').style.display = "none";
+          document.getElementById('medaloamientotemp').required = false;
+        }
   }
-  if(mm<10){
-      mm='0'+mm
-  }
-today = yyyy+'-'+mm+'-'+dd;
-
-document.getElementById("FECHA_ACTUALIZACION_MEDIDA").setAttribute("max", today);
-document.getElementById("INICIO_EJECUCION_MEDIDA").setAttribute("max", today);
-document.getElementById("FECHA_DE_EJECUCION").setAttribute("max", today);
-
-</script>
-<script type="text/javascript">
-window.onload = function(){
-  var fecha = new Date();
-  var mes = fecha.getMonth()+1;
-  var dia = fecha.getDate();
-  var ano = fecha.getFullYear();
-  if(dia<10)
-    dia='0'+dia;
-  if(mes<10)
-    mes='0'+mes
-  // document.getElementById('FECHA_CAPTURA').value=dia+"-"+mes+"-"+ano;
-}
-</script>
-
-<script type="text/javascript">
-
-    var fechaInicio = document.getElementById('INICIO_EJECUCION_MEDIDA');
-    var fechaInicioIngresada;
-
-    var fechaDefinitiva = document.getElementById('FECHA_ACTUALIZACION_MEDIDA');
-    var fechaDefinitivaIngresada;
-
-    fechaInicio.addEventListener('change', obtenerFechaInicio);
-    fechaDefinitiva.addEventListener('change', obtenerFechaDefinitiva);
-
-    function obtenerFechaInicio(e) {
-      fechaInicioIngresada = e.target.value;
-      if (fechaInicioIngresada < fechaDefinitivaIngresada ||  fechaDefinitivaIngresada == null || fechaDefinitivaIngresada == ""){
-      document.getElementById("FECH_INICIO").value = fechaInicioIngresada;
-      }
-      else {
-      document.getElementById("FECH_INICIO").value = fechaDefinitivaIngresada;
-      }
-    }
-
-    function obtenerFechaDefinitiva(e) {
-      fechaDefinitivaIngresada = e.target.value;
-      if (fechaInicioIngresada < fechaDefinitivaIngresada || fechaDefinitivaIngresada == null || fechaDefinitivaIngresada == ""){
-      document.getElementById("FECH_INICIO").value = fechaInicioIngresada;
-      }
-      else {
-      document.getElementById("FECH_INICIO").value = fechaDefinitivaIngresada;
-      }
-    }
 </script>
 </body>
 </html>
