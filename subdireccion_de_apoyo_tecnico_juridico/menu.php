@@ -384,7 +384,7 @@ $sqltic = "SELECT COUNT(*) as ti FROM tickets WHERE estatus='ATENDIDA' AND usuar
 $rt = $mysqli->query($sqltic);
 $num_ti = $rt->fetch_assoc();
 $counti = $num_ti['ti'];
-echo 'tickets en proceso: ' . $counti;
+// echo 'tickets en proceso: ' . $counti;
 ?>
 </body>
 </html>

@@ -342,7 +342,7 @@ $hoy = date("d-m-Y H:i:s a");
 <div class="contenedor">
 
 
-<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$folio_del_expediente?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_apoyo_tecnico_juridico/modificar.php?id=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 
   <!-- <a href="https://10.51.0.215/?loginOp=logout" target="_blank" class="btn-flotante-notificacion" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fas fa-file-signature"></i></a> -->
 
