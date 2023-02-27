@@ -47,7 +47,7 @@ $rowfol=$resultfol->fetch_assoc();
 
 $name_carpeta = $fol_exp;
 $resultado = str_replace("/", "-", $name_carpeta);
-// echo $resultado;
+echo $resultado;
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
