@@ -4,7 +4,7 @@ $folio_del_expediente = $_SESSION['folio_expediente'];
 
 $name_carpeta = $folio_del_expediente;
 $resultado = str_replace("/", "-", $name_carpeta);
-// echo $resultado;
+echo $resultado;
 
 
 $fichero = $_FILES["file"];
