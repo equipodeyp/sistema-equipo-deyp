@@ -19,6 +19,7 @@ if ($verifica == 1) {
   $sede=$_POST['sede'];
   $r_sede= substr("$sede", 0,3);//obteniendo las tres primeras letras
   $municipio=$_POST['municipio'];
+  $relacion=$_POST['sltrelacion'];
   $qry = "select max(ID) As id from expediente";
   $result = $mysqli->query($qry);
   $row_exp = $result->fetch_assoc();
@@ -95,24 +96,24 @@ if ($verifica == 1) {
     if (!file_exists($estructura_cuatro)) {
         mkdir($estructura_cuatro, 0777, true);
     }
-  
+
     $estructura_cinco = "../subdireccion_de_apoyo_tecnico_juridico/repo/$resultado/$resultado";
-  
+
     if (!file_exists($estructura_cinco)) {
         mkdir($estructura_cinco, 0777, true);
     }
-  
+
     $estructura_seis = "../subdireccion_de_estadistica_y_preregistro/repo/$resultado/$resultado";
-  
+
     if (!file_exists($estructura_seis)) {
         mkdir($estructura_seis, 0777, true);
     }
 
-  
 
 
-  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion)
-          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion')";
+
+  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion, relacion)
+          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion', '$relacion')";
   $resultado = $mysqli->query($sql);
   $convertirfecha = "UPDATE expediente SET fecha_nueva  = STR_TO_DATE(fecharecep, '%d/%m/%Y')";
   $res_convertir = $mysqli->query($convertirfecha);

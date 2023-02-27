@@ -49,6 +49,7 @@ if ($verifica_medida == 1) {
     }
   }
   echo $inicio_medida=$_POST['INICIO_EJECUCION_MEDIDA'];
+  $relacionmed = $_POST['medaloamientotemp'];
   echo '<br>';
   // echo $inicio_medida2 = date("Y-d-m", strtotime($inicio_medida));
   $date = str_replace('/', '-', $inicio_medida);
@@ -72,7 +73,7 @@ echo $inicio_medida2 = date('Y-m-d', strtotime($date));
   $persona = $rowfolio_exp['id'];
   // echo $folio_expediente.'<br>'. $persona;
 
-    $addmedidas2 = "UPDATE medidas SET clasificacion = '$clasificacion_medida', medida = '$medida', descripcion = '$med_res', date_provisional = ' $inicio_medida2'   WHERE id = '$id_persona'";
+    $addmedidas2 = "UPDATE medidas SET clasificacion = '$clasificacion_medida', medida = '$medida', descripcion = '$med_res', date_provisional = ' $inicio_medida2', relacion = '$relacionmed'  WHERE id = '$id_persona'";
     $res_addmedidas2 = $mysqli->query($addmedidas2);
 
  // regresa la validacion a false para validar nuevamente la informacion

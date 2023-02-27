@@ -38,7 +38,7 @@ $row=$result->fetch_assoc();
   <script src="../js/expediente.js"></script>
   <script src="../js/solicitud.js"></script>
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/cli.css">
 
@@ -169,6 +169,20 @@ $row=$result->fetch_assoc();
 			    </div>
 					</div>
 				</div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label">EXPEDIENTE RELACIONADO</label>
+          <div class="col-md-4 selectContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fas fa-project-diagram"></i></span>
+              <select name="sltrelacion" class="form-control selectpicker" id="sltrelacion" required>
+                <option disabled selected value>SELECCIONE UNA OPCION</option>
+                <option value="INICIAL">INICIAL</option>
+                <option value="RELACIONADO">RELACIONADO</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
