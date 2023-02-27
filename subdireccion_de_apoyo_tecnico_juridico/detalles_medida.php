@@ -29,7 +29,7 @@ $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
 $id_person=$rowfol['id'];
 $idunico= $rowfol['identificador'];
-echo $fecha_inicio_p = $rowfol['fecha_captura'];
+$fecha_inicio_p = $rowfol['fecha_captura'];
 
 $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
 $res_val=$mysqli->query($valid);

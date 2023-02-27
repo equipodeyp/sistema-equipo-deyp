@@ -682,6 +682,23 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           </div>
         </div>
 
+        <div class="row" style="display:none;" id="persona_reingreso">
+          <div class="row">
+            <hr class="mb-4">
+          </div>
+          <div class="alert div-title">
+            <h3 style="text-align:center">RE-INGRESO</h3>
+          </div>
+          <div class="col-md-12 mb-3 validar">
+            <label for="re-ingreso" class="is-required">RE-INGRESO<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="re_ingreso" name="re_ingreso" required>
+              <option style="visibility: hidden" value="">SELECCIONE UNA OPCION</option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+            </select>
+          </div>
+        </div>
+
         <div class="row" style="display:none;" id="fotografia">
           <div class="row">
             <hr class="mb-4">
@@ -1042,6 +1059,7 @@ document.getElementById("next3").addEventListener("click", function() {
     document.getElementById("comentarios").style.display="";
     document.getElementById("guardarfrm").style.display="";
     document.getElementById("expedientes_relacionales").style.display="";
+    document.getElementById("persona_reingreso").style.display="";
     document.getElementById("btnnext3").style.display="none";
 
 });

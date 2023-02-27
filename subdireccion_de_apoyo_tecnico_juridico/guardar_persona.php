@@ -215,10 +215,11 @@ if ($verifica == 1) {
   }
   $identificador = $_POST['ID_UNICO'];
   $fecha_captura = $_POST['FECHA_CAPTURA'];
+  $re_ingreso_persona = $_POST['re_ingreso'];
   $datos_persona = "INSERT INTO datospersonales (nombrepersona, paternopersona, maternopersona, fechanacimientopersona, edadpersona, grupoedad, calidadpersona, calidadprocedimiento, especifique, sexopersona, curppersona, rfcpersona, aliaspersona, ocupacion, telefonofijo, telefonocelular,
-                                incapaz, folioexpediente, foto, estatus, identificador, fecha_captura, relacional, usuario)
+                                incapaz, folioexpediente, foto, estatus, identificador, fecha_captura, relacional, usuario, reingreso)
                     VALUES('$n_persona', '$p_persona', '$m_persona', '$f_persona', '$e_persona', '$g_persona', '$c_persona', '$p_procedimiento', '$otroacalp', '$s_persona', '$cu_persona', '$rfc_persona', '$al_persona', '$o_persona', '$t_fijo', '$t_celular',
-                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador', '$fecha_captura', 'NO', '$name')";
+                           '$incapaz', '$fol_exp', '$userpic', '$estatus', '$identificador', '$fecha_captura', 'NO', '$name', '$re_ingreso_persona')";
   $res_dat_per = $mysqli->query($datos_persona);
   $qry = "select max(ID) As id from datospersonales";
   $result = $mysqli->query($qry);
