@@ -1,6 +1,6 @@
 <?php
 session_start ();
-$folio_del_expediente = $_SESSION['folio_expediente'];
+$folio_del_expediente = $_SESSION['folioExp'];
 
 $name_carpeta = $folio_del_expediente;
 $resultado = str_replace("/", "-", $name_carpeta);
