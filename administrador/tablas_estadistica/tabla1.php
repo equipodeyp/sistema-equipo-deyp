@@ -39,7 +39,7 @@ $fila_total_febrero = $res_total_febrero->fetch_assoc();
 //
 $total_marzo = "SELECT COUNT(DISTINCT folioexpediente) AS total_marzo FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2022-03-01' AND '2022-03-31'";
+WHERE valoracionjuridica.resultadovaloracion = 'si procede' AND expediente.fecha_nueva BETWEEN '2023-03-01' AND '2023-03-31'";
 $res_total_marzo = $mysqli->query($total_marzo);
 $fila_total_marzo = $res_total_marzo->fetch_assoc();
 //
@@ -124,7 +124,7 @@ $fila_totalfebrero = $restotalfebrero->fetch_assoc();
 //
 $totalmarzo = "SELECT COUNT(DISTINCT folioexpediente) AS marzototal FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2022-03-01' AND '2022-03-31'";
+WHERE valoracionjuridica.resultadovaloracion != 'si procede' AND expediente.fecha_nueva BETWEEN '2023-03-01' AND '2023-03-31'";
 $restotalmarzo = $mysqli->query($totalmarzo);
 $fila_totalmarzo = $restotalmarzo->fetch_assoc();
 //
@@ -221,7 +221,7 @@ $fila_febrerototal = $resfebrerototal->fetch_assoc();
 //
 $marzototal = "SELECT COUNT(DISTINCT folioexpediente) AS t FROM valoracionjuridica
 INNER JOIN expediente ON valoracionjuridica.folioexpediente = expediente.fol_exp
-WHERE expediente.fecha_nueva BETWEEN '2022-03-01' AND '2022-03-31'";
+WHERE expediente.fecha_nueva BETWEEN '2023-03-01' AND '2023-03-31'";
 $resmarzototal = $mysqli->query($marzototal);
 $fila_marzototal = $resmarzototal->fetch_assoc();
 //
@@ -297,7 +297,7 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_year2022['cant']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_enero['total_enero']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_total_febrero['total_febrero']; echo "</td>";
-  // echo "<td style='text-align:center'>"; echo $fila_total_marzo['total_marzo']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_total_marzo['total_marzo']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_total_abril['total_abril']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_total_mayo['total_mayo']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_total_junio['total_junio']; echo "</td>";
@@ -317,7 +317,7 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_year2022NOPROC['cant1']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalenero['enerototal']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_totalfebrero['febrerototal']; echo "</td>";
-  // echo "<td style='text-align:center'>"; echo $fila_totalmarzo['marzototal']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_totalmarzo['marzototal']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_totalabril['abriltotal']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_totalmayo['mayototal']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_totaljunio['juniototal']; echo "</td>";
@@ -337,7 +337,7 @@ $fila_totalsistema = $restotalsistema->fetch_assoc();
   echo "<td style='text-align:center'>"; echo $fila_year2022total['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_enerototal['t']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $fila_febrerototal['t']; echo "</td>";
-  // echo "<td style='text-align:center'>"; echo $fila_marzototal['t']; echo "</td>";
+  echo "<td style='text-align:center'>"; echo $fila_marzototal['t']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_abriltotal['t']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_mayototal['t']; echo "</td>";
   // echo "<td style='text-align:center'>"; echo $fila_juniototal['t']; echo "</td>";
