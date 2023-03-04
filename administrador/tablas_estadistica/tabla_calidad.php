@@ -26,7 +26,7 @@ $ftotal_wfebrero = $rtotal_wfebrero->fetch_assoc();
 //
 $total_wmarzo = "SELECT COUNT(*) AS total FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE autoridad.fechasolicitud BETWEEN '2022-03-01' AND '2022-03-31' ORDER BY `calidadpersona`";
+WHERE autoridad.fechasolicitud BETWEEN '2023-03-01' AND '2023-03-31' ORDER BY `calidadpersona`";
 $rtotal_wmarzo = $mysqli->query($total_wmarzo);
 $ftotal_wmarzo = $rtotal_wmarzo->fetch_assoc();
 //
@@ -119,7 +119,7 @@ while ($fila = $res->fetch_assoc()) {
     //
     $wmarzo = "SELECT COUNT(*) AS calidad FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-    WHERE datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2022-03-01' AND '2022-03-31' ORDER BY `calidadpersona`";
+    WHERE datospersonales.calidadpersona = '$r' AND autoridad.fechasolicitud BETWEEN '2023-03-01' AND '2023-03-31' ORDER BY `calidadpersona`";
     $rwmarzo = $mysqli->query($wmarzo);
     $fwmarzo = $rwmarzo->fetch_assoc();
     //
@@ -204,7 +204,7 @@ while ($fila = $res->fetch_assoc()) {
         echo "<td style='text-align:center'>"; echo $fwtotal2022['total']; "</td>";
         echo "<td style='text-align:center'>"; echo $fwenero['calidad']; "</td>";
         echo "<td style='text-align:center'>"; echo $fwfebrero['calidad']; echo "</td>";
-        // echo "<td style='text-align:center'>"; echo $fwmarzo['calidad']; echo "</td>";
+        echo "<td style='text-align:center'>"; echo $fwmarzo['calidad']; echo "</td>";
         // echo "<td style='text-align:center'>"; echo $fwabril['calidad']; echo "</td>";
         // echo "<td style='text-align:center'>"; echo $fwmayo['calidad']; echo "</td>";
         // echo "<td style='text-align:center'>"; echo $fwjunio['calidad']; echo "</td>";
@@ -227,7 +227,7 @@ echo "<td style='text-align:center'>"; echo $ftotal_wenero['total2021']; echo "<
 echo "<td style='text-align:center'>"; echo $ftotal_calper2022['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_wenero1['total']; echo "</td>";
 echo "<td style='text-align:center'>"; echo $ftotal_wfebrero['total']; echo "</td>";
-// echo "<td style='text-align:center'>"; echo $ftotal_wmarzo['total']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $ftotal_wmarzo['total']; echo "</td>";
 // echo "<td style='text-align:center'>"; echo $ftotal_wabril['total']; echo "</td>";
 // echo "<td style='text-align:center'>"; echo $ftotal_wmayo['total']; echo "</td>";
 // echo "<td style='text-align:center'>"; echo $ftotal_wjunio['total']; echo "</td>";
