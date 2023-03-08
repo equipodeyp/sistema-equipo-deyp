@@ -866,10 +866,16 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     </select>
                   </div>
 
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="MOTIVO_NO_PROCEDENCIA">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
-                    <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" >
-                      <option style="visibility: hidden" id="opt-motivo-no-procedencia" value="<?php echo $rowvaljur['motivoprocedencia']; ?>"><?php echo $rowvaljur['motivoprocedencia']; ?></option>
+                  <div class="col-md-6 mb-3 validar" id="motnoproc">
+                    <label for="motivo_procede" id="NO_PRO" style="display:none;">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
+                    <label for="motivo_procede" id="ART23PROC" style="display:none;">ARTICULO NO. 23<span class="required"></span></label>
+                    <input class="form-control" id="motivo_procede" name="motivo_procede" placeholder="" value="<?php echo $rowvaljur['motivoprocedencia']; ?>" type="text" readonly>
+                  </div>
+
+                  <div class="col-md-6 mb-3 validar" id="noprocede" style="display:none;">
+                    <label for="MOTIVO_NO_PROCEDENCIATR">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
+                    <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA">
+                      <option style="visibility: hidden" id="opt-motivo-no-procedencia">SELECCIONE UNA OPCION</option>
                       <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL</option>
                       <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
                       <option value="AMBAS">AMBAS</option>
@@ -1310,6 +1316,47 @@ $(document).ready(function(){
                   tokenSeparators: ['/',',',';'," "]
               });
           })
+</script>
+
+<script type="text/javascript">
+////////////////////////////////////////////////////////////////////////////////
+  var procede = document.getElementById('RESULTADO_VALORACION_JURIDICA');
+  var resprocede = '';
+  procede.addEventListener('change', changeprocede);
+  function changeprocede(e){
+    resprocede = e.target.value;
+    console.log(resprocede);
+    if (resprocede === 'SI PROCEDE') {
+      console.log('UNO');
+      document.getElementById('noprocede').style.display = "none";
+      document.getElementById('motnoproc').style.display = "none";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').required = false;
+    }else if (resprocede === 'NO PROCEDE') {
+      console.log('tres');
+      // document.getElementById('MOTIVO_NO_PROCEDENCIA').required = true;
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').required = true;
+      document.getElementById('noprocede').style.display = "";
+      document.getElementById('motnoproc').style.display = "none";
+    }
+  }
+//////////////////////////////////////////////////////////////////////////////
+  var getproc = document.getElementById('RESULTADO_VALORACION_JURIDICA').value;
+  function disabledprocede (){
+    if (getproc === 'NO PROCEDE') {
+      document.getElementById('NO_PRO').style.display = "";
+      document.getElementById('RESULTADO_VALORACION_JURIDICA').disabled = true;
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').required = true;
+    }else if (getproc === 'PARCIALMENTE PROCEDE') {
+      document.getElementById('ART23PROC').style.display = "";
+    }else if (getproc === 'NO PROCEDE') {
+      document.getElementById('ART23PROC').style.display = "";
+    }
+    if (getproc === 'SI PROCEDE') {
+      document.getElementById('motnoproc').style.display = "none";
+      document.getElementById('RESULTADO_VALORACION_JURIDICA').disabled = true;
+    }
+  }
+  disabledprocede ();
 </script>
 <script src="../js/pruebadisabled.js" charset="utf-8"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">

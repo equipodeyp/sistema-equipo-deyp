@@ -116,15 +116,16 @@ if ($verifica == 1) {
   $checkvalorjuridica = "SELECT * FROM valoracionjuridica WHERE folioexpediente = '$fol_exp'";
   $rescheckvalorjuridica = $mysqli->query($checkvalorjuridica);
   $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
-  if ($filavalorjuridica > 0) {
-    // echo "existe registro previo";
-    $res_val_jur = $filavalorjuridica['resultadovaloracion'];
-    $mot_no_proc = $filavalorjuridica['motivoprocedencia'];
-  }else {
-    // echo "no existe ningun dato";
+
     $res_val_jur=$_POST['RESULTADO_VALORACION_JURIDICA'];
-    $mot_no_proc=$_POST['MOTIVO_NO_PROCEDENCIA'];
-  }
+    if ($res_val_jur === 'SI PROCEDE') {
+      $mot_no_proc = '';
+    }elseif ($res_val_jur === 'NO PROCEDE') {
+      $mot_no_proc=$_POST['MOTIVO_NO_PROCEDENCIA'];
+    }elseif ($res_val_jur === 'PARCIALMENTE PROCEDE') {
+      $mot_no_proc = $_POST['articulo23proc'];
+    }
+
   // datos de la determinacion de la INCORPORACION
   $multidisciplinario=$_POST['ANALISIS_MULTIDISCIPLINARIO'];
   $incorporacion=$_POST['INCORPORACION'];

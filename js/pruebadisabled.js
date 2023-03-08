@@ -5,7 +5,7 @@ function disabledcampos() {
     document.getElementById('ID_SOLICITUD').disabled = true;
     document.getElementById('FECHA_SOLICITUD').disabled = true;
     document.getElementById('NOMBRE_AUTORIDAD').disabled = true;
-    document.getElementById('OTHER_AUTORIDAD').disabled = true;
+    // document.getElementById('OTHER_AUTORIDAD').disabled = true;
     document.getElementById('NOMBRE_SERVIDOR').disabled = true;
     document.getElementById('PATERNO_SERVIDOR').disabled = true;
     document.getElementById('MATERNO_SERVIDOR').disabled = true;
@@ -68,27 +68,7 @@ disabledcampos();
  }
  municipiorad();
 
- var valjurid = document.getElementById('RESULTADO_VALORACION_JURIDICA').value;
- function valorjuridica () {
-   // console.log(valjurid);
-   if (valjurid === '') {
-     document.getElementById('opt-val-jurid').text = "SELECCIONE UNA OPCIÓN";
-   }
-   if (valjurid !== '') {
-     document.getElementById('RESULTADO_VALORACION_JURIDICA').disabled = true;
-     document.getElementById('MOTIVO_NO_PROCEDENCIA').disabled = true;
-   }
- }
- valorjuridica ();
 
- var motproc = document.getElementById('MOTIVO_NO_PROCEDENCIA').value;
- function motivoproc () {
-   // console.log(motproc);
-   if (motproc === '') {
-     document.getElementById('opt-no-proc').text = "SELECCIONE UNA OPCIÓN";
-   }
- }
- motivoproc();
 
 // input para mencionar otro tipo de calidad dentro del proceso PENAL
   var calpp = document.getElementById('CALIDAD_PERSONA_PROCEDIMIENTO');

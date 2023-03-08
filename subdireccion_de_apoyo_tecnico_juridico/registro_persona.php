@@ -639,16 +639,17 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div class="col-md-6 mb-3 validar">
             <label for="RESULTADO_VALORACION_JURIDICA" class="is-required">RESULTADO DE LA VALORACIÓN JURÍDICA<span class="required"></span></label>
             <select class="form-select form-select-lg" id="RESULTADO_VALORACION_JURIDICA" name="RESULTADO_VALORACION_JURIDICA" required>
-              <option style="visibility: hidden" selected id="opt-val-jurid" value="<?php echo $filavalorjuridica['resultadovaloracion']; ?>"><?php echo $filavalorjuridica['resultadovaloracion']; ?></option>
-              <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
+              <!-- <option style="visibility: hidden" selected id="opt-val-jurid" value="<?php echo $filavalorjuridica['resultadovaloracion']; ?>"><?php echo $filavalorjuridica['resultadovaloracion']; ?></option> -->
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="SI PROCEDE">SI PROCEDE</option>
               <option value="NO PROCEDE">NO PROCEDE</option>
+              <option value="PARCIALMENTE PROCEDE">PARCIALMENTE PROCEDE</option>
             </select>
           </div>
 
-          <div class="col-md-6 mb-3 validar">
+          <div class="col-md-6 mb-3 validar" style="display:none;" id="motprocendeciano">
             <label for="MOTIVO_NO_PROCEDENCIA" class="is-required">MOTIVO NO PROCEDENCIA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA" required>
+            <select class="form-select form-select-lg" id="MOTIVO_NO_PROCEDENCIA" name="MOTIVO_NO_PROCEDENCIA">
               <option style="visibility: hidden" selected id="opt-no-proc" value="<?php echo $filavalorjuridica['motivoprocedencia']; ?>"><?php echo $filavalorjuridica['motivoprocedencia']; ?></option>
               <!-- <option disabled selected value>SELECCIONE UNA OPCIÓN</option> -->
               <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL</option>
@@ -657,6 +658,22 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
               <option value="NO APLICA">NO APLICA</option>
             </select>
           </div>
+
+          <div class="col-md-6 mb-3 validar" style="display:none;" id="art23">
+            <label for="articulo23proc" class="is-required">ARTICULO NO. 23<span class="required"></span></label>
+            <select class="form-select form-select-lg" id="articulo23proc" name="articulo23proc">
+              <!-- <option style="visibility: hidden" selected id="opt-mun-rad" value="<?php echo $filacheckproceso['numeroradicacion']; ?>"><?php echo $filacheckproceso['numeroradicacion']; ?></option> -->
+              <option disabled selected value>SELECCIONE UNA OPCION</option>
+              <?php
+              $selectart23 = "SELECT * FROM articulo23";
+              $answerart23 = $mysqli->query($selectart23);
+              while($valoresart23 = $answerart23->fetch_assoc()){
+                echo "<option value='".$valoresart23['nombre']."'>".$valoresart23['nombre']."</option>";
+              }
+              ?>
+            </select>
+          </div>
+
         </div>
         <div class="row" style="display:none;" id="expedientes_relacionales">
           <div class="row">
@@ -724,7 +741,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <h3 style="text-align:center">COMENTARIOS</h3>
           </div>
 
-            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
+            <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="1000"></textarea>
 
         </div>
 
@@ -1092,7 +1109,35 @@ if (idUnico == null || idUnico == ""){
 }
 }
   </script> -->
-
+<script type="text/javascript">
+  var proc = document.getElementById('RESULTADO_VALORACION_JURIDICA');
+  var procparc = '';
+  proc.addEventListener('change', obtenerproc);
+  function obtenerproc(e){
+    procparc = e.target.value;
+    // console.log(procparc);
+    if (procparc === 'NO PROCEDE') {
+      document.getElementById('motprocendeciano').style.display = "";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').required = true;
+      document.getElementById('art23').style.display = "none";
+      document.getElementById('articulo23proc').value = "";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').value = "";
+    }else if (procparc === 'SI PROCEDE') {
+      document.getElementById('motprocendeciano').style.display = "none";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').required = false;
+      document.getElementById('art23').style.display = "none";
+      document.getElementById('articulo23proc').value = "";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').value = "";
+    }else if (procparc === 'PARCIALMENTE PROCEDE') {
+      document.getElementById('motprocendeciano').style.display = "none";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').required = false;
+      document.getElementById('articulo23proc').required = true;
+      document.getElementById('art23').style.display = "";
+      document.getElementById('articulo23proc').value = "";
+      document.getElementById('MOTIVO_NO_PROCEDENCIA').value = "";
+    }
+  }
+</script>
 
 </script>
 <script type="text/javascript">
