@@ -1002,7 +1002,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   		  					</div>
   								<div id="footer">
   		  					</div>
-                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="200"></textarea>
+                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tu comentario" maxlength="1000"></textarea>
                   <!-- </div> -->
   							</div>
                 <div class="col-md-6 mb-3 validar" style="display:none;">
