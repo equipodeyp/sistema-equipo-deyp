@@ -455,34 +455,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     </div>
 
 
-                </div>
-                <div class="row" id="ver_relacion">
-                  <div class="row">
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert div-title">
-                    <h3 style="text-align:center">ESTATUS DE RELACION CON OTROS EXPEDIENTES</h3>
-                  </div>
-                  <div class="col-md-6 mb-3 validar" >
-                    <label id="rel_suj_exp" for="OTHER_ART35">ESPECIFIQUE SI HAY RELACION</label>
-                    <!-- <input id="relacionper" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowfol2['relacional']; ?>" type="text"> -->
-                    <select id="relpersuj" class="form-select form-select-lg" name="relpersuj">
-                      <option disabled selected value>SELECCIONE UNA OPCION</option>
-                      <option value="SI">SI</option>
-                      <option value="NO">NO</option>
-                    </select>
-                  </div>
-                  <?php
-                  // echo $nombrep;
-                  $clsuj = "SELECT COUNT(*) as t FROM datospersonales WHERE nombrepersona = '$nombrep' AND paternopersona = '$apaterno'
-                                                             AND maternopersona = '$amaterno' AND relacional = 'SI'";
-                  $rclsuj = $mysqli->query($clsuj);
-                  $fclsuj = $rclsuj->fetch_assoc();
-                  if ($fclsuj['t'] > 0) {
-                    // echo 'si hay relacion';
-                  }
-                  ?>
-                </div>
+                </div>               
 
                 <div class="row">
                   <div class="row">
@@ -1233,28 +1206,6 @@ function ReadOnlyEstudio(){
   }
 }
 ReadOnlyConClu();
-</script>
-
-<script type="text/javascript">
-  var relac = document.getElementById('relpersuj').value;
-  var estrel = document.getElementById('ESTATUS_PERSONA').value;
-  var ifrel = document.getElementById('ifrelacionalsuj').value;
-  if (ifrel > 0) {
-    document.getElementById('ver_relacion').style.display = "block";
-    var sista = document.getElementById('ESTATUS_PERSONA');
-    var versta = '';
-    sista.addEventListener('change', cambiarsta);
-    function cambiarsta(e) {
-      versta = e.target.value;
-      console.log(versta);
-      if (versta == 'DESINCORPORADO' || versta == 'NO INCORPORADO') {
-        document.getElementById("relpersuj").required = true;
-        // relpersuj.attributes.required = "required"; //the attribute's canonical name
-      }
-    }
-  }else {
-    document.getElementById('ver_relacion').style.display = "none";
-  }
 </script>
 </body>
 </html>
