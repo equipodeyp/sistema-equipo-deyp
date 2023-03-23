@@ -103,6 +103,104 @@ $fexprel1 = $rexprel1->fetch_assoc();
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <style media="screen">
+  h1 {
+          color: yellow;
+      }
+
+      /* toggle in label designing */
+      .toggle {
+          position : relative ;
+          display : inline-block;
+          width : 70px;
+          height : 25px;
+          background-color: red;
+          border-radius: 30px;
+          border: 1px solid #FFFFFF;
+      }
+
+      /* After slide changes */
+      .toggle:after {
+          content: '';
+          position: absolute;
+          width: 31px;
+          height: 25px;
+          border-radius: 50%;
+          background-color: #999999;
+          top: -1px;
+          left: 0px;
+          transition:  all 0.5s;
+      }
+
+      /* Toggle text */
+      /* p {
+          font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+      } */
+
+      /* Checkbox checked effect */
+      .checkbox:checked + .toggle::after {
+          left : 43px;
+      }
+
+      /* Checkbox checked toggle label bg color */
+      .checkbox:checked + .toggle {
+          background-color: #229954;
+      }
+
+      /* Checkbox vanished */
+      .checkbox {
+          display : none;
+      }
+
+      /*  */
+
+
+          /* toggle in label designing */
+          .toggle2 {
+              position : relative ;
+              display : inline-block;
+              width : 70px;
+              height : 25px;
+              background-color: red;
+              border-radius: 30px;
+              border: 1px solid #FFFFFF;
+          }
+
+          /* After slide changes */
+          .toggle2:after {
+              content: '';
+              position: absolute;
+              width: 31px;
+              height: 25px;
+              border-radius: 50%;
+              background-color: #999999;
+              top: -1px;
+              left: 0px;
+              transition:  all 0.5s;
+          }
+
+          /* Toggle text */
+          /* p {
+              font-family: Arial, Helvetica, sans-serif;
+              font-weight: bold;
+          } */
+
+          /* Checkbox checked effect */
+          .checkbox2:checked + .toggle2::after {
+              left : 43px;
+          }
+
+          /* Checkbox checked toggle label bg color */
+          .checkbox2:checked + .toggle2 {
+              background-color: #229954;
+          }
+
+          /* Checkbox vanished */
+          .checkbox2 {
+              display : none;
+          }
+  </style>
 </head>
 <body >
 <div class="contenedor">
@@ -373,7 +471,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <h3 style="text-align:center">ESTATUS DE LA PERSONA DENTRO DEL PROGRAMA</h3>
                   </div>
 
-                  <div class="col-md-6 mb-3 validar">
+                  <div class="col-md-4 mb-3 validar">
                     <label for="ESTATUS_PERSONA">ESTATUS DE LA PERSONA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="ESTATUS_PERSONA" name="ESTATUS_PERSONA" >
                       <option style="visibility: hidden" id="opt-estatus-persona" value="<?php echo $rowfol['estatus']; ?>"><?php echo $rowfol['estatus']; ?></option>
@@ -385,6 +483,27 @@ $fexprel1 = $rexprel1->fetch_assoc();
                       }
                       ?>
                     </select>
+
+                    <input type="text" name="" value="<?php echo $rowfol['relacional']; ?>" style="display:none;" id="statusprogramrelacional">
+                    <input type="text" name="" value="<?php echo $rowfol['estatusprograma']; ?>" style="display:none;" id="statusprogram">
+                  </div>
+                  <div class="col-md-4 mb-3 validar" >
+                    <center>
+                      <label for="">SUJETO RELACIONADO</label><br>
+                      <input type="checkbox" class="checkbox" name="statusprogrampersonarelacional" id="switch" value="1" disabled>
+                      <label for="switch" class="toggle">
+                        <p>&nbspSI &nbsp&nbsp&nbsp&nbsp NO</p>
+                      </label>
+                    </center>
+                  </div>
+                  <div class="col-md-4 mb-3 validar" >
+                    <center>
+                      <label for="">INACTIVO / ACTIVO</label><br>
+                      <input type="checkbox" class="checkbox2" name="statusprogrampersona" id="switch2" value="1">
+                      <label for="switch2" class="toggle2">
+                        <p>&nbspSI &nbsp&nbsp&nbsp&nbsp NO</p>
+                      </label>
+                    </center>
                   </div>
 
                   <div class="col-md-6 mb-3 validar" div="DIV_CONCLUSION">
@@ -395,7 +514,6 @@ $fexprel1 = $rexprel1->fetch_assoc();
                       <option value="CONCLUSION">CONCLUSION</option>
                     </select>
                   </div>
-
 
                   <div class="col-md-6 mb-3 validar" id="DIV_FECHA_CONCLUSION">
                     <label id="LABEL_FECHA_CONCLUSION" for="FECHA_DESINCORPORACION" >FECHA DE CONCLUSIÓN<span class="required"></span></label>
@@ -454,8 +572,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                       <input id="OTHER_ART351" class="form-control" name="OTHER_ART351" placeholder="" value="<?php echo $rowdetinc['otroart35']; ?>" type="text">
                     </div>
 
-
-                </div>               
+                </div>
 
                 <div class="row">
                   <div class="row">
@@ -1154,9 +1271,10 @@ function ReadOnlyConClu() {
   if ( readOnlyEstatus == "DESINCORPORADO" || readOnlyEstatus == "NO INCORPORADO" ){
     document.getElementById('FECHA_DESINCORPORACION_UNO').disabled = true;
     document.getElementById('CONCLUSION_ART351').disabled = true;
+    // document.getElementById('CONCLUSION_ART35z').disabled = true;
     document.getElementById('OTHER_ART351').disabled = true;
     document.getElementById('ESTATUS_PERSONA').disabled = true;
-    document.getElementById('relpersuj').disabled = true;
+    // document.getElementById('relpersuj').disabled = true;
     document.getElementById('CONCLUSION_CANCELACION_EXP').disabled = true;
     document.getElementById('COMENTARIO').disabled = true;
     document.getElementById('UPDATE_FILE').style.display = "none";
@@ -1206,6 +1324,34 @@ function ReadOnlyEstudio(){
   }
 }
 ReadOnlyConClu();
+</script>
+<script type="text/javascript">
+var checkrelacional = document.getElementById('statusprogramrelacional').value;
+function activarcheckrelacional() {
+  console.log(checkrelacional);
+  if (checkrelacional === 'SI') {
+    document.getElementById('switch').checked = true;
+  }
+}
+activarcheckrelacional();
+////////////////////////////////////////////////////////////////////////////////
+var checkincorp = document.getElementById('statusprogram').value;
+function activarcheck() {
+  console.log(checkincorp);
+  if (checkincorp === 'ACTIVO') {
+    document.getElementById('switch2').checked = true;
+  }
+}
+activarcheck();
+///////////////////////////////////////////////////////////////////////////////
+// var checkincorp = document.getElementById('ESTATUS_PERSONA').value;
+// function desactivarcheck() {
+//   console.log(checkincorp);
+//   if (checkincorp !== 'SUJETO PROTEGIDO') {
+//     document.getElementById('switch').disabled = true;
+//   }
+// }
+// desactivarcheck();
 </script>
 </body>
 </html>

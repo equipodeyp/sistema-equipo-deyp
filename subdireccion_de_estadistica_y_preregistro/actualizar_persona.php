@@ -146,8 +146,27 @@ if ($verifica_update_person == 1) {
                   VALUES ('$comment', '$folioexpediente_persona', '$comment_mascara', '$name', '$id_persona', '$id_medida', '$fechacomentario')";
     $res_comment = $mysqli->query($comment);
   }
+
+  $statuspersonaprogram = $_POST['statusprogrampersona'];
+  echo $statuspersonaprogram;
+  echo "<br>";
+  if ($statuspersonaprogram != '') {
+    echo 'ACTIVO';
+    $datos_personastatusprog = "UPDATE datospersonales SET estatusprograma='ACTIVO'  WHERE id = '$id_persona'";
+    $res_dat_per_statusprog = $mysqli->query($datos_personastatusprog);
+  }else {
+    echo 'INACTIVO';
+    $datos_personastatusprog = "UPDATE datospersonales SET estatusprograma='INACTIVO'  WHERE id = '$id_persona'";
+    $res_dat_per_statusprog = $mysqli->query($datos_personastatusprog);
+  }
+
+  if (isset($_POST["statusprogrampersona"])) {
+   echo $_POST["statusprogrampersona"];
+} else {
+   echo "error";
+}
   // echo $estatus;
-  // echo $id_persona;  
+  // echo $id_persona;
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // $det_inc = "UPDATE determinacionincorporacion SET multidisciplinario='$multidisciplinario' WHERE id_persona = '$id_persona'";
   // $res_det_inc = $mysqli->query($det_inc);
