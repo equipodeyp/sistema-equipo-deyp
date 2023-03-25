@@ -58,7 +58,7 @@ if ($verifica_update_person == 1) {
   if ($act_medida == '') {
     $act_medida= $_POST['FECHA_ACTUALIZACION_MEDIDA1'];
   }
-  $medida_mod=$_POST['MOTIVO_CANCEL'];
+  $medida_mod=$_POST['MOTIVO_CANCEL2'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
   $acuerdo =$_POST['CONCLUSION_ART35'];
