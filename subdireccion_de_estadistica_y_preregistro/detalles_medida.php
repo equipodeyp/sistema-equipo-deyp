@@ -78,7 +78,104 @@ $validacion = $fil_val['validacion'];
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <style media="screen">
+  h1 {
+          color: yellow;
+      }
 
+      /* toggle in label designing */
+      .toggle {
+          position : relative ;
+          display : inline-block;
+          width : 70px;
+          height : 25px;
+          background-color: red;
+          border-radius: 30px;
+          border: 1px solid #FFFFFF;
+      }
+
+      /* After slide changes */
+      .toggle:after {
+          content: '';
+          position: absolute;
+          width: 31px;
+          height: 25px;
+          border-radius: 50%;
+          background-color: #999999;
+          top: -1px;
+          left: 0px;
+          transition:  all 0.5s;
+      }
+
+      /* Toggle text */
+      /* p {
+          font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+      } */
+
+      /* Checkbox checked effect */
+      .checkbox:checked + .toggle::after {
+          left : 43px;
+      }
+
+      /* Checkbox checked toggle label bg color */
+      .checkbox:checked + .toggle {
+          background-color: #229954;
+      }
+
+      /* Checkbox vanished */
+      .checkbox {
+          display : none;
+      }
+
+      /*  */
+
+
+          /* toggle in label designing */
+          .toggle2 {
+              position : relative ;
+              display : inline-block;
+              width : 70px;
+              height : 25px;
+              background-color: red;
+              border-radius: 30px;
+              border: 1px solid #FFFFFF;
+          }
+
+          /* After slide changes */
+          .toggle2:after {
+              content: '';
+              position: absolute;
+              width: 31px;
+              height: 25px;
+              border-radius: 50%;
+              background-color: #999999;
+              top: -1px;
+              left: 0px;
+              transition:  all 0.5s;
+          }
+
+          /* Toggle text */
+          /* p {
+              font-family: Arial, Helvetica, sans-serif;
+              font-weight: bold;
+          } */
+
+          /* Checkbox checked effect */
+          .checkbox2:checked + .toggle2::after {
+              left : 43px;
+          }
+
+          /* Checkbox checked toggle label bg color */
+          .checkbox2:checked + .toggle2 {
+              background-color: #229954;
+          }
+
+          /* Checkbox vanished */
+          .checkbox2 {
+              display : none;
+          }
+  </style>
 </head>
 <body >
 <div class="contenedor">
@@ -311,6 +408,30 @@ $validacion = $fil_val['validacion'];
            <div class="col-md-6 mb-3 validar" id="act_date_definitiva" style="display:none;">
               <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DEFINITIVA DE LA MEDIDA<span class="required"></span></label>
               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
+           </div>
+
+           <!--  -->
+           <input class="form-control" id="relacionalmedida" name="" placeholder="" value="<?php echo $rowmedida['relacion']; ?>" type="text" style="display:none;">
+           <input class="form-control" id="estatusmedprog" name="" placeholder="" value="<?php echo $rowmedida['estatusprograma']; ?>" type="text" style="display:none;">
+           <!--  -->
+           <div class="col-md-3 mb-3 validar" id="statusmedrel" style="display:none;">
+             <center>
+               <label for="">MEDIDA RELACIONADA</label><br>
+               <input type="checkbox" class="checkbox" name="statusprogrampersonarelacional" id="switch" value="1">
+               <label for="switch" class="toggle">
+                 <p>&nbspSI &nbsp&nbsp&nbsp&nbsp NO</p>
+               </label>
+             </center>
+           </div>
+
+           <div class="col-md-3 mb-3 validar" id="activarmedaloj" style="display:none;">
+             <center>
+               <label for="">INACTIVO / ACTIVO</label><br>
+               <input type="checkbox" class="checkbox2" name="statusprogrampersona" id="switch2" value="1">
+               <label for="switch2" class="toggle2">
+                 <p>&nbspSI &nbsp&nbsp&nbsp&nbsp NO</p>
+               </label>
+             </center>
            </div>
 
 
@@ -637,6 +758,39 @@ function selectconclu(e){
     document.getElementById("OTHER_ART351").required = true;
   }
 }
+</script>
+<script type="text/javascript">
+  var clasificacion = document.getElementById('CLASIFICACION_MEDIDA').value;
+  var incisoclasificacion = document.getElementById('MEDIDAS_RESGUARDO').value;
+  var relmedaloj = document.getElementById('relacionalmedida').value;
+  var estatusmedprogram = document.getElementById('estatusmedprog').value;
+  var disabledrelacion = document.getElementById('switch').value;
+  console.log(clasificacion);
+  console.log(incisoclasificacion);
+  console.log(relmedaloj);
+  console.log(estatusmedprogram);
+  console.log(disabledrelacion);
+  //////////////////////////////////////////////////////////////////////////////
+  if (relmedaloj !== '') {
+    // document.getElementById('switch').disabled = true;///////////descomentar una vez que se actualizo todas las medidas de alojamiento
+  }
+  //////////////////////////////////////////////////////////////////////////////
+  if (incisoclasificacion === 'VIII. ALOJAMIENTO TEMPORAL') {
+    document.getElementById("statusmedrel").style.display = "";
+    document.getElementById("activarmedaloj").style.display = "";
+  }else {
+    document.getElementById("statusmedrel").style.display = "none";
+    document.getElementById("activarmedaloj").style.display = "none";
+  }
+  //////////////////////////////////////////////////////////////////////////////
+  if (relmedaloj === 'SI') {
+    document.getElementById('switch').checked = true;
+  }
+  if (estatusmedprogram === 'ACTIVO') {
+    document.getElementById('switch2').checked = true;
+  }
+////////////////////////////////////////////////////////////////////////////////
+
 </script>
 </body>
 </html>

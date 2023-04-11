@@ -157,6 +157,7 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
     echo "<td style='text-align:center'>"; echo $ftmedinfinal['estatus']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['relacional']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['reingreso']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo $fselecpersnorel2['estatusprograma']; echo "</td>";
     echo "</tr>";
   }
 }
