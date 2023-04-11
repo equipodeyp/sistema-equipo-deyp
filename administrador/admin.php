@@ -275,6 +275,7 @@ a:focus {
                             </thead>
                             <tbody>
                               <?php
+                              $contador= 0;
                               $sql = "SELECT * FROM expediente";
                               $resultado = $mysqli->query($sql);
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -297,8 +298,9 @@ a:focus {
                                 {
                                   while($row=mysqli_fetch_assoc($result))
                                   {
+                                    $contador = $contador + 1;
                                     echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";

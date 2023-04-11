@@ -294,6 +294,7 @@ text-decoration: underline;
                               </thead>
                               <tbody>
                                 <?php
+                                $contador = 0;
                                 $sql = "SELECT * FROM expediente";
                                 $resultado = $mysqli->query($sql);
                                 $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -303,6 +304,7 @@ text-decoration: underline;
                                 $var_resultado = $mysqli->query($tabla);
                                 while ($var_fila=$var_resultado->fetch_array())
                                 {
+                                  $contador = $contador + 1;
                                   $fol_exp2=$var_fila['fol_exp'];
 
                                   $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
@@ -316,7 +318,7 @@ text-decoration: underline;
                                     while($row=mysqli_fetch_assoc($result))
                                     {
                                       echo "<tr>";
-                                      echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                       // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'.$var_fila['año']; echo "</td>";
                                       // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                       // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
