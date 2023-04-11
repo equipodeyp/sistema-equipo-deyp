@@ -138,6 +138,28 @@ if ($verifica_update_person == 1) {
     $mun_med = "UPDATE medidas SET ejecucion = '$municipio_ejecucio_med' WHERE id = '$id_persona'";
     $res_mun_med = $mysqli->query($mun_med);
   }
+
+  /////////////////////////////////////////////////////////////////////////
+  $relacionmed = $_POST['statusprogrampersonarelacional'];
+  if ($relacionmed === '1') {
+    echo "SI";
+    $relac_med = "UPDATE medidas SET relacion = 'SI' WHERE id = '$id_persona'";
+    $res_relac_med = $mysqli->query($relac_med);
+  }else {
+    $relac_med = "UPDATE medidas SET relacion = 'NO' WHERE id = '$id_persona'";
+    $res_relac_med = $mysqli->query($relac_med);
+  }
+  //////////////////////////////////////////////////////////////////////////
+  $statumed = $_POST['statusprogrampersona'];
+  if ($statumed === '1') {
+    $statusprogram = 'ACTIVO';
+  }else {
+    $statusprogram = 'INACTIVO';
+  }
+  $statu_med = "UPDATE medidas SET estatusprograma = '$statusprogram' WHERE id = '$id_persona'";
+  $res_statu_med = $mysqli->query($statu_med);
+/////////////////////////////////////////////////////////////////////////////////
+
   // validacion de update correcto
   if($res_addmedidas){
     echo ("<script type='text/javaScript'>
