@@ -171,6 +171,16 @@ $row=$result->fetch_assoc();
 				</div>
 
         <div class="form-group">
+          <label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
+          <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+                <input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="" required>
+            </div>
+          </div>
+			  </div>
+
+        <div class="form-group">
           <label class="col-md-4 control-label">EXPEDIENTE RELACIONADO</label>
           <div class="col-md-4 selectContainer">
             <div class="input-group">
@@ -202,7 +212,6 @@ $row=$result->fetch_assoc();
     <a href="menu.php" class="btn-flotante color-btn-success-gray">CANCELAR</a>
   </div>
 <script type="text/javascript">
-
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -213,8 +222,11 @@ if(dd<10){
   if(mm<10){
       mm='0'+mm
   }
-today = dd+'/'+mm+'/'+yyyy;
-document.getElementById("FECHA_RECEPCION").max = new Date().toISOString().split("T")[0];
+today = yyyy+'-'+mm+'-'+dd;
+// document.getElementById("FECHA_RECEPCION").max = new Date().toISOString().split("T")[0];
+document.getElementById("FECHA_RECEPCION").setAttribute("max", today);
+// document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
+document.getElementById("FECHA_ACUERDO").setAttribute("max", today);
 
 </script>
 <script type="text/javascript">

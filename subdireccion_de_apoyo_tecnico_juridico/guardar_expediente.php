@@ -110,10 +110,10 @@ if ($verifica == 1) {
     }
 
 
+  $fecha_acu=$_POST['FECHA_ACUERDO']; echo $fecha_acu;
 
-
-  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion, relacion)
-          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion', '$relacion')";
+  $sql = "INSERT INTO expediente (unidad, sede, municipio, num_consecutivo, año, fol_exp, fecha, fecharecep, validacion, fechaacuerdo, relacion)
+          VALUES ('$unidad', '$sede', '$name_mun', '$n_con', '$año', '$folio_expediente', '$fechaActual', '$fecharecepcion','$validacion', '$fecha_acu', '$relacion')";
   $resultado = $mysqli->query($sql);
   $convertirfecha = "UPDATE expediente SET fecha_nueva  = STR_TO_DATE(fecharecep, '%d/%m/%Y')";
   $res_convertir = $mysqli->query($convertirfecha);

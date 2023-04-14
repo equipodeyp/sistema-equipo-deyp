@@ -190,24 +190,31 @@ $row=$result->fetch_assoc();
 			    </div>
 				</div>
 				</div>
-        <form method="post" action="actualizar_fecha_acuerdo.php?folio=<?php echo $fol_exp;?>">
+
         <div class="form-group">
           <label for="fecha" class="col-md-4 control-label" style="font-size: 14px" >FECHA DE ACUERDO DE INICIO DEL EXPEDIENTE</label>
           <div class="col-md-4 inputGroupContainer">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                <input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" required>
+                <input name="FECHA_ACUERDO" type="date" class="form-control"  id="FECHA_ACUERDO"  placeholder="" value="<?php echo $row['fechaacuerdo']; ?>" disabled>
 
-              </div>
+            </div>
           </div>
-        <div>
-        <div>
-          <button type="submit" id="fecha_acuerdo" class='btn color-btn-success'>ACTUALIZAR FECHA</button>
-        </div>
-
-        </form>
-				</div>
 			</div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">EXPEDIENTE RELACIONADO</label>
+        <div class="col-md-4 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-project-diagram"></i></span>
+            <select name="sltrelacion" class="form-control selectpicker" id="sltrelacion" disabled>
+              <option disabled selected value><?php echo $row['relacion']; ?></option>
+              <option value="INICIAL">INICIAL</option>
+              <option value="RELACIONADO">RELACIONADO</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
 		<!-- fin del folio del expediente  e inicio para agrewgar persona-->
 
@@ -451,21 +458,6 @@ if(mm<10){
 }
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("FECHA_ACUERDO").max = new Date().toISOString().split("T")[0];
-</script>
-
-
-<script type="text/javascript">
-var inputFecha = document.getElementById("FECHA_ACUERDO").value;
-
-var botonGuardar = document.getElementById("fecha_acuerdo");
-if (inputFecha == null || inputFecha == ""){
-botonGuardar.disabled = false;
-}
-else {
-botonGuardar.style.display = "none";
-document.getElementById("FECHA_ACUERDO").disabled = true;
-}
-
 </script>
 </body>
 </html>
