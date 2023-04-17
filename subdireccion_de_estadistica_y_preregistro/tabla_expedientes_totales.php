@@ -44,7 +44,7 @@ $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
   echo "<tr>";
    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
    echo "<td style='text-align:center'>"; echo $fexpedientes['fol_exp']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fexpedientes['fecha_nueva']; echo "</td>";
+   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fexpedientes['fecha_nueva'])); echo "</td>";
    echo "<td style='text-align:center'>"; echo $fexpedientes['sede']; echo "</td>";
    echo "<td style='text-align:center'>"; echo $fautoridad['nombreautoridad']; echo "</td>";
    echo "<td style='text-align:center'>"; echo $fprocesopenal['delitoprincipal']; echo "</td>";

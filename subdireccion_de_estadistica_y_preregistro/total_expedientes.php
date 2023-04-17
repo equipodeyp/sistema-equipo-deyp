@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-// error_reporting(0);
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -75,9 +75,7 @@ $row=$result->fetch_assoc();
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn color-btn-export-xls'
-        }
-
-
+        },
       ]
       });
   });
