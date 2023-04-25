@@ -306,7 +306,7 @@ a:focus {
                                             <th style="text-align:center">ESTATUS MEDIDA</th>
                                             <th style="text-align:center">RELACIONADO</th>
                                             <th style="text-align:center">RE-INGRESO</th>
-                                            <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
+                                            <th style="text-align:center">ACTIVO</th>
                                           </tr>
                                       </thead>
                                       <tbody>
