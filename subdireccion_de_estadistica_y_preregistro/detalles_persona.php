@@ -498,7 +498,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   </div>
                   <div class="col-md-4 mb-3 validar" >
                     <center>
-                      <label for="">INACTIVO / ACTIVO</label><br>
+                      <label for="">ACTIVO</label><br>
                       <input type="checkbox" class="checkbox2" name="statusprogrampersona" id="switch2" value="1">
                       <label for="switch2" class="toggle2">
                         <p>&nbspSI &nbsp&nbsp&nbsp&nbsp NO</p>
