@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -113,6 +114,9 @@ $result = $mysqli->query($sentencia);
           </article>
         </div>
         <div class="container">
+          <?php
+          include("../administrador/obtener_fechas_reportes.php");
+          ?>
           <ul class="ca-menu">
 
             <li>
@@ -186,8 +190,39 @@ $result = $mysqli->query($sentencia);
               </li>
           </ul>
         </div>
+        <div class="contenedor" style="display: flex; justify-content: center;">
+          <ul class="ca-menu" >
+            <li >
+              <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_diario">
+                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/dia.png" style="width:150px;height:100px;"></span>
+                <div class="ca-content">
+                  <h1></h1>
+                  <h2 class="ca-main">REPORTE DIARIO</h2>
+                </div>
+                </a>
+              </li>
+              <li >
+                <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_semanal">
+                  <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/semana.png" style="width:150px;height:100px;"></span>
+                  <div class="ca-content">
+                    <h1></h1>
+                    <h2 class="ca-main">REPORTE SEMANAL</h2>
+                  </div>
+                  </a>
+              </li>
+              <li >
+                <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_mensual">
+                  <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/mes.png" style="width:150px;height:100px;"></span>
+                  <div class="ca-content">
+                    <h1></h1>
+                    <h2 class="ca-main">REPORTE MENSUAL</h2>
+                  </div>
+                  </a>
+              </li>
+          </ul>
+        </div>
 
-        <br><br><br><br><br><br><br>
+        <!-- <br><br><br><br><br><br><br> -->
         <!-- <br><br><br><br><br><br> -->
 
         <!-- <div class="contenedor" style="display: flex; justify-content: center;">
@@ -366,6 +401,9 @@ $result = $mysqli->query($sentencia);
         include("../administrador/archivos_html/resumendiario.html");//RESUMEN DIARO DEL SISTEMA
         include("../administrador/archivos_html/medidas_alojamiento_temporal.html");//SUJETOS CON ALOJAMIENTO TEMPORAL
         include("../administrador/archivos_html/total_sujetos_alojamiento.html");//TOTAL DE SUJETOS POR AÑO EN ALOJAMIENTO TEMPORAL
+        include("../administrador/archivos_html/reporte_diario.html");
+        include("../administrador/archivos_html/reporte_semanal.html");
+        include("../administrador/archivos_html/reporte_mensual.html");
         ?>
     </div>
   </div>
