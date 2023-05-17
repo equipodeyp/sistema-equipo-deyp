@@ -194,7 +194,7 @@ $hoy = date("d-m-Y H:i:s a");
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='diana') {
+                    if ($user=='carloscl') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>

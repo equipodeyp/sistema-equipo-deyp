@@ -180,7 +180,7 @@ $hoy = date("d-m-Y H:i:s a");
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='diana') {
+                    if ($user=='carloscl') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -254,7 +254,7 @@ $hoy = date("d-m-Y H:i:s a");
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
                   <?php
-                    if ($user=='diana') {
+                    if ($user=='carloscl') {
                     echo "
                     <div class='alert div-title'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
@@ -286,7 +286,7 @@ $hoy = date("d-m-Y H:i:s a");
                                 <th style="text-align:center" width="60%">Nombre del archivo</th>
                                 <th style="text-align:center" width="10%">Vista Previa</th>
                                 <?php
-                                  if ($user=='diana') {
+                                  if ($user=='carloscl') {
                                     echo "<th style='text-align:center' width='10%'>Descargar</th>";
                                     echo "<th style='text-align:center' width='10%'>Eliminar</th>";
                                 }
@@ -319,7 +319,7 @@ $hoy = date("d-m-Y H:i:s a");
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
                           echo "<td style='text-align:center'><a href='ver_pdf_persona.php?folio=".$arg."' style='color: #63696D; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
-                          if ($user=='diana') {
+                          if ($user=='carloscl') {
                             echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/repo/".$resultado."/".$id_pers."/".$arg."' download='$arg' style='color: #97897D; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
                             echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_apoyo_tecnico_juridico/eliminar_archivo.php?name=repo/".$resultado."/".$id_pers."/".$arg."' style='color: #A19E9F; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
                           }

@@ -80,7 +80,7 @@ $row=$result->fetch_assoc();
     <nav class="menu-nav">
            		<ul>
 				   <?php
-		   				if ($user=='diana') {
+		   				if ($user=='carloscl') {
 							echo "
 								<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
 								<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>GENERACIÓN DE<br>FORMATO</button> </a>
@@ -256,7 +256,7 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if (($name === 'diana' || $name === 'araceliby' || $name === 'carloscl') && $exp_validado == 'false') {
+            if (($name === 'araceliby' || $name === 'carloscl') && $exp_validado == 'false') {
               echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
               echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>¡ YA PUEDE VALIDAR EL EXPEDIENTE !</FONT></h3>";
             }elseif ($valexp == 'NO') {
@@ -415,7 +415,7 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if ($valexp == 'SI' && $exp_validado == 'false' && $name === 'diana') {
+            if ($valexp == 'SI' && $exp_validado == 'false' && ($name === 'araceliby' || $name === 'carloscl')) {
               echo "<div class='columns download'>
 
                         <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-validar color-btn-success' ><i class=''></i>VALIDAR</a>

@@ -154,7 +154,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
     <nav class="menu-nav">
            		<ul>
 				   <?php
-		   				if ($user=='diana') {
+		   				if ($user=='carloscl') {
                 echo "
                 <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                 <a style='text-align:center' href='repo.php?folio=$fol_exp'><button type='button' class='btn btn-light'>REPOSITORIO<br>PERSONA</button> </a>
@@ -1037,7 +1037,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
   // nota regresar el nombre del usuario que solo puede validar
-    if ($validacion === 'false' && ($name === 'diana' || $name === 'araceliby' || $name === 'carloscl')) {
+    if ($validacion === 'false' && ($name === 'araceliby' || $name === 'carloscl')) {
 
       echo "<div class='columns download'>
 
