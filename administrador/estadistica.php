@@ -402,7 +402,7 @@ $result = $mysqli->query($sentencia);
         include("../administrador/archivos_html/medidas_alojamiento_temporal.html");//SUJETOS CON ALOJAMIENTO TEMPORAL
         include("../administrador/archivos_html/total_sujetos_alojamiento.html");//TOTAL DE SUJETOS POR AÑO EN ALOJAMIENTO TEMPORAL
         include("../administrador/archivos_html/reporte_diario.html");
-        include("../administrador/archivos_html/reporte_semanal.html");
+        include("../administrador/archivos_html/reporte_semanal.php");
         include("../administrador/archivos_html/reporte_mensual.html");
         ?>
     </div>
