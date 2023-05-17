@@ -133,11 +133,13 @@ $fexprel1 = $rexprel1->fetch_assoc();
     </div>
     <div class="user">
       <?php
-			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$sentencia_user=" SELECT usuario, nombre, area, cargo, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
       $user = $row_user['usuario'];
+      $cargo = $row_user['cargo'];
+      $area = $row_user['area'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -154,7 +156,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
     <nav class="menu-nav">
            		<ul>
 				   <?php
-		   				if ($user=='carloscl') {
+		   				if ($cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico') {
                 echo "
                 <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                 <a style='text-align:center' href='repo.php?folio=$fol_exp'><button type='button' class='btn btn-light'>REPOSITORIO<br>PERSONA</button> </a>
@@ -215,6 +217,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     ?>
                   <div class="alert div-title">
                     <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                    <?php echo $cargo; ?>
                   </div>
                   <div class="col-md-6 mb-3 validar">
                         <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
@@ -1037,7 +1040,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   $fil_val = $res_val->fetch_assoc();
   $validacion = $fil_val['validacion'];
   // nota regresar el nombre del usuario que solo puede validar
-    if ($validacion === 'false' && ($name === 'araceliby' || $name === 'carloscl')) {
+    if ($validacion === 'false' && ($name === 'araceliby' || $cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico')) {
 
       echo "<div class='columns download'>
 

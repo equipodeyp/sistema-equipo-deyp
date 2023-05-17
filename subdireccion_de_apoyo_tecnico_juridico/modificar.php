@@ -59,11 +59,13 @@ $row=$result->fetch_assoc();
     </div>
     <div class="user">
       <?php
-			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$sentencia_user=" SELECT usuario, nombre, area, cargo, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
 			$user = $row_user['usuario'];
+      $cargo = $row_user['cargo'];
+      $area = $row_user['area'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -80,7 +82,7 @@ $row=$result->fetch_assoc();
     <nav class="menu-nav">
            		<ul>
 				   <?php
-		   				if ($user=='carloscl') {
+		   				if ($cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico') {
 							echo "
 								<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
 								<a style='text-align:center' href='crear_formato.php?folio=$fol_exp'><button type='button' class='btn btn-light'>GENERACIÓN DE<br>FORMATO</button> </a>
@@ -256,7 +258,7 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if (($name === 'araceliby' || $name === 'carloscl') && $exp_validado == 'false') {
+            if (($name === 'araceliby' || $cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico') && $exp_validado == 'false') {
               echo "<h3 style='text-align:center'>";if ($valexp == 'SI') {
               echo "<h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>¡ YA PUEDE VALIDAR EL EXPEDIENTE !</FONT></h3>";
             }elseif ($valexp == 'NO') {
@@ -415,7 +417,7 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if ($valexp == 'SI' && $exp_validado == 'false' && ($name === 'araceliby' || $name === 'carloscl')) {
+            if ($valexp == 'SI' && $exp_validado == 'false' && ($name === 'araceliby' || $cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico')) {
               echo "<div class='columns download'>
 
                         <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-validar color-btn-success' ><i class=''></i>VALIDAR</a>
