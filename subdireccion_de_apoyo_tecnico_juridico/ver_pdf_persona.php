@@ -163,11 +163,13 @@ $id_person=$rowfol['id'];
     </div>
     <div class="user">
       <?php
-			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$sentencia_user=" SELECT usuario, nombre, area, cargo, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
       $user = $row_user['usuario'];
+      $cargo = $row_user['cargo'];
+      $area = $row_user['area'];
 
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -184,7 +186,7 @@ $id_person=$rowfol['id'];
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='carloscl') {
+                    if ($cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico') {
                     // echo $fol;
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
