@@ -202,7 +202,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla3_reporte_semanal.php");
                   ?>
                 </tbody>
               </table>
