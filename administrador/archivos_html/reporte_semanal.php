@@ -229,13 +229,19 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla4_reporte_semanal.php");
                   ?>
                 </tbody>
               </table>
             </div>
           <br>
           <!-- QUINTA TABLA -->
+          <?php
+          $validarmedejecutadas = "SELECT COUNT(*) as t FROM medidas WHERE estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+          $rvalidarmedejecutadas = $mysqli->query($validarmedejecutadas);
+          $fvalidarmedejecutadas = $rvalidarmedejecutadas->fetch_assoc();
+          if ($fvalidarmedejecutadas['t'] > 0) {
+          ?>
             <div class="table-responsive">
               <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
                 <thead class="thead-dark">
@@ -244,7 +250,7 @@
                   </tr>
                   <tr>
                     <th style="text-align:center" rowspan="2">MUNICIPIO</th>
-                    <th style="text-align:center" colspan="3">CLASIFICACIÓN DE LAS MEDIDAS</th>
+                    <th style="text-align:center" colspan="2">CLASIFICACIÓN DE LAS MEDIDAS</th>
                     <th style="text-align:center" rowspan="2">TOTAL</th>
                   </tr>
                   <tr>
@@ -254,11 +260,14 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla5_reporte_semanal.php");
                   ?>
                 </tbody>
               </table>
             </div>
+            <?php
+            }
+            ?>
           </div>
         </div>
         <!--  -->
