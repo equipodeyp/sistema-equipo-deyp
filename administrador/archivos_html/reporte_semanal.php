@@ -334,12 +334,14 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="table-responsive">
-              <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                <thead class="thead-dark">
-                  <tr>
-                    <th style="text-align:center" colspan="3">SUJETO EN RESGUARDO ACTIVOS</th>
-                  </tr>
-                  <!-- <tr>
+
+
+                <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered class="col-lg-7">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th style="text-align:center" colspan="3">SUJETO EN RESGUARDO ACTIVOS</th>
+                    </tr>
+                    <!-- <tr>
                     <th style="text-align:center">ETAPA DENTRO DEL PROGRAMA</th>
                     <th style="text-align:center">TOTAL</th>
                   </tr> -->
@@ -350,8 +352,8 @@
                   ?>
                 </tbody>
               </table>
-
-              <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered>
+              <br><br><br><br>
+              <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered class="col-lg-12">
                 <thead>
                   <h3></h3>
                   <tr>
@@ -395,27 +397,10 @@
                     ** Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal" ya sea que se encuentren activos o no dentro del Programa</span>
             </div>
           </div>
-          <!-- <div class="col-lg-10" >
-            <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered>
-              <thead>
-                <h3></h3>
-                <tr>
-                  <th style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DICTAMINADAS</th>
-                  <th style="text-align:center">EN EJECUCION</th>
-                  <th style="text-align:center">EJECUTADA</th>
-                  <th style="text-align:center">CANCELADA</th>
-                  <th style="text-align:center">TOTAL<br /> ACUMULADO</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                include("../administrador/tablas_estadistica/tabla_estatus_medidas.php");
-                ?>
-              </tbody>
-            </table>
-          </div> -->
         </div>
-
+        <div class="row">
+          <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
+        </div>
 
 
         <!--  -->
