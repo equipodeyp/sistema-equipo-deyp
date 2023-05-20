@@ -1,0 +1,14 @@
+<?php
+
+////////////////////////////////////////////////////////////////////////////////
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "SUJETOS INCORPORADOS"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>";  "</td>";
+echo "</tr>";
+////////////////////////////////////////////////////////////////////////////////
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "PERSONAS PROPUESTAS"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>";  "</td>";
+echo "</tr>";
+////////////////////////////////////////////////////////////////////////////////
+?>

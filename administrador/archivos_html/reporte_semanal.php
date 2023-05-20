@@ -271,6 +271,154 @@
           </div>
         </div>
         <!--  -->
+        <div class="row">
+          <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
+        </div>
+        <div class="row">
+          <h1 style="text-align:center">REPORTE GLOBAL SEMANAL
+            <br> DEL 01 DE JUNIO DEL 2021 AL <?php  echo " ".$diafin." DE ".$meses[date('n')-1]. " DEL ".date('Y') ; ?>
+          </h1>
+          <div class="col-lg-4">
+            <div class="table-responsive">
+              <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
+                <thead class="thead-dark">
+                  <tr>
+                    <th style="text-align:center" colspan="2">EXPEDIENTES DE PROTECCIÓN</th>
+                  </tr>
+                  <tr>
+                    <th style="text-align:center">ETAPA DENTRO DEL PROGRAMA</th>
+                    <th style="text-align:center">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/tabla6_reporte_semanal.php");
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--  -->
+          <div class="col-lg-4">
+            <div class="table-responsive">
+              <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
+                <thead class="thead-dark">
+                  <tr>
+                    <th style="text-align:center" colspan="2">PERSONAS QUE SOLICITARON INCORPORARSE</th>
+                  </tr>
+                  <tr>
+                    <th style="text-align:center">ETAPA DENTRO DEL PROGRAMA</th>
+                    <th style="text-align:center">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/tabla7_reporte_semanal.php");
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <span>1.-Corresponde a los siguientes casos:<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp a) La solicitud no cumple con los requisitos de Ley<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp b) La persona manifiesta negativa de voluntariedad para incorporarse<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp c) Se determina la no procedencia de incorporación<br>
+                  2.-Se refiere a las personas que se encuentran en los siguientes supuestos:<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp a) Concluyó su participación dentro del Proceso Penal<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp b) Renuncia voluntaria<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp c) Determinación de disminución o cese del riesgo</span>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="table-responsive">
+              <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
+                <thead class="thead-dark">
+                  <tr>
+                    <th style="text-align:center" colspan="3">SUJETO EN RESGUARDO ACTIVOS</th>
+                  </tr>
+                  <!-- <tr>
+                    <th style="text-align:center">ETAPA DENTRO DEL PROGRAMA</th>
+                    <th style="text-align:center">TOTAL</th>
+                  </tr> -->
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/tabla8_reporte_semanal.php");
+                  ?>
+                </tbody>
+              </table>
+
+              <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered>
+                <thead>
+                  <h3></h3>
+                  <tr>
+                    <th style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DICTAMINADAS</th>
+                    <th style="text-align:center">EN EJECUCION</th>
+                    <th style="text-align:center">EJECUTADA</th>
+                    <th style="text-align:center">CANCELADA</th>
+                    <th style="text-align:center">TOTAL<br /> ACUMULADO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/tabla_estatus_medidas.php");
+                  ?>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="table-responsive">
+              <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
+                <thead class="thead-dark">
+                  <tr>
+                    <th style="text-align:center" >DESCRIPCIÓN</th>
+                    <th style="text-align:center" >SUJETOS INCORPORADOS*</th>
+                    <th style="text-align:center" >SUJETOS EN CENTROS DE RESGUARDO**</th>
+                  </tr>
+                  <!-- <tr>
+                    <th style="text-align:center">ETAPA DENTRO DEL PROGRAMA</th>
+                    <th style="text-align:center">TOTAL</th>
+                  </tr> -->
+                </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/tabla9_reporte_semanal.php");
+                  ?>
+                </tbody>
+              </table>
+              <span>* Comprende todos los sujetos incorporados independientemente de su estatus actual dentro del Programa <br>
+                    ** Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal" ya sea que se encuentren activos o no dentro del Programa</span>
+            </div>
+          </div>
+          <!-- <div class="col-lg-10" >
+            <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered>
+              <thead>
+                <h3></h3>
+                <tr>
+                  <th style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DICTAMINADAS</th>
+                  <th style="text-align:center">EN EJECUCION</th>
+                  <th style="text-align:center">EJECUTADA</th>
+                  <th style="text-align:center">CANCELADA</th>
+                  <th style="text-align:center">TOTAL<br /> ACUMULADO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                include("../administrador/tablas_estadistica/tabla_estatus_medidas.php");
+                ?>
+              </tbody>
+            </table>
+          </div> -->
+        </div>
+
+
+
+        <!--  -->
       </div>
     </div>
   </div>
