@@ -141,22 +141,22 @@ $totalcanceladas = $fmedcanceladasasistencia['t'] + $fmedicanceladasresguardo['t
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo 'MEDIDAS DE ASISTENCIA'; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmedejecucionasistencia['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmedejecutadasasistencia['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmedcanceladasasistencia['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmedejecucionasistencia['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmedejecutadasasistencia['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmedcanceladasasistencia['t']; "</td>";
 echo "</tr>";
 
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "MEDIDAS DE RESGUARDO "; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmedejecucionresguardo['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmedejecutadasresguardo['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmedicanceladasresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmedejecucionresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmedejecutadasresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmedicanceladasresguardo['t']; "</td>";
 echo "</tr>";
 
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL DE MEDIDAS"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalejecucion; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalejecutadas; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalcanceladas; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE MEDIDAS"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalejecucion; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalejecutadas; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalcanceladas; echo "</b>"; "</td>";
 echo "</tr>";
 ?>

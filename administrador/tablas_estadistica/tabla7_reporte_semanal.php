@@ -34,37 +34,37 @@ $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorp
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "NO INCORPORADOS AL PROGRAMA¹"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fnoincorporado['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fnoincorporado['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "TOTAL DE SUJETOS INCORPORADOS"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ftotalsujincor['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $ftotalsujincor['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "Sujeto incorporado activo"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ftotalsujetosactivos['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $ftotalsujetosactivos['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "Sujeto incorporado activo en resguardo"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fsujencentrosresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fsujencentrosresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "Desincorporado del Programa²"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fdesincorporado['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fdesincorporado['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "PERSONAS PROPUESTAS A INCORPORARSE"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fperpropuesta['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL DE EXPEDIENTES"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalpersonas; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalpersonas; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

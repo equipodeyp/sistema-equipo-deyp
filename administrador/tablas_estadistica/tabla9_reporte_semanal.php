@@ -65,39 +65,39 @@ $fhombresenresguardo = $rhombresenresguardo->fetch_assoc();
 $totalsexoenresguardo = $fmujeresenresguardo['t'] + $fhombresenresguardo['t'];
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "MENOR DE EDAD "; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmenoredad['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmenoredadenresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmenoredad['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmenoredadenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "MAYOR DE EDAD
 "; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmayoredad['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmayoredadenresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmayoredad['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmayoredadenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totaledad; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totaledadenresguardo; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totaledad; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totaledadenresguardo; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "TOTAL MUJERES"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmujeres['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmujeresenresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmujeres['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fmujeresenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "TOTAL HOMBRES"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fhombres['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fhombresenresguardo['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fhombres['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fhombresenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalsexo; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalsexoenresguardo; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalsexo; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalsexoenresguardo; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 ?>

@@ -150,28 +150,28 @@ $totalacumulado = $totalanterior + $totalreporte;
 //inicio de filas para la tabla
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "INCORPORACION PROCEDENTE "; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fincorporc['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fincorprocreporte['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalincorproc; "</td>";
+echo "<td style='text-align:center'>"; echo $fincorporc['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fincorprocreporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $totalincorproc; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "INCORPORACION NO PROCEDENTE"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fincornoproc['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fincornoprocreporte['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalincornoproc; "</td>";
+echo "<td style='text-align:center'>"; echo $fincornoproc['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fincornoprocreporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $totalincornoproc; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fenelaboracion['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fenelaboracionreporte['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalenelaboracion; "</td>";
+echo "<td style='text-align:center'>"; echo $fenelaboracion['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $totalenelaboracion; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL DE EXPEDIENTES"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalanterior; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalreporte; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalacumulado; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; "</td>";
 echo "</tr>";
 ?>

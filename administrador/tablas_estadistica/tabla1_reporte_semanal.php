@@ -155,28 +155,28 @@ $totalacumulado = $totalanterior + $totalreporte;
 //inicio de filas para la tabla
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "JURÍDICAMENTE PROCEDENTE "; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fsiprocede['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fsiprocedereporte['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalsiprocede; "</td>";
+echo "<td style='text-align:center'>"; echo $fsiprocede['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fsiprocedereporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $totalsiprocede; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "JURÍDICAMENTE NO PROCEDENTE"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fnoprocede['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fnoprocedereporte['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalnoprocede; "</td>";
+echo "<td style='text-align:center'>"; echo $fnoprocede['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fnoprocedereporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $totalnoprocede; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "PARCIALMENTE PROCEDENTE"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fparcialproc['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fparcialprocreporte['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalparcialproc; "</td>";
+echo "<td style='text-align:center'>"; echo $fparcialproc['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fparcialprocreporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $totalparcialproc; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL DE SOLICITUDES"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalanterior; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalreporte; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalacumulado; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE SOLICITUDES"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; "</td>";
 echo "</tr>";
 ?>

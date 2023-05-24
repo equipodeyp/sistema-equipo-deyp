@@ -131,5 +131,25 @@ while ($fmunicipios = $rmunicipios -> fetch_assoc()) {
   echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmunicipios['t']; "</td>";
   echo "</tr>";
 }
-
+//////////////////////////////////////////////////////////////////////////////
+$totalejecutadasasistencia = "SELECT COUNT(*) as t FROM medidas WHERE date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_fin' AND estatus = 'EJECUTADA'
+AND clasificacion = 'ASISTENCIA'";
+$rtotalejecutadasasistencia = $mysqli -> query ($totalejecutadasasistencia);
+$ftotalejecutadasasistencia = $rtotalejecutadasasistencia->fetch_assoc();
+//////////////////////////////////////////////////////////////////////////////
+$totalejecutadasresguardo = "SELECT COUNT(*) as t FROM medidas WHERE date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_fin' AND estatus = 'EJECUTADA'
+AND clasificacion = 'RESGUARDO'";
+$rtotalejecutadasresguardo = $mysqli -> query ($totalejecutadasresguardo);
+$ftotalejecutadasresguardo = $rtotalejecutadasresguardo->fetch_assoc();
+//////////////////////////////////////////////////////////////////////////////
+$totalacumulado = "SELECT COUNT(*) as t FROM medidas WHERE date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_fin' AND estatus = 'EJECUTADA'";
+$rtotalacumulado = $mysqli -> query ($totalacumulado);
+$ftotalacumulado = $rtotalacumulado->fetch_assoc();
+//////////////////////////////////////////////////////////////////////////////
+echo "<tr>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>"; echo "<b>"; echo $ftotalejecutadasasistencia['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>"; echo "<b>"; echo $ftotalejecutadasresguardo['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center' bgcolor='yellow'>"; echo "<b>"; echo $ftotalacumulado['t']; echo "</b>"; "</td>";
+echo "</tr>";
 ?>

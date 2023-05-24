@@ -145,12 +145,12 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   if ($fpersonaspropuestas['t'] > 0 ) {
     echo "<tr>";
     echo "<td style='text-align:left'>"; echo $fcalidad['nombre']; "</td>";
-    echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fpersonaspropuestas['t']; "</td>";
-    echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fpersonaspropuestasreporte['t']; "</td>";
-    echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalperpropuestas; "</td>";
-    echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fperincorporadas['t']; "</td>";
-    echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fperincorporadasreporte['t']; "</td>";
-    echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalperincorporadas; "</td>";
+    echo "<td style='text-align:center'>"; echo $fpersonaspropuestas['t']; "</td>";
+    echo "<td style='text-align:center'>"; echo $fpersonaspropuestasreporte['t']; "</td>";
+    echo "<td style='text-align:center'>"; echo $totalperpropuestas; "</td>";
+    echo "<td style='text-align:center'>"; echo $fperincorporadas['t']; "</td>";
+    echo "<td style='text-align:center'>"; echo $fperincorporadasreporte['t']; "</td>";
+    echo "<td style='text-align:center'>"; echo $totalperincorporadas; "</td>";
     echo "</tr>";
   }
 }
@@ -186,12 +186,12 @@ $fperincorporadasreportetotal = $rperincorporadasreportetotal->fetch_assoc();
 $totalperincorporadasacumulado = $fperincorporadastotal['t'] + $fperincorporadasreportetotal['t'];
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo 'TOTAL DE PERSONAS'; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fpersonaspropuestastotal['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fpersonaspropuestasreportetotal['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalperpropacumulado; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fperincorporadastotal['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fperincorporadasreportetotal['t']; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalperincorporadasacumulado; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo 'TOTAL DE PERSONAS'; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $fpersonaspropuestastotal['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $fpersonaspropuestasreportetotal['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalperpropacumulado; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $fperincorporadastotal['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $fperincorporadasreportetotal['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalperincorporadasacumulado; echo "</b>"; "</td>";
 echo "</tr>";
 ?>

@@ -103,7 +103,7 @@ switch ($day) {
            // echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
     break;
 }
-echo $fecha_fin;
+// echo $fecha_fin;
 ////////////////////////conteo  de datos  de la semana anterior//////////////////////////////////////
 $noprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
@@ -133,36 +133,32 @@ $totalexpedientes = $fnoprocede['t'] + $fenelaboracionreporte['t'] + $fbyejecuci
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "NO PROCEDE JURIDICAMENTE"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fnoprocede['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fnoprocede['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fenelaboracionreporte['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "EN EJECUCIÓN"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fbyejecucion['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fbyejecucion['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "CONCLUIDO"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fconcluido['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fconcluido['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "CANCELADO"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fcancelado['t']; "</td>";
+echo "<td style='text-align:center'>"; echo $fcancelado['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL DE EXPEDIENTES"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo $totalexpedientes; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES"; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $totalexpedientes; echo "</b>"; "</td>";
 echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 
 ?>

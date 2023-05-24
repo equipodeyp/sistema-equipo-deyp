@@ -24,9 +24,9 @@
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
                    echo "<br>";
-                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
                    echo "<br>";
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
             case "Monday":
                    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
@@ -39,8 +39,8 @@
                    $diaini = date( "j", $diainicio);
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
-                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
             case "Tuesday":
                    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
@@ -53,8 +53,8 @@
                    $diaini = date( "j", $diainicio);
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
-                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
             case "Wednesday":
                    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
@@ -67,8 +67,8 @@
                    $diaini = date( "j", $diainicio);
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
-                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
             case "Thursday":  //Jueves
                    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
@@ -81,8 +81,8 @@
                    $diaini = date( "j", $diainicio);
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
-                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL  "."<br> DEL".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL <br> DEL".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
             break;
             case "Friday": //Viernes
                    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
@@ -95,8 +95,8 @@
                    $diaini = date( "j", $diainicio);
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
-                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
             case "Saturday": //sabado
                    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));
@@ -109,8 +109,8 @@
                    $diaini = date( "j", $diainicio);
                    $diafinal = strtotime($fecha_fin);
                    $diafin = date( "j", $diafinal);
-                   echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
-                   echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                   // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
+                   echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
         }
         ?>
@@ -130,8 +130,8 @@
                     <th style="text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                   <tr>
-                    <th style="text-align:center"><?php echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; ?></th>
-                    <th style="text-align:center"><?php echo '<h4 style="text-align:center">'; echo "DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]; echo '</h4>'; ?></th>
+                    <th style="text-align:center"><?php echo "DEL 1 DE ENERO<br> AL ".$diafinsemant. " DE ".$meses[date('n')-1]; ?></th>
+                    <th style="text-align:center"><?php echo ''; echo "DEL ".$diaini." AL <br> ".$diafin. " DE ".$meses[date('n')-1]; echo ''; ?></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -275,8 +275,8 @@
           <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
         </div>
         <div class="row">
-          <h1 style="text-align:center">REPORTE GLOBAL SEMANAL
-            <br> DEL 01 DE JUNIO DEL 2021 AL <?php  echo " ".$diafin." DE ".$meses[date('n')-1]. " DEL ".date('Y') ; ?>
+          <h1 style="text-align:center"><b> REPORTE GLOBAL SEMANAL
+            <br> DEL 01 DE JUNIO DEL 2021 AL <?php  echo " ".$diafin." DE ".$meses[date('n')-1]. " DEL ".date('Y') ; ?> </b>
           </h1>
           <div class="col-lg-4">
             <div class="table-responsive">
