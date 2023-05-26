@@ -126,9 +126,9 @@ while ($fmunicipios = $rmunicipios -> fetch_assoc()) {
   //////////////////////////////////////////////////////////////////////////////
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo $fmunicipios['ejecucion']; "</td>";
-  echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fejecutadasasistencia['t']; "</td>";
-  echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fejecutadasresguardo['t']; "</td>";
-  echo "<td style='text-align:center' bgcolor='yellow'>"; echo $fmunicipios['t']; "</td>";
+  echo "<td style='text-align:center'>"; echo $fejecutadasasistencia['t']; "</td>";
+  echo "<td style='text-align:center'>"; echo $fejecutadasresguardo['t']; "</td>";
+  echo "<td style='text-align:center'>"; echo $fmunicipios['t']; "</td>";
   echo "</tr>";
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -148,8 +148,8 @@ $ftotalacumulado = $rtotalacumulado->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo "<b>"; echo $ftotalejecutadasasistencia['t']; echo "</b>"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo "<b>"; echo $ftotalejecutadasresguardo['t']; echo "</b>"; "</td>";
-echo "<td style='text-align:center' bgcolor='yellow'>"; echo "<b>"; echo $ftotalacumulado['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $ftotalejecutadasasistencia['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $ftotalejecutadasresguardo['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center'>"; echo "<b>"; echo $ftotalacumulado['t']; echo "</b>"; "</td>";
 echo "</tr>";
 ?>
