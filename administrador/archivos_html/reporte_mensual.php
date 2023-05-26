@@ -439,7 +439,7 @@
                   </thead>
                   <tbody>
                     <?php
-
+                    include("../administrador/tablas_estadistica/tabla15_reporte_mensual.php");
                     ?>
                   </tbody>
                  </table>
@@ -465,7 +465,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  include("../administrador/tablas_estadistica/tabla6_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla16_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -489,7 +489,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  include("../administrador/tablas_estadistica/tabla7_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla17_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -523,7 +523,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  include("../administrador/tablas_estadistica/tabla_estatus_medidas.php");
+                  include("../administrador/tablas_estadistica/tabla18_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
