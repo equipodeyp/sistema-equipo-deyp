@@ -7,12 +7,6 @@
       </div>
       <div class="modal-body">
         <?php
-        // echo $anioActual;
-        // echo "<br>";
-        // echo $mesActual;
-        // echo "<br>";
-        // echo $cantidadDias;
-        // echo "<br>";
         $anioActual = date("Y");
         $mesActual = date("n");
         $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
@@ -180,7 +174,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla6_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -197,7 +191,7 @@
               <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
                 <thead class="thead-dark">
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center" rowspan="5" class="bg-success">CALIDAD DENTRO DEL PROGRAMA</th>
+                    <th WIDTH="400" HEIGHT="50" style="border: 5px solid #97897D; text-align:center" rowspan="5" class="bg-success">CALIDAD DENTRO DEL PROGRAMA</th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3">PERSONAS PROPUESTAS</th>
@@ -213,7 +207,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla3_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -234,14 +228,14 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
+                    <th HEIGHT="82" style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="3">TOTAL  <br> ACUMULADO</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla3_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -270,7 +264,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla3_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla9_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -295,7 +289,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla3_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla10_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -323,7 +317,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla11_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -349,7 +343,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla12_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -379,7 +373,7 @@
                   </thead>
                   <tbody>
                     <?php
-
+                    include("../administrador/tablas_estadistica/tabla13_reporte_mensual.php");
                     ?>
                   </tbody>
                  </table>
@@ -409,7 +403,7 @@
                   </thead>
                   <tbody>
                     <?php
-
+                    include("../administrador/tablas_estadistica/tabla14_reporte_mensual.php");
                     ?>
                   </tbody>
                  </table>
