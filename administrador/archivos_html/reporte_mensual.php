@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -70,7 +70,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla2_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -97,7 +97,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -123,7 +123,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -150,13 +150,13 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_semanal.php");
+                  include("../administrador/tablas_estadistica/tabla5_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
             </div>
           </div>
-          <br><br><br><br><br><br><br>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
           <h1 style="text-align:center"><b>MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</b></h1>
           <div class="col-lg-12">
             <div class="table-responsive">

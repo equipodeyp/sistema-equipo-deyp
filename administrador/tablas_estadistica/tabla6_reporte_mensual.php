@@ -38,16 +38,16 @@ $ftotalmunanterior = $rtotalmunanterior ->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 $totalreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.numeroradicacion = '$namemunicipio' AND expediente.fecha_nueva BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE expediente.fecha_nueva BETWEEN '2023-05-01' AND '2023-05-31'";
 $rtotalreporte = $mysqli->query($totalreporte);
 $ftotalreporte = $rtotalreporte ->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 $totalacumulado = $ftotalmunanterior['t'] + $ftotalreporte['t'];
 //////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "TOTAL DE EXPEDIENTES"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalmunanterior['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalreporte['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalacumulado; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE EXPEDIENTES</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $ftotalmunanterior['t']; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $ftotalreporte['t']; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
 echo "</tr>";
 ?>

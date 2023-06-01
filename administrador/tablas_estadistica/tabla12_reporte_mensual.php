@@ -50,8 +50,8 @@ while ($fp = $rp->fetch_assoc()) {
   $totalacumulado = $fanterior['t'] + $fmesreporte['t'];
   echo "<tr>";
   echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL</b>"; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fanterior['t']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fmesreporte['t']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalacumulado; echo "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $fanterior['t']; echo "</b>"; echo "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $fmesreporte['t']; echo "</b>"; echo "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
   echo "</tr>";
 ?>

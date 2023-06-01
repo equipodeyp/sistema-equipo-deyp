@@ -47,8 +47,8 @@ echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalsu
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "TOTAL"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalperprop; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalsujprot; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalperprop; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalsujprot; echo "</b>"; echo "</td>";
 echo "</tr>";
 ?>

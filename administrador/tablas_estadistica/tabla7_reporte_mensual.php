@@ -48,9 +48,9 @@ $ftotalreporte = $rtotalreporte->fetch_assoc();
 $totalacumulado = $ftotalanterior['t'] + $ftotalreporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "TOTAL DE PERSONAS"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalanterior['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalreporte['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalacumulado; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE PERSONAS</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $ftotalanterior['t']; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $ftotalreporte['t']; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
 echo "</tr>";
 ?>

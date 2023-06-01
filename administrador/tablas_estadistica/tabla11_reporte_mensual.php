@@ -122,8 +122,8 @@ echo "</tr>";
 //
 echo "<tr>";
 echo "<td style='text-align:right'>"; echo "<b>TOTAL DE MEDIDAS</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalanterior; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalreporte; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalacumulado; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
 echo "</tr>";
 ?>
