@@ -1,4 +1,5 @@
 <?php
+// calculo de fechas automaticas
 $anioActual = date("Y");
 $mesActual = date("n");
 $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
@@ -8,6 +9,21 @@ $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO"
 $mesant = $meses[date('n')-2];
 $mesanterior = date('n')-1;
 $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
+echo "fecha inicio";
+echo "<br>";
+echo $fecha_inicio = $anioActual."-01-01";
+echo "<br>";
+echo "fecha anterior";
+echo "<br>";
+echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+echo "<br>";
+echo "dia del mes inicial";
+echo "<br>";
+echo $diamesinicio = $anioActual."-".$mesActual."-01";
+echo "<br>";
+echo "dia del mes final";
+echo "<br>";
+echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
 ////////////////////////////////////////////////////////////////////////////////
 $p = "SELECT ejecucion, COUNT(*) as t FROM medidas
 WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
@@ -18,12 +34,12 @@ $rp = $mysqli->query($p);
 while ($fp = $rp->fetch_assoc()) {
   $clasif = $fp['ejecucion'];
   $pa = "SELECT COUNT(*) as t FROM medidas
-  WHERE ejecucion = '$clasif' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+  WHERE ejecucion = '$clasif' AND estatus='ejecutada' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
   $rpa = $mysqli->query($pa);
   $fpa = $rpa->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   $reportemensual = "SELECT COUNT(*) as t FROM medidas
-  WHERE ejecucion = '$clasif' AND estatus='ejecutada' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+  WHERE ejecucion = '$clasif' AND estatus='ejecutada' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
   $rreportemensual = $mysqli->query($reportemensual);
   $freportemensual = $rreportemensual->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
@@ -38,12 +54,12 @@ while ($fp = $rp->fetch_assoc()) {
   }
   //////////////////////////////////////////////////////////////////////////////
   $anterior = "SELECT COUNT(*) as t FROM medidas
-  WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+  WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
   $ranterior = $mysqli->query($anterior);
   $fanterior = $ranterior->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   $mesreporte = "SELECT COUNT(*) as t FROM medidas
-  WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+  WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
   $rmesreporte = $mysqli->query($mesreporte);
   $fmesreporte = $rmesreporte->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////

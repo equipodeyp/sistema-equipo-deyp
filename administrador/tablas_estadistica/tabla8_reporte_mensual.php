@@ -1,4 +1,30 @@
 <?php
+// calculo de fechas automaticas
+$anioActual = date("Y");
+$mesActual = date("n");
+$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
+$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+$mesant = $meses[date('n')-2];
+$mesanterior = date('n')-1;
+$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
+echo "fecha inicio";
+echo "<br>";
+echo $fecha_inicio = $anioActual."-01-01";
+echo "<br>";
+echo "fecha anterior";
+echo "<br>";
+echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+echo "<br>";
+echo "dia del mes inicial";
+echo "<br>";
+echo $diamesinicio = $anioActual."-".$mesActual."-01";
+echo "<br>";
+echo "dia del mes final";
+echo "<br>";
+echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+////////////////////////////////////////////////////////////////////////////////
 $calidad = "SELECT calidadpersona, COUNT(*) AS t FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
 WHERE autoridad.fechasolicitud BETWEEN '2023-01-01' AND '2023-12-31' AND datospersonales.relacional = 'NO'
@@ -11,21 +37,18 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   $calant = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '2023-01-01' AND '2023-04-30'";
+  AND determinacionincorporacion.fecha_inicio BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
   $rcalant = $mysqli->query($calant);
   $fcalant = $rcalant->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   $calreporte = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '2023-05-01' AND '2023-05-31'";
+  AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
   $rcalreporte = $mysqli->query($calreporte);
   $fcalreporte = $rcalreporte->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   $totalcalidad = $fcalant['t'] + $fcalreporte['t'];
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////
   echo "<tr>";
   echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalant['t']; echo "</td>";
@@ -37,14 +60,14 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
 $totalanterior = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '2023-01-01' AND '2023-04-30'";
+AND determinacionincorporacion.fecha_inicio BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rtotalanterior = $mysqli->query($totalanterior);
 $ftotalanterior = $rtotalanterior->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalreporte = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '2023-05-01' AND '2023-05-31'";
+AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rtotalreporte = $mysqli->query($totalreporte);
 $ftotalreporte = $rtotalreporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

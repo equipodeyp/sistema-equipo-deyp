@@ -1,62 +1,87 @@
 <?php
+// calculo de fechas automaticas
+$anioActual = date("Y");
+$mesActual = date("n");
+$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
+$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+$mesant = $meses[date('n')-2];
+$mesanterior = date('n')-1;
+$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
+echo "fecha inicio";
+echo "<br>";
+echo $fecha_inicio = $anioActual."-01-01";
+echo "<br>";
+echo "fecha anterior";
+echo "<br>";
+echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+echo "<br>";
+echo "dia del mes inicial";
+echo "<br>";
+echo $diamesinicio = $anioActual."-".$mesActual."-01";
+echo "<br>";
+echo "dia del mes final";
+echo "<br>";
+echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
 ////////////////////////////////////////////////////////////////////////////////
 $anterirordefinitiva = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'DEFINITIVA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE tipo = 'DEFINITIVA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $ranterirordefinitiva = $mysqli->query($anterirordefinitiva);
 $fanterirordefinitiva = $ranterirordefinitiva->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $anterirorprovisionales = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'PROVISIONAL' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE tipo = 'PROVISIONAL' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $ranterirorprovisionales = $mysqli->query($anterirorprovisionales);
 $fanterirorprovisionales = $ranterirorprovisionales->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $reportedefinitiva = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'DEFINITIVA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE tipo = 'DEFINITIVA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rreportedefinitiva = $mysqli->query($reportedefinitiva);
 $freportedefinitiva = $rreportedefinitiva->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $reporteprovisionales = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'PROVISIONAL' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE tipo = 'PROVISIONAL' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rreporteprovisionales = $mysqli->query($reporteprovisionales);
 $freporteprovisionales = $rreporteprovisionales->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $antdefasistencia = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'DEFINITIVA' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE tipo = 'DEFINITIVA' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rantdefasistencia = $mysqli->query($antdefasistencia);
 $fantdefasistencia = $rantdefasistencia->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $antprovasistencia = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'PROVISIONAL' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE tipo = 'PROVISIONAL' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rantprovasistencia = $mysqli->query($antprovasistencia);
 $fantprovasistencia = $rantprovasistencia->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $repdefasistencia = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'DEFINITIVA' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE tipo = 'DEFINITIVA' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rrepdefasistencia = $mysqli->query($repdefasistencia);
 $frepdefasistencia = $rrepdefasistencia->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $repprovasistencia = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'PROVISIONAL' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE tipo = 'PROVISIONAL' AND clasificacion= 'ASISTENCIA' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rrepprovasistencia = $mysqli->query($repprovasistencia);
 $frepprovasistencia = $rrepprovasistencia->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $antdefresguardo = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'DEFINITIVA' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE tipo = 'DEFINITIVA' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rantdefresguardo = $mysqli->query($antdefresguardo);
 $fantdefresguardo = $rantdefresguardo->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $antprovresguardo = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'PROVISIONAL' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE tipo = 'PROVISIONAL' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rantprovresguardo = $mysqli->query($antprovresguardo);
 $fantprovresguardo = $rantprovresguardo->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $repdefresguardo = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'DEFINITIVA' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE tipo = 'DEFINITIVA' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rrepdefresguardo = $mysqli->query($repdefresguardo);
 $frepdefresguardo = $rrepdefresguardo->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $repprovresguardo = "SELECT COUNT(*) as t FROM `medidas`
-WHERE tipo = 'PROVISIONAL' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE tipo = 'PROVISIONAL' AND clasificacion= 'RESGUARDO' AND estatus = 'EJECUTADA' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rrepprovresguardo = $mysqli->query($repprovresguardo);
 $frepprovresguardo = $rrepprovresguardo->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,14 +1,39 @@
 <?php
+// calculo de fechas automaticas
+$anioActual = date("Y");
+$mesActual = date("n");
+$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
+$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+$mesant = $meses[date('n')-2];
+$mesanterior = date('n')-1;
+$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
+echo "fecha inicio";
+echo "<br>";
+echo $fecha_inicio = $anioActual."-01-01";
+echo "<br>";
+echo "fecha anterior";
+echo "<br>";
+echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+echo "<br>";
+echo "dia del mes inicial";
+echo "<br>";
+echo $diamesinicio = $anioActual."-".$mesActual."-01";
+echo "<br>";
+echo "dia del mes final";
+echo "<br>";
+echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
 ////////////////////////////////////////////////////////////////////////////////
 $inicialanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INICIAL' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE procesopenal.etapaprocedimiento = 'INICIAL' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rinicialanterior = $mysqli->query($inicialanterior);
 $finicialanterior = $rinicialanterior ->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 $inicialreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INICIAL' AND expediente.fecha_nueva BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE procesopenal.etapaprocedimiento = 'INICIAL' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rinicialreporte = $mysqli->query($inicialreporte);
 $finicialreporte = $rinicialreporte ->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -16,13 +41,13 @@ $totalinicial = $finicialanterior['t'] + $finicialreporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 $intermediaanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INTERMEDIA' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE procesopenal.etapaprocedimiento = 'INTERMEDIA' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rintermediaanterior = $mysqli->query($intermediaanterior);
 $fintermediaanterior = $rintermediaanterior ->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 $intermediareporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INTERMEDIA' AND expediente.fecha_nueva BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE procesopenal.etapaprocedimiento = 'INTERMEDIA' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rintermediareporte = $mysqli->query($intermediareporte);
 $fintermediareporte = $rintermediareporte ->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,13 +55,13 @@ $totalintermedia = $fintermediaanterior['t'] + $fintermediareporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 $juiciooralanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'JUICIO ORAL' AND expediente.fecha_nueva BETWEEN '2023-01-01' AND '2023-04-30'";
+WHERE procesopenal.etapaprocedimiento = 'JUICIO ORAL' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rjuiciooralanterior = $mysqli->query($juiciooralanterior);
 $fjuiciooralanterior = $rjuiciooralanterior ->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 $juiciooralreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
 INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'JUICIO ORAL' AND expediente.fecha_nueva BETWEEN '2023-05-01' AND '2023-05-31'";
+WHERE procesopenal.etapaprocedimiento = 'JUICIO ORAL' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rjuiciooralreporte = $mysqli->query($juiciooralreporte);
 $fjuiciooralreporte = $rjuiciooralreporte ->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

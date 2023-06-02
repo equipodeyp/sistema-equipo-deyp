@@ -1,19 +1,45 @@
 <?php
+// calculo de fechas automaticas
+$anioActual = date("Y");
+$mesActual = date("n");
+$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
+$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+$mesant = $meses[date('n')-2];
+$mesanterior = date('n')-1;
+$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
+echo "fecha inicio";
+echo "<br>";
+echo $fecha_inicio = $anioActual."-01-01";
+echo "<br>";
+echo "fecha anterior";
+echo "<br>";
+echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+echo "<br>";
+echo "dia del mes inicial";
+echo "<br>";
+echo $diamesinicio = $anioActual."-".$mesActual."-01";
+echo "<br>";
+echo "dia del mes final";
+echo "<br>";
+echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+////////////////////////////////////////////////////////////////////////////////
 $siprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '2023-01-01' and '2023-04-30'";
+WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
 $rsiprocede = $mysqli->query($siprocede);
 $fsiprocede = $rsiprocede->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $noprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '2023-01-01' and '2023-04-30'";
+WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
 $rnoprocede = $mysqli->query($noprocede);
 $fnoprocede = $rnoprocede->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $parcialproc = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDENTE' and expediente.fecha_nueva BETWEEN '2023-01-01' and '2023-04-30'";
+WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDENTE' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
 $rparcialproc = $mysqli->query($parcialproc);
 $fparcialproc = $rparcialproc->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -21,19 +47,19 @@ $totalanterior = $fsiprocede['t'] + $fnoprocede['t'] + $fparcialproc['t'];
 ////////////////////////conteo  de datos  de la semana para entregar reporte//////////////////////////////////////
 $siprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '2023-05-01' and '2023-05-31'";
+WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
 $rsiprocedereporte = $mysqli->query($siprocedereporte);
 $fsiprocedereporte = $rsiprocedereporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $noprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '2023-05-01' and '2023-05-31'";
+WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
 $rnoprocedereporte = $mysqli->query($noprocedereporte);
 $fnoprocedereporte = $rnoprocedereporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $parcialprocreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDE' and expediente.fecha_nueva BETWEEN '2023-05-01' and '2023-05-31'";
+WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDE' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
 $rparcialprocreporte = $mysqli->query($parcialprocreporte);
 $fparcialprocreporte = $rparcialprocreporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
