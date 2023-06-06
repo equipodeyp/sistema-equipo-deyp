@@ -37,7 +37,7 @@
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">VALORACIÓN JURÍDICA</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -63,7 +63,7 @@
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">DETERMINACIÓN DE LA INCORPORACIÓN</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -90,7 +90,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">AUTORIDAD SOLICITANTE</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -116,7 +116,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">DELITO PRINCIPAL</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -143,7 +143,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">ETAPA DEL PROCEDIMIENTO  PENAL O  RECURSO</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -167,7 +167,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">MUNICIPIO</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -200,7 +200,7 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3">PERSONAS PROPUESTAS</th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -228,7 +228,7 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3">SUJETOS INCORPORADOS</th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th HEIGHT="82" style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -310,7 +310,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">CLASIFICACIÓN DE LAS MEDIDAS DE APOYO</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
@@ -336,7 +336,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">MUNICIPIO DE CONCLUSIÓN</th>
-                    <th style="border: 5px solid #97897D; text-align:center" colspan="3">2023</th>
+                    <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
                     <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
