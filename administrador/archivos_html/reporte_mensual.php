@@ -16,21 +16,10 @@
         $mesant = $meses[date('n')-2];
         $mesanterior = date('n')-1;
         $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-        echo "fecha inicio";
-        echo "<br>";
-        echo $fecha_inicio = $anioActual."-01-01";
-        echo "<br>";
-        echo "fecha anterior";
-        echo "<br>";
-        echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-        echo "<br>";
-        echo "dia del mes inicial";
-        echo "<br>";
-        echo $diamesinicio = $anioActual."-".$mesActual."-01";
-        echo "<br>";
-        echo "dia del mes final";
-        echo "<br>";
-        echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+        $fecha_inicio = $anioActual."-01-01";
+        $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+        $diamesinicio = $anioActual."-".$mesActual."-01";
+        $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
         ?>
         <h1 style="text-align:center"><b>PROGRAMA DE PROTECCIÓN A SUJETOS QUE <br> INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE <br> EXTINCIÓN DE DOMINIO DEL ESTADO DE MÉXICO</b></h1>
         <h1 style="text-align:center">__________________________________________________________________________</h1>

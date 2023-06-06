@@ -9,24 +9,15 @@ $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO"
 $mesant = $meses[date('n')-2];
 $mesanterior = date('n')-1;
 $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-echo "fecha inicio";
-echo "<br>";
-echo $fecha_inicio = $anioActual."-01-01";
-echo "<br>";
-echo "fecha anterior";
-echo "<br>";
-echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-echo "<br>";
-echo "dia del mes inicial";
-echo "<br>";
-echo $diamesinicio = $anioActual."-".$mesActual."-01";
-echo "<br>";
-echo "dia del mes final";
-echo "<br>";
-echo $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+$fecha_inicio = $anioActual."-01-01";
+$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
+$diamesinicio = $anioActual."-".$mesActual."-01";
+$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+$date_principio = $anioActual."-01-01";
+$date_termino = $anioActual."-12-31";
 ////////////////////////////////////////////////////////////////////////////////
 $p = "SELECT ejecucion, COUNT(*) as t FROM medidas
-WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '2023-01-01' AND '2023-12-31'
+WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '$date_principio' AND '$date_termino'
 GROUP BY ejecucion
 HAVING COUNT(*)>0
 ORDER BY `t`  DESC";
