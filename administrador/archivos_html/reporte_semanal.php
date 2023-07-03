@@ -6,6 +6,7 @@
         <h2 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE SEMANAL</h2>
       </div>
       <div class="modal-body">
+        <form action="../administrador/archivos_html/prueba_reportesemanal.php" method="POST">
         <?php
         $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
         $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
@@ -115,6 +116,7 @@
         }
         ?>
         <!-- cuerpo del contenido de la ventana emergente -->
+        <button class="btn btn-success" type="submit">Create PDF</button>
         <div class="row">
           <!-- PRIMER TABLA -->
           <div class="col-lg-6">
@@ -398,11 +400,12 @@
             </div>
           </div>
         </div>
+        <!-- button -->
         <div class="row">
           <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
         </div>
 
-
+      </form>
         <!--  -->
       </div>
     </div>

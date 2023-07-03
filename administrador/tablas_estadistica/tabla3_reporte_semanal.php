@@ -109,6 +109,37 @@ $calidad = "SELECT * FROM calidadpersona";
 $rcalidad = $mysqli->query($calidad);
 while ($fcalidad = $rcalidad->fetch_assoc()) {
   $namecalidad = $fcalidad['nombre'];
+  if ($fcalidad['nombre'] === 'I. VICTIMA') {
+    $namecortocalidad = 'VICTIMA';
+  }
+  if ($fcalidad['nombre'] === 'II. OFENDIDO') {
+    $namecortocalidad = 'OFENDIDO';
+  }
+  if ($fcalidad['nombre'] === 'III. TESTIGO') {
+    $namecortocalidad = 'TESTIGO';
+  }
+  if ($fcalidad['nombre'] === 'IV. COLABORADOR O INFORMANTE') {
+    $namecortocalidad = 'COLABORADOR O INFORMANTE';
+  }
+  if ($fcalidad['nombre'] === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+    $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+  }
+  if ($fcalidad['nombre'] === 'VI. DEFENSOR') {
+    $namecortocalidad = 'DEFENSOR';
+  }
+  if ($fcalidad['nombre'] === 'VII. POLICIA') {
+    $namecortocalidad = 'POLICIA';
+  }
+  if ($fcalidad['nombre'] === 'VIII. PERITO') {
+    $namecortocalidad = 'PERITO';
+  }
+  if ($fcalidad['nombre'] === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+    $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+  }
+  if ($fcalidad['nombre'] === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+    $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+  }
+
   //////////////////////////////////////////////////////////////////////////////
   $personaspropuestas = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
@@ -144,7 +175,7 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
 
   if ($fpersonaspropuestas['t'] > 0 ) {
     echo "<tr>";
-    echo "<td style='text-align:left'>"; echo $fcalidad['nombre']; "</td>";
+    echo "<td style='text-align:left'>"; echo $namecortocalidad; "</td>";
     echo "<td style='text-align:center'>"; echo $fpersonaspropuestas['t']; "</td>";
     echo "<td style='text-align:center'>"; echo $fpersonaspropuestasreporte['t']; "</td>";
     echo "<td style='text-align:center'>"; echo $totalperpropuestas; "</td>";

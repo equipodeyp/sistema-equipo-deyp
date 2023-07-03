@@ -116,7 +116,8 @@ $rincornoproc = $mysqli->query($incornoproc);
 $fincornoproc = $rincornoproc->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $enelaboracion = "SELECT COUNT(*) as t FROM analisis_expediente
-WHERE analisis = 'EN ELABORACION' and fecha_analisis BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+INNER JOIN expediente on analisis_expediente.folioexpediente = expediente.fol_exp
+WHERE analisis_expediente.analisis = 'EN ELABORACION' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_finsemanaanterior'";
 $renelaboracion = $mysqli->query($enelaboracion);
 $fenelaboracion = $renelaboracion->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
