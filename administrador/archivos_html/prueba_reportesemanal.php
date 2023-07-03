@@ -25,7 +25,7 @@ $mpdf = new \Mpdf\Mpdf([
 
 $mpdf->SetHTMLHeader('<table width="100%">
 <tr>
-<td width="10%"><img  src="../../image/gobierno.png" width="120" height="130"></td>
+<td width="10%"><img  src="../../image/gobierno2.jpg" width="120" height="130"></td>
 <td width="80%" style="font-family: gothambook" align="center"><span align="center">Programa de Protección a Sujetos que Intervienen en el Procedimiento <BR>
 Penal o de Extinción de Dominio del Estado de México. </span><br>
 </td>
