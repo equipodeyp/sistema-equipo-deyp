@@ -325,7 +325,8 @@ $rincornoproc = $mysqli->query($incornoproc);
 $fincornoproc = $rincornoproc->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $enelaboracion = "SELECT COUNT(*) as t FROM analisis_expediente
-WHERE analisis = 'EN ELABORACION' and fecha_analisis BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
+INNER JOIN expediente on analisis_expediente.folioexpediente = expediente.fol_exp
+WHERE analisis_expediente.analisis = 'EN ELABORACION' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
 $renelaboracion = $mysqli->query($enelaboracion);
 $fenelaboracion = $renelaboracion->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -399,7 +400,7 @@ $data .= '<div style="float: left; width: 55%;">
   <table id="tabla1" border="1px" cellspacing="0" width="90%" bgcolor="#97897D">
     <thead class="thead-dark">
       <tr>
-        <th style="border: 1>px solid #A19E9F; text-align:center; font-family: gothambook; width:270px;" rowspan="4" class="bg-success"><font size=3><b style="text-align:center; color:white;">CALIDAD DENTRO DEL PROGRAMA </b></font></th>
+        <th style="border: 1>px solid #A19E9F; text-align:center; font-family: gothambook; width:300px;" rowspan="4" class="bg-success"><font size=3><b style="text-align:center; color:white;">CALIDAD DENTRO DEL PROGRAMA </b></font></th>
       </tr>
       <tr>
         <th style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;" colspan="3"><font size=3><b style="text-align:center; color:white;">PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</b></font></th>
@@ -855,7 +856,7 @@ $data1 .= '<br><div style="float: left; width: 40%;">
   //////////////////////////////////////////////////////////////////////////////
   if ($fenelaboracionreporte['t'] > 0) {
     $data1 .= '<tr bgcolor="white">
-    <td style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><font size=1><p>EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN *</font></p></td>
+    <td style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook; width:320px;"><font size=1><p>EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN *</font></p></td>
     <td style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook; width:80px;"><font size=1><p> '.$fenelaboracionreporte['t'].' </p></font></td>
     </tr>';
   }
