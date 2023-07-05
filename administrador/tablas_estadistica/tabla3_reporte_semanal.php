@@ -148,8 +148,8 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   $fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   $personaspropuestasreporte = "SELECT COUNT(*) as t FROM datospersonales
-  INNER JOIN expediente ON datospersonales.folioexpediente = expediente.fol_exp
-  WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+  INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+  WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud BETWEEN '$fecha_inicio' AND '$fecha_fin'";
   $rpersonaspropuestasreporte = $mysqli->query($personaspropuestasreporte);
   $fpersonaspropuestasreporte = $rpersonaspropuestasreporte->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
@@ -193,8 +193,8 @@ $rpersonaspropuestastotal = $mysqli->query($personaspropuestastotal);
 $fpersonaspropuestastotal = $rpersonaspropuestastotal->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $personaspropuestasreportetotal = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN expediente ON datospersonales.folioexpediente = expediente.fol_exp
-WHERE datospersonales.relacional = 'NO' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '$fecha_inicio' AND '$fecha_fin'";
 $rpersonaspropuestasreportetotal = $mysqli->query($personaspropuestasreportetotal);
 $fpersonaspropuestasreportetotal = $rpersonaspropuestasreportetotal->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

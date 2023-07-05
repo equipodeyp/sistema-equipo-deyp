@@ -569,8 +569,8 @@ $data .= '<div style="float: left; width: 55%;">
       $fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc();
       //////////////////////////////////////////////////////////////////////////////
       $personaspropuestasreporte = "SELECT COUNT(*) as t FROM datospersonales
-      INNER JOIN expediente ON datospersonales.folioexpediente = expediente.fol_exp
-      WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+      INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+      WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud BETWEEN '$fecha_inicio' AND '$fecha_fin'";
       $rpersonaspropuestasreporte = $mysqli->query($personaspropuestasreporte);
       $fpersonaspropuestasreporte = $rpersonaspropuestasreporte->fetch_assoc();
       //////////////////////////////////////////////////////////////////////////////
@@ -614,8 +614,8 @@ $data .= '<div style="float: left; width: 55%;">
     $fpersonaspropuestastotal = $rpersonaspropuestastotal->fetch_assoc();
     ////////////////////////////////////////////////////////////////////////////////
     $personaspropuestasreportetotal = "SELECT COUNT(*) as t FROM datospersonales
-    INNER JOIN expediente ON datospersonales.folioexpediente = expediente.fol_exp
-    WHERE datospersonales.relacional = 'NO' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+    INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+    WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '$fecha_inicio' AND '$fecha_fin'";
     $rpersonaspropuestasreportetotal = $mysqli->query($personaspropuestasreportetotal);
     $fpersonaspropuestasreportetotal = $rpersonaspropuestasreportetotal->fetch_assoc();
     ////////////////////////////////////////////////////////////////////////////////
@@ -808,7 +808,7 @@ $mpdf->AddPage();
 $data1 .= '<br><br><br><br><h4 style="text-align:center; font-family: gothambook;"><b>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$diafin.' DE '.$meses[date('n')-1].' DEL '.date('Y').' </b> </h4>';
 
 
-$data1 .= '<br><div style="float: left; width: 40%;">
+$data1 .= '<br><div style="float: left; width: 45%;">
 <table id="tabla1" border="1px" cellspacing="0" width="90%" bgcolor="#97897D">
   <thead class="thead-dark">
     <tr>
@@ -895,6 +895,23 @@ if ($fenelaboracionreporte['t'] > 0) {
   &nbsp;&nbsp;&nbsp;&nbsp; en proceso de formalizar su ingreso al mismo.
   </font></span>';
 }
+$data1 .= '</div>';
+////////////////////////////////////////////////////////////////////////////////
+$data1 .= '<div style="float: right; width: 45%;">
+<table id="tabla1" border="1px" cellspacing="0" width="90%" bgcolor="#97897D">
+  <thead class="thead-dark">
+    <tr>
+      <th style="border: 1>px solid #A19E9F; text-align:center; font-family: gothambook; width:270px;" colspan="2" class="bg-success"><font size=3><b style="text-align:center; color:white;">PERSONAS QUE SOLICITARON INCORPORARSE</b></font></th>
+    </tr>
+    <tr>
+      <th style="border: 1>px solid #A19E9F; text-align:center; font-family: gothambook; width:300px;" class="bg-success"><font size=3><b style="text-align:center; color:white;">ETAPA DENTRO DEL PROGRAMA</b></font></th>
+      <th style="border: 1>px solid #A19E9F; text-align:center; font-family: gothambook; width:270px;" class="bg-success"><font size=3><b style="text-align:center; color:white;">TOTAL</b></font></th>
+    </tr>
+  </thead>
+  <tbody>';
+  ////////////////////////conteo  de datos  de la semana anterior//////////////////////////////////////
+  $data1 .='</tbody>
+  </table>';
 $data1 .= '</div>';
 ////////////////////////////////////////////////////////////////////////////////
 $mpdf->WriteHtml($data1);
