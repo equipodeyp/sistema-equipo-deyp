@@ -431,7 +431,7 @@ function domicilioactual(sel) {
            divC = document.getElementById("domcp");
            divC.style.display="";
            divC = document.getElementById("fecha_crit");
-           divC.style.display="none";           
+           divC.style.display="none";
       }
 }
 // modificacion del domicilio ACTUAL

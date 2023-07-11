@@ -239,8 +239,22 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
               <h3 style="text-align:center">DATOS DE LA PERSONA PROPUESTA<br><br></h3>
             </div>
 
+
+              <div class="col-md-12 mb-3 validar" id="anuncioimportante">
+                <h4><b>¡IMPORTANTE! <br>
+                  ES NECESARIO ACTUALIZAR LA FECHA DE SOLICITUD DE LA PERSONA PROPUESTA
+                </b></h4>
+              </div>
+              <div class="col-md-6 mb-3 validar" id="updatefechadesolicitud">
+                <label for="FECHA_SOLICITUDv1" class="is-required">FECHA DE SOLICITUD<span class="required"></span></label>
+                <input  class="form-control" id="FECHA_SOLICITUDv1" name="FECHA_SOLICITUDv1" placeholder="" type="date">
+              </div>
+
+
             <div>
-            <h6 for="GENERAR_ID">En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y Apellidos de la persona propuesta.<br><br> <span class="required"></span></h6>
+            <h6 for="GENERAR_ID">&nbsp;&nbsp;&nbsp;<b>En este apartado deberás generar un identificador clave, este será asignado a la persona propuesta. Pulsa en el botón "GENERAR ID" para crear el identificador clave automáticamente. Es importante que
+                            <br> &nbsp;&nbsp; antes de generar el identificador clave te cersiores de que la información se encuentre introducida correctamente. Una vez generado el identificador clave no podrás modificar los campos de Nombre y
+                            <br> &nbsp;&nbsp; Apellidos de la persona propuesta.<br><br></b> <span class="required"></span></h6>
             </div>
 
             <div class="col-md-6 mb-3 validar">
@@ -803,11 +817,35 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("FECHA_SOLICITUD").setAttribute("max", today);
-document.getElementById("FECHA_NACIMIENTO_PERSONA").setAttribute("max", today);
-document.getElementById("FECHA_AUTORIZACION").setAttribute("max", today);
-document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").setAttribute("max", today);
-document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
+// document.getElementById("FECHA_SOLICITUD").setAttribute("max", today);
+// document.getElementById("FECHA_NACIMIENTO_PERSONA").setAttribute("max", today);
+// document.getElementById("FECHA_AUTORIZACION").setAttribute("max", today);
+// document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").setAttribute("max", today);
+// document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
+console.log(today);
+var fechasolicitud = document.getElementById('FECHA_SOLICITUD').value;
+function datesolicitud () {
+  console.log(fechasolicitud);
+  if (fechasolicitud !== '') {
+    console.log('existe un registro por lo menos');
+    if (fechasolicitud < today) {
+      console.log('hay q cambiar fecha solicitud');
+      document.getElementById("anuncioimportante").style.display="";
+      document.getElementById("updatefechadesolicitud").style.display="";
+      document.getElementById("FECHA_SOLICITUDv1").required = true;
+    }else {
+      console.log('no se cambia fecha de solicitud');
+      document.getElementById("anuncioimportante").style.display="none";
+      document.getElementById("updatefechadesolicitud").style.display="none";
+    }
+  }else {
+    console.log('no existe ningun resgistro de persona, este es el primer registro de persona');
+    console.log('no se cambia fecha de solicitud');
+    document.getElementById("anuncioimportante").style.display="none";
+    document.getElementById("updatefechadesolicitud").style.display="none";
+  }
+}
+datesolicitud();
 </script>
 
 

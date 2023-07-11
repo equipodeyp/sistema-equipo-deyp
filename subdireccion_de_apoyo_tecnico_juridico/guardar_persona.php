@@ -2,6 +2,7 @@
 error_reporting(0);
 require 'conexion.php';
 session_start ();
+date_default_timezone_set("America/Mexico_City");
 $verifica = $_SESSION["verifica"];
 if ($verifica == 1) {
   unset($_SESSION['verifica']);
@@ -21,7 +22,14 @@ if ($verifica == 1) {
 
     // echo $exp_rel;
     $id_solicitud = $filacheckautoridad['idsolicitud'];
-    $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
+    echo $filacheckautoridad['fechasolicitud'];
+    echo "<br>";
+    echo $fecha_actual = date('Y-m-d');
+    if ($filacheckautoridad['fechasolicitud'] < $fecha_actual) {
+      $fecha_solicitud = $_POST['FECHA_SOLICITUDv1'];
+    }else {
+      $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
+    }
     $nombre_autoridad = $filacheckautoridad['nombreautoridad'];
     if ($nombre_autoridad === 'OTRO') {
       $other_autoridad = $filacheckautoridad['otraautoridad'];
