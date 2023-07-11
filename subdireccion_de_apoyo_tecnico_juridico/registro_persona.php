@@ -242,7 +242,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 
               <div class="col-md-12 mb-3 validar" id="anuncioimportante">
                 <h4><b>¡IMPORTANTE! <br>
-                  ES NECESARIO ACTUALIZAR LA FECHA DE SOLICITUD DE LA PERSONA PROPUESTA
+                  ES NECESARIO REGISTRAR LA FECHA DE SOLICITUD DE LA PERSONA PROPUESTA
                 </b></h4>
               </div>
               <div class="col-md-6 mb-3 validar" id="updatefechadesolicitud">
@@ -764,7 +764,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           <div>
               <br>
               <br>
-          		<button style="display: block; margin: 0 auto;"  class="btn color-btn-success" id="enter" type="submit">GUARDAR</button>
+          		<button style="display: block; margin: 0 auto;"  class="btn color-btn-success" id="enter" type="submit" disabled>GUARDAR</button>
           </div>
         </div>
       </form>
@@ -806,6 +806,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
 
 
 <script type="text/javascript">
+var activarguardar = false;
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -822,33 +823,24 @@ today = yyyy+'-'+mm+'-'+dd;
 // document.getElementById("FECHA_AUTORIZACION").setAttribute("max", today);
 // document.getElementById("FECHA_CONVENIO_ENTENDIMIENTO").setAttribute("max", today);
 // document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
-console.log(today);
 var fechasolicitud = document.getElementById('FECHA_SOLICITUD').value;
 function datesolicitud () {
-  console.log(fechasolicitud);
   if (fechasolicitud !== '') {
-    console.log('existe un registro por lo menos');
     if (fechasolicitud < today) {
-      console.log('hay q cambiar fecha solicitud');
       document.getElementById("anuncioimportante").style.display="";
       document.getElementById("updatefechadesolicitud").style.display="";
       document.getElementById("FECHA_SOLICITUDv1").required = true;
     }else {
-      console.log('no se cambia fecha de solicitud');
       document.getElementById("anuncioimportante").style.display="none";
       document.getElementById("updatefechadesolicitud").style.display="none";
     }
   }else {
-    console.log('no existe ningun resgistro de persona, este es el primer registro de persona');
-    console.log('no se cambia fecha de solicitud');
     document.getElementById("anuncioimportante").style.display="none";
     document.getElementById("updatefechadesolicitud").style.display="none";
   }
 }
 datesolicitud();
 </script>
-
-
 <script>
 const fechaNacimiento = document.getElementById("FECHA_NACIMIENTO_PERSONA");
 const edad = document.getElementById("EDAD_PERSONA");
@@ -974,6 +966,8 @@ window.addEventListener('load', function () {
         document.getElementById("ID_UNICO").value = text1 + "-" + idFolio;
         readOnlyNombreCompleto();
         document.getElementById("GENERAR_ID").disabled = true;
+        activarguardar = true;
+        document.getElementById('enter').disabled = false;
     }
 
     function readOnlyNombreCompleto() {
@@ -1032,7 +1026,9 @@ function validardiv2(){
   }
   if(validado){
   document.getElementById("next2").disabled = false;
-
+  if (activarguardar === false) {
+    alert("FALTA GENERAR EL ID UNICO DE LA PERSONA PROPUESTA")
+  }
   }else{
      document.getElementById("next2").disabled = true;
   //Salta un alert cada vez que escribes y hay un campo vacio

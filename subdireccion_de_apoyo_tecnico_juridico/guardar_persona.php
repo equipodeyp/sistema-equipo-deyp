@@ -22,13 +22,13 @@ if ($verifica == 1) {
 
     // echo $exp_rel;
     $id_solicitud = $filacheckautoridad['idsolicitud'];
-    echo $filacheckautoridad['fechasolicitud'];
-    echo "<br>";
-    echo $fecha_actual = date('Y-m-d');
+    $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
+    $filacheckautoridad['fechasolicitud'];    
+    $fecha_actual = date('Y-m-d');
     if ($filacheckautoridad['fechasolicitud'] < $fecha_actual) {
-      $fecha_solicitud = $_POST['FECHA_SOLICITUDv1'];
+      $fecha_solicitud_persona = $_POST['FECHA_SOLICITUDv1'];
     }else {
-      $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
+      $fecha_solicitud_persona = $fecha_actual;
     }
     $nombre_autoridad = $filacheckautoridad['nombreautoridad'];
     if ($nombre_autoridad === 'OTRO') {
@@ -236,8 +236,8 @@ if ($verifica == 1) {
   $id_persona =$row["id"];
 
   // sql para insercion de los datos de la autoridad
-  $sql = "INSERT INTO autoridad (idsolicitud, nombreautoridad, otraautoridad, nombreservidor, apellidopaterno, apellidomaterno, cargoservidor, folioexpediente, fechasolicitud, id_persona)
-          VALUES ('$id_solicitud', '$nombre_autoridad', '$other_autoridad', '$nombre_servidor', '$paterno_servidor', '$materno_servidor', '$cargo_servidor', '$fol_exp', '$fecha_solicitud', '$id_persona')";
+  $sql = "INSERT INTO autoridad (idsolicitud, nombreautoridad, otraautoridad, nombreservidor, apellidopaterno, apellidomaterno, cargoservidor, folioexpediente, fechasolicitud, id_persona, fechasolicitud_persona)
+          VALUES ('$id_solicitud', '$nombre_autoridad', '$other_autoridad', '$nombre_servidor', '$paterno_servidor', '$materno_servidor', '$cargo_servidor', '$fol_exp', '$fecha_solicitud', '$id_persona', '$fecha_solicitud_persona')";
   $resultado = $mysqli->query($sql);
 
 
