@@ -23,7 +23,7 @@ if ($verifica == 1) {
     // echo $exp_rel;
     $id_solicitud = $filacheckautoridad['idsolicitud'];
     $fecha_solicitud = $filacheckautoridad['fechasolicitud'];
-    $filacheckautoridad['fechasolicitud'];    
+    $filacheckautoridad['fechasolicitud'];
     $fecha_actual = date('Y-m-d');
     if ($filacheckautoridad['fechasolicitud'] < $fecha_actual) {
       $fecha_solicitud_persona = $_POST['FECHA_SOLICITUDv1'];
@@ -44,6 +44,7 @@ if ($verifica == 1) {
     // echo "no existe registro aun";
     $id_solicitud =$_POST['ID_SOLICITUD'];
     $fecha_solicitud=$_POST['FECHA_SOLICITUD'];
+    $fecha_solicitud_persona = $_POST['FECHA_SOLICITUD'];
     $nombre_autoridad=$_POST['NOMBRE_AUTORIDAD'];
     if ($nombre_autoridad =='OTRO') {
       // code...

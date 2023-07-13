@@ -30,7 +30,7 @@ $perpropuesta = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'PERS
 $rperpropuesta = $mysqli->query($perpropuesta);
 $fperpropuesta = $rperpropuesta->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
-$totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'];
+$totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'];
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "NO INCORPORADOS AL PROGRAMA¹"; "</td>";
@@ -63,7 +63,7 @@ echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES"; echo "</b>"; "</td>";
+echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE PERSONAS"; echo "</b>"; "</td>";
 echo "<td style='text-align:center'>"; echo "<b>"; echo $totalpersonas; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////

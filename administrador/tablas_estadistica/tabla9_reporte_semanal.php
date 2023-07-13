@@ -31,7 +31,7 @@ $totalsexo = $fmujeres['t'] + $fhombres['t'];
 $menoredadenresguardo = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-WHERE datospersonales.relacional = 'NO' AND datospersonales.grupoedad = 'MENOR DE EDAD' AND determinacionincorporacion.convenio = 'FORMALIZADO'
+WHERE datospersonales.relacional = 'NO' AND datospersonales.grupoedad = 'MENOR DE EDAD'
 AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND medidas.estatus != 'CANCELADA'";
 $rmenoredadenresguardo = $mysqli->query($menoredadenresguardo);
 $fmenoredadenresguardo = $rmenoredadenresguardo->fetch_assoc();

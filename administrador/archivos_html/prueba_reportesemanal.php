@@ -564,13 +564,13 @@ $data .= '<div style="float: left; width: 55%;">
       //////////////////////////////////////////////////////////////////////////////
       $personaspropuestas = "SELECT COUNT(*) as t FROM datospersonales
       INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-      WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+      WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
       $rpersonaspropuestas = $mysqli->query($personaspropuestas);
       $fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc();
       //////////////////////////////////////////////////////////////////////////////
       $personaspropuestasreporte = "SELECT COUNT(*) as t FROM datospersonales
       INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-      WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+      WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '$fecha_inicio' AND '$fecha_fin'";
       $rpersonaspropuestasreporte = $mysqli->query($personaspropuestasreporte);
       $fpersonaspropuestasreporte = $rpersonaspropuestasreporte->fetch_assoc();
       //////////////////////////////////////////////////////////////////////////////
@@ -609,13 +609,13 @@ $data .= '<div style="float: left; width: 55%;">
     ////////////////////////////////////////////////////////////////////////////////
     $personaspropuestastotal = "SELECT COUNT(*) as t FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-    WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+    WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud_persona BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
     $rpersonaspropuestastotal = $mysqli->query($personaspropuestastotal);
     $fpersonaspropuestastotal = $rpersonaspropuestastotal->fetch_assoc();
     ////////////////////////////////////////////////////////////////////////////////
     $personaspropuestasreportetotal = "SELECT COUNT(*) as t FROM datospersonales
     INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-    WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud BETWEEN '$fecha_inicio' AND '$fecha_fin'";
+    WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud_persona BETWEEN '$fecha_inicio' AND '$fecha_fin'";
     $rpersonaspropuestasreportetotal = $mysqli->query($personaspropuestasreportetotal);
     $fpersonaspropuestasreportetotal = $rpersonaspropuestasreportetotal->fetch_assoc();
     ////////////////////////////////////////////////////////////////////////////////
