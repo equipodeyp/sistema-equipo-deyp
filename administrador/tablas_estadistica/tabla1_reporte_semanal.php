@@ -119,7 +119,7 @@ $fnoprocede = $rnoprocede->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $parcialproc = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDENTE' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_finsemanaanterior'";
+WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDE' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_finsemanaanterior'";
 $rparcialproc = $mysqli->query($parcialproc);
 $fparcialproc = $rparcialproc->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
