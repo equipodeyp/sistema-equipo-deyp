@@ -115,28 +115,28 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
     echo "<tr>";
     echo "<td style='text-align:center'>"; echo $cont2; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['folioexpediente']; echo "</td>";
-    echo "<td style='text-align:center'>"; echo $fexped['fecha_nueva']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fexped['fecha_nueva'])); echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['identificador']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['estatus']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['sexopersona']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['edadpersona']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['grupoedad']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fdetinc['convenio']; echo "</td>";
-    echo "<td style='text-align:center'>"; echo $fdetinc['fecha_inicio']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fdetinc['fecha_inicio'])); echo "</td>";
     echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fsuj2022['t']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fsuj2023['t']; echo "</td>";
     ////////////////////////////////////////////////////////////////////////////////////////////
     echo "<td style='text-align:center'>"; if ($ftmedinicial['date_provisional'] === '0000-00-00') {
-      echo $ftmedinicial['date_definitva'];
+      echo date("d/m/Y", strtotime($ftmedinicial['date_definitva']));
     }else {
-      echo $ftmedinicial['date_provisional'];
+      echo date("d/m/Y", strtotime($ftmedinicial['date_provisional']));
     } echo "</td>";
     ///////////////////////////////////////////////////////////////////////////////////////////////
     echo "<td style='text-align:center'>"; if ($ftmedinfinal['date_ejecucion'] === '0000-00-00') {
       echo 'EN EJECUCION';
     }else {
-      echo $ftmedinfinal['date_ejecucion'];
+      echo date("d/m/Y", strtotime($ftmedinfinal['date_ejecucion']));
     } echo "</td>";
     //////////////////////////////////////////////////////////////////////////////////////////////
     echo "<td style='text-align:center'>"; if ($ftmedinicial['date_provisional'] === '0000-00-00') {
