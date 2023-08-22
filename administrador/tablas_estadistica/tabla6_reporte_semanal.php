@@ -111,9 +111,9 @@ WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha
 $rnoprocede = $mysqli->query($noprocede);
 $fnoprocede = $rnoprocede->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
-$enelaboracionreporte = "SELECT COUNT(*) as t FROM analisis_expediente
-INNER JOIN expediente on analisis_expediente.folioexpediente = expediente.fol_exp
-WHERE analisis_expediente.analisis = 'EN ELABORACION' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_fin'";
+$enelaboracionreporte = "SELECT COUNT(*) as t FROM statusseguimiento
+INNER JOIN expediente on statusseguimiento.folioexpediente = expediente.fol_exp
+WHERE statusseguimiento.status = 'ANALISIS' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_fin'";
 $renelaboracionreporte = $mysqli->query($enelaboracionreporte);
 $fenelaboracionreporte = $renelaboracionreporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
