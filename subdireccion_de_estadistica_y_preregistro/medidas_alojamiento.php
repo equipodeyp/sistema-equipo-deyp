@@ -117,6 +117,7 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['folioexpediente']; echo "</td>";
     echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fexped['fecha_nueva'])); echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['identificador']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo $fselecpersnorel2['calidadpersona']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['estatus']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['sexopersona']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['edadpersona']; echo "</td>";

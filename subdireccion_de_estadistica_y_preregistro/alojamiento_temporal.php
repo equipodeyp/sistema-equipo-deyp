@@ -291,6 +291,7 @@ a:focus {
                                             <th style="text-align:center">EXPEDIENTE</th>
                                             <th style="text-align:center">FECHA DE RECEPCION</th>
                                             <th style="text-align:center">IDENTIFICADOR</th>
+                                            <th style="text-align:center">CALIDAD PERSONA</th>
                                             <th style="text-align:center">ESTATUS PERSONA</th>
                                             <th style="text-align:center">SEXO</th>
                                             <th style="text-align:center">EDAD</th>
