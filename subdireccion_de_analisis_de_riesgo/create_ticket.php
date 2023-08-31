@@ -146,7 +146,8 @@ $num_incidencia = 0 . $suma;
                 <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?php echo $fol_exp; ?>">EXPEDIENTE</a>
                 <a class="actived">REGISTRAR INCIDENCIA</a>
           </div>
-    				<div class="container">
+
+    			  <div class="container">
               <form class="container well form-horizontal" action="save_ticket.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
