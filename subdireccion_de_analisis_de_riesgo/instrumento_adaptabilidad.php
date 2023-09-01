@@ -168,7 +168,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['identificador']; ?>" disabled>
                 </div>
 
-                <div class="col-md-6 mb-3 validar">
+                <!-- <div class="col-md-6 mb-3 validar">
                   <label for="CALIDAD_DEL_SUJETO">CALIDAD PERSONA DENTRO DEL PROGRAMA<span class="required"></span></label>
                   <select class="form-control" id="CALIDAD_DEL_SUJETO" name="CALIDAD_DEL_SUJETO" disabled>
                     <option value=""><?php echo $rowfol['calidadpersona']; ?></option>
@@ -180,7 +180,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                    }
                    ?>
                   </select>
-                </div>
+                </div> -->
         			</div>
               </div>
         		</div>
@@ -196,12 +196,540 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿CONSUME DROGAS LEGALES E ILEGALES?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="drogas" name="drogas_ile" required>
+                  <select class="form-select form-select-lg" id="question_1" name="r_question_1" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
                     <option value="No">No</option>
                   </select>
                 </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿COMENZÓ EL CONSUMO DE DROGAS LEGALES E ILEGALES, O SU CONSUMO ES MÍNIMO?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_2" name="r_question_2" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA UN ABUSO EN EL CONSUMO DE DROGAS LEGALES E ILEGALES?<span class="required"></span></label>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_3" name="r_question_3" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA SÍNDROME DE ABSTINENCIA O TIENE INCAPACIDAD DE CONTROLAR EL CONSUMO DE DROGAS LEGALES O ILEGALES?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_4" name="r_question_4" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿TIENE DISCAPACIDAD O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_5" name="r_question_5" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD O SUS SECUELAS, LE MOLESTAN PARA REALIZAR ALGUNA ACTIVIDAD, PERO NO LIMITAN NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_6" name="r_question_6" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD Y SE ENCUENTRA LIMITADO PARA ACTIVIDADES DE MAYOR ESFUERZO Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O DE SEGUNDO NIVEL?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_7" name="r_question_7" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD, LA CUAL LE IMPIDE SU MOVILIDAD Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O TRATAMIENTO ESPECIALIZADO DE MANERA CONSTANTE?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_8" name="r_question_8" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICA O DEGENERATIVA Y/O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_9" name="r_question_9" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA SÍNTOMAS O SECUELAS DE UNA ENFERMEDAD CRÓNICO O DEGENERATIVA, CONTROLADA BAJO TRATAMIENTO MÉDICO, EL CUAL NO LIMITA NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_10" name="r_question_10" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICO DEGENERATIVA QUE REQUIERE ATENCIÓN INMEDIATA PARA SU CONTROL MEDIANTE TRATAMIENTO MÉDICO?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_11" name="r_question_11" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CARDIOVASCULAR, RESPIRATORIA, CÁNCER U OTRA QUE REQUIERE ATENCIÓN MÉDICA Y/O HOSPITALARIA DE MANERA URGENTE?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_12" name="r_question_12" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA MAYOR DE 18, PERO MENOR DE 60 AÑOS?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_13" name="r_question_13" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA MAYOR DE 60 (ADULTO MAYOR), PERO MENOR DE 80 AÑOS?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_14" name="r_question_14" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA MAYOR DE 10, PERO MENOR DE 18 AÑOS (ADOLESCENTE) QUE REQUIERE O SE ENCUENTRA ASISTIDO DE PADRE O TUTOR?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_15" name="r_question_15" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA MENOR DE 10 AÑOS, QUE REQUIERE O SE ENCUENTRA ASISTIDO DE PADRE O TUTOR?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_16" name="r_question_16" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA INDICADORES DE PSICOPATOLOGÍA?<span class="required"></span></label>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_17" name="r_question_18" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALTERACIÓN EN SU CAPACIDAD DE ATENCIÓN, CONCENTRACIÓN, MEMORIA Y/O HÁBITOS DE SUEÑO Y ALIMENTACIÓN?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_18" name="r_question_18" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA INDICADORES REFERENTES A TRASTORNOS DE ANSIEDAD, DEPRESIÓN Y/O DEL ESTADO DE ÁNIMO?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_19" name="r_question_19" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA ALTERACIONES ANORMALES DEL FUNCIONAMIENTO MENTAL COMO ALUCINACIONES, IDEAS DELIRANTES, DEMENCIA, AFASIA O RETARDO MENTAL?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_20" name="r_question_20" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA CARACTERÍSTICAS QUE CONCUERDEN CON ALGÚN TRASTORNO DE LA PERSONALIDAD?<span class="required"></span></label>
+                  <br></br>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_21" name="r_question_21" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA O SEÑALÓ TENER PENSAMIENTOS O COMPORTAMIENTOS DE ANSIEDAD O TEMOR, CON PRESENCIA DE CONFLICTOS INTERPERSONALES E INTRAPSÍQUICOS (TRASTORNO DE LA PERSONALIDAD POR EVITACIÓN, DEPENDIENTE, OBSESIVO-COMPULSIVO)?<span class="required"></span></label>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_22" name="r_question_22" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA O SEÑALÓ TENER PENSAMIENTOS O COMPORTAMIENTOS IMPULSIVOS, EMOCIONALES, LLAMATIVOS, EXTROVERTIDOS Y SOCIALES, DRAMÁTICOS, IMPREDECIBLES, EMOCIONALMENTE INESTABLE (TRASTORNO ANTISOCIAL, LÍMITE DE PERSONALIDAD, HISTRIÓNICO DE LA PERSONALIDAD, DE PERSONALIDAD NARCISISTA)?<span class="required"></span></label>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_23" name="r_question_23" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿PRESENTA O SEÑALÓ TENER PENSAMIENTOS O COMPORTAMIENTOS EXCÉNTRICOS, EXTRAÑOS O AJENOS A LOS CÓDIGOS DE SOCIALIZACIÓN Y A LAS CONVENCIONES SOCIALES, INTROVERTIDOS, CON AUSENCIA DE RELACIONES PRÓXIMAS, DESCONEXIÓN DE LA REALIDAD O ALTERACIONES PSICOLÓGICAS DE TIPO PSICÓTICO (TRASTORNO PARANOIDE, ESQUIZOIDE, ESQUIZOTÍPICO)?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_24" name="r_question_24" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES CONSCIENTE DE SUS PROPIAS CAPACIDADES, PUEDE AFRONTAR LAS TENSIONES Y/O DIFICULTADES NORMALES DE LA VIDA, PUEDE TRABAJAR DE FORMA PRODUCTIVA Y FRUCTÍFERA, CAPAZ DE CONTRIBUIR A SU COMUNIDAD?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_25" name="r_question_25" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES CONSCIENTE DE LAS LIMITACIONES DE SUS CAPACIDADES, PERO CUENTA CON APOYO PARA AFRONTAR LAS TENSIONES Y/O DIFICULTADES NORMALES DE LA VIDA Y TRABAJAR DE FORMA PRODUCTIVA Y FRUCTÍFERA, CAPAZ DE CONTRIBUIR A SU COMUNIDAD?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_26" name="r_question_26" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES CONSCIENTE DE LAS LIMITACIONES DE SUS CAPACIDADES, PERO NO CUENTA CON APOYO PARA AFRONTAR LAS TENSIONES Y/O DIFICULTADES NORMALES DE LA VIDA Y TRABAJAR DE FORMA PRODUCTIVA Y FRUCTÍFERA, POR LO QUE NO ES CAPAZ DE CONTRIBUIR A SU COMUNIDAD?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_27" name="r_question_27" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿NO ES CONSCIENTE DE SUS CAPACIDADES, POR LO QUE NO PUEDE AFRONTAR LAS TENSIONES Y/O DIFICULTADES NORMALES DE LA VIDA, NI TRABAJAR DE FORMA PRODUCTIVA Y FRUCTÍFERA, POR LO QUE NO ES CAPAZ DE CONTRIBUIR CON SU COMUNIDAD?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_28" name="r_question_28" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ACTUALMENTE SE ENCUENTRA ESTUDIANDO O LABORANDO?<span class="required"></span></label>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <select class="form-select form-select-lg" id="question_29" name="r_question_29" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿CONCLUYÓ O SE ENCUENTRA SUSPENDIDA SU FASE EDUCATIVA O LABORAL, SE ENCUENTRA CURSANDO UN AÑO EDUCATIVO O LABORAL, PERO SU INCORPORACIÓN NO AFECTA AL DESARROLLO DE SUS ACTIVIDADES YA QUE PUEDE REALIZARLAS DE MANERA REMOTA, POR CONDUCTO DE TERCERAS PERSONAS O PUEDE GOZAR DE UN PERMISO O LICENCIA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_30" name="r_question_30" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿SE ENCUENTRA CURSANDO UN AÑO EDUCATIVO DE MANERA PRESENCIAL?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_31" name="r_question_31" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿CUENTA CON UN EMPLEO FORMAL O INFORMAL, QUE ATIENDE DE MANERA DIRECTA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_32" name="r_question_32" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA INDEPENDIENTE O CONFORMA UNA FAMILIA, UNIDA POR VÍNCULOS DE AFECTIVIDAD MUTUA, MEDIADA POR REGLAS, ROLES, NORMAS Y PRÁCTICAS DE COMPORTAMIENTO, CON COMUNICACIÓN DIRECTA, ABIERTA Y CONSTANTE, SIN PRESENCIA DE VIOLENCIA (DINÁMICA FAMILIAR FUNCIONAL)?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_33" name="r_question_33" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA INDEPENDIENTE O CONFORMA UNA FAMILIA, UNIDA POR VÍNCULOS DE AFECTIVIDAD MUTUA, MEDIADA POR REGLAS, ROLES, NORMAS Y PRÁCTICAS DE COMPORTAMIENTO INTERMITENTES, CON COMUNICACIÓN DESPLAZADA, SIN PRESENCIA DE VIOLENCIA (DINÁMICA FAMILIAR INTERMEDIA)?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_34" name="r_question_34" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA INDEPENDIENTE O CONFORMA UNA FAMILIA, SIN VÍNCULOS DE AFECTIVIDAD MUTUA, CON REGLAS, ROLES, NORMAS Y PRÁCTICAS DE COMPORTAMIENTO INTERMITENTES, CON COMUNICACIÓN BLOQUEADA, CON O SIN PRESENCIA DE VIOLENCIA (DINÁMICA FAMILIAR DISFUNCIONAL)?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_35" name="r_question_35" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES UNA PERSONA INDEPENDIENTE O CONFORMA UNA FAMILIA, SIN VÍNCULOS DE AFECTIVIDAD MUTUA, NO SE ENCUENTRA MEDIADA POR REGLAS, ROLES, NORMAS Y PRÁCTICAS DE COMPORTAMIENTO, CON COMUNICACIÓN DAÑADA Y CON PRESENCIA DE VIOLENCIA (DINÁMICA FAMILIAR DISFUNCIONAL SEVERA)?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_36" name="r_question_36" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿CUENTA CON UN INGRESO SUPERIOR AL PROMEDIO NACIONAL, CON UNA O MÁS FUENTES DE INGRESOS Y/O REDES DE APOYO PARA EL SOSTENIMIENTO PERSONAL, DEL HOGAR E HIJOS, POR LO QUE SU INCORPORACIÓN AL PROGRAMA NO AFECTARÍA SUS INGRESOS?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_37" name="r_question_37" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <br></br>
+                  <br></br>
+                  <label for="" class="">¿CUENTA CON UN INGRESO IGUAL AL PROMEDIO NACIONAL, CUENTA CON UNA O MÁS REDES DE APOYO PARA EL SOSTENIMIENTO PERSONAL, DEL HOGAR E HIJOS?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_38" name="r_question_38" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿CUENTA CON UN INGRESO IGUAL AL SALARIO MÍNIMO, ES LA ÚNICA FUENTE DE INGRESOS PARA EL SOSTENIMIENTO PERSONAL, DEL HOGAR E HIJOS?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_39" name="r_question_39" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿NO CUENTA CON UN INGRESO O ESTE NO ES FIJO O ES INFERIOR AL SALARIO MÍNIMO, SIENDO SU ÚNICA FUENTE DE INGRESOS?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_40" name="r_question_40" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES TOLERANTE, RESPETUOSO, CON OPINIÓN OBJETIVA Y ACEPTACIÓN DE DIFERENCIAS, ENTIENDE Y CONFORMA LAS REGLAS DE LA SOCIEDAD, MIDE LAS CONSECUENCIAS DE SUS ACCIONES, NO TIENDE A TRANSGREDIR LAS LEYES O NORMAS, NO CUENTA CON REDES O VÍNCULOS PERTENECIENTES A UNA ESTRUCTURA DELICTIVA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_41" name="r_question_41" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES TOLERANTE, RESPETUOSO, CON OPINIÓN OBJETIVA Y ACEPTACIÓN DE DIFERENCIAS, ENTIENDE Y CONFORMA LAS REGLAS DE LA SOCIEDAD, NO MIDE LAS CONSECUENCIAS DE SUS ACCIONES, PUEDE LLEGAR A TRANSGREDIR DE MANERA ESPORÁDICA LAS LEYES O NORMAS, NO CUENTA CON REDES O VÍNCULOS PERTENECIENTES A UNA ESTRUCTURA DELICTIVA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_42" name="r_question_42" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES INTOLERANTE, TIENDE A SER AGRESIVO, CON OPINIÓN CERRADA, POCA ACEPTACIÓN DE DIFERENCIAS, ENTIENDE Y CONFORMA LAS REGLAS DE LA SOCIEDAD, NO MIDE LAS CONSECUENCIAS DE SUS ACCIONES, TIENDE A TRANSGREDIR DE MANERA ESPORÁDICA LAS LEYES O NORMAS, NO CUENTA CON REDES O VÍNCULOS PERTENECIENTES A UNA ESTRUCTURA DELICTIVA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_43" name="r_question_43" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES INTOLERANTE, IRRESPETUOSO, AGRESIVO, CON OPINIÓN CERRADA, NO ACEPTA DIFERENCIAS, ENTIENDE Y CONFORMA LAS REGLAS DE LA SOCIEDAD, PERO NO MIDE LAS CONSECUENCIAS DE SUS ACCIONES, TIENDE A TRANSGREDIR LAS LEYES O NORMAS, CUENTA CON REDES O VÍNCULOS PERTENECIENTES A UNA ESTRUCTURA DELICTIVA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_44" name="r_question_44" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿CUENTA CON ANTECEDENTES PENALES?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_45" name="r_question_45" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES CATALOGADO DENTRO DE LOS SUJETOS ACTIVOS COMUNES, INADAPTADOS, CARACTERIALES, PRIMO DELINCUENTE U OCASIONAL. CUENTA CON FACTORES DE PROTECCIÓN POCO DEFINIDOS, CON MAYOR PRESENCIA DE FACTORES DE RIESGO, ESTÁTICOS, DINÁMICOS, MOTIVADORES, DESESTABILIZADORES Y DESINHIBIDORES?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_46" name="r_question_46" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ES CATALOGADO COMO REINCIDENTE ESPECÍFICO O HABITUAL, CON POTENCIAL DELICTIVO ALTO, SU INADAPTACIÓN LOS HACE EVIDENTES. CON AUSENCIA DE FACTORES DE PROTECCIÓN, SOBRESALIENDO LOS FACTORES DE RIESGO, MOTIVADORES Y DESESTABILIZADORES?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_47" name="r_question_47" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿TIENDE A TRANSGREDIR DE MANERA CONSTANTE LAS LEYES O NORMAS, ES REINCIDENTE GENÉRICO O PROFESIONAL, CUENTA CON REDES O VÍNCULOS PERTENECIENTES A UNA ESTRUCTURA DELICTIVA, CON ACTITUD PERMANENTE OPOSICIÓN Y AUTOAFIRMACIÓN AGRESIVA.  SE PRESENTAN MANIFESTACIONES GRAVES DE CONDUCTAS ANTISOCIALES.  CUENTA CON FACTORES DE RIESGO, ESTÁTICOS, DINÁMICOS, MOTIVADORES, DESESTABILIZADORES Y DESINHIBIDORES?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_48" name="r_question_48" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO UNA VÍCTIMA INOCENTE O IDEAL, VÍCTIMA DE CULPABILIDAD MENOR O POR IGNORANCIA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_49" name="r_question_49" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO VÍCTIMA VOLUNTARIA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_50" name="r_question_50" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO UNA VÍCTIMA PROVOCADORA/ VÍCTIMA POR IMPRUDENCIA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_51" name="r_question_51" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO UNA VÍCTIMA INFRACTORA, SIMULADORA O IMAGINARIA?<span class="required"></span></label>
+                  <select class="form-select form-select-lg" id="question_52" name="r_question_52" required>
+                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+
+
+
+
+            
 
                 <div id="contenido">
                   <table class="table table-striped table-bordered ">

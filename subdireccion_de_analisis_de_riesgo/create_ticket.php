@@ -151,7 +151,7 @@ $num_incidencia = 0 . $suma;
               <form class="container well form-horizontal" action="save_ticket.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <div class="alert alert-info div-title">
                     <h3 style="text-align:center">DATOS GENERALES</h3>
                   </div>
 
