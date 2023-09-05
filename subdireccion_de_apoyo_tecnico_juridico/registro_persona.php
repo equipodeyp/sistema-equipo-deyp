@@ -768,6 +768,7 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
           </div>
         </div>
       </form>
+      
       <div class="row" id="btnnext1">
         <div>
           <br>

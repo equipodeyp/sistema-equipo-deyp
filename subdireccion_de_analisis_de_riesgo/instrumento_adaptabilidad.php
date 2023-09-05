@@ -9,6 +9,9 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
+date_default_timezone_set('America/Mexico_City');
+$myDate = date("d-m-y h:i:s a");
+
 $query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
 $resultado23=$mysqli->query($query);
 
@@ -71,6 +74,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/instrumento_adaptabilidad.css">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -110,6 +114,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
       $user = $row_user['usuario'];
+      $nombre_ser = $row['nombre'];
+      $apellido_p = $row['apellido_p'];
+      $apellido_m = $row['apellido_m'];
+      $name_user = $nombre_ser." " .$apellido_p." " .$apellido_m;
+      $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML401, "UTF-8"));
+
+
+
 			if ($genero=='mujer') {
 				echo "<img src='../image/mujerup.png' width='100' height='100'>";
 			}
@@ -152,20 +164,25 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
               <a class="actived">INSTRUMENTO DE ADAPTABILIDAD</a>
             </div>
             <div class="container">
-        			<div class="well form-horizontal" >
-        				<div class="row">
-                  <div class="row alert div-title">
-                    <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
-          				</div>
 
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="ID_EXPEDIENTE">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span class="required"></span></label>
-                    <input class="form-control" id="ID_EXPEDIENTE" name="ID_EXPEDIENTE" placeholder="" required="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" disabled>
+        			<div class="well form-horizontal">
+              <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+
+        				<div class="row">
+                  <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                    </div>
                   </div>
 
-                <div class="col-md-6 mb-3 validar">
-                  <label for="NOMRE_SUJETO">ID PERSONA<span class="required"></span></label>
-                  <input class="form-control" id="NOMRE_SUJETO" name="NOMRE_SUJETO" placeholder="" required="" type="text" value="<?php echo $rowfol['identificador']; ?>" disabled>
+                  <div class="col-md-6 mb-3 ">
+                    <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
+                    <input class="form-control" id="fol_exp" name="input_folio" placeholder="" required="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" disabled>
+                  </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="">ID PERSONA<span></span></label>
+                  <input class="form-control" id="id_persona" name="input_id" placeholder="" required="" type="text" value="<?php echo $rowfol['identificador']; ?>" disabled>
                 </div>
 
                 <!-- <div class="col-md-6 mb-3 validar">
@@ -182,12 +199,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   </select>
                 </div> -->
         			</div>
+              </form>
               </div>
         		</div>
 
-              <div class="container ">
+              <div class="container">
               <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
                 <div class="well form-horizontal">
+
                 <div id="cabecera">
                   <div class="row alert div-title">
                     <h3 style="text-align:center">INSTRUMENTO DE ADAPTABILIDAD</h3>
@@ -195,89 +214,130 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                 </div>
 
                 <div class="col-md-6 mb-3">
-                  <label for="" class="">¿CONSUME DROGAS LEGALES E ILEGALES?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_1" name="r_question_1" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
+                  <label for="" class="">FECHA Y HORA REGISTRO<span class="required"></span></label>
+                  <input readonly class="form-control" id="fecha_hora" name="input_fecha" placeholder="" type="text" value="<?php echo $myDate; ?>">
                 </div>
 
-
                 <div class="col-md-6 mb-3">
-                  <label for="" class="">¿COMENZÓ EL CONSUMO DE DROGAS LEGALES E ILEGALES, O SU CONSUMO ES MÍNIMO?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_2" name="r_question_2" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
+                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO<span class="required"></span></label>
+                  <input readonly class="form-control" id="nombre_servidor" name="input_nombre" placeholder="" type="text" value="<?php echo $full_name;?>">
+                </div>
+            
+                <div id="cabecera">
+                  <div class="row alert div-title">
+                    <h3 style="text-align:center">INSTRUCCIONES Y RECOMENDACIONES</h3>
+                  </div>
                 </div>
 
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA UN ABUSO EN EL CONSUMO DE DROGAS LEGALES E ILEGALES?<span class="required"></span></label>
+                <div>
                   <br></br>
-                  <select class="form-select form-select-lg" id="question_3" name="r_question_3" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
+                  <h5 style='text-align:justify'>
+                    Lea y comprenda cada una de las cuestiones. Responda de manera clara y concreta. 
+                    Todas las preguntas deberan ser llenadas correctamente. Para iniciar con el llenado del instrumento de adaptabilidad debera presionar el el botón iniciar.
+                    Devera utilizar los botones de anterior y siguiente para continuar o retroceder durante el llenado del instrumento. 
+                    Durante la prueba mantengase tranquilo y relajado. Concentre toda su atención en el contenido del instrumento. 
+                    Evite distracciones para un mejor desempeño.
+                  </h5>
+                  <br></br>
+                  <div class="vertical_center_button">
+                    <button id="iniciar_instrumento" style="text-align:center; display:'';" type='button' onclick="iniciarInstrumento()">Iniciar</button>
+                  </div>
+                  <br></br>
+                </div>
+                
+                <div id="div_1">
+              
+                      <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">ADICCIONES</h3>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-3" id="q1">
+                        <label for="" class="">¿CONSUME DROGAS LEGALES E ILEGALES?<span class="required"></span></label>
+                        <select class="form-select form-select-lg" id="question_1" name="r_question_1" required>
+                          <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                          <option value="Si">Si</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+
+                    <div class="col-md-6 mb-3" id="q2">
+                      <label for="" class="">¿COMENZÓ EL CONSUMO DE DROGAS LEGALES E ILEGALES, O SU CONSUMO ES MÍNIMO?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_2" name="r_question_2" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3" id="q3">
+                      <label for="" class="">¿PRESENTA UN ABUSO EN EL CONSUMO DE DROGAS LEGALES E ILEGALES?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_3" name="r_question_3" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3" id="q4">
+                      <label for="" class="">¿PRESENTA SÍNDROME DE ABSTINENCIA O TIENE INCAPACIDAD DE CONTROLAR EL CONSUMO DE DROGAS LEGALES O ILEGALES?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_4" name="r_question_4" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
                 </div>
 
+                <!--<div clas="div_dos">
+              
+                    <div class="col-md-6 mb-3" id="q1">
+                      <label for="" class="">¿TIENE DISCAPACIDAD O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_5" name="r_question_5" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
 
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA SÍNDROME DE ABSTINENCIA O TIENE INCAPACIDAD DE CONTROLAR EL CONSUMO DE DROGAS LEGALES O ILEGALES?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_4" name="r_question_4" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
+
+                    <div class="col-md-6 mb-3" id="q2">
+                      <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD O SUS SECUELAS, LE MOLESTAN PARA REALIZAR ALGUNA ACTIVIDAD, PERO NO LIMITAN NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_6" name="r_question_6" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3" id="q3">
+                      <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD Y SE ENCUENTRA LIMITADO PARA ACTIVIDADES DE MAYOR ESFUERZO Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O DE SEGUNDO NIVEL?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_7" name="r_question_7" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3" id="q4">
+                      <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD, LA CUAL LE IMPIDE SU MOVILIDAD Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O TRATAMIENTO ESPECIALIZADO DE MANERA CONSTANTE?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_8" name="r_question_8" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
                 </div>
 
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿TIENE DISCAPACIDAD O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_5" name="r_question_5" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD O SUS SECUELAS, LE MOLESTAN PARA REALIZAR ALGUNA ACTIVIDAD, PERO NO LIMITAN NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_6" name="r_question_6" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD Y SE ENCUENTRA LIMITADO PARA ACTIVIDADES DE MAYOR ESFUERZO Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O DE SEGUNDO NIVEL?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_7" name="r_question_7" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD, LA CUAL LE IMPIDE SU MOVILIDAD Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O TRATAMIENTO ESPECIALIZADO DE MANERA CONSTANTE?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_8" name="r_question_8" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
+                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICA O DEGENERATIVA Y/O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
-                  <br></br>
                   <select class="form-select form-select-lg" id="question_9" name="r_question_9" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
@@ -358,7 +418,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿PRESENTA INDICADORES DE PSICOPATOLOGÍA?<span class="required"></span></label>
-                  <br></br>
                   <select class="form-select form-select-lg" id="question_17" name="r_question_18" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
@@ -399,8 +458,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿PRESENTA CARACTERÍSTICAS QUE CONCUERDEN CON ALGÚN TRASTORNO DE LA PERSONALIDAD?<span class="required"></span></label>
-                  <br></br>
-                  <br></br>
                   <select class="form-select form-select-lg" id="question_21" name="r_question_21" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
@@ -411,7 +468,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿PRESENTA O SEÑALÓ TENER PENSAMIENTOS O COMPORTAMIENTOS DE ANSIEDAD O TEMOR, CON PRESENCIA DE CONFLICTOS INTERPERSONALES E INTRAPSÍQUICOS (TRASTORNO DE LA PERSONALIDAD POR EVITACIÓN, DEPENDIENTE, OBSESIVO-COMPULSIVO)?<span class="required"></span></label>
-                  <br></br>
                   <select class="form-select form-select-lg" id="question_22" name="r_question_22" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
@@ -422,7 +478,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿PRESENTA O SEÑALÓ TENER PENSAMIENTOS O COMPORTAMIENTOS IMPULSIVOS, EMOCIONALES, LLAMATIVOS, EXTROVERTIDOS Y SOCIALES, DRAMÁTICOS, IMPREDECIBLES, EMOCIONALMENTE INESTABLE (TRASTORNO ANTISOCIAL, LÍMITE DE PERSONALIDAD, HISTRIÓNICO DE LA PERSONALIDAD, DE PERSONALIDAD NARCISISTA)?<span class="required"></span></label>
-                  <br></br>
                   <select class="form-select form-select-lg" id="question_23" name="r_question_23" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
@@ -483,9 +538,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿ACTUALMENTE SE ENCUENTRA ESTUDIANDO O LABORANDO?<span class="required"></span></label>
-                  <br></br>
-                  <br></br>
-                  <br></br>
                   <select class="form-select form-select-lg" id="question_29" name="r_question_29" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="Si">Si</option>
@@ -575,8 +627,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
                 <div class="col-md-6 mb-3">
-                  <br></br>
-                  <br></br>
                   <label for="" class="">¿CUENTA CON UN INGRESO IGUAL AL PROMEDIO NACIONAL, CUENTA CON UNA O MÁS REDES DE APOYO PARA EL SOSTENIMIENTO PERSONAL, DEL HOGAR E HIJOS?<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="question_38" name="r_question_38" required>
                     <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
@@ -723,7 +773,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <option value="Si">Si</option>
                     <option value="No">No</option>
                   </select>
-                </div>
+                </div> -->
 
 
 
@@ -753,6 +803,73 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 <div class="contenedor">
 <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
+
+
+<script type="text/javascript">
+  function iniciandoDisplay() {
+  document.getElementById("div_1").style.display = "none";
+
+  document.getElementById("q1").style.display = "";
+  document.getElementById("q2").style.display = "none";
+  document.getElementById("q3").style.display = "none";
+  document.getElementById("q4").style.display = "none";
+
+}
+iniciandoDisplay();
+</script>
+
+<script type="text/javascript">
+  function iniciarInstrumento() {
+  document.getElementById("div_1").style.display = "";
+  document.getElementById("iniciar_instrumento").style.display = "none";
+}
+</script>
+
+<script type="text/javascript">
+var question1 = document.getElementById('question_1');
+var respuesta_q1 = '';
+
+question1.addEventListener('change', obtenerInfo);
+
+
+    function obtenerInfo(e) {
+      respuesta_q1 = e.target.value;
+      if (respuesta_q1 === "Si") {
+
+        document.getElementById('q2').style.display = "";
+        
+      }
+      else if (respuesta_q1 === "No"){
+
+        document.getElementById('q2').style.display = "none";
+        document.getElementById('q3').style.display = "none";
+        document.getElementById('q4').style.display = "none";
+      }
+
+
+    }
+</script>
+
+<!-- document.getElementById("next3").disabled = false; -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -865,6 +982,8 @@ function ocultarCampos() {
 }
 ocultarCampos();
 </script>
+
+
 <script type="text/javascript">
 var analisisMultidisiplinario = document.getElementById('ANALISIS_MULTIDISCIPLINARIO');
 var respuestaAlalisisMultidisiplinario = '';
@@ -877,71 +996,28 @@ analisisMultidisiplinario.addEventListener('change', obtenerInfo);
       if (respuestaAlalisisMultidisiplinario === "ESTUDIO TECNICO") {
 
         document.getElementById('LABEL_INCORPORACION').style.display = "";
-        document.getElementById('INPUT_INCORPORACION').style.display = "";
-        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
-        document.getElementById('id_analisis').style.display = "";
-        document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "";
-        document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "";
-        document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
-        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').style.display = "";
-        document.getElementById('LABEL_FECHA_INICIO').style.display = "";
-        document.getElementById('fecha_inicio').style.display = "";
-        document.getElementById('LABEL_VIGENCIA').style.display = "";
-        document.getElementById('VIGENCIA_CONVENIO').style.display = "";
-        document.getElementById('LABEL_FECHA_TERMINO').style.display = "";
-        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "";
-        document.getElementById('LABEL_ID_CONVENIO').style.display = "";
-        document.getElementById('id_convenio').style.display = "";
+
 
 }
       else if (respuestaAlalisisMultidisiplinario === "ACUERDO DE CONCLUSION" || respuestaAlalisisMultidisiplinario === "ACUERDO DE CANCELACION" ){
 
         document.getElementById('LABEL_INCORPORACION').style.display = "";
-        document.getElementById('INPUT_INCORPORACION').style.display = "";
-        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('FECHA_AUTORIZACION').style.display = "";
-        document.getElementById('LABEL_ID_ANALISIS').style.display = "";
-        document.getElementById('id_analisis').style.display = "";
 
         document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
-        document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "none";
-        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
-        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').style.display = "none";
-        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
-        document.getElementById('fecha_inicio').style.display = "none";
-        document.getElementById('LABEL_VIGENCIA').style.display = "none";
-        document.getElementById('VIGENCIA_CONVENIO').style.display = "none";
-        document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
-        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
-        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
-        document.getElementById('id_convenio').style.display = "none";
+
       }
 
       else if ( respuestaAlalisisMultidisiplinario === "EN ELABORACION"){
+        
         document.getElementById('LABEL_INCORPORACION').style.display = "none";
-        document.getElementById('INPUT_INCORPORACION').style.display = "none";
-        document.getElementById('LABEL_FECHA_AUTORIZACION').style.display = "none";
-        document.getElementById('FECHA_AUTORIZACION').style.display = "none";
-        document.getElementById('LABEL_ID_ANALISIS').style.display = "none";
-        document.getElementById('id_analisis').style.display = "none";
 
-        document.getElementById('LABEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
-        document.getElementById('CONVENIO_ENTENDIMIENTO').style.display = "none";
-        document.getElementById('LABEL_FECHA_FIRMA').style.display = "none";
-        document.getElementById('FECHA_CONVENIO_ENTENDIMIENTO_DOS').style.display = "none";
-        document.getElementById('LABEL_FECHA_INICIO').style.display = "none";
-        document.getElementById('fecha_inicio').style.display = "none";
-        document.getElementById('LABEL_VIGENCIA').style.display = "none";
-        document.getElementById('VIGENCIA_CONVENIO').style.display = "none";
-        document.getElementById('LABEL_FECHA_TERMINO').style.display = "none";
-        document.getElementById('FECHA_DE_TERMINO_DEL_CONVENIO_ENTENDIMIENTO').style.display = "none";
-        document.getElementById('LABEL_ID_CONVENIO').style.display = "none";
-        document.getElementById('id_convenio').style.display = "none";
       }
     }
 </script>
+
+
+
+
 <script type="text/javascript">
 var analisisM = document.getElementById('ANALISIS_MULTIDISCIPLINARIO').value;
 
