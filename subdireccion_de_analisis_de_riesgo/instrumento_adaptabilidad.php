@@ -293,9 +293,9 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 </div>
 
-                <!--<div clas="div_dos">
+                <div id="div_2">
               
-                    <div class="col-md-6 mb-3" id="q1">
+                    <div class="col-md-6 mb-3" id="q5">
                       <label for="" class="">¿TIENE DISCAPACIDAD O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_5" name="r_question_5" required>
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
@@ -305,7 +305,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </div>
 
 
-                    <div class="col-md-6 mb-3" id="q2">
+                    <div class="col-md-6 mb-3" id="q6">
                       <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD O SUS SECUELAS, LE MOLESTAN PARA REALIZAR ALGUNA ACTIVIDAD, PERO NO LIMITAN NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_6" name="r_question_6" required>
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
@@ -315,7 +315,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </div>
 
 
-                    <div class="col-md-6 mb-3" id="q3">
+                    <div class="col-md-6 mb-3" id="q7">
                       <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD Y SE ENCUENTRA LIMITADO PARA ACTIVIDADES DE MAYOR ESFUERZO Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O DE SEGUNDO NIVEL?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_7" name="r_question_7" required>
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
@@ -325,7 +325,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </div>
 
 
-                    <div class="col-md-6 mb-3" id="q4">
+                    <div class="col-md-6 mb-3" id="q8">
                       <label for="" class="">¿PRESENTA ALGUNA DISCAPACIDAD, LA CUAL LE IMPIDE SU MOVILIDAD Y DESPLAZAMIENTO, POR LO QUE REQUIERE ATENCIÓN MÉDICA Y/O TRATAMIENTO ESPECIALIZADO DE MANERA CONSTANTE?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_8" name="r_question_8" required>
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
@@ -335,7 +335,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </div>
 
                 </div>
-
+<!--
                  <div class="col-md-6 mb-3">
                   <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICA O DEGENERATIVA Y/O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="question_9" name="r_question_9" required>
@@ -807,12 +807,21 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 <script type="text/javascript">
   function iniciandoDisplay() {
+
   document.getElementById("div_1").style.display = "none";
+  document.getElementById("div_2").style.display = "none";
 
   document.getElementById("q1").style.display = "";
+  document.getElementById("q5").style.display = "";
+
   document.getElementById("q2").style.display = "none";
   document.getElementById("q3").style.display = "none";
   document.getElementById("q4").style.display = "none";
+
+  document.getElementById("q6").style.display = "none";
+  document.getElementById("q7").style.display = "none";
+  document.getElementById("q8").style.display = "none";
+
 
 }
 iniciandoDisplay();
@@ -844,21 +853,28 @@ question1.addEventListener('change', obtenerInfo);
         document.getElementById('q2').style.display = "none";
         document.getElementById('q3').style.display = "none";
         document.getElementById('q4').style.display = "none";
+
+        document.getElementById("div_2").style.display = "";
       }
 
 
     }
 </script>
 
-<!-- document.getElementById("next3").disabled = false; -->
+<!-- 
+  
+document.getElementById("next3").disabled = false; 
+
+
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_next_prev
+https://www.youtube.com/watch?v=KJbLiV6Y9sY
+
+https://lenguajecss.com/css/
 
 
 
 
-
-
-
-
+-->
 
 
 
