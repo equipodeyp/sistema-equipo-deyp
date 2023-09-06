@@ -291,6 +291,11 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                       </select>
                     </div>
 
+                    <div>
+                      <a href="#" class="previous">&laquo; Anterior</a>
+                      <a href="#" class="next">Siguiente &raquo;</a>
+                    </div>
+
                 </div>
 
                 <div id="div_2">
@@ -332,6 +337,11 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         <option value="Si">Si</option>
                         <option value="No">No</option>
                       </select>
+                    </div>
+
+                    <div>
+                      <a href="#" class="previous">&laquo; Anterior</a>
+                      <a href="#" class="next">Siguiente &raquo;</a>
                     </div>
 
                 </div>
@@ -774,7 +784,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <option value="No">No</option>
                   </select>
                 </div> -->
-
 
 
 
