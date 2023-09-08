@@ -240,16 +240,16 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   </h5>
                   <br></br>
                   <div class="vertical_center_button">
-                    <button id="iniciar_instrumento" style="text-align:center; display:'';" type='button' onclick="iniciarInstrumento()">Iniciar</button>
+                    <button class="button_iniciar" id="iniciar_instrumento" style="text-align:center; display:'';" type='button' onclick="iniciarInstrumento()">Iniciar</button>
                   </div>
                   <br></br>
                 </div>
                 
                 <div id="div_1">
               
-                      <div id="cabecera">
+                      <div id="cabecera1">
                         <div class="row alert div-title">
-                          <h3 style="text-align:center">ADICCIONES</h3>
+                          <h3 style="text-align:center">1. ADICCIONES</h3>
                         </div>
                       </div>
 
@@ -291,14 +291,15 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                       </select>
                     </div>
 
-                    <div>
-                      <a href="#" class="previous">&laquo; Anterior</a>
-                      <a href="#" class="next">Siguiente &raquo;</a>
-                    </div>
-
                 </div>
 
                 <div id="div_2">
+
+                    <div id="cabecera2">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">2. DISCAPACIDAD</h3>
+                        </div>
+                    </div>
               
                     <div class="col-md-6 mb-3" id="q5">
                       <label for="" class="">¿TIENE DISCAPACIDAD O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
@@ -337,11 +338,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         <option value="Si">Si</option>
                         <option value="No">No</option>
                       </select>
-                    </div>
-
-                    <div>
-                      <a href="#" class="previous">&laquo; Anterior</a>
-                      <a href="#" class="next">Siguiente &raquo;</a>
                     </div>
 
                 </div>
@@ -788,6 +784,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
 
+
             
 
                 <div id="contenido">
@@ -802,6 +799,23 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 </div>
               </form>
+
+
+              <div class="row" id="div-b&n1">
+                  <div class="vertical_center_button">
+                    <!-- <button id="btn-back1" style="text-align:center; margin: 10px; background-color: #b9ad05;" type="button" disabled>Anterior</button> -->
+                    <button onclick="nextApartadoDos()" class="button_next" id="btn-next1" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
+                  </div>
+              </div>
+
+              <div class="row" id="div-b&n2">
+                  <div class="vertical_center_button">
+                    <!-- <button id="btn-back1" style="text-align:center; margin: 10px; background-color: #b9ad05;" type="button" disabled>Anterior</button> -->
+                    <button class="button_next" id="btn-next2" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
+                  </div>
+              </div>
+
+
         		</div>
         		</div>
     			</article>
@@ -815,65 +829,134 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
 <script type="text/javascript">
+
   function iniciandoDisplay() {
 
-  document.getElementById("div_1").style.display = "none";
-  document.getElementById("div_2").style.display = "none";
+  document.getElementById("div_1").style.display = "none"; // apartado adicciones 1
+  document.getElementById("div_2").style.display = "none"; // apartado discapacidad 2
+  document.getElementById("q1").style.display = ""; // pregunta 1
+  document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
+  document.getElementById("div-b&n2").style.display = "none"; // botones anterior y siguiente 1
 
-  document.getElementById("q1").style.display = "";
-  document.getElementById("q5").style.display = "";
+  document.getElementById("q2").style.display = "none"; // pregunta 2
+  document.getElementById("q3").style.display = "none"; // pregunta 3
+  document.getElementById("q4").style.display = "none"; // pregunta 4
 
-  document.getElementById("q2").style.display = "none";
-  document.getElementById("q3").style.display = "none";
-  document.getElementById("q4").style.display = "none";
-
-  document.getElementById("q6").style.display = "none";
-  document.getElementById("q7").style.display = "none";
-  document.getElementById("q8").style.display = "none";
-
+  document.getElementById("q6").style.display = "none"; // pregunta 6
+  document.getElementById("q7").style.display = "none"; // pregunta 7
+  document.getElementById("q8").style.display = "none"; // pregunta 8
 
 }
 iniciandoDisplay();
+
 </script>
 
+
+
 <script type="text/javascript">
-  function iniciarInstrumento() {
-  document.getElementById("div_1").style.display = "";
-  document.getElementById("iniciar_instrumento").style.display = "none";
+
+  function iniciarInstrumento() { // boton iniciar instrumento
+  document.getElementById("div_1").style.display = ""; // apartado adicciones 1
+  document.getElementById("iniciar_instrumento").style.display = "none"; // boton iniciar instrumento
 }
+
 </script>
 
 <script type="text/javascript">
-var question1 = document.getElementById('question_1');
+
+  function nextApartadoDos() { // boton iniciar instrumento
+    document.getElementById("div_1").style.display = "none"; // apartado adicciones 1
+    document.getElementById("div_2").style.display = ""; // apartado discapacidad 2
+  
+}
+
+</script>
+
+
+
+<script type="text/javascript">
+
+var question1 = document.getElementById('question_1'); //select pregunta 1
 var respuesta_q1 = '';
 
-question1.addEventListener('change', obtenerInfo);
+question1.addEventListener('change', obtenerInfo1);
 
-
-    function obtenerInfo(e) {
+    function obtenerInfo1(e) {
       respuesta_q1 = e.target.value;
+
       if (respuesta_q1 === "Si") {
 
-        document.getElementById('q2').style.display = "";
+        document.getElementById('q2').style.display = ""; // pregunta 2
+        document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
+        document.getElementById('q3').style.display = "none"; // pregunta 3
         
       }
       else if (respuesta_q1 === "No"){
 
-        document.getElementById('q2').style.display = "none";
-        document.getElementById('q3').style.display = "none";
-        document.getElementById('q4').style.display = "none";
+        document.getElementById('q2').style.display = "none";  // pregunta 2
+        document.getElementById('q3').style.display = "none";  // pregunta 3
+        document.getElementById('question_2').value = ""; //limpia select pregunta 2
+        document.getElementById("div-b&n1").style.display = ""; // botones anterior y siguiente 1
+        document.getElementById('question_3').value = ""; //limpia select pregunta 3
 
-        document.getElementById("div_2").style.display = "";
       }
 
 
     }
+
 </script>
+
+<script type="text/javascript">
+
+  function iniciarInstrumento() { // boton iniciar instrumento
+  document.getElementById("div_1").style.display = ""; // apartado adicciones 1
+  document.getElementById("iniciar_instrumento").style.display = "none"; // boton iniciar instrumento
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+var question2 = document.getElementById('question_2'); //select pregunta 2
+var respuesta_q2 = '';
+
+question2.addEventListener('change', obtenerInfo2);
+
+    function obtenerInfo2(e) {
+      respuesta_q2 = e.target.value;
+
+      if (respuesta_q2 === "Si") {
+
+        document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
+        document.getElementById("div-b&n2").style.display = ""; // botones anterior y siguiente 2
+        document.getElementById('q3').style.display = "none"; // pregunta 3
+        document.getElementById('question_3').value = ""; //limpia select pregunta 3
+
+      }
+      else if (respuesta_q2 === "No"){
+
+        document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
+        document.getElementById("div-b&n2").style.display = "none"; // botones anterior y siguiente 2
+        document.getElementById('q3').style.display = "";  // pregunta 3
+        // document.getElementById('question_1').disabled = true; // deshabilitar select pregunta 3
+
+
+      }
+
+
+    }
+
+</script>
+
+
+
 
 <!-- 
   
-document.getElementById("next3").disabled = false; 
-
+    document.getElementById("next3").disabled = false; 
+    document.getElementById('id_convenio').readOnly = true;
+    document.getElementById('ANALISIS_MULTIDISCIPLINARIO').disabled = true;
 
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_next_prev
 https://www.youtube.com/watch?v=KJbLiV6Y9sY
