@@ -233,7 +233,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <br></br>
                   <h5 style='text-align:justify'>
                     Lea y comprenda cada una de las cuestiones. Responda de manera clara y concreta. 
-                    Todas las preguntas deberan ser llenadas correctamente. Para iniciar con el llenado del instrumento de adaptabilidad debera presionar el el botón iniciar.
+                    Todas las preguntas deberan ser llenadas correctamente. Para iniciar el llenado del instrumento de adaptabilidad debera presionar el botón iniciar.
                     Devera utilizar los botones de anterior y siguiente para continuar o retroceder durante el llenado del instrumento. 
                     Durante la prueba mantengase tranquilo y relajado. Concentre toda su atención en el contenido del instrumento. 
                     Evite distracciones para un mejor desempeño.
@@ -247,7 +247,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                 
                 <div id="div_1">
               
-                      <div id="cabecera1">
+                      <div id="cabecera">
                         <div class="row alert div-title">
                           <h3 style="text-align:center">1. ADICCIONES</h3>
                         </div>
@@ -295,7 +295,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div id="div_2">
 
-                    <div id="cabecera2">
+                    <div id="cabecera">
                         <div class="row alert div-title">
                           <h3 style="text-align:center">2. DISCAPACIDAD</h3>
                         </div>
@@ -803,14 +803,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
               <div class="row" id="div-b&n1">
                   <div class="vertical_center_button">
-                    <!-- <button id="btn-back1" style="text-align:center; margin: 10px; background-color: #b9ad05;" type="button" disabled>Anterior</button> -->
-                    <button onclick="nextApartadoDos()" class="button_next" id="btn-next1" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
+                    <!-- <button onclick="backApartadoUno()" class="button_back" id="btn-back1" style="text-align:center; margin: 10px; display: none;" type="button">Anterior</button> -->
+                    <button onclick="nextApartadoDos()" class="button_next" id="btn-next1" style="text-align:center; margin: 10px; display: none;" type="button">Siguiente</button>
                   </div>
               </div>
 
               <div class="row" id="div-b&n2">
                   <div class="vertical_center_button">
-                    <!-- <button id="btn-back1" style="text-align:center; margin: 10px; background-color: #b9ad05;" type="button" disabled>Anterior</button> -->
+                    <button onclick="backApartadoUno()" class="button_back" id="btn-back2" style="text-align:center; margin: 10px;" type="button">Anterior</button>
                     <button class="button_next" id="btn-next2" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
                   </div>
               </div>
@@ -867,6 +867,33 @@ iniciandoDisplay();
   function nextApartadoDos() { // boton iniciar instrumento
     document.getElementById("div_1").style.display = "none"; // apartado adicciones 1
     document.getElementById("div_2").style.display = ""; // apartado discapacidad 2
+    document.getElementById("div-b&n1").style.display = "none"; // apartado discapacidad 2
+    document.getElementById("div-b&n2").style.display = ""; // apartado discapacidad 2
+  
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+  function backApartadoUno() { // boton iniciar instrumento
+    document.getElementById("div_1").style.display = ""; // apartado adicciones 1
+    document.getElementById("div_2").style.display = "none"; // apartado discapacidad 2
+    document.getElementById('q2').style.display = "none";  // pregunta 2
+    document.getElementById('q3').style.display = "none";  // pregunta 3
+    document.getElementById('q4').style.display = "none";  // pregunta 4
+    document.getElementById('question_1').value = ""; //limpia select pregunta 
+    document.getElementById('question_2').value = ""; //limpia select pregunta 
+    document.getElementById('question_3').value = ""; //limpia select pregunta 
+    document.getElementById('question_4').value = ""; //limpia select pregunta
+    document.getElementById('question_5').value = ""; //limpia select pregunta 
+    document.getElementById('question_6').value = ""; //limpia select pregunta 
+    document.getElementById('question_7').value = ""; //limpia select pregunta 
+    document.getElementById('question_8').value = ""; //limpia select pregunta
+    document.getElementById("div-b&n1").style.display = ""; // apartado discapacidad 2
+    document.getElementById("btn-next1").style.display = "none"; // apartado discapacidad 2
+    document.getElementById("div-b&n2").style.display = "none"; // apartado discapacidad 2
   
 }
 
@@ -895,23 +922,15 @@ question1.addEventListener('change', obtenerInfo1);
 
         document.getElementById('q2').style.display = "none";  // pregunta 2
         document.getElementById('q3').style.display = "none";  // pregunta 3
+        document.getElementById('q4').style.display = "none";  // pregunta 4
         document.getElementById('question_2').value = ""; //limpia select pregunta 2
         document.getElementById("div-b&n1").style.display = ""; // botones anterior y siguiente 1
+        document.getElementById("btn-next1").style.display = ""; // botones anterior y siguiente 1
         document.getElementById('question_3').value = ""; //limpia select pregunta 3
+        document.getElementById('question_4').value = ""; //limpia select pregunta 3
 
       }
-
-
     }
-
-</script>
-
-<script type="text/javascript">
-
-  function iniciarInstrumento() { // boton iniciar instrumento
-  document.getElementById("div_1").style.display = ""; // apartado adicciones 1
-  document.getElementById("iniciar_instrumento").style.display = "none"; // boton iniciar instrumento
-}
 
 </script>
 
@@ -928,26 +947,59 @@ question2.addEventListener('change', obtenerInfo2);
 
       if (respuesta_q2 === "Si") {
 
-        document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
-        document.getElementById("div-b&n2").style.display = ""; // botones anterior y siguiente 2
+        document.getElementById("div-b&n1").style.display = ""; // botones anterior y siguiente 1
+        document.getElementById("btn-next1").style.display = ""; // botones anterior y siguiente 1
         document.getElementById('q3').style.display = "none"; // pregunta 3
         document.getElementById('question_3').value = ""; //limpia select pregunta 3
+        document.getElementById('question_4').value = ""; //limpia select pregunta 3
+        document.getElementById('q4').style.display = "none"; // pregunta 3
 
       }
       else if (respuesta_q2 === "No"){
 
         document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
-        document.getElementById("div-b&n2").style.display = "none"; // botones anterior y siguiente 2
         document.getElementById('q3').style.display = "";  // pregunta 3
-        // document.getElementById('question_1').disabled = true; // deshabilitar select pregunta 3
-
 
       }
-
-
     }
 
 </script>
+
+
+
+<script type="text/javascript">
+
+var question3 = document.getElementById('question_3'); //select pregunta 2
+var respuesta_q3 = '';
+
+question3.addEventListener('change', obtenerInfo3);
+
+    function obtenerInfo3(e) {
+      respuesta_q3 = e.target.value;
+
+      if (respuesta_q3 === "Si") {
+
+        document.getElementById("div-b&n1").style.display = ""; // botones anterior y siguiente 1
+        document.getElementById('q4').style.display = "none"; // pregunta 3
+        document.getElementById('question_4').value = ""; //limpia select pregunta 3
+        console.log(document.getElementById('question_4').value);
+
+      }
+      else if (respuesta_q3 === "No"){
+
+        document.getElementById("div-b&n1").style.display = ""; // botones anterior y siguiente 1
+        document.getElementById("btn-next1").style.display = ""; // botones anterior y siguiente 1
+        document.getElementById('q4').style.display = ""; // pregunta 3
+        document.getElementById('question_4').disabled = true; // deshabilitar select pregunta 
+        document.getElementById('question_4').value = "Si"; //limpia select pregunta 3
+
+      }
+    }
+
+</script>
+
+
+
 
 
 
