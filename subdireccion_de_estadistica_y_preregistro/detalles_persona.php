@@ -647,7 +647,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
   									</div>
   		  					</div>
 
-                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
+                  <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="10000"></textarea>
 
                 </div>
                 <div class="row">
