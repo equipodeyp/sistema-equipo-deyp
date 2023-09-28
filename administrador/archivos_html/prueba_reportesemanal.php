@@ -170,7 +170,7 @@ switch ($day) {
            $diafin = date( "j", $diafinal);
            // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
            // echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
-           $data = '<br><br><br><br><h4 style="text-align:center; font-family: gothambook;"><b>Reporte Semanal <br> DEL '.$diaini.' AL '.$diafin.' DE '.$meses[date('n')-1].' DEL '.date('Y').' </b> </h4>';
+           $data = '<br><br><br><br><h5 style="text-align:center; font-family: gothambook;"><b>Reporte Semanal <br> DEL '.$diaini.' AL '.$diafin.' DE '.$meses[date('n')-1].' DEL '.date('Y').' </b> </h5>';
     break;
 }
 ////////////////////////////////////////////////////////////////////////////////

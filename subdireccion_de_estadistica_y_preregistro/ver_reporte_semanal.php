@@ -84,29 +84,6 @@ $row=$result->fetch_assoc();
              },
              "sProcessing":"Procesando...",
               },
-          // para usar los botones
-      //     responsive: "true",
-      //     dom: 'Bfrtilp',
-      //     buttons:[
-      //   {
-      //     extend:    'excelHtml5',
-      //     text:      '<i class="fas fa-file-excel"></i> ',
-      //     titleAttr: 'Exportar a Excel',
-      //     className: 'btn btn-success'
-      //   },
-      //   {
-      //     extend:    'pdfHtml5',
-      //     text:      '<i class="fas fa-file-pdf"></i> ',
-      //     titleAttr: 'Exportar a PDF',
-      //     className: 'btn btn-danger'
-      //   },
-      //   {
-      //     extend:    'print',
-      //     text:      '<i class="fa fa-print"></i> ',
-      //     titleAttr: 'Imprimir',
-      //     className: 'btn btn-info'
-      //   },
-      // ]
       });
   });
   </script>
@@ -332,87 +309,8 @@ a:focus {
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-        <div class="dropdown">
-          <a id="btnmedidaspendientes" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="" type="button" class="btn color-btn-success">pendientes por validar</button> </a>
-        </div>
-
         <br>
         <!--Ejemplo tabla con DataTables-->
-        <div class="">
-            <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                            <h3 style="text-align:center">Registros</h3>
-                                <tr>
-                                    <th style="text-align:center">NO.</th>
-                                    <!-- <th style="text-align:center">ID PERSONA</th>
-                                    <th style="text-align:center">SEDE</th>
-                                    <th style="text-align:center">MUNICIPIO DE RADICACIÓN DE LA CARPETA DE INVESTIGACIÓN</th> -->
-                                    <th style="text-align:center">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
-                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
-                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
-                                    <th style="text-align:center">DETALLES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                              $contador = 0;
-                              $sql = "SELECT * FROM expediente";
-                              $resultado = $mysqli->query($sql);
-                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
-                              $fol_exp =$row['fol_exp'];
-
-                              $tabla="SELECT * FROM expediente";
-                              $var_resultado = $mysqli->query($tabla);
-
-                              while ($var_fila=$var_resultado->fetch_array())
-                              {
-                                $fol_exp2=$var_fila['fol_exp'];
-
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
-                                $result=$mysqli->query($abc);
-                                if($result)
-                                {
-                                  while($row=mysqli_fetch_assoc($result))
-                                  {
-                                    $contador = $contador + 1;
-                                    echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
-                                      echo "<i class='fas fa-check'></i>";
-                                    }elseif ($var_fila['validacion'] == 'false') {
-                                      echo "<i class='fas fa-times'></i>";
-                                    } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?id=".$var_fila['fol_exp']."'><span class='color-icon glyphicon glyphicon-folder-open'></span></a></td>";
-
-                                    echo "</tr>";
-
-                                  }
-
-                                }
-                              }
-                            ?>
-                            </tbody>
-                           </table>
-                        </div>
-                    </div>
-            </div>
-        </div>
       </div>
     </div>
   </div>
@@ -441,79 +339,7 @@ a:focus {
     </div>
   </div>
   <!-- fin modal  -->
-  <?php
-  $var = $name;
-  $tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
-  $rtmf = $mysqli->query($tmf);
-  $ftmf = $rtmf->fetch_assoc();
-  $mmed =  $ftmf['t'];
-  ?>
   <script type="text/javascript">
-  <?php
-  echo "var jsvar ='$var';";
-  echo "var jsvmedidasfalse ='$mmed';";
-  ?>
-  console.log(jsvar);
-  console.log(jsvmedidasfalse);
-  if (jsvar === 'e-adriana') {
-    if (jsvmedidasfalse > 0) {
-      document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
-      console.log(jsvar);
-      console.log(jsvmedidasfalse);
-      (function(window, document) { // asilamos el componente
-      // creamos el contedor de las tostadas o la tostadora
-      var container = document.createElement('div');
-      container.className = 'toast-container';
-      document.body.appendChild(container);
-
-      // esta es la funcion que hace la tostada
-      window.doToast = function(message) {
-        // creamos tostada
-        var toast = document.createElement('div');
-        toast.className = 'toast-toast';
-        toast.innerHTML = message;
-
-        // agregamos a la tostadora
-        container.appendChild(toast);
-
-        // programamos su eliminación
-        setTimeout(function() {
-          // cuando acabe de desaparecer, lo eliminamos del dom.
-          toast.addEventListener("transitionend", function() {
-             container.removeChild(toast);
-          }, false);
-
-          // agregamos un estilo que inicie la "transition".
-          toast.classList.add("fadeout");
-        }, 10000); // OP dijo, "solo dos segundos"
-      }
-      })(window, document);
-
-      // ejempo de uso
-      doToast("¡ATENCIÓN!");
-
-      // ejemplo retardado de uso
-      setTimeout(function() {
-       doToast("FALTAN MEDIDAS POR VALIDAR");
-      }, 1200);
-      // fin de mostrar alerta
-    }else {
-      document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
-    }
-  }else {
-    document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
-  }
-  // if (jsvar === 'jesusaz' || jsvar === 'dircece') {
-  //   document.getElementById('liexpediente').style.visibility = "visible"; // visible
-  //   document.getElementById('lipersonas').style.visibility = "visible"; // visible
-  //   document.getElementById('limedidas').style.visibility = "visible"; // visible
-  //   document.getElementById('liestadistica').style.visibility = "visible"; // visible
-  // }else {
-  //   document.getElementById('liexpediente').style.visibility = "hidden"; // hide
-  //   document.getElementById('lipersonas').style.visibility = "hidden"; // hide
-  //   document.getElementById('limedidas').style.visibility = "hidden"; // hide
-  //   document.getElementById('liestadistica').style.visibility = "hidden"; // hide
-  // }
   // CODIGO DE MENU CON submenu
   $(".subtitle .action").click(function(event){
    var subtitle = $(this).parents(".subtitle");
@@ -527,8 +353,6 @@ a:focus {
 
    return false;
   });
-  //
-
   // CODIGO DE MENU CON submenu2
   $(".subtitle2 .action2").click(function(event){
    var subtitle2 = $(this).parents(".subtitle2");
@@ -542,7 +366,6 @@ a:focus {
 
    return false;
   });
-  //
   // CODIGO DE MENU CON submenu3
   $(".subtitle3 .action3").click(function(event){
    var subtitle3 = $(this).parents(".subtitle3");
