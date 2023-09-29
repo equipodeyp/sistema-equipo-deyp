@@ -216,7 +216,130 @@ a:focus {
   color: #FFFFFF;
   text-decoration: underline;
 }
+/*  */
+label{cursor: pointer;}
+/* Contenedor para centrar */
+.ContainerCenter{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+/* Input */
+input{display: none}
+/* Slider */
+.Carrusels{
+  height: 500px;
+  width: 700px;
+  position: relative;
+  overflow-x: hidden;
+}
+.Carrusel{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-size: cover;
+  overflow-y: hidden;
+  transition: all .5s ease;
+}
+/* Estado 1 */
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(0%, 0);}
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(100%, 0);}
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(200%, 0);}
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(300%, 0);}
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(400%, 0);}
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(500%, 0);}
+#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(600%, 0);}
+/* Estado 2 */
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-100%, 0);}
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(0%, 0);}
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(100%, 0);}
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(200%, 0);}
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(300%, 0);}
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(400%, 0);}
+#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(500%, 0);}
+/* Estado 3 */
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-200%, 0);}
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-100%, 0);}
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(0%, 0);}
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(100%, 0);}
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(200%, 0);}
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(300%, 0);}
+#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(400%, 0);}
+/* Estado 4 */
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-300%, 0);}
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-200%, 0);}
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-100%, 0);}
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(0%, 0);}
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(100%, 0);}
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(200%, 0);}
+#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(300%, 0);}
+/* Estado 5 */
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-400%, 0);}
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-300%, 0);}
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-200%, 0);}
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(-100%, 0);}
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(0%, 0);}
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(100%, 0);}
+#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(200%, 0);}
+/* Estado 6 */
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-500%, 0);}
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-400%, 0);}
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-300%, 0);}
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(-200%, 0);}
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(-100%, 0);}
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(0%, 0);}
+#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(100%, 0);}
+/* Estado 7 */
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-600%, 0);}
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-500%, 0);}
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-400%, 0);}
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(-300%, 0);}
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(-200%, 0);}
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(-100%, 0);}
+#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(0%, 0);}
+/* Flechas */
+.Carrusels .ArrowLeft, .Carrusels .ArrowRight{
+  position: absolute;
+  height: 100%;
+  width: 2em;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  user-select: none;
+}
+.Carrusels .ArrowLeft{left: 0px;}
+.Carrusels .ArrowRight{right: 0px;}
+/* Configuracion de flechas individuales */
+#Slider1:checked ~ .Carrusels .Arrow1{display: flex;}
+#Slider2:checked ~ .Carrusels .Arrow2{display: flex;}
+#Slider3:checked ~ .Carrusels .Arrow3{display: flex;}
+#Slider4:checked ~ .Carrusels .Arrow4{display: flex;}
+#Slider5:checked ~ .Carrusels .Arrow5{display: flex;}
+#Slider6:checked ~ .Carrusels .Arrow6{display: flex;}
+#Slider7:checked ~ .Carrusels .Arrow7{display: flex;}
 
+/* Selectores */
+.Selectors {
+  width: 60px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.Selectors .Selector {
+  background-color: #FFF;
+  height: 10px;
+  width: 10px;
+  display: block;
+  border-radius: 5px;
+}
+/* Condicionales para botón inferior */
+#Slider1:checked ~ .Selectors .Selector:nth-of-type(1) {background-color: #999999;}
+#Slider2:checked ~ .Selectors .Selector:nth-of-type(2) {background-color: #999999;}
+#Slider3:checked ~ .Selectors .Selector:nth-of-type(3) {background-color: #999999;}
+#Slider4:checked ~ .Selectors .Selector:nth-of-type(4) {background-color: #999999;}
+#Slider5:checked ~ .Selectors .Selector:nth-of-type(5) {background-color: #999999;}
+#Slider6:checked ~ .Selectors .Selector:nth-of-type(6) {background-color: #999999;}
+#Slider7:checked ~ .Selectors .Selector:nth-of-type(7) {background-color: #999999;}
   </style>
 </head>
 <body>
@@ -309,8 +432,57 @@ a:focus {
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-        <br>
-        <!--Ejemplo tabla con DataTables-->
+        <!-- <h1 style="text-align:center">REPORTE POR DIA</h1> -->
+        <!--Ejemplo tabla con DataTables-->        
+        <div class="ContainerCenter">
+  <!-- Radio Seleccionar -->
+  <input type="radio" name="Carrusel" id="Slider1" checked>
+  <input type="radio" name="Carrusel" id="Slider2">
+  <input type="radio" name="Carrusel" id="Slider3">
+  <input type="radio" name="Carrusel" id="Slider4">
+  <input type="radio" name="Carrusel" id="Slider5">
+  <input type="radio" name="Carrusel" id="Slider6">
+  <input type="radio" name="Carrusel" id="Slider7">
+
+  <div class="Carrusels">
+    <!-- Imagen contenido -->
+    <div class="Carrusel" > <h3 style="text-align:center">DOMINGO</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+    <div class="Carrusel" > <h3 style="text-align:center">LUNES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+    <div class="Carrusel" > <h3 style="text-align:center">MARTES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+    <div class="Carrusel" > <h3 style="text-align:center">MIERCOLES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+    <div class="Carrusel" > <h3 style="text-align:center">JUEVES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+    <div class="Carrusel" > <h3 style="text-align:center">VIERNES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+    <div class="Carrusel" > <h3 style="text-align:center">SABADO</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
+
+    <!-- Flechas a la izquierda por cada imagen -->
+    <label for="Slider7" class="ArrowLeft Arrow1">❮</label>
+    <label for="Slider1" class="ArrowLeft Arrow2">❮</label>
+    <label for="Slider2" class="ArrowLeft Arrow3">❮</label>
+    <label for="Slider3" class="ArrowLeft Arrow4">❮</label>
+    <label for="Slider4" class="ArrowLeft Arrow5">❮</label>
+    <label for="Slider5" class="ArrowLeft Arrow6">❮</label>
+    <label for="Slider6" class="ArrowLeft Arrow7">❮</label>
+    <!-- Flechas a la derecha por cada imagen -->
+    <label for="Slider2" class="ArrowRight Arrow1">❯</label>
+    <label for="Slider3" class="ArrowRight Arrow2">❯</label>
+    <label for="Slider4" class="ArrowRight Arrow3">❯</label>
+    <label for="Slider5" class="ArrowRight Arrow4">❯</label>
+    <label for="Slider6" class="ArrowRight Arrow5">❯</label>
+    <label for="Slider7" class="ArrowRight Arrow6">❯</label>
+    <label for="Slider1" class="ArrowRight Arrow7">❯</label>
+  </div>
+
+  <!-- Selector circulos inferiores colgantes -->
+  <div class="Selectors">
+    <label for="Slider1" class="Selector"></label>
+    <label for="Slider2" class="Selector"></label>
+    <label for="Slider3" class="Selector"></label>
+    <label for="Slider4" class="Selector"></label>
+    <label for="Slider5" class="Selector"></label>
+    <label for="Slider6" class="Selector"></label>
+    <label for="Slider7" class="Selector"></label>
+  </div>
+</div>
       </div>
     </div>
   </div>
