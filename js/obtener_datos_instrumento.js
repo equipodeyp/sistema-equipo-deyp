@@ -12,9 +12,11 @@ question1.addEventListener('change', obtenerInfo1);
         document.getElementById('q2').style.display = ""; // Mostrar division Pregunta 2
         document.getElementById('q3').style.display = "none"; // Ocultar division Pregunta 3
         document.getElementById('q4').style.display = "none"; // Ocultar division Pregunta 4
+
         document.getElementById('question_2').value = ""; // Limpia select Pregunta 2
         document.getElementById('question_3').value = ""; // Limpia select Pregunta 3
         document.getElementById('question_4').value = ""; // Limpia select Pregunta 4
+
         document.getElementById("div-b&n1").style.display = "none"; // Ocultar division boton Siguiente 1
         
     }
@@ -24,14 +26,18 @@ question1.addEventListener('change', obtenerInfo1);
         document.getElementById('q2').style.display = "none";  // Ocultar division Pregunta 2
         document.getElementById('q3').style.display = "none";  // Ocultar division Pregunta 3
         document.getElementById('q4').style.display = "none";  // Ocultar division Pregunta 4
+
         document.getElementById('question_2').value = ""; // Limpia select Pregunta 2
         document.getElementById('question_3').value = ""; // Limpia select Pregunta 3
         document.getElementById('question_4').value = ""; // Limpia select Pregunta 4
+
         document.getElementById("div-b&n1").style.display = ""; // Mostrar division boton Siguiente 1
+
         document.getElementById("btn-next1").style.display = ""; // Mostrar boton Siguiente 1
 
         }
     }
+
 
 
 
@@ -50,18 +56,24 @@ question2.addEventListener('change', obtenerInfo2);
 
         document.getElementById('q3').style.display = "none"; // Ocultar division Pregunta 3
         document.getElementById('q4').style.display = "none"; // Ocultar division Pregunta 4
+
         document.getElementById('question_3').value = ""; // Limpia select Pregunta 3
         document.getElementById('question_4').value = ""; // Limpia select Pregunta 4
+
         document.getElementById("div-b&n1").style.display = ""; // Mostrar division boton Siguiente 1
+
         document.getElementById("btn-next1").style.display = ""; // Mostrar boton Siguiente 1
 
     }
 
     else if (respuesta_q2 === "No"){
-
-        document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
+        
+        document.getElementById('q3').style.display = "";  // Mostrar division Pregunta 3
         document.getElementById('q4').style.display = "none"; // Ocultar division Pregunta 4
-        document.getElementById('q3').style.display = "";  // pregunta 3
+
+        document.getElementById('question_4').value = ""; // Limpia select Pregunta 4
+        
+        document.getElementById("div-b&n1").style.display = "none"; // botones anterior y siguiente 1
 
         }
     }
@@ -72,7 +84,7 @@ question2.addEventListener('change', obtenerInfo2);
 
 
 
-var question3 = document.getElementById('question_3'); //select pregunta 2
+var question3 = document.getElementById('question_3'); // Obtener valor Pregunta 3
 var respuesta_q3 = '';
 
 question3.addEventListener('change', obtenerInfo3);
@@ -98,6 +110,9 @@ question3.addEventListener('change', obtenerInfo3);
 
         }
     }
+
+
+
 
 
 

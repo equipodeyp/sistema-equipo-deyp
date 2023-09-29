@@ -1,6 +1,4 @@
-
-
-  function backApartadoUno() { // Anterior 1. ADICCIONES
+  function backApartado1() { // Anterior 1. ADICCIONES
     document.getElementById("div_1").style.display = ""; // Mostrar apartado 1. ADICCIONES
     document.getElementById("div_2").style.display = "none"; // Ocultar apartado 2. DISCAPACIDAD
 
@@ -19,10 +17,16 @@
     // console.log(document.getElementById('question_3').value);
     // console.log(document.getElementById('question_4').value);
     
-    var q1 = document.getElementById('question_1').value; // Obtener valor Pregunta 1
+    // var q1 = document.getElementById('question_1').value; // Obtener valor Pregunta 1
     var q2 = document.getElementById('question_2').value; // Obtener valor Pregunta 2 
     var q3 = document.getElementById('question_3').value; // Obtener valor Pregunta 3
     var q4 = document.getElementById('question_4').value; // Obtener valor Pregunta 4
+
+    // if (q1 === "") {
+    //   q1.style.display = ""; // Mostrar q1 si es igual a vacio 
+    // } else {
+    //   q1.style.display = ""; // Mostrar q1 si es diferente de vacio
+    // }
 
     if (q2 === "") {
       q2.style.display = "none"; // Ocultar q2 si es igual a vacio 

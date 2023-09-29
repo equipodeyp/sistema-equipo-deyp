@@ -75,10 +75,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/instrumento_adaptabilidad.css">
-  <script src="../js/obtener_datos_instrumento.js"></script>
-  <script src="../js/boton_back_instrumento.js"></script>
-  <script src="../js/boton_next_instrumento.js"></script>
-  <script src="../js/iniciar_instrumento.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -237,10 +233,9 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <br></br>
                   <h5 style='text-align:justify'>
                     Lea y comprenda cada una de las cuestiones. Responda de manera clara y concreta. 
-                    Todas las preguntas deberan ser llenadas correctamente. Para iniciar el llenado del instrumento de adaptabilidad debera presionar el botón iniciar.
-                    Devera utilizar los botones de anterior y siguiente para continuar o retroceder durante el llenado del instrumento. 
-                    Durante la prueba mantengase tranquilo y relajado. Concentre toda su atención en el contenido del instrumento. 
-                    Evite distracciones para un mejor desempeño.
+                    Todas las preguntas deberan ser contestadas correctamente. Para comenzar el registro presione el botón iniciar.
+                    Utilice los botones de anterior y siguiente para continuar o retroceder a lo largo del llenado. 
+                    Durante la prueba mantengase tranquilo y relajado, concentre toda su atención en el contenido y evite distracciones para un mejor desempeño.
                   </h5>
                   <br></br>
                   <div class="vertical_center_button">
@@ -345,47 +340,59 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </div>
 
                 </div>
+
+
+                <div id="div_3">
+
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">3. ENFERMEDAD</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICA O DEGENERATIVA Y/O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_9" name="r_question_9" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                      <label for="" class="">¿PRESENTA SÍNTOMAS O SECUELAS DE UNA ENFERMEDAD CRÓNICO O DEGENERATIVA, CONTROLADA BAJO TRATAMIENTO MÉDICO, EL CUAL NO LIMITA NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_10" name="r_question_10" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                      <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICO DEGENERATIVA QUE REQUIERE ATENCIÓN INMEDIATA PARA SU CONTROL MEDIANTE TRATAMIENTO MÉDICO?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_11" name="r_question_11" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                      <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CARDIOVASCULAR, RESPIRATORIA, CÁNCER U OTRA QUE REQUIERE ATENCIÓN MÉDICA Y/O HOSPITALARIA DE MANERA URGENTE?<span class="required"></span></label>
+                      <select class="form-select form-select-lg" id="question_12" name="r_question_12" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div>
+
+                </div>
+
+                    
 <!--
-                 <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICA O DEGENERATIVA Y/O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_9" name="r_question_9" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA SÍNTOMAS O SECUELAS DE UNA ENFERMEDAD CRÓNICO O DEGENERATIVA, CONTROLADA BAJO TRATAMIENTO MÉDICO, EL CUAL NO LIMITA NI SU MOVILIDAD NI SU DESPLAZAMIENTO?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_10" name="r_question_10" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CRÓNICO DEGENERATIVA QUE REQUIERE ATENCIÓN INMEDIATA PARA SU CONTROL MEDIANTE TRATAMIENTO MÉDICO?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_11" name="r_question_11" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">¿PRESENTA ALGUNA ENFERMEDAD CARDIOVASCULAR, RESPIRATORIA, CÁNCER U OTRA QUE REQUIERE ATENCIÓN MÉDICA Y/O HOSPITALARIA DE MANERA URGENTE?<span class="required"></span></label>
-                  <select class="form-select form-select-lg" id="question_12" name="r_question_12" required>
-                    <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-
-
                 <div class="col-md-6 mb-3">
                   <label for="" class="">¿ES UNA PERSONA MAYOR DE 18, PERO MENOR DE 60 AÑOS?<span class="required"></span></label>
                   <select class="form-select form-select-lg" id="question_13" name="r_question_13" required>
@@ -791,7 +798,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
             
 
-                <div id="contenido">
+                <!-- <div id="contenido">
                   <table class="table table-striped table-bordered ">
                     <?php
                       
@@ -801,24 +808,32 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div id="footer">
 
-                </div>
-              </form>
+                </div> -->
+              
 
 
               <div class="row" id="div-b&n1">
                   <div class="vertical_center_button">
                     <!-- <button onclick="backApartadoUno()" class="button_back" id="btn-back1" style="text-align:center; margin: 10px; display: none;" type="button">Anterior</button> -->
-                    <button onclick="nextApartadoDos()" class="button_next" id="btn-next1" style="text-align:center; margin: 10px; display: none;" type="button">Siguiente</button>
+                    <button onclick="nextApartado2()" class="button_next" id="btn-next1" style="text-align:center; margin: 10px; display: none;" type="button">Siguiente</button>
                   </div>
               </div>
 
               <div class="row" id="div-b&n2">
                   <div class="vertical_center_button">
-                    <button onclick="backApartadoUno()" class="button_back" id="btn-back2" style="text-align:center; margin: 10px;" type="button">Anterior</button>
-                    <button class="button_next" id="btn-next2" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
+                    <button onclick="backApartado1()" class="button_back" id="btn-back2" style="text-align:center; margin: 10px;" type="button">Anterior</button>
+                    <button onclick="nextApartado3()" class="button_next" id="btn-next2" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
                   </div>
               </div>
 
+              <!-- <div class="row" id="div-b&n3">
+                  <div class="vertical_center_button">
+                    <button onclick="backApartado2()" class="button_back" id="btn-back3" style="text-align:center; margin: 10px;" type="button">Anterior</button>
+                    <button onclick="nextApartado4()" class="button_next" id="btn-next3" style="text-align:center; margin: 10px;" type="button">Siguiente</button>
+                  </div>
+              </div> -->
+            
+              </form>
 
         		</div>
         		</div>
@@ -831,6 +846,10 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
+<script src="../js/obtener_datos_instrumento.js"></script>
+<script src="../js/boton_back_instrumento.js"></script>
+<script src="../js/boton_next_instrumento.js"></script>
+<script src="../js/iniciar_instrumento.js"></script>
 
 <!-- 
   
