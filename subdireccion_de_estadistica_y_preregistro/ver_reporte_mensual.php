@@ -311,6 +311,57 @@ a:focus {
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
+        <!-- ////////////////////////////////////////////////////////////////////////// -->
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <img src="../image/CALENDARIO/3.png" alt="" width="1110px" height="120">
+            <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
+              <thead class="thead-dark">
+                <tr>
+                  <th style="border: 5px solid #97897D; text-align:center" colspan="3"  width="100px" height="120">
+                    <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/ENERO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/FEBRERO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/MARZO.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/ABRIL.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/MAYO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/JUNIO.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/JULIO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/AGOSTO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/SEPTIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/OCTUBRE.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/NOVIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <img src="../../img/CALENDARIO/ENERO.png" alt="">
+        <!-- ////////////////////////////////////////////////////////////////////////// -->
       </div>
     </div>
   </div>
