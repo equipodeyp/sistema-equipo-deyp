@@ -64,7 +64,9 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+    <link rel="stylesheet" href="../css/breadcrumb.css">
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
+  <!-- barra de navegacion -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -433,7 +435,11 @@ input{display: none}
           </h5>
         </div>
         <!-- <h1 style="text-align:center">REPORTE POR DIA</h1> -->
-        <!--Ejemplo tabla con DataTables-->        
+        <!--Ejemplo tabla con DataTables-->
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+          <a class="actived">REPORTE DIARIO</a>
+        </div>
         <div class="ContainerCenter">
   <!-- Radio Seleccionar -->
   <input type="radio" name="Carrusel" id="Slider1" checked>
