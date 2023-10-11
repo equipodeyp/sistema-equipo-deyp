@@ -440,8 +440,8 @@ input{display: none}
           <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
           <a class="actived">REPORTE DIARIO</a>
         </div>
-        <div class="ContainerCenter">
-  <!-- Radio Seleccionar -->
+        <!-- <div class="ContainerCenter">
+
   <input type="radio" name="Carrusel" id="Slider1" checked>
   <input type="radio" name="Carrusel" id="Slider2">
   <input type="radio" name="Carrusel" id="Slider3">
@@ -451,7 +451,7 @@ input{display: none}
   <input type="radio" name="Carrusel" id="Slider7">
 
   <div class="Carrusels">
-    <!-- Imagen contenido -->
+
     <div class="Carrusel" > <h3 style="text-align:center">DOMINGO</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
     <div class="Carrusel" > <h3 style="text-align:center">LUNES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
     <div class="Carrusel" > <h3 style="text-align:center">MARTES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
@@ -460,7 +460,7 @@ input{display: none}
     <div class="Carrusel" > <h3 style="text-align:center">VIERNES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
     <div class="Carrusel" > <h3 style="text-align:center">SABADO</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
 
-    <!-- Flechas a la izquierda por cada imagen -->
+
     <label for="Slider7" class="ArrowLeft Arrow1">❮</label>
     <label for="Slider1" class="ArrowLeft Arrow2">❮</label>
     <label for="Slider2" class="ArrowLeft Arrow3">❮</label>
@@ -468,7 +468,7 @@ input{display: none}
     <label for="Slider4" class="ArrowLeft Arrow5">❮</label>
     <label for="Slider5" class="ArrowLeft Arrow6">❮</label>
     <label for="Slider6" class="ArrowLeft Arrow7">❮</label>
-    <!-- Flechas a la derecha por cada imagen -->
+
     <label for="Slider2" class="ArrowRight Arrow1">❯</label>
     <label for="Slider3" class="ArrowRight Arrow2">❯</label>
     <label for="Slider4" class="ArrowRight Arrow3">❯</label>
@@ -478,7 +478,7 @@ input{display: none}
     <label for="Slider1" class="ArrowRight Arrow7">❯</label>
   </div>
 
-  <!-- Selector circulos inferiores colgantes -->
+
   <div class="Selectors">
     <label for="Slider1" class="Selector"></label>
     <label for="Slider2" class="Selector"></label>
@@ -487,6 +487,39 @@ input{display: none}
     <label for="Slider5" class="Selector"></label>
     <label for="Slider6" class="Selector"></label>
     <label for="Slider7" class="Selector"></label>
+  </div>
+</div> -->
+<div class="col-lg-12">
+  <div class="table-responsive">
+    <!-- <img src="../image/CALENDARIO/10 MENSUAL.png" alt="" width="280px" height="70"> -->
+    <img src="../image/CALENDARIO/3.png" alt="" width="1110px" height="120">
+    <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
+      <thead class="thead-dark">
+        <tr>
+          <th style="border: 5px solid #97897D; text-align:center" colspan="7"  width="100px" height="120">
+            <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/7 DOMINGO.png" alt="" width="120px" height="50"> </button> </td>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/1 LUNES.png" alt="" width="120px" height="50"> </button> </td>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/2 MARTES.png" alt="" width="120px" height="50"> </button> </td>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/3 MIERCOLES.png" alt="" width="120px" height="50"> </button> </td>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/4 JUEVES.png" alt="" width="120px" height="50"> </button> </td>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/5 VIERNES.png" alt="" width="120px" height="50"> </button> </td>
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:150px;">
+            <img src="../image/CALENDARIO/6 SABADO.png" alt="" width="120px" height="50"> </button> </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
       </div>
