@@ -426,7 +426,7 @@ $validacion = $fil_val['validacion'];
 
            <div class="col-md-3 mb-3 validar" id="activarmedaloj" style="display:none;">
              <center>
-               <label for="">INACTIVO / ACTIVO</label><br>
+               <label for="">ACTIVO</label><br>
                <input type="checkbox" class="checkbox2" name="statusprogrampersona" id="switch2" value="1">
                <label for="switch2" class="toggle2">
                  <p>&nbspSI &nbsp&nbsp&nbsp&nbsp NO</p>

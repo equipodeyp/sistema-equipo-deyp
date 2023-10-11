@@ -123,7 +123,9 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['edadpersona']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['grupoedad']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fdetinc['convenio']; echo "</td>";
-    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fdetinc['fecha_inicio'])); echo "</td>";
+    echo "<td style='text-align:center'>"; if ($fdetinc['fecha_inicio'] !== '0000-00-00') {
+      echo date("d/m/Y", strtotime($fdetinc['fecha_inicio']));
+    }  echo "</td>";
     echo "<td style='text-align:center'>"; echo $fsuj2021['t']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fsuj2022['t']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fsuj2023['t']; echo "</td>";

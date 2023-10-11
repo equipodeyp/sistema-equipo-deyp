@@ -64,6 +64,8 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+  <link rel="stylesheet" href="../css/breadcrumb.css">
+  <!-- <link rel="stylesheet" href="../css/expediente.css"> -->
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
@@ -311,6 +313,62 @@ a:focus {
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
+        <!-- ////////////////////////////////////////////////////////////////////////// -->
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+          <a class="actived">REPORTE MENSUAL</a>
+        </div>
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <!-- <img src="../image/CALENDARIO/10 MENSUAL.png" alt="" width="280px" height="70"> -->
+            <img src="../image/CALENDARIO/3.png" alt="" width="1110px" height="120">
+            <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
+              <thead class="thead-dark">
+                <tr>
+                  <th style="border: 5px solid #97897D; text-align:center" colspan="3"  width="100px" height="120">
+                    <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/13 ENERO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/14 FEBRERO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/15 MARZO.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/16 ABRIL.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/17 MAYO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/18 JUNIO.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/19 JULIO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/20 AGOSTO.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/21 SEPTIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+                <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/22 OCTUBRE.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/23 NOVIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                    <img src="../image/CALENDARIO/24 DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <img src="../../img/CALENDARIO/ENERO.png" alt="">
+        <!-- ////////////////////////////////////////////////////////////////////////// -->
       </div>
     </div>
   </div>

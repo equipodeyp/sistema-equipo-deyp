@@ -64,6 +64,7 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+    <link rel="stylesheet" href="../css/breadcrumb.css">
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
@@ -311,6 +312,35 @@ a:focus {
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+          <a class="actived">REPORTE SEMANAL</a>
+        </div>
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <!-- <img src="../image/CALENDARIO/10 MENSUAL.png" alt="" width="280px" height="70"> -->
+            <img src="../image/CALENDARIO/3.png" alt="" width="1110px" height="120">
+            <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
+              <thead class="thead-dark">
+                <tr>
+                  <th style="border: 5px solid #97897D; text-align:center" colspan="1"  width="100px" height="120">
+                    <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td  width="1000px" height="80"> <button type="button" <a name="button" class="btn btn-secondary" style="width:1100px;">
+                    <img src="../image/CALENDARIO/9 SEMANAL.png" alt="" width="520px" height="90"> </button><br>
+                    <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="1100" height="500"></iframe>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--  -->
       </div>
     </div>
   </div>
