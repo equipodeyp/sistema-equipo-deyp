@@ -28,7 +28,7 @@ $name_folio=$rowfol['folioexpediente'];
 $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
-echo $id_person;
+// echo $id_person;
 $foto=$rowfol['foto'];
 $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
 $res_val1=$mysqli->query($valid1);
