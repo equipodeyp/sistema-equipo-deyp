@@ -465,7 +465,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     
                     <div id="cabecera">
                         <div class="row alert div-title">
-                          <h3 style="text-align:center">5. PSICOPATOLOGIA</h3>
+                          <h3 style="text-align:center">5. PSICOPATOLOGÍA</h3>
                         </div>
                     </div>
             
@@ -510,8 +510,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 </div>
 
-<!--                
+               
                 <div id="div_6">
+
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">6. PERSONALIDAD</h3>
+                        </div>
+                    </div>
 
 
                     <div class="col-md-6 mb-3" id="q21">
@@ -559,6 +565,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 <div id="div_7">
 
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">7. SALUD MENTAL</h3>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-6 mb-3" id="q25">
                       <label for="" class="">¿ES CONSCIENTE DE SUS PROPIAS CAPACIDADES, PUEDE AFRONTAR LAS TENSIONES Y/O DIFICULTADES NORMALES DE LA VIDA, PUEDE TRABAJAR DE FORMA PRODUCTIVA Y FRUCTÍFERA, CAPAZ DE CONTRIBUIR A SU COMUNIDAD?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_25" name="r_question_25" required>
@@ -602,6 +615,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
                 <div id="div_8">
+
+
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">8. EDUCATIVO Y LABORAL</h3>
+                        </div>
+                    </div>
 
                     <div class="col-md-6 mb-3" id="q29">
                       <label for="" class="">¿ACTUALMENTE SE ENCUENTRA ESTUDIANDO O LABORANDO?<span class="required"></span></label>
@@ -647,6 +667,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
                 <div id="div_9">
+
+
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">9. FAMILIA</h3>
+                        </div>
+                    </div>
 
 
                     <div class="col-md-6 mb-3" id="q33">
@@ -695,6 +722,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                 <div id="div_10">
 
 
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">10. ECONÓMICO</h3>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-6 mb-3" id="q37">
                       <label for="" class="">¿CUENTA CON UN INGRESO SUPERIOR AL PROMEDIO NACIONAL, CON UNA O MÁS FUENTES DE INGRESOS Y/O REDES DE APOYO PARA EL SOSTENIMIENTO PERSONAL, DEL HOGAR E HIJOS, POR LO QUE SU INCORPORACIÓN AL PROGRAMA NO AFECTARÍA SUS INGRESOS?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_37" name="r_question_37" required>
@@ -740,6 +774,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                 <div id="div_11">
 
 
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">11. JUICIO SOCIAL</h3>
+                        </div>
+                    </div>
+
                     <div class="col-md-6 mb-3" id="q41">
                       <label for="" class="">¿ES TOLERANTE, RESPETUOSO, CON OPINIÓN OBJETIVA Y ACEPTACIÓN DE DIFERENCIAS, ENTIENDE Y CONFORMA LAS REGLAS DE LA SOCIEDAD, MIDE LAS CONSECUENCIAS DE SUS ACCIONES, NO TIENDE A TRANSGREDIR LAS LEYES O NORMAS, NO CUENTA CON REDES O VÍNCULOS PERTENECIENTES A UNA ESTRUCTURA DELICTIVA?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_41" name="r_question_41" required>
@@ -784,6 +824,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 
                 <div id="div_12">
+
+
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">12. FACTORES CRIMINOLÓGICOS</h3>
+                        </div>
+                    </div>
+
 
 
                     <div class="col-md-6 mb-3" id="q45">
@@ -832,6 +880,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                 <div id="div_13">
 
 
+                    <div id="cabecera">
+                        <div class="row alert div-title">
+                          <h3 style="text-align:center">13. CLASIFICACIÓN VICTIMOLÓGICA</h3>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-6 mb-3" id="q49">
                       <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO UNA VÍCTIMA INOCENTE O IDEAL, VÍCTIMA DE CULPABILIDAD MENOR O POR IGNORANCIA?<span class="required"></span></label>
                       <select class="form-select form-select-lg" id="question_49" name="r_question_49" required>
@@ -874,7 +929,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
                 </div>
 
- -->              
+                
 
 
                   <div class="row" id="div-b&n1">
@@ -909,6 +964,63 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                       <div class="vertical_center_button">
                         <button onclick="backApartado4()" class="button_back" id="btn-back5" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
                         <button onclick="nextApartado6()" class="button_next" id="btn-next5" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+
+                  <div class="row" id="div-b&n6">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado5()" class="button_back" id="btn-back6" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado7()" class="button_next" id="btn-next6" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n7">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado6()" class="button_back" id="btn-back7" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado8()" class="button_next" id="btn-next7" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n8">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado7()" class="button_back" id="btn-back8" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado9()" class="button_next" id="btn-next8" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n9">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado8()" class="button_back" id="btn-back9" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado10()" class="button_next" id="btn-next9" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n10">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado9()" class="button_back" id="btn-back10" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado11()" class="button_next" id="btn-next10" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n11">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado10()" class="button_back" id="btn-back11" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado12()" class="button_next" id="btn-next11" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n12">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado11()" class="button_back" id="btn-back12" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button onclick="nextApartado13()" class="button_next" id="btn-next12" style="text-align:center; margin: 10px; display: none;"" type="button">Siguiente</button>
+                      </div>
+                  </div>
+
+                  <div class="row" id="div-b&n13">
+                      <div class="vertical_center_button">
+                        <button onclick="backApartado12()" class="button_back" id="btn-back13" style="text-align:center; margin: 10px; display: none;"" type="button">Anterior</button>
+                        <button class="button_next" id="btn-next13" style="text-align:center; margin: 10px; display: none;"" type="button">Guardar</button>
                       </div>
                   </div>
             
