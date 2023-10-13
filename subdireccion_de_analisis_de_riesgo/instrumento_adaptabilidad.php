@@ -248,7 +248,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                   <h5 style='text-align:justify'>
                     Lea y comprenda cada una de las cuestiones. Responda de manera clara y concreta. 
                     Todas las preguntas deberan ser contestadas correctamente. Para comenzar el registro presione el botón iniciar.
-                    Utilice los botones de anterior y siguiente para continuar o retroceder a lo largo del llenado. 
+                    Utilice los botones de anterior y siguiente para continuar o retroceder entre los diferentes apartados. 
                     Durante la prueba mantengase tranquilo y relajado, concentre toda su atención en el contenido y evite distracciones para un mejor desempeño.
                   </h5>
                   <br></br>

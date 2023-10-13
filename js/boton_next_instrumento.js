@@ -8,13 +8,19 @@
     document.getElementById("div-b&n1").style.display = "none"; // Ocultar boton Siguiente 1
     document.getElementById("div-b&n2").style.display = ""; // Mostrar boton Anterior / Siguiente 1
 
-    var q5 = document.getElementById('question_5').value; // Obtener valor Pregunta 5 **************************************************
+    var q5 = document.getElementById('question_5').value; // Obtener valor Pregunta 5 
     var q6 = document.getElementById('question_6').value; // Obtener valor Pregunta 6
     var q7 = document.getElementById('question_7').value; // Obtener valor Pregunta 7
     var q8 = document.getElementById('question_8').value; // Obtener valor Pregunta 8
 
+    document.getElementById("q6").style.display = "none"; // Ocultar division q6  ***************
+    document.getElementById("q7").style.display = "none"; // Ocultar division q7
+    document.getElementById("q8").style.display = "none"; // Ocultar division q8
+
     if (q5 === "") {
-      document.getElementById("div-b&n2").style.display = "none"; // Ocultar boton Anterior / Siguiente 1
+      document.getElementById("div-b&n2").style.display = ""; // Mostrar boton Anterior / Siguiente 1 **********
+      document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2
+      document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
     } else {
       
     }

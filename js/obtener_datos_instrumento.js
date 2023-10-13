@@ -141,7 +141,9 @@ question3.addEventListener('change', obtenerInfo3);
          document.getElementById('question_7').value = ""; // Limpia select Pregunta 7
          document.getElementById('question_8').value = ""; // Limpia select Pregunta 8
  
-         document.getElementById("div-b&n2").style.display = "none"; // Ocultar division boton Siguiente 2
+         document.getElementById("div-b&n2").style.display = ""; // Mostrar division boton Siguiente 2  
+         document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2 *********************
+         document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
          
      }
  
@@ -194,9 +196,10 @@ question3.addEventListener('change', obtenerInfo3);
  
          document.getElementById('question_8').value = ""; // Limpiar select Pregunta 8
          
-         document.getElementById("div-b&n2").style.display = "none"; // Ocultar  division boton anterior y siguiente 2
-         document.getElementById("btn-back2").style.display = "none"; // Ocultar boton Anterior 2
+         document.getElementById("div-b&n2").style.display = ""; // Mostrar division boton Siguiente 2  
+         document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2 *********************
          document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
+ 
  
          }
      }

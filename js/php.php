@@ -2,44 +2,108 @@
 
 <script>
 
+var question5 = document.getElementById('question_5'); // Obtener valor Pregunta 5
+ var respuesta_q5 = '';
+ 
+ question5.addEventListener('change', obtenerInfo5);
+ 
+     function obtenerInfo5(e) {
+     respuesta_q5 = e.target.value;
+ 
+     if (respuesta_q5 === "Si") { // Si el valor de Pregunta 5 es igual Si
+ 
+         document.getElementById('q6').style.display = ""; // Mostrar division Pregunta 6
+         document.getElementById('q7').style.display = "none"; // Ocultar division Pregunta 7
+         document.getElementById('q8').style.display = "none"; // Ocultar division Pregunta 8
+ 
+         document.getElementById('question_6').value = ""; // Limpia select Pregunta 6
+         document.getElementById('question_7').value = ""; // Limpia select Pregunta 7
+         document.getElementById('question_8').value = ""; // Limpia select Pregunta 8
+ 
+         document.getElementById("div-b&n2").style.display = ""; // Mostrar division boton Siguiente 2  
+         document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2 *********************
+         document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
+         
+     }
+ 
+     else if (respuesta_q5 === "No"){
+ 
+         document.getElementById('q6').style.display = "none";  // Ocultar division Pregunta 6
+         document.getElementById('q7').style.display = "none";  // Ocultar division Pregunta 7
+         document.getElementById('q8').style.display = "none";  // Ocultar division Pregunta 8
+ 
+         document.getElementById('question_6').value = ""; // Limpia select Pregunta 6
+         document.getElementById('question_7').value = ""; // Limpia select Pregunta 7
+         document.getElementById('question_8').value = ""; // Limpia select Pregunta 8
+ 
+         document.getElementById("div-b&n2").style.display = ""; // Mostrar division boton Siguiente 2
+         document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2
+         document.getElementById("btn-next2").style.display = ""; // Mostrar boton Siguiente 2
+ 
+         }
+     }
+ 
+ 
+ 
+ var question6 = document.getElementById('question_6'); // Obtener valor Pregunta 6
+ var respuesta_q6 = '';
+ 
+ question6.addEventListener('change', obtenerInfo6);
+ 
+     function obtenerInfo6(e) {
+     respuesta_q6 = e.target.value;
+ 
+     if (respuesta_q6 === "Si") { //Si el valor de Pregunta 6 es igual Si
+ 
+         document.getElementById('q7').style.display = "none"; // Ocultar division Pregunta 7
+         document.getElementById('q8').style.display = "none"; // Ocultar division Pregunta 8
+ 
+         document.getElementById('question_7').value = ""; // Limpia select Pregunta 7
+         document.getElementById('question_8').value = ""; // Limpia select Pregunta 8
+ 
+         document.getElementById("div-b&n2").style.display = ""; // Mostrar division boton Siguiente 2
+         document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2
+         document.getElementById("btn-next2").style.display = ""; // Mostrar boton Siguiente 2
+
+ 
+     }
+ 
+     else if (respuesta_q6 === "No"){
+         
+         document.getElementById('q7').style.display = "";  // Mostrar division Pregunta 7
+         document.getElementById('q8').style.display = "none"; // Ocultar division Pregunta 8
+ 
+         document.getElementById('question_8').value = ""; // Limpiar select Pregunta 8
+         
+         document.getElementById("div-b&n2").style.display = ""; // Mostrar division boton Siguiente 2  
+         document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2 *********************
+         document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
+ 
+         }
+     }
+ 
 
 
 
-function nextApartado13() { // Siguiente 13
-  document.getElementById("div_12").style.display = "none"; // Ocultar apartado 12
-  document.getElementById("div_13").style.display = ""; // Mostrar apartado 13
 
 
-  document.getElementById("div-b&n12").style.display = "none"; // Ocultar division boton Anterior / Siguiente 12
-  document.getElementById("div-b&n13").style.display = ""; // Mostrar division boton Anterior / Siguiente 13
+</script>
+
+<script>
+
+    document.getElementById("q6").style.display = "none"; // Ocultar division q6  ***************
+    document.getElementById("q7").style.display = "none"; // Ocultar division q7
+    document.getElementById("q8").style.display = "none"; // Ocultar division q8
+
+    if (q5 === "") {
+      document.getElementById("div-b&n2").style.display = ""; // Mostrar boton Anterior / Siguiente 1 **********
+      document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2
+      document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
+    } else {
+      
+    }
 
 
-   // var q49 = document.getElementById('question_49').value; // Obtener valor Pregunta 49
-   var q50 = document.getElementById('question_50').value; // Obtener valor Pregunta 50
-   var q51 = document.getElementById('question_51').value; // Obtener valor Pregunta 51
-   var q52 = document.getElementById('question_52').value; // Obtener valor Pregunta 52
-
-
-   if (q50 === "") {
-    q50.style.display = "none"; // Ocultar q50 si es igual a vacio 
-  } else {
-    q50.style.display = ""; // Mostrar q50 si es diferente de vacio
-  }
-
-  if (q51 === "") {
-    q51.style.display = "none"; // Ocultar q51 si es igual a vacio 
-  } else {
-    q51.style.display = ""; // Mostrar q51 si es diferente de vacio
-  }
-
-  if (q52 === "") {
-    q52.style.display = "none"; // Ocultar q52 si es igual a vacio 
-  } else {
-    q52.style.display = ""; // Mostrar q52 si es diferente de vacio
-  }
-
-
-}
 
 
 
