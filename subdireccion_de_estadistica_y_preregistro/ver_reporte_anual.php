@@ -324,7 +324,7 @@ a:focus {
               <thead class="thead-dark">
                 <tr>
                   <th style="border: 5px solid #97897D; text-align:center" colspan="1"  width="100px" height="120">
-                    <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
+                    <b><p><font size="10px"><?php $year = date("Y"); echo $year-1; ?></font></p></b>
                   </th>
                 </tr>
               </thead>
@@ -332,7 +332,7 @@ a:focus {
                 <tr>
                   <td  width="1000px" height="80"> <button type="button" <a name="button" class="btn btn-secondary" style="width:1100px;">
                     <img src="../image/CALENDARIO/12 ANUAL.png" alt="" width="520px" height="90"> </button><br>
-                    <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="1100" height="500"></iframe>
+                    <iframe src="../docs/REPORTES/ANUAL2022.pdf" width="1100" height="900"></iframe>
                   </td>
                 </tr>
               </tbody>
