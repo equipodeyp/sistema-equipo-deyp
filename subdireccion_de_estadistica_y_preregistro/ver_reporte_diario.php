@@ -228,120 +228,7 @@ label{cursor: pointer;}
 }
 /* Input */
 input{display: none}
-/* Slider */
-.Carrusels{
-  height: 500px;
-  width: 700px;
-  position: relative;
-  overflow-x: hidden;
-}
-.Carrusel{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background-size: cover;
-  overflow-y: hidden;
-  transition: all .5s ease;
-}
-/* Estado 1 */
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(0%, 0);}
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(100%, 0);}
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(200%, 0);}
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(300%, 0);}
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(400%, 0);}
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(500%, 0);}
-#Slider1:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(600%, 0);}
-/* Estado 2 */
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-100%, 0);}
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(0%, 0);}
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(100%, 0);}
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(200%, 0);}
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(300%, 0);}
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(400%, 0);}
-#Slider2:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(500%, 0);}
-/* Estado 3 */
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-200%, 0);}
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-100%, 0);}
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(0%, 0);}
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(100%, 0);}
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(200%, 0);}
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(300%, 0);}
-#Slider3:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(400%, 0);}
-/* Estado 4 */
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-300%, 0);}
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-200%, 0);}
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-100%, 0);}
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(0%, 0);}
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(100%, 0);}
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(200%, 0);}
-#Slider4:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(300%, 0);}
-/* Estado 5 */
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-400%, 0);}
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-300%, 0);}
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-200%, 0);}
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(-100%, 0);}
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(0%, 0);}
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(100%, 0);}
-#Slider5:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(200%, 0);}
-/* Estado 6 */
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-500%, 0);}
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-400%, 0);}
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-300%, 0);}
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(-200%, 0);}
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(-100%, 0);}
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(0%, 0);}
-#Slider6:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(100%, 0);}
-/* Estado 7 */
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(1) {transform: translate(-600%, 0);}
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(2) {transform: translate(-500%, 0);}
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(3) {transform: translate(-400%, 0);}
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(4) {transform: translate(-300%, 0);}
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(5) {transform: translate(-200%, 0);}
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(6) {transform: translate(-100%, 0);}
-#Slider7:checked ~ .Carrusels .Carrusel:nth-of-type(7) {transform: translate(0%, 0);}
-/* Flechas */
-.Carrusels .ArrowLeft, .Carrusels .ArrowRight{
-  position: absolute;
-  height: 100%;
-  width: 2em;
-  align-items: center;
-  justify-content: center;
-  display: none;
-  user-select: none;
-}
-.Carrusels .ArrowLeft{left: 0px;}
-.Carrusels .ArrowRight{right: 0px;}
-/* Configuracion de flechas individuales */
-#Slider1:checked ~ .Carrusels .Arrow1{display: flex;}
-#Slider2:checked ~ .Carrusels .Arrow2{display: flex;}
-#Slider3:checked ~ .Carrusels .Arrow3{display: flex;}
-#Slider4:checked ~ .Carrusels .Arrow4{display: flex;}
-#Slider5:checked ~ .Carrusels .Arrow5{display: flex;}
-#Slider6:checked ~ .Carrusels .Arrow6{display: flex;}
-#Slider7:checked ~ .Carrusels .Arrow7{display: flex;}
 
-/* Selectores */
-.Selectors {
-  width: 60px;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-}
-.Selectors .Selector {
-  background-color: #FFF;
-  height: 10px;
-  width: 10px;
-  display: block;
-  border-radius: 5px;
-}
-/* Condicionales para botón inferior */
-#Slider1:checked ~ .Selectors .Selector:nth-of-type(1) {background-color: #999999;}
-#Slider2:checked ~ .Selectors .Selector:nth-of-type(2) {background-color: #999999;}
-#Slider3:checked ~ .Selectors .Selector:nth-of-type(3) {background-color: #999999;}
-#Slider4:checked ~ .Selectors .Selector:nth-of-type(4) {background-color: #999999;}
-#Slider5:checked ~ .Selectors .Selector:nth-of-type(5) {background-color: #999999;}
-#Slider6:checked ~ .Selectors .Selector:nth-of-type(6) {background-color: #999999;}
-#Slider7:checked ~ .Selectors .Selector:nth-of-type(7) {background-color: #999999;}
   </style>
 </head>
 <body>
@@ -440,55 +327,7 @@ input{display: none}
           <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
           <a class="actived">REPORTE DIARIO</a>
         </div>
-        <!-- <div class="ContainerCenter">
 
-  <input type="radio" name="Carrusel" id="Slider1" checked>
-  <input type="radio" name="Carrusel" id="Slider2">
-  <input type="radio" name="Carrusel" id="Slider3">
-  <input type="radio" name="Carrusel" id="Slider4">
-  <input type="radio" name="Carrusel" id="Slider5">
-  <input type="radio" name="Carrusel" id="Slider6">
-  <input type="radio" name="Carrusel" id="Slider7">
-
-  <div class="Carrusels">
-
-    <div class="Carrusel" > <h3 style="text-align:center">DOMINGO</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-    <div class="Carrusel" > <h3 style="text-align:center">LUNES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-    <div class="Carrusel" > <h3 style="text-align:center">MARTES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-    <div class="Carrusel" > <h3 style="text-align:center">MIERCOLES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-    <div class="Carrusel" > <h3 style="text-align:center">JUEVES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-    <div class="Carrusel" > <h3 style="text-align:center">VIERNES</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-    <div class="Carrusel" > <h3 style="text-align:center">SABADO</h3> <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="700" height="500"></iframe></div>
-
-
-    <label for="Slider7" class="ArrowLeft Arrow1">❮</label>
-    <label for="Slider1" class="ArrowLeft Arrow2">❮</label>
-    <label for="Slider2" class="ArrowLeft Arrow3">❮</label>
-    <label for="Slider3" class="ArrowLeft Arrow4">❮</label>
-    <label for="Slider4" class="ArrowLeft Arrow5">❮</label>
-    <label for="Slider5" class="ArrowLeft Arrow6">❮</label>
-    <label for="Slider6" class="ArrowLeft Arrow7">❮</label>
-
-    <label for="Slider2" class="ArrowRight Arrow1">❯</label>
-    <label for="Slider3" class="ArrowRight Arrow2">❯</label>
-    <label for="Slider4" class="ArrowRight Arrow3">❯</label>
-    <label for="Slider5" class="ArrowRight Arrow4">❯</label>
-    <label for="Slider6" class="ArrowRight Arrow5">❯</label>
-    <label for="Slider7" class="ArrowRight Arrow6">❯</label>
-    <label for="Slider1" class="ArrowRight Arrow7">❯</label>
-  </div>
-
-
-  <div class="Selectors">
-    <label for="Slider1" class="Selector"></label>
-    <label for="Slider2" class="Selector"></label>
-    <label for="Slider3" class="Selector"></label>
-    <label for="Slider4" class="Selector"></label>
-    <label for="Slider5" class="Selector"></label>
-    <label for="Slider6" class="Selector"></label>
-    <label for="Slider7" class="Selector"></label>
-  </div>
-</div> -->
 <div class="col-lg-12">
   <div class="table-responsive">
     <!-- <img src="../image/CALENDARIO/10 MENSUAL.png" alt="" width="280px" height="70"> -->
@@ -503,19 +342,19 @@ input{display: none}
       </thead>
       <tbody>
         <tr>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_domingo" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/7 DOMINGO.png" alt="" width="120px" height="50"> </button> </td>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_lunes" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/1 LUNES.png" alt="" width="120px" height="50"> </button> </td>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_martes" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/2 MARTES.png" alt="" width="120px" height="50"> </button> </td>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_miercoles" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/3 MIERCOLES.png" alt="" width="120px" height="50"> </button> </td>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_jueves" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/4 JUEVES.png" alt="" width="120px" height="50"> </button> </td>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_viernes" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/5 VIERNES.png" alt="" width="120px" height="50"> </button> </td>
-          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:150px;">
+          <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_sabado" name="button" class="btn btn-secondary" style="width:150px;">
             <img src="../image/CALENDARIO/6 SABADO.png" alt="" width="120px" height="50"> </button> </td>
         </tr>
       </tbody>
@@ -540,6 +379,160 @@ input{display: none}
           <div className="modal">
             <div className="modalContent">
               <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia DOMINGO -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_domingo" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/DOMINGO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia LUNES -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_lunes" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/LUNES.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia MARTES -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_martes" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/MARTES.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia MIERCOLES -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_miercoles" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/MIERCOLES.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia JUEVES -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_jueves" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <!-- <iframe src="../docs/REPORTES/JUEVES.pdf" style="width:870px; height:600px;" ></iframe> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia VIERNES -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_viernes" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <!-- <iframe src="../docs/REPORTES/VIERNES.pdf" style="width:870px; height:600px;" ></iframe> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del reporte del dia SABADO -->
+  <div class="modal fade" id="add_data_Modal_reporte_dia_sabado" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <!-- <iframe src="../docs/REPORTES/SABADO.pdf" style="width:870px; height:600px;" ></iframe> -->
             </div>
           </div>
         </div>

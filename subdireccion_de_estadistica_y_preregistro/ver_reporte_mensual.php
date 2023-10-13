@@ -332,42 +332,41 @@ a:focus {
               </thead>
               <tbody>
                 <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_enero" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/13 ENERO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_febrero" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/14 FEBRERO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_marzo" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/15 MARZO.png" alt="" width="280px" height="70"> </button> </td>
                 </tr>
                 <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_abril" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/16 ABRIL.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_mayo" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/17 MAYO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_junio" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/18 JUNIO.png" alt="" width="280px" height="70"> </button> </td>
                 </tr>
                 <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_julio" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/19 JULIO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_agosto" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/20 AGOSTO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_septiembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/21 SEPTIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
                 </tr>
-                <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio" name="button" class="btn btn-secondary" style="width:350px;">
+                <!-- <tr>
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_octubre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/22 OCTUBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_noviembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/23 NOVIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_diciembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/24 DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
-        </div>
-        <img src="../../img/CALENDARIO/ENERO.png" alt="">
+        </div>        
         <!-- ////////////////////////////////////////////////////////////////////////// -->
       </div>
     </div>
@@ -387,6 +386,270 @@ a:focus {
           <div className="modal">
             <div className="modalContent">
               <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE ENERO -->
+  <div class="modal fade" id="add_data_Modal_reporte_enero" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/ENERO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE FEBRERO -->
+  <div class="modal fade" id="add_data_Modal_reporte_febrero" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/FEBRERO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE MARZO -->
+  <div class="modal fade" id="add_data_Modal_reporte_marzo" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/MARZO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE ABRIL -->
+  <div class="modal fade" id="add_data_Modal_reporte_abril" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/ABRIL.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE MAYO -->
+  <div class="modal fade" id="add_data_Modal_reporte_mayo" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/MAYO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE JUNIO -->
+  <div class="modal fade" id="add_data_Modal_reporte_junio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/JUNIO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE JULIO -->
+  <div class="modal fade" id="add_data_Modal_reporte_julio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/JULIO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE AGOSTO -->
+  <div class="modal fade" id="add_data_Modal_reporte_agosto" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/AGOSTO.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE SEPTIEMBRE -->
+  <div class="modal fade" id="add_data_Modal_reporte_septiembre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/REPORTES/SEPTIEMBRE.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE OCTUBRE -->
+  <div class="modal fade" id="add_data_Modal_reporte_octubre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <!-- <iframe src="../docs/REPORTES/OCTUBRE.pdf" style="width:870px; height:600px;" ></iframe> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE NOVIEMBRE -->
+  <div class="modal fade" id="add_data_Modal_reporte_noviembre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <!-- <iframe src="../docs/REPORTES/NOVIEMBRE.pdf" style="width:870px; height:600px;" ></iframe> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
+  <!-- modal del REPORTE DE DICIEMBRE -->
+  <div class="modal fade" id="add_data_Modal_reporte_diciembre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <!-- <iframe src="../docs/REPORTES/DICIEMBRE.pdf" style="width:870px; height:600px;" ></iframe> -->
             </div>
           </div>
         </div>
