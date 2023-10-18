@@ -4,7 +4,6 @@
     document.getElementById("div_1").style.display = "none"; // Ocultar apartado 1. ADICCIONES
     document.getElementById("div_2").style.display = ""; // Mostrar apartado 2. DISCAPACIDAD
 
-
     document.getElementById("div-b&n1").style.display = "none"; // Ocultar boton Siguiente 1
     document.getElementById("div-b&n2").style.display = ""; // Mostrar boton Anterior / Siguiente 1
 
@@ -18,7 +17,7 @@
     document.getElementById("q8").style.display = "none"; // Ocultar division q8
 
     if (q5 === "") {
-      document.getElementById("div-b&n2").style.display = ""; // Mostrar boton Anterior / Siguiente 1 **********
+      document.getElementById("div-b&n2").style.display = ""; // Mostrar boton Anterior / Siguiente 2 **********
       document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2
       document.getElementById("btn-next2").style.display = "none"; // Ocultar boton Siguiente 2
     } else {
@@ -54,15 +53,29 @@ function nextApartado3() { // Siguiente 3. ENFERMEDAD
   document.getElementById("div_2").style.display = "none"; // Ocultar apartado 2. DISCAPACIDAD
   document.getElementById("div_3").style.display = ""; // Mostrar apartado 3. ENFERMEDAD
 
+  document.getElementById("div-b&n2").style.display = "none"; // Ocultar division boton Anterior / Siguiente 2 
+  document.getElementById("div-b&n3").style.display = ""; // Mostrar division boton Anterior / Siguiente 3 
 
-  document.getElementById("div-b&n2").style.display = "none"; // Ocultar division boton Anterior / Siguiente 2
-  document.getElementById("div-b&n3").style.display = ""; // Mostrar division boton Anterior / Siguiente 3
+  document.getElementById("btn-back3").style.display = ""; // Mostrar boton Anterior 3 ***********
+  document.getElementById("btn-next3").style.display = "none"; // Ocultar boton Siguiente 3
 
 
-   // var q9 = document.getElementById('question_9').value; // Obtener valor Pregunta 9
+   var q9 = document.getElementById('question_9').value; // Obtener valor Pregunta 9
    var q10 = document.getElementById('question_10').value; // Obtener valor Pregunta 10
    var q11 = document.getElementById('question_11').value; // Obtener valor Pregunta 11
    var q12 = document.getElementById('question_12').value; // Obtener valor Pregunta 12
+
+   document.getElementById("q10").style.display = "none"; // Ocultar division q10  ***************
+   document.getElementById("q11").style.display = "none"; // Ocultar division q11
+   document.getElementById("q12").style.display = "none"; // Ocultar division q12
+
+   if (q9 === "") {
+     document.getElementById("div-b&n3").style.display = ""; // Mostrar boton Anterior / Siguiente 3 **********
+     document.getElementById("btn-back3").style.display = ""; // Mostrar boton Anterior 3
+     document.getElementById("btn-next3").style.display = "none"; // Ocultar boton Siguiente 3
+   } else {
+     
+   }
 
 
    if (q10 === "") {
@@ -93,15 +106,30 @@ function nextApartado4() { // Siguiente 4. EDAD
   document.getElementById("div_3").style.display = "none"; // Ocultar apartado 3. ENFERMEDAD
   document.getElementById("div_4").style.display = ""; // Mostrar apartado 4. EDAD
 
-
   document.getElementById("div-b&n3").style.display = "none"; // Ocultar division boton Anterior / Siguiente 3
   document.getElementById("div-b&n4").style.display = ""; // Mostrar division boton Anterior / Siguiente 4
 
+  document.getElementById("btn-back4").style.display = ""; // Mostrar boton Anterior 4 ***********
+  document.getElementById("btn-next4").style.display = "none"; // Ocultar boton Siguiente 4
 
-   // var q13 = document.getElementById('question_13').value; // Obtener valor Pregunta 13
+
+   var q13 = document.getElementById('question_13').value; // Obtener valor Pregunta 13
    var q14 = document.getElementById('question_14').value; // Obtener valor Pregunta 14
    var q15 = document.getElementById('question_15').value; // Obtener valor Pregunta 15
    var q16 = document.getElementById('question_16').value; // Obtener valor Pregunta 16
+
+   document.getElementById("q14").style.display = "none"; // Ocultar division q14  ***************
+   document.getElementById("q15").style.display = "none"; // Ocultar division q15
+   document.getElementById("q16").style.display = "none"; // Ocultar division q16
+
+   if (q13 === "") {
+     document.getElementById("div-b&n4").style.display = ""; // Mostrar boton Anterior / Siguiente 4 **********
+     document.getElementById("btn-back4").style.display = ""; // Mostrar boton Anterior 4
+     document.getElementById("btn-next4").style.display = "none"; // Ocultar boton Siguiente 4
+   } else {
+     
+   }
+
 
 
    if (q14 === "") {
@@ -130,15 +158,30 @@ function nextApartado5() { // Siguiente 5. PSICOPATOLOGIA
   document.getElementById("div_4").style.display = "none"; // Ocultar apartado 4. EDAD
   document.getElementById("div_5").style.display = ""; // Mostrar apartado 5. PSICOPATOLOGIA
 
-
   document.getElementById("div-b&n4").style.display = "none"; // Ocultar division boton Anterior / Siguiente 4
   document.getElementById("div-b&n5").style.display = ""; // Mostrar division boton Anterior / Siguiente 5
 
+  document.getElementById("btn-back5").style.display = ""; // Mostrar boton Anterior 5 ***********
+  document.getElementById("btn-next5").style.display = "none"; // Ocultar boton Siguiente 5
 
-   // var q17 = document.getElementById('question_17').value; // Obtener valor Pregunta 17
+
+   var q17 = document.getElementById('question_17').value; // Obtener valor Pregunta 17
    var q18 = document.getElementById('question_18').value; // Obtener valor Pregunta 18
    var q19 = document.getElementById('question_19').value; // Obtener valor Pregunta 19
    var q20 = document.getElementById('question_20').value; // Obtener valor Pregunta 20
+
+   document.getElementById("q18").style.display = "none"; // Ocultar division q18  ***************
+   document.getElementById("q19").style.display = "none"; // Ocultar division q19
+   document.getElementById("q20").style.display = "none"; // Ocultar division q20
+
+   if (q17 === "") {
+     document.getElementById("div-b&n5").style.display = ""; // Mostrar boton Anterior / Siguiente 5 **********
+     document.getElementById("btn-back5").style.display = ""; // Mostrar boton Anterior 5
+     document.getElementById("btn-next5").style.display = "none"; // Ocultar boton Siguiente 5
+   } else {
+     
+   }
+
 
 
    if (q18 === "") {
@@ -175,10 +218,27 @@ function nextApartado6() { // Siguiente 6. PERSONALIDAD
   document.getElementById("div-b&n6").style.display = ""; // Mostrar division boton Anterior / Siguiente 6
 
 
-   // var q21 = document.getElementById('question_21').value; // Obtener valor Pregunta 21
+  document.getElementById("btn-back6").style.display = ""; // Mostrar boton Anterior 6 ***********
+  document.getElementById("btn-next6").style.display = "none"; // Ocultar boton Siguiente 6
+
+
+   var q21 = document.getElementById('question_21').value; // Obtener valor Pregunta 21
    var q22 = document.getElementById('question_22').value; // Obtener valor Pregunta 22
    var q23 = document.getElementById('question_23').value; // Obtener valor Pregunta 23
    var q24 = document.getElementById('question_24').value; // Obtener valor Pregunta 24
+
+   document.getElementById("q22").style.display = "none"; // Ocultar division q22  ***************
+   document.getElementById("q23").style.display = "none"; // Ocultar division q23
+   document.getElementById("q24").style.display = "none"; // Ocultar division q24
+
+   if (q21 === "") {
+     document.getElementById("div-b&n6").style.display = ""; // Mostrar boton Anterior / Siguiente 6 **********
+     document.getElementById("btn-back6").style.display = ""; // Mostrar boton Anterior 6
+     document.getElementById("btn-next6").style.display = "none"; // Ocultar boton Siguiente 6
+   } else {
+     
+   }
+
 
 
    if (q22 === "") {
@@ -215,10 +275,27 @@ function nextApartado7() { // Siguiente 7
   document.getElementById("div-b&n7").style.display = ""; // Mostrar division boton Anterior / Siguiente 7
 
 
-   // var q25 = document.getElementById('question_25').value; // Obtener valor Pregunta 25
+  document.getElementById("btn-back7").style.display = ""; // Mostrar boton Anterior 7 ***********
+  document.getElementById("btn-next7").style.display = "none"; // Ocultar boton Siguiente 7
+
+
+   var q25 = document.getElementById('question_25').value; // Obtener valor Pregunta 25
    var q26 = document.getElementById('question_26').value; // Obtener valor Pregunta 26
    var q27 = document.getElementById('question_27').value; // Obtener valor Pregunta 27
    var q28 = document.getElementById('question_28').value; // Obtener valor Pregunta 28
+
+   document.getElementById("q26").style.display = "none"; // Ocultar division q26  ***************
+   document.getElementById("q27").style.display = "none"; // Ocultar division q27
+   document.getElementById("q28").style.display = "none"; // Ocultar division q28
+
+   if (q25 === "") {
+     document.getElementById("div-b&n7").style.display = ""; // Mostrar boton Anterior / Siguiente 7 **********
+     document.getElementById("btn-back7").style.display = ""; // Mostrar boton Anterior 7
+     document.getElementById("btn-next7").style.display = "none"; // Ocultar boton Siguiente 7
+   } else {
+     
+   }
+
 
 
    if (q26 === "") {
@@ -254,10 +331,27 @@ function nextApartado8() { // Siguiente 8
   document.getElementById("div-b&n8").style.display = ""; // Mostrar division boton Anterior / Siguiente 8
 
 
-   // var q29 = document.getElementById('question_29').value; // Obtener valor Pregunta 29
+  document.getElementById("btn-back8").style.display = ""; // Mostrar boton Anterior 8 ***********
+  document.getElementById("btn-next8").style.display = "none"; // Ocultar boton Siguiente 8
+
+
+   var q29 = document.getElementById('question_29').value; // Obtener valor Pregunta 29
    var q30 = document.getElementById('question_30').value; // Obtener valor Pregunta 30
    var q31 = document.getElementById('question_31').value; // Obtener valor Pregunta 31
    var q32 = document.getElementById('question_32').value; // Obtener valor Pregunta 32
+
+   document.getElementById("q30").style.display = "none"; // Ocultar division q30  ***************
+   document.getElementById("q31").style.display = "none"; // Ocultar division q31
+   document.getElementById("q32").style.display = "none"; // Ocultar division q32
+
+   if (q29 === "") {
+     document.getElementById("div-b&n8").style.display = ""; // Mostrar boton Anterior / Siguiente 8 **********
+     document.getElementById("btn-back8").style.display = ""; // Mostrar boton Anterior 8
+     document.getElementById("btn-next8").style.display = "none"; // Ocultar boton Siguiente 8
+   } else {
+     
+   }
+
 
 
    if (q30 === "") {
@@ -293,10 +387,27 @@ function nextApartado9() { // Siguiente 9
   document.getElementById("div-b&n9").style.display = ""; // Mostrar division boton Anterior / Siguiente 9
 
 
-   // var q33 = document.getElementById('question_33').value; // Obtener valor Pregunta 33
+  document.getElementById("btn-back9").style.display = ""; // Mostrar boton Anterior 9 ***********
+  document.getElementById("btn-next9").style.display = "none"; // Ocultar boton Siguiente 9
+
+
+   var q33 = document.getElementById('question_33').value; // Obtener valor Pregunta 33
    var q34 = document.getElementById('question_34').value; // Obtener valor Pregunta 34
    var q35 = document.getElementById('question_35').value; // Obtener valor Pregunta 35
    var q36 = document.getElementById('question_36').value; // Obtener valor Pregunta 36
+
+   document.getElementById("q34").style.display = "none"; // Ocultar division q34  ***************
+   document.getElementById("q35").style.display = "none"; // Ocultar division q35
+   document.getElementById("q36").style.display = "none"; // Ocultar division q36
+
+   if (q33 === "") {
+     document.getElementById("div-b&n9").style.display = ""; // Mostrar boton Anterior / Siguiente 9 **********
+     document.getElementById("btn-back9").style.display = ""; // Mostrar boton Anterior 9
+     document.getElementById("btn-next9").style.display = "none"; // Ocultar boton Siguiente 9
+   } else {
+     
+   }
+
 
 
    if (q34 === "") {
@@ -333,10 +444,27 @@ function nextApartado10() { // Siguiente 10
   document.getElementById("div-b&n10").style.display = ""; // Mostrar division boton Anterior / Siguiente 10
 
 
-   // var q37 = document.getElementById('question_37').value; // Obtener valor Pregunta 37
+  document.getElementById("btn-back10").style.display = ""; // Mostrar boton Anterior 10 ***********
+  document.getElementById("btn-next10").style.display = "none"; // Ocultar boton Siguiente 10
+
+
+   var q37 = document.getElementById('question_37').value; // Obtener valor Pregunta 37
    var q38 = document.getElementById('question_38').value; // Obtener valor Pregunta 38
    var q39 = document.getElementById('question_39').value; // Obtener valor Pregunta 39
    var q40 = document.getElementById('question_40').value; // Obtener valor Pregunta 40
+
+   document.getElementById("q38").style.display = "none"; // Ocultar division q38  ***************
+   document.getElementById("q39").style.display = "none"; // Ocultar division q39
+   document.getElementById("q40").style.display = "none"; // Ocultar division q40
+
+   if (q37 === "") {
+     document.getElementById("div-b&n10").style.display = ""; // Mostrar boton Anterior / Siguiente 10 **********
+     document.getElementById("btn-back10").style.display = ""; // Mostrar boton Anterior 10
+     document.getElementById("btn-next10").style.display = "none"; // Ocultar boton Siguiente 10
+   } else {
+     
+   }
+
 
 
    if (q38 === "") {
@@ -372,10 +500,27 @@ function nextApartado11() { // Siguiente 11
   document.getElementById("div-b&n11").style.display = ""; // Mostrar division boton Anterior / Siguiente 11
 
 
-   // var q41 = document.getElementById('question_41').value; // Obtener valor Pregunta 41
+  document.getElementById("btn-back11").style.display = ""; // Mostrar boton Anterior 11 ***********
+  document.getElementById("btn-next11").style.display = "none"; // Ocultar boton Siguiente 11
+
+
+   var q41 = document.getElementById('question_41').value; // Obtener valor Pregunta 41
    var q42 = document.getElementById('question_42').value; // Obtener valor Pregunta 42
    var q43 = document.getElementById('question_43').value; // Obtener valor Pregunta 43
    var q44 = document.getElementById('question_44').value; // Obtener valor Pregunta 44
+
+   document.getElementById("q42").style.display = "none"; // Ocultar division q42  ***************
+   document.getElementById("q43").style.display = "none"; // Ocultar division q43
+   document.getElementById("q44").style.display = "none"; // Ocultar division q44
+
+   if (q41 === "") {
+     document.getElementById("div-b&n11").style.display = ""; // Mostrar boton Anterior / Siguiente 11 **********
+     document.getElementById("btn-back11").style.display = ""; // Mostrar boton Anterior 11
+     document.getElementById("btn-next11").style.display = "none"; // Ocultar boton Siguiente 11
+   } else {
+     
+   }
+
 
 
    if (q42 === "") {
@@ -410,11 +555,27 @@ function nextApartado12() { // Siguiente 12
   document.getElementById("div-b&n11").style.display = "none"; // Ocultar division boton Anterior / Siguiente 11
   document.getElementById("div-b&n12").style.display = ""; // Mostrar division boton Anterior / Siguiente 12
 
+  document.getElementById("btn-back12").style.display = ""; // Mostrar boton Anterior 12 ***********
+  document.getElementById("btn-next12").style.display = "none"; // Ocultar boton Siguiente 12
 
-   // var q45 = document.getElementById('question_45').value; // Obtener valor Pregunta 45
+
+   var q45 = document.getElementById('question_45').value; // Obtener valor Pregunta 45
    var q46 = document.getElementById('question_46').value; // Obtener valor Pregunta 46
    var q47 = document.getElementById('question_47').value; // Obtener valor Pregunta 47
    var q48 = document.getElementById('question_48').value; // Obtener valor Pregunta 48
+
+   document.getElementById("q46").style.display = "none"; // Ocultar division q46  ***************
+   document.getElementById("q47").style.display = "none"; // Ocultar division q47
+   document.getElementById("q48").style.display = "none"; // Ocultar division q48
+
+   if (q45 === "") {
+     document.getElementById("div-b&n12").style.display = ""; // Mostrar boton Anterior / Siguiente 12 **********
+     document.getElementById("btn-back12").style.display = ""; // Mostrar boton Anterior 12
+     document.getElementById("btn-next612").style.display = "none"; // Ocultar boton Siguiente 12
+   } else {
+     
+   }
+
 
 
    if (q46 === "") {
@@ -450,11 +611,27 @@ function nextApartado13() { // Siguiente 13
   document.getElementById("div-b&n12").style.display = "none"; // Ocultar division boton Anterior / Siguiente 12
   document.getElementById("div-b&n13").style.display = ""; // Mostrar division boton Anterior / Siguiente 13
 
+  document.getElementById("btn-back13").style.display = ""; // Mostrar boton Anterior 13 ***********
+  document.getElementById("btn-next13").style.display = "none"; // Ocultar boton Siguiente 13
 
-   // var q49 = document.getElementById('question_49').value; // Obtener valor Pregunta 49
+
+   var q49 = document.getElementById('question_49').value; // Obtener valor Pregunta 49
    var q50 = document.getElementById('question_50').value; // Obtener valor Pregunta 50
    var q51 = document.getElementById('question_51').value; // Obtener valor Pregunta 51
    var q52 = document.getElementById('question_52').value; // Obtener valor Pregunta 52
+
+   document.getElementById("q50").style.display = "none"; // Ocultar division q50  ***************
+   document.getElementById("q51").style.display = "none"; // Ocultar division q51
+   document.getElementById("q52").style.display = "none"; // Ocultar division q52
+
+   if (q49 === "") {
+     document.getElementById("div-b&n13").style.display = ""; // Mostrar boton Anterior / Siguiente 13 **********
+     document.getElementById("btn-back13").style.display = ""; // Mostrar boton Anterior 13
+     document.getElementById("btn-next13").style.display = "none"; // Ocultar boton Siguiente 13
+   } else {
+     
+   }
+
 
 
    if (q50 === "") {

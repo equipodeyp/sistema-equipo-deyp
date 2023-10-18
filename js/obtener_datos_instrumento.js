@@ -1,5 +1,5 @@
  /////////// PREGUNTA 1 2 3 4   
-
+const r_input = "Si";
 var question1 = document.getElementById('question_1'); // Obtener valor Pregunta 1
 var respuesta_q1 = '';
 
@@ -107,8 +107,8 @@ question3.addEventListener('change', obtenerInfo3);
     else if (respuesta_q3 === "No"){
 
         document.getElementById('q4').style.display = ""; // Mostrar division Pregunta 4
-        document.getElementById('question_4').disabled = true; // Deshabilitar select pregunta 4
-        document.getElementById('question_4').value = "Si"; // Asignar valor al select de la pregunta 4
+        // document.getElementById('question_4').disabled = true; // Deshabilitar select pregunta 4
+        document.getElementById('question_4').value = r_input; // Asignar valor al select de la pregunta 4
 
         document.getElementById("div-b&n1").style.display = ""; // Mostrar division anterior y siguiente 1
         document.getElementById("btn-next1").style.display = ""; // Mostrar boton siguiente 1
@@ -230,8 +230,8 @@ question3.addEventListener('change', obtenerInfo3);
      else if (respuesta_q7 === "No"){
  
          document.getElementById('q8').style.display = ""; // Mostrar division Pregunta 8
-         document.getElementById('question_8').disabled = true; // Deshabilitar select pregunta 8
-         document.getElementById('question_8').value = "Si"; // Asignar valor al select de la pregunta 8
+        //  document.getElementById('question_8').disabled = true; // Deshabilitar select pregunta 8
+         document.getElementById('question_8').value = r_input; // Asignar valor al select de la pregunta 8
  
          document.getElementById("div-b&n2").style.display = ""; // Mostrar division anterior y siguiente 2
          document.getElementById("btn-back2").style.display = ""; // Mostrar boton Anterior 2
@@ -265,8 +265,10 @@ question3.addEventListener('change', obtenerInfo3);
          document.getElementById('question_10').value = ""; // Limpia select Pregunta 10
          document.getElementById('question_11').value = ""; // Limpia select Pregunta 11
          document.getElementById('question_12').value = ""; // Limpia select Pregunta 12
- 
-         document.getElementById("div-b&n3").style.display = "none"; // Ocultar division boton Siguiente 3
+
+         document.getElementById("div-b&n3").style.display = ""; // Mostrar division boton Siguiente 3  
+         document.getElementById("btn-back3").style.display = ""; // Mostrar boton Anterior 3 *********************
+         document.getElementById("btn-next3").style.display = "none"; // Ocultar boton Siguiente 3
          
      }
  
@@ -321,9 +323,10 @@ question3.addEventListener('change', obtenerInfo3);
  
          document.getElementById('question_12').value = ""; // Limpiar select Pregunta 12
          
-         document.getElementById("div-b&n3").style.display = "none"; // Ocultar  division boton anterior y siguiente 3
-         document.getElementById("btn-back3").style.display = "none"; // Ocultar boton Anterior 3
+         document.getElementById("div-b&n3").style.display = ""; // Mostrar  division boton anterior y siguiente 3 ************
+         document.getElementById("btn-back3").style.display = ""; // Mostrar boton Anterior 3
          document.getElementById("btn-next3").style.display = "none"; // Ocultar boton Siguiente 3
+
  
          }
      }
@@ -356,8 +359,8 @@ question3.addEventListener('change', obtenerInfo3);
      else if (respuesta_q11 === "No"){
  
          document.getElementById('q12').style.display = ""; // Mostrar division Pregunta 12
-         document.getElementById('question_12').disabled = true; // Deshabilitar select pregunta 12
-         document.getElementById('question_12').value = "Si"; // Asignar valor al select de la pregunta 12
+        //  document.getElementById('question_12').disabled = true; // Deshabilitar select pregunta 12
+         document.getElementById('question_12').value = r_input; // Asignar valor al select de la pregunta 12
  
          document.getElementById("div-b&n3").style.display = ""; // Mostrar division anterior y siguiente 3
          document.getElementById("btn-back3").style.display = ""; // Mostrar boton Anterior 3
@@ -391,7 +394,10 @@ question3.addEventListener('change', obtenerInfo3);
          document.getElementById('question_15').value = ""; // Limpia select Pregunta 15
          document.getElementById('question_16').value = ""; // Limpia select Pregunta 16
  
-         document.getElementById("div-b&n4").style.display = "none"; // Ocultar division boton Siguiente 4
+
+         document.getElementById("div-b&n4").style.display = ""; // Mostrar division boton Siguiente 4  
+         document.getElementById("btn-back4").style.display = ""; // Mostrar boton Anterior 4 *********************
+         document.getElementById("btn-next4").style.display = "none"; // Ocultar boton Siguiente 4
          
      }
  
@@ -445,9 +451,9 @@ question3.addEventListener('change', obtenerInfo3);
          document.getElementById('q16').style.display = "none"; // Ocultar division Pregunta 16
  
          document.getElementById('question_16').value = ""; // Limpiar select Pregunta 16
-         
-         document.getElementById("div-b&n4").style.display = "none"; // Ocultar  division boton anterior y siguiente 4
-         document.getElementById("btn-back4").style.display = "none"; // Ocultar boton Anterior 4
+
+         document.getElementById("div-b&n4").style.display = ""; // Mostrar division boton Siguiente 4  
+         document.getElementById("btn-back4").style.display = ""; // Mostrar boton Anterior 4 *********************
          document.getElementById("btn-next4").style.display = "none"; // Ocultar boton Siguiente 4
  
          }
@@ -481,8 +487,8 @@ question3.addEventListener('change', obtenerInfo3);
      else if (respuesta_q15 === "No"){
  
          document.getElementById('q16').style.display = ""; // Mostrar division Pregunta 16
-         document.getElementById('question_16').disabled = true; // Deshabilitar select pregunta 16
-         document.getElementById('question_16').value = "Si"; // Asignar valor al select de la pregunta 16
+        //  document.getElementById('question_16').disabled = true; // Deshabilitar select pregunta 16
+         document.getElementById('question_16').value = r_input; // Asignar valor al select de la pregunta 16
  
          document.getElementById("div-b&n4").style.display = ""; // Mostrar division anterior y siguiente 4
          document.getElementById("btn-back4").style.display = ""; // Mostrar boton Anterior 4
@@ -518,7 +524,9 @@ question17.addEventListener('change', obtenerInfo17);
         document.getElementById('question_19').value = ""; // Limpia select Pregunta 19
         document.getElementById('question_20').value = ""; // Limpia select Pregunta 20
 
-        document.getElementById("div-b&n5").style.display = "none"; // Ocultar division boton Siguiente 5
+        document.getElementById("div-b&n5").style.display = ""; // Mostrar division boton Siguiente 5  
+        document.getElementById("btn-back5").style.display = ""; // Mostrar boton Anterior 5 *********************
+        document.getElementById("btn-next5").style.display = "none"; // Ocultar boton Siguiente 5
         
     }
 
@@ -573,8 +581,8 @@ question18.addEventListener('change', obtenerInfo18);
 
         document.getElementById('question_20').value = ""; // Limpiar select Pregunta 20
         
-        document.getElementById("div-b&n5").style.display = "none"; // Ocultar  division boton anterior y siguiente 5
-        document.getElementById("btn-back5").style.display = "none"; // Ocultar boton Anterior 5
+        document.getElementById("div-b&n5").style.display = ""; // Mostrar division boton Siguiente 5  
+        document.getElementById("btn-back5").style.display = ""; // Mostrar boton Anterior 5 *********************
         document.getElementById("btn-next5").style.display = "none"; // Ocultar boton Siguiente 5
 
         }
@@ -608,8 +616,8 @@ question19.addEventListener('change', obtenerInfo19);
     else if (respuesta_q19 === "No"){
 
         document.getElementById('q20').style.display = ""; // Mostrar division Pregunta 20
-        document.getElementById('question_20').disabled = true; // Deshabilitar select pregunta 20
-        document.getElementById('question_20').value = "Si"; // Asignar valor al select de la pregunta 20
+        // document.getElementById('question_20').disabled = true; // Deshabilitar select pregunta 20
+        document.getElementById('question_20').value = r_input; // Asignar valor al select de la pregunta 20
 
         document.getElementById("div-b&n5").style.display = ""; // Mostrar division anterior y siguiente 5
         document.getElementById("btn-back5").style.display = ""; // Mostrar boton Anterior 5
@@ -647,7 +655,9 @@ question21.addEventListener('change', obtenerInfo21);
         document.getElementById('question_23').value = ""; // Limpia select Pregunta 23
         document.getElementById('question_24').value = ""; // Limpia select Pregunta 24
 
-        document.getElementById("div-b&n6").style.display = "none"; // Ocultar division boton Siguiente 6
+        document.getElementById("div-b&n6").style.display = ""; // Mostrar division boton Siguiente 6  
+        document.getElementById("btn-back6").style.display = ""; // Mostrar boton Anterior 6 *********************
+        document.getElementById("btn-next6").style.display = "none"; // Ocultar boton Siguiente 6
 
     }
 
@@ -701,9 +711,9 @@ question22.addEventListener('change', obtenerInfo22);
         document.getElementById('q24').style.display = "none"; // Ocultar division Pregunta 24
 
         document.getElementById('question_24').value = ""; // Limpiar select Pregunta 24
-        
-        document.getElementById("div-b&n6").style.display = "none"; // Ocultar  division boton anterior y siguiente 6
-        document.getElementById("btn-back6").style.display = "none"; // Ocultar boton Anterior 6
+
+        document.getElementById("div-b&n6").style.display = ""; // Mostrar division boton Siguiente 6  
+        document.getElementById("btn-back6").style.display = ""; // Mostrar boton Anterior 6 *********************
         document.getElementById("btn-next6").style.display = "none"; // Ocultar boton Siguiente 6
 
         }
@@ -737,8 +747,8 @@ question23.addEventListener('change', obtenerInfo23);
     else if (respuesta_q23 === "No"){
 
         document.getElementById('q24').style.display = ""; // Mostrar division Pregunta 24
-        document.getElementById('question_24').disabled = true; // Deshabilitar select pregunta 24
-        document.getElementById('question_24').value = "Si"; // Asignar valor al select de la pregunta 24
+        // document.getElementById('question_24').disabled = true; // Deshabilitar select pregunta 24
+        document.getElementById('question_24').value = r_input; // Asignar valor al select de la pregunta 24
 
         document.getElementById("div-b&n6").style.display = ""; // Mostrar division anterior y siguiente 6
         document.getElementById("btn-back6").style.display = ""; // Mostrar boton Anterior 6
@@ -772,7 +782,9 @@ question25.addEventListener('change', obtenerInfo25);
         document.getElementById('question_27').value = ""; // Limpia select Pregunta 27
         document.getElementById('question_28').value = ""; // Limpia select Pregunta 28
 
-        document.getElementById("div-b&n7").style.display = "none"; // Ocultar division boton Siguiente 7
+        document.getElementById("div-b&n7").style.display = ""; // Mostrar division boton Siguiente 7 
+        document.getElementById("btn-back7").style.display = ""; // Mostrar boton Anterior 7 *********************
+        document.getElementById("btn-next7").style.display = "none"; // Ocultar boton Siguiente 7
 
     }
 
@@ -826,9 +838,9 @@ question26.addEventListener('change', obtenerInfo26);
         document.getElementById('q28').style.display = "none"; // Ocultar division Pregunta 28
 
         document.getElementById('question_28').value = ""; // Limpiar select Pregunta 28
-        
-        document.getElementById("div-b&n7").style.display = "none"; // Ocultar  division boton anterior y siguiente 7
-        document.getElementById("btn-back7").style.display = "none"; // Ocultar boton Anterior 7
+
+        document.getElementById("div-b&n7").style.display = ""; // Mostrar division boton Siguiente 7 
+        document.getElementById("btn-back7").style.display = ""; // Mostrar boton Anterior 7 *********************
         document.getElementById("btn-next7").style.display = "none"; // Ocultar boton Siguiente 7
 
         }
@@ -862,8 +874,8 @@ question27.addEventListener('change', obtenerInfo27);
     else if (respuesta_q27 === "No"){
 
         document.getElementById('q28').style.display = ""; // Mostrar division Pregunta 28
-        document.getElementById('question_28').disabled = true; // Deshabilitar select pregunta 28
-        document.getElementById('question_28').value = "Si"; // Asignar valor al select de la pregunta 28
+        // document.getElementById('question_28').disabled = true; // Deshabilitar select pregunta 28
+        document.getElementById('question_28').value = r_input; // Asignar valor al select de la pregunta 28
 
         document.getElementById("div-b&n7").style.display = ""; // Mostrar division anterior y siguiente 7
         document.getElementById("btn-back7").style.display = ""; // Mostrar boton Anterior 7
@@ -896,8 +908,10 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('question_30').value = ""; // Limpia select Pregunta 30
             document.getElementById('question_31').value = ""; // Limpia select Pregunta 31
             document.getElementById('question_32').value = ""; // Limpia select Pregunta 32
-    
-            document.getElementById("div-b&n8").style.display = "none"; // Ocultar division boton Siguiente 8
+
+            document.getElementById("div-b&n8").style.display = ""; // Mostrar division boton Siguiente 8
+            document.getElementById("btn-back8").style.display = ""; // Mostrar boton Anterior 8 *********************
+            document.getElementById("btn-next8").style.display = "none"; // Ocultar boton Siguiente 8
     
         }
     
@@ -951,9 +965,9 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('q32').style.display = "none"; // Ocultar division Pregunta 32
     
             document.getElementById('question_32').value = ""; // Limpiar select Pregunta 32
-            
-            document.getElementById("div-b&n8").style.display = "none"; // Ocultar  division boton anterior y siguiente 8
-            document.getElementById("btn-back8").style.display = "none"; // Ocultar boton Anterior 8
+
+            document.getElementById("div-b&n8").style.display = ""; // Mostrar division boton Siguiente 8
+            document.getElementById("btn-back8").style.display = ""; // Mostrar boton Anterior 8 *********************
             document.getElementById("btn-next8").style.display = "none"; // Ocultar boton Siguiente 8
     
             }
@@ -987,8 +1001,8 @@ question27.addEventListener('change', obtenerInfo27);
         else if (respuesta_q31 === "No"){
     
             document.getElementById('q32').style.display = ""; // Mostrar division Pregunta 32
-            document.getElementById('question_32').disabled = true; // Deshabilitar select pregunta 32
-            document.getElementById('question_32').value = "Si"; // Asignar valor al select de la pregunta 32
+            // document.getElementById('question_32').disabled = true; // Deshabilitar select pregunta 32
+            document.getElementById('question_32').value = r_input; // Asignar valor al select de la pregunta 32
     
             document.getElementById("div-b&n8").style.display = ""; // Mostrar division anterior y siguiente 8
             document.getElementById("btn-back8").style.display = ""; // Mostrar boton Anterior 8
@@ -1021,8 +1035,10 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('question_34').value = ""; // Limpia select Pregunta 34
             document.getElementById('question_35').value = ""; // Limpia select Pregunta 35
             document.getElementById('question_36').value = ""; // Limpia select Pregunta 36
-    
-            document.getElementById("div-b&n9").style.display = "none"; // Ocultar division boton Siguiente 9
+
+            document.getElementById("div-b&n9").style.display = ""; // Mostrar division boton Siguiente 9
+            document.getElementById("btn-back9").style.display = ""; // Mostrar boton Anterior 9 *********************
+            document.getElementById("btn-next9").style.display = "none"; // Ocultar boton Siguiente 9
     
         }
     
@@ -1076,9 +1092,9 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('q36').style.display = "none"; // Ocultar division Pregunta 36
     
             document.getElementById('question_36').value = ""; // Limpiar select Pregunta 36
-            
-            document.getElementById("div-b&n9").style.display = "none"; // Ocultar  division boton anterior y siguiente 9
-            document.getElementById("btn-back9").style.display = "none"; // Ocultar boton Anterior 9
+
+            document.getElementById("div-b&n9").style.display = ""; // Mostrar division boton Siguiente 9
+            document.getElementById("btn-back9").style.display = ""; // Mostrar boton Anterior 9 *********************
             document.getElementById("btn-next9").style.display = "none"; // Ocultar boton Siguiente 9
     
             }
@@ -1112,8 +1128,8 @@ question27.addEventListener('change', obtenerInfo27);
         else if (respuesta_q35 === "No"){
     
             document.getElementById('q36').style.display = ""; // Mostrar division Pregunta 36
-            document.getElementById('question_36').disabled = true; // Deshabilitar select pregunta 36
-            document.getElementById('question_36').value = "Si"; // Asignar valor al select de la pregunta 36
+            // document.getElementById('question_36').disabled = true; // Deshabilitar select pregunta 36
+            document.getElementById('question_36').value = r_input; // Asignar valor al select de la pregunta 36
     
             document.getElementById("div-b&n9").style.display = ""; // Mostrar division anterior y siguiente 9
             document.getElementById("btn-back9").style.display = ""; // Mostrar boton Anterior 9
@@ -1146,8 +1162,10 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('question_38').value = ""; // Limpia select Pregunta 38
             document.getElementById('question_39').value = ""; // Limpia select Pregunta 39
             document.getElementById('question_40').value = ""; // Limpia select Pregunta 40
-    
-            document.getElementById("div-b&n10").style.display = "none"; // Ocultar division boton Siguiente 10
+
+            document.getElementById("div-b&n10").style.display = ""; // Mostrar division boton Siguiente 10
+            document.getElementById("btn-back10").style.display = ""; // Mostrar boton Anterior 10 *********************
+            document.getElementById("btn-next10").style.display = "none"; // Ocultar boton Siguiente 10
     
         }
     
@@ -1201,9 +1219,9 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('q40').style.display = "none"; // Ocultar division Pregunta 40
     
             document.getElementById('question_40').value = ""; // Limpiar select Pregunta 40
-            
-            document.getElementById("div-b&n10").style.display = "none"; // Ocultar  division boton anterior y siguiente 10
-            document.getElementById("btn-back10").style.display = "none"; // Ocultar boton Anterior 10
+
+            document.getElementById("div-b&n10").style.display = ""; // Mostrar division boton Siguiente 10
+            document.getElementById("btn-back10").style.display = ""; // Mostrar boton Anterior 10 *********************
             document.getElementById("btn-next10").style.display = "none"; // Ocultar boton Siguiente 10
     
             }
@@ -1237,8 +1255,8 @@ question27.addEventListener('change', obtenerInfo27);
         else if (respuesta_q39 === "No"){
     
             document.getElementById('q40').style.display = ""; // Mostrar division Pregunta 40
-            document.getElementById('question_40').disabled = true; // Deshabilitar select pregunta 40
-            document.getElementById('question_40').value = "Si"; // Asignar valor al select de la pregunta 40
+            // document.getElementById('question_40').disabled = true; // Deshabilitar select pregunta 40
+            document.getElementById('question_40').value = r_input; // Asignar valor al select de la pregunta 40
     
             document.getElementById("div-b&n10").style.display = ""; // Mostrar division anterior y siguiente 10
             document.getElementById("btn-back10").style.display = ""; // Mostrar boton Anterior 10
@@ -1273,8 +1291,10 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('question_42').value = ""; // Limpia select Pregunta 42
             document.getElementById('question_43').value = ""; // Limpia select Pregunta 43
             document.getElementById('question_44').value = ""; // Limpia select Pregunta 44
-    
-            document.getElementById("div-b&n11").style.display = "none"; // Ocultar division boton Siguiente 11
+
+            document.getElementById("div-b&n11").style.display = ""; // Mostrar division boton Siguiente 11
+            document.getElementById("btn-back11").style.display = ""; // Mostrar boton Anterior 11 *********************
+            document.getElementById("btn-next11").style.display = "none"; // Ocultar boton Siguiente 11
     
         }
     
@@ -1328,9 +1348,9 @@ question27.addEventListener('change', obtenerInfo27);
             document.getElementById('q44').style.display = "none"; // Ocultar division Pregunta 44
     
             document.getElementById('question_44').value = ""; // Limpiar select Pregunta 44
-            
-            document.getElementById("div-b&n11").style.display = "none"; // Ocultar  division boton anterior y siguiente 11
-            document.getElementById("btn-back11").style.display = "none"; // Ocultar boton Anterior 11
+
+            document.getElementById("div-b&n11").style.display = ""; // Mostrar division boton Siguiente 11
+            document.getElementById("btn-back11").style.display = ""; // Mostrar boton Anterior 11 *********************
             document.getElementById("btn-next11").style.display = "none"; // Ocultar boton Siguiente 11
     
             }
@@ -1364,8 +1384,8 @@ question27.addEventListener('change', obtenerInfo27);
         else if (respuesta_q43 === "No"){
     
             document.getElementById('q44').style.display = ""; // Mostrar division Pregunta 44
-            document.getElementById('question_44').disabled = true; // Deshabilitar select pregunta 44
-            document.getElementById('question_44').value = "Si"; // Asignar valor al select de la pregunta 44
+            // document.getElementById('question_44').disabled = true; // Deshabilitar select pregunta 44
+            document.getElementById('question_44').value = r_input; // Asignar valor al select de la pregunta 44
     
             document.getElementById("div-b&n11").style.display = ""; // Mostrar division anterior y siguiente 11
             document.getElementById("btn-back11").style.display = ""; // Mostrar boton Anterior 11
@@ -1398,7 +1418,10 @@ question45.addEventListener('change', obtenerInfo45);
         document.getElementById('question_47').value = ""; // Limpia select Pregunta 47
         document.getElementById('question_48').value = ""; // Limpia select Pregunta 48
 
-        document.getElementById("div-b&n12").style.display = "none"; // Ocultar division boton Siguiente 12
+        
+        document.getElementById("div-b&n12").style.display = ""; // Mostrar division boton Siguiente 12
+        document.getElementById("btn-back12").style.display = ""; // Mostrar boton Anterior 12 *********************
+        document.getElementById("btn-next12").style.display = "none"; // Ocultar boton Siguiente 12
 
     }
 
@@ -1452,9 +1475,9 @@ question46.addEventListener('change', obtenerInfo46);
         document.getElementById('q48').style.display = "none"; // Ocultar division Pregunta 48
 
         document.getElementById('question_48').value = ""; // Limpiar select Pregunta 48
-        
-        document.getElementById("div-b&n12").style.display = "none"; // Ocultar  division boton anterior y siguiente 12
-        document.getElementById("btn-back12").style.display = "none"; // Ocultar boton Anterior 12
+
+        document.getElementById("div-b&n12").style.display = ""; // Mostrar division boton Siguiente 12
+        document.getElementById("btn-back12").style.display = ""; // Mostrar boton Anterior 12 *********************
         document.getElementById("btn-next12").style.display = "none"; // Ocultar boton Siguiente 12
 
         }
@@ -1488,8 +1511,8 @@ question47.addEventListener('change', obtenerInfo47);
     else if (respuesta_q47 === "No"){
 
         document.getElementById('q48').style.display = ""; // Mostrar division Pregunta 48
-        document.getElementById('question_48').disabled = true; // Deshabilitar select pregunta 48
-        document.getElementById('question_48').value = "Si"; // Asignar valor al select de la pregunta 48
+        // document.getElementById('question_48').disabled = true; // Deshabilitar select pregunta 48
+        document.getElementById('question_48').value = r_input; // Asignar valor al select de la pregunta 48
 
         document.getElementById("div-b&n12").style.display = ""; // Mostrar division anterior y siguiente 12
         document.getElementById("btn-back12").style.display = ""; // Mostrar boton Anterior 12
@@ -1524,7 +1547,9 @@ question49.addEventListener('change', obtenerInfo49);
         document.getElementById('question_51').value = ""; // Limpia select Pregunta 51
         document.getElementById('question_52').value = ""; // Limpia select Pregunta 52
 
-        document.getElementById("div-b&n13").style.display = "none"; // Ocultar division boton Siguiente 13
+        document.getElementById("div-b&n13").style.display = ""; // Mostrar division boton Siguiente 13
+        document.getElementById("btn-back13").style.display = ""; // Mostrar boton Anterior 13 *********************
+        document.getElementById("btn-next13").style.display = "none"; // Ocultar boton Siguiente 13
 
     }
 
@@ -1579,8 +1604,8 @@ question50.addEventListener('change', obtenerInfo50);
 
         document.getElementById('question_52').value = ""; // Limpiar select Pregunta 52
         
-        document.getElementById("div-b&n13").style.display = "none"; // Ocultar  division boton anterior y siguiente 13
-        document.getElementById("btn-back13").style.display = "none"; // Ocultar boton Anterior 13
+        document.getElementById("div-b&n13").style.display = ""; // Mostrar division boton Siguiente 13
+        document.getElementById("btn-back13").style.display = ""; // Mostrar boton Anterior 13 *********************
         document.getElementById("btn-next13").style.display = "none"; // Ocultar boton Siguiente 13
 
         }
@@ -1614,8 +1639,8 @@ question51.addEventListener('change', obtenerInfo51);
     else if (respuesta_q51 === "No"){
 
         document.getElementById('q52').style.display = ""; // Mostrar division Pregunta 52
-        document.getElementById('question_52').disabled = true; // Deshabilitar select pregunta 52
-        document.getElementById('question_52').value = "Si"; // Asignar valor al select de la pregunta 52
+        // document.getElementById('question_52').disabled = true; // Deshabilitar select pregunta 52
+        document.getElementById('question_52').value = r_input; // Asignar valor al select de la pregunta 52
 
         document.getElementById("div-b&n13").style.display = ""; // Mostrar division anterior y siguiente 13
         document.getElementById("btn-back13").style.display = ""; // Mostrar boton Anterior 13
