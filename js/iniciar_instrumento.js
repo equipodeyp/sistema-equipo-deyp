@@ -2,6 +2,7 @@
 
   function iniciandoDisplay() {
 
+    document.getElementById("instrucciones").style.display = ""; // Mostrar División instrucciones y recomendaciones
     document.getElementById("div_1").style.display = "none"; // Ocultar Apartado Adicciones 1
     document.getElementById("div_2").style.display = "none"; // Ocultar Apartado Discapacidad 2
     document.getElementById("div_3").style.display = "none"; // Ocultar Apartado Emfermedad 3
@@ -170,6 +171,8 @@
     document.getElementById("div_1").style.display = ""; // Mostrar Apartado 1. ADICCIONES
     document.getElementById("iniciar_instrumento").style.display = "none"; // Ocultar Boton Iniciar 
     document.getElementById("q1").style.display = ""; // Mostrar Pregunta 1
+    document.getElementById("instrucciones").style.display = "none"; // División instrucciones y recomendaciones
+    
 
     document.getElementById("question_1").value = ""; // Limpiar select pregunta 1
     document.getElementById("question_2").value = ""; // Limpiar select pregunta 2

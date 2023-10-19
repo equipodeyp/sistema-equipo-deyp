@@ -205,6 +205,8 @@ $r_input = "Si";
                   <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
                   <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $full_name;?>">
                 </div>
+        
+        <div id="instrucciones">
             
                 <div id="cabecera">
                   <div class="row alert div-title">
@@ -226,6 +228,9 @@ $r_input = "Si";
                   </div>
                   <br></br>
                 </div>
+        
+                
+        </div>
 
 
               
@@ -838,7 +843,7 @@ $r_input = "Si";
 
 
             <div class="col-md-6 mb-3" id="q51">
-              <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO UNA VÍCTIMA PROVOCADORA/ VÍCTIMA POR IMPRUDENCIA?</label>
+              <label for="" class="">¿ATENDIENDO LA DINÁMICA DE LOS HECHOS SE PUEDE CONSIDERAR COMO UNA VÍCTIMA PROVOCADORA Ó VÍCTIMA POR IMPRUDENCIA?</label>
               <select class="form-select form-select-lg" id="question_51" name="r_question_51">
                 <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <option value="Si">Si</option>
@@ -949,7 +954,7 @@ $r_input = "Si";
                       </div>
                   </div>
             
-              
+
               </div>
               </form>
               </div>

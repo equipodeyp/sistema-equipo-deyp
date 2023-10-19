@@ -18,14 +18,14 @@ $resultado23=$mysqli->query($query);
 $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
-$fol_exp = $_GET['folio'];
-echo $fol_exp;
+$id_instrumento = $_GET['folio'];
+echo $id_instrumento;
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-echo $name_folio;
+// echo $name_folio;
 $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
@@ -182,15 +182,62 @@ $r_input = "Si";
                   </div>
 
 
- 
+
+                  <table class="table table-bordered" id="table-tickets">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center; font-size: 18px;">Categoria</th>
+                            <th style="text-align:center; font-size: 18px;">No.</th>
+                            <th style="text-align:center; font-size: 18px;">Pregunta</th>
+                            <th style="text-align:center; font-size: 18px;">Respuesta</th>
+                            <th style="text-align:center; font-size: 18px;">Valor</th> 
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        
+
+                            $question='p';
+                            $count = 0;
+
+                            $query = "SELECT * FROM preguntas_instrumento";
+                            $result= mysqli_query($mysqli, $query);
+                            while($row = mysqli_fetch_array($result)) {
+
+                            $count = $count + 1;
+                          
+
+                            $pregunta = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
+                            $r= mysqli_query($mysqli, $pregunta);
+
+                            while($p = mysqli_fetch_array($r)) {
+                              $aux=$question.$count;
+                              // echo $aux;
+
+                              echo "<tr >";
+                              echo "<td style='text-align:center; font-size: 10px;'>";  echo "</td>";
+                              echo "<td style='text-align:center; font-size: 10px;'>";  echo $count; echo "</td>";
+                              echo "<td style='font-size: 10px;'>"; echo $row['pregunta']; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 10px;'>"; echo $p[$aux]; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 10px;'>";  echo "</td>";
+                              echo "</tr>";
+
+                            }
 
 
-            
+                        ?>
 
 
 
-            
-              
+                            <?php } ?>
+                    </tbody>
+                </table>
+              </div>
+
+
+
               </div>
               </form>
               </div>

@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -19,7 +19,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
+echo $fol_exp;
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
@@ -181,7 +181,7 @@ $r_input = "Si";
                   </div>
 
 
-                  <div>
+              <div>
 
                 <table class="table table-bordered" id="table-tickets">
                     <thead>
@@ -201,7 +201,10 @@ $r_input = "Si";
                             $count = 0;
                             $query = "SELECT * FROM instrumento WHERE folio_expediente = '$name_folio'";
                             $result_tickets = mysqli_query($mysqli, $query);
-                            while($row = mysqli_fetch_array($result_tickets)) {?>
+                            while($row = mysqli_fetch_array($result_tickets)) {
+                              $id_instrumento=$row['id_instrumento'];
+                              
+                        ?>
                             <?php $count = $count + 1 ?>
                                 <tr>
                                     <td><?php echo $count?></td>
@@ -211,22 +214,17 @@ $r_input = "Si";
                                     <td><?php echo $row['nombre_servidor']?></td>
                                     <td style="text-align:center">
 
-                                        <a href="resultado_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn color-btn-success">
+                                        <a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn color-btn-success">
                                             <i  class="fas fa-marker" ></i>
                                         </a>
-                                        <!-- <a href="edit_ticket.php?id=<?php echo $row['id']?>" class="btn color-btn-gray">
-                                            <i  class="fas fa-send"></i>
-                                        </a> -->
-                                        <!-- <a href="delete_ticket.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a> -->
+
                                     </td>
                                 </tr>
 
                             <?php } ?>
                     </tbody>
                 </table>
-                </div>
+              </div>
 
 
             
