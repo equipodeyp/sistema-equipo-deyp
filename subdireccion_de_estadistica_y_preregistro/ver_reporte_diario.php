@@ -327,7 +327,80 @@ input{display: none}
           <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
           <a class="actived">REPORTE DIARIO</a>
         </div>
-
+<?php
+date_default_timezone_set("America/Mexico_City");
+$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
+$fecha_actual = date("Y-m-d");
+echo $day = date("l");
+switch ($day) {
+    case "Sunday":
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 4 day"));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 5 day"));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 6 day"));
+    break;
+    case "Monday":
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 4 day"));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 5 day"));
+    break;
+    case "Tuesday":
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 4 day"));
+    break;
+    case "Wednesday":
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
+    break;
+    case "Thursday":  //Jueves
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+    break;
+    case "Friday": //Viernes
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+    break;
+    case "Saturday": //sabado
+           $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));
+           $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
+           $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
+           $fecha_miercoles =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
+           $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
+           $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+           $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual));
+    break;
+}
+////////////////////////////////////////////////////////////////////////////////
+?>
 <div class="col-lg-12">
   <div class="table-responsive">
     <!-- <img src="../image/CALENDARIO/10 MENSUAL.png" alt="" width="280px" height="70"> -->
@@ -343,19 +416,33 @@ input{display: none}
       <tbody>
         <tr>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_domingo" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/7 DOMINGO.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/7 DOMINGO.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_domingo)); ?></p></b></h4>
+          </td>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_lunes" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/1 LUNES.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/1 LUNES.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_lunes)); ?></p></b></h4>
+          </td>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_martes" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/2 MARTES.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/2 MARTES.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_martes)); ?></p></b></h4>
+          </td>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_miercoles" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/3 MIERCOLES.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/3 MIERCOLES.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_miercoles)); ?></p></b></h4>
+          </td>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_jueves" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/4 JUEVES.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/4 JUEVES.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_jueves)); ?></p></b></h4>
+          </td>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_viernes" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/5 VIERNES.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/5 VIERNES.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_viernes)); ?></p></b></h4>
+          </td>
           <td style="border: 5px solid #97897D; text-align:center" width="10px" height="80"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_dia_sabado" name="button" class="btn btn-secondary" style="width:150px;">
-            <img src="../image/CALENDARIO/6 SABADO.png" alt="" width="120px" height="50"> </button> </td>
+            <img src="../image/CALENDARIO/6 SABADO.png" alt="" width="120px" height="50"> </button>
+            <h4><b><p><?php echo $newDate = date("d/m/Y", strtotime($fecha_sabado)); ?></p></b></h4>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -400,7 +487,24 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <iframe src="../docs/REPORTES/DOMINGO.pdf" style="width:870px; height:600px;" ></iframe>
+              <?php
+              if ($fecha_domingo >= $fecha_actual) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/DOMINGO.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -422,7 +526,24 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <iframe src="../docs/REPORTES/LUNES.pdf" style="width:870px; height:600px;" ></iframe>
+              <?php
+              if ($fecha_lunes >= $fecha_actual) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/LUNES.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -444,7 +565,24 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <iframe src="../docs/REPORTES/MARTES.pdf" style="width:870px; height:600px;" ></iframe>
+              <?php
+              if ($fecha_martes >= $fecha_actual) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/MARTES.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -466,7 +604,24 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <iframe src="../docs/REPORTES/MIERCOLES.pdf" style="width:870px; height:600px;" ></iframe>
+              <?php
+              if ($fecha_miercoles >= $fecha_actual) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/MIERCOLES.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -488,7 +643,24 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <!-- <iframe src="../docs/REPORTES/JUEVES.pdf" style="width:870px; height:600px;" ></iframe> -->
+              <?php
+              if ($fecha_jueves >= $fecha_actual) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/JUEVES.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -510,7 +682,24 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <!-- <iframe src="../docs/REPORTES/VIERNES.pdf" style="width:870px; height:600px;" ></iframe> -->
+              <?php
+              if ($fecha_viernes >= $fecha_actual) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/VIERNES.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -532,7 +721,25 @@ input{display: none}
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <!-- <iframe src="../docs/REPORTES/SABADO.pdf" style="width:870px; height:600px;" ></iframe> -->
+              <?php
+              $fecha_sabado2 =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+              if ($fecha_sabado >= $fecha_sabado2) {
+                ?>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100% Complete</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center" style="text-align:center">
+                  <span class="visually-hidden"> <b> <p> EN PROCESO... </p> </b> </span>
+                </div>
+                <?php
+              }else {
+                ?>
+                <iframe src="../docs/REPORTES/SABADO.pdf" style="width:870px; height:600px;" ></iframe>
+                <?php
+              }
+              ?>
             </div>
           </div>
         </div>
