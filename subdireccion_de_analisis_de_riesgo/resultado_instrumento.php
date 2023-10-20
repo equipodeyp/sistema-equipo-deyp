@@ -1,5 +1,6 @@
 <?php
-error_reporting(0);
+
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -18,14 +19,19 @@ $resultado23=$mysqli->query($query);
 $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
+$fol_exp = $_GET['folio'];
+// echo $fol_exp;
 $id_instrumento = $_GET['folio'];
-echo $id_instrumento;
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
 // echo $name_folio;
+
+
+
+
 $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
@@ -71,6 +77,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
 $r_input = "Si";
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -165,24 +172,47 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a class="actived">DETALLE DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>">INSTRUMENTOS REGISTRADOS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?=$id_instrumento?>" class="actived">DETALLE DEL INSTRUMENTO</a>
             </div>
 
             
             <div class="container">
         	<div class="well form-horizontal">
               <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+                
+              <div class="row">
 
-        				<div class="row">
+                    <div id="cabecera">
+                      <div class="row alert div-title">
+                        <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3 ">
+                      <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
+                      <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                    <label for="">ID PERSONA<span></span></label>
+                    <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" readonly>
+                    </div>
+
+              </div>
+
+
+              <div class="row">
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">TABLA DE VALORES REGISTRADOS</h3>
+                      <h3 style="text-align:center">RESPUESTAS REGISTRADAS</h3>
                     </div>
                   </div>
 
 
-
+              <div>
                   <table class="table table-bordered" id="table-tickets">
                     <thead>
                         <tr>
@@ -191,22 +221,22 @@ $r_input = "Si";
                             <th style="text-align:center; font-size: 18px;">Pregunta</th>
                             <th style="text-align:center; font-size: 18px;">Respuesta</th>
                             <th style="text-align:center; font-size: 18px;">Valor</th> 
-                            
-                            
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        
+
 
                             $question='p';
                             $count = 0;
+                            $c = 0;
 
                             $query = "SELECT * FROM preguntas_instrumento";
                             $result= mysqli_query($mysqli, $query);
                             while($row = mysqli_fetch_array($result)) {
 
                             $count = $count + 1;
+                            $c = $c + 4;
                           
 
                             $pregunta = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
@@ -216,14 +246,17 @@ $r_input = "Si";
                               $aux=$question.$count;
                               // echo $aux;
 
-                              echo "<tr >";
-                              echo "<td style='text-align:center; font-size: 10px;'>";  echo "</td>";
+                              
+
+                              echo "<tr>";
+                              echo "<td rowspan = style='text-align:center; font-size: 10px;'>";  echo $c; "</td>";
                               echo "<td style='text-align:center; font-size: 10px;'>";  echo $count; echo "</td>";
                               echo "<td style='font-size: 10px;'>"; echo $row['pregunta']; echo "</td>";
                               echo "<td style='text-align:center; font-size: 10px;'>"; echo $p[$aux]; echo "</td>";
                               echo "<td style='text-align:center; font-size: 10px;'>";  echo "</td>";
                               echo "</tr>";
 
+                              
                             }
 
 
@@ -237,6 +270,19 @@ $r_input = "Si";
               </div>
 
 
+                <div>
+                    <table class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <th style="text-align:right; font-size: 18px; bgcolor: red;">TOTAL</th>
+                              <th style="text-align:center; font-size: 18px;"></th>
+                          </tr>
+                      </thead>
+                    </table>
+                </div>
+
+
+
 
               </div>
               </form>
@@ -248,7 +294,7 @@ $r_input = "Si";
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

@@ -19,13 +19,18 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
+// echo $fol_exp;
+
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-echo $name_folio;
+// echo $name_folio;
+
+
+
+
 $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
@@ -138,7 +143,7 @@ $r_input = "Si";
            		<ul>
                 <?php
                     if ($user=='guillermogv') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$id_person'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
             	</ul>
@@ -164,7 +169,8 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a class="actived">INSTRUMENTO DE ADAPTABILIDAD</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="actived">INSTRUMENTOS REGISTRADOS</a>
             </div>
 
             
@@ -176,7 +182,7 @@ $r_input = "Si";
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">TABLA DE LOS INSTRUMENTOS REGISTRADOS</h3>
+                      <h3 style="text-align:center">INSTRUMENTOS REGISTRADOS</h3>
                     </div>
                   </div>
 
