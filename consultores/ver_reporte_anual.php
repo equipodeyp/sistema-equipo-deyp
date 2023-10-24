@@ -1,7 +1,6 @@
 <?php
-header("Content-Type: text/html;charset=utf-8");
-date_default_timezone_set("America/Mexico_City");
 /*require 'conexion.php';*/
+date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -29,7 +28,8 @@ if(!isset($_SESSION['already_refreshed'])){
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
- ?>
+// echo"$name";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -64,10 +64,10 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+    <link rel="stylesheet" href="../css/breadcrumb.css">
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
-
   $(document).ready(function() {
       $('#example').DataTable({
           language: {
@@ -85,33 +85,36 @@ $row=$result->fetch_assoc();
              },
              "sProcessing":"Procesando...",
               },
-          // para usar los botones
-      //     responsive: "true",
-      //     dom: 'Bfrtilp',
-      //     buttons:[
-      //   {
-      //     extend:    'excelHtml5',
-      //     text:      '<i class="fas fa-file-excel"></i> ',
-      //     titleAttr: 'Exportar a Excel',
-      //     className: 'btn btn-success'
-      //   },
-      //   {
-      //     extend:    'pdfHtml5',
-      //     text:      '<i class="fas fa-file-pdf"></i> ',
-      //     titleAttr: 'Exportar a PDF',
-      //     className: 'btn btn-danger'
-      //   },
-      //   {
-      //     extend:    'print',
-      //     text:      '<i class="fa fa-print"></i> ',
-      //     titleAttr: 'Imprimir',
-      //     className: 'btn btn-info'
-      //   },
-      // ]
       });
   });
   </script>
-  <style>
+  <style media="screen">
+  .submenu {
+    display: none;
+  }
+  .opacity {
+    /* opacity: 100%; */
+  }
+
+  /*  */
+  .submenu2 {
+    display: none;
+  }
+  .opacity2 {
+    /* opacity: 100%; */
+  }
+  /*  */
+
+  /*  */
+  .submenu3 {
+    display: none;
+  }
+  .opacity3 {
+    /* opacity: 100%; */
+  }
+  /*  */
+
+
     .pagination {
   display: inline-block;
   padding-left: 0;
@@ -215,14 +218,6 @@ a:focus {
   text-decoration: underline;
 }
 
-/*  */
-.submenu3 {
-  display: none;
-}
-.opacity3 {
-  /* opacity: 100%; */
-}
-/*  */
   </style>
 </head>
 <body>
@@ -247,18 +242,29 @@ a:focus {
         }
         // echo $genero;
          ?>
-        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
+        <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
         <ul>
+
+        <!-- <?php
+
+          if ($name=='e-gabriela' || $name=='e-azael' || $name=='e-jonathan') {
+            echo "<a style='text-align:center' class='user-nombre' href='./incidencias_por_atender.php'><button type='button' class='btn btn-light'>INCIDENCIAS</button> </a>";
+          }
+
+          ?> -->
+
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
+          <!-- <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;" >GLOSARIO</span></a></li> -->
+          <!--  -->
           <li id="liestadistica3" class="subtitle3">
             <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
             <ul class="submenu3">
               <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
               <li id="lipersonas" class="menu-items"><a href="../consultores/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
-              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
+              <!-- <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li> -->
               <!-- <li id="limedidas" class="menu-items"><a href="../consultores/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
             </ul>
           </li>
@@ -282,93 +288,43 @@ a:focus {
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-        <div class="row">
-          <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
-        </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
-        <div class="">
-            <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                              <h3 style="text-align:center">Registros</h3>
-                                <tr>
-                                    <th style="text-align:center">NO</th>
-                                    <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCION</th>
-                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
-                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACION DEL EXPEDIENTE DE PROTECCION</th>
-                                    <th style="text-align:center">DETALLES</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                              $contador = 0;
-                              $sql = "SELECT * FROM expediente";
-                              $resultado = $mysqli->query($sql);
-                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
-                              $fol_exp =$row['fol_exp'];
-
-                              $tabla="SELECT * FROM expediente";
-                              $var_resultado = $mysqli->query($tabla);
-
-                              while ($var_fila=$var_resultado->fetch_array())
-                              {
-                                $contador = $contador + 1;
-                                $fol_exp2=$var_fila['fol_exp'];
-
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
-                                $result=$mysqli->query($abc);
-                                if($result)
-                                {
-                                  while($row=mysqli_fetch_assoc($result))
-                                  {
-                                    echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
-                                      echo "<i class='fas fa-check'></i>";
-                                    }elseif ($var_fila['validacion'] == 'false') {
-                                      echo "<i class='fas fa-times'></i>";
-                                    } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open color-icon'></span></a></td>";
-
-                                    echo "</tr>";
-
-                                  }
-
-                                }
-                              }
-                            ?>
-                            </tbody>
-                           </table>
-                        </div>
-                    </div>
-            </div>
+        <div class="secciones form-horizontal sticky breadcrumb flat">
+          <a href="../consultores/admin.php">REGISTROS</a>
+          <a class="actived">REPORTE ANUAL</a>
         </div>
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <!-- <img src="../image/CALENDARIO/10 MENSUAL.png" alt="" width="280px" height="70"> -->
+            <img src="../image/CALENDARIO/3.png" alt="" width="1110px" height="120">
+            <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
+              <thead class="thead-dark">
+                <tr>
+                  <th style="border: 5px solid #97897D; text-align:center" colspan="1"  width="100px" height="120">
+                    <b><p><font size="10px"><?php $year = date("Y"); echo $year-1; ?></font></p></b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td  width="1000px" height="80"> <button type="button" <a name="button" class="btn btn-secondary" style="width:1100px;">
+                    <img src="../image/CALENDARIO/12 ANUAL.png" alt="" width="520px" height="90"> </button><br>
+                    <iframe src="../docs/REPORTES/ANUAL2022.pdf" width="1100" height="900"></iframe>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--  -->
+
+
       </div>
     </div>
   </div>
   <div class="contenedor">
-    <div class="columns download">
-
-              <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
-
-    </div>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
   <!-- modal del glosario -->
@@ -394,6 +350,32 @@ a:focus {
   </div>
   <!-- fin modal  -->
   <script type="text/javascript">
+  // CODIGO DE MENU CON submenu
+  $(".subtitle .action").click(function(event){
+   var subtitle = $(this).parents(".subtitle");
+   var submenu = $(subtitle).find(".submenu");
+
+   $(".submenu").not($(submenu)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle)).removeClass("open");
+
+   $(subtitle).toggleClass("open");
+   $(submenu).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+  // CODIGO DE MENU CON submenu2
+  $(".subtitle2 .action2").click(function(event){
+   var subtitle2 = $(this).parents(".subtitle2");
+   var submenu2 = $(subtitle2).find(".submenu2");
+
+   $(".submenu2").not($(submenu2)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle2)).removeClass("open");
+
+   $(subtitle2).toggleClass("open");
+   $(submenu2).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
   // CODIGO DE MENU CON submenu3
   $(".subtitle3 .action3").click(function(event){
    var subtitle3 = $(this).parents(".subtitle3");
@@ -407,7 +389,6 @@ a:focus {
 
    return false;
   });
-  //
   </script>
 </body>
 </html>
