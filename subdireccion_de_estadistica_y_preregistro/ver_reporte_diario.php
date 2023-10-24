@@ -333,9 +333,9 @@ $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","S
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $fecha_actual = date("Y-m-d");
-echo $day = date("l");
+$day = date("l");
 switch ($day) {
-    case "Sunday":
+    case "Sunday"://DOMINGO
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual));
            $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
            $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
@@ -343,8 +343,16 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 4 day"));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 5 day"));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 6 day"));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 4 day"));
+           echo $day = date("z");
+           $ddomingo = $day ;
+           echo "<br>";
+           // echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
     break;
-    case "Monday":
+    case "Monday"://LUNES
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
            $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual));
            $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
@@ -352,8 +360,16 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 4 day"));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 5 day"));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 1 day"));
+           echo $day = date("z");
+           $ddomingo = $day;
+           echo "<br>";
+           // echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
     break;
-    case "Tuesday":
+    case "Tuesday"://MARTES
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
            $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
            $fecha_martes =  date("Y-m-d",strtotime($fecha_actual));
@@ -361,8 +377,20 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 4 day"));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 2 day"));
+           $fechlunes =  date("dmY",strtotime($fecha_actual." - 1 day"));
+           $day = date("z");
+           $ddomingo = $day - 1;
+           $dlunes = $day;
+           echo "<br>";
+           echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
+           echo "<br>";
+           echo 'LUNES---'.$ddlunes = '('.$dlunes.') RD_'.$fechlunes;
     break;
-    case "Wednesday":
+    case "Wednesday"://MIERCOLES
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
            $fecha_lunes =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
            $fecha_martes =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
@@ -370,6 +398,22 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 3 day"));
+           $fechlunes =  date("dmY",strtotime($fecha_actual." - 2 day"));
+           $fechmartes =  date("dmY",strtotime($fecha_actual." - 1 day"));
+           $day = date("z");
+           $ddomingo = $day - 2;
+           $dlunes = $day - 1;
+           $dmartes = $day;
+           echo "<br>";
+           echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
+           echo "<br>";
+           echo 'LUNES---'.$ddlunes = '('.$dlunes.') RD_'.$fechlunes;
+           echo "<br>";
+           echo 'MARTES---'.$ddmartes = '('.$dmartes.') RD_'.$fechmartes;
     break;
     case "Thursday":  //Jueves
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
@@ -379,6 +423,26 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 4 day"));
+           $fechlunes =  date("dmY",strtotime($fecha_actual." - 3 day"));
+           $fechmartes =  date("dmY",strtotime($fecha_actual." - 2 day"));
+           $fechmiercoles =  date("dmY",strtotime($fecha_actual." - 1 day"));
+           $day = date("z");
+           $ddomingo = $day - 3;
+           $dlunes = $day - 2;
+           $dmartes = $day - 1;
+           $dmiercoles = $day;
+           echo "<br>";
+           echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
+           echo "<br>";
+           echo 'LUNES---'.$ddlunes = '('.$dlunes.') RD_'.$fechlunes;
+           echo "<br>";
+           echo 'MARTES---'.$ddmartes = '('.$dmartes.') RD_'.$fechmartes;
+           echo "<br>";
+           echo 'MIERCOLES---'.$ddmiercoles = '('.$day.') RD_'.$fechmiercoles;
     break;
     case "Friday": //Viernes
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
@@ -388,6 +452,30 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 5 day"));
+           $fechlunes =  date("dmY",strtotime($fecha_actual." - 4 day"));
+           $fechmartes =  date("dmY",strtotime($fecha_actual." - 3 day"));
+           $fechmiercoles =  date("dmY",strtotime($fecha_actual." - 2 day"));
+           $fechjueves =  date("dmY",strtotime($fecha_actual." - 1 day"));
+           $day = date("z");
+           $ddomingo = $day - 4;
+           $dlunes = $day - 3;
+           $dmartes = $day - 2;
+           $dmiercoles = $day - 1;
+           $djueves = $day;
+           echo "<br>";
+           echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
+           echo "<br>";
+           echo 'LUNES---'.$ddlunes = '('.$dlunes.') RD_'.$fechlunes;
+           echo "<br>";
+           echo 'MARTES---'.$ddmartes = '('.$dmartes.') RD_'.$fechmartes;
+           echo "<br>";
+           echo 'MIERCOLES---'.$ddmiercoles = '('.$dmiercoles.') RD_'.$fechmiercoles;
+           echo "<br>";
+           echo 'JUEVES---'.$ddjueves = '('.$djueves.') RD_'.$fechjueves;
     break;
     case "Saturday": //sabado
            $fecha_domingo =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));
@@ -397,6 +485,38 @@ switch ($day) {
            $fecha_jueves =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));
            $fecha_viernes =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
            $fecha_sabado =  date("Y-m-d",strtotime($fecha_actual));
+           $fech = date("dmY");
+           $fechdomingo =  date("dmY",strtotime($fecha_actual." - 6 day"));
+           $fechlunes =  date("dmY",strtotime($fecha_actual." - 5 day"));
+           $fechmartes =  date("dmY",strtotime($fecha_actual." - 4 day"));
+           $fechmiercoles =  date("dmY",strtotime($fecha_actual." - 3 day"));
+           $fechjueves =  date("dmY",strtotime($fecha_actual." - 2 day"));
+           $fechviernes =  date("dmY",strtotime($fecha_actual." - 1 day"));
+           $fechsabado =  date("dmY",strtotime($fecha_actual));
+           $day = date("z");
+           $ddomingo = $day - 5;
+           $dlunes = $day - 4;
+           $dmartes = $day - 3;
+           $dmiercoles = $day - 2;
+           $djueves = $day - 1;
+           $dviernes = $day;
+           $dsabado = $day+1;
+           echo "<br>";
+           echo "(291) RD_18102023";
+           echo "<br>";
+           echo 'DOMINGO---'.$dddomingo = '('.$ddomingo.') RD_'.$fechdomingo;
+           echo "<br>";
+           echo 'LUNES---'.$ddlunes = '('.$dlunes.') RD_'.$fechlunes;
+           echo "<br>";
+           echo 'MARTES---'.$ddmartes = '('.$dmartes.') RD_'.$fechmartes;
+           echo "<br>";
+           echo 'MIERCOLES---'.$ddmiercoles = '('.$dmiercoles.') RD_'.$fechmiercoles;
+           echo "<br>";
+           echo 'JUEVES---'.$ddjueves = '('.$djueves.') RD_'.$fechjueves;
+           echo "<br>";
+           echo 'VIERNES---'.$ddviernes = '('.$dviernes.') RD_'.$fechviernes;
+           echo "<br>";
+           echo 'SABADO---'.$ddsabado = '('.$dsabado.') RD_'.$fechsabado;
     break;
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -500,8 +620,9 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                echo '<iframe src="../docs/REPORTES/'.$dddomingo.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/DOMINGO.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/DOMINGO.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
               }
               ?>
@@ -539,8 +660,9 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                echo '<iframe src="../docs/REPORTES/'.$ddlunes.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/LUNES.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/LUNES.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
               }
               ?>
@@ -578,8 +700,16 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                // $fech = date("dmY");
+                // $fech =  date("dmY",strtotime($fecha_actual." - 1 day"));
+                // echo $day = date("z");
+                // echo "<br>";
+                // echo "(291) RD_18102023";
+                // echo "<br>";
+                // echo $dia = '('.$day.') RD_'.$fech;
+                echo '<iframe src="../docs/REPORTES/'.$ddmartes.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/MARTES.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/MARTES.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
               }
               ?>
@@ -617,9 +747,11 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                echo '<iframe src="../docs/REPORTES/'.$ddmiercoles.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/MIERCOLES.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/(291) RD_18102023.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
+
               }
               ?>
             </div>
@@ -656,8 +788,9 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                  echo '<iframe src="../docs/REPORTES/'.$ddjueves.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/JUEVES.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/JUEVES.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
               }
               ?>
@@ -695,8 +828,9 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                echo '<iframe src="../docs/REPORTES/'.$ddviernes.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/VIERNES.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/VIERNES.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
               }
               ?>
@@ -735,8 +869,9 @@ switch ($day) {
                 </div>
                 <?php
               }else {
+                echo '<iframe src="../docs/REPORTES/'.$ddsabado.'.pdf" style="width:870px; height:600px;" ></iframe>';
                 ?>
-                <iframe src="../docs/REPORTES/SABADO.pdf" style="width:870px; height:600px;" ></iframe>
+                <!-- <iframe src="../docs/REPORTES/SABADO.pdf" style="width:870px; height:600px;" ></iframe> -->
                 <?php
               }
               ?>
