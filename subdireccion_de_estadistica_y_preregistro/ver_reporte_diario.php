@@ -602,7 +602,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -642,7 +642,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -682,7 +682,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -729,7 +729,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -770,7 +770,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -810,7 +810,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -850,7 +850,7 @@ switch ($day) {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE DIARIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">

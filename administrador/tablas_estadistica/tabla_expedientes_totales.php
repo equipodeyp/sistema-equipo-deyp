@@ -85,6 +85,7 @@ $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
    echo "<td style='text-align:center'>"; echo $festatusseguimiento['status']; echo "</td>";
    echo "<td style='text-align:center'>"; echo $row_med1['cant']; echo "</td>";
    echo "<td style='text-align:center'>"; echo $row_med2['cant']; echo "</td>";
+   echo "<td style='text-align:center'>"; echo $fexpedientes['relacion']; echo "</td>";
   echo "</tr>";
 }
 ?>
