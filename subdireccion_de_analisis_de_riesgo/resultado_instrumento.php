@@ -182,33 +182,28 @@ $r_input = "Si";
                   </div>
 
 
-
-                  <table class="table table-bordered" id="table-tickets">
+              <!-- <div>
+                  <table class="table table-bordered" id="table-instrumento">
                     <thead>
                         <tr>
                             <th style="text-align:center; font-size: 18px;">Categoria</th>
                             <th style="text-align:center; font-size: 18px;">No.</th>
-                            <th style="text-align:center; font-size: 18px;">Pregunta</th>
-                            <th style="text-align:center; font-size: 18px;">Respuesta</th>
-                            <th style="text-align:center; font-size: 18px;">Valor</th>
-
-
                         </tr>
                     </thead>
                     <tbody>
 
                     </tbody>
-                </table>
-              </div>
+                  </table>
+              </div>  -->
 
-              <table class="table table-bordered" id="table-tickets">
+              <table class="table table-bordered" id="table-instrumento">
                 <thead>
                     <tr>
-                        <th style="text-align:center; font-size: 18px;">Categoria</th>
-                        <th style="text-align:center; font-size: 18px;">No.</th>
-                        <th style="text-align:center; font-size: 18px;">Pregunta</th>
-                        <th style="text-align:center; font-size: 18px;">Respuesta</th>
-                        <th style="text-align:center; font-size: 18px;">Valor</th>
+                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Categoria</th>
+                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">No.</th>
+                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Pregunta</th>
+                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Respuesta</th>
+                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Valor</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -225,12 +220,21 @@ $r_input = "Si";
                         $c = 3;
                         $cc = 6;
                         $d = 4;
-                        $dd = 7;
+                        $dd = 7; 
+
+                        $array = array();
+
                         while ($aa <= 13) {
+
+                            $sentenciar5=" SELECT * FROM categoria_instrumento WHERE id='$aa'";
+                            $resultr5 = $mysqli->query($sentenciar5);
+                            $rowr5=$resultr5->fetch_assoc();
+                            // echo $aa;
+
                             $sentenciar=" SELECT * FROM preguntas_instrumento WHERE id='$a'";
                             $resultr = $mysqli->query($sentenciar);
                             $rowr=$resultr->fetch_assoc();
-                            //
+                            
                             $sentenciar1=" SELECT * FROM preguntas_instrumento WHERE id='$b'";
                             $resultr1 = $mysqli->query($sentenciar1);
                             $rowr1=$resultr1->fetch_assoc();
@@ -247,44 +251,64 @@ $r_input = "Si";
                             $resultr4 = $mysqli->query($sentenciar4);
                             $rowr4=$resultr4->fetch_assoc();
                             //
-                             $arp=$question.$a;
-                             $arp1=$question.$b;
-                             $arp2=$question.$c;
-                             $arp3=$question.$d;
+                              $arp=$question.$a;
+                              $arp1=$question.$b;
+                              $arp2=$question.$c;
+                              $arp3=$question.$d;
                               $resp1 = '1'.$rowr4[$arp];
+                              // echo $resp1;
                               $resp2 = '2'.$rowr4[$arp1];
                               $resp3 = '3'.$rowr4[$arp2];
                               $resp4 = '4'.$rowr4[$arp3];
-                             if ($resp1 === '1No') {
-                               $valresp = 3;
-                             }elseif ($resp2 === '2Si') {
-                               $valresp = 2;
-                             }elseif ($resp3 === '3Si') {
-                               $valresp = 1;
-                             }elseif ($resp4 === '4Si') {
-                               $valresp = 0;
-                             }
+
+
+                              if ($resp1 === '1No') {
+                                $valresp = 3;
+                                array_push($array, "$valresp");
+
+                              }
+                              elseif ($resp2 === '2Si') {
+                                $valresp = 2;
+                                array_push($array, "$valresp");
+
+                              }
+                              elseif ($resp3 === '3Si') {
+                                $valresp = 1;
+                                array_push($array, "$valresp");
+
+                              }
+                              elseif ($resp4 === '4Si') {
+                                $valresp = 0;
+                                array_push($array, "$valresp");
+
+                              }
+
+                            
+
+                          
+                         
+                          
                           echo "<tr >";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo $aa; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr['pregunta']; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $rowr4[$arp];  echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>$valresp</h1>"; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo $rowr5['nombre_categoria']; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr['pregunta']; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $rowr4[$arp];  echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>$valresp</h1>"; echo "</td>";
                           echo "</tr>";
                           echo "<tr >";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $b; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr1['pregunta']; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp1]; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $b; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr1['pregunta']; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp1]; echo "</td>";
                           echo "</tr>";
                           echo "<tr >";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $c;  echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr2['pregunta']; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp2]; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $c;  echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr2['pregunta']; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp2]; echo "</td>";
                           echo "</tr>";
                           echo "<tr >";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $d; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr3['pregunta']; echo "</td>";
-                          echo "<td style='border: 5px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp3]; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $d; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr3['pregunta']; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp3]; echo "</td>";
                           echo "</tr>";
                           $aa = $aa +1;
 
@@ -348,10 +372,17 @@ $r_input = "Si";
                           $d = $d + 4;
                           $bb = $bb +3;
                         }
+
+
+                        $total_valor = array_sum($array);
+                        // echo $total_valor;
+
+
                         ?>
                 </tbody>
             </table>
             </div>
+
 
               </div>
               </form>
@@ -362,6 +393,44 @@ $r_input = "Si";
     	</div>
   </div>
 </div>
+
+                        <div>
+                          <table>
+                            <thead>
+                                <tr>
+                                  <th class="resultado-instrumento-uno">Resultado del Instrumento <br> ADAPTABILIDAD: <br> </th>
+                                </tr>
+
+                                <tr>
+
+                                    <?php 
+
+                                      if ($total_valor <= 9) { 
+                                          
+                                          echo "<th class='resultado-instrumento-dos'>INADAPTABLE</th>";
+                                        }
+                                      
+                                      else if ($total_valor >= 10 && $total_valor <= 19) {
+                                          
+                                          echo "<th class='resultado-instrumento-dos'>BAJA</th>";
+                                        }
+
+                                      else if ($total_valor >= 20 && $total_valor <= 29) {
+                                          
+                                          echo "<th class='resultado-instrumento-dos'>MEDIA</th>";
+                                        }
+
+                                      else if ($total_valor >= 30 && $total_valor <= 39) {
+                                          
+                                          echo "<th class='resultado-instrumento-dos'>ALTA</th>";
+                                        }
+
+                                    ?>
+                                    
+                                </tr>
+                            </thead>
+                          </table>
+                      </div> 
 <div class="contenedor">
 <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>

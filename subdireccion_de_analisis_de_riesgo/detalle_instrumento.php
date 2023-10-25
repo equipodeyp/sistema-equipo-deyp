@@ -189,15 +189,16 @@ $r_input = "Si";
 
               <div>
 
-                <table class="table table-bordered" id="table-tickets">
+                <table class="table table-bordered" id="table-instrumento">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Fecha y Hora de Registro</th>
-                            <th>Folio Expediente</th>
-                            <th>Id Persona</th>
-                            <th>Usuario que Registra el Instrumento</th> 
-                            <th>Detalle</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">No.</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Fecha y Hora de Registro</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Folio Expediente</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Id Persona</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Usuario que Registra el Instrumento</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Detalle</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Nivel de Adaptabilidad</th>
                             
                             
                         </tr>
@@ -206,25 +207,26 @@ $r_input = "Si";
                         <?php 
                             $count = 0;
                             $query = "SELECT * FROM instrumento WHERE folio_expediente = '$name_folio'";
-                            $result_tickets = mysqli_query($mysqli, $query);
-                            while($row = mysqli_fetch_array($result_tickets)) {
+                            $result_instrumento = mysqli_query($mysqli, $query);
+                            while($row = mysqli_fetch_array($result_instrumento)) {
                               $id_instrumento=$row['id_instrumento'];
                               
                         ?>
                             <?php $count = $count + 1 ?>
                                 <tr>
-                                    <td><?php echo $count?></td>
-                                    <td><?php echo $row['fecha_registro']?></td>
-                                    <td><?php echo $row['folio_expediente']?></td>
-                                    <td> <?php echo $row['id_persona']?></td>
-                                    <td><?php echo $row['nombre_servidor']?></td>
-                                    <td style="text-align:center">
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count?></td>
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['fecha_registro']?></td>
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_expediente']?></td>
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_persona']?></td>
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
 
                                         <a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn color-btn-success">
                                             <i  class="fas fa-marker" ></i>
                                         </a>
 
                                     </td>
+                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
                                 </tr>
 
                             <?php } ?>
@@ -249,7 +251,7 @@ $r_input = "Si";
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
