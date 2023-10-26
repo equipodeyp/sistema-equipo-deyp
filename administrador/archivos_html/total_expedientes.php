@@ -171,6 +171,7 @@ $row=$result->fetch_assoc();
                                 <th style="text-align:center">ESTATUS</th>
                                 <th style="text-align:center">PERSONAS INCORPORADAS</th>
                                 <th style="text-align:center">PERSONAS VIGENTES</th>
+                                <th style="text-align:center">RELACIONADO</th>
                             </tr>
                         </thead>
                       <tbody>

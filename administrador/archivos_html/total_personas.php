@@ -253,6 +253,7 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">ESTATUS SUJETO PROGRAMA</th>
                                           <th style="text-align:center">RELACIONADO</th>
                                           <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
+                                          <th style="text-align:center">RE-INGRESO</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -431,6 +432,7 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $fsuj['estatus']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
                                       echo "</tr>";
                                       // echo "<td style='text-align:center'>";  echo "</td>";
                                     }
