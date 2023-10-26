@@ -198,7 +198,7 @@ $r_input = "Si";
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Id Persona</th>
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Usuario que Registra el Instrumento</th>
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Detalle</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Nivel de Adaptabilidad</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Adaptabilidad</th>
                             
                             
                         </tr>

@@ -412,26 +412,30 @@ right: 20px;
 
       */
 
-    .resultado-instrumento-uno {
-      background: #A19E9F !important;
-      color: #fefcfc !important;
+    .resultado-instrumento-uno {      
+      width: 295px;
+      height: 100px;
+      background: #97897D !important;
+      color:#323131 !important;
       word-wrap: break-word;
-      border: 3px solid #97897D; 
+      border: 3px solid #5F6D6B !important;
       text-align:center; 
-      font-size: 18px;
+      font-size: 20px;
       position: fixed;
       top: 440px;
       left: 150px; 
+
     }
-    .resultado-instrumento-dos {
-          
+    .resultado-instrumento-dos {      
+      width: 295px;
+      height: 35px;
       word-wrap: break-word;
       border: 3px solid #97897D; 
       text-align:center; 
       font-size: 18px;
       position: fixed;
-      top: 510px;
+      top: 550px;
       left: 150px; 
-      width: 230px;
+
   }
 

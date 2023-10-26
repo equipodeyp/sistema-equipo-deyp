@@ -285,14 +285,20 @@ $r_input = "Si";
 
                             
 
-                          
+                         
                          
                           
                           echo "<tr >";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo $rowr5['nombre_categoria']; echo "</td>";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
                           echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr['pregunta']; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $rowr4[$arp];  echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp];  echo "</td>";
+                          // if ($rowr4[$arp] == "") {
+                          //   echo "N/A";  echo "</td>";
+                          // }
+                          // else{
+                          //   echo $rowr4[$arp];  echo "</td>";
+                          // }
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>$valresp</h1>"; echo "</td>";
                           echo "</tr>";
                           echo "<tr >";
@@ -398,7 +404,7 @@ $r_input = "Si";
                           <table>
                             <thead>
                                 <tr>
-                                  <th class="resultado-instrumento-uno">Resultado del Instrumento <br> ADAPTABILIDAD: <br> </th>
+                                  <th class="resultado-instrumento-uno">RESULTADO DEL INSTRUMENTO<br>DE ADAPTABILIDAD: <br> </th>
                                 </tr>
 
                                 <tr>

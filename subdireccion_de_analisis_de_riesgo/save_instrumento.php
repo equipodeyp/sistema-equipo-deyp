@@ -33,6 +33,16 @@ $q7 = $_POST['r_question_7'];
 $q8 = $_POST['r_question_8'];
 $q9 = $_POST['r_question_9'];
 
+
+// echo $q1 = $_POST['r_question_1']; 
+// echo '<br>';
+// echo $q2 = $_POST['r_question_2'];
+// echo '<br>';
+// echo $q3 = $_POST['r_question_3'];
+// echo '<br>';
+// echo $q4 = $_POST['r_question_4'];
+
+
 $q10 = $_POST['r_question_10'];
 $q11 = $_POST['r_question_11'];
 $q12 = $_POST['r_question_12'];
