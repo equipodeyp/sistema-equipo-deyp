@@ -67,7 +67,7 @@ $validacion = $fil_val['validacion'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <!-- <script src="JQuery.js"></script> -->
   <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <script src="../js/verificar_camposm1.js"></script>
   <script src="../js/mascara2campos.js"></script>
   <script src="../js/mod_medida.js"></script>
@@ -261,19 +261,19 @@ $validacion = $fil_val['validacion'];
             ?>
           <div class="col-md-6 mb-3 validar">
                 <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" readonly>
+                <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50" disabled>
           </div>
           <div class="col-md-6 mb-3 validar">
             <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
-            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" readonly>
+            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" maxlength="50" disabled>
           </div>
           <!-- <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA" >FECHA DE CAPTURA DE LA PERSONA PROPUESTA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" readonly>
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" type="text" value="<?php echo $rowfol['fecha_captura'];?>" disabled>
           </div> -->
           <div class="col-md-6 mb-3 validar">
             <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo date("d/m/Y h:i:sa", strtotime($rowmedida['fecha_captura'])); ?>" readonly type="text">
+            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" value="<?php echo date("d/m/Y h:i:sa", strtotime($rowmedida['fecha_captura'])); ?>" disabled type="text">
             </select>
           </div>
 
@@ -303,7 +303,7 @@ $validacion = $fil_val['validacion'];
             }else if ($rowmedida['estatus'] != 'EN EJECUCION') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-                <input class="form-control" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" value="'.$rowmedida['tipo'].'" type="text" readonly>
+                <input class="form-control" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" value="'.$rowmedida['tipo'].'" type="text" disabled>
               </div>';
             }
            ?>
@@ -390,7 +390,7 @@ $validacion = $fil_val['validacion'];
             if ($rowmedida['date_provisional'] != '0000-00-00') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="INICIO_EJECUCION_MEDIDA">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
-                <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="'.$rowmedida['date_provisional'].'" placeholder="" type="date" readonly>
+                <input class="form-control" id="INICIO_EJECUCION_MEDIDA" name="INICIO_EJECUCION_MEDIDA" value="'.$rowmedida['date_provisional'].'" placeholder="" type="date" disabled>
               </div>';
             }
             if ($rowmedida['tipo'] != 'DEFINITIVA' && $rowmedida['date_definitva'] == '') {
@@ -401,7 +401,7 @@ $validacion = $fil_val['validacion'];
             }elseif ($rowmedida['tipo'] == 'DEFINITIVA' && $rowmedida['date_definitva'] != '') {
               echo '<div class="col-md-6 mb-3 validar">
                 <label for="FECHA_ACTUALIZACION_MEDIDA1">FECHA DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
-                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA1" name="FECHA_ACTUALIZACION_MEDIDA1" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date" readonly>
+                <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA1" name="FECHA_ACTUALIZACION_MEDIDA1" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date" disabled>
               </div>';
             }
            ?>
@@ -457,13 +457,13 @@ $validacion = $fil_val['validacion'];
               }elseif ($rowmedida['estatus'] != 'EN EJECUCION') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-                  <input class="form-control" id="ESTATUS_MEDIDA" name="ESTATUS_MEDIDA" placeholder="" value="'.$rowmedida['estatus'].'" type="text" readonly>
+                  <input class="form-control" id="ESTATUS_MEDIDA" name="ESTATUS_MEDIDA" placeholder="" value="'.$rowmedida['estatus'].'" type="text" disabled>
                 </div>';
               }
              ?>
 
 
-            <div class="col-md-6 mb-3 validar">
+            <div class="col-md-6 mb-3 validar" id="municipio_of_execute">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
                 <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
@@ -487,7 +487,7 @@ $validacion = $fil_val['validacion'];
                  echo $rowmedida['date_definitva'];
                }else {
                  echo $rowmedida['date_provisional'];
-               } ?>" readonly>
+               } ?>" disabled>
              </div>
             <?php
 
@@ -506,13 +506,13 @@ $validacion = $fil_val['validacion'];
                 </div>
                 <div class="col-md-6 mb-3 validar">
                     <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
-                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" readonly>
+                    <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" disabled>
                   </div>';
 
                   if ($rowmultidisciplinario['acuerdo'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || $rowmultidisciplinario['acuerdo'] == 'OTRO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
                       <label for="OTHER_ART35">ESPECIFIQUE</label>
-                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" readonly>
+                      <input class="form-control" id="OTHER_ART35" name="OTHER_ART35" placeholder="" value="'.$rowmultidisciplinario['conclusionart35'].'" type="text" disabled>
                     </div>';
                   }
                 }
@@ -721,9 +721,16 @@ var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
 if(estatusMedidas === "EN EJECUCION"){
   document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
 }
-if(estatusMedidas === "EJECUTADA"){
+if(estatusMedidas === "EJECUTADA" || estatusMedidas === "CANCELADA"){
   document.getElementById("COMENTARIO").disabled = true;
   document.getElementById("enter").style.display = "none";
+  document.getElementById("FECHA_ACTUALIZACION_MEDIDA1").disabled = true;
+  document.getElementById("ESTATUS_MEDIDA").disabled = true;
+  document.getElementById("FECHA_INICIO").disabled = true;
+  document.getElementById("FECHA_DESINCORPORACION1").disabled = true;
+  document.getElementById("MOTIVO_CANCEL").disabled = true;
+  document.getElementById("CONCLUSION_ART35").disabled = true;
+  document.getElementById("municipio_of_execute").style.display = 'none';
 }
 </script>
 <script type="text/javascript">
