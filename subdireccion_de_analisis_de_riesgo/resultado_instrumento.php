@@ -19,15 +19,15 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $id_instrumento = $_GET['folio'];
-$id_instrumento;
+echo $id_instrumento;
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
+echo $name_folio;
 $identificador = $rowfol['identificador'];
-// echo $identificador;
+echo $identificador;
 $id_person=$rowfol['id'];
 // echo $id_person;
 // $foto=$rowfol['foto'];
@@ -155,7 +155,7 @@ $r_input = "Si";
       <div class="wrap">
       <ul class="tabs">
     			<li><a href="#" class="active" onclick="location.href='resultado_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DEL INSTRUMENTO</span></a></li>
-    			<!-- <li><a href="#" class="active" onclick="location.href='detalle_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INSTRUMENTOS REGISTRADOS</span></a></li> -->
+    			<li><a href="#" onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li>
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
 
@@ -165,15 +165,33 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="actived">INSTRUMENTOS REGISTRADOS</a>
               <a class="actived">DETALLE DEL INSTRUMENTO</a>
             </div>
 
 
             <div class="container">
         	<div class="well form-horizontal">
-              <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+              <form class="container well form-horizontal" enctype="multipart/form-data">
 
         				<div class="row">
+
+                <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3 ">
+                    <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
+                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+                  </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="">ID PERSONA<span></span></label>
+                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" readonly>
+                </div>
 
                   <div id="cabecera">
                     <div class="row alert div-title">
@@ -293,12 +311,6 @@ $r_input = "Si";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
                           echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr['pregunta']; echo "</td>";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp];  echo "</td>";
-                          // if ($rowr4[$arp] == "") {
-                          //   echo "N/A";  echo "</td>";
-                          // }
-                          // else{
-                          //   echo $rowr4[$arp];  echo "</td>";
-                          // }
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>$valresp</h1>"; echo "</td>";
                           echo "</tr>";
                           echo "<tr >";
@@ -438,7 +450,7 @@ $r_input = "Si";
                           </table>
                       </div> 
 <div class="contenedor">
-<a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="detalle_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

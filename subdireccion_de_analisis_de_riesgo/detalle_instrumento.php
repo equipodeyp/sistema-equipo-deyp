@@ -176,7 +176,7 @@ $r_input = "Si";
             
             <div class="container">
         	<div class="well form-horizontal">
-              <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+              <form class="container well form-horizontal" enctype="multipart/form-data">
 
         				<div class="row">
 
@@ -197,7 +197,7 @@ $r_input = "Si";
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Folio Expediente</th>
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Id Persona</th>
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Usuario que Registra el Instrumento</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Detalle</th>
+                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Detalle / Gráfico </th>
                             <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Adaptabilidad</th>
                             
                             
@@ -221,24 +221,25 @@ $r_input = "Si";
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
 
-                                        <a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn color-btn-success">
-                                            <i  class="fas fa-marker" ></i>
+                                        <a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn btn-outline-secondary">
+                                            <i class="fa fa-pen" ></i>
+                                        </a>
+                                        <a href="grafico_instrumento.php" class="btn btn-outline-secondary">
+                                            <i class="fas fa-chart-line" ></i>
                                         </a>
 
                                     </td>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
+
+                                    <td style="text-align:center; font-size: 10px; font-weight: bold !important; border: 2px solid #97897D;">
+                                        <a class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true"><?php echo $row['adaptabilidad']?></a>
+                                    </td>
+                                    
                                 </tr>
 
                             <?php } ?>
                     </tbody>
                 </table>
               </div>
-
-
-            
-
-
-
             
               
               </div>
