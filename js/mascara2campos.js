@@ -231,7 +231,7 @@ function fecha_ejecutada(sel) {
         divC.style.display="";
         divC = document.getElementById("fech_inicio");
         divC.style.display="";
-        
+
         divC = document.getElementById("DIV_CONCLUSION_CANCELACION");
         divC.style.display="";
         divC = document.getElementById("CONCLUSION_ART35");
@@ -317,8 +317,10 @@ function actualizar_estatus_medida(sel) {
     divC.style.display="none";
     divC = document.getElementById("MOTIVO");
     divC.style.display="none";
-    
+
   }else if (sel.value==="CANCELADA") {
+    divC = document.getElementById("municipio_of_execute");
+    divC.style.display="none";
     divC = document.getElementById("fecha_conclusion");
     divC.style.display="";
     divC = document.getElementById("dat_ejec");
@@ -335,7 +337,7 @@ function actualizar_estatus_medida(sel) {
     divC = document.getElementById("MOTIVO");
     divC.style.display="none";
     divC = document.getElementById("conclu_cancel");
-    divC.style.display="none";    
+    divC.style.display="none";
   }
 }
 
