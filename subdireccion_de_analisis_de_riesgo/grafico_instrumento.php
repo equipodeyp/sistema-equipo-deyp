@@ -171,8 +171,8 @@ $r_input = "Si";
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='resultado_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DEL INSTRUMENTO</span></a></li>
-    			<!-- <li><a href="#" onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li> -->
+    			<li><a href="#" onclick="location.href='resultado_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DEL INSTRUMENTO</span></a></li>
+    			<li><a href="#" class="active"onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li>
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
 
@@ -184,7 +184,8 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
               <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>">INSTRUMENTOS REGISTRADOS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?=$fol_exp?>"class="actived">DETALLE DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?=$fol_exp?>">DETALLE DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/grafico_instrumento.php?folio=<?=$fol_exp?>"class="actived">GRÁFICO DEL INSTRUMENTO</a>
             </div>
 
 
@@ -212,24 +213,11 @@ $r_input = "Si";
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">DATOS REGISTRADOS EN EL INSTRUMENTO DE ADAPTABILIDAD</h3>
+                      <h3 style="text-align:center">GRÁFICO DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
                     </div>
                   </div>
 
-
-              <!-- <div>
-                  <table class="table table-bordered" id="table-instrumento">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center; font-size: 18px;">Categoria</th>
-                            <th style="text-align:center; font-size: 18px;">No.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                  </table>
-              </div>  -->
+<!-- 
 
               <table class="table table-bordered" id="table-instrumento">
                 <thead>
@@ -418,7 +406,7 @@ $r_input = "Si";
             </table>
             </div>
 
-
+ -->
               </div>
               </form>
               </div>
@@ -429,7 +417,7 @@ $r_input = "Si";
   </div>
 </div>
 
-                        <div>
+                        <!-- <div>
                           <table>
                             <thead>
                                 <tr>
@@ -465,9 +453,9 @@ $r_input = "Si";
                                 </tr>
                             </thead>
                           </table>
-                      </div> 
+                      </div>  -->
 <div class="contenedor">
-<a href="detalle_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn-flotante">REGRESAR</a>
+<a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

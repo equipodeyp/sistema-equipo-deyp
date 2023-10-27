@@ -1295,11 +1295,11 @@ function guardarInstrumento() { // Guardar instrumento
         suma13 = 2;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
-      }else if(q49==="Si" && q50==="No" && q451==="Si"){
+      }else if(q49==="Si" && q50==="No" && q51==="Si"){
         suma13 = 1;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
-      }else if(q49==="Si" && q50==="No" && q451==="No" && q52==="Si"){
+      }else if(q49==="Si" && q50==="No" && q51==="No" && q52==="Si"){
         suma13 = 0;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
@@ -1314,10 +1314,10 @@ function guardarInstrumento() { // Guardar instrumento
 
       if (total >= 0 & total <=9){
         document.getElementById('adaptabilidad').value="INADAPTABLE";
-        // console.log(document.getElementById('adaptabilidad').value);
+      // console.log(document.getElementById('adaptabilidad').value);
       }else if(total >= 10 & total <=19){
         document.getElementById('adaptabilidad').value="BAJA";
-        // console.log(document.getElementById('adaptabilidad').value);
+      // console.log(document.getElementById('adaptabilidad').value);
       }else if(total >= 20 & total <=29){
         document.getElementById('adaptabilidad').value="MEDIA";
         // console.log(document.getElementById('adaptabilidad').value);

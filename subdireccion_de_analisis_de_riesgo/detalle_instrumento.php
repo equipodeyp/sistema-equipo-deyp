@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -210,6 +210,7 @@ $r_input = "Si";
                             $result_instrumento = mysqli_query($mysqli, $query);
                             while($row = mysqli_fetch_array($result_instrumento)) {
                               $id_instrumento=$row['id_instrumento'];
+                              echo $id_instrumento;
                               
                         ?>
                             <?php $count = $count + 1 ?>
@@ -220,18 +221,33 @@ $r_input = "Si";
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_persona']?></td>
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-
-                                        <a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn btn-outline-secondary">
+/////////////////////////////////////
+                                        <a href="resultado_instrumento.php?id=<?php echo $id_instrumento; ?>" class="btn btn-outline-secondary">
                                             <i class="fa fa-pen" ></i>
                                         </a>
-                                        <a href="grafico_instrumento.php" class="btn btn-outline-secondary">
+                                        <!-- <a href="grafico_instrumento.php" class="btn btn-outline-secondary">
                                             <i class="fas fa-chart-line" ></i>
-                                        </a>
+                                        </a> -->
 
                                     </td>
 
                                     <td style="text-align:center; font-size: 10px; font-weight: bold !important; border: 2px solid #97897D;">
-                                        <a class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true"><?php echo $row['adaptabilidad']?></a>
+                                    <?php 
+                                      if ($row['adaptabilidad'] === "INADAPTABLE"){
+                                        // echo "hola1";
+                                        echo "<a class='btn btn-danger btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                      }elseif ($row['adaptabilidad'] === "BAJA"){
+                                        echo "<a class='btn btn-primary btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                        // echo "hola2";
+                                      }elseif ($row['adaptabilidad'] === "MEDIA"){
+                                        echo "<a class='btn btn-secondary btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                        // echo "hola3";
+                                      }elseif ($row['adaptabilidad'] === "ALTA"){
+                                        echo "<a class='btn btn-success btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                        // echo "hola4";
+                                      }
+
+                                    ?>
                                     </td>
                                     
                                 </tr>

@@ -100,9 +100,7 @@ question3.addEventListener('change', obtenerInfo3);
         document.getElementById('question_4').value = na; // Limpiar select pregunta 4       *********
 
         document.getElementById("div-b&n1").style.display = ""; // Mostrar division anterior y siguiente 1
-
-        // console.log(document.getElementById('question_3').value);
-        // console.log(document.getElementById('question_4').value);
+        document.getElementById("btn-next1").style.display = ""; // Mostrar boton Siguiente 2
 
         }
     else if (respuesta_q3 === "No"){
