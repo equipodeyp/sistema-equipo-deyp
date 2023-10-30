@@ -12,12 +12,6 @@ $row=$result->fetch_assoc();
 date_default_timezone_set('America/Mexico_City');
 $myDate = date("d-m-y h:i:s a");
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
-$resultado23=$mysqli->query($query);
-
-$query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
-$resultado1=$mysqli->query($query1);
-
 $fol_exp = $_GET['folio'];
 //echo $fol_exp;
 
@@ -30,44 +24,7 @@ $identificador = $rowfol['identificador'];
 // echo $identificador;
 $id_person=$rowfol['id'];
 // echo $id_person;
-$foto=$rowfol['foto'];
-$valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
-$res_val1=$mysqli->query($valid1);
-$fil_val1 = $res_val1->fetch_assoc();
-$validacion1 = $fil_val1['id_persona'];
-// consulta de los datos de la autoridad
-$aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
-$resultadoaut = $mysqli->query($aut);
-$rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
-// consulta de los datos de origen del SUJETO
-$origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
-$resultadoorigen = $mysqli->query($origen);
-$roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
-$nameestadonac=$roworigen['lugardenacimiento'];
-// datos del TUTOR
-$tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-$resultadotutor = $mysqli->query($tutor);
-$rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-// datos del proceso penal
-$process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
-$resultadoprocess = $mysqli->query($process);
-$rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
-// datos de la valoracion juridica
-$valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
-$resultadovaljur = $mysqli->query($valjur);
-$rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
-// datos de la determinacion de la incorporacion
-$detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-$resultadodetinc = $mysqli->query($detinc);
-$rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-//consulta de los datos de origen de la persona
-$domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
-$resultadodomicilio = $mysqli->query($domicilio);
-$rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// consulta del estatus del expediente
-$statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-$resultadostatusexp = $mysqli->query($statusexp);
-$rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
+
 
 $r_input = "Si";
 ?>

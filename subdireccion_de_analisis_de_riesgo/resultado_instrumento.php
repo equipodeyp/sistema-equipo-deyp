@@ -9,42 +9,59 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-date_default_timezone_set('America/Mexico_City');
-$myDate = date("d-m-y h:i:s a");
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
-$resultado23=$mysqli->query($query);
-
-$query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
-$resultado1=$mysqli->query($query1);
-
-$id_instrumento = $_GET['folio'];
+// $id_instrumento = $_GET['folio'];
 // echo $id_instrumento;
+// echo "<br>";
 
 
-// $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
+
+
+// $query = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
+// $result_instrumento = $mysqli->query($query);
+// $row = $result_instrumento->fetch_assoc();
+// echo "<br>";
+// $idins=$row['id_instrumento'];
+// echo $idins;
+// echo "<br>";
+// $folio_expediente=$row['folio_expediente'];
+// echo $folio_expediente;
+// echo "<br>";
+// $id_persona=$row['id_persona'];
+// echo $id_persona;
+// echo "<br>";
+// $fecha_instrumento=$row['fecha_registro'];
+// echo $fecha_instrumento;
+// echo "<br>";
+// $nombre_servidor=$row['nombre_servidor'];
+// echo $nombre_servidor;
+// echo "<br>";
+
 
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
-echo "<br>";
+// echo $fol_exp;
+// echo "<br>";
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-echo $name_folio;
-echo "<br>";
-
-// $datos_instrumento=" SELECT * FROM instrumento WHERE id_instrumento='$fol_exp'";
-// $result_datos = $mysqli->query($datos_instrumento);
-// $rowinstrumento=$result_datos->fetch_assoc();
-// $folio=$rowinstrumento['folio_expediente'];
-// echo $folio;
+// echo $name_folio;
+// echo "<br>";
+$identificador = $rowfol['identificador'];
+// echo $identificador;
+// echo "<br>";
 // echo "<br>";
 
-$query = "SELECT * FROM instrumento WHERE folio_expediente = '$name_folio'";
+$id_person=$rowfol['id'];
+// echo $id_person;
+$foto=$rowfol['foto'];
+
+
+
+
+$query = "SELECT * FROM instrumento WHERE id_persona = '$identificador'";
 $result_instrumento = $mysqli->query($query);
 $row = $result_instrumento->fetch_assoc();
 // echo "<br>";
@@ -63,6 +80,9 @@ $fecha_instrumento=$row['fecha_registro'];
 $nombre_servidor=$row['nombre_servidor'];
 // echo $nombre_servidor;
 // echo "<br>";
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -133,7 +153,7 @@ $nombre_servidor=$row['nombre_servidor'];
            		<ul>
                 <?php
                     if ($user=='guillermogv') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$folio_expediente'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
             	</ul>
@@ -157,11 +177,11 @@ $nombre_servidor=$row['nombre_servidor'];
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?php echo $name_folio;?>">EXPEDIENTE</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?php echo $folio_expediente;?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?php echo $fol_exp;?>">PERSONA</a>
               <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?php echo $fol_exp;?>">REGISTRAR INSTRUMENTO</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=">INSTRUMENTOS REGISTRADOS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio="class="actived">DETALLE DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?php echo $fol_exp;?>">INSTRUMENTOS REGISTRADOS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?php echo $fol_exp;?>" class="actived">DETALLE DEL INSTRUMENTO</a>
             </div>
 
 
@@ -257,7 +277,7 @@ $nombre_servidor=$row['nombre_servidor'];
                             $resultr3 = $mysqli->query($sentenciar3);
                             $rowr3=$resultr3->fetch_assoc();
                             //
-                            $sentenciar4=" SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
+                            $sentenciar4=" SELECT * FROM instrumento WHERE id_instrumento = '$idins'";
                             $resultr4 = $mysqli->query($sentenciar4);
                             $rowr4=$resultr4->fetch_assoc();
                             //

@@ -9,24 +9,78 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-date_default_timezone_set('America/Mexico_City');
-$myDate = date("d-m-y h:i:s a");
 
-$query = "SELECT id_estado, estado FROM t_estado ORDER BY id_estado";
-$resultado23=$mysqli->query($query);
-
-$query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
-$resultado1=$mysqli->query($query1);
-
-$id_instrumento = $_GET['folio'];
+// $id_instrumento = $_GET['folio'];
 // echo $id_instrumento;
+// echo "<br>";
 
 
-$fol=" SELECT * FROM instrumento WHERE id_instrumento='$id_instrumento'";
+
+
+// $query = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
+// $result_instrumento = $mysqli->query($query);
+// $row = $result_instrumento->fetch_assoc();
+// echo "<br>";
+// $idins=$row['id_instrumento'];
+// echo $idins;
+// echo "<br>";
+// $folio_expediente=$row['folio_expediente'];
+// echo $folio_expediente;
+// echo "<br>";
+// $id_persona=$row['id_persona'];
+// echo $id_persona;
+// echo "<br>";
+// $fecha_instrumento=$row['fecha_registro'];
+// echo $fecha_instrumento;
+// echo "<br>";
+// $nombre_servidor=$row['nombre_servidor'];
+// echo $nombre_servidor;
+// echo "<br>";
+
+
+
+$fol_exp = $_GET['folio'];
+// echo $fol_exp;
+// echo "<br>";
+
+$fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
-$name_folio=$rowfol['folio_expediente'];
+$name_folio=$rowfol['folioexpediente'];
 // echo $name_folio;
+// echo "<br>";
+$identificador = $rowfol['identificador'];
+// echo $identificador;
+// echo "<br>";
+// echo "<br>";
+
+$id_person=$rowfol['id'];
+// echo $id_person;
+$foto=$rowfol['foto'];
+
+
+
+
+$query = "SELECT * FROM instrumento WHERE id_persona = '$identificador'";
+$result_instrumento = $mysqli->query($query);
+$row = $result_instrumento->fetch_assoc();
+// echo "<br>";
+$idins=$row['id_instrumento'];
+// echo $idins;
+// echo "<br>";
+$folio_expediente=$row['folio_expediente'];
+// echo $folio_expediente;
+// echo "<br>";
+$id_persona=$row['id_persona'];
+// echo $id_persona;
+// echo "<br>";
+$fecha_instrumento=$row['fecha_registro'];
+// echo $fecha_instrumento;
+// echo "<br>";
+$nombre_servidor=$row['nombre_servidor'];
+// echo $nombre_servidor;
+// echo "<br>";
+
 
 
 
@@ -99,7 +153,7 @@ $name_folio=$rowfol['folio_expediente'];
            		<ul>
                 <?php
                     if ($user=='guillermogv') {
-                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+                    echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$folio_expediente'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
             	</ul>
@@ -114,7 +168,7 @@ $name_folio=$rowfol['folio_expediente'];
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='grafico_instrumento.php?folio=<?php echo $id_instrumento; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO DEL INSTRUMENTO</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">GRÁFICOS DEL INSTRUMENTO</span></a></li>
     			<!-- <li><a href="#" onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li> -->
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
@@ -122,12 +176,12 @@ $name_folio=$rowfol['folio_expediente'];
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <!-- <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">REGISTRAR INSTRUMENTO</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?php echo $fol_exp; ?>">INSTRUMENTOS REGISTRADOS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/grafico_instrumento.php?folio=<?php echo $id_instrumento; ?>"class="actived">GRÁFICO</a> -->
+              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?php echo $folio_expediente;?>">EXPEDIENTE</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?php echo $fol_exp;?>">PERSONA</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?php echo $fol_exp;?>">REGISTRAR INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?php echo $fol_exp;?>">INSTRUMENTOS REGISTRADOS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/grafico_instrumento.php?folio=<?php echo $fol_exp;?>" class="actived">GRÁFICO</a>
             </div>
 
 
@@ -139,47 +193,52 @@ $name_folio=$rowfol['folio_expediente'];
 
                 <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL INSTRUMENTO DE ADAPTABILIDAD REGISTRADO</h3>
+                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
                     </div>
                   </div>
 
                   <div class="col-md-6 mb-3 ">
                     <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
-                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folio_expediente']; ?>" readonly>
+                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $folio_expediente; ?>" readonly>
                   </div>
 
                 <div class="col-md-6 mb-3">
                   <label for="">ID PERSONA<span></span></label>
-                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['id_persona']; ?>" readonly>
+                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $id_persona; ?>" readonly>
                 </div>
-
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">FECHA Y HORA REGISTRO</label>
-                  <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $rowfol['fecha_registro']; ?>">
+                  <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $fecha_instrumento; ?>">
                 </div>
 
                 <div class="col-md-6 mb-3">
                   <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
-                  <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $rowfol['nombre_servidor']; ?>">
+                  <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $nombre_servidor; ?>">
                 </div>
 
-                  <div id="cabecera">
+                <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">GRÁFICOS INSTRUMENTO DE ADAPTABILIDAD</h3>
+                      <h3 style="text-align:center">GRÁFICOS DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
                     </div>
                   </div>
 
 
 
 
-                      
-                      
+
 <div class="contenedor">
-<a href="" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 
 
 </body>
 </html>
+
+
+
+
+
+
+                      
