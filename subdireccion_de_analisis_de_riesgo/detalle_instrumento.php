@@ -19,7 +19,7 @@ $query1 = "SELECT id_estado, estado FROM t_estado ORDER BY estado";
 $resultado1=$mysqli->query($query1);
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
+echo $fol_exp;
 
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
@@ -74,7 +74,7 @@ $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
 $resultadostatusexp = $mysqli->query($statusexp);
 $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
 
-$r_input = "Si";
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -169,7 +169,7 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">REGISTRAR INSTRUMENTO</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="actived">INSTRUMENTOS REGISTRADOS</a>
             </div>
 
@@ -221,13 +221,12 @@ $r_input = "Si";
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_persona']?></td>
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-/////////////////////////////////////
-                                        <a href="resultado_instrumento.php?id=<?php echo $id_instrumento; ?>" class="btn btn-outline-secondary">
+                                        <a href="resultado_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                             <i class="fa fa-pen" ></i>
                                         </a>
-                                        <!-- <a href="grafico_instrumento.php" class="btn btn-outline-secondary">
+                                        <a href="grafico_instrumento.php" class="btn btn-outline-secondary">
                                             <i class="fas fa-chart-line" ></i>
-                                        </a> -->
+                                        </a>
 
                                     </td>
 

@@ -153,7 +153,7 @@ $r_input = "Si";
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='instrumento_adaptabilidad.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR UN NUEVO INSTRUMENTO DE ADAPTABILIDAD</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='instrumento_adaptabilidad.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR UN NUEVO INSTRUMENTO</span></a></li>
     			<li><a href="#" onclick="location.href='detalle_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INSTRUMENTOS REGISTRADOS</span></a></li>
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
@@ -164,7 +164,7 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>" class="actived">INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>" class="actived">REGISTRAR INSTRUMENTO</a>
             </div>
 
             

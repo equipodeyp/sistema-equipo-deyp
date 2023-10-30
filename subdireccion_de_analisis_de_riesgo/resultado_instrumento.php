@@ -27,66 +27,43 @@ $id_instrumento = $_GET['folio'];
 
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
-
+echo $fol_exp;
+echo "<br>";
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
+echo $name_folio;
+echo "<br>";
 
+// $datos_instrumento=" SELECT * FROM instrumento WHERE id_instrumento='$fol_exp'";
+// $result_datos = $mysqli->query($datos_instrumento);
+// $rowinstrumento=$result_datos->fetch_assoc();
+// $folio=$rowinstrumento['folio_expediente'];
+// echo $folio;
+// echo "<br>";
 
-// $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-// $resultfol = $mysqli->query($fol);
-// $rowfol=$resultfol->fetch_assoc();
+$query = "SELECT * FROM instrumento WHERE folio_expediente = '$name_folio'";
+$result_instrumento = $mysqli->query($query);
+$row = $result_instrumento->fetch_assoc();
+// echo "<br>";
+$idins=$row['id_instrumento'];
+// echo $idins;
+// echo "<br>";
+$folio_expediente=$row['folio_expediente'];
+// echo $folio_expediente;
+// echo "<br>";
+$id_persona=$row['id_persona'];
+// echo $id_persona;
+// echo "<br>";
+$fecha_instrumento=$row['fecha_registro'];
+// echo $fecha_instrumento;
+// echo "<br>";
+$nombre_servidor=$row['nombre_servidor'];
+// echo $nombre_servidor;
+// echo "<br>";
 
-// $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
-// $identificador = $rowfol['identificador'];
-// echo $identificador;
-// $id_person=$rowfol['id'];
-// echo $id_person;
-// $foto=$rowfol['foto'];
-// $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
-// $res_val1=$mysqli->query($valid1);
-// $fil_val1 = $res_val1->fetch_assoc();
-// $validacion1 = $fil_val1['id_persona'];
-// consulta de los datos de la autoridad
-// $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
-// $resultadoaut = $mysqli->query($aut);
-// $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
-// consulta de los datos de origen del SUJETO
-// $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
-// $resultadoorigen = $mysqli->query($origen);
-// $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
-// $nameestadonac=$roworigen['lugardenacimiento'];
-// datos del TUTOR
-// $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-// $resultadotutor = $mysqli->query($tutor);
-// $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-// // datos del proceso penal
-// $process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
-// $resultadoprocess = $mysqli->query($process);
-// $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
-// // datos de la valoracion juridica
-// $valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
-// $resultadovaljur = $mysqli->query($valjur);
-// $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
-// // datos de la determinacion de la incorporacion
-// $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-// $resultadodetinc = $mysqli->query($detinc);
-// $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-// //consulta de los datos de origen de la persona
-// $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
-// $resultadodomicilio = $mysqli->query($domicilio);
-// $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// // consulta del estatus del expediente
-// $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-// $resultadostatusexp = $mysqli->query($statusexp);
-// $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-
-$r_input = "Si";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -180,11 +157,11 @@ $r_input = "Si";
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>">INSTRUMENTOS REGISTRADOS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?=$fol_exp?>"class="actived">DETALLE DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?php echo $name_folio;?>">EXPEDIENTE</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?php echo $fol_exp;?>">PERSONA</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?php echo $fol_exp;?>">REGISTRAR INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=">INSTRUMENTOS REGISTRADOS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio="class="actived">DETALLE DEL INSTRUMENTO</a>
             </div>
 
 
@@ -196,18 +173,28 @@ $r_input = "Si";
 
                 <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
                     </div>
                   </div>
 
                   <div class="col-md-6 mb-3 ">
                     <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
-                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $folio_expediente; ?>" readonly>
                   </div>
 
                 <div class="col-md-6 mb-3">
                   <label for="">ID PERSONA<span></span></label>
-                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" readonly>
+                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $id_persona; ?>" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">FECHA Y HORA REGISTRO</label>
+                  <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $fecha_instrumento; ?>">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
+                  <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $nombre_servidor; ?>">
                 </div>
 
                   <div id="cabecera">
@@ -217,19 +204,7 @@ $r_input = "Si";
                   </div>
 
 
-              <!-- <div>
-                  <table class="table table-bordered" id="table-instrumento">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center; font-size: 18px;">Categoria</th>
-                            <th style="text-align:center; font-size: 18px;">No.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                    </tbody>
-                  </table>
-              </div>  -->
 
               <table class="table table-bordered" id="table-instrumento">
                 <thead>
@@ -460,14 +435,14 @@ $r_input = "Si";
                                           echo "<th class='resultado-instrumento-dos'>ALTA</th>";
                                         }
 
-                                    ?>
+                                      ?>
                                     
                                 </tr>
                             </thead>
                           </table>
                       </div> 
 <div class="contenedor">
-<a href="detalle_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

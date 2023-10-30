@@ -22,71 +22,14 @@ $id_instrumento = $_GET['folio'];
 // echo $id_instrumento;
 
 
-// $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
-
-
-$fol_exp = $_GET['folio'];
-// echo $fol_exp;
-
-
-$fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+$fol=" SELECT * FROM instrumento WHERE id_instrumento='$id_instrumento'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
-$name_folio=$rowfol['folioexpediente'];
+$name_folio=$rowfol['folio_expediente'];
 // echo $name_folio;
 
 
-// $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-// $resultfol = $mysqli->query($fol);
-// $rowfol=$resultfol->fetch_assoc();
 
-// $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
-// $identificador = $rowfol['identificador'];
-// echo $identificador;
-// $id_person=$rowfol['id'];
-// echo $id_person;
-// $foto=$rowfol['foto'];
-// $valid1 = "SELECT * FROM validar_persona WHERE folioexpediente = '$name_folio'";
-// $res_val1=$mysqli->query($valid1);
-// $fil_val1 = $res_val1->fetch_assoc();
-// $validacion1 = $fil_val1['id_persona'];
-// consulta de los datos de la autoridad
-// $aut = "SELECT * FROM autoridad WHERE id_persona = '$id_person'";
-// $resultadoaut = $mysqli->query($aut);
-// $rowaut = $resultadoaut->fetch_array(MYSQLI_ASSOC);
-// consulta de los datos de origen del SUJETO
-// $origen = "SELECT * FROM datosorigen WHERE id = '$id_person'";
-// $resultadoorigen = $mysqli->query($origen);
-// $roworigen = $resultadoorigen->fetch_array(MYSQLI_ASSOC);
-// $nameestadonac=$roworigen['lugardenacimiento'];
-// datos del TUTOR
-// $tutor = "SELECT * FROM tutor WHERE id_persona = '$id_person'";
-// $resultadotutor = $mysqli->query($tutor);
-// $rowtutor = $resultadotutor->fetch_array(MYSQLI_ASSOC);
-// // datos del proceso penal
-// $process = "SELECT * FROM procesopenal WHERE id_persona = '$id_person'";
-// $resultadoprocess = $mysqli->query($process);
-// $rowprocess = $resultadoprocess->fetch_array(MYSQLI_ASSOC);
-// // datos de la valoracion juridica
-// $valjur = "SELECT * FROM valoracionjuridica WHERE id_persona = '$id_person'";
-// $resultadovaljur = $mysqli->query($valjur);
-// $rowvaljur = $resultadovaljur->fetch_array(MYSQLI_ASSOC);
-// // datos de la determinacion de la incorporacion
-// $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_person'";
-// $resultadodetinc = $mysqli->query($detinc);
-// $rowdetinc = $resultadodetinc->fetch_array(MYSQLI_ASSOC);
-// //consulta de los datos de origen de la persona
-// $domicilio = "SELECT * FROM domiciliopersona WHERE id_persona = '$id_person'";
-// $resultadodomicilio = $mysqli->query($domicilio);
-// $rowdomicilio = $resultadodomicilio->fetch_array(MYSQLI_ASSOC);
-// // consulta del estatus del expediente
-// $statusexp = "SELECT * FROM statusseguimiento WHERE id_persona = '$id_person'";
-// $resultadostatusexp = $mysqli->query($statusexp);
-// $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
-
-$r_input = "Si";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -171,21 +114,20 @@ $r_input = "Si";
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" onclick="location.href='resultado_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DEL INSTRUMENTO</span></a></li>
-    			<li><a href="#" class="active"onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='grafico_instrumento.php?folio=<?php echo $id_instrumento; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO DEL INSTRUMENTO</span></a></li>
+    			<!-- <li><a href="#" onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li> -->
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
 
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+              <!-- <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
               <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">INSTRUMENTO</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>">INSTRUMENTOS REGISTRADOS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?=$fol_exp?>">DETALLE DEL INSTRUMENTO</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/grafico_instrumento.php?folio=<?=$fol_exp?>"class="actived">GRÁFICO DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>">REGISTRAR INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?php echo $fol_exp; ?>">INSTRUMENTOS REGISTRADOS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/grafico_instrumento.php?folio=<?php echo $id_instrumento; ?>"class="actived">GRÁFICO</a> -->
             </div>
 
 
@@ -197,265 +139,44 @@ $r_input = "Si";
 
                 <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL EXPEDIENTE DE PROTECCIÓN</h3>
+                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL INSTRUMENTO DE ADAPTABILIDAD REGISTRADO</h3>
                     </div>
                   </div>
 
                   <div class="col-md-6 mb-3 ">
                     <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
-                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folio_expediente']; ?>" readonly>
                   </div>
 
                 <div class="col-md-6 mb-3">
                   <label for="">ID PERSONA<span></span></label>
-                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" readonly>
+                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['id_persona']; ?>" readonly>
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">FECHA Y HORA REGISTRO</label>
+                  <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $rowfol['fecha_registro']; ?>">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
+                  <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $rowfol['nombre_servidor']; ?>">
                 </div>
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">GRÁFICO DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
+                      <h3 style="text-align:center">GRÁFICOS INSTRUMENTO DE ADAPTABILIDAD</h3>
                     </div>
                   </div>
 
-<!-- 
-
-              <table class="table table-bordered" id="table-instrumento">
-                <thead>
-                    <tr>
-                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Categoria</th>
-                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">No.</th>
-                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Pregunta</th>
-                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Respuesta</th>
-                        <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $aux = 1;
-                    $aux2 = 5;
-                    $question='p';
-                    $count = 0;
-                        $aa = 1;
-                        $a = 1;
-                        $bb = 4;
-                        $b = 2;
-                        $bbb = 5;
-                        $c = 3;
-                        $cc = 6;
-                        $d = 4;
-                        $dd = 7; 
-
-                        $array = array();
-
-                        while ($aa <= 13) {
-
-                            $sentenciar5=" SELECT * FROM categoria_instrumento WHERE id='$aa'";
-                            $resultr5 = $mysqli->query($sentenciar5);
-                            $rowr5=$resultr5->fetch_assoc();
-                            // echo $aa;
-
-                            $sentenciar=" SELECT * FROM preguntas_instrumento WHERE id='$a'";
-                            $resultr = $mysqli->query($sentenciar);
-                            $rowr=$resultr->fetch_assoc();
-                            
-                            $sentenciar1=" SELECT * FROM preguntas_instrumento WHERE id='$b'";
-                            $resultr1 = $mysqli->query($sentenciar1);
-                            $rowr1=$resultr1->fetch_assoc();
-                            //
-                            $sentenciar2=" SELECT * FROM preguntas_instrumento WHERE id='$c'";
-                            $resultr2 = $mysqli->query($sentenciar2);
-                            $rowr2=$resultr2->fetch_assoc();
-                            //
-                            $sentenciar3=" SELECT * FROM preguntas_instrumento WHERE id='$d'";
-                            $resultr3 = $mysqli->query($sentenciar3);
-                            $rowr3=$resultr3->fetch_assoc();
-                            //
-                            $sentenciar4=" SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
-                            $resultr4 = $mysqli->query($sentenciar4);
-                            $rowr4=$resultr4->fetch_assoc();
-                            //
-                              $arp=$question.$a;
-                              $arp1=$question.$b;
-                              $arp2=$question.$c;
-                              $arp3=$question.$d;
-                              $resp1 = '1'.$rowr4[$arp];
-                              // echo $resp1;
-                              $resp2 = '2'.$rowr4[$arp1];
-                              $resp3 = '3'.$rowr4[$arp2];
-                              $resp4 = '4'.$rowr4[$arp3];
 
 
-                              if ($resp1 === '1No') {
-                                $valresp = 3;
-                                array_push($array, "$valresp");
 
-                              }
-                              elseif ($resp2 === '2Si') {
-                                $valresp = 2;
-                                array_push($array, "$valresp");
-
-                              }
-                              elseif ($resp3 === '3Si') {
-                                $valresp = 1;
-                                array_push($array, "$valresp");
-
-                              }
-                              elseif ($resp4 === '4Si') {
-                                $valresp = 0;
-                                array_push($array, "$valresp");
-
-                              }
-
-                            
-
-                         
-                         
-                          
-                          echo "<tr >";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo $rowr5['nombre_categoria']; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr['pregunta']; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp];  echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>$valresp</h1>"; echo "</td>";
-                          echo "</tr>";
-                          echo "<tr >";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $b; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr1['pregunta']; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp1]; echo "</td>";
-                          echo "</tr>";
-                          echo "<tr >";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $c;  echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr2['pregunta']; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp2]; echo "</td>";
-                          echo "</tr>";
-                          echo "<tr >";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $d; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr3['pregunta']; echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp3]; echo "</td>";
-                          echo "</tr>";
-                          $aa = $aa +1;
-
-                          if ($a < 4) {
-                            $bb = $bb+1;
-                          }
-                          if ($a < 8) {
-                            $bb = $bb+1;
-                          }
-                          if ($a < 12) {
-                            $bb = $bb+1;
-                          }
-                          if ($a < 16) {
-                            $bb = $bb+1;
-                          }
-                          if ($a < 20) {
-                            $bb = $bb+1;
-                          }
-                          if ($a < 24) {
-                            $bb = $bb+1;
-                          }
-                          if ($b < 5) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 9) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 13) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 17) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 21) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 25) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 29) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 33) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 37) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($b < 41) {
-                            $bbb = $bbb + 1;
-                          }
-                          if ($c < 14) {
-                            $cc = $cc + 1;
-                          }
-                          if ($d < 19) {
-                            $dd = $dd + 1;
-                          }
-                          $a = $a + 4;
-                          $b = $b + 4;
-                          $c = $c + 4;
-                          $d = $d + 4;
-                          $bb = $bb +3;
-                        }
-
-
-                        $total_valor = array_sum($array);
-                        // echo $total_valor;
-
-
-                        ?>
-                </tbody>
-            </table>
-            </div>
-
- -->
-              </div>
-              </form>
-              </div>
-        		</div>
-    			</article>
-    		</div>
-    	</div>
-  </div>
-</div>
-
-                        <!-- <div>
-                          <table>
-                            <thead>
-                                <tr>
-                                  <th class="resultado-instrumento-uno">RESULTADO DEL INSTRUMENTO<br>DE ADAPTABILIDAD: <br> </th>
-                                </tr>
-
-                                <tr>
-
-                                    <?php 
-
-                                      if ($total_valor <= 9) { 
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>INADAPTABLE</th>";
-                                        }
-                                      
-                                      else if ($total_valor >= 10 && $total_valor <= 19) {
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>BAJA</th>";
-                                        }
-
-                                      else if ($total_valor >= 20 && $total_valor <= 29) {
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>MEDIA</th>";
-                                        }
-
-                                      else if ($total_valor >= 30 && $total_valor <= 39) {
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>ALTA</th>";
-                                        }
-
-                                    ?>
-                                    
-                                </tr>
-                            </thead>
-                          </table>
-                      </div>  -->
+                      
+                      
 <div class="contenedor">
-<a href="resultado_instrumento.php?folio=<?php echo $id_instrumento; ?>" class="btn-flotante">REGRESAR</a>
+<a href="" class="btn-flotante">REGRESAR</a>
 </div>
 
 
