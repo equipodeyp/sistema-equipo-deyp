@@ -332,7 +332,7 @@ a:focus {
                 <tr>
                   <td  width="1000px" height="80"> <button type="button" <a name="button" class="btn btn-secondary" style="width:1100px;">
                     <img src="../image/CALENDARIO/9 SEMANAL.png" alt="" width="520px" height="90"> </button><br>
-                    <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" width="1100" height="500"></iframe>
+                    <iframe src="../docs/REPORTES/SEMANAL.pdf" width="1100" height="500"></iframe>
                   </td>
                 </tr>
               </tbody>
