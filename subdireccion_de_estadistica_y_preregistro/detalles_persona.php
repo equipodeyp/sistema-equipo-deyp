@@ -365,7 +365,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_INCORPORACION" for="INCORPORACION">PROCENDENCIA DE LA INCORPORACIÓN<span class="required"></span></label>
+                    <label id="LABEL_INCORPORACION" for="INCORPORACION">PROCEDENCIA DE LA INCORPORACIÓN<span class="required"></span></label>
                     <select id="INPUT_INCORPORACION" class="form-select form-select-lg"  name="INCORPORACION" >
                       <option style="visibility: hidden" value="<?php echo $rowdetinc['incorporacion']; ?>"><?php echo $rowdetinc['incorporacion']; ?></option>
                       <option value="INCORPORACION PROCEDENTE">INCORPORACION PROCEDENTE</option>
