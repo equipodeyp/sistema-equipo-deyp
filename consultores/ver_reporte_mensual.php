@@ -332,14 +332,14 @@ a:focus {
                   <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_septiembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/21 SEPTIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_octubre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/22 OCTUBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_noviembre" name="button" class="btn btn-secondary" style="width:350px;">
+                  <!-- <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_noviembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/23 NOVIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
                   <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_diciembre" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/24 DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
-                </tr> -->
+                    <img src="../image/CALENDARIO/24 DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td> -->
+                </tr>
               </tbody>
             </table>
           </div>
@@ -379,7 +379,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE ENERO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -401,7 +401,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE FEBRERO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -423,7 +423,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE MARZO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -445,7 +445,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE ABRIL</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -467,7 +467,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE MAYO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -489,7 +489,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE JUNIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -511,7 +511,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE JULIO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -533,7 +533,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE AGOSTO</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -555,7 +555,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE SEPTIEMBRE</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -577,12 +577,12 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE OCTUBRE</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <!-- <iframe src="../docs/REPORTES/OCTUBRE.pdf" style="width:870px; height:600px;" ></iframe> -->
+              <iframe src="../docs/REPORTES/OCTUBRE.pdf" style="width:870px; height:600px;" ></iframe>
             </div>
           </div>
         </div>
@@ -599,7 +599,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE NOVIEMBRE</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
@@ -621,7 +621,7 @@ a:focus {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE DICIEMBRE</h4>
         </div>
         <div class="modal-body">
           <div className="modal">
