@@ -81,9 +81,10 @@ $nombre_servidor=$row['nombre_servidor'];
 // echo $nombre_servidor;
 // echo "<br>";
 
-
-
-
+// $query2 = "SELECT COU(*) FROM instrumento WHERE id_persona = '$identificador'";
+// $cuenta_instrumento = $mysqli->query($query2);
+// $cuenta = $cuenta_instrumento->fetch_assoc();
+// echo $cuenta;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -280,6 +281,7 @@ $nombre_servidor=$row['nombre_servidor'];
                             $sentenciar4=" SELECT * FROM instrumento WHERE id_instrumento = '$idins'";
                             $resultr4 = $mysqli->query($sentenciar4);
                             $rowr4=$resultr4->fetch_assoc();
+
                             //
                               $arp=$question.$a;
                               $arp1=$question.$b;

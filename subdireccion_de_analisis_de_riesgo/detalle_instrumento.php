@@ -157,87 +157,104 @@ $nombre_servidor=$row['nombre_servidor'];
             <div class="container">
         	<div class="well form-horizontal">
               <form class="container well form-horizontal" enctype="multipart/form-data">
+              <?php
+              $cl = "SELECT COUNT(*) as t FROM instrumento WHERE id_persona = '$identificador'";
+              $rcl = $mysqli->query($cl);
+              $fcl = $rcl->fetch_assoc();
+              // echo $fcl['t'];
+              if ($fcl['t'] == 0){
+                    echo "<div id='cabecera'>
+                      <div class='row alert div-title' role='alert'>
+                        <h3 style='text-align:center'>¡ NO HAY INSTRUMENTOS REGISTRADOS !</h3>
+                      </div>
+                    </div>";
+              } else{
+                    echo "
+                      <div class='row'>
+                        <div id='cabecera'>
+                          <div class='row alert div-title'>
+                            <h3 style='text-align:center'>INSTRUMENTOS REGISTRADOS</h3>
+                          </div>
+                        </div>
+                      <div>
 
-        				<div class="row">
+                      <table class='table table-bordered' id='table-instrumento'>
+                        <thead>
+                            <tr>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>No.</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Fecha y Hora de Registro</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Folio Expediente</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Id Persona</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Usuario que Registra el Instrumento</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Detalle / Gráfico </th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Adaptabilidad</th>
+                            </tr>
+                        </thead>
+                    
+                    ";
+                  }
 
-                  <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">INSTRUMENTOS REGISTRADOS</h3>
+              ?>
+
+
+
+
+                                          <tbody>
+                                              <?php
+
+                                                  $count = 0;
+                                                  $query = "SELECT * FROM instrumento WHERE id_persona = '$identificador'";
+                                                  $result_instrumento = mysqli_query($mysqli, $query);
+                                                  while($row = mysqli_fetch_array($result_instrumento)) {
+                                                    $id_instrumento=$row['id_instrumento'];
+                                                    // echo $id_instrumento;
+                                                    
+                                              ?>
+                                                  <?php $count = $count + 1 ?>
+                                                      <tr>
+                                                          <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count?></td>
+                                                          <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['fecha_registro']?></td>
+                                                          <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_expediente']?></td>
+                                                          <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_persona']?></td>
+                                                          <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
+                                                          <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                              <a href="resultado_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
+                                                                  <i class="fa fa-pen" ></i>
+                                                              </a>
+                                                              <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
+                                                                  <i class="fas fa-chart-line" ></i>
+                                                              </a>
+
+                                                          </td>
+
+                                                          <td style="text-align:center; font-size: 10px; font-weight: bold !important; border: 2px solid #97897D;">
+                                                          <?php 
+                                                            if ($row['adaptabilidad'] === "INADAPTABLE"){
+                                                              // echo "hola1";
+                                                              echo "<a class='btn btn-danger btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                                            }elseif ($row['adaptabilidad'] === "BAJA"){
+                                                              echo "<a class='btn btn-primary btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                                              // echo "hola2";
+                                                            }elseif ($row['adaptabilidad'] === "MEDIA"){
+                                                              echo "<a class='btn btn-secondary btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                                              // echo "hola3";
+                                                            }elseif ($row['adaptabilidad'] === "ALTA"){
+                                                              echo "<a class='btn btn-success btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
+                                                              // echo "hola4";
+                                                            }
+
+                                                          ?>
+                                                          </td>
+                                                          
+                                                      </tr>
+
+                                                  <?php } ?>
+                                          </tbody>
+                                      </table>
                     </div>
-                  </div>
-
-
-              <div>
-
-                <table class="table table-bordered" id="table-instrumento">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">No.</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Fecha y Hora de Registro</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Folio Expediente</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Id Persona</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Usuario que Registra el Instrumento</th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Detalle / Gráfico </th>
-                            <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">Adaptabilidad</th>
-                            
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                            $count = 0;
-                            $query = "SELECT * FROM instrumento WHERE id_persona = '$identificador'";
-                            $result_instrumento = mysqli_query($mysqli, $query);
-                            while($row = mysqli_fetch_array($result_instrumento)) {
-                              $id_instrumento=$row['id_instrumento'];
-                              // echo $id_instrumento;
-                              
-                        ?>
-                            <?php $count = $count + 1 ?>
-                                <tr>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count?></td>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['fecha_registro']?></td>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_expediente']?></td>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_persona']?></td>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
-                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                        <a href="resultado_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
-                                            <i class="fa fa-pen" ></i>
-                                        </a>
-                                        <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
-                                            <i class="fas fa-chart-line" ></i>
-                                        </a>
-
-                                    </td>
-
-                                    <td style="text-align:center; font-size: 10px; font-weight: bold !important; border: 2px solid #97897D;">
-                                    <?php 
-                                      if ($row['adaptabilidad'] === "INADAPTABLE"){
-                                        // echo "hola1";
-                                        echo "<a class='btn btn-danger btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
-                                      }elseif ($row['adaptabilidad'] === "BAJA"){
-                                        echo "<a class='btn btn-primary btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
-                                        // echo "hola2";
-                                      }elseif ($row['adaptabilidad'] === "MEDIA"){
-                                        echo "<a class='btn btn-secondary btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
-                                        // echo "hola3";
-                                      }elseif ($row['adaptabilidad'] === "ALTA"){
-                                        echo "<a class='btn btn-success btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
-                                        // echo "hola4";
-                                      }
-
-                                    ?>
-                                    </td>
+                                  
                                     
-                                </tr>
-
-                            <?php } ?>
-                    </tbody>
-                </table>
-              </div>
-            
-              
-              </div>
+                  </div>
               </form>
               </div>
         		</div>
