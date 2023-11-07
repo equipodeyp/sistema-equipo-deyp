@@ -308,6 +308,7 @@ a:focus {
                                             <th style="text-align:center">RELACIONADO</th>
                                             <th style="text-align:center">RE-INGRESO</th>
                                             <th style="text-align:center">ACTIVO</th>
+                                            <th style="text-align:center">AUTORIDAD SOLICITANTE</th>
                                           </tr>
                                       </thead>
                                       <tbody>

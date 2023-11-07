@@ -333,7 +333,7 @@ a:focus {
                                         <!-- <th style="text-align:center">IMAGEN PERSONA</th> -->
                                         <th style="text-align:center">IDENTIFICADOR EXPEDIENTE</th>
                                         <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
-                                        <th style="text-align:center">MOTIVO NO PROCEDENCUA JURIDICA</th>
+                                        <th style="text-align:center">MOTIVO NO PROCEDENCIA JURIDICA</th>
                                         <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
                                         <th style="text-align:center">PROCEDENCIA DE LA INCORPORACION</th>
                                         <!-- <th style="text-align:center">ID PERSONA SUJETO</th> -->

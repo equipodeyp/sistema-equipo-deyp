@@ -95,6 +95,10 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
   $rdetinc = $mysqli->query($detinc);
   $fdetinc = $rdetinc->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
+  $autoridadsol = "SELECT * FROM autoridad WHERE id_persona = '$id_sujp'";
+  $rautoridadsol = $mysqli->query($autoridadsol);
+  $fautoridadsol = $rautoridadsol->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
   $id_permed = "SELECT DISTINCT id_persona FROM medidas
   WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND id_persona = '$id_sujp'";
   $rid_permed = $mysqli->query($id_permed);
@@ -155,12 +159,16 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
      $datetime1 = new DateTime($date11);
      $datetime2 = new DateTime($date22);
      $interval = $datetime1->diff($datetime2);
-     echo $interval->y . " año, " . $interval->m." mes y ".$interval->d." dia"; echo "</td>";
+     // echo  $interval->days . " días<br>";
+     // echo "<br>";
+     echo $interval->y . " año, " . $interval->m." mes y ".$interval->d." dia";
+     echo "</td>";
      ////////////////////////////////////////////////////////////////////////////////////////////
     echo "<td style='text-align:center'>"; echo $ftmedinfinal['estatus']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['relacional']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['reingreso']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['estatusprograma']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo $fautoridadsol['nombreautoridad']; echo "</td>";
     echo "</tr>";
   }
 }
