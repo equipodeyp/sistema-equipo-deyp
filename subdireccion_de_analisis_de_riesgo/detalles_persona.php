@@ -168,7 +168,11 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                     <a style='text-align:center' class='user-nombre' href='instrumento_adaptabilidad.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INSTRUMENTO DE<BR> ADAPTABILIDAD</button> </a>
                     ";
-                }
+                    } elseif ($user === 'marielavm') {
+                      echo "
+                      <a style='text-align:center' class='user-nombre' href='instrumento_adaptabilidad.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INSTRUMENTO DE<BR> ADAPTABILIDAD</button> </a>
+                      ";
+                      }
                 ?>
             </ul>
     </nav>
@@ -185,8 +189,18 @@ $fexprel1 = $rexprel1->fetch_assoc();
       <div class="wrap">
 
       <ul class="tabs">
-    			<li><a class="active" href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
-    			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
+          <?php
+            if ($user=='guillermogv') {
+            echo "<li><a class='active' href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$fol_exp'><span class='far fa-address-card'></span><span class='tab-text'>DATOS PERSONALES</span></a></li>
+                  <li><a href='../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=$fol_exp'><span class='fas fa-book-open'></span><span class='tab-text'>MEDIDAS</span></a></li>
+            ";
+            }elseif ($user=='marielavm') {
+              echo "<li><a class='active' href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$fol_exp'><span class='far fa-address-card'></span><span class='tab-text'>DATOS PERSONALES</span></a></li>
+              ";
+              }
+          ?>
+    			<!-- <li><a class="active" href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
+    			<li><a href="#" onclick="location.href='detalles_medidas.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li> -->
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
 
