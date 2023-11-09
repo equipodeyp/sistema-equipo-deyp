@@ -238,16 +238,16 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                   </div>
                     <div class="col-md-6 mb-3 validar">
                       <label for="RESULTADO_VALORACION_JURIDICA">RESULTADO VALORACIÓN JURÍDICA<span class="required"></span></label>
-                      <select class="form-select form-select-lg" id="SEDE" name="RESULTADO_VALORACION_JURIDICA" disabled>
-                        <option value=""><?php echo $rowvaljur['resultadovaloracion']; ?></option>
+                      <select class="form-select form-select-lg" id="resul_val_jur" name="RESULTADO_VALORACION_JURIDICA" disabled>
+                        <option value="<?php echo $rowvaljur['resultadovaloracion']; ?>"><?php echo $rowvaljur['resultadovaloracion']; ?></option>
                         <option value="SI_PROCEDE">SI_PROCEDE </option>
                         <option value="NO_PROCEDE">NO_PROCEDE</option>
                       </select>
                     </div>
 
-                    <div class="col-md-6 mb-3 validar">
+                    <div class="col-md-6 mb-3 validar" id="motnoprocedencia">
                       <label for="MOTIVO_NO_PROCEDENCIA_JURIDICA">MOTIVO NO PROCEDENCIA JURÍDICA<span class="required"></span></label>
-                      <select class="form-select form-select-lg" id="SEDE" name="MOTIVO_NO_PROCEDENCIA_JURIDICA" disabled>
+                      <select class="form-select form-select-lg" id="mot_no_procede" name="MOTIVO_NO_PROCEDENCIA_JURIDICA" disabled>
                         <option value=""><?php echo $rowvaljur['motivoprocedencia']; ?></option>
                         <option value="NO CORRESPONDE EL TIPO PENAL">NO CORRESPONDE EL TIPO PENAL </option>
                         <option value="NO CUMPLE CON LOS REQUISITOS">NO CUMPLE CON LOS REQUISITOS</option>
@@ -1104,6 +1104,17 @@ function ReadOnlyConClu() {
   }
 }
 ReadOnlyConClu();
+
+var motivonoproc =document.getElementById('resul_val_jur').value;
+function showmotnoproc (){
+  console.log(motivonoproc);
+  if (motivonoproc === 'SI PROCEDE') {
+    document.getElementById('motnoprocedencia').style.display= 'none';
+  }else{
+    document.getElementById('motnoprocedencia').style.display= '';
+  }
+}
+showmotnoproc ();
 </script>
 </body>
 </html>
