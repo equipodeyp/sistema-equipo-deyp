@@ -358,9 +358,9 @@ a:focus {
                 <tr>
                   <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_octubre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/22 OCTUBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <!-- <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_noviembre" name="button" class="btn btn-secondary" style="width:350px;">
+                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_noviembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/23 NOVIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_diciembre" name="button" class="btn btn-secondary" style="width:350px;">
+                  <!-- <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_diciembre" name="button" class="btn btn-secondary" style="width:350px;">
                     <img src="../image/CALENDARIO/24 DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td> -->
                 </tr>
               </tbody>
@@ -627,7 +627,7 @@ a:focus {
         <div class="modal-body">
           <div className="modal">
             <div className="modalContent">
-              <!-- <iframe src="../docs/REPORTES/NOVIEMBRE.pdf" style="width:870px; height:600px;" ></iframe> -->
+              <iframe src="../docs/REPORTES/NOVIEMBRE.pdf" style="width:870px; height:600px;" ></iframe>
             </div>
           </div>
         </div>
