@@ -417,7 +417,7 @@ $row=$result->fetch_assoc();
                 }
               }
             }
-            if ($valexp == 'SI' && $exp_validado == 'false' && ($name === 'araceliby' || $cargo === 'subdirector' && $area === 'subdireccion de apoyo tecnico y juridico')) {
+            if ($valexp == 'SI' && $exp_validado == 'false' && $cargo === 'subdirector') {
               echo "<div class='columns download'>
 
                         <a href='validar_expediente.php?folio=$fol_exp2' class='btn-flotante-validar color-btn-success' ><i class=''></i>VALIDAR</a>
