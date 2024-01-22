@@ -12,6 +12,7 @@
         $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
         // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
         $fecha_actual = date("Y-m-d");
+        $year = date("Y");
         $day = date("l");
         switch ($day) {
             case "Sunday":
@@ -128,7 +129,7 @@
                   </tr>
                   <tr>
                     <th style="text-align:center" rowspan="2">CONCEPTO</th>
-                    <th style="text-align:center" colspan="2">2023</th>
+                    <th style="text-align:center" colspan="2"><?php echo $year; ?></th>
                     <th style="text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                   <tr>
@@ -154,7 +155,7 @@
                   </tr>
                   <tr>
                     <th style="text-align:center" rowspan="2">CONCEPTO</th>
-                    <th style="text-align:center" colspan="2">2023</th>
+                    <th style="text-align:center" colspan="2"><?php echo $year; ?></th>
                     <th style="text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                   <tr>
@@ -188,9 +189,9 @@
                   <tr>
                     <!-- <th style="text-align:center" rowspan="2">TOTAL <br> 2021 *</th> -->
                     <!-- <th style="text-align:center" rowspan="2">TOTAL <br> 2022 *</th> -->
-                    <th style="text-align:center" colspan="2">2023</th>
+                    <th style="text-align:center" colspan="2"><?php echo $year; ?></th>
                     <th style="text-align:center" rowspan="2">TOTAL  <br> ACUMULADO</th>
-                    <th style="text-align:center" colspan="2">2023</th>
+                    <th style="text-align:center" colspan="2"><?php echo $year; ?></th>
                     <th style="text-align:center" rowspan="2">TOTAL  <br> ACUMULADO</th>
                   </tr>
                   <tr>
@@ -336,25 +337,6 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="table-responsive">
-
-
-                <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered class="col-lg-7">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th style="text-align:center" colspan="3">SUJETO EN RESGUARDO ACTIVOS</th>
-                    </tr>
-                    <!-- <tr>
-                    <th style="text-align:center">ETAPA DENTRO DEL PROGRAMA</th>
-                    <th style="text-align:center">TOTAL</th>
-                  </tr> -->
-                </thead>
-                <tbody>
-                  <?php
-                  include("../administrador/tablas_estadistica/tabla8_reporte_semanal.php");
-                  ?>
-                </tbody>
-              </table>
-              <br><br><br><br>
               <table id="rdestatusmedidas" border="1px" cellspacing="0" width="100%" bordered class="col-lg-12">
                 <thead>
                   <h3></h3>
@@ -376,6 +358,7 @@
             </div>
           </div>
           <div class="col-lg-6">
+            <br>
             <div class="table-responsive">
               <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
                 <thead class="thead-dark">
@@ -399,7 +382,23 @@
                     ** Se refiere a los sujetos incorporados que les ha sido asignada la medida de resguardo "Alojamiento Temporal" ya sea que se encuentren activos o no dentro del Programa</span>
             </div>
           </div>
-        </div>
+            <div class="col-lg-6">
+              <div class="table-responsive">
+                <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered class="col-lg-7">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th style="text-align:center" colspan="3">SUJETO EN RESGUARDO ACTIVOS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla8_reporte_semanal.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         <!-- button -->
         <div class="row">
           <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>

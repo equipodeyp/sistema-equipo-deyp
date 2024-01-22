@@ -43,17 +43,12 @@ echo "<td style='text-align:center'>"; echo $ftotalsujincor['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "Sujeto incorporado activo"; "</td>";
+echo "<td style='text-align:right'>"; echo "<b><u>Sujeto incorporado activo</u></b>"; "</td>";
 echo "<td style='text-align:center'>"; echo $ftotalsujetosactivos['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "Sujeto incorporado activo en resguardo"; "</td>";
-echo "<td style='text-align:center'>"; echo $fsujencentrosresguardo['t']; "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='text-align:left'>"; echo "Desincorporado del Programa²"; "</td>";
+echo "<td style='text-align:right'>"; echo "<b><u>Desincorporado del Programa²</u></b>"; "</td>";
 echo "<td style='text-align:center'>"; echo $fdesincorporado['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +62,4 @@ echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE PERSONAS"; echo
 echo "<td style='text-align:center'>"; echo "<b>"; echo $totalpersonas; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
 ?>

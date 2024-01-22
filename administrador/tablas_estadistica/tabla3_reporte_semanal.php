@@ -3,6 +3,7 @@ $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","S
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $fecha_actual = date("Y-m-d");
+$dateinicial = date("Y-01-01");
 $day = date("l");
 switch ($day) {
     case "Sunday":
@@ -143,7 +144,7 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   //////////////////////////////////////////////////////////////////////////////
   $personaspropuestas = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-  WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+  WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicial' AND '$fecha_finsemanaanterior'";
   $rpersonaspropuestas = $mysqli->query($personaspropuestas);
   $fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
@@ -158,7 +159,7 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   $perincorporadas = "SELECT COUNT(*) as t  FROM datospersonales
   INNER JOIN determinacionincorporacion on datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.relacional = 'NO' AND datospersonales.calidadpersona = '$namecalidad' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+  AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicial' AND '$fecha_finsemanaanterior'";
   $rperincorporadas = $mysqli->query($perincorporadas);
   $fperincorporadas = $rperincorporadas->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
@@ -188,7 +189,7 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
 ////////////////////////////////////////////////////////////////////////////////
 $personaspropuestastotal = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud_persona BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+WHERE datospersonales.relacional = 'NO' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicial' AND '$fecha_finsemanaanterior'";
 $rpersonaspropuestastotal = $mysqli->query($personaspropuestastotal);
 $fpersonaspropuestastotal = $rpersonaspropuestastotal->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -203,7 +204,7 @@ $totalperpropacumulado = $fpersonaspropuestastotal['t'] + $fpersonaspropuestasre
 $perincorporadastotal = "SELECT COUNT(*) as t  FROM datospersonales
 INNER JOIN determinacionincorporacion on datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional = 'NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '2023-01-01' AND '$fecha_finsemanaanterior'";
+AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicial' AND '$fecha_finsemanaanterior'";
 $rperincorporadastotal = $mysqli->query($perincorporadastotal);
 $fperincorporadastotal = $rperincorporadastotal->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

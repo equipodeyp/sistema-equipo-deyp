@@ -3,6 +3,7 @@ $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","S
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $fecha_actual = date("Y-m-d");
+$dateinicial = date("Y-01-01");
 $day = date("l");
 switch ($day) {
     case "Sunday":
@@ -107,13 +108,13 @@ switch ($day) {
 ////////////////////////conteo  de datos  de la semana anterior//////////////////////////////////////
 $noprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
 INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_fin'";
+WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '2021-01-01' and '$fecha_fin'";
 $rnoprocede = $mysqli->query($noprocede);
 $fnoprocede = $rnoprocede->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $enelaboracionreporte = "SELECT COUNT(*) as t FROM statusseguimiento
 INNER JOIN expediente on statusseguimiento.folioexpediente = expediente.fol_exp
-WHERE statusseguimiento.status = 'ANALISIS' and expediente.fecha_nueva BETWEEN '2023-01-01' and '$fecha_fin'";
+WHERE statusseguimiento.status = 'ANALISIS' and expediente.fecha_nueva BETWEEN '2021-01-01' and '$fecha_fin'";
 $renelaboracionreporte = $mysqli->query($enelaboracionreporte);
 $fenelaboracionreporte = $renelaboracionreporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -131,15 +132,19 @@ $fcancelado = $rcancelado ->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalexpedientes = $fnoprocede['t'] + $fenelaboracionreporte['t'] + $fbyejecucion['t'] + $fconcluido['t'] + $fcancelado['t'];
 ////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='text-align:left'>"; echo "NO PROCEDE JURIDICAMENTE"; "</td>";
-echo "<td style='text-align:center'>"; echo $fnoprocede['t']; "</td>";
-echo "</tr>";
+if ($fnoprocede['t'] > 0) {
+  echo "<tr>";
+  echo "<td style='text-align:left'>"; echo "NO PROCEDE JURIDICAMENTE"; "</td>";
+  echo "<td style='text-align:center'>"; echo $fnoprocede['t']; "</td>";
+  echo "</tr>";
+}
 ////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
-echo "<td style='text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
-echo "</tr>";
+if ($fenelaboracionreporte['t'] > 0) {
+  echo "<tr>";
+  echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
+  echo "<td style='text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
+  echo "</tr>";
+}
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "EN EJECUCIÓN"; "</td>";
