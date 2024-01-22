@@ -28,7 +28,7 @@ $fhombres = $rhombres->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalsexo = $fmujeres['t'] + $fhombres['t'];
 ////////////////////////////////////////////////////////////////////////////////
-$menoredadenresguardo = "SELECT COUNT(*) as t FROM datospersonales
+$menoredadenresguardo = "SELECT COUNT(DISTINCT medidas.id_persona) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 INNER JOIN medidas ON datospersonales.id = medidas.id_persona
 WHERE datospersonales.relacional = 'NO' AND datospersonales.grupoedad = 'MENOR DE EDAD'
