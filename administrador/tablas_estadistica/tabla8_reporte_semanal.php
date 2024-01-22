@@ -17,10 +17,12 @@ echo "<td style='text-align:left'>"; echo "SUJETOS INCORPORADOS"; "</td>";
 echo "<td style='text-align:center'>"; echo $fsujencentrosresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='text-align:left'>"; echo "PERSONAS PROPUESTAS"; "</td>";
-echo "<td style='text-align:center'>"; echo $fperpropresguardo['t']; "</td>";
-echo "</tr>";
+if ($fperpropresguardo['t'] > 0) {
+  echo "<tr>";
+  echo "<td style='text-align:left'>"; echo "PERSONAS PROPUESTAS"; "</td>";
+  echo "<td style='text-align:center'>"; echo $fperpropresguardo['t']; "</td>";
+  echo "</tr>";
+}
 ////////////////////////////////////////////////////////////////////////////////
 $totalsujetos = $fsujencentrosresguardo['t'] + $fperpropresguardo['t'];
 echo "<tr>";
