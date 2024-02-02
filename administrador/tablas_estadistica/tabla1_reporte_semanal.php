@@ -154,7 +154,7 @@ $totalparcialproc = $fparcialproc['t'] + $fparcialprocreporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 $totalacumulado = $totalanterior + $totalreporte;
 //inicio de filas para la tabla
-if ($fsiprocede['t'] > 0) {
+if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "JURÍDICAMENTE PROCEDENTE "; "</td>";
   echo "<td style='text-align:center'>"; echo $fsiprocede['t']; "</td>";
@@ -163,7 +163,7 @@ if ($fsiprocede['t'] > 0) {
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
-if ($fnoprocede['t'] > 0) {
+if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "JURÍDICAMENTE NO PROCEDENTE"; "</td>";
   echo "<td style='text-align:center'>"; echo $fnoprocede['t']; "</td>";
@@ -172,7 +172,7 @@ if ($fnoprocede['t'] > 0) {
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
-if ($fparcialproc['t'] > 0) {
+if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "PARCIALMENTE PROCEDENTE"; "</td>";
   echo "<td style='text-align:center'>"; echo $fparcialproc['t']; "</td>";

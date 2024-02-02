@@ -150,7 +150,7 @@ $totalenelaboracion = $fenelaboracion['t'] + $fenelaboracionreporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 $totalacumulado = $totalanterior + $totalreporte;
 //inicio de filas para la tabla
-if ($fincorporc['t'] > 0) {
+if ($fincorporc['t'] > 0 || $fincorprocreporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "INCORPORACION PROCEDENTE "; "</td>";
   echo "<td style='text-align:center'>"; echo $fincorporc['t']; "</td>";
@@ -159,7 +159,8 @@ if ($fincorporc['t'] > 0) {
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
-if ($fincornoproc['t'] > 0) {
+echo $fenelaboracion['t'];
+if ($fincornoproc['t'] > 0 || $fincornoprocreporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "INCORPORACION NO PROCEDENTE"; "</td>";
   echo "<td style='text-align:center'>"; echo $fincornoproc['t']; "</td>";
@@ -168,7 +169,7 @@ if ($fincornoproc['t'] > 0) {
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
-if ($fenelaboracion['t'] > 0) {
+if ($fenelaboracion['t'] > 0 || $fenelaboracionreporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
   echo "<td style='text-align:center'>"; echo $fenelaboracion['t']; "</td>";

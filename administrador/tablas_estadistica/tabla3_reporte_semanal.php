@@ -174,7 +174,7 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   //////////////////////////////////////////////////////////////////////////////
   $totalacumuladoperprop = $fpersonaspropuestas['t'] + $fpersonaspropuestas['t'];
 
-  if ($fpersonaspropuestas['t'] > 0 ) {
+  if ($fpersonaspropuestas['t'] > 0 || $fpersonaspropuestasreporte['t'] > 0) {
     echo "<tr>";
     echo "<td style='text-align:left'>"; echo $namecortocalidad; "</td>";
     echo "<td style='text-align:center'>"; echo $fpersonaspropuestas['t']; "</td>";
