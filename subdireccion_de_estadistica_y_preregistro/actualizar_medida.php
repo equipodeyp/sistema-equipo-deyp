@@ -58,7 +58,8 @@ if ($verifica_update_person == 1) {
   if ($act_medida == '') {
     $act_medida= $_POST['FECHA_ACTUALIZACION_MEDIDA1'];
   }
-  $medida_mod=$_POST['MOTIVO_CANCEL2'];
+  $medida_mod=$_POST['MOTIVO_CANCEL'];
+  $canceladamedida=$_POST['canceladamedida'];
   $fecha_mod= $_POST['FECHA_MODIFICACION'];
   $tipo_mod= $_POST['TIPO_MODIFICACION'];
   $acuerdo =$_POST['CONCLUSION_ART35'];
@@ -157,6 +158,8 @@ if ($verifica_update_person == 1) {
     $statusprogram = 'INACTIVO';
   }
   $statu_med = "UPDATE medidas SET estatusprograma = '$statusprogram' WHERE id = '$id_persona'";
+  $res_statu_med = $mysqli->query($statu_med);
+  $statu_med = "UPDATE medidas SET modificacion = '$canceladamedida' WHERE id = '$id_persona'";
   $res_statu_med = $mysqli->query($statu_med);
 /////////////////////////////////////////////////////////////////////////////////
 
