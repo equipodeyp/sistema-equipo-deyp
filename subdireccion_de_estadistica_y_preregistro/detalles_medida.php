@@ -34,7 +34,6 @@ $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
 $res_val=$mysqli->query($valid);
 $fil_val = $res_val->fetch_assoc();
 $validacion = $fil_val['validacion'];
-
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -381,11 +380,7 @@ $validacion = $fil_val['validacion'];
              </div>';
            }
           }
-
           ?>
-
-
-
           <?php
             if ($rowmedida['date_provisional'] != '0000-00-00') {
               echo '<div class="col-md-6 mb-3 validar">
@@ -410,7 +405,6 @@ $validacion = $fil_val['validacion'];
               <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="'.$rowmedida['date_definitva'].'" type="date">
            </div>
 
-           <!--  -->
            <input class="form-control" id="relacionalmedida" name="" placeholder="" value="<?php echo $rowmedida['relacion']; ?>" type="text" style="display:none;">
            <input class="form-control" id="estatusmedprog" name="" placeholder="" value="<?php echo $rowmedida['estatusprograma']; ?>" type="text" style="display:none;">
            <!--  -->
@@ -433,7 +427,31 @@ $validacion = $fil_val['validacion'];
                </label>
              </center>
            </div>
+         </div>
 
+          <div class="row" id="ampliacion_medida" style="display:none">
+            <div class="row">
+              <hr class="mb-4">
+            </div>
+            <div class="alert div-title">
+              <h3 style="text-align:center">AMPLIACIÓN DE LA MEDIDA</h3>
+            </div>
+            <div id="contenido">
+              <!-- <a href="registrar_ampliacion.php?id_medida_aloj=<?php echo $id_medida;?>"><button style="display: block; margin: 0 auto;" type="button" id="AGREGAR_CONVENIO" class="btn color-btn-success">AGREGAR</button></a> -->
+              <?php
+              echo "<a href='#add_ampliacion_medida_".$rowmedida['id']."' data-toggle='modal'><button style='display: block; margin: 0 auto;' type='button' id='AGREGAR_CONVENIO' class='btn color-btn-success'>AGREGAR</button></a>";
+               ?>
+              <table class="table table-striped table-dark table-bordered">
+                <thead class="table-success">
+                  <th style="text-align:center">No.</th>
+                  <th style="text-align:center">ID CONVENIO ADHESIÓN</th>
+                  <th style="text-align:center">FECHA INICIO AMPLIACIÓN</th>
+                  <th style="text-align:center">DÍAS DE VIGENCIA</th>
+                  <th style="text-align:center">FECHA DE TÉRMINO DE AMPLIACIÓN</th>
+                </thead>
+              </table>
+            </div>
+          </div>
 
           <div class="row">
             <div class="row">
@@ -442,7 +460,6 @@ $validacion = $fil_val['validacion'];
             <div class="alert div-title">
               <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
             </div>
-
             <?php
               if ($rowmedida['estatus'] == 'EN EJECUCION') {
                 echo '<div class="col-md-6 mb-3 validar">
@@ -461,8 +478,6 @@ $validacion = $fil_val['validacion'];
                 </div>';
               }
              ?>
-
-
             <div class="col-md-6 mb-3 validar" id="municipio_of_execute">
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
@@ -490,7 +505,6 @@ $validacion = $fil_val['validacion'];
                } ?>" disabled>
              </div>
             <?php
-
               if ($rowmedida['estatus'] == 'EJECUTADA') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="FECHA_DE_EJECUCION">FECHA DE EJECUCIÓN<span class="required"></span></label>
@@ -508,7 +522,6 @@ $validacion = $fil_val['validacion'];
                     <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
                     <input class="form-control" id="CONCLUSION_ART35" name="CONCLUSION_ART35" placeholder="" value="'.$rowmultidisciplinario['acuerdo'].'" type="text" disabled>
                   </div>';
-
                   if ($rowmultidisciplinario['acuerdo'] == 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || $rowmultidisciplinario['acuerdo'] == 'OTRO') {
                     echo '<div class="col-md-6 mb-3 validar" id="OTHERART35">
                       <label for="OTHER_ART35">ESPECIFIQUE</label>
@@ -516,7 +529,6 @@ $validacion = $fil_val['validacion'];
                     </div>';
                   }
                 }
-
               if ($rowmedida['estatus'] == 'CANCELADA') {
                 echo '<div class="col-md-6 mb-3 validar">
                   <label for="FECHA_DE_EJECUCION">FECHA DE CANCELACIÓN<span class="required"></span></label>
@@ -541,7 +553,6 @@ $validacion = $fil_val['validacion'];
 
           </div>
 
-
           <div class="row" id="conclu_cancel" style="display:none;">
             <div class="row">
               <hr class="mb-4">
@@ -549,16 +560,6 @@ $validacion = $fil_val['validacion'];
             <div class="alert div-title">
               <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
             </div>
-
-            <!-- <div class="col-md-6 mb-3 validar">
-              <label for="CONCLUSION_CANCELACION">CONCLUSIÓN O CANCELACIÓN</label>
-              <select class="form-select form-select-lg" name="CONCLUSION_CANCELACION" onChange="actualizar_cancel(this)">
-                <option style="visibility: hidden" id="opt-conclusion-cancelacion" value="<?php echo $rowmultidisciplinario['acuerdo'] ?>"><?php echo $rowmultidisciplinario['acuerdo'] ?></option>
-                <option value="CANCELACION">CANCELACION</option>
-                <option value="CONCLUSION">CONCLUSION</option>
-                <option value="NO APLICA">NO APLICA</option>
-              </select>
-            </div> -->
 
              <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35" >
                <label for="CONCLUSION_ART35">CONCLUSION ARTICULO 35</label>
@@ -581,12 +582,8 @@ $validacion = $fil_val['validacion'];
 
           </div>
 
-
-
-              </div>
               <div class="row">
                 <div class="row">
-
                   <hr class="mb-4">
                 </div>
 
@@ -598,7 +595,6 @@ $validacion = $fil_val['validacion'];
                 <div class="">
                   <table class="table table-striped table-bordered " >
                     <thead >
-
                     </thead>
                     <?php
                     $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida' AND comentario_mascara = '2'";
@@ -609,7 +605,6 @@ $validacion = $fil_val['validacion'];
                     echo "<td>";
                     echo "<ul>
                           <li>
-
                           <div>
                           <span>
                           usuario:".$var_fila['usuario']."
@@ -628,15 +623,11 @@ $validacion = $fil_val['validacion'];
                           </li>
                     </ul>";echo "</td>";
                     echo "</tr>";
-
                     }
                   ?>
                   </table>
                 </div>
               </div>
-
-
-
               <?php
               $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
               $resultadomedida = $mysqli->query($medida);
@@ -652,23 +643,17 @@ $validacion = $fil_val['validacion'];
               $res_val13=$mysqli->query($valid13);
               $fil_val13 = $res_val13->fetch_assoc();
               $validacion13 = $fil_val13['validacion'];
-                // if ($validacion13 != 'true') {
                   echo '
-
                     <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-
-                  </div>
-                  <div class="row">
-                    <div>
-                        <br>
-                        <br>
-                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
                     </div>
-                  </div>';
-                // }
+                    <div class="row">
+                      <div>
+                          <br>
+                          <br>
+                    		    <button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
+                      </div>
+                    </div>';
                ?>
-
-
         </div>
       </form>
     </div>
@@ -691,16 +676,15 @@ $validacion = $fil_val['validacion'];
   $fil_val = $res_val->fetch_assoc();
     if ($fil_val['validar_datos'] === 'false' && $name === 'e-adriana') {
       echo "<div>
-
                 <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
-
       </div>";
     }
    ?>
 <a href="../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
 </div>
-<!-- SCRIPT DE FECHAS  -->
-
+<?php
+include('agregar_ampliacion_medida.php');
+?>
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
@@ -772,11 +756,7 @@ function selectconclu(e){
   var relmedaloj = document.getElementById('relacionalmedida').value;
   var estatusmedprogram = document.getElementById('estatusmedprog').value;
   var disabledrelacion = document.getElementById('switch').value;
-  console.log(clasificacion);
-  console.log(incisoclasificacion);
-  console.log(relmedaloj);
-  console.log(estatusmedprogram);
-  console.log(disabledrelacion);
+  var tipomedida = document.getElementById('TIPO_DE_MEDIDA').value;
   //////////////////////////////////////////////////////////////////////////////
   if (relmedaloj !== '') {
     // document.getElementById('switch').disabled = true;///////////descomentar una vez que se actualizo todas las medidas de alojamiento
@@ -789,6 +769,15 @@ function selectconclu(e){
     document.getElementById("statusmedrel").style.display = "none";
     document.getElementById("activarmedaloj").style.display = "none";
   }
+  if (incisoclasificacion === 'VIII. ALOJAMIENTO TEMPORAL') {
+    if (tipomedida !== 'PROVISIONAL') {
+      document.getElementById("ampliacion_medida").style.display = "";
+    }else {
+        document.getElementById("ampliacion_medida").style.display = "none";
+    }
+  }else {
+    document.getElementById("ampliacion_medida").style.display = "none";
+  }
   //////////////////////////////////////////////////////////////////////////////
   if (relmedaloj === 'SI') {
     document.getElementById('switch').checked = true;
@@ -797,7 +786,6 @@ function selectconclu(e){
     document.getElementById('switch2').checked = true;
   }
 ////////////////////////////////////////////////////////////////////////////////
-
 </script>
 </body>
 </html>
