@@ -449,6 +449,22 @@ $validacion = $fil_val['validacion'];
                   <th style="text-align:center">DÍAS DE VIGENCIA</th>
                   <th style="text-align:center">FECHA DE TÉRMINO DE AMPLIACIÓN</th>
                 </thead>
+                <?php
+                $cont_med = '0';
+                $tabla="SELECT * FROM ampliacion_alojamiento_temporal WHERE id_medida_alojamiento ='$id_medida'";
+                 $var_resultado = $mysqli->query($tabla);
+                while ($var_fila=$var_resultado->fetch_array())
+                {
+                  $cont_med = $cont_med + 1;
+                  echo "<tr>";
+                    echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
+                    echo "<td style='text-align:center'>"; echo $var_fila['id_convenio']; echo "</td>";
+                    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_inicio'])); echo "</td>";
+                    echo "<td style='text-align:center'>"; echo $var_fila['dias_vigencia']; echo "</td>";
+                    echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_termino_ampliacion'])); echo "</td>";
+                  echo "</tr>";
+                }
+                ?>
               </table>
             </div>
           </div>
