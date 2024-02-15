@@ -155,7 +155,7 @@ $row=$result->fetch_assoc();
             <a class="actived">SUJETOS</a>
           </div>
           <div class="container">
-            <h2 style="text-align:center">PERSONAS PROPUESTAS NUEVO INGRESO</h2>
+            <h2 style="text-align:center">BDD PERSONAS ESTADISTICA</h2>
             <div class="">
                 <div class="row">
                         <div class="col-lg-12">
@@ -167,7 +167,7 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">No.</th>
                                           <th style="text-align:center">EXPEDIENTE</th>
                                           <th style="text-align:center">SEDE</th>
-                                          <!-- <th style="text-align:center">FECHA RECEPCION EXPEDIENTE</th> -->
+                                          <th style="text-align:center">FECHA RECEPCION EXPEDIENTE</th>
                                           <th style="text-align:center">FECHA RECEPCION PERSONA</th>
                                           <th style="text-align:center">ID SOLICITUD</th>
                                           <th style="text-align:center">FECHA SOLICITUD</th>
@@ -207,7 +207,7 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">DELITO SECUNDARIO</th>
                                           <th style="text-align:center">OTRO DELITO SECUNDARIO</th>
                                           <th style="text-align:center">ETAPA PRCEDIMIENTO</th>
-                                          <th style="text-align:center">NUC</th>
+                                          <!-- <th style="text-align:center">NUC</th> -->
                                           <th style="text-align:center">MUNICIPIO RADICACION</th>
                                           <!-- <th style="text-align:center">IMAGEN PERSONA</th> -->
                                           <th style="text-align:center">IDENTIFICADOR EXPEDIENTE</th>
@@ -251,15 +251,15 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">ESPECIFICAR ARTICULO 35</th>
                                           <th style="text-align:center">FECHA DESINCORPORACION</th>
                                           <th style="text-align:center">ESTATUS SUJETO PROGRAMA</th>
-                                          <!-- <th style="text-align:center">RELACIONADO</th> -->
-                                          <!-- <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th> -->
-                                          <!-- <th style="text-align:center">RE-INGRESO</th> -->
+                                          <th style="text-align:center">RELACIONADO</th>
+                                          <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
+                                          <th style="text-align:center">RE-INGRESO</th>
                                       </tr>
                                   </thead>
                                   <tbody>
                                     <?php
                                     $contador = 0;
-                                    $suj = "SELECT * FROM datospersonales WHERE estatus = 'PERSONA PROPUESTA'";
+                                    $suj = "SELECT * FROM datospersonales";
                                     $rsuj = $mysqli->query($suj);
                                     while ($fsuj = $rsuj->fetch_assoc()) {
                                       $expediente = $fsuj['folioexpediente'];
@@ -318,7 +318,7 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['folioexpediente']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fproc['sede']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
                                       echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($faut['fechasolicitud_persona'])); echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $faut['idsolicitud']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($faut['fechasolicitud'])); echo "</td>";
@@ -358,7 +358,7 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $fprocc['delitosecundario']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['otrodelitosecundario']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['etapaprocedimiento']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fprocc['nuc']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fprocc['nuc']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['numeroradicacion']; echo "</td>";
                                       // echo "<td style='text-align:center'>";  echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['identificador']; echo "</td>";
@@ -430,9 +430,9 @@ $row=$result->fetch_assoc();
                                         echo date("d/m/Y", strtotime($fdeti['date_desincorporacion']));
                                       } echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['estatus']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
                                       echo "</tr>";
                                       // echo "<td style='text-align:center'>";  echo "</td>";
                                     }

@@ -155,7 +155,7 @@ $row=$result->fetch_assoc();
             <a class="actived">SUJETOS</a>
           </div>
           <div class="container">
-            <h2 style="text-align:center">PERSONAS</h2>
+            <h2 style="text-align:center">BDD PERSONAS EN GENERAL</h2>
             <div class="">
                 <div class="row">
                         <div class="col-lg-12">
@@ -445,7 +445,7 @@ $row=$result->fetch_assoc();
             </div>
 
           </div>
-          
+
         </article>
 
       </div>
