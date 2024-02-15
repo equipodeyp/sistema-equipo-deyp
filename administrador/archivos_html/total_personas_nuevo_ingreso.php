@@ -155,7 +155,7 @@ $row=$result->fetch_assoc();
             <a class="actived">SUJETOS</a>
           </div>
           <div class="container">
-            <h2 style="text-align:center">PERSONAS</h2>
+            <h2 style="text-align:center">PERSONAS PROPUESTAS NUEVO INGRESO</h2>
             <div class="">
                 <div class="row">
                         <div class="col-lg-12">
@@ -167,41 +167,41 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">No.</th>
                                           <th style="text-align:center">EXPEDIENTE</th>
                                           <th style="text-align:center">SEDE</th>
-                                          <th style="text-align:center">FECHA RECEPCION EXPEDIENTE</th>
+                                          <!-- <th style="text-align:center">FECHA RECEPCION EXPEDIENTE</th> -->
                                           <th style="text-align:center">FECHA RECEPCION PERSONA</th>
                                           <th style="text-align:center">ID SOLICITUD</th>
                                           <th style="text-align:center">FECHA SOLICITUD</th>
                                           <th style="text-align:center">NOMBRE AUTORIDAD</th>
-                                          <th style="text-align:center">NOMBRE SERVIDOR</th>
-                                          <th style="text-align:center">PATERNO SERVIDOR</th>
-                                          <th style="text-align:center">MATERNO SERVIDOR</th>
-                                          <th style="text-align:center">CARGO SERVIDOR</th>
+                                          <!-- <th style="text-align:center">NOMBRE SERVIDOR</th> -->
+                                          <!-- <th style="text-align:center">PATERNO SERVIDOR</th> -->
+                                          <!-- <th style="text-align:center">MATERNO SERVIDOR</th> -->
+                                          <!-- <th style="text-align:center">CARGO SERVIDOR</th> -->
                                           <th style="text-align:center">NOMBRE PERSONA</th>
                                           <th style="text-align:center">PATERNO PERSONA</th>
                                           <th style="text-align:center">MATERNO PERSONA</th>
-                                          <th style="text-align:center">FECHA NACIEMIENTO PERSONA</th>
-                                          <th style="text-align:center">EDAD PERSONA</th>
+                                          <!-- <th style="text-align:center">FECHA NACIEMIENTO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">EDAD PERSONA</th> -->
                                           <th style="text-align:center">GRUPO EDAD</th>
                                           <th style="text-align:center">CALIDAD PERSONA</th>
                                           <th style="text-align:center">SEXO PERSONA</th>
-                                          <th style="text-align:center">ENTIDAD NACIMIENTO PERSONA</th>
-                                          <th style="text-align:center">MUNICIPIO NACIMIENTO PERSONA</th>
-                                          <th style="text-align:center">NACIONALIDAD PERSONA</th>
-                                          <th style="text-align:center">CURP</th>
-                                          <th style="text-align:center">RFC PERSONA</th>
-                                          <th style="text-align:center">ALIAS PERSONA</th>
-                                          <th style="text-align:center">OCUPACION PERSONA</th>
-                                          <th style="text-align:center">TELEFONO FIJO</th>
-                                          <th style="text-align:center">TELEFONO CELULAR</th>
-                                          <th style="text-align:center">CALLE DOMICILIO PERSONA</th>
-                                          <th style="text-align:center">COLONIA DOMICILIO PERSONA</th>
-                                          <th style="text-align:center">LOCALIDAD DOMICILIO PERSONA</th>
-                                          <th style="text-align:center">MUNICIPIO DOMICILIO PERSONA</th>
-                                          <th style="text-align:center">CP DOMICILIO PERSONA</th>
-                                          <th style="text-align:center">MENOR DE EDAD O PERSONA EN SITUACION DE DISCAPACIDAD</th>
-                                          <th style="text-align:center">TUTOR NOMBRE</th>
-                                          <th style="text-align:center">TUTOR PATERNO</th>
-                                          <th style="text-align:center">TUTOR MATERNO</th>
+                                          <!-- <th style="text-align:center">ENTIDAD NACIMIENTO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">MUNICIPIO NACIMIENTO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">NACIONALIDAD PERSONA</th> -->
+                                          <!-- <th style="text-align:center">CURP</th> -->
+                                          <!-- <th style="text-align:center">RFC PERSONA</th> -->
+                                          <!-- <th style="text-align:center">ALIAS PERSONA</th> -->
+                                          <!-- <th style="text-align:center">OCUPACION PERSONA</th> -->
+                                          <!-- <th style="text-align:center">TELEFONO FIJO</th> -->
+                                          <!-- <th style="text-align:center">TELEFONO CELULAR</th> -->
+                                          <!-- <th style="text-align:center">CALLE DOMICILIO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">COLONIA DOMICILIO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">LOCALIDAD DOMICILIO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">MUNICIPIO DOMICILIO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">CP DOMICILIO PERSONA</th> -->
+                                          <!-- <th style="text-align:center">MENOR DE EDAD O PERSONA EN SITUACION DE DISCAPACIDAD</th> -->
+                                          <!-- <th style="text-align:center">TUTOR NOMBRE</th> -->
+                                          <!-- <th style="text-align:center">TUTOR PATERNO</th> -->
+                                          <!-- <th style="text-align:center">TUTOR MATERNO</th> -->
                                           <th style="text-align:center">DELITO PRINCIPAL</th>
                                           <th style="text-align:center">OTRO DELITO PRINCIPAL</th>
                                           <th style="text-align:center">DELITO SECUNDARIO</th>
@@ -251,15 +251,15 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">ESPECIFICAR ARTICULO 35</th>
                                           <th style="text-align:center">FECHA DESINCORPORACION</th>
                                           <th style="text-align:center">ESTATUS SUJETO PROGRAMA</th>
-                                          <th style="text-align:center">RELACIONADO</th>
-                                          <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
-                                          <th style="text-align:center">RE-INGRESO</th>
+                                          <!-- <th style="text-align:center">RELACIONADO</th> -->
+                                          <!-- <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th> -->
+                                          <!-- <th style="text-align:center">RE-INGRESO</th> -->
                                       </tr>
                                   </thead>
                                   <tbody>
                                     <?php
                                     $contador = 0;
-                                    $suj = "SELECT * FROM datospersonales";
+                                    $suj = "SELECT * FROM datospersonales WHERE estatus = 'PERSONA PROPUESTA'";
                                     $rsuj = $mysqli->query($suj);
                                     while ($fsuj = $rsuj->fetch_assoc()) {
                                       $expediente = $fsuj['folioexpediente'];
@@ -318,41 +318,41 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['folioexpediente']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fproc['sede']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fproc['fecha_nueva'])); echo "</td>";
                                       echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($faut['fechasolicitud_persona'])); echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $faut['idsolicitud']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($faut['fechasolicitud'])); echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $faut['nombreautoridad']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $faut['nombreservidor']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $faut['apellidopaterno']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $faut['apellidomaterno']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $faut['cargoservidor']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $faut['nombreservidor']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $faut['apellidopaterno']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $faut['apellidomaterno']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $faut['cargoservidor']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['nombrepersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['paternopersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['maternopersona']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fsuj['fechanacimientopersona'])); echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['edadpersona']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fsuj['fechanacimientopersona'])); echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['edadpersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['grupoedad']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['calidadpersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['sexopersona']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fnac['lugardenacimiento']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fnac['municipiodenacimiento']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fnac['nacionalidadpersona']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['curppersona']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['rfcpersona']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['aliaspersona']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['ocupacion']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['telefonofijo']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['telefonocelular']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fdom['calle']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fdom['seleccionelocalidad']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fdom['seleccionelocalidad']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fdom['seleccionemunicipio']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fdom['cp']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['incapaz']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $finc['nombre']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $finc['apellidopaterno']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $finc['apellidomaterno']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fnac['lugardenacimiento']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fnac['municipiodenacimiento']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fnac['nacionalidadpersona']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['curppersona']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['rfcpersona']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['aliaspersona']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['ocupacion']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['telefonofijo']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['telefonocelular']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fdom['calle']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fdom['seleccionelocalidad']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fdom['seleccionelocalidad']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fdom['seleccionemunicipio']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fdom['cp']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['incapaz']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $finc['nombre']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $finc['apellidopaterno']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $finc['apellidomaterno']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['delitoprincipal']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['otrodelitoprincipal']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['delitosecundario']; echo "</td>";
@@ -430,9 +430,9 @@ $row=$result->fetch_assoc();
                                         echo date("d/m/Y", strtotime($fdeti['date_desincorporacion']));
                                       } echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['estatus']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
+                                      // echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
                                       echo "</tr>";
                                       // echo "<td style='text-align:center'>";  echo "</td>";
                                     }
@@ -445,7 +445,7 @@ $row=$result->fetch_assoc();
             </div>
 
           </div>
-          
+
         </article>
 
       </div>
