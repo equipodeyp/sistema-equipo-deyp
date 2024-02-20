@@ -29,10 +29,12 @@ if ($verifica_update_person == 1) {
   if ($fecha_inicio != '' && $vigencia != '') {
     $fecha_vigencia = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
     $fecha_termino = date("d/m/Y",strtotime($fecha_vigencia."- 1 days"));
+    $fecha_finalconvenio = date("Y/m/d",strtotime($fecha_vigencia."- 1 days"));
   }else {
     $fecha_inicio = '';
     $vigencia = '';
     $fecha_termino = '';
+    $fecha_finalconvenio = '';
   }
   $id_convenio=$_POST['id_convenio'];
   $acuerdo =$_POST['CONCLUSION_CANCELACION_EXP'];
@@ -122,8 +124,9 @@ if ($verifica_update_person == 1) {
     $res_det_inc = $mysqli->query($det_inc);
   }
   if ($filachk['convenio'] === '' || $filachk['convenio'] === 'PENDIENTE DE EJECUCION') {
-    $det_inc = "UPDATE determinacionincorporacion SET convenio='$convenio', vigencia = '$vigencia', date_convenio = '$fecha_conv_ent', fecha_inicio = '$fecha_inicio', fecha_termino = '$fecha_termino', id_convenio = '$id_convenio'
-    WHERE id_persona = '$id_persona' ";
+    $det_inc = "UPDATE determinacionincorporacion SET convenio='$convenio', vigencia = '$vigencia', date_convenio = '$fecha_conv_ent', fecha_inicio = '$fecha_inicio',
+                                                      fecha_termino = '$fecha_termino', id_convenio = '$id_convenio', fecha_vigencia = '$fecha_finalconvenio'
+                                                  WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
