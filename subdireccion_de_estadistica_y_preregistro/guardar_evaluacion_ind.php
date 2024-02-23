@@ -55,6 +55,12 @@ if ($verifica_update_person == 1) {
     if ($fecha_inicio != '') {
       $fecha_mas = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
       $fecha_vigencia = date("Y/m/d",strtotime($fecha_mas."- 1 days"));
+      // solo se agrega si se eligio conveio de adhesion
+      $estatus_suj_alert = 'PENDIENTE';
+      // sql para agregar registro en la tabla de alerta de convenios
+      $alert_conv = "INSERT INTO alerta_convenios(expediente, id_persona, id_unico, fecha_inicio, fecha_termino, estatus)
+                            VALUES('$folioexpediente', '$id', '$id_unico', '$fecha_inicio', '$fecha_vigencia', '$estatus_suj_alert')";
+      $ralert_conv = $mysqli ->query($alert_conv);
     }
   }
 

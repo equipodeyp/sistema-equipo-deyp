@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica_update_person = $_SESSION["verifica_update_person"];
@@ -128,6 +128,18 @@ if ($verifica_update_person == 1) {
                                                       fecha_termino = '$fecha_termino', id_convenio = '$id_convenio', fecha_vigencia = '$fecha_finalconvenio'
                                                   WHERE id_persona = '$id_persona' ";
     $res_det_inc = $mysqli->query($det_inc);
+    // agregar a la tabla aletras de convenio los datos del sujeto incorporado
+    $check_detos_suj_alerta = "SELECT * FROM datospersonales WHERE id = '$id_persona'";
+    $res_check_detos_suj_alerta = $mysqli->query($check_detos_suj_alerta);
+    $fcheck_detos_suj_alerta = $res_check_detos_suj_alerta->fetch_assoc();
+    // obteniendo datos del sujeto
+    $fol_expediente = $fcheck_detos_suj_alerta['folioexpediente'];
+    $id_unico = $fcheck_detos_suj_alerta['identificador'];
+    $estatus_suj_alert = 'PENDIENTE';
+    // sql para agregar registro en la tabla de alerta de convenios 
+    $alert_conv = "INSERT INTO alerta_convenios(expediente, id_persona, id_unico, fecha_inicio, fecha_termino, estatus)
+                          VALUES('$fol_expediente', '$id_persona', '$id_unico', '$fecha_inicio', '$fecha_finalconvenio', '$estatus_suj_alert')";
+    $ralert_conv = $mysqli ->query($alert_conv);
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $estatus_per = "SELECT * FROM datospersonales WHERE id='$id_persona'";
