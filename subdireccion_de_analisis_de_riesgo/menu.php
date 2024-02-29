@@ -2,6 +2,7 @@
 /*require 'conexion.php';*/
 date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
+include("actualizar_automaticamente_alerta_convenios.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
@@ -9,26 +10,28 @@ if (!isset($name)) {
 }
 //Si la variable de sesión no existe,
 //Se presume que la página aún no se ha actualizado.
-if(!isset($_SESSION['already_refreshed'])){
-  ////////////////////////////////////////////////////////////////////////////////
-  $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
-  $resultr = $mysqli->query($sentenciar);
-  $rowr=$resultr->fetch_assoc();
-  $areauser = $rowr['area'];
-  $fecha = date('y/m/d H:i:sa');
-  ////////////////////////////////////////////////////////////////////////////////
-  $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
-                VALUES ('$name', '$areauser', '$fecha')";
-  $res_saveiniciosession = $mysqli->query($saveiniciosession);
-  ////////////////////////////////////////////////////////////////////////////////
-//Establezca la variable de sesión para que no
-//actualice de nuevo.
-  $_SESSION['already_refreshed'] = true;
-}
+// if(!isset($_SESSION['already_refreshed'])){
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+//   $resultr = $mysqli->query($sentenciar);
+//   $rowr=$resultr->fetch_assoc();
+//   $areauser = $rowr['area'];
+//   $fecha = date('y/m/d H:i:sa');
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
+//                 VALUES ('$name', '$areauser', '$fecha')";
+//   $res_saveiniciosession = $mysqli->query($saveiniciosession);
+//   ////////////////////////////////////////////////////////////////////////////////
+// //Establezca la variable de sesión para que no
+// //actualice de nuevo.
+//   $_SESSION['already_refreshed'] = true;
+// }
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -60,6 +63,11 @@ $row=$result->fetch_assoc();
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
+  <!-- MATERIAL PARA USAR TOAST MENSAJES DE ALERTA  -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<!-- ////////////////////////////////////////// --
+
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -79,34 +87,18 @@ $row=$result->fetch_assoc();
              },
              "sProcessing":"Procesando...",
               },
-          // para usar los botones
-      //     responsive: "true",
-      //     dom: 'Bfrtilp',
-      //     buttons:[
-      //   {
-      //     extend:    'excelHtml5',
-      //     text:      '<i class="fas fa-file-excel"></i> ',
-      //     titleAttr: 'Exportar a Excel',
-      //     className: 'btn btn-success'
-      //   },
-      //   {
-      //     extend:    'pdfHtml5',
-      //     text:      '<i class="fas fa-file-pdf"></i> ',
-      //     titleAttr: 'Exportar a PDF',
-      //     className: 'btn btn-danger'
-      //   },
-      //   {
-      //     extend:    'print',
-      //     text:      '<i class="fa fa-print"></i> ',
-      //     titleAttr: 'Imprimir',
-      //     className: 'btn btn-info'
-      //   },
-      // ]
       });
   });
   </script>
-
-
+  <!-- SCRIPT PARA REFRESCAR MENU.PHP Y MOSTRAR ALERTAS DE TERMINOS DE CONVENIOS -->
+<!-- <script>
+  let segundos_recarga = 9;
+  let miFecha = new Date();
+  let dato_url = miFecha.getYear().toString() + miFecha.getMonth().toString() + miFecha.getDate().toString() + miFecha.getHours().toString() + miFecha.getMinutes().toString() + miFecha.getSeconds().toString();
+  setTimeout( function() {
+    window.location = `menu.php`;
+  }, segundos_recarga * 1000);
+</script> -->
   <style>
     .pagination {
   display: inline-block;
@@ -211,8 +203,73 @@ a:focus {
   text-decoration: underline;
 }
   </style>
+  <style media="screen">
+  .demo-preview {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+  }
 
+  .alert {
+    padding: .7143rem 1.071rem;
+    margin-bottom: 1.429rem;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    color: #FFF
+  }
 
+  .alert.alert-square {
+    border-radius: 0
+  }
+
+  .alert .close {
+    position: relative
+  }
+
+  .alert.alert-dismissable,
+  .alert.alert-dismissible {
+    padding-right: 2.5rem
+  }
+
+  .alert.alert-dismissable .close,
+  .alert.alert-dismissible .close {
+    top: -2px;
+    right: -20px;
+    color: inherit
+  }
+
+  .alert.alert-primary {
+    background-color: #2196F3;
+    border-color: #2196F3
+  }
+
+  .alert.alert-secondary {
+    background-color: #323a45;
+    border-color: #323a45
+  }
+
+  .alert.alert-success {
+    background-color: #64DD17;
+    border-color: #64DD17
+  }
+
+  .alert.alert-info {
+    background-color: #29B6F6;
+    border-color: #29B6F6
+  }
+
+  .alert.alert-warning {
+    background-color: #F89406;
+    border-color: #F89406
+  }
+
+  .alert.alert-danger {
+    background-color: #ef1c1c;
+    border-color: #EF5350
+  }
+  </style>
 
 </head>
 <body>
@@ -267,11 +324,91 @@ a:focus {
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-        <div class="row">
-          <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
-        </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
+        <div class="row" id="show_alert" style="display:none;">
+          <table id="example22" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <h3 style="text-align:center">¡ALERTA HAY CONVENIOS POR FINALIZAR!</h3>
+                <tr>
+                    <th style="text-align:center">NO.</th>
+                    <th style="text-align:center">EXPEDIENTE</th>
+                    <th style="text-align:center">ID PERSONA</th>
+                    <th style="text-align:center">FECHA DE INICIO DEL CONVENIO</th>
+                    <th style="text-align:center">FECHA DE TERMINO DEL CONVENIO</th>
+                    <th style="text-align:center">DIAS RESTANTES</th>
+                    <th style="text-align:center">OBSERVACIONES</th>
+                    <th style="text-align:center">SEMAFORO</th>
+                    <th style="text-align:center">SEGUIMIENTO</th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php
+              $contador = 0;
+                    $query= "SELECT * FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15 ORDER BY dias_restantes ASC";
+                    $rq = $mysqli->query($query);
+                       while($row = $rq->fetch_assoc()){
+                         $contador = $contador + 1;
+                         $id_per = $row['id_persona'];
+                         $dper = "SELECT * FROM alerta_convenios WHERE id = '$id_per'";
+                         $rdper = $mysqli->query($dper);
+                         $fdper = $rdper->fetch_assoc();
+                         $diasfaltantesent = $row['dias_restantes'];
+                         $idpersonal_ent = $row['id_unico'];
+                         $foliopersonaexpediente_ent = $row['expediente'];
+                         $diasfaltantesent = $row['dias_restantes'];
+                         if ($diasfaltantesent === 1) {
+                           $qued_ent = 'QUEDA';
+                         }else {
+                           $qued_ent = 'QUEDAN';
+                         }
+                         if ($diasfaltantesent === 1) {
+                           $dia_ent = 'DÍA';
+                         }else {
+                           $dia_ent = 'DÍAS';
+                         }
+              ?>
+              <tr>
+                 <td style="text-align:center"><?php echo $contador ?></span></td>
+                 <td style="text-align:center"><?php echo $row['expediente']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['id_unico']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['fecha_inicio']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['fecha_termino']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['dias_restantes']; ?></span></td>
+                 <td style="text-align:center">
+                   <?php
+                   echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
+                    ?>
+                 </td>
+                 <td style="text-align:center">
+                   <?php
+                   if ($row['semaforo'] === 'ROJO') {
+                     echo '<script type="text/javascript">toastr.error("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     echo '	  <div class="alert alert-danger alert-dismissable fade in">
+                                 <strong style="color:#000000">¡ATENCIÓN!</strong>
+                               </div> ';
+                   }elseif ($row['semaforo'] === 'AMARILLO') {
+                     echo '<script type="text/javascript">toastr.warning("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     echo '	  <div class="alert alert-warning alert-dismissable fade in">
+                                 <strong style="color:#000000">¡ALERTA!</strong>
+                               </div> ';
+                   }elseif ($row['semaforo'] === 'VERDE') {
+                     echo '<script type="text/javascript">toastr.success("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     echo '	  <div class="alert alert-success alert-dismissable fade in">
+                                 <strong style="color:#000000; text-align:center">PRECAUCIÓN!</strong>
+                               </div> ';
+                   }
+                    ?>
+                 </td>
+                 <td style="text-align:center"><?php echo $row['estatus']; ?></span></td>
+                 <?php include('add_observacion_alerta.php'); ?>
+               </tr>
+              <?php
+               }
+              ?>
+            </tbody>
+           </table>
+        </div>
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
@@ -349,12 +486,8 @@ a:focus {
     </div>
   </div>
   <div class="contenedor">
-
-    <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
-
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
-
   <!-- modal del glosario -->
   <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -377,5 +510,21 @@ a:focus {
     </div>
   </div>
   <!-- fin modal  -->
+  <?php
+  $mostraralert = "SELECT COUNT(*) AS total FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15";
+  $rmostraralert = $mysqli -> query($mostraralert);
+  $fmostraralert = $rmostraralert -> fetch_assoc();
+  $restotal = $fmostraralert['total'];
+  ?>
+<script type="text/javascript">
+<?php
+echo "var totalconvenios = '$restotal';";
+?>
+if (totalconvenios > 0) {
+document.getElementById('show_alert').style.display = "";
+}else {  
+  document.getElementById('show_alert').style.display = "none";
+}
+</script>
 </body>
 </html>
