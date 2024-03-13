@@ -235,7 +235,9 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         		  		</thead>
         		  		<?php
                   $cont_med = '0';
-        		      $tabla="SELECT * FROM medidas WHERE id_persona ='$fol_exp'";
+        		      $tabla="SELECT * FROM medidas
+                  INNER JOIN validar_medida ON medidas.id = validar_medida.id_medida
+                  WHERE medidas.id_persona = '$fol_exp' AND medidas.estatus = 'EN EJECUCION' OR validar_medida.validar_datos = 'false'";
                   $var_resultado = $mysqli->query($tabla);
 
                   $folioExp=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
