@@ -31,6 +31,8 @@ $_SESSION["verifica_update_person"] = $verifica_update_person;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$user = $row['usuario'];
+// echo $user;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,7 +70,7 @@ $row=$result->fetch_assoc();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <!-- ////////////////////////////////////////// --
 
-<!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
+ SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
       $('#example').DataTable({
@@ -304,6 +306,16 @@ a:focus {
               <!-- <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a> -->
               <!-- <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items"> Busqueda</span></a> -->
               <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items"> ESTADISTICA</span></a></li> -->
+          </ul>
+          <br><br>
+          <ul>
+				   <?php
+		   				if ($user=='guillermogv') {
+							echo "
+								<a style='text-align:center' class='user-nombre' href='/SIPPSIPPED v2/sistema-equipo-deyp/asistencias_medicas/inicio.php'><button type='button' class='btn btn-light'>REGISTRAR ASISTENCIA <br> MÉDICA</button> </a>
+							";
+						  }
+					?>
           </ul>
       </nav>
     </div>

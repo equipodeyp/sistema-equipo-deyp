@@ -17,7 +17,7 @@
     document.getElementById("div_12").style.display = "none"; // Ocultar Apartado Psicopatologia 12
     document.getElementById("div_13").style.display = "none"; // Ocultar Apartado Psicopatologia 13
 
-    document.getElementById("q1").style.display = ""; // Mostrar Pregunta 1
+    document.getElementById("q1").style.display = "none"; // Mostrar Pregunta 1
     document.getElementById("q2").style.display = "none"; // Ocultar Pregunta 2
     document.getElementById("q3").style.display = "none"; // Ocultar Pregunta 3
     document.getElementById("q4").style.display = "none"; // Ocultar Pregunta 4

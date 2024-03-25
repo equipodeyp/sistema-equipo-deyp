@@ -11,19 +11,19 @@ $row=$result->fetch_assoc();
 
 
 $fol_exp = $_GET['folio'];
-// echo $fol_exp;
-// echo "<br>";
+echo $fol_exp;
+echo "<br>";
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
-// echo "<br>";
+echo $name_folio;
+echo "<br>";
 $identificador = $rowfol['identificador'];
-// echo $identificador;
-// echo "<br>";
-// echo "<br>";
+echo $identificador;
+echo "<br>";
+echo "<br>";
 
 $id_person=$rowfol['id'];
 // echo $id_person;
@@ -186,7 +186,7 @@ $nombre_servidor=$row['nombre_servidor'];
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Folio Expediente</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Id Persona</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Usuario que Registra el Instrumento</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Detalle / Gráfico </th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Detalle</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Adaptabilidad</th>
                             </tr>
                         </thead>
@@ -208,6 +208,7 @@ $nombre_servidor=$row['nombre_servidor'];
                                                   while($row = mysqli_fetch_array($result_instrumento)) {
                                                     $id_instrumento=$row['id_instrumento'];
                                                     // echo $id_instrumento;
+                                                  
                                                     
                                               ?>
                                                   <?php $count = $count + 1 ?>
@@ -218,15 +219,15 @@ $nombre_servidor=$row['nombre_servidor'];
                                                           <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_persona']?></td>
                                                           <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_servidor']?></td>
                                                           <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                              <a href="resultado_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
+                                                              <a href="resultado_instrumento.php?id=<?php echo $row['id_instrumento'] ?>" class="btn btn-outline-secondary">
                                                                   <i class="fa fa-pen" ></i>
                                                               </a>
-                                                              <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
+                                                              <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                   <i class="fas fa-chart-line" ></i>
-                                                              </a>
+                                                              </a> -->
 
                                                           </td>
-
+                                                          
                                                           <td style="text-align:center; font-size: 10px; font-weight: bold !important; border: 2px solid #97897D;">
                                                           <?php 
                                                             if ($row['adaptabilidad'] === "INADAPTABLE"){

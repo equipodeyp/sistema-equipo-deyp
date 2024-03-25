@@ -972,8 +972,8 @@ function guardarInstrumento() { // Guardar instrumento
 
       var q1 = document.getElementById('question_1').value; // Obtener valor Pregunta 1
       var q2 = document.getElementById('question_2').value; // Obtener valor Pregunta 2
-      var q3 = document.getElementById('question_3').value; // Obtener valor Pregunta 2
-      var q4 = document.getElementById('question_3').value; // Obtener valor Pregunta 4
+      var q3 = document.getElementById('question_3').value; // Obtener valor Pregunta 3
+      var q4 = document.getElementById('question_4').value; // Obtener valor Pregunta 4
       var q5 = document.getElementById('question_5').value; // Obtener valor Pregunta 5 
       var q6 = document.getElementById('question_6').value; // Obtener valor Pregunta 6
       var q7 = document.getElementById('question_7').value; // Obtener valor Pregunta 7
@@ -1077,20 +1077,22 @@ function guardarInstrumento() { // Guardar instrumento
         resultado3 = resultado3 + suma3;
         t.push(resultado3);
       }
-
-      if(q13==="No"){
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+      if(q13==="Si"){
         suma4 = 3;
         resultado4 = resultado4 + suma4;
         t.push(resultado4);
-      }else if(q13==="Si" && q14==="Si"){
+      }else if(q13==="No" && q14==="Si"){
         suma4 = 2;
         resultado4 = resultado4 + suma4;
         t.push(resultado4);
-      }else if(q13==="Si" && q14==="No" && q15==="Si"){
+      }else if(q13==="No" && q14==="No" && q15==="Si"){
         suma4 = 1;
         resultado4 = resultado4 + suma4;
         t.push(resultado4);
-      }else if(q13==="Si" && q14==="No" && q15==="No" && q16==="Si"){
+      }else if(q13==="No" && q14==="No" && q15==="No" && q16==="Si"){
         suma4 = 0;
         resultado4 = resultado4 + suma4;
         t.push(resultado4);
@@ -1132,19 +1134,19 @@ function guardarInstrumento() { // Guardar instrumento
         t.push(resultado6);
       }
 
-      if(q25==="No"){
+      if(q25==="Si"){
         suma7 = 3;
         resultado7 = resultado7 + suma7;
         t.push(resultado7);
-      }else if(q25==="Si" && q26==="Si"){
+      }else if(q25==="No" && q26==="Si"){
         suma7 = 2;
         resultado7 = resultado7 + suma7;
         t.push(resultado7);
-      }else if(q25==="Si" && q26==="No" && q27==="Si"){
+      }else if(q25==="No" && q26==="No" && q27==="Si"){
         suma7 = 1;
         resultado7 = resultado7 + suma7;
         t.push(resultado7);
-      }else if(q25==="Si" && q26==="No" && q27==="No" && q28==="Si"){
+      }else if(q25==="No" && q26==="No" && q27==="No" && q28==="Si"){
         suma7 = 0;
         resultado7 = resultado7 + suma7;
         t.push(resultado7);
@@ -1170,57 +1172,57 @@ function guardarInstrumento() { // Guardar instrumento
       }
 
 
-      if(q33==="No"){
+      if(q33==="Si"){
         suma9 = 3;
         resultado9 = resultado9 + suma9;
         t.push(resultado9);
-      }else if(q33==="Si" && q34==="Si"){
+      }else if(q33==="No" && q34==="Si"){
         suma9 = 2;
         resultado9 = resultado9 + suma9;
         t.push(resultado9);
-      }else if(q33==="Si" && q34==="No" && q35==="Si"){
+      }else if(q33==="No" && q34==="No" && q35==="Si"){
         suma9 = 1;
         resultado9 = resultado9 + suma9;
         t.push(resultado9);
-      }else if(q33==="Si" && q34==="No" && q35==="No" && q36==="Si"){
+      }else if(q33==="No" && q34==="No" && q35==="No" && q36==="Si"){
         suma9 = 0;
         resultado9 = resultado9 + suma9;
         t.push(resultado9);
       }
 
 
-      if(q37==="No"){
+      if(q37==="Si"){
         suma10 = 3;
         resultado10 = resultado10 + suma10;
         t.push(resultado10);
-      }else if(q37==="Si" && q38==="Si"){
+      }else if(q37==="No" && q38==="Si"){
         suma10 = 2;
         resultado10 = resultado10 + suma10;
         t.push(resultado10);
-      }else if(q37==="Si" && q38==="No" && q39==="Si"){
+      }else if(q37==="No" && q38==="No" && q39==="Si"){
         suma10 = 1;
         resultado10 = resultado10 + suma10;
         t.push(resultado10);
-      }else if(q37==="Si" && q38==="No" && q39==="No" && q40==="Si"){
+      }else if(q37==="No" && q38==="No" && q39==="No" && q40==="Si"){
         suma10 = 0;
         resultado10 = resultado10 + suma10;
         t.push(resultado10);
       }
 
 
-      if(q41==="No"){
+      if(q41==="Si"){
         suma11 = 3;
         resultado11 = resultado11 + suma11;
         t.push(resultado11);
-      }else if(q41==="Si" && q42==="Si"){
+      }else if(q41==="No" && q42==="Si"){
         suma11 = 2;
         resultado11 = resultado11 + suma11;
         t.push(resultado11);
-      }else if(q41==="Si" && q42==="No" && q43==="Si"){
+      }else if(q41==="No" && q42==="No" && q43==="Si"){
         suma11 = 1;
         resultado11 = resultado11 + suma11;
         t.push(resultado11);
-      }else if(q41==="Si" && q42==="No" && q43==="No" && q44==="Si"){
+      }else if(q41==="No" && q42==="No" && q43==="No" && q44==="Si"){
         suma11 = 0;
         resultado11 = resultado11 + suma11;
         t.push(resultado11);
@@ -1244,19 +1246,19 @@ function guardarInstrumento() { // Guardar instrumento
         t.push(resultado12);
       }
 
-      if(q49==="No"){
+      if(q49==="Si"){
         suma13 = 3;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
-      }else if(q49==="Si" && q50==="Si"){
+      }else if(q49==="No" && q50==="Si"){
         suma13 = 2;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
-      }else if(q49==="Si" && q50==="No" && q51==="Si"){
+      }else if(q49==="No" && q50==="No" && q51==="Si"){
         suma13 = 1;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
-      }else if(q49==="Si" && q50==="No" && q51==="No" && q52==="Si"){
+      }else if(q49==="No" && q50==="No" && q51==="No" && q52==="Si"){
         suma13 = 0;
         resultado13 = resultado13 + suma13;
         t.push(resultado13);
@@ -1268,7 +1270,7 @@ function guardarInstrumento() { // Guardar instrumento
 
       document.getElementById('total_instrumento').value = total;
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       if (total >= 0 & total <=9){
         document.getElementById('adaptabilidad').value="INADAPTABLE";
       // console.log(document.getElementById('adaptabilidad').value);

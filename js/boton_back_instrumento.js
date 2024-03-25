@@ -18,12 +18,10 @@
     // console.log(document.getElementById('question_2').value);
     // console.log(document.getElementById('question_3').value);
     // console.log(document.getElementById('question_4').value);
-    
     // var q1 = document.getElementById('question_1').value; // Obtener valor Pregunta 1
     var q2 = document.getElementById('question_2').value; // Obtener valor Pregunta 2 
     var q3 = document.getElementById('question_3').value; // Obtener valor Pregunta 3
     var q4 = document.getElementById('question_4').value; // Obtener valor Pregunta 4
-
     // if (q1 === "") {
     //   q1.style.display = ""; // Mostrar q1 si es igual a vacio 
     // } else {

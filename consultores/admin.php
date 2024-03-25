@@ -26,9 +26,12 @@ if(!isset($_SESSION['already_refreshed'])){
 //actualice de nuevo.
   $_SESSION['already_refreshed'] = true;
 }
+
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$user = $row['usuario'];
+// echo $user;
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -249,7 +252,9 @@ a:focus {
          ?>
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
+
       <nav class="menu-nav">
+
         <ul>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <li id="liestadistica3" class="subtitle3">
@@ -263,6 +268,19 @@ a:focus {
             </ul>
           </li>
         </ul>
+
+        <br><br>
+
+        <ul>
+            <?php
+                if ($user=='nanotzinhn' || $user=='brendars') {
+                echo "
+                  <a style='text-align:center' class='user-nombre' href='/SIPPSIPPED v2/sistema-equipo-deyp/asistencias_medicas/inicio.php'><button type='button' class='btn btn-light'>REGISTRAR ASISTENCIA <br> MÉDICA</button> </a>
+                ";
+                }
+            ?>
+        </ul>
+
       </nav>
     </div>
     <div class="main bg-light">

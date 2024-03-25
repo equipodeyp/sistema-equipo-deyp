@@ -439,3 +439,17 @@ right: 20px;
 
   }
 
+  .resultado-instrumento-tres {      
+    width: 295px;
+    height: 35px;
+    word-wrap: break-word;
+    border: 3px solid #97897D; 
+    text-align:center; 
+    font-size: 18px;
+    position: fixed;
+    top: 590px;
+    left: 150px; 
+
+}
+
+

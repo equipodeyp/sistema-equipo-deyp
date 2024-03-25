@@ -39,34 +39,37 @@ $row=$result->fetch_assoc();
 
 
 
-$fol_exp = $_GET['folio'];
+// $fol_exp = $_GET['folio'];
 // echo $fol_exp;
 // echo "<br>";
 
-$fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-$resultfol = $mysqli->query($fol);
-$rowfol=$resultfol->fetch_assoc();
-$name_folio=$rowfol['folioexpediente'];
-// echo $name_folio;
-// echo "<br>";
-$identificador = $rowfol['identificador'];
+// $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
+// $resultfol = $mysqli->query($fol);
+// $rowfol=$resultfol->fetch_assoc();
+// $name_folio=$rowfol['folioexpediente'];
+// // echo $name_folio;
+// // echo "<br>";
+// $identificador = $rowfol['identificador'];
 // echo $identificador;
-// echo "<br>";
-// echo "<br>";
+// // echo "<br>";
+// // echo "<br>";
 
-$id_person=$rowfol['id'];
-// echo $id_person;
-$foto=$rowfol['foto'];
+// $id_person=$rowfol['id'];
+// // echo $id_person;
+// $foto=$rowfol['foto'];
 
+
+$query_instru = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
+$id_instru = $mysqli ->query( $query_instru);
+$row_instru = $id_instrumento->fetch_assoc();
+$instrumento_id=$row_instru['id_instrumento'];
+  // echo $instrumento_id;
 
 
 
 $query = "SELECT * FROM instrumento WHERE id_persona = '$identificador'";
 $result_instrumento = $mysqli->query($query);
 $row = $result_instrumento->fetch_assoc();
-// echo "<br>";
-$idins=$row['id_instrumento'];
-// echo $idins;
 // echo "<br>";
 $folio_expediente=$row['folio_expediente'];
 // echo $folio_expediente;
@@ -80,8 +83,14 @@ $fecha_instrumento=$row['fecha_registro'];
 $nombre_servidor=$row['nombre_servidor'];
 // echo $nombre_servidor;
 // echo "<br>";
+// $resultado_instrumento=$row['total_instrumento'];
+// echo $resultado_instrumento;
+// echo "<br>";
+// $adaptabilidad=$row['adaptabilidad'];
+// echo $adaptabilidad;
+// echo "<br>";
 
-// $query2 = "SELECT COU(*) FROM instrumento WHERE id_persona = '$identificador'";
+// $query2 = "SELECT COUNT(*) FROM instrumento";
 // $cuenta_instrumento = $mysqli->query($query2);
 // $cuenta = $cuenta_instrumento->fetch_assoc();
 // echo $cuenta;
@@ -265,11 +274,11 @@ $nombre_servidor=$row['nombre_servidor'];
                             $sentenciar=" SELECT * FROM preguntas_instrumento WHERE id='$a'";
                             $resultr = $mysqli->query($sentenciar);
                             $rowr=$resultr->fetch_assoc();
-                            
+                            // echo $a;
                             $sentenciar1=" SELECT * FROM preguntas_instrumento WHERE id='$b'";
                             $resultr1 = $mysqli->query($sentenciar1);
                             $rowr1=$resultr1->fetch_assoc();
-                            //
+                            // echo $b;
                             $sentenciar2=" SELECT * FROM preguntas_instrumento WHERE id='$c'";
                             $resultr2 = $mysqli->query($sentenciar2);
                             $rowr2=$resultr2->fetch_assoc();
@@ -277,12 +286,13 @@ $nombre_servidor=$row['nombre_servidor'];
                             $sentenciar3=" SELECT * FROM preguntas_instrumento WHERE id='$d'";
                             $resultr3 = $mysqli->query($sentenciar3);
                             $rowr3=$resultr3->fetch_assoc();
-                            //
+                            // echo $d;
+
                             $sentenciar4=" SELECT * FROM instrumento WHERE id_instrumento = '$idins'";
                             $resultr4 = $mysqli->query($sentenciar4);
                             $rowr4=$resultr4->fetch_assoc();
 
-                            //
+                            
                               $arp=$question.$a;
                               $arp1=$question.$b;
                               $arp2=$question.$c;
@@ -293,10 +303,11 @@ $nombre_servidor=$row['nombre_servidor'];
                               $resp3 = '3'.$rowr4[$arp2];
                               $resp4 = '4'.$rowr4[$arp3];
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                               if ($resp1 === '1No') {
                                 $valresp = 3;
                                 array_push($array, "$valresp");
+                                
 
                               }
                               elseif ($resp2 === '2Si') {
@@ -314,11 +325,8 @@ $nombre_servidor=$row['nombre_servidor'];
                                 array_push($array, "$valresp");
 
                               }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                            
-
-                         
-                         
                           
                           echo "<tr >";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo $rowr5['nombre_categoria']; echo "</td>";
@@ -362,6 +370,8 @@ $nombre_servidor=$row['nombre_servidor'];
                           if ($a < 24) {
                             $bb = $bb+1;
                           }
+
+
                           if ($b < 5) {
                             $bbb = $bbb + 1;
                           }
@@ -408,6 +418,8 @@ $nombre_servidor=$row['nombre_servidor'];
 
                         $total_valor = array_sum($array);
                         // echo $total_valor;
+                        // echo $array;
+                        // print_r($array);
 
 
                         ?>
@@ -430,32 +442,36 @@ $nombre_servidor=$row['nombre_servidor'];
                           <table>
                             <thead>
                                 <tr>
-                                  <th class="resultado-instrumento-uno">RESULTADO DEL INSTRUMENTO<br>DE ADAPTABILIDAD: <br> </th>
+                                  <th class="resultado-instrumento-uno"><br> RESUILTADO DE LA <br> EVALUACIÓN <br></th>
                                 </tr>
 
                                 <tr>
 
-                                    <?php 
+                                    <?php
+                                        echo "<th class='resultado-instrumento-dos'>"; echo "ADAPTABILIDAD: ".$adaptabilidad=$row['adaptabilidad']; echo "</th>";
 
-                                      if ($total_valor <= 9) { 
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>INADAPTABLE</th>";
-                                        }
+                                        echo "<th class='resultado-instrumento-tres'>"; echo "TOTAL DE PUNTOS: ";echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+
+                                      // if ($resultado_instrumento <= 9) { 
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                      //   }
                                       
-                                      else if ($total_valor >= 10 && $total_valor <= 19) {
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>BAJA</th>";
-                                        }
+                                      // else if ($resultado_instrumento >= 10 && $resultado_instrumento <= 19) {
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";  
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                      //   }
 
-                                      else if ($total_valor >= 20 && $total_valor <= 29) {
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>MEDIA</th>";
-                                        }
+                                      // else if ($resultado_instrumento >= 20 && $resultado_instrumento <= 29) {
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";  
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                      //   }
 
-                                      else if ($total_valor >= 30 && $total_valor <= 39) {
-                                          
-                                          echo "<th class='resultado-instrumento-dos'>ALTA</th>";
-                                        }
+                                      // else if ($resultado_instrumento >= 30 && $resultado_instrumento <= 39) {
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";  
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                      //   }
+                                    
 
                                       ?>
                                     

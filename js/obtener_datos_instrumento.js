@@ -374,7 +374,9 @@ question3.addEventListener('change', obtenerInfo3);
 
 
  /////////// PREGUNTA 13 14 15 16
-
+ /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////
  var question13 = document.getElementById('question_13'); // Obtener valor Pregunta 13
  var respuesta_q13 = '';
  
@@ -383,7 +385,7 @@ question3.addEventListener('change', obtenerInfo3);
      function obtenerInfo13(e) {
      respuesta_q13 = e.target.value;
  
-     if (respuesta_q13 === "Si") { // Si el valor de Pregunta 13 es igual Si
+     if (respuesta_q13 === "No") { // Si el valor de Pregunta 13 es igual Si
  
          document.getElementById('q14').style.display = ""; // Mostrar division Pregunta 14
          document.getElementById('q15').style.display = "none"; // Ocultar division Pregunta 15
@@ -400,7 +402,7 @@ question3.addEventListener('change', obtenerInfo3);
          
      }
  
-     else if (respuesta_q13 === "No"){
+     else if (respuesta_q13 === "Si"){
  
          document.getElementById('q14').style.display = "none";  // Ocultar division Pregunta 14
          document.getElementById('q15').style.display = "none";  // Ocultar division Pregunta 15
@@ -771,7 +773,7 @@ question25.addEventListener('change', obtenerInfo25);
     function obtenerInfo25(e) {
     respuesta_q25 = e.target.value;
 
-    if (respuesta_q25 === "Si") { // Si el valor de Pregunta 25 es igual Si
+    if (respuesta_q25 === "No") { // Si el valor de Pregunta 25 es igual Si
 
         document.getElementById('q26').style.display = ""; // Mostrar division Pregunta 26
         document.getElementById('q27').style.display = "none"; // Ocultar division Pregunta 27
@@ -787,7 +789,7 @@ question25.addEventListener('change', obtenerInfo25);
 
     }
 
-    else if (respuesta_q25 === "No"){
+    else if (respuesta_q25 === "Si"){
 
         document.getElementById('q26').style.display = "none";  // Ocultar division Pregunta 26
         document.getElementById('q27').style.display = "none";  // Ocultar division Pregunta 27
@@ -1025,7 +1027,7 @@ question27.addEventListener('change', obtenerInfo27);
         function obtenerInfo33(e) {
         respuesta_q33 = e.target.value;
     
-        if (respuesta_q33 === "Si") { // Si el valor de Pregunta 33 es igual Si
+        if (respuesta_q33 === "No") { // Si el valor de Pregunta 33 es igual Si
     
             document.getElementById('q34').style.display = ""; // Mostrar division Pregunta 34
             document.getElementById('q35').style.display = "none"; // Ocultar division Pregunta 35
@@ -1041,7 +1043,7 @@ question27.addEventListener('change', obtenerInfo27);
     
         }
     
-        else if (respuesta_q33 === "No"){
+        else if (respuesta_q33 === "Si"){
     
             document.getElementById('q34').style.display = "none";  // Ocultar division Pregunta 34
             document.getElementById('q35').style.display = "none";  // Ocultar division Pregunta 35
@@ -1152,7 +1154,7 @@ question27.addEventListener('change', obtenerInfo27);
         function obtenerInfo37(e) {
         respuesta_q37 = e.target.value;
     
-        if (respuesta_q37 === "Si") { // Si el valor de Pregunta 37 es igual Si
+        if (respuesta_q37 === "No") { // Si el valor de Pregunta 37 es igual Si
     
             document.getElementById('q38').style.display = ""; // Mostrar division Pregunta 38
             document.getElementById('q39').style.display = "none"; // Ocultar division Pregunta 39
@@ -1168,7 +1170,7 @@ question27.addEventListener('change', obtenerInfo27);
     
         }
     
-        else if (respuesta_q37 === "No"){
+        else if (respuesta_q37 === "Si"){
     
             document.getElementById('q38').style.display = "none";  // Ocultar division Pregunta 38
             document.getElementById('q39').style.display = "none";  // Ocultar division Pregunta 39
@@ -1281,7 +1283,7 @@ question27.addEventListener('change', obtenerInfo27);
         function obtenerInfo41(e) {
         respuesta_q41 = e.target.value;
     
-        if (respuesta_q41 === "Si") { // Si el valor de Pregunta 41 es igual Si
+        if (respuesta_q41 === "No") { // Si el valor de Pregunta 41 es igual Si
     
             document.getElementById('q42').style.display = ""; // Mostrar division Pregunta 42
             document.getElementById('q43').style.display = "none"; // Ocultar division Pregunta 43
@@ -1297,7 +1299,7 @@ question27.addEventListener('change', obtenerInfo27);
     
         }
     
-        else if (respuesta_q41 === "No"){
+        else if (respuesta_q41 === "Si"){
     
             document.getElementById('q42').style.display = "none";  // Ocultar division Pregunta 42
             document.getElementById('q43').style.display = "none";  // Ocultar division Pregunta 43
@@ -1536,7 +1538,7 @@ question49.addEventListener('change', obtenerInfo49);
     function obtenerInfo49(e) {
     respuesta_q49 = e.target.value;
 
-    if (respuesta_q49 === "Si") { // Si el valor de Pregunta 49 es igual Si
+    if (respuesta_q49 === "No") { // Si el valor de Pregunta 49 es igual Si
 
         document.getElementById('q50').style.display = ""; // Mostrar division Pregunta 50
         document.getElementById('q51').style.display = "none"; // Ocultar division Pregunta 51
@@ -1552,7 +1554,7 @@ question49.addEventListener('change', obtenerInfo49);
 
     }
 
-    else if (respuesta_q49 === "No"){
+    else if (respuesta_q49 === "Si"){
 
         document.getElementById('q50').style.display = "none";  // Ocultar division Pregunta 50
         document.getElementById('q51').style.display = "none";  // Ocultar division Pregunta 51
