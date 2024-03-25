@@ -212,6 +212,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         				<div class="row alert div-title">
         					<h3 style="text-align:center">MEDIDAS</h3>
         				</div>
+                <a href="../subdireccion_de_estadistica_y_preregistro/historialmedidas.php?id=<?=$rowfol['id']?>" class="btn color-btn-export-xls">HISTORIAL DE MEDIDAS</a>
         		  </div>
 
         		  <div id="contenido">
