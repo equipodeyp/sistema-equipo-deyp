@@ -273,11 +273,16 @@ a:focus {
 
         <ul>
             <?php
-                if ($user=='nanotzinhn' || $user=='brendars') {
-                echo "
-                  <a style='text-align:center' class='user-nombre' href='/SIPPSIPPED v2/sistema-equipo-deyp/asistencias_medicas/inicio.php'><button type='button' class='btn btn-light'>REGISTRAR ASISTENCIA <br> MÉDICA</button> </a>
-                ";
-                }
+                // if ($user=='nanotzinhn') {
+                // echo "
+                //   <a style='text-align:center' class='user-nombre' href='/SIPPSIPPED v2/sistema-equipo-deyp/consultores/solicitudes_registradas.php'><button type='button' class='btn btn-light'>ASISTENCIAS MÉDICAS <br> REGISTRADAS  MÉDICA</button> </a>
+                // ";
+                // }
+                if ($user=='nanotzinhn') {
+                  echo "
+                    <a style='text-align:center' class='user-nombre' href='./solicitudes _registradas.php'><button type='button' class='btn btn-light'>REGISTRAR ASISTENCIA <br> MÉDICA</button> </a>
+                  ";
+                  }
             ?>
         </ul>
 

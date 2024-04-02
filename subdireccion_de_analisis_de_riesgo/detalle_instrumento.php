@@ -11,19 +11,19 @@ $row=$result->fetch_assoc();
 
 
 $fol_exp = $_GET['folio'];
-echo $fol_exp;
-echo "<br>";
+// echo $fol_exp;
+// echo "<br>";
 
 $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
 $resultfol = $mysqli->query($fol);
 $rowfol=$resultfol->fetch_assoc();
 $name_folio=$rowfol['folioexpediente'];
-echo $name_folio;
-echo "<br>";
+// echo $name_folio;
+// echo "<br>";
 $identificador = $rowfol['identificador'];
-echo $identificador;
-echo "<br>";
-echo "<br>";
+// echo $identificador;
+// echo "<br>";
+// echo "<br>";
 
 $id_person=$rowfol['id'];
 // echo $id_person;
