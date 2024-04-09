@@ -92,7 +92,7 @@ $row=$result->fetch_assoc();
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="./admin.php">REGISTROS</a>
-                <a class="actived" href="./solicitudes _registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
+                <a class="actived" href="./solicitudes _registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a>
             </div>
           
 
@@ -100,7 +100,7 @@ $row=$result->fetch_assoc();
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./solicitudes _registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIAS MÉDICAS REGISTRADAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./solicitudes _registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 
@@ -114,7 +114,7 @@ $row=$result->fetch_assoc();
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIAS MÉDICAS REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -122,7 +122,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE SOLICITUDES DE ASISTENCIAS MÉDICAS REGISTRADAS</h3>
+                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</h3>
                           </div>
                         </div>
                       <div>
@@ -135,8 +135,8 @@ $row=$result->fetch_assoc();
                                 
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
 
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>IDSERVIDOR PÚBLICO SOLICITANTE</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO DE OFICIO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID SERVIDOR PÚBLICO SOLICITANTE</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO DE OFICIO DE LA SOLICITUD</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE REQUERIMIENTO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
@@ -180,7 +180,7 @@ $row=$result->fetch_assoc();
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <a style="text-decoration: underline;" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-secondary">
-                                                                   Agendar
+                                                                   AGENDAR
                                                                 </a>
                                                                 <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                     <i class="fas fa-chart-line" ></i>
@@ -210,6 +210,7 @@ $row=$result->fetch_assoc();
     	</div>
   </div>
 </div>
+
 <div class="contenedor">
 <a href="./admin.php" class="btn-flotante">REGRESAR</a>
 </div>

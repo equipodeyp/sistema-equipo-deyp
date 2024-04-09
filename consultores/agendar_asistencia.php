@@ -39,6 +39,10 @@ $r_am = mysqli_fetch_array($result_am);
 $id_a_m = $r_am['id_asistencia'];
 // echo $id_a_m;
 
+
+$tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +149,7 @@ $id_a_m = $r_am['id_asistencia'];
 
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                    <div class="col-md-4 inputGroupContainer">
+                    <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
                         <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="" readonly value="<?php echo $id_asistencia_medica;?>">
@@ -156,7 +160,7 @@ $id_a_m = $r_am['id_asistencia'];
 
                   <div class="form-group">
                     <label for="servicio_medico" class="col-md-4 control-label" style="font-size: 16px">SERVICIO MÉDICO </label>
-                    <div class="col-md-4 selectContainer">
+                    <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
                         <?php
@@ -186,13 +190,14 @@ $id_a_m = $r_am['id_asistencia'];
 
                   <div class="form-group">
                     <label for="tipo_institucion" class="col-md-4 control-label" style="font-size: 16px">TIPO DE INSTITUCIÓN </label>
-                    <div class="col-md-4 selectContainer">
+                    <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-layer-group"></i></span>
-                        <select class="form-control selectpicker" id="tipo_institucion" name="tipo_institucion" required>
-                            <option disabled selected value="0">SELECCIONA EL TIPO</option>
-                            <option value="1" >PUBLICA</option>
-                            <option value="2">PRIVADA</option>
+                        <select class="form-control" id="tipo_institucion" name="tipo_institucion" required>
+                          <option disabled selected value="">SELECCIONA EL TIPO</option>
+                            <?php while($row1 = $tipo_institucion->fetch_assoc()) {
+                              echo "<option value='1'>"; echo $row1['tipo']; echo"</option>";
+                            }?>
                         </select>
                       </div>
                     </div>
@@ -200,34 +205,86 @@ $id_a_m = $r_am['id_asistencia'];
 
 
                   <div class="form-group">
-                    <label for="nombre_institucion" class="col-md-4 control-label" style="font-size: 16px">NOMBRE DE LA INSTITUCIÓN</label>
-                    <div class="col-md-4 selectContainer">
-                      <div class="input-group" id="div_name_inst">
-                        
+                    <label for="nombre_institucion" class="col-md-4 control-label" style="font-size: 16px">NOMBRE DE LA INSTITUCIÓN </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-place-of-worship"></i></span>
+                        <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
+                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                        </select>
                       </div>
                     </div>
                   </div>
 
 
+                  
                   <!-- <div class="form-group">
+                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO DE LA INSTITUCIÓN</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
+                        <input maxlength="250" type="text" class="form-control"  id="domicilio_institucion" name="domicilio_institucion" value="">
+                      </div>
+                    </div>
+                  </div> -->
+
+
+                  <div class="form-group">
+                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO DE LA INSTITUCIÓN </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
+                        <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
+                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
                     <label for="municipio_institucion" class="col-md-4 control-label" style="font-size: 16px">MUNICIPIO  DE LA INSTITUCIÓN</label>
-                    <div class="col-md-4 selectContainer">
+                    <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
-                        <input type="text" class="form-control"  id="municipio_institucion" name="municipio_institucion" readonly value="">
+                        <input type="text" class="form-control"  id="municipio_institucion" name="municipio_institucion" value="">
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+                        <input name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia"  placeholder="FECHA" value="" >
                       </div>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO  DE LA INSTITUCIÓN</label>
-                    <div class="col-md-4 selectContainer">
+                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASITENCIA MÉDICA</label>
+                    <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
-                        <input maxlength="250" type="text" class="form-control"  id="domicilio_institucion" name="domicilio_institucion" readonly value="">
+                          <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
+                          <input name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  placeholder="HORA" value="">
                       </div>
                     </div>
-                  </div> -->
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="observaciones_asistencia" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES ASITENCIA </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                      </div>
+                    </div>
+                  </div>
 
 
                   <div class="form-group">
@@ -254,78 +311,6 @@ $id_a_m = $r_am['id_asistencia'];
 
 
 
-<script type="text/javascript">
-
-  var tipoinstitucion = document.getElementById('tipo_institucion');
-  var tipo;
-  var tipoobtenido;
-
-  tipoinstitucion.addEventListener('change', obtenertipo);
-  function obtenertipo(e){
-
-    tipo = e.target.value;
-    tipoobtenido = tipo;
-
-
-
-
-    console.log(tipoobtenido);
-  
-
-    
-  }
-
-</script>
-
-
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#tipo_institucion').val(0);
-		recargarLista();
-
-		$('#tipo_institucion').change(function(){
-			recargarLista();
-		});
-	})
-</script>
-<script type="text/javascript">
-	function recargarLista(){
-		$.ajax({
-			type:"POST",
-			url:"obtener_datos_asistencia.php",
-			data:"tipo=" + $('#tipo_institucion').val(),
-			success:function(r){
-				$('#div_name_inst').html(r);
-			}
-		});
-	}
-</script>
-
-
-
 
 </body>
 </html>
-
-
-
-
-                        <!-- <span class="input-group-addon"><i class="fas fa-solid fa-building"></i></span>
-                        <input list="datalistOptions1" class="form-control" id="nombre_institucion" name="nombre_institucion" placeholder="SELECCIONE EL ID DEL SUJETO" required>
-                        <datalist id="datalistOptions1">
-                            <?php
-                                $select2 = "SELECT DISTINCT datospersonales.folioexpediente, datospersonales.identificador, datospersonales.nombrepersona, datospersonales.paternopersona, datospersonales.maternopersona, medidas.medida, medidas.estatus
-                                FROM medidas JOIN datospersonales
-                                ON medidas.id_persona = datospersonales.id AND medidas.estatus = 'EN EJECUCION'AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'
-                                ORDER BY datospersonales.identificador";
-                                $answer2 = $mysqli->query($select2);
-                                while($valores2 = $answer2->fetch_assoc()){
-                                  echo "<option value='".$valores2['identificador']."'>".$valores2['identificador']."</option>";
-                                }
-                            ?>
-                        </datalist>
-
-
-                        <select class="form-control selectpicker" id="nombre_institucion" name="nombre_institucion" required placeholder="SELECCIONE UNA INSTITUCIÓN">
-                        </select> -->

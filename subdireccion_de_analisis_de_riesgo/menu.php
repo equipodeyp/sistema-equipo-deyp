@@ -312,7 +312,7 @@ a:focus {
 				   <?php
 		   				if ($user=='guillermogv') {
 							echo "
-								<a style='text-align:center' class='user-nombre' href='./solicitar_asistencia.php'><button type='button' class='btn btn-light'>REGISTRAR ASISTENCIA <br> MÉDICA</button> </a>
+								<a style='text-align:center' class='user-nombre' href='./solicitar_asistencia.php'><button type='button' class='btn btn-light'>SOLICITAR ASISTENCIA <br> MÉDICA</button> </a>
 							";
 						  }
 					?>

@@ -42,7 +42,7 @@ $result = $mysqli->query($query);
     if($result) {
             echo $verifica;
             echo ("<script type='text/javaScript'>
-            window.location.href='/SIPPSIPPED v2/sistema-equipo-deyp/subdireccion_de_analisis_de_riesgo/solicitar_asistencia.php';
+            window.location.href='./solicitudes_registradas.php';
             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
         </script>");
             } else {  }

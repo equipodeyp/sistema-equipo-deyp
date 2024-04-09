@@ -106,7 +106,7 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-            <a class="actived" href="../subdireccion_de_analisis_de_riesgo/solicitar_asistencia.php">NUEVA ASISTENCIA MÉDICA</a>
+            <a class="actived" href="../subdireccion_de_analisis_de_riesgo/solicitar_asistencia.php">SOLICITAR ASISTENCIA MÉDICA</a>
           </div>
           
 
@@ -120,7 +120,7 @@ $m_user = strtoupper($m_user);
               </ul>
                 <form method="POST" action="guardar_solicitud_asistencia.php">
                   <div class="alert div-title">
-                    <h3 style="text-align:center">SOLICITUD DE ASISTENCIA MÉDICA</h3>
+                    <h3 style="text-align:center">REGISTRAR SOLICITUD</h3>
                   </div>
 
 
@@ -268,7 +268,7 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <input list="datalistOptions" class="form-control" id="servicio_medico" name="servicio_medico" placeholder="SELECCIONE LA OPCIÓN" required>
+                        <input list="datalistOptions" class="form-control" id="servicio_medico" maxlength="50" name="servicio_medico" placeholder="SELECCIONE LA OPCIÓN" required>
                         <datalist id="datalistOptions">
                             <?php
                             $select = "SELECT * FROM servicios_medicos";
