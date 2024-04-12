@@ -185,10 +185,10 @@ $filavalorjuridica = $rescheckvalorjuridica->fetch_assoc();
             <input autocomplete="off" onkeyup="validarfrm()" class="verific form-control" id="ID_SOLICITUD" name="ID_SOLICITUD" placeholder="" required type="text" value="<?php echo $filacheckautoridad['idsolicitud']; ?>">
           </div>
 
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_SOLICITUD" class="is-required">FECHA DE SOLICITUD<span class="required"></span></label>
-            <input onkeyup="validarfrm()" class="verific form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" value="<?php echo $filacheckautoridad['fechasolicitud']; ?>" type="date" value="" required>
-          </div>
+            <div class="col-md-6 mb-3 validar">
+              <label for="FECHA_SOLICITUD" class="is-required">FECHA DE SOLICITUD<span class="required"></span></label>
+              <input onkeyup="validarfrm()" class="verific form-control" id="FECHA_SOLICITUD" name="FECHA_SOLICITUD" value="<?php echo $filacheckautoridad['fechasolicitud']; ?>" type="date" value="" required>
+            </div>
 
           <div class="col-md-6 mb-3 validar">
             <label for="NOMBRE_AUTORIDAD" class="is-required">NOMBRE DE LA AUTORIDAD<span class="required"></span></label>
