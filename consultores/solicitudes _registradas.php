@@ -107,7 +107,7 @@ $row=$result->fetch_assoc();
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia";
+              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -156,7 +156,7 @@ $row=$result->fetch_assoc();
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM solicitud_asistencia";
+                                                    $query = "SELECT * FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -179,9 +179,10 @@ $row=$result->fetch_assoc();
 
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <a style="text-decoration: underline;" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-secondary">
+                                                                <a style="text-decoration: underline;" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
                                                                    AGENDAR
                                                                 </a>
+                                                                <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button> -->
                                                                 <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                     <i class="fas fa-chart-line" ></i>
                                                                 </a> -->

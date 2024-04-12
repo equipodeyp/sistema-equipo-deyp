@@ -130,19 +130,33 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">REGISTROS</a>
             <a href="./solicitudes _registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR ASISTENCIA MÉDICA</a>
+            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR TURNAR Y NOTIFICAR</a>
           </div>
+
+          <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="">REGISTROS</a>
+            <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
+            <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
+          </div> -->
           
 
             <div class=" well form-horizontal">
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">AGENDAR ASISTENCIA MÉDICA</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
+                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
               </ul>
-                <form method="POST" action="guardar_solicitud_asistencia.php">
+                <form method="POST" action="guardar_agenda.php">
+
+                  <h3> Este apartado se conforma de 3 pasos (Agendar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
+                       Una vez que ha sido registrada la información de cada uno de los pasos no sera posible retroceder o cancelar el proceso, asegurarte de tener toda la informacíon a la mano.
+                  </h3>
+
+                  
                   <div class="alert div-title">
-                    <h3 style="text-align:center">REQUISITOS PARA AGENDAR ASISTENCIA MÉDICA</h3>
+                    <h3 style="text-align:center">1. AGENDAR ASISTENCIA MÉDICA</h3>
                   </div>
 
 
@@ -196,7 +210,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                         <select class="form-control" id="tipo_institucion" name="tipo_institucion" required>
                           <option disabled selected value="">SELECCIONA EL TIPO</option>
                             <?php while($row1 = $tipo_institucion->fetch_assoc()) {
-                              echo "<option value='1'>"; echo $row1['tipo']; echo"</option>";
+                              echo "<option value='"; echo $row1['id']; echo "'>"; echo $row1['tipo']; echo"</option>";
                             }?>
                         </select>
                       </div>
@@ -211,22 +225,12 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                         <span class="input-group-addon"><i class="fas fa-solid fa-place-of-worship"></i></span>
                         <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
                           <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+
                         </select>
                       </div>
                     </div>
                   </div>
 
-
-                  
-                  <!-- <div class="form-group">
-                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO DE LA INSTITUCIÓN</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
-                        <input maxlength="250" type="text" class="form-control"  id="domicilio_institucion" name="domicilio_institucion" value="">
-                      </div>
-                    </div>
-                  </div> -->
 
 
                   <div class="form-group">
@@ -235,7 +239,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
                         <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
-                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                          <option disabled selected value="">SELECCIONA EL DOMICILIO</option>
 
                         </select>
                       </div>
@@ -248,7 +252,10 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
-                        <input type="text" class="form-control"  id="municipio_institucion" name="municipio_institucion" value="">
+                        <select class="form-control" id="municipio_institucion" name="municipio_institucion" required>
+                          <option disabled selected value="">SELECCIONA EL MUNICIPIO</option>
+
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -261,7 +268,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                        <input name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia"  placeholder="FECHA" value="" >
+                        <input required name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia" placeholder="FECHA" value="" >
                       </div>
                     </div>
                   </div>
@@ -271,7 +278,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                          <input name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  placeholder="HORA" value="">
+                          <input required name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  placeholder="HORA" value="">
                       </div>
                     </div>
                   </div>
@@ -285,7 +292,6 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       </div>
                     </div>
                   </div>
-
 
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
@@ -307,9 +313,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 <div class="contenedor">
     <a href="./solicitudes _registradas.php" class="btn-flotante">REGRESAR</a>
 </div>
-
-
-
+<script src="../js/peticion_institucion_medica.js"></script>
 
 
 </body>
