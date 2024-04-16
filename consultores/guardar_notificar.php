@@ -37,7 +37,7 @@ $res_etapa = $mysqli->query($actualizar_etapa);
 if($result) {
     echo $verifica;
     echo ("<script type='text/javaScript'>
-    window.location.href='./solicitudes _registradas.php';
+    window.location.href='./registro_completado.php?id_asistencia_medica=$id_asistencia';
     window.alert('!!!!!Registro exitoso¡¡¡¡¡')
 </script>");
     } else {  }

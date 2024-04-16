@@ -20,7 +20,8 @@ $m_user = strtoupper($m_user);
 
 // echo $m_user; 
 // echo $user;
-
+// $f_exped = 'UPSIPPED/TOL/113/015/2022';
+// echo $f_exped;
 ?>
 
 <!DOCTYPE html>
@@ -37,9 +38,13 @@ $m_user = strtoupper($m_user);
   <script src="../js/bootstrap.min.js"></script>
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
-
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -129,58 +134,58 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
-                        <!-- <input value="UPSIPPED/SAR/TOL-TOL/001/2021" class="form-control" id="folio_expediente" name="folio_expediente" placeholder="SELECCIONE EL EXPEDIENTE" required> -->
-                        <input list="datalistOptions1" class="form-control" id="folio_expediente" name="folio_expediente" placeholder="SELECCIONE EL EXPEDIENTE" required>
-                         <datalist id="datalistOptions1">
-                            <?php
-                                $select1 = "SELECT DISTINCT datospersonales.folioexpediente, datospersonales.identificador, datospersonales.nombrepersona, datospersonales.paternopersona, datospersonales.maternopersona, medidas.medida, medidas.estatus
-                                FROM medidas JOIN datospersonales
-                                ON medidas.id_persona = datospersonales.id AND medidas.estatus = 'EN EJECUCION' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'
-                                ORDER BY datospersonales.folioexpediente";
-
-                                $answer1 = $mysqli->query($select1);
-                                while($valores1 = $answer1->fetch_assoc()){
-                                  echo "<option value='".$valores1['folioexpediente']."'>".$valores1['folioexpediente']."</option>";
-                                }
-
-
-                            // $select = "SELECT * FROM municipios";
-                            // $answer = $mysqli->query($select);
-                            // while($valores = $answer->fetch_assoc()){
-                            //   echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
-                            // }
-
-
-                            // SELECT * FROM `solicitud_asistencia`;
-                          ?>
-                        </datalist>
+                        <select class="form-control" id="folio_expediente" name="folio_expediente" required>
+                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                              <?php
+                                  $select1 = "SELECT DISTINCT datospersonales.folioexpediente
+                                  FROM datospersonales JOIN medidas
+                                  ON medidas.id_persona = datospersonales.id AND medidas.estatus = 'EN EJECUCION' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'
+                                  ORDER BY datospersonales.folioexpediente";
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_folio = $valores1['folioexpediente'];
+                                    echo "<option value='$result_folio'>$result_folio</option>";
+                                  }
+                              ?>
+                        </select>
                       </div>
                     </div>
                   </div>
 
+
+<!-- <div id="mostrar_campos" style="display: none;"> -->
 
                   <div class="form-group">
                     <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
-                        <input list="datalistOptions2" class="form-control" id="id_sujeto" name="id_sujeto" placeholder="SELECCIONE EL ID DEL SUJETO" required>
-                        <datalist id="datalistOptions2">
-                            <?php
-                                $select2 = "SELECT DISTINCT datospersonales.folioexpediente, datospersonales.identificador, datospersonales.nombrepersona, datospersonales.paternopersona, datospersonales.maternopersona, medidas.medida, medidas.estatus
-                                FROM medidas JOIN datospersonales
-                                ON medidas.id_persona = datospersonales.id AND medidas.estatus = 'EN EJECUCION'AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'
-                                ORDER BY datospersonales.identificador";
+                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
 
-                                $answer2 = $mysqli->query($select2);
-                                while($valores2 = $answer2->fetch_assoc()){
-                                  echo "<option value='".$valores2['identificador']."'>".$valores2['identificador']."</option>";
-                                }
-                            ?>
-                        </datalist>
+
+
+                        </select>
                       </div>
                     </div>
                   </div>
+
+
+
+
+<!-- </div> -->
+
+
+                  <!-- <div class="form-group">
+                    <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
+                    <div class="col-md-4 selectContainer">
+                      <div id="select_id_sujeto" class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
+                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
+                            <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div> -->
 
 
                   <div class="form-group" style="display: none;">
@@ -238,7 +243,7 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas a-solid fa-file"></i></span>
-                        <input type="text" class="form-control" id="numero_oficio" name="numero_oficio" placeholder="" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
+                        <input autocomplete="off" type="text" class="form-control" id="numero_oficio" name="numero_oficio" placeholder="INGRESE EL NÚMERO DE OFICIO" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                       </div>
                     </div>
                 </div>
@@ -250,7 +255,7 @@ $m_user = strtoupper($m_user);
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-thumbtack"></i></span>
                         <select class="form-control selectpicker" id="tipo_requerimiento" name="tipo_requerimiento" required>
-                            <option disabled selected value>SELECCIONE LA OPCIÓN</option>
+                            <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                             <option value="MINISTERIO PÚBLICO" >MINISTERIO PÚBLICO</option>
                             <option value="POR INGRESO">POR INGRESO</option>
                             <option value="PRIMERA VEZ">PRIMERA VEZ</option>
@@ -268,8 +273,8 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <input list="datalistOptions" class="form-control" id="servicio_medico" maxlength="50" name="servicio_medico" placeholder="SELECCIONE LA OPCIÓN" required>
-                        <datalist id="datalistOptions">
+                        <select class="form-control" id="servicio_medico" maxlength="50" name="servicio_medico" required>
+                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                             <?php
                             $select = "SELECT * FROM servicios_medicos";
                             $answer = $mysqli->query($select);
@@ -277,7 +282,7 @@ $m_user = strtoupper($m_user);
                               echo "<option value='".$valores['servicio_medico']."'>".$valores['servicio_medico']."</option>";
                             }
                           ?>
-                        </datalist>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -299,6 +304,9 @@ $m_user = strtoupper($m_user);
                       <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR REGISTRO</button>
                     </div>
                   </div>
+
+
+
                 </form>
               </div>
             </div><!-- /.container -->
@@ -315,6 +323,8 @@ $m_user = strtoupper($m_user);
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
 
+
+              
 
 <script type="text/javascript">
   window.onload = function(){
@@ -354,6 +364,7 @@ $m_user = strtoupper($m_user);
 
 
   folioexpediente.addEventListener('change', obtenerfolio);
+  
   function obtenerfolio(e){
 
     folio = e.target.value;
@@ -385,9 +396,58 @@ $m_user = strtoupper($m_user);
 </script>
 
 
-
 <script type="text/javascript">
+	$(document).ready(function(){
+		$('#folio_expediente').val(1);
+		recargarLista();
+
+		$('#folio_expediente').change(function(){
+			recargarLista();
+		});
+
+
+	})
 </script>
 
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"./get_id_sujeto.php",
+			data:"folio=" + $('#folio_expediente').val(),
+			success:function(r){
+				$('#id_sujeto').html(r);
+			}
+		});
+	}
+</script>
+
+<!-- <script type="text/javascript">
+
+  var id_sujeto = document.getElementById('folio_expediente');
+
+  var id;
+  var idobtenido;
+
+  id_sujeto.addEventListener('change', obtenerfolio);
+  
+  function obtenerfolio(e){
+
+    id = e.target.value;
+    idobtenido = id;
+
+    if (idobtenido != "" ){
+
+      document.getElementById("mostrar_campos").style.display = "";
+
+    }
+
+    console.log(idobtenido);
+
+
+
+
+  }
+</script> -->
 </body>
 </html>
