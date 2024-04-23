@@ -283,6 +283,12 @@ a:focus {
                     <a style='text-align:center' class='user-nombre' href='./solicitudes _registradas.php'><button type='button' class='btn btn-light'>SOLICITUDES DE <br> ASISTENCIA MÉDICA <br> REGISTRADAS </button> </a>
                   ";
                   }
+
+                  if ($user=='brendars') {
+                    echo "
+                      <a style='text-align:center' class='user-nombre' href='./asistencia_turnada.php'><button type='button' class='btn btn-light'> ASISTENCIAS MÉDICAS <br> TURNADAS </button> </a>
+                    ";
+                    }
             ?>
         </ul>
 

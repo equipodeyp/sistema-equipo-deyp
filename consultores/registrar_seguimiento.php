@@ -33,14 +33,6 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
-$sentencia_am = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
-$result_am = mysqli_query($mysqli, $sentencia_am);
-$r_am = mysqli_fetch_array($result_am);
-$id_a_m = $r_am['id_asistencia'];
-// echo $id_a_m;
-
-
-$tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 ?>
@@ -129,8 +121,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">REGISTROS</a>
-            <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR TURNAR Y NOTIFICAR</a>
+            <a href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
+            <a class="actived" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO ASISTENCIA MÉDICA</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -144,20 +136,16 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
               <div class="row">
 
               <ul class="tabs">
-                <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">SEGUIMIENTO</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
-                <form method="POST" action="guardar_agenda.php">
-
-                  <h3> Este apartado se conforma de 3 pasos (Agendar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
-                       <!-- Una vez que ha sido registrada la información de cada uno de los pasos no sera posible retroceder o cancelar el proceso, asegurarte de tener toda la informacíon a la mano. -->
-                  </h3>
+                <form method="POST" action="">
 
                   
                   <div class="alert div-title">
-                    <h3 style="text-align:center">1. AGENDAR ASISTENCIA MÉDICA</h3>
+                    <h3 style="text-align:center">SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
                   </div>
 
 
@@ -174,29 +162,42 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
                   <div class="form-group">
-                    <label for="servicio_medico" class="col-md-4 control-label" style="font-size: 16px">SERVICIO MÉDICO </label>
+                    <label for="traslado" class="col-md-4 control-label" style="font-size: 16px">TRASLADO REALIZADO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-car"></i></span>
+                        <select class="form-control" id="traslado" name="traslado" required>
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="se_presento" class="col-md-4 control-label" style="font-size: 16px">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <?php
-
-                        $count = 0;
-                        
-                        $query = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
-                        $result_solicitud = mysqli_query($mysqli, $query);
-            
-                        while($row = mysqli_fetch_array($result_solicitud)) {
-                            // echo "hola";
-                            $servicio_medico = $row['servicio_medico'];
-                            ?>
-                            
-                            <input readonly class="form-control" id="servicio_medico" name="servicio_medico" value="<?php echo $servicio_medico; ?>">
-                        <?php
-                        }
-                        ?>
+                        <select class="form-control" id="se_presento" name="tse_presento" required>
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
 
 
-                        
+                  <div class="form-group">
+                    <label for="nombre_institucion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user-secret"></i></span>
+                        <input require type="text" class="form-control"  id="policia_investigacion" name="policia_investigacion" placeholder="NOMBRE DEL P.D.I.">
                       </div>
                     </div>
                   </div>
@@ -204,15 +205,15 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
                   <div class="form-group">
-                    <label for="tipo_institucion" class="col-md-4 control-label" style="font-size: 16px">TIPO DE INSTITUCIÓN </label>
+                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">HOSPITALIZACIÓN</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-layer-group"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-hospital"></i></span> 
                         <select class="form-control" id="tipo_institucion" name="tipo_institucion" required>
-                          <option disabled selected value="">SELECCIONA EL TIPO</option>
-                            <?php while($row1 = $tipo_institucion->fetch_assoc()) {
-                              echo "<option value='"; echo $row1['id']; echo "'>"; echo $row1['tipo']; echo"</option>";
-                            }?>
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="URGENCIA">URGENCIA</option>
+                          <option value="INTERVENCIÓN QUIRÚRGICA">INTERVENCIÓN QUIRÚRGICA</option>
+                          <option value="NO">NO</option>
                         </select>
                       </div>
                     </div>
@@ -220,43 +221,11 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
                   <div class="form-group">
-                    <label for="nombre_institucion" class="col-md-4 control-label" style="font-size: 16px">NOMBRE DE LA INSTITUCIÓN </label>
+                    <label for="diagnostico" class="col-md-4 control-label" style="font-size: 16px">DIAGNÓSTICO</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-place-of-worship"></i></span>
-                        <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
-                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
-
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group">
-                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO DE LA INSTITUCIÓN </label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
-                        <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
-                          <option disabled selected value="">SELECCIONA EL DOMICILIO</option>
-
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="municipio_institucion" class="col-md-4 control-label" style="font-size: 16px">MUNICIPIO  DE LA INSTITUCIÓN</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
-                        <select class="form-control" id="municipio_institucion" name="municipio_institucion" required>
-                          <option disabled selected value="">SELECCIONA EL MUNICIPIO</option>
-
-                        </select>
+                        <span class="input-group-addon"><i class="fas fa-briefcase-medical"></i></span>
+                        <input type="text" class="form-control"  id="diagnostico" name="diagnostico" placeholder="DESCRIBE EL DIAGNÓSTICO">
                       </div>
                     </div>
                   </div>
@@ -265,39 +234,56 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
                   <div class="form-group">
-                    <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA MÉDICA</label>
+                    <label for="cita_seguimiento" class="col-md-4 control-label">REQUIERE CITA DE SEGUIMIENTO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                        <input required name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia" placeholder="FECHA" value="" >
+                        <select class="form-control" id="cita_seguimiento" name="cita_seguimiento" required>
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                        </select>
                       </div>
                     </div>
                   </div>
 
+
                   <div class="form-group">
-                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASITENCIA MÉDICA</label>
+                    <label for="informe_medico" class="col-md-4 control-label" style="font-size: 16px">INFORME MÉDICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <textarea required name="informe_medico" id="informe_medico" rows="6" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <label for="observaciones_seguimiento" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES DE SEGUIMIENTO </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <textarea name="observaciones_asistencia" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="form-group">
+                    <label for="etapa" class="col-md-4 control-label">ETAPA</label>
                     <div class="col-md-4">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                          <input required name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  placeholder="HORA" value="">
+                          <input style="" name="etapa" type="text" class="form-control"  id="etapa">
                       </div>
                     </div>
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="observaciones_asistencia" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES ASITENCIA </label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
-                      </div>
-                    </div>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">AGENDAR</button>
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">REGISTRAR SEGUIMIENTO</button>
                     </div>
                   </div>
 
@@ -312,9 +298,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
   </div>
 
 <div class="contenedor">
-    <a href="./solicitudes_registradas.php" class="btn-flotante">REGRESAR</a>
+    <a href="./asistencia_turnada.php" class="btn-flotante">REGRESAR</a>
 </div>
-<script src="../js/peticion_institucion_medica.js"></script>
+
 
 
 </body>
