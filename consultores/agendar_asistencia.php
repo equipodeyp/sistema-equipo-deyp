@@ -151,7 +151,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
               </ul>
                 <form method="POST" action="guardar_agenda.php">
 
-                  <h3> Este apartado se conforma de 3 pasos (Agendar, Turnar, Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llena los mismos.
+                  <h3> Este apartado se conforma de 3 pasos (Agendar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
                        <!-- Una vez que ha sido registrada la información de cada uno de los pasos no sera posible retroceder o cancelar el proceso, asegurarte de tener toda la informacíon a la mano. -->
                   </h3>
 
