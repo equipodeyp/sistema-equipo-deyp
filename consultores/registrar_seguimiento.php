@@ -270,15 +270,6 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
-                  <!-- <div class="form-group">
-                    <label for="etapa" class="col-md-4 control-label">ETAPA</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                          <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                          <input style="" name="etapa" type="text" class="form-control"  id="etapa">
-                      </div>
-                    </div>
-                  </div> -->
 
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>

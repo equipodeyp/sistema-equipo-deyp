@@ -167,7 +167,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="turnar">
                     <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNAR A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -184,7 +184,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="oficio">
                     <label for="numero_oficio" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -195,7 +195,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="fecha">
                     <label for="fecha_oficio" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -209,7 +209,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">TURNAR</button>
+                      <button id="siguiente" style="display: none; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button>
+                      <button id="boton_turnar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">TURNAR</button>
                     </div>
                   </div>
 
@@ -235,8 +236,47 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 </body>
-<script>
-
-
-</script>
 </html>
+
+
+<script type="text/javascript">
+
+  var turnarSubdireccion = document.getElementById('turnar_asistencia');
+
+  var respuestaSeleccionada;
+  var respuestaObtenida;
+
+
+
+
+  turnarSubdireccion.addEventListener('change', obtenerRespuesta);
+  
+  function obtenerRespuesta(e){
+
+    respuestaSeleccionada = e.target.value;
+    respuestaObtenida = respuestaSeleccionada;
+
+    if (respuestaObtenida == "NO APLICA" ){
+
+      document.getElementById("oficio").style.display = "none";
+      document.getElementById("fecha").style.display = "none";
+      document.getElementById("oficio").value = "";
+      document.getElementById("fecha").value = "";
+      document.getElementById("boton_turnar").style.display = "none";
+      document.getElementById("siguiente").style.display = "";
+
+    } else {
+      document.getElementById("oficio").style.display = "";
+      document.getElementById("fecha").style.display = "";
+      document.getElementById("siguiente").style.display = "none";
+
+    }
+
+ 
+console.log (respuestaObtenida);
+
+
+
+  }
+
+  </script>

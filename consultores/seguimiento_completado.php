@@ -122,7 +122,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
             <a href="./admin.php">REGISTROS</a>
             <a href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
             <a href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO ASISTENCIA MÉDICA</a>
-            <a class="actived" href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO REGISTRO COMPLETADO</a>
+            <a class="actived" href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO REGISTRADO</a>
           </div>
           
 
@@ -130,7 +130,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
               <div class="row">
 
               <ul class="tabs">
-                <li><a class="active" href="#" onclick="location.href='./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">SEGUIMIENTO REGISTRO COMPLETADO</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">SEGUIMIENTO</span></a></li>
               </ul>
 
 
@@ -139,7 +139,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                       <div class="row">
                         <div id="cabecera">
                           <div class="row alert div-title">
-                            <h3 style="text-align:center">SEGUIMIENTO REGISTRO COMPLETADO</h3>
+                            <h3 style="text-align:center">REGISTRO DE SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
                           </div>
                         </div>
                       <div>
@@ -192,7 +192,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#myModal">
-                                                                   REGISTRAR <br> TRATAMIENTO <br> MÉDICO
+                                                                   REGISTRAR <br> MEDICAMENTO
                                                                 </button>
                                                                 <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button>
                                                                 <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
@@ -216,6 +216,119 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                                     
                   </div>
               </form>
+
+
+
+
+
+
+
+
+
+
+              <form class="container well form-horizontal" enctype="multipart/form-data">
+              <?php
+              $cl = "SELECT COUNT(*) as t FROM tratamiento_medico WHERE id_asistencia = '$id_asistencia_medica'";
+              $rcl = $mysqli->query($cl);
+              $fcl = $rcl->fetch_assoc();
+              // echo $fcl['t'];
+              if ($fcl['t'] == 0){
+                    echo "<div id='cabecera'>
+                      <div class='row alert div-title' role='alert'>
+                        <h3 style='text-align:center'>¡ NO HAY MEDICAMENTOS REGISTRADOS PARA LA ASISTENCIA MÉDICA: $id_asistencia_medica !</h3>
+                      </div>
+                    </div>";
+              } else{
+                    echo "
+                      <div class='row'>
+                        <div id='cabecera'>
+                          <div class='row alert div-title'>
+                            <h3 style='text-align:center'>MEDICAMENTOS REGISTRADOS PARA LA SISTENCIA MÉDICA: $id_asistencia_medica</h3>
+                          </div>
+                        </div>
+                      <div>
+
+                      <table class='table table-bordered' id='table-instrumento'>
+                        <thead>
+                            <tr>
+
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO DE OFICIO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVIDOR PÚBLICO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>CANT.</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>PRESENTACIÓN</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>CONTENIDO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>MEDICAMENTO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>INDICACIONES</th>
+
+                            </tr>
+                        </thead>
+                    
+                    ";
+                  }
+
+            ?>
+
+
+<tbody>
+                                                <?php
+
+                                                    $count = 0;
+
+                                                    $query = "SELECT*
+                                                    FROM tratamiento_medico
+                                                    WHERE tratamiento_medico.id_asistencia = '$id_asistencia_medica'
+                                                    ORDER BY tratamiento_medico.nombre_medicamento ASC";
+
+                                                    $result_solicitud = mysqli_query($mysqli, $query);
+
+                                                    while($row = mysqli_fetch_array($result_solicitud)) {
+                                                    
+                                                        
+                                                ?>
+                                                    <?php $count = $count + 1 ?>
+                                                        <tr>
+
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count; ?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['numero_oficio']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['nombre_recibe']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['cantidad']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['presentacion']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['contenido']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_medicamento']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['indicaciones']?></td>
+
+
+
+                                                        </tr>
+
+                                                    <?php } ?>
+                                            </tbody>
+                                        </table> 
+
+
+
+
+
+                                      </table>
+                    </div>
+                                  
+                                    
+                  </div>
+              </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
               </div>
         		</div>
     			</article>
@@ -226,49 +339,139 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
-<!-- The Modal -->
+
+
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
-      <!-- Modal Header -->
+    
       <div class="modal-header">
-        <h4 class="modal-title">TRATAMIENTO MÉDICO</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <h2 class="modal-title">REGISTRAR MEDICAMENTO</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <!-- Modal body -->
+
       <div class="modal-body">
-
+        <form method="POST" action="./guardar_medicamento.php">
+                        <div>
+                          <label class="control-label">ID ASISTENCIA MÉDICA</label>
+                          <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
+                        </div>
                         
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                        <br> <br>
-                        <button style="display: block; margin: 0 auto;" type="submit" class="btn btn-secondary">REGISTRAR <br> MEDICAMENTO</button>
+                        <br>
 
+                        <div>
+                          <label class="control-label">MEDICAMENTO SURTIDO POR LA INSTITUCIÓN MÉDICA</label>
+                          <select autocomplete="off" class="form-control" id="surtido" name="surtido" required>
+                            <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
+                          </select>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <label class="control-label">MEDICAMENTO ENTREGADO</label>
+                          <select autocomplete="off" class="form-control" id="entregado" name="entregado" required>
+                            <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                            <option value="EN GESTÓN">EN GESTÓN</option>
+                            <option value="PARCIALMENTE ENTREGADO">PARCIALMENTE ENTREGADO</option>
+                            <option value="COMPLETO">COMPLETO</option>
+                            <option value="NO APLICA">NO APLICA</option>
+                          </select>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <label class="control-label">ADQUISICIÓN DEL MEDICAMENTO</label>
+                          <select autocomplete="off" class="form-control" id="adquisicion" name="adquisicion" required>
+                            <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                            <option value="COMPRADO">COMPRADO</option>
+                            <option value="DONACIÓN">DONACIÓN</option>
+                            <option value="OTORGADO POR LA INSTITUCIÓN">OTORGADO POR LA INSTITUCIÓN</option>
+                          </select>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <label class="control-label">NOMBRE DEL MEDICAMENTO</label>
+                          <input placeholder="NOMBRE DEL MEDICAMENTO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre" name="nombre" required value="">
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <label class="control-label">CANTIDAD</label>
+                          <select autocomplete="off" class="form-control" id="cantidad" name="cantidad" required>
+                            <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                        </div>
+
+                        <br>
+
+                          <div>
+                            <label class="control-label">PRESENTACIÓN</label>
+                            <select autocomplete="off" class="form-control" id="presentacion" name="presentacion" required>
+                              <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                              <option value="CAJA">CAJA</option>
+                              <option value="BOTELLA">BOTELLA</option>
+                              <option value="BOLSA">BOLSA</option>
+                              <option value="FRASCO">FRASCO</option>
+                              <option value="LATA">LATA</option>
+                            </select>
+                          </div>
+
+                          <br>
+
+                          <div>
+                            <label class="control-label">CONTENIDO</label>
+                            <input placeholder="EJEMPLO: 20 TABLETAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="contenido" name="contenido" required value="">
+                          </div>
+
+                          <br>
+
+                          <div>
+                            <label class="control-label">NÚMERO DE OFICIO DE LA ENTREGA DEL MEDICAMENTO</label>
+                            <input placeholder="NÚMERO DE OFICIO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="oficio" name="oficio" required value="">
+                          </div>
+
+                          <br>
+
+                          <div>
+                            <label class="control-label">NOMBRE DEL SERVIDOR PÚBLICO QUE RECIBE EL MEDICAMENTO</label>
+                            <input placeholder="NOMBRE DEL SERVIDOR PÚBLICO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre_recibe" name="nombre_recibe" required value="">
+                          </div>
+
+                          <br>
+
+                          <div>
+                            <label class="control-label">INDICACIONES DEL TRATAMIENTO MÉDICO</label>
+                            <input placeholder="EJEMPLO: TOMAR 1 TABLETA CADA 8 HRS DURANTE 5 DIAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="indicaciones" name="indicaciones" required value="">
+                          </div>
 
 
       </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
 
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn color-btn-success">Guardar Registro</button>
+              </div>
+        </form>
     </div>
   </div>
 </div>

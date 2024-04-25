@@ -167,7 +167,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="notificar">
                     <label for="notificar_subdireccion" class="col-md-4 control-label" style="font-size: 16px">NOTIFICAR A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -176,14 +176,14 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                         <select class="form-control" id="notificar_subdireccion" name="notificar_subdireccion" required>
                           <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
                           <option value="SI">SI</option>
-                          <!-- <option value="NO">NO</option> -->
+                          <option value="NO APLICA"> NO APLICA</option>
                         </select>
                       </div>
                     </div>
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="oficio">
                     <label for="numero_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -195,7 +195,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="fecha">
                     <label for="fecha_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -209,7 +209,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">NOTIFICAR</button>
+                      <button id="siguiente" style="display: none; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button>
+                      <button id="boton_notificar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">NOTIFICAR</button>
                     </div>
                   </div>
 
@@ -233,3 +234,45 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 </body>
 </html>
+
+<script type="text/javascript">
+
+  var notificarSubdireccion = document.getElementById('notificar_subdireccion');
+
+  var respuestaSeleccionada;
+  var respuestaObtenida;
+
+
+
+
+  notificarSubdireccion.addEventListener('change', obtenerRespuesta);
+  
+  function obtenerRespuesta(e){
+
+    respuestaSeleccionada = e.target.value;
+    respuestaObtenida = respuestaSeleccionada;
+
+    if (respuestaObtenida == "NO APLICA" ){
+
+      document.getElementById("oficio").style.display = "none";
+      document.getElementById("fecha").style.display = "none";
+      document.getElementById("oficio").value = "";
+      document.getElementById("fecha").value = "";
+      document.getElementById("boton_notificar").style.display = "none";
+      document.getElementById("siguiente").style.display = "";
+
+    } else {
+      document.getElementById("oficio").style.display = "";
+      document.getElementById("fecha").style.display = "";
+      document.getElementById("siguiente").style.display = "none";
+
+    }
+
+ 
+// console.log (respuestaObtenida);
+
+
+
+  }
+
+  </script>

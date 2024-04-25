@@ -8,24 +8,7 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-//Si la variable de sesión no existe,
-//Se presume que la página aún no se ha actualizado.
-// if(!isset($_SESSION['already_refreshed'])){
-//   ////////////////////////////////////////////////////////////////////////////////
-//   $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
-//   $resultr = $mysqli->query($sentenciar);
-//   $rowr=$resultr->fetch_assoc();
-//   $areauser = $rowr['area'];
-//   $fecha = date('y/m/d H:i:sa');
-//   ////////////////////////////////////////////////////////////////////////////////
-//   $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
-//                 VALUES ('$name', '$areauser', '$fecha')";
-//   $res_saveiniciosession = $mysqli->query($saveiniciosession);
-//   ////////////////////////////////////////////////////////////////////////////////
-// //Establezca la variable de sesión para que no
-// //actualice de nuevo.
-//   $_SESSION['already_refreshed'] = true;
-// }
+
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
@@ -92,15 +75,7 @@ $user = $row['usuario'];
       });
   });
   </script>
-  <!-- SCRIPT PARA REFRESCAR MENU.PHP Y MOSTRAR ALERTAS DE TERMINOS DE CONVENIOS -->
-<!-- <script>
-  let segundos_recarga = 9;
-  let miFecha = new Date();
-  let dato_url = miFecha.getYear().toString() + miFecha.getMonth().toString() + miFecha.getDate().toString() + miFecha.getHours().toString() + miFecha.getMinutes().toString() + miFecha.getSeconds().toString();
-  setTimeout( function() {
-    window.location = `menu.php`;
-  }, segundos_recarga * 1000);
-</script> -->
+
   <style>
     .pagination {
   display: inline-block;
@@ -300,7 +275,7 @@ a:focus {
       </div>
       <nav class="menu-nav">
           <ul>
-              <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
+              <!-- <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li> -->
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span> Incidencia</span></a></li> -->
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></i><span> Repositorio </span></a></li> -->
               <!-- <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a> -->
@@ -312,7 +287,7 @@ a:focus {
 				   <?php
 		   				if ($user=='guillermogv') {
 							echo "
-                <a style='text-align:center' class='user-nombre' href='./panel_asistencias.php'><button type='button' class='btn btn-light'>PANEL INICIAL <br> ASISTENCIAS MÉDICAS </button> </a>
+
 								<a style='text-align:center' class='user-nombre' href='./solicitar_asistencia.php'><button type='button' class='btn btn-light'>SOLICITAR ASISTENCIA <br> MÉDICA</button> </a>
 							";
 						  }
@@ -327,116 +302,34 @@ a:focus {
           <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
       <div class="container">
-        <div class="row">
-          <h1 style="text-align:center">
-            <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-            <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-            <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-          </h1>
-          <h5 style="text-align:center">
-            <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h5>
-        </div>
+        
         <br>
-        <!--Ejemplo tabla con DataTables-->
-        <div class="row" id="show_alert" style="display:none;">
-          <table id="example22" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <h3 style="text-align:center">¡ALERTA HAY CONVENIOS POR FINALIZAR!</h3>
-                <tr>
-                    <th style="text-align:center">NO.</th>
-                    <th style="text-align:center">EXPEDIENTE</th>
-                    <th style="text-align:center">ID PERSONA</th>
-                    <th style="text-align:center">FECHA DE INICIO DEL CONVENIO</th>
-                    <th style="text-align:center">FECHA DE TERMINO DEL CONVENIO</th>
-                    <th style="text-align:center">DIAS RESTANTES</th>
-                    <th style="text-align:center">OBSERVACIONES</th>
-                    <th style="text-align:center">SEMAFORO</th>
-                    <th style="text-align:center">SEGUIMIENTO</th>
-                </tr>
-            </thead>
-            <tbody>
-              <?php
-              $contador = 0;
-                    $query= "SELECT * FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15 ORDER BY dias_restantes ASC";
-                    $rq = $mysqli->query($query);
-                       while($row = $rq->fetch_assoc()){
-                         $contador = $contador + 1;
-                         $id_per = $row['id_persona'];
-                         $dper = "SELECT * FROM alerta_convenios WHERE id = '$id_per'";
-                         $rdper = $mysqli->query($dper);
-                         $fdper = $rdper->fetch_assoc();
-                         $diasfaltantesent = $row['dias_restantes'];
-                         $idpersonal_ent = $row['id_unico'];
-                         $foliopersonaexpediente_ent = $row['expediente'];
-                         $diasfaltantesent = $row['dias_restantes'];
-                         if ($diasfaltantesent === 1) {
-                           $qued_ent = 'QUEDA';
-                         }else {
-                           $qued_ent = 'QUEDAN';
-                         }
-                         if ($diasfaltantesent === 1) {
-                           $dia_ent = 'DÍA';
-                         }else {
-                           $dia_ent = 'DÍAS';
-                         }
-              ?>
-              <tr>
-                 <td style="text-align:center"><?php echo $contador ?></span></td>
-                 <td style="text-align:center"><?php echo $row['expediente']; ?></span></td>
-                 <td style="text-align:center"><?php echo $row['id_unico']; ?></span></td>
-                 <td style="text-align:center"><?php echo $row['fecha_inicio']; ?></span></td>
-                 <td style="text-align:center"><?php echo $row['fecha_termino']; ?></span></td>
-                 <td style="text-align:center"><?php echo $row['dias_restantes']; ?></span></td>
-                 <td style="text-align:center">
-                   <?php
-                   echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
-                    ?>
-                 </td>
-                 <td style="text-align:center">
-                   <?php
-                   if ($row['semaforo'] === 'ROJO') {
-                     echo '<script type="text/javascript">toastr.error("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
-                     echo '	  <div class="alert alert-danger alert-dismissable fade in">
-                                 <strong style="color:#000000">¡ATENCIÓN!</strong>
-                               </div> ';
-                   }elseif ($row['semaforo'] === 'AMARILLO') {
-                     echo '<script type="text/javascript">toastr.warning("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
-                     echo '	  <div class="alert alert-warning alert-dismissable fade in">
-                                 <strong style="color:#000000">¡ALERTA!</strong>
-                               </div> ';
-                   }elseif ($row['semaforo'] === 'VERDE') {
-                     echo '<script type="text/javascript">toastr.success("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
-                     echo '	  <div class="alert alert-success alert-dismissable fade in">
-                                 <strong style="color:#000000; text-align:center">PRECAUCIÓN!</strong>
-                               </div> ';
-                   }
-                    ?>
-                 </td>
-                 <td style="text-align:center"><?php echo $row['estatus']; ?></span></td>
-                 <?php include('add_observacion_alerta.php'); ?>
-               </tr>
-              <?php
-               }
-              ?>
-            </tbody>
-           </table>
-        </div>
+        <br>
+
+
+
+
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                              <h3 style="text-align:center">Registros</h3>
+                              <h3 style="text-align:center">REGISTROS ASISTENCIAS MÉDICAS</h3>
                                 <tr>
-                                    <th style="text-align:center">NO</th>
-                                    <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCION</th>
-                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
-                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACION DEL EXPEDIENTE DE PROTECCION</th>
-                                    <th style="text-align:center">DETALLES</th>
+                                    <th style="text-align:center">NO.</th>
+                                    <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
+                                    <th style="text-align:center">SERVICIO MÉDICO</th>
+                                    <th style="text-align:center">INSTITUCIÓN</th>
+                                    <th style="text-align:center">FECHA ASISTENCIA MÉDICA</th>
+                                    <th style="text-align:center">CITA DE SEGUIMIENTO</th>
+                                    <th style="text-align:center">MEDICAMENTO SURTIDO</th>
+                                    <th style="text-align:center">MEDICAMENTO ENTREGADO</th>
+                                    <th style="text-align:center">DIAGNOSTICO</th>
+                                    <th style="text-align:center">INFORME</th>
+                                    <th style="text-align:center">DIAS RESTANTES</th>
+                                    <th style="text-align:center">ETAPA</th>
+                                    <th style="text-align:center">DETALLE</th>
 
                                 </tr>
                             </thead>
@@ -498,46 +391,20 @@ a:focus {
       </div>
     </div>
   </div>
-  <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
-  </div>
-  <!-- modal del glosario -->
-  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+        <div class="contenedor">
+			<a href="menu.php" class="btn-flotante">REGRESAR</a>
+		</div>
+
+        <div class="contenedor">
+            <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
         </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <?php
-  $mostraralert = "SELECT COUNT(*) AS total FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15";
-  $rmostraralert = $mysqli -> query($mostraralert);
-  $fmostraralert = $rmostraralert -> fetch_assoc();
-  $restotal = $fmostraralert['total'];
-  ?>
-<script type="text/javascript">
-<?php
-echo "var totalconvenios = '$restotal';";
-?>
-if (totalconvenios > 0) {
-document.getElementById('show_alert').style.display = "";
-}else {  
-  document.getElementById('show_alert').style.display = "none";
-}
-</script>
+	</div>
+</div>
+
+
+
 </body>
 </html>

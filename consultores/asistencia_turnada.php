@@ -78,7 +78,7 @@ $row=$result->fetch_assoc();
         <img src="../image/fiscalia.png" alt="" width="150" height="150">
         <img src="../image/ups2.png" alt="" width="1400" height="70">
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
-    </div>
+      </div>
 
 
       <!-- menu del expediente -->
@@ -114,7 +114,7 @@ $row=$result->fetch_assoc();
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS REGISTRADAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -210,6 +210,12 @@ $row=$result->fetch_assoc();
                                     
                   </div>
               </form>
+
+
+
+
+
+
               </div>
         		</div>
     			</article>
