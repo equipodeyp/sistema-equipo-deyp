@@ -158,7 +158,7 @@ $row=$result->fetch_assoc();
                                                     FROM solicitud_asistencia
                                                     
                                                     JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia
+                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
                                                     
                                                     JOIN turnar_asistencia
                                                     ON solicitud_asistencia.id_asistencia = turnar_asistencia.id_asistencia

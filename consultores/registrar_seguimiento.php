@@ -141,7 +141,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
-                <form method="POST" action="">
+                <form method="POST" action="./guardar_seguimiento.php">
 
                   
                   <div class="alert div-title">
@@ -155,7 +155,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="" readonly value="<?php echo $id_asistencia_medica;?>">
+                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
                       </div>
                     </div>
                   </div>
@@ -182,7 +182,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <select class="form-control" id="se_presento" name="tse_presento" required>
+                        <select class="form-control" id="se_presento" name="se_presento" required>
                           <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                           <option value="SI">SI</option>
                           <option value="NO">NO</option>
@@ -193,11 +193,11 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
                   <div class="form-group">
-                    <label for="nombre_institucion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
+                    <label for="policia_investigacion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user-secret"></i></span>
-                        <input require type="text" class="form-control"  id="policia_investigacion" name="policia_investigacion" placeholder="NOMBRE DEL P.D.I.">
+                        <input autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required type="text" class="form-control"  id="policia_investigacion" name="policia_investigacion" placeholder="NOMBRE DEL P.D.I.">
                       </div>
                     </div>
                   </div>
@@ -205,11 +205,11 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
                   <div class="form-group">
-                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">HOSPITALIZACIÓN</label>
+                    <label for="hospitalizacion" class="col-md-4 control-label" style="font-size: 16px">HOSPITALIZACIÓN</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-hospital"></i></span> 
-                        <select class="form-control" id="tipo_institucion" name="tipo_institucion" required>
+                        <select class="form-control" id="hospitalizacion" name="hospitalizacion" required>
                           <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                           <option value="URGENCIA">URGENCIA</option>
                           <option value="INTERVENCIÓN QUIRÚRGICA">INTERVENCIÓN QUIRÚRGICA</option>
@@ -225,7 +225,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-briefcase-medical"></i></span>
-                        <input type="text" class="form-control"  id="diagnostico" name="diagnostico" placeholder="DESCRIBE EL DIAGNÓSTICO">
+                        <input autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required type="text" class="form-control"  id="diagnostico" name="diagnostico" placeholder="DESCRIBE EL DIAGNÓSTICO">
                       </div>
                     </div>
                   </div>
@@ -264,7 +264,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <label for="observaciones_seguimiento" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES DE SEGUIMIENTO </label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <textarea name="observaciones_asistencia" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea name="observaciones_seguimiento" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
@@ -283,6 +283,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
+                      <br>
                       <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">REGISTRAR SEGUIMIENTO</button>
                     </div>
                   </div>
