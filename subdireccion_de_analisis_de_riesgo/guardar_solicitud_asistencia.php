@@ -24,29 +24,58 @@ $observaciones=$_POST['observaciones'];
 $etapa = "SOLICITADA";
 
 // echo $folio_expediente;
-// echo $id_sujeto;
+// echo '<br>';
+echo $id_sujeto;
+echo '<br>';
 // echo $id_asistencia;
+// echo '<br>';
 // echo $id_servidor;
+// echo '<br>';
 // echo $numero_oficio;
+// echo '<br>';
 // echo $tipo_requerimiento;
+// echo '<br>';
 // echo $servicio_medico;
+// echo '<br>';
 // echo $observaciones;
+// echo '<br>';
 // echo $etapa;
-
-$query = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa) 
-VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa')";
-$result = $mysqli->query($query);
+// echo '<br>';
 
 
+$cadena = $folio_expediente;
+$separador = "/";
+$folio_separado = explode($separador, $cadena);
+$año = $folio_separado[4];
 
-    if($result) {
-            echo $verifica;
-            echo ("<script type='text/javaScript'>
-            window.location.href='./solicitudes_registradas.php';
-            window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-        </script>");
-            } else {  }
-    } else {
-    echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=menu.php'>";
+// echo $año;
+// echo '<br>';
+
+
+$cant="SELECT COUNT(*) AS T FROM solicitud_asistencia WHERE id_sujeto = '$id_sujeto'";
+
+
+echo '<br>';
+$id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$_Total_tb;
+echo $id_asistencia_medica;
+
+
+
+
+// $query = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa) 
+// VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa')";
+// $result = $mysqli->query($query);
+
+
+
+    // if($result) {
+    //         echo $verifica;
+    //         echo ("<script type='text/javaScript'>
+    //         window.location.href='./solicitudes_registradas.php';
+    //         window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+    //     </script>");
+    //         } else {  }
+    // } else {
+    // echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=menu.php'>";
 }
 ?>

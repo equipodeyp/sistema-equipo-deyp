@@ -310,9 +310,10 @@ a:focus {
           <br><br>
           <ul>
 				   <?php
+          //  <a style='text-align:center' class='user-nombre' href='./panel_asistencias.php'><button type='button' class='btn btn-light'>PANEL INICIAL <br> ASISTENCIAS MÉDICAS </button> </a>
 		   				if ($user=='guillermogv') {
 							echo "
-                <a style='text-align:center' class='user-nombre' href='./panel_asistencias.php'><button type='button' class='btn btn-light'>PANEL INICIAL <br> ASISTENCIAS MÉDICAS </button> </a>
+                
 								<a style='text-align:center' class='user-nombre' href='./solicitar_asistencia.php'><button type='button' class='btn btn-light'>SOLICITAR ASISTENCIA <br> MÉDICA</button> </a>
 							";
 						  }
