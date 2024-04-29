@@ -16,6 +16,14 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
 // echo $user;
+
+
+
+$fecha_actual = date("Y-m-d");
+// echo $fecha_actual;
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -317,70 +325,77 @@ a:focus {
                             <thead>
                               <h3 style="text-align:center">REGISTROS ASISTENCIAS MÉDICAS</h3>
                                 <tr>
-                                    <th style="text-align:center">NO.</th>
+                                    <!-- <th style="text-align:center">NO.</th> -->
                                     <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
+                                    <th style="text-align:center">FECHA SOLICITUD</th>
+                                    <th style="text-align:center">ID SERVIDOR PÚBLICO</th>
                                     <th style="text-align:center">SERVICIO MÉDICO</th>
                                     <th style="text-align:center">INSTITUCIÓN</th>
-                                    <th style="text-align:center">FECHA ASISTENCIA MÉDICA</th>
-                                    <th style="text-align:center">CITA DE SEGUIMIENTO</th>
-                                    <th style="text-align:center">MEDICAMENTO SURTIDO</th>
-                                    <th style="text-align:center">MEDICAMENTO ENTREGADO</th>
-                                    <th style="text-align:center">DIAGNOSTICO</th>
-                                    <th style="text-align:center">INFORME</th>
+                                    <th style="text-align:center">FECHA DE ASISTENCIA</th>
+                                    <!-- <th style="text-align:center">TRASLADO REALIZADO</th>
+                                    <th style="text-align:center">DIAGNÓSTICO</th> -->
                                     <th style="text-align:center">DIAS RESTANTES</th>
                                     <th style="text-align:center">ETAPA</th>
                                     <th style="text-align:center">DETALLE</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                               <?php
                               $contador = 0;
-                              $sql = "SELECT * FROM expediente";
-                              $resultado = $mysqli->query($sql);
-                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
-                              $fol_exp =$row['fol_exp'];
+                              $sentencia1 = "SELECT DATEDIFF (agendar_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, 
+                              solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, solicitud_asistencia.servicio_medico, 
+                              solicitud_asistencia.etapa, agendar_asistencia.fecha_asistencia, agendar_asistencia.nombre_institucion 
 
-                              $tabla="SELECT * FROM expediente";
-                              $var_resultado = $mysqli->query($tabla);
+                              FROM solicitud_asistencia
+                              
+                              INNER JOIN agendar_asistencia 
+                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia";
+
+                              // $sentencia2 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
+                              // solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, agendar_asistencia.fecha_asistencia, 
+                              // seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.diagnostico, solicitud_asistencia.etapa
+
+                              // FROM solicitud_asistencia
+                              
+                              // JOIN agendar_asistencia 
+                              // ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia
+                              
+                              // JOIN turnar_asistencia
+                              // ON solicitud_asistencia.id_asistencia = turnar_asistencia.id_asistencia
+                              
+                              // JOIN notificar_asistencia
+                              // ON solicitud_asistencia.id_asistencia = notificar_asistencia.id_asistencia
+                              
+                              // JOIN seguimiento_asistencia
+                              // ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia";
+
+                              $var_resultado = $mysqli->query($sentencia1);
 
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $contador = $contador + 1;
-                                $fol_exp2=$var_fila['fol_exp'];
+                                
 
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
-                                $result=$mysqli->query($abc);
-                                if($result)
-                                {
-                                  while($row=mysqli_fetch_assoc($result))
-                                  {
+  
                                     echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
-                                      echo "<i class='fas fa-check'></i>";
-                                    }elseif ($var_fila['validacion'] == 'false') {
-                                      echo "<i class='fas fa-times'></i>";
-                                    } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open color-icon'></span></a></td>";
-
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha_solicitud']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['servicio_medico']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['nombre_institucion']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha_asistencia']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['traslado_realizado']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['diagnostico']; echo "</td>";
+                                    
+                                    echo "<td style='text-align:center'>"; echo $var_fila['dias_restantes']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
+                                    echo "<td style='text-align:center'><a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalles_asistencia.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center; text-decoration: underline;' class='fa-solid fa-address-card color-icon'></span> Detalle</a></td>";
                                     echo "</tr>";
-
-                                  }
-
                                 }
-                              }
                             ?>
                             </tbody>
                            </table>

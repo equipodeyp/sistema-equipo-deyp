@@ -147,7 +147,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                 <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
                 <li><a class="active" href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
               </ul>
                 <form method="POST" action="guardar_turno.php">
 
@@ -189,7 +189,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-                        <input autocomplete="off" required type="text" class="form-control"  id="numero_oficio" name="numero_oficio" value="">
+                        <input autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
                       </div>
                     </div>
                   </div>
@@ -200,7 +200,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
-                        <input required type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio" value="">
+                        <input type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio">
                       </div>
                     </div>
                   </div>
@@ -209,12 +209,18 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button id="siguiente" style="display: none; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button>
-                      <button id="boton_turnar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">TURNAR</button>
+                      <button id="boton_turnar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
                     </div>
                   </div>
 
+                  <!-- 
 
+                  <div class="form-group" id="siguiente-2" style="display: none;">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      <button id="siguiente" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button>
+                    </div>
+                  </div> -->
 
 
 
@@ -260,20 +266,21 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
       document.getElementById("oficio").style.display = "none";
       document.getElementById("fecha").style.display = "none";
-      document.getElementById("oficio").value = "";
-      document.getElementById("fecha").value = "";
-      document.getElementById("boton_turnar").style.display = "none";
-      document.getElementById("siguiente").style.display = "";
+      document.getElementById("numero_oficio").value = "NO APLICA";
+      document.getElementById("fecha_oficio").value = "NO APLICA";
+      // document.getElementById("boton_turnar-1").style.display = "none";
+      // document.getElementById("siguiente-2").style.display = "";
 
     } else {
       document.getElementById("oficio").style.display = "";
       document.getElementById("fecha").style.display = "";
-      document.getElementById("siguiente").style.display = "none";
+      // document.getElementById("siguiente-2").style.display = "none";
+      // document.getElementById("boton_turnar-1").style.display = "";
 
     }
 
  
-console.log (respuestaObtenida);
+// console.log (respuestaObtenida);
 
 
 

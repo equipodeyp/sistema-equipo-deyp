@@ -326,7 +326,7 @@ $m_user = strtoupper($m_user);
 
               
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   window.onload = function(){
     var fecha = new Date();
     var mes = fecha.getMonth()+1;
@@ -393,7 +393,7 @@ $m_user = strtoupper($m_user);
   }
 
 
-</script>
+</script> -->
 
 
 <script type="text/javascript">

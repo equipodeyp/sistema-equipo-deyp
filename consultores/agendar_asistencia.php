@@ -297,7 +297,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">AGENDAR</button>
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
                     </div>
                   </div>
 

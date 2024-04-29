@@ -7,9 +7,12 @@ if ($verifica == 1) {
     unset($_SESSION['verifica']);
     $name = $_SESSION['usuario'];
 
-    $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
-    $resultado = $mysqli->query($sentencia);
-    $row=$resultado->fetch_assoc();
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$resultado = $mysqli->query($sentencia);
+$row=$resultado->fetch_assoc();
+
+
+
 
 $folio_expediente=$_POST['folio_expediente'];
 $id_sujeto=$_POST['id_sujeto'];
@@ -42,28 +45,40 @@ $etapa = "SOLICITADA";
 // echo $etapa;
 // echo '<br>';
 
+$cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto'";
+$result = $mysqli->query($cant);
+$r=$result->fetch_assoc();
+// echo $r["total"];
+// echo '<br>';
 
-// $cadena = $folio_expediente;
-// $separador = "/";
-// $folio_separado = explode($separador, $cadena);
-// $año = $folio_separado[4];
+$cadena = $folio_expediente;
+$separador = "/";
+$folio_separado = explode($separador, $cadena);
+$año = $folio_separado[4];
 
 // echo $año;
 // echo '<br>';
+// echo '<br>';
+// echo '<br>';
 
 
-// $cant="SELECT COUNT(*) AS T FROM solicitud_asistencia WHERE id_sujeto = '$id_sujeto'";
 
 
 // echo '<br>';
-// $id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$_Total_tb;
+$c = $r["total"] + 1;
+$id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$c;
 // echo $id_asistencia_medica;
 
 
 
 
+
+
+
+
+
 $query = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa) 
-VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa')";
+VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa')";
 $result = $mysqli->query($query);
 
 
