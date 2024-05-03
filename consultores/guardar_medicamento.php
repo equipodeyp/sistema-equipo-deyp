@@ -44,8 +44,8 @@ $indicaciones = $_POST['indicaciones'];
 // echo $indicaciones;
 // echo "<br>";
 
-$query = "INSERT INTO tratamiento_medico (id_asistencia, surtido, entregado, adquisicion, nombre_medicamento, cantidad, presentacion, contenido, numero_oficio, nombre_recibe, indicaciones) 
-VALUES ('$id_asistencia_medica', '$surtido', '$entregado', '$adquisicion', '$nombre', '$cantidad', '$presentacion', '$contenido', '$oficio', '$nombre_recibe', '$indicaciones')";
+$query = "INSERT INTO tratamiento_medico (id_asistencia, surtido, entregado, adquisicion, nombre_medicamento, cantidad, presentacion, contenido, indicaciones, numero_oficio, nombre_recibe) 
+VALUES ('$id_asistencia_medica', '$surtido', '$entregado', '$adquisicion', '$nombre', '$cantidad', '$presentacion', '$contenido', '$indicaciones', '$oficio', '$nombre_recibe')";
 $result = $mysqli->query($query);
 
 

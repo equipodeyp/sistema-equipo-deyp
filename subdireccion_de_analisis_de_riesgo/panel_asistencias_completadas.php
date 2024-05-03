@@ -296,7 +296,7 @@ a:focus {
 		   				if ($user=='guillermogv') {
 							echo "
 
-								<a style='text-align:center' class='user-nombre' href='./solicitar_asistencia.php'><button type='button' class='btn btn-light'>SOLICITAR ASISTENCIA <br> MÉDICA</button> </a>
+								
 							";
 						  }
 					?>
@@ -323,51 +323,40 @@ a:focus {
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                              <h3 style="text-align:center">REGISTROS ASISTENCIAS MÉDICAS</h3>
+                              <h3 style="text-align:center">ASISTENCIAS MÉDICAS COMPLETADAS</h3>
                                 <tr>
                                     <!-- <th style="text-align:center">NO.</th> -->
                                     <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
-                                    <th style="text-align:center">FECHA SOLICITUD</th>
+                                    <!-- <th style="text-align:center">FECHA SOLICITUD</th> -->
                                     <th style="text-align:center">ID SERVIDOR PÚBLICO</th>
                                     <th style="text-align:center">SERVICIO MÉDICO</th>
                                     <th style="text-align:center">INSTITUCIÓN</th>
                                     <th style="text-align:center">FECHA DE ASISTENCIA</th>
                                     <!-- <th style="text-align:center">TRASLADO REALIZADO</th>
                                     <th style="text-align:center">DIAGNÓSTICO</th> -->
-                                    <th style="text-align:center">DIAS RESTANTES</th>
+                                    <!-- <th style="text-align:center">DIAS RESTANTES</th> -->
+                                    <th style="text-align:center">DIAGNÓSTICO</th>
                                     <th style="text-align:center">ETAPA</th>
-                                    <th style="text-align:center">DETALLE</th>
+                                    <th style="text-align:center">DETALLE ASISTENCIA MÉDICA</th>
                                 </tr>
                             </thead>
                             <tbody>
                               <?php
                               $contador = 0;
-                              $sentencia1 = "SELECT DATEDIFF (agendar_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, 
+                              $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, 
                               solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, solicitud_asistencia.servicio_medico, 
-                              solicitud_asistencia.etapa, agendar_asistencia.fecha_asistencia, agendar_asistencia.nombre_institucion 
+                              solicitud_asistencia.etapa, agendar_asistencia.fecha_asistencia, agendar_asistencia.nombre_institucion, seguimiento_asistencia.diagnostico 
 
                               FROM solicitud_asistencia
                               
                               INNER JOIN agendar_asistencia 
-                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia";
+                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
 
-                              // $sentencia2 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
-                              // solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, agendar_asistencia.fecha_asistencia, 
-                              // seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.diagnostico, solicitud_asistencia.etapa
+                              JOIN seguimiento_asistencia
+                              ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia
 
-                              // FROM solicitud_asistencia
-                              
-                              // JOIN agendar_asistencia 
-                              // ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia
-                              
-                              // JOIN turnar_asistencia
-                              // ON solicitud_asistencia.id_asistencia = turnar_asistencia.id_asistencia
-                              
-                              // JOIN notificar_asistencia
-                              // ON solicitud_asistencia.id_asistencia = notificar_asistencia.id_asistencia
-                              
-                              // JOIN seguimiento_asistencia
-                              // ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia";
+                              ORDER BY agendar_asistencia.fecha_asistencia ASC";
+
 
                               $var_resultado = $mysqli->query($sentencia1);
 
@@ -383,7 +372,7 @@ a:focus {
                                     // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha_solicitud']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['fecha_solicitud']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['servicio_medico']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['nombre_institucion']; echo "</td>";
@@ -391,9 +380,12 @@ a:focus {
                                     // echo "<td style='text-align:center'>"; echo $var_fila['traslado_realizado']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['diagnostico']; echo "</td>";
                                     
-                                    echo "<td style='text-align:center'>"; echo $var_fila['dias_restantes']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['dias_restantes']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['diagnostico']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
-                                    echo "<td style='text-align:center'><a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalles_asistencia.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center; text-decoration: underline;' class='fa-solid fa-address-card color-icon'></span> Detalle</a></td>";
+                                    echo "<td style='text-align:center'>
+                                            <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia_completada.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;' </span>Ver detalle</a>
+                                          </td>";
                                     echo "</tr>";
                                 }
                             ?>
@@ -410,11 +402,12 @@ a:focus {
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
-			<a href="menu.php" class="btn-flotante">REGRESAR</a>
+			<!-- <a href="menu.php" class="btn-flotante">REGRESAR</a> -->
+      <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		</div>
 
         <div class="contenedor">
-            <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+            <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
         </div>
 	</div>
 </div>

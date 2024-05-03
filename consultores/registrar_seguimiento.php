@@ -261,7 +261,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
                   <div class="form-group">
-                    <label for="observaciones_seguimiento" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES DE SEGUIMIENTO </label>
+                    <label for="observaciones_seguimiento" class="col-md-4 control-label" style="font-size: 16px">COMENTARIOS </label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <textarea name="observaciones_seguimiento" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>

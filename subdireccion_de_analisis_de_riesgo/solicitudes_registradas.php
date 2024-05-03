@@ -171,7 +171,7 @@ $m_user = strtoupper($m_user);
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM solicitud_asistencia WHERE id_servidor = '$m_user' AND etapa = 'SOLICITADA' ";
+                                                    $query = "SELECT * FROM solicitud_asistencia WHERE id_servidor = '$m_user' AND etapa = 'SOLICITADA' ORDER BY solicitud_asistencia.fecha_solicitud ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -229,10 +229,10 @@ $m_user = strtoupper($m_user);
 
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">CANCELAR</a>
+    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
 
 

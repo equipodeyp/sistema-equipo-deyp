@@ -156,7 +156,7 @@ $row=$result->fetch_assoc();
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
+                                                    $query = "SELECT * FROM solicitud_asistencia WHERE etapa = 'SOLICITADA' ORDER BY solicitud_asistencia.fecha_solicitud ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {

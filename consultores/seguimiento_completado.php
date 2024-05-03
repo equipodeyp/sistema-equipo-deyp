@@ -361,18 +361,18 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                         
                         <br>
 
-                        <div>
+                        <!-- <div>
                           <label class="control-label">MEDICAMENTO SURTIDO POR LA INSTITUCIÓN MÉDICA</label>
                           <select autocomplete="off" class="form-control" id="surtido" name="surtido" required>
                             <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                             <option value="SI">SI</option>
                             <option value="NO">NO</option>
                           </select>
-                        </div>
+                        </div> -->
 
-                        <br>
+                        <!-- <br> -->
 
-                        <div>
+                        <!-- <div>
                           <label class="control-label">MEDICAMENTO ENTREGADO</label>
                           <select autocomplete="off" class="form-control" id="entregado" name="entregado" required>
                             <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
@@ -381,9 +381,9 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                             <option value="COMPLETO">COMPLETO</option>
                             <option value="NO APLICA">NO APLICA</option>
                           </select>
-                        </div>
+                        </div> -->
 
-                        <br>
+                        <!-- <br> -->
 
                         <div>
                           <label class="control-label">ADQUISICIÓN DEL MEDICAMENTO</label>
@@ -443,6 +443,13 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                           </div>
 
                           <br>
+                          
+                          <div>
+                            <label class="control-label">INDICACIONES DEL TRATAMIENTO MÉDICO</label>
+                            <input placeholder="EJEMPLO: TOMAR 1 TABLETA CADA 8 HRS DURANTE 5 DIAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="indicaciones" name="indicaciones" required value="">
+                          </div>
+
+                          <br>
 
                           <div>
                             <label class="control-label">NÚMERO DE OFICIO DE LA ENTREGA DEL MEDICAMENTO</label>
@@ -456,12 +463,8 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                             <input placeholder="NOMBRE DEL SERVIDOR PÚBLICO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre_recibe" name="nombre_recibe" required value="">
                           </div>
 
-                          <br>
 
-                          <div>
-                            <label class="control-label">INDICACIONES DEL TRATAMIENTO MÉDICO</label>
-                            <input placeholder="EJEMPLO: TOMAR 1 TABLETA CADA 8 HRS DURANTE 5 DIAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="indicaciones" name="indicaciones" required value="">
-                          </div>
+
 
 
       </div>

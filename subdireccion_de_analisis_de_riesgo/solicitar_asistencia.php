@@ -317,10 +317,10 @@ $m_user = strtoupper($m_user);
   </div>
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">CANCELAR</a>
+    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
 
 
