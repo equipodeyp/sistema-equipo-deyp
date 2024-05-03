@@ -299,7 +299,7 @@ a:focus {
                               <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
                               <th style="text-align:center">MOTIVO NO PROCEDENCIA JURIDICA</th>
                               <!-- <th style="text-align:center">PERSONAS PROPUESTAS</th> -->
-                              <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
+                              <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO 1</th>
                               <th style="text-align:center">INCORPORACIÓN</th>
                               <th style="text-align:center">FECHA ANALISIS</th>
                               <!-- <th style="text-align:center">ID ANALISIS</th> -->
