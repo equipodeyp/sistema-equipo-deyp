@@ -173,7 +173,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
                         <!-- <input disabled type="text" class="form-control"  id="turnar_asistencia" name="turnar_asistencia" value="SI"> -->
-                        <select class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
+                        <select value class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
                           <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
                           <option value="SI">SI</option>
                           <option value="NO APLICA">NO APLICA</option>
@@ -189,7 +189,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-                        <input autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
+                        <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
                       </div>
                     </div>
                   </div>
@@ -200,7 +200,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
-                        <input type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio">
+                        <input value type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio">
                       </div>
                     </div>
                   </div>
@@ -266,8 +266,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
       document.getElementById("oficio").style.display = "none";
       document.getElementById("fecha").style.display = "none";
-      document.getElementById("numero_oficio").value = "NO APLICA";
-      document.getElementById("fecha_oficio").value = "NO APLICA";
+      document.getElementById("numero_oficio").value = "";
+      document.getElementById("fecha_oficio").value = "";
       // document.getElementById("boton_turnar-1").style.display = "none";
       // document.getElementById("siguiente-2").style.display = "";
 

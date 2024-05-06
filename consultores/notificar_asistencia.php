@@ -256,8 +256,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
       document.getElementById("oficio").style.display = "none";
       document.getElementById("fecha").style.display = "none";
-      document.getElementById("numero_oficio_notificacion").value = "NO APLICA";
-      document.getElementById("fecha_oficio_notificacion").value = "NO APLICA";
+      document.getElementById("numero_oficio_notificacion").value = "";
+      document.getElementById("fecha_oficio_notificacion").value = "";
       // document.getElementById("boton_notificar").style.display = "none";
       // document.getElementById("siguiente").style.display = "";
 
