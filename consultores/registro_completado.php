@@ -171,13 +171,17 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
-                                                                agendar_asistencia.fecha_asistencia, agendar_asistencia.hora_asistencia, solicitud_asistencia.etapa
-                                                                FROM solicitud_asistencia
-                                                                JOIN agendar_asistencia 
-                                                                ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
-                                                                ORDER BY fecha_asistencia DESC
-                                                                LIMIT 1";
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa
+
+                                                    FROM solicitud_asistencia
+                                                    
+                                                    JOIN agendar_asistencia 
+                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
+                                                    
+                                                    JOIN cita_asistencia
+                                                    ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+                                                    
+                                                    ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
                                                     
                                                     
                                                     $result_solicitud = mysqli_query($mysqli, $query);

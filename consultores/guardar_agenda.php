@@ -25,6 +25,12 @@ $etapa = "EN AGENDA";
 
 
 
+$folio = "SELECT folio_expediente, id_sujeto FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
+$result_f = mysqli_query($mysqli, $folio);
+$r_f = mysqli_fetch_array($result_f);
+$folio = $r_f['folio_expediente'];
+$id_sujeto = $r_f['id_sujeto'];
+
 $tipo_i = "SELECT id, tipo FROM tipo_institucion WHERE id = '$tipo_institucion'";
 $result_t = mysqli_query($mysqli, $tipo_i);
 $r_t = mysqli_fetch_array($result_t);
@@ -46,7 +52,10 @@ $r_m = mysqli_fetch_array($result_m);
 $m = $r_m['municipio'];
 
 
-
+// echo $folio;
+// echo "<br> ";
+// echo $id_sujeto;
+// echo "<br> ";
 // echo $id_asistencia;
 // echo "<br>";
 // echo $t;
@@ -67,9 +76,13 @@ $m = $r_m['municipio'];
 // echo "<br>";
 
 
-$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, fecha_asistencia, hora_asistencia, observaciones) 
-VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$fecha_asistencia', '$hora_asistencia', '$observaciones_asistencia')";
+$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones) 
+VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia')";
 $result = $mysqli->query($query);
+
+$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia) 
+VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia')";
+$result2 = $mysqli->query($query2);
 
 
 

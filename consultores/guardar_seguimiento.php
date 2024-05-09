@@ -52,7 +52,7 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 // echo "<br>";
 
 
-    if($traslado == 'SI' || $traslado == 'SI' &&  $se_presento == 'SI'){
+    if($traslado == 'SI' &&  $se_presento == 'SI'){
 
     $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
@@ -69,10 +69,34 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
             window.location.href='./seguimiento_completado.php?id_asistencia_medica=$id_asistencia';
             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
         </script>");
-            } else {  }
+            } else {
+
+            
 
 
-    } else {
+            }
+
+
+    } else if ($traslado == 'SI' && $se_presento == 'NO' && $reprogramar == 'NO' || $traslado == 'NO' && $reprogramar == 'NO'){
+
+        $etapa = "ASISTENCIA MÉDICA COMPLETADA";
+
+        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, reprogramar_asistencia, motivo, nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento) 
+        VALUES ('$id_asistencia', '$traslado', '$se_presento', '$reprogramar', '$motivo', '$policia_investigacion', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones_seguimiento')";
+        $result = $mysqli->query($query);
+    
+        $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+        $res_etapa = $mysqli->query($actualizar_etapa);
+    
+            if($result) {
+                echo $verifica;
+                echo ("<script type='text/javaScript'>
+                window.location.href='./asistencia_turnada.php';
+                window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+            </script>");
+                } else {  }
+
+    } else if ($traslado == 'SI' && $se_presento == 'NO' && $reprogramar == 'SI' || $traslado == 'NO' && $reprogramar == 'SI'){
 
         $etapa = "ASISTENCIA MÉDICA REPROGRAMADA";
 
