@@ -149,7 +149,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
               </ul>
-                <form method="POST" action="guardar_agenda.php">
+                <form method="POST" action="./guardar_agenda.php">
 
                   <h3> Este apartado se conforma de 3 pasos (Agendar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
                        <!-- Una vez que ha sido registrada la información de cada uno de los pasos no sera posible retroceder o cancelar el proceso, asegurarte de tener toda la informacíon a la mano. -->

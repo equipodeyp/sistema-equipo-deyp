@@ -92,7 +92,8 @@ $row=$result->fetch_assoc();
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="./admin.php">REGISTROS</a>
-                <a class="actived" href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a>
+                <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a> -->
+                <a class="actived" href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
             </div>
           
 
@@ -100,22 +101,22 @@ $row=$result->fetch_assoc();
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./solicitudes_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
-                <li><a href="#" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</span></a></li>
+                <li><a href="#" onclick="location.href='./solicitudes_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
+              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'ASISTENCIA MÉDICA REPROGRAMADA'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -123,7 +124,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</h3>
+                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</h3>
                           </div>
                         </div>
                       <div>
@@ -141,8 +142,8 @@ $row=$result->fetch_assoc();
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE REQUERIMIENTO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
-
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>AGENDAR ASISTENCIA MÉDICA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ETAPA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>REPROGRAMAR ASISTENCIA MÉDICA</th>
                             </tr>
                         </thead>
                     
@@ -157,7 +158,15 @@ $row=$result->fetch_assoc();
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM solicitud_asistencia WHERE etapa = 'SOLICITADA' ORDER BY solicitud_asistencia.fecha_solicitud ASC";
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
+                                                    solicitud_asistencia.num_oficio, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones, solicitud_asistencia.etapa
+
+                                                    FROM solicitud_asistencia
+                                                    
+                                                    WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' 
+                                                    
+                                                    ORDER BY solicitud_asistencia.fecha_solicitud ASC";
+
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -176,12 +185,13 @@ $row=$result->fetch_assoc();
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['tipo_requerimiento']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['etapa']?></td>
                                                             
 
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <a style="text-decoration: underline;" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
-                                                                   AGENDAR
+                                                                <a style="text-decoration: underline;" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
+                                                                   REPROGRAMAR
                                                                 </a>
                                                                 <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button> -->
                                                                 <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
@@ -214,12 +224,10 @@ $row=$result->fetch_assoc();
 </div>
 
 <div class="contenedor">
-<a href="./admin.php" class="btn-flotante">REGRESAR</a>
+<a href="./solicitudes_registradas.php" class="btn-flotante">REGRESAR</a>
 </div>
 
 
 
 </body>
 </html>
-
-

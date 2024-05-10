@@ -1,17 +1,50 @@
 <?php
-error_reporting(0);
+/*require 'conexion.php';*/
 include("conexion.php");
 session_start ();
-$verifica_update_person = 1;
-$_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica = 1;
+$_SESSION["verifica"] = $verifica;
+$name = $_SESSION['usuario'];
+
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$user = $row['usuario'];
 
+$m_user = $user;
+$m_user = strtoupper($m_user);
+
+// echo $m_user; 
+// echo $user;
+
+// echo "Agendar Asistencia Médica";
+
+
+
+$id_asistencia_medica = $_GET["id_asistencia_medica"];
+
+
+// echo $id_asistencia_medica;
+
+
+
+
+$sentencia_am = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+$result_am = mysqli_query($mysqli, $sentencia_am);
+$r_am = mysqli_fetch_array($result_am);
+$id_a_m = $r_am['id_asistencia'];
+// echo $id_a_m;
+
+
+$tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -91,65 +124,47 @@ $row=$result->fetch_assoc();
 
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a href="./admin.php">REGISTROS</a>
-                <a class="actived" href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a>
-            </div>
+            <a href="./admin.php">REGISTROS</a>
+            <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
+            <a class="actived" href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
+            <a class="actived" href="./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
+          </div>
           
 
             <div class=" well form-horizontal">
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./solicitudes_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
-                <li><a href="#" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</span></a></li>
-                <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
+                <li><a href="#"  onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. REPROGRAMAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#" onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
               </ul>
 
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
-              <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
-              $rcl = $mysqli->query($cl);
-              $fcl = $rcl->fetch_assoc();
-              // echo $fcl['t'];
-              if ($fcl['t'] == 0){
-                    echo "<div id='cabecera'>
-                      <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS !</h3>
-                      </div>
-                    </div>";
-              } else{
-                    echo "
-                      <div class='row'>
-                        <div id='cabecera'>
-                          <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</h3>
+              
+                      <div class="row">
+                        <div id="cabecera">
+                          <div class="row alert div-title">
+                            <h3 style="text-align:center">REGISTRO COMPLETADO</h3>
                           </div>
                         </div>
                       <div>
 
-                      <table class='table table-bordered' id='table-instrumento'>
+                      <table class="table table-bordered" id="table-instrumento">
                         <thead>
                             <tr>
 
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA MÉDICA</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">ID ASISTENCIA MÉDICA</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">SERVICIO MÉDICO</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">NOMBRE DE LA UNIDAD MÉDICA</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">FECHA REPROGRAMADA</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">HORA REPROGRAMADA</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">ETAPA</th>
                                 
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
-
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID SERVIDOR PÚBLICO SOLICITANTE</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO DE OFICIO DE LA SOLICITUD</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE REQUERIMIENTO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
-
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>AGENDAR ASISTENCIA MÉDICA</th>
                             </tr>
                         </thead>
-                    
-                    ";
-                  }
-
-            ?>
 
 
 <tbody>
@@ -157,7 +172,19 @@ $row=$result->fetch_assoc();
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM solicitud_asistencia WHERE etapa = 'SOLICITADA' ORDER BY solicitud_asistencia.fecha_solicitud ASC";
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa
+
+                                                    FROM solicitud_asistencia
+                                                                                                        
+                                                    JOIN agendar_asistencia 
+                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
+                                                    
+                                                    JOIN cita_asistencia
+                                                    ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+                                                    
+                                                    ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+                                                    
+                                                    
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -168,26 +195,23 @@ $row=$result->fetch_assoc();
                                                         <tr>
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_solicitud']?></td>
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_servidor']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['num_oficio']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['tipo_requerimiento']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['servicio_medico']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['nombre_institucion']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['fecha_asistencia']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['hora_asistencia']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['etapa']?></td>
                                                             
 
 
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <a style="text-decoration: underline;" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
                                                                    AGENDAR
                                                                 </a>
-                                                                <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button> -->
-                                                                <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
+                                                                <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button>
+                                                                <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                     <i class="fas fa-chart-line" ></i>
-                                                                </a> -->
-                                                            </td>
+                                                                </a>
+                                                            </td> -->
                                                             
                                                         </tr>
 
@@ -214,12 +238,9 @@ $row=$result->fetch_assoc();
 </div>
 
 <div class="contenedor">
-<a href="./admin.php" class="btn-flotante">REGRESAR</a>
+<a href="./asistencias_reprogramadas.php" class="btn-flotante">REGRESAR</a>
 </div>
-
 
 
 </body>
 </html>
-
-

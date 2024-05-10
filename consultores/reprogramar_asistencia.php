@@ -1,34 +1,71 @@
 <?php
-error_reporting(0);
+/*require 'conexion.php';*/
 include("conexion.php");
 session_start ();
-$verifica_update_person = 1;
-$_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica = 1;
+$_SESSION["verifica"] = $verifica;
+$name = $_SESSION['usuario'];
+
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$user = $row['usuario'];
+
+$m_user = $user;
+$m_user = strtoupper($m_user);
+
+// echo $m_user; 
+// echo $user;
+
+// echo "Agendar Asistencia Médica";
+
+
+
+$id_asistencia_medica = $_GET["id_asistencia_medica"];
+
+
+// echo $id_asistencia_medica;
+
+
+
+
+// $sentencia_am = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+// $result_am = mysqli_query($mysqli, $sentencia_am);
+// $r_am = mysqli_fetch_array($result_am);
+// $folio_expediente = $r_am['folio_expediente'];
+// $id_sujeto = $r_am['id_sujeto'];
+
+// echo $folio_expediente;
+// echo $id_sujeto;
+
+
 
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/instrumento_adaptabilidad.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>UPSIPPED</title>
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
-  <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
+
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
@@ -36,18 +73,21 @@ $row=$result->fetch_assoc();
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
   <script src="../js/solicitud.js"></script>
+  <script src="../js/Javascript.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/cli.css">
-  <link rel="stylesheet" href="../css/registrosolicitud1.css">
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <link rel="stylesheet" href="../css/main2.css">
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../css/main2.css">
+
 </head>
 <body >
-<div class="contenedor">
+  <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
       </div>
@@ -90,139 +130,253 @@ $row=$result->fetch_assoc();
           <article id="tab1">
 
             <!-- menu de navegacion de la parte de arriba -->
-            <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a href="./admin.php">REGISTROS</a>
-                <a class="actived" href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a>
-            </div>
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="./admin.php">REGISTROS</a>
+            <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
+            <a href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
+            <a class="actived" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
+          </div>
+
+          <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="">REGISTROS</a>
+            <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
+            <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
+          </div> -->
           
 
             <div class=" well form-horizontal">
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" onclick="location.href='./solicitudes_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
-                <li><a href="#" class="active" onclick="location.href='/consultores/reprogramar_asistencia.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">REPROGRAMAR SOLICITUD DE ASISTENCIA MÉDICA</span></a></li>
-                <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
+                <li><a class="active" href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. REPROGRAMAR</span></a></li>
+                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
               </ul>
+                
 
+                  <h3> Este apartado se conforma de 3 pasos (Reprogramar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
+                       <!-- Una vez que ha sido registrada la información de cada uno de los pasos no sera posible retroceder o cancelar el proceso, asegurarte de tener toda la informacíon a la mano. -->
+                  </h3>
 
-              <form class="container well form-horizontal" enctype="multipart/form-data">
-              <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
-              $rcl = $mysqli->query($cl);
-              $fcl = $rcl->fetch_assoc();
-              // echo $fcl['t'];
-              if ($fcl['t'] == 0){
-                    echo "<div id='cabecera'>
-                      <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS !</h3>
-                      </div>
-                    </div>";
-              } else{
-                    echo "
-                      <div class='row'>
-                        <div id='cabecera'>
-                          <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</h3>
-                          </div>
-                        </div>
-                      <div>
-
-                      <table class='table table-bordered' id='table-instrumento'>
-                        <thead>
-                            <tr>
-
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA MÉDICA</th>
-                                
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
-
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID SERVIDOR PÚBLICO SOLICITANTE</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO DE OFICIO DE LA SOLICITUD</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE REQUERIMIENTO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ETAPA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>REPROGRAMAR ASISTENCIA MÉDICA</th>
-                            </tr>
-                        </thead>
-                    
-                    ";
-                  }
-
-            ?>
-
-
-<tbody>
-                                                <?php
-
-                                                    $count = 0;
-
-                                                    $query = "SELECT **********************
-                                                    
-                                                    FROM solicitud_asistencia
-
-                                                    INNER JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA REPROGRAMADA'; 
-                                                    
-                                                    ORDER BY solicitud_asistencia.fecha_solicitud ASC";
-                                                    $result_solicitud = mysqli_query($mysqli, $query);
-
-                                                    while($row = mysqli_fetch_array($result_solicitud)) {
-                                                    
-                                                        
-                                                ?>
-                                                    <?php $count = $count + 1 ?>
-                                                        <tr>
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_solicitud']?></td>
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_servidor']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['num_oficio']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['tipo_requerimiento']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['etapa']?></td>
-                                                            
-
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <a style="text-decoration: underline;" href="./re_agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
-                                                                   AGENDAR
-                                                                </a>
-                                                                <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button> -->
-                                                                <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
-                                                                    <i class="fas fa-chart-line" ></i>
-                                                                </a> -->
-                                                            </td>
-                                                            
-                                                        </tr>
-
-                                                    <?php } ?>
-                                            </tbody>
-                                        </table> 
-
-
-
-
-
-                                      </table>
-                    </div>
-                                  
-                                    
+                  
+                  <div class="alert div-title">
+                    <h3 style="text-align:center">1. REPROGRAMAR ASISTENCIA MÉDICA</h3>
                   </div>
-              </form>
+
+
+
+                  <div class="form-group">
+                    <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="" readonly value="<?php echo $id_asistencia_medica;?>">
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="servicio_medico" class="col-md-4 control-label" style="font-size: 16px">SERVICIO MÉDICO </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
+                        <?php
+
+                        $count = 0;
+                        
+                        $query = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+            
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $servicio_medico = $row['servicio_medico'];
+                            ?>
+                            
+                            <input readonly class="form-control" id="servicio_medico" name="servicio_medico" value="<?php echo $servicio_medico; ?>">
+                        <?php
+                        }
+                        ?>
+
+
+                        
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="tipo_institucion" class="col-md-4 control-label" style="font-size: 16px">TIPO DE INSTITUCIÓN </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-layer-group"></i></span>
+                        <?php
+
+                        $count = 0;
+                        
+                        $query = "SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+            
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $tipo_institucion = $row['tipo_institucion'];
+                            ?>
+                            
+                            <input readonly class="form-control" id="tipo_institucion" name="tipo_institucion" value="<?php echo $tipo_institucion; ?>">
+                        <?php
+                        }
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="nombre_institucion" class="col-md-4 control-label" style="font-size: 16px">NOMBRE DE LA INSTITUCIÓN </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-place-of-worship"></i></span>
+                        <?php
+
+                        $count = 0;
+
+                        $query = "SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $nombre_institucion = $row['nombre_institucion'];
+                            ?>
+                            
+                            <input readonly class="form-control" id="nombre_institucion" name="nombre_institucion" value="<?php echo $nombre_institucion; ?>">
+                        <?php
+                        }
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO DE LA INSTITUCIÓN </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
+                        <?php
+
+                        $count = 0;
+
+                        $query = "SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $domicilio_institucion = $row['domicilio_institucion'];
+                            ?>
+                            
+                            <input readonly class="form-control" id="domicilio_institucion" name="domicilio_institucion" value="<?php echo $domicilio_institucion; ?>">
+                        <?php
+                        }
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="municipio_institucion" class="col-md-4 control-label" style="font-size: 16px">MUNICIPIO  DE LA INSTITUCIÓN</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
+                        <?php
+
+                        $count = 0;
+
+                        $query = "SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $municipio_institucion = $row['municipio_institucion'];
+                            ?>
+                            
+                            <input readonly class="form-control" id="municipio_institucion" name="municipio_institucion" value="<?php echo $municipio_institucion; ?>">
+                        <?php
+                        }
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                <form method="POST" action="./guardar_reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica;?>">
+
+                  <div class="form-group">
+                    <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
+                        <input required name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia" placeholder="FECHA" value="" >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASITENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
+                          <input required name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  placeholder="HORA" value="">
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="form-group">
+                    <label for="observaciones_asistencia" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES ASITENCIA </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <?php
+
+                        $count = 0;
+
+                        $query = "SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $observaciones_asistencia = $row['observaciones'];
+                            ?>
+                            <textarea disabled name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $observaciones_asistencia; ?>"></textarea>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                    </div>
+                  </div>
+
+
+                </form>
               </div>
-        		</div>
-    			</article>
-    		</div>
-    	</div>
+            </div><!-- /.container -->
+          </article>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
 <div class="contenedor">
-<a href="./admin.php" class="btn-flotante">REGRESAR</a>
+    <a href="./asistencias_reprogramadas.php" class="btn-flotante">REGRESAR</a>
 </div>
 
 
