@@ -165,10 +165,15 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento, seguimiento_asistencia.nombre_pdi, seguimiento_asistencia.diagnostico, seguimiento_asistencia.cita_seguimiento, seguimiento_asistencia.observaciones_seguimiento, solicitud_asistencia.etapa
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento, 
+                                                    seguimiento_asistencia.nombre_pdi, seguimiento_asistencia.diagnostico, seguimiento_asistencia.cita_seguimiento, 
+                                                    seguimiento_asistencia.observaciones_seguimiento, solicitud_asistencia.etapa, seguimiento_asistencia.fecha_registro
                                                     FROM solicitud_asistencia
                                                     JOIN seguimiento_asistencia
-                                                    ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia AND seguimiento_asistencia.id_asistencia = '$id_asistencia_medica'";
+                                                    ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia 
+                                                    AND seguimiento_asistencia.id_asistencia = '$id_asistencia_medica'
+                                                    ORDER BY seguimiento_asistencia.fecha_registro DESC
+                                                    LIMIT 1";
                                                     
                                                     
                                                     $result_solicitud = mysqli_query($mysqli, $query);

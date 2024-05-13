@@ -130,14 +130,15 @@ $row=$result->fetch_assoc();
                       <table class='table table-bordered' id='table-instrumento'>
                         <thead>
                             <tr>
-
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA MÉDICA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NOMBRE INSTITUCIÓN MÉDICA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DOMICILIO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>MUNICIPIO</th>
+
+
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA ASISTENCIA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA ASISTENCIA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA ASDISTENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SEGUIMIENTO</th>
                             </tr>
@@ -152,54 +153,109 @@ $row=$result->fetch_assoc();
 <tbody>
                                                 <?php
 
-                                                    $count = 0;
+
 
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
-                                                    agendar_asistencia.domicilio_institucion, agendar_asistencia.municipio_institucion, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, 
-                                                    agendar_asistencia.observaciones, solicitud_asistencia.etapa
+                                                    agendar_asistencia.domicilio_institucion, agendar_asistencia.municipio_institucion, agendar_asistencia.observaciones, solicitud_asistencia.etapa
 
                                                     FROM solicitud_asistencia
-                                                                                                        
+
                                                     JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
-                                                                                                        
-                                                    JOIN cita_asistencia
-                                                    ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-                                                    
-                                                    ORDER BY cita_asistencia.fecha_asistencia ASC";
+                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
+
+                                                      $id_asistencia = $row['id_asistencia'];
+                                                      // echo $id_asistencia;
                                                     
                                                         
                                                 ?>
-                                                    <?php $count = $count + 1 ?>
+
                                                         <tr>
 
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['servicio_medico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['nombre_institucion']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['domicilio_institucion']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['domicilio_institucion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['municipio_institucion']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['fecha_asistencia']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['hora_asistencia']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['etapa']?></td> -->
 
                                                             
 
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
                                                                    REGISTRAR <br> SEGUIMIENTO
                                                                 </a>
-                                                                <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button> -->
-                                                                <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
-                                                                    <i class="fas fa-chart-line" ></i>
-                                                                </a> -->
-                                                            </td>
+                                                            </td> -->
                                                             
+                                                        <!-- </tr> -->
+
+                                                              <?php 
+
+                                                              $query_cita = "SELECT solicitud_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
+                                                              FROM solicitud_asistencia
+                                                              INNER JOIN cita_asistencia
+                                                              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                                              AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' 
+                                                              AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+                                                              ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+
+
+                                                              $result_cita = mysqli_query($mysqli, $query_cita);
+
+                                                              while($row2 = mysqli_fetch_array($result_cita)) {
+                                                                
+                                                                
+                                                                if ($id_asistencia == $row2['id_asistencia']){
+                                                                  // $id_asistencia = $row2['id_asistencia'];
+
+                                                                    // $sentencia = "SELECT solicitud_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, 
+                                                                    //           cita_asistencia.hora_asistencia
+                                                                    //           FROM solicitud_asistencia
+                                                                    //           INNER JOIN cita_asistencia
+                                                                    //           ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                                                    //           AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+                                                                    //           ORDER BY cita_asistencia.fecha_asistencia ASC LIMIT = 1";
+
+                                                                // echo $row['id_asistencia'];
+                                                                // echo '<br>';
+
+
+
+                                                                // echo $row2['id_asistencia'];
+                                                                // echo '<br>';
+                                                                // echo $row2['fecha_asistencia'];
+                                                                // echo '<br>';
+                                                                // echo $row2['hora_asistencia'];
+                                                                // echo '<br>';
+                                                                // echo '<br>';
+                                                                // echo '<br>';
+
+
+                                                                
+                                                                  
+                                                              ?>
+                                                                      
+
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row2['fecha_asistencia']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['hora_asistencia']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                                            <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
+                                                                              REGISTRAR <br> SEGUIMIENTO
+                                                                            </a>
+                                                                        </td>
                                                         </tr>
 
+
+
+                                                                <?php } ?>
+
+
+                                                              <?php } ?>
                                                     <?php } ?>
                                             </tbody>
                                         </table> 

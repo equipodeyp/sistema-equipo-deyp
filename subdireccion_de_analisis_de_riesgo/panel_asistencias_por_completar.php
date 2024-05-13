@@ -298,41 +298,49 @@ a:focus {
 
 
 
-
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                              <h3 style="text-align:center">SEGUIMIENTO DE ASISTENCIAS MÉDICAS</h3>
+
+                                <?php
+                                  $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'AGENDADA, TURNADA Y NOTIFICADA'";
+                                  $rcl = $mysqli->query($cl);
+                                  $fcl = $rcl->fetch_assoc();
+                                  // echo $fcl['t'];
+                                  if ($fcl['t'] == 0){
+                                        echo "<h3 style='text-align:center'>NO HAY ASISTENCIAS MÉDICAS REGISTRADAS</h3>";
+                                  } else{
+                                        echo "<h3 style='text-align:center'>SEGUIMIENTO DE ASISTENCIAS MÉDICAS</h3>";
+                                      }
+                                ?>
                                 <tr>
-                                    <!-- <th style="text-align:center">NO.</th> -->
                                     <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
                                     <th style="text-align:center">FECHA SOLICITUD</th>
                                     <th style="text-align:center">ID SERVIDOR PÚBLICO</th>
                                     <th style="text-align:center">SERVICIO MÉDICO</th>
                                     <th style="text-align:center">INSTITUCIÓN</th>
                                     <th style="text-align:center">FECHA DE ASISTENCIA</th>
-                                    <!-- <th style="text-align:center">TRASLADO REALIZADO</th>
-                                    <th style="text-align:center">DIAGNÓSTICO</th> -->
                                     <th style="text-align:center">DIAS RESTANTES</th>
                                     <th style="text-align:center">ETAPA</th>
                                     <th style="text-align:center">DETALLE ASISTENCIA MÉDICA</th>
                                 </tr>
                             </thead>
+
+
                             <tbody>
                               <?php
                               $contador = 0;
-                              $sentencia1 = "SELECT DATEDIFF (agendar_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, 
-                              solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, solicitud_asistencia.servicio_medico, 
-                              solicitud_asistencia.etapa, agendar_asistencia.fecha_asistencia, agendar_asistencia.nombre_institucion 
-
-                              FROM solicitud_asistencia
+                              $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
+                              solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, solicitud_asistencia.etapa
                               
-                              INNER JOIN agendar_asistencia 
-                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
-                              ORDER BY agendar_asistencia.fecha_asistencia ASC";
+                              FROM solicitud_asistencia
+                                                            
+                              JOIN agendar_asistencia 
+                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
+                              AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'";
 
 
                               $var_resultado = $mysqli->query($sentencia1);
@@ -340,30 +348,45 @@ a:focus {
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $contador = $contador + 1;
-                                
+                                $id_asistencia = $var_fila['id_asistencia'];
 
-  
                                     echo "<tr>";
-                                    // echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['fecha_solicitud']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['servicio_medico']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['nombre_institucion']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha_asistencia']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['traslado_realizado']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['diagnostico']; echo "</td>";
+
+                                    $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, cita_asistencia.fecha_asistencia
+
+                                    FROM solicitud_asistencia
+                                                                  
+                                    INNER JOIN cita_asistencia 
+                                    ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                    AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
+                                    AND solicitud_asistencia.id_asistencia = '$id_asistencia'
                                     
-                                    echo "<td style='text-align:center'>"; echo $var_fila['dias_restantes']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
-                                    echo "<td style='text-align:center'>
-                                            <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'></span>Ver detalle</a>
-                                          </td>";
+                                    ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+                                    
+                                    $result_cita = mysqli_query($mysqli, $query_cita);
+
+                                    while($row2 = mysqli_fetch_array($result_cita)) {
+                                                                
+                                                                
+                                          if ($id_asistencia == $row2['id_asistencia']){
+
+                                            echo "<td style='text-align:center'>"; echo $row2['fecha_asistencia']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $row2['dias_restantes']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
+                                            echo "<td style='text-align:center'>
+                                                    <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'></span>Ver detalle</a>
+                                                  </td>";
                                     echo "</tr>";
-                                }
+
+                                          }
+                                    }
+                                    
+                              }
                             ?>
                             </tbody>
                            </table>

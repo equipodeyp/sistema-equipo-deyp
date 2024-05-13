@@ -39,14 +39,23 @@ $resultado2 = $mysqli->query($consulta2);
 $respuesta2=$resultado2->fetch_assoc();
 
 
-$consulta3 = "SELECT* FROM turnar_asistencia WHERE turnar_asistencia.id_asistencia = '$id_asistencia_medica'";
+$consulta3 = "SELECT* FROM turnar_asistencia WHERE turnar_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY turnar_asistencia.fecha_turno DESC LIMIT 1";
 $resultado3 = $mysqli->query($consulta3);
 $respuesta3=$resultado3->fetch_assoc();
 
 
-$consulta4 = "SELECT* FROM notificar_asistencia WHERE notificar_asistencia.id_asistencia = '$id_asistencia_medica'";
+$consulta4 = "SELECT* FROM notificar_asistencia WHERE notificar_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY notificar_asistencia.fecha_notificacion DESC LIMIT 1";
 $resultado4 = $mysqli->query($consulta4);
 $respuesta4=$resultado4->fetch_assoc();
+
+
+$consulta5 = "SELECT* FROM cita_asistencia WHERE cita_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY cita_asistencia.fecha_asistencia ASC LIMIT 1";
+$resultado5 = $mysqli->query($consulta5);
+$respuesta5=$resultado5->fetch_assoc();
+
+$consulta6 = "SELECT* FROM cita_asistencia WHERE cita_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+$resultado6 = $mysqli->query($consulta6);
+$respuesta6=$resultado6->fetch_assoc();
 
 
 
@@ -207,7 +216,7 @@ $respuesta4=$resultado4->fetch_assoc();
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">2.- ASISTENCIA MÉDICA EN AGENDA</h3>
+                      <h3 style="text-align:center">2.- UNIDAD MÉDICA PARA ASISTENCIA</h3>
                     </div>
                   </div>
 
@@ -231,7 +240,7 @@ $respuesta4=$resultado4->fetch_assoc();
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['municipio_institucion']; ?>">
                   </div>
 
-                  <div class="col-md-6 mb-3">
+                  <!-- <div class="col-md-6 mb-3">
                     <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['fecha_asistencia']; ?>">
                   </div>
@@ -239,17 +248,51 @@ $respuesta4=$resultado4->fetch_assoc();
                   <div class="col-md-6 mb-3">
                     <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['hora_asistencia']; ?>">
-                  </div>
+                  </div> -->
                   
                   <div class="col-md-6 mb-3">
                     <label for="" class="">OBSERVACIONES DE LA ASISTENCIA MEDICA</label>
                     <textarea readonly placeholder="<?php echo $respuesta2['observaciones']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
                   </div>
 
+
+                  <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">3.- ASISTENCIA MÉDICA EN AGENDA</h3>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['fecha_asistencia']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['hora_asistencia']; ?>">
+                  </div>
+
+
+                  <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">4.- REPROGRAMAR ASISTENCIA MÉDICA</h3>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta6['fecha_asistencia']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta6['hora_asistencia']; ?>">
+                  </div>
+
               
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">3.- ASISTENCIA MÉDICA TURNADA Y NOTIFICADA</h3>
+                      <h3 style="text-align:center">5.- ASISTENCIA MÉDICA TURNADA Y NOTIFICADA</h3>
                     </div>
                   </div>
 
@@ -272,7 +315,7 @@ $respuesta4=$resultado4->fetch_assoc();
 
                    <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">4.- ASISTENCIA MÉDICA NOTIFICADA</h3>
+                      <h3 style="text-align:center">6.- ASISTENCIA MÉDICA NOTIFICADA</h3>
                     </div>
                   </div>
 

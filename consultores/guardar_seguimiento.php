@@ -24,6 +24,13 @@ $diagnostico = $_POST['diagnostico'];
 $cita_seguimiento = $_POST['cita_seguimiento'];
 $informe_medico = $_POST['informe_medico'];
 $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
+
+
+// $cl = "SELECT COUNT(*) as t FROM seguimiento_asistencia WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia'";
+// $rcl = $mysqli->query($cl);
+// $fcl = $rcl->fetch_assoc();
+// echo $fcl['t'];
+
 // $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
 // echo $id_asistencia;
