@@ -121,8 +121,8 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
             <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">REGISTROS</a>
             <a href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
-            <a href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO ASISTENCIA MÉDICA</a>
-            <a class="actived" href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO REGISTRADO</a>
+            <!-- <a href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REGISTRAR SEGUIMIENTO</a> -->
+            <a class="actived" href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO REGISTRADO CORRECTAMENTE</a>
           </div>
           
 
@@ -130,7 +130,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
               <div class="row">
 
               <ul class="tabs">
-                <li><a class="active" href="#" onclick="location.href='./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">SEGUIMIENTO</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">SEGUIMIENTO REGISTRADO CORRECTAMENTE</span></a></li>
               </ul>
 
 
@@ -139,7 +139,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                       <div class="row">
                         <div id="cabecera">
                           <div class="row alert div-title">
-                            <h3 style="text-align:center">REGISTRO DE SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                            <h3 style="text-align:center">REGISTRO COMPLETADO</h3>
                           </div>
                         </div>
                       <div>
@@ -476,8 +476,8 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn color-btn-success">Guardar Registro</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
+                <button type="submit" class="btn color-btn-success">GUARDAR</button>
               </div>
         </form>
     </div>

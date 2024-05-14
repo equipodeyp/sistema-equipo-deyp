@@ -130,15 +130,14 @@ $row=$result->fetch_assoc();
                       <table class='table table-bordered' id='table-instrumento'>
                         <thead>
                             <tr>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA MÉDICA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NOMBRE INSTITUCIÓN MÉDICA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>UNIDAD MÉDICA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DOMICILIO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>MUNICIPIO</th>
-
-
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA ASISTENCIA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA ASDISTENCIA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA AGENDADA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA AGENDADA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DIAS RESTANTES</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SEGUIMIENTO</th>
                             </tr>
@@ -195,7 +194,7 @@ $row=$result->fetch_assoc();
 
                                                               <?php 
 
-                                                              $query_cita = "SELECT solicitud_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
+                                                              $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
                                                               FROM solicitud_asistencia
                                                               INNER JOIN cita_asistencia
                                                               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
@@ -242,6 +241,7 @@ $row=$result->fetch_assoc();
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row2['fecha_asistencia']?></td>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['hora_asistencia']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes']?></td>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                             <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">

@@ -280,7 +280,8 @@ a:focus {
                 // }
                 if ($user=='nanotzinhn') {
                   echo "
-                    <a style='text-align:center' class='user-nombre' href='./solicitudes_registradas.php'><button type='button' class='btn btn-light'>SOLICITUDES DE <br> ASISTENCIA MÉDICA <br> REGISTRADAS </button> </a>
+                    <a style='text-align:center' class='user-nombre' href='./solicitudes_registradas.php'><button type='button' class='btn btn-light'> SOLICITUDES DE  <br> ASISTENCIA MÉDICA  <br> REGISTRADAS </button> </a>
+                    <a style='text-align:center' class='user-nombre' href='./agenda_asistencias_registradas.php'><button type='button' class='btn btn-light'> AGENDA DE <br> ASISTENCIA MÉDICA <br> REGISTRADA </button> </a>
                   ";
                   }
 

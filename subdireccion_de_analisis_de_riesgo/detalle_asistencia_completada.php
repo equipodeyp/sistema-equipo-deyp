@@ -39,18 +39,26 @@ $resultado2 = $mysqli->query($consulta2);
 $respuesta2=$resultado2->fetch_assoc();
 
 
-$consulta3 = "SELECT* FROM turnar_asistencia WHERE turnar_asistencia.id_asistencia = '$id_asistencia_medica'";
+$consulta3 = "SELECT* FROM turnar_asistencia WHERE turnar_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY turnar_asistencia.fecha_turno DESC LIMIT 1";
 $resultado3 = $mysqli->query($consulta3);
 $respuesta3=$resultado3->fetch_assoc();
 
 
-$consulta4 = "SELECT* FROM notificar_asistencia WHERE notificar_asistencia.id_asistencia = '$id_asistencia_medica'";
+$consulta4 = "SELECT* FROM notificar_asistencia WHERE notificar_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY notificar_asistencia.fecha_notificacion DESC LIMIT 1";
 $resultado4 = $mysqli->query($consulta4);
 $respuesta4=$resultado4->fetch_assoc();
 
-$consulta5 = "SELECT* FROM seguimiento_asistencia WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_medica'";
+$consulta5 = "SELECT* FROM cita_asistencia WHERE cita_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY cita_asistencia.fecha_asistencia ASC LIMIT 1";
 $resultado5 = $mysqli->query($consulta5);
 $respuesta5=$resultado5->fetch_assoc();
+
+$consulta6 = "SELECT* FROM cita_asistencia WHERE cita_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+$resultado6 = $mysqli->query($consulta6);
+$respuesta6=$resultado6->fetch_assoc();
+
+$consulta7 = "SELECT* FROM seguimiento_asistencia WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY seguimiento_asistencia.fecha_registro DESC LIMIT 1";
+$resultado7 = $mysqli->query($consulta7);
+$respuesta7=$resultado7->fetch_assoc();
 
 
 
@@ -135,7 +143,7 @@ $respuesta5=$resultado5->fetch_assoc();
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='./detalle_asistencia.php?id_asistencia=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE ASISTENCIA MÉDICA</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE ASISTENCIA MÉDICA COMPLETADA</span></a></li>
     			<!-- <li><a href="#" onclick="location.href='detalle_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INSTRUMENTOS REGISTRADOS</span></a></li> -->
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
@@ -144,8 +152,8 @@ $respuesta5=$resultado5->fetch_assoc();
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="./menu.php">REGISTROS</a>
-              <a href="./panel_asistencias_por_completar.php">SEGUIMIENTO ASISTENCIA MÉDICA</a>
-              <a href="./detalle_asistencia.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA</a>
+              <a href="./panel_asistencias_completadas.php">SEGUIMIENTO ASISTENCIA MÉDICA</a>
+              <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA COMPLETADA</a>
             </div>
 
             
@@ -156,10 +164,10 @@ $respuesta5=$resultado5->fetch_assoc();
         				<div class="row">
 
                   <div id="cabecera">
-                    <h1 style="text-align:center">DETALLE DE LA ASISTENCIA MÉDICA: <?php echo $id_asistencia_medica; ?></h1>
+                    <h1 style="text-align:center">DETALLE DE LA ASISTENCIA MÉDICA COMPLETADA: <?php echo $id_asistencia_medica; ?></h1>
                     <br>
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">1.- SOLICITUD DE LA ASISTENCIA MÉDICA</h3>
+                      <h3 style="text-align:center">INFORMACIÓN DE LA SOLICITUD</h3>
                     </div>
                   </div>
 
@@ -204,14 +212,15 @@ $respuesta5=$resultado5->fetch_assoc();
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['servicio_medico']; ?>">
                   </div>
 
-                  <div class="col-md-6 mb-3">
+                  <div class="col-md-12 mb-6">
                     <label for="" class="">OBSERVACIONES DE LA SOLICITUD</label>
                     <textarea readonly class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta1['observaciones']; ?>"></textarea>
+                  <br>
                   </div>
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">2.- ASISTENCIA MÉDICA EN AGENDA</h3>
+                      <h3 style="text-align:center">UNIDAD MÉDICA</h3>
                     </div>
                   </div>
 
@@ -223,42 +232,68 @@ $respuesta5=$resultado5->fetch_assoc();
                   <div class="col-md-6 mb-3">
                     <label for="" class="">NOMBRE DE LA INSTITUCIÓN</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['nombre_institucion']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">DOMICILIO DE LA UNSTITUCIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['domicilio_institucion']; ?>">
-                  </div>
+                  </div>                  
+                  
                   
                   <div class="col-md-6 mb-3">
                     <label for="" class="">MUNICIPIO DE LA INSTITUCIÓN</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['municipio_institucion']; ?>">
                   </div>
 
+                  <div class="col-md-12 mb-6">
+                    <label for="" class="">DOMICILIO DE LA UNSTITUCIÓN</label>
+                    <textarea readonly placeholder="<?php echo $respuesta2['domicilio_institucion']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
+                    <br>
+                  </div>                  
+                  
+                  
+                  <div class="col-md-12 mb-6">
+                    <label for="" class="">OBSERVACIONES DE LA ASISTENCIA MEDICA</label>
+                    <textarea readonly placeholder="<?php echo $respuesta2['observaciones']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
+                  <br>
+                  </div>
+
+                  <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">FECHA Y HORA DE ASISTENCIA</h3>
+                    </div>
+                  </div>
+                  
                   <div class="col-md-6 mb-3">
                     <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['fecha_asistencia']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['fecha_asistencia']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['hora_asistencia']; ?>">
-                  </div>
-                  
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">OBSERVACIONES DE LA ASISTENCIA MEDICA</label>
-                    <textarea readonly placeholder="<?php echo $respuesta2['observaciones']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['hora_asistencia']; ?>">
                   </div>
 
-              
+
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">3.- ASISTENCIA MÉDICA TURNADA</h3>
+                      <h3 style="text-align:center">FECHA Y HORA DE REPROGRAMACIÓN</h3>
                     </div>
                   </div>
 
                   <div class="col-md-6 mb-3">
-                    <label for="" class="">TURNADO A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
+                    <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta6['fecha_asistencia']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta6['hora_asistencia']; ?>">
+                  </div>
+              
+                  <div id="cabecera">
+                    <div class="row alert div-title">
+                      <h3 style="text-align:center">ASISTENCIA MÉDICA TURNADA</h3>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">TURNADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta3['turnar_asistencia']; ?>">
                   </div>
 
@@ -275,12 +310,12 @@ $respuesta5=$resultado5->fetch_assoc();
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">3.- ASISTENCIA MÉDICA NOTIFICADA</h3>
+                      <h3 style="text-align:center">ASISTENCIA MÉDICA NOTIFICADA</h3>
                     </div>
                   </div>
 
                   <div class="col-md-6 mb-3">
-                    <label for="" class="">NOTIFICADO A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
+                    <label for="" class="">NOTIFICADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta4['notificar_subdireccion']; ?>">
                   </div>
 
@@ -297,54 +332,54 @@ $respuesta5=$resultado5->fetch_assoc();
                 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">5.- SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                      <h3 style="text-align:center">INFORMACIÓN DEL SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
                     </div>
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">TRASLADO REALIZADO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['traslado_realizado']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['traslado_realizado']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['se_presento']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['se_presento']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['nombre_pdi']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['nombre_pdi']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">HOSPITALIZACIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['hospitalizacion']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['hospitalizacion']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">DIAGNÓSTICO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['diagnostico']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['diagnostico']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">REQUIERE CITA DE SEGUIMIENTO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['cita_seguimiento']; ?>">
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['cita_seguimiento']; ?>">
                   </div>
                   
                   <div class="col-md-12 mb-3">
                     <label for="" class="">INFORME MÉDICO</label>
-                    <textarea placeholder="<?php echo $respuesta5['informe_medico']; ?>" readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
+                    <textarea placeholder="<?php echo $respuesta7['informe_medico']; ?>" readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
                   </div>
 
                   <div class="col-md-12 mb-3">
                     <label for="" class="">COMENTARIOS</label>
-                    <textarea placeholder="<?php echo $respuesta5['observaciones_seguimiento']; ?>" readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
+                    <textarea placeholder="<?php echo $respuesta7['observaciones_seguimiento']; ?>" readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
                   </div>
 
 
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">6.- TRATAMIENTO MÉDICO</h3>
+                      <h3 style="text-align:center">TRATAMIENTO MÉDICO</h3>
                     </div>
                   </div>
 
@@ -445,7 +480,7 @@ $respuesta5=$resultado5->fetch_assoc();
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
-          <a href="./panel_asistencias_por_completar.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+          <a href="./panel_asistencias_completadas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		    </div>
 
 

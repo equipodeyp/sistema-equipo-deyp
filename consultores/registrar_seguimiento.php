@@ -122,7 +122,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">REGISTROS</a>
             <a href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
-            <a class="actived" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO ASISTENCIA MÉDICA</a>
+            <a class="actived" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REGISTRAR SEGUIMIENTO</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -136,7 +136,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
               <div class="row">
 
               <ul class="tabs">
-                <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">SEGUIMIENTO</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRAR SEGUIMIENTO</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
@@ -145,7 +145,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
                   
                   <div class="alert div-title">
-                    <h3 style="text-align:center">SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                    <h3 style="text-align:center">REGISTRO DE SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
                   </div>
 
 
