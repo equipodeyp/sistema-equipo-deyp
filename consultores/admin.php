@@ -273,11 +273,8 @@ a:focus {
 
         <ul>
             <?php
-                // if ($user=='nanotzinhn') {
-                // echo "
-                //   <a style='text-align:center' class='user-nombre' href='/SIPPSIPPED v2/sistema-equipo-deyp/consultores/solicitudes_registradas.php'><button type='button' class='btn btn-light'>ASISTENCIAS MÉDICAS <br> REGISTRADAS  MÉDICA</button> </a>
-                // ";
-                // }
+                
+
                 if ($user=='nanotzinhn') {
                   echo "
                     <a style='text-align:center' class='user-nombre' href='./solicitudes_registradas.php'><button type='button' class='btn btn-light'> SOLICITUDES DE  <br> ASISTENCIA MÉDICA  <br> REGISTRADAS </button> </a>
@@ -291,6 +288,7 @@ a:focus {
                     ";
                     }
             ?>
+            <a style='text-align:center' class="user-nombre" href="./solicitar_asistencia.php"><button type="button" class="btn btn-light">SOLICITAR <br> ASISTENCIA MÉDICA</button> </a>
         </ul>
 
       </nav>
