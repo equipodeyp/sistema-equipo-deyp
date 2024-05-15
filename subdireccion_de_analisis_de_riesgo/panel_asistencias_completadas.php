@@ -323,7 +323,21 @@ a:focus {
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                              <h3 style="text-align:center">ASISTENCIAS MÉDICAS COMPLETADAS</h3>
+
+                            
+                            <?php
+                                  $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'ASISTENCIA MÉDICA COMPLETADA'";
+                                  $rcl = $mysqli->query($cl);
+                                  $fcl = $rcl->fetch_assoc();
+                                  // echo $fcl['t'];
+                                  if ($fcl['t'] == 0){
+                                        echo "<h3 style='text-align:center'>NO HAY ASISTENCIAS MÉDICAS REGISTRADAS COMPLETADAS</h3>";
+                                  } else{
+                                        echo "<h3 style='text-align:center'>ASISTENCIAS MÉDICAS COMPLETADAS</h3>";
+                                      }
+                                ?>
+                              
+
                                 <tr>
                                     <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
                                     <th style="text-align:center">ID SERVIDOR PÚBLICO</th>
