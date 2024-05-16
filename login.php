@@ -41,7 +41,12 @@ try {
                 alert("Bienvenido");
                 window.location.href="consultores/admin.php";
                 </script>';
-          }
+          }else if($login['id_cargo']==6){ //solo lectura de expedientes
+            echo'<script type="text/javascript">
+            alert("Bienvenido");
+            window.location.href="asistencias_medicas/admin.php";
+            </script>';
+      }
       $contador++;
     }else {
           echo'<script type="text/javascript">
