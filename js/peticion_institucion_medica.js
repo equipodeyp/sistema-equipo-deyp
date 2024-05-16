@@ -25,7 +25,7 @@ function fetchAndSetData(url, formData, targetElement) {
 
 function getNombreInstitucion(){
     let tipo = cbxTipo.value
-    let url = '../consultores/get_instituciones_medicas.php'
+    let url = '../asistencias_medicas/get_instituciones_medicas.php'
     let formData = new FormData()
     formData.append('id_tipo', tipo)
     fetchAndSetData(url, formData, cbxNombre)
@@ -35,7 +35,7 @@ function getNombreInstitucion(){
 
 function getDomicilioInstitucion(){
     let nombre = cbxNombre.value
-    let url = '../consultores/get_direccion_institucion.php'
+    let url = '../asistencias_medicas/get_direccion_institucion.php'
     let formData = new FormData()
     formData.append('id', nombre)
     fetchAndSetData(url, formData, cbxDomicilio)
@@ -44,7 +44,7 @@ function getDomicilioInstitucion(){
 
 function getMunicipioInstitucion(){
     let domicilio = cbxDomicilio.value
-    let url = '../consultores/get_municipio_institucion.php'
+    let url = '../asistencias_medicas/get_municipio_institucion.php'
     let formData = new FormData()
     formData.append('id', domicilio)
     fetchAndSetData(url, formData, cbxMunicipio)

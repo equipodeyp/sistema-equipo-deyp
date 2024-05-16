@@ -39,6 +39,42 @@ $user = $row['usuario'];
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script src="../js/botonatras.js"></script>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>SIPPSIPPED</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <!--datables CSS básico-->
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css"/>
+  <!--datables estilo bootstrap 4 CSS-->
+  <link rel="stylesheet"  type="text/css" href="../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+  <!-- datatables JS -->
+  <script type="text/javascript" src="../datatables/datatables.min.js"></script>
+  <!-- para usar botones en datatables JS -->
+  <script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+  <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
+  <script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+  <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+  <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap-theme.css" rel="stylesheet">
+  <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="../css/botones_estadistica.css">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="../css/main2.css">
+  <!--font awesome con CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/shim.min.js" integrity="sha512-nPnkC29R0sikt0ieZaAkk28Ib7Y1Dz7IqePgELH30NnSi1DzG4x+envJAOHz8ZSAveLXAHTR3ai2E9DZUsT8pQ==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js" integrity="sha512-NerWxp37F9TtBS1k1cr2TjyC9c8Qh6ghgqVBOYXaahgnBkVT6a8KVbO05Z8+LnIIom4CJSSQTZ3VbL396scK5w==" crossorigin="anonymous"></script>
+<!-- barra de navegacion -->
+<link rel="stylesheet" href="../css/breadcrumb.css">
+<link rel="stylesheet" href="../css/expediente.css">
+<!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>SIPPSIPPED</title>
@@ -272,31 +308,72 @@ a:focus {
 
 <div>
 
-        <ul>
-            <?php
-                
-
-                if ($user=='nanotzin') {
-                  echo "
-                    <a style='text-align:center;' class='user-nombre' href='./solicitudes_registradas.php'><button type='button' class='btn btn-light'> SOLICITUDES DE  <br> ASISTENCIA MÉDICA  <br> REGISTRADAS </button> </a>
-                    <a style='text-align:center;' class='user-nombre' href='./agenda/index.php'><button type='button' class='btn btn-light'> AGENDA DE <br> ASISTENCIA MÉDICA <br> REGISTRADA </button> </a>
-                  ";
-                  }
-
-                  if ($user=='brendabrs') {
-                    echo "
-                      <a style='text-align:center;' class='user-nombre' href='./asistencia_turnada.php'><button type='button' class='btn btn-light'> ASISTENCIAS MÉDICAS <br> TURNADAS </button> </a>
-                      <a style='text-align:center;' class='user-nombre' href='./solicitar_asistencia.php'><button type='button' class='btn btn-light'>SOLICITAR UNA<br> ASISTENCIA MÉDICA</button> </a>
-                    ";
-                    }
-              ?>
-        </ul>
-
-</div>
 
 
 
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+
+<?php
+
+if ($user=='nanotzin') {
+  echo "
+<ul class='ca-menu'>
+
+<li style='text-align:center'>
+  <a href='./solicitudes_registradas.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>SOLICITUDES</h2>
+      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS REGISTRADAS</h3></div>
+  </a>
+</li>
+
+<li style='text-align:center'>
+  <a href='./agenda/index.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>AGENDA</h2>
+      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
+  </a>
+</li>
+
+</ul>
+
+";
+}
+
+if ($user=='brendabrs') {
+  echo "
+
+<ul class='ca-menu' style='text-align:right'>
+  
+<li style='text-align:center'>
+  <a href='./asistencia_turnada.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>ASISTENCIAS MÉDICAS</h2>
+      <h3 class='ca-sub'>TURNADAS Y ASIGNADAS</h3></div>
+  </a>
+</li>
+
+<li style='text-align:center'>
+  <a href='./solicitar_asistencia.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>SOLICITAR</h2>
+      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
+  </a>
+</li>
+
+
+</ul>
+
+";
+}
+?>
+
+
+
+    <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
 
 
 

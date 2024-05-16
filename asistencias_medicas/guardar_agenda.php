@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica = $_SESSION["verifica"];
@@ -23,13 +23,13 @@ $hora_asistencia=$_POST['hora_asistencia'];
 $observaciones_asistencia=$_POST['observaciones_asistencia'];
 $etapa = "EN AGENDA";
 
-$hora_i = '01:00:00';
-$hora_f = '23:00:00';
+// $hora_i = '01:00:00';
+// $hora_f = '23:00:00';
 
 
-$fecha_inicio = $fecha_asistencia.' '.$hora_i;
+// $fecha_inicio = $fecha_asistencia.' '.$hora_i;
 
-$fecha_fin = $fecha_asistencia.' '.$hora_f;
+// $fecha_fin = $fecha_asistencia.' '.$hora_f;
 
 
 $folio = "SELECT folio_expediente, id_sujeto FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
@@ -94,8 +94,8 @@ $query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombr
 VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia')";
 $result = $mysqli->query($query);
 
-$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, fecha_inicio, fecha_fin) 
-VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia', '$fecha_inicio', '$fecha_fin')";
+$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia) 
+VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia')";
 $result2 = $mysqli->query($query2);
 
 
