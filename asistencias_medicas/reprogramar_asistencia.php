@@ -131,14 +131,14 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./admin.php">REGISTROS</a>
+            <a href="./admin.php">INICIO</a>
             <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
             <a href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
             <a class="actived" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="">REGISTROS</a>
+            <a href="">INICIO</a>
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
           </div> -->

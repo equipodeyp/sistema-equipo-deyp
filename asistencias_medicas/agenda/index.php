@@ -139,8 +139,6 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 								observaciones: '<?php echo $registros_eventos['observaciones']; ?>',
 								etapa: '<?php echo $registros_eventos['etapa']; ?>',
 
-
-
 								},<?php
 							}
 						?>

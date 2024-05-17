@@ -105,7 +105,7 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../asistencias_medicas/admin.php">REGISTROS</a>
+              <a href="../asistencias_medicas/admin.php">INICIO</a>
               <a class="actived" href="./solicitud_registrada.php">SOLICITUDES REGISTRADAS</a>
             </div>
           

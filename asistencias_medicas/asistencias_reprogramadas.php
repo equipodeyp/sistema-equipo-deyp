@@ -91,7 +91,7 @@ $row=$result->fetch_assoc();
 
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a href="./admin.php">REGISTROS</a>
+                <a href="./admin.php">INICIO</a>
                 <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a> -->
                 <a class="actived" href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
             </div>

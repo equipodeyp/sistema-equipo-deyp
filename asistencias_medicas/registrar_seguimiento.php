@@ -120,13 +120,13 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./admin.php">REGISTROS</a>
+            <a href="./admin.php">INICIO</a>
             <a href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
             <a class="actived" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REGISTRAR SEGUIMIENTO</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="">REGISTROS</a>
+            <a href="">INICIO</a>
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
           </div> -->
@@ -214,7 +214,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                         <select value class="form-control" id="motivo" name="motivo">
                           <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                           <option value="CANCELACIÓN">CANCELACIÓN</option>
-                          <option value="DESICIÓN DEL SUJETO">DESICIÓN DEL SUJETO</option>
+                          <option value="DESICIÓN DEL SUJETO">DECISIÓN DEL SUJETO</option>
                           <option value="DESINCORPORACIÓN">DESINCORPORACIÓN</option>
                           <option value="OTRO">OTRO</option>
                           <option value="RECURSOS">RECURSOS</option>

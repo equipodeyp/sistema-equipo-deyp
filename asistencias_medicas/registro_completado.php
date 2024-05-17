@@ -124,7 +124,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./admin.php">REGISTROS</a>
+            <a href="./admin.php">INICIO</a>
             <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR TURNAR Y NOTIFICAR</a>
           </div>

@@ -119,7 +119,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./admin.php">REGISTROS</a>
+            <a href="./admin.php">INICIO</a>
             <a href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
             <!-- <a href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REGISTRAR SEGUIMIENTO</a> -->
             <a class="actived" href="./seguimiento_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">SEGUIMIENTO REGISTRADO CORRECTAMENTE</a>
