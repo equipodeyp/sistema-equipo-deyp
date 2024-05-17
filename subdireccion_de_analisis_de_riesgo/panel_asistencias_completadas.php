@@ -400,7 +400,8 @@ a:focus {
                                     //       </td>";
 
 
-                                    $query_cita = "SELECT cita_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, seguimiento_asistencia.diagnostico, seguimiento_asistencia.motivo
+                                    $query_cita = "SELECT cita_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, seguimiento_asistencia.diagnostico, 
+                                    seguimiento_asistencia.motivo
 
                                     FROM cita_asistencia
                                                                                                       
