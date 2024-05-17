@@ -11,7 +11,7 @@ $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
 // echo $name;
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
@@ -140,11 +140,12 @@ $fexprel1 = $rexprel1->fetch_assoc();
     </div>
     <div class="user">
       <?php
-			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo, sexo FROM usuarios WHERE usuario='$name'";
 			$result_user = $mysqli->query($sentencia_user);
 			$row_user=$result_user->fetch_assoc();
 			$genero = $row_user['sexo'];
       $user = $row_user['usuario'];
+      $cargouser = $row_user['cargo'];
 
 
 			if ($genero=='mujer') {
@@ -190,7 +191,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
       <ul class="tabs">
           <?php
-            if ($user=='guillermogv') {
+            if ($cargouser=='subdirector') {
             echo "<li><a class='active' href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$fol_exp'><span class='far fa-address-card'></span><span class='tab-text'>DATOS PERSONALES</span></a></li>
                   <li><a href='../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=$fol_exp'><span class='fas fa-book-open'></span><span class='tab-text'>MEDIDAS</span></a></li>
             ";
