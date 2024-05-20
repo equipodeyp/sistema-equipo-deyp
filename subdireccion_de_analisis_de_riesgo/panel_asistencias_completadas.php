@@ -344,8 +344,8 @@ a:focus {
                                     <th style="text-align:center">SERVICIO MÉDICO</th>
                                     <th style="text-align:center">INSTITUCIÓN</th>
                                     <th style="text-align:center">FECHA DE ASISTENCIA</th>
-                                    <th style="text-align:center">DIAGNÓSTICO</th>
-                                    <th style="text-align:center">MOTIVO DE REPROGRAMACIÓN</th>
+                                    <!-- <th style="text-align:center">DIAGNÓSTICO</th>
+                                    <th style="text-align:center">MOTIVO DE REPROGRAMACIÓN</th> -->
                                     <th style="text-align:center">ETAPA</th>
                                     <th style="text-align:center">DETALLE</th>
                                 </tr>
@@ -419,8 +419,8 @@ a:focus {
 
 
                                             echo "<td style='text-align:center'>"; echo $row2['fecha_asistencia']; echo "</td>";
-                                            echo "<td style='text-align:center'>"; echo $row2['diagnostico']; echo "</td>";
-                                            echo "<td style='text-align:center'>"; echo $row2['motivo']; echo "</td>";
+                                            // echo "<td style='text-align:center'>"; echo $row2['diagnostico']; echo "</td>";
+                                            // echo "<td style='text-align:center'>"; echo $row2['motivo']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
                                             echo "<td style='text-align:center'>
                                                     <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia_completada.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'></span>Ver Detalle</a>
