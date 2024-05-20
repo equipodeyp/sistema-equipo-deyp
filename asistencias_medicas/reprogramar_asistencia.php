@@ -133,7 +133,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">INICIO</a>
             <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
-            <a href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
+            <a href="./asistencias_reprogramadas.php">ASISTENCIAS MÉDICAS REPROGRAMADAS</a>
             <a class="actived" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
           </div>
 

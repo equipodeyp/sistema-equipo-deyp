@@ -345,6 +345,16 @@ if ($user=='brendabrs') {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>
+
+<li style='text-align:center'>
+  <a href='./solicitar_asistencia.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>SOLICITAR</h2>
+      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
+  </a>
+</li>
+
   
 <li style='text-align:center'>
   <a href='./asistencia_turnada.php'>
@@ -355,14 +365,7 @@ if ($user=='brendabrs') {
   </a>
 </li>
 
-<li style='text-align:center'>
-  <a href='./solicitar_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>SOLICITAR</h2>
-      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
-  </a>
-</li>
+
 
 
 </ul>

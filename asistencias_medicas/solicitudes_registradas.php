@@ -101,7 +101,7 @@ $row=$result->fetch_assoc();
 
               <ul class="tabs">
                 <li><a href="#" class="active" onclick="location.href='./solicitudes_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
-                <li><a href="#" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</span></a></li>
+                <li><a href="#" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">ASISTENCIAS MÉDICAS PARA SU REPROGRAMACIÓN</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 

@@ -93,7 +93,7 @@ $row=$result->fetch_assoc();
             <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="./admin.php">INICIO</a>
                 <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIA MÉDICA</a> -->
-                <a class="actived" href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
+                <a class="actived" href="./asistencias_reprogramadas.php">REPROGRAMACIÓN DE ASISTENCIA MÉDICA</a>
             </div>
           
 
@@ -102,7 +102,7 @@ $row=$result->fetch_assoc();
 
               <ul class="tabs">
                 <li><a href="#" onclick="location.href='./solicitudes_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS</span></a></li>
-                <li><a href="#" class="active" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./asistencias_reprogramadas.php'"><span class="fas fa-regular fa-calendar-week"></span><span class="tab-text">ASISTENCIAS MÉDICAS PARA SU REPROGRAMACIÓN</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 
@@ -116,7 +116,7 @@ $row=$result->fetch_assoc();
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS PARA REPROGRAMAR !</h3>
                       </div>
                     </div>";
               } else{
@@ -124,7 +124,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA REPROGRAMADAS</h3>
+                            <h3 style='text-align:center'>TABLA DE ASISTENCIAS MÉDICAS REPROGRAMADAS</h3>
                           </div>
                         </div>
                       <div>
