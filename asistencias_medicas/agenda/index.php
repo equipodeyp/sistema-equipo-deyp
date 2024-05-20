@@ -95,7 +95,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					columnFormat: 'dddd',
 					lang: 'es',
 					header: {
-						left: 'prev,next',
+						left: 'prev, next',
 						center: 'title',
 						right: ''
 					},
@@ -128,7 +128,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 								{
 
 								id: '<?php echo $registros_eventos['id_asistencia']; ?>',
-								title: '<?php echo $registros_eventos['id_sujeto']; ?>',
+								title: '<?php echo $registros_eventos['id_sujeto']." - ".$registros_eventos['hora_asistencia'] ; ?>',
 								folio: '<?php echo $registros_eventos['folio_expediente']; ?>',
 								start: '<?php echo $registros_eventos['fecha_asistencia']; ?>',
 								hora: '<?php echo $registros_eventos['hora_asistencia']; ?>',
