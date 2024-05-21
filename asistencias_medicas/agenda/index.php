@@ -93,6 +93,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 			$(document).ready(function() {
 				$('#calendar').fullCalendar({
 					columnFormat: 'dddd',
+					eventColor: '#375030',
 					lang: 'es',
 					header: {
 						left: 'prev, next',
