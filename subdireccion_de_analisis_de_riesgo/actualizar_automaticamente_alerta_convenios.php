@@ -31,7 +31,12 @@ while ($falert_convs = $ralert_convs -> fetch_assoc()) {
   // echo $falert_convs['id'].'----'.$semaforo;
   // echo "<br>";
   // sql para actualizar autopmaticamente la tabla de alerta de convenios
-  $updalertconv = "UPDATE alerta_convenios SET dias_restantes ='$diasfaltantes', semaforo = '$semaforo' WHERE id_persona = '$id_persona_alert'";
-  $rupdalertconv = $mysqli -> query($updalertconv);
+  if ($diasfaltantes === 0) {
+    $updalertconv = "UPDATE alerta_convenios SET dias_restantes ='0', semaforo = 'TERMINADO', estatus = 'TERMINADO' WHERE id_persona = '$id_persona_alert'";
+    $rupdalertconv = $mysqli -> query($updalertconv);
+  }else {
+    $updalertconv = "UPDATE alerta_convenios SET dias_restantes ='$diasfaltantes', semaforo = '$semaforo' WHERE id_persona = '$id_persona_alert'";
+    $rupdalertconv = $mysqli -> query($updalertconv);
+  }
 }
 ?>
