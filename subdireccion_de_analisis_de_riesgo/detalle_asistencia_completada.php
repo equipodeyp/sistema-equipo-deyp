@@ -56,12 +56,15 @@ $consulta6 = "SELECT* FROM cita_asistencia WHERE cita_asistencia.id_asistencia =
 $resultado6 = $mysqli->query($consulta6);
 $respuesta6=$resultado6->fetch_assoc();
 
-$consulta7 = "SELECT*
-FROM seguimiento_asistencia                                                                                                      
-JOIN cita_asistencia
-ON seguimiento_asistencia.id_asistencia = cita_asistencia.id_asistencia
-AND cita_asistencia.id_asistencia = '$id_asistencia_medica'
-ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+// $consulta7 = "SELECT*
+// FROM seguimiento_asistencia                                                                                                      
+// JOIN cita_asistencia
+// ON seguimiento_asistencia.id_asistencia = cita_asistencia.id_asistencia
+// AND cita_asistencia.id_asistencia = '$id_asistencia_medica'
+// ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+
+$consulta7 = "SELECT* FROM seguimiento_asistencia WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY seguimiento_asistencia.hora_registro DESC LIMIT 1";
+
 $resultado7 = $mysqli->query($consulta7);
 $respuesta7=$resultado7->fetch_assoc();
 
