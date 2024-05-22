@@ -331,7 +331,7 @@ if ($user=='nanotzin') {
   <a href='./agenda/index.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
-      <h2 class='ca-main'>AGENDA</h2>
+      <h2 class='ca-main'>CALENDARIO</h2>
       <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
   </a>
 </li>
