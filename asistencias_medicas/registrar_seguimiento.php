@@ -162,6 +162,33 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
                   <div class="form-group">
+                    <label for="servicio_medico" class="col-md-4 control-label">SERVICIO MÉDICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                        <?php
+
+                        $count = 0;
+
+                        $query = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                        $result_solicitud = mysqli_query($mysqli, $query);
+
+                        while($row = mysqli_fetch_array($result_solicitud)) {
+                            // echo "hola";
+                            $servicio_medico = $row['servicio_medico'];
+                            ?>
+                            
+                            <input readonly class="form-control" id="servicio_medico" name="servicio_medico" value="<?php echo $servicio_medico; ?>">
+                        <?php
+                        }
+                        ?>
+                        <!-- <input type="text" class="form-control"  id="servicio_medico" name="servicio_medico" readonly value="<?php echo $id_asistencia_medica;?>"> -->
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
                     <label for="traslado" class="col-md-4 control-label" style="font-size: 16px">TRASLADO REALIZADO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -231,7 +258,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
         <div id=division_1>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="policia_investigacion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -239,7 +266,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                         <input value autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="policia_investigacion" name="policia_investigacion" placeholder="NOMBRE DEL P.D.I.">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
 
 

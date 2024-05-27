@@ -2,7 +2,7 @@
 /*require 'conexion.php';*/
 date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
-include("actualizar_automaticamente_alerta_convenios.php");
+
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
@@ -402,7 +402,7 @@ a:focus {
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
 			<!-- <a href="menu.php" class="btn-flotante">REGRESAR</a> -->
-      <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+      <a href="./menu_asistencias_medicas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		</div>
 
         <div class="contenedor">

@@ -457,7 +457,7 @@ a:focus {
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
 			<!-- <a href="menu.php" class="btn-flotante">REGRESAR</a> -->
-      <a href="./menu_asistencias_medicas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+      <a href="./admin.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		</div>
 
         <div class="contenedor">

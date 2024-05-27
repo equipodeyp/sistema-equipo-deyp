@@ -110,8 +110,8 @@ $m_user = strtoupper($m_user);
 
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-            <a class="actived" href="../subdireccion_de_analisis_de_riesgo/solicitar_asistencia.php">SOLICITAR ASISTENCIA MÉDICA</a>
+            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+            <a class="actived" href="./solicitar_asistencia.php">SOLICITAR ASISTENCIA MÉDICA</a>
           </div>
           
 
@@ -138,9 +138,8 @@ $m_user = strtoupper($m_user);
                             <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
                               <?php
                                   $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                                  FROM datospersonales JOIN medidas
-                                  ON medidas.id_persona = datospersonales.id AND medidas.estatus = 'EN EJECUCION' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL'
-                                  ORDER BY datospersonales.folioexpediente";
+                                  FROM datospersonales
+                                  WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO'";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
                                     $result_folio = $valores1['folioexpediente'];
@@ -317,7 +316,7 @@ $m_user = strtoupper($m_user);
   </div>
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->

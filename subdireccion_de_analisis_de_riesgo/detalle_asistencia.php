@@ -148,9 +148,9 @@ $respuesta6=$resultado6->fetch_assoc();
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="./menu.php">REGISTROS</a>
+              <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
               <a href="./panel_asistencias_por_completar.php">SEGUIMIENTO ASISTENCIA MÉDICA</a>
-              <a href="./detalle_asistencia.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA</a>
+              <a href="./detalle_asistencia.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE SEGUIMIENTO ASISTENCIA MÉDICA </a>
             </div>
 
             
@@ -169,7 +169,7 @@ $respuesta6=$resultado6->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3">
-                    <label for="" class="">FOLIO DEL EXPEDIENTE DE PROTECCIOÓN</label>
+                    <label for="" class="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['folio_expediente']; ?>">
                   </div>
 
@@ -222,7 +222,7 @@ $respuesta6=$resultado6->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3">
-                    <label for="" class="">TIPO DE INSTITUCION</label>
+                    <label for="" class="">TIPO DE INSTITUCIÓN</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['tipo_institucion']; ?>">
                   </div>
 
@@ -260,7 +260,7 @@ $respuesta6=$resultado6->fetch_assoc();
                   </div> -->
                   
                   <div class="col-md-12 mb-6">
-                    <label for="" class="">OBSERVACIONES DE LA ASISTENCIA MEDICA</label>
+                    <label for="" class="">OBSERVACIONES DE LA ASISTENCIA MÉDICA</label>
                     <textarea readonly placeholder="<?php echo $respuesta2['observaciones']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
                     <br>
                   </div>

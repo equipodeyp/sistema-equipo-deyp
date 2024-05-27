@@ -18,7 +18,7 @@ $traslado = $_POST['traslado'];
 $se_presento = $_POST['se_presento'];
 $reprogramar = $_POST['reprogramar'];
 $motivo = $_POST['motivo'];
-$policia_investigacion = $_POST['policia_investigacion'];
+// $policia_investigacion = $_POST['policia_investigacion'];
 $hospitalizacion = $_POST['hospitalizacion'];
 $diagnostico = $_POST['diagnostico'];
 $cita_seguimiento = $_POST['cita_seguimiento'];
@@ -67,8 +67,8 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
     $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
-    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento) 
-    VALUES ('$id_asistencia', '$traslado', '$se_presento', '$policia_investigacion', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones_seguimiento')";
+    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento) 
+    VALUES ('$id_asistencia', '$traslado', '$se_presento', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones_seguimiento')";
     $result = $mysqli->query($query);
 
     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";

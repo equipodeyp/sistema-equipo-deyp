@@ -9,9 +9,9 @@ $folio = $folio_expediente;
 // echo "<input value='$folio_expediente'/>";
 
 
-$select2 = "SELECT datospersonales.identificador 
-FROM datospersonales JOIN medidas 
-ON medidas.id_persona = datospersonales.id AND medidas.estatus = 'EN EJECUCION' AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.folioexpediente = '$folio'
+$select2 = "SELECT datospersonales.identificador
+FROM datospersonales
+WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO' AND datospersonales.folioexpediente = '$folio'
 ORDER BY datospersonales.identificador";
 
 

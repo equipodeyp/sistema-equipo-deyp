@@ -270,7 +270,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 
 <div class="contenedor">
-<a href="../admin.php" class="btn-flotante">REGRESAR</a>
+<a href="../menu_asistencias_medicas.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>
 </div>
 
 

@@ -110,8 +110,8 @@ $m_user = strtoupper($m_user);
 
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="../asistencias_medicas/admin.php">INICIO</a>
-            <a class="actived" href="../asistencias_medicas/solicitar_asistencia.php">SOLICITAR ASISTENCIA MÉDICA</a>
+            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+            <a class="actived" href="./solicitar_asistencia.php">REGISTRAR INCIDENCIA</a>
           </div>
           
 
@@ -119,114 +119,17 @@ $m_user = strtoupper($m_user);
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='solicitar_asistencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">SOLICITAR ASISTENCIA MÉDICA</span></a></li>
-                <li><a href="#" onclick="location.href='solicitud_registrada.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES REGISTRADAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='solicitar_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
+                <li><a href="#" onclick="location.href='solicitudes_registradas.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
                 <form method="POST" action="guardar_solicitud_asistencia.php">
                   <div class="alert div-title">
-                    <h3 style="text-align:center">REGISTRAR SOLICITUD</h3>
+                    <h3 style="text-align:center">REGISTRAR INCIDENCIA</h3>
                   </div>
 
 
-                  <div class="form-group">
-                    <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
-                    <div class="col-md-4 selectContainer">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
-                        <select class="form-control" id="folio_expediente" name="folio_expediente" required>
-                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
-                              <?php
-                                  $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                                  FROM datospersonales
-                                  WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO'";
-                                  $answer1 = $mysqli->query($select1);
-                                  while($valores1 = $answer1->fetch_assoc()){
-                                    $result_folio = $valores1['folioexpediente'];
-                                    echo "<option value='$result_folio'>$result_folio</option>";
-                                  }
-                              ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-
-<!-- <div id="mostrar_campos" style="display: none;"> -->
-
-                  <div class="form-group">
-                    <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
-                    <div class="col-md-4 selectContainer">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
-                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
-
-
-
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-<!-- </div> -->
-
-
-                  <!-- <div class="form-group">
-                    <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
-                    <div class="col-md-4 selectContainer">
-                      <div id="select_id_sujeto" class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
-                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
-                            <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div> -->
-
-
-                  <div class="form-group" style="display: none;">
-                    <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
-                    <div class="col-md-4 inputGroupContainer">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="" readonly>
-                        <?php
-                                $count = "SELECT COUNT(*) TOTAL FROM solicitud_asistencia";
-                                $answer_c = $mysqli->query($count);
-                                $valores_c = $answer_c->fetch_assoc();
-                                $c = implode(' ', $valores_c);
-                                // echo $c+1;
-                        ?>
-                        <!-- <?php echo $c+1; ?> -->
-                      </div>
-                    </div>
-                  </div>
-
-        <!-- <div class="form-group" style="display: none;">
-					<label for="fecha_solicitud" class="col-md-4 control-label">FECHA DE SOLICITUD</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                            <input name="fecha_solicitud" class="form-control"  id="fecha_solicitud"  placeholder="Fecha" value="" readonly>
-			            </div>
-					</div>
-				</div>
-
-        <div class="form-group" style="display: none;">
-					<label for="hora_solicitud" class="col-md-4 control-label">HORA DE SOLICITUD</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                            <input name="hora_solicitud" class="form-control"  id="hora_solicitud"  placeholder="Hora" value="" readonly>
-			            </div>
-					</div>
-				</div> -->
-
-
-                <div class="form-group" style="display: none;">
+                <div class="form-group">
                     <label for="id_servidor" class="col-md-4 control-label">ID SERVIDOR PÚBLICO</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
@@ -237,15 +140,26 @@ $m_user = strtoupper($m_user);
                 </div>
 
 
-                <div class="form-group">
-                    <label for="numero_oficio" class="col-md-4 control-label">NÚMERO DE OFICIO DE LA SOLICITUD</label>
+                <div class="form-group" >
+                    <label for="subdireccion" class="col-md-4 control-label">SUBDIRECCIÓN</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas a-solid fa-file"></i></span>
-                        <input autocomplete="off" type="text" class="form-control" id="numero_oficio" name="numero_oficio" placeholder="INGRESE EL NÚMERO DE OFICIO" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                         <input readonly class="form-control" id="subdireccion" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_user['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>">
                       </div>
                     </div>
-                </div>
+                  </div>
+
+
+                  <div class="form-group" >
+                    <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                        <input  autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="">
+                      </div>
+                    </div>
+                  </div>
 
 
                 <div class="form-group">
@@ -316,7 +230,7 @@ $m_user = strtoupper($m_user);
   </div>
 
   <div class="contenedor">
-    <a href="admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
@@ -325,74 +239,7 @@ $m_user = strtoupper($m_user);
 
               
 
-<!-- <script type="text/javascript">
-  window.onload = function(){
-    var fecha = new Date();
-    var mes = fecha.getMonth()+1;
-    var dia = fecha.getDate();
-    var ano = fecha.getFullYear();
 
-    var horas = fecha.getHours();
-    var minutos = fecha.getMinutes();
-    var segundos = fecha. getSeconds();
-
-    document.getElementById('hora_solicitud').value=horas+":"+minutos+":"+segundos;
-
-    if(dia<10)
-        dia='0'+dia;
-    if(mes<10)
-        mes='0'+mes
-    document.getElementById('fecha_solicitud').value=dia+"/"+mes+"/"+ano;
-    
-}
-</script>
-
-
-<script type="text/javascript">
-
-  var idsuj = document.getElementById('id_sujeto');
-  var idsujeto;
-  var idasistencia;
-
-  var folioexpediente = document.getElementById('folio_expediente');
-  var folio;
-  var folioobtenido;
-
-  var separaranio = [];
-  var anioSeparado;
-
-
-  folioexpediente.addEventListener('change', obtenerfolio);
-  
-  function obtenerfolio(e){
-
-    folio = e.target.value;
-    folioobtenido = folio;
-
-    // console.log(folioobtenido);
-
-    separaranio = folioobtenido.split("/");
-    anioSeparado = separaranio[4];
-    
-    // console.log(anioSeparado);
-
-
-  }
-
-
-  idsuj.addEventListener('change', obtenerid);
-  function obtenerid(e){
-
-    idsujeto = e.target.value;
-    idasistencia = idsujeto+"-"+anioSeparado+"-AM0"
-
-    // console.log(idasistencia);
-    document.getElementById('id_asistencia').value = idasistencia+"<?php echo $c+1; ?>";
-
-  }
-
-
-</script> -->
 
 
 <script type="text/javascript">
@@ -421,32 +268,6 @@ $m_user = strtoupper($m_user);
 	}
 </script>
 
-<!-- <script type="text/javascript">
 
-  var id_sujeto = document.getElementById('folio_expediente');
-
-  var id;
-  var idobtenido;
-
-  id_sujeto.addEventListener('change', obtenerfolio);
-  
-  function obtenerfolio(e){
-
-    id = e.target.value;
-    idobtenido = id;
-
-    if (idobtenido != "" ){
-
-      document.getElementById("mostrar_campos").style.display = "";
-
-    }
-
-    console.log(idobtenido);
-
-
-
-
-  }
-</script> -->
 </body>
 </html>

@@ -314,52 +314,8 @@ a:focus {
 
 <?php
 
-if ($user=='nanotzin') {
-  echo "
-<ul class='ca-menu'>
 
-<li style='text-align:center'>
-  <a href='./solicitudes_registradas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>AGENDAR</h2>
-      <h3 class='ca-sub'>SOLICITUDES REGISTRADAS</h3></div>
-  </a>
-</li>
-
-<li style='text-align:center'>
-  <a href='./agenda/index.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>CALENDARIO</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-  </a>
-</li>}
-
-<li style='text-align:center'>
-  <a href='./panel_asistencias_completadas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>DETALLE</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
-  </a>
-</li>
-
-<li style='text-align:center'>
-  <a href='./registrar_incidencia_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>INCIDENCIA</h2>
-      <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-  </a>
-</li>
-
-</ul>
-
-";
-}
-
-if ($user=='brendabrs') {
+if ($user=='lorenzomm') {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>
@@ -375,11 +331,11 @@ if ($user=='brendabrs') {
 
   
 <li style='text-align:center'>
-  <a href='./asistencia_turnada.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
+  <a href='./panel_asistencias_por_completar.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/seguimiento.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
-      <h2 class='ca-main'>ASISTENCIAS MÉDICAS</h2>
-      <h3 class='ca-sub'>TURNADAS Y/O ASIGNADAS</h3></div>
+      <h2 class='ca-main'>SEGUIMIENTO</h2>
+      <h3 class='ca-sub'>ASISTENCIA MÉDICA</h3></div>
   </a>
 </li>
 
@@ -415,7 +371,6 @@ if ($user=='brendabrs') {
 
 
 
-
 </ul>
 
 ";
@@ -423,8 +378,11 @@ if ($user=='brendabrs') {
 ?>
 
 
-
-    <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+<div class="contenedor">
+    <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>
+    <!-- <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
+</div>
+    <!-- <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
 
 
 

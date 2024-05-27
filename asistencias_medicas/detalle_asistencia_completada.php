@@ -159,7 +159,7 @@ $respuesta7=$resultado7->fetch_assoc();
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+              <a href="./admin.php">INICIO</a>
               <a href="./panel_asistencias_completadas.php">ASISTENCIAS MÉDICAS COMPLETADAS</a>
               <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA COMPLETADA</a>
             </div>

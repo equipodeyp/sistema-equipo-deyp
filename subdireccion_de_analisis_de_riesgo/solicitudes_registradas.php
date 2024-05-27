@@ -105,7 +105,7 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
+              <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
               <a class="actived" href="./solicitudes_registradas.php">SOLICITUDES REGISTRADAS</a>
             </div>
           
@@ -122,7 +122,7 @@ $m_user = strtoupper($m_user);
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
+              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA' AND id_servidor = 'LORENZOMM'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -229,7 +229,7 @@ $m_user = strtoupper($m_user);
 
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="./menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
