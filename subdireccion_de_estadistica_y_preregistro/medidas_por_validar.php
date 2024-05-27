@@ -120,9 +120,17 @@ $row=$result->fetch_assoc();
                   <tr>
                       <th style="text-align:center">NO.</th>
                       <th style="text-align:center">FOLIO EXPEDIENTE</th>
-                      <th style="text-align:center">ID PERSONA</th>
-                      <th style="text-align:center">ID MEDIDA</th>
+                      <th style="text-align:center">CATEGORIA DE LA MEDIDA</th>
+                      <th style="text-align:center">TIPO DE MEDIDA</th>
+                      <th style="text-align:center">CLASIFICACIÓN DE MEDIDA</th>
+                      <th style="text-align:center">INCISO DE MEDIDA</th>
+                      <th style="text-align:center">FECHA DE MEDIDA PROVISIONAL</th>
+                      <th style="text-align:center">FECHA DE MEDIDA DEFINITIVA</th>
+                      <th style="text-align:center">FECHA DE EJECUCIÓN</th>
+                      <th style="text-align:center">ESTATUS</th>
+                      <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
                       <th style="text-align:center">VER</th>
+                      <th style="text-align:center">VALIDACIÓN</th>
                   </tr>
                   </thead>
                   <tbody>
