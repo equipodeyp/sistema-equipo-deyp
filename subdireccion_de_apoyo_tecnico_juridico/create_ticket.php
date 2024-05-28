@@ -286,5 +286,4 @@ else if(alea === 3 || alea === 6 || alea === 9 || alea === 12 || alea === 15 || 
 </script>
 
 </body>
-</html>}
-
+</html>

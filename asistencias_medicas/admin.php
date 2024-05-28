@@ -334,7 +334,7 @@ if ($user=='nanotzin') {
       <h2 class='ca-main'>CALENDARIO</h2>
       <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
   </a>
-</li>}
+</li>
 
 <li style='text-align:center'>
   <a href='./panel_asistencias_completadas.php'>

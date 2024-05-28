@@ -15,6 +15,12 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
 
+$row_nombre = $row['nombre'];
+$apellido_p = $row['apellido_p'];
+$apellido_m = $row['apellido_m'];
+$name_user = $row_nombre." ".$apellido_p." " .$apellido_m;
+$full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML401, "UTF-8"));
+
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
@@ -22,6 +28,16 @@ $m_user = strtoupper($m_user);
 // echo $user;
 // $f_exped = 'UPSIPPED/TOL/113/015/2022';
 // echo $f_exped;
+
+
+
+$sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
+$result = mysqli_query($mysqli, $sql);
+$rowcount = mysqli_num_rows( $result );
+$suma = $rowcount + 1;
+$num_incidencia = 0 . $suma;
+// echo $num_incidencia;
+
 ?>
 
 <!DOCTYPE html>
@@ -111,7 +127,7 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./solicitar_asistencia.php">REGISTRAR INCIDENCIA</a>
+            <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR INCIDENCIA</a>
           </div>
           
 
@@ -119,11 +135,11 @@ $m_user = strtoupper($m_user);
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='solicitar_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
-                <li><a href="#" onclick="location.href='solicitudes_registradas.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
-                <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
+                <li><a href="#" class="active" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
+                <li><a href="#" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
               </ul>
-                <form method="POST" action="guardar_solicitud_asistencia.php">
+
+                <form method="POST" action="./guardar_incidencia_asistencia.php">
                   <div class="alert div-title">
                     <h3 style="text-align:center">REGISTRAR INCIDENCIA</h3>
                   </div>
@@ -144,8 +160,46 @@ $m_user = strtoupper($m_user);
                     <label for="subdireccion" class="col-md-4 control-label">SUBDIRECCIÓN</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-solid fa-building"></i></span>
                          <input readonly class="form-control" id="subdireccion" name="subdireccion" type="text" value="<?php echo mb_strtoupper (html_entity_decode($row_user['area'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>">
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
+                        <select class="form-control" id="folio_expediente" name="folio_expediente" required>
+                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                              <?php
+                                  $select1 = "SELECT DISTINCT datospersonales.folioexpediente
+                                  FROM datospersonales
+                                  WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO'";
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_folio = $valores1['folioexpediente'];
+                                    echo "<option value='$result_folio'>$result_folio</option>";
+                                  }
+                              ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
+                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
+
+
+
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -156,60 +210,82 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <input  autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="">
+                        <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01">
+                        
                       </div>
+                      <!-- <h6>Nota: Digite el Id de la asistencia, si cuenta con él. En caso contrario deje el campo vacio.</h6> -->
                     </div>
                   </div>
+
+
 
 
                 <div class="form-group">
-                    <label for="tipo_requerimiento" class="col-md-4 control-label" style="font-size: 16px">TIPO DE REQUERIMIENTO </label>
+                    <label for="tipo_falla" class="col-md-4 control-label" style="font-size: 16px">TIPO DE FALLA O ERROR </label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-thumbtack"></i></span>
-                        <select class="form-control selectpicker" id="tipo_requerimiento" name="tipo_requerimiento" required>
-                            <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <option value="MINISTERIO PÚBLICO" >MINISTERIO PÚBLICO</option>
-                            <option value="POR INGRESO">POR INGRESO</option>
-                            <option value="PRIMERA VEZ">PRIMERA VEZ</option>
-                            <option value="SEGUIMIENTO" >SEGUIMIENTO</option>
-                            <option value="URGENCIA">URGENCIA</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group">
-                    <label for="servicio_medico" class="col-md-4 control-label" style="font-size: 16px">SERVICIO MÉDICO </label>
-                    <div class="col-md-4 selectContainer">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <select class="form-control" id="servicio_medico" maxlength="50" name="servicio_medico" required>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-exclamation"></i></span>
+                        <select class="form-control selectpicker" id="tipo_falla" name="tipo_falla" required>
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <?php
-                            $select = "SELECT * FROM servicios_medicos";
-                            $answer = $mysqli->query($select);
-                            while($valores = $answer->fetch_assoc()){
-                              echo "<option value='".$valores['servicio_medico']."'>".$valores['servicio_medico']."</option>";
-                            }
-                          ?>
+                            <option value="ACCESO">ACCESO</option>
+                            <option value="CAPTURA">CAPTURA DE LOS DATOS</option>
+                            <option value="FUNCIONALIDAD">FUNCIONALIDAD</option>
+                            <option value="OTRO">OTRO</option>
                         </select>
                       </div>
                     </div>
                   </div>
 
 
-                  <div class="form-group">
-                    <label for="observaciones" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES</label>
-                    <div class="col-md-4 selectContainer">
+                  <div class="form-group" style="display: none">
+                    <label for="folio_incidencia" class="col-md-4 control-label">FOLIO INCIDENCIA</label>
+                    <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
-                        <!-- <span class="input-group-addon"><i class="fas fa-solid fa-eye"></i></span> -->
-                        <textarea name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                        <input  readonly autocomplete="off" type="text" class="form-control"  id="folio_incidencia" name="folio_incidencia">
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" style="display: none">
+                    <label for="estatus" class="col-md-4 control-label">ESTATUS DE LA INCIDENCIA</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-hourglass-start"></i></span> 
+                        <input readonly type="text" class="form-control"  id="estatus" name="estatus" placeholder="" value="EN PROCESO">
                       </div>
                     </div>
                   </div>
+
+
+
+                  <div class="form-group" style="display: none">
+                    <label for="atencion" class="col-md-4 control-label">USUARIO EN ATENCIÓN</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span> 
+                        <input readonly type="text" class="form-control"  id="atencion" name="atencion" placeholder="" value="">
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <label for="descripcion" class="col-md-4 control-label" style="font-size: 16px">DESCRIPCIÓN BREVE DE LA FALLA</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        
+                        <textarea required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <h6>Ejemplo: En el apartado calendario no se visualizan las fechas del mes de Junio.</h6>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br>
 
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
@@ -232,13 +308,10 @@ $m_user = strtoupper($m_user);
   <div class="contenedor">
     <a href="menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
-  <div class="contenedor">
-    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
-  </div>
 
 
-              
 
+  
 
 
 
@@ -266,6 +339,87 @@ $m_user = strtoupper($m_user);
 			}
 		});
 	}
+</script>
+
+
+
+<script type="text/javascript">
+
+
+var folioExpediente = document.getElementById('folio_expediente');
+
+var respuestaSeleccionada3;
+var respuestaObtenida3;
+
+
+
+
+folioExpediente.addEventListener('change', obtenerRespuesta3);
+
+function obtenerRespuesta3(e){
+
+  respuestaSeleccionada3 = e.target.value;
+  respuestaObtenida3 = respuestaSeleccionada3;
+
+
+  const  generateRandomString = (num) => {
+
+  var separarFolio = [];
+  var folio = document.getElementById('folio_expediente').value;
+  separarFolio = folio.split("/");
+  var numExp = separarFolio[3];
+  var añoExp = separarFolio[4]
+  var unidad = separarFolio[0]
+  var incidencia = "INC"
+
+  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result1= Math.random().toString(36).substring(2,num);
+
+  var n1 = result1.toUpperCase();
+
+  var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + respuestaObtenida3;
+  document.getElementById("folio_incidencia").value = folioIncidencia;
+  
+  // console.log(folioIncidencia);
+
+  }
+
+  generateRandomString(7);
+
+  
+
+}
+
+
+
+
+
+
+  </script>
+
+
+
+<script type="text/javascript">
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+let alea = getRandomInt(23);
+
+// console.log(alea);
+
+
+if (alea === 13 || alea === 16 || alea === 19 || alea === 22 || alea === 2 || alea === 5 || alea === 8 || alea === 11 || alea === 14 || alea === 17 || alea === 20 || alea === 23){
+  const jon = "JONATHAN EDUARDO SANTIAGO JIMENEZ";
+  document.getElementById("atencion").value = jon;
+  // console.log(jon);
+}
+else if(alea === 1 || alea === 4 || alea === 7 || alea === 10 || alea === 3 || alea === 6 || alea === 9 || alea === 12 || alea === 15 || alea === 18 || alea === 21 || alea === 0){
+  const gab = "GABRIELA PICHARDO GARCIA";
+  document.getElementById("atencion").value = gab;
+  // console.log(gab);
+}
+
 </script>
 
 
