@@ -127,7 +127,7 @@ $num_incidencia = 0 . $suma;
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR INCIDENCIA</a>
+            <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
           </div>
           
 
@@ -136,7 +136,8 @@ $num_incidencia = 0 . $suma;
 
               <ul class="tabs">
                 <li><a href="#" class="active" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
-                <li><a href="#" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
+                <li><a href="#" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
+                <li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li>
               </ul>
 
                 <form method="POST" action="./guardar_incidencia_asistencia.php">
@@ -167,7 +168,7 @@ $num_incidencia = 0 . $suma;
                   </div>
 
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
@@ -202,7 +203,7 @@ $num_incidencia = 0 . $suma;
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
 
                   <div class="form-group" >
@@ -210,7 +211,20 @@ $num_incidencia = 0 . $suma;
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01">
+                        <select class="form-control" id="id_asistencia" name="id_asistencia" required>
+                            <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option>
+                              <?php
+                                  $select1 = "SELECT solicitud_asistencia.id_asistencia
+                                  FROM solicitud_asistencia
+                                  WHERE solicitud_asistencia.id_servidor = '$m_user'";
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_folio = $valores1['id_asistencia'];
+                                    echo "<option value='$result_folio'>$result_folio</option>";
+                                  }
+                              ?>
+                        </select>
+                        <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
                         
                       </div>
                       <!-- <h6>Nota: Digite el Id de la asistencia, si cuenta con él. En caso contrario deje el campo vacio.</h6> -->
@@ -237,7 +251,7 @@ $num_incidencia = 0 . $suma;
                   </div>
 
 
-                  <div class="form-group" style="display: none">
+                  <!-- <div class="form-group" style="display: none">
                     <label for="folio_incidencia" class="col-md-4 control-label">FOLIO INCIDENCIA</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
@@ -246,7 +260,7 @@ $num_incidencia = 0 . $suma;
                       </div>
 
                     </div>
-                  </div>
+                  </div> -->
 
 
                   <div class="form-group" style="display: none">
@@ -315,7 +329,7 @@ $num_incidencia = 0 . $suma;
 
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function(){
 		$('#folio_expediente').val(1);
 		recargarLista();
@@ -339,14 +353,14 @@ $num_incidencia = 0 . $suma;
 			}
 		});
 	}
-</script>
+</script> -->
 
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 
-var folioExpediente = document.getElementById('folio_expediente');
+var folioExpediente = document.getElementById('id_asistencia');
 
 var respuestaSeleccionada3;
 var respuestaObtenida3;
@@ -360,6 +374,9 @@ function obtenerRespuesta3(e){
 
   respuestaSeleccionada3 = e.target.value;
   respuestaObtenida3 = respuestaSeleccionada3;
+
+
+  console.log(respuestaObtenida3);
 
 
   const  generateRandomString = (num) => {
@@ -392,10 +409,11 @@ function obtenerRespuesta3(e){
 
 
 
+  </script> -->
 
 
 
-  </script>
+
 
 
 
