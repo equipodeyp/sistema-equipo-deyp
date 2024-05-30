@@ -105,7 +105,7 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+            <a href="./admin.php">INICIO</a>
             <!-- <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a> -->
             <a class="actived" href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a>
             </div>
@@ -221,7 +221,7 @@ $m_user = strtoupper($m_user);
 
 
   <div class="contenedor">
-    <a href="./menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="./admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->

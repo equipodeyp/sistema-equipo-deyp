@@ -106,8 +106,8 @@ $m_user = strtoupper($m_user);
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
-            <a href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a>
+            <!-- <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
+            <a href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a> -->
             <a class="actived" href="./incidencias_atendidas.php">INCIDENCIAS ATENDIDAS</a>
             </div>
           
@@ -147,10 +147,10 @@ $m_user = strtoupper($m_user);
                       <table class='table table-bordered' id='table-instrumento'>
                         <thead>
                             <tr>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FOLIO INCIDENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE FALLA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DESCRIPCIÓN</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ESTATUS</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>EN ATENCIÓN</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DETALLE</th>
                             </tr>
@@ -167,7 +167,7 @@ $m_user = strtoupper($m_user);
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM incidencias_asistencias WHERE id_servidor = '$m_user' AND estatus != 'EN PROCESO' ORDER BY fecha_hora_solicitud ASC";
+                                                    $query = "SELECT * FROM incidencias_asistencias WHERE id_servidor = '$m_user' AND estatus != 'EN PROCESO' ORDER BY fecha_hora_atencion ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -176,16 +176,16 @@ $m_user = strtoupper($m_user);
                                                 ?>
                                                     <?php $count = $count + 1 ?>
                                                         <tr>
-
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count; ?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_incidencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_hora_solicitud']?></td>
-                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td> -->
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['tipo_falla']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['descripcion_falla']?></td>
+                                                            
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['estatus']?></td>
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['descripcion_falla']?></td> -->
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['usuario_atencion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <a style="text-decoration: underline;" href="./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $row['folio_incidencia']?>" class="btn btn-outline-secondary">
-                                                                   Detalle
+                                                                   Detalle Incidencia
                                                                 </a>
                                                                 <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                     <i class="fas fa-chart-line" ></i>
@@ -221,7 +221,7 @@ $m_user = strtoupper($m_user);
 
 
   <div class="contenedor">
-    <a href="./incidencias_registradas_asistencia.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="./menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->

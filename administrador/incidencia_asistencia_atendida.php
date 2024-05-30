@@ -1,3 +1,4 @@
+
 <?php
 error_reporting(0);
 include("conexion.php");
@@ -13,12 +14,12 @@ $name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
-$user = $row['usuario'];
+$user = $row['nombre'].' '.$row['apellido_p'].' '. $row['apellido_m'];
 
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+echo $m_user; 
 // echo $user;
 
 ?>
@@ -105,9 +106,8 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <!-- <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a> -->
-            <a class="actived" href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a>
+              <a href="./admin.php">REGISTROS</a>
+              <a class="actived" href="./incidencia_asistencia_atendida.php">INCIDENCIAS ATENDIDAS</a>
             </div>
           
 
@@ -115,22 +115,23 @@ $m_user = strtoupper($m_user);
               <div class="row">
 
               <ul class="tabs">
-              <li><a href="#" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
-                <li><a href="#" class="active" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
-                <li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li>
+                <li><a href="#" onclick="location.href='./incidencia_asistencia_enproceso.php'"><span class="fas fa-regular fa-clock"></span><span class="tab-text">INCIDENCIAS <br> EN PROCESO</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./incidencia_asistencia_atendida.php'"><span class="far fa-regular fa-calendar-check"></span><span class="tab-text">INCIDENCIAS <br> ATENDIDAS</span></a></li>
+                <li><a href="#" onclick="location.href='./incidencia_asistencia_cancelada.php'"><span class="far fa-regular fa-copyright"></span><span class="tab-text">INCIDENCIAS <br> CANCELADAS</span></a></li>
               </ul>
 
 
-              <form class="container well form-horizontal" enctype="multipart/form-data">
+              <form method="POST" action="./guardar_respuesta_incidencia_asistencia.php">
+
               <?php
-              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE id_servidor = '$m_user'";
+              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE estatus = 'ATENDIDA' AND usuario_atencion = '$m_user'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY INCIDENCIAS DE ASISTENCIAS MÉDICAS REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY INCIDENCIAS ATENDIDAS DE ASISTENCIAS MÉDICAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -138,7 +139,7 @@ $m_user = strtoupper($m_user);
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>INCIDENCIAS REGISTRADAS POR EL USUARIO: $m_user</h3>
+                            <h3 style='text-align:center'>INCIDENCIAS DE ASISTENCIAS MÉDICAS ATENDIDAS</h3>
                           </div>
                         </div>
                       <div>
@@ -149,10 +150,9 @@ $m_user = strtoupper($m_user);
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FOLIO INCIDENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE FALLA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DESCRIPCIÓN</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>EN ATENCIÓN</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ESTATUS</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DETALLE</th>
                             </tr>
                         </thead>
                     
@@ -167,7 +167,7 @@ $m_user = strtoupper($m_user);
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM incidencias_asistencias WHERE id_servidor = '$m_user' AND estatus = 'EN PROCESO' ORDER BY fecha_hora_solicitud ASC";
+                                                    $query = "SELECT * FROM incidencias_asistencias WHERE usuario_atencion = '$m_user' AND estatus = 'ATENDIDA' ORDER BY fecha_hora_solicitud ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -179,18 +179,20 @@ $m_user = strtoupper($m_user);
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count; ?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_incidencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_hora_solicitud']?></td>
-                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td> -->
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['tipo_falla']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['descripcion_falla']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['usuario_atencion']?></td>
+                                                            
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <!-- <a style="text-decoration: underline;" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-secondary">
-                                                                   Agendar
-                                                                </a> -->
-                                                                <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
-                                                                    <i class="fas fa-chart-line" ></i>
-                                                                </a> -->
                                                                 <button style="display: block; margin: 0 auto;" disabled class="btn btn-success"><?php echo $row['estatus']?></button>
+                                                            </td>
+
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                                <!-- <a href="detalle_respuesta_uno.php?id=<?php echo $row['id']?>" class="btn btn-success">
+                                                                    <i  class="fas fa-info" ></i>
+                                                                </a> -->
+
+                                                                <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                                                    <i  class="fas fa-info"></i>
+                                                                </a>
                                                             </td>
 
                                                             
@@ -221,15 +223,8 @@ $m_user = strtoupper($m_user);
 
 
   <div class="contenedor">
-    <a href="./menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
-  </div>
-  <div class="contenedor">
-    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
-  </div>
-
-
-
+    <a href="./admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+  </div> 
 
 </body>
 </html>
-

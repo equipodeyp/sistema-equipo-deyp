@@ -31,11 +31,11 @@ $m_user = strtoupper($m_user);
 
 
 
-$sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
-$result = mysqli_query($mysqli, $sql);
-$rowcount = mysqli_num_rows( $result );
-$suma = $rowcount + 1;
-$num_incidencia = 0 . $suma;
+// $sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
+// $result = mysqli_query($mysqli, $sql);
+// $rowcount = mysqli_num_rows( $result );
+// $suma = $rowcount + 1;
+// $num_incidencia = 0 . $suma;
 // echo $num_incidencia;
 
 ?>
@@ -428,12 +428,12 @@ let alea = getRandomInt(23);
 
 
 if (alea === 13 || alea === 16 || alea === 19 || alea === 22 || alea === 2 || alea === 5 || alea === 8 || alea === 11 || alea === 14 || alea === 17 || alea === 20 || alea === 23){
-  const jon = "JONATHAN EDUARDO SANTIAGO JIMENEZ";
+  const jon = "JONATHAN EDUARDO SANTIAGO JIMÉNEZ";
   document.getElementById("atencion").value = jon;
   // console.log(jon);
 }
 else if(alea === 1 || alea === 4 || alea === 7 || alea === 10 || alea === 3 || alea === 6 || alea === 9 || alea === 12 || alea === 15 || alea === 18 || alea === 21 || alea === 0){
-  const gab = "GABRIELA PICHARDO GARCIA";
+  const gab = "GABRIELA PICHARDO GARCÍA";
   document.getElementById("atencion").value = gab;
   // console.log(gab);
 }
