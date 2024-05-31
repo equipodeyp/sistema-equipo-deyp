@@ -29,7 +29,7 @@ $m_user = strtoupper($m_user);
 $folio_incidencia = $_GET["folio_incidencia"];
 // echo $folio_incidencia;
 
-$consulta1 = "SELECT* FROM incidencias_asistencias WHERE folio_incidencia = '$folio_incidencia' AND estatus != 'EN PROCESO'";
+$consulta1 = "SELECT* FROM incidencias_asistencias WHERE folio_incidencia = '$folio_incidencia' AND estatus = 'CANCELADA'";
 $resultado1 = $mysqli->query($consulta1);
 $respuesta1=$resultado1->fetch_assoc();
 
@@ -117,17 +117,15 @@ $respuesta1=$resultado1->fetch_assoc();
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
         <ul class="tabs">
-    		<li><a href="#" class="active" onclick="location.href='./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>'"><span class="far fa-address-card"></span><span class="tab-text"> DETALLE <br> INCIDENCIA</span></a></li>
+    		<li><a href="#" class="active" onclick="location.href='./detalle_incidencia_cancelada.php?folio_incidencia=<?php echo $folio_incidencia; ?>'"><span class="far fa-address-card"></span><span class="tab-text"> DETALLE <br> INCIDENCIA CANCELADA</span></a></li>
         </ul>
 
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <!-- <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
-            <a href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a> -->
-            <a href="./incidencias_atendidas.php">INCIDENCIAS ATENDIDAS</a>
-            <a class="actived" href="./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>">DETALLE INCIDENCIA</a>
+                <a href="./admin.php">REGISTROS</a>
+                <a href="./incidencia_asistencia_cancelada.php">INCIDENCIAS CANCELADAS</a>
+                <a class="actived" href="./detalle_incidencia_cancelada.php?folio_incidencia=<?php echo $folio_incidencia; ?>">DETALLE INCIDENCIA CANCELADA</a>
             </div>
 
             
@@ -227,7 +225,7 @@ $respuesta1=$resultado1->fetch_assoc();
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
-          <a href="./incidencias_atendidas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+          <a href="./incidencia_asistencia_cancelada.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		    </div>
 
 

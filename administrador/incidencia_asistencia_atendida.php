@@ -19,7 +19,7 @@ $user = $row['nombre'].' '.$row['apellido_p'].' '. $row['apellido_m'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-echo $m_user; 
+// echo $m_user; 
 // echo $user;
 
 ?>
@@ -149,8 +149,8 @@ echo $m_user;
                             <tr>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FOLIO INCIDENCIA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>EN ATENCIÓN</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA Y HORA DE ATENCIÓN</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>USUARIO EN ATENCIÓN</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ESTATUS</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DETALLE</th>
                             </tr>
@@ -167,7 +167,7 @@ echo $m_user;
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM incidencias_asistencias WHERE usuario_atencion = '$m_user' AND estatus = 'ATENDIDA' ORDER BY fecha_hora_solicitud ASC";
+                                                    $query = "SELECT * FROM incidencias_asistencias WHERE usuario_atencion = '$m_user' AND estatus = 'ATENDIDA' ORDER BY fecha_hora_atencion ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -178,7 +178,7 @@ echo $m_user;
                                                         <tr>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count; ?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_incidencia']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_hora_solicitud']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_hora_atencion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['usuario_atencion']?></td>
                                                             
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
@@ -186,11 +186,8 @@ echo $m_user;
                                                             </td>
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <!-- <a href="detalle_respuesta_uno.php?id=<?php echo $row['id']?>" class="btn btn-success">
-                                                                    <i  class="fas fa-info" ></i>
-                                                                </a> -->
 
-                                                                <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                                                <a href="./detalle_incidencia_atendida.php?folio_incidencia=<?php echo $row['folio_incidencia']?>" class="btn btn-info">
                                                                     <i  class="fas fa-info"></i>
                                                                 </a>
                                                             </td>

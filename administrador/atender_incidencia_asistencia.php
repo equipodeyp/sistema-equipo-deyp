@@ -24,12 +24,13 @@ $m_user = strtoupper($m_user);
 
 // echo "Agendar Asistencia Médica";
 
-
+date_default_timezone_set('America/Mexico_City');
+$myDate = date("d-m-y h:i:s a");
 
 $folio_incidencia = $_GET["folio_incidencia"];
-// echo $folio_incidencia;
+echo $folio_incidencia;
 
-$consulta1 = "SELECT* FROM incidencias_asistencias WHERE folio_incidencia = '$folio_incidencia' AND estatus != 'EN PROCESO'";
+$consulta1 = "SELECT* FROM incidencias_asistencias WHERE folio_incidencia = '$folio_incidencia' AND estatus = 'EN PROCESO'";
 $resultado1 = $mysqli->query($consulta1);
 $respuesta1=$resultado1->fetch_assoc();
 
@@ -117,29 +118,29 @@ $respuesta1=$resultado1->fetch_assoc();
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
         <ul class="tabs">
-    		<li><a href="#" class="active" onclick="location.href='./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>'"><span class="far fa-address-card"></span><span class="tab-text"> DETALLE <br> INCIDENCIA</span></a></li>
+    		<li><a href="#" class="active" onclick="location.href='./atender_incidencia_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>'"><span class="far fa-address-card"></span><span class="tab-text"> ATENDER <br> INCIDENCIA</span></a></li>
         </ul>
 
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <!-- <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
-            <a href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a> -->
-            <a href="./incidencias_atendidas.php">INCIDENCIAS ATENDIDAS</a>
-            <a class="actived" href="./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>">DETALLE INCIDENCIA</a>
+                <a href="./admin.php">REGISTROS</a>
+                <a href="./incidencia_asistencia_enproceso.php">INCIDENCIAS EN PROCESO</a>
+                <a class="actived" href="./atender_incidencia_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>">ATENDER INCIDENCIA</a>
             </div>
 
             
             <div class="container">
         			<div class="well form-horizontal">
-              <form class="container well form-horizontal" enctype="multipart/form-data">
 
         				<div class="row">
 
                   <div id="cabecera">
-                    <h1 style="text-align:center">DETALLE DE LA INCIDENCIA: <?php echo $folio_incidencia; ?></h1>
+                    <h1 style="text-align:center">FOLIO DE LA INCIDENCIA: <?php echo $folio_incidencia; ?></h1>
                     <br>
+                    
+                    <form method="POST" action="./guardar_respuesta_asistencia.php?folio_incidencia=<?php echo $folio_incidencia; ?>">
+
                     <div class="row alert div-title">
                       <h3 style="text-align:center">INFORMACIÓN DE LA SOLICITUD REGISTRADA</h3>
                     </div>
@@ -153,6 +154,11 @@ $respuesta1=$resultado1->fetch_assoc();
                   <div class="col-md-6 mb-3">
                     <label for="" class="">FECHA Y HORA DE LA SOLICITUD</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['fecha_hora_solicitud']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">ESTATUS DE LA INCIDENCIA</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['estatus']; ?>">
                   </div>
 
                   <div class="col-md-6 mb-3">
@@ -179,19 +185,16 @@ $respuesta1=$resultado1->fetch_assoc();
                   <div class="col-md-12 mb-3">
                     <label for="" class="">DESCRIPCIÓN DE LA FALLA</label>
                     <textarea readonly class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta1['descripcion_falla']; ?>"></textarea>
-                  </div>                  
+                  </div>
+                  
                   
                   
                   <div id="cabecera">
                     <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN DE LA INCIDENCIA EN ATENCIÓN</h3>
+                      <h3 style="text-align:center">ATENDER INCIDENCIA DE ASISTENCIA MÉDICA</h3>
                     </div>
                   </div>                  
                   
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">ESTATUS DE LA INCIDENCIA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['estatus']; ?>">
-                  </div>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">FOLIO INCIDENCIA</label>
@@ -199,20 +202,38 @@ $respuesta1=$resultado1->fetch_assoc();
                   </div> 
 
                   <div class="col-md-6 mb-3">
-                    <label for="" class="">FECHA Y HORA DE ATENCIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="" value="<?php echo $respuesta1['fecha_hora_atencion']; ?>">
-                  </div>  
-
-
-                  <div class="col-md-6 mb-3">
                     <label for="" class="">USUARIO EN ATENCIÓN</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['usuario_atencion']; ?>">
                   </div>
 
+
+
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">FECHA Y HORA DE ATENCIÓN</label>
+                    <input readonly class="form-control" id="fecha_hora_atencion" name="fecha_hora_atencion" type="text" value="<?php echo $myDate; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3" id="ESTATUS">
+                    <label>ESTATUS DE LA INCIDENCIA<span ></span></label>
+                    <select class="form-select form-select-lg" name="estatus" id="estatus" required type="text">
+                      <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                      <option value="ATENDIDA">ATENDIDA</option>
+                      <option value="CANCELADA">CANCELADA</option>
+                    </select>
+                  </div>
+
                   <div class="col-md-12 mb-6">
                     <label for="" class="">RESPUESTA A LA SOLICITUD</label>
-                    <textarea readonly class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta1['respuesta']; ?>"></textarea>
+                    <textarea required class="form-control" name="respuesta" id="respuesta" rows="5" cols="33" maxlength="1000" placeholder="Escribe la respuesta..." style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                   <br>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                    </div>
                   </div>
 
 
@@ -227,7 +248,7 @@ $respuesta1=$resultado1->fetch_assoc();
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
-          <a href="./incidencias_atendidas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+          <a href="./incidencia_asistencia_enproceso.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		    </div>
 
 

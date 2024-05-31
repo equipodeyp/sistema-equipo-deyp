@@ -105,10 +105,10 @@ $m_user = strtoupper($m_user);
             <!-- menu de navegacion de la parte de arriba -->
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+            <a href="./admin.php">REGISTROS</a>
             <!-- <a href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
             <a href="./incidencias_registradas_asistencia.php">INCIDENCIAS REGISTRADAS</a> -->
-            <a class="actived" href="./incidencias_atendidas.php">INCIDENCIAS ATENDIDAS</a>
+            <a class="actived" href="./incidencia_asistencia_admin.php">INCIDENCIAS DE ASISTENCIAS MÉDICAS</a>
             </div>
           
 
@@ -116,22 +116,20 @@ $m_user = strtoupper($m_user);
               <div class="row">
 
               <ul class="tabs">
-              <li><a href="#" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
-                <li><a href="#" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
-                <li><a href="#" class="active" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./incidencia_asistencia_admin.php'"><span class="fa fa-regular fa-bomb"> </i></span><span class="tab-text">INCIDENCIAS DE <BR> ASISTENCIAS MÉDICAS</span></a></li>
               </ul>
 
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE id_servidor = '$m_user' AND estatus != 'EN PROCESO'";
+              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ ESPERE A QUE SU SOLICITUD SEA ATENDIDA !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY INCIDENCIAS DE ASISTENCIAS MÉDICAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -139,7 +137,7 @@ $m_user = strtoupper($m_user);
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>INCIDENCIAS ATENDIDAS</h3>
+                            <h3 style='text-align:center'>INCIDENCIAS DE ASISTENCIAS MÉDICAS</h3>
                           </div>
                         </div>
                       <div>
@@ -151,7 +149,6 @@ $m_user = strtoupper($m_user);
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FOLIO INCIDENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ESTATUS</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>EN ATENCIÓN</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DETALLE</th>
                             </tr>
                         </thead>
@@ -167,7 +164,7 @@ $m_user = strtoupper($m_user);
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM incidencias_asistencias WHERE id_servidor = '$m_user' AND estatus != 'EN PROCESO' ORDER BY fecha_hora_atencion ASC";
+                                                    $query = "SELECT * FROM incidencias_asistencias ORDER BY fecha_hora_solicitud ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -186,17 +183,19 @@ $m_user = strtoupper($m_user);
                                                             $res = $row['estatus'];
                                                             if ($res == 'ATENDIDA'){
                                                               echo "<button style='display: block; margin: 0 auto;' disabled class='btn btn-success'>$res</button>";
-                                                            } else {
+                                                            } elseif ($res == 'CANCELADA'){
                                                               echo "<button style='display: block; margin: 0 auto;' disabled class='btn btn-danger'>$res</button>";
-                                                            }
+                                                            } elseif ($res == 'EN PROCESO'){
+                                                                echo "<button style='display: block; margin: 0 auto;' disabled class='btn btn-warning'>$res</button>";
+                                                              }
                                                             ?>
                                                             
                                                             </td>
 
                                                             <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['descripcion_falla']?></td> -->
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['usuario_atencion']?></td>
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['usuario_atencion']?></td> -->
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <a style="text-decoration: underline;" href="./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $row['folio_incidencia']?>" class="btn btn-outline-secondary">
+                                                                <a style="text-decoration: underline;" href="./detalle_incidencia_admin.php?folio_incidencia=<?php echo $row['folio_incidencia']?>" class="btn btn-outline-secondary">
                                                                    Detalle Incidencia
                                                                 </a>
                                                                 <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">

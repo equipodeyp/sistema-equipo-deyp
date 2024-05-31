@@ -19,7 +19,7 @@ $user = $row['nombre'].' '.$row['apellido_p'].' '. $row['apellido_m'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-echo $m_user; 
+// echo $m_user; 
 // echo $user;
 
 ?>
@@ -151,7 +151,7 @@ echo $m_user;
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FOLIO INCIDENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
 
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>EN ATENCIÓN</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>USUARIO EN ATENCIÓN</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ESTATUS</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ATENDER INCIDENCIA</th>
                             </tr>
@@ -187,11 +187,8 @@ echo $m_user;
                                                             </td>
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <!-- <a href="detalle_respuesta_uno.php?id=<?php echo $row['id']?>" class="btn btn-success">
-                                                                    <i  class="fas fa-info" ></i>
-                                                                </a> -->
 
-                                                                <a href="edit_ticket_uno.php?id=<?php echo $row['id']?>" class="btn btn-info">
+                                                                <a href="./atender_incidencia_asistencia.php?folio_incidencia=<?php echo $row['folio_incidencia']?>" class="btn btn-info">
                                                                     <i  class="fas fa-send"></i>
                                                                 </a>
                                                             </td>

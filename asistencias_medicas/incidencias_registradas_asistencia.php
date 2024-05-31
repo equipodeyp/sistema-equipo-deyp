@@ -190,7 +190,7 @@ $m_user = strtoupper($m_user);
                                                                 <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                     <i class="fas fa-chart-line" ></i>
                                                                 </a> -->
-                                                                <button style="display: block; margin: 0 auto;" disabled class="btn btn-success"><?php echo $row['estatus']?></button>
+                                                                <button style="display: block; margin: 0 auto;" disabled class="btn btn-warning"><?php echo $row['estatus']?></button>
                                                             </td>
 
                                                             

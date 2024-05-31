@@ -179,9 +179,21 @@ $m_user = strtoupper($m_user);
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count; ?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_incidencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_hora_solicitud']?></td>
+
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+
+                                                              <?php 
+                                                              $res = $row['estatus'];
+                                                              if ($res == 'ATENDIDA'){
+                                                                echo "<button style='display: block; margin: 0 auto;' disabled class='btn btn-success'>$res</button>";
+                                                              } else {
+                                                                echo "<button style='display: block; margin: 0 auto;' disabled class='btn btn-danger'>$res</button>";
+                                                              }
+                                                              ?>
+
+                                                              </td>
                                                             
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['estatus']?></td>
-                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['descripcion_falla']?></td> -->
+
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['usuario_atencion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <a style="text-decoration: underline;" href="./detalle_incidencia_asistencia.php?folio_incidencia=<?php echo $row['folio_incidencia']?>" class="btn btn-outline-secondary">
