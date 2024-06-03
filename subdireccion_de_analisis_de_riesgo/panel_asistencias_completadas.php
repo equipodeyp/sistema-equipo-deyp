@@ -293,10 +293,10 @@ a:focus {
           <br><br>
           <ul>
 				   <?php
-		   				if ($user=='guillermogv') {
+		   				if ($user=='subdirector') {
 							echo "
 
-								
+
 							";
 						  }
 					?>
@@ -310,7 +310,7 @@ a:focus {
           <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
       <div class="container">
-        
+
         <br>
         <br>
 
@@ -324,7 +324,7 @@ a:focus {
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
 
-                            
+
                             <?php
                                   $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'ASISTENCIA MÉDICA COMPLETADA'";
                                   $rcl = $mysqli->query($cl);
@@ -336,7 +336,7 @@ a:focus {
                                         echo "<h3 style='text-align:center'>ASISTENCIAS MÉDICAS COMPLETADAS</h3>";
                                       }
                                 ?>
-                              
+
 
                                 <tr>
                                     <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
@@ -354,22 +354,22 @@ a:focus {
 
                               <?php
                               $contador = 0;
-                              $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
+                              $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor,
                               solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, solicitud_asistencia.etapa
 
                               FROM solicitud_asistencia
-                                                            
-                              INNER JOIN agendar_asistencia 
+
+                              INNER JOIN agendar_asistencia
                               ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA';";
 
 
-                              // SELECT solicitud_asistencia.id_asistencia, 
-                              // solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, solicitud_asistencia.servicio_medico, 
-                              // solicitud_asistencia.etapa, agendar_asistencia.fecha_asistencia, agendar_asistencia.nombre_institucion, seguimiento_asistencia.diagnostico 
+                              // SELECT solicitud_asistencia.id_asistencia,
+                              // solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, solicitud_asistencia.servicio_medico,
+                              // solicitud_asistencia.etapa, agendar_asistencia.fecha_asistencia, agendar_asistencia.nombre_institucion, seguimiento_asistencia.diagnostico
 
                               // FROM solicitud_asistencia
-                              
-                              // INNER JOIN agendar_asistencia 
+
+                              // INNER JOIN agendar_asistencia
                               // ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
 
                               // JOIN seguimiento_asistencia
@@ -386,7 +386,7 @@ a:focus {
                                 $contador = $contador + 1;
                                 $id_asistencia = $var_fila['id_asistencia'];
                                 // echo $id_asistencia;
-                                
+
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
@@ -400,21 +400,21 @@ a:focus {
                                     //       </td>";
 
 
-                                    $query_cita = "SELECT cita_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, seguimiento_asistencia.diagnostico, 
+                                    $query_cita = "SELECT cita_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, seguimiento_asistencia.diagnostico,
                                     seguimiento_asistencia.motivo
 
                                     FROM cita_asistencia
-                                                                                                      
+
                                     JOIN seguimiento_asistencia
                                     ON cita_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia
                                     AND cita_asistencia.id_asistencia = '$id_asistencia'
                                     ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
-                                    
+
                                     $result_cita = mysqli_query($mysqli, $query_cita);
 
                                     while($row2 = mysqli_fetch_array($result_cita)) {
-                                                                
-                                                                
+
+
                                           if ($id_asistencia == $row2['id_asistencia']){
 
 
@@ -429,7 +429,7 @@ a:focus {
 
 
                                           }
-                                    
+
                                     }
 
 

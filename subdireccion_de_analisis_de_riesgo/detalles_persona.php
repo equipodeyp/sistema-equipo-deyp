@@ -163,7 +163,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
     <nav class="menu-nav">
             <ul>
                 <?php
-                    if ($user === 'guillermogv') {
+                    if ($user === 'subdirector') {
                     echo "
                     <a style='text-align:center' class='user-nombre' href='repo.php?folio=$fol_exp'><button type='button' class='btn btn-light'>REPOSITORIO <BR> PERSONA</button> </a>
                     <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
@@ -191,7 +191,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
 
       <ul class="tabs">
           <?php
-            if ($cargouser=='subdirector') {
+            if ($cargouser=='subdirector' || $cargouser=='validar') {
             echo "<li><a class='active' href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$fol_exp'><span class='far fa-address-card'></span><span class='tab-text'>DATOS PERSONALES</span></a></li>
                   <li><a href='../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=$fol_exp'><span class='fas fa-book-open'></span><span class='tab-text'>MEDIDAS</span></a></li>
             ";

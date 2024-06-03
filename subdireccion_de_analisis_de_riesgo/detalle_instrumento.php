@@ -122,7 +122,7 @@ $nombre_servidor=$row['nombre_servidor'];
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -153,7 +153,7 @@ $nombre_servidor=$row['nombre_servidor'];
               <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="actived">INSTRUMENTOS REGISTRADOS</a>
             </div>
 
-            
+
             <div class="container">
         	<div class="well form-horizontal">
               <form class="container well form-horizontal" enctype="multipart/form-data">
@@ -190,7 +190,7 @@ $nombre_servidor=$row['nombre_servidor'];
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>Adaptabilidad</th>
                             </tr>
                         </thead>
-                    
+
                     ";
                   }
 
@@ -208,8 +208,8 @@ $nombre_servidor=$row['nombre_servidor'];
                                                   while($row = mysqli_fetch_array($result_instrumento)) {
                                                     $id_instrumento=$row['id_instrumento'];
                                                     // echo $id_instrumento;
-                                                  
-                                                    
+
+
                                               ?>
                                                   <?php $count = $count + 1 ?>
                                                       <tr>
@@ -227,9 +227,9 @@ $nombre_servidor=$row['nombre_servidor'];
                                                               </a> -->
 
                                                           </td>
-                                                          
+
                                                           <td style="text-align:center; font-size: 10px; font-weight: bold !important; border: 2px solid #97897D;">
-                                                          <?php 
+                                                          <?php
                                                             if ($row['adaptabilidad'] === "INADAPTABLE"){
                                                               // echo "hola1";
                                                               echo "<a class='btn btn-danger btn-lg disabled' tabindex='-1' role='button' aria-disabled='true'>"; echo $row['adaptabilidad']; echo "</a>";
@@ -246,15 +246,15 @@ $nombre_servidor=$row['nombre_servidor'];
 
                                                           ?>
                                                           </td>
-                                                          
+
                                                       </tr>
 
                                                   <?php } ?>
                                           </tbody>
                                       </table>
                     </div>
-                                  
-                                    
+
+
                   </div>
               </form>
               </div>

@@ -190,7 +190,7 @@ $hoy = date("d-m-Y H:i:s a");
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -259,13 +259,13 @@ $hoy = date("d-m-Y H:i:s a");
                             $fileName      = $data[0];
                             // echo $fileName;
                             // Extensión del archivo
-                            
+
                             $fileExtension = $data[1];
                             $arg = $fileName.'.'.$fileExtension;
 
                             echo $arg;
                             echo $fol_exp;
-                        
+
 
                             if ($fol_exp === $arg) {
                               // echo "si";
@@ -277,8 +277,8 @@ $hoy = date("d-m-Y H:i:s a");
                             }
                           }
                           ?>
-                        
-                      
+
+
                 <!-- </div> -->
               </form>
             </div>
@@ -293,7 +293,7 @@ $hoy = date("d-m-Y H:i:s a");
 
 <a href="../subdireccion_de_analisis_de_riesgo/repo_exp.php?folio=<?=$name_folio?>" class="btn-flotante">REGRESAR</a>
 
- 
+
 
 </div>
 
