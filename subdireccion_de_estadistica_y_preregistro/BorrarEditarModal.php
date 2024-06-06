@@ -303,7 +303,7 @@
       </div>
 			</div>
             <div class="modal-footer">
-                <button type="submit" name="editar" class="btn color-btn-success"><span class="glyphicon glyphicon-check"></span>  VALIDAR</a>
+                <!-- <button type="submit" name="editar" class="btn color-btn-success"><span class="glyphicon glyphicon-check"></span>  VALIDAR</a> -->
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> CERRAR</button>
                 <!-- <a style="display: block; margin: 0 auto;" href="validar_medida_pendiente.php?folio=<?php echo $row['id_medida']; ?>" class="btn color-btn-success" ><i class=""></i>VALIDAR</a> -->
 			</form>

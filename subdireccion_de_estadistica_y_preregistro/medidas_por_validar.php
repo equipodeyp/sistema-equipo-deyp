@@ -151,8 +151,16 @@ $row=$result->fetch_assoc();
                                        <tr>
                                           <td style="text-align:center"><?php echo $contador ?></span></td>
                                           <td style="text-align:center"><?php echo $row['folioexpediente']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $fdper['identificador']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['id_medida']; ?></span></td>
+                                          <!-- <td style="text-align:center"><?php echo $fdper['identificador']; ?></span></td> -->
+                                          <td style="text-align:center"><?php echo $row['categoria']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['tipo']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['clasificacion']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['medida']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['date_provisional']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['date_definitva']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['date_ejecucion']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['estatus']; ?></span></td>
+                                          <td style="text-align:center"><?php echo $row['ejecucion']; ?></span></td>
                                           <td style="text-align:center">
                               							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
                               							<?php
@@ -161,6 +169,11 @@ $row=$result->fetch_assoc();
                               							 ?>
                               							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
                               						</td>
+                                          <td style="text-align:center">
+                                            <form method="POST" action="validar_medida_pendiente.php?folio=<?php echo $row['id_medida']; ?>">
+                                              <button type="submit" name="editar" class="btn color-btn-success"><span class="glyphicon glyphicon-check"></span>  VALIDAR</a>
+                                            </form>
+                                          </span></td>
                                           <?php include('BorrarEditarModal.php'); ?>
                                         </tr>
                                    <?php
