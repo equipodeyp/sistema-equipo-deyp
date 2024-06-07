@@ -315,12 +315,16 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
                 <form method="POST" action="./guardar_reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica;?>">
 
+                <!-- <br> -->
+                <h5 style="text-align:center"> Registra fecha y hora de reprogramación.</h5>
+                <!-- <br> -->
+
                   <div class="form-group">
                     <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                        <input required name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia" placeholder="FECHA" value="" >
+                        <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" placeholder="FECHA" value="" >
                       </div>
                     </div>
                   </div>
@@ -330,7 +334,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                          <input required name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  placeholder="HORA" value="">
+                          <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  placeholder="HORA" value="">
                       </div>
                     </div>
                   </div>
@@ -380,6 +384,21 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 </div>
 
 
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("fecha_asistencia").setAttribute("min", today);
+</script>
 
 </body>
 </html>

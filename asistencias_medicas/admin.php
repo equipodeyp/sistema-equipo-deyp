@@ -31,7 +31,10 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
-// echo $user;
+$m_user = $user;
+$m_user = strtoupper($m_user);
+
+// echo $m_user;
 
 
 
@@ -314,6 +317,17 @@ a:focus {
 
 <?php
 
+$cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$m_user'";
+$rcl = $mysqli->query($cl);
+$fcl = $rcl->fetch_assoc();
+// echo $fcl['t'];
+
+$cl2 = "SELECT COUNT(*) as r FROM solicitud_asistencia";
+$rcl2 = $mysqli->query($cl2);
+$fcl2 = $rcl2->fetch_assoc();
+// echo $fcl['t2'];
+
+
 if ($user=='nanotzin') {
   echo "
 <ul class='ca-menu'>
@@ -345,18 +359,31 @@ if ($user=='nanotzin') {
   </a>
 </li>
 
-<li style='text-align:center'>
-  <a href='./registrar_incidencia_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>INCIDENCIA</h2>
-      <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-  </a>
-</li>
-
-</ul>
-
 ";
+
+
+
+
+
+      if ($fcl2['r'] > 0){
+
+        echo "<li style='text-align:center'>
+                <a href='./registrar_incidencia_asistencia.php'>
+                  <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
+                  <div class='ca-content'>
+                    <h2 class='ca-main'>INCIDENCIA</h2>
+                    <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
+                </a>
+              </li>
+
+              </ul> 
+            ";
+        
+      }
+
+echo " </ul> 
+";
+
 }
 
 if ($user=='brendabrs') {
@@ -404,20 +431,23 @@ if ($user=='brendabrs') {
 </li>
 
 
-<li style='text-align:center'>
-  <a href='./registrar_incidencia_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>INCIDENCIA</h2>
-      <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-  </a>
-</li>
+";
 
 
+        if ($fcl['t'] > 0){
+                  echo "<li style='text-align:center'>
+                    <a href='./registrar_incidencia_asistencia.php'>
+                      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
+                      <div class='ca-content'>
+                        <h2 class='ca-main'>INCIDENCIA</h2>
+                        <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
+                    </a>
+                  </li>
+                  ";
+        }
 
 
-</ul>
-
+echo " </ul> 
 ";
 }
 ?>

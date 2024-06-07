@@ -80,6 +80,8 @@ $m_user = strtoupper($m_user);
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/main2.css">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body >
   <div class="contenedor">
@@ -327,7 +329,7 @@ $m_user = strtoupper($m_user);
 
   
 
-
+  <script src="../js/alert.js"></script>
 
 <!-- <script type="text/javascript">
 	$(document).ready(function(){

@@ -33,6 +33,12 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
 // echo $user;
+
+
+$m_user = $user;
+$m_user = strtoupper($m_user);
+// echo $user;
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

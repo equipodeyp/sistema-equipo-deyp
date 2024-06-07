@@ -457,7 +457,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                           <br>
 
                           <div>
-                            <label class="control-label">NÚMERO DE OFICIO DE LA ENTREGA DEL MEDICAMENTO</label>
+                            <label class="control-label">NÚMERO DE OFICIO DE ENTREGA DE MEDICAMENTO</label>
                             <input placeholder="NÚMERO DE OFICIO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="oficio" name="oficio" required value="">
                           </div>
 
@@ -473,7 +473,6 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
       </div>
-
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>

@@ -100,7 +100,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 						center: 'title',
 						right: ''
 					},
-					defaultDate: Date(),
+					defaultDate: Date().toGMTString,
 					navLinks: false, 
 					editable: false,
 					eventLimit: true,

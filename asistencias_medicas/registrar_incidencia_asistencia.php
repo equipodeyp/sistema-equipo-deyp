@@ -80,6 +80,7 @@ $m_user = strtoupper($m_user);
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/main2.css">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body >
   <div class="contenedor">
@@ -205,25 +206,59 @@ $m_user = strtoupper($m_user);
                     </div>
                   </div> -->
 
-
                   <div class="form-group" >
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <select class="form-control" id="id_asistencia" name="id_asistencia" required>
-                            <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option>
+
+
+                        <!-- <select class="form-control" id="id_asistencia" name="id_asistencia" required>
+                            <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option> -->
                               <?php
-                                  $select1 = "SELECT solicitud_asistencia.id_asistencia
-                                  FROM solicitud_asistencia
-                                  WHERE solicitud_asistencia.id_servidor = '$m_user'";
-                                  $answer1 = $mysqli->query($select1);
-                                  while($valores1 = $answer1->fetch_assoc()){
-                                    $result_folio = $valores1['id_asistencia'];
-                                    echo "<option value='$result_folio'>$result_folio</option>";
+                              // echo $m_user; 
+                                  if ($m_user == 'NANOTZIN') {
+
+                                    echo "
+                                    <select class='form-control' id='id_asistencia' name='id_asistencia' required>
+                                      <option disabled selected value=''>SELECCIONE EL ID ASISTENCIA</option>
+                                     ";
+
+                                    $select1 = "SELECT solicitud_asistencia.id_asistencia
+                                    FROM solicitud_asistencia";
+
+                                    $answer1 = $mysqli->query($select1);
+                                      while($valores1 = $answer1->fetch_assoc()){
+                                      $result_folio = $valores1['id_asistencia'];
+                                      echo "
+                                        <option value='$result_folio'>$result_folio</option>";
+                                    }
+
+                                    echo "
+                                    </select>";
+
+                                  } 
+
+                                  else{
+                                    
+                                    $select1 = "SELECT solicitud_asistencia.id_asistencia
+                                    FROM solicitud_asistencia
+                                    WHERE solicitud_asistencia.id_servidor = '$m_user'";
+
+                                      $answer1 = $mysqli->query($select1);
+                                      while($valores1 = $answer1->fetch_assoc()){
+                                      $result_folio = $valores1['id_asistencia'];
+                                      echo "
+                                      <select class='form-control' id='id_asistencia' name='id_asistencia' required>
+                                        <option disabled selected value=''>SELECCIONE EL ID ASISTENCIA</option>
+                                        <option value='$result_folio'>$result_folio</option>
+                                      </select>";
+                                    }
+
                                   }
+                                  
                               ?>
-                        </select>
+                        <!-- </select> -->
                         <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
                         
                       </div>
@@ -304,7 +339,7 @@ $m_user = strtoupper($m_user);
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR REGISTRO</button>
+                      <button style="display: block; margin: 0 auto;" id="guardar_asistencia" class="btn color-btn-success" type="submit">GUARDAR REGISTRO</button>
                     </div>
                   </div>
 
@@ -319,12 +354,21 @@ $m_user = strtoupper($m_user);
     </div>
   </div>
 
+
+
+
+
+
+
+
+
+
   <div class="contenedor">
     <a href="admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
 
 
-
+<script src="../js/alert.js"></script>
   
 
 
@@ -377,33 +421,7 @@ function obtenerRespuesta3(e){
 
 
   console.log(respuestaObtenida3);
-
-
-  const  generateRandomString = (num) => {
-
-  var separarFolio = [];
-  var folio = document.getElementById('folio_expediente').value;
-  separarFolio = folio.split("/");
-  var numExp = separarFolio[3];
-  var añoExp = separarFolio[4]
-  var unidad = separarFolio[0]
-  var incidencia = "INC"
-
-  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result1= Math.random().toString(36).substring(2,num);
-
-  var n1 = result1.toUpperCase();
-
-  var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + respuestaObtenida3;
-  document.getElementById("folio_incidencia").value = folioIncidencia;
-  
-  // console.log(folioIncidencia);
-
-  }
-
-  generateRandomString(7);
-
-  
+ 
 
 }
 
