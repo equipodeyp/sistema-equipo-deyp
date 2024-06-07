@@ -152,7 +152,7 @@ $nombre_servidor=$row['nombre_servidor'];
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$folio_expediente'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -235,10 +235,3 @@ $nombre_servidor=$row['nombre_servidor'];
 
 </body>
 </html>
-
-
-
-
-
-
-                      

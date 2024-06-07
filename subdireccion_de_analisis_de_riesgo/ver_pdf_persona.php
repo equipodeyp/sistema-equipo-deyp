@@ -47,7 +47,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");  
+$hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
@@ -181,7 +181,7 @@ $id_person=$rowfol['id'];
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     // echo $fol;
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
@@ -273,7 +273,7 @@ $id_person=$rowfol['id'];
                           }
                   ?>
 
-                  
+
                 <!-- </div> -->
               </form>
             </div>
@@ -294,8 +294,3 @@ $id_person=$rowfol['id'];
 
 </body>
 </html>
-
-
-
-
-

@@ -162,7 +162,7 @@ $nombre_servidor=$row['nombre_servidor'];
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$folio_expediente'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -260,7 +260,7 @@ $nombre_servidor=$row['nombre_servidor'];
                         $c = 3;
                         $cc = 6;
                         $d = 4;
-                        $dd = 7; 
+                        $dd = 7;
 
                         $array = array();
 
@@ -292,7 +292,7 @@ $nombre_servidor=$row['nombre_servidor'];
                             $resultr4 = $mysqli->query($sentenciar4);
                             $rowr4=$resultr4->fetch_assoc();
 
-                            
+
                               $arp=$question.$a;
                               $arp1=$question.$b;
                               $arp2=$question.$c;
@@ -307,7 +307,7 @@ $nombre_servidor=$row['nombre_servidor'];
                               if ($resp1 === '1No') {
                                 $valresp = 3;
                                 array_push($array, "$valresp");
-                                
+
 
                               }
                               elseif ($resp2 === '2Si') {
@@ -327,7 +327,7 @@ $nombre_servidor=$row['nombre_servidor'];
                               }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                          
+
                           echo "<tr >";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo $rowr5['nombre_categoria']; echo "</td>";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
@@ -452,33 +452,33 @@ $nombre_servidor=$row['nombre_servidor'];
 
                                         echo "<th class='resultado-instrumento-tres'>"; echo "TOTAL DE PUNTOS: ";echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
 
-                                      // if ($resultado_instrumento <= 9) { 
+                                      // if ($resultado_instrumento <= 9) {
                                       //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
                                       //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
                                       //   }
-                                      
+
                                       // else if ($resultado_instrumento >= 10 && $resultado_instrumento <= 19) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";  
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
                                       //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
                                       //   }
 
                                       // else if ($resultado_instrumento >= 20 && $resultado_instrumento <= 29) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";  
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
                                       //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
                                       //   }
 
                                       // else if ($resultado_instrumento >= 30 && $resultado_instrumento <= 39) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";  
+                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
                                       //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
                                       //   }
-                                    
+
 
                                       ?>
-                                    
+
                                 </tr>
                             </thead>
                           </table>
-                      </div> 
+                      </div>
 <div class="contenedor">
 <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
 </div>

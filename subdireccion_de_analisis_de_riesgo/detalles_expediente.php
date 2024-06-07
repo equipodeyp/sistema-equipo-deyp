@@ -77,7 +77,7 @@ $row=$result->fetch_assoc();
     <nav class="menu-nav">
            		<ul>
 				   <?php
-		   				if ($user=='guillermogv') {
+		   				if ($user=='subdirector') {
 							echo "
 								<a style='text-align:center' class='user-nombre' href='repo_exp.php?folio=$fol_exp'><button type='button' class='btn btn-light'>REPOSITORIO <br> EXPEDIENTE</button> </a>
 								<a style='text-align:center' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
@@ -346,7 +346,7 @@ let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.g
 </script>
 <script type="text/javascript">
   var fec = document.getElementById("FECHA_ACUERDO").value;
-  if (fec === null || fec === '') {    
+  if (fec === null || fec === '') {
     document.getElementById("ver_fecha_inicio").style.display = "none";
   }
 </script>

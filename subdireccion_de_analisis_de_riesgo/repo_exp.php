@@ -184,7 +184,7 @@ $hoy = date("d-m-Y H:i:s a");
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -254,7 +254,7 @@ $hoy = date("d-m-Y H:i:s a");
                   </div> -->
 
                   <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "
                     <div class='alert alert-info'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
@@ -286,7 +286,7 @@ $hoy = date("d-m-Y H:i:s a");
                                 <th style="text-align:center" width="60%">Nombre del Archivo</th>
                                 <th style="text-align:center" width="10%">Vista Previa</th>
                                 <?php
-                                  if ($user=='guillermogv') {
+                                  if ($user=='subdirector') {
                                   echo "<th style='text-align:center' width='10%'>Descargar</th>";
                                   echo "<th style='text-align:center' width='10%'>Eliminar</th>";
                                 }
@@ -318,7 +318,7 @@ $hoy = date("d-m-Y H:i:s a");
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
                           echo "<td style='text-align:center'><a href='ver_pdf.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
-                          if ($user=='guillermogv') {
+                          if ($user=='subdirector') {
                             echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$resultado."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
                             echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$resultado."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
                           }

@@ -50,7 +50,7 @@ $resultado = str_replace("/", "-", $name_carpeta);
 
 date_default_timezone_set('UTC');
 date_default_timezone_set("America/Mexico_City");
-$hoy = date("d-m-Y H:i:s a");  
+$hoy = date("d-m-Y H:i:s a");
 // echo $hoy;
 
 // echo $name_folio;
@@ -180,7 +180,7 @@ $id_person=$rowfol['id'];
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -239,8 +239,8 @@ $id_person=$rowfol['id'];
                 </div>
 
                   <h5 style='text-align:justify'>
-                  En este apartado deberás agregar los archivos cuya información sea única y exclusivamente de la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad 
-                  de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto 
+                  En este apartado deberás agregar los archivos cuya información sea única y exclusivamente de la(s) persona(s) propuesta(s) y/o sujeto(s) incorporado(s) perteneciente(s) al expediente de protección, esto con la finalidad
+                  de mantener una buena organización entre los diferentes archivos añadidos.  El SIPPSIPPED solo permite adjuntar archivos en formato PDF. Te recomendamos nombrar tus archivos antes de ser subidos puesto
                   que mantendrán este nombre, es buena práctica colocar un nombre en específico, irrepetible y fácil de comprender.
                   </h5>
 
@@ -254,7 +254,7 @@ $id_person=$rowfol['id'];
                         <button class="btn btn-success" type="submit">Agregar archivo</button>
                   </div> -->
                   <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "
                     <div class='alert alert-info'>
                       <h3 style='text-align:center'>AÑADIR ARCHIVOS</h3>
@@ -268,7 +268,7 @@ $id_person=$rowfol['id'];
                     </div>
                     ";
                   }
-                  
+
                   ?>
 
                   <div class="alert alert-info">
@@ -286,7 +286,7 @@ $id_person=$rowfol['id'];
                                 <th style="text-align:center" width="60%">Nombre del Archivo</th>
                                 <th style="text-align:center" width="10%">Vista Previa</th>
                                 <?php
-                                  if ($user=='guillermogv') {
+                                  if ($user=='subdirector') {
                                     echo "<th style='text-align:center' width='10%'>Descargar</th>";
                                     echo "<th style='text-align:center' width='10%'>Eliminar</th>";
                                   }
@@ -322,7 +322,7 @@ $id_person=$rowfol['id'];
                           echo '<th style="text-align:center;" scope="row">'; echo $num; echo '</th>';
                           echo '<td style="font-weight: bold;" scope="row">'; echo $fileName; echo '</td>';
                           echo "<td style='text-align:center'><a href='ver_pdf_persona.php?folio=".$arg."' style='color: green; font-size:18px;'><span class='fa-solid fa-eye'></span></a></td>";
-                          if ($user=='guillermogv') {
+                          if ($user=='subdirector') {
                             echo "<td style='text-align:center'><a title='Descargar Archivo' href='../subdireccion_de_analisis_de_riesgo/repo/".$resultado."/".$id_pers."/".$arg."' download='$arg' style='color: blue; font-size:18px;'> <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span> </a>"; echo "</td>";
                             echo "<td style='text-align:center'><a title='Eliminar Archivo' href='../subdireccion_de_analisis_de_riesgo/eliminar_archivo.php?name=repo/".$resultado."/".$id_pers."/".$arg."' style='color: red; font-size:18px;' onclick='return confirm('Esta seguro de eliminar el archivo?');'> <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> </a>"; echo "</td>";
                           }

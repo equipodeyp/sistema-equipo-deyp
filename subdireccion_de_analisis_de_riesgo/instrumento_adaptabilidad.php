@@ -94,7 +94,7 @@ $r_input = "Si";
     <nav class="menu-nav">
            		<ul>
                 <?php
-                    if ($user=='guillermogv') {
+                    if ($user=='subdirector') {
                     echo "<a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                   ";}
                 ?>
@@ -124,7 +124,7 @@ $r_input = "Si";
               <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>" class="actived">REGISTRAR INSTRUMENTO</a>
             </div>
 
-            
+
             <div class="container">
         			<div class="well form-horizontal">
               <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
@@ -162,9 +162,9 @@ $r_input = "Si";
                   <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
                   <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $full_name;?>">
                 </div>
-        
+
         <div id="instrucciones">
-            
+
                 <div id="cabecera">
                   <div class="row alert div-title">
                     <h3 style="text-align:center">INSTRUCCIONES Y RECOMENDACIONES</h3>
@@ -174,9 +174,9 @@ $r_input = "Si";
                 <div>
                   <br></br>
                   <h5 style='text-align:justify'>
-                    Lea y comprenda cada una de las cuestiones. Responda de manera clara y concreta. 
+                    Lea y comprenda cada una de las cuestiones. Responda de manera clara y concreta.
                     Todas las preguntas deberan ser contestadas correctamente. Para comenzar el registro presione el botón iniciar.
-                    Utilice los botones de anterior y siguiente para continuar o retroceder entre los diferentes apartados. 
+                    Utilice los botones de anterior y siguiente para continuar o retroceder entre los diferentes apartados.
                     Durante la prueba mantengase tranquilo y relajado, concentre toda su atención en el contenido y evite distracciones para un mejor desempeño.
                   </h5>
                   <br></br>
@@ -185,14 +185,14 @@ $r_input = "Si";
                   </div>
                   <br></br>
                 </div>
-        
-                
+
+
         </div>
 
 
-              
+
         <div id="div_1">
-              
+
               <div id="cabecera">
                 <div class="row alert div-title">
                   <h3 style="text-align:center">1. ADICCIONES</h3>
@@ -243,7 +243,7 @@ $r_input = "Si";
                   <h3 style="text-align:center">2. DISCAPACIDAD</h3>
                 </div>
             </div>
-      
+
             <div class="col-md-6 mb-3" id="q5">
               <label for="" class="">¿TIENE DISCAPACIDAD O SUS SECUELAS NO LE IMPIDEN REALIZAR LAS ACTIVIDADES DE SU VIDA COTIDIANA?</label>
               <select class="form-select form-select-lg" id="question_5" name="r_question_5">
@@ -301,7 +301,7 @@ $r_input = "Si";
                 <option value="No">No</option>
               </select>
             </div>
-            
+
 
             <div class="col-md-6 mb-3" id="q10">
               <label for="" class="">¿PRESENTA SÍNTOMAS O SECUELAS DE UNA ENFERMEDAD CRÓNICO O DEGENERATIVA, CONTROLADA BAJO TRATAMIENTO MÉDICO, EL CUAL NO LIMITA NI SU MOVILIDAD NI SU DESPLAZAMIENTO?</label>
@@ -373,20 +373,20 @@ $r_input = "Si";
               <label for="" class="">¿ES UNA PERSONA MENOR DE 10 AÑOS, QUE REQUIERE O SE ENCUENTRA ASISTIDO DE PADRE O TUTOR?</label>
               <input readonly class="form-control" id="question_16" name="r_question_16" type="text" value="<?php echo $r_input; ?>"  style="font-size: 14px;">
             </div>
-        
+
         </div>
 
 
 
         <div id="div_5">
 
-            
+
             <div id="cabecera">
                 <div class="row alert div-title">
                   <h3 style="text-align:center">5. PSICOPATOLOGÍA</h3>
                 </div>
             </div>
-    
+
             <div class="col-md-6 mb-3" id="q17"><br>
               <label for="" class="">¿PRESENTA INDICADORES DE PSICOPATOLOGÍA?</label>
               <select class="form-select form-select-lg" id="question_17" name="r_question_17">
@@ -424,7 +424,7 @@ $r_input = "Si";
 
         </div>
 
-       
+
         <div id="div_6">
 
             <div id="cabecera">
@@ -434,7 +434,7 @@ $r_input = "Si";
             </div>
 
 
-            <div class="col-md-6 mb-3" id="q21"> 
+            <div class="col-md-6 mb-3" id="q21">
               <br><br>
               <label for="" class="">¿PRESENTA CARACTERÍSTICAS QUE CONCUERDEN CON ALGÚN TRASTORNO DE LA PERSONALIDAD?</label>
               <select class="form-select form-select-lg" id="question_21" name="r_question_21">
@@ -739,7 +739,7 @@ $r_input = "Si";
                 <option value="No">No</option>
               </select>
             </div>
-            
+
             <div class="col-md-6 mb-3" id="q46">
               <label for="" class="">¿ES CATALOGADO DENTRO DE LOS SUJETOS ACTIVOS COMUNES, INADAPTADOS, CARACTERIALES, PRIMO DELINCUENTE U OCASIONAL. CUENTA CON FACTORES DE PROTECCIÓN POCO DEFINIDOS, CON MAYOR PRESENCIA DE FACTORES DE RIESGO, ESTÁTICOS, DINÁMICOS, MOTIVADORES, DESESTABILIZADORES Y DESINHIBIDORES?</label>
               <select class="form-select form-select-lg" id="question_46" name="r_question_46">
@@ -824,7 +824,7 @@ $r_input = "Si";
                   <input readonly class="form-control" id="adaptabilidad" name="adaptabilidad_i" type="text" value  style="font-size: 14px; display: none;">
                 </div>
         </div>
-                
+
 
 
                   <div class="row" id="div-b&n1">
@@ -917,7 +917,7 @@ $r_input = "Si";
                         <button onclick="guardarInstrumento()"name="" class="button_next" id="btn-next13" style="text-align:center; margin: 10px; display: none;" type="submit">Guardar</button>
                       </div>
                   </div>
-            
+
 
               </div>
               </form>
@@ -974,7 +974,7 @@ function guardarInstrumento() { // Guardar instrumento
       var q2 = document.getElementById('question_2').value; // Obtener valor Pregunta 2
       var q3 = document.getElementById('question_3').value; // Obtener valor Pregunta 3
       var q4 = document.getElementById('question_4').value; // Obtener valor Pregunta 4
-      var q5 = document.getElementById('question_5').value; // Obtener valor Pregunta 5 
+      var q5 = document.getElementById('question_5').value; // Obtener valor Pregunta 5
       var q6 = document.getElementById('question_6').value; // Obtener valor Pregunta 6
       var q7 = document.getElementById('question_7').value; // Obtener valor Pregunta 7
       var q8 = document.getElementById('question_8').value; // Obtener valor Pregunta 8
@@ -1284,7 +1284,7 @@ function guardarInstrumento() { // Guardar instrumento
         document.getElementById('adaptabilidad').value="ALTA";
         // console.log(document.getElementById('adaptabilidad').value);
       }
-      
+
 
       // console.log("hola");
 
