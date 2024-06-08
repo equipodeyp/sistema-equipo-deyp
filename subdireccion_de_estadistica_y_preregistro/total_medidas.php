@@ -316,6 +316,8 @@ a:focus {
                                               <th style="text-align:center">SEXO DEL SUJETO PROTEGIDO</th>
                                               <th style="text-align:center">GRUPO DE EDAD DEL SUJETO PROTEGIDO</th>
                                               <th style="text-align:center">ESTATUS ACTUAL DEL SUJETO PROTEGIDO</th>
+                                              <th style="text-align:center">DELITO PRINCIPAL</th>
+                                              <th style="text-align:center">RELACIONADO</th>
                                           </tr>
                                       </thead>
                                       <tbody>
@@ -335,6 +337,10 @@ a:focus {
                                           $mm = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
                                           $rmm = $mysqli->query($mm);
                                           $fmm = $rmm->fetch_assoc();
+                                          // /////////////////////////
+                                          $mmdelito = "SELECT * FROM procesopenal WHERE id_persona = '$id_persona'";
+                                          $rmmdelito = $mysqli->query($mmdelito);
+                                          $fmmdelito = $rmmdelito->fetch_assoc();
 
                                           // multidisciplinario de la medida
                                               echo "<tr>";
@@ -393,6 +399,8 @@ a:focus {
                                               echo "<td style='text-align:center'>"; echo $fp['sexopersona']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fp['grupoedad']; echo "</td>";
                                               echo "<td style='text-align:center'>"; echo $fp['estatus']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fmmdelito['delitoprincipal']; echo "</td>";
+                                              echo "<td style='text-align:center'>"; echo $fp['relacional']; echo "</td>";
                                               echo "</tr>";
                                         }
                                       ?>
