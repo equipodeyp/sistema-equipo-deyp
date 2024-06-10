@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 /*require 'conexion.php';*/
 include("conexion.php");
 session_start ();

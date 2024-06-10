@@ -180,6 +180,11 @@ $respuesta1=$resultado1->fetch_assoc();
                     <textarea readonly class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta1['descripcion_falla']; ?>"></textarea>
                   </div>
 
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">USUARIO EN ATENCIÓN</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['usuario_atencion']; ?>">
+                  </div>
+
 
                   
                   
