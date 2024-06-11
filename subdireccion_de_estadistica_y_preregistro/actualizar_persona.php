@@ -136,11 +136,7 @@ if ($verifica_update_person == 1) {
     $fol_expediente = $fcheck_detos_suj_alerta['folioexpediente'];
     $id_unico = $fcheck_detos_suj_alerta['identificador'];
     $estatus_suj_alert = 'PENDIENTE';
-    $tipo_convenio_alert = 'CONVENIO DE ENTENDIMIENTO';
-    // sql para agregar registro en la tabla de alerta de convenios
-    $alert_conv = "INSERT INTO alerta_convenios(expediente, id_persona, id_unico, fecha_inicio, fecha_termino, estatus, tipo_convenio)
-                          VALUES('$fol_expediente', '$id_persona', '$id_unico', '$fecha_inicio', '$fecha_finalconvenio', '$estatus_suj_alert', '$tipo_convenio_alert')";
-    $ralert_conv = $mysqli ->query($alert_conv);
+    $tipo_convenio_alert = 'CONVENIO DE ENTENDIMIENTO';  
   }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $estatus_per = "SELECT * FROM datospersonales WHERE id='$id_persona'";
