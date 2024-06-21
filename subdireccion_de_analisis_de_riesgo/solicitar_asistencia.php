@@ -64,6 +64,10 @@ $m_user = strtoupper($m_user);
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/main2.css">
 
+
+<!-- <link rel="stylesheet" href="../css/form.css" type="text/css"> -->
+
+
 </head>
 <body >
   <div class="contenedor">
@@ -323,7 +327,19 @@ $m_user = strtoupper($m_user);
   </div>
 
 
-              
+
+
+
+  <!-- <div class="con">
+        <form method="post" id="frm">
+            <input type="text" name="comm" id="comm" placeholder="Escribe tu comentario aquí...">
+            <input type="submit" value="Enviar" id="submit">
+        </form>
+  </div>   
+    
+    
+  <script src="../js/new_register.js"></script> -->
+
 
 <!-- <script type="text/javascript">
   window.onload = function(){

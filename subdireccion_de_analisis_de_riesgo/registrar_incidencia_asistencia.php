@@ -16,6 +16,9 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
 
+
+// echo $user;
+
 $row_nombre = $row['nombre'];
 $apellido_p = $row['apellido_p'];
 $apellido_m = $row['apellido_m'];
@@ -81,7 +84,10 @@ $m_user = strtoupper($m_user);
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/main2.css">
 
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 </head>
 <body >

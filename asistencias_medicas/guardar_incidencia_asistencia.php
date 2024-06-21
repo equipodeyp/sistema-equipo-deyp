@@ -75,6 +75,11 @@ $row=$resultado->fetch_assoc();
   VALUES ('$id_servidor', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$tipo_falla', '$descripcion', '$status', '$folio_incidencia', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
+  $query2 = "INSERT INTO message_tbl (message, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$atencion_usuario')";
+  $result2 = $mysqli->query($query2);
+
+
 
 
 

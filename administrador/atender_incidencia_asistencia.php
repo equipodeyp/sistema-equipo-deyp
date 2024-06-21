@@ -28,7 +28,7 @@ date_default_timezone_set('America/Mexico_City');
 $myDate = date("d-m-y h:i:s a");
 
 $folio_incidencia = $_GET["folio_incidencia"];
-echo $folio_incidencia;
+// echo $folio_incidencia;
 
 $consulta1 = "SELECT* FROM incidencias_asistencias WHERE folio_incidencia = '$folio_incidencia' AND estatus = 'EN PROCESO'";
 $resultado1 = $mysqli->query($consulta1);

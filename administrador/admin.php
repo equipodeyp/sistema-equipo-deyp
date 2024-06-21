@@ -31,6 +31,7 @@ if(!isset($_SESSION['already_refreshed'])){
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -216,8 +217,30 @@ a:focus {
   text-decoration: underline;
 }
   </style>
+
+<link rel="stylesheet" href="../css/button_notification.css" type="text/css">
+
 </head>
 <body>
+
+
+<div class="notify">
+
+
+  <div class="notify-btn" id="notify-btn">
+    <button type="button" class="icon-button">
+    <span><img src="../image/asistencias_medicas/bell.png" width="60" height="60"></span>
+    <span class="icon-button__badge" id="show_notif">0</span>
+    </button>
+  </div>
+
+  <div class="notify-menu" id="notify-menu">
+  </div>
+  
+</div>
+
+
+
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
@@ -293,9 +316,18 @@ a:focus {
         </div> -->
         <br>
         <!--Ejemplo tabla con DataTables-->
+
+
+
+
+
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
+
+
+
+
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
@@ -447,7 +479,22 @@ a:focus {
     </div>
   </div>
   <!-- fin modal  -->
+<?php 
+if ($_SESSION['usuario'] == 'a-adriana'){
+  echo "<script src='../js/notification1.js'></script>";
+  echo $_SESSION['usuario'];
+}
 
+if($_SESSION['usuario'] == 'a-jonathan'){
+  echo "<script src='../js/notification2.js'></script>";
+  echo $_SESSION['usuario'];
+}
+
+if($_SESSION['usuario'] == 'a-gabriela'){
+  echo "<script src='../js/notification3.js'></script>";
+  echo $_SESSION['usuario'];
+}
+?>
 
 
 
@@ -515,5 +562,6 @@ a:focus {
     document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
   }
   </script>
+
 </body>
 </html>
