@@ -25,14 +25,14 @@ if ($verifica_update_person == 1) {
   date_default_timezone_set("America/Mexico_City");
   $fecha_validacion = date('y/m/d H:i:sa');
 
-  $datos_validacion = "UPDATE validar_medida SET validacion='$validacion', fecha_validacion = '$fecha_validacion', usuario2 = '$name' WHERE id_medida = '$id_medida'";
+  $datos_validacion = "UPDATE validar_medida SET fecha_validacion = '$fecha_validacion', validar_datos = '$validacion', usuario = '$name' WHERE id_medida = '$id_medida'";
   $res_validacion = $mysqli->query($datos_validacion);
 
   // insertar comentarios de cambios
   // validacion de update correcto
   if($res_validacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_analisis_de_riesgo/detalle_medida.php?id=$id_medida';
+     window.location.href='../subdireccion_de_analisis_de_riesgo/medidasavalidar.php';
      window.alert('!!!!!VALIDACION EXITOSA¡¡¡¡¡')
    </script>");
   }

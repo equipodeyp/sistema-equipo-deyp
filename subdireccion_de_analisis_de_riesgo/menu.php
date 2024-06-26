@@ -320,11 +320,12 @@ a:focus {
 		   				if ($user=='lorenzomm') {
 							echo "
                 <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS <br> MÉDICAS</button> </a>
-                
+                  <a style='text-align:center' class='user-nombre' href='./medidasavalidar.php'><button type='button' class='btn btn-light'>MEDIDAS A VALIDAR </button> </a>
+
 
 							";
 						  }
-              
+
               // <a style='text-align:center' class='user-nombre' href='./panel_asistencias_por_completar.php'><button type='button' class='btn btn-light'>SEGUIMIENTO <br> ASISTENCIA MÉDICA </button> </a>
               // <a style='text-align:center' class='user-nombre' href='./panel_asistencias_completadas.php'><button type='button' class='btn btn-light'>ASISTENCIA MÉDICA <br> COMPLETADA</button> </a>
               // <a style='text-align:center' class='user-nombre' href='./panel_asistencias_completadas.php'><button type='button' class='btn btn-light'>REGISTRAR <br> INCIDENCIA</button> </a>
@@ -434,6 +435,9 @@ a:focus {
             </tbody>
            </table>
         </div>
+
+
+
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
@@ -509,10 +513,14 @@ a:focus {
         </div>
       </div>
     </div>
-  </div>
+
+
+
   <div class="contenedor">
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
+
+
   <!-- modal del glosario -->
   <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -547,7 +555,7 @@ echo "var totalconvenios = '$restotal';";
 ?>
 if (totalconvenios > 0) {
 document.getElementById('show_alert').style.display = "";
-}else {  
+}else {
   document.getElementById('show_alert').style.display = "none";
 }
 </script>
