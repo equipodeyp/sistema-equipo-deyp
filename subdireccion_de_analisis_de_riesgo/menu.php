@@ -315,21 +315,21 @@ a:focus {
           </ul>
           <br><br>
           <ul>
-				   <?php
-          //  <a style='text-align:center' class='user-nombre' href='./panel_asistencias.php'><button type='button' class='btn btn-light'>PANEL INICIAL <br> ASISTENCIAS MÉDICAS </button> </a>
+				    <?php
+
 		   				if ($user=='lorenzomm') {
 							echo "
                 <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS <br> MÉDICAS</button> </a>
-                  <a style='text-align:center' class='user-nombre' href='./medidasavalidar.php'><button type='button' class='btn btn-light'>MEDIDAS A VALIDAR </button> </a>
+                  
 
 
 							";
 						  }
 
-              // <a style='text-align:center' class='user-nombre' href='./panel_asistencias_por_completar.php'><button type='button' class='btn btn-light'>SEGUIMIENTO <br> ASISTENCIA MÉDICA </button> </a>
-              // <a style='text-align:center' class='user-nombre' href='./panel_asistencias_completadas.php'><button type='button' class='btn btn-light'>ASISTENCIA MÉDICA <br> COMPLETADA</button> </a>
-              // <a style='text-align:center' class='user-nombre' href='./panel_asistencias_completadas.php'><button type='button' class='btn btn-light'>REGISTRAR <br> INCIDENCIA</button> </a>
 					?>
+
+          <a style='text-align:center' class='user-nombre' href='./medidasavalidar.php'><button type='button' class='btn btn-light'>MEDIDAS A VALIDAR </button> </a>
+
           </ul>
       </nav>
     </div>
