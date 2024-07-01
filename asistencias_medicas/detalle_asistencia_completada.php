@@ -401,10 +401,10 @@ $respuesta7=$resultado7->fetch_assoc();
                       <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['se_presento']; echo '">
                       </div>';
 
-                      echo '<div class="col-md-6 mb-3">
-                      <label for="" class="">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
-                      <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['nombre_pdi']; echo'">
-                      </div>';
+                      // echo '<div class="col-md-6 mb-3">
+                      // <label for="" class="">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
+                      // <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['nombre_pdi']; echo'">
+                      // </div>';
 
                       echo '<div class="col-md-6 mb-3">
                       <label for="" class="">HOSPITALIZACIÓN</label>

@@ -258,7 +258,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
         <div id=division_1>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="policia_investigacion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -266,7 +266,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                         <input value autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="policia_investigacion" name="policia_investigacion" placeholder="NOMBRE DEL P.D.I.">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
 
 
