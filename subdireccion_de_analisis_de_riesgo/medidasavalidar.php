@@ -320,7 +320,7 @@ a:focus {
                   $contador = 0;
                         $query= "SELECT * FROM medidas
                         inner join validar_medida on medidas.id = validar_medida.id_medida
-                        WHERE validar_medida.validacion = 'false' AND medidas.estatus = 'EJECUTADA'";
+                        WHERE validar_medida.validacion = 'false' AND medidas.estatus = 'EJECUTADA' limit 20";
                         $rq = $mysqli->query($query);
                            while($row = $rq->fetch_assoc()){
                              $contador = $contador + 1;
