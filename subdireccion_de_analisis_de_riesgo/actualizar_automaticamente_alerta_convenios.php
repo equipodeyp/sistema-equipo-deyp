@@ -4,7 +4,7 @@
 // CONSULTA DE LA TABLA DE ALERTAS DE CONVENIOS
 date_default_timezone_set("America/Mexico_City");
 $semaforo = '';
-echo $obtenfechaactualprincipal = date('Y-m-d');
+$obtenfechaactualprincipal = date('Y-m-d');
 $alert_convs = "SELECT * FROM alerta_convenios
                           WHERE fecha_termino >= '$obtenfechaactualprincipal'";
 $ralert_convs = $mysqli->query($alert_convs);

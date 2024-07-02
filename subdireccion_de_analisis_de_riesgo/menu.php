@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+error_reporting(0);
 date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 include("actualizar_automaticamente_alerta_convenios.php");
@@ -320,9 +321,6 @@ a:focus {
 		   				if ($user=='lorenzomm') {
 							echo "
                 <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS <br> MÉDICAS</button> </a>
-                  
-
-
 							";
 						  }
 
@@ -371,6 +369,37 @@ a:focus {
             <tbody>
               <?php
               $contador = 0;
+              $obtenfechaactualprincipal1 = date('Y-m-d'); echo "<br>";
+              $obtenfechaactualprincipal2 = date('Y-m-d');
+              $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
+              $get3dyas= "SELECT * FROM alerta_convenios WHERE estatus != 'HECHO' AND fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1' ORDER BY fecha_termino ASC";
+              $rget3dyas = $mysqli->query($get3dyas);
+              while ($fget3dyas = $rget3dyas->fetch_assoc()) {
+                $contador = $contador + 1;
+                ?>
+                <tr>
+                  <td style="text-align:center"><?php echo $contador ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['expediente']; ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['id_unico']; ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['fecha_inicio']; ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['fecha_termino']; ?></span></td>
+                  <td style="text-align:center"><?php echo '0'; ?></span></td>
+                  <td style="text-align:center">
+                    <?php
+                    echo "<a href='#edit_".$fget3dyas['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
+                     ?>
+                  </td>
+                  <td style="text-align:center"><?php
+                  echo '	  <div class="alert alert-info alert-dismissable fade in">
+                              <strong style="color:#000000">¡FINALIZADO!</strong>
+                            </div> ';
+                  ?></span></td>
+                  <td style="text-align:center"><?php echo 'TERMINADO'; ?></span></td>
+                  <?php include('add_observacion_alerta1.php'); ?>
+                </tr>
+                <?php
+
+              }
                     $query= "SELECT * FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15 ORDER BY dias_restantes ASC";
                     $rq = $mysqli->query($query);
                        while($row = $rq->fetch_assoc()){
@@ -379,6 +408,7 @@ a:focus {
                          $dper = "SELECT * FROM alerta_convenios WHERE id = '$id_per'";
                          $rdper = $mysqli->query($dper);
                          $fdper = $rdper->fetch_assoc();
+                         ///////////////////////////////////////////////////////
                          $diasfaltantesent = $row['dias_restantes'];
                          $idpersonal_ent = $row['id_unico'];
                          $foliopersonaexpediente_ent = $row['expediente'];
@@ -394,6 +424,7 @@ a:focus {
                            $dia_ent = 'DÍAS';
                          }
               ?>
+
               <tr>
                  <td style="text-align:center"><?php echo $contador ?></span></td>
                  <td style="text-align:center"><?php echo $row['expediente']; ?></span></td>
@@ -409,17 +440,17 @@ a:focus {
                  <td style="text-align:center">
                    <?php
                    if ($row['semaforo'] === 'ROJO') {
-                     echo '<script type="text/javascript">toastr.error("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     // echo '<script type="text/javascript">toastr.error("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
                      echo '	  <div class="alert alert-danger alert-dismissable fade in">
                                  <strong style="color:#000000">¡ATENCIÓN!</strong>
                                </div> ';
                    }elseif ($row['semaforo'] === 'AMARILLO') {
-                     echo '<script type="text/javascript">toastr.warning("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     // echo '<script type="text/javascript">toastr.warning("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
                      echo '	  <div class="alert alert-warning alert-dismissable fade in">
                                  <strong style="color:#000000">¡ALERTA!</strong>
                                </div> ';
                    }elseif ($row['semaforo'] === 'VERDE') {
-                     echo '<script type="text/javascript">toastr.success("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     // echo '<script type="text/javascript">toastr.success("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
                      echo '	  <div class="alert alert-success alert-dismissable fade in">
                                  <strong style="color:#000000; text-align:center">PRECAUCIÓN!</strong>
                                </div> ';
@@ -435,91 +466,12 @@ a:focus {
             </tbody>
            </table>
         </div>
-
-
-
-        <div class="">
-            <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                              <h3 style="text-align:center">Registros</h3>
-                                <tr>
-                                    <th style="text-align:center">NO</th>
-                                    <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
-                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCION</th>
-                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
-                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
-                                    <th style="text-align:center">VALIDACION DEL EXPEDIENTE DE PROTECCION</th>
-                                    <th style="text-align:center">DETALLES</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                              $contador = 0;
-                              $sql = "SELECT * FROM expediente";
-                              $resultado = $mysqli->query($sql);
-                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
-                              $fol_exp =$row['fol_exp'];
-
-                              $tabla="SELECT * FROM expediente";
-                              $var_resultado = $mysqli->query($tabla);
-
-                              while ($var_fila=$var_resultado->fetch_array())
-                              {
-                                $contador = $contador + 1;
-                                $fol_exp2=$var_fila['fol_exp'];
-
-                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
-                                $r=$mysqli->query($cant);
-                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
-
-                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
-                                $result=$mysqli->query($abc);
-                                if($result)
-                                {
-                                  while($row=mysqli_fetch_assoc($result))
-                                  {
-                                    echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
-                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
-                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
-                                      echo "<i class='fas fa-check'></i>";
-                                    }elseif ($var_fila['validacion'] == 'false') {
-                                      echo "<i class='fas fa-times'></i>";
-                                    } echo "</td>";
-                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open color-icon'></span></a></td>";
-
-                                    echo "</tr>";
-
-                                  }
-
-                                }
-                              }
-                            ?>
-                            </tbody>
-                           </table>
-                        </div>
-                    </div>
-            </div>
-        </div>
       </div>
     </div>
-
-
 
   <div class="contenedor">
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
-
 
   <!-- modal del glosario -->
   <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
