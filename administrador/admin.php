@@ -482,17 +482,17 @@ a:focus {
 <?php 
 if ($_SESSION['usuario'] == 'a-adriana'){
   echo "<script src='../js/notification1.js'></script>";
-  echo $_SESSION['usuario'];
+  // echo $_SESSION['usuario'];
 }
 
 if($_SESSION['usuario'] == 'a-jonathan'){
   echo "<script src='../js/notification2.js'></script>";
-  echo $_SESSION['usuario'];
+  // echo $_SESSION['usuario'];
 }
 
 if($_SESSION['usuario'] == 'a-gabriela'){
   echo "<script src='../js/notification3.js'></script>";
-  echo $_SESSION['usuario'];
+  // echo $_SESSION['usuario'];
 }
 ?>
 

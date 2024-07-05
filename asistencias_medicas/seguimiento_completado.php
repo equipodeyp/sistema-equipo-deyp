@@ -151,7 +151,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">ID ASISTENCIA MÉDICA</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">TRASLADO REALIZADO</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">SE PRESENTÓ A LA ASISTENCIA MÉDICA</th>
-                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</th>
+                                <!-- <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</th> -->
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">DIAGNÓSTICO</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">CITA DE SEGUIMIENTO</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">ETAPA</th>
@@ -188,7 +188,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['traslado_realizado']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['se_presento']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_pdi']?></td>
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_pdi']?></td> -->
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['diagnostico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['cita_seguimiento']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['etapa']?></td>
@@ -248,7 +248,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>MEDICAMENTOS REGISTRADOS PARA LA SISTENCIA MÉDICA: $id_asistencia_medica</h3>
+                            <h3 style='text-align:center'>MEDICAMENTOS REGISTRADOS PARA LA ASISTENCIA MÉDICA: $id_asistencia_medica</h3>
                           </div>
                         </div>
                       <div>

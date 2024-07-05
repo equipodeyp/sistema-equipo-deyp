@@ -330,7 +330,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
                   <div class="form-group">
-                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASITENCIA MÉDICA</label>
+                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>

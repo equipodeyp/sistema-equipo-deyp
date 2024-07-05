@@ -34,7 +34,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user;
+echo $m_user;
 
 
 
@@ -247,8 +247,69 @@ a:focus {
 }
 /*  */
   </style>
+
+<link rel="stylesheet" href="../css/button_notification.css" type="text/css">
+
 </head>
 <body>
+<?php 
+if ($_SESSION['usuario'] == 'nanotzin'){
+  echo "
+      <div class='notify-enlace'>
+
+        <div class='notify-btn-enlace' id='notify-btn-enlace'>
+          <button type='button' class='icon-button-enlace'>
+          <span><img src='../image/asistencias_medicas/bell.png' width='60' height='60'></span>
+          <span class='icon-button__badge-enlace' id='show_notif_enlace'>0</span>
+          </button>
+        </div>
+
+        <div class='notify-menu-enlace' id='notify-menu-enlace'>
+        </div>
+        
+      </div>
+  ";
+
+}
+
+if($_SESSION['usuario'] == 'brendabrs'){
+  echo "
+      <div class='notify-ejecucion'>
+
+        <div class='notify-btn-ejecucion' id='notify-btn-ejecicion'>
+          <button type='button' class='icon-button-ejecucion'>
+          <span><img src='../image/asistencias_medicas/bell.png' width='60' height='60'></span>
+          <span class='icon-button__badge-ejecucion' id='show_notif_ejecucion'>0</span>
+          </button>
+        </div>
+
+        <div class='notify-menu-ejecucion' id='notify-menu-ejecucion'>
+        </div>
+        
+      </div>
+  ";
+
+}
+
+
+?>
+
+<!-- <div class="notify">
+
+
+  <div class="notify-btn" id="notify-btn">
+    <button type="button" class="icon-button">
+    <span><img src="../image/asistencias_medicas/bell.png" width="60" height="60"></span>
+    <span class="icon-button__badge" id="show_notif">0</span>
+    </button>
+  </div>
+
+  <div class="notify-menu" id="notify-menu">
+  </div>
+  
+</div> -->
+
+
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
@@ -456,6 +517,20 @@ echo " </ul>
 
     <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
 
+
+<?php 
+if ($_SESSION['usuario'] == 'nanotzin'){
+  echo "<script src='../js/notification_enlace.js'></script>";
+  // echo $_SESSION['usuario'];
+}
+
+if($_SESSION['usuario'] == 'brendabrs'){
+  echo "<script src='../js/notification_ejecucion.js'></script>";
+  // echo $_SESSION['usuario'];
+}
+
+
+?>
 
 
 </body>

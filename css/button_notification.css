@@ -44,9 +44,6 @@
 
     }
 
-
-
-
     
     .icon-button {
         /* position: relative; */
@@ -90,6 +87,183 @@
 
 
 
+/********************************************************** SUB DE ENLACE *************************************************/
 
 
-    
+.notify-enlace {
+    position: relative;
+}
+.notify-btn-enlace {
+    margin-right: 100px;
+    margin-top: 300px;
+    float: right;
+}
+.notify-menu-enlace {
+    overflow: hidden;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    position: fixed;
+    width: 170px;
+    top: 265px;
+    right: 130px;
+    display: none;
+
+
+}
+.show-enlace {
+    display: block;
+}
+.notify-menu-enlace li {
+    text-decoration: none;
+    background: #edecec;
+    padding: 0.5rem;
+    font-size: 1.7rem;
+    width: 100%;
+    list-style: none;        
+    text-align: center;
+    color: rgb(250, 249, 249);
+}
+.notify-menu-enlace li:hover {
+    background-color:#959e9d;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.notify-menu-enlace a{
+    text-decoration: none;
+    color: rgb(12, 12, 12);
+
+}
+
+
+
+.icon-button-enlace {
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    color: #333333;
+    background: #c6c4c5;
+    border: none;
+    border-radius: 50%;
+    outline: 2px solid rgb(208, 206, 206);
+    outline-offset: 3px;
+    position: fixed;
+    top: 200px;
+    right: 80px;
+    z-index: 99;
+}
+.icon-button-enlace:hover {
+    cursor: pointer;
+}
+.icon-button-enlace:active {
+    background: #e1e3e1;
+}
+.icon-button__badge-enlace {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    background: red;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+
+
+
+/******************************************************** SUB DE EJECUCION **************************************************/
+
+
+
+
+.notify-ejecucion {
+    position: relative;
+}
+.notify-btn-ejecucion {
+    margin-right: 100px;
+    margin-top: 300px;
+    float: right;
+}
+.notify-menu-ejecucion {
+    overflow: hidden;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    position: fixed;
+    width: 170px;
+    top: 265px;
+    right: 130px;
+    display: none;
+
+
+}
+.show-ejecucion {
+    display: block;
+}
+.notify-menu-ejecucion li {
+    text-decoration: none;
+    background: #edecec;
+    padding: 0.5rem;
+    font-size: 1.7rem;
+    width: 100%;
+    list-style: none;        
+    text-align: center;
+    color: rgb(250, 249, 249);
+}
+.notify-menu-ejecucion li:hover {
+    background-color:#959e9d;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.notify-menu-ejecucion a{
+    text-decoration: none;
+    color: rgb(12, 12, 12);
+
+}
+
+
+
+.icon-button-ejecucion {
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    color: #333333;
+    background: #c6c4c5;
+    border: none;
+    border-radius: 50%;
+    outline: 2px solid rgb(208, 206, 206);
+    outline-offset: 3px;
+    position: fixed;
+    top: 200px;
+    right: 80px;
+    z-index: 99;
+}
+.icon-button-ejecucion:hover {
+    cursor: pointer;
+}
+.icon-button-ejecucion:active {
+    background: #e1e3e1;
+}
+.icon-button__badge-ejecucion {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    background: red;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}

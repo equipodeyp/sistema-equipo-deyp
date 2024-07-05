@@ -310,6 +310,8 @@ $respuesta6=$resultado6->fetch_assoc();
                     <label for="" class="">TURNADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta3['turnar_asistencia']; ?>">
                   </div>
+                  <?php 
+                  if ($respuesta3['turnar_asistencia'] == 'SI') { ?>
 
                   <div class="col-md-6 mb-3">
                     <label for="" class="">NÚMERO DE OFICIO MEDIANTE EL CUAL SE TURNA</label>
@@ -322,6 +324,9 @@ $respuesta6=$resultado6->fetch_assoc();
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta3['fecha_oficio']; ?>">
                   </div>
 
+                  <?php } ?>
+
+
 
                    <div id="cabecera">
                     <div class="row alert div-title">
@@ -329,12 +334,14 @@ $respuesta6=$resultado6->fetch_assoc();
                     </div>
                   </div>
 
-                  
+
                   <div class="col-md-6 mb-3">
                     <label for="" class="">NOTIFICADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta4['notificar_subdireccion']; ?>">
                   </div>
-
+                  
+                  <?php 
+                  if ($respuesta4['notificar_subdireccion'] == 'SI') { ?>
                   <div class="col-md-6 mb-3">
                     <label for="" class="">NÚMERO DE OFICIO MEDIANTE EL CUAL SE NOTIFICA</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta4['numero_oficio_notificacion']; ?>">
@@ -344,9 +351,7 @@ $respuesta6=$resultado6->fetch_assoc();
                     <label for="" class="">FECHA DE RECEPCIÓN DEL OFICIO</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta4['fecha_oficio_notificacion']; ?>">
                   </div>
-
-
-          
+                  <?php } ?>
                 
                   <!-- <div id="cabecera">
                     <div class="row alert div-title">

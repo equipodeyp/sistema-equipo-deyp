@@ -213,16 +213,16 @@ $m_user = strtoupper($m_user);
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
 
 
-                        <!-- <select class="form-control" id="id_asistencia" name="id_asistencia" required>
-                            <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option> -->
+                        <select class="form-control" id="id_asistencia" name="id_asistencia" required>
+                            <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option>
                               <?php
                               // echo $m_user; 
                                   if ($m_user == 'NANOTZIN') {
 
-                                    echo "
-                                    <select class='form-control' id='id_asistencia' name='id_asistencia' required>
-                                      <option disabled selected value=''>SELECCIONE EL ID ASISTENCIA</option>
-                                     ";
+                                    // echo "
+                                    // <select class='form-control' id='id_asistencia' name='id_asistencia' required>
+                                    //   <option disabled selected value=''>SELECCIONE EL ID ASISTENCIA</option>
+                                    //  ";
 
                                     $select1 = "SELECT solicitud_asistencia.id_asistencia
                                     FROM solicitud_asistencia";
@@ -234,8 +234,8 @@ $m_user = strtoupper($m_user);
                                         <option value='$result_folio'>$result_folio</option>";
                                     }
 
-                                    echo "
-                                    </select>";
+                                    // echo "
+                                    // </select>";
 
                                   } 
 
@@ -249,16 +249,14 @@ $m_user = strtoupper($m_user);
                                       while($valores1 = $answer1->fetch_assoc()){
                                       $result_folio = $valores1['id_asistencia'];
                                       echo "
-                                      <select class='form-control' id='id_asistencia' name='id_asistencia' required>
-                                        <option disabled selected value=''>SELECCIONE EL ID ASISTENCIA</option>
                                         <option value='$result_folio'>$result_folio</option>
-                                      </select>";
+                                      ";
                                     }
 
                                   }
                                   
                               ?>
-                        <!-- </select> -->
+                        </select>
                         <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
                         
                       </div>

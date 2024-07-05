@@ -136,9 +136,9 @@ $row=$result->fetch_assoc();
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DOMICILIO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>MUNICIPIO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA AGENDADA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA AGENDADA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DIAS RESTANTES</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA AGENDADA</th>                                
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DIAS RESTANTES</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SEGUIMIENTO</th>
                             </tr>
                         </thead>
@@ -241,12 +241,48 @@ $row=$result->fetch_assoc();
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row2['fecha_asistencia']?></td>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['hora_asistencia']?></td>
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes']?></td>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+                                                                        <?php 
+                                                                          if ($row2['dias_restantes'] >= 0) { ?>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes']?></td>
+                                                                        <?php } ?>
+                                                                        <?php 
+                                                                          if ($row2['dias_restantes'] <-2) { ?>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "Sin registro"?></td>
+                                                                        <?php } ?>
+                                                                        <?php 
+                                                                          if ($row2['dias_restantes'] < 0 && $row2['dias_restantes'] >-3) { ?>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "0"?></td>
+                                                                        <?php } ?>
+                                                                        
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                            <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
+                                                                        <!-- <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
                                                                               REGISTRAR <br> SEGUIMIENTO
+                                                                        </a> -->
+                                                                        <?php 
+                                                                          if ($row2['dias_restantes'] >= -2 && $row2['dias_restantes'] <= 0) { ?>
+
+                                                                            <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
+                                                                                  REGISTRAR <br> SEGUIMIENTO
                                                                             </a>
+
+                                                                          <?php } 
+                                                                          if ($row2['dias_restantes'] >= 1) {
+                                                                            echo "
+                                                                              <a style='color: black; cursor: not-allowed;' class='btn btn-outline-warning'>
+                                                                                EN ESPERA <br> DEL REGISTRO
+                                                                              </a> 
+                                                                            ";
+                                                                          } 
+
+                                                                          if ($row2['dias_restantes'] < -2) {
+                                                                            echo "
+                                                                              <a style='color: black; cursor: not-allowed;' class='btn btn-outline-danger'>
+                                                                                SEGUIMIENTO <br> NO REGISTRADO
+                                                                              </a> 
+                                                                            ";
+                                                                          } 
+                                                                        ?>
                                                                         </td>
                                                         </tr>
 
