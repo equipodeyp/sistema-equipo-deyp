@@ -1,11 +1,11 @@
-const notify_btn = document.getElementById('notify-btn-enlace');
-const notify_label = document.getElementById('show_notif_enlace');
-const notify_container = document.getElementById('notify-menu-enlace');
+const notify_btn = document.getElementById('notify-btn-analisis');
+const notify_label = document.getElementById('show_notif_analisis');
+const notify_container = document.getElementById('notify-menu-analisis');
 
 let xhr = new XMLHttpRequest();
 
 function notify_me(){
-    xhr.open('GET', '../asistencias_medicas/select_enlace.php', true);
+    xhr.open('GET', '../subdireccion_de_analisis_de_riesgo/select_analisis.php', true);
 
     xhr.send();
 
@@ -38,7 +38,7 @@ notify_btn.addEventListener('click', (e)=>{
 
     notify_container.classList.toggle('show');
 
-    xhr.open('GET', '../asistencias_medicas/data_enlace.php', true);
+    xhr.open('GET', '../subdireccion_de_analisis_de_riesgo/data_analisis.php', true);
 
     xhr.send();
 
@@ -51,7 +51,7 @@ notify_btn.addEventListener('click', (e)=>{
             let data = JSON.parse(xhr.responseText);
 
             data.forEach(message => {
-                let li = `<li><a href="./solicitudes_registradas.php">Solicitud de Asistencia Médica Registrada: <br> ${message.msg}</a></li>`;
+                let li = `<li><a href="../subdireccion_de_analisis_de_riesgo/detalle_asistencia_completada.php?id_asistencia=${message.msg}">Seguimiento Registrado: <br> ${message.msg}</a></li>`;
 
                 notify_container.innerHTML += li;
             });

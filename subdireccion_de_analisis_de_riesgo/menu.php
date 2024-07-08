@@ -280,8 +280,31 @@ a:focus {
   }
   </style>
 
+<link rel="stylesheet" href="../css/button_notification.css" type="text/css">
+
+
 </head>
 <body>
+
+
+
+<div class="notify-analisis">
+
+
+  <div class="notify-btn-analisis" id="notify-btn-analisis">
+    <button type="button" class="icon-button-analisis">
+    <span><img src="../image/asistencias_medicas/bell.png" width="60" height="60"></span>
+    <span class="icon-button__badge-analisis" id="show_notif_analisis">0</span>
+    </button>
+  </div>
+
+  <div class="notify-menu-analisis" id="notify-menu-analisis">
+  </div>
+  
+</div>
+
+
+
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
@@ -511,5 +534,10 @@ document.getElementById('show_alert').style.display = "";
   document.getElementById('show_alert').style.display = "none";
 }
 </script>
+
+
+<script src='../js/notification_analisis.js'></script>
+
+
 </body>
 </html>

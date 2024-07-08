@@ -51,7 +51,7 @@ notify_btn.addEventListener('click', (e)=>{
             let data = JSON.parse(xhr.responseText);
 
             data.forEach(message => {
-                let li = `<li><a href="./atender_incidencia_asistencia.php?folio_incidencia=${message.msg}">${message.msg}</a></li>`;
+                let li = `<li><a href="../administrador/incidencia_asistencia_enproceso.php">Nueva incidencia registrada:<br>${message.msg}</a></li>`;
 
 
 

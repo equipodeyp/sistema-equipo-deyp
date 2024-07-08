@@ -34,7 +34,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-echo $m_user;
+// echo $m_user;
 
 
 
@@ -276,7 +276,7 @@ if($_SESSION['usuario'] == 'brendabrs'){
   echo "
       <div class='notify-ejecucion'>
 
-        <div class='notify-btn-ejecucion' id='notify-btn-ejecicion'>
+        <div class='notify-btn-ejecucion' id='notify-btn-ejecucion'>
           <button type='button' class='icon-button-ejecucion'>
           <span><img src='../image/asistencias_medicas/bell.png' width='60' height='60'></span>
           <span class='icon-button__badge-ejecucion' id='show_notif_ejecucion'>0</span>
@@ -294,20 +294,7 @@ if($_SESSION['usuario'] == 'brendabrs'){
 
 ?>
 
-<!-- <div class="notify">
 
-
-  <div class="notify-btn" id="notify-btn">
-    <button type="button" class="icon-button">
-    <span><img src="../image/asistencias_medicas/bell.png" width="60" height="60"></span>
-    <span class="icon-button__badge" id="show_notif">0</span>
-    </button>
-  </div>
-
-  <div class="notify-menu" id="notify-menu">
-  </div>
-  
-</div> -->
 
 
   <div class="contenedor">

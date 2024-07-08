@@ -247,11 +247,11 @@ $row=$result->fetch_assoc();
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes']?></td>
                                                                         <?php } ?>
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] <-2) { ?>
+                                                                          if ($row2['dias_restantes'] <-1) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "Sin registro"?></td>
                                                                         <?php } ?>
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] < 0 && $row2['dias_restantes'] >-3) { ?>
+                                                                          if ($row2['dias_restantes'] < 0 && $row2['dias_restantes'] >-2) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "0"?></td>
                                                                         <?php } ?>
                                                                         
@@ -260,7 +260,7 @@ $row=$result->fetch_assoc();
                                                                               REGISTRAR <br> SEGUIMIENTO
                                                                         </a> -->
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] >= -2 && $row2['dias_restantes'] <= 0) { ?>
+                                                                          if ($row2['dias_restantes'] >= -1 && $row2['dias_restantes'] <= 0) { ?>
 
                                                                             <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
                                                                                   REGISTRAR <br> SEGUIMIENTO
@@ -275,7 +275,7 @@ $row=$result->fetch_assoc();
                                                                             ";
                                                                           } 
 
-                                                                          if ($row2['dias_restantes'] < -2) {
+                                                                          if ($row2['dias_restantes'] < -1) {
                                                                             echo "
                                                                               <a style='color: black; cursor: not-allowed;' class='btn btn-outline-danger'>
                                                                                 SEGUIMIENTO <br> NO REGISTRADO
