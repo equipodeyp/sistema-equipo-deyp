@@ -373,7 +373,7 @@ a:focus {
 
 
   <div class="contenedor">
-        <a href="../subdireccion_de_analisis_de_riesgo/menu.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
+        <a href="menu.php" class="btn-flotante">REGRESAR</a>
         </div>
 
 

@@ -198,10 +198,15 @@ a:focus {
       </div>
       <div class="user">
         <?php
-        $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+        $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
         $result = $mysqli->query($sentencia);
         $row=$result->fetch_assoc();
         $genero = $row['sexo'];
+        $id_user = $row['id'];
+        $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+        $ruserfijo = $mysqli->query($userfijo);
+        $fuserfijo=$ruserfijo->fetch_assoc();
+        $permiso1 = $fuserfijo['permiso1'];
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -216,6 +221,7 @@ a:focus {
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
       </nav>
     </div>
@@ -316,16 +322,37 @@ a:focus {
     </div>
   </div>
   <div class="contenedor">
-    <div class="columns download">
-
-              <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a>
-
-    </div>
+    <?php
+    if ($permiso1 === 'consulta') {
+    ?>
+      <a href="../subdireccion_de_analisis_de_riesgo/menu.php" class="btn-flotante">REGRESAR</a>
+    <?php
+    }
+    ?>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
   </div>
-
-
-
+  <!-- modal del glosario -->
+  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin modal  -->
   <!-- modal del MANUAL DE USUARIO  -->
   <div class="modal fade" id="add_data_Modal_convenio2" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">

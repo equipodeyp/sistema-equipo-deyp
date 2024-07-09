@@ -300,7 +300,7 @@ a:focus {
 
   <div class="notify-menu-analisis" id="notify-menu-analisis">
   </div>
-  
+
 </div>
 
 
@@ -311,10 +311,17 @@ a:focus {
       </div>
       <div class="user">
         <?php
-        $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+        $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
         $result = $mysqli->query($sentencia);
         $row=$result->fetch_assoc();
         $genero = $row['sexo'];
+        $id_user = $row['id'];
+        $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+        $ruserfijo = $mysqli->query($userfijo);
+        $fuserfijo=$ruserfijo->fetch_assoc();
+        $permiso1 = $fuserfijo['permiso1'];
+        $permiso2 = $fuserfijo['permiso2'];
+        $permiso3 = $fuserfijo['permiso3'];
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -331,26 +338,26 @@ a:focus {
       <nav class="menu-nav">
           <ul>
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
-              <!-- <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span> Incidencia</span></a></li> -->
-              <!-- <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw"></i><span> Repositorio </span></a></li> -->
-              <!-- <a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items"> Glosario</span></a> -->
-              <!-- <a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items"> Busqueda</span></a> -->
-              <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items"> ESTADISTICA</span></a></li> -->
+              <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li>
+              <?php
+              if ($permiso2 === 'validar') {
+              ?>
+              <li><a href="#" onclick="location.href='./medidasavalidar.php'"><i class="color-icon fas fa-file-circle-check menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> VALIDAR MEDIDAS</span></a></li>
+              <?php
+              }
+              ?>
           </ul>
           <br><br>
           <ul>
 				    <?php
 
-		   				if ($user=='lorenzomm') {
+		   				if ($permiso3 ==='solicitar') {
 							echo "
                 <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS <br> MÉDICAS</button> </a>
 							";
 						  }
 
 					?>
-
-          <a style='text-align:center' class='user-nombre' href='./medidasavalidar.php'><button type='button' class='btn btn-light'>MEDIDAS A VALIDAR </button> </a>
-
           </ul>
       </nav>
     </div>
