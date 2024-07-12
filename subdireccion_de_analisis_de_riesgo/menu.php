@@ -1,6 +1,6 @@
 <?php
 /*require 'conexion.php';*/
-error_reporting(0);
+// error_reporting(0);
 date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 include("actualizar_automaticamente_alerta_convenios.php");
@@ -288,22 +288,48 @@ a:focus {
 
 
 
-<div class="notify-analisis">
+<?php
+// echo 'hola';
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$genero = $row['sexo'];
+$id_user = $row['id'];
+$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+$ruserfijo = $mysqli->query($userfijo);
+$fuserfijo=$ruserfijo->fetch_assoc();
+$permiso1 = $fuserfijo['permiso1'];
+$permiso2 = $fuserfijo['permiso2'];
+$permiso3 = $fuserfijo['permiso3'];
+// echo $permiso3;
 
 
-  <div class="notify-btn-analisis" id="notify-btn-analisis">
-    <button type="button" class="icon-button-analisis">
-    <span><img src="../image/asistencias_medicas/bell.png" width="60" height="60"></span>
-    <span class="icon-button__badge-analisis" id="show_notif_analisis">0</span>
+$cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$m_user'";
+$rcl = $mysqli->query($cl);
+$fcl = $rcl->fetch_assoc();
+// echo $fcl['t'];
+
+if ($permiso3=='solicitar') {
+  echo "
+
+<div class='notify-analisis'>
+
+
+  <div class='notify-btn-analisis' id='notify-btn-analisis'>
+    <button type='button' class='icon-button-analisis'>
+    <span><img src='../image/asistencias_medicas/bell.png' width='60' height='60'></span>
+    <span class='icon-button__badge-analisis' id='show_notif_analisis'>0</span>
     </button>
   </div>
 
-  <div class="notify-menu-analisis" id="notify-menu-analisis">
+  <div class='notify-menu-analisis' id='notify-menu-analisis'>
   </div>
 
 </div>
 
-
+";
+}
+?>
 
   <div class="contenedor">
     <div class="sidebar ancho">
@@ -322,6 +348,7 @@ a:focus {
         $permiso1 = $fuserfijo['permiso1'];
         $permiso2 = $fuserfijo['permiso2'];
         $permiso3 = $fuserfijo['permiso3'];
+        // echo $permiso3;
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -340,7 +367,9 @@ a:focus {
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
               <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li>
               <?php
+              // echo $permiso2;
               if ($permiso2 === 'validar') {
+                
               ?>
               <li><a href="#" onclick="location.href='./medidasavalidar.php'"><i class="color-icon fas fa-file-circle-check menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> VALIDAR MEDIDAS</span></a></li>
               <?php
@@ -548,3 +577,4 @@ document.getElementById('show_alert').style.display = "";
 
 </body>
 </html>
+

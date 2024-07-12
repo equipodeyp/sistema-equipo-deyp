@@ -316,12 +316,27 @@ a:focus {
 
 
 <?php
+
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$genero = $row['sexo'];
+$id_user = $row['id'];
+$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+$ruserfijo = $mysqli->query($userfijo);
+$fuserfijo=$ruserfijo->fetch_assoc();
+$permiso1 = $fuserfijo['permiso1'];
+$permiso2 = $fuserfijo['permiso2'];
+$permiso3 = $fuserfijo['permiso3'];
+// echo $permiso3;
+
+
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$m_user'";
 $rcl = $mysqli->query($cl);
 $fcl = $rcl->fetch_assoc();
 // echo $fcl['t'];
 
-if ($user=='lorenzomm') {
+if ($permiso3=='solicitar') {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>

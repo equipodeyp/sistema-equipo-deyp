@@ -253,7 +253,24 @@ a:focus {
 </head>
 <body>
 <?php 
-if ($_SESSION['usuario'] == 'nanotzin'){
+
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$genero = $row['sexo'];
+$id_user = $row['id'];
+$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+$ruserfijo = $mysqli->query($userfijo);
+$fuserfijo=$ruserfijo->fetch_assoc();
+$permiso1 = $fuserfijo['permiso1'];
+$permiso2 = $fuserfijo['permiso2'];
+$permiso3 = $fuserfijo['permiso3'];
+// echo $permiso1;
+// echo $permiso2;
+// echo $permiso3;
+
+
+if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
   echo "
       <div class='notify-enlace'>
 
@@ -272,7 +289,7 @@ if ($_SESSION['usuario'] == 'nanotzin'){
 
 }
 
-if($_SESSION['usuario'] == 'brendabrs'){
+if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
   echo "
       <div class='notify-ejecucion'>
 
@@ -376,7 +393,7 @@ $fcl2 = $rcl2->fetch_assoc();
 // echo $fcl['t2'];
 
 
-if ($user=='nanotzin') {
+if ($user=='enlace_sub' || $permiso3 == 'agendar') {
   echo "
 <ul class='ca-menu'>
 
@@ -434,7 +451,7 @@ echo " </ul>
 
 }
 
-if ($user=='brendabrs') {
+if ($user=='ejecucion_sub' || $permiso3 == 'solicitar') {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>
@@ -506,12 +523,12 @@ echo " </ul>
 
 
 <?php 
-if ($_SESSION['usuario'] == 'nanotzin'){
+if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
   echo "<script src='../js/notification_enlace.js'></script>";
   // echo $_SESSION['usuario'];
 }
 
-if($_SESSION['usuario'] == 'brendabrs'){
+if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
   echo "<script src='../js/notification_ejecucion.js'></script>";
   // echo $_SESSION['usuario'];
 }
