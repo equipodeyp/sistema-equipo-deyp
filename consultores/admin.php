@@ -207,6 +207,7 @@ a:focus {
         $ruserfijo = $mysqli->query($userfijo);
         $fuserfijo=$ruserfijo->fetch_assoc();
         $permiso1 = $fuserfijo['permiso1'];
+        $subdireccion = $fuserfijo['subdireccion'];
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -221,8 +222,10 @@ a:focus {
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
+        <ul>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">
@@ -324,9 +327,13 @@ a:focus {
   <div class="contenedor">
     <?php
     if ($permiso1 === 'consulta') {
-    ?>
-      <a href="../subdireccion_de_analisis_de_riesgo/menu.php" class="btn-flotante">REGRESAR</a>
-    <?php
+      if ($subdireccion === 'subdireccion de enlace interinstitucional') {
+        echo '<a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>';
+      }elseif ($subdireccion === 'Subdirección de Análisis de Riesgo') {
+        echo '<a href="../subdireccion_de_analisis_de_riesgo/menu.php" class="btn-flotante">REGRESAR</a>';
+      }elseif ($subdireccion === 'subdireccion de ejecucion de medidas') {
+        echo '<a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>';
+      }
     }
     ?>
     <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
@@ -375,9 +382,5 @@ a:focus {
     </div>
   </div>
   <!-- fin modal  -->
-
-
-
-
 </body>
 </html>

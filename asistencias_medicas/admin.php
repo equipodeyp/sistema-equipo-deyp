@@ -252,7 +252,7 @@ a:focus {
 
 </head>
 <body>
-<?php 
+<?php
 
 $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
@@ -283,7 +283,7 @@ if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
 
         <div class='notify-menu-enlace' id='notify-menu-enlace'>
         </div>
-        
+
       </div>
   ";
 
@@ -302,7 +302,7 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
 
         <div class='notify-menu-ejecucion' id='notify-menu-ejecucion'>
         </div>
-        
+
       </div>
   ";
 
@@ -339,13 +339,16 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
       </div>
 
       <nav class="menu-nav">
-
-
-
+        <ul>
+            <?php
+            if ($permiso1 === 'consulta') {
+            ?>
+            <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li>
+            <?php
+            }
+            ?>
+        </ul>
         <br><br>
-
-
-
       </nav>
     </div>
 
@@ -441,12 +444,12 @@ if ($user=='enlace_sub' || $permiso3 == 'agendar') {
                 </a>
               </li>
 
-              </ul> 
+              </ul>
             ";
-        
+
       }
 
-echo " </ul> 
+echo " </ul>
 ";
 
 }
@@ -465,7 +468,7 @@ if ($user=='ejecucion_sub' || $permiso3 == 'solicitar') {
   </a>
 </li>
 
-  
+
 <li style='text-align:center'>
   <a href='./asistencia_turnada.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
@@ -512,7 +515,7 @@ if ($user=='ejecucion_sub' || $permiso3 == 'solicitar') {
         }
 
 
-echo " </ul> 
+echo " </ul>
 ";
 }
 ?>
@@ -522,7 +525,7 @@ echo " </ul>
     <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
 
 
-<?php 
+<?php
 if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
   echo "<script src='../js/notification_enlace.js'></script>";
   // echo $_SESSION['usuario'];
