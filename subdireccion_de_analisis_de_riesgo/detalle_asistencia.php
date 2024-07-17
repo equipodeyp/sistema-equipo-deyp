@@ -59,6 +59,9 @@ $respuesta6=$resultado6->fetch_assoc();
 
 
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -282,8 +285,38 @@ $respuesta6=$resultado6->fetch_assoc();
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['hora_asistencia']; ?>">
                   </div>
 
+                  <?php
+                  $cl = "SELECT COUNT(*) as t FROM cita_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
+                          $rcl = $mysqli->query($cl);
+                          $fcl = $rcl->fetch_assoc();
 
-                  <div id="cabecera">
+                          // echo $fcl['t'];
+
+
+                          if ($fcl['t'] > 1){
+
+                            echo '<div id="cabecera">
+                              <div class="row alert div-title">
+                                <h3 style="text-align:center">FECHA Y HORA DE REPROGRAMACIÓN</h3>
+                              </div>
+                            </div>
+        
+                            <div class="col-md-6 mb-3">
+                              <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
+                              <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta6['fecha_asistencia']; echo '">
+                            </div>';
+
+                            echo '<div class="col-md-6 mb-3">
+                              <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
+                              <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta6['hora_asistencia']; echo '">
+                            </div>';
+
+                      } 
+
+                  ?>
+
+
+                  <!-- <div id="cabecera">
                     <div class="row alert div-title">
                       <h3 style="text-align:center">FECHA Y HORA DE REPROGRAMACIÓN</h3>
                     </div>
@@ -297,7 +330,7 @@ $respuesta6=$resultado6->fetch_assoc();
                   <div class="col-md-6 mb-3">
                     <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta6['hora_asistencia']; ?>">
-                  </div>
+                  </div> -->
 
               
                   <div id="cabecera">

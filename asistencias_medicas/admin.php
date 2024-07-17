@@ -366,11 +366,18 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
           </h1>
-          <br>
-          <br>
-          <h3 style="text-align:center">
+
+
+          <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h3>
+          </h4>
+
+          <br>
+          <br>
+
+          <h2 style="text-align:center">MENÚ ASISTENCIAS MÉDICAS
+          </h2>
+
         </div>
         <div class="row">
           <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
