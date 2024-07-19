@@ -218,14 +218,19 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         		  <div id="contenido">
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
-        		  			<th style="text-align:center">No.</th>
-                    <th style="text-align:center">FOLIO</th>
+                    <th style="text-align:center">NO.</th>
+                    <!-- <th style="text-align:center">FOLIO DE LA PERSONA</th> -->
+                    <th style="text-align:center">CATEGORIA DE LA MEDIDA</th>
                     <th style="text-align:center">TIPO DE MEDIDA</th>
-                    <th style="text-align:center">CLASIFICACIÓN DE LA MEDIDA</th>
-                    <th style="text-align:center">INCISO DE LA MEDIDA</th>
-                    <th style="text-align:center">ESTATUS</th>
+                    <th style="text-align:center">CLASIFICACIÓN DE MEDIDA</th>
+                    <th style="text-align:center">INCISO DE MEDIDA</th>
+                    <th style="text-align:center">FECHA DE MEDIDA PROVISIONAL</th>
+                    <th style="text-align:center">FECHA DE MEDIDA DEFINITIVA</th>
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
+                    <th style="text-align:center">ESTATUS</th>
+                    <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
+                    <!-- <th style="text-align:center">VALIDACIÓN</th> -->
                     <th style="text-align:center">
                     <?php
                     if ($tipo_status === 'SUJETO PROTEGIDO' || $tipo_status === 'PERSONA PROPUESTA'){
@@ -256,29 +261,52 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     while ($fila_valmeds = $res_valmeds->fetch_array()){
                       echo "<tr>";
           		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-                        echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
+                        // echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
+          		          echo "<td style='text-align:center'>"; echo $var_fila['categoria']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
+                        echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
                         echo "<td style='text-align:center'>"; if ($var_fila['medida'] === 'VI. OTRAS' || $var_fila['medida'] === 'XIII. OTRAS MEDIDAS') {
                           echo $var_fila['descripcion'];
                         }else {
                           echo $var_fila['medida'];
                         } echo "</td>";
-          		          echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-          		          echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
+          		          echo "<td style='text-align:center'>"; if ($var_fila['date_provisional'] != '0000-00-00') {
+                          echo date("d/m/Y", strtotime($var_fila['date_provisional']));
+                        } echo "</td>";
+                        echo "<td style='text-align:center'>"; if ($var_fila['date_definitva'] != '0000-00-00') {
+                          echo date("d/m/Y", strtotime($var_fila['date_definitva']));
+                        } echo "</td>";
+                        echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
                           echo date("d/m/Y", strtotime($var_fila['date_ejecucion']));
                         } echo "</td>";
-                        echo "<td style='text-align:center'>"; if ($fila_valmeds['validar_datos'] === 'true') {
+                        echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
+                        echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+                        // echo "<td <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+                        // echo "<td <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
+
+
+          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success btn-sm btn-block'>DETALLE</button> </a>";
+                        if ($fila_valmeds['validar_datos'] === 'true') {
                           echo "<i class='fas fa-check'></i>";
                         }elseif ($fila_valmeds['validar_datos'] === 'false') {
                           echo "<i class='fas fa-times'></i>";
-                        } echo "</td>";
-          		          echo "<td>  <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
-          		        echo "</tr>";
-                    }
+                        }
+          		            }
+                          echo "</td>";
+
+                        echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
+          		            }echo "</tr>";
+
+
+                      // <td style="text-align:center">
+                      //   <form method="POST" action="validar_medida_pendiente.php?folio=<?php echo $row['id_medida']; ?>
+                      <!-- //     <button type="submit" name="editar" class="btn color-btn-success"><span class="glyphicon glyphicon-check"></span>  VALIDAR</a> -->
+                        </form>
+
+                    <!-- }
 
         		      }
-        		      ?>
+        		      ?> -->
         		  	</table>
         		  </div>
         			<div id="footer">
