@@ -229,7 +229,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">ESTATUS</th>
                     <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
-                    <th style="text-align:center">VALIDACIÓN</th>
+                    <th style="text-align:center">VALIDACIÓN</th>                  
                     <!-- <th style="text-align:center">VALIDACIÓN</th> -->
                     <th style="text-align:center">
                     <?php
@@ -293,8 +293,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         }
           		            }
                           echo "</td>";
-
-                        echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
+                          if ($name === 'e-adriana') {
+                            echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
+                          }else {
+                            echo "<td>
+                            </td>";
+                          }
           		            }echo "</tr>";
 
 
