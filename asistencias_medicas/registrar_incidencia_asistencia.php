@@ -24,7 +24,7 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+// echo $m_user;
 // echo $user;
 // $f_exped = 'UPSIPPED/TOL/113/015/2022';
 // echo $f_exped;
@@ -130,7 +130,7 @@ $m_user = strtoupper($m_user);
             <a href="./admin.php">INICIO</a>
             <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
           </div>
-          
+
 
             <div class=" well form-horizontal">
               <div class="row">
@@ -216,7 +216,7 @@ $m_user = strtoupper($m_user);
                         <select class="form-control" id="id_asistencia" name="id_asistencia" required>
                             <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option>
                               <?php
-                              // echo $m_user; 
+                              // echo $m_user;
                                   if ($m_user == 'NANOTZIN') {
 
                                     // echo "
@@ -237,13 +237,12 @@ $m_user = strtoupper($m_user);
                                     // echo "
                                     // </select>";
 
-                                  } 
+                                  }
 
                                   else{
-                                    
+
                                     $select1 = "SELECT solicitud_asistencia.id_asistencia
-                                    FROM solicitud_asistencia
-                                    WHERE solicitud_asistencia.id_servidor = '$m_user'";
+                                    FROM solicitud_asistencia";
 
                                       $answer1 = $mysqli->query($select1);
                                       while($valores1 = $answer1->fetch_assoc()){
@@ -254,11 +253,11 @@ $m_user = strtoupper($m_user);
                                     }
 
                                   }
-                                  
+
                               ?>
                         </select>
                         <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
-                        
+
                       </div>
                       <!-- <h6>Nota: Digite el Id de la asistencia, si cuenta con él. En caso contrario deje el campo vacio.</h6> -->
                     </div>
@@ -300,7 +299,7 @@ $m_user = strtoupper($m_user);
                     <label for="estatus" class="col-md-4 control-label">ESTATUS DE LA INCIDENCIA</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-hourglass-start"></i></span> 
+                        <span class="input-group-addon"><i class="fas fa-solid fa-hourglass-start"></i></span>
                         <input readonly type="text" class="form-control"  id="estatus" name="estatus" placeholder="" value="EN PROCESO">
                       </div>
                     </div>
@@ -312,7 +311,7 @@ $m_user = strtoupper($m_user);
                     <label for="atencion" class="col-md-4 control-label">USUARIO EN ATENCIÓN</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span> 
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
                         <input readonly type="text" class="form-control"  id="atencion" name="atencion" placeholder="" value="">
                       </div>
                     </div>
@@ -325,7 +324,7 @@ $m_user = strtoupper($m_user);
                     <label for="descripcion" class="col-md-4 control-label" style="font-size: 16px">DESCRIPCIÓN BREVE DE LA FALLA</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
-                        
+
                         <textarea required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                         <h6>Ejemplo: En el apartado calendario no se visualizan las fechas del mes de Junio.</h6>
                       </div>
@@ -367,7 +366,7 @@ $m_user = strtoupper($m_user);
 
 
 <script src="../js/alert.js"></script>
-  
+
 
 
 
@@ -419,7 +418,7 @@ function obtenerRespuesta3(e){
 
 
   console.log(respuestaObtenida3);
- 
+
 
 }
 
