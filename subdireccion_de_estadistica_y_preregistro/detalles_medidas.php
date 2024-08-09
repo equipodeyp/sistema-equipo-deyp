@@ -229,7 +229,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">ESTATUS</th>
                     <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
-                    <th style="text-align:center">VALIDACIÓN</th>                  
+                    <th style="text-align:center">VALIDACIÓN</th>
                     <!-- <th style="text-align:center">VALIDACIÓN</th> -->
                     <th style="text-align:center">
                     <?php
@@ -240,7 +240,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </th>
         		  		</thead>
         		  		<?php
-                  $cont_med = '0';
+                  $cont_med = 0;
         		      $tabla="SELECT * FROM medidas
                   INNER JOIN validar_medida ON medidas.id = validar_medida.id_medida
                   WHERE medidas.id_persona = '$fol_exp' AND medidas.estatus = 'EN EJECUCION' OR validar_medida.validar_datos = 'false'";
@@ -255,13 +255,13 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
         		      {
 
                     $id_medida = $var_fila['id'];
-                    $cont_med = $cont_med + 1;
                     $val_meds = "SELECT * FROM validar_medida WHERE folioexpediente = '$name_folio' AND id_persona = '$id_person' AND id_medida = '$id_medida'";
                     $res_valmeds = $mysqli->query($val_meds);
                     while ($fila_valmeds = $res_valmeds->fetch_array()){
+                      $cont_med = $cont_med + 1;
                       echo "<tr>";
           		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
-                        // echo "<td style='text-align:center'>"; echo $idUnicoPersona.'-M0'.$cont_med; echo "</td>";
+
           		          echo "<td style='text-align:center'>"; echo $var_fila['categoria']; echo "</td>";
           		          echo "<td style='text-align:center'>"; echo $var_fila['tipo']; echo "</td>";
                         echo "<td style='text-align:center'>"; echo $var_fila['clasificacion']; echo "</td>";
@@ -291,7 +291,6 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         }elseif ($fila_valmeds['validar_datos'] === 'false') {
                           echo "<i class='fas fa-times'></i>";
                         }
-          		            }
                           echo "</td>";
                           if ($name === 'e-adriana') {
                             echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
@@ -299,7 +298,9 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                             echo "<td>
                             </td>";
                           }
-          		            }echo "</tr>";
+          		            }
+                          echo "</tr>";
+                        }
 
 
                       // <td style="text-align:center">
