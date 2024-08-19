@@ -18,7 +18,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+// echo $m_user;
 // echo $user;
 
 // echo "Agendar Asistencia Médica";
@@ -138,7 +138,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
           </div>
-          
+
 
             <div class=" well form-horizontal">
               <div class="row">
@@ -164,10 +164,14 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                         <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="" readonly value="<?php echo $id_asistencia_medica;?>">
                       </div>
                     </div>
+                    <div class="col-md-4">
+                      <a href="./solicitudes_registradas.php" class="btn-flotante">REGRESAR</a>
+                    </div>
                   </div>
 
 
                   <div class="form-group" id="turnar">
+
                     <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNAR A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -180,7 +184,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           <!-- <option value="NO">NO</option> -->
                         </select>
                       </div>
+
                     </div>
+
                   </div>
 
 
@@ -213,7 +219,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     </div>
                   </div>
 
-                  <!-- 
+                  <!--
 
                   <div class="form-group" id="siguiente-2" style="display: none;">
                     <label class="col-md-4 control-label"></label>
@@ -256,7 +262,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
   turnarSubdireccion.addEventListener('change', obtenerRespuesta);
-  
+
   function obtenerRespuesta(e){
 
     respuestaSeleccionada = e.target.value;
@@ -279,7 +285,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
     }
 
- 
+
 // console.log (respuestaObtenida);
 
 

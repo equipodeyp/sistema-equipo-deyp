@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -18,7 +19,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+// echo $m_user;
 // echo $user;
 
 // echo "Agendar Asistencia Médica";
@@ -138,7 +139,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
           </div> -->
-          
+
 
             <div class=" well form-horizontal">
               <div class="row">
@@ -155,13 +156,22 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                        <!-- Una vez que ha sido registrada la información de cada uno de los pasos no sera posible retroceder o cancelar el proceso, asegurarte de tener toda la informacíon a la mano. -->
                   </h3>
 
-                  
-                  <div class="alert div-title">
-                    <h3 style="text-align:center">1. AGENDAR ASISTENCIA MÉDICA</h3>
-                  </div>
 
-
-
+                  <?php
+                  $queryag = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_solicitud = $mysqli->query($queryag);
+                  $fresult_solicitud = $result_solicitud->fetch_assoc();
+                  $checkagendar = $fresult_solicitud['agendar'];
+                  if ($checkagendar === 'SI') {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">1. ASISTENCIA MÉDICA AGENDADA</h3>
+                    </div>';
+                  }else {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">1. AGENDAR ASISTENCIA MÉDICA</h3>
+                    </div>';
+                  }
+                  ?>
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
@@ -181,38 +191,44 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                         <?php
 
                         $count = 0;
-                        
+
                         $query = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
                         $result_solicitud = mysqli_query($mysqli, $query);
-            
+
                         while($row = mysqli_fetch_array($result_solicitud)) {
                             // echo "hola";
                             $servicio_medico = $row['servicio_medico'];
                             ?>
-                            
+
                             <input readonly class="form-control" id="servicio_medico" name="servicio_medico" value="<?php echo $servicio_medico; ?>">
                         <?php
                         }
                         ?>
-
-
-                        
                       </div>
                     </div>
                   </div>
-
-
 
                   <div class="form-group">
                     <label for="tipo_institucion" class="col-md-4 control-label" style="font-size: 16px">TIPO DE INSTITUCIÓN </label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-layer-group"></i></span>
-                        <select class="form-control" id="tipo_institucion" name="tipo_institucion" required>
+                          <?php
+                          $agendar = "SELECT * FROM agendar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+                          $ragendar = $mysqli->query($agendar);
+                          $fagendar = $ragendar->fetch_assoc();
+                          // $fagendar['tipo_institucion'];
+                          if ($checkagendar === 'SI') {
+                            // echo "<option value='"; echo $fagendar['tipo_institucion']; echo "'>"; echo $fagendar['tipo_institucion']; echo"</option>";
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['tipo_institucion']; echo '">';
+                          }else {
+                          ?>
+                          <select class="form-control" id="tipo_institucion" name="tipo_institucion" required>
                           <option disabled selected value="">SELECCIONA EL TIPO</option>
                             <?php while($row1 = $tipo_institucion->fetch_assoc()) {
                               echo "<option value='"; echo $row1['id']; echo "'>"; echo $row1['tipo']; echo"</option>";
-                            }?>
+                            }
+                          }?>
                         </select>
                       </div>
                     </div>
@@ -224,9 +240,16 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-place-of-worship"></i></span>
-                        <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
+                          <?php
+                          if ($checkagendar === 'SI') {
+                          echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['nombre_institucion']; echo '">';
+                          }else {
+                          ?>
+                          <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
                           <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
-
+                          <?php
+                          }
+                          ?>
                         </select>
                       </div>
                     </div>
@@ -238,10 +261,17 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <label for="domicilio_institucion" class="col-md-4 control-label" style="font-size: 16px">DOMICILIO DE LA INSTITUCIÓN </label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span> 
-                        <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
-                          <option disabled selected value="">SELECCIONA EL DOMICILIO</option>
-
+                        <span class="input-group-addon"><i class="fas fa-solid fa-globe"></i></span>
+                          <?php
+                          if ($checkagendar === 'SI') {
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['domicilio_institucion']; echo '">';
+                          }else {
+                          ?>
+                          <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
+                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                          <?php
+                          }
+                          ?>
                         </select>
                       </div>
                     </div>
@@ -253,15 +283,26 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
-                        <select class="form-control" id="municipio_institucion" name="municipio_institucion" required>
-                          <option disabled selected value="">SELECCIONA EL MUNICIPIO</option>
-
+                          <?php
+                          if ($checkagendar === 'SI') {
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['municipio_institucion']; echo '">';
+                          }else {
+                          ?>
+                          <select class="form-control" id="municipio_institucion" name="municipio_institucion" required>
+                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                          <?php
+                          }
+                          ?>
                         </select>
                       </div>
                     </div>
                   </div>
 
-
+                  <?php
+                  $citaasistencia = "SELECT * FROM cita_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+                  $rcitaasistencia = $mysqli->query($citaasistencia);
+                  $fcitaasistencia = $rcitaasistencia->fetch_assoc();
+                  ?>
 
 
                   <div class="form-group">
@@ -269,7 +310,16 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span readonly class="input-group-addon"></span>
-                        <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" value="" >
+                        <?php
+                        if ($checkagendar === 'SI') {
+                          // echo "<option value='"; echo $fagendar['municipio_institucion']; echo "'>"; echo $fagendar['municipio_institucion']; echo"</option>";
+                          echo '<input disabled name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" value="'; echo $fcitaasistencia['fecha_asistencia']; echo '">';
+                        }else {
+                        ?>
+                        <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" value="">
+                        <?php
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -279,7 +329,16 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                           <span readonly class="input-group-addon"></span>
+                          <?php
+                          if ($checkagendar === 'SI') {
+                            // echo "<option value='"; echo $fagendar['municipio_institucion']; echo "'>"; echo $fagendar['municipio_institucion']; echo"</option>";
+                            echo '<input disabled name="fecha_asistencia" type="time" class="form-control input-group-addon"  id="fecha_asistencia" value="'; echo $fcitaasistencia['hora_asistencia']; echo '">';
+                          }else {
+                          ?>
                           <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  value="">
+                          <?php
+                          }
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -289,7 +348,17 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <label for="observaciones_asistencia" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES DE LA ASISTENCIA </label>
                     <div class="col-md-4">
                       <div class="input-group">
+                        <?php
+                        if ($checkagendar === 'SI') {
+                          // echo "<option value='"; echo $fagendar['municipio_institucion']; echo "'>"; echo $fagendar['municipio_institucion']; echo"</option>";
+                          // echo '<input disabled name="fecha_asistencia" type="time" class="form-control input-group-addon"  id="fecha_asistencia" value="'; echo $fcitaasistencia['hora_asistencia']; echo '">';
+                          echo '<textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" disabled>'; echo $fagendar['observaciones']; echo '</textarea>';
+                        }else {
+                        ?>
                         <textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <?php
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -297,10 +366,21 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                      <?php
+                      $checkcita = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
+                      $rcheckcita = $mysqli->query($checkcita);
+                      $fcheckcita = $rcheckcita->fetch_assoc();
+                      $standby = $fcheckcita['agendar'];
+                      if ($standby === 'SI') {
+                        ?>
+                        <a  href="./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button> </a>
+                        <?php
+                      }else{
+                        echo '<button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>';
+                      }
+                      ?>
                     </div>
                   </div>
-
 
                 </form>
               </div>

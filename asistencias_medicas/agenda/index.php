@@ -10,7 +10,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
 
-$consulta_agenda = "SELECT DISTINCT(solicitud_asistencia.id_asistencia), solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa FROM solicitud_asistencia";
+$consulta_agenda = "SELECT DISTINCT(solicitud_asistencia.id_asistencia), solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa FROM solicitud_asistencia WHERE agendar = 'SI'";
 
 
 

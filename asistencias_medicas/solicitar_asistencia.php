@@ -18,7 +18,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+// echo $m_user;
 // echo $user;
 // $f_exped = 'UPSIPPED/TOL/113/015/2022';
 // echo $f_exped;
@@ -113,7 +113,7 @@ $m_user = strtoupper($m_user);
             <a href="../asistencias_medicas/admin.php">INICIO</a>
             <a class="actived" href="../asistencias_medicas/solicitar_asistencia.php">SOLICITAR ASISTENCIA MÉDICA</a>
           </div>
-          
+
 
             <div class=" well form-horizontal">
               <div class="row">
@@ -316,6 +316,7 @@ $m_user = strtoupper($m_user);
   </div>
 
   <div class="contenedor">
+    <?php echo "cambios"; ?>
     <a href="admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
@@ -323,7 +324,7 @@ $m_user = strtoupper($m_user);
   </div>
 
 
-              
+
 
 <!-- <script type="text/javascript">
   window.onload = function(){
@@ -343,7 +344,7 @@ $m_user = strtoupper($m_user);
     if(mes<10)
         mes='0'+mes
     document.getElementById('fecha_solicitud').value=dia+"/"+mes+"/"+ano;
-    
+
 }
 </script>
 
@@ -363,7 +364,7 @@ $m_user = strtoupper($m_user);
 
 
   folioexpediente.addEventListener('change', obtenerfolio);
-  
+
   function obtenerfolio(e){
 
     folio = e.target.value;
@@ -373,7 +374,7 @@ $m_user = strtoupper($m_user);
 
     separaranio = folioobtenido.split("/");
     anioSeparado = separaranio[4];
-    
+
     // console.log(anioSeparado);
 
 
@@ -429,7 +430,7 @@ $m_user = strtoupper($m_user);
   var idobtenido;
 
   id_sujeto.addEventListener('change', obtenerfolio);
-  
+
   function obtenerfolio(e){
 
     id = e.target.value;

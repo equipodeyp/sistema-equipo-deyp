@@ -90,14 +90,16 @@ $m = $r_m['municipio'];
 
 
 
-$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones) 
+$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones)
 VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia')";
 $result = $mysqli->query($query);
 
-$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia) 
-VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia')";
+$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, standby)
+VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia', 'SI')";
 $result2 = $mysqli->query($query2);
 
+$query3 = "UPDATE solicitud_asistencia SET  agendar= 'SI' WHERE id_asistencia = '$id_asistencia'";
+$result3 = $mysqli->query($query3);
 
 
 if($result) {
