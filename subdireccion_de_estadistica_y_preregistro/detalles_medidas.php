@@ -229,6 +229,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">FECHA DE EJECUCIÓN</th>
                     <th style="text-align:center">ESTATUS</th>
                     <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
+                    <th style="text-align:center">MOTIVO DE CONCLUSIÓN</th>
                     <th style="text-align:center">VALIDACIÓN</th>
                     <!-- <th style="text-align:center">VALIDACIÓN</th> -->
                     <th style="text-align:center">
@@ -259,6 +260,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     $res_valmeds = $mysqli->query($val_meds);
                     while ($fila_valmeds = $res_valmeds->fetch_array()){
                       $cont_med = $cont_med + 1;
+
+                      $idmedida=" SELECT * FROM multidisciplinario_medidas WHERE id_medida='$id_medida'";
+                      $ridmedida = $mysqli->query($idmedida);
+                      $fidmedida=$ridmedida->fetch_assoc();
+
+
                       echo "<tr>";
           		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
 
@@ -273,7 +280,10 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
           		          echo "<td style='text-align:center'>"; if ($var_fila['date_provisional'] != '0000-00-00') {
                           echo date("d/m/Y", strtotime($var_fila['date_provisional']));
                         } echo "</td>";
-                        echo "<td style='text-align:center'>"; if ($var_fila['date_definitva'] != '0000-00-00') {
+                        echo "<td style='text-align:center'>"; 
+                        if ($var_fila['date_definitva'] === '') {
+                          echo "";
+                        }else {
                           echo date("d/m/Y", strtotime($var_fila['date_definitva']));
                         } echo "</td>";
                         echo "<td style='text-align:center'>"; if ($var_fila['date_ejecucion'] != '0000-00-00') {
@@ -281,6 +291,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         } echo "</td>";
                         echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
                         echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
+                        echo "<td style='text-align:center'>"; echo $fidmedida['conclusionart35']; echo "</td>";
                         // echo "<td <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                         // echo "<td <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
 
