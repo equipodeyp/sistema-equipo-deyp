@@ -280,7 +280,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
           		          echo "<td style='text-align:center'>"; if ($var_fila['date_provisional'] != '0000-00-00') {
                           echo date("d/m/Y", strtotime($var_fila['date_provisional']));
                         } echo "</td>";
-                        echo "<td style='text-align:center'>"; 
+                        echo "<td style='text-align:center'>";
                         if ($var_fila['date_definitva'] === '') {
                           echo "";
                         }else {
@@ -291,7 +291,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         } echo "</td>";
                         echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
                         echo "<td style='text-align:center'>"; echo $var_fila['ejecucion']; echo "</td>";
-                        echo "<td style='text-align:center'>"; echo $fidmedida['conclusionart35']; echo "</td>";
+                        echo "<td style='text-align:center'>"; if ($fidmedida['acuerdo'] === 'OTRO' || $fidmedida['acuerdo'] === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO') {
+                          echo $fidmedida['conclusionart35'];
+                        }else {
+                          echo $fidmedida['acuerdo'];
+                        }
+
+
+                        echo "</td>";
                         // echo "<td <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                         // echo "<td <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
 
