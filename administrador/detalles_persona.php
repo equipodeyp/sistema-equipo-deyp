@@ -325,9 +325,21 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <input class="form-control" id="FECHA_NACIMIENTO_PERSONA" name="FECHA_NACIMIENTO_PERSONA" placeholder=""  type="date" value="<?php echo $rowfol['fechanacimientopersona']; ?>">
                   </div>
 
-                  <div class="col-md-6 mb-3 validar">
-                    <label for="EDAD_PERSONA">EDAD <span class="required"></span></label>
+                  <div class="col-md-3 mb-3 validar">
+                    <label for="EDAD_PERSONA">EDAD INICIAL<span class="required"></span></label>
                     <input readonly class="form-control" id="EDAD_PERSONA" name="EDAD_PERSONA" placeholder=""  type="text" value="<?php echo $rowfol['edadpersona']; ?>" maxlength="2">
+                  </div>
+
+                  <?php
+                  $fecha_nacimiento = new DateTime($rowfol['fechanacimientopersona']);
+                  $hoy = new DateTime();
+                  $edad = $hoy->diff($fecha_nacimiento);
+                  // echo $edad->y;
+                  ?>
+
+                  <div class="col-md-3 mb-3 validar">
+                    <label for="EDAD_ACTUAL">EDAD ACTUAL<span class="required"></span></label>
+                    <input readonly class="form-control" id="EDAD_ACTUAL" name="EDAD_ACTUAL" placeholder=""  type="text" value="<?php echo $edad->y.' años'; ?>" maxlength="2">
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
@@ -893,7 +905,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <div class="alert div-title">
                     <h3 style="text-align:center">RELACION CON OTRO(S) EXPEDIENTE(S) DE LA PERSONA PROPUESTA</h3>
                   </div>
-                  <div class="col-md-12 mb-3 validar">                    
+                  <div class="col-md-12 mb-3 validar">
                         <?php
                         $fol2=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
                         $resultfol2 = $mysqli->query($fol2);

@@ -227,7 +227,7 @@ if ($verifica_update_person == 1) {
 
 // UPDATE DATOS PERSONALERS
 /////////////////////////////
-  $datos_persona = "UPDATE datospersonales SET  identificador='$id_unico', nombrepersona='$n_persona', paternopersona='$p_persona', maternopersona='$m_persona', fechanacimientopersona='$f_persona', edadpersona='$e_persona', grupoedad='$g_persona', sexopersona='$s_persona',
+  $datos_persona = "UPDATE datospersonales SET  identificador='$id_unico', nombrepersona='$n_persona', paternopersona='$p_persona', maternopersona='$m_persona', fechanacimientopersona='$f_persona', grupoedad='$g_persona', sexopersona='$s_persona',
                     curppersona='$cu_persona', rfcpersona='$rfc_persona', aliaspersona='$m_persona', ocupacion='$o_persona', telefonofijo='$t_fijo', telefonocelular='$t_celular', incapaz='$incapaz', calidadpersona='$c_persona', calidadprocedimiento='$pro_persona', especifique='$especifique', foto='$userpic'  WHERE id = '$id_persona'";
                     $res_dat_per = $mysqli->query($datos_persona);
 
