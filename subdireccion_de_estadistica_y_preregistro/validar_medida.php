@@ -17,7 +17,7 @@ if ($verifica_update_person == 1) {
   $com_folio=" SELECT * FROM medidas WHERE id='$id_medida'";
   $res_fol = $mysqli->query($com_folio);
   $row_fol=$res_fol->fetch_assoc();
-  // $fol_exp = $row_fol['folioexpediente'];
+  $id_sujeto = $row_fol['id_persona'];
   // $id_unico = $row_fol['identificador'];
   // $folio = $rowfol['folioexpediente'];
   // echo $fol_exp;
@@ -32,7 +32,7 @@ if ($verifica_update_person == 1) {
   // validacion de update correcto
   if($res_validacion){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medida.php?id=$id_medida';
+     window.location.href='../subdireccion_de_estadistica_y_preregistro/detalles_medidas.php?folio=$id_sujeto';
      window.alert('!!!!!VALIDACION EXITOSA¡¡¡¡¡')
    </script>");
   }

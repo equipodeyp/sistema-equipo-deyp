@@ -369,7 +369,7 @@ if ($permiso3=='solicitar') {
               <?php
               // echo $permiso2;
               if ($permiso2 === 'validar') {
-                
+
               ?>
               <li><a href="#" onclick="location.href='./medidasavalidar.php'"><i class="color-icon fas fa-file-circle-check menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> VALIDAR MEDIDAS</span></a></li>
               <?php
@@ -525,6 +525,86 @@ if ($permiso3=='solicitar') {
             </tbody>
            </table>
         </div>
+        <?php
+        echo $_SESSION['usuario'];
+        if ($_SESSION['usuario'] === 'analisis2') {
+        ?>
+        <div class="">
+            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                              <h3 style="text-align:center">Registros para instrumento de adaptabilidad</h3>
+                                <tr>
+                                    <th style="text-align:center">NO</th>
+                                    <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
+                                    <th style="text-align:center">FOLIO DEL EXPEDIENTE DE PROTECCION</th>
+                                    <th style="text-align:center">PERSONAS PROPUESTAS</th>
+                                    <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+                                    <th style="text-align:center">VALIDACION DEL EXPEDIENTE DE PROTECCION</th>
+                                    <th style="text-align:center">DETALLES</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                              $contador = 0;
+                              $sql = "SELECT * FROM expediente";
+                              $resultado = $mysqli->query($sql);
+                              $row = $resultado->fetch_array(MYSQLI_ASSOC);
+                              $fol_exp =$row['fol_exp'];
+
+                              $tabla="SELECT * FROM expediente";
+                              $var_resultado = $mysqli->query($tabla);
+
+                              while ($var_fila=$var_resultado->fetch_array())
+                              {
+                                $contador = $contador + 1;
+                                $fol_exp2=$var_fila['fol_exp'];
+
+                                $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
+                                $r=$mysqli->query($cant);
+                                $row2 = $r->fetch_array(MYSQLI_ASSOC);
+
+                                $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
+                                $result=$mysqli->query($abc);
+                                if($result)
+                                {
+                                  while($row=mysqli_fetch_assoc($result))
+                                  {
+                                    echo "<tr>";
+                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; if ($var_fila['validacion'] == 'true') {
+                                      echo "<i class='fas fa-check'></i>";
+                                    }elseif ($var_fila['validacion'] == 'false') {
+                                      echo "<i class='fas fa-times'></i>";
+                                    } echo "</td>";
+                                    echo "<td style='text-align:center'><a href='detalles_expediente.php?folio=".$var_fila['fol_exp']."'><span class='glyphicon glyphicon-folder-open color-icon'></span></a></td>";
+
+                                    echo "</tr>";
+
+                                  }
+
+                                }
+                              }
+                            ?>
+                            </tbody>
+                           </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
       </div>
     </div>
 
@@ -577,4 +657,3 @@ document.getElementById('show_alert').style.display = "";
 
 </body>
 </html>
-

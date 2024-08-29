@@ -169,7 +169,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                     <a style='text-align:center' class='user-nombre' href='create_ticket.php?folio=$name_folio'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
                     <a style='text-align:center' class='user-nombre' href='instrumento_adaptabilidad.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INSTRUMENTO DE<BR> ADAPTABILIDAD</button> </a>
                     ";
-                    } elseif ($user === 'marielavm') {
+                  } elseif ($user === 'analisis2') {
                       echo "
                       <a style='text-align:center' class='user-nombre' href='instrumento_adaptabilidad.php?folio=$fol_exp'><button type='button' class='btn btn-light'>INSTRUMENTO DE<BR> ADAPTABILIDAD</button> </a>
                       ";
@@ -195,7 +195,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
             echo "<li><a class='active' href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$fol_exp'><span class='far fa-address-card'></span><span class='tab-text'>DATOS PERSONALES</span></a></li>
                   <li><a href='../subdireccion_de_analisis_de_riesgo/detalles_medidas.php?folio=$fol_exp'><span class='fas fa-book-open'></span><span class='tab-text'>MEDIDAS</span></a></li>
             ";
-            }elseif ($user=='marielavm') {
+          }elseif ($user=='analisis2') {
               echo "<li><a class='active' href='../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=$fol_exp'><span class='far fa-address-card'></span><span class='tab-text'>DATOS PERSONALES</span></a></li>
               ";
               }

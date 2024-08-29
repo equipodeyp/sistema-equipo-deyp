@@ -10,19 +10,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
 
-$consulta_agenda = "SELECT cita_asistencia.id_asistencia, cita_asistencia.id_sujeto, cita_asistencia.folio_expediente, cita_asistencia.fecha_asistencia, 
-cita_asistencia.hora_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, agendar_asistencia.nombre_institucion, 
-agendar_asistencia.municipio_institucion, agendar_asistencia.domicilio_institucion, agendar_asistencia.observaciones, solicitud_asistencia.etapa
-
-FROM cita_asistencia
-
-JOIN solicitud_asistencia
-ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia 
-
-JOIN agendar_asistencia
-ON cita_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-
-ORDER BY cita_asistencia.fecha_asistencia ASC";
+$consulta_agenda = "SELECT DISTINCT(solicitud_asistencia.id_asistencia), solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa FROM solicitud_asistencia WHERE agendar = 'SI'";
 
 
 
@@ -101,7 +89,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 						right: ''
 					},
 					defaultDate: Date().toGMTString,
-					navLinks: false, 
+					navLinks: false,
 					editable: false,
 					eventLimit: true,
 					showNonCurrentDates: false,
@@ -125,19 +113,27 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					events: [
 						<?php
 							while($registros_eventos = mysqli_fetch_array($resultado_agenda)){
+                $id_asis = $registros_eventos['id_asistencia'];
+                $sentenciaasistencia=" SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asis' limit 1";
+                $rsentenciaasistencia = $mysqli->query($sentenciaasistencia);
+                $fsentenciaasistencia=$rsentenciaasistencia->fetch_assoc();
+
+                $sentenciacita=" SELECT * FROM cita_asistencia WHERE id_asistencia='$id_asis' limit 1";
+                $rsentenciacita = $mysqli->query($sentenciacita);
+                $fsentenciacita=$rsentenciacita->fetch_assoc();
 								?>
 								{
 
-								id: '<?php echo $registros_eventos['id_asistencia']; ?>',
-								title: '<?php echo $registros_eventos['id_sujeto']." - ".$registros_eventos['hora_asistencia'] ; ?>',
-								folio: '<?php echo $registros_eventos['folio_expediente']; ?>',
-								start: '<?php echo $registros_eventos['fecha_asistencia']; ?>',
-								hora: '<?php echo $registros_eventos['hora_asistencia']; ?>',
+								id: '<?php echo $fsentenciacita['id_asistencia']; ?>',
+								title: '<?php echo $fsentenciacita['id_sujeto']." - ".$fsentenciacita['hora_asistencia'] ; ?>',
+								folio: '<?php echo $fsentenciacita['folio_expediente']; ?>',
+								start: '<?php echo $fsentenciacita['fecha_asistencia']; ?>',
+								hora: '<?php echo $fsentenciacita['hora_asistencia']; ?>',
 								servicio: '<?php echo $registros_eventos['servicio_medico']; ?>',
-								unidad: '<?php echo $registros_eventos['nombre_institucion']; ?>',
-								municipio: '<?php echo $registros_eventos['municipio_institucion']; ?>',
-								domicilio: '<?php echo $registros_eventos['domicilio_institucion']; ?>',
-								observaciones: '<?php echo $registros_eventos['observaciones']; ?>',
+								unidad: '<?php echo $fsentenciaasistencia['nombre_institucion']; ?>',
+								municipio: '<?php echo $fsentenciaasistencia['municipio_institucion']; ?>',
+								domicilio: '<?php echo $fsentenciaasistencia['domicilio_institucion']; ?>',
+								observaciones: '<?php echo $fsentenciaasistencia['observaciones']; ?>',
 								etapa: '<?php echo $registros_eventos['etapa']; ?>',
 
 								},<?php
@@ -146,7 +142,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					]
 				});
 			});
-			
+
 
 </script>
 
@@ -191,7 +187,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 
 
-	
+
 
 	<div class="container">
 	<div class="row">
@@ -199,7 +195,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 		<h4></h4>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-12">
 	<div class="panel-body">
@@ -210,7 +206,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 	<div id='calendar'></div>
 		</div>
-		
+
 <!--Inicio elementos contenedor-->
 		<div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
 			<div class="modal-dialog" role="document">
@@ -248,7 +244,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 				</div>
 			</div>
 		</div>
-		
+
 
 
 
@@ -262,7 +258,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 </div>
 
 
-	
+
 
 
 
@@ -277,54 +273,3 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
