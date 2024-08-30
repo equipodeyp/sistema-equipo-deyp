@@ -127,34 +127,53 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
           <article id="tab1">
 
             <!-- menu de navegacion de la parte de arriba -->
-          <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./admin.php">INICIO</a>
-            <a href="./solicitudes _registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR TURNAR Y NOTIFICAR</a>
-          </div> -->
-
           <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="./admin.php">INICIO</a>
+            <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
+            <a class="actived" href="./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR - TURNAR - NOTIFICAR</a>
+          </div>
+
+          <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="">INICIO</a>
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
-          </div>
+          </div> -->
           
 
             <div class=" well form-horizontal">
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#"  onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <li><a href="#"  onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a class="active" href="#"  onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
                 <form method="POST" action="guardar_notificar.php">
 
 
-                  <div class="alert div-title">
+
+                <?php
+                  $querynot = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_solicitud = $mysqli->query($querynot);
+                  $fresult_solicitud = $result_solicitud->fetch_assoc();
+                  $checknotificar = $fresult_solicitud['notificar'];
+                  if ($checknotificar === 'SI') {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">2. ASISTENCIA MÉDICA NOTIFICADA</h3>
+                    </div>';
+                  }else {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">3. NOTIFICAR ASISTENCIA MÉDICA</h3>
+                    </div>';
+                  }
+                  ?>
+
+
+
+                  <!-- <div class="alert div-title">
                     <h3 style="text-align:center">3. NOTIFICAR ASISTENCIA MÉDICA</h3>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
@@ -172,12 +191,28 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
-                        <!-- <input type="text" class="form-control"  id="notificar_subdireccion" name="notificar_subdireccion" value=""> -->
-                        <select class="form-control" id="notificar_subdireccion" name="notificar_subdireccion" required>
-                          <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
-                          <option value="SI">SI</option>
-                          <option value="NO APLICA"> NO APLICA</option>
-                        </select>
+
+                        <?php
+                          $notificar = "SELECT * FROM notificar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+                          $rnotificar = $mysqli->query($notificar);
+                          $fnotificar = $rnotificar->fetch_assoc();
+                          
+                          if ($checknotificar === 'SI') {
+                            
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fnotificar['notificar_subdireccion']; echo '">';
+                          }
+                          else {
+                          ?>
+
+                          <select class="form-control" id="notificar_subdireccion" name="notificar_subdireccion" required>
+                            <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
+                            <option value="SI">SI</option>
+                            <option value="NO APLICA"> NO APLICA</option>
+                          </select>
+
+                          <?php
+                          }
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -188,7 +223,20 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-                        <input autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
+                        <?php
+                          if ($checknotificar === 'SI') {
+
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fnotificar['numero_oficio_notificacion']; echo '">';
+                          }
+                          else {
+                          ?>
+
+                          <input autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
+                          
+                          <?php
+                          }
+                          ?>
+
                       </div>
                     </div>
                   </div>
@@ -200,7 +248,20 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
+
+                        <?php
+
+                        if ($checknotificar === 'SI') {
+                          echo '<input disabled class="form-control" id="" name="" value="'; echo $fnotificar['fecha_oficio_notificacion']; echo '">';
+                        }
+                        else {
+                        ?>
                         <input type="date" class="form-control"  id="fecha_oficio_notificacion" name="fecha_oficio_notificacion">
+
+                        <?php
+                        }
+                        ?>
+
                       </div>
                     </div>
                   </div>
@@ -209,10 +270,32 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <!-- <button id="siguiente" style="display: none; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button> -->
-                      <button id="boton_notificar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                      <?php
+                      $checknotificar = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
+                      $rchecknotificar = $mysqli->query($checknotificar);
+                      $fchecknotificar = $rchecknotificar->fetch_assoc();
+                      $standby = $fchecknotificar['notificar'];
+                      if ($standby === 'SI') {
+                      ?>
+                        <button onclick="window.location='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
+                      
+                      <?php
+                      }else{
+                        echo '<button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>';
+                      }
+                      ?>
+
                     </div>
                   </div>
+
+
+                  <!-- <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      
+                      <button id="boton_notificar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                    </div>
+                  </div> -->
 
 
                 </form>
@@ -224,10 +307,10 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
     </div>
   </div>
 
-<!-- <div class="contenedor">
-    <a href="./solicitudes _registradas.php" class="btn-flotante">REGRESAR</a>
-</div> -->
 
+<div class="contenedor">
+    <a href="./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>" class="btn-flotante">REGRESAR</a>
+</div>
 
 
 

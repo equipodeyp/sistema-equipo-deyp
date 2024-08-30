@@ -144,17 +144,33 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
+                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
                 <li><a class="active" href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
-                <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a href="#" onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
                 <form method="POST" action="guardar_turno.php">
 
+                <?php
+                  $querytur = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_solicitud = $mysqli->query($querytur);
+                  $fresult_solicitud = $result_solicitud->fetch_assoc();
+                  $checkturnar = $fresult_solicitud['turnar'];
+                  if ($checkturnar === 'SI') {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">2. ASISTENCIA MÉDICA TURNADA</h3>
+                    </div>';
+                  }else {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">2. TURNAR ASISTENCIA MÉDICA</h3>
+                    </div>';
+                  }
+                  ?>
 
-                  <div class="alert div-title">
+
+                  <!-- <div class="alert div-title">
                     <h3 style="text-align:center">2. TURNAR ASISTENCIA MÉDICA</h3>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
@@ -164,8 +180,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                         <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="" readonly value="<?php echo $id_asistencia_medica;?>">
                       </div>
                     </div>
+                    
                     <div class="col-md-4">
-                      <a href="./solicitudes_registradas.php" class="btn-flotante">REGRESAR</a>
+                      <!-- <a href="./solicitudes_registradas.php" class="btn-flotante">REGRESAR</a> -->
                     </div>
                   </div>
 
@@ -176,17 +193,31 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
-                        <!-- <input disabled type="text" class="form-control"  id="turnar_asistencia" name="turnar_asistencia" value="SI"> -->
-                        <select value class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
-                          <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
-                          <option value="SI">SI</option>
-                          <option value="NO APLICA">NO APLICA</option>
-                          <!-- <option value="NO">NO</option> -->
-                        </select>
+
+                        <?php
+                          $turnar = "SELECT * FROM turnar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+                          $rturnar = $mysqli->query($turnar);
+                          $fturnar = $rturnar->fetch_assoc();
+                          // $fagendar['tipo_institucion'];
+                          if ($checkturnar === 'SI') {
+                            // echo "<option value='"; echo $fagendar['tipo_institucion']; echo "'>"; echo $fagendar['tipo_institucion']; echo"</option>";
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fturnar['turnar_asistencia']; echo '">';
+                          }
+                          else {
+                          ?>
+
+                          <select value class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
+                            <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
+                            <option value="SI">SI</option>
+                            <option value="NO APLICA">NO APLICA</option>
+                          </select>
+
+                          <?php
+                          }
+                          ?>
+
                       </div>
-
                     </div>
-
                   </div>
 
 
@@ -195,7 +226,20 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-                        <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
+                        <?php
+                          if ($checkturnar === 'SI') {
+
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fturnar['oficio']; echo '">';
+                          }
+                          else {
+                          ?>
+
+                          <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
+                          
+                          <?php
+                          }
+                          ?>
+
                       </div>
                     </div>
                   </div>
@@ -206,7 +250,22 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
-                        <input value type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio">
+
+
+                        <?php
+
+                          if ($checkturnar === 'SI') {
+                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fturnar['fecha_oficio']; echo '">';
+                          }
+                          else {
+                          ?>
+                          <input value type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio">
+
+                          <?php
+                          }
+                          ?>
+
+
                       </div>
                     </div>
                   </div>
@@ -215,18 +274,26 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button id="boton_turnar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                      <?php
+                      $checkturno = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
+                      $rcheckturno = $mysqli->query($checkturno);
+                      $fcheckturno = $rcheckturno->fetch_assoc();
+                      $standby = $fcheckturno['turnar'];
+                      if ($standby === 'SI') {
+                      ?>
+                        <button onclick="window.location='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
+                      
+                      <?php
+                      }else{
+                        echo '<button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>';
+                      }
+                      ?>
+
                     </div>
                   </div>
 
-                  <!--
 
-                  <div class="form-group" id="siguiente-2" style="display: none;">
-                    <label class="col-md-4 control-label"></label>
-                    <div class="col-md-4">
-                      <button id="siguiente" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button>
-                    </div>
-                  </div> -->
+
 
 
 
@@ -239,9 +306,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
     </div>
   </div>
 
-<!-- <div class="contenedor">
-    <a href="./solicitudes _registradas.php" class="btn-flotante">REGRESAR</a>
-</div> -->
+<div class="contenedor">
+    <a href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>" class="btn-flotante">REGRESAR</a>
+</div>
 
 
 

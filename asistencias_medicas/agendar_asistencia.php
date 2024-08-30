@@ -131,7 +131,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">INICIO</a>
             <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR TURNAR Y NOTIFICAR</a>
+            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -146,9 +146,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
               <ul class="tabs">
                 <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
                 <form method="POST" action="./guardar_agenda.php">
 
@@ -373,7 +373,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       $standby = $fcheckcita['agendar'];
                       if ($standby === 'SI') {
                         ?>
-                        <a  href="./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>"> <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button> </a>
+                        <button onclick="window.location='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
                         <?php
                       }else{
                         echo '<button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>';

@@ -30,7 +30,8 @@ $query = "INSERT INTO turnar_asistencia (id_asistencia, turnar_asistencia, ofici
 VALUES ('$id_asistencia', '$turnar_asistencia', '$numero_oficio', '$fecha_oficio')";
 $result = $mysqli->query($query);
 
-
+$query3 = "UPDATE solicitud_asistencia SET turnar = 'SI' WHERE id_asistencia = '$id_asistencia'";
+$result3 = $mysqli->query($query3);
 
 
 
