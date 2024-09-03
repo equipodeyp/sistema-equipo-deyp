@@ -126,7 +126,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
             <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">INICIO</a>
             <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR - TURNAR - NOTIFICAR - REGISTRO COMPLETADO</a>
+            <a class="actived" href="./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR - 2. TURNAR - 3. NOTIFICAR - 4. REGISTRO COMPLETADO</a>
           </div>
           
 
@@ -135,9 +135,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
               <ul class="tabs">
                 <li><a href="#"  onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <li><a href="#"  onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
-                <li><a href="#" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a class="active" href="#" onclick="location.href='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <li><a href="#"  onclick="location.href='./turnada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#" onclick="location.href='./notificada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">4. REGISTRO COMPLETADO</span></a></li>
               </ul>
 
 
@@ -146,7 +146,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       <div class="row">
                         <div id="cabecera">
                           <div class="row alert div-title">
-                            <h3 style="text-align:center">REGISTRO COMPLETADO</h3>
+                            <h3 style="text-align:center">4. REGISTRO COMPLETADO</h3>
                           </div>
                         </div>
                       <div>

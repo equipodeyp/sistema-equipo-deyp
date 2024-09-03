@@ -130,7 +130,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">INICIO</a>
             <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR - TURNAR - NOTIFICAR</a>
+            <a class="actived" href="./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR - 2. TURNAR - 3. NOTIFICAR</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -145,7 +145,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
               <ul class="tabs">
                 <li><a href="#"  onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <li><a href="#"  onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./turnada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a class="active" href="#"  onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
@@ -186,23 +186,79 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-                  <div class="form-group" id="notificar">
+              <?php
+
+              $notificar = "SELECT * FROM notificar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+              $rnotificar = $mysqli->query($notificar);
+              $fnotificar = $rnotificar->fetch_assoc();
+
+              if ($checknotificar === 'SI') {
+                echo '
+                    <div class="form-group">
+
+                    <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNADA LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
+                      <div class="col-md-4">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
+
+                          <input disabled class="form-control" id="" name="" value="'; echo $fnotificar['notificar_subdireccion']; echo '">
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                ';
+
+                      if ($checknotificar === 'SI' && $fnotificar['notificar_subdireccion'] === "SI" ) {
+                        echo '
+                                <div class="form-group">
+                                  <label for="numero_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO REGISTRADO</label>
+                                  <div class="col-md-4">
+                                    <div class="input-group">
+                                      <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
+
+                                          <input disabled class="form-control" id="" name="" value="'; echo $fnotificar['numero_oficio_notificacion']; echo '">
+
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                  <label for="fecha_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO REGISTRADA</label>
+                                  <div class="col-md-4">
+                                    <div class="input-group">
+                                      <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
+
+                                      <input disabled class="form-control" id="" name="" value="'; echo $fnotificar['fecha_oficio_notificacion']; echo '">
+
+                                    </div>
+                                  </div>
+                                </div>
+
+                            
+
+                            ';
+                      }
+                      ?>
+                      
+                    <div class="form-group" id="guardar">
+                      <label class="col-md-4 control-label"></label>
+                      <div class="col-md-4">
+                          <button onclick="window.location='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
+                      </div>
+                    </div>
+              
+              <?php         
+
+              } else {
+
+                echo'<div class="form-group" id="notificar">
                     <label for="notificar_subdireccion" class="col-md-4 control-label" style="font-size: 16px">NOTIFICAR A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
-
-                        <?php
-                          $notificar = "SELECT * FROM notificar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
-                          $rnotificar = $mysqli->query($notificar);
-                          $fnotificar = $rnotificar->fetch_assoc();
-                          
-                          if ($checknotificar === 'SI') {
-                            
-                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fnotificar['notificar_subdireccion']; echo '">';
-                          }
-                          else {
-                          ?>
 
                           <select class="form-control" id="notificar_subdireccion" name="notificar_subdireccion" required>
                             <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
@@ -210,92 +266,104 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                             <option value="NO APLICA"> NO APLICA</option>
                           </select>
 
-                          <?php
-                          }
-                          ?>
                       </div>
                     </div>
                   </div>
 
 
-                  <div class="form-group" id="oficio">
+                  <div class="form-group" id="oficio" style="display: none;">
                     <label for="numero_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-                        <?php
-                          if ($checknotificar === 'SI') {
 
-                            echo '<input disabled class="form-control" id="" name="" value="'; echo $fnotificar['numero_oficio_notificacion']; echo '">';
-                          }
-                          else {
-                          ?>
-
-                          <input autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
+                          <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
                           
-                          <?php
-                          }
-                          ?>
-
                       </div>
                     </div>
                   </div>
 
 
 
-                  <div class="form-group" id="fecha">
+                  <div class="form-group" id="fecha" style="display: none;">
                     <label for="fecha_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
 
-                        <?php
-
-                        if ($checknotificar === 'SI') {
-                          echo '<input disabled class="form-control" id="" name="" value="'; echo $fnotificar['fecha_oficio_notificacion']; echo '">';
-                        }
-                        else {
-                        ?>
-                        <input type="date" class="form-control"  id="fecha_oficio_notificacion" name="fecha_oficio_notificacion">
-
-                        <?php
-                        }
-                        ?>
+                        <input value type="date" class="form-control"  id="fecha_oficio_notificacion" name="fecha_oficio_notificacion">
 
                       </div>
                     </div>
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="guardar" style="display: none;">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <?php
-                      $checknotificar = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
-                      $rchecknotificar = $mysqli->query($checknotificar);
-                      $fchecknotificar = $rchecknotificar->fetch_assoc();
-                      $standby = $fchecknotificar['notificar'];
-                      if ($standby === 'SI') {
-                      ?>
-                        <button onclick="window.location='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
-                      
-                      <?php
-                      }else{
-                        echo '<button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>';
-                      }
-                      ?>
 
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+
+                    </div>
+                  </div>
+                ';
+              }?>
+
+
+                  <!-- <div class="form-group" id="notificar">
+                    <label for="notificar_subdireccion" class="col-md-4 control-label" style="font-size: 16px">NOTIFICAR A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
+
+                          <select class="form-control" id="notificar_subdireccion" name="notificar_subdireccion" required>
+                            <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
+                            <option value="SI">SI</option>
+                            <option value="NO APLICA"> NO APLICA</option>
+                          </select>
+
+                      </div>
                     </div>
                   </div>
 
 
-                  <!-- <div class="form-group">
+                  <div class="form-group" id="oficio" style="display: none;">
+                    <label for="numero_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
+
+                          <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
+                          
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group" id="fecha" style="display: none;">
+                    <label for="fecha_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
+
+                        <input value type="date" class="form-control"  id="fecha_oficio_notificacion" name="fecha_oficio_notificacion">
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" id="guardar" style="display: none;">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      
-                      <button id="boton_notificar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+
                     </div>
                   </div> -->
+
+
 
 
                 </form>
@@ -335,19 +403,20 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
     respuestaSeleccionada = e.target.value;
     respuestaObtenida = respuestaSeleccionada;
 
-    if (respuestaObtenida == "NO APLICA" ){
+    if (respuestaObtenida == "NO APLICA" ){      
+      
+      document.getElementById("numero_oficio_notificacion").value = "";
+      document.getElementById("fecha_oficio_notificacion").value = "";
 
       document.getElementById("oficio").style.display = "none";
       document.getElementById("fecha").style.display = "none";
-      document.getElementById("numero_oficio_notificacion").value = "";
-      document.getElementById("fecha_oficio_notificacion").value = "";
-      // document.getElementById("boton_notificar").style.display = "none";
-      // document.getElementById("siguiente").style.display = "";
+      document.getElementById("guardar").style.display = "";
+
 
     } else {
       document.getElementById("oficio").style.display = "";
       document.getElementById("fecha").style.display = "";
-      // document.getElementById("siguiente").style.display = "none";
+      document.getElementById("guardar").style.display = "none";
 
     }
 
@@ -357,5 +426,71 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
   }
+
+  </script>
+
+
+
+
+<script type="text/javascript">
+
+  var numOficio = document.getElementById('numero_oficio_notificacion');
+
+  var respuestaSeleccionadaOficio;
+  var respuestaObtenidaOficio;
+
+  ////////////////////////////////////
+
+  var fechaOficio = document.getElementById('fecha_oficio_notificacion');
+
+  var respuestaSeleccionadaFecha;
+  var respuestaObtenidaFecha;
+
+
+  
+  ////////////////////////////////////
+
+
+  numOficio.addEventListener('change', obtenerRespuestaOficio);
+
+  function obtenerRespuestaOficio(e){
+
+    respuestaSeleccionadaOficio = e.target.value;
+    respuestaObtenidaOficio = respuestaSeleccionadaOficio;
+
+
+
+          fechaOficio.addEventListener('change', obtenerRespuestaFecha);
+
+              function obtenerRespuestaFecha(e){
+
+                respuestaSeleccionadaFecha = e.target.value;
+                respuestaObtenidaFecha = respuestaSeleccionadaFecha;
+
+                if (respuestaObtenidaOficio != "" && respuestaObtenidaFecha != ""){
+
+                  document.getElementById("guardar").style.display = "";
+                  // console.log (respuestaObtenidaOficio);
+                  // console.log (respuestaObtenidaFecha);
+                }
+
+
+                // console.log (respuestaObtenidaFecha);
+
+
+              }
+
+
+
+    // console.log (respuestaObtenidaOficio);
+
+  }
+
+
+
+
+
+
+
 
   </script>

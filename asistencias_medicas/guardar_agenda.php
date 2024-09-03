@@ -105,7 +105,7 @@ $result3 = $mysqli->query($query3);
 if($result) {
     echo $verifica;
     echo ("<script type='text/javaScript'>
-    window.location.href='./turnar_asistencia.php?id_asistencia_medica=$id_asistencia';
+    window.location.href='./agendar_asistencia.php?id_asistencia_medica=$id_asistencia';
     window.alert('!!!!!Registro exitoso¡¡¡¡¡')
 </script>");
     } else {  }

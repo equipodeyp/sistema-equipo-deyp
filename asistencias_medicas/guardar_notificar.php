@@ -42,7 +42,7 @@ $result3 = $mysqli->query($query3);
 if($result) {
     echo $verifica;
     echo ("<script type='text/javaScript'>
-    window.location.href='./registro_completado.php?id_asistencia_medica=$id_asistencia';
+    window.location.href='./notificar_asistencia.php?id_asistencia_medica=$id_asistencia';
     window.alert('!!!!!Registro exitoso¡¡¡¡¡')
 </script>");
     } else {  }

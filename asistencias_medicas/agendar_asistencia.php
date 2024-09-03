@@ -131,7 +131,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">INICIO</a>
             <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR</a>
+            <a class="actived" href="./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -143,13 +143,19 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
             <div class=" well form-horizontal">
               <div class="row">
+              <?php
+                  $queryag = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_solicitud = $mysqli->query($queryag);
+                  $fresult_solicitud = $result_solicitud->fetch_assoc();
+                  $checkagendar = $fresult_solicitud['agendar'];
 
+
+              ?>
+              
               <ul class="tabs">
                 <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <!-- <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
+
                 <form method="POST" action="./guardar_agenda.php">
 
                   <h3> Este apartado se conforma de 3 pasos (Agendar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
@@ -158,10 +164,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
                   <?php
-                  $queryag = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
-                  $result_solicitud = $mysqli->query($queryag);
-                  $fresult_solicitud = $result_solicitud->fetch_assoc();
-                  $checkagendar = $fresult_solicitud['agendar'];
+
                   if ($checkagendar === 'SI') {
                     echo '<div class="alert div-title">
                       <h3 style="text-align:center">1. ASISTENCIA MÉDICA AGENDADA</h3>
@@ -172,6 +175,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     </div>';
                   }
                   ?>
+
+
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
