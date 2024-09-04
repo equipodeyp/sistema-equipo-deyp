@@ -22,7 +22,18 @@ $m_user = strtoupper($m_user);
 // echo $m_user;
 // echo $user;
 
-// echo "Agendar Asistencia Médica";
+
+
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+
+// echo $name_user;
+// echo $name_serv;
 
 
 
@@ -176,6 +187,15 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   }
                   ?>
 
+                  <div class="form-group" style="display: none;">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
@@ -360,7 +380,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           echo '<textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" disabled>'; echo $fagendar['observaciones']; echo '</textarea>';
                         }else {
                         ?>
-                        <textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeypress="cancelar()" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                         <?php
                         }
                         ?>
@@ -399,8 +419,19 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 <div class="contenedor">
     <a href="./solicitudes_registradas.php" class="btn-flotante">REGRESAR</a>
 </div>
+
+
 <script src="../js/peticion_institucion_medica.js"></script>
 
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
 
 <script type="text/javascript">
 var today = new Date();

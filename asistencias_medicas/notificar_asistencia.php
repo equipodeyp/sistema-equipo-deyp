@@ -23,6 +23,17 @@ $m_user = strtoupper($m_user);
 
 // echo "Agendar Asistencia Médica";
 
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+
+// echo $name_user;
+// echo $name_serv;
+
 
 
 $id_asistencia_medica = $_GET["id_asistencia_medica"];
@@ -171,9 +182,15 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 
-                  <!-- <div class="alert div-title">
-                    <h3 style="text-align:center">3. NOTIFICAR ASISTENCIA MÉDICA</h3>
-                  </div> -->
+                  <div class="form-group" style="display: none;">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
@@ -310,58 +327,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
               }?>
 
 
-                  <!-- <div class="form-group" id="notificar">
-                    <label for="notificar_subdireccion" class="col-md-4 control-label" style="font-size: 16px">NOTIFICAR A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
 
-                          <select class="form-control" id="notificar_subdireccion" name="notificar_subdireccion" required>
-                            <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
-                            <option value="SI">SI</option>
-                            <option value="NO APLICA"> NO APLICA</option>
-                          </select>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group" id="oficio" style="display: none;">
-                    <label for="numero_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-
-                          <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
-                          
-                      </div>
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group" id="fecha" style="display: none;">
-                    <label for="fecha_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
-
-                        <input value type="date" class="form-control"  id="fecha_oficio_notificacion" name="fecha_oficio_notificacion">
-
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group" id="guardar" style="display: none;">
-                    <label class="col-md-4 control-label"></label>
-                    <div class="col-md-4">
-
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
-
-                    </div>
-                  </div> -->
 
 
 
@@ -385,6 +351,31 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 </body>
 </html>
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
+</script>
+
 
 <script type="text/javascript">
 

@@ -14,7 +14,7 @@ if ($verifica == 1) {
 
 $id_asistencia_medica = $_GET["id_asistencia_medica"];
 // echo $id_asistencia_medica;
-
+$nombre_servidor=$_POST['nombre_servidor'];
 $id_asistencia = $_POST["id_asistencia"];
 $turnar_asistencia=$_POST['turnar_asistencia'];
 $numero_oficio=$_POST['numero_oficio'];
@@ -26,8 +26,8 @@ $fecha_oficio=$_POST['fecha_oficio'];
 // echo $numero_oficio;
 // echo $fecha_oficio;
 
-$query = "INSERT INTO turnar_asistencia (id_asistencia, turnar_asistencia, oficio, fecha_oficio) 
-VALUES ('$id_asistencia', '$turnar_asistencia', '$numero_oficio', '$fecha_oficio')";
+$query = "INSERT INTO turnar_asistencia (id_asistencia, turnar_asistencia, oficio, fecha_oficio, servidor_registra) 
+VALUES ('$id_asistencia', '$turnar_asistencia', '$numero_oficio', '$fecha_oficio', '$nombre_servidor')";
 $result = $mysqli->query($query);
 
 $query3 = "UPDATE solicitud_asistencia SET turnar = 'SI' WHERE id_asistencia = '$id_asistencia'";

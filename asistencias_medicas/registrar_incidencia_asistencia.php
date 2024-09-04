@@ -24,6 +24,17 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+
+// echo $name_user;
+// echo $name_serv;
+
 // echo $m_user;
 // echo $user;
 // $f_exped = 'UPSIPPED/TOL/113/015/2022';
@@ -156,6 +167,16 @@ $m_user = strtoupper($m_user);
                       </div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                      </div>
+                    </div>
+                  </div>
 
 
                 <div class="form-group" >
@@ -325,7 +346,7 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
 
-                        <textarea required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                         <h6>Ejemplo: En el apartado calendario no se visualizan las fechas del mes de Junio.</h6>
                       </div>
                     </div>
@@ -365,10 +386,20 @@ $m_user = strtoupper($m_user);
   </div>
 
 
+
 <script src="../js/alert.js"></script>
 
 
 
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
 
 <!-- <script type="text/javascript">
 	$(document).ready(function(){

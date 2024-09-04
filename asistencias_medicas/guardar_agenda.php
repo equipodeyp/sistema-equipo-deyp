@@ -13,6 +13,10 @@ if ($verifica == 1) {
 
 
 
+
+    
+
+$nombre_servidor=$_POST['nombre_servidor'];
 $id_asistencia=$_POST['id_asistencia'];
 $tipo_institucion=$_POST['tipo_institucion'];
 $nombre_institucion=$_POST['nombre_institucion'];
@@ -21,7 +25,7 @@ $municipio_institucion=$_POST['municipio_institucion'];
 $fecha_asistencia=$_POST['fecha_asistencia'];
 $hora_asistencia=$_POST['hora_asistencia'];
 $observaciones_asistencia=$_POST['observaciones_asistencia'];
-$etapa = "EN AGENDA";
+// $etapa = "EN AGENDA";
 
 // $hora_i = '01:00:00';
 // $hora_f = '23:00:00';
@@ -90,12 +94,12 @@ $m = $r_m['municipio'];
 
 
 
-$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones)
-VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia')";
+$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones, servidor_registra)
+VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia', '$nombre_servidor')";
 $result = $mysqli->query($query);
 
-$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia)
-VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia')";
+$query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
+VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia', '$nombre_servidor')";
 $result2 = $mysqli->query($query2);
 
 $query3 = "UPDATE solicitud_asistencia SET  agendar= 'SI' WHERE id_asistencia = '$id_asistencia'";

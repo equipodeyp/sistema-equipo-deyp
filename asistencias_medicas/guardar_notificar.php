@@ -14,7 +14,7 @@ if ($verifica == 1) {
     $id_asistencia_medica = $_GET["id_asistencia_medica"];
     // echo $id_asistencia_medica;
 
-
+$nombre_servidor=$_POST['nombre_servidor'];
 $id_asistencia = $_POST["id_asistencia"];
 $notificar_subdireccion=$_POST['notificar_subdireccion'];
 $numero_oficio_notificacion=$_POST['numero_oficio_notificacion'];
@@ -27,8 +27,8 @@ $etapa = "AGENDADA, TURNADA Y NOTIFICADA";
 // echo $numero_oficio_notificacion;
 // echo $fecha_oficio_notificacion;
 
-$query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, numero_oficio_notificacion, fecha_oficio_notificacion) 
-VALUES ('$id_asistencia', '$notificar_subdireccion', '$numero_oficio_notificacion', '$fecha_oficio_notificacion')";
+$query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
+VALUES ('$id_asistencia', '$notificar_subdireccion', '$numero_oficio_notificacion', '$fecha_oficio_notificacion', '$nombre_servidor')";
 $result = $mysqli->query($query);
 
 $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";

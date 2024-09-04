@@ -10,9 +10,19 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
 
-$consulta_agenda = "SELECT DISTINCT(solicitud_asistencia.id_asistencia), solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa FROM solicitud_asistencia WHERE agendar = 'SI'";
+// $consulta_agenda = "SELECT DISTINCT(solicitud_asistencia.id_asistencia), solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa FROM solicitud_asistencia WHERE agendar = 'SI'";
 
+$consulta_agenda = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, solicitud_asistencia.id_sujeto, solicitud_asistencia.folio_expediente, solicitud_asistencia.etapa, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, agendar_asistencia.nombre_institucion, agendar_asistencia.nombre_institucion, agendar_asistencia.municipio_institucion, agendar_asistencia.domicilio_institucion, agendar_asistencia.observaciones
 
+FROM solicitud_asistencia
+
+JOIN cita_asistencia
+ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+
+JOIN agendar_asistencia
+ON cita_asistencia.id_asistencia = agendar_asistencia.id_asistencia
+
+ORDER BY cita_asistencia.fecha_asistencia ASC";
 
 $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
