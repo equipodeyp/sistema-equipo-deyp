@@ -154,13 +154,12 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
             <div class=" well form-horizontal">
               <div class="row">
+
               <?php
                   $queryag = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
                   $result_solicitud = $mysqli->query($queryag);
                   $fresult_solicitud = $result_solicitud->fetch_assoc();
                   $checkagendar = $fresult_solicitud['agendar'];
-
-
               ?>
               
               <ul class="tabs">
@@ -357,7 +356,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           <?php
                           if ($checkagendar === 'SI') {
                             // echo "<option value='"; echo $fagendar['municipio_institucion']; echo "'>"; echo $fagendar['municipio_institucion']; echo"</option>";
-                            echo '<input disabled name="fecha_asistencia" type="time" class="form-control input-group-addon"  id="fecha_asistencia" value="'; echo $fcitaasistencia['hora_asistencia']; echo '">';
+                            echo '<input disabled name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia" value="'; echo $fcitaasistencia['hora_asistencia']; echo '">';
                           }else {
                           ?>
                           <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  value="">

@@ -171,7 +171,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   $checknotificar = $fresult_solicitud['notificar'];
                   if ($checknotificar === 'SI') {
                     echo '<div class="alert div-title">
-                      <h3 style="text-align:center">2. ASISTENCIA MÉDICA NOTIFICADA</h3>
+                      <h3 style="text-align:center">3. ASISTENCIA MÉDICA NOTIFICADA</h3>
                     </div>';
                   }else {
                     echo '<div class="alert div-title">

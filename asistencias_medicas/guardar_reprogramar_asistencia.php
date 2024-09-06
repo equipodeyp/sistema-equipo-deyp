@@ -11,7 +11,7 @@ if ($verifica == 1) {
     $resultado = $mysqli->query($sentencia);
     $row=$resultado->fetch_assoc();
 
-
+    $nombre_servidor=$_POST['nombre_servidor'];
     $id_asistencia_medica = $_GET["id_asistencia_medica"];
     
     $fecha_asistencia = $_POST['fecha_asistencia'];
@@ -24,8 +24,8 @@ if ($verifica == 1) {
     $folio_expediente = $r_am['folio_expediente'];
     $id_sujeto = $r_am['id_sujeto'];
 
-
-
+    // echo $nombre_servidor;
+    // echo '<br>';
     // echo $id_asistencia_medica;
     // echo '<br>';
     // echo $folio_expediente;
@@ -38,20 +38,27 @@ if ($verifica == 1) {
     // echo '<br>';
 
 
-    $query = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia) 
-    VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$fecha_asistencia', '$hora_asistencia')";
+    $query = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra) 
+    VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$fecha_asistencia', '$hora_asistencia', '$nombre_servidor')";
     $result = $mysqli->query($query);
+
+    $query3 = "UPDATE solicitud_asistencia SET agendar = 'SI' WHERE id_asistencia = '$id_asistencia_medica'";
+    $result3 = $mysqli->query($query3);
     
     
     
     if($result) {
         echo $verifica;
         echo ("<script type='text/javaScript'>
-        window.location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=$id_asistencia_medica';
+        window.location.href='./reprogramar_asistencia.php?id_asistencia_medica=$id_asistencia_medica';
         window.alert('!!!!!Registro exitoso¡¡¡¡¡')
     </script>");
         } else {  }
-    } else {
+
+
+    } 
+    
+    else {
     echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=menu.php'>";
     }
     ?>

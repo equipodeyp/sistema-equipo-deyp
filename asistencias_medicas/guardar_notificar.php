@@ -34,7 +34,7 @@ $result = $mysqli->query($query);
 $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
 $res_etapa = $mysqli->query($actualizar_etapa);
 
-$query3 = "UPDATE solicitud_asistencia SET NOTIFICAR = 'SI' WHERE id_asistencia = '$id_asistencia'";
+$query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
 $result3 = $mysqli->query($query3);
 
 

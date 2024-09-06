@@ -171,8 +171,8 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                                                     FROM solicitud_asistencia
                                                     JOIN seguimiento_asistencia
                                                     ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia 
-                                                    AND seguimiento_asistencia.id_asistencia = '$id_asistencia_medica'
-                                                    ORDER BY seguimiento_asistencia.fecha_registro DESC
+                                                    
+                                                    ORDER BY seguimiento_asistencia.id DESC
                                                     LIMIT 1";
                                                     
                                                     

@@ -30,6 +30,17 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 // echo $id_asistencia_medica;
 
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+
+// echo $name_user;
+// echo $name_serv;
+
 
 
 
@@ -134,7 +145,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
             <a href="./admin.php">INICIO</a>
             <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
             <a href="./asistencias_reprogramadas.php">ASISTENCIAS MÉDICAS REPROGRAMADAS</a>
-            <a class="actived" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
+            <a class="actived" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR</a>
           </div>
 
           <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -144,15 +155,19 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
           </div> -->
           
 
+
+
             <div class=" well form-horizontal">
               <div class="row">
 
               <ul class="tabs">
-                <li><a class="active" href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. REPROGRAMAR</span></a></li>
-                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a class="active" href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
                 <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
+
+              
                 
 
                   <h3> Este apartado se conforma de 3 pasos (Reprogramar, Turnar y Notificar), para realizar el registro completo de la asistencia médica es necesario hacer el llenado de los mismos.
@@ -160,9 +175,32 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </h3>
 
                   
-                  <div class="alert div-title">
+                  <!-- <div class="alert div-title">
                     <h3 style="text-align:center">1. REPROGRAMAR ASISTENCIA MÉDICA</h3>
-                  </div>
+                  </div> -->
+
+
+                  <?php
+
+                  $queryag = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_solicitud = $mysqli->query($queryag);
+                  $fresult_solicitud = $result_solicitud->fetch_assoc();
+                  $checkagendar = $fresult_solicitud['agendar'];
+                  // echo $checkagendar;
+
+                  if ($checkagendar === 'SI') {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">1. ASISTENCIA MÉDICA REPROGRAMADA</h3>
+                    </div>';
+                  }else {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">1. REPROGRAMAR ASISTENCIA MÉDICA</h3>
+                    </div>';
+                  }
+                  ?>
+
+
+
 
 
 
@@ -315,6 +353,32 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
                 <form method="POST" action="./guardar_reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica;?>">
 
+                <div class="form-group" style="display: none;">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                      </div>
+                    </div>
+                  </div>
+
+                <?php
+                  $citaasistencia = "SELECT * 
+                                      FROM cita_asistencia 
+                                      WHERE id_asistencia ='JDLV-010-2021-AM01'
+                                      ORDER BY cita_asistencia.id DESC
+                                      LIMIT 1";
+
+                  $rcitaasistencia = $mysqli->query($citaasistencia);
+                  $fcitaasistencia = $rcitaasistencia->fetch_assoc();
+                  // echo $checkagendar;
+                  // echo '<br>';
+                  // echo $fcitaasistencia['fecha_asistencia'];
+                  // echo '<br>';
+                  // echo $fcitaasistencia['hora_asistencia'];
+                ?>
+
                 <!-- <br> -->
                 <h5 style="text-align:center"> Registra fecha y hora de reprogramación.</h5>
                 <!-- <br> -->
@@ -324,7 +388,19 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                        <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" placeholder="FECHA" value="" >
+
+                        <!-- <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" placeholder="FECHA" value="" > -->
+
+                        <?php
+                        if ($checkagendar === 'SI') {
+                          // echo "<option value='"; echo $fagendar['municipio_institucion']; echo "'>"; echo $fagendar['municipio_institucion']; echo"</option>";
+                          echo '<input disabled name="" type="date" class="form-control input-group-addon"  id="" value="'; echo $fcitaasistencia['fecha_asistencia']; echo '">';
+                        }else {
+                        ?>
+                        <input required name="fecha_asistencia" type="date" class="form-control"  id="fecha_asistencia" value="">
+                        <?php
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -334,7 +410,21 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                          <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  placeholder="HORA" value="">
+
+                          <!-- <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  placeholder="HORA" value=""> -->
+
+                          <?php
+                          if ($checkagendar === 'SI') {
+                            // echo "<option value='"; echo $fagendar['municipio_institucion']; echo "'>"; echo $fagendar['municipio_institucion']; echo"</option>";
+                            echo '<input disabled name="" type="time" class="form-control input-group-addon"  id="" value="'; echo $fcitaasistencia['hora_asistencia']; echo '">';
+                          }else {
+                          ?>
+                          <input required name="hora_asistencia" type="time" class="form-control"  id="hora_asistencia"  value="">
+                          <?php
+                          }
+                          ?>
+
+
                       </div>
                     </div>
                   </div>
@@ -355,7 +445,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                             // echo "hola";
                             $observaciones_asistencia = $row['observaciones'];
                             ?>
-                            <textarea disabled name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $observaciones_asistencia; ?>"></textarea>
+                            <textarea onkeypress="cancelar()" disabled name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $observaciones_asistencia; ?>"></textarea>
                         <?php
                         }
                         ?>
@@ -365,7 +455,22 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
-                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+
+                      <!-- <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button> -->
+                      <?php
+                      $checkcita = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
+                      $rcheckcita = $mysqli->query($checkcita);
+                      $fcheckcita = $rcheckcita->fetch_assoc();
+                      $standby = $fcheckcita['agendar'];
+                      if ($standby === 'SI') {
+                        ?>
+                        <button onclick="window.location='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
+                        <?php
+                      }else{
+                        echo '<button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>';
+                      }
+                      ?>
+
                     </div>
                   </div>
 
@@ -383,7 +488,15 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
     <a href="./asistencias_reprogramadas.php" class="btn-flotante">REGRESAR</a>
 </div>
 
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
 
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
 
 <script type="text/javascript">
 var today = new Date();

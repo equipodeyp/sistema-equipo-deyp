@@ -180,7 +180,7 @@ $row=$result->fetch_assoc();
 
 
                                                             <?php 
-                                                              if ($row['agendar'] === 'SI' && $row['turnar'] === '' && $row['notificar'] === ''){
+                                                              if ($row['agendar'] === 'SI' && $row['turnar'] === 'NO' && $row['notificar'] === 'NO'){
                                                               
                                                                   echo '
                                                                       <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
@@ -192,7 +192,7 @@ $row=$result->fetch_assoc();
                                                               
                                                               }
 
-                                                              else if ($row['agendar'] === 'SI' && $row['turnar'] === 'SI' && $row['notificar'] === ''){
+                                                              else if ($row['agendar'] === 'SI' && $row['turnar'] === 'SI' && $row['notificar'] === 'NO'){
                                                               
                                                                 echo '
                                                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
@@ -204,7 +204,7 @@ $row=$result->fetch_assoc();
                                                             
                                                               }
 
-                                                              else if ($row['agendar'] === '' && $row['turnar'] === '' && $row['notificar'] === ''){
+                                                              else if ($row['agendar'] === 'NO' && $row['turnar'] === 'NO' && $row['notificar'] === 'NO'){
                                                               
                                                                 echo '
                                                                     <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">

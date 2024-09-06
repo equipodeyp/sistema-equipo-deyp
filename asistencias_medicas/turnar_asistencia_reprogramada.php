@@ -24,7 +24,16 @@ $m_user = strtoupper($m_user);
 
 // echo "Agendar Asistencia Médica";
 
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
 
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+
+// echo $name_user;
+// echo $name_serv;
 
 $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
@@ -128,34 +137,59 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
           <article id="tab1">
 
             <!-- menu de navegacion de la parte de arriba -->
-          <!-- <div class="secciones form-horizontal sticky breadcrumb flat">
+          <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./admin.php">INICIO</a>
-            <a href="./solicitudes _registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">AGENDAR TURNAR Y NOTIFICAR</a>
-          </div> -->
-
+            <a href="./asistencias_reprogramadas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS REPROGRAMADAS</a>
+            <a class="actived" href="./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR - 2. TURNAR</a>
+          </div>
+<!-- 
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="">INICIO</a>
-            <!-- <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS REPROGRAMADAS</a>
-            <a class="actived" href="">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
+            <a class="actived" href="">1. AGENDAR - 2. TURNAR</a>
           </div>
-          
+           -->
 
             <div class=" well form-horizontal">
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. REPROGRAMAR</span></a></li>
+                <li><a href="#" onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
                 <li><a class="active" href="#" onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
-                <li><a href="#" onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
-                <li><a href="#" onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a href="#" onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li> -->
               </ul>
                 <form method="POST" action="guardar_turno_reprogramada.php">
 
 
-                  <div class="alert div-title">
+                  <!-- <div class="alert div-title">
                     <h3 style="text-align:center">2. TURNAR ASISTENCIA MÉDICA</h3>
+                  </div> -->
+
+                  <?php
+                  $queryturn = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_solicitud = $mysqli->query($queryturn);
+                  $fresult_solicitud = $result_solicitud->fetch_assoc();
+                  $checkturnar = $fresult_solicitud['turnar'];
+                  if ($checkturnar === 'SI') {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">2. ASISTENCIA MÉDICA TURNADA</h3>
+                    </div>';
+                  }else {
+                    echo '<div class="alert div-title">
+                      <h3 style="text-align:center">2. TURNAR ASISTENCIA MÉDICA</h3>
+                    </div>';
+                  }
+                  ?>
+
+                  <div class="form-group" style="display: none;">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                      </div>
+                    </div>
                   </div>
 
                   <div class="form-group">
@@ -169,60 +203,140 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-                  <div class="form-group" id="turnar">
-                    <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNAR A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
-                        <!-- <input disabled type="text" class="form-control"  id="turnar_asistencia" name="turnar_asistencia" value="SI"> -->
-                        <select value class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
-                          <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
-                          <option value="SI">SI</option>
-                          <option value="NO APLICA">NO APLICA</option>
-                          <!-- <option value="NO">NO</option> -->
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+                  <?php
 
+                $turnar = "SELECT * FROM turnar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+                $rturnar = $mysqli->query($turnar);
+                $fturnar = $rturnar->fetch_assoc();
+
+                if ($checkturnar === 'SI') {
+                  echo '
+                      <div class="form-group" id="turnar">
+
+                        <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNADA LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
+                        <div class="col-md-4">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
+
+                            <input disabled class="form-control" id="" name="" value="'; echo $fturnar['turnar_asistencia']; echo '">
+
+                          </div>
+                        </div>
+                      </div>
+                  ';
+
+
+
+
+                  
+                  if ($checkturnar === 'SI' && $fturnar['turnar_asistencia'] === "SI" ) { ?>
+                  
+                  
 
                   <div class="form-group" id="oficio">
-                    <label for="numero_oficio" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
+                    <label for="numero_oficio" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO REGISTRADO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-                        <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
+
+                            <input disabled class="form-control" id="" name="" value="<?php echo $fturnar['oficio']; ?>">
+
                       </div>
                     </div>
                   </div>
 
 
                   <div class="form-group" id="fecha">
-                    <label for="fecha_oficio" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
-                        <input value type="date" class="form-control"  id="fecha_oficio" name="fecha_oficio">
+                      <label for="fecha_oficio" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO REGISTRADA</label>
+                      <div class="col-md-4">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
+  
+                          <input disabled class="form-control" id="" name="" value="<?php echo $fturnar['fecha_oficio']; ?>">
+  
+                        </div>
                       </div>
                     </div>
-                  </div>
+                    
+                    
+                    <?php } ?>
 
 
-                  <div class="form-group">
-                    <label class="col-md-4 control-label"></label>
-                    <div class="col-md-4">
-                      <button id="boton_turnar" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+                    <div class="form-group" id="guardar">
+                      <label class="col-md-4 control-label"></label>
+                      <div class="col-md-4">
+                          <button onclick="window.location='./notificar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
+                      </div>
                     </div>
-                  </div>
 
-                  <!-- 
 
-                  <div class="form-group" id="siguiente-2" style="display: none;">
-                    <label class="col-md-4 control-label"></label>
-                    <div class="col-md-4">
-                      <button id="siguiente" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">SIGUIENTE</button>
-                    </div>
-                  </div> -->
+
+                    <?php } 
+                  
+                  
+                  else {
+                    echo '
+                          <div class="form-group" id="turnar">
+
+                            <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNAR A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
+                            <div class="col-md-4">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>
+
+                                  <select value class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
+                                    <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO APLICA">NO APLICA</option>
+                                  </select>
+
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group" id="oficio" style="display: none;">
+                            <label for="numero_oficio" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
+                            <div class="col-md-4">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
+
+                                  <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
+                                  
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <div class="form-group" id="fecha" style="display: none;">
+                            <label for="fecha_oficio" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
+                            <div class="col-md-4">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
+
+                                  <input value type="date" class="form-control" id="fecha_oficio" name="fecha_oficio">
+
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group" id="guardar" style="display: none;">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+
+                              <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR</button>
+
+                            </div>
+                          </div>
+
+                    ';
+                  }
+                  ?>
+
+
+
+
 
 
 
@@ -235,9 +349,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
     </div>
   </div>
 
-<!-- <div class="contenedor">
-    <a href="./solicitudes _registradas.php" class="btn-flotante">REGRESAR</a>
-</div> -->
+<div class="contenedor">
+    <a href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>" class="btn-flotante">REGRESAR</a>
+</div>
 
 
 
@@ -246,6 +360,31 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 </body>
 </html>
 
+
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("fecha_oficio").setAttribute("min", today);
+</script>
 
 <script type="text/javascript">
 
@@ -258,7 +397,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
   turnarSubdireccion.addEventListener('change', obtenerRespuesta);
-  
+
   function obtenerRespuesta(e){
 
     respuestaSeleccionada = e.target.value;
@@ -266,22 +405,22 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
     if (respuestaObtenida == "NO APLICA" ){
 
-      document.getElementById("oficio").style.display = "none";
-      document.getElementById("fecha").style.display = "none";
       document.getElementById("numero_oficio").value = "";
       document.getElementById("fecha_oficio").value = "";
-      // document.getElementById("boton_turnar-1").style.display = "none";
-      // document.getElementById("siguiente-2").style.display = "";
+
+      document.getElementById("oficio").style.display = "none";
+      document.getElementById("fecha").style.display = "none";
+      document.getElementById("guardar").style.display = "";
+
 
     } else {
       document.getElementById("oficio").style.display = "";
       document.getElementById("fecha").style.display = "";
-      // document.getElementById("siguiente-2").style.display = "none";
-      // document.getElementById("boton_turnar-1").style.display = "";
+      document.getElementById("guardar").style.display = "none";
 
     }
 
- 
+
 // console.log (respuestaObtenida);
 
 
@@ -289,3 +428,69 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
   }
 
   </script>
+
+
+
+<script type="text/javascript">
+
+  var numOficio = document.getElementById('numero_oficio');
+
+  var respuestaSeleccionadaOficio;
+  var respuestaObtenidaOficio;
+
+  ////////////////////////////////////
+
+  var fechaOficio = document.getElementById('fecha_oficio');
+
+  var respuestaSeleccionadaFecha;
+  var respuestaObtenidaFecha;
+
+
+  
+  ////////////////////////////////////
+
+
+  numOficio.addEventListener('change', obtenerRespuestaOficio);
+
+  function obtenerRespuestaOficio(e){
+
+    respuestaSeleccionadaOficio = e.target.value;
+    respuestaObtenidaOficio = respuestaSeleccionadaOficio;
+
+
+
+          fechaOficio.addEventListener('change', obtenerRespuestaFecha);
+
+              function obtenerRespuestaFecha(e){
+
+                respuestaSeleccionadaFecha = e.target.value;
+                respuestaObtenidaFecha = respuestaSeleccionadaFecha;
+
+                if (respuestaObtenidaOficio != "" && respuestaObtenidaFecha != ""){
+
+                  document.getElementById("guardar").style.display = "";
+                  // console.log (respuestaObtenidaOficio);
+                  // console.log (respuestaObtenidaFecha);
+                }
+
+
+                // console.log (respuestaObtenidaFecha);
+
+
+              }
+
+
+
+    // console.log (respuestaObtenidaOficio);
+
+  }
+
+
+
+
+
+
+
+
+  </script>
+

@@ -102,7 +102,7 @@ $query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistenc
 VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia', '$nombre_servidor')";
 $result2 = $mysqli->query($query2);
 
-$query3 = "UPDATE solicitud_asistencia SET  agendar= 'SI' WHERE id_asistencia = '$id_asistencia'";
+$query3 = "UPDATE solicitud_asistencia SET agendar = 'SI' WHERE id_asistencia = '$id_asistencia'";
 $result3 = $mysqli->query($query3);
 
 

@@ -21,6 +21,16 @@ $m_user = strtoupper($m_user);
 // echo $m_user; 
 // echo $user;
 
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+
+// echo $name_user;
+
 // echo "Agendar Asistencia Médica";
 
 
@@ -148,7 +158,15 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <h3 style="text-align:center">REGISTRO DE SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
                   </div>
 
-
+                  <div class="form-group" style="display: none;">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="form-group">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
@@ -318,7 +336,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <label for="informe_medico" class="col-md-4 control-label" style="font-size: 16px">INFORME MÉDICO</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <textarea value name="informe_medico" id="informe_medico" rows="6" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" value name="informe_medico" id="informe_medico" rows="6" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
@@ -331,7 +349,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <label for="observaciones_seguimiento" class="col-md-4 control-label" style="font-size: 16px">COMENTARIOS </label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <textarea value name="observaciones_seguimiento" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" value name="observaciones_seguimiento" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
@@ -364,6 +382,16 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 </body>
 </html>
+
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
 
 
 <script type="text/javascript">

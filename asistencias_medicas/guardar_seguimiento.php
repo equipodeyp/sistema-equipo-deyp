@@ -12,7 +12,7 @@ if ($verifica == 1) {
     $row=$resultado->fetch_assoc();
 
 
-
+$nombre_servidor=$_POST['nombre_servidor'];
 $id_asistencia = $_POST['id_asistencia'];
 $traslado = $_POST['traslado'];
 $se_presento = $_POST['se_presento'];
@@ -67,8 +67,8 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
     $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
-    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento) 
-    VALUES ('$id_asistencia', '$traslado', '$se_presento', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones_seguimiento')";
+    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra) 
+    VALUES ('$id_asistencia', '$traslado', '$se_presento', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones_seguimiento', '$nombre_servidor')";
     $result = $mysqli->query($query);
 
     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
@@ -97,12 +97,14 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
     $etapa = "ASISTENCIA MÉDICA COMPLETADA";
     
-    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, reprogramar, motivo, observaciones_seguimiento) 
-    VALUES ('$id_asistencia', '$traslado', '$reprogramar', '$motivo', '$observaciones_seguimiento')";
+    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, reprogramar, motivo, observaciones_seguimiento, servidor_registra) 
+    VALUES ('$id_asistencia', '$traslado', '$reprogramar', '$motivo', '$observaciones_seguimiento', '$nombre_servidor')";
     $result = $mysqli->query($query);
         
     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
     $res_etapa = $mysqli->query($actualizar_etapa);
+
+
         
         if($result) {
             echo $verifica;
@@ -128,12 +130,21 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
         $etapa = "ASISTENCIA MÉDICA REPROGRAMADA";
 
-        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, reprogramar, motivo, observaciones_seguimiento) 
-        VALUES ('$id_asistencia', '$traslado', '$reprogramar', '$motivo', '$observaciones_seguimiento')";
+        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, reprogramar, motivo, observaciones_seguimiento, servidor_registra) 
+        VALUES ('$id_asistencia', '$traslado', '$reprogramar', '$motivo', '$observaciones_seguimiento', '$nombre_servidor')";
         $result = $mysqli->query($query);
     
         $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
         $res_etapa = $mysqli->query($actualizar_etapa);
+
+        $actualizar_agendar = "UPDATE solicitud_asistencia SET agendar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_agendar = $mysqli->query($actualizar_agendar);
+    
+        $actualizar_turnar = "UPDATE solicitud_asistencia SET turnar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_turnar = $mysqli->query($actualizar_turnar);
+    
+        $actualizar_notificar = "UPDATE solicitud_asistencia SET notificar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_notificar = $mysqli->query($actualizar_notificar);
     
             if($result) {
                 echo $verifica;
@@ -160,8 +171,8 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
         $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
-        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, reprogramar, motivo, observaciones_seguimiento) 
-        VALUES ('$id_asistencia', '$traslado', '$se_presento', '$reprogramar', '$motivo', '$observaciones_seguimiento')";
+        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, reprogramar, motivo, observaciones_seguimiento, servidor_registra) 
+        VALUES ('$id_asistencia', '$traslado', '$se_presento', '$reprogramar', '$motivo', '$observaciones_seguimiento', '$nombre_servidor')";
         $result = $mysqli->query($query);
     
         $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
@@ -190,12 +201,21 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
         $etapa = "ASISTENCIA MÉDICA REPROGRAMADA";
 
-        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, reprogramar, motivo, observaciones_seguimiento) 
-        VALUES ('$id_asistencia', '$traslado', '$se_presento', '$reprogramar', '$motivo', '$observaciones_seguimiento')";
+        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, reprogramar, motivo, observaciones_seguimiento, servidor_registra) 
+        VALUES ('$id_asistencia', '$traslado', '$se_presento', '$reprogramar', '$motivo', '$observaciones_seguimiento', '$nombre_servidor')";
         $result = $mysqli->query($query);
     
         $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
         $res_etapa = $mysqli->query($actualizar_etapa);
+
+        $actualizar_agendar = "UPDATE solicitud_asistencia SET agendar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_agendar = $mysqli->query($actualizar_agendar);
+    
+        $actualizar_turnar = "UPDATE solicitud_asistencia SET turnar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_turnar = $mysqli->query($actualizar_turnar);
+    
+        $actualizar_notificar = "UPDATE solicitud_asistencia SET notificar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_notificar = $mysqli->query($actualizar_notificar);
     
             if($result) {
                 echo $verifica;

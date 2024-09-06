@@ -127,7 +127,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
             <a href="./admin.php">INICIO</a>
             <!-- <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a> -->
             <a class="actived" href="./asistencias_reprogramadas.php">SOLICITUDES REPROGRAMADAS</a>
-            <a class="actived" href="./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">REPROGRAMAR, TURNAR Y NOTIFICAR</a>
+            <a class="actived" href="./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR - 2. TURNAR - 3. NOTIFICAR - REGISTRO COMPLETADO</a>
           </div>
           
 
@@ -135,9 +135,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#"  onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. REPROGRAMAR</span></a></li>
-                <li><a href="#"  onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
-                <li><a href="#" onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./turnar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#" onclick="location.href='./notificar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
                 <li><a class="active" href="#" onclick="location.href='./registro_completado_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">REGISTRO COMPLETADO</span></a></li>
               </ul>
 
@@ -220,7 +220,10 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                         </table> 
 
 
-
+                                              <div class="contenedor">
+                                                <!-- <a href="./solicitudes_registradas.php" class="">IR A SOLICITUDES REGISTRADAS</a> -->
+                                                <button onclick="window.location='./asistencias_reprogramadas.php'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">ASISTENCIAS <br> MÉDICAS <br> REPROGRAMADAS</button>
+                                              </div>
 
 
                                       </table>
@@ -238,7 +241,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 </div>
 
 <div class="contenedor">
-<a href="./asistencias_reprogramadas.php" class="btn-flotante">REGRESAR</a>
+<a href="./notificar_asistencia_reprogramada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>" class="btn-flotante">REGRESAR</a>
 </div>
 
 

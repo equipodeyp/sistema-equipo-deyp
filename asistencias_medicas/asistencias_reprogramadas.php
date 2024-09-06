@@ -159,7 +159,9 @@ $row=$result->fetch_assoc();
                                                     $count = 0;
 
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
-                                                    solicitud_asistencia.num_oficio, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones, solicitud_asistencia.etapa
+                                                    solicitud_asistencia.num_oficio, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, 
+                                                    solicitud_asistencia.observaciones, solicitud_asistencia.etapa, solicitud_asistencia.agendar, solicitud_asistencia.turnar, 
+                                                    solicitud_asistencia.notificar
 
                                                     FROM solicitud_asistencia
                                                     
@@ -189,15 +191,50 @@ $row=$result->fetch_assoc();
                                                             
 
 
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <a style="text-decoration: underline;" href="./reprogramar_asistencia.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
-                                                                   REPROGRAMAR
-                                                                </a>
-                                                                <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button> -->
-                                                                <!-- <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
-                                                                    <i class="fas fa-chart-line" ></i>
-                                                                </a> -->
-                                                            </td>
+                                                            <?php
+                                                              if ($row['agendar'] === 'SI' && $row['turnar'] === 'NO' && $row['notificar'] === 'NO'){
+                                                              
+                                                                echo '
+                                                                    <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                                        <a style="text-decoration: underline;" href="./turnar_asistencia_reprogramada.php?id_asistencia_medica='; echo $row['id_asistencia']; echo'" class="btn btn-outline-primary">
+                                                                          TURNAR
+                                                                        </a>
+                                                                    </td>
+                                                                ';
+                                                            
+                                                            }
+
+                                                            else if ($row['agendar'] === 'SI' && $row['turnar'] === 'SI' && $row['notificar'] === 'NO'){
+                                                            
+                                                              echo '
+                                                                  <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                                      <a style="text-decoration: underline;" href="./notificar_asistencia_reprogramada.php?id_asistencia_medica='; echo $row['id_asistencia']; echo'" class="btn btn-outline-danger">
+                                                                        NOTIFICAR
+                                                                      </a>
+                                                                  </td>
+                                                              ';
+                                                          
+                                                            }
+
+                                                            else if ($row['agendar'] === 'NO' && $row['turnar'] === 'NO' && $row['notificar'] === 'NO'){
+                                                            
+                                                              echo '
+                                                                  <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                                      <a style="text-decoration: underline;" href="./reprogramar_asistencia.php?id_asistencia_medica='; echo $row['id_asistencia']; echo'" class="btn btn-outline-success">
+                                                                        AGENDAR
+                                                                      </a>
+                                                                  </td>
+                                                              ';
+                                                          
+                                                            } 
+
+
+                                                            
+                                                            ?>
+
+
+
+
                                                             
                                                         </tr>
 
