@@ -337,15 +337,15 @@ $validacion = $fil_val['validacion'];
                } ?>" readonly>
              </div>
 
-             <div class="col-md-6 mb-3 validar" id="fecha_conclusion" style="display:none;">
-               <label for="FECHA_DE_EJECUCION" id="dat_ejec" style="display:none;">FECHA DE EJECUCIÓN<span class="required"></span></label>
-               <label for="FECHA_DE_CANCELACION" id="dat_cancel" style="display:none;">FECHA DE CANCELACIÓN<span class="required"></span></label>
+             <div class="col-md-6 mb-3 validar" id="fecha_conclusion">
+               <label for="FECHA_DE_EJECUCION" id="dat_ejec">FECHA DE EJECUCIÓN<span class="required"></span></label>
+               <label for="FECHA_DE_CANCELACION" id="dat_cancel">FECHA DE CANCELACIÓN<span class="required"></span></label>
                <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php if ($rowmedida['date_ejecucion'] !== '0000-00-00') {
                  echo $rowmedida['date_ejecucion'];
                } ?>">
              </div>
 
-             <div class="col-md-6 mb-3 validar" id="MOTIVO" style="display:none;">
+             <div class="col-md-6 mb-3 validar" id="MOTIVO">
                <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
                <input autocomplete="off" class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['tipo_modificacion']; ?>" type="text">
              </div>
@@ -353,7 +353,7 @@ $validacion = $fil_val['validacion'];
           </div>
 
 
-          <div class="row" id="conclu_cancel" style="display:none;">
+          <div class="row" id="conclu_cancel">
             <div class="row">
               <hr class="mb-4">
             </div>
