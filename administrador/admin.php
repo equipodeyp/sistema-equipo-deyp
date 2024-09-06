@@ -236,7 +236,7 @@ a:focus {
 
   <div class="notify-menu" id="notify-menu">
   </div>
-  
+
 </div>
 
 
@@ -268,7 +268,7 @@ a:focus {
           <ul>
 
               <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIA</span></a></li>
-              <?php 
+              <?php
               if ($_SESSION['usuario'] == 'a-adriana'){
                 echo "
                 <li class='menu-items'><a href='./incidencia_asistencia_admin.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>INCIDENCIAS - A.M.</span></a></li>
@@ -279,7 +279,7 @@ a:focus {
                 <li class='menu-items'><a  href='./incidencia_asistencia_enproceso.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>INCIDENCIAS - A.M.</span></a></li>
                 ";
               }
-              
+
               ?>
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='incidencia_asistencia_enproceso.php'"><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIAS - A.M.</span></a></li> -->
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw  "></i><span> Repositorio </span></a></li> -->
@@ -479,10 +479,15 @@ a:focus {
     </div>
   </div>
   <!-- fin modal  -->
-<?php 
+<?php
 if ($_SESSION['usuario'] == 'a-adriana'){
   echo "<script src='../js/notification1.js'></script>";
   // echo $_SESSION['usuario'];
+}
+if ($_SESSION['usuario'] == 'e-adriana'){
+  echo '<div class="contenedor">
+  <a href="../subdireccion_de_estadistica_y_preregistro/menu.php" class="btn-flotante">REGRESAR A ESTADISTICA</a>
+  </div>';
 }
 
 if($_SESSION['usuario'] == 'a-jonathan'){
