@@ -4,7 +4,7 @@ include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
-echo $name = $_SESSION['usuario'];
+$name = $_SESSION['usuario'];
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -210,7 +210,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
                         <th style="text-align:center">MOTIVO DE CONCLUSIÓN</th>
                         <?php
-                        if ($name === 'a-adriana') {
+                        if ($name === 'a-adriana'  || $name === 'e-adriana') {
                         ?>
                         <th style="text-align:center">VALIDACIÓN</th>
                         <?php
@@ -295,7 +295,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                               echo "<i class='fas fa-times'></i>";
                             }
                               echo "</td>";
-                              if ($name === 'a-adriana') {
+                              if ($name === 'a-adriana' || $name === 'e-adriana') {
                                 echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
                               }else {
                                 echo "<td>
