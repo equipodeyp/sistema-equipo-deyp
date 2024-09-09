@@ -21,6 +21,40 @@ $m_user = strtoupper($m_user);
 // echo $m_user; 
 // echo $user;
 
+$sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+$ap_serv = $fnombre['apaterno'];
+$am_serv = $fnombre['amaterno'];
+
+
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+$names = $name_user;
+$one_name = explode(" ", $names); 
+$primer_nombre = $one_name[0];
+
+// echo $primer_nombre;
+
+$a_paterno = $ap_serv;
+$a_paterno = strtoupper($a_paterno);
+$ap_string = $a_paterno;
+$inicial_ap = $ap_string[0];
+// echo $inicial_ap;
+
+$a_materno = $am_serv;
+$a_materno = strtoupper($a_materno);
+$am_string = $a_materno;
+$inicial_am = $am_string[0];
+// echo $inicial_am;
+
+
+
+$id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
+// echo $id_servidor_ini;
+
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +157,7 @@ $m_user = strtoupper($m_user);
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE id_servidor = '$m_user'";
+              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE id_servidor = '$id_servidor_ini'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -138,7 +172,7 @@ $m_user = strtoupper($m_user);
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>INCIDENCIAS REGISTRADAS POR EL USUARIO: $m_user</h3>
+                            <h3 style='text-align:center'>INCIDENCIAS REGISTRADAS POR EL USUARIO: $id_servidor_ini</h3>
                           </div>
                         </div>
                       <div>
@@ -167,7 +201,7 @@ $m_user = strtoupper($m_user);
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM incidencias_asistencias WHERE id_servidor = '$m_user' AND estatus = 'EN PROCESO' ORDER BY fecha_hora_solicitud ASC";
+                                                    $query = "SELECT * FROM incidencias_asistencias WHERE id_servidor = '$id_servidor_ini' AND estatus = 'EN PROCESO' ORDER BY fecha_hora_solicitud ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {

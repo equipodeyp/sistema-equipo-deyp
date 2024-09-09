@@ -30,7 +30,39 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 // echo $id_asistencia_medica;
 
+$sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+$ap_serv = $fnombre['apaterno'];
+$am_serv = $fnombre['amaterno'];
 
+
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+$names = $name_user;
+$one_name = explode(" ", $names); 
+$primer_nombre = $one_name[0];
+
+// echo $primer_nombre;
+
+$a_paterno = $ap_serv;
+$a_paterno = strtoupper($a_paterno);
+$ap_string = $a_paterno;
+$inicial_ap = $ap_string[0];
+// echo $inicial_ap;
+
+$a_materno = $am_serv;
+$a_materno = strtoupper($a_materno);
+$am_string = $a_materno;
+$inicial_am = $am_string[0];
+// echo $inicial_am;
+
+
+
+$id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
+// echo $id_servidor_ini;
 
 
 
@@ -359,6 +391,17 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
       <div class="modal-body">
         <form method="POST" action="./guardar_medicamento.php">
+
+
+
+
+                        <div style="display: none;">
+                          <label class="control-label">ID SERVIDOR PÚBLICO</label>
+                          <input type="text" class="form-control"  id="id_servidor" name="id_servidor" readonly value="<?php echo $id_servidor_ini;?>">
+                        </div>
+
+                        <br>
+
                         <div>
                           <label class="control-label">ID ASISTENCIA MÉDICA</label>
                           <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">

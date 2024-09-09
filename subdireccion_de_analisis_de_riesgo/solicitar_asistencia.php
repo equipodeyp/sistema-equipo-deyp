@@ -22,6 +22,43 @@ $m_user = strtoupper($m_user);
 // echo $user;
 // $f_exped = 'UPSIPPED/TOL/113/015/2022';
 // echo $f_exped;
+
+
+$sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+$ap_serv = $fnombre['apaterno'];
+$am_serv = $fnombre['amaterno'];
+
+
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+$names = $name_user;
+$one_name = explode(" ", $names); 
+$primer_nombre = $one_name[0];
+
+// echo $primer_nombre;
+
+$a_paterno = $ap_serv;
+$a_paterno = strtoupper($a_paterno);
+$ap_string = $a_paterno;
+$inicial_ap = $ap_string[0];
+// echo $inicial_ap;
+
+$a_materno = $am_serv;
+$a_materno = strtoupper($a_materno);
+$am_string = $a_materno;
+$inicial_am = $am_string[0];
+// echo $inicial_am;
+
+
+
+$id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
+// echo $id_servidor_ini;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -235,7 +272,7 @@ $m_user = strtoupper($m_user);
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $m_user;?>" readonly>
+                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $id_servidor_ini;?>" readonly>
                       </div>
                     </div>
                 </div>
