@@ -366,7 +366,7 @@ $name_user = strtoupper($name_user);
                 <?php
                   $citaasistencia = "SELECT * 
                                       FROM cita_asistencia 
-                                      WHERE id_asistencia ='JDLV-010-2021-AM01'
+                                      WHERE id_asistencia ='$id_asistencia_medica'
                                       ORDER BY cita_asistencia.id DESC
                                       LIMIT 1";
 

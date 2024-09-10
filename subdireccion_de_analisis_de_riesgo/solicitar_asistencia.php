@@ -333,7 +333,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <!-- <span class="input-group-addon"><i class="fas fa-solid fa-eye"></i></span> -->
-                        <textarea name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
@@ -472,6 +472,16 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 			}
 		});
 	}
+</script>
+
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
 </script>
 
 <!-- <script type="text/javascript">

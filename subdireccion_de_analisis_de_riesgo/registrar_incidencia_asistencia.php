@@ -260,7 +260,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                               <?php
                                   $select1 = "SELECT solicitud_asistencia.id_asistencia
                                   FROM solicitud_asistencia
-                                  WHERE solicitud_asistencia.id_servidor = '$m_user'";
+                                  WHERE solicitud_asistencia.id_servidor = '$id_servidor_ini'";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
                                     $result_folio = $valores1['id_asistencia'];
@@ -337,7 +337,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         
-                        <textarea required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                         <h6>Ejemplo: En el apartado calendario no se visualizan las fechas del mes de Junio.</h6>
                       </div>
                     </div>
@@ -458,7 +458,15 @@ function obtenerRespuesta3(e){
 
 
 
+  <script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
 
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
 
 
 <script type="text/javascript">
