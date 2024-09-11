@@ -12,7 +12,9 @@ $row=$result->fetch_assoc();
 
 // $consulta_agenda = "SELECT DISTINCT(solicitud_asistencia.id_asistencia), solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa FROM solicitud_asistencia WHERE agendar = 'SI'";
 
-$consulta_agenda = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, solicitud_asistencia.id_sujeto, solicitud_asistencia.folio_expediente, solicitud_asistencia.etapa, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, agendar_asistencia.nombre_institucion, agendar_asistencia.nombre_institucion, agendar_asistencia.municipio_institucion, agendar_asistencia.domicilio_institucion, agendar_asistencia.observaciones
+$consulta_agenda = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, solicitud_asistencia.id_sujeto, solicitud_asistencia.folio_expediente, 
+solicitud_asistencia.etapa, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, agendar_asistencia.nombre_institucion, agendar_asistencia.nombre_institucion, 
+agendar_asistencia.municipio_institucion, agendar_asistencia.domicilio_institucion, agendar_asistencia.observaciones
 
 FROM solicitud_asistencia
 
@@ -98,7 +100,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 						center: 'title',
 						right: ''
 					},
-					defaultDate: Date().toGMTString,
+					defaultDate: Date().toUTCString,
 					navLinks: false,
 					editable: false,
 					eventLimit: true,
@@ -123,27 +125,20 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					events: [
 						<?php
 							while($registros_eventos = mysqli_fetch_array($resultado_agenda)){
-                $id_asis = $registros_eventos['id_asistencia'];
-                $sentenciaasistencia=" SELECT * FROM agendar_asistencia WHERE id_asistencia='$id_asis' limit 1";
-                $rsentenciaasistencia = $mysqli->query($sentenciaasistencia);
-                $fsentenciaasistencia=$rsentenciaasistencia->fetch_assoc();
 
-                $sentenciacita=" SELECT * FROM cita_asistencia WHERE id_asistencia='$id_asis' limit 1";
-                $rsentenciacita = $mysqli->query($sentenciacita);
-                $fsentenciacita=$rsentenciacita->fetch_assoc();
 								?>
 								{
 
-								id: '<?php echo $fsentenciacita['id_asistencia']; ?>',
-								title: '<?php echo $fsentenciacita['id_sujeto']." - ".$fsentenciacita['hora_asistencia'] ; ?>',
-								folio: '<?php echo $fsentenciacita['folio_expediente']; ?>',
-								start: '<?php echo $fsentenciacita['fecha_asistencia']; ?>',
-								hora: '<?php echo $fsentenciacita['hora_asistencia']; ?>',
+								id: '<?php echo $registros_eventos['id_asistencia']; ?>',
+								title: '<?php echo $registros_eventos['id_sujeto']." - ".$registros_eventos['hora_asistencia'] ; ?>',
+								folio: '<?php echo $registros_eventos['folio_expediente']; ?>',
+								start: '<?php echo $registros_eventos['fecha_asistencia']; ?>',
+								hora: '<?php echo $registros_eventos['hora_asistencia']; ?>',
 								servicio: '<?php echo $registros_eventos['servicio_medico']; ?>',
-								unidad: '<?php echo $fsentenciaasistencia['nombre_institucion']; ?>',
-								municipio: '<?php echo $fsentenciaasistencia['municipio_institucion']; ?>',
-								domicilio: '<?php echo $fsentenciaasistencia['domicilio_institucion']; ?>',
-								observaciones: '<?php echo $fsentenciaasistencia['observaciones']; ?>',
+								unidad: '<?php echo $registros_eventos['nombre_institucion']; ?>',
+								municipio: '<?php echo $registros_eventos['municipio_institucion']; ?>',
+								domicilio: '<?php echo $registros_eventos['domicilio_institucion']; ?>',
+								observaciones: '<?php echo $registros_eventos['observaciones']; ?>',
 								etapa: '<?php echo $registros_eventos['etapa']; ?>',
 
 								},<?php

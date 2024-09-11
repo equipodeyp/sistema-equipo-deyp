@@ -100,7 +100,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 						center: 'title',
 						right: ''
 					},
-					defaultDate: Date(),
+					defaultDate: Date().toUTCString,
 					navLinks: false, 
 					editable: false,
 					eventLimit: true,
@@ -129,7 +129,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 								{
 
 								id: '<?php echo $registros_eventos['id_asistencia']; ?>',
-								title: '<?php echo $registros_eventos['id_sujeto']." - ".$registros_eventos['hora_asistencia'] ; ?>',
+								title: '<?php echo $registros_eventos['id_sujeto']?> - <?php echo $registros_eventos['hora_asistencia']; ?>',
 								folio: '<?php echo $registros_eventos['folio_expediente']; ?>',
 								start: '<?php echo $registros_eventos['fecha_asistencia']; ?>',
 								hora: '<?php echo $registros_eventos['hora_asistencia']; ?>',
