@@ -362,21 +362,21 @@ if ($_SESSION['usuario'] == 'a-adriana' || $_SESSION['usuario'] == 'e-adriana' )
   echo "
       <li style='text-align:center'>
         <a href='./incidencia_asistencia_admin.php'>
-          <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
+          <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/incidencia.png' style='width:55px;height:55px;'></span>
           <div class='ca-content'>
-            <h2 class='ca-main'>DETALLE</h2>
-            <h3 class='ca-sub'>INCIDENCIAS DE ASISTENCIAS MÉDICAS</h3>
+            <h2 class='ca-main'>INCIDENCIAS</h2>
+            <h3 class='ca-sub'>DETALLE DE LAS INCIDENCIAS DE ASISTENCIAS MÉDICAS</h3>
           </div>
         </a>
       </li>
 
 
       <li style='text-align:center'>
-        <a href='./estadistica_asistencias_medicas.php'>
-          <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/estadistica.png' style='width:55px;height:55px;'></span>
+        <a href='./bd_asistencias_medicas.php'>
+          <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/bd.png' style='width:55px;height:55px;'></span>
           <div class='ca-content'>
-            <h2 class='ca-main'>ESTADISTICA</h2>
-            <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3>
+            <h2 class='ca-main'>BASE DE DATOS</h2>
+            <h3 class='ca-sub'>ASISTENCIAS MÉDICAS</h3>
           </div>
         </a>
       </li>

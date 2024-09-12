@@ -272,28 +272,25 @@ a:focus {
                         <!-- <h3 style="text-align:center">Registros</h3> -->
                           <tr>
                               <th style="text-align:center">No.</th>
-                              <!-- <th style="text-align:center">FOLIO EXPEDIENTE</th>
-                              <th style="text-align:center">ID SUJETO</th> -->
+                              <th style="text-align:center">FOLIO EXPEDIENTE</th>
+                              <th style="text-align:center">ID SUJETO</th>
                               <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
-                              <!-- <th style="text-align:center">ETAPA</th> -->
+                              <th style="text-align:center">ETAPA</th>
                               <th style="text-align:center">FECHA SOLICITUD</th>
                               <th style="text-align:center">REQUERIMIENTO</th>
                               <th style="text-align:center">SERVICIO MÉDICO</th>
                               <th style="text-align:center">TIPO DE INSTITUCIÓN</th>
                               <th style="text-align:center">NOMBRE INSTITUCIÓN</th>
                               <th style="text-align:center">MUNICIPIO</th>
-                              <th style="text-align:center">ID SERVIDOR SOLICITANTE</th>
-                              <!-- <th style="text-align:center">FECHA ASISTENCIA</th>
+                              <th style="text-align:center">ID SERVIDOR</th>
+                              <th style="text-align:center">FECHA ASISTENCIA</th>
                               <th style="text-align:center">HORA ASISTENCIA</th>
                               <th style="text-align:center">TRASLADO REALIZADO</th>
                               <th style="text-align:center">SE PRESENTÓ</th>
                               <th style="text-align:center">HOSPITALIZACIÓN</th>
                               <th style="text-align:center">CITA DE SEGUIMIENTO</th>
                               <th style="text-align:center">DIAGNÓSTICO</th>
-                              <th style="text-align:center">TOTAL DE MEDICAMENTOS REGISTRADOS</th> -->
-                              <!-- <th style="text-align:center"></th>
-                              <th style="text-align:center"></th>
-                              <th style="text-align:center"></th> -->
+                              <th style="text-align:center">TOTAL DE MEDICAMENTOS REGISTRADOS</th>
                               
                           </tr>
                       </thead>
@@ -308,7 +305,8 @@ a:focus {
                             $contador = 0;
 
 
-                            $consulta1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, 
+                            $consulta1 = "SELECT solicitud_asistencia.folio_expediente, solicitud_asistencia.id_sujeto, 
+                            solicitud_asistencia.id_asistencia, solicitud_asistencia.etapa, solicitud_asistencia.fecha_solicitud, 
                             solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico,  
                             agendar_asistencia.tipo_institucion, agendar_asistencia.nombre_institucion, 
                             agendar_asistencia.municipio_institucion, solicitud_asistencia.id_servidor
@@ -325,10 +323,14 @@ a:focus {
                                         while ($var_fila1=$var_resultado1->fetch_array())
                                         {
                                           $contador = $contador + 1;
-
+                                          $id_asistencia_m = $var_fila1['id_asistencia'];
+                                          // echo $id_asistencia_m;
                                             echo "<tr>";
                                             echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila1['folio_expediente']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila1['id_sujeto']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['id_asistencia']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila1['etapa']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['fecha_solicitud']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['tipo_requerimiento']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['servicio_medico']; echo "</td>";
@@ -336,8 +338,61 @@ a:focus {
                                             echo "<td style='text-align:center'>"; echo $var_fila1['nombre_institucion']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['municipio_institucion']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['id_servidor']; echo "</td>";
+
+
                                             
-                                           
+                                            $consulta2 = "SELECT cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
+                                                          FROM cita_asistencia
+                                                          WHERE cita_asistencia.id_asistencia = '$id_asistencia_m'
+                                                          ORDER BY cita_asistencia.id DESC LIMIT 1";
+
+                                                          $var_resultado2 = $mysqli->query($consulta2);
+
+                                                            while ($var_fila2=$var_resultado2->fetch_array())
+                                                              {
+                                                                echo "<td style='text-align:center'>"; echo $var_fila2['fecha_asistencia']; echo "</td>";
+                                                                echo "<td style='text-align:center'>"; echo $var_fila2['hora_asistencia']; echo "</td>";
+
+
+
+
+
+                                                                    $consulta3 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento, 
+                                                                                  seguimiento_asistencia.hospitalizacion, seguimiento_asistencia.cita_seguimiento, 
+                                                                                  seguimiento_asistencia.diagnostico 
+
+                                                                                  FROM seguimiento_asistencia
+
+                                                                                  WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_m'
+
+                                                                                  ORDER BY seguimiento_asistencia.fecha_registro, seguimiento_asistencia.hora_registro DESC LIMIT 1";
+
+                                                                                  $var_resultado3 = $mysqli->query($consulta3);
+
+                                                                                    while ($var_fila3=$var_resultado3->fetch_array())
+                                                                                      {
+                                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['traslado_realizado']; echo "</td>";
+                                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['se_presento']; echo "</td>";
+                                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['hospitalizacion']; echo "</td>";
+                                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['cita_seguimiento']; echo "</td>";
+                                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['diagnostico']; echo "</td>";
+
+
+
+                                                                                                $consulta4 = "SELECT COUNT(*) as total 
+                                                                                                FROM tratamiento_medico
+                                                                                                WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'";
+                                      
+                                                                                                $var_resultado4 = $mysqli->query($consulta4);
+                                      
+                                                                                                    while ($var_fila4=$var_resultado4->fetch_array())
+                                                                                                      {
+                                                                                                        echo "<td style='text-align:center'>"; echo $var_fila4['total']; echo "</td>";
+                                                                                                      }
+                                                                                      
+                                                                                      }
+                                                                                      
+                                                              }
 
                                             echo "</tr>";
 
@@ -401,10 +456,10 @@ echo "<td style='text-align:center'>"; echo $var_fila['']; echo "</td>"; -->
 
                                             echo "<tr>";
                                             echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                            // echo "<td style='text-align:center'>"; echo $var_fila['folio_expediente']; echo "</td>";
-                                            // echo "<td style='text-align:center'>"; echo $var_fila['id_sujeto']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila['folio_expediente']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila['id_sujeto']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['id_asistencia']; echo "</td>";
-                                            // echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['fecha_solicitud']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['tipo_requerimiento']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['servicio_medico']; echo "</td>";
@@ -422,7 +477,7 @@ echo "<td style='text-align:center'>"; echo $var_fila['']; echo "</td>"; -->
                                                           FROM solicitud_asistencia
 
                                                           JOIN seguimiento_asistencia
-                                                          ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia
+                                                          ON solicitud_asistencia.id_asistencia = '$id_asistencia_m'
 
                                                           ORDER BY seguimiento_asistencia.fecha_registro, seguimiento_asistencia.hora_registro DESC LIMIT 1";
 
