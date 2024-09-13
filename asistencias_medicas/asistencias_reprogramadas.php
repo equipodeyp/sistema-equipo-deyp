@@ -109,10 +109,10 @@ $row=$result->fetch_assoc();
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'ASISTENCIA MÉDICA REPROGRAMADA'";
+              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' OR etapa = 'REPROGRAMADA AGENDADA' OR etapa = 'REPROGRAMADA TURNADA'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
-              // echo $fcl['t'];
+              echo $fcl['t'];
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
@@ -165,7 +165,7 @@ $row=$result->fetch_assoc();
 
                                                     FROM solicitud_asistencia
                                                     
-                                                    WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' 
+                                                    WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' OR solicitud_asistencia.etapa = 'REPROGRAMADA AGENDADA' OR solicitud_asistencia.etapa = 'REPROGRAMADA TURNADA'
                                                     
                                                     ORDER BY solicitud_asistencia.fecha_solicitud ASC";
 

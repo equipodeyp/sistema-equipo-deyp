@@ -44,6 +44,9 @@ if ($verifica == 1) {
 
     $query3 = "UPDATE solicitud_asistencia SET agendar = 'SI' WHERE id_asistencia = '$id_asistencia_medica'";
     $result3 = $mysqli->query($query3);
+
+    $query2 = "UPDATE solicitud_asistencia SET etapa = 'REPROGRAMADA AGENDADA' WHERE id_asistencia = '$id_asistencia_medica'";
+    $result2 = $mysqli->query($query2);
     
     
     

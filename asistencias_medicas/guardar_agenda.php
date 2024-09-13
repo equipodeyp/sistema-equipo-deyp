@@ -25,7 +25,7 @@ $municipio_institucion=$_POST['municipio_institucion'];
 $fecha_asistencia=$_POST['fecha_asistencia'];
 $hora_asistencia=$_POST['hora_asistencia'];
 $observaciones_asistencia=$_POST['observaciones_asistencia'];
-// $etapa = "EN AGENDA";
+// $etapa = "AGENDADA";
 
 // $hora_i = '01:00:00';
 // $hora_f = '23:00:00';
@@ -104,6 +104,9 @@ $result2 = $mysqli->query($query2);
 
 $query3 = "UPDATE solicitud_asistencia SET agendar = 'SI' WHERE id_asistencia = '$id_asistencia'";
 $result3 = $mysqli->query($query3);
+
+$query4 = "UPDATE solicitud_asistencia SET etapa = 'AGENDADA' WHERE id_asistencia = '$id_asistencia'";
+$result4 = $mysqli->query($query4);
 
 
 if($result) {

@@ -339,7 +339,7 @@ a:focus {
                             <thead>
 
                                 <?php
-                                  $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'AGENDADA, TURNADA Y NOTIFICADA'";
+                                  $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR etapa = 'REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'";
                                   $rcl = $mysqli->query($cl);
                                   $fcl = $rcl->fetch_assoc();
                                   // echo $fcl['t'];
@@ -373,7 +373,7 @@ a:focus {
                                                             
                               JOIN agendar_asistencia 
                               ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                              AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'";
+                              WHERE solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR solicitud_asistencia.etapa = 'REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'";
 
 
                               $var_resultado = $mysqli->query($sentencia1);
@@ -396,9 +396,9 @@ a:focus {
                                                                   
                                     INNER JOIN cita_asistencia 
                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
-                                    AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
                                     AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                    
+                                    AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
+                                    OR solicitud_asistencia.etapa = 'REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
                                     ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
                                     
                                     $result_cita = mysqli_query($mysqli, $query_cita);

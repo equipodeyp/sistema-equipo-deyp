@@ -35,6 +35,9 @@ $result = $mysqli->query($query);
 $query3 = "UPDATE solicitud_asistencia SET turnar = 'SI' WHERE id_asistencia = '$id_asistencia'";
 $result3 = $mysqli->query($query3);
 
+$query2 = "UPDATE solicitud_asistencia SET etapa = 'REPROGRAMADA TURNADA' WHERE id_asistencia = '$id_asistencia'";
+$result2 = $mysqli->query($query2);
+
 
 if($result) {
     echo $verifica;
