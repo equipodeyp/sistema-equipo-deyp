@@ -12,6 +12,7 @@ $folio = $folio_expediente;
 $select2 = "SELECT datospersonales.identificador
 FROM datospersonales
 WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO' AND datospersonales.folioexpediente = '$folio'
+AND datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
 ORDER BY datospersonales.identificador";
 
 
