@@ -363,6 +363,7 @@ $fuserfijo=$ruserfijo->fetch_assoc();
 $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
+$permiso4 = $fuserfijo['permiso4'];
 // echo $permiso3;
 
 
@@ -434,7 +435,29 @@ if ($permiso3=='solicitar') {
       }
 
 echo "</ul>";
+}
 
+
+if($permiso4=='calendario'){
+  echo "
+
+  <ul class='ca-menu' style='text-align:right'>
+
+    <li style='text-align:center'>
+    <a href='./agenda/index.php'>
+      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
+      <div class='ca-content'>
+        <h2 class='ca-main'>CALENDARIO</h2>
+        <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
+    </a>
+    </li>
+
+  </ul>
+
+  ";
+  
+
+  
 
 }
 ?>

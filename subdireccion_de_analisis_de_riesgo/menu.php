@@ -348,6 +348,7 @@ if ($permiso3=='solicitar') {
         $permiso1 = $fuserfijo['permiso1'];
         $permiso2 = $fuserfijo['permiso2'];
         $permiso3 = $fuserfijo['permiso3'];
+        $permiso4 = $fuserfijo['permiso4'];
         // echo $permiso3;
 
         if ($genero=='mujer') {
@@ -380,7 +381,7 @@ if ($permiso3=='solicitar') {
           <ul>
 				    <?php
 
-		   				if ($permiso3 ==='solicitar') {
+		   				if ($permiso3 ==='solicitar' || $permiso4 ==='calendario') {
 							echo "
                 <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS <br> MÉDICAS</button> </a>
 							";
