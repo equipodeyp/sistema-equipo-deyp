@@ -22,7 +22,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>ASISTENCIAS MEDICAS COMPLETADAS</title>
+  <title>BD ASISTENCIAS MEDICAS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -301,19 +301,10 @@ a:focus {
                       </thead>
                       <tbody>
                         <?php
-                            $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia";
-                            $rcl = $mysqli->query($cl);
-                            $fcl = $rcl->fetch_assoc();
-                            $tolal_registros = $fcl['t'];
-                            // echo $tolal_registros;
-
-                            $contador = 0;
+                                        $contador = 0;
 
 
-                                        $consulta1 = "SELECT solicitud_asistencia.folio_expediente, solicitud_asistencia.id_sujeto, 
-                                        solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, 
-                                        solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, 
-                                        solicitud_asistencia.etapa, solicitud_asistencia.id_servidor
+                                        $consulta1 = "SELECT *
                                         FROM solicitud_asistencia
                                         ORDER BY solicitud_asistencia.id ASC";
 
@@ -323,6 +314,44 @@ a:focus {
                                         {
                                           $contador = $contador + 1;
                                           $id_asistencia_m = $var_fila1['id_asistencia'];
+
+                                          $consulta2 = "SELECT agendar_asistencia.tipo_institucion, agendar_asistencia.nombre_institucion, 
+                                          agendar_asistencia.municipio_institucion
+                                          FROM agendar_asistencia
+                                          WHERE agendar_asistencia.id_asistencia = '$id_asistencia_m'
+                                          ORDER BY agendar_asistencia.id ASC";
+
+                                          $var_resultado2 = $mysqli->query($consulta2);
+                                          $var_fila2=$var_resultado2->fetch_array();
+
+
+                                          $consulta3 = "SELECT cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
+                                          FROM cita_asistencia
+                                          WHERE cita_asistencia.id_asistencia = '$id_asistencia_m'
+                                          ORDER BY cita_asistencia.id DESC
+                                          LIMIT 1";
+      
+                                          $var_resultado3 = $mysqli->query($consulta3);
+                                          $var_fila3=$var_resultado3->fetch_array();
+
+
+                                          $consulta4 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento, 
+                                          seguimiento_asistencia.hospitalizacion, seguimiento_asistencia.cita_seguimiento, 
+                                          seguimiento_asistencia.diagnostico 
+                                          FROM seguimiento_asistencia
+                                          WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_m'
+                                          ORDER BY seguimiento_asistencia.id DESC
+                                          LIMIT 1";
+
+                                          $var_resultado4 = $mysqli->query($consulta4);
+                                          $var_fila4=$var_resultado4->fetch_array();
+
+                                          $consulta5 = "SELECT COUNT(*) as total
+                                          FROM tratamiento_medico
+                                          WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'";
+
+                                          $var_resultado5 = $mysqli->query($consulta5);
+                                          $var_fila5=$var_resultado5->fetch_array();
 
                                             echo "<tr>";
                                             echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
@@ -334,81 +363,25 @@ a:focus {
                                             echo "<td style='text-align:center'>"; echo $var_fila1['servicio_medico']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['etapa']; echo "</td>";
                                             echo "<td style='text-align:center'>"; echo $var_fila1['id_servidor']; echo "</td>";
-                                            
 
-                                                    $consulta2 = "SELECT agendar_asistencia.tipo_institucion, agendar_asistencia.nombre_institucion, 
-                                                    agendar_asistencia.municipio_institucion
-                                                    FROM agendar_asistencia
-                                                    WHERE agendar_asistencia.id_asistencia = '$id_asistencia_m'
-                                                    ORDER BY agendar_asistencia.id ASC";
+                                            echo "<td style='text-align:center'>"; echo $var_fila2['tipo_institucion']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila2['nombre_institucion']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila2['municipio_institucion']; echo "</td>";
 
-                                                    $var_resultado2 = $mysqli->query($consulta2);
-                                                    
-                                            
-                                                    while ($var_fila2=$var_resultado2->fetch_array())
-                                                      {
+                                            echo "<td style='text-align:center'>"; echo $var_fila3['fecha_asistencia']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila3['hora_asistencia']; echo "</td>";
 
-                                                        echo "<td style='text-align:center'>"; echo $var_fila2['tipo_institucion']; echo "</td>";
-                                                        echo "<td style='text-align:center'>"; echo $var_fila2['nombre_institucion']; echo "</td>";
-                                                        echo "<td style='text-align:center'>"; echo $var_fila2['municipio_institucion']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila4['traslado_realizado']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila4['se_presento']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila4['hospitalizacion']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila4['cita_seguimiento']; echo "</td>";
+                                            echo "<td style='text-align:center'>"; echo $var_fila4['diagnostico']; echo "</td>";
 
-
-                                                                    $consulta3 = "SELECT cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
-                                                                    FROM cita_asistencia
-                                                                    WHERE cita_asistencia.id_asistencia = '$id_asistencia_m'
-                                                                    ORDER BY cita_asistencia.id DESC
-                                                                    LIMIT 1";
-                                
-                                                                    $var_resultado3 = $mysqli->query($consulta3);
-                                                                  
-                              
-                                                                    while ($var_fila3=$var_resultado3->fetch_array())
-                                                                      {
-
-                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['fecha_asistencia']; echo "</td>";
-                                                                        echo "<td style='text-align:center'>"; echo $var_fila3['hora_asistencia']; echo "</td>";
-
-                                                                                    $consulta4 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento, 
-                                                                                    seguimiento_asistencia.hospitalizacion, seguimiento_asistencia.cita_seguimiento, 
-                                                                                    seguimiento_asistencia.diagnostico 
-                                                                                    FROM seguimiento_asistencia
-                                                                                    WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_m'
-                                                                                    ORDER BY seguimiento_asistencia.id DESC
-                                                                                    LIMIT 1";
-                        
-                                                                                    $var_resultado4 = $mysqli->query($consulta4);
-                                                                                    
-                      
-                                                                                    while ($var_fila4=$var_resultado4->fetch_array())
-                                                                                      {
-
-                                                                                        echo "<td style='text-align:center'"; echo $var_fila4['traslado_realizado']; echo "</td>";
-                                                                                        echo "<td style='text-align:center'"; echo $var_fila4['se_presento']; echo "</td>";
-                                                                                        echo "<td style='text-align:center'"; echo $var_fila4['hospitalizacion']; echo "</td>";
-                                                                                        echo "<td style='text-align:center'"; echo $var_fila4['cita_seguimiento']; echo "</td>";
-                                                                                        echo "<td style='text-align:center'"; echo $var_fila4['diagnostico']; echo "</td>";
-
-                                                                                                        $consulta5 = "SELECT COUNT(*) as total
-                                                                                                        FROM tratamiento_medico
-                                                                                                        WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'";
-                              
-                                                                                                        $var_resultado5 = $mysqli->query($consulta5);
-                                          
-                                                                                                        while ($var_fila5=$var_resultado5->fetch_array())
-                                                                                                          {
-                                                                                                            echo "<td style='text-align:center'>"; echo $var_fila5['total']; echo "</td>";
-                                                                                                          }
-                                                                                        }
-
-                                                                        
-                                                                      }
-
-                                                      }
+                                            echo "<td style='text-align:center'>"; echo $var_fila5['total']; echo "</td>";
 
                                             echo "</tr>";
 
-                                        }
-
+                                          }
                         ?>
                       </tbody>
                      </table>

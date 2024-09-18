@@ -12,8 +12,8 @@ $folio = $folio_expediente;
 $select2 = "SELECT datospersonales.identificador
 FROM datospersonales
 WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO' AND datospersonales.folioexpediente = '$folio'
-AND datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
-ORDER BY datospersonales.identificador";
+AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND datospersonales.estatus = 'PERSONA PROPUESTA'
+ORDER BY datospersonales.identificador ASC";
 
 
 // echo "<span class='input-group-addon'><i class='fas fa-solid fa-id-card'></i></span>

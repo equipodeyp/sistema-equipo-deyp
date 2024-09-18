@@ -181,7 +181,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                   $select1 = "SELECT DISTINCT datospersonales.folioexpediente
                                   FROM datospersonales
                                   WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO' 
-                                  AND datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
+                                  AND datospersonales.estatus = 'SUJETO PROTEGIDO' AND datospersonales.estatus = 'PERSONA PROPUESTA'
                                   ORDER BY datospersonales.id ASC";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
