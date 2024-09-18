@@ -155,21 +155,24 @@ $row=$result->fetch_assoc();
 
 
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
-                                                    agendar_asistencia.domicilio_institucion, agendar_asistencia.municipio_institucion, agendar_asistencia.observaciones, solicitud_asistencia.etapa
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, 
+                                                    agendar_asistencia.nombre_institucion, agendar_asistencia.domicilio_institucion, 
+                                                    agendar_asistencia.municipio_institucion, agendar_asistencia.observaciones, 
+                                                    solicitud_asistencia.etapa
 
                                                     FROM solicitud_asistencia
 
                                                     JOIN agendar_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                                                    AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
-                                                    LIMIT 1";
+                                                    WHERE solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' 
+                                                    OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
 
                                                       $id_asistencia = $row['id_asistencia'];
+
                                                       // echo $id_asistencia;
                                                     
                                                         
@@ -197,16 +200,31 @@ $row=$result->fetch_assoc();
 
                                                               <?php 
 
-                                                              $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, 
+                                                              // $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, 
+                                                              // cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
+
+                                                              // FROM solicitud_asistencia
+
+                                                              // INNER JOIN cita_asistencia
+                                                              // ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                                              // AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
+                                                              // AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+                                                              // ORDER BY cita_asistencia.fecha_asistencia DESC 
+                                                              // LIMIT 1";
+
+                                                              $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes,
+                                                              solicitud_asistencia.id_asistencia, 
                                                               cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
 
                                                               FROM solicitud_asistencia
 
                                                               INNER JOIN cita_asistencia
                                                               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
-                                                              AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
                                                               AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                              ORDER BY cita_asistencia.fecha_asistencia DESC 
+                                                              WHERE solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' 
+                                                              OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
+
+                                                              ORDER BY cita_asistencia.id DESC
                                                               LIMIT 1";
 
 

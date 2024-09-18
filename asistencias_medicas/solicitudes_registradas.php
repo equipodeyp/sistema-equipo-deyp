@@ -108,10 +108,16 @@ $row=$result->fetch_assoc();
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'SOLICITADA'";
+              $cl = "SELECT COUNT(*) as t
+                    FROM solicitud_asistencia 
+                    WHERE solicitud_asistencia.etapa = 'SOLICITADA' 
+                    OR solicitud_asistencia.etapa = 'AGENDADA'
+                    OR solicitud_asistencia.etapa = 'TURNADA'";
+
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
+
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
@@ -157,9 +163,15 @@ $row=$result->fetch_assoc();
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM solicitud_asistencia 
-                                                    WHERE etapa = 'SOLICITADA' || etapa = 'AGENDADA' || etapa = 'TURNADA' 
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, 
+                                                    solicitud_asistencia.id_servidor, solicitud_asistencia.num_oficio,
+                                                    solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones,
+                                                    solicitud_asistencia.agendar, solicitud_asistencia.turnar, solicitud_asistencia.notificar
+                                                    FROM solicitud_asistencia 
+                                                    WHERE solicitud_asistencia.etapa = 'SOLICITADA' OR solicitud_asistencia.etapa = 'AGENDADA' 
+                                                    OR solicitud_asistencia.etapa = 'TURNADA' 
                                                     ORDER BY solicitud_asistencia.fecha_solicitud ASC";
+
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {

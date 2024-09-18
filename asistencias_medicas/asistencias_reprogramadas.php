@@ -109,7 +109,12 @@ $row=$result->fetch_assoc();
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' OR etapa = 'REPROGRAMADA AGENDADA' OR etapa = 'REPROGRAMADA TURNADA'";
+              $cl = "SELECT COUNT(*) as t 
+              FROM solicitud_asistencia 
+              WHERE etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' 
+              OR etapa = 'REPROGRAMADA AGENDADA' 
+              OR etapa = 'REPROGRAMADA TURNADA'";
+
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               echo $fcl['t'];
@@ -158,15 +163,17 @@ $row=$result->fetch_assoc();
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor, 
-                                                    solicitud_asistencia.num_oficio, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, 
-                                                    solicitud_asistencia.observaciones, solicitud_asistencia.etapa, solicitud_asistencia.agendar, solicitud_asistencia.turnar, 
-                                                    solicitud_asistencia.notificar
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, 
+                                                    solicitud_asistencia.id_servidor, solicitud_asistencia.num_oficio, solicitud_asistencia.tipo_requerimiento, 
+                                                    solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones, solicitud_asistencia.etapa, 
+                                                    solicitud_asistencia.agendar, solicitud_asistencia.turnar, solicitud_asistencia.notificar
 
                                                     FROM solicitud_asistencia
                                                     
-                                                    WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' OR solicitud_asistencia.etapa = 'REPROGRAMADA AGENDADA' OR solicitud_asistencia.etapa = 'REPROGRAMADA TURNADA'
-                                                    
+                                                    WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA REPROGRAMADA' 
+                                                    OR solicitud_asistencia.etapa = 'REPROGRAMADA AGENDADA' 
+                                                    OR solicitud_asistencia.etapa = 'REPROGRAMADA TURNADA'
+
                                                     ORDER BY solicitud_asistencia.fecha_solicitud ASC";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
