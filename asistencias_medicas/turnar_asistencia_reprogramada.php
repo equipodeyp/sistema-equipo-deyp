@@ -205,7 +205,10 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                   <?php
 
-                $turnar = "SELECT * FROM turnar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+                $turnar = "SELECT * 
+                          FROM turnar_asistencia 
+                          WHERE id_asistencia ='$id_asistencia_medica'
+                          ORDER BY turnar_asistencia.id DESC LIMIT 1";
                 $rturnar = $mysqli->query($turnar);
                 $fturnar = $rturnar->fetch_assoc();
 

@@ -108,7 +108,7 @@ $row=$result->fetch_assoc();
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
               $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia 
-              WHERE etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR etapa = 'REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'";
+              WHERE etapa = 'NOTIFICADA' OR etapa = 'REPROGRAMADA NOTIFICADA'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -164,8 +164,8 @@ $row=$result->fetch_assoc();
 
                                                     JOIN agendar_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                                                    WHERE solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' 
-                                                    OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'";
+                                                    WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
+                                                    OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
@@ -221,8 +221,8 @@ $row=$result->fetch_assoc();
                                                               INNER JOIN cita_asistencia
                                                               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
                                                               AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                              WHERE solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' 
-                                                              OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
+                                                              WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
+                                                              OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'
 
                                                               ORDER BY cita_asistencia.id DESC
                                                               LIMIT 1";

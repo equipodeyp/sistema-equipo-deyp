@@ -196,7 +196,11 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                   <?php
 
-$notificar = "SELECT * FROM notificar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
+$notificar = "SELECT * 
+FROM notificar_asistencia 
+WHERE id_asistencia ='$id_asistencia_medica'
+ORDER BY notificar_asistencia.id DESC LIMIT 1";
+
 $rnotificar = $mysqli->query($notificar);
 $fnotificar = $rnotificar->fetch_assoc();
 

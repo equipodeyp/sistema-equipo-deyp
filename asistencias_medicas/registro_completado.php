@@ -135,8 +135,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
               <ul class="tabs">
                 <li><a href="#"  onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
-                <li><a href="#"  onclick="location.href='./turnada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
-                <li><a href="#" onclick="location.href='./notificada.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
+                <li><a href="#"  onclick="location.href='./turnar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-flag"></span><span class="tab-text">2. TURNAR</span></a></li>
+                <li><a href="#" onclick="location.href='./notificar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-bell"></span><span class="tab-text">3. NOTIFICAR</span></a></li>
                 <li><a class="active" href="#" onclick="location.href='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">4. REGISTRO COMPLETADO</span></a></li>
               </ul>
 
@@ -171,12 +171,13 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
+                                                    cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa
 
                                                     FROM solicitud_asistencia
                                                     
                                                     JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA'
+                                                    ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia AND solicitud_asistencia.etapa = 'NOTIFICADA'
                                                     
                                                     JOIN cita_asistencia
                                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia

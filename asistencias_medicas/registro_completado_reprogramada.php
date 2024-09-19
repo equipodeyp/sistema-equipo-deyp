@@ -182,7 +182,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                                     JOIN cita_asistencia
                                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
                                                     
-                                                    ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
+                                                    ORDER BY cita_asistencia.id DESC LIMIT 1";
                                                     
                                                     
                                                     $result_solicitud = mysqli_query($mysqli, $query);

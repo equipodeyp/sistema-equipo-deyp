@@ -19,7 +19,7 @@ $id_asistencia = $_POST["id_asistencia"];
 $notificar_subdireccion=$_POST['notificar_subdireccion'];
 $numero_oficio_notificacion=$_POST['numero_oficio_notificacion'];
 $fecha_oficio_notificacion=$_POST['fecha_oficio_notificacion'];
-$etapa = "REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA";
+$etapa = "REPROGRAMADA NOTIFICADA";
 
 
 // echo $id_asistencia;
