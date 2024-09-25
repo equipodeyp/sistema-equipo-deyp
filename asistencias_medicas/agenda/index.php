@@ -105,9 +105,9 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					editable: false,
 					eventLimit: true,
 					showNonCurrentDates: false,
-					eventClick: function(event) {
+					eventClick: function Data(event) {
 						$('#visualizar #id').text(event.id);
-						$('#visualizar #title').text(event.title);
+						$('#visualizar #idsujeto').text(event.idsujeto);
 						$('#visualizar #folio').text(event.folio);
 						$('#visualizar #start').text(event.start.format('DD/MM/YYYY'));
 						$('#visualizar #hora').text(event.hora);
@@ -131,6 +131,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 								id: '<?php echo $registros_eventos['id_asistencia']; ?>',
 								title: '<?php echo $registros_eventos['id_sujeto']." - ".$registros_eventos['hora_asistencia'] ; ?>',
+								idsujeto: '<?php echo $registros_eventos['id_sujeto']?>',
 								folio: '<?php echo $registros_eventos['folio_expediente']; ?>',
 								start: '<?php echo $registros_eventos['fecha_asistencia']; ?>',
 								hora: '<?php echo $registros_eventos['hora_asistencia']; ?>',
@@ -212,43 +213,143 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 	<div id='calendar'></div>
 		</div>
 
+
+
 <!--Inicio elementos contenedor-->
 		<div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
+			<div id="" class="modal-dialog" role="document">
+				<div class="modal-content" id="visualizar">
+
+				<div id="body">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title text-center">Datos del Asistencia Médica</h4>
+						<img style="float: left;" src="../../image/FGJEM.png" width="50" height="50">
+						<img style="float: right;" src="../../image/ESCUDO.png" width="60" height="50">
+						<h4 style="text-align:center">Unidad de Proteccón a Sujetos que Intervienen en el Procedimiento <br> Penal o Extinción de Dominio</h4>
 					</div>
+
+					<br>
+
+					<div>
+						<h2 style="text-align:center" class="modal-title text-center">Datos de la Asistencia Médica</h2>
+					</div>
+
+					<br>
+
 					<div class="modal-body">
-						<dl class="dl-horizontal">
-							<dt>Id Asistencia</dt>
+
+						<!-- <dl class="dl-horizontal">
+							<dt>Id Asistencia:</dt>
 							<dd id="id"></dd>
-							<dt>Id Sujeto</dt>
-							<dd id="title"></dd>
-							<dt>Folio Expediente</dt>
+							<dt>Id Sujeto:</dt>
+							<dd id="idsujeto"></dd>
+							<dt>Folio Expediente:</dt>
 							<dd id="folio"></dd>
-							<dt>Fecha Asistencia</dt>
+							<dt>Fecha Asistencia:</dt>
 							<dd id="start"></dd>
-							<dt>Hora Asistencia</dt>
+							<dt>Hora Asistencia:</dt>
 							<dd id="hora"></dd>
-							<dt>Servicio Médico</dt>
+							<dt>Servicio Médico:</dt>
 							<dd id="servicio"></dd>
-							<dt>Unidad Médica</dt>
+							<dt>Unidad Médica:</dt>
 							<dd id="unidad"></dd>
-							<dt>Municipio</dt>
+							<dt>Municipio:</dt>
 							<dd id="municipio"></dd>
-							<dt>Dirección</dt>
+							<dt>Dirección:</dt>
 							<dd id="domicilio"></dd>
-							<dt>Observaciones Cita</dt>
+							<dt>Observaciones Cita:</dt>
 							<dd id="observaciones"></dd>
-							<dt>Etapa</dt>
-							<dd id="etapa"></dd>
-						</dl>
+							<dt>Etapa:</dt>
+							<dd id="etapa">
+						</dl> -->
+
+
+
+<table width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+
+	<!-- <thead>
+		<tr>
+			<th>Encabezado</th>
+			<td>Respuesta</td>
+		</tr>
+	</thead> -->
+
+	<tbody>
+		<tr>
+			<th>Id Asistencia:</th>
+			<td id="id"></td>
+		</tr>
+		<tr>
+			<th >Id Sujeto:</th>
+			<td id="idsujeto"></td>
+		</tr>
+		<tr>
+			<th>Folio Expediente:</th>
+			<td id="folio"></td>
+		</tr>
+		<tr>
+			<th>Fecha Asistencia:</th>
+			<td id="start"></td>
+		</tr>
+		<tr>
+			<th>Hora Asistencia:</th>
+			<td id="hora"></td>
+		</tr>
+		<tr>
+			<th>Servicio Médico:</th>
+			<td id="servicio"></td>
+		</tr>
+		<tr>
+			<th>Unidad Médica:</th>
+			<td id="unidad"></td>
+		</tr>
+		<tr>
+			<th>Municipio:</th>
+			<td id="municipio"></td>
+		</tr>
+		<tr>
+			<th>Dirección:</th>
+			<td id="domicilio"></td>
+		</tr>
+		<tr>
+			<th>Observaciones Cita:</th>
+			<td id="observaciones"></td>
+		</tr>
+		<tr>
+			<th>Etapa:</th>
+			<td id="etapa"></td>
+		</tr>
+
+	</tbody>
+
+</table>
+
+
+
+		
 					</div>
+				</div>
+
+					<br>
+
+					<div class="modal-header">
+						<a class="btn btn-primary btn-lg" href="javascript:imprimirSeleccion('body')">
+							Imprimir
+						</a>
+
+						<a class="btn btn-danger btn-lg" data-dismiss="modal">
+							Cerrar
+						</a>
+					</div>
+
+
+					
+
 				</div>
 			</div>
 		</div>
+
+		
 
 
 
@@ -278,3 +379,15 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 </body>
 </html>
+
+
+<script language="Javascript">
+function imprimirSeleccion(nombre) {
+var ficha = document.getElementById(nombre);
+var ventimp = window.open(' ', 'popimpr');
+ventimp.document.write( ficha.innerHTML );
+ventimp.document.close();
+ventimp.print( );
+ventimp.close();
+}
+</script>

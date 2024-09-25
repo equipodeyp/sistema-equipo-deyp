@@ -53,7 +53,7 @@ $inicial_am = $am_string[0];
 
 
 $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
-// echo $id_servidor_ini;
+echo $id_servidor_ini;
 
 ?>
 
@@ -157,10 +157,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE id_servidor = '$id_servidor_ini'";
+              $cl = "SELECT COUNT(*) as t 
+              FROM incidencias_asistencias 
+              WHERE id_servidor = '$id_servidor_ini' AND estatus = 'EN PROCESO'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
-              // echo $fcl['t'];
+              echo $fcl['t'];
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>

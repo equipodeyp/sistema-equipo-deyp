@@ -301,7 +301,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                   else{
 
                                     $select1 = "SELECT solicitud_asistencia.id_asistencia
-                                    FROM solicitud_asistencia";
+                                    FROM solicitud_asistencia
+                                    WHERE solicitud_asistencia.id_servidor = '$id_servidor_ini'";
 
                                       $answer1 = $mysqli->query($select1);
                                       while($valores1 = $answer1->fetch_assoc()){

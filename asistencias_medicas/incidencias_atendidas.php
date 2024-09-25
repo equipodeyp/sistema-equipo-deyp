@@ -160,7 +160,10 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias WHERE id_servidor = '$id_servidor_ini' AND estatus != 'EN PROCESO'";
+              $cl = "SELECT COUNT(*) as t 
+              FROM incidencias_asistencias 
+              WHERE id_servidor = '$id_servidor_ini' 
+              AND estatus != 'EN PROCESO'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
