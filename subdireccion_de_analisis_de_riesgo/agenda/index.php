@@ -224,18 +224,22 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					<div class="modal-header">
 						<img style="float: left;" src="../../image/FGJEM.png" width="50" height="50">
 						<img style="float: right;" src="../../image/ESCUDO.png" width="60" height="50">
-						<h4 style="text-align:center">Unidad de Proteccón a Sujetos que Intervienen en el Procedimiento <br> Penal o Extinción de Dominio</h4>
+						<h4 style="text-align:center">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
 					</div>
 
 					<br>
 
 					<div>
-						<h2 style="text-align:center" class="modal-title text-center">Datos de la Asistencia Médica</h2>
+						<h6 style="text-align:center" class="modal-title text-center">Sistema Informático del Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio (SIPPSIPPED)</h6>
 					</div>
 
-					<br>
+
+
+
 
 					<div class="modal-body">
+
+						<h3 style="text-align:center" class="modal-title text-center">Datos de la Asistencia Médica</h3>
 
 						<!-- <dl class="dl-horizontal">
 							<dt>Id Asistencia:</dt>
@@ -264,65 +268,65 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 
 
 
-<table width="100%" border="1" cellpadding="0" cellspacing="0" >
+						<table width="100%" border="1" cellpadding="0" cellspacing="0" >
 
 
-	<!-- <thead>
-		<tr>
-			<th>Encabezado</th>
-			<td>Respuesta</td>
-		</tr>
-	</thead> -->
+							<!-- <thead>
+								<tr>
+									<th>Encabezado</th>
+									<td>Respuesta</td>
+								</tr>
+							</thead> -->
 
-	<tbody>
-		<tr>
-			<th>Id Asistencia:</th>
-			<td id="id"></td>
-		</tr>
-		<tr>
-			<th >Id Sujeto:</th>
-			<td id="idsujeto"></td>
-		</tr>
-		<tr>
-			<th>Folio Expediente:</th>
-			<td id="folio"></td>
-		</tr>
-		<tr>
-			<th>Fecha Asistencia:</th>
-			<td id="start"></td>
-		</tr>
-		<tr>
-			<th>Hora Asistencia:</th>
-			<td id="hora"></td>
-		</tr>
-		<tr>
-			<th>Servicio Médico:</th>
-			<td id="servicio"></td>
-		</tr>
-		<tr>
-			<th>Unidad Médica:</th>
-			<td id="unidad"></td>
-		</tr>
-		<tr>
-			<th>Municipio:</th>
-			<td id="municipio"></td>
-		</tr>
-		<tr>
-			<th>Dirección:</th>
-			<td id="domicilio"></td>
-		</tr>
-		<tr>
-			<th>Observaciones Cita:</th>
-			<td id="observaciones"></td>
-		</tr>
-		<tr>
-			<th>Etapa:</th>
-			<td id="etapa"></td>
-		</tr>
+							<tbody>
+								<tr>
+									<th>Id Asistencia:</th>
+									<td id="id"></td>
+								</tr>
+								<tr>
+									<th >Id Sujeto:</th>
+									<td id="idsujeto"></td>
+								</tr>
+								<tr>
+									<th>Folio Expediente:</th>
+									<td id="folio"></td>
+								</tr>
+								<tr>
+									<th>Fecha Asistencia:</th>
+									<td id="start"></td>
+								</tr>
+								<tr>
+									<th>Hora Asistencia:</th>
+									<td id="hora"></td>
+								</tr>
+								<tr>
+									<th>Servicio Médico:</th>
+									<td id="servicio"></td>
+								</tr>
+								<tr>
+									<th>Unidad Médica:</th>
+									<td id="unidad"></td>
+								</tr>
+								<tr>
+									<th>Municipio:</th>
+									<td id="municipio"></td>
+								</tr>
+								<tr>
+									<th>Dirección:</th>
+									<td id="domicilio"></td>
+								</tr>
+								<tr>
+									<th>Observaciones Cita:</th>
+									<td id="observaciones"></td>
+								</tr>
+								<tr>
+									<th>Etapa:</th>
+									<td id="etapa"></td>
+								</tr>
 
-	</tbody>
+							</tbody>
 
-</table>
+						</table>
 
 
 
