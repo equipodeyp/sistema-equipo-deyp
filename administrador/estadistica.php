@@ -120,7 +120,7 @@ $result = $mysqli->query($sentencia);
           ?>
           <ul class="ca-menu">
 
-            <li>
+            <!-- <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_solicitudes">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/SOLICITUDES.png" style="width:55px;height:55px;"></span>
                 <div class="ca-content">
@@ -137,6 +137,7 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">SUJETOS - ESTATUS - CALIDAD</h3></div>
               </a>
             </li>
+
             <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_medidas1">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/MEDIDAS.png" style="width:60px;height:60px;"></span>
@@ -145,6 +146,7 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">PROVISIONALES - DEFINITIVAS - ASISTENCIA - RESGUARDO- EJECUTADAS </h3></div>
               </a>
             </li>
+
             <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_expedientes">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/EXPEDIENTES.png" style="width:60px;height:60px;"></span>
@@ -153,6 +155,7 @@ $result = $mysqli->query($sentencia);
                   <h3 class="ca-sub">ESTATUS - SEDES - DELITOS - RADICACION- AUTORIDADES - ETAPAS </h3></div>
               </a>
             </li>
+
             <li>
               <a href="#" data-toggle="modal" data-target="#add_data_Modal_resumen">
                 <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/RESUMEN.png" style="width:60px;height:60px;"></span>
@@ -160,7 +163,8 @@ $result = $mysqli->query($sentencia);
                   <h2 class="ca-main">RESUMEN</h2>
                   <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
               </a>
-            </li>
+            </li> -->
+
           </ul>
         </div>
         <div class="contenedor" style="display: flex; justify-content: center;">
