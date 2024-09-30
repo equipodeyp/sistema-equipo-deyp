@@ -221,6 +221,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 				<div class="modal-content" id="visualizar">
 
 				<div id="body">
+
 					<div class="modal-header">
 						<img style="float: left;" src="../../image/FGJEM.png" width="50" height="50">
 						<img style="float: right;" src="../../image/ESCUDO.png" width="60" height="50">
@@ -232,8 +233,6 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					<div>
 						<h6 style="text-align:center" class="modal-title text-center">Sistema Informático del Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio (SIPPSIPPED)</h6>
 					</div>
-
-
 
 
 
@@ -334,9 +333,9 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 					</div>
 				</div>
 
-					<br>
+				<br>
 
-					<div class="modal-header">
+				<div class="modal-header">
 						<a class="btn btn-primary btn-lg" href="javascript:imprimirSeleccion('body')">
 							Imprimir
 						</a>
@@ -344,7 +343,7 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 						<a class="btn btn-danger btn-lg" data-dismiss="modal">
 							Cerrar
 						</a>
-					</div>
+				</div>
 
 
 					
