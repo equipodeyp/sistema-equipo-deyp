@@ -269,14 +269,14 @@ $row=$result->fetch_assoc();
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
                                                                         <?php 
                                                                           if ($row2['dias_restantes'] >= 0) { ?>
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes'];?></td>
                                                                         <?php } ?>
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] <-1) { ?>
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "Sin registro"?></td>
+                                                                          if ($row2['dias_restantes'] <-4) { ?>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "SIN REGISTRO"?></td>
                                                                         <?php } ?>
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] < 0 && $row2['dias_restantes'] >-2) { ?>
+                                                                          if ($row2['dias_restantes'] < 0 && $row2['dias_restantes'] >=-4) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "0"?></td>
                                                                         <?php } ?>
                                                                         
