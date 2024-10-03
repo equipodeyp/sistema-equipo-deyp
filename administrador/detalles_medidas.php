@@ -193,7 +193,12 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     </div>
                     <a href="../administrador/historialmedidas.php?id=<?=$rowfol['id']?>" class="btn color-btn-export-xls">HISTORIAL DE MEDIDAS</a>
                   </div>
-
+                  <?php
+                  $existvalidar = "SELECT COUNT(*) AS total FROM validar_medida
+                                    WHERE id_persona = '$id_person' AND validar_datos = 'false'";
+                  $rexistvalidar = $mysqli->query($existvalidar);
+                  $fexistvalidar = $rexistvalidar->fetch_assoc();                  
+                  ?>
                   <div id="contenido">
                     <table class="table table-striped table-bordered ">
                       <thead >
@@ -210,7 +215,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
                         <th style="text-align:center">MOTIVO DE CONCLUSIÓN</th>
                         <?php
-                        if ($name === 'a-adriana'  || $name === 'e-adriana') {
+                        if ($name === 'a-adriana'  || $name === 'e-adriana' && $fexistvalidar['total'] > 0) {
                         ?>
                         <th style="text-align:center">VALIDACIÓN</th>
                         <?php
@@ -286,21 +291,18 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                             echo "</td>";
                             // echo "<td <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                             // echo "<td <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
-
+                            if ($name === 'a-adriana' || $name === 'e-adriana' && $fexistvalidar['total'] > 0) {
+                              echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
+                            }
 
                             echo "<td>  <a href='detalle_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success btn-sm btn-block'>DETALLE</button> </a>";
-                            if ($fila_valmeds['validar_datos'] === 'true') {
-                              echo "<i class='fas fa-check'></i>";
-                            }elseif ($fila_valmeds['validar_datos'] === 'false') {
-                              echo "<i class='fas fa-times'></i>";
-                            }
+                            // if ($fila_valmeds['validar_datos'] === 'true') {
+                            //   echo "<i class='fas fa-check'></i>";
+                            // }elseif ($fila_valmeds['validar_datos'] === 'false') {
+                            //   echo "<i class='fas fa-times'></i>";
+                            // }
                               echo "</td>";
-                              if ($name === 'a-adriana' || $name === 'e-adriana') {
-                                echo "<td> <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
-                              }else {
-                                echo "<td>
-                                </td>";
-                              }
+
                               }
                               echo "</tr>";
                             }
