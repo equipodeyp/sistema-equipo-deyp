@@ -214,6 +214,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     $fexistvalidar2 = $rexistvalidar2->fetch_assoc();
                     $fexistvalidar2['total'];
                     // "<br>";
+                    if ($fexistvalidar2['total'] > 0) {
                     $progress = 100 / $fexistvalidar2['total'];
                     // "<br>";
                     $progresstotal = $progress * ($fexistvalidar2['total'] - $fexistvalidar['total']);
@@ -222,10 +223,15 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     $porcentaje = ((float)($fexistvalidar2['total'] - $fexistvalidar['total']) * 100) / $total; // Regla de tres
                     $porcentaje = round($porcentaje, 0);  // Quitar los decimales
                     // echo $porcentaje;
+                    }
+                    ?>
+                    <?php
+                    if ($name === 'a-adriana' || $name === 'e-adriana' && $fexistvalidar2['total'] > 0){
                     ?>
                     <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                       <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?php echo $porcentaje.'%'; ?>"><?php echo $porcentaje.'%'; ?> de medidas validadas</div>
                     </div>
+                    <?php } ?>
                     <table class="table table-striped table-bordered ">
                       <thead >
                         <th style="text-align:center">NO.</th>
