@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 include("conexion.php");
 session_start ();
 $verifica_update_person = 1;
@@ -222,6 +222,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                 <div id="contenido">
         		  </div>
               <?php
+                // code...
               $existvalidar = "SELECT COUNT(*) AS total FROM validar_medida
                                 WHERE id_persona = '$id_person' AND validar_datos = 'false'";
               $rexistvalidar = $mysqli->query($existvalidar);
@@ -233,6 +234,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
               $rexistvalidar2 = $mysqli->query($existvalidar2);
               $fexistvalidar2 = $rexistvalidar2->fetch_assoc();
               $fexistvalidar2['total'];
+              if ($fexistvalidar2['total'] > 0) {
               // "<br>";
               $progress = 100 / $fexistvalidar2['total'];
               // "<br>";
@@ -242,9 +244,11 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
               $porcentaje = ((float)($fexistvalidar2['total'] - $fexistvalidar['total']) * 100) / $total; // Regla de tres
               $porcentaje = round($porcentaje, 0);  // Quitar los decimales
               // echo $porcentaje;
+            }
+
               ?>
               <?php
-              if ($name === 'e-adriana' && $fexistvalidar['total'] > 0){
+              if ($name === 'e-adriana' && $fexistvalidar2['total'] > 0){
               ?>
 
               <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
