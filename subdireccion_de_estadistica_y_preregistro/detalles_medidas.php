@@ -226,7 +226,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                                 WHERE id_persona = '$id_person' AND validar_datos = 'false'";
               $rexistvalidar = $mysqli->query($existvalidar);
               $fexistvalidar = $rexistvalidar->fetch_assoc();
-              $fexistvalidar['total'];
+              // echo $fexistvalidar['total'];
               echo "<br>";
               $existvalidar2 = "SELECT COUNT(*) AS total FROM medidas
                                 WHERE id_persona = '$id_person' AND estatus = 'EN EJECUCION'";
@@ -243,11 +243,14 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
               $porcentaje = round($porcentaje, 0);  // Quitar los decimales
               // echo $porcentaje;
               ?>
-
+              <?php
+              if ($name === 'e-adriana' && $fexistvalidar['total'] > 0){
+              ?>
 
               <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?php echo $porcentaje.'%'; ?>"><?php echo $porcentaje.'%'; ?> de medidas validadas</div>
               </div>
+            <?php } ?>
 
         		  	<table class="table table-striped table-bordered ">
         		  		<thead >
@@ -264,7 +267,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
                     <th style="text-align:center">MOTIVO DE CONCLUSIÓN</th>
                     <?php
-                    if ($fexistvalidar['total'] > 0) {
+                    if ($name === 'e-adriana' && $fexistvalidar['total'] > 0) {
                     ?>
                     <th style="text-align:center">VALIDACIÓN</th>
                     <?php

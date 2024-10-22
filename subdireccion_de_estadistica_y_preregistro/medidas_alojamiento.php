@@ -71,6 +71,7 @@ $rselecpersnorel2 = $mysqli->query($selecpersnorel2);
 while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
   $id_sujp = $fselecpersnorel2['id'];
   $folexpper = $fselecpersnorel2['folioexpediente'];
+  $id_unico = $fselecpersnorel2['identificador'];
   //////////////////////////////////////////////////////////////////////////////
   $suj2021 = "SELECT COUNT(*) as t FROM `medidas`
   WHERE id_persona = '$id_sujp' AND medida = 'VIII. ALOJAMIENTO TEMPORAL' AND (date_provisional BETWEEN '2021-06-01' AND '2021-12-31' OR date_definitva BETWEEN '2021-01-01' AND '2021-12-31')";
@@ -98,6 +99,11 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
   $autoridadsol = "SELECT * FROM autoridad WHERE id_persona = '$id_sujp'";
   $rautoridadsol = $mysqli->query($autoridadsol);
   $fautoridadsol = $rautoridadsol->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $evaluacionsuj = "SELECT COUNT(*) AS total FROM evaluacion_persona WHERE id_unico = '$id_unico'";
+  $revaluacionsuj = $mysqli->query($evaluacionsuj);
+  $fevaluacionsuj = $revaluacionsuj->fetch_assoc();
+  echo $fevaluacionsuj['total'];
   //////////////////////////////////////////////////////////////////////////////
   $id_permed = "SELECT DISTINCT id_persona FROM medidas
   WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND id_persona = '$id_sujp'";
@@ -169,6 +175,14 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['reingreso']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['estatusprograma']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fautoridadsol['nombreautoridad']; echo "</td>";
+    echo "<td style='text-align:center'>"; if ($fselecpersnorel2['estatus'] === 'SUJETO PROTEGIDO' || $fselecpersnorel2['estatus'] === 'PERSONA PROPUESTA') {
+      echo "ENTRA";
+      echo $fevaluacionsuj['total'];
+    }else {
+      echo "CERRAR";
+      echo $fevaluacionsuj['total'];
+    } echo "</td>";
+    echo "<td style='text-align:center'>";  echo "</td>";
     echo "</tr>";
   }
 }
