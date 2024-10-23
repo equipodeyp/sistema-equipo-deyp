@@ -313,7 +313,7 @@ $permiso6 = $fuserfijo['permiso6'];
 
 
                 <?php 
-                if ($user=='enlace_sub' && $permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+                if ($permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
                   echo "
                 
                   <div class='form-group'>
@@ -323,6 +323,26 @@ $permiso6 = $fuserfijo['permiso6'];
                         <span class='input-group-addon'><i class='fas fa-solid fa-thumbtack'></i></span>
                         <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
                             <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                            <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  ";
+                }
+                
+                if ($permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+                  echo "
+                
+                  <div class='form-group'>
+                    <label for='tipo_requerimiento' class='col-md-4 control-label' style='font-size: 16px'>TIPO DE REQUERIMIENTO </label>
+                    <div class='col-md-4 selectContainer'>
+                      <div class='input-group'>
+                        <span class='input-group-addon'><i class='fas fa-solid fa-thumbtack'></i></span>
+                        <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
+                            <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                            <option value='PRIMERA VEZ'>PRIMERA VEZ</option>
                             <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
                         </select>
                       </div>
@@ -519,15 +539,6 @@ $permiso6 = $fuserfijo['permiso6'];
 	})
 </script>
 
-<script type="text/javascript">
-function cancelar() {
-    var key = event.keyCode;
-
-    if (key === 13) {
-        event.preventDefault();
-    }
-}
-</script>
 
 <script type="text/javascript">
 	function recargarLista(){
@@ -541,6 +552,18 @@ function cancelar() {
 		});
 	}
 </script>
+
+
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
+
 
 <!-- <script type="text/javascript">
 

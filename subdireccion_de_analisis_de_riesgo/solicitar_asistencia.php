@@ -301,8 +301,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                             <option value="MINISTERIO PÚBLICO" >MINISTERIO PÚBLICO</option>
                             <option value="POR INGRESO">POR INGRESO</option>
                             <option value="PRIMERA VEZ">PRIMERA VEZ</option>
-                            <option value="SEGUIMIENTO" >SEGUIMIENTO</option>
-                            <option value="URGENCIA">URGENCIA</option>
+                            <!-- <option value="SEGUIMIENTO" >SEGUIMIENTO</option>
+                            <option value="URGENCIA">URGENCIA</option> -->
                         </select>
                       </div>
                     </div>

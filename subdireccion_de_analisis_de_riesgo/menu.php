@@ -301,7 +301,15 @@ $fuserfijo=$ruserfijo->fetch_assoc();
 $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
+$permiso4 = $fuserfijo['permiso4'];
+$permiso5 = $fuserfijo['permiso5'];
+$permiso6 = $fuserfijo['permiso6'];
+// echo $permiso1;
+// echo $permiso2;
 // echo $permiso3;
+// echo $permiso4;
+// echo $permiso5;
+// echo $permiso6;
 
 
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$m_user'";

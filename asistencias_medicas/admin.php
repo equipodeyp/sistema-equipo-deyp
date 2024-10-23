@@ -311,7 +311,7 @@ $permiso6 = $fuserfijo['permiso6'];
 // echo $permiso6;
 
 
-if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
+if ($permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta'){
   echo "
       <div class='notify-enlace'>
 
@@ -330,7 +330,7 @@ if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
 
 }
 
-if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
+else{
   echo "
       <div class='notify-ejecucion'>
 
@@ -444,7 +444,7 @@ $fcl2 = $rcl2->fetch_assoc();
 // echo $fcl2['r'];
 
 
-if ($user=='enlace_sub' && $permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+if ($permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
   echo "
 <ul class='ca-menu'>
 
@@ -512,7 +512,7 @@ echo " </ul>
 
 }
 
-if ($user=='ejecucion_sub' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+else {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>
