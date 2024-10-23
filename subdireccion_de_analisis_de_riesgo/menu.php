@@ -349,7 +349,8 @@ if ($permiso3=='solicitar') {
         $permiso2 = $fuserfijo['permiso2'];
         $permiso3 = $fuserfijo['permiso3'];
         $permiso4 = $fuserfijo['permiso4'];
-        // echo $permiso3;
+        $permiso5 = $fuserfijo['permiso5'];
+        // echo $permiso1;
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -366,26 +367,38 @@ if ($permiso3=='solicitar') {
       <nav class="menu-nav">
           <ul>
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
-              <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li>
-              <?php
-              // echo $permiso2;
-              if ($permiso2 === 'validar') {
-
-              ?>
-              <li><a href="#" onclick="location.href='./medidasavalidar.php'"><i class="color-icon fas fa-file-circle-check menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> VALIDAR MEDIDAS</span></a></li>
-              <?php
-              }
-              ?>
+              <!-- <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li> -->
           </ul>
           <br><br>
           <ul>
 				    <?php
+
+              if ($permiso1 === 'consulta') {
+              echo "
+              <a style='text-align:center' class='user-nombre' href='../consultores/admin.php'><button type='button' class='btn btn-light'> C O N S U L T A R <br> E X P E D I E N T E S</button> </a>
+              ";
+              }
+
+
+              if ($permiso2 === 'validar') {
+                echo "
+                <a style='text-align:center' class='user-nombre' href='./medidasavalidar.php'><button type='button' class='btn btn-light'>VALIDAR MEDIDAS </button> </a>
+							";
+              
+              }
 
 		   				if ($permiso3 ==='solicitar' || $permiso4 ==='calendario') {
 							echo "
                 <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS <br> MÉDICAS</button> </a>
 							";
 						  }
+
+              if ($permiso5 ==='instrumento') {
+                echo "
+                  <a style='text-align:center' class='user-nombre' href='./menu_instrumento.php'><button type='button' class='btn btn-light'>I N S T R U M E N T O <br> DE ADAPTABILIDAD</button> </a>
+                ";
+                }
+
 
 					?>
           </ul>
@@ -526,7 +539,7 @@ if ($permiso3=='solicitar') {
             </tbody>
            </table>
         </div>
-        <?php
+        <!-- <?php
         echo $_SESSION['usuario'];
         if ($_SESSION['usuario'] === 'analisis2') {
         ?>
@@ -605,7 +618,7 @@ if ($permiso3=='solicitar') {
         </div>
         <?php
         }
-        ?>
+        ?> -->
       </div>
     </div>
 

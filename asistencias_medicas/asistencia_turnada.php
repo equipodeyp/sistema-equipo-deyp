@@ -152,9 +152,7 @@ $row=$result->fetch_assoc();
 
 <tbody>
                                                 <?php
-
-
-
+                                                
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, 
                                                     agendar_asistencia.nombre_institucion, agendar_asistencia.domicilio_institucion, 
                                                     agendar_asistencia.municipio_institucion, agendar_asistencia.observaciones, 

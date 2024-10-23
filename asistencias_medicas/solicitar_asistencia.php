@@ -61,7 +61,27 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
-
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$genero = $row['sexo'];
+$id_user = $row['id'];
+// echo $id_user;
+$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+$ruserfijo = $mysqli->query($userfijo);
+$fuserfijo=$ruserfijo->fetch_assoc();
+$permiso1 = $fuserfijo['permiso1'];
+$permiso2 = $fuserfijo['permiso2'];
+$permiso3 = $fuserfijo['permiso3'];
+$permiso4 = $fuserfijo['permiso4'];
+$permiso5 = $fuserfijo['permiso5'];
+$permiso6 = $fuserfijo['permiso6'];
+// echo $permiso1;
+// echo $permiso2;
+// echo $permiso3;
+// echo $permiso4;
+// echo $permiso5;
+// echo $permiso6;
 
 
 ?>
@@ -291,7 +311,54 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                 </div>
 
 
-                <div class="form-group">
+
+                <?php 
+                if ($user=='enlace_sub' && $permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+                  echo "
+                
+                  <div class='form-group'>
+                    <label for='tipo_requerimiento' class='col-md-4 control-label' style='font-size: 16px'>TIPO DE REQUERIMIENTO </label>
+                    <div class='col-md-4 selectContainer'>
+                      <div class='input-group'>
+                        <span class='input-group-addon'><i class='fas fa-solid fa-thumbtack'></i></span>
+                        <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
+                            <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                            <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  ";
+                }
+
+                else{
+                  echo "
+                
+                  <div class='form-group'>
+                    <label for='tipo_requerimiento' class='col-md-4 control-label' style='font-size: 16px'>TIPO DE REQUERIMIENTO </label>
+                    <div class='col-md-4 selectContainer'>
+                      <div class='input-group'>
+                        <span class='input-group-addon'><i class='fas fa-solid fa-thumbtack'></i></span>
+                        <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
+                            <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                            <option value='MINISTERIO PÚBLICO' >MINISTERIO PÚBLICO</option>
+                            <option value='POR INGRESO'>POR INGRESO</option>
+                            <option value='PRIMERA VEZ'>PRIMERA VEZ</option>
+                            <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
+                            <option value='URGENCIA'>URGENCIA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  ";
+                }
+                ?>
+                
+
+
+                <!-- <div class="form-group">
                     <label for="tipo_requerimiento" class="col-md-4 control-label" style="font-size: 16px">TIPO DE REQUERIMIENTO </label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
@@ -306,7 +373,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
 
 

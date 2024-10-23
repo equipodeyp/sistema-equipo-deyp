@@ -1,3 +1,4 @@
+
 <?php
 /*require 'conexion.php';*/
 date_default_timezone_set("America/Mexico_City");
@@ -326,62 +327,91 @@ a:focus {
 
 
                             <?php
-                                    $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia";
-                                    $rcl = $mysqli->query($cl);
-                                    $fcl = $rcl->fetch_assoc();
-                                    //   echo $fcl['t'];
-                                    if ($fcl['t'] == 0){
-                                            echo "<h3 style='text-align:center'>NO HAY ASISTENCIAS MÉDICAS REGISTRADAS COMPLETADAS</h3>";
-                                    } else{
-                                            echo "<h3 style='text-align:center'>DETALLE ASISTENCIAS MÉDICAS </h3>";
-                                        }
-                            ?>
+                                  $cl = "SELECT COUNT(*) as t FROM instrumento";
+                                  $rcl = $mysqli->query($cl);
+                                  $fcl = $rcl->fetch_assoc();
+                                  // echo $fcl['t'];
+                                  if ($fcl['t'] == 0){
+                                        echo "<h3 style='text-align:center'>NO HAY INSTRUMENTOS DE ADAPTABILIDAD REGISTRADOS</h3>";
+                                  } else{
+                                        echo "<h3 style='text-align:center'>INSTRUMENTOS DE ADAPTABILIDAD REGISTRADOS</h3>";
+                                      }
+                                ?>
 
 
                                 <tr>
-                                    <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
-                                    <th style="text-align:center">IDSERVIDOR PÚBLICO</th>
-                                    <th style="text-align:center">SERVICIO MÉDICO</th>
-                                    <th style="text-align:center">REQUERIMIENTO</th>
-                                    <th style="text-align:center">ETAPA</th>
-                                    <th style="text-align:center">DETALLE</th>
+                                    <th style="text-align:center">No.</th>
+                                    <th style="text-align:center">FOLIO EXPEDIENTE DE PROTECCIÓN</th>
+                                    <th style="text-align:center">ID PERSONA Y/O SUJETO</th>
+                                    <th style="text-align:center">FECHA DE REGISTRO</th>
+                                    <!-- <th style="text-align:center">DIAGNÓSTICO</th>
+                                    <th style="text-align:center">MOTIVO DE REPROGRAMACIÓN</th> -->
+                                    <th style="text-align:center">NOMBRE SERVIDOR PÚBLICO</th>
+                                    <th style="text-align:center">ADAPTABILIDAD</th>
+                                    <th style="text-align:center">CONSULTAR DETALLE</th>
                                 </tr>
                             </thead>
-
                             <tbody>
 
-                                <?php
-                                $contador = 0;
-                                    $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor,
-                                    solicitud_asistencia.servicio_medico, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.etapa
-
-                                    FROM solicitud_asistencia
-                                    ORDER BY solicitud_asistencia.fecha_solicitud DESC";
-
-
-
-
+                              <?php
+                              $contador = 0;
+                              $sentencia1 = "SELECT* FROM instrumento ORDER BY instrumento.fecha_registro DESC";
 
                               $var_resultado = $mysqli->query($sentencia1);
 
                               while ($var_fila=$var_resultado->fetch_array())
                               {
                                 $contador = $contador + 1;
-                                $id_asistencia = $var_fila['id_asistencia'];
-                                // echo $id_asistencia;
+
 
                                     echo "<tr>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['servicio_medico']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['tipo_requerimiento']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
-                                        echo "<td style='text-align:center'>
-                                                <a data-toggle='modal' data-target='#myModal' style='text-align:center; text-decoration: none; color: #5F6D6B; text-decoration: underline;'><i class='fa-solid fa-address-card'></i></a>
-                                                
-                                            </td>";
-                                    echo "</tr>";
+                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['folio_expediente']; echo "</td>";
+                                    $id_p=$var_fila['id_persona'];
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id_persona']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha_registro']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['nombre_servidor']; echo "</td>";
 
+                                    $adaptabilidad=$var_fila['adaptabilidad'];
+
+                                    if ($var_fila['adaptabilidad'] === 'ALTA') {
+                                      echo "
+                                      <td style='text-align:center'>
+                                        <a class='btn btn-success btn-sm' href='' role='button' disabled>$adaptabilidad</a>
+                                      </td>
+                                    ";
+                                      } 
+
+                                    if ($var_fila['adaptabilidad'] === 'MEDIA') {
+                                      echo "
+                                      <td style='text-align:center'>
+                                        <a class='btn btn-warning btn-sm' href='' role='button' disabled>$adaptabilidad</a>
+                                      </td>
+                                      ";
+                                      } 
+
+                                    if ($var_fila['adaptabilidad'] === 'BAJA') {
+                                      echo "
+                                      <td style='text-align:center'>
+                                        <a class='btn btn-danger btn-sm' href='' role='button' disabled>$adaptabilidad</a>
+                                      </td>
+                                      ";
+                                      }
+
+                                    if ($var_fila['adaptabilidad'] === 'INADAPTABLE') {
+                                        echo "
+                                        <td style='text-align:center'>
+                                          <a class='btn btn-info btn-sm' href='' role='button' disabled>$adaptabilidad</a>
+                                        </td>
+                                        ";
+                                      }
+                                      
+                                    // echo "<td style='text-align:center'>"; echo $var_fila['adaptabilidad']; echo "</td>";
+                                    echo "<td style='text-align:center'>
+                                            <a class='btn btn-secondary btn-sm' href='./resultado_instrumento.php?id_persona=$id_p' role='button'>DETALLE</a>
+                                          </td>";
+
+                                    echo "</tr>";
                                 }
                             ?>
                             </tbody>
@@ -398,7 +428,7 @@ a:focus {
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
 			<!-- <a href="menu.php" class="btn-flotante">REGRESAR</a> -->
-      <a href="./menu_asistencias_medicas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+      <a href="./menu_instrumento.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		</div>
 
         <div class="contenedor">
@@ -409,59 +439,6 @@ a:focus {
 
 
 
-
-<div class="container">
-
-
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-        
-            <!-- Modal Header -->
-
-            <div class="modal-header">
-				<img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
-				<img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
-				<h4 style="text-align:center">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-			</div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-            Modal body..
-            </div>
-            
-            <!-- Modal footer -->
-
-            <div class="modal-header">
-				<a class="btn btn-warning btn-lg" href="javascript:imprimirSeleccion('myModal')">
-					Imprimir
-				</a>
-
-				<a class="btn btn-danger btn-lg" data-dismiss="modal">
-					Cerrar
-				</a>
-				</div>
-            
-        </div>
-        </div>
-    </div>
-
-</div>
-
-
-
 </body>
 </html>
 
-
-<script language="Javascript">
-function imprimirSeleccion(nombre) {
-var ficha = document.getElementById(nombre);
-var ventimp = window.open(' ', 'popimpr');
-ventimp.document.write( ficha.innerHTML );
-ventimp.document.close();
-ventimp.print( );
-ventimp.close();
-}
-</script>

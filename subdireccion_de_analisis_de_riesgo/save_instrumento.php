@@ -18,10 +18,12 @@ $row=$result->fetch_assoc();
 
 
 
-$folio_expediente = $_POST['folio'];
-$id_persona = $_POST['id_persona'];
-$fecha_hora = $_POST['fecha_hora_instrumento'];
+$folio_expediente = $_POST['folio_expediente'];
+$id_persona = $_POST['id_sujeto'];
 $nombre_servidor = $_POST['nombre_servidor'];
+// echo $folio_expediente;
+// echo $id_persona;
+// echo $nombre_servidor;
 
 $q1 = $_POST['r_question_1'];
 $q2 = $_POST['r_question_2'];
@@ -95,11 +97,11 @@ $total = $_POST['total_i'];
 $adaptabilidad = $_POST['adaptabilidad_i'];
 
   
-  $query = "INSERT INTO instrumento (folio_expediente, id_persona, fecha_registro, nombre_servidor,
+  $query = "INSERT INTO instrumento (folio_expediente, id_persona, nombre_servidor,
   p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, 
   p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50, p51, p52,
   total_instrumento, adaptabilidad)
-  VALUES ('$folio_expediente', '$id_persona', '$fecha_hora', '$nombre_servidor',
+  VALUES ('$folio_expediente', '$id_persona', '$nombre_servidor',
   '$q1', '$q2', '$q3', '$q4', '$q5', '$q6', '$q7', '$q8', '$q9', '$q10', '$q11', '$q12', '$q13', '$q14', '$q15', '$q16', '$q17', 
   '$q18', '$q19', '$q20', '$q21', '$q22', '$q23', '$q24', '$q25', '$q26', '$q27', '$q28', '$q29', '$q30', '$q31', '$q32', '$q33', 
   '$q34', '$q35', '$q36', '$q37', '$q38', '$q39', '$q40', '$q41', '$q42', '$q43', '$q44', '$q45', '$q46', '$q47', '$q48', '$q49', 
@@ -109,7 +111,7 @@ $adaptabilidad = $_POST['adaptabilidad_i'];
     if($result) {
         echo $verifica;
         echo ("<script type='text/javaScript'>
-                  window.location.href='../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=$fol_exp';
+                  window.location.href='../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php';
                   window.alert('!!!!!Registro exitoso¡¡¡¡¡')
                   </script>");
       

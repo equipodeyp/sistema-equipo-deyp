@@ -110,18 +110,17 @@ $r_input = "Si";
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='instrumento_adaptabilidad.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR UN NUEVO INSTRUMENTO</span></a></li>
-    			<li><a href="#" onclick="location.href='detalle_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INSTRUMENTOS REGISTRADOS</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='instrumento_adaptabilidad.php'"><span class="far fa-address-card"></span><span class="tab-text">REGISTRAR UN NUEVO INSTRUMENTO</span></a></li>
+    			<!-- <li><a href="#" onclick="location.href='detalle_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INSTRUMENTOS REGISTRADOS</span></a></li> -->
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
 
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?=$name_folio?>">EXPEDIENTE</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?=$fol_exp?>" class="actived">REGISTRAR INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">INICIO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/menu_instrumento.php">MENÚ INSTRUMENTO DE ADAPTABILIDAD</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php" class="actived">REGISTRAR NUEVO INSTRUMENTO</a>
             </div>
 
 
@@ -139,12 +138,34 @@ $r_input = "Si";
 
                   <div class="col-md-6 mb-3 ">
                     <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
-                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly>
+                    <select class="form-control" id="folio_expediente" name="folio_expediente" required placeholder="SELECCIONE EL EXPEDIENTE">
+                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                              <?php
+                                  $select1 = "SELECT DISTINCT datospersonales.folioexpediente
+                                  FROM datospersonales
+                                  WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
+                                  ORDER BY datospersonales.id ASC";
+                                  
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_folio = $valores1['folioexpediente'];
+                                    echo "<option value='$result_folio'>$result_folio</option>";
+                                  }
+                              ?>
+                      </select>
+                    <!-- <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly> -->
                   </div>
 
                 <div class="col-md-6 mb-3">
                   <label for="">ID PERSONA<span></span></label>
-                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" readonly>
+                  <select class="form-control" id="id_sujeto" name="id_sujeto" required>
+
+
+
+                  </select>
+
+
+                  <!-- <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $rowfol['identificador']; ?>" readonly> -->
                 </div>
 
                 <div id="cabecera">
@@ -153,13 +174,13 @@ $r_input = "Si";
                   </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <!-- <div class="col-md-6 mb-3">
                   <label for="" class="">FECHA Y HORA REGISTRO</label>
                   <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $myDate; ?>">
-                </div>
+                </div> -->
 
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
+                <div class="col-md-12 mb-3">
+                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO DE ADAPTABILIDAD</label>
                   <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $full_name;?>">
                 </div>
 
@@ -929,8 +950,34 @@ $r_input = "Si";
   </div>
 </div>
 <div class="contenedor">
-<a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/menu_instrumento.php" class="btn-flotante">REGRESAR</a>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#folio_expediente').val(1);
+		recargarLista();
+
+		$('#folio_expediente').change(function(){
+			recargarLista();
+		});
+
+
+	})
+</script>
+
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"./get_id_sujeto.php",
+			data:"folio=" + $('#folio_expediente').val(),
+			success:function(r){
+				$('#id_sujeto').html(r);
+			}
+		});
+	}
+</script>
 
 <script src="../js/obtener_datos_instrumento.js"></script>
 <script src="../js/boton_back_instrumento.js"></script>

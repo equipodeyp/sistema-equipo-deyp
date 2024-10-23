@@ -31,9 +31,9 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
+
 $m_user = $user;
 $m_user = strtoupper($m_user);
-
 // echo $m_user;
 
 
@@ -282,79 +282,8 @@ a:focus {
 }
 /*  */
   </style>
-
-<link rel="stylesheet" href="../css/button_notification.css" type="text/css">
-
 </head>
 <body>
-<?php
-
-$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
-$result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
-$genero = $row['sexo'];
-$id_user = $row['id'];
-$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
-$ruserfijo = $mysqli->query($userfijo);
-$fuserfijo=$ruserfijo->fetch_assoc();
-$permiso1 = $fuserfijo['permiso1'];
-$permiso2 = $fuserfijo['permiso2'];
-$permiso3 = $fuserfijo['permiso3'];
-$permiso4 = $fuserfijo['permiso4'];
-$permiso5 = $fuserfijo['permiso5'];
-$permiso6 = $fuserfijo['permiso6'];
-// echo $permiso1;
-// echo $permiso2;
-// echo $permiso3;
-// echo $permiso4;
-// echo $permiso5;
-// echo $permiso6;
-
-
-if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
-  echo "
-      <div class='notify-enlace'>
-
-        <div class='notify-btn-enlace' id='notify-btn-enlace'>
-          <button type='button' class='icon-button-enlace'>
-          <span><img src='../image/asistencias_medicas/bell.png' width='60' height='60'></span>
-          <span class='icon-button__badge-enlace' id='show_notif_enlace'>0</span>
-          </button>
-        </div>
-
-        <div class='notify-menu-enlace' id='notify-menu-enlace'>
-        </div>
-
-      </div>
-  ";
-
-}
-
-if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
-  echo "
-      <div class='notify-ejecucion'>
-
-        <div class='notify-btn-ejecucion' id='notify-btn-ejecucion'>
-          <button type='button' class='icon-button-ejecucion'>
-          <span><img src='../image/asistencias_medicas/bell.png' width='60' height='60'></span>
-          <span class='icon-button__badge-ejecucion' id='show_notif_ejecucion'>0</span>
-          </button>
-        </div>
-
-        <div class='notify-menu-ejecucion' id='notify-menu-ejecucion'>
-        </div>
-
-      </div>
-  ";
-
-}
-
-
-?>
-
-
-
-
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
@@ -380,16 +309,13 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
       </div>
 
       <nav class="menu-nav">
-        <ul>
-            <?php
-            if ($permiso1 === 'consulta') {
-            ?>
-            <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li>
-            <?php
-            }
-            ?>
-        </ul>
+
+
+
         <br><br>
+
+
+
       </nav>
     </div>
 
@@ -407,18 +333,11 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
           </h1>
-
-
-          <h4 style="text-align:center">
+          <br>
+          <br>
+          <h3 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h4>
-
-          <br>
-          <br>
-
-          <h2 style="text-align:center">MENÚ ASISTENCIAS MÉDICAS
-          </h2>
-
+          </h3>
         </div>
         <div class="row">
           <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
@@ -433,169 +352,65 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
 
 <?php
 
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$genero = $row['sexo'];
+$id_user = $row['id'];
+$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+$ruserfijo = $mysqli->query($userfijo);
+$fuserfijo=$ruserfijo->fetch_assoc();
+$permiso1 = $fuserfijo['permiso1'];
+$permiso2 = $fuserfijo['permiso2'];
+$permiso3 = $fuserfijo['permiso3'];
+$permiso4 = $fuserfijo['permiso4'];
+$permiso5 = $fuserfijo['permiso5'];
+// echo $permiso5;
+
+
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$id_servidor_ini'";
 $rcl = $mysqli->query($cl);
 $fcl = $rcl->fetch_assoc();
 // echo $fcl['t'];
 
-$cl2 = "SELECT COUNT(*) as r FROM solicitud_asistencia";
-$rcl2 = $mysqli->query($cl2);
-$fcl2 = $rcl2->fetch_assoc();
-// echo $fcl2['r'];
-
-
-if ($user=='enlace_sub' && $permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
-  echo "
-<ul class='ca-menu'>
-
-<li style='text-align:center'>
-  <a href='./solicitar_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>SOLICITAR</h2>
-      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
-  </a>
-</li>
-
-<li style='text-align:center'>
-  <a href='./solicitudes_registradas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>AGENDAR</h2>
-      <h3 class='ca-sub'>SOLICITUDES REGISTRADAS</h3></div>
-  </a>
-</li>
-
-<li style='text-align:center'>
-  <a href='./agenda/index.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>CALENDARIO</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-  </a>
-</li>
-
-<li style='text-align:center'>
-  <a href='./panel_asistencias_completadas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>DETALLE</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
-  </a>
-</li>
-
-
-";
-
-
-
-
-
-      if ($fcl['t'] > 0){
-
-        echo "<li style='text-align:center'>
-                <a href='./registrar_incidencia_asistencia.php'>
-                  <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-                  <div class='ca-content'>
-                    <h2 class='ca-main'>INCIDENCIA</h2>
-                    <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-                </a>
-              </li>
-
-              </ul>
-            ";
-
-      }
-
-echo " </ul>
-";
-
-}
-
-if ($user=='ejecucion_sub' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+if ($permiso5=='instrumento') {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>
 
 <li style='text-align:center'>
-  <a href='./solicitar_asistencia.php'>
+  <a href='./instrumento_adaptabilidad.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
     <div class='ca-content'>
-      <h2 class='ca-main'>SOLICITAR</h2>
-      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
+      <h2 class='ca-main'>REGISTRAR</h2>
+      <h3 class='ca-sub'>INSTRUMENTO DE ADAPTABILIDAD</h3></div>
   </a>
 </li>
 
-
+  
 <li style='text-align:center'>
-  <a href='./asistencia_turnada.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>ASISTENCIAS MÉDICAS</h2>
-      <h3 class='ca-sub'>TURNADAS Y/O ASIGNADAS</h3></div>
-  </a>
-</li>
-
-
-<li style='text-align:center'>
-  <a href='./agenda/index.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>CALENDARIO</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-  </a>
-</li>
-
-
-<li style='text-align:center'>
-  <a href='./panel_asistencias_completadas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
+  <a href='./instrumentos_registrados.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/seguimiento.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
       <h2 class='ca-main'>DETALLE</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
+      <h3 class='ca-sub'>INSTRUMENTOS REGISTRADOS</h3></div>
   </a>
 </li>
 
 
-";
 
-
-        if ($fcl['t'] >= 0){
-                  echo "<li style='text-align:center'>
-                    <a href='./registrar_incidencia_asistencia.php'>
-                      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-                      <div class='ca-content'>
-                        <h2 class='ca-main'>INCIDENCIA</h2>
-                        <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-                    </a>
-                  </li>
-                  ";
-        }
-
-
-echo " </ul>
 ";
 }
+
 ?>
 
 
+<div class="contenedor">
+    <a href="./menu.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>
+    <!-- <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
+</div>
+    <!-- <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
 
-    <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
-
-
-<?php
-if ($_SESSION['usuario'] == 'enlace_sub' || $permiso3 == 'agendar'){
-  echo "<script src='../js/notification_enlace.js'></script>";
-  // echo $_SESSION['usuario'];
-}
-
-if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
-  echo "<script src='../js/notification_ejecucion.js'></script>";
-  // echo $_SESSION['usuario'];
-}
-
-
-?>
 
 
 </body>
