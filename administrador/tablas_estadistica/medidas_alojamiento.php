@@ -71,6 +71,7 @@ $rselecpersnorel2 = $mysqli->query($selecpersnorel2);
 while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
   $id_sujp = $fselecpersnorel2['id'];
   $folexpper = $fselecpersnorel2['folioexpediente'];
+  $id_unico = $fselecpersnorel2['identificador'];
   //////////////////////////////////////////////////////////////////////////////
   $suj2021 = "SELECT COUNT(*) as t FROM `medidas`
   WHERE id_persona = '$id_sujp' AND medida = 'VIII. ALOJAMIENTO TEMPORAL' AND (date_provisional BETWEEN '2021-06-01' AND '2021-12-31' OR date_definitva BETWEEN '2021-01-01' AND '2021-12-31')";
@@ -94,6 +95,19 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
   $detinc = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_sujp'";
   $rdetinc = $mysqli->query($detinc);
   $fdetinc = $rdetinc->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $autoridadsol = "SELECT * FROM autoridad WHERE id_persona = '$id_sujp'";
+  $rautoridadsol = $mysqli->query($autoridadsol);
+  $fautoridadsol = $rautoridadsol->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $evaluacionsuj = "SELECT COUNT(*) AS total FROM evaluacion_persona WHERE id_unico = '$id_unico'";
+  $revaluacionsuj = $mysqli->query($evaluacionsuj);
+  $fevaluacionsuj = $revaluacionsuj->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $detincsujinc = "SELECT * FROM procesopenal WHERE id_persona = '$id_sujp'";
+  $rdetincsujinc = $mysqli->query($detincsujinc);
+  $fdetincsujinc = $rdetincsujinc->fetch_assoc();
+  // echo $fevaluacionsuj['total'];
   //////////////////////////////////////////////////////////////////////////////
   $id_permed = "SELECT DISTINCT id_persona FROM medidas
   WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND id_persona = '$id_sujp'";
@@ -155,11 +169,54 @@ while ($fselecpersnorel2 = $rselecpersnorel2->fetch_assoc()){
      $datetime1 = new DateTime($date11);
      $datetime2 = new DateTime($date22);
      $interval = $datetime1->diff($datetime2);
-     echo $interval->y . " año, " . $interval->m." mes y ".$interval->d." dia"; echo "</td>";
+     // echo  $interval->days . " días<br>";
+     // echo "<br>";
+     echo $interval->y . " año, " . $interval->m." mes y ".$interval->d." dia";
+     echo "</td>";
      ////////////////////////////////////////////////////////////////////////////////////////////
     echo "<td style='text-align:center'>"; echo $ftmedinfinal['estatus']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['relacional']; echo "</td>";
     echo "<td style='text-align:center'>"; echo $fselecpersnorel2['reingreso']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo $fselecpersnorel2['estatusprograma']; echo "</td>";
+    echo "<td style='text-align:center'>"; echo $fautoridadsol['nombreautoridad']; echo "</td>";
+    echo "<td style='text-align:center'>"; if ($fdetincsujinc['delitoprincipal'] === 'OTRO') {
+      echo $fdetincsujinc['otrodelitoprincipal'];
+    }else {
+      echo $fdetincsujinc['delitoprincipal'];
+    } echo "</td>";
+    echo "<td style='text-align:center'>"; if ($fselecpersnorel2['estatus'] === 'PERSONA PROPUESTA') {
+      echo "EN ELABORACION";
+    }elseif ($fselecpersnorel2['estatus'] === 'SUJETO PROTEGIDO') {
+      // echo "PROTEGIDO";
+      if ($fevaluacionsuj['total'] > 0) {
+        $evalsujultimo = "SELECT * FROM evaluacion_persona WHERE id_unico = '$id_unico' ORDER BY id DESC LIMIT 1";
+        $revalsujultimo = $mysqli->query($evalsujultimo);
+        $fevalsujultimo = $revalsujultimo->fetch_assoc();
+        echo date("d/m/Y", strtotime($fevalsujultimo['fecha_vigencia']));
+      }else {
+        $detincsujprot = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_sujp'";
+        $rdetincsujprot = $mysqli->query($detincsujprot);
+        $fdetincsujprot = $rdetincsujprot->fetch_assoc();
+        echo date("d/m/Y", strtotime($fdetincsujprot['fecha_vigencia']));
+      }
+    }elseif ($fselecpersnorel2['estatus'] === 'DESINCORPORADO') {
+      if ($fevaluacionsuj['total'] > 0) {
+        $evalsujultimo = "SELECT * FROM evaluacion_persona WHERE id_unico = '$id_unico' ORDER BY id DESC LIMIT 1";
+        $revalsujultimo = $mysqli->query($evalsujultimo);
+        $fevalsujultimo = $revalsujultimo->fetch_assoc();
+        echo date("d/m/Y", strtotime($fevalsujultimo['fecha_aut']));
+      }else {
+        $detincsujprot = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_sujp'";
+        $rdetincsujprot = $mysqli->query($detincsujprot);
+        $fdetincsujprot = $rdetincsujprot->fetch_assoc();
+        echo date("d/m/Y", strtotime($fdetincsujprot['date_autorizacion']));
+      }
+    }elseif ($fselecpersnorel2['estatus'] === 'NO INCORPORADO') {
+      $detincsujprot = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$id_sujp'";
+      $rdetincsujprot = $mysqli->query($detincsujprot);
+      $fdetincsujprot = $rdetincsujprot->fetch_assoc();
+      echo date("d/m/Y", strtotime($fdetincsujprot['date_autorizacion']));
+    } echo "</td>";
     echo "</tr>";
   }
 }

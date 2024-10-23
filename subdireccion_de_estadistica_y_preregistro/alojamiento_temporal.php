@@ -310,6 +310,8 @@ a:focus {
                                             <th style="text-align:center">RE-INGRESO</th>
                                             <th style="text-align:center">ACTIVO</th>
                                             <th style="text-align:center">AUTORIDAD SOLICITANTE</th>
+                                            <th style="text-align:center">DELITO PRINCIPAL</th>
+                                            <th style="text-align:center">FECHA DE VENCIMIENTO</th>
                                           </tr>
                                       </thead>
                                       <tbody>
