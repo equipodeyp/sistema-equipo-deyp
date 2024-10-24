@@ -76,12 +76,14 @@ $permiso3 = $fuserfijo['permiso3'];
 $permiso4 = $fuserfijo['permiso4'];
 $permiso5 = $fuserfijo['permiso5'];
 $permiso6 = $fuserfijo['permiso6'];
+$sub = $fuserfijo['subdireccion'];
 // echo $permiso1;
 // echo $permiso2;
 // echo $permiso3;
 // echo $permiso4;
 // echo $permiso5;
 // echo $permiso6;
+// echo $sub;
 
 
 ?>
@@ -313,7 +315,7 @@ $permiso6 = $fuserfijo['permiso6'];
 
 
                 <?php 
-                if ($permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+                if ($sub === 'subdireccion de enlace interinstitucional') {
                   echo "
                 
                   <div class='form-group'>
@@ -332,7 +334,7 @@ $permiso6 = $fuserfijo['permiso6'];
                   ";
                 }
                 
-                if ($permiso3 == 'solicitar' && $permiso1 == 'consulta') {
+                else {
                   echo "
                 
                   <div class='form-group'>
@@ -352,28 +354,28 @@ $permiso6 = $fuserfijo['permiso6'];
                   ";
                 }
 
-                else{
-                  echo "
+                // else{
+                //   echo "
                 
-                  <div class='form-group'>
-                    <label for='tipo_requerimiento' class='col-md-4 control-label' style='font-size: 16px'>TIPO DE REQUERIMIENTO </label>
-                    <div class='col-md-4 selectContainer'>
-                      <div class='input-group'>
-                        <span class='input-group-addon'><i class='fas fa-solid fa-thumbtack'></i></span>
-                        <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
-                            <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <option value='MINISTERIO PÚBLICO' >MINISTERIO PÚBLICO</option>
-                            <option value='POR INGRESO'>POR INGRESO</option>
-                            <option value='PRIMERA VEZ'>PRIMERA VEZ</option>
-                            <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
-                            <option value='URGENCIA'>URGENCIA</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+                //   <div class='form-group'>
+                //     <label for='tipo_requerimiento' class='col-md-4 control-label' style='font-size: 16px'>TIPO DE REQUERIMIENTO </label>
+                //     <div class='col-md-4 selectContainer'>
+                //       <div class='input-group'>
+                //         <span class='input-group-addon'><i class='fas fa-solid fa-thumbtack'></i></span>
+                //         <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
+                //             <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                //             <option value='MINISTERIO PÚBLICO' >MINISTERIO PÚBLICO</option>
+                //             <option value='POR INGRESO'>POR INGRESO</option>
+                //             <option value='PRIMERA VEZ'>PRIMERA VEZ</option>
+                //             <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
+                //             <option value='URGENCIA'>URGENCIA</option>
+                //         </select>
+                //       </div>
+                //     </div>
+                //   </div>
                   
-                  ";
-                }
+                //   ";
+                // }
                 ?>
                 
 
