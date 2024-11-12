@@ -72,57 +72,77 @@ $row=$result->fetch_assoc();
 $(document).ready(function() {
 //tabla de sujetos dentro del centro de resguardo
 $('#dentroresguardo').DataTable({
-  buttons: [
-        'excel', 'pdf'
-    ],
-    layout: {
-        topStart: 'buttons'
-    },
+  layout: {
+          topStart: {
+              buttons: [
+                  {
+                      extend: 'excelHtml5',
+                      title: 'SUJETOS DENTRO DEL CENTRO DE RESGUARDO'
+                  },
+                  {
+                      extend: 'pdfHtml5',
+                      title: 'SUJETOS DENTRO DEL CENTRO DE RESGUARDO',
+                      orientation: 'landscape',
+                      pageSize: 'A4',
+                  }
+              ]
+          }
+      },
   "language": {
   "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 },
-  language: {
-          "lengthMenu": "Mostrar _MENU_ registros",
-          "zeroRecords": "No se encontraron resultados",
-          "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "sSearch": "Buscar:",
-          "oPaginate": {
-              "sFirst": "Primero",
-              "sLast":"Último",
-              "sNext":"Siguiente",
-              "sPrevious": "Anterior"
-     },
-     "sProcessing":"Procesando...",
-      },
+  // language: {
+  //         "lengthMenu": "Mostrar _MENU_ registros",
+  //         "zeroRecords": "No se encontraron resultados",
+  //         "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+  //         "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+  //         "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+  //         "sSearch": "Buscar:",
+  //         "oPaginate": {
+  //             "sFirst": "Primero",
+  //             "sLast":"Último",
+  //             "sNext":"Siguiente",
+  //             "sPrevious": "Anterior"
+  //    },
+  //    "sProcessing":"Procesando...",
+  //     },
 });
 //tabal de sujetos fuera del centro de resguardo
 $('#fueraresguardo').DataTable({
-  buttons: [
-        'excel', 'pdf'
-    ],
-    layout: {
-        topStart: 'buttons'
+  layout: {
+        topStart: {
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'SUJETOS FUERA DEL CENTRO DE RESGUARDO'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'SUJETOS FUERA DEL CENTRO DE RESGUARDO',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                }
+            ]
+        }
     },
-  "language": {
-  "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+"language": {
+"url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 },
-  language: {
-          "lengthMenu": "Mostrar _MENU_ registros",
-          "zeroRecords": "No se encontraron resultados",
-          "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "sSearch": "Buscar:",
-          "oPaginate": {
-              "sFirst": "Primero",
-              "sLast":"Último",
-              "sNext":"Siguiente",
-              "sPrevious": "Anterior"
-     },
-     "sProcessing":"Procesando...",
-      },
+  // language: {
+  //         "lengthMenu": "Mostrar _MENU_ registros",
+  //         "zeroRecords": "No se encontraron resultados",
+  //         "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+  //         "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+  //         "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+  //         "sSearch": "Buscar:",
+  //         "oPaginate": {
+  //             "sFirst": "Primero",
+  //             "sLast":"Último",
+  //             "sNext":"Siguiente",
+  //             "sPrevious": "Anterior"
+  //    },
+  //    "sProcessing":"Procesando...",
+  //     },
 });
 } );
 </script>
@@ -172,7 +192,7 @@ $('#fueraresguardo').DataTable({
           <div class="row">
               <div class="col-lg-12">
                 <div class="table-responsive">
-                  <table id="dentroresguardo" class="display" style="width:100%; border-collapse: separate; border: #63696D 5px solid;">
+                  <table id="dentroresguardo" class="display " style="width:100%; border-collapse: separate; border: #63696D 5px solid;" cellspacing="0">
                     <thead>
                       <h3 style="text-align:center">SUJETOS DENTRO DEL CENTRO DE RESGUARDO</h3>
                       <tr>
@@ -252,7 +272,7 @@ $('#fueraresguardo').DataTable({
               </div>
               <div class="col-lg-12">
                 <div class="table-responsive">
-                  <table id="fueraresguardo" class="display" style="width:100%; border-collapse: separate; border: #63696D 5px solid;">
+                  <table id="fueraresguardo" class="display" style="width:100%; border-collapse: separate; border: #63696D 5px solid;" cellspacing="0">
                     <thead>
                       <h3 style="text-align:center">SUJETOS FUERA DEL CENTRO DE RESGUARDO</h3>
                       <tr>
