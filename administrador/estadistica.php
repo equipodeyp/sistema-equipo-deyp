@@ -82,6 +82,7 @@ $result = $mysqli->query($sentencia);
               <li class="menu-items"><a href="../administrador/archivos_html/total_personas.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span> SUJETOS</span></a></li>
               <li class="menu-items"><a href="../administrador/archivos_html/total_medidas.php"><i class='fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items"> MEDIDAS</span></a></li>
               <li class="menu-items"><a href="../administrador/archivos_html/total_personas_nuevo_ingreso.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span>NUEVO INGRESO PERSONAS</span></a></li>
+              <li class="menu-items"><a href="../administrador/dentro_y_fuera_del_cr.php"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i><span>DENTRO Y FUERA DE CENTRO DE RESGUARDO</span></a></li>
                 <!-- <li class="menu-items"><a href="../administrador/estadistica.php"><i class="fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span class="menu-items">ESTADISTICA</span></a></li> -->
               </ul>
       </nav>
