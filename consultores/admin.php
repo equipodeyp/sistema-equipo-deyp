@@ -41,6 +41,10 @@ $row=$result->fetch_assoc();
   <script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
   <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
+  <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
+  <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
 
@@ -190,6 +194,31 @@ a:focus {
   color: #FFFFFF;
   text-decoration: underline;
 }
+
+  .submenu {
+    display: none;
+  }
+  .opacity {
+    /* opacity: 100%; */
+  }
+
+  /*  */
+  .submenu2 {
+    display: none;
+  }
+  .opacity2 {
+    /* opacity: 100%; */
+  }
+  /*  */
+
+  /*  */
+  .submenu3 {
+    display: none;
+  }
+  .opacity3 {
+    /* opacity: 100%; */
+  }
+  /*  */
   </style>
 </head>
 <body>
@@ -227,6 +256,15 @@ a:focus {
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
+        <li id="liestadistica3" class="subtitle3">
+            <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
+            <ul class="submenu3">
+              <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
+              <li id="lipersonas" class="menu-items"><a href="../consultores/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
+              <!-- <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
+            </ul>
           <?php
           if ($row['cargo'] === 'titular') {
           ?>
@@ -234,6 +272,7 @@ a:focus {
           <?php
           }
           ?>
+          </li>
         </ul>
       </nav>
     </div>
@@ -392,4 +431,19 @@ a:focus {
   </div>
   <!-- fin modal  -->
 </body>
+<script>
+  // CODIGO DE MENU CON submenu3
+  $(".subtitle3 .action3").click(function(event){
+   var subtitle3 = $(this).parents(".subtitle3");
+   var submenu3 = $(subtitle3).find(".submenu3");
+
+   $(".submenu3").not($(submenu3)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle3)).removeClass("open");
+
+   $(subtitle3).toggleClass("open");
+   $(submenu3).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+</script>
 </html>
