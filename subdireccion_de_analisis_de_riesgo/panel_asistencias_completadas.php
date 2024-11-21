@@ -326,41 +326,37 @@ a:focus {
 
 
                             <?php
-                                    $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia";
-                                    $rcl = $mysqli->query($cl);
-                                    $fcl = $rcl->fetch_assoc();
-                                    //   echo $fcl['t'];
-                                    if ($fcl['t'] == 0){
-                                            echo "<h3 style='text-align:center'>NO HAY ASISTENCIAS MÉDICAS REGISTRADAS COMPLETADAS</h3>";
-                                    } else{
-                                            echo "<h3 style='text-align:center'>DETALLE ASISTENCIAS MÉDICAS </h3>";
-                                        }
-                            ?>
+                                  $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia";
+                                  $rcl = $mysqli->query($cl);
+                                  $fcl = $rcl->fetch_assoc();
+                                  // echo $fcl['t'];
+                                  if ($fcl['t'] == 0){
+                                        echo "<h3 style='text-align:center'>NO HAY ASISTENCIAS MÉDICAS REGISTRADAS COMPLETADAS</h3>";
+                                  } else{
+                                        echo "<h3 style='text-align:center'>ASISTENCIAS MÉDICAS REGISTRADAS</h3>";
+                                      }
+                                ?>
 
 
                                 <tr>
                                     <th style="text-align:center">ID ASISTENCIA MÉDICA</th>
-                                    <th style="text-align:center">IDSERVIDOR PÚBLICO</th>
+                                    <th style="text-align:center">ID SERVIDOR PÚBLICO SOLICITANTE</th>
+                                    <th style="text-align:center">FECHA SOLICITUD</th>
                                     <th style="text-align:center">SERVICIO MÉDICO</th>
                                     <th style="text-align:center">REQUERIMIENTO</th>
+                                    <th style="text-align:center">FECHA ASISTENCIA</th>
+                                    <th style="text-align:center">DIAS RESTANTES</th> 
                                     <th style="text-align:center">ETAPA</th>
                                     <th style="text-align:center">DETALLE</th>
                                 </tr>
                             </thead>
-
                             <tbody>
 
-                                <?php
-                                $contador = 0;
-                                    $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor,
-                                    solicitud_asistencia.servicio_medico, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.etapa
-
-                                    FROM solicitud_asistencia
-                                    ORDER BY solicitud_asistencia.fecha_solicitud DESC";
-
-
-
-
+                              <?php
+                              $contador = 0;
+                              $sentencia1 = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, solicitud_asistencia.id_servidor,
+                              solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa, solicitud_asistencia.tipo_requerimiento
+                              FROM solicitud_asistencia";
 
                               $var_resultado = $mysqli->query($sentencia1);
 
@@ -371,17 +367,46 @@ a:focus {
                                 // echo $id_asistencia;
 
                                     echo "<tr>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['servicio_medico']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['tipo_requerimiento']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
-                                        echo "<td style='text-align:center'>
-                                                <a data-toggle='modal' data-target='#myModal' style='text-align:center; text-decoration: none; color: #5F6D6B; text-decoration: underline;'><i class='fa-solid fa-address-card'></i></a>
-                                                
-                                            </td>";
-                                    echo "</tr>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id_asistencia']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id_servidor']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['fecha_solicitud']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['servicio_medico']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['tipo_requerimiento']; echo "</td>";
 
+                                    if ($var_fila['etapa'] === 'SOLICITADA' || $var_fila['etapa'] === 'CANCELADA'){
+                                      echo "<td style='text-align:center'>"; echo '---'; echo "</td>";
+                                      echo "<td style='text-align:center'>"; echo '---'; echo "</td>";
+                                    }
+                                    else {
+                                      $sentencia2 = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, cita_asistencia.id_asistencia, cita_asistencia.fecha_asistencia
+                                      FROM cita_asistencia
+                                      WHERE cita_asistencia.id_asistencia = '$id_asistencia'
+                                      ORDER BY cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia DESC 
+                                      LIMIT 1";
+    
+                                      $var_resultado2 = $mysqli->query($sentencia2);
+          
+                                        while ($var_fila2=$var_resultado2->fetch_array())
+                                        {
+    
+                                        echo "<td style='text-align:center'>"; echo $var_fila2['fecha_asistencia']; echo "</td>";
+                                        if($var_fila2['dias_restantes'] < 0){
+                                          echo "<td style='text-align:center'>"; echo '0'; echo "</td>";
+                                        } else {
+                                          echo "<td style='text-align:center'>"; echo $var_fila2['dias_restantes']; echo "</td>";
+                                        } 
+
+                                        }
+
+
+                                    }
+
+
+                                    echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
+                                    echo "<td style='text-align:center'>
+                                            <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia_completada.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'><i class='fa-solid fa-id-card'></i></i></span></a>
+                                          </td>";
+                                    echo "</tr>";
                                 }
                             ?>
                             </tbody>
@@ -409,59 +434,5 @@ a:focus {
 
 
 
-
-<div class="container">
-
-
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-        
-            <!-- Modal Header -->
-
-            <div class="modal-header">
-				<img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
-				<img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
-				<h4 style="text-align:center">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-			</div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-            Modal body..
-            </div>
-            
-            <!-- Modal footer -->
-
-            <div class="modal-header">
-				<a class="btn btn-warning btn-lg" href="javascript:imprimirSeleccion('myModal')">
-					Imprimir
-				</a>
-
-				<a class="btn btn-danger btn-lg" data-dismiss="modal">
-					Cerrar
-				</a>
-				</div>
-            
-        </div>
-        </div>
-    </div>
-
-</div>
-
-
-
 </body>
 </html>
-
-
-<script language="Javascript">
-function imprimirSeleccion(nombre) {
-var ficha = document.getElementById(nombre);
-var ventimp = window.open(' ', 'popimpr');
-ventimp.document.write( ficha.innerHTML );
-ventimp.document.close();
-ventimp.print( );
-ventimp.close();
-}
-</script>

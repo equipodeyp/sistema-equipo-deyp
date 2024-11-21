@@ -358,7 +358,7 @@ a:focus {
                                     <th style="text-align:center">FECHA DE ASISTENCIA</th>
                                     <th style="text-align:center">DIAS RESTANTES</th>
                                     <th style="text-align:center">ETAPA</th>
-                                    <th style="text-align:center">DETALLE ASISTENCIA MÉDICA</th>
+                                    <!-- <th style="text-align:center">DETALLE ASISTENCIA MÉDICA</th> -->
                                 </tr>
                             </thead>
 
@@ -373,7 +373,7 @@ a:focus {
                                                             
                               JOIN agendar_asistencia 
                               ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                              WHERE solicitud_asistencia.etapa = 'NOTIFICADA' OR solicitud_asistencia.etapa = 'REPROGRAMADA NOTIFICADA'";
+                              WHERE solicitud_asistencia.etapa != 'ASISTENCIA MÉDICA COMPLETADA'";
 
 
                               $var_resultado = $mysqli->query($sentencia1);
@@ -399,7 +399,6 @@ a:focus {
                                                   ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
                                                   WHERE cita_asistencia.id_asistencia = '$id_asistencia'
 
-
                                                   ORDER BY cita_asistencia.id DESC LIMIT 1";
                                     
                                     $result_cita = mysqli_query($mysqli, $query_cita);
@@ -407,14 +406,19 @@ a:focus {
                                     while($row2 = mysqli_fetch_array($result_cita)) {
                                                                 
                                                                 
-                                          if ($id_asistencia == $row2['id_asistencia']){
+                                          if ($id_asistencia === $row2['id_asistencia']){
 
                                             echo "<td style='text-align:center'>"; echo $row2['fecha_asistencia']; echo "</td>";
-                                            echo "<td style='text-align:center'>"; echo $row2['dias_restantes']; echo "</td>";
+
+                                            if($row2['dias_restantes'] < 0){
+                                              echo "<td style='text-align:center'>"; echo '0'; echo "</td>";
+                                            }else{
+                                              echo "<td style='text-align:center'>"; echo $row2['dias_restantes']; echo "</td>";
+                                            }
                                             echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
-                                            echo "<td style='text-align:center'>
-                                                    <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'></span>Ver detalle</a>
-                                                  </td>";
+                                            // echo "<td style='text-align:center'>
+                                            //         <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'></span>Ver detalle</a>
+                                            //       </td>";
                                     echo "</tr>";
 
                                           }
