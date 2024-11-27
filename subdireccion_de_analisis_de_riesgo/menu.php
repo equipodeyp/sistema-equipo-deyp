@@ -358,6 +358,7 @@ if ($permiso3=='solicitar') {
         $permiso3 = $fuserfijo['permiso3'];
         $permiso4 = $fuserfijo['permiso4'];
         $permiso5 = $fuserfijo['permiso5'];
+        $permiso5 = $fuserfijo['permiso5'];
         // echo $permiso1;
 
         if ($genero=='mujer') {

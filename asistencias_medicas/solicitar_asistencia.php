@@ -345,7 +345,7 @@ $sub = $fuserfijo['subdireccion'];
                         <select class='form-control selectpicker' id='tipo_requerimiento' name='tipo_requerimiento' required>
                             <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                             <option value='PRIMERA VEZ'>PRIMERA VEZ</option>
-                            <option value='SEGUIMIENTO' >SEGUIMIENTO</option>
+                            <option value='URGENCIA'>URGENCIA</option>
                         </select>
                       </div>
                     </div>

@@ -143,15 +143,15 @@ $respuesta7=$resultado7->fetch_assoc();
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-        <li><a href="#" class="active" onclick="location.href='./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE ASISTENCIA MÉDICA COMPLETADA</span></a></li>
+        <li><a href="#" class="active" onclick="location.href='./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE ASISTENCIA MÉDICA</span></a></li>
       </ul>
 
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-              <a href="./panel_asistencias_completadas.php">ASISTENCIAS MÉDICAS COMPLETADAS</a>
-              <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA COMPLETADA</a>
+              <a href="./panel_asistencias_completadas.php">ASISTENCIAS MÉDICAS REGISTRADAS</a>
+              <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA</a>
             </div>
 
             

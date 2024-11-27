@@ -403,6 +403,7 @@ a:focus {
 
 
                                     echo "<td style='text-align:center'>"; echo $var_fila['etapa']; echo "</td>";
+                                    
                                     echo "<td style='text-align:center'>
                                             <a style='text-align:center; text-decoration: none; color: #000000; text-decoration: underline;' href='./detalle_asistencia_completada.php?id_asistencia=".$var_fila['id_asistencia']."'><span style='text-align:center;'><i class='fa-solid fa-id-card'></i></i></span></a>
                                           </td>";

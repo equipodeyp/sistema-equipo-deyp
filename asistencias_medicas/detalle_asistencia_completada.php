@@ -56,15 +56,7 @@ $consulta6 = "SELECT* FROM cita_asistencia WHERE cita_asistencia.id_asistencia =
 $resultado6 = $mysqli->query($consulta6);
 $respuesta6=$resultado6->fetch_assoc();
 
-// $consulta7 = "SELECT*
-// FROM seguimiento_asistencia                                                                                                      
-// JOIN cita_asistencia
-// ON seguimiento_asistencia.id_asistencia = cita_asistencia.id_asistencia
-// AND cita_asistencia.id_asistencia = '$id_asistencia_medica'
-// ORDER BY cita_asistencia.fecha_asistencia DESC LIMIT 1";
-
 $consulta7 = "SELECT* FROM seguimiento_asistencia WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia_medica' ORDER BY seguimiento_asistencia.hora_registro DESC LIMIT 1";
-
 $resultado7 = $mysqli->query($consulta7);
 $respuesta7=$resultado7->fetch_assoc();
 
@@ -151,137 +143,251 @@ $respuesta7=$resultado7->fetch_assoc();
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE ASISTENCIA MÉDICA COMPLETADA</span></a></li>
-    			<!-- <li><a href="#" onclick="location.href='detalle_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INSTRUMENTOS REGISTRADOS</span></a></li> -->
-          <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
-    	</ul>
+        <li><a href="#" class="active" onclick="location.href='./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE ASISTENCIA MÉDICA</span></a></li>
+      </ul>
 
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="./admin.php">INICIO</a>
-              <a href="./panel_asistencias_completadas.php">ASISTENCIAS MÉDICAS COMPLETADAS</a>
-              <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA COMPLETADA</a>
+            <a href="./admin.php">INICIO</a>
+              <a href="./panel_asistencias_completadas.php">ASISTENCIAS MÉDICAS REGISTRADAS</a>
+              <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA</a>
             </div>
 
             
             <div class="container">
         			<div class="well form-horizontal">
-              <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+              <form id="form" class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+
+              <div class="">
+                <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
+                <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
+                <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
+              </div>
 
         				<div class="row">
-
-                  <div id="cabecera">
-                    <h1 style="text-align:center">DETALLE DE LA ASISTENCIA MÉDICA COMPLETADA: <?php echo $id_asistencia_medica; ?></h1>
-                    <br>
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN DE LA SOLICITUD</h3>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['folio_expediente']; ?>">
-                  </div>
-
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">ID SUJETO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['id_sujeto']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">ID ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['id_asistencia']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">ETAPA DE LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['etapa']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">FECHA DE SOLICITUD</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['fecha_solicitud']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">ID SERVIDOR PÚBLICO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['id_servidor']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">NÚMERO DE OFICIO DE LA SOLICITUD</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['num_oficio']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">TIPO DE REQUERIMIENTO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['tipo_requerimiento']; ?>">
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">SERVICIO MÉDICO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['servicio_medico']; ?>">
-                  </div>
-
-                  <div class="col-md-12 mb-6">
-                    <label for="" class="">OBSERVACIONES DE LA SOLICITUD</label>
-                    <textarea readonly class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta1['observaciones']; ?>"></textarea>
                   <br>
+                  <div id="cabecera">
+                    <h2 style="text-align:center">ASISTENCIA MÉDICA: <?php echo $id_asistencia_medica; ?></h2>
+                    <input style="display:none" id="etapa" value="<?php echo $respuesta1['etapa']; ?>"/>
                   </div>
 
+                <div id="solicitud" style="display:none">
+
                   <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">UNIDAD MÉDICA</h3>
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">INFORMACIÓN DE LA SOLICITUD</h3>
                     </div>
                   </div>
 
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">TIPO DE INSTITUCION</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['tipo_institucion']; ?>">
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">FOLIO DEL EXPEDIENTE DE PROTECCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['folio_expediente']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID SUJETO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['id_sujeto']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID ASISTENCIA MÉDICA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['id_asistencia']; ?></td>
+                        </tr>
+
+
+                        <tr>
+                          <th style="text-align:left;">FECHA DE SOLICITUD:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['fecha_solicitud']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID SERVIDOR PÚBLICO SOLICITANTE:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['id_servidor']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">NÚMERO DE OFICIO DE LA SOLICITUD:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['num_oficio']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">TIPO DE REQUERIMIENTO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['tipo_requerimiento']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">SERVICIO MÉDICO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['servicio_medico']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">OBSERVACIONES DE LA SOLICITUD</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['observaciones']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ETAPA DE LA ASISTENCIA MÉDICA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['etapa']; ?></td>
+                        </tr>
+                      </tbody>
+
+                    </table>
                   </div>
 
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">NOMBRE DE LA INSTITUCIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['nombre_institucion']; ?>">
-                  </div>                  
-                  
-                  
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">MUNICIPIO DE LA INSTITUCIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta2['municipio_institucion']; ?>">
-                  </div>
+                </div>
 
-                  <div class="col-md-12 mb-6">
-                    <label for="" class="">DOMICILIO DE LA UNSTITUCIÓN</label>
-                    <textarea readonly placeholder="<?php echo $respuesta2['domicilio_institucion']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
-                    <br>
-                  </div>                  
-                  
-                  
-                  <div class="col-md-12 mb-6">
-                    <label for="" class="">OBSERVACIONES DE LA ASISTENCIA MEDICA</label>
-                    <textarea readonly placeholder="<?php echo $respuesta2['observaciones']; ?>" class="form-control" name="" id="" rows="5" cols="33" maxlength="1000"></textarea>
-                  <br>
-                  </div>
+                <div id="solicitud_cancelada" style="display:none">
 
                   <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">FECHA Y HORA DE ASISTENCIA</h3>
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">INFORMACIÓN DE LA SOLICITUD</h3>
                     </div>
                   </div>
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">FOLIO DEL EXPEDIENTE DE PROTECCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['folio_expediente']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID SUJETO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['id_sujeto']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID ASISTENCIA MÉDICA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['id_asistencia']; ?></td>
+                        </tr>
+
+
+                        <tr>
+                          <th style="text-align:left;">FECHA DE SOLICITUD:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['fecha_solicitud']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID SERVIDOR PÚBLICO SOLICITANTE:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['id_servidor']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">NÚMERO DE OFICIO DE LA SOLICITUD:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['num_oficio']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">TIPO DE REQUERIMIENTO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['tipo_requerimiento']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">SERVICIO MÉDICO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['servicio_medico']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">OBSERVACIONES DE LA SOLICITUD</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['observaciones']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ETAPA DE LA ASISTENCIA MÉDICA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['etapa']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">MOTIVO DE LA CANCELACIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta1['motivo_incidencia']; ?></td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+
+                </div>
+
+                <div id="unidad" style="display:none">
+
+                  <div id="cabecera">
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">UNIDAD MÉDICA</h3>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">TIPO DE INSTITUCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['tipo_institucion']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">NOMBRE DE LA INSTITUCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['nombre_institucion']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">MUNICIPIO DE LA INSTITUCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['municipio_institucion']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">DOMICILIO DE LA UNSTITUCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['domicilio_institucion']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">OBSERVACIONES DE LA ASISTENCIA MÉDICA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['observaciones']; ?></td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+
+                </div>
+
+                <div id="fecha" style="display:none">
+
+                  <div id="cabecera">
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">FECHA Y HORA DE LA ASISTENCIA MÉDICA</h3>
+                    </div>
+                  </div>
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">FECHA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta5['fecha_asistencia']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">HORA:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta5['hora_asistencia']; ?></td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
                   
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['fecha_asistencia']; ?>">
-                  </div>
+                </div>
 
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta5['hora_asistencia']; ?>">
-                  </div>
-
+                <div id="reprogramacion" style="display:none">
 
                   <?php
 
@@ -292,242 +398,240 @@ $respuesta7=$resultado7->fetch_assoc();
                           // echo $fcl['t'];
 
                           if ($fcl['t'] > 1){
-
-                                echo '<div id="cabecera">
-                                  <div class="row alert div-title">
-                                    <h3 style="text-align:center">FECHA Y HORA DE REPROGRAMACIÓN</h3>
+                                
+                                echo '
+                                <div id="cabecera">
+                                  <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                                    <h3 style="text-align:center; color: #ddd;">FECHA Y HORA DE REPROGRAMACIÓN</h3>
                                   </div>
                                 </div>
-            
-                                <div class="col-md-6 mb-3">
-                                  <label for="" class="">FECHA DE LA ASISTENCIA MÉDICA</label>
-                                  <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta6['fecha_asistencia']; echo '">
-                                </div>';
+                                ';
 
-                                echo '<div class="col-md-6 mb-3">
-                                  <label for="" class="">HORA DE LA ASISTENCIA MÉDICA</label>
-                                  <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta6['hora_asistencia']; echo '">
-                                </div>';
+                                echo '
+                                <div>
+                                  <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                                    <tbody>
+                                      <tr>
+                                        <th style="text-align:left;">FECHA:</th>
+                                        <td style="text-align:left; background-color: #fff;">'; echo $respuesta6['fecha_asistencia']; echo '</td>
+                                      </tr>
+
+                                      <tr>
+                                        <th style="text-align:left;">HORA:</th>
+                                        <td style="text-align:left; background-color: #fff;">'; echo $respuesta6['hora_asistencia']; echo '</td>
+                                      </tr>
+                                    </tbody>
+
+                                  </table>
+                                </div>
+                                ';
 
                           } 
 
                   ?>
 
+                </div>
 
+                <div id="turnada" style="display:none">
 
-              
                   <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">ASISTENCIA MÉDICA TURNADA</h3>
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">ASISTENCIA MÉDICA TURNADA</h3>
                     </div>
                   </div>
 
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">TURNADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta3['turnar_asistencia']; ?>">
+
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">TURNADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta3['turnar_asistencia']; ?></td>
+                        </tr>
+
+                        <?php
+                              $turnada = $respuesta3['turnar_asistencia'];
+
+                              if ($turnada == "SI"){
+
+                                echo '
+                                    <tr>
+                                      <th style="text-align:left;">NÚMERO DE OFICIO MEDIANTE EL CUAL SE TURNA:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta3['oficio']; echo '</td>
+                                    </tr>
+
+                                    <tr>
+                                      <th style="text-align:left;">FECHA DE RECEPCIÓN DEL OFICIO:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta3['fecha_oficio']; echo '</td>
+                                    </tr>
+                                ';
+
+                              } 
+                        ?>
+                      </tbody>
+
+                    </table>
                   </div>
-
-                  <?php
-                      $turnada = $respuesta3['turnar_asistencia'];
-
-                      if ($turnada == "SI"){
-
-                      echo '<div class="col-md-6 mb-3">
-                        <label for="" class="">NÚMERO DE OFICIO MEDIANTE EL CUAL SE TURNA</label>
-                        <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta3['oficio']; echo '">
-                      </div>';
-
-                      echo '<div class="col-md-6 mb-3">
-                        <label for="" class="">FECHA DE RECEPCIÓN DEL OFICIO</label>
-                        <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta3['fecha_oficio']; echo'">
-                      </div>';
-
-                      } 
-                  ?>
-
-
-
-                  <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">ASISTENCIA MÉDICA NOTIFICADA</h3>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">NOTIFICADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta4['notificar_subdireccion']; ?>">
-                  </div>
-
-                  <?php
-                      $notificada = $respuesta4['notificar_subdireccion'];
-
-                      if ($notificada == "SI"){
-
-                      echo '<div class="col-md-6 mb-3">
-                        <label for="" class="">NÚMERO DE OFICIO MEDIANTE EL CUAL SE NOTIFICA</label>
-                        <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta4['numero_oficio_notificacion']; echo '">
-                      </div>';
-
-                      echo '<div class="col-md-6 mb-3">
-                        <label for="" class="">FECHA DE RECEPCIÓN DEL OFICIO</label>
-                        <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta4['fecha_oficio_notificacion']; echo'">
-                      </div>';
-
-                      } 
-                  ?>
-
-
                 
+                </div>
+
+                <div id="notificada" style="display:none">
+
                   <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN DEL SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">ASISTENCIA MÉDICA NOTIFICADA</h3>
                     </div>
                   </div>
 
-                  <div class="col-md-6 mb-3">
-                    <label for="" class="">TRASLADO REALIZADO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['traslado_realizado']; ?>">
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">NOTIFICADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta4['notificar_subdireccion']; ?></td>
+                        </tr>
+
+                        <?php
+                              $notificada = $respuesta4['notificar_subdireccion'];
+
+                              if ($notificada == "SI"){
+
+                                echo '
+                                    <tr>
+                                      <th style="text-align:left;">NÚMERO DE OFICIO MEDIANTE EL CUAL SE NOTIFICA:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta4['numero_oficio_notificacion']; echo '</td>
+                                    </tr>
+
+                                    <tr>
+                                      <th style="text-align:left;">FECHA DE RECEPCIÓN DEL OFICIO:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta4['fecha_oficio_notificacion']; echo '</td>
+                                    </tr>
+                                ';
+
+                              } 
+                        ?>
+                      </tbody>
+
+                    </table>
                   </div>
 
-                  <?php
-                      $traslado = $respuesta7['traslado_realizado'];
-                      $se_presento = $respuesta7['se_presento'];
-                      $reprogramar = $respuesta7['reprogramar'];
+                </div>
 
-                      if ($traslado == "SI" && $se_presento == "SI"){
+                <div id="seguimiento" style="display:none">
 
-                      echo '<div class="col-md-6 mb-3">
-                      <label for="" class="">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
-                      <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['se_presento']; echo '">
-                      </div>';
+                  <div id="cabecera">
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">INFORMACIÓN DEL SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                    </div>
+                  </div>
 
-                      // echo '<div class="col-md-6 mb-3">
-                      // <label for="" class="">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
-                      // <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['nombre_pdi']; echo'">
-                      // </div>';
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
 
-                      echo '<div class="col-md-6 mb-3">
-                      <label for="" class="">HOSPITALIZACIÓN</label>
-                      <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['hospitalizacion']; echo '">
-                      </div>';
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">TRASLADO REALIZADO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta7['traslado_realizado']; ?></td>
+                        </tr>
 
-                      echo '<div class="col-md-6 mb-3">
-                      <label for="" class="">DIAGNÓSTICO</label>
-                      <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['diagnostico']; echo'">
-                      </div>';
+                        <?php
+                              $traslado = $respuesta7['traslado_realizado'];
+                              $se_presento = $respuesta7['se_presento'];
+                              $reprogramar = $respuesta7['reprogramar'];
 
-                      echo '<div class="col-md-6 mb-3">
-                      <label for="" class="">REQUIERE CITA DE SEGUIMIENTO</label>
-                      <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['cita_seguimiento']; echo '">
-                      </div>';
+                              if ($traslado == "SI" && $se_presento == "SI"){
 
-                      echo '<div class="col-md-12 mb-3">
-                      <label for="" class="">INFORME MÉDICO</label>
-                      <textarea readonly class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="'; echo $respuesta7['informe_medico']; echo '"></textarea>
-                      </div>';
+                                echo '
+                                    <tr>
+                                      <th style="text-align:left;">SE PRESENTÓ A LA ASISTENCIA MÉDICA:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['se_presento']; echo '</td>
+                                    </tr>
 
-                      echo '<div class="col-md-12 mb-3">
-                      <label for="" class="">COMENTARIOS</label>
-                      <textarea readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="'; echo $respuesta7['observaciones_seguimiento']; echo '"></textarea>
-                      </div>';
+                                    <tr>
+                                      <th style="text-align:left;">HOSPITALIZACIÓN:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['hospitalizacion']; echo '</td>
+                                    </tr>
 
+                                    <tr>
+                                      <th style="text-align:left;">DIAGNÓSTICO:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['diagnostico']; echo '</td>
+                                    </tr>
 
+                                    <tr>
+                                      <th style="text-align:left;">REQUIERE CITA DE SEGUIMIENTO:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['cita_seguimiento']; echo '</td>
+                                    </tr>
 
+                                    <tr>
+                                      <th style="text-align:left;">INFORME MÉDICO:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['informe_medico']; echo '</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                      <th style="text-align:left;">COMENTARIOS:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['observaciones_seguimiento']; echo '</td>
+                                    </tr>
+                                ';
 
-                      } else if ($traslado == "NO"){
+                              } else if ($traslado == "NO"){
 
-                        echo '<div class="col-md-6 mb-3">
-                        <label for="" class="">ASISTENCIA MÉDICA REPROGRAMADA</label>
-                        <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['reprogramar']; echo'">
-                        </div>';
-  
-                        echo '<div class="col-md-6 mb-3">
-                        <label for="" class="">MOTIVO</label>
-                        <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['motivo']; echo '">
-                        </div>';
-  
-                        echo '<div class="col-md-12 mb-3">
-                        <label for="" class="">COMENTARIOS</label>
-                        <textarea readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="'; echo $respuesta7['observaciones_seguimiento']; echo '"></textarea>
-                        </div>';
+                                echo '
+                                    <tr>
+                                      <th style="text-align:left;">ASISTENCIA MÉDICA REPROGRAMADA:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['reprogramar']; echo '</td>
+                                    </tr>
 
+                                    <tr>
+                                      <th style="text-align:left;">MOTIVO:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['motivo']; echo '</td>
+                                    </tr>
 
-                        
-  
-                        } else if ($traslado == "SI" && $se_presento == "NO"){
-
-                          echo '<div class="col-md-6 mb-3">
-                          <label for="" class="">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
-                          <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['se_presento']; echo '">
-                          </div>';
-
-                          echo '<div class="col-md-6 mb-3">
-                          <label for="" class="">ASISTENCIA MÉDICA REPROGRAMADA</label>
-                          <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['reprogramar']; echo'">
-                          </div>';
-    
-                          echo '<div class="col-md-6 mb-3">
-                          <label for="" class="">MOTIVO</label>
-                          <input readonly class="form-control" id="" name="" placeholder="" type="text" value="'; echo $respuesta7['motivo']; echo '">
-                          </div>';
-    
-                          echo '<div class="col-md-12 mb-3">
-                          <label for="" class="">COMENTARIOS</label>
-                          <textarea readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="'; echo $respuesta7['observaciones_seguimiento']; echo '"></textarea>
-                          </div>';
-    
-                          
-                          }
-                  ?>
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['se_presento']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">ASISTENCIA MÉDICA REPROGRAMADA</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['reprogramar']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">MOTIVO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['motivo']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['nombre_pdi']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">HOSPITALIZACIÓN</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['hospitalizacion']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">DIAGNÓSTICO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['diagnostico']; ?>">
-                  </div> -->
-
-                  <!-- <div class="col-md-6 mb-3">
-                    <label for="" class="">REQUIERE CITA DE SEGUIMIENTO</label>
-                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta7['cita_seguimiento']; ?>">
-                  </div> -->
-                  
-                  <!-- <div class="col-md-12 mb-3">
-                    <label for="" class="">INFORME MÉDICO</label>
-                    <textarea readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta7['informe_medico']; ?>"></textarea>
-                  </div> -->
-
-                  <!-- <div class="col-md-12 mb-3">
-                    <label for="" class="">COMENTARIOS</label>
-                    <textarea readonly  class="form-control" name="" id="" rows="5" cols="33" maxlength="1000" placeholder="<?php echo $respuesta7['observaciones_seguimiento']; ?>"></textarea>
-                  </div> -->
+                                    <tr>
+                                      <th style="text-align:left;">COMENTARIOS:</th>
+                                      <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['observaciones_seguimiento']; echo '</td>
+                                    </tr>
+                                ';
 
 
+                              } else if ($traslado == "SI" && $se_presento == "NO"){
+
+                                echo '
+                                <tr>
+                                  <th style="text-align:left;">SE PRESENTÓ A LA ASISTENCIA MÉDICA:</th>
+                                  <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['se_presento']; echo '</td>
+                                </tr>
+
+                                <tr>
+                                  <th style="text-align:left;">ASISTENCIA MÉDICA REPROGRAMADA:</th>
+                                  <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['reprogramar']; echo '</td>
+                                </tr>
+
+                                <tr>
+                                  <th style="text-align:left;">MOTIVO:</th>
+                                  <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['motivo']; echo '</td>
+                                </tr>
+
+                                <tr>
+                                  <th style="text-align:left;">COMENTARIOS:</th>
+                                  <td style="text-align:left; background-color: #fff;">'; echo $respuesta7['observaciones_seguimiento']; echo '</td>
+                                </tr>
+                            ';
+
+                              }
+                        ?>
+                      </tbody>
+
+                    </table>
+                  </div>
+                
+                </div>
 
 
+                <div id="tratamiento" style="display:none">
                         <?php
                           $cl = "SELECT COUNT(*) as t FROM tratamiento_medico WHERE id_asistencia = '$id_asistencia_medica'";
                           $rcl = $mysqli->query($cl);
@@ -537,97 +641,100 @@ $respuesta7=$resultado7->fetch_assoc();
 
                                 echo "
                                       <div id='cabecera'>
-                                        <div class='row alert div-title'>
-                                          <h3 style='text-align:center'>TRATAMIENTO MÉDICO</h3>
+                                        <div style='background: #63696D repeat-x fixed; color: #000; font-weight: 900;'>
+                                          <h3 style='text-align:center; color: #ddd;'>TRATAMIENTO MÉDICO</h3>
                                         </div>
                                       </div>
             
-                                      <br>
-                                      <br>
 
-                                      <div id='cabecera'>
-                                        <div class='row alert div-title'>
-                                          <h3 style='text-align:center'>¡ NO HAY MEDICAMENTOS REGISTRADOS PARA LA ASISTENCIA MÉDICA: $id_asistencia_medica !</h3>
-                                        </div>
+                                      <div>
+                                        <table class='table table-bordered' width='100%'' border='1' cellpadding='0' cellspacing='0'>
+
+                                          <tbody>
+                                            <tr>
+                                              <th style='text-align:center; color: #ddd; font-size: 14px'>NO HAY MEDICAMENTOS REGISTRADOS PARA LA ASISTENCIA MÉDICA: $id_asistencia_medica</th>
+                                            </tr>
+                                          </tbody>
+
+                                        </table>
                                       </div>
                                       ";
                           } else{
                                 echo "
-                                <div id='cabecera'>
-                                <div class='row alert div-title'>
-                                  <h3 style='text-align:center'>TRATAMIENTO MÉDICO</h3>
-                                </div>
-                              </div>
-            
-                              <br>
-            
+                                      <div id='cabecera'>
+                                        <div style='background: #63696D repeat-x fixed; color: #000; font-weight: 900;'>
+                                          <h3 style='text-align:center; color: #ddd;'>TRATAMIENTO MÉDICO Y MEDICAMENTOS REGISTRADOS</h3>
+                                        </div>
+                                      </div>
+
+                                      <br>
+
                               <div class=''>
                                   <div class='row'>
                                       <div class='col-lg-12'>
                                             <div class='table-responsive'>
 
-                                  <table class='table table-bordered' id='table-instrumento'>
-                                    <thead>
-                                        <br>
-                                        <h4 style='text-align:center; color:black;'>MEDICAMENTOS REGISTRADOS</h4>
-                                        <br>
-                                        <tr>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ADQUISICIÓN</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NOMBRE</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>CANTIDAD</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>PRESENTACIÓN</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>CONTENIDO</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>INDICACIONES</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO OFICIO</th>
-                                            <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVIDOR PÚBLICO</th>
-                                        </tr>
-                                    </thead>
+                                                <table class='table table-bordered' width='100%' border='1' cellpadding='0' cellspacing='0' id='table-instrumento'>
+                                                  <thead>
+                                                      <tr>
+                                                          <th style='text-align:center; font-size: 14px;'>NO.</th>
+                                                          <th style='text-align:center; font-size: 14px;'>ADQUISICIÓN</th>
+                                                          <th style='text-align:center; font-size: 14px;'>NOMBRE</th>
+                                                          <th style='text-align:center; font-size: 14px;'>CANTIDAD</th>
+                                                          <th style='text-align:center; font-size: 14px;'>PRESENTACIÓN</th>
+                                                          <th style='text-align:center; font-size: 14px;'>CONTENIDO</th>
+                                                          <th style='text-align:center; font-size: 14px;'>INDICACIONES</th>
+                                                          <th style='text-align:center; font-size: 14px;'>NÚMERO OFICIO</th>
+                                                          <th style='text-align:center; font-size: 14px;'>SERVIDOR PÚBLICO</th>
+                                                      </tr>
+                                                  </thead>
                                 
                                 ";
                               }
 
                         ?>
 
-                                      <tbody>
-                                        <?php
-                                        $contador = 0;
-                                        $sentencia1 = "SELECT*
-                                        FROM tratamiento_medico
-                                        WHERE tratamiento_medico.id_asistencia = '$id_asistencia_medica'
-                                        ORDER BY nombre_medicamento ASC";
+                                                  <tbody>
+                                                    <?php
+                                                    $contador = 0;
+                                                    $sentencia1 = "SELECT*
+                                                    FROM tratamiento_medico
+                                                    WHERE tratamiento_medico.id_asistencia = '$id_asistencia_medica'
+                                                    ORDER BY nombre_medicamento ASC";
 
 
-                                        $var_resultado = $mysqli->query($sentencia1);
+                                                    $var_resultado = $mysqli->query($sentencia1);
 
-                                        while ($var_fila=$var_resultado->fetch_array())
-                                        {
-                                          $contador = $contador + 1;
-                                          
+                                                    while ($var_fila=$var_resultado->fetch_array())
+                                                    {
+                                                      $contador = $contador + 1;
+                                                      
+                        
+                                                          echo "<tr>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $contador; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['adquisicion']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['nombre_medicamento']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['cantidad']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['presentacion']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['contenido']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['indicaciones']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['numero_oficio']; echo "</td>";
+                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['nombre_recibe']; echo "</td>";
+                                                          echo "</tr>";
+                                                      }
+                                                  ?>
+                                                  </tbody>
+                                                </table>
 
-            
-                                              echo "<tr>";
-                                              echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['adquisicion']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['nombre_medicamento']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['cantidad']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['presentacion']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['contenido']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['indicaciones']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['numero_oficio']; echo "</td>";
-                                              echo "<td style='text-align:center'>"; echo $var_fila['nombre_recibe']; echo "</td>";
-                                              echo "</tr>";
-                                          }
-                                      ?>
-                                      </tbody>
-                                    </table>
-                                </div>
-                          </div>
-                      </div>
-                  </div>
-                  
+                                                <!-- <div id="mensaje" style="display:none">
+                                                  <h6 style="text-align:center; color: #5F6D6B;" class="modal-title text-center">Sistema Informático del Programa de Protección a Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio (SIPPSIPPED)</h6>
+                                                </div> -->
 
-            
+                                            </div>
+                                      </div>
+                                  </div>
+                              </div>
+                </div>
 
 
               </form>
@@ -642,11 +749,108 @@ $respuesta7=$resultado7->fetch_assoc();
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
           <a href="./panel_asistencias_completadas.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+        </div>
+
+        <div class="contenedor">
+          <a class="btn-flotante-imprimir-asistencia" style="text-align:center;" href="javascript:imprimirSeleccion('form')"><img src='../image/asistencias_medicas/print.png' width='60' height='60'></a>
 		    </div>
-
-
 	</div>
 </div>
 
 </body>
 </html>
+
+
+
+<script language="Javascript">
+function imprimirSeleccion(nombre) {
+var ficha = document.getElementById(nombre);
+var ventimp = window.open(' ', 'popimpr');
+ventimp.document.write( ficha.innerHTML );
+ventimp.document.close();
+ventimp.print( );
+ventimp.close();
+}
+</script>
+
+
+
+<script type="text/javascript">
+
+  var etapa = document.getElementById('etapa').value;
+  
+      if (etapa === "SOLICITADA"){      
+          document.getElementById("solicitud").style.display = "";
+          // document.getElementById("mensaje").style.display = "";
+      } 
+
+      if (etapa === "CANCELADA"){      
+          document.getElementById("solicitud_cancelada").style.display = "";
+          // document.getElementById("mensaje").style.display = "";
+      } 
+
+      if (etapa === "AGENDADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+      }
+
+      if (etapa === "TURNADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+          document.getElementById("turnada").style.display = "";
+      }
+
+      if (etapa === "NOTIFICADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+          document.getElementById("turnada").style.display = "";
+          document.getElementById("notificada").style.display = "";
+      }
+
+      if (etapa === "ASISTENCIA MÉDICA COMPLETADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+          document.getElementById("turnada").style.display = "";
+          document.getElementById("notificada").style.display = "";
+          document.getElementById("seguimiento").style.display = "";
+          document.getElementById("tratamiento").style.display = "";
+      }
+
+      if (etapa === "ASISTENCIA MÉDICA REPROGRAMADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+      }
+
+      if (etapa === "REPROGRAMADA AGENDADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+          document.getElementById("reprogramacion").style.display = "";
+      }
+
+      if (etapa === "REPROGRAMADA TURNADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+          document.getElementById("reprogramacion").style.display = "";
+          document.getElementById("turnada").style.display = "";
+      }
+
+      if (etapa === "REPROGRAMADA NOTIFICADA"){
+          document.getElementById("solicitud").style.display = "";
+          document.getElementById("unidad").style.display = "";
+          document.getElementById("fecha").style.display = "";
+          document.getElementById("reprogramacion").style.display = "";
+          document.getElementById("turnada").style.display = "";
+          document.getElementById("notificada").style.display = "";
+      }
+
+
+      // console.log (etapa);
+
+
+</script>

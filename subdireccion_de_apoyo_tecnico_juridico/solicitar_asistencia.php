@@ -298,9 +298,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         <span class="input-group-addon"><i class="fas fa-solid fa-thumbtack"></i></span>
                         <select class="form-control selectpicker" id="tipo_requerimiento" name="tipo_requerimiento" required>
                             <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <option value="EQUIPO MULTIDISIPLINARIO" >EQUIPO MULTIDISIPLINARIO</option>
-                            <option value="POR INGRESO">POR INGRESO</option>
-                            <option value="PRIMERA VEZ">PRIMERA VEZ</option>
+                            <option value="MEDIDAS PROVISIONALES">MEDIDAS PROVISIONALES</option>
                             <!-- <option value="SEGUIMIENTO" >SEGUIMIENTO</option>
                             <option value="URGENCIA">URGENCIA</option> -->
                         </select>
@@ -317,13 +315,9 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
                         <select class="form-control" id="servicio_medico" maxlength="50" name="servicio_medico" required>
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <?php
-                            $select = "SELECT * FROM servicios_medicos";
-                            $answer = $mysqli->query($select);
-                            while($valores = $answer->fetch_assoc()){
-                              echo "<option value='".$valores['servicio_medico']."'>".$valores['servicio_medico']."</option>";
-                            }
-                          ?>
+                        <option value="MÉDICO">MÉDICO</option>
+                        <option value="PSICOLÓGICO">PSICOLÓGICO</option>
+                        <option value="SANITARIO">SANITARIO</option>
                         </select>
                       </div>
                     </div>
@@ -334,11 +328,51 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     <label for="observaciones" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
-                        <!-- <span class="input-group-addon"><i class="fas fa-solid fa-eye"></i></span> -->
+
                         <textarea onkeypress="cancelar()" name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
+
+                  <!-- <div class="alert div-title">
+                    <h3 style="text-align:center">AGENDAR ASISTENCIA</h3>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span readonly class="input-group-addon"></span>
+                        
+                        <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" value="">
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                          <span readonly class="input-group-addon"></span>
+
+                          <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  value="">
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="observaciones_asistencia" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES DE LA ASISTENCIA </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+
+                        <textarea name="observaciones_asistencia" id="observaciones_asistencia" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeypress="cancelar()" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+
+                      </div>
+                    </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label class="col-md-4 control-label"></label>
@@ -368,86 +402,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
-
-  <!-- <div class="con">
-        <form method="post" id="frm">
-            <input type="text" name="comm" id="comm" placeholder="Escribe tu comentario aquí...">
-            <input type="submit" value="Enviar" id="submit">
-        </form>
-  </div>   
-    
-    
-  <script src="../js/new_register.js"></script> -->
-
-
-<!-- <script type="text/javascript">
-  window.onload = function(){
-    var fecha = new Date();
-    var mes = fecha.getMonth()+1;
-    var dia = fecha.getDate();
-    var ano = fecha.getFullYear();
-
-    var horas = fecha.getHours();
-    var minutos = fecha.getMinutes();
-    var segundos = fecha. getSeconds();
-
-    document.getElementById('hora_solicitud').value=horas+":"+minutos+":"+segundos;
-
-    if(dia<10)
-        dia='0'+dia;
-    if(mes<10)
-        mes='0'+mes
-    document.getElementById('fecha_solicitud').value=dia+"/"+mes+"/"+ano;
-    
-}
-</script>
-
-
-<script type="text/javascript">
-
-  var idsuj = document.getElementById('id_sujeto');
-  var idsujeto;
-  var idasistencia;
-
-  var folioexpediente = document.getElementById('folio_expediente');
-  var folio;
-  var folioobtenido;
-
-  var separaranio = [];
-  var anioSeparado;
-
-
-  folioexpediente.addEventListener('change', obtenerfolio);
-  
-  function obtenerfolio(e){
-
-    folio = e.target.value;
-    folioobtenido = folio;
-
-    // console.log(folioobtenido);
-
-    separaranio = folioobtenido.split("/");
-    anioSeparado = separaranio[4];
-    
-    // console.log(anioSeparado);
-
-
-  }
-
-
-  idsuj.addEventListener('change', obtenerid);
-  function obtenerid(e){
-
-    idsujeto = e.target.value;
-    idasistencia = idsujeto+"-"+anioSeparado+"-AM0"
-
-    // console.log(idasistencia);
-    document.getElementById('id_asistencia').value = idasistencia+"<?php echo $c+1; ?>";
-
-  }
-
-
-</script> -->
 
 
 <script type="text/javascript">
@@ -486,32 +440,6 @@ function cancelar() {
 }
 </script>
 
-<!-- <script type="text/javascript">
 
-  var id_sujeto = document.getElementById('folio_expediente');
-
-  var id;
-  var idobtenido;
-
-  id_sujeto.addEventListener('change', obtenerfolio);
-  
-  function obtenerfolio(e){
-
-    id = e.target.value;
-    idobtenido = id;
-
-    if (idobtenido != "" ){
-
-      document.getElementById("mostrar_campos").style.display = "";
-
-    }
-
-    console.log(idobtenido);
-
-
-
-
-  }
-</script> -->
 </body>
 </html>

@@ -364,7 +364,6 @@ $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
 $permiso4 = $fuserfijo['permiso4'];
-$permiso6 = $fuserfijo['permiso6'];
 // echo $permiso3;
 
 
@@ -390,16 +389,6 @@ if ($permiso3=='solicitar') {
 
 
 <li style='text-align:center'>
-  <a href='./solicitudes_registradas_agendar.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>AGENDAR</h2>
-      <h3 class='ca-sub'>SOLICITUDES MEDIDAS PROVICIONALES</h3></div>
-  </a>
-</li>
-
-
-<li style='text-align:center'>
   <a href='./agenda/index.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
@@ -407,17 +396,6 @@ if ($permiso3=='solicitar') {
       <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
   </a>
 </li>
-
-
-<li style='text-align:center'>
-  <a href='./panel_asistencias_completadas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>DETALLE</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
-  </a>
-</li>
-
 
 
 ";
@@ -441,44 +419,6 @@ if ($permiso3=='solicitar') {
 echo "</ul>";
 }
 
-
-
-
-if($permiso4=='calendario'){
-  echo "
-
-  <ul class='ca-menu' style='text-align:right'>
-
-    <li style='text-align:center'>
-    <a href='./agenda/index.php'>
-      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-      <div class='ca-content'>
-        <h2 class='ca-main'>CALENDARIO</h2>
-        <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-    </a>
-    </li>
-
-  </ul>
-
-
-  ";
-  
-
-
-}
-
-
-
-
-
-// <li style='text-align:center'>
-//   <a href='./panel_asistencias_por_completar.php'>
-//     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/seguimiento.png' style='width:55px;height:55px;'></span>
-//     <div class='ca-content'>
-//       <h2 class='ca-main'>SEGUIMIENTO</h2>
-//       <h3 class='ca-sub'>ASISTENCIA MÉDICA</h3></div>
-//   </a>
-// </li>
 
 ?>
 
