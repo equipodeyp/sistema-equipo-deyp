@@ -75,9 +75,9 @@ switch ($day) {
            // echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
     break;
     case "Friday":
-           $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
-           $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));
-           $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+           $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
+           $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
+           $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
            ////////////////////fechas de reporte semanal
            $diafinsemanaanterior = strtotime($fecha_finsemanaanterior);
            $diafinsemant = date( "j", $diafinsemanaanterior);

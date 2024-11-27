@@ -73,9 +73,9 @@
                    echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
             break;
             case "Thursday":  //Jueves
-                   $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
-                   $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
-                   $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
+                   $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 3 day"));
+                   $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
+                   $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 3 day"));
                    ////////////////////fechas de reporte semanal
                    $diafinsemanaanterior = strtotime($fecha_finsemanaanterior);
                    $diafinsemant = date( "j", $diafinsemanaanterior);
@@ -87,9 +87,10 @@
                    echo '<h1 style="text-align:center">' ; echo "REPORTE SEMANAL <br> DEL".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
             break;
             case "Friday": //Viernes
-                   $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
-                   $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));
-                   $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 1 day"));
+            // echo "reporte semanal fechas";
+                   $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 4 day"));
+                   $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 5 day"));
+                   $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 2 day"));
                    ////////////////////fechas de reporte semanal
                    $diafinsemanaanterior = strtotime($fecha_finsemanaanterior);
                    $diafinsemant = date( "j", $diafinsemanaanterior);
@@ -146,6 +147,7 @@
             </div>
           </div>
         <!-- SEGUNDA TABLA -->
+
           <div class="col-lg-6">
             <div class="table-responsive">
               <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
