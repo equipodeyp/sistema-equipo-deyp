@@ -373,7 +373,6 @@ $sub = $fuserfijo['subdireccion'];
                 //       </div>
                 //     </div>
                 //   </div>
-                  
                 //   ";
                 // }
                 ?>

@@ -110,9 +110,10 @@ $row=$result->fetch_assoc();
               <?php
               $cl = "SELECT COUNT(*) as t
                     FROM solicitud_asistencia 
-                    WHERE solicitud_asistencia.etapa = 'SOLICITADA' 
+                    WHERE solicitud_asistencia.servicio_medico != 'PSICOLÓGICO'
+                    AND (solicitud_asistencia.etapa = 'SOLICITADA' 
                     OR solicitud_asistencia.etapa = 'AGENDADA'
-                    OR solicitud_asistencia.etapa = 'TURNADA'";
+                    OR solicitud_asistencia.etapa = 'TURNADA')";
 
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
@@ -168,8 +169,9 @@ $row=$result->fetch_assoc();
                                                     solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones,
                                                     solicitud_asistencia.agendar, solicitud_asistencia.turnar, solicitud_asistencia.notificar
                                                     FROM solicitud_asistencia 
-                                                    WHERE solicitud_asistencia.etapa = 'SOLICITADA' OR solicitud_asistencia.etapa = 'AGENDADA' 
-                                                    OR solicitud_asistencia.etapa = 'TURNADA' 
+                                                    WHERE solicitud_asistencia.servicio_medico != 'PSICOLÓGICO'
+                                                    AND (solicitud_asistencia.etapa = 'SOLICITADA' OR solicitud_asistencia.etapa = 'AGENDADA' 
+                                                    OR solicitud_asistencia.etapa = 'TURNADA')
                                                     ORDER BY solicitud_asistencia.fecha_solicitud ASC";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);

@@ -110,8 +110,11 @@ $row=$result->fetch_assoc();
               <?php
               $cl = "SELECT COUNT(*) as t
                     FROM solicitud_asistencia 
-                    WHERE solicitud_asistencia.tipo_requerimiento = 'MEDIDAS PROVISIONALES' 
-                    AND solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'";
+                    WHERE solicitud_asistencia.id_servidor = 'YANELLISR'
+                    AND solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'
+                    AND (solicitud_asistencia.etapa = 'SOLICITADA' 
+                    OR solicitud_asistencia.etapa = 'AGENDADA'
+                    OR solicitud_asistencia.etapa = 'TURNADA')";
 
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
@@ -120,7 +123,7 @@ $row=$result->fetch_assoc();
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY SOLICITUDES DE ASISTENCIA MÉDICA MEDIDAS PROVISIONALES !</h3>
                       </div>
                     </div>";
               } else{
@@ -128,7 +131,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA MEDIDAS PROVISIONALES</h3>
+                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA MEDIDAS PROVISIONALES REGISTRADAS</h3>
                           </div>
                         </div>
                       <div>
@@ -165,10 +168,13 @@ $row=$result->fetch_assoc();
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.fecha_solicitud, 
                                                     solicitud_asistencia.id_servidor, solicitud_asistencia.num_oficio,
                                                     solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones,
-                                                    solicitud_asistencia.agendar, solicitud_asistencia.turnar, solicitud_asistencia.notificar
+                                                    solicitud_asistencia.agendar, solicitud_asistencia.turnar, solicitud_asistencia.notificar, solicitud_asistencia.etapa
                                                     FROM solicitud_asistencia 
-                                                    WHERE solicitud_asistencia.tipo_requerimiento = 'MEDIDAS PROVISIONALES' 
+                                                    WHERE solicitud_asistencia.id_servidor = 'YANELLISR'
                                                     AND solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'
+                                                    AND (solicitud_asistencia.etapa = 'SOLICITADA' 
+                                                    OR solicitud_asistencia.etapa = 'AGENDADA'
+                                                    OR solicitud_asistencia.etapa = 'TURNADA')
                                                     ORDER BY solicitud_asistencia.fecha_solicitud ASC";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
@@ -269,5 +275,6 @@ $row=$result->fetch_assoc();
 
 </body>
 </html>
+
 
 

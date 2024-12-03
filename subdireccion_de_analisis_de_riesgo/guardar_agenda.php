@@ -15,8 +15,10 @@ if ($verifica == 1) {
 
 
     
+$nombre_servidor_asistencia=$_POST['nombre_servidor_asistencia'];
 
 $nombre_servidor=$_POST['nombre_servidor'];
+
 $id_asistencia=$_POST['id_asistencia'];
 $tipo_institucion=$_POST['tipo_institucion'];
 $nombre_institucion=$_POST['nombre_institucion'];
@@ -25,7 +27,6 @@ $municipio_institucion=$_POST['municipio_institucion'];
 $fecha_asistencia=$_POST['fecha_asistencia'];
 $hora_asistencia=$_POST['hora_asistencia'];
 $observaciones_asistencia=$_POST['observaciones_asistencia'];
-$nombre_servidor_asistencia=$_POST['nombre_servidor_asistencia'];
 // $etapa = "AGENDADA";
 
 // $hora_i = '01:00:00';
@@ -95,8 +96,8 @@ $m = $r_m['municipio'];
 
 
 
-$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, servidor_asistencia, observaciones, servidor_registra)
-VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$nombre_servidor_asistencia', '$observaciones_asistencia', '$nombre_servidor')";
+$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones, servidor_registra, servidor_asistencia)
+VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia', '$nombre_servidor', '$nombre_servidor_asistencia')";
 $result = $mysqli->query($query);
 
 $query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
@@ -121,3 +122,4 @@ if($result) {
 echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=menu.php'>";
 }
 ?>
+

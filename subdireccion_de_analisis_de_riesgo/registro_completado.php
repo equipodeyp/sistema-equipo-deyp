@@ -124,8 +124,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./admin.php">INICIO</a>
-            <a href="./solicitudes_registradas.php">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
+            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+            <a href="./solicitudes_registradas_agendar.php">SOLICITUDES DE ASISTENCIA MÉDICA MEDIDAS PROVISIONALES</a>
             <a class="actived" href="./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>">1. AGENDAR - 2. TURNAR - 3. NOTIFICAR - 4. REGISTRO COMPLETADO</a>
           </div>
           
@@ -177,8 +177,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                                     FROM solicitud_asistencia
                                                     
                                                     JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
-                                                    AND solicitud_asistencia.etapa = 'NOTIFICADA'
+                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica' AND solicitud_asistencia.etapa = 'NOTIFICADA'
                                                     
                                                     JOIN cita_asistencia
                                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
@@ -230,7 +229,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                                               <div class="contenedor">
                                                 <!-- <a href="./solicitudes_registradas.php" class="">IR A SOLICITUDES REGISTRADAS</a> -->
-                                                <button onclick="window.location='./solicitudes_registradas.php'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">SOLICITUDES <br> REGISTRADAS</button>
+                                                <button onclick="window.location='./solicitudes_registradas_agendar.php'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">SOLICITUDES <br> REGISTRADAS</button>
                                               </div>
 
 
