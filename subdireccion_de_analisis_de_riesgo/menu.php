@@ -295,6 +295,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $genero = $row['sexo'];
 $id_user = $row['id'];
+
 $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
 $ruserfijo = $mysqli->query($userfijo);
 $fuserfijo=$ruserfijo->fetch_assoc();
@@ -304,12 +305,18 @@ $permiso3 = $fuserfijo['permiso3'];
 $permiso4 = $fuserfijo['permiso4'];
 $permiso5 = $fuserfijo['permiso5'];
 $permiso6 = $fuserfijo['permiso6'];
+$permiso7 = $fuserfijo['permiso7'];
+$permiso8 = $fuserfijo['permiso8'];
+
 // echo $permiso1;
 // echo $permiso2;
 // echo $permiso3;
 // echo $permiso4;
 // echo $permiso5;
 // echo $permiso6;
+// echo $permiso7;
+// echo $permiso8;
+
 
 
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$m_user'";
@@ -350,6 +357,7 @@ if ($permiso3=='solicitar') {
         $row=$result->fetch_assoc();
         $genero = $row['sexo'];
         $id_user = $row['id'];
+
         $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
         $ruserfijo = $mysqli->query($userfijo);
         $fuserfijo=$ruserfijo->fetch_assoc();
@@ -358,7 +366,9 @@ if ($permiso3=='solicitar') {
         $permiso3 = $fuserfijo['permiso3'];
         $permiso4 = $fuserfijo['permiso4'];
         $permiso5 = $fuserfijo['permiso5'];
-        $permiso5 = $fuserfijo['permiso5'];
+        $permiso6 = $fuserfijo['permiso6'];
+        $permiso7 = $fuserfijo['permiso7'];
+        $permiso8 = $fuserfijo['permiso8'];
         // echo $permiso1;
 
         if ($genero=='mujer') {

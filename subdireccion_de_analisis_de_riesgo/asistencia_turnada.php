@@ -91,8 +91,8 @@ $row=$result->fetch_assoc();
 
             <!-- menu de navegacion de la parte de arriba -->
             <div class="secciones form-horizontal sticky breadcrumb flat">
-                <a href="./admin.php">INICIO</a>
-                <a class="actived" href="./asistencia_turnada.php">ASISTENCIAS MÉDICAS TURNADAS</a>
+                <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+                <a class="actived" href="./asistencia_turnada.php">ASISTENCIAS PSICOLÓGICAS TURNADAS</a>
             </div>
           
 
@@ -100,7 +100,7 @@ $row=$result->fetch_assoc();
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./asistencia_turnada.php'"><span class="fas fa-solid fa-stethoscope"></span><span class="tab-text">ASISTENCIAS MÉDICAS TURNADAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./asistencia_turnada.php'"><span class="fas fa-solid fa-brain"></span><span class="tab-text">ASISTENCIAS PSICOLÓGICAS TURNADAS</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 
@@ -108,7 +108,7 @@ $row=$result->fetch_assoc();
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
               $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia 
-              WHERE etapa = 'NOTIFICADA' OR etapa = 'REPROGRAMADA NOTIFICADA'";
+              WHERE etapa = 'NOTIFICADA' AND servivio_medico = 'PSICOLÓGICO'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -123,7 +123,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
+                            <h3 style='text-align:center'>ASISTENCIAS PSICOLÓGICAS TURNADAS A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</h3>
                           </div>
                         </div>
                       <div>
@@ -163,7 +163,7 @@ $row=$result->fetch_assoc();
                                                     JOIN agendar_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
                                                     WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                    OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'";
+                                                    AND servivio_medico = 'PSICOLÓGICO'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
@@ -217,11 +217,10 @@ $row=$result->fetch_assoc();
                                                               FROM solicitud_asistencia
 
                                                               INNER JOIN cita_asistencia
-                                                              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
-                                                              AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+                                                              ON solicitud_asistencia.id_asistencia = '$id_asistencia'
                                                               WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                              OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'
-
+                                                              AND servivio_medico = 'PSICOLÓGICO'
+                                                              
                                                               ORDER BY cita_asistencia.id DESC
                                                               LIMIT 1";
 
@@ -352,7 +351,7 @@ $row=$result->fetch_assoc();
 </div>
 
 <div class="contenedor">
-<a href="./admin.php" class="btn-flotante">REGRESAR</a>
+<a href="./menu_asistencias_medicas.php" class="btn-flotante">REGRESAR</a>
 </div>
 
 

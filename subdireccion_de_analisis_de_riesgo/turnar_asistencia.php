@@ -278,7 +278,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     echo '
                           <div class="form-group" id="turnar">
 
-                            <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNAR A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
+                            <label for="turnar_asistencia" class="col-md-4 control-label" style="font-size: 16px">TURNAR ASISTENCIA PSICOLÓGICA</label>
                             <div class="col-md-4">
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="fas fa-solid fa-flag"></i></span>

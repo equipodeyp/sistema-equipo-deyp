@@ -208,7 +208,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       </div>
                     </div>
                   </div>
-//////////////////////////////////////
+
+                  
                   <div class="form-group">
                     <label for="nombre_servidor_asistencia" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO QUE REALIZA LA ASISTENCIA</label>
                     <div class="col-md-4">
@@ -245,7 +246,6 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     </div>
                   </div>
 
-                  //////////////////////////////////////////////////
 
                   <div class="form-group">
                     <label for="tipo_institucion" class="col-md-4 control-label" style="font-size: 16px">TIPO DE INSTITUCIÓN </label>
@@ -331,8 +331,6 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
                   
-
-                  /////////////////////////////////////
 
                   <?php
                   $citaasistencia = "SELECT * FROM cita_asistencia WHERE id_asistencia ='$id_asistencia_medica'";

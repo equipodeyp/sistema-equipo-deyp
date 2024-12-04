@@ -156,7 +156,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                             <tr>
 
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">ID ASISTENCIA MÉDICA</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">REQUERIMIENTO</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">SERVICIO MÉDICO</th>
+                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">SERVIDOR PÚBLICO QUE REALIZA LA ASISTENCIA</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">NOMBRE DE LA UNIDAD MÉDICA</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">FECHA ASISTENCIA</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">HORA ASISTENCIA</th>
@@ -171,8 +173,8 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
-                                                    cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia,  solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
+                                                    cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa, agendar_asistencia.servidor_asistencia
 
                                                     FROM solicitud_asistencia
                                                     
@@ -197,7 +199,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                                         <tr>
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['tipo_requerimiento']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['servicio_medico']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['servidor_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['nombre_institucion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['fecha_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['hora_asistencia']?></td>

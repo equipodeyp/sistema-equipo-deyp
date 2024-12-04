@@ -357,6 +357,7 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $genero = $row['sexo'];
 $id_user = $row['id'];
+
 $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
 $ruserfijo = $mysqli->query($userfijo);
 $fuserfijo=$ruserfijo->fetch_assoc();
@@ -364,8 +365,18 @@ $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
 $permiso4 = $fuserfijo['permiso4'];
+$permiso5 = $fuserfijo['permiso5'];
 $permiso6 = $fuserfijo['permiso6'];
+$permiso7 = $fuserfijo['permiso7'];
+$permiso8 = $fuserfijo['permiso8'];
+// echo $permiso1;
+// echo $permiso2;
 // echo $permiso3;
+// echo $permiso4;
+// echo $permiso5;
+// echo $permiso6;
+// echo $permiso7;
+// echo $permiso8;
 
 
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$id_servidor_ini'";
@@ -373,99 +384,131 @@ $rcl = $mysqli->query($cl);
 $fcl = $rcl->fetch_assoc();
 // echo $fcl['t'];
 
-if ($permiso3=='solicitar') {
+if ($permiso3==='solicitar') {
   echo "
 
 <ul class='ca-menu' style='text-align:right'>
-
-<li style='text-align:center'>
-  <a href='./solicitar_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>SOLICITAR</h2>
-      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
-  </a>
-</li>
-
-
-
-<li style='text-align:center'>
-  <a href='./solicitudes_registradas_agendar.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>AGENDAR</h2>
-      <h3 class='ca-sub'>SOLICITUDES MEDIDAS PROVICIONALES</h3></div>
-  </a>
-</li>
-
-
-<li style='text-align:center'>
-  <a href='./agenda/index.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>CALENDARIO</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-  </a>
-</li>
-
-
-<li style='text-align:center'>
-  <a href='./panel_asistencias_completadas.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>DETALLE</h2>
-      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
-  </a>
-</li>
-
-
-
-";
-
-
-      if($fcl['t'] > 0){
-
-        echo"
             <li style='text-align:center'>
-              <a href='./registrar_incidencia_asistencia.php'>
-                <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
+              <a href='./solicitar_asistencia.php'>
+                <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
                 <div class='ca-content'>
-                  <h2 class='ca-main'>INCIDENCIA</h2>
-                  <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
+                  <h2 class='ca-main'>SOLICITAR</h2>
+                  <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
               </a>
             </li>
-            ";
+</ul>
+";
 
-      }
+}
 
-echo "</ul>";
+if ($permiso6==='agendar') {
+  echo "
+<ul class='ca-menu' style='text-align:right'>
+        <li style='text-align:center'>
+          <a href='./solicitudes_registradas_agendar.php'>
+            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
+            <div class='ca-content'>
+              <h2 class='ca-main'>AGENDAR</h2>
+              <h3 class='ca-sub'>SOLICITUDES MEDIDAS PROVICIONALES</h3></div>
+          </a>
+        </li>
+</ul>
+  ";
+
+}
+
+if ($permiso7==='seguimiento') {
+  echo "
+<ul class='ca-menu' style='text-align:right'>
+        <li style='text-align:center'>
+          <a href='./asistencia_turnada.php'>
+            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
+            <div class='ca-content'>
+              <h2 class='ca-main'>SEGUIMIENTO</h2>
+              <h3 class='ca-sub'>ASISTENCIAS PSICOLÓGICAS TURNADAS Y/O ASIGNADAS</h3></div>
+          </a>
+        </li>
+</ul>
+  ";
+
+}
+
+
+if ($permiso4==='calendario') {
+  echo "
+<ul class='ca-menu' style='text-align:right'>
+        <li style='text-align:center'>
+          <a href='./agenda/index.php'>
+            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
+            <div class='ca-content'>
+              <h2 class='ca-main'>CALENDARIO</h2>
+              <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
+          </a>
+        </li>
+</ul>
+  ";
+
+}
+
+
+if ($permiso8==='detalle') {
+  echo "
+<ul class='ca-menu' style='text-align:right'>
+        <li style='text-align:center'>
+          <a href='./panel_asistencias_completadas.php'>
+            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
+            <div class='ca-content'>
+              <h2 class='ca-main'>DETALLE</h2>
+              <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
+          </a>
+        </li>
+</ul>
+  ";
+
+}
+
+if($fcl['t'] > 0){
+
+  echo"
+<ul class='ca-menu' style='text-align:right'>
+        <li style='text-align:center'>
+          <a href='./registrar_incidencia_asistencia.php'>
+            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
+            <div class='ca-content'>
+              <h2 class='ca-main'>INCIDENCIA</h2>
+              <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
+          </a>
+        </li>
+</ul>
+    ";
+
 }
 
 
 
 
-if($permiso4=='calendario'){
-  echo "
+// if($permiso4=='calendario'){
+//   echo "
 
-  <ul class='ca-menu' style='text-align:right'>
+//   <ul class='ca-menu' style='text-align:right'>
 
-    <li style='text-align:center'>
-    <a href='./agenda/index.php'>
-      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-      <div class='ca-content'>
-        <h2 class='ca-main'>CALENDARIO</h2>
-        <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-    </a>
-    </li>
+//     <li style='text-align:center'>
+//     <a href='./agenda/index.php'>
+//       <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
+//       <div class='ca-content'>
+//         <h2 class='ca-main'>CALENDARIO</h2>
+//         <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
+//     </a>
+//     </li>
 
-  </ul>
+//   </ul>
 
 
-  ";
+//   ";
   
 
 
-}
+// }
 
 
 

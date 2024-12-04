@@ -9,10 +9,10 @@ $folio = $folio_expediente;
 // echo "<input value='$folio_expediente'/>";
 
 
-$select2 = "SELECT datospersonales.identificador
+$select2 = "SELECT datospersonales.identificador, datospersonales.estatusprograma
 FROM datospersonales
-WHERE datospersonales.folioexpediente = '$folio' 
-ORDER BY datospersonales.identificador";
+WHERE datospersonales.folioexpediente = '$folio' AND datospersonales.estatusprograma = 'ACTIVO'
+ORDER BY datospersonales.identificador ASC";
 
 
 // echo "<span class='input-group-addon'><i class='fas fa-solid fa-id-card'></i></span>

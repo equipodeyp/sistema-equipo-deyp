@@ -272,7 +272,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
               } else {
 
                 echo'<div class="form-group" id="notificar">
-                    <label for="notificar_subdireccion" class="col-md-4 control-label" style="font-size: 16px">NOTIFICAR A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</label>
+                    <label for="notificar_subdireccion" class="col-md-4 control-label" style="font-size: 16px">NOTIFICAR A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
