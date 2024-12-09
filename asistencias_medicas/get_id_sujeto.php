@@ -9,9 +9,9 @@ $folio = $folio_expediente;
 // echo "<input value='$folio_expediente'/>";
 
 
-$select2 = "SELECT datospersonales.identificador, datospersonales.estatusprograma, estatus
+$select2 = "SELECT datospersonales.identificador, datospersonales.estatusprograma
 FROM datospersonales
-WHERE datospersonales.folioexpediente = '$folio' AND datospersonales.estatus = 'PERSONA PROPUESTA'
+WHERE datospersonales.folioexpediente = '$folio' AND datospersonales.estatusprograma = 'ACTIVO'
 ORDER BY datospersonales.identificador ASC";
 
 
