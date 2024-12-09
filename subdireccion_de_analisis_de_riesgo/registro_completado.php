@@ -179,10 +179,10 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                                     FROM solicitud_asistencia
                                                     
                                                     JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica' AND solicitud_asistencia.etapa = 'NOTIFICADA'
+                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
                                                     
                                                     JOIN cita_asistencia
-                                                    ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
                                                     
                                                     ORDER BY cita_asistencia.fecha_asistencia, cita_asistencia.hora_registro DESC 
 

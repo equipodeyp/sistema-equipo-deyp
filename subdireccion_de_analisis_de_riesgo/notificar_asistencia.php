@@ -288,6 +288,23 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
+                  <div class="form-group" id="traslado" style="display: none;">
+                    <label for="traslado_subdireccion" class="col-md-4 control-label" style="font-size: 16px">SE REQUIERE TRASLADO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
+
+                          <select class="form-control" id="traslado_subdireccion" name="traslado_subdireccion" required>
+                            <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
+                            <option value="SI">SI</option>
+                            <option value="NO APLICA">NO APLICA</option>
+                          </select>
+
+                      </div>
+                    </div>
+                  </div>
+
+
                   <div class="form-group" id="oficio" style="display: none;">
                     <label for="numero_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
                     <div class="col-md-4">
@@ -301,7 +318,6 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   </div>
 
 
-
                   <div class="form-group" id="fecha" style="display: none;">
                     <label for="fecha_oficio_notificacion" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO</label>
                     <div class="col-md-4">
@@ -313,6 +329,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       </div>
                     </div>
                   </div>
+
+
+
 
 
                   <div class="form-group" id="guardar" style="display: none;">
@@ -398,15 +417,18 @@ document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
       
       document.getElementById("numero_oficio_notificacion").value = "";
       document.getElementById("fecha_oficio_notificacion").value = "";
+      document.getElementById("traslado_subdireccion").value = "";
 
       document.getElementById("oficio").style.display = "none";
       document.getElementById("fecha").style.display = "none";
+      document.getElementById("traslado").style.display = "none";
       document.getElementById("guardar").style.display = "";
 
 
     } else {
       document.getElementById("oficio").style.display = "";
       document.getElementById("fecha").style.display = "";
+      document.getElementById("traslado").style.display = "";
       document.getElementById("guardar").style.display = "none";
 
     }

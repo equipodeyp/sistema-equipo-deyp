@@ -131,7 +131,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>TABLA DE LAS SOLICITUDES DE ASISTENCIA MÉDICA MEDIDAS PROVISIONALES REGISTRADAS</h3>
+                            <h3 style='text-align:center'>REGISTRO DE SOLICITUDES DE ASISTENCIA MÉDICA MEDIDAS PROVISIONALES</h3>
                           </div>
                         </div>
                       <div>
