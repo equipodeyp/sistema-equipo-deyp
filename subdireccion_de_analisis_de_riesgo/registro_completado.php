@@ -173,20 +173,16 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia,  solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, 
-                                                    cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa, agendar_asistencia.servidor_asistencia
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, agendar_asistencia.nombre_institucion, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, solicitud_asistencia.etapa, agendar_asistencia.servidor_asistencia
 
-                                                    FROM solicitud_asistencia
-                                                    
-                                                    JOIN agendar_asistencia 
-                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
-                                                    
-                                                    JOIN cita_asistencia
-                                                    ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
-                                                    
-                                                    ORDER BY cita_asistencia.fecha_asistencia, cita_asistencia.hora_registro DESC 
+                                                              FROM solicitud_asistencia
+                                                                                                                  
+                                                              JOIN agendar_asistencia 
+                                                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia
 
-                                                    LIMIT 1";
+                                                              JOIN cita_asistencia
+                                                              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                                              AND solicitud_asistencia.id_asistencia = 'MAMF-011-2022-AM01'";
                                                     
                                                     
                                                     $result_solicitud = mysqli_query($mysqli, $query);

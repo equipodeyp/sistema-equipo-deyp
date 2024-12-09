@@ -101,14 +101,13 @@ $row=$result->fetch_assoc();
 
               <ul class="tabs">
                 <li><a href="#" class="active" onclick="location.href='./asistencia_turnada.php'"><span class="fas fa-solid fa-brain"></span><span class="tab-text">ASISTENCIAS PSICOLÓGICAS TURNADAS</span></a></li>
-                <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
               $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia 
-              WHERE etapa = 'NOTIFICADA' AND servivio_medico = 'PSICOLÓGICO'";
+              WHERE etapa = 'NOTIFICADA' AND servicio_medico = 'PSICOLÓGICO'";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -123,7 +122,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>ASISTENCIAS PSICOLÓGICAS TURNADAS A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO</h3>
+                            <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
                           </div>
                         </div>
                       <div>
@@ -136,11 +135,14 @@ $row=$result->fetch_assoc();
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>UNIDAD MÉDICA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DOMICILIO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>MUNICIPIO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA AGENDADA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>HORA AGENDADA</th>                                
+
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA Y HORA AGENDADA</th>
+                         
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>REQUIERE TRASLADO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DIAS RESTANTES</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SEGUIMIENTO</th>
+
                             </tr>
                         </thead>
                     
@@ -162,8 +164,7 @@ $row=$result->fetch_assoc();
 
                                                     JOIN agendar_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                                                    WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                    AND servivio_medico = 'PSICOLÓGICO'";
+                                                    WHERE solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
@@ -172,55 +173,34 @@ $row=$result->fetch_assoc();
                                                       $id_asistencia = $row['id_asistencia'];
 
                                                       // echo $id_asistencia;
-                                                    
-                                                        
+
                                                 ?>
 
                                                         <tr>
-
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['servicio_medico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['nombre_institucion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['domicilio_institucion']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['municipio_institucion']?></td>
 
-                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['etapa']?></td> -->
-
-                                                            
-
-                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row['id_asistencia']?>" class="btn btn-outline-success">
-                                                                   REGISTRAR <br> SEGUIMIENTO
-                                                                </a>
-                                                            </td> -->
-                                                            
-                                                        <!-- </tr> -->
 
                                                               <?php 
 
-                                                              // $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, solicitud_asistencia.id_asistencia, 
-                                                              // cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
-
-                                                              // FROM solicitud_asistencia
-
-                                                              // INNER JOIN cita_asistencia
-                                                              // ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
-                                                              // AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' OR solicitud_asistencia.etapa ='REPROGRAMADA AGENDADA, TURNADA Y NOTIFICADA'
-                                                              // AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                              // ORDER BY cita_asistencia.fecha_asistencia DESC 
-                                                              // LIMIT 1";
-
                                                               $query_cita = "SELECT DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes,
                                                               solicitud_asistencia.id_asistencia, 
-                                                              cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
+                                                              cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia, notificar_asistencia.requiere_traslado
 
                                                               FROM solicitud_asistencia
 
-                                                              INNER JOIN cita_asistencia
-                                                              ON solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                              WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                              AND servivio_medico = 'PSICOLÓGICO'
-                                                              
+                                                              JOIN cita_asistencia
+                                                              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                                              AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+
+
+                                                              JOIN notificar_asistencia
+                                                              ON solicitud_asistencia.id_asistencia = notificar_asistencia.id_asistencia
+                                                              AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+
                                                               ORDER BY cita_asistencia.id DESC
                                                               LIMIT 1";
 
@@ -231,43 +211,28 @@ $row=$result->fetch_assoc();
                                                                 
                                                                 
                                                                 if ($id_asistencia == $row2['id_asistencia']){
-                                                                  // $id_asistencia = $row2['id_asistencia'];
 
-                                                                    // $sentencia = "SELECT solicitud_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, 
-                                                                    //           cita_asistencia.hora_asistencia
-                                                                    //           FROM solicitud_asistencia
-                                                                    //           INNER JOIN cita_asistencia
-                                                                    //           ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
-                                                                    //           AND solicitud_asistencia.etapa = 'AGENDADA, TURNADA Y NOTIFICADA' AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                                    //           ORDER BY cita_asistencia.fecha_asistencia ASC LIMIT = 1";
-
-                                                                // echo $row['id_asistencia'];
-                                                                // echo '<br>';
-
-
-
-                                                                // echo $row2['id_asistencia'];
-                                                                // echo '<br>';
-                                                                // echo $row2['fecha_asistencia'];
-                                                                // echo '<br>';
-                                                                // echo $row2['hora_asistencia'];
-                                                                // echo '<br>';
-                                                                // echo '<br>';
-                                                                // echo '<br>';
-
-
-                                                                
-                                                                  
                                                               ?>
                                                                       
 
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row2['fecha_asistencia']?></td>
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['hora_asistencia']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row2['fecha_asistencia']?><br><?php echo $row2['hora_asistencia']?></td>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['requiere_traslado']?></td>
+
+
+
+
+
+
+
+
+
+
                                                                         <?php 
                                                                           if ($row2['dias_restantes'] >= 0) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes'];?></td>
                                                                         <?php } ?>
+
                                                                         <?php 
                                                                           if ($row2['dias_restantes'] <-4) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "SIN REGISTRO"?></td>
@@ -276,20 +241,21 @@ $row=$result->fetch_assoc();
                                                                           if ($row2['dias_restantes'] < 0 && $row2['dias_restantes'] >=-4) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "0"?></td>
                                                                         <?php } ?>
+
+
+
                                                                         
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                        <!-- <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
-                                                                              REGISTRAR <br> SEGUIMIENTO
-                                                                        </a> -->
+
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0 && $row['nombre_institucion'] != 'UPSIPED') { ?>
+                                                                          if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0) { ?>
 
                                                                             <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
                                                                                   REGISTRAR <br> SEGUIMIENTO
                                                                             </a>
 
                                                                           <?php } 
-                                                                          if ($row2['dias_restantes'] >= 1) {
+                                                                          if ($row2['dias_restantes'] >= 1 && $row['nombre_institucion']) {
                                                                             echo "
                                                                               <a style='color: black; cursor: not-allowed;' class='btn btn-outline-warning'>
                                                                                 EN ESPERA <br> DEL REGISTRO
@@ -297,7 +263,7 @@ $row=$result->fetch_assoc();
                                                                             ";
                                                                           } 
 
-                                                                          if ($row2['dias_restantes'] < -4) {
+                                                                          if ($row2['dias_restantes'] < -4 && $row['nombre_institucion']) {
                                                                             echo "
                                                                               <a style='color: black; cursor: not-allowed;' class='btn btn-outline-danger'>
                                                                                 SEGUIMIENTO <br> NO REGISTRADO
@@ -305,15 +271,14 @@ $row=$result->fetch_assoc();
                                                                             ";
                                                                           }
 
-                                                                          if ($row['nombre_institucion'] === 'UPSIPED'){
-                                                                            echo "
-                                                                            <a style='color: black; cursor: not-allowed;' class='btn btn-outline-info'>
-                                                                                AISTENCIA <br> NOTIFICADA
-                                                                            </a> 
-                                                                          ";
-                                                                          }
+
                                                                         ?>
                                                                         </td>
+
+                                                                        <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                                          <a style="text-align:center; text-decoration: none; color: #000000; text-decoration: underline;" href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $row['id_asistencia']?>">Detalle</a>
+                                                                        </td> -->
+
                                                         </tr>
 
 
