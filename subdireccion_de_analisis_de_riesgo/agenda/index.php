@@ -316,6 +316,8 @@ $resultado_agenda = mysqli_query($mysqli, $consulta_agenda);
 								</tr>
 								<tr>
 									<th>Observaciones Cita:</th>
+
+
 									<td id="observaciones"></td>
 								</tr>
 								<tr>

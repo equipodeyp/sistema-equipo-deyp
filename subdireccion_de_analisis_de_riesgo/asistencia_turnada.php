@@ -114,7 +114,7 @@ $row=$result->fetch_assoc();
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS PSICOLÓGICAS TURNADAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -122,7 +122,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
+                            <h3 style='text-align:center'>ASISTENCIAS PSICOLÓGICAS TURNADAS</h3>
                           </div>
                         </div>
                       <div>
@@ -133,13 +133,13 @@ $row=$result->fetch_assoc();
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>UNIDAD MÉDICA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DOMICILIO</th>
+                                
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>MUNICIPIO</th>
 
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA Y HORA AGENDADA</th>
                          
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>REQUIERE TRASLADO</th>
+                                
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DIAS RESTANTES</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SEGUIMIENTO</th>
 
@@ -157,14 +157,15 @@ $row=$result->fetch_assoc();
                                                 
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, 
                                                     agendar_asistencia.nombre_institucion, agendar_asistencia.domicilio_institucion, 
-                                                    agendar_asistencia.municipio_institucion, agendar_asistencia.observaciones, 
+                                                    agendar_asistencia.municipio_institucion, agendar_asistencia.observaciones,
                                                     solicitud_asistencia.etapa
 
                                                     FROM solicitud_asistencia
 
                                                     JOIN agendar_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                                                    WHERE solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'";
+                                                    AND solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'
+                                                    AND solicitud_asistencia.etapa = 'NOTIFICADA'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
@@ -180,7 +181,7 @@ $row=$result->fetch_assoc();
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['servicio_medico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['nombre_institucion']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['domicilio_institucion']?></td>
+                                                            
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['municipio_institucion']?></td>
 
 
@@ -216,15 +217,15 @@ $row=$result->fetch_assoc();
                                                                       
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row2['fecha_asistencia']?><br><?php echo $row2['hora_asistencia']?></td>
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
-                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['requiere_traslado']?></td>
+                                                                        
+                                                                        <?php 
+                                                                          if ($row['observaciones'] != '') { ?>
+                                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
+                                                                        <?php } else {?>
+                                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo 'SIN OBSERVACIONES';?></td>
+                                                                        <?php } ?>
 
-
-
-
-
-
-
+                                                                        
 
 
 
