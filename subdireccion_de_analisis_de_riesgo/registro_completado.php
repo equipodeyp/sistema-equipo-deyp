@@ -101,7 +101,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
   			}
   			// echo $genero;
   			?>
-        <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
       </nav>
@@ -182,7 +182,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
                                                               JOIN cita_asistencia
                                                               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
-                                                              AND solicitud_asistencia.id_asistencia = 'MAMF-011-2022-AM01'";
+                                                              AND solicitud_asistencia.id_asistencia = '$id_asistencia_medica'";
                                                     
                                                     
                                                     $result_solicitud = mysqli_query($mysqli, $query);

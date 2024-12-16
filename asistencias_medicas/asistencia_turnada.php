@@ -244,7 +244,7 @@ $row=$result->fetch_assoc();
 
 
                                                                         <?php 
-                                                                          if ($row['servicio_medico'] === 'PSICOLÓGICO' && $row2['dias_restantes'] > 0) { ?>
+                                                                          if ($row['servicio_medico'] === 'PSICOLÓGICO' && $row2['dias_restantes'] >= 0) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row2['dias_restantes'];?></td>
                                                                         <?php } ?>
 
@@ -266,11 +266,11 @@ $row=$result->fetch_assoc();
                                                                           if ($row['servicio_medico'] != 'PSICOLÓGICO' && $row2['dias_restantes'] < 0 && $row2['dias_restantes'] >=-4) { ?>
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "0"?></td>
                                                                         <?php } ?>
+
+                                                                        
                                                                         
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
-                                                                        <!-- <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
-                                                                              REGISTRAR <br> SEGUIMIENTO
-                                                                        </a> -->
+
                                                                         <?php 
                                                                           if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0 && $row['nombre_institucion'] != 'UPSIPED') { ?>
 

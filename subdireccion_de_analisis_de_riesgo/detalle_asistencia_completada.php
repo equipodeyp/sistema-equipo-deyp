@@ -170,6 +170,7 @@ $respuesta7=$resultado7->fetch_assoc();
                   <div id="cabecera">
                     <h2 style="text-align:center">ASISTENCIA MÉDICA: <?php echo $id_asistencia_medica; ?></h2>
                     <input style="display:none" id="etapa" value="<?php echo $respuesta1['etapa']; ?>"/>
+                    <input style="display:none" id="servicio" value="<?php echo $respuesta1['servicio_medico']; ?>"/>
                   </div>
 
                 <div id="solicitud" style="display:none">
@@ -443,16 +444,29 @@ $respuesta7=$resultado7->fetch_assoc();
 
 
 
+
                   <div>
                     <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
 
                       <tbody>
                         <tr>
-                          <th style="text-align:left;">TURNADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS:</th>
+
+                          <?php
+
+                          if ($respuesta1['servicio_medico'] == 'PSICOLÓGICO'){
+                            echo '<th style="text-align:left;">TURNADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO:</th>';
+                          }
+                          else{
+                            echo '<th style="text-align:left;">TURNADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS:</th>';
+                          }
+                          ?>
+                          
+
                           <td style="text-align:left; background-color: #fff;"><?php echo $respuesta3['turnar_asistencia']; ?></td>
                         </tr>
 
                         <?php
+
                               $turnada = $respuesta3['turnar_asistencia'];
 
                               if ($turnada == "SI"){
@@ -491,9 +505,31 @@ $respuesta7=$resultado7->fetch_assoc();
 
                       <tbody>
                         <tr>
-                          <th style="text-align:left;">NOTIFICADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO:</th>
+                          
+                          <?php
+
+                            if ($respuesta1['servicio_medico'] == 'PSICOLÓGICO'){
+                              echo '<th style="text-align:left;">NOTIFICADA A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS:</th>';
+                            }
+                            else{
+                              echo '<th style="text-align:left;">NOTIFICADA A LA SUBDIRECCIÓN DE ANÁLISIS DE RIESGO:</th>';
+                            }
+
+                          ?>
+                          
                           <td style="text-align:left; background-color: #fff;"><?php echo $respuesta4['notificar_subdireccion']; ?></td>
+
                         </tr>
+
+
+                        <?php 
+                        if ($respuesta1['servicio_medico'] == 'PSICOLÓGICO'){
+                          echo '<tr>
+                          <th style="text-align:left;">REQUIERE TRASLADO:</th>
+                          <td style="text-align:left; background-color: #fff;">'; echo $respuesta4['requiere_traslado']; echo '</td>
+                        </tr>';
+                        }
+                        ?>
 
                         <?php
                               $notificada = $respuesta4['notificar_subdireccion'];
@@ -631,9 +667,66 @@ $respuesta7=$resultado7->fetch_assoc();
                 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div id="seguimiento_contencion" style="display:none">
+
+                  <div id="cabecera">
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">INFORMACIÓN DEL SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                    </div>
+                  </div>
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">TRASLADO REALIZADO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta7['traslado_realizado']; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">INFORME MÉDICO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta7['informe_medico']; ?></td>
+                        </tr>
+                                    
+                        <tr>
+                          <th style="text-align:left;">COMENTARIOS:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta7['observaciones_seguimiento']; ?></td>
+                        </tr>
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                
+                </div>
+
+
+
+
+
+
+
                 <div id="tratamiento" style="display:none">
                         <?php
-                          $cl = "SELECT COUNT(*) as t FROM tratamiento_medico WHERE id_asistencia = '$id_asistencia_medica'";
+                          $cl = "SELECT COUNT(*) 
+                          as t FROM tratamiento_medico 
+                          WHERE id_asistencia = '$id_asistencia_medica'";
+                          
                           $rcl = $mysqli->query($cl);
                           $fcl = $rcl->fetch_assoc();
                           // echo $fcl['t'];
@@ -778,6 +871,15 @@ ventimp.close();
 <script type="text/javascript">
 
   var etapa = document.getElementById('etapa').value;
+  var servicio = document.getElementById('servicio').value;
+  // console.log (servicio);
+
+      // if (servicio === "PSICOLÓGICO"){      
+      //     document.getElementById("seguimiento").style.display = "none";
+      //     document.getElementById("tratamiento").style.display = "none";
+      // } 
+
+
   
       if (etapa === "SOLICITADA"){      
           document.getElementById("solicitud").style.display = "";
@@ -816,9 +918,18 @@ ventimp.close();
           document.getElementById("fecha").style.display = "";
           document.getElementById("turnada").style.display = "";
           document.getElementById("notificada").style.display = "";
+      }
+
+
+      if (servicio != "PSICOLÓGICO" && etapa === "ASISTENCIA MÉDICA COMPLETADA"){
           document.getElementById("seguimiento").style.display = "";
           document.getElementById("tratamiento").style.display = "";
+      } 
+      
+      if (servicio === "PSICOLÓGICO" && etapa === "ASISTENCIA MÉDICA COMPLETADA"){
+          document.getElementById("seguimiento_contencion").style.display = "";
       }
+
 
       if (etapa === "ASISTENCIA MÉDICA REPROGRAMADA"){
           document.getElementById("solicitud").style.display = "";
