@@ -160,7 +160,7 @@ if ($fincorporc['t'] > 0 || $fincorprocreporte['t'] > 0) {
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
-echo $fenelaboracion['t'];
+// echo $fenelaboracion['t'];
 if ($fincornoproc['t'] > 0 || $fincornoprocreporte['t'] > 0) {
   echo "<tr>";
   echo "<td style='text-align:left'>"; echo "INCORPORACION NO PROCEDENTE"; "</td>";
