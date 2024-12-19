@@ -474,11 +474,11 @@ a:focus {
   </div>
   <!-- fin modal  -->
 <?php
-if ($_SESSION['usuario'] == 'a-adriana'){
+if ($_SESSION['usuario'] == 'estadistica_sub'){
   echo "<script src='../js/notification1.js'></script>";
   // echo $_SESSION['usuario'];
 }
-if ($_SESSION['usuario'] == 'e-adriana'){
+if ($_SESSION['usuario'] == 'estadistica_sub'){
   echo '<div class="contenedor">
   <a href="../subdireccion_de_estadistica_y_preregistro/menu.php" class="btn-flotante">REGRESAR A ESTADISTICA</a>
   </div>';

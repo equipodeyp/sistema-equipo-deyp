@@ -690,7 +690,7 @@ $validacion = $fil_val['validacion'];
   $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
-    if ($fil_val['validar_datos'] === 'false' && $name === 'e-adriana') {
+    if ($fil_val['validar_datos'] === 'false' && $name === 'estadistica_sub') {
       echo "<div>
                 <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
       </div>";
