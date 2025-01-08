@@ -67,9 +67,11 @@ $row=$result->fetch_assoc();
 $genero = $row['sexo'];
 $id_user = $row['id'];
 // echo $id_user;
-$userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+
+$userfijo="SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
 $ruserfijo = $mysqli->query($userfijo);
 $fuserfijo=$ruserfijo->fetch_assoc();
+$n = $fuserfijo['nombre'];
 $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
@@ -83,7 +85,9 @@ $sub = $fuserfijo['subdireccion'];
 // echo $permiso4;
 // echo $permiso5;
 // echo $permiso6;
+
 // echo $sub;
+// echo $n;
 
 
 ?>
@@ -346,6 +350,7 @@ $sub = $fuserfijo['subdireccion'];
                             <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                             <option value='PRIMERA VEZ'>PRIMERA VEZ</option>
                             <option value='URGENCIA'>URGENCIA</option>
+                            <option value='SEGUIMIENTO'>SEGUIMIENTO</option>
                         </select>
                       </div>
                     </div>
