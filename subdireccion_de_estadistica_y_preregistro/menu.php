@@ -513,7 +513,7 @@ a:focus {
   ?>
   console.log(jsvar);
   console.log(jsvmedidasfalse);
-  if (jsvar === 'e-adriana') {
+  if (jsvar === 'estadistica_sub') {
     if (jsvmedidasfalse > 0) {
       document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
       console.log(jsvar);

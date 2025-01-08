@@ -226,7 +226,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     }
                     ?>
                     <?php
-                    if ($name === 'a-adriana' || $name === 'e-adriana' && $fexistvalidar2['total'] > 0){
+                    if ($name === 'a-adriana' || $name === 'estadistica_sub' && $fexistvalidar2['total'] > 0){
                     ?>
                     <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                       <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?php echo $porcentaje.'%'; ?>"><?php echo $porcentaje.'%'; ?> de medidas validadas</div>
@@ -247,7 +247,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                         <th style="text-align:center">MUNICIPIO DE EJECUCIÓN</th>
                         <th style="text-align:center">MOTIVO DE CONCLUSIÓN</th>
                         <?php
-                        if ($name === 'a-adriana'  || $name === 'e-adriana' && $fexistvalidar['total'] > 0) {
+                        if ($name === 'a-adriana'  || $name === 'estadistica_sub' && $fexistvalidar['total'] > 0) {
                         ?>
                         <th style="text-align:center">VALIDACIÓN</th>
                         <?php
@@ -323,7 +323,7 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                             echo "</td>";
                             // echo "<td <a href='detalles_medida.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                             // echo "<td <a href='validar_medida.php?folio=".$var_fila['id']."'> <button type='button' class='glyphicon glyphicon-check'>VALIDAR</button> </a> </td>";
-                            if ($name === 'a-adriana' || $name === 'e-adriana' && $fexistvalidar['total'] > 0) {
+                            if ($name === 'a-adriana' || $name === 'estadistica_sub' && $fexistvalidar['total'] > 0) {
                               if ($fila_valmeds['validar_datos'] === 'true') {
                                 echo "<td> <span class='label label-success' style='font-size: 10px;'><i class='fas fa-check'></i> MEDIDA VALIDADA</span>
                                  </td>";
