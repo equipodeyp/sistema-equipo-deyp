@@ -27,7 +27,7 @@ $m_user = strtoupper($m_user);
 
 
 $id_asistencia_medica = $_GET["id_asistencia"];
-// echo $id_asistencia_medica;
+echo $id_asistencia_medica;
 
 $consulta1 = "SELECT* FROM solicitud_asistencia WHERE solicitud_asistencia.id_asistencia = '$id_asistencia_medica'";
 $resultado1 = $mysqli->query($consulta1);

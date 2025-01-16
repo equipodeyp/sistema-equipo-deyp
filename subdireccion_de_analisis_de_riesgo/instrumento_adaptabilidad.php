@@ -126,7 +126,7 @@ $r_input = "Si";
 
             <div class="container">
         			<div class="well form-horizontal">
-              <form class="container well form-horizontal" action="save_instrumento.php?folio=<?php echo $fol_exp; ?>" method="POST" enctype="multipart/form-data">
+              <form class="container well form-horizontal" action="../subdireccion_de_analisis_de_riesgo/save_instrumento.php" method="POST" enctype="multipart/form-data">
 
         				<div class="row">
 

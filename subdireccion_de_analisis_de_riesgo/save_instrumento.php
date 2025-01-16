@@ -21,14 +21,15 @@ $row=$result->fetch_assoc();
 $folio_expediente = $_POST['folio_expediente'];
 $id_persona = $_POST['id_sujeto'];
 $nombre_servidor = $_POST['nombre_servidor'];
-// echo $folio_expediente;
-// echo $id_persona;
-// echo $nombre_servidor;
+echo $folio_expediente;
+echo $id_persona;
+echo $nombre_servidor;
 
 $q1 = $_POST['r_question_1'];
 $q2 = $_POST['r_question_2'];
 $q3 = $_POST['r_question_3'];
 $q4 = $_POST['r_question_4'];
+
 $q5 = $_POST['r_question_5'];
 $q6 = $_POST['r_question_6'];
 $q7 = $_POST['r_question_7'];
@@ -36,13 +37,14 @@ $q8 = $_POST['r_question_8'];
 $q9 = $_POST['r_question_9'];
 
 
-// echo $q1 = $_POST['r_question_1']; 
-// echo '<br>';
-// echo $q2 = $_POST['r_question_2'];
-// echo '<br>';
-// echo $q3 = $_POST['r_question_3'];
-// echo '<br>';
-// echo $q4 = $_POST['r_question_4'];
+
+echo $q1 = $_POST['r_question_1']; 
+echo '<br>';
+echo $q2 = $_POST['r_question_2'];
+echo '<br>';
+echo $q3 = $_POST['r_question_3'];
+echo '<br>';
+echo $q4 = $_POST['r_question_4'];
 
 
 $q10 = $_POST['r_question_10'];

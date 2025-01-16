@@ -357,6 +357,9 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $genero = $row['sexo'];
 $id_user = $row['id'];
+
+// echo $id_user;
+
 $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
 $ruserfijo = $mysqli->query($userfijo);
 $fuserfijo=$ruserfijo->fetch_assoc();
@@ -364,7 +367,10 @@ $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
 $permiso4 = $fuserfijo['permiso4'];
+// echo $permiso1;
+// echo $permiso2;
 // echo $permiso3;
+// echo $permiso4;
 
 
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$id_servidor_ini'";
@@ -408,6 +414,33 @@ if ($permiso3=='solicitar') {
       }
 
 echo "</ul>";
+}
+
+
+
+if ($permiso4==='calendario') {
+  echo "
+
+<ul class='ca-menu' style='text-align:right'>
+
+<li style='text-align:center'>
+  <a href='./agenda/index.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:60px;height:60px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>CALENDARIO</h2>
+      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
+  </a>
+</li>
+
+</ul>
+
+
+
+";
+
+
+
+
 }
 
 

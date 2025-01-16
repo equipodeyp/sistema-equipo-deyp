@@ -10,8 +10,8 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
 
-// $id_instrumento = $_GET['folio'];
-// echo $id_instrumento;
+$id_persona = $_GET['id_persona'];
+// echo $id_persona;
 // echo "<br>";
 
 
@@ -59,15 +59,15 @@ $row=$result->fetch_assoc();
 // $foto=$rowfol['foto'];
 
 
-$query_instru = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
+$query_instru = "SELECT * FROM instrumento WHERE id_persona = '$id_persona'";
 $id_instru = $mysqli ->query( $query_instru);
-$row_instru = $id_instrumento->fetch_assoc();
+$row_instru = $id_instru->fetch_assoc();
 $instrumento_id=$row_instru['id_instrumento'];
-  // echo $instrumento_id;
+// echo $instrumento_id;
 
 
 
-$query = "SELECT * FROM instrumento WHERE id_persona = '$identificador'";
+$query = "SELECT * FROM instrumento WHERE id_persona = '$id_persona'";
 $result_instrumento = $mysqli->query($query);
 $row = $result_instrumento->fetch_assoc();
 // echo "<br>";
@@ -178,7 +178,7 @@ $nombre_servidor=$row['nombre_servidor'];
       <!-- menu de navegacion de la parte de arriba -->
       <div class="wrap">
       <ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='resultado_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DEL INSTRUMENTO</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='resultado_instrumento.php?id_persona=<?php echo $id_persona; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DEL INSTRUMENTO</span></a></li>
     			<!-- <li><a href="#" onclick="location.href='grafico_instrumento.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-chart-line"></span><span class="tab-text">GRÁFICO</span></a></li> -->
           <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
     	</ul>
@@ -186,12 +186,10 @@ $nombre_servidor=$row['nombre_servidor'];
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">REGISTROS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_expediente.php?folio=<?php echo $folio_expediente;?>">EXPEDIENTE</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalles_persona.php?folio=<?php echo $fol_exp;?>">PERSONA</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/instrumento_adaptabilidad.php?folio=<?php echo $fol_exp;?>">REGISTRAR INSTRUMENTO</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?php echo $fol_exp;?>">INSTRUMENTOS REGISTRADOS</a>
-              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?folio=<?php echo $fol_exp;?>" class="actived">DETALLE DEL INSTRUMENTO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/menu.php">INICIO</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/menu_instrumento.php">MENÚ INSTRUMENTO DE ADAPTABILIDAD</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/instrumentos_registrados.php">INSTRUMENTOS REGISTRADOS</a>
+              <a href="../subdireccion_de_analisis_de_riesgo/resultado_instrumento.php?id_persona=<?php echo $id_persona; ?>">RESULTADO INTRUMENTO </a>
             </div>
 
 
@@ -480,7 +478,7 @@ $nombre_servidor=$row['nombre_servidor'];
                           </table>
                       </div>
 <div class="contenedor">
-<a href="../subdireccion_de_analisis_de_riesgo/detalle_instrumento.php?folio=<?=$fol_exp?>" class="btn-flotante">REGRESAR</a>
+<a href="../subdireccion_de_analisis_de_riesgo/instrumentos_registrados.php" class="btn-flotante">REGRESAR</a>
 </div>
 
 
