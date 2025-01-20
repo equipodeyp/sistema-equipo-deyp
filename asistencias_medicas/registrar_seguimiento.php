@@ -236,6 +236,9 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
+
+
+
                   <div class="form-group" id="reprogramar_div" style="display: none;">
                     <label for="reprogramar" class="col-md-4 control-label" style="font-size: 16px">REPROGRAMAR ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
@@ -456,7 +459,7 @@ function cancelar() {
         else if(respuestaObtenida == "SI" && respuestaObtenida2 == "SI"){
 
           document.getElementById("division_1").style.display = "";
-          document.getElementById("reprogramar_div").style.display = "none";
+          document.getElementById("reprogramar_div").style.display = "";
           document.getElementById("motivo_div").style.display = "none";
           // document.getElementById("guardar").style.display = "none";
           // document.getElementById("registrar_seguimiento").style.display = "";

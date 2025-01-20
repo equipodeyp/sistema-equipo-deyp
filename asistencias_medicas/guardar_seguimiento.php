@@ -60,7 +60,7 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 // echo "<br>";
 
 
-    if($traslado == 'SI' &&  $se_presento == 'SI'){
+    if($traslado == 'SI' &&  $se_presento == 'SI' && $reprogramar == 'NO'){
 
     // $reprogramar='NO APLICA';
     // $motivo='NO APLICA';
@@ -73,6 +73,7 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
     $res_etapa = $mysqli->query($actualizar_etapa);
+    
 
         if($result) {
             echo $verifica;
@@ -80,6 +81,43 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
             window.location.href='./seguimiento_completado.php?id_asistencia_medica=$id_asistencia';
             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
         </script>");
+            } else { }
+
+
+
+
+
+
+        } else if($traslado == 'SI' &&  $se_presento == 'SI' && $reprogramar == 'SI'){
+
+        // $reprogramar='NO APLICA';
+        // $motivo='NO APLICA';
+            
+        $etapa = "ASISTENCIA MÉDICA REPROGRAMADA";
+            
+        $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, se_presento, reprogramar, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra) 
+        VALUES ('$id_asistencia', '$traslado', '$se_presento', '$reprogramar', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones_seguimiento', '$nombre_servidor')";
+        $result = $mysqli->query($query);
+            
+        $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+        $res_etapa = $mysqli->query($actualizar_etapa);
+
+        $actualizar_agendar = "UPDATE solicitud_asistencia SET agendar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_agendar = $mysqli->query($actualizar_agendar);
+    
+        $actualizar_turnar = "UPDATE solicitud_asistencia SET turnar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_turnar = $mysqli->query($actualizar_turnar);
+    
+        $actualizar_notificar = "UPDATE solicitud_asistencia SET notificar = 'NO' WHERE id_asistencia = '$id_asistencia'";
+        $res_notificar = $mysqli->query($actualizar_notificar);
+
+            
+            if($result) {
+                echo $verifica;
+                echo ("<script type='text/javaScript'>
+                        window.location.href='./seguimiento_completado.php?id_asistencia_medica=$id_asistencia';
+                        window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                        </script>");
             } else { }
 
 
