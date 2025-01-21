@@ -21,10 +21,12 @@ $m_user = strtoupper($m_user);
 // echo $m_user; 
 // echo $user;
 
-$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user' AND estatus = 'activo'";
 $rnombre = $mysqli->query($sentencia2);
 $fnombre=$rnombre->fetch_assoc();
 $name_serv = $fnombre['nombre'];
+
+// echo $name_serv;
 
 $name_user = $name_serv;
 $name_user = strtoupper($name_user);
