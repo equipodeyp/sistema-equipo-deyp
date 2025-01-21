@@ -19,7 +19,7 @@ agendar_asistencia.municipio_institucion, agendar_asistencia.domicilio_instituci
 FROM solicitud_asistencia
 
 JOIN cita_asistencia
-ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia AND solicitud_asistencia.etapa != 'CANCELADA'
 
 JOIN agendar_asistencia
 ON cita_asistencia.id_asistencia = agendar_asistencia.id_asistencia
