@@ -156,6 +156,14 @@ $r_input = "Si";
                     <!-- <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $rowfol['folioexpediente']; ?>" readonly> -->
                   </div>
 
+                  <?php
+                                $count = "SELECT COUNT(*) TOTAL FROM instrumento";
+                                $answer_c = $mysqli->query($count);
+                                $valores_c = $answer_c->fetch_assoc();
+                                $c = implode(' ', $valores_c);
+                                // echo $c+1;
+                  ?>
+
                 <div class="col-md-6 mb-3">
                   <label for="">ID PERSONA<span></span></label>
                   <select class="form-control" id="id_sujeto" name="id_sujeto" required>
@@ -174,15 +182,17 @@ $r_input = "Si";
                   </div>
                 </div>
 
-                <!-- <div class="col-md-6 mb-3">
-                  <label for="" class="">FECHA Y HORA REGISTRO</label>
-                  <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $myDate; ?>">
-                </div> -->
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">ID INSTRUMENTO DE ADAPTABILIDAD</label>
+                  <input readonly class="form-control" id="id_instrumento" name="id_instrumento" placeholder="" type="text" value>
+                </div>
 
-                <div class="col-md-12 mb-3">
-                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO DE ADAPTABILIDAD</label>
+                <div class="col-md-6 mb-3">
+                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REGISTRA EL INSTRUMENTO DE ADAPTABILIDAD</label>
                   <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $full_name;?>">
                 </div>
+
+                
 
         <div id="instrucciones">
 
@@ -1338,6 +1348,52 @@ function guardarInstrumento() { // Guardar instrumento
 }
 
 </script>
+
+<script type="text/javascript">
+
+  var idsuj = document.getElementById('id_sujeto');
+  var idsujeto;
+  var idasistencia;
+
+  var folioexpediente = document.getElementById('folio_expediente');
+  var folio;
+  var folioobtenido;
+
+  var separaranio = [];
+  var anioSeparado;
+
+
+  folioexpediente.addEventListener('change', obtenerfolio);
+  
+  function obtenerfolio(e){
+
+    folio = e.target.value;
+    folioobtenido = folio;
+
+    // console.log(folioobtenido);
+
+    separaranio = folioobtenido.split("/");
+    anioSeparado = separaranio[4];
+    
+    // console.log(anioSeparado);
+
+
+  }
+
+
+  idsuj.addEventListener('change', obtenerid);
+  function obtenerid(e){
+
+    idsujeto = e.target.value;
+    idasistencia = idsujeto+"-"+anioSeparado+"-INSTR0"
+
+    // console.log(idasistencia);
+    document.getElementById('id_instrumento').value = idasistencia+"<?php echo $c+1; ?>";
+
+  }
+
+
+</script> 
 
 
 </body>
