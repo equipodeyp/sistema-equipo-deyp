@@ -258,9 +258,11 @@ $row=$result->fetch_assoc();
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
 
+                                                                        <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
+                                                                                  REGISTRAR <br> SEGUIMIENTO
+                                                                        </a>
 
-
-                                                                        <?php 
+                                                                        <!-- <?php 
                                                                           if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0 && $row['nombre_institucion'] != 'UPSIPED') { ?>
 
                                                                             <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
@@ -297,7 +299,7 @@ $row=$result->fetch_assoc();
                                                                             </a> 
                                                                           ";
                                                                           }
-                                                                        ?> 
+                                                                        ?>  -->
 
 
 
