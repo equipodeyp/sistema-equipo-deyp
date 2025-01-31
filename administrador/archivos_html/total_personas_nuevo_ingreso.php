@@ -254,6 +254,7 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">RELACIONADO</th>
                                           <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
                                           <th style="text-align:center">RE-INGRESO</th>
+                                          <th style="text-align:center">EDAD</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -433,6 +434,10 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
+                                      $fecha_nacimiento = new DateTime($fsuj['fechanacimientopersona']);
+                                      $hoy = new DateTime();
+                                      $edad = $hoy->diff($fecha_nacimiento);
+                                      echo "<td style='text-align:center'>"; echo $edad->y.' años'; echo "</td>";
                                       echo "</tr>";
                                       // echo "<td style='text-align:center'>";  echo "</td>";
                                     }
