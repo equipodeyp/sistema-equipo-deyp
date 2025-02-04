@@ -218,9 +218,7 @@ $row=$result->fetch_assoc();
                                                                 
                                                                 
                                                                 if ($id_asistencia == $row2['id_asistencia']){
-
                                                               ?>
-                                                                    
                                                                         <?php
                                                                         $originalDate = $row2['fecha_asistencia'];
                                                                         $date = date("d/m/Y", strtotime($originalDate));

@@ -237,11 +237,15 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-layer-group"></i></span>
+
                           <?php
                           $agendar = "SELECT * FROM agendar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
                           $ragendar = $mysqli->query($agendar);
                           $fagendar = $ragendar->fetch_assoc();
-                          // $fagendar['tipo_institucion'];
+                         
+
+               
+
                           if ($checkagendar === 'SI') {
                             // echo "<option value='"; echo $fagendar['tipo_institucion']; echo "'>"; echo $fagendar['tipo_institucion']; echo"</option>";
                             echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['tipo_institucion']; echo '">';
@@ -326,10 +330,46 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   $citaasistencia = "SELECT * FROM cita_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
                   $rcitaasistencia = $mysqli->query($citaasistencia);
                   $fcitaasistencia = $rcitaasistencia->fetch_assoc();
+
+                  $q_requerimiento = "SELECT * FROM solicitud_asistencia WHERE id_asistencia='$id_asistencia_medica'";
+                  $result_requerimiento = $mysqli->query($q_requerimiento);
+                  $r_requerimiento = $result_requerimiento->fetch_assoc();
+                  $check_requerimiento = $r_requerimiento['tipo_requerimiento'];
+                  $check_servicio = $r_requerimiento['servicio_medico'];
+                  // echo $check_requerimiento;
+                  // echo "<br>";
+                  // echo $check_servicio;
+
                   ?>
 
 
+
+<?php
+if ($check_servicio === 'MÉDICO' || $check_servicio === 'SANITARIO'){
+?>
+
                   <div class="form-group">
+                    <label for="oficio_gestion" class="col-md-4 control-label" style="font-size: 16px">NO. OFICIO DE LA GESTIÓN </label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-file"></i></span>
+                          <?php
+                          if ($checkagendar === 'SI') {
+                          echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['oficio_gestion']; echo '">';
+                          }else {
+                          ?>
+                          <input autocomplete="off" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="oficio_gestion" name="oficio_gestion" value="">
+                          <?php
+                          }
+                          ?>
+                        
+                      </div>
+                    </div>
+                  </div>
+<?php
+}
+?>
+                  <div class="form-group" id="fecha_asistencia_div">
                     <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -348,7 +388,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" id="hora_asistencia_div">
                     <label for="hora_asistencia" class="col-md-4 control-label">HORA ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -445,6 +485,34 @@ if(dd<10){
   }
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("fecha_asistencia").setAttribute("min", today);
+</script>
+
+
+<script type="text/javascript">
+
+
+  var servicio_medico = document.getElementById('servicio_medico').value;
+
+  
+  // console.log(servicio_medico);
+
+  if (servicio_medico === "MÉDICO" || servicio_medico === "SANITARIO"){
+    document.getElementById("fecha_asistencia_div").style.display = "none";
+    document.getElementById("hora_asistencia_div").style.display = "none";
+    document.getElementById("fecha_asistencia").value = "";
+    document.getElementById("hora_asistencia").value = "";
+    document.getElementById("fecha_asistencia").disabled="true";
+    document.getElementById("hora_asistencia").disabled="true";
+    document.getElementById("fecha_asistencia").required="false";
+    document.getElementById("hora_asistencia").required="false";
+
+    
+    
+
+  }
+
+
+
 </script>
 
 

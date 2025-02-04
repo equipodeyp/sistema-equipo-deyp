@@ -360,6 +360,32 @@ $respuesta7=$resultado7->fetch_assoc();
 
                 </div>
 
+
+                <div id="gestion" style="display:none">
+
+                  <div id="cabecera">
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">GESTIÓN DE LA ASISTENCIA MÉDICA</h3>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">NO. DE OFICIO DE LA GESTIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['oficio_gestion']; ?></td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+
+                </div>
+
+
                 <div id="fecha" style="display:none">
 
                   <div id="cabecera">
@@ -930,6 +956,19 @@ ventimp.close();
           document.getElementById("seguimiento_contencion").style.display = "";
       }
 
+      if (servicio === "MÉDICO" || servicio === "SANITARIO"){
+          document.getElementById("seguimiento_contencion").style.display = "none";
+          document.getElementById("tratamiento").style.display = "none";
+          document.getElementById("seguimiento").style.display = "none";
+          document.getElementById("reprogramacion").style.display = "none";
+          document.getElementById("turnada").style.display = "none";
+          document.getElementById("notificada").style.display = "none";
+          document.getElementById("fecha").style.display = "none";
+      }
+
+      if (servicio === "MÉDICO" || servicio === "SANITARIO"){
+          document.getElementById("gestion").style.display = "";
+      }
 
       if (etapa === "ASISTENCIA MÉDICA REPROGRAMADA"){
           document.getElementById("solicitud").style.display = "";

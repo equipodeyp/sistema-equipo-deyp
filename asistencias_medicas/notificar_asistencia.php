@@ -205,6 +205,13 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
               <?php
 
+$folio = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia_medica'";
+$result_f = mysqli_query($mysqli, $folio);
+$r_f = mysqli_fetch_array($result_f);
+$id_asist = $r_f['id_asistencia'];
+$serv_medico = $r_f['servicio_medico'];
+
+
               $notificar = "SELECT * FROM notificar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
               $rnotificar = $mysqli->query($notificar);
               $fnotificar = $rnotificar->fetch_assoc();

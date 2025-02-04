@@ -178,7 +178,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                                     
                                                     JOIN agendar_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = '$id_asistencia_medica'
-                                                    AND solicitud_asistencia.etapa = 'NOTIFICADA'
+                                                    
                                                     
                                                     JOIN cita_asistencia
                                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia

@@ -11,7 +11,7 @@ $folio = $folio_expediente;
 
 $select2 = "SELECT datospersonales.identificador, datospersonales.estatusprograma
 FROM datospersonales
-WHERE datospersonales.folioexpediente = '$folio' AND datospersonales.estatusprograma = 'ACTIVO'
+WHERE datospersonales.folioexpediente = '$folio'
 ORDER BY datospersonales.identificador ASC";
 
 

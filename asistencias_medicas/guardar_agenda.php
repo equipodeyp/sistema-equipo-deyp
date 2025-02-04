@@ -22,6 +22,7 @@ $tipo_institucion=$_POST['tipo_institucion'];
 $nombre_institucion=$_POST['nombre_institucion'];
 $domicilio_institucion=$_POST['domicilio_institucion'];
 $municipio_institucion=$_POST['municipio_institucion'];
+$oficio_gestion=$_POST['oficio_gestion'];
 $fecha_asistencia=$_POST['fecha_asistencia'];
 $hora_asistencia=$_POST['hora_asistencia'];
 $observaciones_asistencia=$_POST['observaciones_asistencia'];
@@ -94,8 +95,8 @@ $m = $r_m['municipio'];
 
 
 
-$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, observaciones, servidor_registra)
-VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$observaciones_asistencia', '$nombre_servidor')";
+$query = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, oficio_gestion, observaciones, servidor_registra)
+VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', '$oficio_gestion', '$observaciones_asistencia', '$nombre_servidor')";
 $result = $mysqli->query($query);
 
 $query2 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
@@ -107,6 +108,9 @@ $result3 = $mysqli->query($query3);
 
 $query4 = "UPDATE solicitud_asistencia SET etapa = 'AGENDADA' WHERE id_asistencia = '$id_asistencia'";
 $result4 = $mysqli->query($query4);
+
+
+
 
 
 if($result) {
