@@ -12,9 +12,9 @@
         $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
         $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
         $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-        // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-        $mesant = $meses[date('n')-2];
-        $mesanterior = date('n')-1;
+        // echo " ".date('d')." DE ".$meses[date('n')]. " DEL ".date('Y') ;
+        $mesant = $meses[date('n')];
+        $mesanterior = date('n');
         $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
         $fecha_inicio = $anioActual."-01-01";
         $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
@@ -23,7 +23,7 @@
         ?>
         <h1 style="text-align:center"><b>PROGRAMA DE PROTECCIÓN A SUJETOS QUE <br> INTERVIENEN EN EL PROCEDIMIENTO PENAL O DE <br> EXTINCIÓN DE DOMINIO DEL ESTADO DE MÉXICO</b></h1>
         <h1 style="text-align:center">__________________________________________________________________________</h1>
-        <h1 style="text-align:center"><b>DEL 1 AL  <?php echo $cantidadDias." DE ".$meses[date('n')-1]. " DEL ".date('Y'); ?> </b></h1>
+        <h1 style="text-align:center"><b>DEL 1 AL  <?php echo $cantidadDias." DE ".$meses[date('n')]. " DEL ".date('Y'); ?> </b></h1>
         <br><br><br><br><br><br>
         <div class="row">
           <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
@@ -40,8 +40,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -66,8 +66,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -93,8 +93,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -119,8 +119,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -146,8 +146,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -170,8 +170,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -203,8 +203,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="3">TOTAL  <br> ACUMULADO</th>
                   </tr>
                 </thead>
@@ -231,8 +231,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th HEIGHT="82" style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th HEIGHT="82" style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="3">TOTAL  <br> ACUMULADO</th>
                   </tr>
                 </thead>
@@ -313,8 +313,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -339,8 +339,8 @@
                     <th style="border: 5px solid #97897D; text-align:center" colspan="3"><?php echo $anioActual; ?></th>
                   </tr>
                   <tr>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')]; ?></th>
+                    <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></th>
                     <th style="border: 5px solid #97897D; text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                   </tr>
                 </thead>
@@ -417,7 +417,7 @@
         <div class="row">
           <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
           <h1 style="text-align:center"><b>RESUMEN DE LOS EXPEDIENTES DE PROTECCIÓN INICIADOS</b></h1>
-          <h2 style="text-align:center"><b><?php echo ''; echo "DEL 01 DE ENERO AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></b></h2>
+          <h2 style="text-align:center"><b><?php echo ''; echo "DEL 01 DE ENERO AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></b></h2>
           <div class="col-lg-12">
               <div class="table-responsive">
                   <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
@@ -447,7 +447,7 @@
         <div class="row">
           <h1>---------------------------------------------------------------------------------------------------------------------------------------------</h1>
           <h1 style="text-align:center"><b>RESUMEN GLOBAL DEL PROGRAMA</b></h1>
-          <h2 style="text-align:center"><b><?php echo ''; echo "DEL 01 DE JUNIO DEL 2021 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></b></h2>
+          <h2 style="text-align:center"><b><?php echo ''; echo "DEL 01 DE JUNIO DEL 2021 AL ".$cantidadDias. " DE ".$meses[date('n')]; echo ''; ?></b></h2>
           <div class="col-lg-12">
             <div class="table-responsive">
               <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">

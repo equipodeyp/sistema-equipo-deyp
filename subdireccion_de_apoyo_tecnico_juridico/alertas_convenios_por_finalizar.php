@@ -1,22 +1,51 @@
 <?php
-header("Content-Type: text/html;charset=utf-8");
-error_reporting(0);
 /*require 'conexion.php';*/
+// error_reporting(0);
+date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
+include("actualizar_automaticamente_alerta_convenios.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo FROM usuarios WHERE usuario='$name'";
+//Si la variable de sesión no existe,
+//Se presume que la página aún no se ha actualizado.
+// if(!isset($_SESSION['already_refreshed'])){
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+//   $resultr = $mysqli->query($sentenciar);
+//   $rowr=$resultr->fetch_assoc();
+//   $areauser = $rowr['area'];
+//   $fecha = date('y/m/d H:i:sa');
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
+//                 VALUES ('$name', '$areauser', '$fecha')";
+//   $res_saveiniciosession = $mysqli->query($saveiniciosession);
+//   ////////////////////////////////////////////////////////////////////////////////
+// //Establezca la variable de sesión para que no
+// //actualice de nuevo.
+//   $_SESSION['already_refreshed'] = true;
+// }
+$verifica_update_person = 1;
+$_SESSION["verifica_update_person"] = $verifica_update_person;
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
- ?>
+$user = $row['usuario'];
+// echo $user;
+
+
+$m_user = $user;
+$m_user = strtoupper($m_user);
+// echo $user;
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <script src="../js/botonatras.js"></script>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>SIPPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
@@ -43,11 +72,13 @@ $row=$result->fetch_assoc();
   <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
-  <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
-  <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
-<!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
-  <script type="text/javascript">
+  <!-- MATERIAL PARA USAR TOAST MENSAJES DE ALERTA  -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<!-- //////////////////////////////////////////
 
+ SCRIPT PARA EL MANEJO DE LA TABLA -->
+  <script type="text/javascript">
   $(document).ready(function() {
       $('#example').DataTable({
           language: {
@@ -65,32 +96,18 @@ $row=$result->fetch_assoc();
              },
              "sProcessing":"Procesando...",
               },
-          // para usar los botones
-      //     responsive: "true",
-      //     dom: 'Bfrtilp',
-      //     buttons:[
-      //   {
-      //     extend:    'excelHtml5',
-      //     text:      '<i class="fas fa-file-excel"></i> ',
-      //     titleAttr: 'Exportar a Excel',
-      //     className: 'btn btn-success'
-      //   },
-      //   {
-      //     extend:    'pdfHtml5',
-      //     text:      '<i class="fas fa-file-pdf"></i> ',
-      //     titleAttr: 'Exportar a PDF',
-      //     className: 'btn btn-danger'
-      //   },
-      //   {
-      //     extend:    'print',
-      //     text:      '<i class="fa fa-print"></i> ',
-      //     titleAttr: 'Imprimir',
-      //     className: 'btn btn-info'
-      //   },
-      // ]
       });
   });
   </script>
+  <!-- SCRIPT PARA REFRESCAR MENU.PHP Y MOSTRAR ALERTAS DE TERMINOS DE CONVENIOS -->
+<!-- <script>
+  let segundos_recarga = 9;
+  let miFecha = new Date();
+  let dato_url = miFecha.getYear().toString() + miFecha.getMonth().toString() + miFecha.getDate().toString() + miFecha.getHours().toString() + miFecha.getMinutes().toString() + miFecha.getSeconds().toString();
+  setTimeout( function() {
+    window.location = `menu.php`;
+  }, segundos_recarga * 1000);
+</script> -->
   <style>
     .pagination {
   display: inline-block;
@@ -194,31 +211,73 @@ a:focus {
   color: #FFFFFF;
   text-decoration: underline;
 }
+  </style>
+  <style media="screen">
+  .demo-preview {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+  }
 
-  .submenu {
-    display: none;
-  }
-  .opacity {
-    /* opacity: 100%; */
+  .alert {
+    padding: .7143rem 1.071rem;
+    margin-bottom: 1.429rem;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    color: #FFF
   }
 
-  /*  */
-  .submenu2 {
-    display: none;
+  .alert.alert-square {
+    border-radius: 0
   }
-  .opacity2 {
-    /* opacity: 100%; */
-  }
-  /*  */
 
-  /*  */
-  .submenu3 {
-    display: none;
+  .alert .close {
+    position: relative
   }
-  .opacity3 {
-    /* opacity: 100%; */
+
+  .alert.alert-dismissable,
+  .alert.alert-dismissible {
+    padding-right: 2.5rem
   }
-  /*  */
+
+  .alert.alert-dismissable .close,
+  .alert.alert-dismissible .close {
+    top: -2px;
+    right: -20px;
+    color: inherit
+  }
+
+  .alert.alert-primary {
+    background-color: #2196F3;
+    border-color: #2196F3
+  }
+
+  .alert.alert-secondary {
+    background-color: #323a45;
+    border-color: #323a45
+  }
+
+  .alert.alert-success {
+    background-color: #64DD17;
+    border-color: #64DD17
+  }
+
+  .alert.alert-info {
+    background-color: #29B6F6;
+    border-color: #29B6F6
+  }
+
+  .alert.alert-warning {
+    background-color: #F89406;
+    border-color: #F89406
+  }
+
+  .alert.alert-danger {
+    background-color: #ef1c1c;
+    border-color: #EF5350
+  }
   </style>
 </head>
 <body>
@@ -233,11 +292,11 @@ a:focus {
         $row=$result->fetch_assoc();
         $genero = $row['sexo'];
         $id_user = $row['id'];
+
         $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
         $ruserfijo = $mysqli->query($userfijo);
         $fuserfijo=$ruserfijo->fetch_assoc();
-        $permiso1 = $fuserfijo['permiso1'];
-        $subdireccion = $fuserfijo['subdireccion'];
+        // echo $permiso1;
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -252,28 +311,9 @@ a:focus {
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-        <ul>
-          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
-          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
-          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
-        <li id="liestadistica3" class="subtitle3">
-            <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
-            <ul class="submenu3">
-              <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
-              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
-              <li id="lipersonas" class="menu-items"><a href="../consultores/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
-              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
-              <!-- <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
-            </ul>
-          <?php
-          if ($row['cargo'] === 'titular') {
-          ?>
-          <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li>
-          <?php
-          }
-          ?>
-          </li>
-        </ul>
+          <ul>
+
+          </ul>
       </nav>
     </div>
     <div class="main bg-light">
@@ -293,18 +333,135 @@ a:focus {
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h5>
         </div>
-        <div class="row">
-          <!-- <a href="new_exp.php" class="btn btn-primary">Nuevo Expediente</a> -->
-        </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
+        <div class="row" id="show_alert" style="display:none;">
+          <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <h3 style="text-align:center">¡ALERTA HAY CONVENIOS POR FINALIZAR!</h3>
+                <tr>
+                    <th style="text-align:center">NO.</th>
+                    <th style="text-align:center">EXPEDIENTE</th>
+                    <th style="text-align:center">ID PERSONA</th>
+                    <th style="text-align:center">FECHA DE INICIO DEL CONVENIO</th>
+                    <th style="text-align:center">FECHA DE TERMINO DEL CONVENIO</th>
+                    <th style="text-align:center">DIAS RESTANTES</th>
+                    <th style="text-align:center">OBSERVACIONES</th>
+                    <th style="text-align:center">SEMAFORO</th>
+                    <th style="text-align:center">SEGUIMIENTO</th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php
+              $contador = 0;
+              $obtenfechaactualprincipal1 = date('Y-m-d'); echo "<br>";
+              $obtenfechaactualprincipal2 = date('Y-m-d');
+              $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
+              $get3dyas= "SELECT * FROM alerta_convenios WHERE estatus != 'HECHO' AND fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1' ORDER BY fecha_termino ASC";
+              $rget3dyas = $mysqli->query($get3dyas);
+              while ($fget3dyas = $rget3dyas->fetch_assoc()) {
+                $contador = $contador + 1;
+                ?>
+                <tr>
+                  <td style="text-align:center"><?php echo $contador ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['expediente']; ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['id_unico']; ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['fecha_inicio']; ?></span></td>
+                  <td style="text-align:center"><?php echo $fget3dyas['fecha_termino']; ?></span></td>
+                  <td style="text-align:center"><?php echo '0'; ?></span></td>
+                  <td style="text-align:center">
+                    <?php
+                    echo "<a href='#edit_".$fget3dyas['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
+                     ?>
+                  </td>
+                  <td style="text-align:center"><?php
+                  echo '	  <div class="alert alert-info alert-dismissable fade in">
+                              <strong style="color:#000000">¡FINALIZADO!</strong>
+                            </div> ';
+                  ?></span></td>
+                  <td style="text-align:center"><?php echo 'TERMINADO'; ?></span></td>
+                  <?php include('add_observacion_alerta1.php'); ?>
+                </tr>
+                <?php
+
+              }
+                    $query= "SELECT * FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15 ORDER BY dias_restantes ASC";
+                    $rq = $mysqli->query($query);
+                       while($row = $rq->fetch_assoc()){
+                         $contador = $contador + 1;
+                         $id_per = $row['id_persona'];
+                         $dper = "SELECT * FROM alerta_convenios WHERE id = '$id_per'";
+                         $rdper = $mysqli->query($dper);
+                         $fdper = $rdper->fetch_assoc();
+                         ///////////////////////////////////////////////////////
+                         $diasfaltantesent = $row['dias_restantes'];
+                         $idpersonal_ent = $row['id_unico'];
+                         $foliopersonaexpediente_ent = $row['expediente'];
+                         $diasfaltantesent = $row['dias_restantes'];
+                         if ($diasfaltantesent === 1) {
+                           $qued_ent = 'QUEDA';
+                         }else {
+                           $qued_ent = 'QUEDAN';
+                         }
+                         if ($diasfaltantesent === 1) {
+                           $dia_ent = 'DÍA';
+                         }else {
+                           $dia_ent = 'DÍAS';
+                         }
+              ?>
+
+              <tr>
+                 <td style="text-align:center"><?php echo $contador ?></span></td>
+                 <td style="text-align:center"><?php echo $row['expediente']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['id_unico']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['fecha_inicio']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['fecha_termino']; ?></span></td>
+                 <td style="text-align:center"><?php echo $row['dias_restantes']; ?></span></td>
+                 <td style="text-align:center">
+                   <?php
+                   echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
+                    ?>
+                 </td>
+                 <td style="text-align:center">
+                   <?php
+                   if ($row['semaforo'] === 'ROJO') {
+                     // echo '<script type="text/javascript">toastr.error("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     echo '	  <div class="alert alert-danger alert-dismissable fade in">
+                                 <strong style="color:#000000">¡ATENCIÓN!</strong>
+                               </div> ';
+                   }elseif ($row['semaforo'] === 'AMARILLO') {
+                     // echo '<script type="text/javascript">toastr.warning("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     echo '	  <div class="alert alert-warning alert-dismissable fade in">
+                                 <strong style="color:#000000">¡ALERTA!</strong>
+                               </div> ';
+                   }elseif ($row['semaforo'] === 'VERDE') {
+                     // echo '<script type="text/javascript">toastr.success("'.$qued_ent.' '.$diasfaltantesent.' '.$dia_ent.' PARA QUE SE TERMINE EL CONVENIO DE ENTENDIMIENTO DEL SUJETO '.$idpersonal_ent.' DEL EXPEDIENTE '.$foliopersonaexpediente_ent.' ")</script>';
+                     echo '	  <div class="alert alert-success alert-dismissable fade in">
+                                 <strong style="color:#000000; text-align:center">PRECAUCIÓN!</strong>
+                               </div> ';
+                   }
+                    ?>
+                 </td>
+                 <td style="text-align:center"><?php echo $row['estatus']; ?></span></td>
+                 <?php include('add_observacion_alerta.php'); ?>
+               </tr>
+              <?php
+               }
+              ?>
+            </tbody>
+           </table>
+        </div>
+        <!-- <?php
+        echo $_SESSION['usuario'];
+        if ($_SESSION['usuario'] === 'analisis2') {
+        ?>
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                              <h3 style="text-align:center">Registros</h3>
+                              <h3 style="text-align:center">Registros para instrumento de adaptabilidad</h3>
                                 <tr>
                                     <th style="text-align:center">NO</th>
                                     <th style="text-align:center">FECHA DE RECEPCION DE LA SOLICITUD DE INCORPORACION AL PROGRAMA</th>
@@ -318,6 +475,7 @@ a:focus {
                             </thead>
                             <tbody>
                               <?php
+                              $contador = 0;
                               $sql = "SELECT * FROM expediente";
                               $resultado = $mysqli->query($sql);
                               $row = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -328,6 +486,7 @@ a:focus {
 
                               while ($var_fila=$var_resultado->fetch_array())
                               {
+                                $contador = $contador + 1;
                                 $fol_exp2=$var_fila['fol_exp'];
 
                                 $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
@@ -341,7 +500,7 @@ a:focus {
                                   while($row=mysqli_fetch_assoc($result))
                                   {
                                     echo "<tr>";
-                                    echo "<td style='text-align:center'>"; echo $var_fila['id']; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['num_consecutivo'].'/'. $var_fila['año']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['sede']; echo "</td>";
                                     // echo "<td style='text-align:center'>"; echo $var_fila['municipio']; echo "</td>";
@@ -369,106 +528,36 @@ a:focus {
                     </div>
             </div>
         </div>
+        <?php
+        }
+        ?> -->
       </div>
     </div>
-  </div>
-  <div class="contenedor">
-    <?php
-    if ($permiso1 === 'consulta') {
-      if ($subdireccion === 'subdireccion de enlace interinstitucional') {
-        echo '<a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>';
-      }elseif ($subdireccion === 'Subdirección de Análisis de Riesgo') {
-        echo '<a href="../subdireccion_de_analisis_de_riesgo/menu.php" class="btn-flotante">REGRESAR</a>';
-      }elseif ($subdireccion === 'subdireccion de ejecucion de medidas') {
-        echo '<a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>';
-      }elseif ($subdireccion === 'Subdirección de Apoyo Técnico y Jurídico') {
+    <div>
+      <?php
         echo '<a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php" class="btn-flotante">REGRESAR</a>';
-      }
-    }
-    ?>
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
-  </div>
-  <!-- modal del glosario -->
-  <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">GLOSARIO SIPPSIPPED</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
+      ?>
     </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del MANUAL DE USUARIO  -->
-  <div class="modal fade" id="add_data_Modal_convenio2" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">MANUAL DE USUARIO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/MANUALDEUSUARIO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
+  <div class="contenedor">
+    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
 
-
-
-  <div class="modal fade" id="add_data_Modal_convenio1" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">MANUAL TECNICO SIPPSIPPED</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/MANUALTECNICO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-</body>
-<script>
-  // CODIGO DE MENU CON submenu3
-  $(".subtitle3 .action3").click(function(event){
-   var subtitle3 = $(this).parents(".subtitle3");
-   var submenu3 = $(subtitle3).find(".submenu3");
-
-   $(".submenu3").not($(submenu3)).slideUp("slow").removeClass("opacity");
-   $(".open").not($(subtitle3)).removeClass("open");
-
-   $(subtitle3).toggleClass("open");
-   $(submenu3).slideToggle("slow").toggleClass("opacity");
-
-   return false;
-  });
+  <?php
+  $mostraralert = "SELECT COUNT(*) AS total FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15";
+  $rmostraralert = $mysqli -> query($mostraralert);
+  $fmostraralert = $rmostraralert -> fetch_assoc();
+  $restotal = $fmostraralert['total'];
+  ?>
+<script type="text/javascript">
+<?php
+echo "var totalconvenios = '$restotal';";
+?>
+if (totalconvenios > 0) {
+document.getElementById('show_alert').style.display = "";
+}else {
+  document.getElementById('show_alert').style.display = "none";
+}
 </script>
+
+</body>
 </html>

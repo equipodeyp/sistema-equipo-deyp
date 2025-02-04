@@ -266,9 +266,11 @@ text-decoration: underline;
           <ul>
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
+            <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
             <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXP</span></a></li>
 
             <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>MENÚ ASISTEMCIAS M.</span></a></li>
+            <li><a href="#" onclick="location.href='alertas_convenios_por_finalizar.php'"><i class="color-icon fas fa-soli fa-person-circle-exclamation menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> ALERTA DE CONVENIOS</span></a></li>
           </ul>
 
 
@@ -462,6 +464,28 @@ text-decoration: underline;
       </div>
     </div>
   </div>
+
+
+  <div class="modal fade" id="add_data_Modal_convenio1" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="text-align:center" class="modal-title" id="myModalLabel">MANUAL TECNICO SIPPSIPPED</h4>
+        </div>
+        <div class="modal-body">
+          <div className="modal">
+            <div className="modalContent">
+              <iframe src="../docs/MANUALTECNICO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
+        </div>
+      </div>
+    </div>
+  </div>  
   <!-- fin modal  -->
 
 

@@ -498,6 +498,7 @@ $validacion = $fil_val['validacion'];
               <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
               <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA" disabled>
                 <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
+                <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
                 <?php
                 $municipio = "SELECT * FROM municipios";
                 $answermun = $mysqli->query($municipio);
