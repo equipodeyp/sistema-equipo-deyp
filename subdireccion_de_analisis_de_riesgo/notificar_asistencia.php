@@ -294,7 +294,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-bell"></i></span>
 
-                          <select class="form-control" id="traslado_subdireccion" name="traslado_subdireccion" required>
+                          <select class="form-control" id="traslado_subdireccion" name="traslado_subdireccion">
                             <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
                             <option value="SI">SI</option>
                             <option value="NO APLICA">NO APLICA</option>
