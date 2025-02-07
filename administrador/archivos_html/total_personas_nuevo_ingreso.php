@@ -172,50 +172,23 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">ID SOLICITUD</th>
                                           <th style="text-align:center">FECHA SOLICITUD</th>
                                           <th style="text-align:center">NOMBRE AUTORIDAD</th>
-                                          <!-- <th style="text-align:center">NOMBRE SERVIDOR</th> -->
-                                          <!-- <th style="text-align:center">PATERNO SERVIDOR</th> -->
-                                          <!-- <th style="text-align:center">MATERNO SERVIDOR</th> -->
-                                          <!-- <th style="text-align:center">CARGO SERVIDOR</th> -->
                                           <th style="text-align:center">NOMBRE PERSONA</th>
                                           <th style="text-align:center">PATERNO PERSONA</th>
                                           <th style="text-align:center">MATERNO PERSONA</th>
-                                          <!-- <th style="text-align:center">FECHA NACIEMIENTO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">EDAD PERSONA</th> -->
                                           <th style="text-align:center">GRUPO EDAD</th>
                                           <th style="text-align:center">CALIDAD PERSONA</th>
                                           <th style="text-align:center">SEXO PERSONA</th>
-                                          <!-- <th style="text-align:center">ENTIDAD NACIMIENTO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">MUNICIPIO NACIMIENTO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">NACIONALIDAD PERSONA</th> -->
-                                          <!-- <th style="text-align:center">CURP</th> -->
-                                          <!-- <th style="text-align:center">RFC PERSONA</th> -->
-                                          <!-- <th style="text-align:center">ALIAS PERSONA</th> -->
-                                          <!-- <th style="text-align:center">OCUPACION PERSONA</th> -->
-                                          <!-- <th style="text-align:center">TELEFONO FIJO</th> -->
-                                          <!-- <th style="text-align:center">TELEFONO CELULAR</th> -->
-                                          <!-- <th style="text-align:center">CALLE DOMICILIO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">COLONIA DOMICILIO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">LOCALIDAD DOMICILIO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">MUNICIPIO DOMICILIO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">CP DOMICILIO PERSONA</th> -->
-                                          <!-- <th style="text-align:center">MENOR DE EDAD O PERSONA EN SITUACION DE DISCAPACIDAD</th> -->
-                                          <!-- <th style="text-align:center">TUTOR NOMBRE</th> -->
-                                          <!-- <th style="text-align:center">TUTOR PATERNO</th> -->
-                                          <!-- <th style="text-align:center">TUTOR MATERNO</th> -->
                                           <th style="text-align:center">DELITO PRINCIPAL</th>
                                           <th style="text-align:center">OTRO DELITO PRINCIPAL</th>
                                           <th style="text-align:center">DELITO SECUNDARIO</th>
                                           <th style="text-align:center">OTRO DELITO SECUNDARIO</th>
                                           <th style="text-align:center">ETAPA PRCEDIMIENTO</th>
-                                          <!-- <th style="text-align:center">NUC</th> -->
                                           <th style="text-align:center">MUNICIPIO RADICACION</th>
-                                          <!-- <th style="text-align:center">IMAGEN PERSONA</th> -->
                                           <th style="text-align:center">IDENTIFICADOR EXPEDIENTE</th>
                                           <th style="text-align:center">RESULTADO VALORACION JURIDICA</th>
                                           <th style="text-align:center">MOTIVO NO PROCEDENCUA JURIDICA</th>
                                           <th style="text-align:center">ANALISIS MULTIDISCIPLINARIO</th>
                                           <th style="text-align:center">PROCEDENCIA DE LA INCORPORACION</th>
-                                          <!-- <th style="text-align:center">ID PERSONA SUJETO</th> -->
                                           <th style="text-align:center">FECHA AUTORIZACION ANALISIS</th>
                                           <th style="text-align:center">ID AUTORIZACION ANALISIS</th>
                                           <th style="text-align:center">CONVENIO DE ENTENDIMIENTO</th>
@@ -224,28 +197,6 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">VIGENCIA</th>
                                           <th style="text-align:center">FECHA TERMINO</th>
                                           <th style="text-align:center">ID CONVENIO ENTENDIMIENTO</th>
-                                          <!-- INICIO DE ESTUDIOS TECNICOS -->
-                                          <?php
-                                          // $est = "SELECT id_unico, COUNT(id_unico) AS t
-                                          //   FROM  evaluacion_persona
-                                          //   GROUP BY id_unico
-                                          //   ORDER BY t DESC
-                                          //   LIMIT 1";
-                                          // $rest = $mysqli->query($est);
-                                          // $fest = $rest->fetch_assoc();
-                                          // $iterac = $fest['t'].'<br />';
-                                          // for ($i=2; $i < $fest['t']+2; $i++) {
-                                          //   echo '<th style="text-align:center">'; echo "ANALISIS MULTIDISCIPLINARIO ". $i; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "FECHA AUTORIZACION ANALISIS"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "ID ANALISIS"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "TIPO DE CONVENIO"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "FECHA FIRMA"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "FECHA INICIO"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "VIGENCIA"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "FECHA TERMINO"; echo '</th>';
-                                          //   echo '<th style="text-align:center">'; echo "ID CONVENIO"; echo '</th>';
-                                          // }
-                                          ?>
                                           <th style="text-align:center">TERMINACION</th>
                                           <th style="text-align:center">CONCLUSION ARTICULO 35</th>
                                           <th style="text-align:center">ESPECIFICAR ARTICULO 35</th>
@@ -254,7 +205,9 @@ $row=$result->fetch_assoc();
                                           <th style="text-align:center">RELACIONADO</th>
                                           <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
                                           <th style="text-align:center">RE-INGRESO</th>
+                                          <th style="text-align:center">EN CENTRO DE RESGUARDO</th>
                                           <th style="text-align:center">EDAD</th>
+                                          <th style="text-align:center">GRUPO DE EDAD</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -324,50 +277,23 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $faut['idsolicitud']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($faut['fechasolicitud'])); echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $faut['nombreautoridad']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $faut['nombreservidor']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $faut['apellidopaterno']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $faut['apellidomaterno']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $faut['cargoservidor']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['nombrepersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['paternopersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['maternopersona']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($fsuj['fechanacimientopersona'])); echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['edadpersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['grupoedad']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['calidadpersona']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['sexopersona']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fnac['lugardenacimiento']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fnac['municipiodenacimiento']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fnac['nacionalidadpersona']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['curppersona']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['rfcpersona']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['aliaspersona']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['ocupacion']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['telefonofijo']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['telefonocelular']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fdom['calle']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fdom['seleccionelocalidad']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fdom['seleccionelocalidad']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fdom['seleccionemunicipio']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fdom['cp']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fsuj['incapaz']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $finc['nombre']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $finc['apellidopaterno']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $finc['apellidomaterno']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['delitoprincipal']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['otrodelitoprincipal']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['delitosecundario']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['otrodelitosecundario']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['etapaprocedimiento']; echo "</td>";
-                                      // echo "<td style='text-align:center'>"; echo $fprocc['nuc']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fprocc['numeroradicacion']; echo "</td>";
-                                      // echo "<td style='text-align:center'>";  echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['identificador']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fvalj['resultadovaloracion']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fvalj['motivoprocedencia']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fdeti['multidisciplinario']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fdeti['incorporacion']; echo "</td>";
-                                      // echo "<td style='text-align:center'>";  echo "</td>";
                                       echo "<td style='text-align:center'>";
                                       if ($fdeti['date_autorizacion'] != '0000-00-00') {
                                         echo date("d/m/Y", strtotime($fdeti['date_autorizacion']));
@@ -390,39 +316,9 @@ $row=$result->fetch_assoc();
                                         WHERE id_unico = '$ident_per'";
                                         $rt = $mysqli->query($t);
                                         while ($ft = $rt->fetch_assoc()) {
-                                          // echo "<td style='text-align:center' bgcolor='yellow'>"; echo $ft['analisis'];  echo "</td>";
-                                          // echo "<td style='text-align:center'>";
-                                          // if ($ft['fecha_aut'] != '0000-00-00') {
-                                          //   echo date("d/m/Y", strtotime($ft['fecha_aut']));
-                                          // } echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $ft['id_analisis']; echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $ft['tipo_convenio']; echo "</td>";
-                                          // echo "<td style='text-align:center'>";
-                                          // if ($ft['fecha_firma'] != '0000-00-00') {
-                                          //   echo date("d/m/Y", strtotime($ft['fecha_firma']));
-                                          // } echo "</td>";
-                                          // echo "<td style='text-align:center'>";
-                                          // if ($ft['fecha_inicio'] != '0000-00-00') {
-                                          //   echo date("d/m/Y", strtotime($ft['fecha_inicio']));
-                                          // } echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $ft['vigencia']; echo "</td>";
-                                          // echo "<td style='text-align:center'>";
-                                          // if ($ft['fecha_vigencia'] != '0000-00-00') {
-                                          //   echo date("d/m/Y", strtotime($ft['fecha_vigencia']));
-                                          // } echo "</td>";
-                                          // echo "<td style='text-align:center'>"; echo $ft['id_convenio']; echo "</td>";
+
                                         }
-                                        // for ($i=$fv['t']+1; $i < $iterac; $i++) {
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        //   echo "<td style='text-align:center' bgcolor='silver'>";  echo "</td>";
-                                        // }
+
                                       }
                                       echo "<td style='text-align:center'>"; echo $fdeti['conclu_cancel']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fdeti['conclusionart35']; echo "</td>";
@@ -434,12 +330,31 @@ $row=$result->fetch_assoc();
                                       echo "<td style='text-align:center'>"; echo $fsuj['relacional']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['estatusprograma']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $fsuj['reingreso']; echo "</td>";
+                                      $checkalojamiento = "SELECT COUNT(*) as t FROM  medidas
+                                                                                WHERE id_persona = '$id_persona' AND medida= 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA'";
+                                      $rcheckalojamiento = $mysqli->query($checkalojamiento);
+                                      $fcheckalojamiento = $rcheckalojamiento->fetch_assoc();
+                                      if ($fcheckalojamiento['t'] > 0) {
+                                        $alojamiento_suj = 'SI';
+                                      }else {
+                                        $alojamiento_suj = 'NO';
+                                      }
+                                      echo "<td style='text-align:center'>"; echo $alojamiento_suj; echo "</td>";
                                       $fecha_nacimiento = new DateTime($fsuj['fechanacimientopersona']);
                                       $hoy = new DateTime();
                                       $edad = $hoy->diff($fecha_nacimiento);
                                       echo "<td style='text-align:center'>"; echo $edad->y.' años'; echo "</td>";
+                                      if ($edad->y >= 0 && $edad->y <= 11) {
+                                        $edadgruposujeto =  'NIÑAS Y NIÑOS';
+                                      }elseif ($edad->y >= 12 && $edad->y < 18) {
+                                        $edadgruposujeto =  'ADOLESCENTES';
+                                      }elseif ($edad->y >= 18 && $edad->y <= 59) {
+                                        $edadgruposujeto =  'ADULTOS JÓVENES';
+                                      }elseif ($edad->y >= 60) {
+                                        $edadgruposujeto =  'ADULTOS MAYORES';
+                                      }
+                                      echo "<td style='text-align:center'>"; echo $edadgruposujeto; echo "</td>";
                                       echo "</tr>";
-                                      // echo "<td style='text-align:center'>";  echo "</td>";
                                     }
                                   ?>
                                   </tbody>
@@ -458,8 +373,6 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <!-- <a href="../docs/GLOSARIO-SIPPSIPPED.pdf" class="btn-flotante-glosario" download="GLOSARIO-SIPPSIPPED.pdf"><i class="fa fa-download"></i>GLOSARIO</a> -->
-    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
   </div>
 </body>
 </html>
