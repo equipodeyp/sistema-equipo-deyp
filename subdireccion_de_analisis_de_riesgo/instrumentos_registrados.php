@@ -16,7 +16,7 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
-echo $user;
+// echo $user;
 
 
 
@@ -341,9 +341,10 @@ a:focus {
 
                                 <tr>
                                     <th style="text-align:center">No.</th>
+                                    <th style="text-align:center">ID INSTRUMENTO DE ADAPTABILIDAD</th>
                                     <th style="text-align:center">FOLIO EXPEDIENTE DE PROTECCIÓN</th>
                                     <th style="text-align:center">ID PERSONA Y/O SUJETO</th>
-                                    <th style="text-align:center">FECHA DE REGISTRO</th>
+                                    <th style="text-align:center">FECHA Y HORA DE REGISTRO</th>
                                     <!-- <th style="text-align:center">DIAGNÓSTICO</th>
                                     <th style="text-align:center">MOTIVO DE REPROGRAMACIÓN</th> -->
                                     <th style="text-align:center">NOMBRE SERVIDOR PÚBLICO</th>
@@ -366,6 +367,7 @@ a:focus {
 
                                     echo "<tr>";
                                     echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                                    echo "<td style='text-align:center'>"; echo $var_fila['id_instrumento']; echo "</td>";
                                     echo "<td style='text-align:center'>"; echo $var_fila['folio_expediente']; echo "</td>";
                                     $id_p=$var_fila['id_persona'];
                                     echo "<td style='text-align:center'>"; echo $var_fila['id_persona']; echo "</td>";

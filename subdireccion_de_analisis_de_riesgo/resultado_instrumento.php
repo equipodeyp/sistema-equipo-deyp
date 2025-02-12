@@ -83,6 +83,8 @@ $fecha_instrumento=$row['fecha_registro'];
 $nombre_servidor=$row['nombre_servidor'];
 // echo $nombre_servidor;
 // echo "<br>";
+// $id_instrumento=$row['id_instrumenento'];
+
 // $resultado_instrumento=$row['total_instrumento'];
 // echo $resultado_instrumento;
 // echo "<br>";
@@ -195,35 +197,65 @@ $nombre_servidor=$row['nombre_servidor'];
 
             <div class="container">
         	<div class="well form-horizontal">
-              <form class="container well form-horizontal" enctype="multipart/form-data">
+              <form id="form" class="container well form-horizontal" enctype="multipart/form-data">
+
+                <div class="">
+                  <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
+                  <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
+                  <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
+                </div>
+
+                <br>
 
         				<div class="row">
 
-                <div id="cabecera">
-                    <div class="row alert div-title">
-                      <h3 style="text-align:center">INFORMACIÓN GENERAL DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
-                    </div>
+
+              <div id="">
+
+                  <div id="cabecera">
+                      <div class="row alert div-title">
+                        <h3 style="text-align:center">INFORMACIÓN GENERAL DEL INSTRUMENTO DE ADAPTABILIDAD</h3>
+                      </div>
                   </div>
 
-                  <div class="col-md-6 mb-3 ">
-                    <label for="">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span></span></label>
-                    <input class="form-control" id="fol_exp" name="folio" placeholder="" type="text" value="<?php echo $folio_expediente; ?>" readonly>
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">ID INSTRUMENTO DE ADAPTABILIDAD:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $instrumento_id; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">FOLIO DEL EXPEDIENTE DE PROTECCIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $folio_expediente; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">ID SUJETO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $id_persona; ?></td>
+                        </tr>
+
+                        <tr>
+                          <th style="text-align:left;">FECHA Y HORA REGISTRO</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $fecha_instrumento; ?></td>
+                        </tr>
+
+
+                        <tr>
+                          <th style="text-align:left;">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL REGISTRO DEL INSTRUMENTO:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $nombre_servidor; ?></td>
+                        </tr>
+
+
+                      </tbody>
+                    </table>
                   </div>
 
-                <div class="col-md-6 mb-3">
-                  <label for="">ID PERSONA<span></span></label>
-                  <input class="form-control" id="id_persona" name="id_persona" placeholder="" type="text" value="<?php echo $id_persona; ?>" readonly>
-                </div>
+              </div>
 
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">FECHA Y HORA REGISTRO</label>
-                  <input readonly class="form-control" id="fecha_hora" name="fecha_hora_instrumento" placeholder="" type="text" value="<?php echo $fecha_instrumento; ?>">
-                </div>
 
-                <div class="col-md-6 mb-3">
-                  <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO QUE REALIZA EL LLENADO DEL INSTRUMENTO</label>
-                  <input readonly class="form-control" id="nombre_servidor" name="nombre_servidor" placeholder="" type="text" value="<?php echo $nombre_servidor; ?>">
-                </div>
 
                   <div id="cabecera">
                     <div class="row alert div-title">
@@ -426,6 +458,94 @@ $nombre_servidor=$row['nombre_servidor'];
             </div>
 
 
+
+
+
+                      <!-- <div >
+                          <table>
+                            <thead>
+                                <tr>
+                                  <th class="resultado-instrumento-uno"><br>RESUILTADO DE LA EVALUACIÓN <br></th>
+                                </tr>
+
+                                <tr>
+
+                                <?php
+                                        echo "<th class='resultado-instrumento-dos'>"; echo "ADAPTABILIDAD: ".$adaptabilidad=$row['adaptabilidad']; echo "</th>";
+
+                                        echo "<th class='resultado-instrumento-tres'>"; echo "TOTAL DE PUNTOS: ";echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+
+
+
+
+                                      ?>
+
+                                </tr>
+                            </thead>
+                          </table>
+                      </div> -->
+
+
+
+
+                      <div id="solicitud">
+
+<div id="cabecera">
+    <div class="row alert div-title">
+      <h3 style="text-align:center">RESUILTADO DE LA EVALUACIÓN</h3>
+    </div>
+</div>
+
+<div>
+  <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+    <tbody>
+      <tr>
+        <th style="text-align:left;">ADAPTABILIDAD:</th>
+        <td style="text-align:left; background-color: #fff;"><?php echo $adaptabilidad=$row['adaptabilidad']; ?></td>
+      </tr>
+
+      <tr>
+        <th style="text-align:left;">TOTAL DE PUNTOS:</th>
+        <td style="text-align:left; background-color: #fff;"><?php echo $resultado_instrumento=$row['total_instrumento']; ?></td>
+      </tr>
+
+      <tr>
+        <th style="text-align:left;">DESCRIPCIÓN DEL RESULTADO:</th>
+        <?php
+
+        if ($adaptabilidad === 'ALTA'){
+          echo '<td style="text-align:left; background-color: #fff;">
+          La P.P. o S.P. cuenta con destrezas sociales, habilidades de autonomía, conductas y un estado emocional que propician responder adecuadamente a las demandas y necesidades propias y del medio por lo que su acoplamiento a los lineamientos y/o beneficios del Programa resulta propicia. 
+          </td>'; 
+        } else if ($adaptabilidad === 'MEDIA'){
+          echo '<td style="text-align:left; background-color: #fff;">
+          La P.P. o S.P. cuenta con rasgos o circunstancias favorables para su acoplamiento a los lineamientos y/o beneficios del Programa, sin embargo, presenta alteraciones en cuanto a su estado anímico, social, laboral o familiar y/o es sujeto primo delincuente u ocasional considerado como víctima voluntaria por lo que requiere acciones de atención de carácter primario.   
+          </td>';
+        } else if ($adaptabilidad === 'BAJA'){
+          echo '<td style="text-align:left; background-color: #fff;">
+          La P.P. o S.P. presenta deterioro en su salud física y/o mental, rasgos inestables de su personalidad, factores sociales, familiares o laborales y /o es considerado como reincidente habitual o potencial; circunstancias que le dificultan adecuarse a la a los lineamientos y/o beneficios del Programa, por lo que requiere acciones de atención de carácter secundario en cuanto a su estado anímico.
+          </td>';
+        }else {
+          echo '<td style="text-align:left; background-color: #fff;">
+          Debido al estado de salud y/o emocional y/o trastornos y/o rasgos de personalidad de la S.P. o P.P. causa discrepancia en las pautas comportamentales consideradas normales, máxime que posee factores familiares, sociales o laborales que promueven la trasgresión o desafío de la normatividad; por lo que tiende a adoptar posiciones que podrían perjudicar su salud, la convivencia con otros individuos así como el cumplimiento de los lineamientos y/o beneficios del Programa. 
+          </td>';
+        }
+        
+        ?>
+        
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+
+
+
+
               </div>
               </form>
               </div>
@@ -436,11 +556,11 @@ $nombre_servidor=$row['nombre_servidor'];
   </div>
 </div>
 
-                        <div>
+                        <!-- <div>
                           <table>
                             <thead>
                                 <tr>
-                                  <th class="resultado-instrumento-uno"><br> RESUILTADO DE LA <br> EVALUACIÓN <br></th>
+                                  <th class="resultado-instrumento-uno"><br>RESUILTADO DE LA EVALUACIÓN <br></th>
                                 </tr>
 
                                 <tr>
@@ -450,25 +570,25 @@ $nombre_servidor=$row['nombre_servidor'];
 
                                         echo "<th class='resultado-instrumento-tres'>"; echo "TOTAL DE PUNTOS: ";echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
 
-                                      // if ($resultado_instrumento <= 9) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
-                                      //   }
+                                      if ($resultado_instrumento <= 9) {
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                        }
 
-                                      // else if ($resultado_instrumento >= 10 && $resultado_instrumento <= 19) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
-                                      //   }
+                                      else if ($resultado_instrumento >= 10 && $resultado_instrumento <= 19) {
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                        }
 
-                                      // else if ($resultado_instrumento >= 20 && $resultado_instrumento <= 29) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
-                                      //   }
+                                      else if ($resultado_instrumento >= 20 && $resultado_instrumento <= 29) {
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                        }
 
-                                      // else if ($resultado_instrumento >= 30 && $resultado_instrumento <= 39) {
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
-                                      //   echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
-                                      //   }
+                                      else if ($resultado_instrumento >= 30 && $resultado_instrumento <= 39) {
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $adaptabilidad=$row['adaptabilidad']; echo "</th>";
+                                        echo "<th class='resultado-instrumento-dos'>"; echo $resultado_instrumento=$row['total_instrumento']; echo "</th>";
+                                        }
 
 
                                       ?>
@@ -476,12 +596,29 @@ $nombre_servidor=$row['nombre_servidor'];
                                 </tr>
                             </thead>
                           </table>
-                      </div>
+                      </div> -->
+
+                      
 <div class="contenedor">
 <a href="../subdireccion_de_analisis_de_riesgo/instrumentos_registrados.php" class="btn-flotante">REGRESAR</a>
+</div>
+
+<div class="contenedor">
+  <a class="btn-flotante-imprimir-asistencia" style="text-align:center;" href="javascript:imprimirSeleccion('form')"><img src='../image/asistencias_medicas/print.png' width='60' height='60'></a>
 </div>
 
 
 
 </body>
 </html>
+
+<script language="Javascript">
+function imprimirSeleccion(nombre) {
+var ficha = document.getElementById(nombre);
+var ventimp = window.open(' ', 'popimpr');
+ventimp.document.write( ficha.innerHTML );
+ventimp.document.close();
+ventimp.print( );
+ventimp.close();
+}
+</script>
