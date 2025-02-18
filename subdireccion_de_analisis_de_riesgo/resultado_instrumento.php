@@ -266,7 +266,7 @@ $nombre_servidor=$row['nombre_servidor'];
 
 
 
-              <table class="table table-bordered" id="table-instrumento">
+              <table class="table table-bordered" id="table-instrumento" style="table.print-friendly tr td, table.print-friendly tr th { page-break-inside: avoid;}">
                 <thead>
                     <tr>
                         <th style="text-align:center; font-size: 18px; border: 3px solid #97897D;">Categoria</th>
