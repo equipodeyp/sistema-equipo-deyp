@@ -1,4 +1,4 @@
-<?php
+?php
 error_reporting(0);
 include("conexion.php");
 session_start ();
@@ -9,93 +9,26 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 
-
 $id_persona = $_GET['id_persona'];
 // echo $id_persona;
-// echo "<br>";
-
-
-
-
-// $query = "SELECT * FROM instrumento WHERE id_instrumento = '$id_instrumento'";
-// $result_instrumento = $mysqli->query($query);
-// $row = $result_instrumento->fetch_assoc();
-// echo "<br>";
-// $idins=$row['id_instrumento'];
-// echo $idins;
-// echo "<br>";
-// $folio_expediente=$row['folio_expediente'];
-// echo $folio_expediente;
-// echo "<br>";
-// $id_persona=$row['id_persona'];
-// echo $id_persona;
-// echo "<br>";
-// $fecha_instrumento=$row['fecha_registro'];
-// echo $fecha_instrumento;
-// echo "<br>";
-// $nombre_servidor=$row['nombre_servidor'];
-// echo $nombre_servidor;
-// echo "<br>";
-
-
-
-// $fol_exp = $_GET['folio'];
-// echo $fol_exp;
-// echo "<br>";
-
-// $fol=" SELECT * FROM datospersonales WHERE id='$fol_exp'";
-// $resultfol = $mysqli->query($fol);
-// $rowfol=$resultfol->fetch_assoc();
-// $name_folio=$rowfol['folioexpediente'];
-// // echo $name_folio;
-// // echo "<br>";
-// $identificador = $rowfol['identificador'];
-// echo $identificador;
-// // echo "<br>";
-// // echo "<br>";
-
-// $id_person=$rowfol['id'];
-// // echo $id_person;
-// $foto=$rowfol['foto'];
-
 
 $query_instru = "SELECT * FROM instrumento WHERE id_persona = '$id_persona'";
 $id_instru = $mysqli ->query( $query_instru);
 $row_instru = $id_instru->fetch_assoc();
 $instrumento_id=$row_instru['id_instrumento'];
-// echo $instrumento_id;
-
-
+$query_instru2 = "SELECT * FROM instrumento_valores WHERE id_persona = '$id_persona'";
+$id_instru2 = $mysqli ->query( $query_instru2);
+$row_instru2 = $id_instru2->fetch_assoc();
+$idinstrumento = $row_instru2['id'];
 
 $query = "SELECT * FROM instrumento WHERE id_persona = '$id_persona'";
 $result_instrumento = $mysqli->query($query);
 $row = $result_instrumento->fetch_assoc();
-// echo "<br>";
+//
 $folio_expediente=$row['folio_expediente'];
-// echo $folio_expediente;
-// echo "<br>";
 $id_persona=$row['id_persona'];
-// echo $id_persona;
-// echo "<br>";
 $fecha_instrumento=$row['fecha_registro'];
-// echo $fecha_instrumento;
-// echo "<br>";
 $nombre_servidor=$row['nombre_servidor'];
-// echo $nombre_servidor;
-// echo "<br>";
-// $id_instrumento=$row['id_instrumenento'];
-
-// $resultado_instrumento=$row['total_instrumento'];
-// echo $resultado_instrumento;
-// echo "<br>";
-// $adaptabilidad=$row['adaptabilidad'];
-// echo $adaptabilidad;
-// echo "<br>";
-
-// $query2 = "SELECT COUNT(*) FROM instrumento";
-// $cuenta_instrumento = $mysqli->query($query2);
-// $cuenta = $cuenta_instrumento->fetch_assoc();
-// echo $cuenta;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -278,10 +211,120 @@ $nombre_servidor=$row['nombre_servidor'];
                 </thead>
                 <tbody>
                     <?php
+                    $arraytotalxcategoria = array();
+                    $verval = "SELECT * FROM instrumento_valores WHERE id= '$idinstrumento'";
+                    $rverval = $mysqli->query($verval);
+                    $fverval = $rverval->fetch_assoc();
+                    $preg1 = $fverval['p1'];
+                    $preg2 = $fverval['p2'];
+                    $preg3 = $fverval['p3'];
+                    $preg4 = $fverval['p4'];
+
+                    $preg5 = $fverval['p5'];
+                    $preg6 = $fverval['p6'];
+                    $preg7 = $fverval['p7'];
+                    $preg8 = $fverval['p8'];
+
+                    $preg9 = $fverval['p9'];
+                    $preg10 = $fverval['p10'];
+                    $preg11 = $fverval['p11'];
+                    $preg12 = $fverval['p12'];
+
+                    $preg13 = $fverval['p13'];
+                    $preg14 = $fverval['p14'];
+                    $preg15 = $fverval['p15'];
+                    $preg16 = $fverval['p16'];
+
+                    $preg17 = $fverval['p17'];
+                    $preg18 = $fverval['p18'];
+                    $preg19 = $fverval['p19'];
+                    $preg20 = $fverval['p20'];
+
+                    $preg21 = $fverval['p21'];
+                    $preg22 = $fverval['p22'];
+                    $preg23 = $fverval['p23'];
+                    $preg24 = $fverval['p24'];
+
+                    $preg25 = $fverval['p25'];
+                    $preg26 = $fverval['p26'];
+                    $preg27 = $fverval['p27'];
+                    $preg28 = $fverval['p28'];
+
+                    $preg29 = $fverval['p29'];
+                    $preg30 = $fverval['p30'];
+                    $preg31 = $fverval['p31'];
+                    $preg32 = $fverval['p32'];
+
+                    $preg33 = $fverval['p33'];
+                    $preg34 = $fverval['p34'];
+                    $preg35 = $fverval['p35'];
+                    $preg36 = $fverval['p36'];
+
+                    $preg37 = $fverval['p37'];
+                    $preg38 = $fverval['p38'];
+                    $preg39 = $fverval['p39'];
+                    $preg40 = $fverval['p40'];
+
+                    $preg41 = $fverval['p41'];
+                    $preg42 = $fverval['p42'];
+                    $preg43 = $fverval['p43'];
+                    $preg44 = $fverval['p44'];
+
+                    $preg45 = $fverval['p45'];
+                    $preg46 = $fverval['p46'];
+                    $preg47 = $fverval['p47'];
+                    $preg48 = $fverval['p48'];
+
+                    $preg49 = $fverval['p49'];
+                    $preg50 = $fverval['p50'];
+                    $preg51 = $fverval['p51'];
+                    $preg52 = $fverval['p52'];
+
+                    $sumvalres1 = $preg1 + $preg2 + $preg3 + $preg4;
+                    array_push($arraytotalxcategoria, $sumvalres1);
+
+                    $sumvalres2 = $preg5 + $preg6 + $preg7 + $preg8;
+                    array_push($arraytotalxcategoria, $sumvalres2);
+
+                    $sumvalres3 = $preg9 + $preg10 + $preg11 + $preg12;
+                    array_push($arraytotalxcategoria, $sumvalres3);
+
+                    $sumvalres4 = $preg13 + $preg14 + $preg15 + $preg16;
+                    array_push($arraytotalxcategoria, $sumvalres4);
+
+                    $sumvalres5 = $preg17 + $preg18 + $preg19 + $preg20;
+                    array_push($arraytotalxcategoria, $sumvalres5);
+
+                    $sumvalres6 = $preg21 + $preg22 + $preg23 + $preg24;
+                    array_push($arraytotalxcategoria, $sumvalres6);
+
+                    $sumvalres7 = $preg25 + $preg26 + $preg27 + $preg28;
+                    array_push($arraytotalxcategoria, $sumvalres7);
+
+                    $sumvalres8 = $preg29 + $preg30 + $preg31 + $preg32;
+                    array_push($arraytotalxcategoria, $sumvalres8);
+
+                    $sumvalres9 = $preg33 + $preg34 + $preg35 + $preg36;
+                    array_push($arraytotalxcategoria, $sumvalres9);
+
+                    $sumvalres10 = $preg37 + $preg38 + $preg39 + $preg40;
+                    array_push($arraytotalxcategoria, $sumvalres10);
+
+                    $sumvalres11 = $preg41 + $preg42 + $preg43 + $preg44;
+                    array_push($arraytotalxcategoria, $sumvalres11);
+
+                    $sumvalres12 = $preg45 + $preg46 + $preg47 + $preg48;
+                    array_push($arraytotalxcategoria, $sumvalres12);
+
+                    $sumvalres13 = $preg49 + $preg50 + $preg51 + $preg52;
+                    array_push($arraytotalxcategoria, $sumvalres13);
+
                     $aux = 1;
                     $aux2 = 5;
                     $question='p';
                     $count = 0;
+                    $auxsump = 0;
+                    $sumprgs = 0;
                         $aa = 1;
                         $a = 1;
                         $bb = 4;
@@ -291,11 +334,12 @@ $nombre_servidor=$row['nombre_servidor'];
                         $cc = 6;
                         $d = 4;
                         $dd = 7;
-
+                        $auxarray = -1;
                         $array = array();
 
                         while ($aa <= 13) {
-
+                          $auxarray = $auxarray + 1;
+                            $auxsump =   $auxsump + 1;
                             $sentenciar5=" SELECT * FROM categoria_instrumento WHERE id='$aa'";
                             $resultr5 = $mysqli->query($sentenciar5);
                             $rowr5=$resultr5->fetch_assoc();
@@ -318,21 +362,42 @@ $nombre_servidor=$row['nombre_servidor'];
                             $rowr3=$resultr3->fetch_assoc();
                             // echo $d;
 
-                            $sentenciar4=" SELECT * FROM instrumento WHERE id_instrumento = '$idins'";
+                            $sentenciar4=" SELECT * FROM instrumento WHERE id = '$idinstrumento'"; //cambiar a tabla d einstrumento_valores para obtener valor correcto
                             $resultr4 = $mysqli->query($sentenciar4);
                             $rowr4=$resultr4->fetch_assoc();
 
+                               $arp=$question.$a;
+                               $arp1=$question.$b;
+                               $arp2=$question.$c;
+                               $arp3=$question.$d;
 
-                              $arp=$question.$a;
-                              $arp1=$question.$b;
-                              $arp2=$question.$c;
-                              $arp3=$question.$d;
                               $resp1 = '1'.$rowr4[$arp];
                               // echo $resp1;
                               $resp2 = '2'.$rowr4[$arp1];
+                              // echo $resp2;
                               $resp3 = '3'.$rowr4[$arp2];
+                              // echo $resp3;
                               $resp4 = '4'.$rowr4[$arp3];
+                              // echo $resp4;
+                              $sentenciar4a=" SELECT * FROM instrumento_valores WHERE id_instrumento = '$arp'";
+                              $resultr4a = $mysqli->query($sentenciar4a);
+                              $rowr4a=$resultr4a->fetch_assoc();
+                              echo $rowr4a;
 
+                              $sentenciar4b=" SELECT * FROM instrumento_valores WHERE id_instrumento = '$arp1'";
+                              $resultr4b = $mysqli->query($sentenciar4b);
+                              $rowr4b=$resultr4b->fetch_assoc();
+                              echo $rowr4b;
+
+                              $sentenciar4c=" SELECT * FROM instrumento_valores WHERE id_instrumento = '$arp2'";
+                              $resultr4c = $mysqli->query($sentenciar4c);
+                              $rowr4c=$resultr4c->fetch_assoc();
+                              echo $rowr4c;
+
+                              $sentenciar4d=" SELECT * FROM instrumento_valores WHERE id_instrumento = '$arp3'";
+                              $resultr4d = $mysqli->query($sentenciar4d);
+                              $rowr4d=$resultr4d->fetch_assoc();
+                              $rowr4d;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                               if ($resp1 === '1No') {
                                 $valresp = 3;
@@ -363,7 +428,7 @@ $nombre_servidor=$row['nombre_servidor'];
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>";  echo $a;  echo "</td>";
                           echo "<td style='border: 3px solid #97897D; font-size: 10px;' colspan='' >"; echo $rowr['pregunta']; echo "</td>";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $rowr4[$arp];  echo "</td>";
-                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>$valresp</h1>"; echo "</td>";
+                          echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' rowspan='4'>"; echo "<h1>  $arraytotalxcategoria[$auxarray]</h1>"; echo "</td>";
                           echo "</tr>";
                           echo "<tr >";
                           echo "<td style='border: 3px solid #97897D; text-align:center; font-size: 10px;' colspan=''>"; echo $b; echo "</td>";
@@ -516,11 +581,11 @@ $nombre_servidor=$row['nombre_servidor'];
 
         if ($adaptabilidad === 'ALTA'){
           echo '<td style="text-align:left; background-color: #fff;">
-          La P.P. o S.P. cuenta con destrezas sociales, habilidades de autonomía, conductas y un estado emocional que propician responder adecuadamente a las demandas y necesidades propias y del medio por lo que su acoplamiento a los lineamientos y/o beneficios del Programa resulta propicia. 
-          </td>'; 
+          La P.P. o S.P. cuenta con destrezas sociales, habilidades de autonomía, conductas y un estado emocional que propician responder adecuadamente a las demandas y necesidades propias y del medio por lo que su acoplamiento a los lineamientos y/o beneficios del Programa resulta propicia.
+          </td>';
         } else if ($adaptabilidad === 'MEDIA'){
           echo '<td style="text-align:left; background-color: #fff;">
-          La P.P. o S.P. cuenta con rasgos o circunstancias favorables para su acoplamiento a los lineamientos y/o beneficios del Programa, sin embargo, presenta alteraciones en cuanto a su estado anímico, social, laboral o familiar y/o es sujeto primo delincuente u ocasional considerado como víctima voluntaria por lo que requiere acciones de atención de carácter primario.   
+          La P.P. o S.P. cuenta con rasgos o circunstancias favorables para su acoplamiento a los lineamientos y/o beneficios del Programa, sin embargo, presenta alteraciones en cuanto a su estado anímico, social, laboral o familiar y/o es sujeto primo delincuente u ocasional considerado como víctima voluntaria por lo que requiere acciones de atención de carácter primario.
           </td>';
         } else if ($adaptabilidad === 'BAJA'){
           echo '<td style="text-align:left; background-color: #fff;">
@@ -528,12 +593,12 @@ $nombre_servidor=$row['nombre_servidor'];
           </td>';
         }else {
           echo '<td style="text-align:left; background-color: #fff;">
-          Debido al estado de salud y/o emocional y/o trastornos y/o rasgos de personalidad de la S.P. o P.P. causa discrepancia en las pautas comportamentales consideradas normales, máxime que posee factores familiares, sociales o laborales que promueven la trasgresión o desafío de la normatividad; por lo que tiende a adoptar posiciones que podrían perjudicar su salud, la convivencia con otros individuos así como el cumplimiento de los lineamientos y/o beneficios del Programa. 
+          Debido al estado de salud y/o emocional y/o trastornos y/o rasgos de personalidad de la S.P. o P.P. causa discrepancia en las pautas comportamentales consideradas normales, máxime que posee factores familiares, sociales o laborales que promueven la trasgresión o desafío de la normatividad; por lo que tiende a adoptar posiciones que podrían perjudicar su salud, la convivencia con otros individuos así como el cumplimiento de los lineamientos y/o beneficios del Programa.
           </td>';
         }
-        
+
         ?>
-        
+
       </tr>
 
     </tbody>
@@ -598,7 +663,7 @@ $nombre_servidor=$row['nombre_servidor'];
                           </table>
                       </div> -->
 
-                      
+
 <div class="contenedor">
 <a href="../subdireccion_de_analisis_de_riesgo/instrumentos_registrados.php" class="btn-flotante">REGRESAR</a>
 </div>
