@@ -356,7 +356,7 @@ a:focus {
 
                               <?php
                               $contador = 0;
-                              $sentencia1 = "SELECT* FROM instrumento ORDER BY instrumento.fecha_registro DESC";
+                              $sentencia1 = "SELECT* FROM instrumento_valores";
 
                               $var_resultado = $mysqli->query($sentencia1);
 
@@ -382,7 +382,7 @@ a:focus {
                                         <a class='btn btn-success btn-sm' href='' role='button' disabled>$adaptabilidad</a>
                                       </td>
                                     ";
-                                      } 
+                                      }
 
                                     if ($var_fila['adaptabilidad'] === 'MEDIA') {
                                       echo "
@@ -390,7 +390,7 @@ a:focus {
                                         <a class='btn btn-warning btn-sm' href='' role='button' disabled>$adaptabilidad</a>
                                       </td>
                                       ";
-                                      } 
+                                      }
 
                                     if ($var_fila['adaptabilidad'] === 'BAJA') {
                                       echo "
@@ -407,7 +407,7 @@ a:focus {
                                         </td>
                                         ";
                                       }
-                                      
+
                                     // echo "<td style='text-align:center'>"; echo $var_fila['adaptabilidad']; echo "</td>";
                                     echo "<td style='text-align:center'>
                                             <a class='btn btn-secondary btn-sm' href='./resultado_instrumento.php?id_persona=$id_p' role='button'>DETALLE</a>
@@ -443,4 +443,3 @@ a:focus {
 
 </body>
 </html>
-
