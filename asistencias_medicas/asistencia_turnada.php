@@ -256,12 +256,12 @@ $row=$result->fetch_assoc();
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
 
-                                                                        <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
+                                                                        <!-- <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
                                                                                   REGISTRAR <br> SEGUIMIENTO
-                                                                        </a>
+                                                                        </a> -->
 
-                                                                        <!-- <?php 
-                                                                          if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0 && $row['nombre_institucion'] != 'UPSIPED') { ?>
+                                                                        <?php 
+                                                                          if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0 && $row['servicio_medico'] != 'PSICOLÓGICO') { ?>
 
                                                                             <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
                                                                                   REGISTRAR <br> SEGUIMIENTO
@@ -270,7 +270,7 @@ $row=$result->fetch_assoc();
                                                                         <?php }?>
 
                                                                          <?php 
-                                                                          if ($row2['dias_restantes'] >= 1 && $row['nombre_institucion'] != 'UPSIPED') {
+                                                                          if ($row2['dias_restantes'] >= 1 && $row['servicio_medico'] != 'PSICOLÓGICO') {
                                                                             echo "
                                                                               <a style='color: black; cursor: not-allowed;' class='btn btn-outline-warning'>
                                                                                 EN ESPERA <br> DEL REGISTRO
@@ -280,7 +280,7 @@ $row=$result->fetch_assoc();
                                                                         ?> 
 
                                                                         <?php 
-                                                                          if ($row2['dias_restantes'] < -4 && $row['nombre_institucion'] != 'UPSIPED') {
+                                                                          if ($row2['dias_restantes'] < -4 && $row['servicio_medico'] != 'PSICOLÓGICO') {
                                                                             echo "
                                                                               <a style='color: black; cursor: not-allowed;' class='btn btn-outline-danger'>
                                                                                 SEGUIMIENTO <br> NO REGISTRADO
@@ -290,14 +290,14 @@ $row=$result->fetch_assoc();
                                                                         ?>
 
                                                                         <?php
-                                                                          if ($row['nombre_institucion'] === 'UPSIPED'){
+                                                                          if ($row['servicio_medico'] === 'PSICOLÓGICO'){
                                                                             echo "
                                                                             <a style='color: black; cursor: not-allowed;' class='btn btn-outline-info'>
                                                                                 AISTENCIA <br> NOTIFICADA
                                                                             </a> 
                                                                           ";
                                                                           }
-                                                                        ?>  -->
+                                                                        ?> 
 
 
 
