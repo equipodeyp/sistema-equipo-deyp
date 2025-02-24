@@ -33,7 +33,7 @@ $row=$result->fetch_assoc();
   <!--font awesome con CDN-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- datatables JS -->
-  <!-- <script type="text/javascript" src="../datatables/datatables.min.js"></script> -->
+  <script type="text/javascript" src="../datatables/datatables.min.js"></script>
   <!-- para usar botones en datatables JS -->
   <script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
   <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
@@ -73,19 +73,8 @@ $row=$result->fetch_assoc();
           extend:    'excelHtml5',
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
-          className: 'btn btn-success'
-        },
-        {
-          extend:    'pdfHtml5',
-          text:      '<i class="fas fa-file-pdf"></i> ',
-          titleAttr: 'Exportar a PDF',
-          className: 'btn btn-danger'
-        },
-        {
-          extend:    'print',
-          text:      '<i class="fa fa-print"></i> ',
-          titleAttr: 'Imprimir',
-          className: 'btn btn-info'
+          className: 'btn btn-success',
+          title:     'INFORME SUJETOS'
         },
       ]
       });
@@ -95,6 +84,8 @@ $row=$result->fetch_assoc();
 <body>
   <div class="contenedor">
     <div class="sidebar ancho">
+      <div class="logo text-warning">
+      </div>
       <div style="text-align:center" class="user">
         <?php
         $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
@@ -145,85 +136,82 @@ $row=$result->fetch_assoc();
           <div class="container">
             <h2 style="text-align:center">INFORME SUJETOS</h2>
             <div class="">
-              <div class="row">
-                <div class="">
-                    <div class="row">
-                            <div class="col-lg-12">
-                                <div class="table-responsive">
-                                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr>
-                                          <th style="text-align:center">NO.</th>
-                                          <th style="text-align:center">EXPEDIENTE</th>
-                                          <th style="text-align:center">FECHA DE RECEPCION EXPEDIENTE</th>
-                                          <th style="text-align:center">NOMBRE AUTORIDAD</th>
-                                          <th style="text-align:center">CALIDAD PERSONA</th>
-                                          <th style="text-align:center">SEXO PERSONA</th>
-                                          <th style="text-align:center">IDENTIFICADOR SUJETO</th>
-                                          <th style="text-align:center">ESTATUS SUJETO PROGRAMA</th>
-                                          <th style="text-align:center">RELACIONADO</th>
-                                          <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
-                                          <th style="text-align:center">RE-INGRESO</th>
-                                          <th style="text-align:center">EN CENTRO DE RESGUARDO</th>
-                                          <th style="text-align:center">EDAD</th>
-                                          <th style="text-align:center">GRUPO DE EDAD</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      <?php
-                                      $contador = 0;
-                                      $infsuj = "SELECT * FROM datospersonales
-                                                          WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PRPUESTA'";
-                                      $finfsuj = $mysqli->query($infsuj);
-                                      while ($rinfsuj = $finfsuj-> fetch_assoc()) {
-                                        $contador = $contador + 1;
-                                        // varialbes de consulta
-                                        $folexp = $rinfsuj['folioexpediente'];
-                                        $idsuj = $rinfsuj['id'];
-                                        // consulta a tabla de expedientes
-                                        $datexp = "SELECT * FROM expediente WHERE fol_exp = '$folexp'";
-                                        $fdatexp = $mysqli->query($datexp);
-                                        $rdatexp = $fdatexp->fetch_assoc();
-                                        // consulta a tabla de autoridad
-                                        $dataut = "SELECT * FROM autoridad WHERE id_persona = '$idsuj'";
-                                        $fdataut = $mysqli -> query ($dataut);
-                                        $rdataut = $fdataut ->fetch_assoc();
-                                        // consulta para verificar si esta alojado en un centro de proteccion
-                                        $checkalojamiento = "SELECT COUNT(*) as t FROM  medidas
-                                                                                  WHERE id_persona = '$idsuj' AND medida= 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA'";
-                                        $rcheckalojamiento = $mysqli->query($checkalojamiento);
-                                        $fcheckalojamiento = $rcheckalojamiento->fetch_assoc();
-                                        if ($fcheckalojamiento['t'] > 0) {
-                                          $alojamiento_suj = 'SI';
-                                        }else {
-                                          $alojamiento_suj = 'NO';
-                                        }
-                                        //
-                                        echo "<tr>";
-                                        echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['folioexpediente']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($rdatexp['fecha_nueva'])); echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rdataut['nombreautoridad']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['calidadpersona']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['sexopersona']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['identificador']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['estatus']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['relacional']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['estatus']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['reingreso']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $alojamiento_suj; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['edadpersona']; echo "</td>";
-                                        echo "<td style='text-align:center'>"; echo $rinfsuj['grupoedad']; echo "</td>";
-                                        echo "</tr>";
-                                      }
-                                      ?>
-                                    </tbody>
-                                   </table>
-                                </div>
+                <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+
+                              <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                              <thead>
+                                  <tr>
+                                    <th style="text-align:center">NO.</th>
+                                    <th style="text-align:center">EXPEDIENTE</th>
+                                    <th style="text-align:center">FECHA DE RECEPCION EXPEDIENTE</th>
+                                    <th style="text-align:center">NOMBRE AUTORIDAD</th>
+                                    <th style="text-align:center">CALIDAD PERSONA</th>
+                                    <th style="text-align:center">SEXO PERSONA</th>
+                                    <th style="text-align:center">IDENTIFICADOR SUJETO</th>
+                                    <th style="text-align:center">ESTATUS SUJETO PROGRAMA</th>
+                                    <th style="text-align:center">RELACIONADO</th>
+                                    <th style="text-align:center">ESTATUS DENTRO DEL PROGRAMA</th>
+                                    <th style="text-align:center">RE-INGRESO</th>
+                                    <th style="text-align:center">EN CENTRO DE RESGUARDO</th>
+                                    <th style="text-align:center">EDAD</th>
+                                    <th style="text-align:center">GRUPO DE EDAD</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <?php
+                                $contador = 0;
+                                $infsuj = "SELECT * FROM datospersonales
+                                                    WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PRPUESTA'";
+                                $finfsuj = $mysqli->query($infsuj);
+                                while ($rinfsuj = $finfsuj-> fetch_assoc()) {
+                                  $contador = $contador + 1;
+                                  // varialbes de consulta
+                                  $folexp = $rinfsuj['folioexpediente'];
+                                  $idsuj = $rinfsuj['id'];
+                                  // consulta a tabla de expedientes
+                                  $datexp = "SELECT * FROM expediente WHERE fol_exp = '$folexp'";
+                                  $fdatexp = $mysqli->query($datexp);
+                                  $rdatexp = $fdatexp->fetch_assoc();
+                                  // consulta a tabla de autoridad
+                                  $dataut = "SELECT * FROM autoridad WHERE id_persona = '$idsuj'";
+                                  $fdataut = $mysqli -> query ($dataut);
+                                  $rdataut = $fdataut ->fetch_assoc();
+                                  // consulta para verificar si esta alojado en un centro de proteccion
+                                  $checkalojamiento = "SELECT COUNT(*) as t FROM  medidas
+                                                                            WHERE id_persona = '$idsuj' AND medida= 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA'";
+                                  $rcheckalojamiento = $mysqli->query($checkalojamiento);
+                                  $fcheckalojamiento = $rcheckalojamiento->fetch_assoc();
+                                  if ($fcheckalojamiento['t'] > 0) {
+                                    $alojamiento_suj = 'SI';
+                                  }else {
+                                    $alojamiento_suj = 'NO';
+                                  }
+                                  //
+                                  echo "<tr>";
+                                  echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['folioexpediente']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($rdatexp['fecha_nueva'])); echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rdataut['nombreautoridad']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['calidadpersona']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['sexopersona']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['identificador']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['estatus']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['relacional']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['estatus']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['reingreso']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $alojamiento_suj; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['edadpersona']; echo "</td>";
+                                  echo "<td style='text-align:center'>"; echo $rinfsuj['grupoedad']; echo "</td>";
+                                  echo "</tr>";
+                                }
+                                ?>
+                              </tbody>
+                             </table>
                             </div>
-                    </div>
+                        </div>
                 </div>
-              </div>
             </div>
           </div>
         </article>
