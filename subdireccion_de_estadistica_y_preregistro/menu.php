@@ -270,15 +270,15 @@ a:focus {
       <nav class="menu-nav">
         <ul>
 
-        <!-- <?php
+        <?php
 
-          if ($name=='e-gabriela' || $name=='e-azael' || $name=='e-jonathan') {
-            echo "<a style='text-align:center' class='user-nombre' href='./incidencias_por_atender.php'><button type='button' class='btn btn-light'>INCIDENCIAS</button> </a>";
-          }
-
-          ?> -->
-
+          if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3') {
+            // echo "<a style='text-align:center' class='user-nombre' href='./incidencias_por_atender.php'><button type='button' class='btn btn-light'>INCIDENCIAS</button> </a>";
+          ?>
           <li><a href="../administrador/admin.php"><i class='color-icon fa-solid fa-user-tie  menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;"> ADMINISTRADOR</span></a></li>
+          <?php
+          }
+          ?>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
@@ -294,7 +294,7 @@ a:focus {
               <!-- <li id="limedidas" class="menu-items"><a href="">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> EVALUACIÓN <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SEGUIMIENTO <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SUJETOS</span></a></li> -->
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-briefcase-medical menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li>
               <li id="lialojamientotemporal" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/alojamiento_temporal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-house-lock menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ALOJAMIENTO <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEMPORAL</span></a></li>
-              <li id="liinfsujetos" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/informe_sujetos.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-clipboard-user menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> INFORME SUJETOS</span></a></li>                
+              <li id="liinfsujetos" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/informe_sujetos.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-clipboard-user menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> INFORME SUJETOS</span></a></li>
               <li id="liestadistica2" class="subtitle2">
                 <a href="#" class="action2">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-circle-right menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> SEGUIMIENTO</span></a>
                 <ul class="submenu2">
