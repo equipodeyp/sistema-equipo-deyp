@@ -73,7 +73,8 @@ $row=$result->fetch_assoc();
           extend:    'excelHtml5',
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
-          className: 'btn color-btn-export-xls'
+          className: 'btn color-btn-export-xls',
+          title: 'INFORME SUJETOS'
         },
       ]
       });
