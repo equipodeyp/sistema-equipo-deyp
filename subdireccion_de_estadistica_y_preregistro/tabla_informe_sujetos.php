@@ -41,7 +41,21 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   echo "<td style='text-align:center'>"; echo $rinfsuj['reingreso']; echo "</td>";
   echo "<td style='text-align:center'>"; echo $alojamiento_suj; echo "</td>";
   echo "<td style='text-align:center'>"; echo $rinfsuj['edadpersona']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $rinfsuj['grupoedad']; echo "</td>";
+  echo "<td style='text-align:center'>";
+  $fecha_nacimiento = new DateTime($rinfsuj['fechanacimientopersona']);
+  $hoy = new DateTime();
+  $edad = $hoy->diff($fecha_nacimiento);
+  if ($edad->y >= 0 && $edad->y <= 11) {
+    $edadgruposujeto =  'NIÑAS Y NIÑOS';
+  }elseif ($edad->y >= 12 && $edad->y < 18) {
+    $edadgruposujeto =  'ADOLESCENTES';
+  }elseif ($edad->y >= 18 && $edad->y <= 59) {
+    $edadgruposujeto =  'ADULTOS JÓVENES';
+  }elseif ($edad->y >= 60) {
+    $edadgruposujeto =  'ADULTOS MAYORES';
+  }
+  echo $edadgruposujeto;
+  echo "</td>";
   echo "</tr>";
 }
 
