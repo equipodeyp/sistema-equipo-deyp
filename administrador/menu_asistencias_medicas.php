@@ -358,7 +358,7 @@ a:focus {
 
 
 <?php 
-if ($_SESSION['usuario'] == 'a-adriana' || $_SESSION['usuario'] == 'e-adriana' ){
+if ($_SESSION['usuario'] == 'estadistica_admin'){
   echo "
       <li style='text-align:center'>
         <a href='./incidencia_asistencia_admin.php'>
