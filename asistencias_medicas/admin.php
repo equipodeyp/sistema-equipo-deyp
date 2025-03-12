@@ -406,7 +406,7 @@ else{
                     <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                 </a>
                 <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <li>
+                    <!-- <li>
                         <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
                             <i class="fas fa-clipboard-list"></i> ACTIVIDADES
                             <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
@@ -422,7 +422,7 @@ else{
                               <i class="fas fa-search"></i> BUSCAR</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
                             <i class="fas fa-car-side"></i> TRASLADOS
