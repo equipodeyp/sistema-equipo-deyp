@@ -170,7 +170,7 @@ $row=$result->fetch_assoc();
                                                     solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.servicio_medico, solicitud_asistencia.observaciones,
                                                     solicitud_asistencia.agendar, solicitud_asistencia.turnar, solicitud_asistencia.notificar, solicitud_asistencia.etapa
                                                     FROM solicitud_asistencia 
-                                                    WHERE solicitud_asistencia.id_servidor = 'MEDIDAS PROVISIONALES'
+                                                    WHERE solicitud_asistencia.tipo_requerimiento = 'MEDIDAS PROVISIONALES'
                                                     AND solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'
                                                     AND (solicitud_asistencia.etapa = 'SOLICITADA' 
                                                     OR solicitud_asistencia.etapa = 'AGENDADA'
