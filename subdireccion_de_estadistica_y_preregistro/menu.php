@@ -66,6 +66,8 @@ $row=$result->fetch_assoc();
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
+     <!-- funcionalidades de react -->
+  <script src="../js/funciones_react.js"></script>
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
   $(document).ready(function() {
@@ -318,6 +320,30 @@ a:focus {
               <!-- <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
             </ul>
           </li>
+          <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/registrar.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/consultar.php'">
+                              <i class="fas fa-laptop-file"></i> CONSULTAR
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/buscar.php'">
+                              <i class="fas fa-search"></i> BUSCAR
+                          </a>
+                      </li>
+                  </ul>
+              </li>
         </ul>
       </nav>
     </div>

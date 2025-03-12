@@ -88,6 +88,8 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+  <!-- funcionalidades de react -->
+  <script src="../js/funciones_react.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable({
@@ -271,6 +273,30 @@ text-decoration: underline;
 
             <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>MENÚ ASISTEMCIAS M.</span></a></li>
             <li><a href="#" onclick="location.href='alertas_convenios_por_finalizar.php'"><i class="color-icon fas fa-soli fa-person-circle-exclamation menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> ALERTA DE CONVENIOS</span></a></li>
+            <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/registrar.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/consultar.php'">
+                              <i class="fas fa-laptop-file"></i> CONSULTAR
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/buscar.php'">
+                              <i class="fas fa-search"></i> BUSCAR
+                          </a>
+                      </li>
+                  </ul>
+              </li>
           </ul>
 
 

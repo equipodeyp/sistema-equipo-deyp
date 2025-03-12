@@ -406,7 +406,7 @@ else{
                     <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                 </a>
                 <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <!-- <li>
+                    <li>
                         <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
                             <i class="fas fa-clipboard-list"></i> ACTIVIDADES
                             <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
@@ -422,7 +422,7 @@ else{
                               <i class="fas fa-search"></i> BUSCAR</a>
                             </li>
                         </ul>
-                    </li> -->
+                    </li>
                     <li>
                         <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
                             <i class="fas fa-car-side"></i> TRASLADOS
@@ -438,6 +438,40 @@ else{
                             <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/search_traslado.php'">
                               <i class="fas fa-search"></i> BUSCAR</a>
                             </li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <?php
+        }
+        ?>
+        <?php
+        if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional') {
+        ?>
+        <ul>
+            <li>
+                <a href="#" onclick="toggleSubmenu(this)">
+                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                </a>
+                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <li>
+                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
+                            <i class="fas fa-clipboard-list"></i> ACTIVIDADES
+                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
+                        </a>
+                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/add_actividad.php'">
+                                <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                            </li>
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/consulta_actividad.php'">
+                                <i class="fas fa-laptop-file"></i> CONSULTAR</a>
+                            </li>
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
+                              <i class="fas fa-search"></i> BUSCAR</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

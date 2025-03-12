@@ -75,9 +75,8 @@ $m_user = strtoupper($m_user);
   <!-- MATERIAL PARA USAR TOAST MENSAJES DE ALERTA  -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-<!-- ////////////////////////////////////////// --
-
- SCRIPT PARA EL MANEJO DE LA TABLA -->
+<!-- funciones de react  -->
+ <script src="../js/funciones_react.js"></script>
   <script type="text/javascript">
   $(document).ready(function() {
       $('#example').DataTable({
@@ -389,6 +388,30 @@ if ($permiso3=='solicitar') {
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
               <!-- <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li> -->
+              <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/registrar.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/consultar.php'">
+                              <i class="fas fa-laptop-file"></i> CONSULTAR
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/buscar.php'">
+                              <i class="fas fa-search"></i> BUSCAR
+                          </a>
+                      </li>
+                  </ul>
+              </li>
           </ul>
           <br><br>
           <ul>
