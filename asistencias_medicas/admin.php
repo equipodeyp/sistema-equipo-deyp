@@ -12,7 +12,7 @@ if (!isset($name)) {
 //Se presume que la página aún no se ha actualizado.
 if(!isset($_SESSION['already_refreshed'])){
   ////////////////////////////////////////////////////////////////////////////////
-  $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+  $sentenciar=" SELECT * FROM usuarios WHERE usuario='$name'";
   $resultr = $mysqli->query($sentenciar);
   $rowr=$resultr->fetch_assoc();
   $areauser = $rowr['area'];
@@ -27,13 +27,18 @@ if(!isset($_SESSION['already_refreshed'])){
   $_SESSION['already_refreshed'] = true;
 }
 
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
-
+// obtener subdireccion del perfil
+$iduser = $row['id'];
+$subuser = "SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal = '$iduser'";
+$rsubuser = $mysqli->query($subuser);
+$fsubuser = $rsubuser -> fetch_assoc();
+$subdirecfcion_user = $fsubuser['subdireccion'];
 // echo $m_user;
 
 
@@ -49,7 +54,7 @@ $am_serv = $fnombre['amaterno'];
 $name_user = $name_serv;
 $name_user = strtoupper($name_user);
 $names = $name_user;
-$one_name = explode(" ", $names); 
+$one_name = explode(" ", $names);
 $primer_nombre = $one_name[0];
 
 // echo $primer_nombre;
@@ -145,6 +150,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
+   <script src="../js/funciones_react.js"></script>
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
 
@@ -389,6 +395,57 @@ else{
             }
             ?>
         </ul>
+        <?php
+        if ($subdirecfcion_user === 'Subdirección de ejecucion de medidas') {
+        ?>
+        <ul>
+            <li>
+                <a href="#" onclick="toggleSubmenu(this)">
+                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                </a>
+                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <!-- <li>
+                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
+                            <i class="fas fa-clipboard-list"></i> ACTIVIDADES
+                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
+                        </a>
+                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/add_actividad.php'">
+                                <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                            </li>
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/consulta_actividad.php'">
+                                <i class="fas fa-laptop-file"></i> CONSULTAR</a>
+                            </li>
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
+                              <i class="fas fa-search"></i> BUSCAR</a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <li>
+                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
+                            <i class="fas fa-car-side"></i> TRASLADOS
+                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
+                        </a>
+                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/add_traslado.php'">
+                                <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                            </li>
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/consulta_traslado.php'">
+                                <i class="fas fa-laptop-file"></i> CONSULTAR</a>
+                            </li>
+                            <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/search_traslado.php'">
+                              <i class="fas fa-search"></i> BUSCAR</a>
+                            </li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <?php
+        }
+        ?>
         <br><br>
       </nav>
     </div>
@@ -596,7 +653,5 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
 
 
 ?>
-
-
 </body>
 </html>
