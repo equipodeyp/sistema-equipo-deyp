@@ -110,7 +110,7 @@ $row=$result->fetch_assoc();
               <?php
               $cl = "SELECT COUNT(*) as t
                     FROM solicitud_asistencia 
-                    WHERE solicitud_asistencia.id_servidor = 'YANELLISR'
+                    WHERE solicitud_asistencia.tipo_requerimiento = 'MEDIDAS PROVISIONALES'
                     AND solicitud_asistencia.servicio_medico = 'PSICOLÓGICO'
                     AND (solicitud_asistencia.etapa = 'SOLICITADA' 
                     OR solicitud_asistencia.etapa = 'AGENDADA'
