@@ -167,6 +167,16 @@ $respuesta1=$resultado1->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3">
+                    <label for="" class="">NOMBRE DE USUARIO</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['id_servidor']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="" class="">NOMBRE DEL SERVIDOR PÚBLICO SOLICITANTE</label>
+                    <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['servidor_registra']; ?>">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
                     <label for="" class="">ID ASISTENCIA MÉDICA</label>
                     <input readonly class="form-control" id="" name="" placeholder="" type="text" value="<?php echo $respuesta1['id_asistencia']; ?>">
                   </div>

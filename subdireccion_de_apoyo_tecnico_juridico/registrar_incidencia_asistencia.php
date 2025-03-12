@@ -43,12 +43,17 @@ $m_user = strtoupper($m_user);
 // echo $num_incidencia;
 
 
-$sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$sentencia2=" SELECT* FROM usuarios_servidorespublicos WHERE usuario ='$user'";
 $rnombre = $mysqli->query($sentencia2);
 $fnombre=$rnombre->fetch_assoc();
 $name_serv = $fnombre['nombre'];
 $ap_serv = $fnombre['apaterno'];
 $am_serv = $fnombre['amaterno'];
+$usuario = $fnombre['usuario'];
+// echo $usuario;
+
+$m_usuario = strtoupper($usuario);
+// echo $m_usuario;
 
 
 
@@ -191,14 +196,25 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
                 <div class="form-group">
-                    <label for="id_servidor" class="col-md-4 control-label">ID SERVIDOR PÚBLICO</label>
+                    <label for="id_servidor" class="col-md-4 control-label">NOMBRE DEL USUARIO</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $id_servidor_ini;?>" readonly>
+                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $m_usuario;?>" readonly>
                       </div>
                     </div>
                 </div>
+
+
+                <div class="form-group">
+                    <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $full_name;?>">
+                      </div>
+                    </div>
+                  </div>
 
 
                 <div class="form-group" >

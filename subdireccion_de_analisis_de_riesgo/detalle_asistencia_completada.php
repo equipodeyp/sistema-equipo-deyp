@@ -27,7 +27,7 @@ $m_user = strtoupper($m_user);
 
 
 $id_asistencia_medica = $_GET["id_asistencia"];
-echo $id_asistencia_medica;
+// echo $id_asistencia_medica;
 
 $consulta1 = "SELECT* FROM solicitud_asistencia WHERE solicitud_asistencia.id_asistencia = '$id_asistencia_medica'";
 $resultado1 = $mysqli->query($consulta1);
@@ -149,7 +149,7 @@ $respuesta7=$resultado7->fetch_assoc();
     		<div class="secciones">
     			<article id="tab2">
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+              <a href="./admin.php">MENÚ ASISTENCIAS MÉDICAS</a>
               <a href="./panel_asistencias_completadas.php">ASISTENCIAS MÉDICAS REGISTRADAS</a>
               <a href="./detalle_asistencia_completada.php?id_asistencia=<?php echo $id_asistencia_medica; ?>" class="actived">DETALLE ASISTENCIA MÉDICA</a>
             </div>
@@ -360,6 +360,32 @@ $respuesta7=$resultado7->fetch_assoc();
 
                 </div>
 
+
+                <div id="gestion" style="display:none">
+
+                  <div id="cabecera">
+                    <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
+                      <h3 style="text-align:center; color: #ddd;">GESTIÓN DE LA ASISTENCIA MÉDICA</h3>
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <table class="table table-bordered" width="100%" border="1" cellpadding="0" cellspacing="0" >
+
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;">NO. DE OFICIO DE LA GESTIÓN:</th>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta2['oficio_gestion']; ?></td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+
+                </div>
+
+
                 <div id="fecha" style="display:none">
 
                   <div id="cabecera">
@@ -523,7 +549,7 @@ $respuesta7=$resultado7->fetch_assoc();
 
 
                         <?php 
-                        if ($respuesta1['servicio_medico'] == 'PSICOLÓGICO'){
+                        if ($respuesta1['servicio_medico'] == 'PSICOLÓGICO' && $respuesta4['notificar_subdireccion'] == 'SI'){
                           echo '<tr>
                           <th style="text-align:left;">REQUIERE TRASLADO:</th>
                           <td style="text-align:left; background-color: #fff;">'; echo $respuesta4['requiere_traslado']; echo '</td>
@@ -930,6 +956,19 @@ ventimp.close();
           document.getElementById("seguimiento_contencion").style.display = "";
       }
 
+      if (servicio === "MÉDICO" || servicio === "SANITARIO"){
+          document.getElementById("seguimiento_contencion").style.display = "none";
+          document.getElementById("tratamiento").style.display = "none";
+          document.getElementById("seguimiento").style.display = "none";
+          document.getElementById("reprogramacion").style.display = "none";
+          document.getElementById("turnada").style.display = "none";
+          document.getElementById("notificada").style.display = "none";
+          document.getElementById("fecha").style.display = "none";
+      }
+
+      if (servicio === "MÉDICO" || servicio === "SANITARIO"){
+          document.getElementById("gestion").style.display = "";
+      }
 
       if (etapa === "ASISTENCIA MÉDICA REPROGRAMADA"){
           document.getElementById("solicitud").style.display = "";

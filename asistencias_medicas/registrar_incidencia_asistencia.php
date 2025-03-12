@@ -14,6 +14,7 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $user = $row['usuario'];
+// echo $user;
 
 $row_nombre = $row['nombre'];
 $apellido_p = $row['apellido_p'];
@@ -23,6 +24,7 @@ $full_name = mb_strtoupper (html_entity_decode($name_user, ENT_QUOTES | ENT_HTML
 
 $m_user = $user;
 $m_user = strtoupper($m_user);
+// echo "$full_name";
 
 $sentencia2=" SELECT nombre FROM usuarios_servidorespublicos WHERE usuario ='$user'";
 $rnombre = $mysqli->query($sentencia2);
@@ -34,33 +36,21 @@ $name_user = strtoupper($name_user);
 
 
 
-// echo $name_user;
-// echo $name_serv;
-
-// echo $m_user;
-// echo $user;
-// $f_exped = 'UPSIPPED/TOL/113/015/2022';
-// echo $f_exped;
 
 
 
-// $sql = "SELECT * FROM tickets WHERE usuario = '$full_name'";
-// $result = mysqli_query($mysqli, $sql);
-// $rowcount = mysqli_num_rows( $result );
-// $suma = $rowcount + 1;
-// $num_incidencia = 0 . $suma;
-// echo $num_incidencia;
 
-
-
-$sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$sentencia2=" SELECT * FROM usuarios_servidorespublicos WHERE usuario ='$user'";
 $rnombre = $mysqli->query($sentencia2);
 $fnombre=$rnombre->fetch_assoc();
 $name_serv = $fnombre['nombre'];
 $ap_serv = $fnombre['apaterno'];
 $am_serv = $fnombre['amaterno'];
+$usuario = $fnombre['usuario'];
+// echo $usuario;
 
-
+$m_usuario = strtoupper($usuario);
+// echo $m_usuario;
 
 $name_user = $name_serv;
 $name_user = strtoupper($name_user);
@@ -197,11 +187,11 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
                 <div class="form-group">
-                    <label for="id_servidor" class="col-md-4 control-label">ID SERVIDOR PÚBLICO</label>
+                    <label for="id_servidor" class="col-md-4 control-label">NOMDRE DE USUARIO</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $id_servidor_ini;?>" readonly>
+                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $m_usuario;?>" readonly>
                       </div>
                     </div>
                 </div>
@@ -211,7 +201,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $name_user;?>">
+                        <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $full_name;?>">
                       </div>
                     </div>
                   </div>

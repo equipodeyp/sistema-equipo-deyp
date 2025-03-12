@@ -14,6 +14,7 @@ $row=$resultado->fetch_assoc();
 
 
   $id_servidor = $_POST['id_servidor'];
+  $nombre_servidor = $_POST['nombre_servidor'];
   $subdireccion = $_POST['subdireccion'];
   $id_asistencia = $_POST['id_asistencia'];
   $tipo_falla = $_POST['tipo_falla'];
@@ -71,8 +72,8 @@ $row=$resultado->fetch_assoc();
 
 
         
-  $query = "INSERT INTO incidencias_asistencias (id_servidor, subdireccion, folio_expediente, id_sujeto, id_asistencia, tipo_falla, descripcion_falla, estatus, folio_incidencia, usuario_atencion) 
-  VALUES ('$id_servidor', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$tipo_falla', '$descripcion', '$status', '$folio_incidencia', '$atencion_usuario')";
+  $query = "INSERT INTO incidencias_asistencias (id_servidor, subdireccion, folio_expediente, id_sujeto, id_asistencia, tipo_falla, descripcion_falla, estatus, folio_incidencia, usuario_atencion, servidor_registra) 
+  VALUES ('$id_servidor', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$tipo_falla', '$descripcion', '$status', '$folio_incidencia', '$atencion_usuario', '$nombre_servidor')";
   $result = $mysqli->query($query);
 
   $query2 = "INSERT INTO message_tbl (message, usuario_atencion) 

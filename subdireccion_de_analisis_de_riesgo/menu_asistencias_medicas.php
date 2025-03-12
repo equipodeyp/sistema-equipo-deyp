@@ -396,14 +396,14 @@ if ($permiso3==='solicitar') {
                   <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
               </a>
             </li>
-</ul>
+
 ";
 
 }
 
 if ($permiso6==='agendar') {
   echo "
-<ul class='ca-menu' style='text-align:right'>
+
         <li style='text-align:center'>
           <a href='./solicitudes_registradas_agendar.php'>
             <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
@@ -412,14 +412,14 @@ if ($permiso6==='agendar') {
               <h3 class='ca-sub'>SOLICITUDES MEDIDAS PROVICIONALES</h3></div>
           </a>
         </li>
-</ul>
+
   ";
 
 }
 
 if ($permiso7==='seguimiento') {
   echo "
-<ul class='ca-menu' style='text-align:right'>
+
         <li style='text-align:center'>
           <a href='./asistencia_turnada.php'>
             <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
@@ -428,7 +428,7 @@ if ($permiso7==='seguimiento') {
               <h3 class='ca-sub'>ASISTENCIAS PSICOLÓGICAS TURNADAS Y/O ASIGNADAS</h3></div>
           </a>
         </li>
-</ul>
+
   ";
 
 }
@@ -436,7 +436,7 @@ if ($permiso7==='seguimiento') {
 
 if ($permiso4==='calendario') {
   echo "
-<ul class='ca-menu' style='text-align:right'>
+
         <li style='text-align:center'>
           <a href='./agenda/index.php'>
             <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
@@ -445,7 +445,7 @@ if ($permiso4==='calendario') {
               <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
           </a>
         </li>
-</ul>
+
   ";
 
 }
@@ -453,7 +453,7 @@ if ($permiso4==='calendario') {
 
 if ($permiso8==='detalle') {
   echo "
-<ul class='ca-menu' style='text-align:right'>
+
         <li style='text-align:center'>
           <a href='./panel_asistencias_completadas.php'>
             <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
@@ -462,7 +462,7 @@ if ($permiso8==='detalle') {
               <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
           </a>
         </li>
-</ul>
+
   ";
 
 }
@@ -470,7 +470,7 @@ if ($permiso8==='detalle') {
 if($fcl['t'] > 0){
 
   echo"
-<ul class='ca-menu' style='text-align:right'>
+
         <li style='text-align:center'>
           <a href='./registrar_incidencia_asistencia.php'>
             <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>

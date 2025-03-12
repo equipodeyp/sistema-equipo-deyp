@@ -367,6 +367,7 @@ $permiso1 = $fuserfijo['permiso1'];
 $permiso2 = $fuserfijo['permiso2'];
 $permiso3 = $fuserfijo['permiso3'];
 $permiso4 = $fuserfijo['permiso4'];
+$permiso8 = $fuserfijo['permiso8'];
 // echo $permiso1;
 // echo $permiso2;
 // echo $permiso3;
@@ -413,7 +414,7 @@ if ($permiso3=='solicitar') {
 
       }
 
-echo "</ul>";
+// echo "</ul>";
 }
 
 
@@ -421,7 +422,7 @@ echo "</ul>";
 if ($permiso4==='calendario') {
   echo "
 
-<ul class='ca-menu' style='text-align:right'>
+
 
 <li style='text-align:center'>
   <a href='./agenda/index.php'>
@@ -432,17 +433,29 @@ if ($permiso4==='calendario') {
   </a>
 </li>
 
-</ul>
-
-
-
 ";
-
-
-
 
 }
 
+if ($permiso8==='detalle') {
+  echo "
+
+<ul class='ca-menu' style='text-align:right'>
+        <li style='text-align:center'>
+          <a href='./panel_asistencias_completadas.php'>
+            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
+            <div class='ca-content'>
+              <h2 class='ca-main'>DETALLE</h2>
+              <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
+          </a>
+        </li>
+</ul>
+
+";
+
+}
+
+echo "</ul>";
 
 ?>
 
