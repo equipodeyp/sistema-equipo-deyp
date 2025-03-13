@@ -68,9 +68,10 @@ if  (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>UPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/instrumento_adaptabilidad.css">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -80,7 +81,6 @@ if  (isset($_GET['id'])) {
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
-  <!-- barra de navegacion -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
@@ -94,22 +94,10 @@ if  (isset($_GET['id'])) {
   <link rel="stylesheet" href="../css/registrosolicitud1.css">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <!-- <script src="JQuery.js"></script> -->
-  <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
-  <script src="../js/verificar_camposm1.js"></script>
-  <script src="../js/mascara2campos.js"></script>
-  <script src="../js/mod_medida.js"></script>
-  <!-- <link rel="stylesheet" href="../css/estilos.css">
-  <script src="../js/main.js"></script> -->
-  <script src="../js/Javascript.js"></script>
-  <script src="../js/validar_campos.js"></script>
-  <script src="../js/validarmascara3.js"></script>
-
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="../css/main2.css">
 </head>
 <body >
 <div class="contenedor">
@@ -158,7 +146,7 @@ if  (isset($_GET['id'])) {
       <div class="wrap">
 
     		<ul class="tabs">
-    			<li><a href="#" class="active" onclick="location.href='detalle_respuesta.php?id=<?php echo $id; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DE LA INCIDENCIA</span></a></li>
+    			<li><a href="#" class="active" onclick="location.href='detalle_respuesta_uno.php?id=<?php echo $id; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DETALLE DE LA INCIDENCIA</span></a></li>
     			<!-- <li><a href="#" onclick="location.href='detalles_respuesta.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">INCIDENCIAS GENERADAS</span></a></li> -->
     			<!--<li><a href="#tab3"><span class="fas fa-envelope-open-text"></span><span class="tab-text">SEGUIMIENTO</span></a></li> -->
     		</ul>
@@ -169,8 +157,8 @@ if  (isset($_GET['id'])) {
           <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
                 <a href="../administrador/admin.php">REGISTROS</a>
-                <a href="../administrador/resumen_tickets_enproceso.php">RESUMEN INCIDENCIAS</a>
-                <a class="actived" href="#">DETALLE INCIDENCIA</a>
+                <a href="../administrador/resumen_tickets_enproceso.php">INCIDENCIAS REGISTRADAS</a>
+                <a class="actived" href="#">DETALLE DE LA INCIDENCIA</a>
                 <!-- <a href="../administrador/tickets.php?folio=<?php echo $folio_expediente; ?>">INCIDENCIAS</a>
                 <a >DETALLE DE LA INCIDENCIA</a> -->
           </div>
@@ -179,9 +167,17 @@ if  (isset($_GET['id'])) {
               <form class="container well form-horizontal" action="detalle_respuesta.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
-                  <div class="alert alert-info">
+                  <!-- <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS GENERALES</h3>
-                  </div>
+                  </div> -->
+
+
+                        <div id='cabecera'>
+                          <div class='row alert div-title'>
+                            <h3 style='text-align:center'>DATOS GENERALES</h3>
+                          </div>
+                        </div>
+
 
                   <div class="col-md-6 mb-3">
                         <label>FOLIO DEL EXPEDIENTE<span ></span></label>
@@ -198,13 +194,18 @@ if  (isset($_GET['id'])) {
                     <input readonly class="form-control" id="" name="subdireccion" type="text" value="<?php echo $subdirec; ?>">
                   </div>
 
-                  <div class="row">
-                    <br>
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
+
+                  <!-- <div class="alert alert-info">
                     <h3 style="text-align:center">DATOS DE LA INCIDENCIA</h3>
-                  </div>
+                  </div> -->
+
+
+                        <div id='cabecera'>
+                          <div class='row alert div-title'>
+                            <h3 style='text-align:center'>DATOS DE LA INCIDENCIA</h3>
+                          </div>
+                        </div>
+
 
                   <div class="col-md-6 mb-3">
                     <label>FOLIO DE LA INCIDENCIA<span></span></label>
@@ -222,16 +223,23 @@ if  (isset($_GET['id'])) {
   		  			</div>
                         <label>DESCRIPCIÓN BREVE DE LA FALLA O ERROR<span></span></label>
                         <textarea disabled id="" name="descripcion" rows="8" cols="80" maxlength="400"><?php echo $descripcion; ?></textarea>
+                        <br>
   				</div>
 
                   
-                  <div class="row">
-                    <br>
-                    <hr class="mb-4">
-                  </div>
-                  <div class="alert alert-info">
+<br>
+
+                  <!-- <div class="alert alert-info">
                     <h3 style="text-align:center">ATENCIÓN DE LA INCIDENCIA</h3>
-                  </div>
+                  </div> -->
+
+                  
+                        <div id='cabecera'>
+                          <div class='row alert div-title'>
+                            <h3 style='text-align:center'>ATENCIÓN DE LA INCIDENCIA</h3>
+                          </div>
+                        </div>
+
 
                   <!-- <div class="col-md-6 mb-3">
                     <label>USUARIO EN ATENCIÓN<span ></span></label>
@@ -271,7 +279,7 @@ if  (isset($_GET['id'])) {
 </div>
 <div class="contenedor">
 
-<a href="../administrador/tickets.php?folio=<?php echo $folio_expediente; ?>" class="btn-flotante">REGRESAR</a>
+<a href="../administrador/resumen_tickets_enproceso.php" class="btn-flotante">REGRESAR</a>
 
 </div>
 <script type="text/javascript">

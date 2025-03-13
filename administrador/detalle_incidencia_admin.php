@@ -269,7 +269,7 @@ $respuesta1=$resultado1->fetch_assoc();
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
         <div class="contenedor">
-          <a href="./incidencia_asistencia_atendida.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
+          <a href="./incidencia_asistencia_admin.php" class="btn-flotante-regresar color-btn-success-gray">REGRESAR</a>
 		    </div>
 
 

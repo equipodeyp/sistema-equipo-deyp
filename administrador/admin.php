@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+error_reporting(0);
 date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 //
@@ -267,13 +268,8 @@ a:focus {
       <nav class="menu-nav">
           <ul>
 
-              <li class="menu-items"><a  href="#" onclick="location.href='resumen_tickets_enproceso.php'"><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIA</span></a></li>
-
-
-                <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>MENÚ ASISTEMCIAS M.</span></a></li>
-
-
-
+              <li class="menu-items"><a  href='./resumen_tickets_enproceso.php'><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIA</span></a></li>
+              <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>MENÚ ASISTEMCIAS M.</span></a></li>
 
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='incidencia_asistencia_enproceso.php'"><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIAS - A.M.</span></a></li> -->
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='repo.php'"><i class="fa-solid fa-folder-plus menu-nav--icon fa-fw  "></i><span> Repositorio </span></a></li> -->
