@@ -422,7 +422,7 @@ else{
                             <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/add_traslado.php'">
                                 <i class="fas fa-file-medical"></i> REGISTRAR</a>
                             </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/consulta_traslado.php'">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/consulta_traslados.php'">
                                 <i class="fas fa-laptop-file"></i> CONSULTAR</a>
                             </li>
                         </ul>
