@@ -394,7 +394,13 @@ else{
             <?php
             }
             ?>
+
+            <!-- <a style='text-align:center' class='user-nombre' href='./actividades_enlace/menu_react.php'><button type='button' class='btn btn-light'>MENÚ REGISTRO <br> DE ACTIVIDADES</button> </a> -->
         </ul>
+
+
+
+        
         <?php
         if ($subdirecfcion_user === 'Subdirección de ejecucion de medidas') {
         ?>
@@ -406,23 +412,7 @@ else{
                     <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                 </a>
                 <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <!-- <li>
-                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
-                            <i class="fas fa-clipboard-list"></i> ACTIVIDADES
-                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
-                        </a>
-                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/add_actividad.php'">
-                                <i class="fas fa-file-medical"></i> REGISTRAR</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/consulta_actividad.php'">
-                                <i class="fas fa-laptop-file"></i> CONSULTAR</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
-                              <i class="fas fa-search"></i> BUSCAR</a>
-                            </li>
-                        </ul>
-                    </li> -->
+                   
                     <li>
                         <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
                             <i class="fas fa-car-side"></i> TRASLADOS
@@ -435,9 +425,6 @@ else{
                             <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/consulta_traslado.php'">
                                 <i class="fas fa-laptop-file"></i> CONSULTAR</a>
                             </li>
-                            <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/search_traslado.php'">
-                              <i class="fas fa-search"></i> BUSCAR</a>
-                            </li> -->
                         </ul>
                     </li>
                 </ul>
@@ -463,13 +450,13 @@ else{
                             <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
                         </a>
                         <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/add_actividad.php'">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/registrar_actividad.php'">
                                 <i class="fas fa-file-medical"></i> REGISTRAR</a>
                             </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/consulta_actividad.php'">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/consultar_actividad.php'">
                                 <i class="fas fa-laptop-file"></i> CONSULTAR</a>
                             </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/buscar_actividad.php'">
                               <i class="fas fa-search"></i> BUSCAR</a>
                             </li>
                         </ul>
@@ -480,6 +467,10 @@ else{
         <?php
         }
         ?>
+
+
+
+
         <br><br>
       </nav>
     </div>
@@ -671,7 +662,7 @@ echo " </ul>
 
 
 
-    <a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+<a style='color:#fff;' href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
 
 
 <?php
