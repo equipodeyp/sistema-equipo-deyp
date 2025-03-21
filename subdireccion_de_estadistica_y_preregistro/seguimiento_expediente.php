@@ -481,7 +481,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
             		          echo "<td style='text-align:center'>"; echo $cont_med; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['id_analisis']; echo "</td>";
                           echo "<td style='text-align:center'>"; echo $var_fila['analisis']; echo "</td>";
-                          echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila['id_analisis']."'> <button type='button' class='btn color-btn-success-white'>Detalles</button> </a> </td>";
+                          echo "<td style='text-align:center'>  <a href='detalles_convenio_exp.php?id=".$var_fila['id']."'> <button type='button' class='btn color-btn-success-white'>Detalles</button> </a> </td>";
                         //   echo "<td style='text-align:center'>"; echo date("d/m/Y", strtotime($var_fila['fecha_aut'])); echo "</td>";
                         //   echo "<td style='text-align:center'>"; echo $var_fila['tipo_convenio']; echo "</td>";
             		        //   echo "<td style='text-align:center'>"; if ($var_fila['fecha_firma'] != '0000-00-00') {

@@ -12,7 +12,7 @@ if (!isset($name)) {
 $id_analisis = $_GET['id'];
 // echo $id_analisis;
 // echo $folioexpediente;
-$consulta = "SELECT * FROM evaluacion_expediente WHERE id_analisis = '$id_analisis'";
+$consulta = "SELECT * FROM evaluacion_expediente WHERE id = '$id_analisis'";
 $res_consulta = $mysqli->query($consulta);
 $fila_consulta = $res_consulta->fetch_assoc();
 $id_con_exp = $fila_consulta['id'];
