@@ -122,6 +122,7 @@ $mostrar=$result->fetch_assoc();
   <div style="text-align:center;padding:25px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
     <form method="POST" action="save_trasalado.php" enctype= "multipart/form-data">
+      
       <!-- SUBDIRECCIÓN-->
       <div class="persona-form">
       <div class="form-group">
@@ -139,7 +140,8 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="funcion" value="MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
+            <input name="funcion" value= 
+            "MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
           </div>
         </div>
       </div>

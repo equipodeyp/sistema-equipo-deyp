@@ -286,7 +286,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                   <select value class="form-control" id="turnar_asistencia" name="turnar_asistencia" required>
                                     <option disabled selected value="">SELECCIONA LA OPCIÓN</option>
                                     <option value="SI">SI</option>
-                                    <option value="NO APLICA">NO APLICA</option>
+                                    
                                   </select>
 
                               </div>

@@ -300,7 +300,7 @@ $respuesta7=$resultado7->fetch_assoc();
 
                         <tr>
                           <th style="text-align:left;">HORA:</th>
-                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta5['hora_asistencia']; ?></td>
+                          <td style="text-align:left; background-color: #fff;"><?php echo $respuesta6['hora_asistencia']; ?></td>
                         </tr>
                       </tbody>
 

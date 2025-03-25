@@ -10,22 +10,22 @@ if (!isset($name)) {
 }
 //Si la variable de sesión no existe,
 //Se presume que la página aún no se ha actualizado.
-if(!isset($_SESSION['already_refreshed'])){
-  ////////////////////////////////////////////////////////////////////////////////
-  $sentenciar=" SELECT * FROM usuarios WHERE usuario='$name'";
-  $resultr = $mysqli->query($sentenciar);
-  $rowr=$resultr->fetch_assoc();
-  $areauser = $rowr['area'];
-  $fecha = date('y/m/d H:i:sa');
-  ////////////////////////////////////////////////////////////////////////////////
-  $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
-                VALUES ('$name', '$areauser', '$fecha')";
-  $res_saveiniciosession = $mysqli->query($saveiniciosession);
-  ////////////////////////////////////////////////////////////////////////////////
-//Establezca la variable de sesión para que no
-//actualice de nuevo.
-  $_SESSION['already_refreshed'] = true;
-}
+// if(!isset($_SESSION['already_refreshed'])){
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $sentenciar=" SELECT * FROM usuarios WHERE usuario='$name'";
+//   $resultr = $mysqli->query($sentenciar);
+//   $rowr=$resultr->fetch_assoc();
+//   $areauser = $rowr['area'];
+//   $fecha = date('y/m/d H:i:sa');
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
+//                 VALUES ('$name', '$areauser', '$fecha')";
+//   $res_saveiniciosession = $mysqli->query($saveiniciosession);
+//   ////////////////////////////////////////////////////////////////////////////////
+// //Establezca la variable de sesión para que no
+// //actualice de nuevo.
+//   $_SESSION['already_refreshed'] = true;
+// }
 
 $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);

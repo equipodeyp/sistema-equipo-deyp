@@ -9,22 +9,22 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-echo $name;
+// echo $name;
 //Si la variable de sesión no existe,
 //Se presume que la página aún no se ha actualizado.
-if(!isset($_SESSION['already_refreshed'])){
-  ////////////////////////////////////////////////////////////////////////////////
+// if(!isset($_SESSION['already_refreshed'])){
+//   ////////////////////////////////////////////////////////////////////////////////
 
-  $fecha = date('y/m/d H:i:sa');
-  ////////////////////////////////////////////////////////////////////////////////
-  $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
-                VALUES ('$name', '$areauser', '$fecha')";
-  $res_saveiniciosession = $mysqli->query($saveiniciosession);
-  ////////////////////////////////////////////////////////////////////////////////
-//Establezca la variable de sesión para que no
-//actualice de nuevo.
-  $_SESSION['already_refreshed'] = true;
-}
+//   $fecha = date('y/m/d H:i:sa');
+//   ////////////////////////////////////////////////////////////////////////////////
+//   $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
+//                 VALUES ('$name', '$areauser', '$fecha')";
+//   $res_saveiniciosession = $mysqli->query($saveiniciosession);
+//   ////////////////////////////////////////////////////////////////////////////////
+// //Establezca la variable de sesión para que no
+// //actualice de nuevo.
+//   $_SESSION['already_refreshed'] = true;
+// }
 
   $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
   $resultr = $mysqli->query($sentenciar);
@@ -36,7 +36,7 @@ if(!isset($_SESSION['already_refreshed'])){
   $rsubuser = $mysqli->query($subuser);
   $fsubuser = $rsubuser -> fetch_assoc();
   $subdirecfcion_user = $fsubuser['subdireccion'];
-  echo $subdirecfcion_user;
+  // echo $subdirecfcion_user;
 
 if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
   $id_sub = "SEI-0";
@@ -46,12 +46,12 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
 
   $respuesta_consulta = $mysqli->query($consulta);
   $resultado_consulta = $respuesta_consulta->fetch_assoc();
-  echo $resultado_consulta['t'];
+  // echo $resultado_consulta['t'];
 
   $c = $c + 1;
 
   $id_actividad = $id_sub.$c;
-  echo $id_actividad;
+  // echo $id_actividad;
 }
 
 
@@ -129,22 +129,132 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
         <center>
   <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form method="POST" action="save_trasalado.php" enctype= "multipart/form-data">
-      <!-- Text input-->
+    <form method="POST" action="./guardar_actividad.php" enctype= "multipart/form-data">
+
+
       <div class="form-group">
-        <label class="col-md-3 control-label">ID ACTIVIDAD</label>
+        <label class="col-md-3 control-label">ACTIVIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="idtraslado" class="form-control" type="text" value="<?php echo $id_actividad;?>" readonly>
+            <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+            <!-- <input name="actividad" id="actividad" class="form-control" type="text" required> -->
+            <select class="form-control" name="actividad" id="actividad" required>
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_actividad_enlace";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['id']."'>".$valores['nombre']."</option>";
+                    }
+
+
+                ?>
+            </select>
           </div>
         </div>
       </div>
 
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">CANTIDAD</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-list-ol"></i></span>
+            <input name="cantidad" id="cantidad" class="form-control" type="number" required>
+          </div>
+          <h6 style="text-align:justify; font-size: x-small;">
+            * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos; 
+            en caso contrario, se debrá reportar actividad por actividad.
+          </h6>
+        </div>
+      </div>
+      
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">FECHA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="ocultar_div">
+        <div class="form-group">
+          <label class="col-md-3 control-label">ID CONSECUTIVO SUBDIRECCIÓN</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+              <input name="consecutivo_subdireccion" id="consecutivo_subdireccion" class="form-control" type="text" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ocultar_div">
+        <div class="form-group">
+          <label class="col-md-3 control-label">ID ACTIVIDAD ASIGNADO</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+              <input name="id_actividad" id="id_actividad" class="form-control" type="text" value="" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ocultar_div">
+        <div class="form-group">
+          <label class="col-md-3 control-label">ID SUBDIRECCIÓN</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+              <input name="subdireccion" id="subdireccion" class="form-control" type="text" readonly value="3">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="ocultar_div">
+        <div class="form-group">
+          <label class="col-md-3 control-label">FUNCIÓN</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+              <input name="funcion" id="funcion" class="form-control" type="text" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">OBSERVACIONES</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-comments"></i></span>
+            <textarea class="form-control" type="text" required name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+          </div>
+        </div>
+      </div>
+
+
+
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
-          <button type="submit" class="btn btn-success">REGISTRAR <span class="glyphicon glyphicon-ok"></span></button>
+          <button type="submit" class="btn btn-success">SIGUIENTE <span class="glyphicon glyphicon-ok"></span></button>
         </div>
       </div>
     </form>
