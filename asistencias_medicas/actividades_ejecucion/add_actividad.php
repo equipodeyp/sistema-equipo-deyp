@@ -7,46 +7,10 @@ include("../conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
-  header("location: ../logout.php");
+  header("location: ../../logout.php");
 }
-//Si la variable de sesión no existe,
-//Se presume que la página aún no se ha actualizado.
-if(!isset($_SESSION['already_refreshed'])){
-  ////////////////////////////////////////////////////////////////////////////////
-  $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
-  $resultr = $mysqli->query($sentenciar);
-  $rowr=$resultr->fetch_assoc();
-  $areauser = $rowr['area'];
-  $fecha = date('y/m/d H:i:sa');
-  ////////////////////////////////////////////////////////////////////////////////
-  $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
-                VALUES ('$name', '$areauser', '$fecha')";
-  $res_saveiniciosession = $mysqli->query($saveiniciosession);
-  ////////////////////////////////////////////////////////////////////////////////
-//Establezca la variable de sesión para que no
-//actualice de nuevo.
-  $_SESSION['already_refreshed'] = true;
-}
-$check_traslado = 1;
-$_SESSION["check_traslado"] = $check_traslado;
-// TRAER EL UMTIMO REGISTRO DE UN TRASLADO
-date_default_timezone_set('America/Mexico_City');
-$a = date("Y");
-$sql="select * from react_actividad where id in (select MAX(id) from react_actividad)";
-$result = $mysqli->query($sql);
-$mostrar=$result->fetch_assoc();
- $yearactual = $mostrar['year'];
- $id_traslado =$mostrar["id"];
- if ($a === $yearactual){
-   $n=$id_traslado;
-   $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
-   $n_con;
- } else {
-   $num_consecutivo = 0;
-   $n=$num_consecutivo;
-   $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
- }
- $idtrasladounico = $n_con.'-'.$a;
+$check_actividad = 1;
+$_SESSION["check_actividad"] = $check_actividad;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,6 +20,7 @@ $mostrar=$result->fetch_assoc();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../js/jquery-3.1.1.min.js"></script>
   <script src="../../js/funciones_react.js"></script>
+  <script src="../../js/funciones_react_actividad.js"></script>
   <link href="../../css/bootstrap.min.css" rel="stylesheet">
   <link href="../../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../../js/bootstrap.min.js"></script>
@@ -121,8 +86,7 @@ $mostrar=$result->fetch_assoc();
         <center>
   <div style="text-align:center;padding:25px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form method="POST" action="save_trasalado.php" enctype= "multipart/form-data">
-      
+    <form method="POST" action="save_actividad.php" enctype= "multipart/form-data">
       <!-- SUBDIRECCIÓN-->
       <div class="persona-form">
       <div class="form-group">
@@ -140,8 +104,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="funcion" value= 
-            "MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
+            <input name="funcion" value="MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
           </div>
         </div>
       </div>
@@ -186,13 +149,17 @@ $mostrar=$result->fetch_assoc();
       </div>
       <!-- <span>______________________________________________________________________________________________</span> -->
       <br><br>
+      <!-- inputs de clasificacion segun el tipo de actividad seleccionada -->
+      <?php
+      include("selectclasificacion.php");
+      ?>
       <!-- FECHA -->
       <div class="form-group">
         <label class="col-md-3 control-label">FECHA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input name="horasalida" class="form-control" type="time" required>
+            <input name="fechaactividad" class="form-control" type="date" required>
           </div>
         </div>
       </div>
@@ -206,11 +173,9 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-      <?php
-      include("selectclasificacion.php");
-      ?>      
+
       <!-- ENTIDAD/MUNICIPIO -->
-      <div class="form-group">
+      <div class="form-group" id="entidadmunicipio_1_2" style="display: none;">
         <label class="col-md-3 control-label">ENTIDAD/MUNICIPIO</label>
         <div class="col-md-7 selectContainer">
           <div class="input-group">
@@ -230,12 +195,12 @@ $mostrar=$result->fetch_assoc();
         </div>
       </div>
       <!-- id del expediente -->
-      <div class="form-group">
+      <div class="form-group" id="actividad_folioexpediente" style="display: none;">
         <label class="col-md-3 control-label">ID DEL EXPEDIENTE DE PROTECCIÓN</label>
         <div class="col-md-7 selectContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select class="form-control expediente" name="folioexpediente" required>
+            <select class="form-control expediente" name="folioexpediente">
               <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
               <?php
                 $select1 = "SELECT DISTINCT datospersonales.folioexpediente
@@ -253,12 +218,12 @@ $mostrar=$result->fetch_assoc();
         </div>
       </div>
       <!-- id del SUJETO -->
-      <div class="form-group">
-        <label class="col-md-3 control-label">EVIDENCIA</label>
+      <div class="form-group" id="actividad_idsujeto" style="display: none;">
+        <label class="col-md-3 control-label">ID DE PP O SP</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <select class="form-control id-sujeto" name="id_sujeto" required>
+            <select class="form-control id-sujeto" name="id_sujeto">
               <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
             </select>
           </div>
@@ -275,12 +240,22 @@ $mostrar=$result->fetch_assoc();
         </div>
       </div>
       <!-- ID DE EVIDENCIA -->
-      <div class="form-group">
+      <div class="form-group" id="actividad_idevidencia" style="display: none;">
         <label class="col-md-3 control-label">ID DE EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
             <input name="idevidencia" value="" class="form-control" type="text" id="idevidencia">
+          </div>
+        </div>
+      </div>
+      <!-- KILOMETROS -->
+      <div class="form-group" id="actividad_kilometros" style="display: none;">
+        <label class="col-md-3 control-label">KILOMETROS</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+            <input name="kilometros" value="" class="form-control" type="text" id="kilometros">
           </div>
         </div>
       </div>
@@ -290,12 +265,12 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="observaciones" value="" class="form-control" type="text" id="observaciones">
+            <!-- <input name="observaciones" value="" class="form-control" type="text" id="observaciones"> -->
+            <textarea name="observaciones" class="form-control" id="observacionesact" rows="3" cols="80"></textarea>
           </div>
         </div>
       </div>
       </div>
-
 
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
@@ -322,22 +297,67 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("trasladoclasificacion").style.display = "";
       document.getElementById("clasificacioncontactofamiliar").style.display = "none";
       document.getElementById("clasificacionaccionseguridad").style.display = "none";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
+      document.getElementById("entidadmunicipio_1_2").style.display = "";
+      document.getElementById("actividad_folioexpediente").style.display = "";
+      document.getElementById("actividad_idsujeto").style.display = "";
+      document.getElementById("actividad_idevidencia").style.display = "none";
+      document.getElementById("actividad_kilometros").style.display = "";
     }else if (idactividad === '2') {
       document.getElementById("unidadmedida").value = "DOCUMENTO";
+      document.getElementById("trasladoclasificacion").style.display = "none";
+      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
+      document.getElementById("clasificacionaccionseguridad").style.display = "none";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
+      document.getElementById("entidadmunicipio_1_2").style.display = "none";
+      document.getElementById("actividad_folioexpediente").style.display = "";
+      document.getElementById("actividad_idsujeto").style.display = "";
+      document.getElementById("actividad_idevidencia").style.display = "";
+      document.getElementById("actividad_kilometros").style.display = "none";
     }else if (idactividad === '3') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "";
       document.getElementById("trasladoclasificacion").style.display = "none";
+      document.getElementById("clasificacioncontactofamiliar").style.display = "";
       document.getElementById("clasificacionaccionseguridad").style.display = "none";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
+      document.getElementById("entidadmunicipio_1_2").style.display = "none";
+      document.getElementById("actividad_folioexpediente").style.display = "";
+      document.getElementById("actividad_idsujeto").style.display = "";
+      document.getElementById("actividad_idevidencia").style.display = "none";
+      document.getElementById("actividad_kilometros").style.display = "none";
     }else if (idactividad === '4') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
-      document.getElementById("clasificacionaccionseguridad").style.display = "";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
       document.getElementById("trasladoclasificacion").style.display = "none";
+      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
+      document.getElementById("clasificacionaccionseguridad").style.display = "";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
+      document.getElementById("entidadmunicipio_1_2").style.display = "none";
+      document.getElementById("actividad_folioexpediente").style.display = "none";
+      document.getElementById("actividad_idsujeto").style.display = "none";
+      document.getElementById("actividad_idevidencia").style.display = "";
+      document.getElementById("actividad_kilometros").style.display = "none";
     }else if (idactividad === '5') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
+      document.getElementById("trasladoclasificacion").style.display = "none";
+      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
+      document.getElementById("clasificacionaccionseguridad").style.display = "none";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "";
+      document.getElementById("entidadmunicipio_1_2").style.display = "none";
+      document.getElementById("actividad_folioexpediente").style.display = "";
+      document.getElementById("actividad_idsujeto").style.display = "";
+      document.getElementById("actividad_idevidencia").style.display = "none";
+      document.getElementById("actividad_kilometros").style.display = "none";
     }else if (idactividad === '6') {
       document.getElementById("unidadmedida").value = "RONDÍN POLICIAL";
+      document.getElementById("trasladoclasificacion").style.display = "none";
+      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
+      document.getElementById("clasificacionaccionseguridad").style.display = "none";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
+      document.getElementById("entidadmunicipio_1_2").style.display = "";
+      document.getElementById("actividad_folioexpediente").style.display = "";
+      document.getElementById("actividad_idsujeto").style.display = "";
+      document.getElementById("actividad_idevidencia").style.display = "none";
+      document.getElementById("actividad_kilometros").style.display = "";
     }
     document.getElementById("reportemetas").value = "SI";
 }
