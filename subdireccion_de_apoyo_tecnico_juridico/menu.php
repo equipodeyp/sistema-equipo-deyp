@@ -286,12 +286,12 @@ text-decoration: underline;
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/consultar.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar.php'">
                               <i class="fas fa-laptop-file"></i> CONSULTAR
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/buscar.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar.php'">
                               <i class="fas fa-search"></i> BUSCAR
                           </a>
                       </li>
