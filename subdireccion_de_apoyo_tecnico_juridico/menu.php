@@ -281,7 +281,7 @@ text-decoration: underline;
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/registrar.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR
                           </a>
                       </li>
