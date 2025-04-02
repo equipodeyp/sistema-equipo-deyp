@@ -7,54 +7,10 @@ include("../conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
-  header("location: ../logout.php");
+  header("location: ../../logout.php");
 }
-// echo $name;
-//Si la variable de sesión no existe,
-//Se presume que la página aún no se ha actualizado.
-// if(!isset($_SESSION['already_refreshed'])){
-//   ////////////////////////////////////////////////////////////////////////////////
-
-//   $fecha = date('y/m/d H:i:sa');
-//   ////////////////////////////////////////////////////////////////////////////////
-//   $saveiniciosession = "INSERT INTO inicios_sesion(usuario, area, fecha_entrada)
-//                 VALUES ('$name', '$areauser', '$fecha')";
-//   $res_saveiniciosession = $mysqli->query($saveiniciosession);
-//   ////////////////////////////////////////////////////////////////////////////////
-// //Establezca la variable de sesión para que no
-// //actualice de nuevo.
-//   $_SESSION['already_refreshed'] = true;
-// }
-
-  $sentenciar=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
-  $resultr = $mysqli->query($sentenciar);
-  $rowr=$resultr->fetch_assoc();
-  $areauser = $rowr['area'];
-  // echo $areauser;
-
-  $subuser = "SELECT * FROM usuarios_servidorespublicos WHERE usuario= '$name'";
-  $rsubuser = $mysqli->query($subuser);
-  $fsubuser = $rsubuser -> fetch_assoc();
-  $subdirecfcion_user = $fsubuser['subdireccion'];
-  // echo $subdirecfcion_user;
-
-if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
-  $id_sub = "SEI-0";
-  $c = 0;
-
-  $consulta = "SELECT COUNT(*) as t FROM react_actividad WHERE id_subdireccion = '3'";
-
-  $respuesta_consulta = $mysqli->query($consulta);
-  $resultado_consulta = $respuesta_consulta->fetch_assoc();
-  // echo $resultado_consulta['t'];
-
-  $c = $c + 1;
-
-  $id_actividad = $id_sub.$c;
-  // echo $id_actividad;
-}
-
-
+$check_actividad = 1;
+$_SESSION["check_actividad"] = $check_actividad;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -138,7 +94,7 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
             <!-- <input name="actividad" id="actividad" class="form-control" type="text" required> -->
-            <select class="form-control" name="actividad" id="actividad" required>
+            <select class="form-control" name="numero_actividad" id="numero_actividad" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
                     $select = "SELECT * FROM react_actividad_enlace";
@@ -162,7 +118,7 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-list-ol"></i></span>
-            <input name="cantidad" id="cantidad" class="form-control" type="number" required>
+            <input name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
           </div>
           <h6 style="text-align:justify; font-size: x-small;">
             * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos; 
@@ -184,21 +140,93 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
       </div>
 
 
-
-      <div class="ocultar_div">
-        <div class="form-group">
-          <label class="col-md-3 control-label">ID CONSECUTIVO SUBDIRECCIÓN</label>
-          <div class="col-md-7 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="consecutivo_subdireccion" id="consecutivo_subdireccion" class="form-control" type="text" readonly>
-            </div>
+      <div class="form-group" id="clasificacion" style="display:none;">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad" id="clasificacion_actividad" required>
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_diligencias_administrativas";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
+            </select>
           </div>
         </div>
       </div>
 
 
-      <div class="ocultar_div">
+      <div class="form-group" id="folio_expediente_actividad" style="display:none;">
+        <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-folder"></i></span>
+            <select class="form-control" name="folio_expediente" id="folio_expediente" required>
+              <option disabled selected value>SELECCIONE EL EXPEDIENTE</option>
+                <?php
+                    $select1 = "SELECT DISTINCT datospersonales.folioexpediente
+                    FROM datospersonales
+                    WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
+                    ORDER BY datospersonales.id ASC";
+                      $answer1 = $mysqli->query($select1);
+                      while($valores1 = $answer1->fetch_assoc()){
+                        $result_folio = $valores1['folioexpediente'];
+                        echo "<option value='$result_folio'>$result_folio</option>";
+                      }
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="form-group" id="id_sujeto_actividad" style="display:none;">
+        <label class="col-md-3 control-label">ID SUJETO</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
+            <select class="form-control" name="id_sujeto" id="id_sujeto" required>
+
+
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- <div id="ocultar_div">
+
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+              <input id="id_act" class="form-control" readonly value class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">ID CONSECUTIVO SUBDIRECCIÓN</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+              <input name="consecutivo_subdireccion_actividad" id="consecutivo_subdireccion_actividad" class="form-control" type="text" readonly>
+            </div>
+          </div>
+        </div>
+
+
+
         <div class="form-group">
           <label class="col-md-3 control-label">ID ACTIVIDAD ASIGNADO</label>
           <div class="col-md-7 inputGroupContainer">
@@ -208,33 +236,68 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
             </div>
           </div>
         </div>
-      </div>
 
 
-      <div class="ocultar_div">
+
         <div class="form-group">
           <label class="col-md-3 control-label">ID SUBDIRECCIÓN</label>
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="subdireccion" id="subdireccion" class="form-control" type="text" readonly value="3">
+              <input name="id_subdireccion_actividad" id="id_subdireccion_actividad" class="form-control" type="text" readonly value="3">
             </div>
           </div>
         </div>
-      </div>
 
 
 
-      <div class="ocultar_div">
         <div class="form-group">
           <label class="col-md-3 control-label">FUNCIÓN</label>
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="funcion" id="funcion" class="form-control" type="text" readonly>
+              <input name="funcion_actividad" id="funcion_actividad" class="form-control" type="text" readonly>
             </div>
           </div>
         </div>
+
+
+
+
+      </div> -->
+
+
+      <div class="form-group" id="ocultar_numero_oficio_actividad" style="display:none;">
+          <label class="col-md-3 control-label">NÚMERO DE OFICIO</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
+              <input name="numero_oficio_actividad" id="numero_oficio_actividad" class="form-control" value class="form-control" type="text">
+            </div>
+          </div>
+      </div>
+
+
+      <div class="form-group" id="ocultar_solicitud_informacion_actividad" style="display:none;">
+          <label class="col-md-3 control-label">NÚMERO DE SOLICITUD DE INFORMACIÓN</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
+              <input name="solicitud_informacion_actividad" id="solicitud_informacion_actividad" class="form-control" value class="form-control" type="text">
+            </div>
+          </div>
+      </div>
+
+
+
+      <div class="form-group" id="ocultar_solicitud_colaboracion_actividad" style="display:none;">
+          <label class="col-md-3 control-label">NÚMERO DE SOLICITUD DE COLABORACIÓN</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
+              <input name="solicitud_colaboracion_actividad" id="solicitud_colaboracion_actividad" class="form-control" value class="form-control" type="text">
+            </div>
+          </div>
       </div>
 
 
@@ -244,7 +307,7 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-comments"></i></span>
-            <textarea class="form-control" type="text" required name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+            <textarea class="form-control" type="text" name="observaciones_actividad" id="observaciones_actividad" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
           </div>
         </div>
       </div>
@@ -254,7 +317,7 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
-          <button type="submit" class="btn btn-success">SIGUIENTE <span class="glyphicon glyphicon-ok"></span></button>
+          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> GUARDAR </button>
         </div>
       </div>
     </form>
@@ -268,5 +331,143 @@ if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional'){
   <div class="contenedor">
       <a href="../admin.php" class="btn-flotante">REGRESAR</a>
   </div>
+
+
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$('#folio_expediente').val(1);
+		recargarLista();
+
+		$('#folio_expediente').change(function(){
+			recargarLista();
+		});
+
+
+	})
+</script>
+
+
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"../get_id_sujeto.php",
+			data:"folio=" + $('#folio_expediente').val(),
+			success:function(r){
+				$('#id_sujeto').html(r);
+			}
+		});
+	}
+</script>
+
+
+<script type="text/javascript">
+
+  var n_actividad = document.getElementById('numero_actividad');
+  var numero_act;
+  var num_actividad_obtenido;
+
+  n_actividad.addEventListener('change', obtenerNumero);
+
+  function obtenerNumero(e){
+
+    numero_act = e.target.value;
+    num_actividad_obtenido = numero_act;
+
+    console.log(num_actividad_obtenido);
+    
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '6' || num_actividad_obtenido === '7'){
+      document.getElementById("ocultar_numero_oficio_actividad").style.display = ""; // MOSTRAR
+      ocument.getElementById('ocultar_solicitud_informacion_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').style.display = "none"; //OCULTAR
+
+      document.getElementById('ocultar_solicitud_informacion_actividad').value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').value = ""; // LIMPIAR
+
+      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("folio_expediente_actividad").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto_actividad').value = ""; // LIMPIAR
+    }
+
+    else if (num_actividad_obtenido === '4'){
+      document.getElementById('ocultar_solicitud_informacion_actividad').style.display = ""; // MOSTRAR
+      document.getElementById('ocultar_numero_oficio_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("ocultar_numero_oficio_actividad").value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').value = ""; // LIMPIAR
+
+      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("folio_expediente_actividad").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto_actividad').value = ""; // LIMPIAR
+    }
+
+    else if (num_actividad_obtenido === '8'){
+
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').style.display = ""; // MOSTRAR
+      document.getElementById('ocultar_numero_oficio_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('ocultar_solicitud_informacion_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("ocultar_numero_oficio_actividad").value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_informacion_actividad').value = ""; // LIMPIAR
+
+      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("folio_expediente_actividad").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto_actividad').value = ""; // LIMPIAR
+    } 
+    else if (num_actividad_obtenido === '9'){
+      
+      document.getElementById("clasificacion").style.display = ""; // MOSTRAR
+
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+
+      document.getElementById("ocultar_numero_oficio_actividad").style.display = "none"; // OCULTAR
+      ocument.getElementById('ocultar_solicitud_informacion_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById('ocultar_numero_oficio_actividad').value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_informacion_actividad').value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').value = ""; // LIMPIAR
+
+      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("folio_expediente_actividad").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto_actividad').value = ""; // LIMPIAR
+
+
+      // document.getElementById('clasificacion').value = ""; // LIMPIAR
+      // document.getElementById('clasificacion').style.display = "none"; // OCULTAR
+    }
+
+    else {
+
+      document.getElementById("ocultar_numero_oficio_actividad").style.display = "none"; // OCULTAR
+      ocument.getElementById('ocultar_solicitud_informacion_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById('ocultar_numero_oficio_actividad').value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_informacion_actividad').value = ""; // LIMPIAR
+      document.getElementById('ocultar_solicitud_colaboracion_actividad').value = ""; // LIMPIAR
+
+      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+
+      document.getElementById("folio_expediente_actividad").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto_actividad').value = ""; // LIMPIAR
+    }
+    
+  }
+
+
+</script>
+
 </body>
 </html>

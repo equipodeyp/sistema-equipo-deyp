@@ -27,7 +27,7 @@ $row=$result->fetch_assoc();
 
 <?php
 
-if($name === 'a-azael'){
+if($name === 'estadistica3'){
   // echo "azael";
 ?>
 
@@ -226,7 +226,7 @@ if($name === 'a-azael'){
 ?>
 
 <?php
-if($name === 'a-jonathan'){
+if($name === 'estadistica1'){
   // echo "jon";
 ?>
 
@@ -425,7 +425,7 @@ if($name === 'a-jonathan'){
 
 
 <?php
-if($name === 'a-gabriela'){
+if($name === 'estadistica2'){
   // echo "gaby";
 ?>
 

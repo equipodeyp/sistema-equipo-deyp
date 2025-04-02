@@ -242,9 +242,6 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           $agendar = "SELECT * FROM agendar_asistencia WHERE id_asistencia ='$id_asistencia_medica'";
                           $ragendar = $mysqli->query($agendar);
                           $fagendar = $ragendar->fetch_assoc();
-                         
-
-               
 
                           if ($checkagendar === 'SI') {
                             // echo "<option value='"; echo $fagendar['tipo_institucion']; echo "'>"; echo $fagendar['tipo_institucion']; echo"</option>";
