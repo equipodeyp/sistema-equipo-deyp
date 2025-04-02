@@ -161,6 +161,28 @@ $mostrar=$result->fetch_assoc();
       
 
 
+<div class="form-group">
+        <label class="col-md-3 control-label">ACTIVIDAD</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+              <select class="form-control" id="sa "name="sa" >
+              <option value"">sel</option>
+              <?php
+              $se = "SELECT * FROM react_actividad_apoyo";
+              $answer1 = $mysqli->query($se);
+              while ($val = $answer1->fetch_assoc()){
+                echo "<option value=´".$val['nombre']."'>".$val['nombre']."</option>";
+                              }
+                                 ?>   
+              </select>   
+            </div>          
+         </div>
+        </div>
+      
+
+
+
      <div class="form-group">
         <label class="col-md-3 control-label">FUNCION</label>
         <div class="col-md-7 inputGroupContainer">

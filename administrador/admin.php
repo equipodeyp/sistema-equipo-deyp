@@ -508,7 +508,7 @@ if($_SESSION['usuario'] == 'a-gabriela'){
   ?>
   console.log(jsvar);
   console.log(jsvmedidasfalse);
-  if (jsvar === 'a-adriana') {
+  if (jsvar === 'estadistica_admin') {
     if (jsvmedidasfalse > 0) {
       document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
       console.log(jsvar);
