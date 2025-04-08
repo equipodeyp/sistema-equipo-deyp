@@ -454,6 +454,7 @@ else{
         }
         ?>
         <?php
+        
         if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional') {
         ?>
         <ul>

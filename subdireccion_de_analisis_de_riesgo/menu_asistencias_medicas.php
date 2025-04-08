@@ -5,6 +5,8 @@ date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
+// echo $name;
+
 if (!isset($name)) {
   header("location: ../logout.php");
 }
@@ -35,7 +37,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 // echo $m_user;
-
+// echo '<br>';
 
 $sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
 $rnombre = $mysqli->query($sentencia2);
@@ -43,8 +45,6 @@ $fnombre=$rnombre->fetch_assoc();
 $name_serv = $fnombre['nombre'];
 $ap_serv = $fnombre['apaterno'];
 $am_serv = $fnombre['amaterno'];
-
-
 
 $name_user = $name_serv;
 $name_user = strtoupper($name_user);
@@ -66,14 +66,12 @@ $am_string = $a_materno;
 $inicial_am = $am_string[0];
 // echo $inicial_am;
 
-
-
 $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 // echo $id_servidor_ini;
+// echo '<br>';
 
+?>
 
-
- ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -358,25 +356,39 @@ $row=$result->fetch_assoc();
 $genero = $row['sexo'];
 $id_user = $row['id'];
 
+// echo $id_user;
+// echo '<br>';
+
 $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
 $ruserfijo = $mysqli->query($userfijo);
 $fuserfijo=$ruserfijo->fetch_assoc();
-$permiso1 = $fuserfijo['permiso1'];
-$permiso2 = $fuserfijo['permiso2'];
-$permiso3 = $fuserfijo['permiso3'];
-$permiso4 = $fuserfijo['permiso4'];
-$permiso5 = $fuserfijo['permiso5'];
-$permiso6 = $fuserfijo['permiso6'];
-$permiso7 = $fuserfijo['permiso7'];
-$permiso8 = $fuserfijo['permiso8'];
+$permiso1 = $fuserfijo['permiso1']; //CONSULTA
+$permiso2 = $fuserfijo['permiso2']; //VALIDAR
+$permiso3 = $fuserfijo['permiso3']; //SOLICITAR
+
+$permiso4 = $fuserfijo['permiso4']; //CALENDARIO 
+$permiso5 = $fuserfijo['permiso5']; //INSTRUMENTO
+$permiso6 = $fuserfijo['permiso6']; //AGENDAR
+$permiso7 = $fuserfijo['permiso7']; //SEGUIMIENTO
+
+$permiso8 = $fuserfijo['permiso8']; //DETALLE
+
 // echo $permiso1;
+// echo '<br>';
 // echo $permiso2;
+// echo '<br>';
 // echo $permiso3;
+// echo '<br>';
 // echo $permiso4;
+// echo '<br>';
 // echo $permiso5;
+// echo '<br>';
 // echo $permiso6;
+// echo '<br>';
 // echo $permiso7;
+// echo '<br>';
 // echo $permiso8;
+// echo '<br>';
 
 
 $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia WHERE id_servidor = '$id_servidor_ini'";
@@ -384,84 +396,78 @@ $rcl = $mysqli->query($cl);
 $fcl = $rcl->fetch_assoc();
 // echo $fcl['t'];
 
+echo "<ul class='ca-menu' style='text-align:right'>";
+
 if ($permiso3==='solicitar') {
   echo "
-
-<ul class='ca-menu' style='text-align:right'>
-            <li style='text-align:center'>
-              <a href='./solicitar_asistencia.php'>
-                <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
-                <div class='ca-content'>
-                  <h2 class='ca-main'>SOLICITAR</h2>
-                  <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
-              </a>
-            </li>
-
+    <li style='text-align:center'>
+      <a href='./solicitar_asistencia.php'>
+      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
+      <div class='ca-content'>
+        <h2 class='ca-main'>SOLICITAR</h2>
+        <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3>
+      </div>
+      </a>
+    </li>
 ";
-
 }
 
 if ($permiso6==='agendar') {
   echo "
-
-        <li style='text-align:center'>
-          <a href='./solicitudes_registradas_agendar.php'>
-            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
-            <div class='ca-content'>
-              <h2 class='ca-main'>AGENDAR</h2>
-              <h3 class='ca-sub'>SOLICITUDES MEDIDAS PROVICIONALES</h3></div>
-          </a>
-        </li>
-
+    <li style='text-align:center'>
+      <a href='./solicitudes_registradas_agendar.php'>
+      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
+      <div class='ca-content'>
+        <h2 class='ca-main'>AGENDAR</h2>
+        <h3 class='ca-sub'>SOLICITUDES MEDIDAS PROVICIONALES</h3>
+      </div>
+      </a>
+    </li>
   ";
-
 }
 
 if ($permiso7==='seguimiento') {
   echo "
-
-        <li style='text-align:center'>
-          <a href='./asistencia_turnada.php'>
-            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
-            <div class='ca-content'>
-              <h2 class='ca-main'>SEGUIMIENTO</h2>
-              <h3 class='ca-sub'>ASISTENCIAS PSICOLÓGICAS TURNADAS Y/O ASIGNADAS</h3></div>
-          </a>
-        </li>
-
+    <li style='text-align:center'>
+      <a href='./asistencia_turnada.php'>
+      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
+      <div class='ca-content'>
+        <h2 class='ca-main'>SEGUIMIENTO</h2>
+        <h3 class='ca-sub'>ASISTENCIAS PSICOLÓGICAS TURNADAS Y/O ASIGNADAS</h3>
+      </div>
+      </a>
+    </li>
   ";
-
 }
 
 
 if ($permiso4==='calendario') {
   echo "
-
-        <li style='text-align:center'>
-          <a href='./agenda/index.php'>
-            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-            <div class='ca-content'>
-              <h2 class='ca-main'>CALENDARIO</h2>
-              <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-          </a>
-        </li>
-
+    <li style='text-align:center'>
+      <a href='./agenda/index.php'>
+      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
+      <div class='ca-content'>
+        <h2 class='ca-main'>CALENDARIO</h2>
+        <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3>
+      </div>
+      </a>
+    </li>
   ";
-
 }
 
 
 if ($permiso8==='detalle') {
   echo "
 
-        <li style='text-align:center'>
-          <a href='./panel_asistencias_completadas.php'>
-            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
-            <div class='ca-content'>
-              <h2 class='ca-main'>DETALLE</h2>
-              <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
-          </a>
-        </li>
+  <li style='text-align:center'>
+    <a href='./panel_asistencias_completadas.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>DETALLE</h2>
+      <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3>
+    </div>
+    </a>
+  </li>
 
   ";
 
@@ -470,61 +476,25 @@ if ($permiso8==='detalle') {
 if($fcl['t'] > 0){
 
   echo"
-
-        <li style='text-align:center'>
-          <a href='./registrar_incidencia_asistencia.php'>
-            <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-            <div class='ca-content'>
-              <h2 class='ca-main'>INCIDENCIA</h2>
-              <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-          </a>
-        </li>
-</ul>
-    ";
+    <li style='text-align:center'>
+      <a href='./registrar_incidencia_asistencia.php'>
+      <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
+      <div class='ca-content'>
+        <h2 class='ca-main'>INCIDENCIA</h2>
+        <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3>
+      </div>
+      </a>
+    </li>
+  ";
 
 }
 
+echo "</ul>";
 
-
-
-// if($permiso4=='calendario'){
-//   echo "
-
-//   <ul class='ca-menu' style='text-align:right'>
-
-//     <li style='text-align:center'>
-//     <a href='./agenda/index.php'>
-//       <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/agenda.png' style='width:55px;height:55px;'></span>
-//       <div class='ca-content'>
-//         <h2 class='ca-main'>CALENDARIO</h2>
-//         <h3 class='ca-sub'>ASISTENCIAS MÉDICAS PROGRAMADAS</h3></div>
-//     </a>
-//     </li>
-
-//   </ul>
-
-
-//   ";
-  
-
-
-// }
-
-
-
-
-
-// <li style='text-align:center'>
-//   <a href='./panel_asistencias_por_completar.php'>
-//     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/seguimiento.png' style='width:55px;height:55px;'></span>
-//     <div class='ca-content'>
-//       <h2 class='ca-main'>SEGUIMIENTO</h2>
-//       <h3 class='ca-sub'>ASISTENCIA MÉDICA</h3></div>
-//   </a>
-// </li>
 
 ?>
 
+</div>
 
 <div class="contenedor">
     <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>
