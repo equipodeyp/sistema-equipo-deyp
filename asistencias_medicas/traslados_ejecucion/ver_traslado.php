@@ -174,45 +174,6 @@ $ftraertraslado = $rtraertraslado -> fetch_assoc();
           </div>
         </div>
       </div>
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">LUGAR DE DESTINO</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-arrow-right-to-city"></i></span>
-            <input name="lugardestino" placeholder="INGRESE LUGAR DE DESTINO" class="form-control" type="text" value="<?php echo $ftraertraslado['lugar_destino']; ?>" disabled>
-          </div>
-        </div>
-      </div>
-
-      <!-- Select Basic -->
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">DOMICILIO DE DESTINO</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-map-location-dot"></i></span>
-            <input name="domiciliodestino" placeholder="INGRESE DOMICILIO DE DE DESTINO" class="form-control" type="text" value="<?php echo $ftraertraslado['domicilio_destino']; ?>" disabled>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">MUNICIPIO DE DESTINO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select name="municipiodestino" class="form-control selectpicker" disabled>
-              <option disabled selected value><?php echo $ftraertraslado['municipio_destino']; ?></option>
-            </select>
-          </div>
-        </div>
-      </div>
-
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-3 control-label">HORA DE LLEGADA</label>
@@ -223,22 +184,7 @@ $ftraertraslado = $rtraertraslado -> fetch_assoc();
           </div>
         </div>
       </div>
-
-      <!-- radio checks -->
-      <div class="form-group">
-        <label class="col-md-3 control-label">MOTIVO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-file-circle-exclamation"></i></span>
-            <select name="motivotraslado" class="form-control selectpicker" disabled>
-              <option disabled selected value><?php echo $ftraertraslado['motivo']; ?></option>
-            </select>
-          </div>
-        </div>
-      </div>
-
       <!-- Text area -->
-
       <div class="form-group">
         <label class="col-md-3 control-label">KILOMETROS RECORRIDOS</label>
         <div class="col-md-7 inputGroupContainer">
@@ -248,7 +194,40 @@ $ftraertraslado = $rtraertraslado -> fetch_assoc();
           </div>
         </div>
       </div>
-
+      <!-- tabla de destinos -->
+      <div class="form-group">
+        <h1>DESTINOS</h1>
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>NO.</th>
+                <th>LUGAR</th>
+                <th>DOMICILIO</th>
+                <th>MUNICIPIO</th>
+                <th>MOTIVO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $count = 0;
+              $traerdestinos = "SELECT * FROM react_destinos_traslados WHERE id_traslado = '$id_traslado'";
+              $rtraerdestinos = $mysqli->query($traerdestinos);
+              while ($ftraerdestinos = $rtraerdestinos->fetch_assoc()) {
+                $count = $count +1;
+                ?>
+                <tr>
+                  <td><?php echo $count; ?></td>
+                  <td><?php echo $ftraerdestinos['lugar']; ?></td>
+                  <td><?php echo $ftraerdestinos['domicilio']; ?></td>
+                  <td><?php echo $ftraerdestinos['municipio']; ?></td>
+                  <td><?php echo $ftraerdestinos['motivo']; ?></td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+        </table>
+      </div>
       <!-- tabla para agregar personas del traslado -->
       <form method="POST" action="save_personas_traslado.php?id_traslado=<?php echo $id_traslado; ?>" enctype= "multipart/form-data">
 

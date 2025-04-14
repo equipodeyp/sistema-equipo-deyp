@@ -33,7 +33,7 @@ for($k = 0; $k < count($pdis); $k++) {
 // redireccionar a la pagina de registro de traslado
 if($raddsujetosentraslado){
   echo ("<script type='text/javaScript'>
-   window.location.href='../admin.php';
+   window.location.href='add_traslado.php';
    window.alert('!!!!!Registro exitoso¡¡¡¡¡')
  </script>");
 }

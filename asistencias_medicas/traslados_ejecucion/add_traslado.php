@@ -119,8 +119,7 @@ $mostrar=$result->fetch_assoc();
       <div class="">
         <h1 style="text-align:center">REGISTRAR TRASLADO</h1>
         <center>
-  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
-
+  <div style="text-align:center;padding:15px;border:solid 5px; width:85%;border-radius:35px;shadow" class="well form-horizontal">
     <form method="POST" action="save_trasalado.php" enctype= "multipart/form-data">
       <!-- Text input-->
       <div class="form-group">
@@ -197,53 +196,6 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">LUGAR DE DESTINO</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-arrow-right-to-city"></i></span>
-            <input name="lugardestino" placeholder="INGRESE LUGAR DE DESTINO" class="form-control" type="text" required>
-          </div>
-        </div>
-      </div>
-
-      <!-- Select Basic -->
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">DOMICILIO DE DESTINO</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-map-location-dot"></i></span>
-            <input name="domiciliodestino" placeholder="INGRESE DOMICILIO DE DE DESTINO" class="form-control" type="text" required>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">MUNICIPIO DE DESTINO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select name="municipiodestino" class="form-control selectpicker" required>
-              <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
-              <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
-              <?php
-              $municipio = "SELECT * FROM municipios";
-              $answermun = $mysqli->query($municipio);
-              while($municipios = $answermun->fetch_assoc()){
-               echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-        </div>
-      </div>
-
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-3 control-label">HORA DE LLEGADA</label>
@@ -254,29 +206,7 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-
       <!-- radio checks -->
-      <div class="form-group">
-        <label class="col-md-3 control-label">MOTIVO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-file-circle-exclamation"></i></span>
-            <select name="motivotraslado" class="form-control selectpicker" required>
-              <option disabled selected value>SELECCIONE UN MOTIVO</option>
-              <?php
-              $trasladomotivo = "SELECT * FROM react_traslados_instancias";
-              $rtrasladomotivo = $mysqli->query($trasladomotivo);
-              while($ftrasladomotivo = $rtrasladomotivo->fetch_assoc()){
-               echo "<option value='".$ftrasladomotivo['nombre']."'>".$ftrasladomotivo['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text area -->
-
       <div class="form-group">
         <label class="col-md-3 control-label">KILOMETROS RECORRIDOS</label>
         <div class="col-md-7 inputGroupContainer">
@@ -286,6 +216,108 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
+      <!--  -->
+      <div class="form-group">
+        <label class="col-md-3 control-label" style="line-height: 110px;">OBSERVACIONES</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-road"></i></span>
+            <textarea name="observaciones" rows="5" cols="85"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <h1>DESTINOS</h1>
+      <!-- <span>______________________________________________________________________________________________</span> -->
+      <div id="contenedor-personas">
+        <div class="persona-form">
+          <div class="row">
+          <span>____________________________________________________________________________________________________________________________</span>
+            <div class="col-md-3">
+              <label class="col-md-3 control-label">LUGAR</label>
+                <input name="lugardestino[]" placeholder="INGRESE LUGAR DE DESTINO" class="form-control" type="text" required>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="text-center col-md-3 control-label">DOMICILIO</label>
+              <input name="domiciliodestino[]" placeholder="INGRESE DOMICILIO DE DE DESTINO" class="form-control" type="text" required>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="col-md-3 control-label">MUNICIPIO</label>
+                <select name="municipiodestino[]" class="form-control selectpicker" required>
+                  <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
+                  <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+                  <?php
+                  $municipio = "SELECT * FROM municipios";
+                  $answermun = $mysqli->query($municipio);
+                  while($municipios = $answermun->fetch_assoc()){
+                   echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+                  }
+                  ?>
+                </select>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="col-md-3 control-label">MOTIVO</label>
+                <select name="motivotraslado[]" class="form-control selectpicker" required>
+                  <option disabled selected value>SELECCIONE UN MOTIVO</option>
+                  <?php
+                  $trasladomotivo = "SELECT * FROM react_traslados_instancias";
+                  $rtrasladomotivo = $mysqli->query($trasladomotivo);
+                  while($ftrasladomotivo = $rtrasladomotivo->fetch_assoc()){
+                   echo "<option value='".$ftrasladomotivo['nombre']."'>".$ftrasladomotivo['nombre']."</option>";
+                  }
+                  ?>
+                </select>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <span>______________________________________________________________________________________________</span>
+       <br><br>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <button type="button" id="agregar-persona" class="btn btn-primary">
+            <i class="fa fa-plus"></i> AGREGAR DESTINO
+          </button>
+        </div>
+      </div>
+      <br>
+      <script>
+        $(document).ready(function(){
+          var maxPersonas = 3;
+          var contadorPersonas = 1;
+          //Manejar cambio en select de expediente
+          // Agregar nueva persona
+          $('#agregar-persona').click(function(){
+            if(contadorPersonas < maxPersonas){
+              var clone = $('.persona-form').first().clone();
+              clone.find('select').val('');
+              clone.find('input').val('');
+              // clone.find('select').val('');
+              // Agregar botón eliminar al clon
+              // clone.append('<span>______________________________________________________________________________________________</span>');
+              clone.append('<br><div class="col-md-12 mb-3"><button type="button" class="btn btn-danger btn-eliminar"><i class="fa fa-trash"></i> Eliminar</button></div>');
+              clone.append('<br>');
+              $('#contenedor-personas').append(clone);
+              contadorPersonas++;
+              if(contadorPersonas >= maxPersonas){
+                $('#agregar-persona').hide();
+              }
+            }
+          });
+          // Eliminar persona
+          $(document).on('click', '.btn-eliminar', function(){
+            $(this).closest('.persona-form').remove();
+            contadorPersonas--;
+            $('#agregar-persona').show();
+          });
+        });
+      </script>
+
+      <!-- Text area -->
 
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
