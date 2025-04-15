@@ -34,6 +34,11 @@ $id_traslado = $_GET["id_traslado"];
 $traertraslado = "SELECT * FROM react_traslados WHERE id = '$id_traslado'";
 $rtraertraslado = $mysqli ->query ($traertraslado);
 $ftraertraslado = $rtraertraslado -> fetch_assoc();
+
+$traerobservacion = "SELECT * FROM react_observaciones_traslado WHERE id_traslado = '$id_traslado'";
+$rtraerobservacion = $mysqli ->query ($traerobservacion);
+$ftraerobservacion = $rtraerobservacion -> fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -191,6 +196,16 @@ $ftraertraslado = $rtraertraslado -> fetch_assoc();
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-road"></i></span>
             <input id="kilometrosrecorridos" name="kilometrosrecorridos" placeholder="INGRESE KILOMETROS RECORRIDOS" class="form-control" type="text" value="<?php echo $ftraertraslado['kilometros']; ?>" disabled>
+          </div>
+        </div>
+      </div>
+      <!-- Text area -->
+      <div class="form-group">
+        <label class="col-md-3 control-label" style="line-height: 110px;">OBSERVACIONES</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-road"></i></span>
+            <textarea name="observaciones" rows="5" cols="55" disabled><?php echo $ftraerobservacion['observacion']; ?></textarea>
           </div>
         </div>
       </div>
