@@ -129,7 +129,7 @@ $mostrar=$result->fetch_assoc();
               $answer = $mysqli->query($select);
               $valores = $answer->fetch_assoc();
                                  ?>     
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -137,7 +137,7 @@ $mostrar=$result->fetch_assoc();
             <input type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>  " readonly>                         
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- </div> -->
 
       <div class="form-group">
@@ -145,13 +145,13 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-              <select class="form-control" id="sa "name="sa" >
-              <option value"">sel</option>
+              <select class="form-control" required onchange="selectNit(event)" id="idactividad">
+              <option  disabled selected value"">SELECCIONA ACTIVIDAD</option>
               <?php
               $se = "SELECT * FROM react_actividad_apoyo";
               $answer1 = $mysqli->query($se);
               while ($val = $answer1->fetch_assoc()){
-                echo "<option value=´".$val['nombre']."'>".$val['nombre']."</option>";
+                echo "<option value='".$val['id']."'>".$val['nombre']."</option>";
                               }
                                  ?>   
               </select>   
@@ -161,68 +161,119 @@ $mostrar=$result->fetch_assoc();
       
 
 
-<div class="form-group">
-        <label class="col-md-3 control-label">ACTIVIDAD</label>
+<!-- <div class="form-group">
+        <label class="col-md-3 control-label">FUNCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-              <select class="form-control" id="sa "name="sa" >
-              <option value"">sel</option>
-              <?php
-              $se = "SELECT * FROM react_actividad_apoyo";
-              $answer1 = $mysqli->query($se);
-              while ($val = $answer1->fetch_assoc()){
-                echo "<option value=´".$val['nombre']."'>".$val['nombre']."</option>";
-                              }
-                                 ?>   
-              </select>   
-            </div>          
-         </div>
-        </div>
-      
-
-
-
-     <div class="form-group">
-        <label class="col-md-3 control-label">FUNCION</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="idtraslado" class="form-control" type="text"  readonly>
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+             <input name="funcionapoyo" value="" class="form-control" type="text"  id="funcionapoyo">
           </div>
         </div>
-      </div>
+      </div>    -->
 
-      <div class="form-group">
+
+    
+      <!-- <div class="form-group">
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas-regular fa-calendar-check"></i></span>
-            <input name="idtraslado" class="form-control" type="text"  readonly>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-3 control-label">INFORME ANUAL</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="idtraslado" class="form-control" type="text"  readonly>
-          </div>
-        </div>
-      </div>
-      
-      
-
-      <!-- <div class="form-group">
-        <label class="col-md-3 control-label">ID ACTIVIDAD</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="idtraslado" class="form-control" type="text"  readonly>
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="unidadmedida" value="" class="form-control" type="text"  id="unidadmedida">
           </div>
         </div>
       </div> -->
+
+
+      <!-- <div class="form-group">
+        <label class="col-md-3 control-label">REPORTE DE METAS</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+          </div>
+        </div>
+      </div> -->
+
+
+
+<br><br>
+
+      
+      <div class="form-group">
+        <label class="col-md-3 control-label">FECHA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
+            <input name="fechaactividad" class="form-control" type="date" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">CANTIDAD</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+            <input name="cantidad" value="" class="form-control" type="text" id="cantidad">
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- <div class="form-group">
+        <label class="col-md-3 control-label">CLASIFICACION</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+          </div>
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">ID EXPEDIENTE DE PROTECCIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+          </div>
+        </div>
+      </div>
+        
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">ID PP O SP</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">EVIDENCIA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">ID EVIDENCIA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+          </div>
+        </div>
+      </div>
+
 
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
@@ -241,5 +292,45 @@ $mostrar=$result->fetch_assoc();
   <div class="contenedor">
     <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>     
   </div>
+
+
+
+
+<script type="text/javascript">
+
+    function selectNit(e) {
+      var idfuncion = document.getElementById("idactividad").value;
+      
+      console.log(idfuncion);
+      
+      if (idfuncion === '1') {
+        document.getElementById("funcionapoyo").value = "Elaboración y suscripción de convenios";
+        document.getElementById("unidadmedida").value = "Convenio";
+       
+      }else if (idfuncion === '2') {
+        document.getElementById("funcionapoyo").value = "Integración del expediente de protección";
+        document.getElementById("unidadmedida").value = "Documento";
+       
+      }else if (idfuncion === '3') {
+        document.getElementById("funcionapoyo").value = "Diligencias administrativas";
+        document.getElementById("unidadmedida").value = "Traslado";
+        
+      }else if (idfuncion === '4') {
+        document.getElementById("funcionapoyo").value = "Otorgar medidas de asistencia";
+        document.getElementById("unidadmedida").value = "Asesoria";
+            }
+       document.getElementById("reporteanual").value = "SI";
+  }
+
+  </script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
