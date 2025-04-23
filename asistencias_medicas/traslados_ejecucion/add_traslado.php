@@ -222,7 +222,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-road"></i></span>
-            <textarea name="observaciones" rows="5" cols="85"></textarea>
+            <textarea name="observaciones" rows="5" cols="85" required></textarea>
           </div>
         </div>
       </div>
