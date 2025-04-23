@@ -439,11 +439,11 @@ else{
                                 <i class="fas fa-file-medical"></i> REGISTRAR</a>
                             </li>
                             <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/consulta_traslados.php'">
-                                <i class="fas fa-laptop-file"></i> CONSULTAR</a>
+                                <i class="fas fa-laptop-file"></i> BUSCAR</a>
                             </li>
-                            <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/search_traslado.php'">
-                              <i class="fas fa-search"></i> BUSCAR</a>
-                            </li> -->
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/search_traslado.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -454,7 +454,7 @@ else{
         }
         ?>
         <?php
-        
+
         if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional') {
         ?>
         <ul>
