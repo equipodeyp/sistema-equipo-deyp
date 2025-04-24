@@ -499,7 +499,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                           <br>
 
-                          <div>
+                          <!-- <div>
                             <label class="control-label">NÚMERO DE OFICIO MEDIANTE EL CUAL SE RECIBE EL MEDICAMENTO</label>
                             <input placeholder="NÚMERO DE OFICIO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="oficio" name="oficio" required value="">
                           </div>
@@ -509,7 +509,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                           <div>
                             <label class="control-label">NOMBRE DEL SERVIDOR PÚBLICO QUE RECIBE EL MEDICAMENTO</label>
                             <input placeholder="NOMBRE DEL SERVIDOR PÚBLICO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre_recibe" name="nombre_recibe" required value="">
-                          </div>
+                          </div> -->
 
 
 

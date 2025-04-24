@@ -20,8 +20,8 @@ $nombre = $_POST['nombre'];
 $cantidad = $_POST['cantidad'];
 $presentacion = $_POST['presentacion'];
 $contenido = $_POST['contenido'];
-$oficio = $_POST['oficio'];
-$nombre_recibe = $_POST['nombre_recibe'];
+// $oficio = $_POST['oficio'];
+// $nombre_recibe = $_POST['nombre_recibe'];
 $indicaciones = $_POST['indicaciones'];
 
 // echo $id_asistencia_medica;
@@ -45,8 +45,12 @@ $indicaciones = $_POST['indicaciones'];
 // echo $indicaciones;
 // echo "<br>";
 
-$query = "INSERT INTO tratamiento_medico (id_asistencia, surtido, entregado, adquisicion, nombre_medicamento, cantidad, presentacion, contenido, indicaciones, numero_oficio, nombre_recibe, servidor_registra) 
-VALUES ('$id_asistencia_medica', '$surtido', '$entregado', '$adquisicion', '$nombre', '$cantidad', '$presentacion', '$contenido', '$indicaciones', '$oficio', '$nombre_recibe', '$id_servidor')";
+// $query = "INSERT INTO tratamiento_medico (id_asistencia, surtido, entregado, adquisicion, nombre_medicamento, cantidad, presentacion, contenido, indicaciones, numero_oficio, nombre_recibe, servidor_registra) 
+// VALUES ('$id_asistencia_medica', '$surtido', '$entregado', '$adquisicion', '$nombre', '$cantidad', '$presentacion', '$contenido', '$indicaciones', '$oficio', '$nombre_recibe', '$id_servidor')";
+// $result = $mysqli->query($query);
+
+$query = "INSERT INTO tratamiento_medico (id_asistencia, surtido, entregado, adquisicion, nombre_medicamento, cantidad, presentacion, contenido, indicaciones, servidor_registra) 
+VALUES ('$id_asistencia_medica', '$surtido', '$entregado', '$adquisicion', '$nombre', '$cantidad', '$presentacion', '$contenido', '$indicaciones', '$id_servidor')";
 $result = $mysqli->query($query);
 
 

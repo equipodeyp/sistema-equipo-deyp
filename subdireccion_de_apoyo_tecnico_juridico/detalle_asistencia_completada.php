@@ -803,8 +803,7 @@ $respuesta7=$resultado7->fetch_assoc();
                                                           <th style='text-align:center; font-size: 14px;'>PRESENTACIÓN</th>
                                                           <th style='text-align:center; font-size: 14px;'>CONTENIDO</th>
                                                           <th style='text-align:center; font-size: 14px;'>INDICACIONES</th>
-                                                          <th style='text-align:center; font-size: 14px;'>NÚMERO OFICIO</th>
-                                                          <th style='text-align:center; font-size: 14px;'>SERVIDOR PÚBLICO</th>
+
                                                       </tr>
                                                   </thead>
                                 
@@ -837,8 +836,8 @@ $respuesta7=$resultado7->fetch_assoc();
                                                           echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['presentacion']; echo "</td>";
                                                           echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['contenido']; echo "</td>";
                                                           echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['indicaciones']; echo "</td>";
-                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['numero_oficio']; echo "</td>";
-                                                          echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['nombre_recibe']; echo "</td>";
+                                                          // echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['numero_oficio']; echo "</td>";
+                                                          // echo "<td style='background-color: #fff; text-align:center'>"; echo $var_fila['nombre_recibe']; echo "</td>";
                                                           echo "</tr>";
                                                       }
                                                   ?>
