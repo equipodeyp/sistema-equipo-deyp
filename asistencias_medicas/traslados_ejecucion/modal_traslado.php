@@ -179,18 +179,21 @@
                       <div class="col-md-1">
                         <h3 style="text-align:center">NO.</h3>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <h3 style="text-align:center">EXPEDIENTE</h3>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <h3 style="text-align:center">ID DE LA PP O SP</h3>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <h3 style="text-align:center">EN RESGUARDO</h3>
+                      </div>
+                      <div class="col-md-3">
+                        <h3 style="text-align:center">DESTINOS</h3>
                       </div>
                       <?php
                         $contarpers = 0;
-                        $datpers = "SELECT * FROM react_sujetos_traslado WHERE id_traslado ='$idtrasladover'";
+                        $datpers = "SELECT DISTINCT id_sujeto, folio_expediente, id_sujeto, resguardado FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladover'";
                         $rdatpers = $mysqli->query($datpers);
                         while ($fdatpers = $rdatpers->fetch_assoc()) {
                           $contarpers = $contarpers + 1;
@@ -204,14 +207,27 @@
                       <div class="col-md-1">
                         <h4 style="text-align:center"><?php echo $contarpers; ?></h4>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <h4 style="text-align:center"><?php echo $fdatpers['folio_expediente']; ?></h4>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                         <h4 style="text-align:center"><?php echo $fidentificador['identificador']; ?></h4>
                       </div>
                       <div class="col-md-3">
                         <h4 style="text-align:center"><?php echo $fdatpers['resguardado']; ?></h4>
+                      </div>
+                      <div class="col-md-3">
+                        <h4 style="text-align:center"><?php
+                        $destxsuj = "SELECT * FROM react_destinos_traslados
+                                     INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
+                                     WHERE react_sujetos_traslado.id_sujeto = '$idsujetouni'";
+                        $rdestxsuj = $mysqli -> query($destxsuj);
+                        while ($fdestxsuj = $rdestxsuj ->fetch_assoc()) {
+                          $auxcontarsuj2 = $auxcontarsuj2 + 1;
+                          echo $auxcontarsuj2.'.-'.$fdestxsuj['municipio'].'<br>';
+                        }
+                        $auxcontarsuj2 = 0;
+                        ?></h4>
                       </div>
                       <?php
                       }
