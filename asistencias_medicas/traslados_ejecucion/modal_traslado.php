@@ -193,6 +193,7 @@
                       </div>
                       <?php
                         $contarpers = 0;
+                        $auxcontarsuj2 = 0;
                         $datpers = "SELECT DISTINCT id_sujeto, folio_expediente, id_sujeto, resguardado FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladover'";
                         $rdatpers = $mysqli->query($datpers);
                         while ($fdatpers = $rdatpers->fetch_assoc()) {
