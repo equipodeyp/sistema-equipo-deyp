@@ -60,6 +60,16 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
   <link rel="stylesheet" href="../../css/react_add_traslados.css">
+
+  <!--  -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+  $('select').selectpicker();
+</script>
 </head>
 <body>
   <div class="contenedor">
@@ -239,73 +249,80 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
                 </tr>
                 <?php
               }
+
+              function numvecesbr($numcrear){
+                for ($auxvecrep=1; $auxvecrep <= $numcrear ; $auxvecrep++) {
+                  echo "<br>";
+                }
+              }
               ?>
             </tbody>
         </table>
       </div>
-      <!-- tabla para agregar personas del traslado -->
-      <form method="POST" action="save_personas_traslado.php?id_traslado=<?php echo $id_traslado; ?>" enctype= "multipart/form-data">
 
 
-      <h1>SUJETOS QUE SE TRASLADARON</h1>
-      <!-- <span>______________________________________________________________________________________________</span> -->
-      <div id="contenedor-personas">
-        <div class="persona-form">
-          <div class="row">
-          <span>______________________________________________________________________________________________</span>
-            <div class="col-md-4 mb-3">
-              <label>EXPEDIENTE</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-folder"></i></span>
-                <select class="form-control expediente" name="nombre[]" required>
-                  <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+      <div id="contenido">
+        <h1>SUJETOS QUE SE TRASLADARON</h1>
+        <?php
+        $sujdestino = "SELECT COUNT(DISTINCT id_sujeto) AS tpt FROM react_sujetos_traslado WHERE id_traslado = '$id_traslado'";
+        $rsujdestino = $mysqli -> query ($sujdestino);
+        $fsujdestino = $rsujdestino -> fetch_assoc();
+        $varmostrar = $fsujdestino['tpt'];
+        if ($varmostrar >= 3) {
+          echo "ya no hay espacio";
+        }else {
+          // echo "aun se puede registro";
+          echo "<a href='#add_sujetotraslado".$id_traslado."' data-toggle='modal' class='float-right'><button style='' type='button' id='AGREGAR_CONVENIO' class='btn color-btn-success text-right'>AGREGAR</button></a>";
+        }
+        ?>
+        <!-- <a href="registrar_ampliacion.php?id_medida_aloj=<?php echo $id_medida;?>"><button style="display: block; margin: 0 auto;" type="button" id="AGREGAR_CONVENIO" class="btn color-btn-success">AGREGAR</button></a> -->
+        <table class="table table-striped table-dark table-bordered">
+          <thead class="table-success">
+            <th style="text-align:center">No.</th>
+            <th style="text-align:center">FOLIO EXPEDIENTE</th>
+            <th style="text-align:center">ID SUJETO</th>
+            <th style="text-align:center">RESGUARDADO</th>
+            <th style="text-align:center">DESTINOS</th>
+          </thead>
+          <tbody>
+            <?php
+            $auxcontarsuj = 0;
+            $auxcontarsuj2 = 0;
+            // traer datos de los sujetos
+            $sujdestino = "SELECT DISTINCT id_sujeto, folio_expediente, id_sujeto, resguardado FROM react_sujetos_traslado WHERE id_traslado = '$id_traslado'";
+            $rsujdestino = $mysqli -> query ($sujdestino);
+            while ($fsujdestino = $rsujdestino -> fetch_assoc()) {
+              $auxcontarsuj = $auxcontarsuj + 1;
+              $idsujdestinotraer = $fsujdestino['id_sujeto'];
+              // traer todos los destinos pór sujeto
+
+
+              ?>
+              <tr>
+                <td><?php echo $auxcontarsuj; ?></td>
+                <td><?php echo $fsujdestino['folio_expediente']; ?></td>
+                <td><?php echo $fsujdestino['id_sujeto']; ?></td>
+                <td><?php echo $fsujdestino['resguardado']; ?></td>
+                <td>
                   <?php
-                    $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                    FROM datospersonales
-                    WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
-                    ORDER BY datospersonales.id ASC";
-                    $answer1 = $mysqli->query($select1);
-                    while($valores1 = $answer1->fetch_assoc()){
-                      $result_folio = $valores1['folioexpediente'];
-                      echo "<option value='$result_folio'>$result_folio</option>";
-                    }
+                  $destxsuj = "SELECT * FROM react_destinos_traslados
+                               INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
+                               WHERE react_sujetos_traslado.id_sujeto = '$idsujdestinotraer'";
+                  $rdestxsuj = $mysqli -> query($destxsuj);
+                  while ($fdestxsuj = $rdestxsuj ->fetch_assoc()) {
+                    $auxcontarsuj2 = $auxcontarsuj2 + 1;                    
+                    echo $auxcontarsuj2.'.-'.$fdestxsuj['municipio'].'<br>';
+                  }
+                  $auxcontarsuj2 = 0;
                   ?>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-              <label>ID DE LA PP O SP</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                <select class="form-control id-sujeto" name="id_sujeto[]" required>
-                  <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-3">
-              <label>EN RESGUARDO</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                <select class="form-control en-resguardo" name="resguardo[]">
-                </select>
-              </div>
-            </div>
-
-          </div>
-        </div>
+                </td>
+              </tr>
+              <?php
+            }
+            ?>
+          </tbody>
+        </table>
       </div>
-      <span>______________________________________________________________________________________________</span>
-       <br><br>
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          <button type="button" id="agregar-persona" class="btn btn-primary">
-            <i class="fa fa-plus"></i> AGREGAR PERSONA
-          </button>
-        </div>
-      </div>
-
       <script>
         $(document).ready(function(){
           var maxPersonas = 3;
@@ -342,36 +359,9 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
               }
             });
           });
-
-          // Agregar nueva persona
-          $('#agregar-persona').click(function(){
-            if(contadorPersonas < maxPersonas){
-              var clone = $('.persona-form').first().clone();
-              clone.find('select').val('');
-
-              // Agregar botón eliminar al clon
-              // clone.append('<span>______________________________________________________________________________________________</span>');
-              clone.append('<br><div class="col-md-12 mb-3"><button type="button" class="btn btn-danger btn-eliminar"><i class="fa fa-trash"></i> Eliminar</button></div>');
-              clone.append('<br>');
-
-              $('#contenedor-personas').append(clone);
-              contadorPersonas++;
-
-              if(contadorPersonas >= maxPersonas){
-                $('#agregar-persona').hide();
-              }
-            }
-          });
-
-          // Eliminar persona
-          $(document).on('click', '.btn-eliminar', function(){
-            $(this).closest('.persona-form').remove();
-            contadorPersonas--;
-            $('#agregar-persona').show();
-          });
         });
       </script>
-
+      <form method="POST" action="save_personas_traslado.php?id_traslado=<?php echo $id_traslado; ?>" enctype= "multipart/form-data">
       <h1>PDI</h1>
       <div id="contenedor-pdis">
         <div class="pdi-form">
@@ -442,10 +432,10 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
           });
         });
       </script>
-      <br>
+      <!-- <br> -->
       <div class="form-group">
-        <label class="col-md-3 control-label"></label>
-        <div class="col-md-5">
+        <label class="col-md-7 control-label"></label>
+        <div class="col-md-12">
           <button type="submit" class="btn btn-success">FINALIZAR <span class="glyphicon glyphicon-ok"></span></button>
         </div>
       </div>
@@ -458,5 +448,8 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
       </div>
     </div>
   </div>
+  <?php
+  include('add_sujeto_trasladodestino.php');
+  ?>
 </body>
 </html>
