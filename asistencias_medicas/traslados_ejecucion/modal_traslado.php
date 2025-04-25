@@ -233,7 +233,7 @@
                       <?php
                       }
                       ?>
-                      <br><br>
+                      <br><br><br><br>
                       <div id="cabecera">
                         <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
                           <h3 style="text-align:center; color: #ddd;">PDIS</h3>
