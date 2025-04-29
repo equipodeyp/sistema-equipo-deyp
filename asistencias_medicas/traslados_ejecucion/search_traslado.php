@@ -77,7 +77,26 @@ $_SESSION["check_traslado"] = $check_traslado;
       </div>
 
       <nav class="menu-nav">
-        <br><br>
+        <ul>
+            <li>
+                <a href="#" onclick="toggleSubmenu(this)">
+                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">TRASLADOS</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                </a>
+                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_traslado.php'">
+                    <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                  </li>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consulta_traslados.php'">
+                    <i class="fas fa-laptop-file"></i> BUSCAR</a>
+                  </li>
+                  <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./search_traslado.php'">
+                    <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
+                  </li> -->
+                </ul>
+            </li>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">
@@ -99,7 +118,7 @@ $_SESSION["check_traslado"] = $check_traslado;
         </div>
       </div>
       <div class="">
-        <h1 style="text-align:center">CONSULTA DE TRASLADOS</h1>
+        <!-- <h1 style="text-align:center">CONSULTA DE TRASLADOS</h1> -->
         <!-- Search Forms -->
         <div class="container" style="display: flex; justify-content: center;">
           <div class="row mt-8">
@@ -210,20 +229,20 @@ $_SESSION["check_traslado"] = $check_traslado;
                   break;
                 }
               }
-// $fechainicial;
-$diainicial = date('d', strtotime($fechainicial));
-$mesnumeroinicial = date('m', strtotime($fechainicial));
-$anioinicial = date('Y', strtotime($fechainicial));
-// transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial);
-// $fechafin;
-$diafinal = date('d', strtotime($fechafin));
-$mesnumerofinal = date('m', strtotime($fechafin));
-$aniofinal = date('Y', strtotime($fechafin));
+              // $fechainicial;
+              $diainicial = date('d', strtotime($fechainicial));
+              $mesnumeroinicial = date('m', strtotime($fechainicial));
+              $anioinicial = date('Y', strtotime($fechainicial));
+              // transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial);
+              // $fechafin;
+              $diafinal = date('d', strtotime($fechafin));
+              $mesnumerofinal = date('m', strtotime($fechafin));
+              $aniofinal = date('Y', strtotime($fechafin));
 
 
               ?>
-              <div class="container">
-                <div class="well form-horizontal">
+              <div class="" id="showafterconsul">
+                <div class="container well form-horizontal" style="text-align:center;padding:10px;border:solid 3px; width:98%;border-radius:20px;shadow">
                   <div style="display: flex; justify-content: center;">
                     <table style="width:50%" class="table table-striped table-bordered" cellspacing="0" >
                         <thead>
@@ -239,146 +258,267 @@ $aniofinal = date('Y', strtotime($fechafin));
                         </thead>
                     </table>
                   </div>
-                  <div class="contenedor">
-                    <table class="table table-striped table-bordered" cellspacing="0" >
+                  <div style="float:left;width: 60%;outline: white solid thin">
+                    <table  style="width:100%" class="table table-striped table-bordered" cellspacing="0" >
+                      <thead>
+                        <tr>
+                          <th class="table-header" style="text-align:center" rowspan="2">CONCEPTO</th>
+                          <th class="table-header" style="text-align:center" colspan="2">SUJETOS PROTEGIDOS</th>
+                          <th class="table-header" style="text-align:center" colspan="2">PERSONAS PROPUESTAS</th>
+                          <th class="table-header" style="text-align:center" rowspan="2">TOTAL</th>
+                        </tr>
+                        <tr>
+                          <th class="table-header" style="text-align:center">SIN ESTADÍA</th>
+                          <th class="table-header" style="text-align:center">CON ESTADÍA</th>
+                          <th class="table-header" style="text-align:center">SIN ESTADÍA</th>
+                          <th class="table-header" style="text-align:center">CON ESTADÍA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>TRASLADAR A LAS PP  Y SP <br> A DIFERENTES INSTACNIAS</td>
+                          <?php
+                          $totalcol1 = "SELECT COUNT(*) AS tcol1sin FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_sujetos_traslado.resguardado = 'NO'
+                          AND datospersonales.estatus = 'SUJETO PROTEGIDO'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rtotalcol1 = $mysqli->query($totalcol1);
+                          $ftotalcol1 = $rtotalcol1->fetch_assoc();
+                          //
+                          $totalcol2 = "SELECT COUNT(*) AS tcol1con FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_sujetos_traslado.resguardado = 'SI'
+                          AND datospersonales.estatus = 'SUJETO PROTEGIDO'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rtotalcol2 = $mysqli->query($totalcol2);
+                          $ftotalcol2 = $rtotalcol2->fetch_assoc();
+                          //
+                          $totalcol3 = "SELECT COUNT(*) AS tcol1sinpp FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_sujetos_traslado.resguardado = 'NO'
+                          AND datospersonales.estatus = 'PERSONA PROPUESTA'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rtotalcol3 = $mysqli->query($totalcol3);
+                          $ftotalcol3 = $rtotalcol3->fetch_assoc();
+                          //
+                          $totalcol4 = "SELECT COUNT(*) AS tcol1conpp FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_sujetos_traslado.resguardado = 'SI'
+                          AND datospersonales.estatus = 'PERSONA PROPUESTA'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rtotalcol4 = $mysqli->query($totalcol4);
+                          $ftotalcol4 = $rtotalcol4->fetch_assoc();
+                          //
+                          $totalcol5 = "SELECT COUNT(*) AS totalfinal FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rtotalcol5 = $mysqli->query($totalcol5);
+                          $ftotalcol5 = $rtotalcol5->fetch_assoc();
+                          //
+                          ?>
+                          <td><?php echo $ftotalcol1['tcol1sin'] ?></td>
+                          <td><?php echo $ftotalcol2['tcol1con'] ?></td>
+                          <td><?php echo $ftotalcol3['tcol1sinpp']; ?></td>
+                          <td><?php echo $ftotalcol4['tcol1conpp']; ?></td>
+                          <td><?php echo $ftotalcol5['totalfinal']; ?></td>
+                        </tr>
+                        <?php
+                        // traer lista de motivos de traslados
+                        $motivotras = "SELECT * FROM react_traslados_instancias";
+                        $rmotivotras = $mysqli->query($motivotras);
+                        while ($fmotivotras = $rmotivotras ->fetch_assoc()) {
+                          $namemotivo = $fmotivotras['nombre'];
+
+                          // contar total de motivo dada las fechas
+                          // $motivoname = "SELECT COUNT(*) AS totalmotivo FROM react_destinos_traslados
+                          // INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                          // WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          // con estadia
+                          $conestadia = "SELECT COUNT(*) AS totalconestadia FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_sujetos_traslado.resguardado = 'SI'
+                          AND datospersonales.estatus = 'SUJETO PROTEGIDO'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rconestadia = $mysqli->query($conestadia);
+                          $fconestadia = $rconestadia->fetch_assoc();
+                          // sin estadia
+                          $sinestadia = "SELECT COUNT(*) AS totalsinestadia FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_sujetos_traslado.resguardado = 'NO'
+                          AND datospersonales.estatus = 'SUJETO PROTEGIDO'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rsinestadia = $mysqli->query($sinestadia);
+                          $fsinestadia = $rsinestadia->fetch_assoc();
+                          // PERSONAS PROPUESTAS
+                          $conestadiaprop = "SELECT COUNT(*) AS totalconestadiaprop FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_sujetos_traslado.resguardado = 'SI'
+                          AND datospersonales.estatus = 'PERSONA PROPUESTA'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rconestadiaprop = $mysqli->query($conestadiaprop);
+                          $fconestadiaprop = $rconestadiaprop->fetch_assoc();
+                          //
+                          $sinestadiaprop = "SELECT COUNT(*) AS totalsinestadiaprop FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_sujetos_traslado.resguardado = 'NO'
+                          AND datospersonales.estatus = 'PERSONA PROPUESTA'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rsinestadiaprop = $mysqli->query($sinestadiaprop);
+                          $fsinestadiaprop = $rsinestadiaprop->fetch_assoc();
+                          // TOTALES POR MOTIVO
+                          $totalmotivo_des = "SELECT COUNT(*) AS totalmotivo_des FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          WHERE react_destinos_traslados.motivo = '$namemotivo'
+                          AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                          $rtotalmotivo_des = $mysqli->query($totalmotivo_des);
+                          $ftotalmotivo_des = $rtotalmotivo_des->fetch_assoc();
+                          ?>
+                          <tr>
+                            <td><?php echo $fmotivotras['nombre']; ?></td>
+                            <td><?php echo $fsinestadia['totalsinestadia']; ?></td>
+                            <td><?php echo $fconestadia['totalconestadia']; ?></td>
+                            <td><?php echo $fsinestadiaprop['totalsinestadiaprop']; ?></td>
+                            <td><?php echo $fconestadiaprop['totalconestadiaprop']; ?></td>
+                            <td><?php echo $ftotalmotivo_des['totalmotivo_des']; ?></td>
+                          </tr>
+                          <?php
+                        }
+                        ?>
+
+                      </tbody>
+                    </table>
+                    <br><br>
+                    <!-- CONTAR TOTAL DE TRASLADOS -->
+                    <?php
+                    $tottras = "SELECT COUNT(*) AS totaltraslados  FROM react_traslados
+                                WHERE fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtottras = $mysqli -> query ($tottras);
+                    $ftottras = $rtottras -> fetch_assoc();
+                    ?>
+                    <table style="width:100%" class="table table-striped table-bordered" cellspacing="0" >
                         <thead>
                             <tr>
-                                <th class="table-header" style="text-align:center">MOTIVO</th>
-                                <th class="table-header" style="text-align:center">SIN ESTADÍA</th>
-                                <th class="table-header" style="text-align:center">CON ESTADÍA</th>
+                                <th class="table-header" style="text-align:center">CONCEPTO</th>
                                 <th class="table-header" style="text-align:center">TOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
-                          <?php
-                          // pruebas de conteo
-                          // $concust = 0;
-                          // $sincust = 0;
-                          // $suj0  = "SELECT * FROM react_sujetos_traslado
-                          // INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                          // WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
-                          // $rsuj0 = $mysqli->query($suj0);
-                          // while ($fsuj0 = $rsuj0->fetch_assoc()) {
-                          //   echo $fsuj0['resguardado'];
-                          //   if ($fsuj0['resguardado'] === 'SI') {
-                          //     $concust = $concust + 1;
-                          //   }elseif ($fsuj0['resguardado'] === 'NO') {
-                          //     $sincust = $sincust + 1;
-                          //   }
-                          // }
-                          // echo $concust;
-                          // echo "<br>";
-                          // echo $sincust;
-                          // echo "<br>";
-                          // traer lista de motivos de traslados
-                          $motivotras = "SELECT * FROM react_traslados_instancias";
-                          $rmotivotras = $mysqli->query($motivotras);
-                          while ($fmotivotras = $rmotivotras ->fetch_assoc()) {
-                            $namemotivo = $fmotivotras['nombre'];
-
-                            // contar total de motivo dada las fechas
-                            // $motivoname = "SELECT COUNT(*) AS totalmotivo FROM react_destinos_traslados
-                            // INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
-                            // WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
-                            // con estadia
-                            $conestadia = "SELECT COUNT(*) AS totalconestadia FROM react_sujetos_traslado
-                            INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id = react_destinos_traslados.id_traslado
-                            INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                            WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                            AND react_sujetos_traslado.resguardado = 'SI'";
-                            $rconestadia = $mysqli->query($conestadia);
-                            $fconestadia = $rconestadia->fetch_assoc();
-                            // sin estadia
-                            $sinestadia = "SELECT COUNT(*) AS totalsinestadia FROM react_sujetos_traslado
-                            INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id = react_destinos_traslados.id_traslado
-                            INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                            WHERE react_destinos_traslados.motivo = '$namemotivo' AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                            AND react_sujetos_traslado.resguardado = 'NO'";
-                            $rsinestadia = $mysqli->query($sinestadia);
-                            $fsinestadia = $rsinestadia->fetch_assoc();
-                            ?>
-                            <tr>
-                              <td><?php echo $fmotivotras['nombre']; ?></td>
-                              <td><?php echo $fsinestadia['totalsinestadia']; ?></td>
-                              <td><?php echo $fconestadia['totalconestadia']; ?></td>
-                              <td></td>
-                            </tr>
-                            <?php
-                          }
-                          ?>
                           <tr>
-                            <td>TRASLADAR A LAS PP  Y SP <br> A DIFERENTES INSTACNIAS</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>TOTAL DE TRASLADOS</td>
+                            <td><?php echo $ftottras['totaltraslados']; ?></td>
                           </tr>
                         </tbody>
                     </table>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="container">
-                      <!-- CONSULTA PARA CONTAR A CUANTOS MUNICIPIOS SE HAN HECHO TRASLADOS -->
-                      <?php
-                      $summunictras = "SELECT COUNT(DISTINCT municipio) AS totalmunicipios FROM react_destinos_traslados";
-                      $rsummunictras = $mysqli->query($summunictras);
-                      $fsummunictras = $rsummunictras->fetch_assoc();
-                      ?>
-                      <!--  -->
-                      <table class="table table-striped table-bordered" cellspacing="0" >
-                          <thead>
-                              <tr>
-                                  <th class="table-header" style="text-align:center">MUNICIPIO</th>
-                                  <th class="table-header" style="text-align:center"><?php echo $fsummunictras['totalmunicipios']; ?></th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            // traer lista de motivos de traslados
-                            $municipiotras = "SELECT DISTINCT municipio FROM react_destinos_traslados";
-                            $rmunicipiotras = $mysqli->query($municipiotras);
-                            while ($fmunicipiotras = $rmunicipiotras ->fetch_assoc()) {
-                              ?>
-                              <tr>
-                                <td><?php echo $fmunicipiotras['municipio']; ?></td>
-                                <td></td>
-                              </tr>
-                              <?php
-                            }
-                            ?>
-                          </tbody>
-                      </table>
-
-                      <table class="table table-striped table-bordered" cellspacing="0" >
-                          <thead>
-                              <tr>
-                                  <th class="table-header" style="text-align:center">KILOMETROS RECORRIDOS</th>
-                                  <th class="table-header" style="text-align:center"><?php echo $fsummunictras['totalmunicipios']; ?></th>
-                              </tr>
-                          </thead>
-                      </table>
-
-                      <table  class="table table-striped table-bordered" cellspacing="0" >
-                          <thead>
-                              <tr>
-                                  <th class="table-header" style="text-align:center">TOTAL DE PP Y SP TRASLADADOS</th>
-                                  <th class="table-header" style="text-align:center"><?php echo $fsummunictras['totalmunicipios']; ?></th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>CON ESTADÍA</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>SIN ESTADÍA</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                      </table>
-                    </div>
                   </div>
-                  <!-- tablas -->
+                  <div style="float:left;width: 2%;outline: white solid thin">
+                    <h6 style="display:none;">hola</h6>&nbsp;
+                  </div>
+                  <!-- conteo de total de municipios de destinos de traslados -->
+                  <?php
+                  $summunictras = "SELECT COUNT(DISTINCT municipio) AS totalmunicipios FROM react_destinos_traslados
+                                   INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                                   WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                  $rsummunictras = $mysqli ->query ($summunictras);
+                  $fsummunictras = $rsummunictras ->fetch_assoc();
+                  ?>
+                  <div style="float:left;width: 38%;outline: white solid thin">
+                    <table style="width:100%" class="table table-striped table-bordered" cellspacing="0" >
+                      <thead>
+                        <tr>
+                          <th class="table-header" style="text-align:center">MUNICIPIO</th>
+                          <th class="table-header" style="text-align:center"><?php echo $fsummunictras['totalmunicipios']; ?></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        // traer lista de motivos de traslados
+                        $municipiotras = "SELECT DISTINCT municipio FROM react_destinos_traslados
+                        INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                        WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                        $rmunicipiotras = $mysqli->query($municipiotras);
+                        while ($fmunicipiotras = $rmunicipiotras ->fetch_assoc()) {
+                          $namemunicipio = $fmunicipiotras['municipio'];
+                          // contar cuantos traslados hay por municipio
+                          $trasmunicipio = "SELECT COUNT(*) AS tmun FROM react_destinos_traslados WHERE municipio = '$namemunicipio'";
+                          $rtrasmunicipio = $mysqli ->query($trasmunicipio);
+                          $ftrasmunicipio = $rtrasmunicipio ->fetch_assoc();
+                          ?>
+                          <tr>
+                            <td><?php echo $fmunicipiotras['municipio']; ?></td>
+                            <td><?php echo $ftrasmunicipio['tmun']; ?></td>
+                          </tr>
+                          <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                    <?php
+                    // suma de KILOMETROS RECORRIDOS en un lapdo de tiempo de busqueda
+                    $totalkil = "SELECT SUM(kilometros) AS total_kil FROM react_traslados
+                                 WHERE fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtotalkil = $mysqli -> query ($totalkil);
+                    $ftotalkil = $rtotalkil ->fetch_assoc();
+                    ?>
+                    <table class="table table-striped table-bordered" cellspacing="0" >
+                        <thead>
+                            <tr>
+                                <th class="table-header" style="text-align:center">KILOMETROS RECORRIDOS</th>
+                                <th class="table-header" style="text-align:center"><?php echo $ftotalkil['total_kil']; ?></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table style="width:60%" class="table table-striped table-bordered" cellspacing="0" >
+                        <thead>
+                          <tr>
+                              <th class="table-header" style="text-align:center" rowspan="2">TOTAL DE PP Y SP QUE FUERON TRASLADADOS</th>
+                              <th class="table-header" style="text-align:center" colspan="2">SUJETOS PROTEGIDOS</th>
+                              <th class="table-header" style="text-align:center" colspan="2">PERSONAS PROPUESTAS</th>
+                              <th class="table-header" style="text-align:center" rowspan="2">TOTAL</th>
+                          </tr>
+                          <tr>
+                              <th class="table-header" style="text-align:center">SIN ESTADÍA</th>
+                              <th class="table-header" style="text-align:center">CON ESTADÍA</th>
+                              <th class="table-header" style="text-align:center">SIN ESTADÍA</th>
+                              <th class="table-header" style="text-align:center">CON ESTADÍA</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tbody>
+                            <tr>
+                              <td>TOTAL DE PERSONAS</td>
+                              <td><?php echo $ftotalcol1['tcol1sin'] ?></td>
+                              <td><?php echo $ftotalcol2['tcol1con'] ?></td>
+                              <td><?php echo $ftotalcol3['tcol1sinpp']; ?></td>
+                              <td><?php echo $ftotalcol4['tcol1conpp']; ?></td>
+                              <td><?php echo $ftotalcol5['totalfinal']; ?></td>
+                            </tr>
+                          </tbody>
+                        </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
+              <br><br>
               <?php
             }else {
               ?>

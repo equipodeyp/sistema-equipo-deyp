@@ -265,7 +265,26 @@ a:focus {
         <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-
+        <ul>
+            <li>
+                <a href="#" onclick="toggleSubmenu(this)">
+                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">TRASLADOS</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                </a>
+                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_traslado.php'">
+                    <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                  </li>
+                  <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consulta_traslados.php'">
+                    <i class="fas fa-laptop-file"></i> BUSCAR</a>
+                  </li> -->
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./search_traslado.php'">
+                    <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
+                  </li>
+                </ul>
+            </li>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">

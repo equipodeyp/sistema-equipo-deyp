@@ -95,7 +95,26 @@ $mostrar=$result->fetch_assoc();
       </div>
 
       <nav class="menu-nav">
-        <br><br>
+        <ul>
+            <li>
+                <a href="#" onclick="toggleSubmenu(this)">
+                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">TRASLADOS</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                </a>
+                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                  <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_traslado.php'">
+                    <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                  </li> -->
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consulta_traslados.php'">
+                    <i class="fas fa-laptop-file"></i> BUSCAR</a>
+                  </li>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./search_traslado.php'">
+                    <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
+                  </li>
+                </ul>
+            </li>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">
@@ -119,7 +138,7 @@ $mostrar=$result->fetch_assoc();
       <div class="">
         <h1 style="text-align:center">REGISTRAR TRASLADO</h1>
         <center>
-  <div style="text-align:center;padding:15px;border:solid 5px; width:85%;border-radius:35px;shadow" class="well form-horizontal">
+  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
     <form method="POST" action="save_trasalado.php" enctype= "multipart/form-data">
       <!-- Text input-->
       <div class="form-group">
@@ -222,7 +241,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-road"></i></span>
-            <textarea name="observaciones" rows="5" cols="85" required></textarea>
+            <textarea name="observaciones" rows="5" cols="65" required></textarea>
           </div>
         </div>
       </div>
@@ -232,7 +251,7 @@ $mostrar=$result->fetch_assoc();
       <div id="contenedor-personas">
         <div class="persona-form">
           <div class="row">
-          <span>____________________________________________________________________________________________________________________________</span>
+          <!-- <span>____________________________________________________________________________________________________________________________</span> -->
             <div class="col-md-3">
               <label class="col-md-3 control-label">LUGAR</label>
                 <input name="lugardestino[]" placeholder="INGRESE LUGAR DE DESTINO" class="form-control" type="text" required>
@@ -275,8 +294,8 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-      <span>______________________________________________________________________________________________</span>
-       <br><br>
+      <!-- <span>______________________________________________________________________________________________</span> -->
+       <br>
       <div class="row">
         <div class="col-md-12 mb-3">
           <button type="button" id="agregar-persona" class="btn btn-primary">
@@ -318,7 +337,7 @@ $mostrar=$result->fetch_assoc();
       </script>
 
       <!-- Text area -->
-
+      <br><br>
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
