@@ -185,7 +185,7 @@ $_SESSION["check_actividad"] = $check_actividad;
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
-              <input name="numero_oficio_actividad" id="numero_oficio_actividad" class="form-control" value class="form-control" type="text" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+              <input autocomplete="off" name="numero_oficio_actividad" id="numero_oficio_actividad" class="form-control" value class="form-control" type="text" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
             </div>
           </div>
       </div>
