@@ -282,17 +282,16 @@ text-decoration: underline;
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
                           <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar.php'">
-                              <i class="fas fa-laptop-file"></i> CONSULTAR
-                          </a>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar.php'">
-                              <i class="fas fa-search"></i> BUSCAR
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>
                   </ul>

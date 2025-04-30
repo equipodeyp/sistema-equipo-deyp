@@ -121,7 +121,7 @@ $mostrar=$result->fetch_assoc();
         <center>
   <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form method="POST" action="save_trasalado.php" enctype= "multipart/form-data">
+    <form method="POST" action="guardar_actividad.php" enctype= "multipart/form-data">
       <!-- Text input-->
 
       <?php
@@ -129,7 +129,7 @@ $mostrar=$result->fetch_assoc();
               $answer = $mysqli->query($select);
               $valores = $answer->fetch_assoc();
                                  ?>     
-      <!-- <div class="form-group">
+       <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -137,7 +137,7 @@ $mostrar=$result->fetch_assoc();
             <input type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>  " readonly>                         
           </div>
         </div>
-      </div> -->
+      </div>
       <!-- </div> -->
 
       <div class="form-group">
@@ -161,7 +161,7 @@ $mostrar=$result->fetch_assoc();
       
 
 
-<!-- <div class="form-group">
+ <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">FUNCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -169,11 +169,11 @@ $mostrar=$result->fetch_assoc();
              <input name="funcionapoyo" value="" class="form-control" type="text"  id="funcionapoyo">
           </div>
         </div>
-      </div>    -->
+      </div>    
 
 
     
-      <!-- <div class="form-group">
+       <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -181,10 +181,10 @@ $mostrar=$result->fetch_assoc();
             <input name="unidadmedida" value="" class="form-control" type="text"  id="unidadmedida">
           </div>
         </div>
-      </div> -->
+      </div>
 
 
-      <!-- <div class="form-group">
+       <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">REPORTE DE METAS</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -192,14 +192,14 @@ $mostrar=$result->fetch_assoc();
             <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
           </div>
         </div>
-      </div> -->
+      </div> 
 
 
 
 <br><br>
 
       
-      <div class="form-group">
+      <div class="form-group" >
         <label class="col-md-3 control-label">FECHA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -213,14 +213,14 @@ $mostrar=$result->fetch_assoc();
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="cantidad" value="" class="form-control" type="text" id="cantidad">
+           <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
+            <input name="cantidadactividad" value="" class="form-control" type="text"  id="cantidadactividad">
           </div>
         </div>
       </div>
       
 
-      <!-- <div class="form-group">
+       <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">CLASIFICACION</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -228,28 +228,43 @@ $mostrar=$result->fetch_assoc();
             <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
           </div>
         </div>
-      </div> -->
+      </div>
 
-      <div class="form-group">
-        <label class="col-md-3 control-label">ID EXPEDIENTE DE PROTECCIÓN</label>
+     <div class="form-group" id="folio_expediente_actividad" style="display:none;">
+        <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+            <span class="input-group-addon"><i class="fa-solid fa-folder"></i></span>
+            <select class="form-control" name="folio_expediente" id="folio_expediente">
+              <option disabled selected value>SELECCIONE EL EXPEDIENTE</option>
+                <?php
+                    $select1 = "SELECT DISTINCT datospersonales.folioexpediente
+                    FROM datospersonales
+                    WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
+                    ORDER BY datospersonales.id ASC";
+                      $answer1 = $mysqli->query($select1);
+                      while($valores1 = $answer1->fetch_assoc()){
+                        $result_folio = $valores1['folioexpediente'];
+                        echo "<option value='$result_folio'>$result_folio</option>";
+                      }
+                ?>
+            </select>
           </div>
         </div>
       </div>
         
 
-      <div class="form-group">
-        <label class="col-md-3 control-label">ID PP O SP</label>
+      <div class="form-group" id="id_sujeto_actividad" style="display:none;">
+        <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+            <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
+            <select class="form-control" name="id_sujeto" id="id_sujeto">
+            </select>
           </div>
         </div>
       </div>
+
 
 
       <div class="form-group">
@@ -257,7 +272,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+            <input name="evidencia_actividad" class="form-control" type="text"  id="evidencia_actividad">
           </div>
         </div>
       </div>
@@ -269,10 +284,25 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+            <input name="idevidencia_actividad" class="form-control" type="text"  id="idevidencia_actividad">
           </div>
         </div>
       </div>
+
+
+
+
+
+ <div class="form-group">
+        <label class="col-md-3 control-label">OBSERVACIONES</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-comments"></i></span>
+            <textarea class="form-control" type="text" name="observaciones_actividad" id="observaciones_actividad" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+          </div>
+        </div>
+      </div>
+
 
 
       <div class="form-group">
@@ -283,6 +313,10 @@ $mostrar=$result->fetch_assoc();
       </div>
     </form>
   </div>
+
+
+
+
 </center>
 
 
@@ -293,6 +327,34 @@ $mostrar=$result->fetch_assoc();
     <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>     
   </div>
 
+
+
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$('#folio_expediente').val(1);
+		recargarLista();
+
+		$('#folio_expediente').change(function(){
+			recargarLista();
+		});
+
+
+	})
+</script>
+
+
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"../get_id_sujeto.php",
+			data:"folio=" + $('#folio_expediente').val(),
+			success:function(r){
+				$('#id_sujeto').html(r);
+			}
+		});
+	}
+</script>
 
 
 
@@ -323,12 +385,6 @@ $mostrar=$result->fetch_assoc();
   }
 
   </script>
-
-
-
-
-
-
 
 
 
