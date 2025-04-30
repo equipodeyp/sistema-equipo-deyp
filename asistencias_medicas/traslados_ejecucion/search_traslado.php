@@ -435,7 +435,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                   </div>
                   <!-- conteo de total de municipios de destinos de traslados -->
                   <?php
-                  $summunictras = "SELECT COUNT(DISTINCT municipio) AS totalmunicipios FROM react_destinos_traslados
+                  $summunictras = "SELECT COUNT(*) AS totalmunicipios FROM react_destinos_traslados
                                    INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
                                    WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
                   $rsummunictras = $mysqli ->query ($summunictras);
@@ -459,7 +459,9 @@ $_SESSION["check_traslado"] = $check_traslado;
                         while ($fmunicipiotras = $rmunicipiotras ->fetch_assoc()) {
                           $namemunicipio = $fmunicipiotras['municipio'];
                           // contar cuantos traslados hay por municipio
-                          $trasmunicipio = "SELECT COUNT(*) AS tmun FROM react_destinos_traslados WHERE municipio = '$namemunicipio'";
+                          $trasmunicipio = "SELECT COUNT(*) AS tmun FROM react_destinos_traslados
+                          INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin' AND municipio = '$namemunicipio'";
                           $rtrasmunicipio = $mysqli ->query($trasmunicipio);
                           $ftrasmunicipio = $rtrasmunicipio ->fetch_assoc();
                           ?>
@@ -468,7 +470,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                             <td><?php echo $ftrasmunicipio['tmun']; ?></td>
                           </tr>
                           <?php
-                        }
+                        }                        
                         ?>
                       </tbody>
                     </table>
