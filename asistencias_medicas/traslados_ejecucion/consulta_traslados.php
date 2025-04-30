@@ -333,7 +333,7 @@ a:focus {
                                   $contar = $contar + 1;
                                   $idtrasladar = $ftraslados['idtrasladounico'];
                                   // contar sujetos del traslado
-                                  $totralsujetos = "SELECT COUNT(*) AS total FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladar'";
+                                  $totralsujetos = "SELECT COUNT(DISTINCT id_sujeto) AS personas FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladar'";
                                   $rtotralsujetos = $mysqli->query($totralsujetos);
                                   $ftotralsujetos = $rtotralsujetos ->fetch_assoc();
                                   // contar total pdis del traslado
@@ -342,12 +342,12 @@ a:focus {
                                   $ftotalpdis = $rtotalpdis ->fetch_assoc();
                                   ?>
                                   <tr>
-                                    <td><?php echo $contar; ?></td>
-                                    <td><?php echo $ftraslados['idtrasladounico']; ?></td>
-                                    <td><?php echo date("d-m-Y", strtotime($ftraslados['fecha'])); ?></td>
-                                    <td><?php echo $ftotralsujetos['total']; ?></td>
-                                    <td><?php echo $ftotalpdis['total']; ?></td>
-                                    <td><?php echo $ftraslados['lugar_salida']; ?></td>
+                                    <td style="text-align:center"><?php echo $contar; ?></td>
+                                    <td style="text-align:center"><?php echo $ftraslados['idtrasladounico']; ?></td>
+                                    <td style="text-align:center"><?php echo date("d-m-Y", strtotime($ftraslados['fecha'])); ?></td>
+                                    <td style="text-align:center"><?php echo $ftotralsujetos['personas']; ?></td>
+                                    <td style="text-align:center"><?php echo $ftotalpdis['total']; ?></td>
+                                    <td style="text-align:center"><?php echo $ftraslados['lugar_salida']; ?></td>
                                     <td style="text-align:center">
                                       <?php
                                       echo "<a href='#edit_".$ftraslados['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";

@@ -269,7 +269,7 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
         $fsujdestino = $rsujdestino -> fetch_assoc();
         $varmostrar = $fsujdestino['tpt'];
         if ($varmostrar >= 3) {
-          echo "ya no hay espacio";
+          // echo "ya no hay espacio";
         }else {
           // echo "aun se puede registro";
           echo "<a href='#add_sujetotraslado".$id_traslado."' data-toggle='modal' class='float-right'><button style='' type='button' id='AGREGAR_CONVENIO' class='btn color-btn-success text-right'>AGREGAR</button></a>";
@@ -310,7 +310,7 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
                                WHERE react_sujetos_traslado.id_sujeto = '$idsujdestinotraer'";
                   $rdestxsuj = $mysqli -> query($destxsuj);
                   while ($fdestxsuj = $rdestxsuj ->fetch_assoc()) {
-                    $auxcontarsuj2 = $auxcontarsuj2 + 1;                    
+                    $auxcontarsuj2 = $auxcontarsuj2 + 1;
                     echo $auxcontarsuj2.'.-'.$fdestxsuj['municipio'].'<br>';
                   }
                   $auxcontarsuj2 = 0;

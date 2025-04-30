@@ -487,6 +487,57 @@ $_SESSION["check_traslado"] = $check_traslado;
                             </tr>
                         </thead>
                     </table>
+                    <?php
+                    // contabilizar solo sujetos del traslado
+                    $totalcol1vsuj = "SELECT COUNT(DISTINCT react_sujetos_traslado.id_sujeto) AS tcol1sin FROM react_sujetos_traslado
+                    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                    WHERE react_sujetos_traslado.resguardado = 'NO'
+                    AND datospersonales.estatus = 'SUJETO PROTEGIDO'
+                    AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtotalcol1vsuj = $mysqli->query($totalcol1vsuj);
+                    $ftotalcol1vsuj = $rtotalcol1vsuj->fetch_assoc();
+                    //
+                    $totalcol2vsuj = "SELECT COUNT(DISTINCT react_sujetos_traslado.id_sujeto) AS tcol1con FROM react_sujetos_traslado
+                    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                    WHERE react_sujetos_traslado.resguardado = 'SI'
+                    AND datospersonales.estatus = 'SUJETO PROTEGIDO'
+                    AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtotalcol2vsuj = $mysqli->query($totalcol2vsuj);
+                    $ftotalcol2vsuj = $rtotalcol2vsuj->fetch_assoc();
+                    //
+                    $totalcol3vsuj = "SELECT COUNT(DISTINCT react_sujetos_traslado.id_sujeto) AS tcol1sinpp FROM react_sujetos_traslado
+                    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                    WHERE react_sujetos_traslado.resguardado = 'NO'
+                    AND datospersonales.estatus = 'PERSONA PROPUESTA'
+                    AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtotalcol3vsuj = $mysqli->query($totalcol3vsuj);
+                    $ftotalcol3vsuj = $rtotalcol3vsuj->fetch_assoc();
+                    //
+                    $totalcol4vsuj = "SELECT COUNT(DISTINCT react_sujetos_traslado.id_sujeto) AS tcol1conpp FROM react_sujetos_traslado
+                    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                    WHERE react_sujetos_traslado.resguardado = 'SI'
+                    AND datospersonales.estatus = 'PERSONA PROPUESTA'
+                    AND react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtotalcol4vsuj = $mysqli->query($totalcol4vsuj);
+                    $ftotalcol4vsuj = $rtotalcol4vsuj->fetch_assoc();
+                    //
+                    $totalcol5vsuj = "SELECT COUNT(DISTINCT react_sujetos_traslado.id_sujeto) AS totalfinal FROM react_sujetos_traslado
+                    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                    WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                    $rtotalcol5vsuj = $mysqli->query($totalcol5vsuj);
+                    $ftotalcol5vsuj = $rtotalcol5vsuj->fetch_assoc();
+                    //
+                    ?>
                     <table style="width:60%" class="table table-striped table-bordered" cellspacing="0" >
                         <thead>
                           <tr>
@@ -506,11 +557,11 @@ $_SESSION["check_traslado"] = $check_traslado;
                           <tbody>
                             <tr>
                               <td>TOTAL DE PERSONAS</td>
-                              <td><?php echo $ftotalcol1['tcol1sin'] ?></td>
-                              <td><?php echo $ftotalcol2['tcol1con'] ?></td>
-                              <td><?php echo $ftotalcol3['tcol1sinpp']; ?></td>
-                              <td><?php echo $ftotalcol4['tcol1conpp']; ?></td>
-                              <td><?php echo $ftotalcol5['totalfinal']; ?></td>
+                              <td><?php echo $ftotalcol1vsuj['tcol1sin'] ?></td>
+                              <td><?php echo $ftotalcol2vsuj['tcol1con'] ?></td>
+                              <td><?php echo $ftotalcol3vsuj['tcol1sinpp']; ?></td>
+                              <td><?php echo $ftotalcol4vsuj['tcol1conpp']; ?></td>
+                              <td><?php echo $ftotalcol5vsuj['totalfinal']; ?></td>
                             </tr>
                           </tbody>
                         </tbody>
