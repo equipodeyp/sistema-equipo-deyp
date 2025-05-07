@@ -89,7 +89,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     <form method="POST" action="save_actividad.php" enctype= "multipart/form-data">
       <!-- SUBDIRECCIÓN-->
       <div class="persona-form">
-      <div class="form-group">
+      <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -99,7 +99,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
       <!-- FUNCIÓN -->
-      <div class="form-group">
+      <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">FUNCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -128,7 +128,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
       <!-- UNIDAD DE MEDIDA -->
-      <div class="form-group">
+      <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -138,7 +138,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
       <!-- REPORTE DE METAS -->
-      <div class="form-group">
+      <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">REPORTE DE METAS</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -148,7 +148,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
       <!-- <span>______________________________________________________________________________________________</span> -->
-      <br><br>
+
       <!-- inputs de clasificacion segun el tipo de actividad seleccionada -->
       <?php
       include("selectclasificacion.php");
@@ -292,18 +292,7 @@ $_SESSION["check_actividad"] = $check_actividad;
   <script type="text/javascript">
   function selectNit(e) {
     var idactividad = document.getElementById("actividadejecucion").value;
-    if (idactividad === '1') {
-      document.getElementById("unidadmedida").value = "TRASLADO";
-      document.getElementById("trasladoclasificacion").style.display = "";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
-      document.getElementById("clasificacionaccionseguridad").style.display = "none";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
-      document.getElementById("entidadmunicipio_1_2").style.display = "";
-      document.getElementById("actividad_folioexpediente").style.display = "";
-      document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "none";
-      document.getElementById("actividad_kilometros").style.display = "";
-    }else if (idactividad === '2') {
+      if (idactividad === '2') {
       document.getElementById("unidadmedida").value = "DOCUMENTO";
       document.getElementById("trasladoclasificacion").style.display = "none";
       document.getElementById("clasificacioncontactofamiliar").style.display = "none";

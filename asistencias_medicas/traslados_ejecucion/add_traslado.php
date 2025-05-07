@@ -155,7 +155,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="fechatraslado" class="form-control" type="date" required>
+            <input name="fechatraslado" class="form-control" type="date" required max="<?= date("Y-m-d") ?>">
           </div>
         </div>
       </div>

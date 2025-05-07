@@ -261,6 +261,7 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
       </div>
 
 
+      <h4><span style="color: red;">NOTA: PARA FINALIZAR EL TRASLADO DEBES DE REGISTRAR POR LO MENOS A UNA PERSONA</span></h4>
       <div id="contenido">
         <h1>SUJETOS QUE SE TRASLADARON</h1>
         <?php
@@ -361,6 +362,7 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
           });
         });
       </script>
+      <h4><span style="color: red;">NOTA: PARA CONCLUIR EL TRASLADO DEBES DE REGISTRAR LOS PDIS QUE REALIZARON EL TRASLADO</span></h4>
       <form method="POST" action="save_personas_traslado.php?id_traslado=<?php echo $id_traslado; ?>" enctype= "multipart/form-data">
       <h1>PDI</h1>
       <div id="contenedor-pdis">
@@ -433,12 +435,18 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
         });
       </script>
       <!-- <br> -->
+      <?php
+      if ($varmostrar > 0) {
+      ?>
       <div class="form-group">
         <label class="col-md-7 control-label"></label>
         <div class="col-md-12">
           <button type="submit" class="btn btn-success">FINALIZAR <span class="glyphicon glyphicon-ok"></span></button>
         </div>
       </div>
+      <?php
+      }
+      ?>
       </form>
 
   </div>

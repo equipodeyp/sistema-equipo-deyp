@@ -260,7 +260,11 @@ $_SESSION["check_traslado"] = $check_traslado;
                   </div>
                   <div style="float:left;width: 60%;outline: white solid thin">
                     <table  style="width:100%" class="table table-striped table-bordered" cellspacing="0" >
+                      <!-- <h1>TRASLADOS</h1> -->
                       <thead>
+                        <tr>
+                          <th class="table-header" style="text-align:center" colspan="6">TRASLADOS</th>
+                        </tr>
                         <tr>
                           <th class="table-header" style="text-align:center" rowspan="2">CONCEPTO</th>
                           <th class="table-header" style="text-align:center" colspan="2">SUJETOS PROTEGIDOS</th>
@@ -424,7 +428,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                         </thead>
                         <tbody>
                           <tr>
-                            <td>TOTAL DE TRASLADOS</td>
+                            <td>TOTAL DE REGISTROS</td>
                             <td><?php echo $ftottras['totaltraslados']; ?></td>
                           </tr>
                         </tbody>
@@ -444,6 +448,9 @@ $_SESSION["check_traslado"] = $check_traslado;
                   <div style="float:left;width: 38%;outline: white solid thin">
                     <table style="width:100%" class="table table-striped table-bordered" cellspacing="0" >
                       <thead>
+                        <tr>
+                          <th class="table-header" style="text-align:center" colspan="2">TRASLADOS</th>
+                        </tr>
                         <tr>
                           <th class="table-header" style="text-align:center">MUNICIPIO</th>
                           <th class="table-header" style="text-align:center"><?php echo $fsummunictras['totalmunicipios']; ?></th>
@@ -470,7 +477,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                             <td><?php echo $ftrasmunicipio['tmun']; ?></td>
                           </tr>
                           <?php
-                        }                        
+                        }
                         ?>
                       </tbody>
                     </table>
@@ -542,6 +549,9 @@ $_SESSION["check_traslado"] = $check_traslado;
                     ?>
                     <table style="width:60%" class="table table-striped table-bordered" cellspacing="0" >
                         <thead>
+                          <tr>
+                            <th class="table-header" style="text-align:center" colspan="6">PERSONAS</th>
+                          </tr>
                           <tr>
                               <th class="table-header" style="text-align:center" rowspan="2">TOTAL DE PP Y SP QUE FUERON TRASLADADOS</th>
                               <th class="table-header" style="text-align:center" colspan="2">SUJETOS PROTEGIDOS</th>
