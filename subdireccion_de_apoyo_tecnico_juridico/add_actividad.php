@@ -27,8 +27,8 @@ if(!isset($_SESSION['already_refreshed'])){
 //actualice de nuevo.
   $_SESSION['already_refreshed'] = true;
 }
-$check_traslado = 1;
-$_SESSION["check_traslado"] = $check_traslado;
+$check_actividad = 1;
+$_SESSION["check_actividad"] = $check_actividad;
 // TRAER EL UMTIMO REGISTRO DE UN TRASLADO
 date_default_timezone_set('America/Mexico_City');
 $a = date("Y");
