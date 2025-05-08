@@ -440,8 +440,9 @@ $_SESSION["check_traslado"] = $check_traslado;
                   <!-- conteo de total de municipios de destinos de traslados -->
                   <?php
                   $summunictras = "SELECT COUNT(*) AS totalmunicipios FROM react_destinos_traslados
-                                   INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
-                                   WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+                  INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                  INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
+                  WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
                   $rsummunictras = $mysqli ->query ($summunictras);
                   $fsummunictras = $rsummunictras ->fetch_assoc();
                   ?>
@@ -459,8 +460,9 @@ $_SESSION["check_traslado"] = $check_traslado;
                       <tbody>
                         <?php
                         // traer lista de motivos de traslados
-                        $municipiotras = "SELECT DISTINCT municipio FROM react_destinos_traslados
+                        $municipiotras = "SELECT DISTINCT react_destinos_traslados.municipio FROM react_destinos_traslados
                         INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                        INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
                         WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
                         $rmunicipiotras = $mysqli->query($municipiotras);
                         while ($fmunicipiotras = $rmunicipiotras ->fetch_assoc()) {
@@ -468,6 +470,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                           // contar cuantos traslados hay por municipio
                           $trasmunicipio = "SELECT COUNT(*) AS tmun FROM react_destinos_traslados
                           INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+                          INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
                           WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin' AND municipio = '$namemunicipio'";
                           $rtrasmunicipio = $mysqli ->query($trasmunicipio);
                           $ftrasmunicipio = $rtrasmunicipio ->fetch_assoc();
@@ -569,8 +572,8 @@ $_SESSION["check_traslado"] = $check_traslado;
                           <tbody>
                             <tr>
                               <td>TOTAL DE PERSONAS</td>
-                              <td><?php echo $ftotalcol1vsuj['tcol1sin'] ?></td>
-                              <td><?php echo $ftotalcol2vsuj['tcol1con'] ?></td>
+                              <td><?php echo $ftotalcol1vsuj['tcol1sin']; ?></td>
+                              <td><?php echo $ftotalcol2vsuj['tcol1con']; ?></td>
                               <td><?php echo $ftotalcol3vsuj['tcol1sinpp']; ?></td>
                               <td><?php echo $ftotalcol4vsuj['tcol1conpp']; ?></td>
                               <td><?php echo $ftotalcol5vsuj['totalfinal']; ?></td>
