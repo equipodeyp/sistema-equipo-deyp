@@ -221,7 +221,7 @@
                         <h4 style="text-align:center"><?php
                         $destxsuj = "SELECT * FROM react_destinos_traslados
                                      INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
-                                     WHERE react_sujetos_traslado.id_sujeto = '$idsujetouni'";
+                                     WHERE react_sujetos_traslado.id_sujeto = '$idsujetouni' AND react_destinos_traslados.id_traslado ='$idtrasladover'";
                         $rdestxsuj = $mysqli -> query($destxsuj);
                         while ($fdestxsuj = $rdestxsuj ->fetch_assoc()) {
                           $auxcontarsuj2 = $auxcontarsuj2 + 1;

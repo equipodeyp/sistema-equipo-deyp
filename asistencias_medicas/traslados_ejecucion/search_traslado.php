@@ -120,6 +120,7 @@ $_SESSION["check_traslado"] = $check_traslado;
       <div class="">
         <!-- <h1 style="text-align:center">CONSULTA DE TRASLADOS</h1> -->
         <!-- Search Forms -->
+
         <div class="container" style="display: flex; justify-content: center;">
           <div class="row mt-8">
               <form class="d-flex" style="width: 800px;">
@@ -171,6 +172,20 @@ $_SESSION["check_traslado"] = $check_traslado;
 
               </form>
             </div>
+            <?php
+            if ($mostrar === 1) {
+            ?>
+            <div id="showbotonpdf">
+              <form class="" action="generar_pdf.php" method="POST">
+                <input type="text" name="diainicio" value="<?php echo $fechainicial; ?>" style="display:none;">
+                <input type="text" name="diafin" value="<?php echo $fechafin; ?>" style="display:none;">
+                <button class="btn-flotante-imprimir-asistencia" type="submit" onclick="verdato()"><img src='../../image/pdf.png' width='60' height='60'></button>
+                <!-- <a class="btn-flotante-imprimir-asistencia" style="text-align:center;"><img src='../../image/asistencias_medicas/print.png' width='60' height='60'></a> -->
+              </form>
+            </div>
+            <?php
+            }
+            ?>
             <?php
             $totalfin2 = 0;
             $totalfin = 0;
@@ -280,7 +295,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                       </thead>
                       <tbody>
                         <tr>
-                          <td>TRASLADAR A LAS PP  Y SP <br> A DIFERENTES INSTACNIAS</td>
+                          <td>TRASLADAR A LAS PP  Y SP <br> A DIFERENTES INSTANCIAS</td>
                           <?php
                           $totalcol1 = "SELECT COUNT(*) AS tcol1sin FROM react_sujetos_traslado
                           INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
@@ -599,5 +614,12 @@ $_SESSION["check_traslado"] = $check_traslado;
   <div class="contenedor">
       <a href="../admin.php" class="btn-flotante">REGRESAR</a>
   </div>
+  <script type="text/javascript">
+    function verdato(){
+      // console.log('prueba dato');
+      document.getElementById("showafterconsul").style.display = "none";
+      document.getElementById("showbotonpdf").style.display = "none";
+    }
+  </script>
 </body>
 </html>
