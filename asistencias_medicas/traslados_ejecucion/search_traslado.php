@@ -501,14 +501,18 @@ $_SESSION["check_traslado"] = $check_traslado;
                              INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
                              WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
                             $rconteotrasdestino2 = $mysqli->query($conteotrasdestino2);
-                            $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();                            
+                            $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();
 
                             $resmotivodes = $fconteotrasdestino['motivo'];
+
+                            $resmunicipiodes = $fconteotrasdestino['municipio'];
                             $cadena = $resmotivodes;
                             $texto_minusculas = mb_strtolower($cadena, 'UTF-8');
-                            $texto_minusculas; // Imprime "hola mundo, éste es un ejemplo."
+                            $texto_minusculas2 = mb_strtolower($resmunicipiodes, 'UTF-8');
+                            // $texto_minusculas; // Imprime "hola mundo, éste es un ejemplo."
                             // echo "<br>";
                             $foo = ucfirst($texto_minusculas);
+                            $foo2= ucfirst($texto_minusculas2);
                             // echo "<br>";
                              $ultimosCinco = substr($fconteotrasdestino['folio_expediente'], -7);
                              // $fconteotrasdestino['identificador'];
@@ -529,7 +533,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                             $arrayCaracteres = str_split($texto);
                             // Unir los caracteres con un punto
                             $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-0'.$sujetosidrecor2[$auxsum2];
+                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-'.$foo2;
                           ?>
                           <tr>
                             <td><?php echo $auxsum; ?></td>
