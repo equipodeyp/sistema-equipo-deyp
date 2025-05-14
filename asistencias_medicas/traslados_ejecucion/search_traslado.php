@@ -505,6 +505,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 
                             $resmotivodes = $fconteotrasdestino['motivo'];
 
+                            $restrasladounico = $fconteotrasdestino['idtrasladounico'];
                             $resmunicipiodes = $fconteotrasdestino['municipio'];
                             $cadena = $resmotivodes;
                             $texto_minusculas = mb_strtolower($cadena, 'UTF-8');
@@ -533,7 +534,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                             $arrayCaracteres = str_split($texto);
                             // Unir los caracteres con un punto
                             $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-'.$foo2;
+                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-'.$restrasladounico.'-'.$foo2;
                           ?>
                           <tr>
                             <td><?php echo $auxsum; ?></td>
