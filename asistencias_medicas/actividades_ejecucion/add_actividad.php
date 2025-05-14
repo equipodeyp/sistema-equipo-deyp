@@ -20,7 +20,7 @@ $_SESSION["check_actividad"] = $check_actividad;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../js/jquery-3.1.1.min.js"></script>
   <script src="../../js/funciones_react.js"></script>
-  <script src="../../js/funciones_react_actividad.js"></script>
+  <!-- <script src="../../js/funciones_react_actividad.js"></script> -->
   <link href="../../css/bootstrap.min.css" rel="stylesheet">
   <link href="../../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../../js/bootstrap.min.js"></script>

@@ -172,20 +172,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 
               </form>
             </div>
-            <?php
-            if ($mostrar === 1) {
-            ?>
-            <div id="showbotonpdf">
-              <form class="" action="generar_pdf.php" method="POST">
-                <input type="text" name="diainicio" value="<?php echo $fechainicial; ?>" style="display:none;">
-                <input type="text" name="diafin" value="<?php echo $fechafin; ?>" style="display:none;">
-                <button class="btn-flotante-imprimir-asistencia" type="submit" onclick="verdato()"><img src='../../image/pdf.png' width='60' height='60'></button>
-                <!-- <a class="btn-flotante-imprimir-asistencia" style="text-align:center;"><img src='../../image/asistencias_medicas/print.png' width='60' height='60'></a> -->
-              </form>
-            </div>
-            <?php
-            }
-            ?>
+
             <?php
             $totalfin2 = 0;
             $totalfin = 0;
@@ -448,6 +435,114 @@ $_SESSION["check_traslado"] = $check_traslado;
                           </tr>
                         </tbody>
                     </table>
+
+                    <table style="width:100%" class="table table-striped table-bordered" cellspacing="0" >
+                        <thead>
+                            <tr>
+                                <th class="table-header" style="text-align:center">NO.</th>
+                                <th class="table-header" style="text-align:center">TRASLADO</th>
+                                <th class="table-header" style="text-align:center">FECHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $auxsum = 0;
+                          $auxsum2 = 0;
+                          $sujetosidrecor = array();
+                          $sujetosidrecor2 = array();
+                          $conteotrasdestino001 = "SELECT * FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
+                          ORDER BY react_traslados.fecha ASC";
+                          $rconteotrasdestino001 = $mysqli->query($conteotrasdestino001);
+                          while ($fconteotrasdestino001 = $rconteotrasdestino001->fetch_assoc()){
+                            $iddd = intVal($fconteotrasdestino001['id_sujeto']);
+                            array_push($sujetosidrecor, $iddd);
+                          }
+                          $miArray = array(1, 2, 2, 2, 3, 3, 4, 4, 5);
+                          // Verificar si el array tiene al menos dos elementos
+                          if (count($sujetosidrecor) >= 3) {
+                              // Iterar sobre el array
+                              for ($i = 0; $i < count($sujetosidrecor); $i++) {
+                                  // Obtener el valor anterior
+                                  $anterior = ($i > 0) ? $sujetosidrecor[$i - 1] : null;
+                                  $anterior2 = ($i > 0) ? $sujetosidrecor[$i - 2] : null;
+                                  // Obtener el valor actual
+                                  $actual = $sujetosidrecor[$i];
+                                  $actual2 = $sujetosidrecor[$i+1];
+                                  // Comparar si el valor anterior es igual al valor actual
+                                  if ($i > 0 && $anterior2 == $actual) {
+                                       // echo "Valor igual: 3" . PHP_EOL;
+                                       array_push($sujetosidrecor2, 3);
+                                  }elseif ($i > 0 && $anterior == $actual) {
+                                     // "Valecho or igual: 2" . PHP_EOL;
+                                     array_push($sujetosidrecor2, 2);
+                                  } else {
+                                      //Si es diferente, imprimimos el valor actual.
+                                       // echo "Valor desigual: 1" . PHP_EOL;
+                                       array_push($sujetosidrecor2, 1);
+                                  }
+                              }
+                          }
+                          $conteotrasdestino = "SELECT * FROM react_sujetos_traslado
+                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
+                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
+                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
+                          ORDER BY react_traslados.fecha ASC";
+                          $rconteotrasdestino = $mysqli->query($conteotrasdestino);
+                          while ($fconteotrasdestino = $rconteotrasdestino->fetch_assoc()) {
+                            $auxsum = $auxsum +1;
+                            $valdestino = $fconteotrasdestino['id_destino'];
+
+                            $conteotrasdestino2 = "SELECT COUNT(*) AS pt FROM react_sujetos_traslado
+                             INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                             WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
+                            $rconteotrasdestino2 = $mysqli->query($conteotrasdestino2);
+                            $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();                            
+
+                            $resmotivodes = $fconteotrasdestino['motivo'];
+                            $cadena = $resmotivodes;
+                            $texto_minusculas = mb_strtolower($cadena, 'UTF-8');
+                            $texto_minusculas; // Imprime "hola mundo, éste es un ejemplo."
+                            // echo "<br>";
+                            $foo = ucfirst($texto_minusculas);
+                            // echo "<br>";
+                             $ultimosCinco = substr($fconteotrasdestino['folio_expediente'], -7);
+                             // $fconteotrasdestino['identificador'];
+                            $cadena = $fconteotrasdestino['identificador'];
+                            // echo "<br>";
+                            $caracter = "-";
+                            // Encuentra la posición del carácter
+                            $posicion = strpos($cadena, $caracter);
+                            // Si el carácter existe en la cadena
+                            if ($posicion !== false) {
+                              // Extrae la parte de la cadena hasta el carácter
+                              $parte = substr($cadena, 0, $posicion);
+                              // Imprime la parte de la cadena
+                              $parte; // Imprimirá "Hola"
+                            }
+                            $texto = $parte;
+                            // Convertir el texto en un array de caracteres
+                            $arrayCaracteres = str_split($texto);
+                            // Unir los caracteres con un punto
+                            $textoConPuntos = implode(".", $arrayCaracteres);
+                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-0'.$sujetosidrecor2[$auxsum2];
+                          ?>
+                          <tr>
+                            <td><?php echo $auxsum; ?></td>
+                            <td><?php echo $concatenacion; ?></td>
+                            <td><?php echo date("d/m/Y", strtotime($fconteotrasdestino['fecha'])); ?></td>
+                          </tr>
+                        <?php
+                        $auxsum2 = $auxsum2 +1;
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+
                   </div>
                   <div style="float:left;width: 2%;outline: white solid thin">
                     <h6 style="display:none;">hola</h6>&nbsp;
@@ -603,12 +698,30 @@ $_SESSION["check_traslado"] = $check_traslado;
               <?php
             }else {
               ?>
-              <h1>no existen registros</h1>
+
+              <div class="alert alert-warning" role="alert">
+                <h1 style="text-align:center">no existen registros</h1>
+              </div>
               <?php
+              $mostrar =0;
             }
             }
             ?>
       </div>
+      <?php
+      if ($mostrar === 1) {
+      ?>
+      <div id="showbotonpdf">
+        <form class="" action="generar_pdf.php" method="POST">
+          <input type="text" name="diainicio" value="<?php echo $fechainicial; ?>" style="display:none;">
+          <input type="text" name="diafin" value="<?php echo $fechafin; ?>" style="display:none;">
+          <button class="btn-flotante-imprimir-asistencia" type="submit" onclick="verdato()"><img src='../../image/pdf.png' width='60' height='60'></button>
+          <!-- <a class="btn-flotante-imprimir-asistencia" style="text-align:center;"><img src='../../image/asistencias_medicas/print.png' width='60' height='60'></a> -->
+        </form>
+      </div>
+      <?php
+      }
+      ?>
     </div>
   </div>
   <div class="contenedor">
