@@ -146,7 +146,7 @@ $mostrar=$result->fetch_assoc();
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
               <select class="form-control" required onchange="selectNit(event)" id="idactividad">
-              <option  disabled selected value"">SELECCIONA ACTIVIDAD</option>
+              <option  disabled selected value="">SELECCIONA ACTIVIDAD</option>
               <?php
               $se = "SELECT * FROM react_actividad_apoyo";
               $answer1 = $mysqli->query($se);

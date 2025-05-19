@@ -294,6 +294,8 @@ $_SESSION["check_actividad"] = $check_actividad;
           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> GUARDAR </button>
         </div>
       </div>
+
+      
     </form>
   </div>
 </center>
@@ -348,7 +350,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     numero_act = e.target.value;
     num_actividad_obtenido = numero_act;
 
-    console.log(num_actividad_obtenido);
+    // console.log(num_actividad_obtenido);
     
     if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6' || num_actividad_obtenido === '7' || num_actividad_obtenido === '8'){
       
