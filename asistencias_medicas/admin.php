@@ -474,10 +474,10 @@ else{
                             <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/registrar_actividad.php'">
                                 <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
                             </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/consultar_actividad.php'">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/buscar_actividad.php'">
                                 <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD</a>
                             </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/buscar_actividad.php'">
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/consultar_cifras_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR ACTIVIDAD</a>
                             </li>
                         </ul>
