@@ -320,14 +320,10 @@ a:focus {
                   <tbody>
                     <?php
                     $contador = 0;
-                          $query= "SELECT react_actividad.id, react_actividad.fecha, react_actividad_enlace.nombre, 
-                                    react_actividad.clasificacion, react_actividad.cantidad, react_actividad.usuario
+                          $query= "SELECT *
                                     FROM react_actividad
-                                    INNER JOIN react_actividad_enlace
-                                    ON react_actividad.idactividad = react_actividad_enlace.id_actividad 
-                                    AND react_actividad.id_subdireccion = 2 
-                                    AND react_actividad.usuario = '$nombre_usuario'
-                                    ORDER BY fecha DESC";
+                                    
+                                    where react_actividad.id_subdireccion = 2 ";
 
                               
 

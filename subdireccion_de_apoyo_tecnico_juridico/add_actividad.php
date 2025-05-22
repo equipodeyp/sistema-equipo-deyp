@@ -124,29 +124,29 @@ $mostrar=$result->fetch_assoc();
     <form method="POST" action="guardar_actividad.php" enctype= "multipart/form-data">
       <!-- Text input-->
 
-      <?php
+       <?php
               $select = "SELECT * FROM react_subdireccion where id = '2'";
               $answer = $mysqli->query($select);
               $valores = $answer->fetch_assoc();
                                  ?>     
-       <div class="form-group" style="display:none;">
+       <div class="form-group" >
         <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>  " readonly>                         
+            <input  id="subdireccion" type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>  " readonly>                         
           </div>
         </div>
       </div>
-      <!-- </div> -->
+       <!-- </div> -->
 
-      <div class="form-group">
+       <div class="form-group">
         <label class="col-md-3 control-label">ACTIVIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
               <select class="form-control" required onchange="selectNit(event)" id="idactividad">
-              <option  disabled selected value"">SELECCIONA ACTIVIDAD</option>
+              <option  disabled selected value="">SELECCIONA ACTIVIDAD</option>
               <?php
               $se = "SELECT * FROM react_actividad_apoyo";
               $answer1 = $mysqli->query($se);
@@ -161,19 +161,19 @@ $mostrar=$result->fetch_assoc();
       
 
 
- <div class="form-group" style="display:none;">
+  <div class="form-group">
         <label class="col-md-3 control-label">FUNCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-             <input name="funcionapoyo" value="" class="form-control" type="text"  id="funcionapoyo">
+             <input name="funcion" value="" class="form-control" type="text"  id="funcion">
           </div>
         </div>
-      </div>    
+      </div>  
 
 
     
-       <div class="form-group" style="display:none;">
+       <div class="form-group" >
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -184,32 +184,31 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
-       <div class="form-group" style="display:none;">
+       <div class="form-group">
         <label class="col-md-3 control-label">REPORTE DE METAS</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+            <input name="reportemetas class="form-control" type="text"  id="reportemetas">
           </div>
         </div>
-      </div> 
+      </div>
 
 
 
 <br><br>
 
       
-      <div class="form-group" >
+       <div class="form-group" >
         <label class="col-md-3 control-label">FECHA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input name="fechaactividad" class="form-control" type="date" required>
+            <input id="fechaactividad" class="form-control" type="date" required>
           </div>
         </div>
       </div>
-
-      <div class="form-group">
+<div class="form-group">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -220,17 +219,18 @@ $mostrar=$result->fetch_assoc();
       </div>
       
 
-       <div class="form-group" style="display:none;">
+       
+        <div class="form-group" >
         <label class="col-md-3 control-label">CLASIFICACION</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reporteanual" class="form-control" type="text"  id="reporteanual">
+            <input name="clasificacion" class="form-control" type="text"  id="clasificacion">
           </div>
         </div>
       </div>
 
-     <div class="form-group" id="folio_expediente_actividad" style="display:none;">
+     <div class="form-group" id="folio_expediente_actividad">
         <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -254,12 +254,12 @@ $mostrar=$result->fetch_assoc();
       </div>
         
 
-      <div class="form-group" id="id_sujeto_actividad" style="display:none;">
+      <div class="form-group" id="id_sujeto_actividad">
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
-            <select class="form-control" name="id_sujeto" id="id_sujeto">
+            <select class="form-control" name="id_sujeto" id="id_sujeto_actividad">
             </select>
           </div>
         </div>
@@ -329,7 +329,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-  <script type="text/javascript">
+   <script type="text/javascript">
 	$(document).ready(function(){
 		$('#folio_expediente').val(1);
 		recargarLista();
