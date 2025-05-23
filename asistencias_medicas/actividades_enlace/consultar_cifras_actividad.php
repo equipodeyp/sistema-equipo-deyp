@@ -34,6 +34,14 @@ $_SESSION["check_actividad"] = $check_actividad;
   <link rel="stylesheet" href="../../css/react_add_traslados.css">
 
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="assets/css/material.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/loader.css">
+
 
 </head>
 <body>
@@ -73,29 +81,32 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
       <div class="container">
         <div class="row">
-          <h1 style="text-align:center">
+          <!-- <h1 style="text-align:center">
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-          </h1>
-          <h4 style="text-align:center">
+          </h1> -->
+          <!-- <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h4>
+          </h4> -->
         </div>
       </div>
       <div class="">
-        <h3 style="text-align:center">CONSULTAR CIFRAS</h3>
-        <center>
-  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
+        <br>
+        <br>
+        <br>
+        <h1 style="text-align:center">CONSULTAR CIFRAS</h1>
+<center>
+  <div style="text-align:center;padding:15px;border:solid 5px; width:80%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form  id="form_consultar" method="POST" action="./cifras.php" enctype= "multipart/form-data">
+    <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8">
 
 
     <div class="form-group">
-        <label class="col-md-3 control-label">TIPO DE CONSULTA</label>
+        <h4 class="col-md-3 control-label">TIPO DE CONSULTA:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span> -->
             <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="GLOBAL">GLOBAL</option>
@@ -105,12 +116,13 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
 
+      
 
       <div class="form-group" id="div_usuario" style="display:none;">
-        <label class="col-md-3 control-label">USUARIO</label>
+        <h4 class="col-md-3 control-label">USUARIO:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-solid fa-user"></i></span> -->
             <select class="form-control" name="usuario" id="usuario">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
@@ -133,10 +145,10 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
       <div class="form-group" id="div_actividad" style="display:none;">
-        <label class="col-md-3 control-label">ACTIVIDAD</label>
+        <h4 class="col-md-3 control-label">ACTIVIDAD:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span> -->
             <select class="form-control" name="nombre_actividad" id="nombre_actividad">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="Todas">Todas</option>
@@ -158,10 +170,10 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
       <div class="form-group">
-        <label class="col-md-3 control-label">FECHA INICIO</label>
+        <h4 class="col-md-3 control-label">FECHA INICIO:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span> -->
             <input name="fecha_inicio" id="fecha_inicio" class="form-control" type="date" required>
           </div>
         </div>
@@ -169,35 +181,80 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
       <div class="form-group">
-        <label class="col-md-3 control-label">FECHA TERMINO</label>
+        <h4 class="col-md-3 control-label">FECHA TERMINO:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span> -->
             <input name="fecha_fin" id="fecha_fin" class="form-control" type="date" required>
           </div>
         </div>
       </div>
 
-
+      <input name="input_tipo_consulta" id="input_tipo_consulta" class="form-control" type="text" value style="display:none;">
+      <input name="input_usuario" id="input_usuario" class="form-control" type="text" value style="display:none;">
+      <input name="input_nombre_actividad" id="input_nombre_actividad" class="form-control" type="text" value style="display:none;">
 
 
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
-          <button type="submit" name="submit" value="search" id="btn_search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> CONSULTAR </button>
+          <!-- <button type="submit" name="submit" value="search" id="btn_search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> CONSULTAR </button> -->
           <!-- <button id="btn_Limpiar" class="btn btn-danger"><span class="glyphicon glyphicon-erase"></span> LIMPIAR </button> -->
+          <br>
+          <br>
+          <span class="btn btn-info" id="btn_search">Consultar</span>
+          <button id= "descargar" style="display:none;" type="submit" class="btn btn-success">Generar Reporte</button>
+
         </div>
       </div>
 
+    </form>
+
+      <div class="col-md-12 text-center mt-5">     
+        <span id="loaderFiltro">  </span>
+      </div>
 
 
-
-
-
+      <div class="table-responsive resultadoFiltro">
+              <table class="table table-hover" id="tablaReact">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ACTIVIDAD</th>
+                    <th scope="col">CLASIFICACIÓN</th>
+                    <th scope="col">UNIDAD DE MEDIDA</th>
+                    <th scope="col">CANTIDAD</th>
+                    <th scope="col">FECHA</th>
+                  </tr>
+                </thead>
+              <?php
+              include('config.php');
+              $sqlReact = ('SELECT react_actividad_enlace.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+                                  react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario 
+                                  FROM react_actividad 
+                                  JOIN react_actividad_enlace ON react_actividad.id_actividad = react_actividad_enlace.id 
+                                  JOIN react_subdireccion ON react_actividad.id_subdireccion = react_subdireccion.id 
+                                  ORDER BY react_actividad_enlace.nombre ASC');
+              $query = mysqli_query($con, $sqlReact);
+              $i =1;
+                while ($dataRow = mysqli_fetch_array($query)) { ?>
+                <tbody>
+                  <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $dataRow['nombre'] ; ?></td>
+                    <td><?php echo $dataRow['clasificacion'] ; ?></td>
+                    <td><?php echo $dataRow['unidad_medida'] ; ?></td>
+                    <td><?php echo $dataRow['cantidad'] ; ?></td>
+                    <td><?php echo $dataRow['fecha'] ; ?></td>
+                </tr>
+                </tbody>
+              <?php } ?>
+              </table>
+            </div>
 
 
   
-    </form>
+
   </div>
 </center>
 
@@ -265,7 +322,7 @@ $_SESSION["check_actividad"] = $check_actividad;
   }
 </script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
   var fecha_inicio = document.getElementById('tipo_consulta');
   var fecha_ini;
@@ -279,11 +336,112 @@ $_SESSION["check_actividad"] = $check_actividad;
     fecha_inicio_obtenida = fecha_ini;
 
 
-    console.log(fecha_inicio_obtenida);
+    // console.log(fecha_inicio_obtenida);
+  
+    document.getElementById('input_tipo_consulta').value = fecha_inicio_obtenida;
+  
+  }
+</script>
+
+
+<script type="text/javascript">
+
+  var usuario = document.getElementById('usuario');
+  var user;
+  var usuario_obtenido;
+
+  usuario.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    user = e.target.value;
+    usuario_obtenido = user;
+
+
+    // console.log(usuario_obtenido);
+    document.getElementById('input_usuario').value = usuario_obtenido;
   
 
   
   }
-</script> -->
+</script>
+
+
+<script type="text/javascript">
+
+  var actividad = document.getElementById('nombre_actividad');
+  var act;
+  var actividad_obtenida;
+
+  actividad.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    act = e.target.value;
+    actividad_obtenida = act;
+
+
+    // console.log(actividad_obtenida);
+    document.getElementById('input_nombre_actividad').value = actividad_obtenida;
+    
+  
+
+  
+  }
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="assets/js/material.min.js"></script>
+  <script>
+  $(function() {
+      setTimeout(function(){
+        $('body').addClass('loaded');
+      }, 1000);
+
+
+//FILTRANDO REGISTROS
+$("#btn_search").on("click", function(e){ 
+  e.preventDefault();
+  
+  loaderF(true);
+
+  var f_inicio = $('input[name=fecha_inicio]').val();
+  var f_fin = $('input[name=fecha_fin]').val();
+
+  var tipo_consulta = $('input[name=input_tipo_consulta]').val();
+  var usuario = $('input[name=input_usuario]').val();
+  var actividad = $('input[name=input_nombre_actividad]').val();
+
+  console.log(f_inicio + '' + f_fin);
+
+  if(tipo_consulta !="" && f_inicio !="" && f_fin !="" || tipo_consulta !="" && usuario !="" && actividad !="" && f_inicio !="" && f_fin !=""){
+    $.post("filtro.php", {f_inicio, f_fin, tipo_consulta, usuario, actividad}, function (data) {
+      $("#tablaReact").hide();
+      $(".resultadoFiltro").html(data);
+      document.getElementById("descargar").style.display = ""; // MOSTRAR
+      loaderF(false);
+    });  
+  }else{
+    $("#loaderFiltro").html('<p style="color:red; font-weight:bold;"> Debe llenar todos los campos</p>');
+  }
+} );
+
+
+function loaderF(statusLoader){
+    console.log(statusLoader);
+    if(statusLoader){
+      $("#loaderFiltro").show();
+      $("#loaderFiltro").html('<img class="img-fluid" src="assets/img/cargando.svg" style="left:50%; right: 50%; width:50px;">');
+    }else{
+      $("#loaderFiltro").hide();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
 </body>
 </html>
