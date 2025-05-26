@@ -126,14 +126,18 @@ $_SESSION["check_actividad"] = $check_actividad;
             <select class="form-control" name="usuario" id="usuario">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                    $select = "SELECT * 
-                    FROM usuarios_servidorespublicos 
-                    WHERE subdireccion = 'Subdirección de enlace interinstitucional'";
+                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, react_actividad.usuario
+                    FROM react_actividad
+
+                    JOIN usuarios_servidorespublicos
+                    ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+                    AND react_actividad.id_subdireccion = '3'
+                    ORDER BY usuarios_servidorespublicos.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];
                     // echo $id_actividad;
-                    echo "<option value='".$valores['usuario']."'>".$valores['usuario']."</option>";
+                    echo "<option value='".$valores['usuario']."'>".strtoupper($valores['nombre'].' '.$valores['amaterno'].' '.$valores['apaterno'])."</option>";
                     }
 
 

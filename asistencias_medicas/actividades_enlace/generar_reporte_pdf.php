@@ -1,7 +1,11 @@
 <?php
 // error_reporting(0);
+
+require_once '../../mpdf/vendor/autoload.php';
+include("../conexion.php");
+
 $tipo_consulta = strtoupper($_POST['tipo_consulta']);
-$usuario = strtoupper($_POST['usuario']);
+$usuario = $_POST['usuario'];
 $actividad = $_POST['nombre_actividad'];
 $fecha_inicio = date("Y-m-d", strtotime($_POST['fecha_inicio']));
 $fecha_fin  = date("Y-m-d", strtotime($_POST['fecha_fin']));
@@ -9,14 +13,16 @@ $fecha_fin  = date("Y-m-d", strtotime($_POST['fecha_fin']));
 $fecha1 = date("d-m-Y", strtotime($_POST['fecha_inicio']));
 $fecha2  = date("d-m-Y", strtotime($_POST['fecha_fin']));
 
+$today = date("d-m-Y");
+
+
 // echo $tipo_consulta;
 // echo $usuario;
 // echo $actividad;
 // echo $fecha_inicio;
 // echo $fecha_fin;
-
-require_once '../../mpdf/vendor/autoload.php';
-include("../conexion.php");
+// echo $name_user;
+// echo $name_actividad;
 
 $mpdf = new \Mpdf\Mpdf([
           'mode' => '',
@@ -44,17 +50,37 @@ $mpdf = new \Mpdf\Mpdf([
     
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook;" align="center"><span align="center">Subdirección de Enlace Interinstitucional</span>
+            <td width="100%" style="font-family: gothambook;" align="center"><span align="center">Subdirección de Enlace Interinstitucional<br>REPORTE DE ACTIVIDADES</span>
             </td>
         </tr>
     </table>
 
+
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="center"><span align="center">REPORTE DE ACTIVIDADES</span>
+            <td width="70%" style="font-family: gothambook" align="center"><span align="center"></span>
+            </td>
+            <td width="30%" style="font-family: gothambook" align="right"><span align="center">Fecha: '.$today.'</span>
             </td>
         </tr>
     </table>
+    ');
+
+$mpdf->SetHTMLFooter('
+    <div>
+    <table width="4%" align="right">
+    <tr>
+    <td width="3%" align="center" style="height:30vh;"><h3 class=""></font></span>
+    <span style="font-size: .55em; align:left;width:6px; color:black;"><font style="font-family: gothambook">
+    <p align="center">
+    <span style="font-size: 1.5em;">1/1</span>
+    </p>
+    </font></span></h3>
+    </td>
+    </tr>
+    </table>
+
+    
     ');
 
 
@@ -200,14 +226,14 @@ $html .='
     
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha_inicio.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha1.'</span>
             </td>
         </tr>
     </table>
 
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha_fin.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha2.'</span>
             </td>
         </tr>
     </table>
@@ -227,6 +253,22 @@ $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$f
 
 
 else if ($tipo_consulta === 'POR USUARIO' && $actividad === 'Todas'){
+
+$sentencia="SELECT  DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
+
+FROM react_actividad 
+
+JOIN usuarios_servidorespublicos
+ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+AND usuarios_servidorespublicos.usuario = '$usuario'
+
+
+ORDER BY usuarios_servidorespublicos.nombre ASC";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$name_user = strtoupper($row['nombre'].' '.$row['apaterno'].' '.$row['amaterno']);
+
+
 
 
 $html .='
@@ -369,7 +411,7 @@ $html .='
     
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Usuario: '.$usuario.'</span>
+            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Usuario: '.$name_user.'</span>
             </td>
         </tr>
     </table>
@@ -383,14 +425,14 @@ $html .='
 
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha_inicio.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha1.'</span>
             </td>
         </tr>
     </table>
 
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha_fin.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha2.'</span>
             </td>
         </tr>
     </table>
@@ -409,6 +451,36 @@ $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$f
 
 
 else {
+
+$sentencia="SELECT  DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
+
+FROM react_actividad 
+
+JOIN usuarios_servidorespublicos
+ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+AND usuarios_servidorespublicos.usuario = '$usuario'
+
+
+ORDER BY usuarios_servidorespublicos.nombre ASC";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$name_user = strtoupper($row['nombre'].' '.$row['apaterno'].' '.$row['amaterno']);
+
+
+$sentencia2="SELECT DISTINCT react_actividad_enlace.nombre, react_actividad.id_actividad
+
+FROM react_actividad 
+
+JOIN react_actividad_enlace 
+ON react_actividad.id_actividad = react_actividad_enlace.id 
+AND react_actividad.id_actividad = '$actividad'
+
+
+ORDER BY react_actividad_enlace.nombre ASC";
+
+$result2 = $mysqli->query($sentencia2);
+$row2=$result2->fetch_assoc();
+$name_actividad = strtoupper($row2['nombre']);
 
 
 
@@ -551,28 +623,28 @@ $html .='
     
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Usuario: '.$usuario.'</span>
+            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Usuario: '.$name_user.'</span>
             </td>
         </tr>
     </table>
 
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Actividad: '.$actividad.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Actividad: '.$name_actividad.'</span>
             </td>
         </tr>
     </table>
 
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha_inicio.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha1.'</span>
             </td>
         </tr>
     </table>
 
     <table width="100%">
         <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha_fin.'</span>
+            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha2.'</span>
             </td>
         </tr>
     </table>
