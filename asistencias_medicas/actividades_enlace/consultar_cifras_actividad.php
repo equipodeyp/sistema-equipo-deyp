@@ -11,6 +11,26 @@ if (!isset($name)) {
 }
 $check_actividad = 1;
 $_SESSION["check_actividad"] = $check_actividad;
+
+// echo $name;
+
+$sentencia="SELECT usuarios.cargo, usuarios.usuario 
+
+FROM usuarios
+
+JOIN usuarios_servidorespublicos
+ON usuarios.id = usuarios_servidorespublicos.id_usuarioprincipal
+AND usuarios.usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$cargo = $row['cargo'];
+
+// echo $cargo;
+// $today = date("Y-m-d H:i:s"); 
+// echo $today;
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -106,12 +126,23 @@ $_SESSION["check_actividad"] = $check_actividad;
         <h4 class="col-md-3 control-label">TIPO DE CONSULTA:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <!-- <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span> -->
             <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-              <option value="GLOBAL">GLOBAL</option>
-              <option value="POR USUARIO">POR USUARIO</option>
+
+              <?php 
+              if ($cargo != ''){
+              // echo 'subdirector';
+              echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="GLOBAL">GLOBAL</option>
+                    <option value="POR USUARIO">POR USUARIO</option>';
+              }else{
+              // echo 'adminidtrativo';
+              echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="POR USUARIO">POR USUARIO</option>';
+              }
+              ?>
+
             </select>
+
           </div>
         </div>
       </div>
@@ -125,7 +156,9 @@ $_SESSION["check_actividad"] = $check_actividad;
             <!-- <span class="input-group-addon"><i class="fa-solid fa-user"></i></span> -->
             <select class="form-control" name="usuario" id="usuario">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+
                 <?php
+                if ($cargo != ''){
                     $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, react_actividad.usuario
                     FROM react_actividad
 
@@ -139,9 +172,25 @@ $_SESSION["check_actividad"] = $check_actividad;
                     // echo $id_actividad;
                     echo "<option value='".$valores['usuario']."'>".strtoupper($valores['nombre'].' '.$valores['amaterno'].' '.$valores['apaterno'])."</option>";
                     }
+                }else
+                {
+                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, react_actividad.usuario
+                    FROM react_actividad
 
-
+                    JOIN usuarios_servidorespublicos
+                    ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+                    AND react_actividad.id_subdireccion = '3'
+                    AND react_actividad.usuario = '$name'
+                    ORDER BY usuarios_servidorespublicos.nombre ASC";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['usuario']."'>".strtoupper($valores['nombre'].' '.$valores['amaterno'].' '.$valores['apaterno'])."</option>";
+                    }
+                }
                 ?>
+
             </select>
           </div>
         </div>
@@ -157,7 +206,7 @@ $_SESSION["check_actividad"] = $check_actividad;
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="Todas">Todas</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_enlace";
+                    $select = "SELECT * FROM react_actividad_enlace ORDER BY react_actividad_enlace.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];

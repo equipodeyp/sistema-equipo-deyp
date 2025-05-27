@@ -3,7 +3,7 @@
 
 require_once '../../mpdf/vendor/autoload.php';
 include("../conexion.php");
-
+date_default_timezone_set("America/Mexico_City");
 $tipo_consulta = strtoupper($_POST['tipo_consulta']);
 $usuario = $_POST['usuario'];
 $actividad = $_POST['nombre_actividad'];
@@ -13,7 +13,9 @@ $fecha_fin  = date("Y-m-d", strtotime($_POST['fecha_fin']));
 $fecha1 = date("d-m-Y", strtotime($_POST['fecha_inicio']));
 $fecha2  = date("d-m-Y", strtotime($_POST['fecha_fin']));
 
-$today = date("d-m-Y");
+$today = date("d-m-Y H:i:sa");
+// $today = date("Y-m-d H:i:s"); 
+
 
 
 // echo $tipo_consulta;
@@ -58,9 +60,9 @@ $mpdf = new \Mpdf\Mpdf([
 
     <table width="100%">
         <tr>
-            <td width="70%" style="font-family: gothambook" align="center"><span align="center"></span>
+            <td width="50%" style="font-family: gothambook" align="center"><span align="center"></span>
             </td>
-            <td width="30%" style="font-family: gothambook" align="right"><span align="center">Fecha: '.$today.'</span>
+            <td width="50%" style="font-size: .55em; font-family: gothambook" align="right"><span align="center">Fecha y Hora: '.$today.'</span>
             </td>
         </tr>
     </table>
@@ -98,19 +100,19 @@ $html .='
     <table width="100%" style="border-spacing: 0;">
         </thead>
             <tr>
-                <td width="5%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 10px; text-align: center;">
+                <td width="5%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 10px; text-align: center;">
                 <b>#</b>
                 </td>
 
-                <td width="50%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 10px; text-align: center;">
+                <td width="50%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 10px; text-align: center;">
                 <b>Actividad</b>
                 </td>
 
-                <td width="25%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 15px; text-align: center;">
+                <td width="25%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 15px; text-align: center;">
                 <b>Unidad de medida</b>
                 </td>
 
-                <td width="20%" bgcolor="#A19E9F" style="border: 1px solid black; padding:  15Px; text-align: center;">
+                <td width="20%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding:  15Px; text-align: center;">
                 <b>Cantidad</b>
                 </td>
             </tr>
@@ -144,7 +146,7 @@ $res_sql = $mysqli -> query ($sql);
                         .$i.
                         '</td>
 
-                            <td width="50%" style="border: 1px solid black; padding: 2px; text-align: left;">'
+                        <td width="50%" style="border: 1px solid black; padding: 2px; text-align: left;">'
                             .$row_sql['nombre'].
                         '</td>';
 
@@ -153,7 +155,7 @@ $res_sql = $mysqli -> query ($sql);
                             .$row_sql['unidad_medida'].
                         '</td>
 
-                            <td width="20%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                        <td width="20%" style="text-decoration: underline; font-weight: bold; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql['total'].
                         '</td>';
 
@@ -183,19 +185,19 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
                 while ($row_sql2 = $res_sql2 ->fetch_assoc()){
 
                 $html .='<tr>
-                        <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                        <td width="5%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                         .$i.'.'.$j.
                         '</td>
 
-                            <td width="50%" style="border: 1px solid black; padding: 2px; text-align: right;">'
+                            <td width="50%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: right;">'
                             .$row_sql2['clasificacion'].
                         '</td>
 
-                            <td width="25%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="25%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql2['unidad_medida'].
                         '</td>
 
-                            <td width="20%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="20%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql2['total'].
                         '</td></tr>';
                         
@@ -210,7 +212,23 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
                 $i++;
                 }
 
-            $html .='   
+            $sql_total = "SELECT SUM(cantidad) as total 
+            FROM react_actividad 
+            WHERE react_actividad.fecha >= '$fecha_inicio' 
+            AND react_actividad.fecha <= '$fecha_fin'";
+            $result_total = $mysqli->query($sql_total);
+            $row_total=$result_total->fetch_assoc();
+            $t_activ = $row_total['total'];
+
+
+            $html .=' 
+                        <tfoot>
+                            <tr>
+                                <th scope="row" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: right;" colspan="3">Total de actividades realizadas</th>
+                                <td bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: center;">'.$t_activ.'</td>
+                            </tr>
+                        </tfoot>
+
     </table>
 </div>
 ';
@@ -252,6 +270,16 @@ $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$f
 
 
 
+
+
+
+
+
+
+
+
+
+
 else if ($tipo_consulta === 'POR USUARIO' && $actividad === 'Todas'){
 
 $sentencia="SELECT  DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
@@ -278,19 +306,19 @@ $html .='
     <table width="100%" style="border-spacing: 0;">
         </thead>
             <tr>
-                <td width="5%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 10px; text-align: center;">
+                <td width="5%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 10px; text-align: center;">
                 <b>#</b>
                 </td>
 
-                <td width="50%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 10px; text-align: center;">
+                <td width="50%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 10px; text-align: center;">
                 <b>Actividad</b>
                 </td>
 
-                <td width="25%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 15px; text-align: center;">
+                <td width="25%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 15px; text-align: center;">
                 <b>Unidad de medida</b>
                 </td>
 
-                <td width="20%" bgcolor="#A19E9F" style="border: 1px solid black; padding:  15Px; text-align: center;">
+                <td width="20%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding:  15Px; text-align: center;">
                 <b>Cantidad</b>
                 </td>
             </tr>
@@ -335,7 +363,7 @@ $res_sql = $mysqli -> query ($sql);
                             .$row_sql['unidad_medida'].
                         '</td>
 
-                            <td width="20%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="20%" style="text-decoration: underline; font-weight: bold; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql['total'].
                         '</td>';
 
@@ -367,19 +395,19 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
                 while ($row_sql2 = $res_sql2 ->fetch_assoc()){
 
                 $html .='<tr>
-                        <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                        <td width="5%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                         .$i.'.'.$j.
                         '</td>
 
-                            <td width="50%" style="border: 1px solid black; padding: 2px; text-align: right;">'
+                            <td width="50%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: right;">'
                             .$row_sql2['clasificacion'].
                         '</td>
 
-                            <td width="25%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="25%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql2['unidad_medida'].
                         '</td>
 
-                            <td width="20%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="20%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql2['total'].
                         '</td></tr>';
                         
@@ -394,7 +422,23 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
                 $i++;
                 }
 
-            $html .='   
+            $sql_total = "SELECT SUM(cantidad) as total 
+            FROM react_actividad 
+            WHERE react_actividad.fecha >= '$fecha_inicio' 
+            AND react_actividad.fecha <= '$fecha_fin'
+            AND react_actividad.usuario = '$usuario'";
+            $result_total = $mysqli->query($sql_total);
+            $row_total=$result_total->fetch_assoc();
+            $t_activ = $row_total['total'];
+
+
+            $html .=' 
+                        <tfoot>
+                            <tr>
+                                <th scope="row" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: right;" colspan="3">Total de actividades realizadas</th>
+                                <td bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: center;">'.$t_activ.'</td>
+                            </tr>
+                        </tfoot>   
     </table>
 </div>
 ';
@@ -450,6 +494,12 @@ $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$f
 
 
 
+
+
+
+
+
+
 else {
 
 $sentencia="SELECT  DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
@@ -491,19 +541,19 @@ $html .='
     <table width="100%" style="border-spacing: 0;">
         </thead>
             <tr>
-                <td width="5%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 10px; text-align: center;">
+                <td width="5%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 10px; text-align: center;">
                 <b>#</b>
                 </td>
 
-                <td width="50%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 10px; text-align: center;">
+                <td width="50%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 10px; text-align: center;">
                 <b>Actividad</b>
                 </td>
 
-                <td width="25%" bgcolor="#A19E9F" style="border: 1px solid black; padding: 15px; text-align: center;">
+                <td width="25%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 15px; text-align: center;">
                 <b>Unidad de medida</b>
                 </td>
 
-                <td width="20%" bgcolor="#A19E9F" style="border: 1px solid black; padding:  15Px; text-align: center;">
+                <td width="20%" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding:  15Px; text-align: center;">
                 <b>Cantidad</b>
                 </td>
             </tr>
@@ -548,7 +598,7 @@ $res_sql = $mysqli -> query ($sql);
                             .$row_sql['unidad_medida'].
                         '</td>
 
-                            <td width="20%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="20%" style="text-decoration: underline; font-weight: bold; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql['total'].
                         '</td>';
 
@@ -580,19 +630,19 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
                 while ($row_sql2 = $res_sql2 ->fetch_assoc()){
 
                 $html .='<tr>
-                        <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                        <td width="5%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                         .$i.'.'.$j.
                         '</td>
 
-                            <td width="50%" style="border: 1px solid black; padding: 2px; text-align: right;">'
+                            <td width="50%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: right;">'
                             .$row_sql2['clasificacion'].
                         '</td>
 
-                            <td width="25%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="25%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql2['unidad_medida'].
                         '</td>
 
-                            <td width="20%" style="border: 1px solid black; padding: 2px; text-align: center;">'
+                            <td width="20%" style="font-size: .85em; border: 1px solid black; padding: 2px; text-align: center;">'
                             .$row_sql2['total'].
                         '</td></tr>';
                         
@@ -607,7 +657,24 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
                 $i++;
                 }
 
-            $html .='   
+            $sql_total = "SELECT SUM(cantidad) as total 
+            FROM react_actividad 
+            WHERE react_actividad.fecha >= '$fecha_inicio' 
+            AND react_actividad.fecha <= '$fecha_fin'
+            AND react_actividad.usuario = '$usuario'
+            AND react_actividad.id_actividad = '$actividad'";
+            $result_total = $mysqli->query($sql_total);
+            $row_total=$result_total->fetch_assoc();
+            $t_activ = $row_total['total'];
+
+
+            $html .=' 
+                        <tfoot>
+                            <tr>
+                                <th scope="row" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: right;" colspan="3">Total de actividades realizadas</th>
+                                <td bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: center;">'.$t_activ.'</td>
+                            </tr>
+                        </tfoot>   
     </table>
 </div>
 ';
