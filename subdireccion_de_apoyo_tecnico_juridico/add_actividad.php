@@ -134,7 +134,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input  id="subdireccion" type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>  " readonly>                         
+            <input name="subdireccion" id="subdireccion" type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>" readonly>                         
           </div>
         </div>
       </div>
@@ -145,7 +145,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-              <select class="form-control" required onchange="selectNit(event)" id="idactividad">
+              <select name="idactividad" id="idactividad" class="form-control" required onchange="selectNit(event)">
               <option  disabled selected value="">SELECCIONA ACTIVIDAD</option>
               <?php
               $se = "SELECT * FROM react_actividad_apoyo";
@@ -165,13 +165,13 @@ $mostrar=$result->fetch_assoc();
         <label class="col-md-3 control-label">FUNCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-             <input name="funcion" value="" class="form-control" type="text"  id="funcion">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+             <input id="funcion_apoyo" name="funcion_apoyo" value="" class="form-control" type="text"  >
           </div>
         </div>
       </div>  
 
-
+<!-- 
     
        <div class="form-group" >
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
@@ -301,7 +301,7 @@ $mostrar=$result->fetch_assoc();
             <textarea class="form-control" type="text" name="observaciones_actividad" id="observaciones_actividad" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
 
@@ -366,7 +366,7 @@ $mostrar=$result->fetch_assoc();
       console.log(idfuncion);
       
       if (idfuncion === '1') {
-        document.getElementById("funcionapoyo").value = "Elaboración y suscripción de convenios";
+        document.getElementById("funcion_apoyo").value = "Elaboración y suscripción de convenios";
         document.getElementById("unidadmedida").value = "Convenio";
        
       }else if (idfuncion === '2') {

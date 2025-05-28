@@ -119,7 +119,7 @@ $cargo = $row['cargo'];
 <center>
   <div style="text-align:center;padding:15px;border:solid 5px; width:80%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8">
+    <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8" id="form_consultar_cifras" autocomplete="off">
 
 
     <div class="form-group">
@@ -321,15 +321,22 @@ $cargo = $row['cargo'];
   </div>
 
 
-<!-- <script>
-    $("#btn_Limpiar").click(function(event) {
-      $("#tipo_consulta")[0].reset();
-      $("#usuario")[0].reset();
-      $("#nombre_actividad")[0].reset();
-      $("#fecha_inicio")[0].reset();
-      $("#fecha_fin")[0].reset();
-    });
-</script> -->
+<script>
+
+// Obtén el formulario por su ID
+var miFormulario = document.getElementById("form_consultar_cifras");
+
+// Añade un listener para el evento 'popstate'
+window.addEventListener('popstate', () => {
+  // Limpia el formulario
+  miFormulario.reset();
+});
+
+// También puedes limpiar el formulario cuando se carga la página por primera vez
+window.addEventListener('load', () => {
+  miFormulario.reset();
+});
+</script>
 
 
 <script type="text/javascript">

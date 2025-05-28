@@ -16,30 +16,33 @@
 
 $subdireccion = $_POST['subdireccion'];
 $idactividad = $_POST['idactividad'];
-$funcion= $_POST['funcion'];
-$unidadmedida = $_POST['unidad_medida'];
-$reportemetas = $_POST['reporte_metas'];
-$fechaactividad = $_POST['fecha_actividad'];
-$cantidadactividad = $_POST['cantidad_actividad'];
-$clasificacion = $_POST['clasificacion'];
-$folio_expediente = $_POST['folio_expediente'];
-$id_sujeto_actividad = $row1['id_sujeto'];
-$evidencia_actividad = $row1['evidencia'];
-$idevidencia_actividad = $row1['id_evidencia_act'];
-$observaciones_actividad = $_POST['observaciones_actividad'];
-$id_sujeto = $_POST['id_sujeto'];
-$consecutivo_actividad = $row1['id'];
-// $nombre_actividad = $row1['nombre'];
-$informe_anual_actividad = $row1['informe_anual'];
-// $evidencia_interna_actividad = $row1['evidencia_interna'];
-// $folio_expediente_actividad = $row1['folio_expediente'];
-$municipio_actividad = $row1['municipio'];
-$kilometraje_actividad = $row1['kilometraje'];
-$year = date('Y');
+$funcion_apoyo= $_POST['funcion_apoyo'];
+// $unidadmedida = $_POST['unidad_medida'];
+// $reportemetas = $_POST['reporte_metas'];
+// $fechaactividad = $_POST['fecha_actividad'];
+// $cantidadactividad = $_POST['cantidad_actividad'];
+// $clasificacion = $_POST['clasificacion'];
+// $folio_expediente = $_POST['folio_expediente'];
+// $id_sujeto_actividad = $row1['id_sujeto'];
+// $evidencia_actividad = $row1['evidencia'];
+// $idevidencia_actividad = $row1['id_evidencia_act'];
+// $observaciones_actividad = $_POST['observaciones_actividad'];
+// $id_sujeto = $_POST['id_sujeto'];
+// $consecutivo_actividad = $row1['id'];
+// // $nombre_actividad = $row1['nombre'];
+// $informe_anual_actividad = $row1['informe_anual'];
+// // $evidencia_interna_actividad = $row1['evidencia_interna'];
+// // $folio_expediente_actividad = $row1['folio_expediente'];
+// $municipio_actividad = $row1['municipio'];
+// $kilometraje_actividad = $row1['kilometraje'];
+// $year = date('Y');
 
 
-//echo $subdireccion;
+echo $subdireccion;
+echo "<br>";
 echo $idactividad;
+echo "<br>";
+echo $funcion_apoyo;
 // echo "numero_actividad:  ".$f;
 //echo $f;
 // echo "cantidad_actividad:  ".$cantidad_actividad;
@@ -70,31 +73,31 @@ echo $idactividad;
 
 
 
-    $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
-    reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
-    folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
-    observaciones, informe_anual, usuario, year) 
-    VALUES ('$consecutivo_actividad', '$id_actividad', '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
-    '$reporte_metas_actividad', '$clasificacion_actividad', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
-    '$folio_expediente_actividad', '$id_sujeto_actividad', '$evidencia_interna_actividad', '$evidencia_actividad', '$kilometraje_actividad', 
-    '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
-    $raddactividad = $mysqli->query($addactividad);
+//     $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
+//     reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+//     folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+//     observaciones, informe_anual, usuario, year) 
+//     VALUES ('$consecutivo_actividad', '$id_actividad', '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+//     '$reporte_metas_actividad', '$clasificacion_actividad', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+//     '$folio_expediente_actividad', '$id_sujeto_actividad', '$evidencia_interna_actividad', '$evidencia_actividad', '$kilometraje_actividad', 
+//     '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+//     $raddactividad = $mysqli->query($addactividad);
 
 
-   if($raddactividad){
-    echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php';
-     window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-   </script>");
+//    if($raddactividad){
+//     echo ("<script type='text/javaScript'>
+//      window.location.href='../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php';
+//      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+//    </script>");
 
 
-}
+// }
 
    }
 
   
-else {
-  echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
-}
+// else {
+//   echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
+// }
 
 ?>   
