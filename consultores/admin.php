@@ -379,7 +379,7 @@ a:focus {
         echo '<a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>';
       }elseif ($subdireccion === 'Subdirección de Análisis de Riesgo') {
         echo '<a href="../subdireccion_de_analisis_de_riesgo/menu.php" class="btn-flotante">REGRESAR</a>';
-      }elseif ($subdireccion === 'subdireccion de ejecucion de medidas') {
+      }elseif ($subdireccion === 'Subdirección de ejecucion de medidas') {
         echo '<a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>';
       }elseif ($subdireccion === 'Subdirección de Apoyo Técnico y Jurídico') {
         echo '<a href="../subdireccion_de_apoyo_tecnico_juridico/menu.php" class="btn-flotante">REGRESAR</a>';
