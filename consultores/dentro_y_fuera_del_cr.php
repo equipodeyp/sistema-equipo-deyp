@@ -210,7 +210,7 @@ $('#fueraresguardo').DataTable({
                     <tbody>
                       <?php
                       $contador = 0;
-                      $sql = "SELECT * FROM datospersonales WHERE estatus = 'SUJETO PROTEGIDO' || estatus = 'PERSONA PROPUESTA' AND relacional = 'NO'";
+                      $sql = "SELECT * FROM datospersonales WHERE (estatus = 'SUJETO PROTEGIDO' || estatus = 'PERSONA PROPUESTA') AND relacional = 'NO'";
                       $resultado = $mysqli->query($sql);
                       while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
                         $id_sujeto = $row['id'];
