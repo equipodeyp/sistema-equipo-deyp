@@ -260,7 +260,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
-            <select  name="id_sujeto_actividad" id="id_sujeto_actividad" class="form-control">
+            <select name="id_sujeto" id="id_sujeto" class="form-control">
             </select>
           </div>
         </div>
@@ -271,8 +271,8 @@ $mostrar=$result->fetch_assoc();
         <label class="col-md-3 control-label">ID EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="idevidencia_actividad" id="idevidencia_actividad" class="form-control" type="text"  >
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="idevidencia_actividad" id="idevidencia_actividad" class="form-control" type="text" >
           </div>
         </div>
       </div>
@@ -348,7 +348,7 @@ $mostrar=$result->fetch_assoc();
 	function recargarLista(){
 		$.ajax({
 			type:"POST",
-			url:"../get_id_sujeto.php",
+			url:"./get_id_sujeto.php",
 			data:"folio=" + $('#folio_expediente').val(),
 			success:function(r){
 				$('#id_sujeto').html(r);
