@@ -166,71 +166,72 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-             <input id="funcion_apoyo" name="funcion_apoyo" value="" class="form-control" type="text"  >
+             <input  name="funcion_apoyo" id="funcion_apoyo" value="" class="form-control" type="text"  >
           </div>
         </div>
       </div>  
 
-<!-- 
-    
-       <div class="form-group" >
+
+
+      <div class="form-group" >
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="unidadmedida" value="" class="form-control" type="text"  id="unidadmedida">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt" ></i></span>
+            <input name="unidad_medida" id="unidad_medida" value="" class="form-control" type="text"  >
           </div>
         </div>
       </div>
 
 
-       <div class="form-group">
+<div class="form-group">
         <label class="col-md-3 control-label">REPORTE DE METAS</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reportemetas value="" class="form-control" type="text"  id="reportemetas">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+            <input name="reporte_metas" id="reporte_metas" value="" class="form-control" type="text"  >
                    </div>
         </div>
       </div>
 
 
 
-<br><br>
-
-      
-       <div class="form-group" >
+<div class="form-group" >
         <label class="col-md-3 control-label">FECHA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input id="fechaactividad" class="form-control" type="date" required>
+            <input  name="fecha_actividad" id="fechaactividad" class="form-control" type="date" required>
           </div>
         </div>
       </div>
+
+
 <div class="form-group">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="cantidadactividad" value="" class="form-control" type="text"  id="cantidadactividad">
+            <input name="cantidad_actividad" id="cantidad_actividad" value="" class="form-control" type="text"  >
           </div>
         </div>
       </div>
-      
 
-       
-        <div class="form-group" >
+
+ <div class="form-group" >
         <label class="col-md-3 control-label">CLASIFICACION</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="clasificacion" class="form-control" type="text"  id="clasificacion">
+            <input name="clasificacion" id="clasificacion" value="" class="form-control" type="text"  >
           </div>
         </div>
       </div>
 
-     <div class="form-group" id="folio_expediente_actividad">
+
+
+
+<div class="form-group" id="folio_expediente_actividad">
         <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -252,44 +253,29 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-        
 
-      <div class="form-group" id="id_sujeto_actividad">
+
+<div class="form-group" id="id_sujeto_actividad">
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
-            <select class="form-control" name="id_sujeto" id="id_sujeto_actividad">
+            <select  name="id_sujeto_actividad" id="id_sujeto_actividad" class="form-control">
             </select>
           </div>
         </div>
       </div>
 
 
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">EVIDENCIA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="evidencia_actividad" class="form-control" type="text"  id="evidencia_actividad">
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="form-group">
+ <div class="form-group">
         <label class="col-md-3 control-label">ID EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="idevidencia_actividad" class="form-control" type="text"  id="idevidencia_actividad">
+            <input name="idevidencia_actividad" id="idevidencia_actividad" class="form-control" type="text"  >
           </div>
         </div>
       </div>
-
-
 
 
 
@@ -298,10 +284,25 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-comments"></i></span>
-            <textarea class="form-control" type="text" name="observaciones_actividad" id="observaciones_actividad" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+            <textarea name="observaciones_actividad" id="observaciones_actividad" class="form-control" type="text"  rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
           </div>
         </div>
-      </div> -->
+      </div>
+
+
+<!-- 
+
+<br><br>
+     
+
+
+     
+
+
+
+
+
+ -->
 
 
 
@@ -367,21 +368,21 @@ $mostrar=$result->fetch_assoc();
       
       if (idfuncion === '1') {
         document.getElementById("funcion_apoyo").value = "Elaboración y suscripción de convenios";
-        document.getElementById("unidadmedida").value = "Convenio";
+        document.getElementById("unidad_medida").value = "Convenio";
        
       }else if (idfuncion === '2') {
-        document.getElementById("funcionapoyo").value = "Integración del expediente de protección";
-        document.getElementById("unidadmedida").value = "Documento";
+        document.getElementById("funcion_apoyo").value = "Integración del expediente de protección";
+        document.getElementById("unidad_medida").value = "Documento";
        
       }else if (idfuncion === '3') {
-        document.getElementById("funcionapoyo").value = "Diligencias administrativas";
-        document.getElementById("unidadmedida").value = "Traslado";
+        document.getElementById("funcion_apoyo").value = "Diligencias administrativas";
+        document.getElementById("unidad_medida").value = "Traslado";
         
       }else if (idfuncion === '4') {
-        document.getElementById("funcionapoyo").value = "Otorgar medidas de asistencia";
-        document.getElementById("unidadmedida").value = "Asesoria";
+        document.getElementById("funcion_apoyo").value = "Otorgar medidas de asistencia";
+        document.getElementById("unidad_medida").value = "Asesoria";
             }
-       document.getElementById("reporteanual").value = "SI";
+       document.getElementById("reporte_metas").value = "SI";
   }
 
   </script>
