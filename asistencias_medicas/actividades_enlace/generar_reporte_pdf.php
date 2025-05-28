@@ -23,7 +23,6 @@ $today = date("d-m-Y H:i:sa");
 // echo $actividad;
 // echo $fecha_inicio;
 // echo $fecha_fin;
-// echo $name_user;
 // echo $name_actividad;
 
 $mpdf = new \Mpdf\Mpdf([
@@ -120,7 +119,7 @@ $html .='
 ';
 
 
-$sql = "SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida
+$sql = "SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_subdireccion.subdireccion
 
 FROM react_actividad 
 
@@ -130,6 +129,7 @@ AND react_actividad.fecha >= '$fecha_inicio' AND react_actividad.fecha <='$fecha
 
 JOIN react_subdireccion 
 ON react_actividad.id_subdireccion = react_subdireccion.id
+AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL' 
 
 GROUP BY idactividad
 
@@ -163,7 +163,7 @@ $res_sql = $mysqli -> query ($sql);
 
 if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 
-                $sql2 = ("SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.clasificacion
+                $sql2 = ("SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.clasificacion, react_subdireccion.subdireccion
 
                 FROM react_actividad 
 
@@ -175,7 +175,7 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 
                 JOIN react_subdireccion 
                 ON react_actividad.id_subdireccion = react_subdireccion.id
-
+                AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL'
                 GROUP BY react_actividad.clasificacion
 
                 ORDER BY react_actividad.clasificacion ASC");
@@ -215,7 +215,8 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
             $sql_total = "SELECT SUM(cantidad) as total 
             FROM react_actividad 
             WHERE react_actividad.fecha >= '$fecha_inicio' 
-            AND react_actividad.fecha <= '$fecha_fin'";
+            AND react_actividad.fecha <= '$fecha_fin' AND react_actividad.id_subdireccion = '3'";
+            
             $result_total = $mysqli->query($sql_total);
             $row_total=$result_total->fetch_assoc();
             $t_activ = $row_total['total'];
@@ -282,7 +283,7 @@ $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$f
 
 else if ($tipo_consulta === 'POR USUARIO' && $actividad === 'Todas'){
 
-$sentencia="SELECT  DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
+$sentencia="SELECT DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
 
 FROM react_actividad 
 
@@ -292,6 +293,7 @@ AND usuarios_servidorespublicos.usuario = '$usuario'
 
 
 ORDER BY usuarios_servidorespublicos.nombre ASC";
+
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $name_user = strtoupper($row['nombre'].' '.$row['apaterno'].' '.$row['amaterno']);
@@ -327,7 +329,7 @@ $html .='
 
 
 
-$sql = "SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.usuario
+$sql = "SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.usuario, react_subdireccion.subdireccion
 
 FROM react_actividad 
 
@@ -338,6 +340,7 @@ AND react_actividad.fecha >= '$fecha_inicio' AND react_actividad.fecha <='$fecha
 
 JOIN react_subdireccion 
 ON react_actividad.id_subdireccion = react_subdireccion.id
+
 
 GROUP BY idactividad
 
@@ -385,6 +388,7 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 
                 JOIN react_subdireccion 
                 ON react_actividad.id_subdireccion = react_subdireccion.id
+                
 
                 GROUP BY react_actividad.clasificacion
 
@@ -426,6 +430,7 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
             FROM react_actividad 
             WHERE react_actividad.fecha >= '$fecha_inicio' 
             AND react_actividad.fecha <= '$fecha_fin'
+            AND react_actividad.id_subdireccion = '3'
             AND react_actividad.usuario = '$usuario'";
             $result_total = $mysqli->query($sql_total);
             $row_total=$result_total->fetch_assoc();
@@ -561,7 +566,7 @@ $html .='
 ';
 
 
-$sql = "SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.usuario
+$sql = "SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.usuario, react_subdireccion.subdireccion
 
 FROM react_actividad 
 
@@ -606,7 +611,7 @@ $res_sql = $mysqli -> query ($sql);
 
 if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 
-                $sql2 = ("SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.clasificacion, react_actividad.usuario
+                $sql2 = ("SELECT SUM(cantidad) AS total, react_actividad_enlace.nombre, react_actividad.unidad_medida, react_actividad.clasificacion, react_actividad.usuario, react_subdireccion.subdireccion
 
                 FROM react_actividad 
 
@@ -661,6 +666,7 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
             FROM react_actividad 
             WHERE react_actividad.fecha >= '$fecha_inicio' 
             AND react_actividad.fecha <= '$fecha_fin'
+            AND react_actividad.id_subdireccion = '3'
             AND react_actividad.usuario = '$usuario'
             AND react_actividad.id_actividad = '$actividad'";
             $result_total = $mysqli->query($sql_total);

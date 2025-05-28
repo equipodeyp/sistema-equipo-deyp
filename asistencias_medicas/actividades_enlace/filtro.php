@@ -24,6 +24,7 @@ $sqlReact = ("SELECT react_actividad_enlace.nombre, react_actividad.clasificacio
 
             JOIN react_subdireccion 
             ON react_actividad.id_subdireccion = react_subdireccion.id
+            AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL' 
 
             ORDER BY react_actividad_enlace.nombre ASC");
 
@@ -42,6 +43,7 @@ $sqlReact = ("SELECT react_actividad_enlace.nombre, react_actividad.clasificacio
 
             JOIN react_subdireccion 
             ON react_actividad.id_subdireccion = react_subdireccion.id
+            AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL'
 
             ORDER BY react_actividad_enlace.nombre ASC");
 
@@ -61,6 +63,7 @@ $sqlReact = ("SELECT react_actividad_enlace.nombre, react_actividad.clasificacio
 
             JOIN react_subdireccion 
             ON react_actividad.id_subdireccion = react_subdireccion.id
+            AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL'
 
             ORDER BY react_actividad_enlace.nombre ASC");
 
