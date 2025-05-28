@@ -189,8 +189,8 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="reportemetas class="form-control" type="text"  id="reportemetas">
-          </div>
+            <input name="reportemetas value="" class="form-control" type="text"  id="reportemetas">
+                   </div>
         </div>
       </div>
 

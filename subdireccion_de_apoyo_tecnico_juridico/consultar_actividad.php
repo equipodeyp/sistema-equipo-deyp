@@ -301,71 +301,191 @@ a:focus {
         <br>
 
 
-<div class="container">
-          <!-- <div class="row">
-            <div class="col-lg-12">
-              <div class="table-responsive">
-                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                  <thead>
-                  <h3 style="text-align:center">ACTIVIDADES REGISTRADAS</h3>
-                  <tr>
-                      <th style="text-align:center">NO.</th>
-                      <th style="text-align:center">FECHA</th>
-                      <th style="text-align:center">ACTIVIDAD</th>
-                      <th style="text-align:center">CLASIFICACIÓN</th>
-                      <th style="text-align:center">CANTIDAD</th>
-                      <th style="text-align:center">DETALLE</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $contador = 0;
-                          $query= "SELECT *
-                                    FROM react_actividad
-                                    
-                                    where react_actividad.id_subdireccion = 2 ";
+<div class="">
+        <h3 style="text-align:center">CONSULTAR CIFRAS</h3>
+        <center>
+  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-                              
+    <form  id="form_consultar" method="POST" action="./cifras.php" enctype= "multipart/form-data">
 
 
-
-                          $rq = $mysqli->query($query);
-                             while($row = $rq->fetch_assoc()){
-                               $contador = $contador + 1;
-                               $id_per = $row['id_persona'];
-                               $idact = $row['id_actividad'];
-                               $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
-                               $rdper = $mysqli->query($dper);
-                               $fdper = $rdper->fetch_assoc();
-                                   ?>
-                                       <tr>
-                                          <td style="text-align:center"><?php echo $contador ?></span></td>
-                                          <?php
-                                              $originalDate = $row['fecha'];
-                                              $date = date("d/m/Y", strtotime($originalDate));
-                                          ?>
-                                          <td style="text-align:center"><?php echo $date; ?></span></td>
-
-                                          <td style="text-align:center"><?php echo $row['nombre']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['clasificacion']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['cantidad']; ?></span></td>
-                                          <td style="text-align:center">
-                              							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
-                              							<?php
-                              							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal' ><i class='fa-solid fa-file-pen'></i> Detalle</a>";
-                              							 ?>
-                              							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
-                              						</td>
-                                          
-                                        </tr>
-                                        <?php include('veractividad.php'); ?>
-                                   <?php
-                                   }
-                               ?>
-                  </tbody>
-                </table>
-              </div> -->
-            </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">TIPO DE CONSULTA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option value="GLOBAL">GLOBAL</option>
+              <option value="POR USUARIO">POR USUARIO</option>
+            </select>
           </div>
         </div>
+      </div>
 
+
+      <div class="form-group" id="div_usuario" style="display:none;">
+        <label class="col-md-3 control-label">USUARIO</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+            <select class="form-control" name="usuario" id="usuario">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * 
+                    FROM usuarios_servidorespublicos 
+                    WHERE subdireccion = 'Subdirección de Apoyo Técnico y Jurídico'";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['usuario']."'>".$valores['usuario']."</option>";
+                    }
+
+
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group" id="div_actividad" style="display:none;">
+        <label class="col-md-3 control-label">ACTIVIDAD</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+            <select class="form-control" name="nombre_actividad" id="nombre_actividad">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+              <option value="Todas">Todas</option>
+                <?php
+                    $select = "SELECT * FROM react_actividad_apoyo";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['id']."'>".$valores['nombre']."</option>";
+                    }
+
+
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">FECHA INICIO</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <input name="fecha_inicio" id="fecha_inicio" class="form-control" type="date" required>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">FECHA TERMINO</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <input name="fecha_fin" id="fecha_fin" class="form-control" type="date" required>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-5">
+          <button type="submit" name="submit" value="search" id="btn_search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> CONSULTAR </button>
+          <!-- <button id="btn_Limpiar" class="btn btn-danger"><span class="glyphicon glyphicon-erase"></span> LIMPIAR </button> -->
+        </div>
+      </div>
+
+
+
+
+<div class="contenedor">
+      <a href="../menu.php" class="btn-flotante">REGRESAR</a>
+  </div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+  var tipo_actividad = document.getElementById('tipo_consulta');
+  var numero_tipo_act;
+  var tipo_actividad_obtenido;
+
+  tipo_actividad.addEventListener('change', obtenerActividad);
+
+  function obtenerActividad(e){
+
+    numero_tipo_act = e.target.value;
+    tipo_actividad_obtenido = numero_tipo_act;
+
+
+  
+    
+    if (tipo_actividad_obtenido === 'POR USUARIO'){
+      document.getElementById("div_usuario").style.display = ""; // MOSTRAR
+      document.getElementById("div_actividad").style.display = ""; // MOSTRAR
+
+      document.getElementById('usuario').value = ""; // LIMPIAR
+      document.getElementById('nombre_actividad').value = ""; // LIMPIAR
+      document.getElementById('fecha_inicio').value = ""; // LIMPIAR
+      document.getElementById('fecha_fin').value = ""; // LIMPIAR
+
+      document.getElementById("usuario").required = true;
+      document.getElementById("nombre_actividad").required = true;
+      
+    } else{
+      document.getElementById("div_usuario").style.display = "none"; // MOSTRAR
+      document.getElementById("div_actividad").style.display = "none"; // MOSTRAR
+
+      document.getElementById('usuario').value = ""; // LIMPIAR
+      document.getElementById('nombre_actividad').value = ""; // LIMPIAR
+      document.getElementById('fecha_inicio').value = ""; // LIMPIAR
+      document.getElementById('fecha_fin').value = ""; // LIMPIAR
+
+    }
+
+  
+  }
+</script>
+
+
+
+
+  
+    </form>
+  </div>
+</center>
+
+
+
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
