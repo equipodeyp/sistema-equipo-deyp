@@ -63,24 +63,12 @@ section {
   /*  position: absolute;*/
 }
 
-.bi-github, .bi-youtube, .bi-linkedin, .bi-briefcase{
-  font-size: 30px;
-  color: #111;
-  margin: 0px 20px;
-}
+
 a:hover{
   list-style:none;
   text-decoration:none;
 }
-.bi-github:hover{
-  color: #f9f9f9;
-}
-.bi-youtube:hover{
-  color: #f9f9f9;
-}
-.bi-linkedin:hover{
-  color: #f9f9f9;
-}
+
 .bi-briefcase:hover{
   color: #f9f9f9;
 }

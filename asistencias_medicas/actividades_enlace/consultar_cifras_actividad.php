@@ -119,7 +119,7 @@ $cargo = $row['cargo'];
 <center>
   <div style="text-align:center;padding:15px;border:solid 5px; width:80%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8">
+    <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8" id="form_consultar_cifras" autocomplete="off">
 
 
     <div class="form-group">
@@ -282,12 +282,13 @@ $cargo = $row['cargo'];
                 </thead>
               <?php
               include('config.php');
-              $sqlReact = ('SELECT react_actividad_enlace.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+              $sqlReact = ("SELECT react_actividad_enlace.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
                                   react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario 
                                   FROM react_actividad 
                                   JOIN react_actividad_enlace ON react_actividad.id_actividad = react_actividad_enlace.id 
-                                  JOIN react_subdireccion ON react_actividad.id_subdireccion = react_subdireccion.id 
-                                  ORDER BY react_actividad_enlace.nombre ASC');
+                                  JOIN react_subdireccion ON react_actividad.id_subdireccion = react_subdireccion.id
+                                  AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL' 
+                                  ORDER BY react_actividad_enlace.nombre ASC");
               $query = mysqli_query($con, $sqlReact);
               $i =1;
                 while ($dataRow = mysqli_fetch_array($query)) { ?>
@@ -321,15 +322,22 @@ $cargo = $row['cargo'];
   </div>
 
 
-<!-- <script>
-    $("#btn_Limpiar").click(function(event) {
-      $("#tipo_consulta")[0].reset();
-      $("#usuario")[0].reset();
-      $("#nombre_actividad")[0].reset();
-      $("#fecha_inicio")[0].reset();
-      $("#fecha_fin")[0].reset();
-    });
-</script> -->
+<script>
+
+// Obtén el formulario por su ID
+var miFormulario = document.getElementById("form_consultar_cifras");
+
+// Añade un listener para el evento 'popstate'
+window.addEventListener('popstate', () => {
+  // Limpia el formulario
+  miFormulario.reset();
+});
+
+// También puedes limpiar el formulario cuando se carga la página por primera vez
+window.addEventListener('load', () => {
+  miFormulario.reset();
+});
+</script>
 
 
 <script type="text/javascript">
