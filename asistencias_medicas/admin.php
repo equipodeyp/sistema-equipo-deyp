@@ -419,14 +419,14 @@ else{
                         </a>
                         <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                             <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/add_actividad.php'">
-                                <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                                <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
                             </li>
                             <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/consulta_actividad.php'">
-                                <i class="fas fa-laptop-file"></i> CONSULTAR</a>
+                                <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD</a>
                             </li>
-                            <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
-                              <i class="fas fa-search"></i> BUSCAR</a>
-                            </li> -->
+                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR ACTIVIDAD</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
