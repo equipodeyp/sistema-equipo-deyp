@@ -27,8 +27,51 @@ if ($check_actividad == 1) {
      $n=$num_consecutivo;
      $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
    }
-   echo "consecutivosubdireccion:".$consecutivosub = $n_con;
 
+   // Cómo subir el archivo
+  if ($_FILES['archivo']['error'] === 0) {
+  echo $archivo = $_FILES['archivo'];
+  echo "<br>";
+  echo $nombre_temporal = $archivo['tmp_name'];
+  echo "<br>";
+  echo $nombre_original = $archivo['name'];
+  echo "<br>";
+  echo $tipo_archivo = $archivo['type'];
+  echo "<br>";
+  echo $tamano_archivo = $archivo['size'];
+  echo "<br>";
+
+  // Verificar el tipo de archivo
+  if ($tipo_archivo === 'image/jpeg' || $tipo_archivo === 'image/png' || $tipo_archivo === 'video/mp4' || $tipo_archivo === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      || $tipo_archivo === 'application/vnd.ms-excel' || $tipo_archivo === 'application/pdf' || $tipo_archivo === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      || $tipo_archivo === 'application/msword') {
+    // Mover el archivo a una carpeta de destino
+    $ruta_destino = "../../imagenesbdd/ejecucion_medidas/". $nombre_original;  //  reemplazar con la ruta deseada
+    if (move_uploaded_file($nombre_temporal, $ruta_destino)) {
+      echo "<h1>";
+      echo "Archivo subido correctamente.";
+      echo "</h1>";
+    } else {
+      echo "<h1>";
+      echo "Error al subir el archivo.";
+      echo "</h1>";
+    }
+  } else {
+    echo "<h1>";
+    echo "Tipo de archivo no permitido.";
+    echo "</h1>";
+  }
+} else {
+  echo "<h1>";
+  echo "Error al subir el archivo. Código de error: " . $_FILES['archivo']['error'];
+  echo "</h1>";
+}
+echo $ruta_destino;
+
+echo "<br>";
+   echo "consecutivosubdireccion:".$consecutivosub = $n_con;
+   echo "<br>";
+   echo "imagen:  ".$image = $_POST['imageevidencia2'];
   echo "<br>";
   echo 'SUBDIRECCIÓN:  '.$id_subdireccion = '4';
   echo "<br>";
@@ -76,6 +119,11 @@ if ($check_actividad == 1) {
     $id_sujeto = 'NA';
     $kilometros = 'NA';
     $informe_anual = 'NA';
+    // datos de iamge
+    // $trasladoact = $_POST["trasladorel"];
+    // $idtrasladoact =  $_POST["trasladorelid"];
+    $ruta_destino = "../../imagenesbdd/ejecucion_medidas/". $nombre_original;  //  reemplazar con la ruta deseada
+    $horaact = $_POST["horaactividad"];
   }elseif ($actividad === '5') {
     $idactividad ='SUBEM-05';
     $clasificacion = 'SALVAGUARDAR-'.$_POST['clasificacionsalvarintegridad'];
@@ -85,6 +133,9 @@ if ($check_actividad == 1) {
     $id_sujeto = $_POST['id_sujeto'];
     $kilometros = 'NA';
     $informe_anual = 'NA';
+    // datos de iamge
+    $trasladoact = $_POST["trasladorel"];
+    $idtrasladoact =  $_POST["trasladorelid"];
   }elseif ($actividad === '6') {
     $idactividad ='SUBEM-06';
     $clasificacion = 'NA';
@@ -120,6 +171,10 @@ if ($check_actividad == 1) {
   echo 'año:  '.$year_alta = date('Y');
   echo "<br>";
   echo 'id_actividad:  '.$idactividad;
+  echo "<br>";
+  echo "horaact: ",$horaact;
+  echo "<br>";
+  echo "rutaimage: ".$ruta_destino;
   //sql para insertar registro
   $addactividad = "INSERT INTO react_actividad(consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio,
                                               folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, observaciones, informe_anual, fecha_alta, usuario, year)
@@ -132,7 +187,11 @@ if ($check_actividad == 1) {
   $qry = "select max(ID) As id from react_actividad";
   $result = $mysqli->query($qry);
   $row = $result->fetch_assoc();
-  echo 'id_actividad:  '.$id_traslado =$row["id"];
+  echo 'id_actividad:  '.$id_activity =$row["id"];
+  // registrar iamge en la BD
+    $addimageruta = "INSERT INTO react_image_actividad(id_actividad, ruta, usuario, fecha, traslado, id_traslado, hora)
+                     VALUES('$id_activity', '$ruta_destino', '$name', '$fecha_alta', '$trasladoact', '$idtrasladoact', '$horaact')";
+    $raddimageruta = $mysqli->query($addimageruta);
 
   // validacion de update correcto
   if($raddactividad){

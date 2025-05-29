@@ -61,7 +61,7 @@
   <div class="col-md-7 selectContainer">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-      <select name="clasificacionsalvarintegridad" class="form-control selectpicker" id="clasificacionsalvaguardarintegridad">
+      <select name="clasificacionsalvarintegridad" class="form-control selectpicker" id="clasificacionsalvaguardarintegridad" onchange="selecttasl(event)">
         <option disabled selected value>SELECCIONE UNA OPCION</option>
         <?php
         $municipio = "SELECT * FROM react_salvaguradar_integridad";

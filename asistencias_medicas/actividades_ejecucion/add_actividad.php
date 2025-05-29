@@ -33,6 +33,124 @@ $_SESSION["check_actividad"] = $check_actividad;
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
   <link rel="stylesheet" href="../../css/react_add_traslados.css">
+  <style media="screen">
+  body {
+font-family: sans-serif;
+background-color: #eeeeee;
+}
+
+.file-upload {
+background-color: #ffffff;
+width: 636px;
+margin: 0 auto;
+padding: 25px;
+}
+
+.file-upload-btn {
+width: 100%;
+margin: 0;
+color: #fff;
+background: #1FB264;
+border: none;
+padding: 10px;
+border-radius: 4px;
+border-bottom: 4px solid #15824B;
+transition: all .2s ease;
+outline: none;
+text-transform: uppercase;
+font-weight: 700;
+}
+
+.file-upload-btn:hover {
+background: #1AA059;
+color: #ffffff;
+transition: all .2s ease;
+cursor: pointer;
+}
+
+.file-upload-btn:active {
+border: 0;
+transition: all .2s ease;
+}
+
+.file-upload-content {
+display: none;
+text-align: center;
+}
+
+.file-upload-input {
+position: absolute;
+margin: 0;
+padding: 0;
+width: 100%;
+height: 100%;
+outline: none;
+opacity: 0;
+cursor: pointer;
+}
+
+.image-upload-wrap {
+margin-top: 20px;
+border: 4px dashed #1FB264;
+position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+background-color: #1FB264;
+border: 4px dashed #ffffff;
+}
+
+.image-title-wrap {
+padding: 0 15px 15px 15px;
+color: #222;
+}
+
+.drag-text {
+text-align: center;
+}
+
+.drag-text h3 {
+font-weight: 100;
+text-transform: uppercase;
+color: #15824B;
+padding: 90px 0;
+}
+
+.file-upload-image {
+max-height: 200px;
+max-width: 200px;
+margin: auto;
+padding: 20px;
+}
+
+.remove-image {
+width: 200px;
+margin: 0;
+color: #fff;
+background: #cd4535;
+border: none;
+padding: 10px;
+border-radius: 4px;
+border-bottom: 4px solid #b02818;
+transition: all .2s ease;
+outline: none;
+text-transform: uppercase;
+font-weight: 700;
+}
+
+.remove-image:hover {
+background: #c13b2a;
+color: #ffffff;
+transition: all .2s ease;
+cursor: pointer;
+}
+
+.remove-image:active {
+border: 0;
+transition: all .2s ease;
+}
+  </style>
 </head>
 <body>
   <div class="contenedor">
@@ -60,7 +178,27 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
 
       <nav class="menu-nav">
-        <br><br>
+        <ul>
+            <li>
+                <a href="#" onclick="toggleSubmenu(this)">
+                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                </a>
+                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                  <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/add_actividad.php'">
+                      <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
+                  </li> -->
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/consulta_actividad.php'">
+                      <i class="fas fa-laptop-file"></i> CONSULTAR ACTIVIDAD</a>
+                  </li>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
+                    <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
+                  </li>
+                </ul>
+            </li>
+        </ul>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">
@@ -86,7 +224,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         <center>
   <div style="text-align:center;padding:25px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form method="POST" action="save_actividad.php" enctype= "multipart/form-data">
+    <form method="POST" action="save_actividad.php" enctype="multipart/form-data">
       <!-- SUBDIRECCIÓN-->
       <div class="persona-form">
       <div class="form-group" style="display:none;">
@@ -163,13 +301,23 @@ $_SESSION["check_actividad"] = $check_actividad;
           </div>
         </div>
       </div>
+      <!-- hora -->
+      <div class="form-group" id="horaejecmed" style="display:none">
+        <label class="col-md-3 control-label">HORA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
+            <input name="horaactividad" class="form-control" type="time">
+          </div>
+        </div>
+      </div>
       <!-- CANTIDAD -->
-      <div class="form-group">
+      <div class="form-group" id="cantidadejecmed" style="display:none">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="cantidad" value="" class="form-control" type="text" id="cantidad">
+            <input name="cantidad" value="1" class="form-control" type="text" id="cantidad">
           </div>
         </div>
       </div>
@@ -189,6 +337,40 @@ $_SESSION["check_actividad"] = $check_actividad;
               while($municipios = $answermun->fetch_assoc()){
                echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
               }
+              ?>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- sujeto traslado relacionar -->
+      <div class="form-group" id="traslado_ejecutado" style="display: none;">
+        <label class="col-md-3 control-label">TRASLADO</label>
+        <div class="col-md-7 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <select class="form-control" name="trasladorel" id="trasladorelact" onchange="checktraslado(event)">
+              <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- traslado ejecutado -->
+      <div class="form-group" id="traslado_ejecutadoinfo" style="display: none;">
+        <label class="col-md-3 control-label">ID TRASLADO</label>
+        <div class="col-md-7 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+            <select class="form-control" name="trasladorelid" id="trasladorelact">
+              <option disabled selected value="">SELECCIONE TRASLADO</option>
+              <?php
+                $trasejecinf = "SELECT * FROM react_traslados";
+                $rtrasejecinf = $mysqli->query($trasejecinf);
+                while($ftrasejecinf = $rtrasejecinf->fetch_assoc()){
+                  $idtrasladoun = $ftrasejecinf['idtrasladounico'];
+                  echo "<option value='$idtrasladoun'>$idtrasladoun</option>";
+                }
               ?>
             </select>
           </div>
@@ -230,12 +412,32 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
       <!-- EVIDENCIA -->
-      <div class="form-group">
+      <div class="form-group" id="evidejemed" style="display: none;">
         <label class="col-md-3 control-label">EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="evidencia" value="" class="form-control" type="text" id="evidencia">
+            <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
+            <select class="form-control" name="evidencia" id="evidencia">
+              <option disabled selected value="">SELECCIONE UNA OPCION</option>
+              <option value="ACUERDO">ACUERDO</option>
+              <option value="CONSTANCIA">CONSTANCIA</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- medio de notificacion -->
+      <div class="form-group" id="medionotificejecmed" style="display:none">
+        <label class="col-md-3 control-label">MEDIO DE NOTIFICACION A LA PP O SP</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+            <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
+            <select class="form-control" name="notific_atn" id="notific_atnpet">
+              <option disabled selected value="">SELECCIONE UNA OPCION</option>
+              <option value="ACTA CIRCUNSTANCIADA">ACTA CIRCUNSTANCIADA</option>
+              <option value="CEDULA DE NOTIFICACION">CEDULA DE NOTIFICACION</option>
+            </select>
           </div>
         </div>
       </div>
@@ -246,6 +448,28 @@ $_SESSION["check_actividad"] = $check_actividad;
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
             <input name="idevidencia" value="" class="form-control" type="text" id="idevidencia">
+          </div>
+        </div>
+      </div>
+
+      <!-- ID DE EVIDENCIA -->
+      <div class="form-group" id="evidenciaejecmed" style="display: none;">
+        <label class="col-md-3 control-label" style="line-height: 310px;">EVIDENCIA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <div class="file-upload">
+              <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">SELECCIONAR ARCHIVO</button>
+              <div class="image-upload-wrap">
+                <input class="file-upload-input" type="file" onchange="readURL(this);"  name="archivo" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf,video/*">
+                <!-- <input required="" type="file" name="file" id="exampleInputFile"> -->
+                <div class="drag-text">
+                  <h3>SELECCIONA UN ARCHIVO</h3>
+                </div>
+              </div>
+              <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" name="imageevidencia2" id="imageevid2">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -261,7 +485,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
       <!-- OBSERVACIONES -->
       <div class="form-group">
-        <label class="col-md-3 control-label">OBSERVACIONES</label>
+        <label class="col-md-3 control-label" style="line-height: 60px;">OBSERVACIONES</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
@@ -301,8 +525,12 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("entidadmunicipio_1_2").style.display = "none";
       document.getElementById("actividad_folioexpediente").style.display = "";
       document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "";
+      document.getElementById("actividad_idevidencia").style.display = "none";
       document.getElementById("actividad_kilometros").style.display = "none";
+      document.getElementById("medionotificejecmed").style.display = "";
+      document.getElementById("horaejecmed").style.display = "none";
+      document.getElementById("evidenciaejecmed").style.display = "none";
+      document.getElementById("evidejemed").style.display = "";
     }else if (idactividad === '3') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -314,6 +542,10 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("actividad_idsujeto").style.display = "";
       document.getElementById("actividad_idevidencia").style.display = "none";
       document.getElementById("actividad_kilometros").style.display = "none";
+      document.getElementById("medionotificejecmed").style.display = "none";
+      document.getElementById("horaejecmed").style.display = "none";
+      document.getElementById("evidenciaejecmed").style.display = "none";
+      document.getElementById("evidejemed").style.display = "";
     }else if (idactividad === '4') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -321,10 +553,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacionaccionseguridad").style.display = "";
       document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
       document.getElementById("entidadmunicipio_1_2").style.display = "none";
-      document.getElementById("actividad_folioexpediente").style.display = "none";
-      document.getElementById("actividad_idsujeto").style.display = "none";
+      document.getElementById("actividad_folioexpediente").style.display = "";
+      document.getElementById("actividad_idsujeto").style.display = "";
       document.getElementById("actividad_idevidencia").style.display = "";
       document.getElementById("actividad_kilometros").style.display = "none";
+      document.getElementById("medionotificejecmed").style.display = "none";
+      document.getElementById("horaejecmed").style.display = "";
+      document.getElementById("evidenciaejecmed").style.display = "";
+      document.getElementById("evidejemed").style.display = "none";
     }else if (idactividad === '5') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -336,6 +572,10 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("actividad_idsujeto").style.display = "";
       document.getElementById("actividad_idevidencia").style.display = "none";
       document.getElementById("actividad_kilometros").style.display = "none";
+      document.getElementById("medionotificejecmed").style.display = "none";
+      document.getElementById("horaejecmed").style.display = "none";
+      document.getElementById("evidenciaejecmed").style.display = "";
+      document.getElementById("evidejemed").style.display = "none";
     }else if (idactividad === '6') {
       document.getElementById("unidadmedida").value = "RONDÍN POLICIAL";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -347,6 +587,10 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("actividad_idsujeto").style.display = "";
       document.getElementById("actividad_idevidencia").style.display = "none";
       document.getElementById("actividad_kilometros").style.display = "";
+      document.getElementById("medionotificejecmed").style.display = "none";
+      document.getElementById("horaejecmed").style.display = "none";
+      document.getElementById("evidenciaejecmed").style.display = "";
+      document.getElementById("evidejemed").style.display = "none";
     }
     document.getElementById("reportemetas").value = "SI";
 }
@@ -370,5 +614,66 @@ $_SESSION["check_actividad"] = $check_actividad;
       });
     });
   </script>
+  <script type="text/javascript">
+  function readURL(input) {
+if (input.files && input.files[0]) {
+
+  var reader = new FileReader();
+
+  reader.onload = function(e) {
+    $('.image-upload-wrap').hide();
+
+    $('.file-upload-image').attr('src', e.target.result);
+    $('.file-upload-content').show();
+
+    $('.image-title').html(input.files[0].name);
+  };
+
+  reader.readAsDataURL(input.files[0]);
+
+} else {
+  removeUpload();
+}
+}
+
+function removeUpload() {
+$('.file-upload-input').replaceWith($('.file-upload-input').clone());
+$('.file-upload-content').hide();
+$('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+  $('.image-upload-wrap').addClass('image-dropping');
+});
+$('.image-upload-wrap').bind('dragleave', function () {
+  $('.image-upload-wrap').removeClass('image-dropping');
+});
+
+  </script>
+  <script type="text/javascript">
+  function selecttasl(e) {
+    var idtrasladorel = document.getElementById("clasificacionsalvaguardarintegridad").value;
+    if (idtrasladorel === '1') {
+      document.getElementById("traslado_ejecutado").style.display = "none";
+      document.getElementById("traslado_ejecutadoinfo").style.display = "none";
+    }else if (idtrasladorel === '2') {
+      document.getElementById("traslado_ejecutado").style.display = "";
+    }else if (idtrasladorel === '3') {
+      document.getElementById("traslado_ejecutado").style.display = "none";
+      document.getElementById("traslado_ejecutadoinfo").style.display = "none";
+    }
+  }
+
+  //checar si es traslado
+  function checktraslado(e){
+    var checktrasladoejec = document.getElementById("trasladorelact").value;
+    if (checktrasladoejec === 'SI') {
+      document.getElementById("traslado_ejecutadoinfo").style.display = "";
+    }else {
+      document.getElementById("traslado_ejecutadoinfo").style.display = "none";
+    }
+  }
+
+  </script>
 </body>
 </html>
+<!-- nuevos campos de hora y fotografia -->
