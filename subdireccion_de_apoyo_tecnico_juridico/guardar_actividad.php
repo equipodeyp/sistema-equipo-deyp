@@ -29,30 +29,30 @@ $observaciones_actividad = $_POST['observaciones_actividad'];
 
 
 
-echo $subdireccion;
-echo "<br>";
-echo $idactividad;
-echo "<br>";
-echo $funcion_apoyo;
-echo "<br>";
-echo $unidad_medida;
-echo "<br>";
-echo $reporte_metas;
-echo "<br>";
-echo $fecha_actividad;
-echo "<br>";
-echo $cantidad_actividad;
-echo "<br>";
-echo $clasificacion;
-echo "<br>";
-echo $folio_expediente;
-echo "<br>";
-echo $id_sujeto_actividad;
-echo "<br>";
-echo $idevidencia_actividad;
-echo "<br>";
-echo $observaciones_actividad;
-echo "<br>";
+// echo $subdireccion;
+// echo "<br>";
+// echo $idactividad;
+// echo "<br>";
+// echo $funcion_apoyo;
+// echo "<br>";
+// echo $unidad_medida;
+// echo "<br>";
+// echo $reporte_metas;
+// echo "<br>";
+// echo $fecha_actividad;
+// echo "<br>";
+// echo $cantidad_actividad;
+// echo "<br>";
+// echo $clasificacion;
+// echo "<br>";
+// echo $folio_expediente;
+// echo "<br>";
+// echo $id_sujeto_actividad;
+// echo "<br>";
+// echo $idevidencia_actividad;
+// echo "<br>";
+// echo $observaciones_actividad;
+// echo "<br>";
 
 
 
@@ -62,9 +62,9 @@ echo "<br>";
 
 
 
-    $addactividad = "INSERT INTO react_actividad (id_subdireccion, ) 
+    $addactividad = "INSERT INTO react_actividad (id_subdireccion, funcion_apoyo, idactividad, unidad_medida, reporte_metas, clasificacion, fecha_actividad, cantidad_actividad, folio_expediente, id_sujeto, idevidencia_actividad, observaciones_actividad) 
 
-    VALUES ('$subdireccion', )";
+    VALUES ('$subdireccion', '$funcion_apoyo', '$idactividad', '$unidad_medida', '$reporte_metas', '$clasificacion', '$fecha_actividad', '$cantidad_actividad', '$folio_expediente', '$id_sujeto', '$idevidencia_actividad', '$observaciones_actividad')";
 
     $raddactividad = $mysqli->query($addactividad);
 
