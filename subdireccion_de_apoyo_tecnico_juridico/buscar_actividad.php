@@ -323,7 +323,7 @@ a:focus {
                           $query= "SELECT *
                                     FROM react_actividad
                                     
-                                    where react_actividad.id_subdireccion = 2 ";
+                                    where react_actividad.id_subdireccion = 'SUBDIRECCIÓN DE APOYO TÉCNICO Y JURÍDICO' ";
 
                               
 

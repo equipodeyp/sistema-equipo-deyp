@@ -13,7 +13,6 @@
      $result = $mysqli->query($sentencia);
      $row=$result->fetch_assoc();
 
-
 $subdireccion = $_POST['subdireccion'];
 $idactividad = $_POST['idactividad'];
 $funcion_apoyo= $_POST['funcion_apoyo'];
@@ -21,18 +20,21 @@ $unidad_medida = $_POST['unidad_medida'];
 $reporte_metas = $_POST['reporte_metas'];
 $fecha_actividad = $_POST['fecha_actividad'];
 $cantidad_actividad = $_POST['cantidad_actividad'];
-$entidadmunicipio = $_POST['entidadmunicipio'];
 $clasificacion = $_POST['clasificacion'];
 $folio_expediente = $_POST['folio_expediente'];
 $id_sujeto_actividad = $_POST['id_sujeto'];
-$evidencia = $_POST['evidencia'];
 $idevidencia_actividad = $_POST['idevidencia_actividad'];
-$kilometraje = $_POST['kilometraje'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
+
+
+$consecutivo = $_POST['consecutivosub'];
+
+$kilometraje = $_POST['kilometraje'];
+$evidencia = $_POST['evidencia'];
+$entidadmunicipio = $_POST['entidadmunicipio'];
 $informe_anual = $_POST['informe_anual'];
 $year = date('Y');
-
-
+$fecha_alta = date("Y-m-d");
 
 // echo $subdireccion;
 // echo "<br>";
@@ -58,38 +60,45 @@ $year = date('Y');
 // echo "<br>";
 // echo $observaciones_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo $consecutivo;
+// echo "<br>";
+// echo $kilometraje;
+// echo "<br>";
+// echo $evidencia;
+// echo "<br>";
+// echo $entidadmunicipio;
+// echo "<br>";
+// echo $informe_anual;
+// echo "<br>";
 
 
+    $addactividad = "INSERT INTO react_actividad (consecutivosub, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, 
+                                                clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, id_sujeto, 
+                                                evidencia_interna, id_evidencia, kilometraje, observaciones, informe_anual, fecha_alta, 
+                                                usuario, year) 
 
-
-
- 
-
-
-
-    $addactividad = "INSERT INTO react_actividad (consecutivosub, id_subdireccion, funcion ,idactividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidadmunicipio, folio_expediente, 
-    id_sujeto,evidencia ,id_evidencia,  kilometraje,observaciones, informe_anual, fecha_alta, usuario, year) 
-
-    VALUES ('$consecutivosub', '$subdireccion', '$funcion_apoyo', '$idactividad', '$unidad_medida', '$reporte_metas', '$clasificacion', '$fecha_actividad', '$cantidad_actividad', '$entidadmunicipio', '$folio_expediente', }
-    '$id_sujeto_actividad', '$evidencia', '$idevidencia_actividad', '$kilometraje', '$observaciones_actividad', '$informe_anual', '$fecha_alta', '$name', '$year')";
+    VALUES ('$consecutivo', '$subdireccion', '$funcion_apoyo', '$idactividad', '$unidad_medida', '$reporte_metas', 
+    '$clasificacion', '$fecha_actividad', '$cantidad_actividad', '$entidadmunicipio', '$folio_expediente', '$id_sujeto_actividad', 
+    '$evidencia', '$idevidencia_actividad', '$kilometraje', '$observaciones_actividad', '$informe_anual', '$fecha_alta', '$name', '$year')";
 
     $raddactividad = $mysqli->query($addactividad);
 
 
-   if($raddactividad){
+    if($raddactividad){
     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php';
-     window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-   </script>");
+    window.location.href='../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php';
+    window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+    </script>");
 
+
+    }
 
 }
 
-   }
 
-  
-else {
-  echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
-}
+// else {
+//     echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
+// }
 ////////////////////////////////////////
 ?> 

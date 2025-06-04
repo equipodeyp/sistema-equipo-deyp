@@ -20,8 +20,8 @@
 <div id="boton_print">
 
             <div class="">
-              <img style="float: left;" src="../../image/FGJEM.png" width="50" height="50">
-              <img style="float: right;" src="../../image/ESCUDO.png" width="60" height="50">
+              <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
+              <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
               <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
              
               <!-- <h5 style="text-align:center; color: #030303;">Sistema Informatico del Programa de Proteccón de Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio (SIPPSIPPED).</h5> -->
@@ -41,7 +41,7 @@
               <?php
               $idactividad = $row['id'];
               // echo $idactividad;
-              $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 3";
+              $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 'SUBDIRECCIÓN DE APOYO TÉCNICO Y JURÍDICO'";
               $rtraeractividad = $mysqli->query($traeractividad);
               $ftraeractividad = $rtraeractividad->fetch_assoc();
               // variables para traer datos de tablas
