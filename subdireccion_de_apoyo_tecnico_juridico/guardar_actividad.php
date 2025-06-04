@@ -27,7 +27,7 @@ $folio_expediente = $_POST['folio_expediente'];
 $id_sujeto_actividad = $_POST['id_sujeto'];
 $evidencia = $_POST['evidencia'];
 $idevidencia_actividad = $_POST['idevidencia_actividad'];
-$kilometros = $_POST['kilometros'];
+$kilometraje = $_POST['kilometraje'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
 $informe_anual = $_POST['informe_anual'];
 $year = date('Y');
@@ -67,11 +67,11 @@ $year = date('Y');
 
 
 
-    $addactividad = "INSERT INTO react_actividad (consecutivosub, id_subdireccion, funcion ,idactividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
-    id_sujeto, evidencia_interna,id_evidencia,  kilometraje,observaciones, informe_anual, fecha_alta, usuario, year) 
+    $addactividad = "INSERT INTO react_actividad (consecutivosub, id_subdireccion, funcion ,idactividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidadmunicipio, folio_expediente, 
+    id_sujeto,evidencia ,id_evidencia,  kilometraje,observaciones, informe_anual, fecha_alta, usuario, year) 
 
     VALUES ('$consecutivosub', '$subdireccion', '$funcion_apoyo', '$idactividad', '$unidad_medida', '$reporte_metas', '$clasificacion', '$fecha_actividad', '$cantidad_actividad', '$entidadmunicipio', '$folio_expediente', }
-    '$id_sujeto_actividad', '$evidencia', '$idevidencia_actividad', '$kilometros', '$observaciones_actividad', '$informe_anual', '$fecha_alta', '$name', '$year')";
+    '$id_sujeto_actividad', '$evidencia', '$idevidencia_actividad', '$kilometraje', '$observaciones_actividad', '$informe_anual', '$fecha_alta', '$name', '$year')";
 
     $raddactividad = $mysqli->query($addactividad);
 
