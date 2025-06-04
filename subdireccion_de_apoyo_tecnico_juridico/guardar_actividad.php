@@ -1,5 +1,5 @@
 <?php
- error_reporting(0);
+//  error_reporting(0);
  date_default_timezone_set("America/Mexico_City");
  session_start ();
  require './conexion.php';
@@ -21,11 +21,16 @@ $unidad_medida = $_POST['unidad_medida'];
 $reporte_metas = $_POST['reporte_metas'];
 $fecha_actividad = $_POST['fecha_actividad'];
 $cantidad_actividad = $_POST['cantidad_actividad'];
+$entidadmunicipio = $_POST['entidadmunicipio'];
 $clasificacion = $_POST['clasificacion'];
 $folio_expediente = $_POST['folio_expediente'];
 $id_sujeto_actividad = $_POST['id_sujeto'];
+$evidencia = $_POST['evidencia'];
 $idevidencia_actividad = $_POST['idevidencia_actividad'];
+$kilometraje = $_POST['kilometraje'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
+$informe_anual = $_POST['informe_anual'];
+$year = date('Y');
 
 
 
@@ -49,7 +54,7 @@ $observaciones_actividad = $_POST['observaciones_actividad'];
 // echo "<br>";
 // echo $id_sujeto_actividad;
 // echo "<br>";
-// echo $idevidencia_actividad;
+// echo $idevidencia_actividad;  
 // echo "<br>";
 // echo $observaciones_actividad;
 // echo "<br>";
@@ -62,9 +67,11 @@ $observaciones_actividad = $_POST['observaciones_actividad'];
 
 
 
-    $addactividad = "INSERT INTO react_actividad (id_subdireccion, funcion_apoyo, idactividad, unidad_medida, reporte_metas, clasificacion, fecha_actividad, cantidad_actividad, folio_expediente, id_sujeto, idevidencia_actividad, observaciones_actividad) 
+    $addactividad = "INSERT INTO react_actividad (consecutivosub, id_subdireccion, funcion ,idactividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidadmunicipio, folio_expediente, 
+    id_sujeto,evidencia ,id_evidencia,  kilometraje,observaciones, informe_anual, fecha_alta, usuario, year) 
 
-    VALUES ('$subdireccion', '$funcion_apoyo', '$idactividad', '$unidad_medida', '$reporte_metas', '$clasificacion', '$fecha_actividad', '$cantidad_actividad', '$folio_expediente', '$id_sujeto', '$idevidencia_actividad', '$observaciones_actividad')";
+    VALUES ('$consecutivosub', '$subdireccion', '$funcion_apoyo', '$idactividad', '$unidad_medida', '$reporte_metas', '$clasificacion', '$fecha_actividad', '$cantidad_actividad', '$entidadmunicipio', '$folio_expediente', }
+    '$id_sujeto_actividad', '$evidencia', '$idevidencia_actividad', '$kilometraje', '$observaciones_actividad', '$informe_anual', '$fecha_alta', '$name', '$year')";
 
     $raddactividad = $mysqli->query($addactividad);
 
@@ -84,5 +91,5 @@ $observaciones_actividad = $_POST['observaciones_actividad'];
 else {
   echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
 }
-
-?>   
+////////////////////////////////////////
+?> 
