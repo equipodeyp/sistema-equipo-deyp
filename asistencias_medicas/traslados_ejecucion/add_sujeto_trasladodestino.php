@@ -22,9 +22,10 @@
                               <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
                               <?php
                                 $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                                FROM datospersonales
-                                WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
-                                ORDER BY datospersonales.id ASC";
+                                FROM datospersonales";
+                                // WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
+                                // ORDER BY datospersonales.id ASC";
+
                                 $answer1 = $mysqli->query($select1);
                                 while($valores1 = $answer1->fetch_assoc()){
                                   $result_folio = $valores1['folioexpediente'];

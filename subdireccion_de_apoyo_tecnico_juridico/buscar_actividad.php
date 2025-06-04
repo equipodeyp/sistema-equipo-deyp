@@ -382,10 +382,7 @@ a:focus {
 
 
       </div>
-      <!-- <div class="">
-        <h1 style="text-align:center">BUSCAR ACTIVIDAD</h1>
-        <center>
-  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal"> -->
+   
 
     
 

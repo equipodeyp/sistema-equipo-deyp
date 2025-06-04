@@ -290,6 +290,77 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
+
+ <div class="form-group">
+        <label class="col-md-3 control-label">MUNICIPIO</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="entidadmunicipio" id="entidadmunicipio" class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+
+<div class="form-group">
+        <label class="col-md-3 control-label">EVIDENCIA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="evidencia" id="evidencia" class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label">KILOMETROS</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="kilometraje" id="kilometraje" class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+
+
+   <div class="form-group">
+        <label class="col-md-3 control-label">INFORME ANUAL</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="informe_anual" id="informe_anual" class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+
+
+
+ <div class="form-group">
+        <label class="col-md-3 control-label">CONSECUTIVO</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="consecutivosub" id="consecutivosub" class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+
+
+
+ <div class="form-group">
+        <label class="col-md-3 control-label">FECHA ALTA</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+            <input name="fecha_alta" id="fecha_alta" class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+
+
+
 <!-- 
 
 <br><br>
