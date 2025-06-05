@@ -20,7 +20,6 @@ class FontVariables
 			// For custom fonts data folder set config key 'fontDir'. It can also be an array of directories,
 			// first found file will then be returned
 
-
 			// Optionally set font(s) (names as defined below in 'fontdata') to use for missing characters
 			// when using useSubstitutions. Use a font with wide coverage - dejavusanscondensed is a good start
 			// only works using subsets (otherwise would add very large file)
@@ -94,10 +93,6 @@ class FontVariables
 			 */
 
 			'fontdata' => [
-				/* OCR-B font for Barcodes */
-				"gothambook" => [
-					'R' => "GothamBook.ttf",
-				],
 				"dejavusanscondensed" => [
 					'R' => "DejaVuSansCondensed.ttf",
 					'B' => "DejaVuSansCondensed-Bold.ttf",

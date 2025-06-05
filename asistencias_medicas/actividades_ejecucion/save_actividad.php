@@ -189,8 +189,8 @@ echo "<br>";
   $row = $result->fetch_assoc();
   echo 'id_actividad:  '.$id_activity =$row["id"];
   // registrar iamge en la BD
-    $addimageruta = "INSERT INTO react_image_actividad(id_actividad, ruta, usuario, fecha, traslado, id_traslado, hora)
-                     VALUES('$id_activity', '$ruta_destino', '$name', '$fecha_alta', '$trasladoact', '$idtrasladoact', '$horaact')";
+    $addimageruta = "INSERT INTO react_image_actividad(id_actividad, ruta, usuario, fecha, traslado, id_traslado, hora, image, tipo)
+                     VALUES('$id_activity', '$ruta_destino', '$name', '$fecha_alta', '$trasladoact', '$idtrasladoact', '$horaact', '$nombre_original', '$tipo_archivo')";
     $raddimageruta = $mysqli->query($addimageruta);
 
   // validacion de update correcto
