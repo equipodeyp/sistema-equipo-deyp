@@ -94,7 +94,7 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
                   <tbody>
                     <?php
                     $contador = 0;
-                          $query= "SELECT * FROM react_actividad";
+                          $query= "SELECT * FROM react_actividad WHERE usuario = '$name'";
                           $rq = $mysqli->query($query);
                              while($row = $rq->fetch_assoc()){
                                $contador = $contador + 1;
@@ -112,7 +112,7 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
                                           <td style="text-align:center">
                               							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
                               							<?php
-                              							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal' onclick='sub($idact)'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
+                              							echo "<a href='#edit_".$row['id']."' id='".$row['id_actividad']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
                               							 ?>
                               							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
                               						</td>
@@ -122,7 +122,7 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
                                    }
                                ?>
                   </tbody>
-                </table>
+                </table>                
               </div>
             </div>
           </div>
@@ -131,6 +131,6 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
     </div>
   </div>
   <a href="../admin.php" class="btn-flotante">REGRESAR</a>
-  <script src="../../js/funciones_react_actividad_consulta.js"></script>
+  <!-- <script src="../../js/funciones_react_actividad_consulta.js"></script> -->
 </body>
 </html>
