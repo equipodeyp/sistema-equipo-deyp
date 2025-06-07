@@ -58,6 +58,8 @@ $subdirecfcion_user = $fsubuser['subdireccion'];
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
+    <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
+   <script src="../js/funciones_react.js"></script>
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
 
@@ -271,7 +273,7 @@ a:focus {
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
         <li id="liestadistica3" class="subtitle3">
             <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
-             <li><a href="../asistencias_medicas/admin.php"><i class='color-icon fas fa-house-medical menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > ASISTENCIAS MÉDICAS</span></a></li>
+             
             <ul class="submenu3">
               <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
@@ -287,6 +289,7 @@ a:focus {
           }
           ?>
           </li>
+          <li><a href="../asistencias_medicas/admin.php"><i class='color-icon fas fa-house-medical menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > ASISTENCIAS MÉDICAS</span></a></li>
         </ul>
 
 
@@ -349,38 +352,33 @@ a:focus {
         ?>
         <ul>
             <li>
-                <a href="#" onclick="toggleSubmenu(this)">
-                    <i class="color-icon fa-solid fa-book menu-nav--icon"></i>
-                    <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
-                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
-                </a>
-                <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <li>
-                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
-                            <i class="fas fa-clipboard-list"></i> ACTIVIDADES
-                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
-                        </a>
-                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/registrar_actividad.php'">
-                                <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/buscar_actividad.php'">
-                                <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_enlace/consultar_cifras_actividad.php'">
-                              <i class="fas fa-search"></i> CONSULTAR ACTIVIDAD</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/registrar_actividad.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/consultar_cifras_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
+                          </a>
+                      </li>
+                  </ul>
+              </li>
         </ul>
         <?php
         }
         ?>
-
-
-
 
 
       </nav>
@@ -564,7 +562,7 @@ a:focus {
     </div>
   </div>
   <!-- fin modal  -->
-</body>
+
 <script>
   // CODIGO DE MENU CON submenu3
   $(".subtitle3 .action3").click(function(event){
@@ -580,4 +578,6 @@ a:focus {
    return false;
   });
 </script>
-</html>
+
+
+</body></html>

@@ -396,18 +396,18 @@ if ($permiso3=='solicitar') {
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/registrar_actividad.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/consultar.php'">
-                              <i class="fas fa-laptop-file"></i> CONSULTAR
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/buscar.php'">
-                              <i class="fas fa-search"></i> BUSCAR
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/consultar_cifras_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>
                   </ul>

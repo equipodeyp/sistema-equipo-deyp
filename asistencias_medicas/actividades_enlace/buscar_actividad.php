@@ -377,7 +377,7 @@ a:focus {
       </div>
     </div>
   </div>
-  <a href="../admin.php" class="btn-flotante">REGRESAR</a>
+  <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
   <script src="../../js/funciones_react_actividad_consulta.js"></script>
 </body>
 </html>
