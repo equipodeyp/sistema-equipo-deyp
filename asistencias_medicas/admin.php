@@ -390,7 +390,7 @@ else{
             <?php
             if ($permiso1 === 'consulta') {
             ?>
-            <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li>
+            <!-- <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li> -->
             <?php
             }
             ?>
@@ -401,7 +401,7 @@ else{
 
 
 
-        <?php
+        <!-- <?php
         if ($subdirecfcion_user === 'Subdirección de ejecucion de medidas') {
         ?>
         <ul>
@@ -488,7 +488,7 @@ else{
         <?php
         }
         ?>
-
+ -->
 
 
 
@@ -699,5 +699,11 @@ if($_SESSION['usuario'] == 'ejecucion_sub' || $permiso3 == 'solicitar'){
 
 
 ?>
+
+
+<div class="contenedor">
+
+<a href="../consultores/admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+</div>
 </body>
 </html>

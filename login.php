@@ -44,7 +44,7 @@ try {
           }else if($login['id_cargo']==6){ //solo lectura de expedientes
             echo'<script type="text/javascript">
             alert("Bienvenido");
-            window.location.href="asistencias_medicas/admin.php";
+            window.location.href="consultores/admin.php";
             </script>';
       }
       $contador++;

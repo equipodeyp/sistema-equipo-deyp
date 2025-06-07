@@ -396,7 +396,7 @@ if ($permiso3=='solicitar') {
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR
                           </a>
                       </li>

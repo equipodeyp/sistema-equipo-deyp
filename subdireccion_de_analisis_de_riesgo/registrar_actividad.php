@@ -1,13 +1,13 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Mexico_City");
 /*require 'conexion.php';*/
-include("../conexion.php");
+include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
-  header("location: ../../logout.php");
+  header("location: ../logout.php");
 }
 $check_actividad = 1;
 $_SESSION["check_actividad"] = $check_actividad;
@@ -18,20 +18,20 @@ $_SESSION["check_actividad"] = $check_actividad;
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>REGISTRO TRASLADO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../../js/jquery-3.1.1.min.js"></script>
-  <script src="../../js/funciones_react.js"></script>
-  <link href="../../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/bootstrap-theme.css" rel="stylesheet">
-  <script src="../../js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../../css/cli.css">
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="../js/funciones_react.js"></script>
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap-theme.css" rel="stylesheet">
+  <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/cli.css">
   <!-- CSS personalizado -->
-  <link rel="stylesheet" href="../../css/main2.css">
-  <link rel="stylesheet" href="../../css/expediente.css">
+  <link rel="stylesheet" href="../css/main2.css">
+  <link rel="stylesheet" href="../css/expediente.css">
   <!-- font-awesome -->
   <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
-  <link rel="stylesheet" href="../../css/react_add_traslados.css">
+  <link rel="stylesheet" href="../css/react_add_traslados.css">
 </head>
 <body>
   <div class="contenedor">
@@ -46,12 +46,12 @@ $_SESSION["check_actividad"] = $check_actividad;
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img style='text-align:center;' src='../../image/mujerup.png' width='100' height='100'>";
+          echo "<img style='text-align:center;' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img src='../../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
@@ -64,9 +64,9 @@ $_SESSION["check_actividad"] = $check_actividad;
     </div>
     <div class="main bg-light">
       <div class="barra">
-          <img src="../../image/fiscalia.png" alt="" width="150" height="150">
-          <img src="../../image/ups2.png" alt="" width="1400" height="70">
-          <img style="display: block; margin: 0 auto;" src="../../image/ups3.png" alt="" width="1400" height="70">
+          <img src="../image/fiscalia.png" alt="" width="150" height="150">
+          <img src="../image/ups2.png" alt="" width="1400" height="70">
+          <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
       <div class="container">
         <div class="row">
@@ -118,11 +118,11 @@ $_SESSION["check_actividad"] = $check_actividad;
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-list-ol"></i></span>
-            <input name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
+            <input autocomplete="off" name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
           </div>
           <h6 style="text-align:justify; font-size: x-small;">
             * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos; 
-            en caso contrario, se debrá registrar actividad por actividad.
+            en caso contrario, se debrá reportar actividad por actividad.
           </h6>
         </div>
       </div>
@@ -305,7 +305,9 @@ $_SESSION["check_actividad"] = $check_actividad;
     </div>
   </div>
   <div class="contenedor">
-      <a href="../admin.php" class="btn-flotante">REGRESAR</a>
+      <a href="./menu.php" class="btn-flotante">REGRESAR</a>
+      <!-- <a href="../admin.php" class="btn-flotante">REGRESAR</a> -->
+
   </div>
 
 
@@ -431,33 +433,6 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("folio_expediente").required = true;
       document.getElementById("id_sujeto").required = true;
       document.getElementById("clasificacion_actividad").required = true;
-
-
-    } 
-
-    else if (num_actividad_obtenido === '10' || num_actividad_obtenido === '11'){
-      
-      document.getElementById("folio_expediente").value = ""; // LIMPIAR
-      document.getElementById('id_sujeto').value = ""; // LIMPIAR
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
-
-      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
-      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
-
-      document.getElementById("clasificacion").style.display = "none"; // OCULTAR
-      document.getElementById('div_numero_oficio_actividad').style.display = ""; // OCULTAR
-      
-
-
-
-      document.getElementById("numero_oficio_actividad").required = true;
-      document.getElementById("folio_expediente").required = true;
-      document.getElementById("id_sujeto").required = true;
-
 
 
     } 
