@@ -97,7 +97,7 @@ $_SESSION["check_actividad"] = $check_actividad;
             <select class="form-control" name="numero_actividad" id="numero_actividad" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_enlace";
+                    $select = "SELECT * FROM react_actividad_enlace ORDER BY nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];

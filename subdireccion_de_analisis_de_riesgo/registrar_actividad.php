@@ -1,9 +1,9 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Mexico_City");
-/*require 'conexion.php';*/
-include("conexion.php");
+require './conexion.php';
+// include("../subdireccion_de_analisis_de_riesgo/conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
@@ -97,7 +97,7 @@ $_SESSION["check_actividad"] = $check_actividad;
             <select class="form-control" name="numero_actividad" id="numero_actividad" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_enlace";
+                    $select = "SELECT * FROM react_actividad_analisis ORDER BY nombre ASC"; 
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];
@@ -106,6 +106,30 @@ $_SESSION["check_actividad"] = $check_actividad;
                     }
 
 
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+<!-- style="display:none;" -->
+
+      <div class="form-group" id="clasificacion">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad" id="clasificacion_actividad">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_diligencias_administrativas";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
                 ?>
             </select>
           </div>
@@ -141,7 +165,7 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
 
-      <div class="form-group" id="folio_expediente_actividad" style="display:none;">
+      <div class="form-group" id="folio_expediente_actividad">
         <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -165,7 +189,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
 
       
-      <div class="form-group" id="id_sujeto_actividad" style="display:none;">
+      <div class="form-group" id="id_sujeto_actividad">
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -180,7 +204,7 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
 
-      <div class="form-group" id="div_numero_oficio_actividad" style="display:none;">
+      <div class="form-group" id="div_numero_oficio_actividad">
           <label class="col-md-3 control-label">NÚMERO DE OFICIO O SOLICITUD</label>
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
@@ -189,92 +213,6 @@ $_SESSION["check_actividad"] = $check_actividad;
             </div>
           </div>
       </div>
-
-
-
-      <div class="form-group" id="clasificacion" style="display:none;">
-        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
-            <select class="form-control" name="clasificacion_actividad" id="clasificacion_actividad">
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                <?php
-                    $select = "SELECT * FROM react_diligencias_administrativas";
-                    $answer = $mysqli->query($select);
-                    while($valores = $answer->fetch_assoc()){
-                    // $id_actividad = $valores['idactividad'];
-                    // echo $id_actividad;
-                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
-                    }
-                ?>
-            </select>
-          </div>
-        </div>
-      </div>
-
-
-
-      <!-- <div id="ocultar_div">
-
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-7 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input id="id_act" class="form-control" readonly value class="form-control" type="text">
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="form-group">
-          <label class="col-md-3 control-label">ID CONSECUTIVO SUBDIRECCIÓN</label>
-          <div class="col-md-7 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="consecutivo_subdireccion_actividad" id="consecutivo_subdireccion_actividad" class="form-control" type="text" readonly>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="form-group">
-          <label class="col-md-3 control-label">ID ACTIVIDAD ASIGNADO</label>
-          <div class="col-md-7 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="id_actividad" id="id_actividad" class="form-control" type="text" value="" readonly>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="form-group">
-          <label class="col-md-3 control-label">ID SUBDIRECCIÓN</label>
-          <div class="col-md-7 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="id_subdireccion_actividad" id="id_subdireccion_actividad" class="form-control" type="text" readonly value="3">
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="form-group">
-          <label class="col-md-3 control-label">FUNCIÓN</label>
-          <div class="col-md-7 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
-              <input name="funcion_actividad" id="funcion_actividad" class="form-control" type="text" readonly>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
 
       <div class="form-group">
@@ -329,7 +267,7 @@ $_SESSION["check_actividad"] = $check_actividad;
 	function recargarLista(){
 		$.ajax({
 			type:"POST",
-			url:"../get_id_sujeto.php",
+			url:"./get_id_sujeto.php",
 			data:"folio=" + $('#folio_expediente').val(),
 			success:function(r){
 				$('#id_sujeto').html(r);
@@ -341,105 +279,105 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 <script type="text/javascript">
 
-  var n_actividad = document.getElementById('numero_actividad');
-  var numero_act;
-  var num_actividad_obtenido;
+  // var n_actividad = document.getElementById('numero_actividad');
+  // var numero_act;
+  // var num_actividad_obtenido;
 
-  n_actividad.addEventListener('change', obtenerNumero);
+  // n_actividad.addEventListener('change', obtenerNumero);
 
-  function obtenerNumero(e){
+  // function obtenerNumero(e){
 
-    numero_act = e.target.value;
-    num_actividad_obtenido = numero_act;
+  //   numero_act = e.target.value;
+  //   num_actividad_obtenido = numero_act;
 
-    // console.log(num_actividad_obtenido);
+  //   // console.log(num_actividad_obtenido);
     
-    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6' || num_actividad_obtenido === '7' || num_actividad_obtenido === '8'){
+  //   if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6' || num_actividad_obtenido === '7' || num_actividad_obtenido === '8'){
       
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
-      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+  //     document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+  //     document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
 
-      document.getElementById("folio_expediente").value = ""; // LIMPIAR
-      document.getElementById('id_sujeto').value = ""; // LIMPIAR
+  //     document.getElementById("folio_expediente").value = ""; // LIMPIAR
+  //     document.getElementById('id_sujeto').value = ""; // LIMPIAR
       
-      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
-      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+  //     document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+  //     document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
 
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
-      document.getElementById("clasificacion").style.display = "none"; // OCULTAR
-
-
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("clasificacion").style.display = "none"; // OCULTAR
 
 
-      document.getElementById("numero_oficio_actividad").required = true;
+  //     document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("fecha_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
 
-      document.getElementById("folio_expediente").required = false;
-      document.getElementById("id_sujeto").required = false;
-      document.getElementById("clasificacion_actividad").required = false;
+
+  //     document.getElementById("numero_oficio_actividad").required = true;
+
+  //     document.getElementById("folio_expediente").required = false;
+  //     document.getElementById("id_sujeto").required = false;
+  //     document.getElementById("clasificacion_actividad").required = false;
 
       
-    }
+  //   }
 
-    else if (num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5'){
+  //   else if (num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5'){
 
-      document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+  //     document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
+  //     document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
 
-      document.getElementById("folio_expediente").value = ""; // LIMPIAR
-      document.getElementById('id_sujeto').value = ""; // LIMPIAR
+  //     document.getElementById("folio_expediente").value = ""; // LIMPIAR
+  //     document.getElementById('id_sujeto').value = ""; // LIMPIAR
       
-      document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
-      document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
+  //     document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
+  //     document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
 
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
-      document.getElementById("clasificacion").style.display = "none"; // OCULTAR
+  //     document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("clasificacion").style.display = "none"; // OCULTAR
 
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("fecha_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
 
-      document.getElementById("numero_oficio_actividad").required = false;
+  //     document.getElementById("numero_oficio_actividad").required = false;
       
-      document.getElementById("folio_expediente").required = false;
-      document.getElementById("id_sujeto").required = false;
-      document.getElementById("clasificacion_actividad").required = false;
+  //     document.getElementById("folio_expediente").required = false;
+  //     document.getElementById("id_sujeto").required = false;
+  //     document.getElementById("clasificacion_actividad").required = false;
 
 
-    }
+  //   }
 
-    else if (num_actividad_obtenido === '9'){
+  //   else if (num_actividad_obtenido === '9'){
       
-      document.getElementById("folio_expediente").value = ""; // LIMPIAR
-      document.getElementById('id_sujeto').value = ""; // LIMPIAR
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("folio_expediente").value = ""; // LIMPIAR
+  //     document.getElementById('id_sujeto').value = ""; // LIMPIAR
+  //     document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
 
 
-      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
-      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
-      document.getElementById("clasificacion").style.display = ""; // MOSTRAR
+  //     document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+  //     document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+  //     document.getElementById("clasificacion").style.display = ""; // MOSTRAR
 
-      document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+  //     document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
+  //     document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
 
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("fecha_actividad").value = ""; // LIMPIAR
+  //     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
 
-      document.getElementById("numero_oficio_actividad").required = false;
+  //     document.getElementById("numero_oficio_actividad").required = false;
 
-      document.getElementById("folio_expediente").required = true;
-      document.getElementById("id_sujeto").required = true;
-      document.getElementById("clasificacion_actividad").required = true;
+  //     document.getElementById("folio_expediente").required = true;
+  //     document.getElementById("id_sujeto").required = true;
+  //     document.getElementById("clasificacion_actividad").required = true;
 
 
-    } 
+  //   } 
 
 
     
-  }
+  // }
 
 
 </script>

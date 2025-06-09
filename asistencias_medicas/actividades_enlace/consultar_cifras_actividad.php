@@ -285,7 +285,8 @@ $cargo = $row['cargo'];
               $sqlReact = ("SELECT react_actividad_enlace.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
                                   react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario 
                                   FROM react_actividad 
-                                  JOIN react_actividad_enlace ON react_actividad.id_actividad = react_actividad_enlace.id 
+                                  JOIN react_actividad_enlace ON react_actividad.id_actividad = react_actividad_enlace.id
+                                  AND react_actividad.usuario = '$name' 
                                   JOIN react_subdireccion ON react_actividad.id_subdireccion = react_subdireccion.id
                                   AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL' 
                                   ORDER BY react_actividad_enlace.nombre ASC");

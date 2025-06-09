@@ -396,17 +396,17 @@ if ($permiso3=='solicitar') {
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/registrar_actividad.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/buscar_actividad.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
                               <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/consultar_cifras_actividad.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>

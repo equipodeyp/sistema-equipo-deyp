@@ -350,7 +350,7 @@ a:focus {
                                           ?>
                                           <td style="text-align:center"><?php echo $date; ?></span></td>
 
-                                          <td style="text-align:center"><?php echo $row['nombre']; ?></span></td>
+                                          <td style="text-align:left"><?php echo $row['nombre']; ?></span></td>
                                           <td style="text-align:center"><?php echo $row['clasificacion']; ?></span></td>
                                           <td style="text-align:center"><?php echo $row['cantidad']; ?></span></td>
                                           <td style="text-align:center">
