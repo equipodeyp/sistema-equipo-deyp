@@ -286,10 +286,13 @@ a:focus {
           ?>
           <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li>
           <?php
-          }
+          } else {
           ?>
           </li>
           <li><a href="../asistencias_medicas/admin.php"><i class='color-icon fas fa-house-medical menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > ASISTENCIAS MÉDICAS</span></a></li>
+          <?php
+          }
+          ?>
         </ul>
 
 
