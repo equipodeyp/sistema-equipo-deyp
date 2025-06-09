@@ -147,15 +147,15 @@ else {
 
 
 
-$query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
-reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
-folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
-observaciones, informe_anual, usuario, year) 
-VALUES ('$consecutivo_actividad', '$id_actividad', '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
-'$reporte_metas_actividad', '$clasificacion_actividad', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
-'$folio_expediente_actividad', '$id_sujeto_actividad', '$evidencia_interna_actividad', '$evidencia_actividad', '$kilometraje_actividad', 
-'$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
-$resultado = $mysqli->query($query);
+// $query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
+// reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+// folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+// observaciones, informe_anual, usuario, year) 
+// VALUES ('$consecutivo_actividad', '$id_actividad', '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+// '$reporte_metas_actividad', '$clasificacion_actividad', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+// '$folio_expediente_actividad', '$id_sujeto_actividad', '$evidencia_interna_actividad', '$evidencia_actividad', '$kilometraje_actividad', 
+// '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+// $resultado = $mysqli->query($query);
 
 
 
