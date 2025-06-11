@@ -95,7 +95,7 @@ echo "<br>";
   }elseif ($actividad === '2') {
     $idactividad ='SUBEM-02';
     $clasificacion = 'NA';
-    $id_evidencia = $_POST['idevidencia'];
+    $id_evidencia = $_POST['notific_atn'];
     $entidadmunicipio = 'NA';
     $folioexpediente = $_POST['folioexpediente'];
     $id_sujeto = $_POST['id_sujeto'];

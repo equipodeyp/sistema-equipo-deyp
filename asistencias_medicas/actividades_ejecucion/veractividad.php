@@ -29,11 +29,19 @@
               $rtraeractividad = $mysqli->query($traeractividad);
               $ftraeractividad = $rtraeractividad->fetch_assoc();
               // variables para traer datos de tablas
-              // echo "<br>";
               $idsub_em = $ftraeractividad['id_subdireccion'];
-              // echo "<br>";
-              echo $idactivity = $ftraeractividad['id_actividad'];
-              // echo "<br>";
+              $idactivity = $ftraeractividad['id_actividad'];
+              $idsujprot = $ftraeractividad['id_sujeto'];
+              $getidunicosuj = "SELECT * FROM datospersonales WHERE id = '$idsujprot'";
+              $rgetidunicosuj = $mysqli->query($getidunicosuj);
+              $fgetidunicosuj = $rgetidunicosuj ->fetch_assoc();
+              $fgetidunicosuj['identificador'];
+              $mystring = $fgetidunicosuj['identificador'];
+              $findme   = '-';
+              $pos = strpos($mystring, $findme);
+              if ($pos !== false){
+                $identunico = substr($mystring, 0, $pos);
+              }
               // traer nombre de la subdireccion
               $subdir = "SELECT * FROM react_subdireccion WHERE id = 4";
               $rsubdir = $mysqli->query($subdir);
@@ -58,21 +66,21 @@
                     </div>
                   </div>
                 </div>
-                <!-- nombre de actividad -->
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">NOMBRE ACTIVIDAD:</label>
-                  <div class="col-md-7 inputGroupContainer">
-                    <div class="input-group">
-                      <textarea style="width: 800px; height: 55px; resize: none" name="" rows="3" cols="80" disabled><?php echo $facttraer['nombre']; ?></textarea>
-                    </div>
-                  </div>
-                </div>
                 <!-- FUNCIÓN -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">FUNCIÓN:</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
                       <textarea style="width: 800px; height: 28px; resize: none" name="" rows="8" cols="80" disabled><?php echo $ftraeractividad['funcion']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- nombre de actividad -->
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">ACTIVIDAD:</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <textarea style="width: 800px; height: 55px; resize: none" name="" rows="3" cols="80" disabled><?php echo $facttraer['nombre']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -99,6 +107,31 @@
                     </div>
                   </div>
                 </div>
+                <!-- CANTIDAD -->
+                <div class="form-group">
+                  <label for=""class="col-md-4 control-label">CANTIDAD:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['cantidad']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                if ($idactivity === '3' || $idactivity === '6') {
+                ?>
+                <!-- INFORME ANUAL -->
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">INFORME ANUAL:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['informe_anual']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                }
+                if ($idactivity === '6') {
+                ?>
                 <!-- REPORTE DE METAS -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">REPORTE DE METAS:</label>
@@ -108,6 +141,9 @@
                     </div>
                   </div>
                 </div>
+                <?php
+                }
+                ?>
                 <!-- FECHA ACTIVIDAD -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">FECHA ACTIVIDAD:</label>
@@ -121,24 +157,9 @@
                     </div>
                   </div>
                 </div>
-                <!-- CANTIDAD -->
-                <div class="form-group">
-                  <label for=""class="col-md-4 control-label">CANTIDAD:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['cantidad']; ?></textarea>
-                    </div>
-                  </div>
-                </div>
-                <!-- INFORME ANUAL -->
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">INFORME ANUAL:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['informe_anual']; ?></textarea>
-                    </div>
-                  </div>
-                </div>
+                <?php
+                if ($idactivity === '2' || $idactivity === '3') {
+                ?>
                 <!-- EVIDENCIA INTERNA -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">EVIDENCIA INTERNA:</label>
@@ -148,6 +169,25 @@
                     </div>
                   </div>
                 </div>
+                <?php
+                }
+                ?>
+                <!-- MEDIO DE NOTIFICACION -->
+                <?php
+                if ($idactivity === '2') {
+                ?>
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">MEDIO DE NOTIFICACION:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['id_evidencia']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                }
+                if ($idactivity === '4') {
+                ?>
                 <!-- NUMERO EVIDENCIA -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">NÚMERO DE EVIDENCIA:</label>
@@ -157,6 +197,10 @@
                     </div>
                   </div>
                 </div>
+                <?php
+                }
+                if ($idactivity === '2' || $idactivity === '3' || $idactivity === '5' || $idactivity === '6') {
+                ?>
                 <!-- FOLIO EXPEDIENTE -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">FOLIO EXPEDIENTE:</label>
@@ -171,10 +215,13 @@
                   <label for="" class="col-md-4 control-label">ID SUJETO:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['id_sujeto']; ?></textarea>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $identunico; ?></textarea>
                     </div>
                   </div>
                 </div>
+                <?php
+                }
+                ?>
                 <!-- OBSERVACIONES -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">OBSERVACIONES:</label>
@@ -185,6 +232,9 @@
                   </div>
                 </div>
                 <!-- image -->
+                <?php
+                if ($idactivity === '4' || $idactivity === '5' || $idactivity === '6') {
+                ?>
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">EVIDENCIA:</label>
                   <div class="col-md-4 inputGroupContainer">
@@ -204,6 +254,9 @@
                     </div>
                   </div>
                 </div>
+                <?php
+                }
+                ?>
               </div>
             </div>
           </div>

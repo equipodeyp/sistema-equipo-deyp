@@ -131,7 +131,7 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
                   <tbody>
                     <?php
                     $contador = 0;
-                          $query= "SELECT * FROM react_actividad WHERE usuario = '$name'";
+                          $query= "SELECT * FROM react_actividad WHERE usuario = '$name' ORDER BY id_actividad ASC";
                           $rq = $mysqli->query($query);
                              while($row = $rq->fetch_assoc()){
                                $contador = $contador + 1;
