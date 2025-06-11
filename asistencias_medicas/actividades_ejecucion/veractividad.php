@@ -53,7 +53,8 @@
                   <label for="" class="col-md-4 control-label">SUBDIRECCIÓN:</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $fsubdir['subdireccion'];; ?>" readonly>
+                      <!-- <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $fsubdir['subdireccion'];; ?>" readonly> -->
+                      <textarea style="width: 800px; height: 28px; resize: none" name="" rows="8" cols="80" disabled><?php echo $fsubdir['subdireccion'];; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -62,8 +63,7 @@
                   <label for="" class="col-md-4 control-label">NOMBRE ACTIVIDAD:</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" type="text" class="form-control"  id="actividadshowres" name="actividad_name" placeholder="" value="<?php echo $facttraer['nombre']; ?>" readonly>
+                      <textarea style="width: 800px; height: 55px; resize: none" name="" rows="3" cols="80" disabled><?php echo $facttraer['nombre']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -72,8 +72,7 @@
                   <label for="" class="col-md-4 control-label">FUNCIÓN:</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['funcion']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" name="" rows="8" cols="80" disabled><?php echo $ftraeractividad['funcion']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -86,8 +85,7 @@
                   <label for="" class="col-md-4 control-label">CLASIFICACIÓN:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $nombre_clasificacion; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $nombre_clasificacion; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -97,8 +95,7 @@
                   <label for="" class="col-md-4 control-label">UNIDAD DE MEDIDA:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['unidad_medida']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['unidad_medida']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -107,8 +104,7 @@
                   <label for="" class="col-md-4 control-label">REPORTE DE METAS:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['reporte_metas']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['reporte_metas']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -121,8 +117,7 @@
                       $originalDate = $ftraeractividad['fecha'];
                       $f = date("d/m/Y", strtotime($originalDate));
                     ?>
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $f; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $f; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -131,8 +126,7 @@
                   <label for=""class="col-md-4 control-label">CANTIDAD:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['cantidad']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['cantidad']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -141,8 +135,7 @@
                   <label for="" class="col-md-4 control-label">INFORME ANUAL:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['informe_anual']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['informe_anual']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -151,8 +144,7 @@
                   <label for="" class="col-md-4 control-label">EVIDENCIA INTERNA:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['evidencia_interna']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['evidencia_interna']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -161,8 +153,7 @@
                   <label for="" class="col-md-4 control-label">NÚMERO DE EVIDENCIA:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['id_evidencia']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['id_evidencia']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -171,8 +162,7 @@
                   <label for="" class="col-md-4 control-label">FOLIO EXPEDIENTE:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['folio_expediente']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['folio_expediente']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -181,8 +171,7 @@
                   <label for="" class="col-md-4 control-label">ID SUJETO:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['id_sujeto']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['id_sujeto']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -191,8 +180,7 @@
                   <label for="" class="col-md-4 control-label">OBSERVACIONES:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['observaciones']; ?>" readonly>
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['observaciones']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -202,7 +190,6 @@
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                       <?php
-                      // echo $fgetimage['tipo'];
                       if ($fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  ||
                           $fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
                         ?>

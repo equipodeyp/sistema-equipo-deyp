@@ -201,7 +201,7 @@ echo "<br>";
    </script>");
   }
 }else {
-  echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../asistencias_medicas/admin.php'>";
+  echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../consultores/admin.php'>";
 }
 
 ?>

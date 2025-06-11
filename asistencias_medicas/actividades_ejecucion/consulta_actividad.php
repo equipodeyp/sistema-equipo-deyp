@@ -33,6 +33,43 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
   <link rel="stylesheet" href="../../css/react_add_traslados.css">
+  <!--  -->
+  <!-- para usar botones en datatables JS -->
+  <!--datables CSS básico-->
+  <link rel="stylesheet" type="text/css" href="../../datatables/datatables.min.css"/>
+  <!--datables estilo bootstrap 4 CSS-->
+  <link rel="stylesheet"  type="text/css" href="../../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+  <!--font awesome con CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- datatables JS -->
+  <script type="text/javascript" src="../../datatables/datatables.min.js"></script>
+  <script src="../../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+  <script src="../../datatables/JSZip-2.5.0/jszip.min.js"></script>
+  <script src="../../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+  <script src="../../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+  <script src="../../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+  <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable({
+            language: {
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sSearch": "Buscar:",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast":"Último",
+                        "sNext":"Siguiente",
+                        "sPrevious": "Anterior"
+               },
+               "sProcessing":"Procesando...",
+                },
+        });
+    });
+    </script>
 </head>
 <body>
   <div class="contenedor">
@@ -122,7 +159,7 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
                                    }
                                ?>
                   </tbody>
-                </table>                
+                </table>
               </div>
             </div>
           </div>
@@ -130,7 +167,7 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
       </div>
     </div>
   </div>
-  <a href="../admin.php" class="btn-flotante">REGRESAR</a>
+  <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
   <!-- <script src="../../js/funciones_react_actividad_consulta.js"></script> -->
 </body>
 </html>

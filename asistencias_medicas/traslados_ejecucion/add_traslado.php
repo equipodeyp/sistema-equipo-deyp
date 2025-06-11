@@ -353,7 +353,7 @@ $mostrar=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-      <a href="../admin.php" class="btn-flotante">REGRESAR</a>
+      <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
   </div>
 </body>
 </html>

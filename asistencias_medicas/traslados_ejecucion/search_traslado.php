@@ -730,7 +730,7 @@ $_SESSION["check_traslado"] = $check_traslado;
     </div>
   </div>
   <div class="contenedor">
-      <a href="../admin.php" class="btn-flotante">REGRESAR</a>
+      <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
   </div>
   <script type="text/javascript">
     function verdato(){
