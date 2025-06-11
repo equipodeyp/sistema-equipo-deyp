@@ -62,7 +62,7 @@
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
                       <!-- <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $fsubdir['subdireccion'];; ?>" readonly> -->
-                      <textarea style="width: 800px; height: 28px; resize: none" name="" rows="8" cols="80" disabled><?php echo $fsubdir['subdireccion'];; ?></textarea>
+                      <textarea style="width: 800px; height: 28px; resize: none" name="" rows="8" cols="80" disabled><?php echo $fsubdir['subdireccion']; ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -157,7 +157,20 @@
                     </div>
                   </div>
                 </div>
+                <!-- ENTIDAD/MUNICIPIO -->
                 <?php
+                if ($idactivity === '6') {
+                ?>
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">ENTIDAD/MUNICIPIO:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['entidad_municipio']; ?></textarea>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                }
                 if ($idactivity === '2' || $idactivity === '3') {
                 ?>
                 <!-- EVIDENCIA INTERNA -->
@@ -263,7 +276,11 @@
             <div class="modal-footer">
               <center>
                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>  CERRAR</button>
-                <a type="button" class="btn btn-primary" href="javascript:imprimirSeleccion('boton_print')"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a>
+                <!-- <form class="" action="generarpdfdetalleactividad.php" method="post">
+                  <input type="text" name="" value="<?php echo $row['id']; ?>" style="display:none">
+                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</button> -->
+                  <a type="button" class="btn btn-primary" href="generarpdfdetalleactividad.php?idactividad=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a>
+                <!-- </form> -->
               </center>
             </div>
           </form>
