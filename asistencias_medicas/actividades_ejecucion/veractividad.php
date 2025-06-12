@@ -184,9 +184,6 @@
                 </div>
                 <?php
                 }
-                ?>
-                <!-- MEDIO DE NOTIFICACION -->
-                <?php
                 if ($idactivity === '2') {
                 ?>
                 <div class="form-group">
@@ -253,7 +250,7 @@
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                       <?php
-                      if ($fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  ||
+                      if($fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  ||
                           $fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
                         ?>
                         <div class="mbr-section-btn align-left"><a class="btn btn-md btn-primary display-4" href="<?php echo $fgetimage['ruta'] ?>" download>Descargar</a></div>

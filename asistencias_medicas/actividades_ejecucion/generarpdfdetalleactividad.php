@@ -84,14 +84,7 @@ $mpdf->SetHTMLFooter('
     $fgetimage = $rgetimage -> fetch_assoc();
 
 
-    $html .='<table width="100%">
-    <tr>
-    <td width="50%" style="font-family: gothambook" align="center"><span align="center"></span>
-    </td>
-    <td width="50%" style="font-size: .55em; font-family: gothambook" align="right"><span align="center">Fecha y Hora: '.$today.'</span>
-    </td>
-    </tr>
-    </table>';
+
     $html .='
     <table style="width: 100%; margin: 0 auto;" class="table table-striped table-bordered" cellspacing="0" bgcolor="#97897D">
       <thead class="thead-dark">
@@ -131,58 +124,94 @@ $mpdf->SetHTMLFooter('
             </tr>
             <tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">CANTIDAD:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['cantidad'].'</p></font></th>
+            </tr>';
+            if ($idactivity === '3' || $idactivity === '6') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">INFORME ANUAL:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['informe_anual'].'</p></font></th>
+            </tr>';
+            }
+            if ($idactivity === '6') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">REPORTE DE METAS:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['reporte_metas'].'</p></font></th>
+            </tr>';
+            }
+            $originalDate = $ftraeractividad['fecha'];
+            $f = date("d/m/Y", strtotime($originalDate));
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA ACTIVIDAD:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$f.'</p></font></th>
+            </tr>';
+            if ($idactivity === '6') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">ENTIDAD/MUNICIPIO:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['entidad_municipio'].'</p></font></th>
+            </tr>';
+            }
+            if ($idactivity === '2' || $idactivity === '3') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">EVIDENCIA INTERNA:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['evidencia_interna'].'</p></font></th>
+            </tr>';
+            }
+            if ($idactivity === '2') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">MEDIO DE NOTIFICACIÓN:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['id_evidencia'].'</p></font></th>
+            </tr>';
+            }
+            if ($idactivity === '4') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">NÚMERO DE EVIDENCIA:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['id_evidencia'].'</p></font></th>
+            </tr>';
+            }
+            if ($idactivity === '2' || $idactivity === '3' || $idactivity === '5' || $idactivity === '6') {
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FOLIO EXPEDIENTE:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['folio_expediente'].'</p></font></th>
             </tr>
             <tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">ID SUJETO:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-            <tr>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$identunico.'</p></font></th>
+            </tr>';
+            }
+            $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">OBSERVACIONES:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['observaciones'].'</p></font></th>
             </tr>
+            </thead>
+        </table>';
+            if (($idactivity === '4' || $idactivity === '5' || $idactivity === '6')) {
+            $html .='<br><table style="width: 100%; margin: 0 auto;" class="table table-striped table-bordered" cellspacing="0" bgcolor="#97897D">
+              <thead class="thead-dark">
+                  <tr>
+                    <th style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook; margin-top: 40px;"><font size=5><b style="text-align:center; color:white;">EVIDENCIA</b></font></th>
+                  </tr>
+                </thead>
+              </table>';
+              if($fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  ||
+                  $fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                  || $fgetimage['tipo'] === 'video/mp4' || $fgetimage['tipo'] === 'application/pdf') {
+                    $html .='<div style="display: flex; justify-content: center; align-items: center; border: 1px solid black; text-align: center;">
+                              <h1>ARCHIVO SIN VISTA PREVIA</h1>
+                             </div>';
+                  }elseif ($fgetimage['tipo'] === 'image/png' || $fgetimage['tipo'] === 'image/jpeg') {
+                    $html .='<div style="display: flex; justify-content: center; align-items: center; border: 1px solid black; text-align: center;">
+                              <img  src="'.$fgetimage['ruta'].'" width="60%" height="45%">
+                             </div>';
+                  }
+            }
+            $html .='<table width="100%">
             <tr>
-              <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FUNCIÓN:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
+            <td width="50%" style="font-family: gothambook" align="center"><span align="center"></span>
+            </td>
+            <td width="50%" style="font-size: .85em; font-family: gothambook" align="right"><span align="center">Fecha y Hora: '.$today.'</span>
+            </td>
             </tr>
-            <tr>
-              <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">EVIDENCIA:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2></p></font></th>
-            </tr>
-        </thead>
-    </table>';
+            </table>';
 $mpdf->WriteHtml($html);
 $mpdf->Output('REACT_REPORTE.pdf', 'I');
 
