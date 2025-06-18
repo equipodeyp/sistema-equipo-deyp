@@ -10,32 +10,33 @@ $today = date("d-m-Y H:i:sa");
 
 $mpdf = new \Mpdf\Mpdf([
           'mode' => '',
-          'format' => 'A4',
+          'format' => 'A4-P',
           'default_font_size' => 0,
           'default_font' => '',
           'margin_left' => 10,
-          'margin_right' => 7,
-          'margin_top' => 32,
+          'margin_right' => 8,
+          'margin_top' => 30,
           'margin_bottom' => 20,
-          'margin_header' => 2,
-          'margin_footer' => 2,
+          'margin_header' => 1,
+          'margin_footer' => 1,
           'orientation' => 'P',
+
     ]);
 
     $mpdf->SetHTMLHeader('
     <table width="100%">
         <tr>
-            <td width="10%"><img  src="../../image/gobierno2.jpg" width="120" height="130"></td>
+            <td width="10%"><img  src="../../image/gobierno2.jpg" width="130" height="130"></td>
             <td  width="80%" style="font-family: gothambook;" align="center"><span align="center">Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio </span>
             </td>
-            <td width="10%" style="text-align: right;"><img  src="../../image/FGJEM.jpg" width="60" height="60"></td>
+            <td width="10%" style="text-align: right;"><img  src="../../image/FGJEM.jpg" width="80" height="80"></td>
         </tr>
     </table>
 
     ');
 
 $mpdf->SetHTMLFooter('
-    <div>
+
     <table width="4%" align="right">
     <tr>
     <td width="3%" align="center" style="height:30vh;"><h3 class=""></font></span>
@@ -214,9 +215,4 @@ $mpdf->SetHTMLFooter('
             </table>';
 $mpdf->WriteHtml($html);
 $mpdf->Output('REACT_REPORTE.pdf', 'I');
-
-
-
-
-
 ?>

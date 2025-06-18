@@ -189,10 +189,10 @@ transition: all .2s ease;
                   <!-- <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/add_actividad.php'">
                       <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
                   </li> -->
-                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/consulta_actividad.php'">
-                      <i class="fas fa-laptop-file"></i> CONSULTAR ACTIVIDAD</a>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='consulta_actividad.php'">
+                      <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD</a>
                   </li>
-                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./actividades_ejecucion/search_actividad.php'">
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='search_actividad.php'">
                     <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
                   </li>
                 </ul>
