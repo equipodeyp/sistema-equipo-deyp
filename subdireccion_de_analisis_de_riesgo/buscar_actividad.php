@@ -323,7 +323,7 @@ a:focus {
                                     ON react_actividad.idactividad = react_actividad_analisis.id_actividad 
                                     AND react_actividad.id_subdireccion = 1 
                                     AND react_actividad.usuario = '$nombre_usuario'
-                                    ORDER BY fecha DESC";
+                                    ORDER BY react_actividad.fecha_alta DESC";
 
                                     // SELECT*
                                     // FROM react_actividad
