@@ -54,10 +54,7 @@
               $racttraer = $mysqli->query($acttraer);
               $facttraer = $racttraer->fetch_assoc();
               // echo $facttraer['nombre'];
-              $user_registra = $ftraeractividad['usuario'];
-              // echo $user_registra;
-
-    
+              $username = $ftraeractividad['usuario'];
               $sentencia="SELECT DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  
               usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
 
@@ -65,7 +62,7 @@
 
               JOIN usuarios_servidorespublicos
               ON react_actividad.usuario = usuarios_servidorespublicos.usuario
-              AND usuarios_servidorespublicos.usuario = '$user_registra'
+              AND usuarios_servidorespublicos.usuario = '$username'
 
 
               ORDER BY usuarios_servidorespublicos.nombre ASC";
@@ -73,7 +70,7 @@
               $result = $mysqli->query($sentencia);
               $row=$result->fetch_assoc();
               $name_user = strtoupper($row['nombre'].' '.$row['apaterno'].' '.$row['amaterno']);
-
+              // echo $name_user;
               ?>
               <div class="row">
                 <!-- SUBDIRECCIÓN -->
