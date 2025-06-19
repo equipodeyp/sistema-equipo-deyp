@@ -35,7 +35,7 @@
             <div class="well form-horizontal">
               <?php
               $idactividad = $row['id'];
-              // echo $idactividad;
+              echo $idactividad;
               $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 1";
               $rtraeractividad = $mysqli->query($traeractividad);
               $ftraeractividad = $rtraeractividad->fetch_assoc();
@@ -268,7 +268,8 @@
               <center>
                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>  CERRAR</button>
                 <!-- <a type="button" class="btn btn-primary" href="javascript:imprimirSeleccion('boton_print')"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a> -->
-                <a type="button" class="btn btn-primary" href="generarpdfdetalleactividad.php?idactividad=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a>
+                <a type="button" class="btn btn-primary" href="generarpdfdetalleactividad.php?idactividad=<?php echo $idactividad; ?>"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a>
+                <?php echo $idactividad; ?>
               </center>
             </div>
           </form>
