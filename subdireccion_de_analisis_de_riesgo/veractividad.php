@@ -54,6 +54,25 @@
               $racttraer = $mysqli->query($acttraer);
               $facttraer = $racttraer->fetch_assoc();
               // echo $facttraer['nombre'];
+              $user_registra = $ftraeractividad['usuario'];
+              // echo $user_registra;
+
+    
+              $sentencia="SELECT DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  
+              usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
+
+              FROM react_actividad 
+
+              JOIN usuarios_servidorespublicos
+              ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+              AND usuarios_servidorespublicos.usuario = '$user_registra'
+
+
+              ORDER BY usuarios_servidorespublicos.nombre ASC";
+
+              $result = $mysqli->query($sentencia);
+              $row=$result->fetch_assoc();
+              $name_user = strtoupper($row['nombre'].' '.$row['apaterno'].' '.$row['amaterno']);
 
               ?>
               <div class="row">
@@ -223,7 +242,7 @@
                   <label for="" class="col-md-4 control-label">SERVIDOR PÚBLICO:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['usuario']; ?>" readonly>
+                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $name_user; ?>" readonly>
                     </div>
                   </div>
                 </div>
