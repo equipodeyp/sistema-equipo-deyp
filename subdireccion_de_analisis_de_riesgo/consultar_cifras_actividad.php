@@ -3,29 +3,32 @@ error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Mexico_City");
 /*require 'conexion.php';*/
-include("../conexion.php");
+include("./conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
-  header("location: ../../logout.php");
+  header("location: ../logout.php");
 }
 $check_actividad = 1;
 $_SESSION["check_actividad"] = $check_actividad;
 
 // echo $name;
 
-$sentencia="SELECT usuarios.cargo, usuarios.usuario 
+$sentencia="SELECT usuarios.cargo, usuarios.usuario, usuarios_servidorespublicos.estatus, usuarios.nombre
 
 FROM usuarios
 
 JOIN usuarios_servidorespublicos
 ON usuarios.id = usuarios_servidorespublicos.id_usuarioprincipal
+AND usuarios_servidorespublicos.estatus = 'activo'
 AND usuarios.usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $cargo = $row['cargo'];
+$estatus=$row['estatus'];
 
 // echo $cargo;
+// echo $estatus;
 // $today = date("Y-m-d H:i:s"); 
 // echo $today;
 
@@ -38,27 +41,27 @@ $cargo = $row['cargo'];
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>CONSULTAR CIFRAS ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../../js/jquery-3.1.1.min.js"></script>
-  <script src="../../js/funciones_react.js"></script>
-  <link href="../../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/bootstrap-theme.css" rel="stylesheet">
-  <script src="../../js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../../css/cli.css">
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="../js/funciones_react.js"></script>
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap-theme.css" rel="stylesheet">
+  <script src="../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/cli.css">
   <!-- CSS personalizado -->
-  <link rel="stylesheet" href="../../css/main2.css">
-  <link rel="stylesheet" href="../../css/expediente.css">
+  <link rel="stylesheet" href="../css/main2.css">
+  <link rel="stylesheet" href="../css/expediente.css">
   <!-- font-awesome -->
   <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
-  <link rel="stylesheet" href="../../css/react_add_traslados.css">
+  <link rel="stylesheet" href="../css/react_add_traslados.css">
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link href="assets/css/material.min.css" rel="stylesheet">
+  <link href="assets/css/material.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="./assets/css/loader.css">
 
@@ -77,12 +80,12 @@ $cargo = $row['cargo'];
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img style='text-align:center;' src='../../image/mujerup.png' width='100' height='100'>";
+          echo "<img style='text-align:center;' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
           // $foto = ../image/user.png;
-          echo "<img src='../../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
         }
         // echo $genero;
          ?>
@@ -95,9 +98,9 @@ $cargo = $row['cargo'];
     </div>
     <div class="main bg-light">
       <div class="barra">
-          <img src="../../image/fiscalia.png" alt="" width="150" height="150">
-          <img src="../../image/ups2.png" alt="" width="1400" height="70">
-          <img style="display: block; margin: 0 auto;" src="../../image/ups3.png" alt="" width="1400" height="70">
+          <img src="../image/fiscalia.png" alt="" width="150" height="150">
+          <img src="../image/ups2.png" alt="" width="1400" height="70">
+          <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
       </div>
       <div class="container">
         <div class="row">
@@ -158,13 +161,15 @@ $cargo = $row['cargo'];
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
 
                 <?php
-                if ($cargo != ''){
-                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, react_actividad.usuario
+                if ($cargo != '' && $estatus === 'activo'){
+                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, 
+                    usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, 
+                    react_actividad.usuario
                     FROM react_actividad
 
                     JOIN usuarios_servidorespublicos
                     ON react_actividad.usuario = usuarios_servidorespublicos.usuario
-                    AND react_actividad.id_subdireccion = '3'
+                    AND react_actividad.id_subdireccion = '1'
                     ORDER BY usuarios_servidorespublicos.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
@@ -174,12 +179,14 @@ $cargo = $row['cargo'];
                     }
                 }else
                 {
-                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, react_actividad.usuario
+                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, 
+                    usuarios_servidorespublicos.apaterno, 
+                    usuarios_servidorespublicos.amaterno, react_actividad.usuario
                     FROM react_actividad
 
                     JOIN usuarios_servidorespublicos
                     ON react_actividad.usuario = usuarios_servidorespublicos.usuario
-                    AND react_actividad.id_subdireccion = '3'
+                    AND react_actividad.id_subdireccion = '1'
                     AND react_actividad.usuario = '$name'
                     ORDER BY usuarios_servidorespublicos.nombre ASC";
                     $answer = $mysqli->query($select);
@@ -206,7 +213,7 @@ $cargo = $row['cargo'];
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="Todas">Todas</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_enlace ORDER BY react_actividad_enlace.nombre ASC";
+                    $select = "SELECT * FROM react_actividad_analisis ORDER BY react_actividad_analisis.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];
@@ -281,22 +288,24 @@ $cargo = $row['cargo'];
                   </tr>
                 </thead>
               <?php
-              include('config.php');
-              $sqlReact = ("SELECT react_actividad_enlace.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+              include('./config.php');
+              $sqlReact = ("SELECT react_actividad_analisis.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
                                   react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario 
                                   FROM react_actividad 
-                                  JOIN react_actividad_enlace ON react_actividad.id_actividad = react_actividad_enlace.id
+                                  JOIN react_actividad_analisis 
+                                  ON react_actividad.id_actividad = react_actividad_analisis.id
                                   AND react_actividad.usuario = '$name' 
-                                  JOIN react_subdireccion ON react_actividad.id_subdireccion = react_subdireccion.id
-                                  AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ENLACE INTERINSTITUCIONAL' 
-                                  ORDER BY react_actividad_enlace.nombre ASC");
+                                  JOIN react_subdireccion 
+                                  ON react_actividad.id_subdireccion = react_subdireccion.id
+                                  AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ANÁLISIS DE RIESGO' 
+                                  ORDER BY react_actividad_analisis.nombre ASC");
               $query = mysqli_query($con, $sqlReact);
               $i =1;
                 while ($dataRow = mysqli_fetch_array($query)) { ?>
                 <tbody>
                   <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td><?php echo $dataRow['nombre'] ; ?></td>
+                    <td ><?php echo $i++; ?></td>
+                    <td style="text-align: left;"><?php echo $dataRow['nombre'] ; ?></td>
                     <td><?php echo $dataRow['clasificacion'] ; ?></td>
                     <td><?php echo $dataRow['unidad_medida'] ; ?></td>
                     <td><?php echo $dataRow['cantidad'] ; ?></td>
@@ -319,7 +328,7 @@ $cargo = $row['cargo'];
     </div>
   </div>
   <div class="contenedor">
-      <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
+      <a href="./menu.php" class="btn-flotante">REGRESAR</a>
   </div>
 
 
@@ -354,8 +363,6 @@ window.addEventListener('load', () => {
     numero_tipo_act = e.target.value;
     tipo_actividad_obtenido = numero_tipo_act;
 
-
-  
     
     if (tipo_actividad_obtenido === 'POR USUARIO'){
       document.getElementById("div_usuario").style.display = ""; // MOSTRAR
@@ -476,7 +483,7 @@ $("#btn_search").on("click", function(e){
   var usuario = $('input[name=input_usuario]').val();
   var actividad = $('input[name=input_nombre_actividad]').val();
 
-  console.log(f_inicio + '' + f_fin);
+  // console.log(f_inicio + '' + f_fin);
 
   if(tipo_consulta !="" && f_inicio !="" && f_fin !="" || tipo_consulta !="" && usuario !="" && actividad !="" && f_inicio !="" && f_fin !=""){
     $.post("filtro.php", {f_inicio, f_fin, tipo_consulta, usuario, actividad}, function (data) {
@@ -492,7 +499,7 @@ $("#btn_search").on("click", function(e){
 
 
 function loaderF(statusLoader){
-    console.log(statusLoader);
+    // console.log(statusLoader);
     if(statusLoader){
       $("#loaderFiltro").show();
       $("#loaderFiltro").html('<img class="img-fluid" src="assets/img/cargando.svg" style="left:50%; right: 50%; width:50px;">');
