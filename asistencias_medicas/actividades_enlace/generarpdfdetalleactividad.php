@@ -1,6 +1,6 @@
 <?php
 // error_reporting(0);
-
+/////////////////////
 require_once '../../mpdf/vendor/autoload.php';
 include("./conexion.php");
 date_default_timezone_set("America/Mexico_City");
