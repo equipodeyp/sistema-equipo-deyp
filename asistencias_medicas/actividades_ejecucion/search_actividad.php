@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Mexico_City");
 /*require 'conexion.php';*/
@@ -249,7 +249,7 @@ $cargo = $row['cargo'];
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
           <label for="" class="form-label"><b>BUSCAR</b></label><br>
-          <button type="submit" id="consultauser" class="btn btn-info" name="enviar" onclick=""><i class="fa fa-search" aria-hidden="true"></i></button>          
+          <button type="submit" id="consultauser" class="btn btn-info" name="enviar" onclick=""><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
       </div>
       <?php
