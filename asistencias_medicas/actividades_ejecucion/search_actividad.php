@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
 date_default_timezone_set("America/Mexico_City");
 /*require 'conexion.php';*/
@@ -189,7 +189,7 @@ $cargo = $row['cargo'];
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <!-- <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span> -->
-            <select class="form-control" name="nombre_actividad" id="nombre_actividad">
+            <select class="form-control" name="nombre_actividad" id="nombre_actividad" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="TODAS">TODAS</option>
                 <?php
@@ -231,128 +231,32 @@ $cargo = $row['cargo'];
       <input name="input_usuario" id="input_usuario" class="form-control" type="text" value style="display:none;">
       <input name="input_nombre_actividad" id="input_nombre_actividad" class="form-control" type="text" value style="display:none;">
 
-
+      <?php
+      if ($cargo === 'subdirector') {
+      ?>
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
-          <!-- <div class="col-md-2"> -->
-              <!-- <div class="form-group"> -->
-                  <label for="" class="form-label"><b>BUSCAR</b></label><br>
-                  <button type="submit" id="ocultar-mostrar" class="btn btn-info" name="enviar"><i class="fa fa-search" aria-hidden="true"></i></button>
-              <!-- </div> -->
-          <!-- </div> -->
-
+          <label for="" class="form-label"><b>BUSCAR</b></label><br>
+          <button type="submit" id="ocultar-mostrar" class="btn btn-info" name="enviar"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
       </div>
       <?php
-      $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-      $where="";
-      if(isset($_GET['enviar'])){
-      $tipoconsulta = $_GET['tipo_consulta'];
-      $usuario = $_GET['usuario'];
-      $nombreactividad = $_GET['nombre_actividad'];
-      $fechainicial = date("Y-m-d", strtotime($_GET['fecha_inicio']));
-      $fechafinal = date("Y-m-d", strtotime($_GET['fecha_fin']));
-
-      if (isset($_GET['tipo_consulta'])){
-        if ($tipoconsulta === 'GLOBAL' && $nombreactividad === 'TODAS') {
-          $where="WHERE react_actividad.id_subdireccion = 4 AND (react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafinal')";
-        }elseif ($tipoconsulta === 'GLOBAL' && $nombreactividad !== 'TODAS') {
-          $where="WHERE react_actividad.id_subdireccion = 4 AND react_actividad.id_actividad = '$nombreactividad'
-                  AND (react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafinal')";
-        }elseif ($tipoconsulta === 'POR USUARIO' && $nombreactividad === 'TODAS') {
-          $where="WHERE react_actividad.id_subdireccion = 4 AND react_actividad.usuario = '$usuario'
-                  AND (react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafinal')";
-        }elseif ($tipoconsulta === 'POR USUARIO' && $nombreactividad !== 'TODAS') {
-          $where="WHERE react_actividad.id_subdireccion = 4 AND react_actividad.usuario = '$usuario' AND react_actividad.id_actividad = '$nombreactividad'
-                  AND (react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafinal')";
-        }
-        $mostrar = 1;
+      include("consultaadmin.php");
       }else {
-        $mostrar = 0;
-      }
-    }
-    ?>
-    </form>
-    <?php
-    if ($mostrar === 1) {
-      // echo "consultar";
-      $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-      $SQL="SELECT * FROM react_actividad $where";
-      $dato = mysqli_query($conexion, $SQL);
-      $row_cnt = $dato->num_rows;
-      if($dato -> num_rows >0){
-        ?>
-        <div class="table-responsive resultadoFiltro">
-                <table class="table table-hover" id="tablaReact">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">ACTIVIDAD</th>
-                      <th scope="col">CLASIFICACIÓN</th>
-                      <th scope="col">UNIDAD DE MEDIDA</th>
-                      <th scope="col">CANTIDAD</th>
-                      <th scope="col">FECHA</th>
-                    </tr>
-                  </thead>
-        <?php
-        $i =1;
-        while($fila=mysqli_fetch_array($dato)){
-          // variables de consulta
-          $idactivity = $fila['id_actividad'];
-          if ($idactivity === '3') {
-            $nameclasfac = $fila['clasificacion'];
-            $restfac = substr($nameclasfac, -1);
-            $facilitarname = "SELECT nombre FROM react_contacto_familiar WHERE id = '$restfac'";
-            $rfacilitarname = $mysqli ->query($facilitarname);
-            $ffacilitarname = $rfacilitarname ->fetch_assoc();
-            $nombre_clasificacion = $ffacilitarname['nombre'];
-          }elseif ($idactivity === '4') {
-            $nameclasimplem = $fila['clasificacion'];
-            $restimplem = substr($nameclasimplem, -1);
-            $implementarname = "SELECT nombre FROM react_acciones_seguridad_cp WHERE id = '$restimplem'";
-            $rimplementarname = $mysqli ->query($implementarname);
-            $fimplementarname = $rimplementarname ->fetch_assoc();
-            $nombre_clasificacion = $fimplementarname['nombre'];
-          }elseif ($idactivity === '5') {
-            $nameclassalv = $fila['clasificacion'];
-            $restsalv = substr($nameclassalv, -1);
-            $salvaguardarname = "SELECT nombre FROM react_salvaguradar_integridad WHERE id = '$restsalv'";
-            $rsalvaguardarname = $mysqli ->query($salvaguardarname);
-            $fsalvaguardarname = $rsalvaguardarname ->fetch_assoc();
-            $nombre_clasificacion = $fsalvaguardarname['nombre'];
-          }else {
-            $nombre_clasificacion = "N/A";
-          }
-          // consultas sql
-          // traer nombre de la actividad
-          $acttraer = "SELECT * FROM react_actividad_ejecucion WHERE id = '$idactivity'";
-          $racttraer = $mysqli->query($acttraer);
-          $facttraer = $racttraer->fetch_assoc();
-          ?>
-          <tbody>
-            <tr>
-              <td><?php echo $i++; ?></td>
-              <td><?php echo $facttraer['nombre']; ?></td>
-              <td><?php echo $nombre_clasificacion; ?></td>
-              <td><?php echo $fila['unidad_medida']; ?></td>
-              <td><?php echo $fila['cantidad']; ?></td>
-              <td><?php echo date("d-m-Y", strtotime($fila['fecha'])); ?></td>
-          </tr>
-          </tbody>
-          <?php
-        }
-        ?>
-          </table>
+      ?>
+      <div class="form-group" id="userbotonpdf">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-5">
+          <label for="" class="form-label"><b>BUSCAR</b></label><br>
+          <button type="submit" id="consultauser" class="btn btn-info" name="enviar" onclick=""><i class="fa fa-search" aria-hidden="true"></i></button>          
         </div>
-        <?php
-      }else {
-        echo "no existen datos de consulta";
+      </div>
+      <?php
+      include("consultauser.php");
       }
-    }else {
-      echo "validar seleccion de datos";
-    }
-    ?>
+      ?>
+
 
           </div>
         </center>
@@ -362,5 +266,29 @@ $cargo = $row['cargo'];
   <div class="contenedor">
     <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
   </div>
+<script type="text/javascript">
+function ckecktipoconsulta(sel) {
+  if (sel.value == "GLOBAL") {
+    document.getElementById("div_usuario").style.display = "none";
+    document.getElementById("usuario").selectedIndex = 0;
+    document.getElementById("nombre_actividad").selectedIndex = 0;
+    document.getElementById("usuario").required = false;
+  }else if (sel.value == "POR USUARIO") {
+    document.getElementById("div_usuario").style.display = "";
+    document.getElementById("nombre_actividad").selectedIndex = 0;
+    document.getElementById("usuario").required = true;
+  }
+}
+//
+function mostraruserconsulta(){
+
+}
+//
+function ocultartablauser() {
+  console.log("prueba ocultar");
+  document.getElementById("tablauserconsulta").style.display = "none";
+  document.getElementById("showbotonpdfuser").style.display = "none";
+}
+
 </body>
 </html>
