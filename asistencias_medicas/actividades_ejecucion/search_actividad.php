@@ -280,9 +280,9 @@ function ckecktipoconsulta(sel) {
   }
 }
 //
-function mostraruserconsulta(){
-
-}
+// function mostraruserconsulta(){
+//
+// }
 //
 function ocultartablauser() {
   console.log("prueba ocultar");
