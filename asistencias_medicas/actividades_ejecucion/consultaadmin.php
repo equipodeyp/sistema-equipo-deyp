@@ -111,15 +111,23 @@ if($dato -> num_rows >0){
   </div>
   <?php
 }else {
-  echo "no existen datos de consulta";
+  // echo "no existen datos de consulta";
+  ?>
+  <div class="alert alert-dark" role="alert">
+    <h1>NO SE ENCONTRARON REGISTROS</h1>
+  </div>
+  <?php
 }
 }else {
-// echo "validar seleccion de datos";
-// aqui inicializa todo en blanco
+?>
+<div class="alert alert-dark" role="alert">
+  <h1>NO SE ENCONTRARON REGISTROS</h1>
+</div>
+<?php
 ?>
 <div class="alert alert-dark" role="alert">
   <img src="../../image/alert.png" alt="" width="50" height="50">
-  <span><b>PARA REALIZAR LA BUSQUEDA DEBE ELEGIR LAS OPCIONES DE CONSULTA de Administrativo</b></span>
+  <span><b>PARA REALIZAR LA BUSQUEDA DEBE ELEGIR LAS OPCIONES DE CONSULTA</b></span>
 </div>
 <?php
 }
