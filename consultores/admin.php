@@ -357,22 +357,22 @@ a:focus {
             <li>
                   <a href="#" onclick="toggleSubmenu(this)">
                       <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
-                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">REACT</span>
                       <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/registrar_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/registrar_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/buscar_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/buscar_actividad.php'">
                               <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/consultar_cifras_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_enlace/consultar_cifras_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>

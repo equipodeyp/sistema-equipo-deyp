@@ -16,7 +16,7 @@ $_SESSION["check_actividad"] = $check_actividad;
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>REGISTRO TRASLADO</title>
+  <title>REGISTRAR ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/funciones_react.js"></script>
@@ -32,6 +32,7 @@ $_SESSION["check_actividad"] = $check_actividad;
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
   <link rel="stylesheet" href="../css/react_add_traslados.css">
+   <script src="../js/funciones_react.js"></script>
 </head>
 <body>
   <div class="contenedor">
@@ -59,6 +60,32 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
 
       <nav class="menu-nav">
+          <ul>
+              <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <!-- <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
+                          </a>
+                      </li> -->
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
         <br><br>
       </nav>
     </div>

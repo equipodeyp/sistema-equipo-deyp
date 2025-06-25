@@ -58,9 +58,10 @@ $cargo = $row['cargo'];
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link href="assets/css/material.min.css" rel="stylesheet">
+  <link href="assets/css/material.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="./assets/css/loader.css">
+  <script src="../../js/funciones_react.js"></script>
 
 
 </head>
@@ -90,6 +91,32 @@ $cargo = $row['cargo'];
       </div>
 
       <nav class="menu-nav">
+        <ul>
+            <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <!-- <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
+                          </a>
+                      </li> -->
+                  </ul>
+              </li>
+        </ul>
         <br><br>
       </nav>
     </div>

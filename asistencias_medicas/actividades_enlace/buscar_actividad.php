@@ -22,7 +22,7 @@ $nombre_usuario = $_SESSION['usuario'];
 <head>
 <script src="../../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>CONSULTAR ACTIVIDAD</title>
+  <title>BUSCAR ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -51,6 +51,7 @@ $nombre_usuario = $_SESSION['usuario'];
   <!-- MATERIAL PARA USAR TOAST MENSAJES DE ALERTA  -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+  <script src="../../js/funciones_react.js"></script>
 <!-- ////////////////////////////////////////// --
 
  SCRIPT PARA EL MANEJO DE LA TABLA -->
@@ -274,6 +275,32 @@ a:focus {
         <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
+        <ul>
+            <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <!-- <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
+                          </a>
+                      </li> -->
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+        </ul>
       </nav>
     </div>
     <div class="main bg-light">
