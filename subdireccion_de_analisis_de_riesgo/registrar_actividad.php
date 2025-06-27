@@ -254,6 +254,28 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
 
 
+      <div class="form-group" id="clasificacion_seis" style="display:none;">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad_seis" id="clasificacion_actividad_seis">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_asistencia_psicologica ORDER BY nombre ASC";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
       <div class="form-group">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
@@ -421,12 +443,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
 
       document.getElementById("clasificacion_actividad_uno").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_dos").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
@@ -449,6 +473,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
 
       document.getElementById('folio_expediente_actividad').style.display = ""; // MOSTRAR
       document.getElementById('id_sujeto_actividad').style.display = ""; // MOSTRAR
@@ -459,6 +484,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
@@ -481,6 +507,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
       
       document.getElementById('folio_expediente_actividad').style.display = ""; // MOSTRAR
       document.getElementById('id_sujeto_actividad').style.display = ""; // MOSTRAR
@@ -490,6 +517,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
@@ -512,12 +540,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
 
       document.getElementById("clasificacion_actividad_uno").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_dos").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
@@ -541,12 +571,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_dos").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
 
       document.getElementById("clasificacion_actividad_uno").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_dos").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
@@ -573,12 +605,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_dos").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
 
       document.getElementById("clasificacion_actividad_uno").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_dos").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
@@ -604,12 +638,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_dos").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
 
       document.getElementById("clasificacion_actividad_uno").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_dos").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
@@ -618,6 +654,41 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
 
       document.getElementById("clasificacion_actividad_cinco").required = true; // CAMPO OBLIGATORIO
+      document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
+      document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
+      document.getElementById("numero_oficio_actividad").required = true; // CAMPO OBLIGATORIO
+
+      
+
+
+    }
+
+    else if (num_actividad_obtenido === '13'){
+      document.getElementById("clasificacion_seis").style.display = ""; // MOSTRAR
+      document.getElementById('folio_expediente_actividad').style.display = ""; // MOSTRAR
+      document.getElementById('id_sujeto_actividad').style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+
+      document.getElementById("clasificacion_uno").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_dos").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_tres").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_cuatro").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
+
+      document.getElementById("clasificacion_actividad_uno").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_dos").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_tres").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_cuatro").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
+      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto').value = ""; // LIMPIAR
+      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
+
+      document.getElementById("clasificacion_actividad_seis").required = true; // CAMPO OBLIGATORIO
       document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
       document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
       document.getElementById("numero_oficio_actividad").required = true; // CAMPO OBLIGATORIO

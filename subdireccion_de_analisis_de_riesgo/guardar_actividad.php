@@ -19,6 +19,7 @@ $clasificacion_dos = $_POST['clasificacion_actividad_dos'];
 $clasificacion_tres = $_POST['clasificacion_actividad_tres'];
 $clasificacion_cuatro = $_POST['clasificacion_actividad_cuatro'];
 $clasificacion_cinco = $_POST['clasificacion_actividad_cinco'];
+$clasificacion_seis = $_POST['clasificacion_actividad_seis'];
 $cantidad_actividad = $_POST['cantidad_actividad'];
 $fecha_actividad = $_POST['fecha_actividad'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
@@ -223,9 +224,23 @@ else if ($numero_actividad === '11'){
     $resultado = $mysqli->query($query);
 }
 
+else if ($numero_actividad === '13'){
+
+    $query = "INSERT INTO react_actividad (consecutivosub, idactividad, 
+    id_subdireccion, funcion, id_actividad, unidad_medida, 
+    reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+    folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+    observaciones, informe_anual, usuario, year) 
+    VALUES ('$consecutivo_actividad', '$id_actividad', 
+    '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+    '$reporte_metas_actividad', '$clasificacion_seis', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+    '$folio_expediente', '$id_sujeto', '$evidencia_interna_actividad', '$numero_oficio_solicitud', '$kilometraje_actividad', 
+    '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+    $resultado = $mysqli->query($query);
+}
 
 
-    // validacion de update correcto
+// validacion de update correcto
 
     if($resultado){
         echo ("<script type='text/javaScript'>
