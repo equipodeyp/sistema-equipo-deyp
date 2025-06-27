@@ -129,8 +129,8 @@ $mostrar=$result->fetch_assoc();
               $answer = $mysqli->query($select);
               $valores = $answer->fetch_assoc();
                                  ?>     
-       <div class="form-group" >
-        <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
+       <div class="form-group"  style="display:none;">
+        <label class="col-md-3 control-label" >SUBDIRECCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
@@ -161,7 +161,7 @@ $mostrar=$result->fetch_assoc();
       
 
 
-  <div class="form-group">
+  <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">FUNCIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -173,7 +173,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-      <div class="form-group" >
+      <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -184,7 +184,7 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
-<div class="form-group">
+<div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">REPORTE DE METAS</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -207,7 +207,7 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
-<div class="form-group">
+<div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -218,7 +218,7 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
- <div class="form-group" >
+ <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">CLASIFICACION</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -267,7 +267,7 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
- <div class="form-group">
+ <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">ID EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -291,7 +291,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
- <div class="form-group">
+ <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">MUNICIPIO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -301,7 +301,7 @@ $mostrar=$result->fetch_assoc();
         </div>
       </div>
 
-<div class="form-group">
+<div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -314,7 +314,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-      <div class="form-group">
+      <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">KILOMETROS</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -325,7 +325,7 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
-   <div class="form-group">
+   <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">INFORME ANUAL</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -337,7 +337,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
- <div class="form-group">
+ <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">CONSECUTIVO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -349,7 +349,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
- <div class="form-group">
+ <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">FECHA ALTA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">

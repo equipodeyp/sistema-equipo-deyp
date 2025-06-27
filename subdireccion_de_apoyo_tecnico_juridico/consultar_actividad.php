@@ -306,7 +306,7 @@ a:focus {
         <center>
   <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-    <form  id="form_consultar" method="POST" action="./cifras.php" enctype= "multipart/form-data">
+    <form  id="form_consultar" method="POST" action="./resultados.php" enctype= "multipart/form-data">
 
 
     <div class="form-group">
@@ -411,7 +411,7 @@ a:focus {
 
 
 <div class="contenedor">
-      <a href="../menu.php" class="btn-flotante">REGRESAR</a>
+      <a href="./menu.php" class="btn-flotante">REGRESAR</a>
   </div>
 
 

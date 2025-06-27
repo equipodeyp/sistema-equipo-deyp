@@ -41,7 +41,7 @@
               <?php
               $idactividad = $row['id'];
               // echo $idactividad;
-              $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 'SUBDIRECCIÓN DE APOYO TÉCNICO Y JURÍDICO'";
+              $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = '2'";
               $rtraeractividad = $mysqli->query($traeractividad);
               $ftraeractividad = $rtraeractividad->fetch_assoc();
               // variables para traer datos de tablas
@@ -51,15 +51,32 @@
               $idactivity = $ftraeractividad['id_actividad'];
               // echo "<br>";
               // traer nombre de la subdireccion
-              $subdir = "SELECT * FROM react_subdireccion WHERE id = 3";
+              $subdir = "SELECT * FROM react_subdireccion WHERE id = 2";
               $rsubdir = $mysqli->query($subdir);
               $fsubdir = $rsubdir->fetch_assoc();
               // traer nombre de la actividad
-              $acttraer = "SELECT * FROM react_actividad_enlace WHERE id = '$idactivity'";
+              $acttraer = "SELECT * FROM react_actividad_apoyo WHERE id = '$idactivity'";
               $racttraer = $mysqli->query($acttraer);
               $facttraer = $racttraer->fetch_assoc();
+              
               // echo $facttraer['nombre'];
+              $username = $ftraeractividad['usuario'];
+              $sentencia="SELECT DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  
+              usuarios_servidorespublicos.apaterno,  usuarios_servidorespublicos.amaterno  
 
+              FROM react_actividad 
+
+              JOIN usuarios_servidorespublicos
+              ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+              AND usuarios_servidorespublicos.usuario = '$username'
+
+
+              ORDER BY usuarios_servidorespublicos.nombre ASC";
+
+              $result = $mysqli->query($sentencia);
+              $row_name=$result->fetch_assoc();
+              $name_user = strtoupper($row_name['nombre'].' '.$row_name['apaterno'].' '.$row_name['amaterno']);
+              // echo $name_user;
               ?>
               <div class="row">
                 <!-- SUBDIRECCIÓN -->

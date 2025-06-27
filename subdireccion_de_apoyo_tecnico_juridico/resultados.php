@@ -9,22 +9,21 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ./logout.php");
 }
+
 $check_consultaactividad = 1;
 $_SESSION["check_consultaactividad"] = $check_consultaactividad;
-
-
 $nombre_usuario = $_SESSION['usuario'];
-// echo $nombre_usuario;
 
 ?>
 <!DOCTYPE html>
 <html lang="es">
- <head>
- <script src="../js/botonatras.js"></script>
+<head>
+  <script src="../../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>CONSULTAR ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
+  <script src="../js/funciones_react.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
@@ -32,29 +31,30 @@ $nombre_usuario = $_SESSION['usuario'];
   <link rel="stylesheet" href="../css/cli.css">
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/main2.css">
-  <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css"/>
-  <!--datables estilo bootstrap 4 CSS-->
-  <link rel="stylesheet"  type="text/css" href="../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-  <!--font awesome con CDN-->
+  <link rel="stylesheet" type="text/css" href="../../datatables/datatables.min.css"/>
+  <link rel="stylesheet"  type="text/css" href="../../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <!-- datatables JS -->
-  <script type="text/javascript" src="../datatables/datatables.min.js"></script>
-  <!-- para usar botones en datatables JS -->
-  <script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-  <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
-  <script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-  <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-  <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+   <script type="text/javascript" src="../../datatables/datatables.min.js"></script>
+    <script src="../../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="../../datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+     <script src="../../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+  <script src="../../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
-  <!-- MATERIAL PARA USAR TOAST MENSAJES DE ALERTA  -->
+  <link rel="stylesheet" href="../css/expediente.css">
+
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-<!-- ////////////////////////////////////////// --
+  <!-- font-awesome -->
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
+  <!-- estilos de diseño add traslados -->
+  <link rel="stylesheet" href="../css/react_add_traslados.css">
 
- SCRIPT PARA EL MANEJO DE LA TABLA -->
-  <script type="text/javascript">
+
+ <script type="text/javascript">
   $(document).ready(function() {
       $('#example').DataTable({
           language: {
@@ -247,7 +247,6 @@ a:focus {
     border-color: #EF5350
   }
   </style>
-  
 
 
 
@@ -263,17 +262,22 @@ a:focus {
         $result = $mysqli->query($sentencia);
         $row=$result->fetch_assoc();
         $genero = $row['sexo'];
+
         if ($genero=='mujer') {
-          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img style='text-align:center;' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
+          // $foto = ../image/user.png;
           echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
         }
+        // echo $genero;
          ?>
-        <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
+
       <nav class="menu-nav">
+        <br><br>
       </nav>
     </div>
     <div class="main bg-light">
@@ -289,97 +293,71 @@ a:focus {
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
           </h1>
-          <h5 style="text-align:center">
+          <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h5>
+           </h4>
         </div>
+
         <br>
 
 
+<div class="">
+        <h3 style="text-align:center">CIFRAS</h3>
+        <center>
+  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="table-responsive">
-                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                  <thead>
-                  <h3 style="text-align:center">BUSCAR ACTIVIDAD REGISTRADA</h3>
-                  <tr>
-                      <th style="text-align:center">NO.</th>
-                      <th style="text-align:center">FECHA</th>
-                      <th style="text-align:center">ACTIVIDAD</th>
-                      <th style="text-align:center">CLASIFICACIÓN</th>
-                      <th style="text-align:center">CANTIDAD</th>
-                      <th style="text-align:center">DETALLE</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $contador = 0;
-                          $query= "SELECT react_actividad.id_actividad, react_actividad.fecha, react_actividad_apoyo.nombre, 
-                                    react_actividad.clasificacion, react_actividad.cantidad, react_actividad.usuario
-                                    FROM react_actividad
-                                    INNER JOIN react_actividad_apoyo
-                                    ON react_actividad.id_actividad = react_actividad_apoyo.id
-                                    AND react_actividad.id_subdireccion = 2 
-                                    AND react_actividad.usuario = '$nombre_usuario'
-                                    ORDER BY fecha DESC";
+    <form  id="form_consultar" method="POST" action="./cifras.php" enctype= "multipart/form-data">
 
-                                    // SELECT*
-                                    // FROM react_actividad
-                                    // INNER JOIN react_actividad_enlace
-                                    // ON react_actividad.idactividad = react_actividad_enlace.id_actividad AND  react_actividad.id_subdireccion = 3 
-                                    // ORDER BY fecha DESC
+
+   
+
+      
+      
+    
+
+
+      
+
+
+      
 
 
 
-                          $rq = $mysqli->query($query);
-                             while($row = $rq->fetch_assoc()){
-                               $contador = $contador + 1;
-                               $id_per = $row['id_persona'];
-                               $idact = $row['id_actividad'];
-                               $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
-                               $rdper = $mysqli->query($dper);
-                               $fdper = $rdper->fetch_assoc();
-                                   ?>
-                                       <tr>
-                                          <td style="text-align:center"><?php echo $contador ?></span></td>
-                                          <?php
-                                              $originalDate = $row['fecha'];
-                                              $date = date("d/m/Y", strtotime($originalDate));
-                                          ?>
-                                          <td style="text-align:center"><?php echo $date; ?></span></td>
 
-                                          <td style="text-align:left"><?php echo $row['nombre']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['clasificacion']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['cantidad']; ?></span></td>
-                                          <td style="text-align:center">
-                              							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
-                              							<?php
-                              							echo "<a href='#edit_".$row['id']."' class='btn color-btn-success btn-sm' data-toggle='modal' ><i class='fa-solid fa-file-pen'></i> Detalle</a>";
-                              							 ?>
-                              							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
-                              						</td>
-                                          
-                                        </tr>
-                                        <?php include('veractividad.php'); ?>
-                                   <?php
-                                   }
-                               ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        
+
+<div class="contenedor">
+      <a href="./menu.php" class="btn-flotante">REGRESAR</a>
+  </div>
+
+
+
+
+
+</script>
+
+
+
+
+  
+    </form>
+  </div>
+</center>
+
+
+
       </div>
     </div>
   </div>
-   
-   <a href="menu.php" class="btn-flotante">REGRESAR</a>
-   <script src="../../js/funciones_react_actividad_consulta.js"></script>
-   
-  </body>
+  
+
+
+
+
+
+
+
+
+
+</body>
 </html>
