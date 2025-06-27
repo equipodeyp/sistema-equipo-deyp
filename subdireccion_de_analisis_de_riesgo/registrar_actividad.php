@@ -292,7 +292,7 @@ $_SESSION["check_actividad"] = $check_actividad;
                 <?php
                     $select1 = "SELECT DISTINCT datospersonales.folioexpediente
                     FROM datospersonales
-                    WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
+                    -- WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
                     ORDER BY datospersonales.id ASC";
                       $answer1 = $mysqli->query($select1);
                       while($valores1 = $answer1->fetch_assoc()){

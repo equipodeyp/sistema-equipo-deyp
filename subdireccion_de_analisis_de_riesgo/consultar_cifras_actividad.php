@@ -26,7 +26,8 @@ $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
 $cargo = $row['cargo'];
 $estatus=$row['estatus'];
-
+$id_usuario=$row['usuario'];
+// echo $id_usuario;
 // echo $cargo;
 // echo $estatus;
 // $today = date("Y-m-d H:i:s"); 
@@ -160,7 +161,7 @@ $estatus=$row['estatus'];
             <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
 
               <?php 
-              if ($cargo != ''){
+              if ($cargo != '' || $id_usuario === 'analisis7'){
               // echo 'subdirector';
               echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="GLOBAL">GLOBAL</option>
@@ -189,7 +190,7 @@ $estatus=$row['estatus'];
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
 
                 <?php
-                if ($cargo != '' && $estatus === 'activo'){
+                if ($cargo != '' && $estatus === 'activo' || $id_usuario === 'analisis7' && $estatus === 'activo'){
                     $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, 
                     usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, 
                     react_actividad.usuario
