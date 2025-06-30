@@ -234,30 +234,28 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 </div>
 ';
 
-$html .='
-<br>
-<br>
-<table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Tipo de consulta: '.$tipo_consulta.'</span>
-        </tr>
-    </table>
-    
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha1.'</span>
-            </td>
-        </tr>
-    </table>
+$html .='<br><br>';
 
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha2.'</span>
-            </td>
-        </tr>
-    </table>
-';
+$html .='<table width="60%" style="border-spacing: 0;" bgcolor="#5F6D6B" align="left">
+          <thead class="thead-dark">
+            <tr>
+              <th colspan="2" style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook; margin-top: 40px;"><font size=4><b style="text-align:center; color:white;">INFORMACIÓN DE LA CONSULTA</b></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">TIPO DE CONSULTA: </b></font></th>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$tipo_consulta.'</p></font></th>
+            </tr>
 
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA DE INICIO: </b></font></th>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$fecha1.'</p></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA DE TÉRMINO: </b></font></th>
+              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$fecha2.'</p></font></th>
+            </tr>
+          </thead>
+        </table>';
 
 $mpdf->WriteHtml($html);
 $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$fecha2.'.pdf', 'I'); 
@@ -449,44 +447,35 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 ';
 
 
-$html .='
-<br>
-<br>
-<table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Tipo de consulta: '.$tipo_consulta.'</span>
-        </tr>
-    </table>
-    
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Usuario: '.$name_user.'</span>
-            </td>
-        </tr>
-    </table>
+$html .='<br><br>';
 
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Actividad: '.$actividad.'</span>
-            </td>
-        </tr>
-    </table>
-
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha1.'</span>
-            </td>
-        </tr>
-    </table>
-
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha2.'</span>
-            </td>
-        </tr>
-    </table>
-';
-
+    $html .='<table width="60%" style="border-spacing: 0;" bgcolor="#5F6D6B" align="left">
+            <thead class="thead-dark">
+                <tr>
+                <th colspan="2" style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook; margin-top: 40px;"><font size=4><b style="text-align:center; color:white;">INFORMACIÓN DE LA CONSULTA</b></font></th>
+                </tr>
+                <tr>
+                <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">TIPO DE CONSULTA: </b></font></th>
+                <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$tipo_consulta.'</p></font></th>
+                </tr>
+                <tr>
+                <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">USUARIO: </b></font></th>
+                <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$name_user.'</p></font></th>
+                </tr>
+                <tr>
+                <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">ACTIVIDAD: </b></font></th>
+                <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$actividad.'</p></font></th>
+                </tr>
+                <tr>
+                <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA DE INICIO: </b></font></th>
+                <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$fecha1.'</p></font></th>
+                </tr>
+                <tr>
+                <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA DE TÉRMINO: </b></font></th>
+                <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$fecha2.'</p></font></th>
+                </tr>
+            </thead>
+            </table>';
 
 $mpdf->WriteHtml($html);
 $mpdf->Output('REACT_REPORTE_'.$tipo_consulta.'_'.$usuario.'_'.$fecha1.'_al_'.$fecha2.'.pdf', 'I'); 
@@ -685,43 +674,36 @@ if ($row_sql['nombre'] === 'Realizar diligencias administrativas'){
 </div>
 ';
 
-$html .='
-<br>
-<br>
-<table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Tipo de consulta: '.$tipo_consulta.'</span>
-        </tr>
-    </table>
-    
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook;" align="left"><span align="left">Usuario: '.$name_user.'</span>
-            </td>
-        </tr>
-    </table>
 
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Actividad: '.$name_actividad.'</span>
-            </td>
-        </tr>
-    </table>
 
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha de iinicio: '.$fecha1.'</span>
-            </td>
-        </tr>
-    </table>
-
-    <table width="100%">
-        <tr>
-            <td width="100%" style="font-family: gothambook" align="left"><span align="left">Fecha termino: '.$fecha2.'</span>
-            </td>
-        </tr>
-    </table>
-';
+$html .='<br><br>';
+$html .='<table width="60%" style="border-spacing: 0;" bgcolor="#5F6D6B" align="left">
+          <thead class="thead-dark">
+            <tr>
+              <th colspan="2" style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook; margin-top: 40px;"><font size=4><b style="text-align:center; color:white;">INFORMACIÓN DE LA CONSULTA</b></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">TIPO DE CONSULTA: </b></font></th>
+              <th style="background-color: #fdfdfc; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$tipo_consulta.'</p></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">USUARIO: </b></font></th>
+              <th style="background-color: #fdfdfc; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$name_user.'</p></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">ACTIVIDAD: </b></font></th>
+              <th style="background-color: #fdfdfc; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$name_actividad.'</p></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA DE INICIO: </b></font></th>
+              <th style="background-color: #fdfdfc; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$fecha1.'</p></font></th>
+            </tr>
+            <tr>
+              <th style="border: 1px solid #A19E9F; text-align:left; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FECHA DE TÉRMINO: </b></font></th>
+              <th style="background-color: #fdfdfc; border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=2>'.$fecha2.'</p></font></th>
+            </tr>
+          </thead>
+        </table>';
 
 
 $mpdf->WriteHtml($html);
