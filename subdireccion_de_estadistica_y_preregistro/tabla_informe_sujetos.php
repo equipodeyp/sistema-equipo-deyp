@@ -1,7 +1,7 @@
 <?php
 $contador = 0;
 $infsuj = "SELECT * FROM datospersonales
-                    WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PRPUESTA'";
+                    WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PROPUESTA'";
 $finfsuj = $mysqli->query($infsuj);
 while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   $contador = $contador + 1;
