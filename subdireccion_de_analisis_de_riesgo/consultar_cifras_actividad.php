@@ -357,7 +357,7 @@ $id_usuario=$row['usuario'];
     </div>
   </div>
   <div class="contenedor">
-      <a href="./menu.php" class="btn-flotante">REGRESAR</a>
+      <a href="./menu.php" class="btn-flotante">INICIO</a>
   </div>
 
 

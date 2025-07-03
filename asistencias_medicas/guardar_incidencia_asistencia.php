@@ -16,6 +16,8 @@ $row=$resultado->fetch_assoc();
   $id_servidor = $_POST['id_servidor'];
   $nombre_servidor=$_POST['nombre_servidor'];
   $subdireccion = $_POST['subdireccion'];
+  $folio_expediente = $_POST['folio_expediente'];
+  $id_sujeto = $_POST['id_sujeto'];
   $id_asistencia = $_POST['id_asistencia'];
   $tipo_falla = $_POST['tipo_falla'];
   $descripcion = $_POST['descripcion'];
@@ -26,6 +28,10 @@ $row=$resultado->fetch_assoc();
   // echo $id_servidor;
   // echo '<br>';
   // echo $subdireccion;
+  // echo '<br>';
+  // echo $folio_expediente;
+  // echo '<br>';
+  // echo $id_sujeto;
   // echo '<br>';
   // echo $id_asistencia;
   // echo '<br>';
@@ -39,12 +45,12 @@ $row=$resultado->fetch_assoc();
   // echo '<br>';
 
 
-  $sentencia2=" SELECT* FROM solicitud_asistencia WHERE solicitud_asistencia.id_asistencia = '$id_asistencia'";
-  $result2 = $mysqli->query($sentencia2);
-  $row2=$result2->fetch_assoc();
+  // $sentencia2=" SELECT* FROM solicitud_asistencia WHERE solicitud_asistencia.id_asistencia = '$id_asistencia'";
+  // $result2 = $mysqli->query($sentencia2);
+  // $row2=$result2->fetch_assoc();
 
-  $folio_expediente = $row2['folio_expediente'];
-  $id_sujeto = $row2['id_sujeto'];
+  // $folio_expediente = $row2['folio_expediente'];
+  // $id_sujeto = $row2['id_sujeto'];
   
   // echo $folio_expediente;
   // echo '<br>';

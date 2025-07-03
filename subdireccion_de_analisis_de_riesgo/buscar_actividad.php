@@ -405,7 +405,7 @@ a:focus {
       </div>
     </div>
   </div>
-  <a href="./menu.php" class="btn-flotante">REGRESAR</a>
+  <a href="./menu.php" class="btn-flotante">INICIO</a>
   <script src="../../js/funciones_react_actividad_consulta.js"></script>
 </body>
 </html>

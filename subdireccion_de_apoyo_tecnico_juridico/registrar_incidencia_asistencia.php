@@ -228,7 +228,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-                  <!-- <div class="form-group">
+                  <div class="form-group">
                     <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
@@ -236,12 +236,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         <select class="form-control" id="folio_expediente" name="folio_expediente" required>
                             <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
                               <?php
-                                  $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                                  FROM datospersonales
-                                  WHERE datospersonales.estatusprograma = 'ACTIVO' AND datospersonales.reingreso = 'NO'";
+                                  $select1 = "SELECT DISTINCT solicitud_asistencia.folio_expediente
+                                  FROM solicitud_asistencia
+                                  WHERE solicitud_asistencia.etapa != 'CANCELADA'";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
-                                    $result_folio = $valores1['folioexpediente'];
+                                    $result_folio = $valores1['folio_expediente'];
                                     echo "<option value='$result_folio'>$result_folio</option>";
                                   }
                               ?>
@@ -263,7 +263,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         </select>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
 
 
                   <div class="form-group" >
@@ -272,17 +272,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
                         <select class="form-control" id="id_asistencia" name="id_asistencia" required>
-                            <option disabled selected value="">SELECCIONE EL ID ASISTENCIA</option>
-                              <?php
-                                  $select1 = "SELECT solicitud_asistencia.id_asistencia
-                                  FROM solicitud_asistencia
-                                  WHERE solicitud_asistencia.id_servidor = '$id_servidor_ini'";
-                                  $answer1 = $mysqli->query($select1);
-                                  while($valores1 = $answer1->fetch_assoc()){
-                                    $result_folio = $valores1['id_asistencia'];
-                                    echo "<option value='$result_folio'>$result_folio</option>";
-                                  }
-                              ?>
+
                         </select>
                         <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
                         
@@ -388,6 +378,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
   
 
   <script src="../js/alert.js"></script>
+  <script src="../js/peticion_folio_expediente.js"></script>
 
 <!-- <script type="text/javascript">
 	$(document).ready(function(){

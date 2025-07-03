@@ -386,17 +386,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
-
-
-
-
-
   <div class="contenedor">
     <a href="admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
 
 
-
+<script src="../js/peticion_folio_expediente.js"></script>
 <script src="../js/alert.js"></script>
 
 
@@ -410,38 +405,6 @@ function cancelar() {
     }
 }
 </script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#folio_expediente').val(1);
-		recargarLista();
-
-		$('#folio_expediente').change(function(){
-			recargarLista();
-		});
-
-
-	})
-</script>
-
-<script type="text/javascript">
-	function recargarLista(){
-		$.ajax({
-			type:"POST",
-			url:"./get_id_sujeto.php",
-			data:"folio=" + $('#folio_expediente').val(),
-			success:function(r){
-				$('#id_sujeto').html(r);
-			}
-		});
-	}
-</script>
-
-
-
-
-
-
 
 <script type="text/javascript">
 
@@ -463,13 +426,21 @@ function obtenerRespuesta3(e){
 
 
   // console.log(respuestaObtenida3);
-
-
 }
 
-
-
   </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

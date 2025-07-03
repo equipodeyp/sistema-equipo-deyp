@@ -382,7 +382,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     </div>
   </div>
   <div class="contenedor">
-      <a href="./menu.php" class="btn-flotante">REGRESAR</a>
+      <a href="./menu.php" class="btn-flotante">INICIO</a>
       <!-- <a href="../admin.php" class="btn-flotante">REGRESAR</a> -->
 
   </div>

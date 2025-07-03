@@ -271,7 +271,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           }else {
                           ?>
                           <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
-                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                          
                           <?php
                           }
                           ?>
@@ -293,7 +293,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           }else {
                           ?>
                           <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
-                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                          
                           <?php
                           }
                           ?>
@@ -314,7 +314,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           }else {
                           ?>
                           <select class="form-control" id="municipio_institucion" name="municipio_institucion" required>
-                          <option disabled selected value="">SELECCIONA UNA INSTITUCIÓN</option>
+                          
                           <?php
                           }
                           ?>

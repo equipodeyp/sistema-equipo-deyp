@@ -346,7 +346,7 @@ $cargo = $row['cargo'];
     </div>
   </div>
   <div class="contenedor">
-      <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
+      <a href="../../consultores/admin.php" class="btn-flotante">INICIO</a>
   </div>
 
 
