@@ -511,7 +511,7 @@ transition: all .2s ease;
     </div>
   </div>
   <div class="contenedor">
-      <a href="../../consultores/admin.php" class="btn-flotante">REGRESAR</a>
+      <a href="../../consultores/admin.php" class="btn-flotante">INICIO</a>
   </div>
   <script type="text/javascript">
   function selectNit(e) {
