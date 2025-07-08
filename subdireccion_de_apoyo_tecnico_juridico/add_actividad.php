@@ -158,16 +158,8 @@ $mostrar=$result->fetch_assoc();
               $answer = $mysqli->query($select);
               $valores = $answer->fetch_assoc();
                                  ?>     
-       <div class="form-group"  style="display:none;">
-        <label class="col-md-3 control-label" >SUBDIRECCIÓN</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="subdireccion" id="subdireccion" type="text" class="form-control" value="<?php echo $valores['subdireccion'];?>" readonly>                         
-          </div>
-        </div>
-      </div>
-       <!-- </div> -->
+
+
 
        <div class="form-group">
         <label class="col-md-3 control-label">ACTIVIDAD</label>
@@ -187,56 +179,8 @@ $mostrar=$result->fetch_assoc();
             </div>          
          </div>
         </div>
-      
 
-
-  <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">FUNCIÓN</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-             <input  name="funcion_apoyo" id="funcion_apoyo" value="" class="form-control" type="text"  >
-          </div>
-        </div>
-      </div>  
-
-
-
-      <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" ></i></span>
-            <input name="unidad_medida" id="unidad_medida" value="" class="form-control" type="text"  >
-          </div>
-        </div>
-      </div>
-
-
-<div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">REPORTE DE METAS</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="reporte_metas" id="reporte_metas" value="" class="form-control" type="text"  >
-                   </div>
-        </div>
-      </div>
-
-
-
-<div class="form-group" >
-        <label class="col-md-3 control-label">FECHA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input  name="fecha_actividad" id="fechaactividad" class="form-control" type="date" required>
-          </div>
-        </div>
-      </div>
-
-
-<div class="form-group" style="display:none;">
+<div class="form-group">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -245,18 +189,21 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
+      
 
 
- <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">CLASIFICACION</label>
+
+
+
+<div class="form-group">
+        <label class="col-md-3 control-label">FECHA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt" che></i></span>
-            <input name="clasificacion" id="clasificacion" value="" class="form-control" type="text"  >
+            <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
+            <input  name="fecha_actividad" id="fechaactividad" class="form-control" type="date" required>
           </div>
         </div>
       </div>
-
 
 
 
@@ -296,16 +243,31 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
- <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">ID EVIDENCIA</label>
+      <div class="form-group" id="div_numero_oficio_actividad">
+          <label class="col-md-3 control-label">NÚMERO DE OFICIO O SOLICITUD</label>
+          <div class="col-md-7 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
+              <input autocomplete="off" name="numero_oficio_actividad" id="numero_oficio_actividad" class="form-control" value class="form-control" type="text" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+            </div>
+          </div>
+      </div>
+
+
+
+
+      <div class="form-group" id="clasificacion">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="idevidencia_actividad" id="idevidencia_actividad" class="form-control" type="text" >
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad" id="clasificacion_actividad">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+
+            </select>
           </div>
         </div>
       </div>
-
 
 
  <div class="form-group">
@@ -320,73 +282,11 @@ $mostrar=$result->fetch_assoc();
 
 
 
- <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">MUNICIPIO</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="entidadmunicipio" id="entidadmunicipio" class="form-control" type="text" >
-          </div>
-        </div>
-      </div>
-
-<div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">EVIDENCIA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="evidencia" id="evidencia" class="form-control" type="text" >
-          </div>
-        </div>
-      </div>
 
 
 
 
-      <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">KILOMETROS</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="kilometraje" id="kilometraje" class="form-control" type="text" >
-          </div>
-        </div>
-      </div>
 
-
-   <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">INFORME ANUAL</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="informe_anual" id="informe_anual" class="form-control" type="text" >
-          </div>
-        </div>
-      </div>
-
-
-
- <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">CONSECUTIVO</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="consecutivosub" id="consecutivosub" class="form-control" type="text" >
-          </div>
-        </div>
-      </div>
-
-
-
- <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">FECHA ALTA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-            <input name="fecha_alta" id="fecha_alta" class="form-control" type="text" >
-          </div>
-        </div>
-      </div>
 
 
 
