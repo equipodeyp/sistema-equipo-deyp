@@ -7,11 +7,6 @@
         <!-- <center><h4 class="modal-title" id="myModalLabel">DETALLES DE LA ACTIVIDAD</h4></center> -->
       </div>
 
-
-
-
-
-
       
       <div class="modal-body">
         <div class="container-fluid">
@@ -41,7 +36,7 @@
               <?php
               $idactividad = $row['id'];
               // echo $idactividad;
-              $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = '2'";
+              $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 2";
               $rtraeractividad = $mysqli->query($traeractividad);
               $ftraeractividad = $rtraeractividad->fetch_assoc();
               // variables para traer datos de tablas
@@ -58,7 +53,6 @@
               $acttraer = "SELECT * FROM react_actividad_apoyo WHERE id = '$idactivity'";
               $racttraer = $mysqli->query($acttraer);
               $facttraer = $racttraer->fetch_assoc();
-              
               // echo $facttraer['nombre'];
               $username = $ftraeractividad['usuario'];
               $sentencia="SELECT DISTINCT react_actividad.usuario, usuarios_servidorespublicos.nombre,  
@@ -127,26 +121,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- UNIDAD DE MEDIDA -->
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">UNIDAD DE MEDIDA:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['unidad_medida']; ?>" readonly>
-                    </div>
-                  </div>
-                </div>
-                <!-- REPORTE DE METAS -->
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">REPORTE DE METAS:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['reporte_metas']; ?>" readonly>
-                    </div>
-                  </div>
-                </div>
                 <!-- FECHA ACTIVIDAD -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">FECHA ACTIVIDAD:</label>
@@ -171,13 +145,13 @@
                     </div>
                   </div>
                 </div>
-                <!-- INFORME ANUAL -->
+                <!-- UNIDAD DE MEDIDA -->
                 <div class="form-group">
-                  <label for="" class="col-md-4 control-label">INFORME ANUAL:</label>
+                  <label for="" class="col-md-4 control-label">UNIDAD DE MEDIDA:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                       <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['informe_anual']; ?>" readonly>
+                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['unidad_medida']; ?>" readonly>
                     </div>
                   </div>
                 </div>
@@ -221,6 +195,26 @@
                     </div>
                   </div>
                 </div>
+                <!-- REPORTE DE METAS -->
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">REPORTE DE METAS:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
+                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['reporte_metas']; ?>" readonly>
+                    </div>
+                  </div>
+                </div>
+                <!-- INFORME ANUAL -->
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">INFORME ANUAL:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <!-- <span class="input-group-addon"><i class=""></i></span> -->
+                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['informe_anual']; ?>" readonly>
+                    </div>
+                  </div>
+                </div>
                 <!-- OBSERVACIONES -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">OBSERVACIONES:</label>
@@ -231,9 +225,27 @@
                     </div>
                   </div>
                 </div>
-                <!-- FECHA REGISTRO -->
+                <!-- HORA REGISTRO -->
                 <!-- <div class="form-group">
-                  <label for="" class="col-md-4 control-label">FECHA REGISTRO:</label>
+                  <label for="" class="col-md-4 control-label">HORA REGISTRO:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['hora_alta']; ?>" readonly>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- USUARIO REGISTRO -->
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">SERVIDOR PÚBLICO:</label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $name_user; ?>" readonly>
+                    </div>
+                  </div>
+                </div>
+                <!-- FECHA REGISTRO -->
+                <div class="form-group">
+                  <label for="" class="col-md-4 control-label">FECHA Y HORA DE REGISTRO:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                     <?php
@@ -244,28 +256,7 @@
                       <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $fech; ?>" readonly>
                     </div>
                   </div>
-                </div> -->
-                <!-- HORA REGISTRO -->
-                <!-- <div class="form-group">
-                  <label for="" class="col-md-4 control-label">HORA REGISTRO:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                     
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['hora_alta']; ?>" readonly>
-                    </div>
-                  </div>
-                </div> -->
-
-                <!-- USUARIO REGISTRO -->
-                <!-- <div class="form-group">
-                  <label for="" class="col-md-4 control-label">USUARIO REGISTRO:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['usuario']; ?>" readonly>
-                    </div>
-                  </div>
-                </div> -->
+                </div>
 
 
               </div>
@@ -276,7 +267,9 @@
             <div class="modal-footer">
               <center>
                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>  CERRAR</button>
-                <a type="button" class="btn btn-primary" href="javascript:imprimirSeleccion('boton_print')"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a>
+                <!-- <a type="button" class="btn btn-primary" href="javascript:imprimirSeleccion('boton_print')"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a> -->
+                <a type="button" class="btn btn-primary" href="generarpdfdetalleactividad.php?idactividad=<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-print"></span>  IMPRIMIR</a>
+                <!-- <?php echo $row['id']; ?> -->
               </center>
             </div>
           </form>

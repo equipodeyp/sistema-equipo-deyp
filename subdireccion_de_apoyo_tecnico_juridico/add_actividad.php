@@ -95,6 +95,35 @@ $mostrar=$result->fetch_assoc();
       </div>
 
       <nav class="menu-nav">
+
+  <ul>
+            <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">REACT</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <!-- <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./registrar_actividad.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
+                          </a>
+                      </li> -->
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
+                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_actividad.php'">
+                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+        </ul>
+
+
         <br><br>
       </nav>
     </div>
@@ -396,7 +425,7 @@ $mostrar=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>     
+    <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> INICIO</a>     
   </div>
 
 
