@@ -342,14 +342,30 @@ a:focus {
                   <tbody>
                     <?php
                     $contador = 0;
-                          $query= "SELECT react_actividad.id_actividad, react_actividad.fecha, react_actividad_apoyo.nombre, 
+
+
+                        $query= "SELECT react_actividad.id, react_actividad.fecha, react_actividad_apoyo.nombre, 
+                                    react_actividad.clasificacion, react_actividad.cantidad, react_actividad.usuario
+                                    FROM react_actividad
+                                    INNER JOIN react_actividad_apoyo
+                                    ON react_actividad.idactividad = react_actividad_apoyo.id_actividad 
+                                    AND react_actividad.id_subdireccion = 2 
+                                    AND react_actividad.usuario = '$nombre_usuario'
+                                    ORDER BY fecha DESC";
+
+
+
+
+
+
+                         /*  $query= "SELECT react_actividad.id_actividad, react_actividad.fecha, react_actividad_apoyo.nombre, 
                                     react_actividad.clasificacion, react_actividad.cantidad, react_actividad.usuario
                                     FROM react_actividad
                                     INNER JOIN react_actividad_apoyo
                                     ON react_actividad.id_actividad = react_actividad_apoyo.id
                                     AND react_actividad.id_subdireccion = 2 
                                     AND react_actividad.usuario = '$nombre_usuario'
-                                    ORDER BY fecha DESC";
+                                    ORDER BY fecha DESC"; */
 
                                     // SELECT*
                                     // FROM react_actividad

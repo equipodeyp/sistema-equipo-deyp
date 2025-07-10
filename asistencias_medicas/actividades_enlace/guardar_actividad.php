@@ -7,7 +7,7 @@ $check_actividad = $_SESSION["check_actividad"];
 if ($check_actividad == 1) {
     unset($_SESSION['check_actividad']);
     $name = $_SESSION['usuario'];
-    // echo $name = $_SESSION['usuario'];
+    echo $name = $_SESSION['usuario'];
     // echo "<br>";
     $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
     $result = $mysqli->query($sentencia);
@@ -17,7 +17,6 @@ $numero_actividad = $_POST['numero_actividad'];
 $cantidad_actividad = $_POST['cantidad_actividad'];
 $fecha_actividad = $_POST['fecha_actividad'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
-
 $folio_expediente = $_POST['folio_expediente'];
 $id_sujeto = $_POST['id_sujeto'];
 $numero_oficio_solicitud = $_POST['numero_oficio_actividad'];
