@@ -1,5 +1,5 @@
 <?php
-//  error_reporting(0);
+ //error_reporting(0);
  date_default_timezone_set("America/Mexico_City");
  session_start ();
  require './conexion.php';
@@ -20,6 +20,10 @@ $folio_expediente = $_POST['folio_expediente'];
 $id_sujeto_actividad = $_POST['id_sujeto'];
 $numero_oficio_solicitud = $_POST['numero_oficio_actividad'];
 $clasificacion = $_POST['clasificacion'];
+$clasificacion0 = $_POST['clasificacion'];
+$clasificacion1 = $_POST['clasificacion1'];
+$clasificacion2 = $_POST['clasificacion2'];
+$clasificacion3 = $_POST['clasificacion3'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
 
 /* echo $idactividad;
@@ -87,6 +91,11 @@ echo "<br>";
 echo $year;
 echo "<br>";
  */
+
+
+
+if ( $idactividad === '1'|| idactividad === '2'|| idactividad === '3'|| idactividad === '5'|| idactividad === '7'|| idactividad === '10'){
+    $clasificacion = 'NA';
  $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
                                                id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
 
@@ -94,34 +103,78 @@ echo "<br>";
 VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion', 
                             '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
                             , '$usuario', '$year')";
-
-
-
-
-
-                        /*     VALUES ('$consecutivo_actividad','$idactividad', '$subdireccion_actividad ', '$funcion_actividad', '$id_actividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion', 
-                            '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
-                            , '$usuario', '$year')"; */
-
- $raddactividad = $mysqli->query($addactividad);
-
-
-
-
-    if($raddactividad){
-     echo ("<script type='text/javaScript'>
-     window.location.href='../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php';
-     window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-     </script>");
-
-
-     }
+ 
 
 }
 
 
- else {
-     echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
+
+else if ( $idactividad === '4'){
+        $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
+                                               id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
+
+
+VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion2', 
+                            '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
+                            , '$usuario', '$year')";
+ 
+}
+
+
+
+else if ( $idactividad === '6'){
+        $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
+                                               id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
+VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion3', 
+                            '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
+                            , '$usuario', '$year')";
+ 
+}
+
+
+
+else if ( $idactividad === '8'){
+       $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
+                                               id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
+VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion0', 
+                            '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
+                            , '$usuario', '$year')";
+ 
+}
+
+
+else if ( $idactividad === '9'){
+       $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
+                                               id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
+VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion1', 
+                            '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
+                            , '$usuario', '$year')";
+ 
+}
+
+
+
+
+
+  $raddactividad = $mysqli->query($addactividad);
+
+
+
+
+     if($raddactividad){
+      echo ("<script type='text/javaScript'>
+      window.location.href='../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php';
+      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+      </script>");
+
+
+      }
+
  }
-////////////////////////////////////////
+
+
+  else {
+      echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../../subdireccion_de_apoyo_tecnico_juridico/add_actividad.php'>";
+  }
+
 ?> 

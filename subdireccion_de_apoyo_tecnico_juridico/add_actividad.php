@@ -207,7 +207,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-<div class="form-group" id="folio_expediente_actividad">
+      <div class="form-group" id="folio_expediente_actividad" style="display:none;">
         <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -217,7 +217,7 @@ $mostrar=$result->fetch_assoc();
                 <?php
                     $select1 = "SELECT DISTINCT datospersonales.folioexpediente
                     FROM datospersonales
-                    WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
+                    -- WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
                     ORDER BY datospersonales.id ASC";
                       $answer1 = $mysqli->query($select1);
                       while($valores1 = $answer1->fetch_assoc()){
@@ -231,19 +231,20 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
-<div class="form-group" id="id_sujeto_actividad">
+      <div class="form-group" id="id_sujeto_actividad" style="display:none;">
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
-            <select name="id_sujeto" id="id_sujeto" class="form-control">
+            <select class="form-control" name="id_sujeto" id="id_sujeto">
+
+
             </select>
           </div>
         </div>
       </div>
 
-
-      <div class="form-group" id="div_numero_oficio_actividad">
+      <div class="form-group" id="div_numero_oficio_actividad" style="display:none;">
           <label class="col-md-3 control-label">NÚMERO DE OFICIO O SOLICITUD</label>
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
@@ -254,20 +255,107 @@ $mostrar=$result->fetch_assoc();
       </div>
 
 
-
-
-      <div class="form-group" id="clasificacion">
+        <div class="form-group" id="clasificacion0" style="display:none;">
         <label class="col-md-3 control-label">CLASIFICACIÓN</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
-            <select class="form-control" name="clasificacion_actividad" id="clasificacion_actividad">
+            <select class="form-control" name="clasificacion_actividad0" id="clasificacion_actividad0">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-
+                <?php
+                    $select = "SELECT * FROM react_tipos_convenios";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
             </select>
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+      
+ <div class="form-group" id="clasificacion1" style="display:none;">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad1" id="clasificacion_actividad1">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_diligencias_administrativas";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+     <div class="form-group" id="clasificacion2" style="display:none;">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad2" id="clasificacion_actividad2">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_documentos_requeridos";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+
+     <div class="form-group" id="clasificacion3" style="display:none;">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad3" id="clasificacion_actividad3">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_asesoria_juridica";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+
+
+
 
 
  <div class="form-group">
@@ -280,29 +368,6 @@ $mostrar=$result->fetch_assoc();
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-<br><br>
-     
-
-
-     
-
-
-
-
-
- -->
 
 
 
@@ -361,31 +426,145 @@ $mostrar=$result->fetch_assoc();
 
 <script type="text/javascript">
 
-    function selectNit(e) {
-      var idfuncion = document.getElementById("idactividad").value;
+
+
+  var n_actividad = document.getElementById('idactividad');
+  var numero_act;
+  var num_actividad_obtenido;
+
+  n_actividad.addEventListener('change', obtenerNumero);
+
+  function obtenerNumero(e){
+
+    numero_act = e.target.value;
+    num_actividad_obtenido = numero_act;
+
+    console.log(num_actividad_obtenido);
+    
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5' || num_actividad_obtenido === '7' || num_actividad_obtenido === '10') {
       
-      console.log(idfuncion);
+    document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("fechaactividad").value = ""; // LIMPIAR
+    document.getElementById("folio_expediente").value = ""; // LIMPIAR
+    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+
+    document.getElementById("clasificacion0").value="";
+    document.getElementById("clasificacion1").value="";
+    document.getElementById("clasificacion2").value="";
+    document.getElementById("clasificacion3").value="";
+
+    
+    document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+    document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+    document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+    document.getElementById("clasificacion3").style.display = "none"; // OCULTAR 
+    
+
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
       
-      if (idfuncion === '1') {
-        document.getElementById("funcion_apoyo").value = "Elaboración y suscripción de convenios";
-        document.getElementById("unidad_medida").value = "Convenio";
-       
-      }else if (idfuncion === '2') {
-        document.getElementById("funcion_apoyo").value = "Integración del expediente de protección";
-        document.getElementById("unidad_medida").value = "Documento";
-       
-      }else if (idfuncion === '3') {
-        document.getElementById("funcion_apoyo").value = "Diligencias administrativas";
-        document.getElementById("unidad_medida").value = "Traslado";
-        
-      }else if (idfuncion === '4') {
-        document.getElementById("funcion_apoyo").value = "Otorgar medidas de asistencia";
-        document.getElementById("unidad_medida").value = "Asesoria";
-            }
-       document.getElementById("reporte_metas").value = "SI";
+      
+    }
+ 
+     else if (num_actividad_obtenido === '4') {
+     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("fechaactividad").value = ""; // LIMPIAR
+    document.getElementById("folio_expediente").value = ""; // LIMPIAR
+    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+
+    document.getElementById("clasificacion0").value="";
+    document.getElementById("clasificacion1").value="";
+    document.getElementById("clasificacion3").value="";
+    
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("clasificacion2").style.display = ""; // MOSTRAR
+
+      document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+      
+    }
+    
+     else if (num_actividad_obtenido === '6') {
+      document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+    
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("clasificacion3").style.display = ""; // MOSTRAR
+
+
+    document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("fechaactividad").value = ""; // LIMPIAR
+    document.getElementById("folio_expediente").value = ""; // LIMPIAR
+    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+
+    document.getElementById("clasificacion0").value="";
+    document.getElementById("clasificacion1").value="";
+    document.getElementById("clasificacion2").value="";
+
+      
+    } 
+
+     else if (num_actividad_obtenido === '8') {
+      
+      document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+    
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("clasificacion0").style.display = ""; // MOSTRAR
+
+    document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("fechaactividad").value = ""; // LIMPIAR
+    document.getElementById("folio_expediente").value = ""; // LIMPIAR
+    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+
+    document.getElementById("clasificacion1").value="";
+    document.getElementById("clasificacion2").value="";
+    document.getElementById("clasificacion3").value="";
+      
+    } 
+
+    else if (num_actividad_obtenido === '9') {
+      document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+    
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("clasificacion1").style.display = ""; // MOSTRAR
+
+     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("fechaactividad").value = ""; // LIMPIAR
+    document.getElementById("folio_expediente").value = ""; // LIMPIAR
+    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+
+    document.getElementById("clasificacion0").value="";
+    document.getElementById("clasificacion2").value="";
+    document.getElementById("clasificacion3").value="";
+      
+    } 
+
+
   }
 
-  </script>
+
+
+</script>
 
 
 

@@ -283,7 +283,7 @@ a:focus {
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='././add_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
                           </a>
                       </li>
@@ -293,7 +293,7 @@ a:focus {
                           </a>
                       </li> -->
                       <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='././consultar_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>
