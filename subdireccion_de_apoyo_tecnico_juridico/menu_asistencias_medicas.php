@@ -441,20 +441,20 @@ if ($permiso8==='detalle') {
 ";
 
 }
-      if($fcl['t'] > 0){
+      // if($fcl['t'] > 0){
 
-        echo"
-            <li style='text-align:center'>
-              <a href='./registrar_incidencia_asistencia.php'>
-                <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-                <div class='ca-content'>
-                  <h2 class='ca-main'>INCIDENCIA</h2>
-                  <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
-              </a>
-            </li>
-            ";
+      //   echo"
+      //       <li style='text-align:center'>
+      //         <a href='./registrar_incidencia_asistencia.php'>
+      //           <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
+      //           <div class='ca-content'>
+      //             <h2 class='ca-main'>INCIDENCIA</h2>
+      //             <h3 class='ca-sub'>REGISTRAR UNA INCIDENCIA</h3></div>
+      //         </a>
+      //       </li>
+      //       ";
 
-      }
+      // }
 echo "</ul>";
 
 ?>

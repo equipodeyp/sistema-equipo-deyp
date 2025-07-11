@@ -269,10 +269,11 @@ text-decoration: underline;
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
-            <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXP</span></a></li>
+            <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTE</span></a></li>
 
-            <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>MENÚ ASISTEMCIAS M.</span></a></li>
+            <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-briefcase-medical menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>ASISTEMCIAS MÉDICAS</span></a></li>
             <li><a href="#" onclick="location.href='alertas_convenios_por_finalizar.php'"><i class="color-icon fas fa-soli fa-person-circle-exclamation menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> ALERTA DE CONVENIOS</span></a></li>
+
             <li>
                   <a href="#" onclick="toggleSubmenu(this)">
                       <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
@@ -296,6 +297,9 @@ text-decoration: underline;
                       </li>
                   </ul>
               </li>
+
+            <li><a href="#" onclick="location.href='./registrar_incidencia_asistencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li>
+
           </ul>
 
 
@@ -324,11 +328,11 @@ text-decoration: underline;
               // echo $permiso6;
 
 
-		   				if ($permiso3 ==='solicitar') {
-							echo "
-                <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS<br>MÉDICAS</button> </a>
-							";
-						  }
+		   				// if ($permiso3 ==='solicitar') {
+							// echo "
+              //   <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS<br>MÉDICAS</button> </a>
+							// ";
+						  // }
 
 
 

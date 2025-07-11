@@ -82,6 +82,8 @@ $inicial_am = $am_string[0];
 $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 // echo $id_servidor_ini;
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -175,8 +177,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-            <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR UNA INCIDENCIA</a>
+            <a href="./menu.php">INICIO</a>
+            <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR INCIDENCIA</a>
           </div>
           
 
@@ -184,7 +186,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR UNA INCIDENCIA</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR <br> INCIDENCIA</span></a></li>
                 <li><a href="#" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
                 <li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li>
               </ul>
@@ -195,18 +197,51 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-                <div class="form-group">
-                    <label for="id_servidor" class="col-md-4 control-label">NOMBRE DEL USUARIO</label>
+<?php 
+
+$count_sql = "SELECT COUNT(*) as total FROM incidencias";
+$r_count = $mysqli->query($count_sql);
+$r_count_sql = $r_count->fetch_assoc();
+$c = $r_count_sql['total'];
+$folio_incidencia = 'INC0'.$c.'-';
+
+?>
+
+                  <div class="form-group">
+                    <label for="apartado" class="col-md-4 control-label" style="font-size: 16px">APARTADO DEL SIPPSIPPED DONDE SE UBICA LA FALLA</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-sitemap"></i></span>
+                        <select required class="form-control" id="apartado" name="apartado">
+                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                              <?php
+                                  $select_apartado = "SELECT nombre
+                                  FROM apartado_sippsipped ORDER BY nombre ASC ";
+                                  $answer_apartado = $mysqli->query($select_apartado);
+                                  while($valores_apartado = $answer_apartado->fetch_assoc()){
+                                    $result_apartado = $valores_apartado['nombre'];
+                                    echo "<option value='$result_apartado'>$result_apartado</option>";
+                                  }
+                              ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                <div class="form-group" style="display: none">
+                    <label for="usuario" class="col-md-4 control-label">NOMBRE DEL USUARIO</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
-                        <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $m_usuario;?>" readonly>
+                        <input type="text" class="form-control"  id="usuario" name="usuario" placeholder="" value="<?php echo $usuario;?>" readonly>
                       </div>
                     </div>
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                     <label for="nombre_servidor" class="col-md-4 control-label">NOMBRE SERVIDOR PÚBLICO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -217,7 +252,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-                <div class="form-group" >
+                <div class="form-group" style="display: none">
                     <label for="subdireccion" class="col-md-4 control-label">SUBDIRECCIÓN</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
@@ -228,20 +263,21 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-                  <div class="form-group">
+
+                  <div class="form-group" style="display: none" id="div_folio_expediente">
                     <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
-                        <select class="form-control" id="folio_expediente" name="folio_expediente" required>
+                        <select class="form-control" id="folio_expediente" name="folio_expediente">
                             <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                            <option value="NO APLICA">NO APLICA</option>
                               <?php
-                                  $select1 = "SELECT DISTINCT solicitud_asistencia.folio_expediente
-                                  FROM solicitud_asistencia
-                                  WHERE solicitud_asistencia.etapa != 'CANCELADA'";
+                                  $select1 = "SELECT DISTINCT folioexpediente
+                                  FROM datospersonales";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
-                                    $result_folio = $valores1['folio_expediente'];
+                                    $result_folio = $valores1['folioexpediente'];
                                     echo "<option value='$result_folio'>$result_folio</option>";
                                   }
                               ?>
@@ -251,12 +287,13 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" style="display: none" id="div_id_sujeto">
                     <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
-                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
+                        <select class="form-control" id="id_sujeto" name="id_sujeto">
+
 
 
 
@@ -266,12 +303,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-                  <div class="form-group" >
+                  <div class="form-group" style="display: none" id="div_id_asistencia">
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <select class="form-control" id="id_asistencia" name="id_asistencia" required>
+                        <select class="form-control" id="id_asistencia" name="id_asistencia">
 
                         </select>
                         <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
@@ -282,14 +319,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-
-
                 <div class="form-group">
                     <label for="tipo_falla" class="col-md-4 control-label" style="font-size: 16px">TIPO DE FALLA O ERROR </label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-exclamation"></i></span>
-                        <select class="form-control selectpicker" id="tipo_falla" name="tipo_falla" required>
+                        <select required class="form-control selectpicker" id="tipo_falla" name="tipo_falla">
                         <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                             <option value="ACCESO">ACCESO</option>
                             <option value="CAPTURA">CAPTURA DE LOS DATOS</option>
@@ -300,17 +335,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     </div>
                   </div>
 
-
-                  <!-- <div class="form-group" style="display: none">
-                    <label for="folio_incidencia" class="col-md-4 control-label">FOLIO INCIDENCIA</label>
-                    <div class="col-md-4 inputGroupContainer">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
-                        <input  readonly autocomplete="off" type="text" class="form-control"  id="folio_incidencia" name="folio_incidencia">
-                      </div>
-
-                    </div>
-                  </div> -->
 
 
                   <div class="form-group" style="display: none">
@@ -330,7 +354,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span> 
-                        <input readonly type="text" class="form-control"  id="atencion" name="atencion" placeholder="" value="">
+                        <input readonly type="text" class="form-control"  id="atencion" name="atencion" placeholder="">
                       </div>
                     </div>
                   </div>
@@ -343,8 +367,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
                         
-                        <textarea onkeypress="cancelar()" required name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
-                        <h6>Ejemplo: En el apartado calendario no se visualizan las fechas del mes de Junio.</h6>
+                        <textarea required onkeypress="cancelar()" name="descripcion" id="descripcion" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <h6>Ejemplo: En el apartado asistencias médicas del menú calendario no se visualizan las fechas del mes de Junio.</h6>
                       </div>
                     </div>
                   </div>
@@ -370,7 +394,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
   </div>
 
   <div class="contenedor">
-    <a href="menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
 
 
@@ -380,38 +404,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
   <script src="../js/alert.js"></script>
   <script src="../js/peticion_folio_expediente.js"></script>
 
-<!-- <script type="text/javascript">
-	$(document).ready(function(){
-		$('#folio_expediente').val(1);
-		recargarLista();
 
-		$('#folio_expediente').change(function(){
-			recargarLista();
-		});
-
-
-	})
-</script>
 
 <script type="text/javascript">
-	function recargarLista(){
-		$.ajax({
-			type:"POST",
-			url:"./get_id_sujeto.php",
-			data:"folio=" + $('#folio_expediente').val(),
-			success:function(r){
-				$('#id_sujeto').html(r);
-			}
-		});
-	}
-</script> -->
 
 
-
-<!-- <script type="text/javascript">
-
-
-var folioExpediente = document.getElementById('id_asistencia');
+var apartado = document.getElementById('apartado');
 
 var respuestaSeleccionada3;
 var respuestaObtenida3;
@@ -419,7 +417,7 @@ var respuestaObtenida3;
 
 
 
-folioExpediente.addEventListener('change', obtenerRespuesta3);
+apartado.addEventListener('change', obtenerRespuesta3);
 
 function obtenerRespuesta3(e){
 
@@ -427,45 +425,68 @@ function obtenerRespuesta3(e){
   respuestaObtenida3 = respuestaSeleccionada3;
 
 
-  console.log(respuestaObtenida3);
+  // console.log(respuestaObtenida3);
 
+if (respuestaObtenida3 === "ALERTA DE CONVENIOS" || respuestaObtenida3 === "EXPEDIENTES Y SUJETOS" 
+||  respuestaObtenida3 === "INSTRUMENTO DE ADAPTABILIDAD" ||  respuestaObtenida3 === "REGISTRO DE ACTIVIDADES"
+||  respuestaObtenida3 === "TRASLADOS SUJETOS" ||  respuestaObtenida3 === "VALIDAR MEDIDAS"){
 
-  const  generateRandomString = (num) => {
+      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
 
-  var separarFolio = [];
-  var folio = document.getElementById('folio_expediente').value;
-  separarFolio = folio.split("/");
-  var numExp = separarFolio[3];
-  var añoExp = separarFolio[4]
-  var unidad = separarFolio[0]
-  var incidencia = "INC"
+      document.getElementById("div_folio_expediente").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_sujeto").style.display = ""; // MOSTRAR
+      
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+      
+      document.getElementById("folio_expediente").required = true; // VALIDAR
+      document.getElementById("id_sujeto").required = true; // VALIDAR
+      document.getElementById("div_id_asistencia").required = false; // VALIDAR
 
-  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result1= Math.random().toString(36).substring(2,num);
+}
 
-  var n1 = result1.toUpperCase();
+else if(respuestaObtenida3 === "ASISTENCIAS MÉDICAS"){
 
-  var folioIncidencia = incidencia + '<?=$num_incidencia?>' + "-" + respuestaObtenida3;
-  document.getElementById("folio_incidencia").value = folioIncidencia;
-  
-  // console.log(folioIncidencia);
+      document.getElementById("div_folio_expediente").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_sujeto").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_asistencia").style.display = ""; // MOSTRAR
 
-  }
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+      
+      document.getElementById("folio_expediente").required = true; // VALIDAR
+      document.getElementById("id_sujeto").required = true; // VALIDAR
+      document.getElementById("id_asistencia").required = true; // VALIDAR
 
-  generateRandomString(7);
+}
 
-  
+else if(respuestaObtenida3 === "REPORTES DEL PROGRAMA"){
 
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+      
+      document.getElementById("folio_expediente").required = false; // VALIDAR
+      document.getElementById("id_sujeto").required = false; // VALIDAR
+      document.getElementById("id_asistencia").required = false; // VALIDAR
+
+}
 }
 
 
 
-  </script> -->
+  </script>
 
 
-
-
-  <script type="text/javascript">
+<script type="text/javascript">
 function cancelar() {
     var key = event.keyCode;
 
@@ -486,14 +507,19 @@ let alea = getRandomInt(23);
 // console.log(alea);
 
 
-if (alea === 13 || alea === 16 || alea === 19 || alea === 22 || alea === 2 || alea === 5 || alea === 8 || alea === 11 || alea === 14 || alea === 17 || alea === 20 || alea === 23){
-  const jon = "JONATHAN EDUARDO SANTIAGO JIMÉNEZ";
+if (alea === 22 || alea === 2 || alea === 5 || alea === 8 || alea === 11 || alea === 14 || alea === 17 || alea === 0){
+  const jon = "ING. JONATHAN EDUARDO SANTIAGO JIMÉNEZ";
   document.getElementById("atencion").value = jon;
   // console.log(jon);
 }
-else if(alea === 1 || alea === 4 || alea === 7 || alea === 10 || alea === 3 || alea === 6 || alea === 9 || alea === 12 || alea === 15 || alea === 18 || alea === 21 || alea === 0){
-  const gab = "GABRIELA PICHARDO GARCÍA";
+else if(alea === 1 || alea === 4 || alea === 7 || alea === 10 || alea === 3 || alea === 6 || alea === 9 || alea === 21 ){
+  const gab = "ING. GABRIELA PICHARDO GARCÍA";
   document.getElementById("atencion").value = gab;
+  // console.log(gab);
+}
+else if(alea === 13 || alea === 16 || alea === 19 || alea === 20 || alea === 23 || alea === 12 || alea === 15 || alea === 18 ){
+  const aza = "ING. AZAEL OLIVAR GARCIA";
+  document.getElementById("atencion").value = aza;
   // console.log(gab);
 }
 
