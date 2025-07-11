@@ -76,7 +76,7 @@ $row=$result->fetch_assoc();
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn btn-success',
-          title:     'INFORME SUJETOS'
+          title:     'METAS'
         },
       ]
       });
@@ -109,7 +109,7 @@ $row=$result->fetch_assoc();
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn btn-success',
-          title:     'INFORME SUJETOS'
+          title:     'METAS MEDIDAS RESGUARDO'
         },
       ]
       });
@@ -142,7 +142,7 @@ $row=$result->fetch_assoc();
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn btn-success',
-          title:     'INFORME SUJETOS'
+          title:     'METAS MEDIDAS ASISTENCIA'
         },
       ]
       });
