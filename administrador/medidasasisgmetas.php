@@ -91,11 +91,11 @@ $dos_primeros_digitos = substr($numexpediente, 1, 2);
   $arraytextmedida =array();
   foreach ($resultados as $palabra => $cantidadLetras) {
     // echo "La palabra '$palabra' tiene $cantidadLetras letras.\n";
-    if ($cantidadLetras > 1) {
+    if ($cantidadLetras > 3) {
       // echo "------>hay que convertir a mayuscula la primera letra=======>";
        $getpalabramayuscula = ucwords($palabra);
       array_push($arraytextmedida, $getpalabramayuscula);
-    }elseif ($cantidadLetras === 1) {
+    }else {
       //  "------>se deja en minuscula=======>";
        $getpalabramayuscula = $palabra;
       array_push($arraytextmedida, $getpalabramayuscula);
