@@ -96,7 +96,7 @@ $mostrar=$result->fetch_assoc();
 
       <nav class="menu-nav">
 
-  <ul>
+         <ul>
             <li>
                   <a href="#" onclick="toggleSubmenu(this)">
                       <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
@@ -127,6 +127,9 @@ $mostrar=$result->fetch_assoc();
         <br><br>
       </nav>
     </div>
+
+
+    
     <div class="main bg-light">
       <div class="barra">
           <img src="../image/fiscalia.png" alt="" width="150" height="150">
