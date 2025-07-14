@@ -273,6 +273,8 @@ a:focus {
          ?>
         <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
+
+
       <nav class="menu-nav">
         <ul>
             <li>
@@ -282,6 +284,7 @@ a:focus {
                       <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    
                       <li>
                           <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='././add_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
@@ -301,7 +304,10 @@ a:focus {
               </li>
         </ul>
       </nav>
+
     </div>
+
+
     <div class="main bg-light">
       <div class="barra">
           <img src="../image/fiscalia.png" alt="" width="150" height="150">

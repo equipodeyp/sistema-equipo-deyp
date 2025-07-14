@@ -353,7 +353,30 @@ $mostrar=$result->fetch_assoc();
         </div>
       </div>
       
+    
 
+
+       <div class="form-group" id="clasificacion4" style="display:none;">
+        <label class="col-md-3 control-label">CLASIFICACIÓN</label>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
+            <select class="form-control" name="clasificacion_actividad4" id="clasificacion_actividad4">
+              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                <?php
+                    $select = "SELECT * FROM react_tipos_estudio";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['nombre']."'>".$valores['nombre']."</option>";
+                    }
+                ?>
+            </select>
+          </div>
+        </div>
+      </div>
+      
 
 
 
@@ -441,7 +464,7 @@ $mostrar=$result->fetch_assoc();
 
     console.log(num_actividad_obtenido);
     
-    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5' || num_actividad_obtenido === '7' || num_actividad_obtenido === '10') {
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5' || num_actividad_obtenido === '7') {
       
     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
@@ -453,13 +476,13 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion1").value="";
     document.getElementById("clasificacion2").value="";
     document.getElementById("clasificacion3").value="";
-
+    document.getElementById("clasificacion4").value="";
     
     document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
     document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
     document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
     document.getElementById("clasificacion3").style.display = "none"; // OCULTAR 
-    
+    document.getElementById("clasificacion4").style.display = "none"; // OCULTAR 
 
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
@@ -478,6 +501,7 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion0").value="";
     document.getElementById("clasificacion1").value="";
     document.getElementById("clasificacion3").value="";
+    document.getElementById("clasificacion4").value="";
     
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
@@ -487,6 +511,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
       
     }
     
@@ -494,6 +519,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
     
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
@@ -510,6 +536,7 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion0").value="";
     document.getElementById("clasificacion1").value="";
     document.getElementById("clasificacion2").value="";
+    document.getElementById("clasificacion4").value="";
 
       
     } 
@@ -519,6 +546,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
     
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
@@ -534,6 +562,7 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion1").value="";
     document.getElementById("clasificacion2").value="";
     document.getElementById("clasificacion3").value="";
+    document.getElementById("clasificacion4").value="";
       
     } 
 
@@ -541,6 +570,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
     
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
@@ -556,6 +586,34 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion0").value="";
     document.getElementById("clasificacion2").value="";
     document.getElementById("clasificacion3").value="";
+    document.getElementById("clasificacion4").value="";
+      
+    } 
+
+
+
+
+    else if (num_actividad_obtenido === '10') {
+      document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion0").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+    
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("clasificacion4").style.display = ""; // MOSTRAR
+
+     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("fechaactividad").value = ""; // LIMPIAR
+    document.getElementById("folio_expediente").value = ""; // LIMPIAR
+    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+
+    document.getElementById("clasificacion0").value="";
+    document.getElementById("clasificacion2").value="";
+    document.getElementById("clasificacion3").value="";
+    document.getElementById("clasificacion1").value="";
       
     } 
 

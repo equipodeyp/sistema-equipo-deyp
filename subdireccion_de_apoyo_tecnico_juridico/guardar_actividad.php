@@ -20,10 +20,11 @@ $folio_expediente = $_POST['folio_expediente'];
 $id_sujeto_actividad = $_POST['id_sujeto'];
 $numero_oficio_solicitud = $_POST['numero_oficio_actividad'];
 $clasificacion = $_POST['clasificacion'];
-$clasificacion0 = $_POST['clasificacion'];
+$clasificacion0 = $_POST['clasificacion0'];
 $clasificacion1 = $_POST['clasificacion1'];
 $clasificacion2 = $_POST['clasificacion2'];
 $clasificacion3 = $_POST['clasificacion3'];
+$clasificacion4 = $_POST['clasificacion4'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
 
 /* echo $idactividad;
@@ -94,7 +95,7 @@ echo "<br>";
 
 
 
-if ( $idactividad === '1'|| idactividad === '2'|| idactividad === '3'|| idactividad === '5'|| idactividad === '7'|| idactividad === '10'){
+if ( $idactividad === '1'|| idactividad === '2'|| idactividad === '3'|| idactividad === '5'|| idactividad === '7'){
     $clasificacion = 'NA';
  $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
                                                id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
@@ -152,6 +153,15 @@ VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$
  
 }
 
+
+else if ( $idactividad === '10'){
+       $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
+                                               id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
+VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion4', 
+                            '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad','$folio_expediente', '$id_sujeto_actividad', '$numero_oficio_solicitud', '$observaciones_actividad', '$informe_anual_actividad' 
+                            , '$usuario', '$year')";
+ 
+}
 
 
 
