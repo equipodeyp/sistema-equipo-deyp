@@ -85,6 +85,7 @@ $result = $mysqli->query($sentencia);
               <li class="menu-items"><a href="../administrador/dentro_y_fuera_del_cr.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class="fa-solid fa-users menu-nav--icon fa-fw"></i> DENTRO Y FUERA DE CENTRO DE RESGUARDO</span></a></li>
               <li class="menu-items"><a href="../administrador/informe_sujetos.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-clipboard-user menu-nav--icon fa-fw'></i> INFORME SUJETOS</span></a></li>
               <li class="menu-items"><a href="../administrador/bd_traslados.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> BD TRASLADOS</span></a></li>
+              <li class="menu-items"><a href="../administrador/bd_metas.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> BD METAS</span></a></li>
               </ul>
       </nav>
     </div>
