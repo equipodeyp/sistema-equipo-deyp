@@ -298,7 +298,30 @@ text-decoration: underline;
                   </ul>
               </li>
 
-            <li><a href="#" onclick="location.href='./registrar_incidencia_asistencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li>
+            <!-- <li><a href="#" onclick="location.href='./registrar_incidencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li> -->
+
+              <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_incidencia.php'">
+                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
+                      </li>
+
+                  </ul>
+              </li>
+
+
+
 
           </ul>
 

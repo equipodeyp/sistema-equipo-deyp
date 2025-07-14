@@ -178,7 +178,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="./menu.php">INICIO</a>
-            <a class="actived" href="./registrar_incidencia_asistencia.php">REGISTRAR INCIDENCIA</a>
+            <a class="actived" href="./registrar_incidencia.php">REGISTRAR INCIDENCIA</a>
           </div>
           
 
@@ -186,12 +186,12 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="#" class="active" onclick="location.href='./registrar_incidencia_asistencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR <br> INCIDENCIA</span></a></li>
-                <li><a href="#" onclick="location.href='./incidencias_registradas_asistencia.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
-                <li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li>
+                <li><a href="#" class="active" onclick="location.href='./registrar_incidencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR <br> INCIDENCIA</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='./incidencias_registradas.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
+                <li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li> -->
               </ul>
 
-                <form method="POST" action="./guardar_incidencia_asistencia.php">
+                <form method="POST" action="./guardar_incidencia.php">
                   <div class="alert div-title">
                     <h3 style="text-align:center">REGISTRAR INCIDENCIA</h3>
                   </div>
@@ -478,12 +478,44 @@ else if(respuestaObtenida3 === "REPORTES DEL PROGRAMA"){
       document.getElementById("id_sujeto").required = false; // VALIDAR
       document.getElementById("id_asistencia").required = false; // VALIDAR
 
+      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
+      document.getElementById("div_folio_expediente").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto").style.display = "none"; // OCULTAR
+
 }
 }
 
+</script>
 
 
-  </script>
+<script type="text/javascript">
+
+
+var id_expediente = document.getElementById('folio_expediente');
+
+var respuestaIdexpediente;
+var respuestaIdexpediente;
+
+
+
+
+id_expediente.addEventListener('change', obtenerRespuesta3);
+
+function obtenerRespuesta3(e){
+
+  respuestaIdexpediente = e.target.value;
+  respuestaIdexpediente = respuestaIdexpediente;
+
+
+  // console.log(respuestaIdexpediente);
+  if (respuestaIdexpediente === 'NO APLICA'){
+
+  document.getElementById('id_sujeto').value = "NO APLICA";
+  }
+}
+
+
+</script>
 
 
 <script type="text/javascript">

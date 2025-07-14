@@ -1,6 +1,5 @@
 <?php
-
-error_reporting(0);
+// error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica = $_SESSION["verifica"];
@@ -11,6 +10,7 @@ if ($verifica == 1) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $resultado = $mysqli->query($sentencia);
 $row=$resultado->fetch_assoc();
+
 
   $apartado = $_POST['apartado'];
   $usuario = $_POST['usuario'];
@@ -86,27 +86,30 @@ $row=$resultado->fetch_assoc();
   // echo $folio_incidencia;
   // echo '<br>';
         
+
   $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, usuario_atencion) 
   VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
-  // $query2 = "INSERT INTO message_tbl (message, usuario_atencion) 
-  // VALUES ('$folio_incidencia', '$atencion_usuario')";
-  // $result2 = $mysqli->query($query2);
-
-    if($result) {
-      
-
-        echo $verifica;
-        echo ("<script type='text/javaScript'>
-                  window.location.href='./incidencias_registradas_asistencia.php';
-                  window.alert('!!!!!Registro exitoso¡¡¡¡¡)
-                  </script>");
-  
-
-    }
 
 
 
-}
-?>
+
+
+     if($result){
+      echo ("<script type='text/javaScript'>
+      window.location.href='./incidencias_registradas.php';
+      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+      </script>");
+
+
+      }
+
+ }
+
+
+  else {
+      echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=./menu.php'>";
+  }
+
+?> 
