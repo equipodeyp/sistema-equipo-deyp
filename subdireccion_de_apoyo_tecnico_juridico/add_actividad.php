@@ -115,7 +115,7 @@ $mostrar=$result->fetch_assoc();
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>
