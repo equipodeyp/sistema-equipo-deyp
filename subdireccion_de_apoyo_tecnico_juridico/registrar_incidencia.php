@@ -187,8 +187,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
               <ul class="tabs">
                 <li><a href="#" class="active" onclick="location.href='./registrar_incidencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">REGISTRAR <br> INCIDENCIA</span></a></li>
-                <!-- <li><a href="#" onclick="location.href='./incidencias_registradas.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
-                <li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li> -->
+                 <li><a href="#" onclick="location.href='./incidencias_registradas.php'"><span class="far fa-regular fa-address-card"></span><span class="tab-text">INCIDENCIAS REGISTRADAS</span></a></li>
+                <!--<li><a href="#" onclick="location.href='./incidencias_atendidas.php'"><span class="far fa-regular fa-thumbs-up"></span><span class="tab-text">INCIDENCIAS <BR> ATENDIDAS</span></a></li> -->
               </ul>
 
                 <form method="POST" action="./guardar_incidencia.php">

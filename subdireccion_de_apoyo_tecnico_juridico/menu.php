@@ -313,7 +313,7 @@ text-decoration: underline;
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_incidencia.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
                               <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
                       </li>
 

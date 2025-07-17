@@ -29,7 +29,7 @@ $m_user = strtoupper($m_user);
 $folio_incidencia = $_GET["folio_incidencia"];
 // echo $folio_incidencia;
 
-$consulta1 = "SELECT* FROM incidencias_asistencias WHERE folio_incidencia = '$folio_incidencia'";
+$consulta1 = "SELECT* FROM incidencias WHERE folio_incidencia = '$folio_incidencia'";
 $resultado1 = $mysqli->query($consulta1);
 $respuesta1=$resultado1->fetch_assoc();
 

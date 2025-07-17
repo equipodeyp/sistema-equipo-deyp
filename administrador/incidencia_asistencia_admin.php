@@ -122,7 +122,7 @@ $m_user = strtoupper($m_user);
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
-              $cl = "SELECT COUNT(*) as t FROM incidencias_asistencias";
+              $cl = "SELECT COUNT(*) as t FROM incidencias";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
@@ -164,7 +164,7 @@ $m_user = strtoupper($m_user);
 
                                                     $count = 0;
 
-                                                    $query = "SELECT * FROM incidencias_asistencias ORDER BY fecha_hora_solicitud ASC";
+                                                    $query = "SELECT * FROM incidencias ORDER BY fecha_solicitud ASC";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
@@ -175,7 +175,7 @@ $m_user = strtoupper($m_user);
                                                         <tr>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count; ?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['folio_incidencia']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_hora_solicitud']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_solicitud']?></td>
                                                             
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
 
