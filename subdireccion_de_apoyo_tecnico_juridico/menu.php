@@ -291,7 +291,7 @@ text-decoration: underline;
                               <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>

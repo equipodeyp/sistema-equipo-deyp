@@ -98,7 +98,7 @@ $row=$resultado->fetch_assoc();
 
      if($result){
       echo ("<script type='text/javaScript'>
-      window.location.href='./incidencias_registradas.php';
+      window.location.href='./registrar_incidencia.php';
       window.alert('!!!!!Registro exitoso¡¡¡¡¡')
       </script>");
 
