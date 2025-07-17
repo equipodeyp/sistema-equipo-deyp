@@ -198,7 +198,7 @@ $id_usuario=$row['usuario'];
 
                     JOIN usuarios_servidorespublicos
                     ON react_actividad.usuario = usuarios_servidorespublicos.usuario
-                    AND react_actividad.id_subdireccion = '1'
+                    AND react_actividad.id_subdireccion = '2'
                     ORDER BY usuarios_servidorespublicos.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
