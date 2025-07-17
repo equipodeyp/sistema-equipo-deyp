@@ -7,46 +7,50 @@ include("./conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
-  header("location: ./logout.php");
+  header("location: ../logout.php");
 }
+$check_actividad = 1;
+$_SESSION["check_actividad"] = $check_actividad;
 
-$check_consultaactividad = 1;
-$_SESSION["check_consultaactividad"] = $check_consultaactividad;
-$nombre_usuario = $_SESSION['usuario'];
+// echo $name;
+
+$sentencia="SELECT usuarios.cargo, usuarios.usuario, usuarios_servidorespublicos.estatus, usuarios.nombre
+
+FROM usuarios
+
+JOIN usuarios_servidorespublicos
+ON usuarios.id = usuarios_servidorespublicos.id_usuarioprincipal
+AND usuarios_servidorespublicos.estatus = 'activo'
+AND usuarios.usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$cargo = $row['cargo'];
+$estatus=$row['estatus'];
+$id_usuario=$row['usuario'];
+// echo $id_usuario;
+// echo $cargo;
+// echo $estatus;
+// $today = date("Y-m-d H:i:s"); 
+// echo $today;
+
+
 
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="../../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>CONSULTAR ACTIVIDAD</title>
+  <title>CONSULTAR CIFRAS ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/funciones_react.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../css/cli.css">
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/main2.css">
-  <link rel="stylesheet" type="text/css" href="../../datatables/datatables.min.css"/>
-  <link rel="stylesheet"  type="text/css" href="../../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-   <script type="text/javascript" src="../../datatables/datatables.min.js"></script>
-    <script src="../../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="../../datatables/JSZip-2.5.0/jszip.min.js"></script>
-    <script src="../../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-     <script src="../../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-  <script src="../../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <link rel="stylesheet" href="../css/expediente.css">
-
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
   <!-- font-awesome -->
   <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
@@ -54,200 +58,14 @@ $nombre_usuario = $_SESSION['usuario'];
   <link rel="stylesheet" href="../css/react_add_traslados.css">
 
 
- <script type="text/javascript">
-  $(document).ready(function() {
-      $('#example').DataTable({
-          language: {
-                  "lengthMenu": "Mostrar _MENU_ registros",
-                  "zeroRecords": "No se encontraron resultados",
-                  "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                  "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                  "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                  "sSearch": "Buscar:",
-                  "oPaginate": {
-                      "sFirst": "Primero",
-                      "sLast":"Último",
-                      "sNext":"Siguiente",
-                      "sPrevious": "Anterior"
-             },
-             "sProcessing":"Procesando...",
-              },
-      });
-  });
-  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <style>
-    .pagination {
-  display: inline-block;
-  padding-left: 0;
-  margin: 20px 0;
-  border-radius: 4px;
-}
-.pagination > li {
-  display: inline;
-}
-.pagination > li > a,
-.pagination > li > span {
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.42857143;
-  color: #63696D;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-.pagination > li:first-child > a,
-.pagination > li:first-child > span {
-  margin-left: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-  z-index: 2;
-  color: #63696D;
-  background-color: #eee;
-  border-color: #ddd;
-}
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-  z-index: 3;
-  color: #fff;
-  cursor: default;
-  background-color: #63696D;
-  border-color: #5F6D6B;
-}
-.pagination > .disabled > span,
-.pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus,
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
-  color: #777;
-  cursor: not-allowed;
-  background-color: #fff;
-  border-color: #ddd;
-}
-.pagination-lg > li > a,
-.pagination-lg > li > span {
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
-}
-.pagination-lg > li:first-child > a,
-.pagination-lg > li:first-child > span {
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-}
-.pagination-lg > li:last-child > a,
-.pagination-lg > li:last-child > span {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-.pagination-sm > li > a,
-.pagination-sm > li > span {
-  padding: 5px 10px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-.pagination-sm > li:first-child > a,
-.pagination-sm > li:first-child > span {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-.pagination-sm > li:last-child > a,
-.pagination-sm > li:last-child > span {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-a:hover,
-a:focus {
-  color: #FFFFFF;
-  text-decoration: underline;
-}
-  </style>
-  <style media="screen">
-  .demo-preview {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    width: 70%;
-    margin: auto;
-    text-align: center;
-  }
-
-  .alert {
-    padding: .7143rem 1.071rem;
-    margin-bottom: 1.429rem;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    color: #FFF
-  }
-
-  .alert.alert-square {
-    border-radius: 0
-  }
-
-  .alert .close {
-    position: relative
-  }
-
-  .alert.alert-dismissable,
-  .alert.alert-dismissible {
-    padding-right: 2.5rem
-  }
-
-  .alert.alert-dismissable .close,
-  .alert.alert-dismissible .close {
-    top: -2px;
-    right: -20px;
-    color: inherit
-  }
-
-  .alert.alert-primary {
-    background-color: #2196F3;
-    border-color: #2196F3
-  }
-
-  .alert.alert-secondary {
-    background-color: #323a45;
-    border-color: #323a45
-  }
-
-  .alert.alert-success {
-    background-color: #64DD17;
-    border-color: #64DD17
-  }
-
-  .alert.alert-info {
-    background-color: #29B6F6;
-    border-color: #29B6F6
-  }
-
-  .alert.alert-warning {
-    background-color: #F89406;
-    border-color: #F89406
-  }
-
-  .alert.alert-danger {
-    background-color: #ef1c1c;
-    border-color: #EF5350
-  }
-  </style>
-
+  <link href="assets/css/material.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/loader.css">
+  <script src="../js/funciones_react.js"></script>
 
 
 </head>
@@ -276,12 +94,12 @@ a:focus {
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
 
-   <nav class="menu-nav">
-        <ul>
-            <li>
+      <nav class="menu-nav">
+          <ul>
+              <li>
                   <a href="#" onclick="toggleSubmenu(this)">
                       <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
-                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">REACT</span>
+                      <span class="menu-items" style="color: white; font-size: 15px; font-weight:bold;">REACT</span>
                       <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
@@ -302,7 +120,8 @@ a:focus {
                       </li> -->
                   </ul>
               </li>
-        </ul>
+          </ul>
+        
         <br><br>
       </nav>
     </div>
@@ -314,62 +133,100 @@ a:focus {
       </div>
       <div class="container">
         <div class="row">
-          <h1 style="text-align:center">
+          <!-- <h1 style="text-align:center">
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-          </h1>
-          <h4 style="text-align:center">
+          </h1> -->
+          <!-- <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-           </h4>
+          </h4> -->
         </div>
-
+      </div>
+      <div class="">
         <br>
+        <br>
+        <br>
+        <h1 style="text-align:center">CONSULTAR CIFRAS</h1>
+<center>
+  <div style="text-align:center;padding:15px;border:solid 5px; width:80%;border-radius:35px;shadow" class="well form-horizontal">
 
-
-<div class="">
-        <h3 style="text-align:center">CONSULTAR CIFRAS</h3>
-        <center>
-  <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
-
-    <form  id="form_consultar" method="POST" action="./resultados.php" enctype= "multipart/form-data">
+    <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8" id="form_consultar_cifras" autocomplete="off">
 
 
     <div class="form-group">
-        <label class="col-md-3 control-label">TIPO DE CONSULTA</label>
+        <h4 class="col-md-3 control-label">TIPO DE CONSULTA:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-table-list"></i></span>
             <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
-              <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-              <option value="GLOBAL">GLOBAL</option>
-              <option value="POR USUARIO">POR USUARIO</option>
+
+              <?php 
+              if ($cargo != '' ){ //|| $id_usuario === 'analisis7'
+              // echo 'subdirector';
+              echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="GLOBAL">GLOBAL</option>
+                    <option value="POR USUARIO">POR USUARIO</option>';
+              }else{
+              // echo 'adminidtrativo';
+              echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="POR USUARIO">POR USUARIO</option>';
+              }
+              ?>
+
             </select>
+
           </div>
         </div>
       </div>
 
+      
 
       <div class="form-group" id="div_usuario" style="display:none;">
-        <label class="col-md-3 control-label">USUARIO</label>
+        <h4 class="col-md-3 control-label">USUARIO:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-solid fa-user"></i></span> -->
             <select class="form-control" name="usuario" id="usuario">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+
                 <?php
-                    $select = "SELECT * 
-                    FROM usuarios_servidorespublicos 
-                    WHERE subdireccion = 'Subdirección de Apoyo Técnico y Jurídico'";
+                if  ($cargo != '' && $estatus === 'activo'){// || $id_usuario === 'analisis7' && $estatus === 'activo'
+                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, 
+                    usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, 
+                    react_actividad.usuario
+                    FROM react_actividad
+
+                    JOIN usuarios_servidorespublicos
+                    ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+                    AND react_actividad.id_subdireccion = '1'
+                    ORDER BY usuarios_servidorespublicos.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];
                     // echo $id_actividad;
-                    echo "<option value='".$valores['usuario']."'>".$valores['usuario']."</option>";
+                    echo "<option value='".$valores['usuario']."'>".strtoupper($valores['nombre'].' '.$valores['amaterno'].' '.$valores['apaterno'])."</option>";
                     }
+                }else
+                { 
+                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, 
+                    usuarios_servidorespublicos.apaterno, 
+                    usuarios_servidorespublicos.amaterno, react_actividad.usuario
+                    FROM react_actividad
 
-
+                    JOIN usuarios_servidorespublicos
+                    ON react_actividad.usuario = usuarios_servidorespublicos.usuario
+                    AND react_actividad.id_subdireccion = '2'
+                    AND react_actividad.usuario = '$name'
+                    ORDER BY usuarios_servidorespublicos.nombre ASC";
+                    $answer = $mysqli->query($select);
+                    while($valores = $answer->fetch_assoc()){
+                    // $id_actividad = $valores['idactividad'];
+                    // echo $id_actividad;
+                    echo "<option value='".$valores['usuario']."'>".strtoupper($valores['nombre'].' '.$valores['amaterno'].' '.$valores['apaterno'])."</option>";
+                    }
+                }
                 ?>
+
             </select>
           </div>
         </div>
@@ -377,15 +234,15 @@ a:focus {
 
 
       <div class="form-group" id="div_actividad" style="display:none;">
-        <label class="col-md-3 control-label">ACTIVIDAD</label>
+        <h4 class="col-md-3 control-label">ACTIVIDAD:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-solid fa-list-check"></i></span> -->
             <select class="form-control" name="nombre_actividad" id="nombre_actividad">
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="Todas">Todas</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_apoyo";
+                    $select = "SELECT * FROM react_actividad_apoyo ORDER BY react_actividad_apoyo.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];
@@ -402,10 +259,10 @@ a:focus {
 
 
       <div class="form-group">
-        <label class="col-md-3 control-label">FECHA INICIO</label>
+        <h4 class="col-md-3 control-label">FECHA INICIO:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span> -->
             <input name="fecha_inicio" id="fecha_inicio" class="form-control" type="date" required>
           </div>
         </div>
@@ -413,38 +270,113 @@ a:focus {
 
 
       <div class="form-group">
-        <label class="col-md-3 control-label">FECHA TERMINO</label>
+        <h4 class="col-md-3 control-label">FECHA TERMINO:</h4>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
+            <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span> -->
             <input name="fecha_fin" id="fecha_fin" class="form-control" type="date" required>
           </div>
         </div>
       </div>
 
-
+      <input name="input_tipo_consulta" id="input_tipo_consulta" class="form-control" type="text" value style="display:none;">
+      <input name="input_usuario" id="input_usuario" class="form-control" type="text" value style="display:none;">
+      <input name="input_nombre_actividad" id="input_nombre_actividad" class="form-control" type="text" value style="display:none;">
 
 
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-5">
-          <button type="submit" name="submit" value="search" id="btn_search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> CONSULTAR </button>
+          <!-- <button type="submit" name="submit" value="search" id="btn_search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> CONSULTAR </button> -->
           <!-- <button id="btn_Limpiar" class="btn btn-danger"><span class="glyphicon glyphicon-erase"></span> LIMPIAR </button> -->
+          <br>
+          <br>
+          <span class="btn btn-info" id="btn_search">Consultar</span>
+          <button id= "descargar" style="display:none;" type="submit" class="btn btn-success">Generar Reporte</button>
+
         </div>
       </div>
 
+    </form>
+
+      <div class="col-md-12 text-center mt-5">     
+        <span id="loaderFiltro">  </span>
+      </div>
+
+
+      <div class="table-responsive resultadoFiltro">
+              <table class="table table-hover" id="tablaReact">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ACTIVIDAD</th>
+                    <th scope="col">CLASIFICACIÓN</th>
+                    <th scope="col">UNIDAD DE MEDIDA</th>
+                    <th scope="col">CANTIDAD</th>
+                    <th scope="col">FECHA</th>
+                  </tr>
+                </thead>
+              <?php
+              include('./config.php');
+              $sqlReact = ("SELECT react_actividad_apoyo.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+                                  react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario 
+                                  FROM react_actividad 
+                                  JOIN react_actividad_apoyo 
+                                  ON react_actividad.id_actividad = react_actividad_apoyo.id
+                                  AND react_actividad.usuario = '$name' 
+                                  JOIN react_subdireccion 
+                                  ON react_actividad.id_subdireccion = react_subdireccion.id
+                                  AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE APOYO TÉCNICO Y JURÍDICO' 
+                                  ORDER BY react_actividad_apoyo.nombre ASC");
+              $query = mysqli_query($con, $sqlReact);
+              $i =1;
+                while ($dataRow = mysqli_fetch_array($query)) { ?>
+                <tbody>
+                  <tr>
+                    <td ><?php echo $i++; ?></td>
+                    <td style="text-align: left;"><?php echo $dataRow['nombre'] ; ?></td>
+                    <td><?php echo $dataRow['clasificacion'] ; ?></td>
+                    <td><?php echo $dataRow['unidad_medida'] ; ?></td>
+                    <td><?php echo $dataRow['cantidad'] ; ?></td>
+                    <td><?php echo $dataRow['fecha'] ; ?></td>
+                </tr>
+                </tbody>
+              <?php } ?>
+              </table>
+            </div>
+
+
+  
+
+  </div>
+</center>
 
 
 
-<div class="contenedor">
+      </div>
+    </div>
+  </div>
+  <div class="contenedor">
       <a href="./menu.php" class="btn-flotante">INICIO</a>
   </div>
 
 
+<script>
 
+// Obtén el formulario por su ID
+var miFormulario = document.getElementById("form_consultar_cifras");
 
+// Añade un listener para el evento 'popstate'
+window.addEventListener('popstate', () => {
+  // Limpia el formulario
+  miFormulario.reset();
+});
 
-
+// También puedes limpiar el formulario cuando se carga la página por primera vez
+window.addEventListener('load', () => {
+  miFormulario.reset();
+});
+</script>
 
 
 <script type="text/javascript">
@@ -460,8 +392,6 @@ a:focus {
     numero_tipo_act = e.target.value;
     tipo_actividad_obtenido = numero_tipo_act;
 
-
-  
     
     if (tipo_actividad_obtenido === 'POR USUARIO'){
       document.getElementById("div_usuario").style.display = ""; // MOSTRAR
@@ -490,28 +420,126 @@ a:focus {
   }
 </script>
 
+<script type="text/javascript">
+
+  var fecha_inicio = document.getElementById('tipo_consulta');
+  var fecha_ini;
+  var fecha_inicio_obtenida;
+
+  fecha_inicio.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    fecha_ini = e.target.value;
+    fecha_inicio_obtenida = fecha_ini;
 
 
+    // console.log(fecha_inicio_obtenida);
+  
+    document.getElementById('input_tipo_consulta').value = fecha_inicio_obtenida;
+  
+  }
+</script>
+
+
+<script type="text/javascript">
+
+  var usuario = document.getElementById('usuario');
+  var user;
+  var usuario_obtenido;
+
+  usuario.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    user = e.target.value;
+    usuario_obtenido = user;
+
+
+    // console.log(usuario_obtenido);
+    document.getElementById('input_usuario').value = usuario_obtenido;
+  
 
   
-    </form>
-  </div>
-</center>
+  }
+</script>
 
 
+<script type="text/javascript">
 
-      </div>
-    </div>
-  </div>
+  var actividad = document.getElementById('nombre_actividad');
+  var act;
+  var actividad_obtenida;
+
+  actividad.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    act = e.target.value;
+    actividad_obtenida = act;
+
+
+    // console.log(actividad_obtenida);
+    document.getElementById('input_nombre_actividad').value = actividad_obtenida;
+    
   
 
+  
+  }
+</script>
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="assets/js/material.min.js"></script>
+  <script>
+  $(function() {
+      setTimeout(function(){
+        $('body').addClass('loaded');
+      }, 1000);
 
 
+//FILTRANDO REGISTROS
+$("#btn_search").on("click", function(e){ 
+  e.preventDefault();
+  
+  loaderF(true);
+
+  var f_inicio = $('input[name=fecha_inicio]').val();
+  var f_fin = $('input[name=fecha_fin]').val();
+
+  var tipo_consulta = $('input[name=input_tipo_consulta]').val();
+  var usuario = $('input[name=input_usuario]').val();
+  var actividad = $('input[name=input_nombre_actividad]').val();
+
+  // console.log(f_inicio + '' + f_fin);
+
+  if(tipo_consulta !="" && f_inicio !="" && f_fin !="" || tipo_consulta !="" && usuario !="" && actividad !="" && f_inicio !="" && f_fin !=""){
+    $.post("filtro.php", {f_inicio, f_fin, tipo_consulta, usuario, actividad}, function (data) {
+      $("#tablaReact").hide();
+      $(".resultadoFiltro").html(data);
+      document.getElementById("descargar").style.display = ""; // MOSTRAR
+      loaderF(false);
+    });  
+  }else{
+    $("#loaderFiltro").html('<p style="color:red; font-weight:bold;"> Debe llenar todos los campos</p>');
+  }
+} );
 
 
+function loaderF(statusLoader){
+    // console.log(statusLoader);
+    if(statusLoader){
+      $("#loaderFiltro").show();
+      $("#loaderFiltro").html('<img class="img-fluid" src="assets/img/cargando.svg" style="left:50%; right: 50%; width:50px;">');
+    }else{
+      $("#loaderFiltro").hide();
+    }
+  }
+});
+</script>
 
+</body>
+</html>
 </body>
 </html>

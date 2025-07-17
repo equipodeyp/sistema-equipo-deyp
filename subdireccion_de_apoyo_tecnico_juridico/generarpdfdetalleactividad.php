@@ -1,7 +1,7 @@
 <?php
 // error_reporting(0);
 /////////////////////
-require_once '../../mpdf/vendor/autoload.php';
+require_once '../mpdf/vendor/autoload.php';
 include("./conexion.php");
 date_default_timezone_set("America/Mexico_City");
 // $tipo_consulta = strtoupper($_POST['tipo_consulta']);
@@ -27,10 +27,10 @@ $mpdf = new \Mpdf\Mpdf([
     $mpdf->SetHTMLHeader('
     <table width="100%">
         <tr>
-            <td width="10%"><img  src="../../image/gobierno2.jpg" width="120" height="130"></td>
+            <td width="10%"><img  src="../image/gobierno2.jpg" width="120" height="130"></td>
             <td  width="80%" style="font-family: gothambook;" align="center"><span align="center">Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio </span>
             </td>
-            <td width="10%" style="text-align: right;"><img  src="../../image/FGJEM.jpg" width="60" height="60"></td>
+            <td width="10%" style="text-align: right;"><img  src="../image/FGJEM.jpg" width="60" height="60"></td>
         </tr>
     </table>
 
@@ -54,7 +54,7 @@ $mpdf->SetHTMLFooter('
     // codigo php para mostrar toda la informacion
     // $idactividad = $row['id'];
     // echo $idactividad;
-    $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 3";
+    $traeractividad = "SELECT * FROM react_actividad WHERE id = '$idactividad' AND id_subdireccion = 2";
     $rtraeractividad = $mysqli->query($traeractividad);
     $ftraeractividad = $rtraeractividad->fetch_assoc();
     $originalDate = $ftraeractividad['fecha'];
@@ -75,11 +75,11 @@ $mpdf->SetHTMLFooter('
 
     }
     // traer nombre de la subdireccion
-    $subdir = "SELECT * FROM react_subdireccion WHERE id = 3";
+    $subdir = "SELECT * FROM react_subdireccion WHERE id = 2";
     $rsubdir = $mysqli->query($subdir);
     $fsubdir = $rsubdir->fetch_assoc();
     // traer nombre de la actividad
-    $acttraer = "SELECT * FROM react_actividad_enlace WHERE id = '$idactivity'";
+    $acttraer = "SELECT * FROM react_actividad_apoyo WHERE id = '$idactivity'";
     $racttraer = $mysqli->query($acttraer);
     $facttraer = $racttraer->fetch_assoc();
     // echo $facttraer['nombre'];

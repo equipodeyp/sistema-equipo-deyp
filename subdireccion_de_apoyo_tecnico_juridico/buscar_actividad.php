@@ -7,7 +7,7 @@ include("./conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
-  header("location: ./logout.php");
+  header("location:./logout.php");
 }
 $check_consultaactividad = 1;
 $_SESSION["check_consultaactividad"] = $check_consultaactividad;
@@ -19,10 +19,10 @@ $nombre_usuario = $_SESSION['usuario'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
- <head>
- <script src="../js/botonatras.js"></script>
+<head>
+<script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>CONSULTAR ACTIVIDAD</title>
+  <title>BUSCAR ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -51,6 +51,7 @@ $nombre_usuario = $_SESSION['usuario'];
   <!-- MATERIAL PARA USAR TOAST MENSAJES DE ALERTA  -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+  <script src="../js/funciones_react.js"></script>
 <!-- ////////////////////////////////////////// --
 
  SCRIPT PARA EL MANEJO DE LA TABLA -->
@@ -268,13 +269,11 @@ a:focus {
         }
 
         if ($genero=='hombre') {
-          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+          echo "<img src=' ../image/hombreup.jpg' width='100' height='100'>";
         }
          ?>
         <h6 style="text-align:center" class='user-nombre'> <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
-
-
       <nav class="menu-nav">
         <ul>
             <li>
@@ -284,9 +283,8 @@ a:focus {
                       <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    
                       <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='././add_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
                           </a>
                       </li>
@@ -296,7 +294,7 @@ a:focus {
                           </a>
                       </li> -->
                       <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='././consultar_actividad.php'">
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./consultar_actividad.php'">
                               <i class="fas fa-search"></i> CONSULTAR CIFRAS
                           </a>
                       </li>
@@ -304,10 +302,7 @@ a:focus {
               </li>
         </ul>
       </nav>
-
     </div>
-
-
     <div class="main bg-light">
       <div class="barra">
           <img src="../image/fiscalia.png" alt="" width="150" height="150">
@@ -348,9 +343,7 @@ a:focus {
                   <tbody>
                     <?php
                     $contador = 0;
-
-
-                        $query= "SELECT react_actividad.id, react_actividad.fecha, react_actividad_apoyo.nombre, 
+                            $query= "SELECT react_actividad.id, react_actividad.fecha, react_actividad_apoyo.nombre, 
                                     react_actividad.clasificacion, react_actividad.cantidad, react_actividad.usuario
                                     FROM react_actividad
                                     INNER JOIN react_actividad_apoyo
@@ -358,20 +351,6 @@ a:focus {
                                     AND react_actividad.id_subdireccion = 2 
                                     AND react_actividad.usuario = '$nombre_usuario'
                                     ORDER BY fecha DESC";
-
-
-
-
-
-
-                         /*  $query= "SELECT react_actividad.id_actividad, react_actividad.fecha, react_actividad_apoyo.nombre, 
-                                    react_actividad.clasificacion, react_actividad.cantidad, react_actividad.usuario
-                                    FROM react_actividad
-                                    INNER JOIN react_actividad_apoyo
-                                    ON react_actividad.id_actividad = react_actividad_apoyo.id
-                                    AND react_actividad.id_subdireccion = 2 
-                                    AND react_actividad.usuario = '$nombre_usuario'
-                                    ORDER BY fecha DESC"; */
 
                                     // SELECT*
                                     // FROM react_actividad
@@ -425,9 +404,7 @@ a:focus {
       </div>
     </div>
   </div>
-   
-   <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> INICIO</a> 
-   <script src="../../js/funciones_react_actividad_consulta.js"></script>
-   
-  </body>
+  <a href="menu.php" class="btn-flotante">INICIO</a>
+  <script src="../js/funciones_react_actividad_consulta.js"></script>
+</body>
 </html>
