@@ -149,7 +149,7 @@ $row=$result->fetch_assoc();
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO MÉDICO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>OBSERVACIONES</th>
 
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>AGENDAR ASISTENCIA MÉDICA</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>AGENDAR TURNAR NOTIFICAR</th>
                             </tr>
                         </thead>
                     

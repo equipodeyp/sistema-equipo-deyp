@@ -335,7 +335,7 @@ a:focus {
                     <th style="text-align:center">#</th>
                     <th style="text-align:center">FOLIO INCIDENCIA</th>
                     <th style="text-align:center">SOLICITA</th>
-                    <th style="text-align:center">FECHA SOLICITUD</th>
+                    <th style="text-align:center">FECHA Y HORA SOLICITUD</th>
                     <th style="text-align:center">TIPO DE FALLA</th>
                     <th style="text-align:center">ESTATUS</th>
                     <th style="text-align:center">DETALLE</th>
@@ -365,7 +365,11 @@ a:focus {
                                       echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $row['folio_incidencia']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $row['servidor_registra']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $row['fecha_solicitud']; echo "</td>";
+                                                  
+                                      $originalDate1 = $row['fecha_solicitud'];
+                                      $date1 = date("d/m/Y", strtotime($originalDate1));
+                                                  
+                                      echo "<td style='text-align:center'>"; echo $date1.' '.$row['hora_solicitud']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $row['tipo_falla']; echo "</td>";
                                       echo "<td style='text-align:center'>"; 
                                       
@@ -396,138 +400,202 @@ a:focus {
                                     <div class="modal fade" id="myModal<?php echo $id_incidencia;?>" role="dialog">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
+                                              <div id="body">
+
                                                 <div class="modal-header">
                                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                                                  <div class="">
+                                                <div class="">
                                                     <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
                                                     <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
                                                     <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-                                                  </div>
+                                                </div>
 
                                                 </div>
 
                                                 <div class="modal-body">
-                                                <h4 style="text-align:center" class="modal-title">DETALLE DE LA SOLICITUD REGISTRADA</h4>
-                                                
-                                                <br>
-                                                <br>
-
-                                                <form>
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Folio Incidencia:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['folio_incidencia'];?>">
-                                                    </div>
-
-                                                  </div>
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Fecha de Solicitud:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['fecha_solicitud'];?>">
-                                                    </div>
+                                                    <h4 style="text-align:center" class="modal-title">DETALLE DE LA INCIDENCIA REGISTRADA</h4>
                                                     
-                                                  </div>
+                                                    <br>
 
-                                                  <div class="form-group row">
+                                                    <form>
 
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Servidor Público:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['servidor_registra'];?>">
-                                                    </div>
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Folio Incidencia:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['folio_incidencia'];?>">
+                                                        </div>
+
+                                                      </div>
+
+                                                      <div class="form-group row">
+                                                      <?php
+                                                        $originalDate = $row['fecha_solicitud'];
+                                                        $date = date("d/m/Y", strtotime($originalDate));
+                                                      ?>
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Fecha de Solicitud:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $date.' '.$row['hora_solicitud'] ;?>">
+                                                        </div>
+                                                        
+                                                      </div>
+
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Servidor Público:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['servidor_registra'];?>">
+                                                        </div>
+                                                        
+                                                      </div>
+
+
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Apartado:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['apartado_sippsipped'];?>">
+                                                        </div>
+                                                        
+                                                      </div>
+
+                                                      
+
+                                                      <?php 
+                                                      if ($row['folio_expediente'] != "NO APLICA"){
+                                                      $fol = $row['folio_expediente'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Expediente de protección:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$fol'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+                                                      <?php 
+                                                      if ($row['id_sujeto'] != "NO APLICA"){
+                                                      $id_suj = $row['id_sujeto'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>ID Sujeto:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$id_suj'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+                                                      <?php 
+                                                      if ($row['id_asistencia_medica'] != "NO APLICA"){
+                                                      $id_as = $row['id_asistencia_medica'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Id Asistencia Médica:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$id_as'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+
+
+
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Tipo de falla:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['tipo_falla'];?>">
+                                                        </div>
+                                                        
+                                                      </div>
+
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Descripción de la Falla:</label>
+                                                        <div class="col-sm-6">
+                                                          <textarea rows="5" cols="33" type="text" class="form-control" readonly placeholder="<?php echo $row['descripcion_falla'];?>"></textarea>
+                                                        </div>
+                                                        
+                                                      </div>
+
+
+
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Usuario en Atención:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['usuario_atencion'];?>">
+                                                        </div>
+                                                        
+                                                      </div>
+
+                                                      <?php 
+                                                      if ($row['respuesta'] != ""){
+                                                      $resp = $row['respuesta'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Respuesta:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$resp'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+                                                      <?php 
+                                                      if ($row['fecha_hora_atencion'] != ""){
+                                                      $fyh = $row['fecha_hora_atencion'];
+                                                      $originalDate2 = $row['fecha_hora_solicitud'];
+                                                      $date2 = date("d/m/Y", strtotime($originalDate2));
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Fecha y hora atención:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$date2'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+
+
+                                                      <div class="form-group row">
+
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Estatus Incidencia:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['estatus'];?>">
+                                                        </div>
+                                                        
+                                                      </div>
                                                     
-                                                  </div>
+                                                      <br>
 
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Expediente de protección:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['folio_expediente'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">ID Sujeto:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['id_sujeto'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Id Asistencia Médica:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['id_asistencia_medica'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Apartado:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['apartado_sippsipped'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Descripción de la Falla:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['descripcion_falla'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-
-
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Usuario en Atención:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['usuario_atencion'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-
-
-                                                  <div class="form-group row">
-
-                                                    <label style="text-align:right" class="col-sm-3 col-form-label">Estatus Incidencia:</label>
-                                                    <div class="col-sm-6">
-                                                      <input type="text" class="form-control" readonly value="<?php echo $row['estatus'];?>">
-                                                    </div>
-                                                    
-                                                  </div>
-                                                
-                                                <br>
-                                                <br>
-
-                                                <h4 style="text-align:center" class="modal-title">ATENCIÓN DE LA INCIDENCIA</h4>
-                                                
-                                                <br>
-                                                <br>
 
 
                                                 </form>                                         
-
+                                              </div>
 
 
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <!-- <a class="btn btn-primary btn-lg" href="javascript:imprimirSeleccion('body')">
+                                                      Imprimir
+                                                    </a> -->
+
+                                                    <a class="btn btn-danger btn-lg" data-dismiss="modal">
+                                                      Cerrar
+                                                    </a>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -559,4 +627,19 @@ a:focus {
 
 </body>
 </html>
+
+
+<script language="Javascript">
+
+function imprimirSeleccion(nombre) {
+var ficha = document.getElementById(nombre);
+var ventimp = window.open(' ', 'popimpr');
+ventimp.document.write( ficha.innerHTML );
+ventimp.document.close();
+ventimp.print( );
+ventimp.close();
+}
+
+
+</script>
 

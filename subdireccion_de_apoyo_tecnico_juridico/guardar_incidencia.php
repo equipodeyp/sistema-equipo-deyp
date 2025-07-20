@@ -81,17 +81,40 @@ $row=$resultado->fetch_assoc();
   // echo $sub;
   // echo '<br>';
 
-  $folio_incidencia = 'INC0'.$total.'-'.$clave_apartado.'-'.$sub;
+  $folio_incidencia = 'INC0'.$total.'-'.$sub.'-'.$clave_apartado;
   // echo '<br>';
   // echo $folio_incidencia;
   // echo '<br>';
         
 
+if ($apartado === "REPORTES DEL PROGRAMA"){
+  $folio_expediente1 = "NO APLICA";
+  $id_sujeto1 = "NO APLICA";
+  $id_asistencia1 = "NO APLICA";
+
+  // echo $folio_expediente1;
+  // echo $id_sujeto1;
+  // echo $id_asistencia1;
+
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente1', '$id_sujeto1', '$id_asistencia1', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$atencion_usuario')";
+  $result = $mysqli->query($query);
+  
+} else if ($apartado === "ASISTENCIAS MÉDICAS"){
+
   $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, usuario_atencion) 
   VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
+} else {
 
+  $id_asistencia2 = "NO APLICA";
+
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia2', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$atencion_usuario')";
+  $result = $mysqli->query($query);
+
+} 
 
 
 
