@@ -277,6 +277,14 @@ a:focus {
     background-color: #ef1c1c;
     border-color: #EF5350
   }
+  /*  */
+  .submenu3 {
+    display: none;
+  }
+  .opacity3 {
+    /* opacity: 100%; */
+  }
+  /*  */
   </style>
 
 <link rel="stylesheet" href="../css/button_notification.css" type="text/css">
@@ -387,7 +395,23 @@ if ($permiso3=='solicitar') {
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
               <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
-              <!-- <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTES</span></a></li> -->
+              <?php
+              if ($row['cargo'] === 'subdirector') {
+              ?>
+              <li id="liestadistica3" class="subtitle3">
+                  <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
+                  <ul class="submenu3">
+                    <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_analisis_de_riesgo/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
+                    <li id="limedidas" class="menu-items"><a href="../subdireccion_de_analisis_de_riesgo/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
+                    <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_analisis_de_riesgo/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
+                    <li id="limedidas" class="menu-items"><a href="../subdireccion_de_analisis_de_riesgo/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
+                    <li id="limedidas" class="menu-items"><a href="../subdireccion_de_analisis_de_riesgo/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
+                  </ul>
+              </li>
+              <?php
+              }
+              ?>
+
               <li>
                   <a href="#" onclick="toggleSubmenu(this)">
                       <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
@@ -756,6 +780,20 @@ document.getElementById('show_alert').style.display = "";
 
 <script src='../js/notification_analisis.js'></script>
 
+<script>
+  // CODIGO DE MENU CON submenu3
+  $(".subtitle3 .action3").click(function(event){
+   var subtitle3 = $(this).parents(".subtitle3");
+   var submenu3 = $(subtitle3).find(".submenu3");
 
+   $(".submenu3").not($(submenu3)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle3)).removeClass("open");
+
+   $(subtitle3).toggleClass("open");
+   $(submenu3).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+</script>
 </body>
 </html>
