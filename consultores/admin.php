@@ -272,7 +272,7 @@ a:focus {
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
           <?php
-          if ($row['cargo'] === 'titular') {
+          if ($row['cargo'] === 'titular' || $row['cargo'] === 'subdirector') {
             ?>
         <li id="liestadistica3" class="subtitle3">
             <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>

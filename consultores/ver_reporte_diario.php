@@ -550,7 +550,7 @@ switch ($day) {
     </div>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+    <a href="admin.php" class="btn-flotante">INICIO</a>
   </div>
   <!-- modal del glosario -->
   <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">

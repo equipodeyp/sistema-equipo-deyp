@@ -293,7 +293,7 @@ a:focus {
         <!--Ejemplo tabla con DataTables-->
         <div class="secciones form-horizontal sticky breadcrumb flat">
           <a href="../consultores/admin.php">REGISTROS</a>
-          <a class="actived">REPORTE SEMANAL</a>
+          <a class="actived">INFORME SEMESTRAL</a>
         </div>
         <div class="col-lg-12">
           <div class="table-responsive">
@@ -324,7 +324,7 @@ a:focus {
     </div>
   </div>
   <div class="contenedor">
-    <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a>
+    <a href="admin.php" class="btn-flotante">INICIO</a>
   </div>
   <!-- modal del glosario -->
   <div class="modal fade" id="add_data_Modal_convenio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
