@@ -271,9 +271,12 @@ a:focus {
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
+          <?php
+          if ($row['cargo'] === 'titular') {
+            ?>
         <li id="liestadistica3" class="subtitle3">
             <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
-
+            <?php echo $cargo; ?>
             <ul class="submenu3">
               <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
@@ -281,14 +284,11 @@ a:focus {
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
             </ul>
-          <?php
-          if ($row['cargo'] === 'titular') {
-          ?>
           <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li>
+        </li>
           <?php
           } else {
           ?>
-          </li>
           <li><a href="../asistencias_medicas/admin.php"><i class='color-icon fas fa-house-medical menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > ASISTENCIAS MÉDICAS</span></a></li>
           <?php
           }

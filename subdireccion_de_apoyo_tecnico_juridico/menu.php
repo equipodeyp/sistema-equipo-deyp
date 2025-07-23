@@ -52,7 +52,7 @@ if (!isset($name)) {
 // $_SESSION['tiempo'] = time();
     // El siguiente key se crea cuando se inicia sesión
 
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
  ?>
@@ -237,6 +237,14 @@ a:focus {
 color: #FFFFFF;
 text-decoration: underline;
 }
+/*  */
+.submenu3 {
+  display: none;
+}
+.opacity3 {
+  /* opacity: 100%; */
+}
+/*  */
 </style>
 </head>
 <body>
@@ -246,22 +254,14 @@ text-decoration: underline;
       </div>
       <div class="user">
         <?php
-        $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
-        $result = $mysqli->query($sentencia);
-        $row=$result->fetch_assoc();
         $genero = $row['sexo'];
-
         if ($genero=='mujer') {
           echo "<img style'text-align:center' src='../image/mujerup.png' width='100' height='100'>";
         }
-
         if ($genero=='hombre') {
-          // $foto = ../image/user.png;
           echo "<img style'text-align:center' src='../image/hombreup.jpg' width='100' height='100'>";
         }
-        // echo $genero;
-         ?>
-        <!-- <img src="$genero" alt="" width="100" height="100"> -->
+        ?>
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
@@ -270,7 +270,23 @@ text-decoration: underline;
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
             <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTE</span></a></li>
-
+            <?php            
+            if ($row['cargo'] === 'subdirector') {
+            ?>
+            <li id="liestadistica3" class="subtitle3">
+                <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
+                <ul class="submenu3">
+                  <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
+                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
+                  <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
+                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
+                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
+                </ul>
+              <!-- <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li> -->
+            </li>
+            <?php
+            }
+            ?>
             <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-briefcase-medical menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>ASISTEMCIAS MÉDICAS</span></a></li>
             <li><a href="#" onclick="location.href='alertas_convenios_por_finalizar.php'"><i class="color-icon fas fa-soli fa-person-circle-exclamation menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> ALERTA DE CONVENIOS</span></a></li>
 
@@ -297,9 +313,7 @@ text-decoration: underline;
                       </li>
                   </ul>
               </li>
-
             <!-- <li><a href="#" onclick="location.href='./registrar_incidencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li> -->
-
               <li>
                   <a href="#" onclick="toggleSubmenu(this)">
                       <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
@@ -316,16 +330,9 @@ text-decoration: underline;
                           <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_incidencia.php'">
                               <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
                       </li>
-
                   </ul>
               </li>
-
-
-
-
           </ul>
-
-
           <ul>
 				    <?php
               $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
@@ -333,6 +340,7 @@ text-decoration: underline;
               $row=$result->fetch_assoc();
               $genero = $row['sexo'];
               $id_user = $row['id'];
+              $cargo = $row['cargo'];
               // echo $id_user;
               $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
               $ruserfijo = $mysqli->query($userfijo);
@@ -537,7 +545,7 @@ text-decoration: underline;
         </div>
       </div>
     </div>
-  </div>  
+  </div>
   <!-- fin modal  -->
 
 
@@ -553,5 +561,20 @@ $num_ti = $rt->fetch_assoc();
 $counti = $num_ti['ti'];
 // echo 'tickets en proceso: ' . $counti;
 ?>
+<script>
+  // CODIGO DE MENU CON submenu3
+  $(".subtitle3 .action3").click(function(event){
+   var subtitle3 = $(this).parents(".subtitle3");
+   var submenu3 = $(subtitle3).find(".submenu3");
+
+   $(".submenu3").not($(submenu3)).slideUp("slow").removeClass("opacity");
+   $(".open").not($(subtitle3)).removeClass("open");
+
+   $(subtitle3).toggleClass("open");
+   $(submenu3).slideToggle("slow").toggleClass("opacity");
+
+   return false;
+  });
+</script>
 </body>
 </html>
