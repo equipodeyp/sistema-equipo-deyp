@@ -257,6 +257,7 @@ a:focus {
 
           <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
           <!-- <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;" >GLOSARIO</span></a></li> -->
+
           <!--  -->
           <li id="liestadistica3" class="subtitle3">
             <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
@@ -264,8 +265,8 @@ a:focus {
               <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
               <li id="lipersonas" class="menu-items"><a href="../consultores/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
-              <!-- <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li> -->
-              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
+              <!-- <li id="limedidas" class="menu-items"><a href="../consultores/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
             </ul>
           </li>
         </ul>
@@ -292,7 +293,7 @@ a:focus {
         <!--Ejemplo tabla con DataTables-->
         <div class="secciones form-horizontal sticky breadcrumb flat">
           <a href="../consultores/admin.php">REGISTROS</a>
-          <a class="actived">REPORTE ANUAL</a>
+          <a class="actived">REPORTE SEMANAL</a>
         </div>
         <div class="col-lg-12">
           <div class="table-responsive">
@@ -302,15 +303,15 @@ a:focus {
               <thead class="thead-dark">
                 <tr>
                   <th style="border: 5px solid #97897D; text-align:center" colspan="1"  width="100px" height="120">
-                    <b><p><font size="10px"><?php $year = date("Y"); echo $year-1; ?></font></p></b>
+                    <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td  width="1000px" height="80"> <button type="button" <a name="button" class="btn btn-secondary" style="width:1100px;">
-                    <img src="../image/CALENDARIO/12 ANUAL.png" alt="" width="520px" height="90"> </button><br>
-                    <iframe src="../docs/REPORTES/ANUAL2023.pdf" width="1100" height="900"></iframe>
+                    <h1><b>INFORME DE ACTIVIDADES SEMESTRAL</b></h1> </button><br>
+                    <iframe src="../docs/REPORTES/SEMESTRAL.pdf" width="1100" height="800"></iframe>
                   </td>
                 </tr>
               </tbody>
@@ -319,8 +320,6 @@ a:focus {
         </div>
 
         <!--  -->
-
-
       </div>
     </div>
   </div>
