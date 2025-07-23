@@ -8,10 +8,6 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo FROM usuarios WHERE usuario='$name'";
-$result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
-
 $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
@@ -24,6 +20,11 @@ $subuser = "SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal 
 $rsubuser = $mysqli->query($subuser);
 $fsubuser = $rsubuser -> fetch_assoc();
 $subdirecfcion_user = $fsubuser['subdireccion'];
+$genero = $row['sexo'];
+$area = $row['area'];
+$id_user = $row['id'];
+$permiso1 = $fsubuser['permiso1'];
+$subdireccion = $fsubuser['subdireccion'];
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -243,16 +244,7 @@ a:focus {
       </div>
       <div class="user">
         <?php
-        $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
-        $result = $mysqli->query($sentencia);
-        $row=$result->fetch_assoc();
-        $genero = $row['sexo'];
-        $id_user = $row['id'];
-        $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
-        $ruserfijo = $mysqli->query($userfijo);
-        $fuserfijo=$ruserfijo->fetch_assoc();
-        $permiso1 = $fuserfijo['permiso1'];
-        $subdireccion = $fuserfijo['subdireccion'];
+
 
         if ($genero=='mujer') {
           echo "<img src='../image/mujerup.png' width='100' height='100'>";
@@ -276,7 +268,6 @@ a:focus {
             ?>
         <li id="liestadistica3" class="subtitle3">
             <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
-            <?php echo $cargo; ?>
             <ul class="submenu3">
               <li id="liexpediente" class="menu-items"><a href="../consultores/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
@@ -284,10 +275,16 @@ a:focus {
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
               <li id="limedidas" class="menu-items"><a href="../consultores/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
             </ul>
-          <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li>
         </li>
+
           <?php
-          } else {
+          }
+          if ($row['area'] === 'titular de la unidad de proteccion de sujetos que intervienen en el procedimiento penal o extincion de dominio') {
+            ?>
+            <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li>
+            <?php
+          }
+          if ($row['area'] === 'subdireccion de enlace interinstitucional' || $row['area'] === 'subdireccion de ejecucion de medidas' || $row['area'] === 'encargado de la subdireccion de ejecucion de medidas' || $row['area'] === 'encargado de la subdireccion de ejecucion de medidas') {
           ?>
           <li><a href="../asistencias_medicas/admin.php"><i class='color-icon fas fa-house-medical menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > ASISTENCIAS MÉDICAS</span></a></li>
           <?php
