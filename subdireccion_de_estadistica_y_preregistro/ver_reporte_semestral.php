@@ -314,7 +314,7 @@ a:focus {
         <!--Ejemplo tabla con DataTables-->
         <div class="secciones form-horizontal sticky breadcrumb flat">
           <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-          <a class="actived">REPORTE SEMESTRAL</a>
+          <a class="actived">INFORME SEMESTRAL</a>
         </div>
         <div class="col-lg-12">
           <div class="table-responsive">
