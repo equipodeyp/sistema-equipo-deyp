@@ -64,8 +64,7 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
   <!-- estilo y js del mensaje de notificacion de que faltan medidas por validar -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
-  <link rel="stylesheet" href="../css/breadcrumb.css">
-  <!-- <link rel="stylesheet" href="../css/expediente.css"> -->
+    <link rel="stylesheet" href="../css/breadcrumb.css">
   <!-- <script type="text/javascript" src="../js/toast.js"></script> -->
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
   <script type="text/javascript">
@@ -286,9 +285,9 @@ a:focus {
             <ul class="submenu3">
               <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
-              <!-- <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li> -->
+              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
               <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
-              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
+              <!-- <li id="limedidas" class="menu-items"><a href="../subdireccion_de_estadistica_y_preregistro/total_medidas.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> MEDIDAS</span></a></li> -->
             </ul>
           </li>
         </ul>
@@ -313,10 +312,9 @@ a:focus {
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
-        <!-- ////////////////////////////////////////////////////////////////////////// -->
         <div class="secciones form-horizontal sticky breadcrumb flat">
           <a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
-          <a class="actived">REPORTE MENSUAL</a>
+          <a class="actived">REPORTE SEMESTRAL</a>
         </div>
         <div class="col-lg-12">
           <div class="table-responsive">
@@ -325,49 +323,24 @@ a:focus {
             <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
               <thead class="thead-dark">
                 <tr>
-                  <th style="border: 5px solid #97897D; text-align:center" colspan="3"  width="100px" height="120">
+                  <th style="border: 5px solid #97897D; text-align:center" colspan="1"  width="100px" height="120">
                     <b><p><font size="10px"><?php $year = date("Y"); echo $year; ?></font></p></b>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_enero" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/13 ENERO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_febrero" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/14 FEBRERO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_marzo" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/15 MARZO.png" alt="" width="280px" height="70"> </button> </td>
-                </tr>
-                <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_abril" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/16 ABRIL.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_mayo" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/17 MAYO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_junio" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/18 JUNIO.png" alt="" width="280px" height="70"> </button> </td>
-                </tr>
-                <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_julio" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/19 JULIO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_agosto" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/20 AGOSTO.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_septiembre" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/21 SEPTIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
-                </tr>
-                <tr>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_octubre" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/22 OCTUBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_noviembre" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/23 NOVIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
-                  <td style="border: 5px solid #97897D; text-align:center" width="100px" height="100"> <button type="button" <a href="#" data-toggle="modal" data-target="#add_data_Modal_reporte_diciembre" name="button" class="btn btn-secondary" style="width:350px;">
-                    <img src="../image/CALENDARIO/24 DICIEMBRE.png" alt="" width="280px" height="70"> </button> </td>
+                  <td  width="1000px" height="80"> <button type="button" <a name="button" class="btn btn-secondary" style="width:1100px;">
+                    <h1><b>INFORME DE ACTIVIDADES SEMESTRAL</b></h1> </button><br>
+                    <iframe src="../docs/REPORTES/SEMESTRAL.pdf" width="1100" height="800"></iframe>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <!-- ////////////////////////////////////////////////////////////////////////// -->
+
+        <!--  -->
       </div>
     </div>
   </div>
@@ -386,270 +359,6 @@ a:focus {
           <div className="modal">
             <div className="modalContent">
               <iframe src="../docs/GLOSARIO-SIPPSIPPED.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE ENERO -->
-  <div class="modal fade" id="add_data_Modal_reporte_enero" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE ENERO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/ENERO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE FEBRERO -->
-  <div class="modal fade" id="add_data_Modal_reporte_febrero" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE FEBRERO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/FEBRERO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE MARZO -->
-  <div class="modal fade" id="add_data_Modal_reporte_marzo" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE MARZO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/MARZO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE ABRIL -->
-  <div class="modal fade" id="add_data_Modal_reporte_abril" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE ABRIL</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/ABRIL.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE MAYO -->
-  <div class="modal fade" id="add_data_Modal_reporte_mayo" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE MAYO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/MAYO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE JUNIO -->
-  <div class="modal fade" id="add_data_Modal_reporte_junio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE JUNIO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/JUNIO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE JULIO -->
-  <div class="modal fade" id="add_data_Modal_reporte_julio" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE JULIO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/JULIO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE AGOSTO -->
-  <div class="modal fade" id="add_data_Modal_reporte_agosto" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE AGOSTO</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/AGOSTO.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE SEPTIEMBRE -->
-  <div class="modal fade" id="add_data_Modal_reporte_septiembre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE SEPTIEMBRE</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/SEPTIEMBRE.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE OCTUBRE -->
-  <div class="modal fade" id="add_data_Modal_reporte_octubre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE OCTUBRE</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/OCTUBRE.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE NOVIEMBRE -->
-  <div class="modal fade" id="add_data_Modal_reporte_noviembre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE NOVIEMBRE</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/NOVIEMBRE.pdf" style="width:870px; height:600px;" ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success" data-dismiss="modal">CERRAR</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- fin modal  -->
-  <!-- modal del REPORTE DE DICIEMBRE -->
-  <div class="modal fade" id="add_data_Modal_reporte_diciembre" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE MENSUAL DE DICIEMBRE</h4>
-        </div>
-        <div class="modal-body">
-          <div className="modal">
-            <div className="modalContent">
-              <iframe src="../docs/REPORTES/DICIEMBRE.pdf" style="width:870px; height:600px;" ></iframe>
             </div>
           </div>
         </div>
