@@ -161,7 +161,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                   $fresult_solicitud = $result_solicitud->fetch_assoc();
                   $checkagendar = $fresult_solicitud['agendar'];
               ?>
-              
+
               <ul class="tabs">
                 <li><a class="active" href="#" onclick="location.href='./agendar_asistencia.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'"><span class="far fa-regular fa-calendar"></span><span class="tab-text">1. AGENDAR</span></a></li>
               </ul>
@@ -271,7 +271,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           }else {
                           ?>
                           <select class="form-control" id="nombre_institucion" name="nombre_institucion" required>
-                          
+
                           <?php
                           }
                           ?>
@@ -293,7 +293,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           }else {
                           ?>
                           <select class="form-control" id="domicilio_institucion" name="domicilio_institucion" required>
-                          
+
                           <?php
                           }
                           ?>
@@ -314,7 +314,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           }else {
                           ?>
                           <select class="form-control" id="municipio_institucion" name="municipio_institucion" required>
-                          
+
                           <?php
                           }
                           ?>
@@ -359,7 +359,7 @@ if ($check_servicio === 'MÉDICO' || $check_servicio === 'SANITARIO'){
                           <?php
                           }
                           ?>
-                        
+
                       </div>
                     </div>
                   </div>
@@ -481,7 +481,7 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("fecha_asistencia").setAttribute("min", today);
+// document.getElementById("fecha_asistencia").setAttribute("min", today);  //descomentar 
 </script>
 
 
@@ -490,7 +490,7 @@ document.getElementById("fecha_asistencia").setAttribute("min", today);
 
   var servicio_medico = document.getElementById('servicio_medico').value;
 
-  
+
   // console.log(servicio_medico);
 
   if (servicio_medico === "MÉDICO" || servicio_medico === "SANITARIO"){
@@ -503,8 +503,8 @@ document.getElementById("fecha_asistencia").setAttribute("min", today);
     document.getElementById("fecha_asistencia").required="false";
     document.getElementById("hora_asistencia").required="false";
 
-    
-    
+
+
 
   }
 
