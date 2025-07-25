@@ -225,43 +225,43 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 
-                    
+
                     if ($checkturnar === 'SI' && $fturnar['turnar_asistencia'] === "SI" ) { ?>
-                    
-                    
-           
+
+
+
                     <div class="form-group" id="oficio">
                       <label for="numero_oficio" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO REGISTRADO</label>
                       <div class="col-md-4">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
-  
+
                               <input disabled class="form-control" id="" name="" value="<?php echo $fturnar['oficio']; ?>">
-  
+
                         </div>
                       </div>
                     </div>
-  
-  
-                    
+
+
+
                     <div class="form-group" id="fecha">
                       <label for="fecha_oficio" class="col-md-4 control-label" style="font-size: 16px">FECHA DE RECEPCIÓN DEL OFICIO REGISTRADA</label>
                       <div class="col-md-4">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="fas fa-solid fa-calendar"></i></span>
-  
+
                           <input disabled class="form-control" id="" name="" value="<?php echo $fturnar['fecha_oficio']; ?>">
-  
+
                         </div>
                       </div>
                     </div>
-                    
-                    
+
+
                     <?php } ?>
-  
-  
-  
-  
+
+
+
+
                     <div class="form-group" id="guardar">
                       <label class="col-md-4 control-label"></label>
                       <div class="col-md-4">
@@ -271,9 +271,9 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
 
 
 
-                  <?php } 
-                  
-                  
+                  <?php }
+
+
                   else {
                     echo '
                           <div class="form-group" id="turnar">
@@ -301,7 +301,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                                 <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
 
                                   <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio" name="numero_oficio">
-                                  
+
                               </div>
                             </div>
                           </div>
@@ -381,7 +381,7 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("fecha_oficio").setAttribute("min", today);
+// document.getElementById("fecha_oficio").setAttribute("min", today); //descomentar
 </script>
 
 <script type="text/javascript">
@@ -444,7 +444,7 @@ document.getElementById("fecha_oficio").setAttribute("min", today);
   var respuestaObtenidaFecha;
 
 
-  
+
   ////////////////////////////////////
 
 
@@ -491,4 +491,3 @@ document.getElementById("fecha_oficio").setAttribute("min", today);
 
 
   </script>
-
