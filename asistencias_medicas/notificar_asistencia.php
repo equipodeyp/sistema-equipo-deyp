@@ -18,7 +18,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+// echo $m_user;
 // echo $user;
 
 // echo "Agendar Asistencia Médica";
@@ -149,7 +149,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
             <a href="">SOLICITUDES DE ASISTENCIAS MÉDICAS</a>
             <a class="actived" href="">AGENDAR TURNAR Y NOTIFICAR</a>
           </div> -->
-          
+
 
             <div class=" well form-horizontal">
               <div class="row">
@@ -261,20 +261,20 @@ $serv_medico = $r_f['servicio_medico'];
                                   </div>
                                 </div>
 
-                            
+
 
                             ';
                       }
                       ?>
-                      
+
                     <div class="form-group" id="guardar">
                       <label class="col-md-4 control-label"></label>
                       <div class="col-md-4">
                           <button onclick="window.location='./registro_completado.php?id_asistencia_medica=<?php echo $id_asistencia_medica; ?>'" style="display: block; margin: 0 auto;" type="button" class="btn color-btn-success">CONTINUAR</button>
                       </div>
                     </div>
-              
-              <?php         
+
+              <?php
 
               } else {
 
@@ -302,7 +302,7 @@ $serv_medico = $r_f['servicio_medico'];
                         <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
 
                           <input value autocomplete="off" type="text" class="form-control"  id="numero_oficio_notificacion" name="numero_oficio_notificacion">
-                          
+
                       </div>
                     </div>
                   </div>
@@ -380,7 +380,7 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
+// document.getElementById("fecha_oficio_notificacion").setAttribute("min", today); //descomentar 
 </script>
 
 
@@ -395,14 +395,14 @@ document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
 
 
   notificarSubdireccion.addEventListener('change', obtenerRespuesta);
-  
+
   function obtenerRespuesta(e){
 
     respuestaSeleccionada = e.target.value;
     respuestaObtenida = respuestaSeleccionada;
 
-    if (respuestaObtenida == "NO APLICA" ){      
-      
+    if (respuestaObtenida == "NO APLICA" ){
+
       document.getElementById("numero_oficio_notificacion").value = "";
       document.getElementById("fecha_oficio_notificacion").value = "";
 
@@ -418,7 +418,7 @@ document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
 
     }
 
- 
+
 // console.log (respuestaObtenida);
 
 
@@ -445,7 +445,7 @@ document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
   var respuestaObtenidaFecha;
 
 
-  
+
   ////////////////////////////////////
 
 
