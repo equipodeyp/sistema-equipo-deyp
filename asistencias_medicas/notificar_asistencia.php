@@ -380,7 +380,7 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-// document.getElementById("fecha_oficio_notificacion").setAttribute("min", today); //descomentar 
+document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
 </script>
 
 

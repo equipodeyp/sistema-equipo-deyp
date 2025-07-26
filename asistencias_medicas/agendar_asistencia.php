@@ -481,7 +481,7 @@ if(dd<10){
       mm='0'+mm
   }
 today = yyyy+'-'+mm+'-'+dd;
-// document.getElementById("fecha_asistencia").setAttribute("min", today);  //descomentar 
+document.getElementById("fecha_asistencia").setAttribute("min", today);
 </script>
 
 
