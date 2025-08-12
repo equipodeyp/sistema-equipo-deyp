@@ -395,7 +395,7 @@ a:focus {
 
 
   <div class="contenedor">
-    <a href="./menu_asistencias_medicas.php" class="btn-flotante-regresar color-btn-success-gray"> REGRESAR</a>
+    <a href="./menu_asistencias_medicas.php" class="btn-flotante-regresar color-btn-success-gray">INICIO</a>
   </div>
 
 </body>

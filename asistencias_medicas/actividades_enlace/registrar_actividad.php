@@ -208,7 +208,7 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
       <div class="form-group" id="div_numero_oficio_actividad" style="display:none;">
-          <label class="col-md-3 control-label">NÚMERO DE OFICIO O SOLICITUD</label>
+          <label class="col-md-3 control-label">ID DE LA EVIDENCIA</label>
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>

@@ -443,7 +443,7 @@ transition: all .2s ease;
       </div>
       <!-- ID DE EVIDENCIA -->
       <div class="form-group" id="actividad_idevidencia" style="display: none;">
-        <label class="col-md-3 control-label">ID DE EVIDENCIA</label>
+        <label class="col-md-3 control-label">ID DE LA EVIDENCIA</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
