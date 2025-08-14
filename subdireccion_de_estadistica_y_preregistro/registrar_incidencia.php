@@ -439,8 +439,9 @@ function obtenerRespuesta3(e){
   // console.log(respuestaObtenida3);
 
 if (respuestaObtenida3 === "ALERTA DE CONVENIOS" || respuestaObtenida3 === "EXPEDIENTES Y SUJETOS" 
-||  respuestaObtenida3 === "INSTRUMENTO DE ADAPTABILIDAD" ||  respuestaObtenida3 === "REGISTRO DE ACTIVIDADES"
-||  respuestaObtenida3 === "TRASLADOS SUJETOS" ||  respuestaObtenida3 === "VALIDAR MEDIDAS"){
+|| respuestaObtenida3 === "INSTRUMENTO DE ADAPTABILIDAD" || respuestaObtenida3 === "REGISTRO DE ACTIVIDADES"
+|| respuestaObtenida3 === "TRASLADOS SUJETOS" || respuestaObtenida3 === "VALIDAR MEDIDAS"
+|| respuestaObtenida3 === "MEDIDAS OTORGADAS" || respuestaObtenida3 === "SEGUIMIENTO EXPEDIENTE" || respuestaObtenida3 === "SEGUIMIENTO SUJETO" ){
 
       document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
 
