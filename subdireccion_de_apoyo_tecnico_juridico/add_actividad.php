@@ -238,7 +238,7 @@ $mostrar=$result->fetch_assoc();
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
+            <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span> 
             <select class="form-control" name="id_sujeto" id="id_sujeto">
 
 
@@ -248,7 +248,7 @@ $mostrar=$result->fetch_assoc();
       </div>
 
       <div class="form-group" id="div_numero_oficio_actividad" style="display:none;">
-          <label class="col-md-3 control-label">NÚMERO DE OFICIO O SOLICITUD</label>
+          <label class="col-md-3 control-label">ID DE LA EVIDENCIA</label>
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
@@ -461,12 +461,12 @@ $mostrar=$result->fetch_assoc();
 
     console.log(num_actividad_obtenido);
     
-    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5' || num_actividad_obtenido === '7') {
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '7') {
       
     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
-    document.getElementById("id_sujeto").value = ""; // LIMPIAR
+    //document.getElementById("id_sujeto").value = ""; // LIMPIAR
     document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
 
     document.getElementById("clasificacion1").value="";
@@ -482,11 +482,39 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion5").style.display = "none"; // OCULTAR 
 
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
-      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      //document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
       
       
     }
+
+    else if (num_actividad_obtenido === '5') {
+      
+      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+      document.getElementById("fechaactividad").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
+  
+      document.getElementById("clasificacion1").value="";
+      document.getElementById("clasificacion2").value="";
+      document.getElementById("clasificacion3").value="";
+      document.getElementById("clasificacion4").value="";
+      document.getElementById("clasificacion5").value="";
+      
+      document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR 
+      document.getElementById("clasificacion5").style.display = "none"; // OCULTAR 
+  
+        document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+        document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+        document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+        
+        
+      }
+
  
      else if (num_actividad_obtenido === '4') {
      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
