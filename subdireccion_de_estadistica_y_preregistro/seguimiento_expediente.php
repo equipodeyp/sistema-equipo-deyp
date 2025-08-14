@@ -149,7 +149,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
     </div>
     <nav class="menu-nav">
            		<ul>
-				   	    <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $fila_expediente['fol_exp']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+				   	    <!-- <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $fila_expediente['fol_exp']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a> -->
             	</ul>
     </nav>
   </div>

@@ -43,12 +43,12 @@ $m_user = strtoupper($m_user);
 // echo $num_incidencia;
 
 
-$sentencia2=" SELECT* FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$sentencia2=" SELECT* FROM usuarios WHERE usuario ='$user'";
 $rnombre = $mysqli->query($sentencia2);
 $fnombre=$rnombre->fetch_assoc();
 $name_serv = $fnombre['nombre'];
-$ap_serv = $fnombre['apaterno'];
-$am_serv = $fnombre['amaterno'];
+$ap_serv = $fnombre['apellido_p'];
+$am_serv = $fnombre['apellido_m'];
 $usuario = $fnombre['usuario'];
 // echo $usuario;
 
@@ -157,12 +157,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
         <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-
-
-      
-
-
-
       </nav>
     </div>
     <div class="main bg-light">
@@ -366,7 +360,6 @@ $folio_incidencia = 'INC0'.$c.'-';
                   </div>
 
 
-
                   <div class="form-group" style="display: none">
                     <label for="id_atencion" class="col-md-4 control-label">ID USUARIO ATENCIÓN</label>
                     <div class="col-md-4 inputGroupContainer">
@@ -376,6 +369,7 @@ $folio_incidencia = 'INC0'.$c.'-';
                       </div>
                     </div>
                   </div>
+
 
 
 
@@ -411,7 +405,7 @@ $folio_incidencia = 'INC0'.$c.'-';
   </div>
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="./menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
 
 

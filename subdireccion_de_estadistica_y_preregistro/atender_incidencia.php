@@ -22,7 +22,7 @@ $nombre_usuario = $_SESSION['usuario'];
 <head>
 <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>BUSCAR ACTIVIDAD</title>
+  <title>ATENDER INCIDENCIA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -277,25 +277,7 @@ a:focus {
 
 
       <nav class="menu-nav">
-              <li>
-                  <a href="#" onclick="toggleSubmenu(this)">
-                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
-                      <span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span>
-                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
-                  </a>
-                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
-                          </a>
-                      </li>
-                      <!-- <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
-                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
-                      </li> -->
 
-                  </ul>
-              </li>
 
       </nav>
 
@@ -337,7 +319,6 @@ a:focus {
                     <th style="text-align:center">SOLICITA</th>
                     <th style="text-align:center">FECHA Y HORA SOLICITUD</th>
                     <th style="text-align:center">TIPO DE FALLA</th>
-                    <th style="text-align:center">EN ATENCIÓN</th>
                     <th style="text-align:center">ESTATUS</th>
                     <th style="text-align:center">DETALLE</th>
 
@@ -351,7 +332,7 @@ a:focus {
                     $contador = 0;
                           $query= "SELECT*
                                     FROM incidencias
-                                    WHERE incidencias.usuario = '$user_solicitud'
+                                    WHERE incidencias.id_usuario = '$user_solicitud'
                                     ORDER BY incidencias.fecha_solicitud DESC";
 
                           $rq = $mysqli->query($query);
@@ -372,7 +353,6 @@ a:focus {
                                                   
                                       echo "<td style='text-align:center'>"; echo $date1.' '.$row['hora_solicitud']; echo "</td>";
                                       echo "<td style='text-align:center'>"; echo $row['tipo_falla']; echo "</td>";
-                                      echo "<td style='text-align:center'>"; echo $row['usuario_atencion']; echo "</td>";
                                       echo "<td style='text-align:center'>"; 
                                       
                                       $res = $row['estatus'];
@@ -537,9 +517,100 @@ a:focus {
                                                         
                                                       </div>
 
+
+
+                                                    <div class="form-group row">
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Estatus Incidencia:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" class="form-control" readonly value="<?php echo $row['estatus'];?>">
+                                                        </div>
+                                                        
+                                                    </div>
+
+
+                                                </form> 
+
+                                                <form method="POST" action="./guardar_respuesta_atencion.php">
+
+                                                    <div class="form-group row" style= "display: none">
+                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Folio Incidencia:</label>
+                                                        <div class="col-sm-6">
+                                                          <input type="text" id="folio_incidencia" name="folio_incidencia" class="form-control" readonly value="<?php echo $row['folio_incidencia'];?>">
+                                                        </div>
+                                                    </div>
+
+
+
+                                                     <?php 
+                                                      if ($row['estatus'] === "EN PROCESO"){
+                                                     
+                                                      echo "
+                                                      <div class='form-group row' style= 'display: none'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Estatus Incidencia:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' id='estatus' name='estatus' class='form-control' readonly value='ATENDIDA'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+
+
                                                       <?php 
-                                                      if ($row['respuesta'] != ""){
+                                                      if ($row['fecha_hora_atencion'] === ""){
+                                                     
+                                                      $date2 = date("d/m/Y h:i:s");
+                                                      echo "
+                                                      <div class='form-group row'style= 'display: none'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Fecha y hora atención:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' id='fecha_hora_atencion' name='fecha_hora_atencion' class='form-control' readonly value='$date2'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      else {
+                                                      $fyh = $row['fecha_hora_atencion'];
+                                                      
+                                                      
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Fecha y hora atención:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$fyh'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
+
+
+
+                                                      <?php 
+                                                      if ($row['respuesta'] === ""){
                                                       $resp = $row['respuesta'];
+                                                      
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Respuesta:</label>
+                                                        <div class='col-sm-6'>
+                                                          <textarea required rows='5' cols='33' id='respuesta' name='respuesta' type='text' class='form-control' placeholder='Descripción breve de la respuesta:'></textarea>
+                                                        </div>
+                                                      </div>
+
+
+                                                    <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'></label>
+                                                        <div class='col-sm-6'>
+                                                        <button style='display: block; margin: 0 auto; text-align:center;' type='submit' class='btn color-btn-success'>GUARDAR</button>
+                                                        </div>
+                                                    </div>
+                                                      ";
+                                                      }
+                                                      else {
+                                                      $resp = $row['respuesta'];
+                                                      
                                                       echo "
                                                       <div class='form-group row'>
                                                         <label style='text-align:right' class='col-sm-4 col-form-label'>Respuesta:</label>
@@ -551,34 +622,7 @@ a:focus {
                                                       }
                                                       ?>
 
-                                                      <?php 
-                                                      if ($row['fecha_hora_atencion'] != ""){
-                                                      $fyh = $row['fecha_hora_atencion'];
-                                                      $originalDate2 = $row['fecha_hora_solicitud'];
-                                                      $date2 = date("d/m/Y", strtotime($originalDate2));
-                                                      echo "
-                                                      <div class='form-group row'>
-                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Fecha y hora atención:</label>
-                                                        <div class='col-sm-6'>
-                                                          <input type='text' class='form-control' readonly value='$date2'>
-                                                        </div>
-                                                      </div>
-                                                      ";
-                                                      }
-                                                      ?>
 
-
-
-                                                      <div class="form-group row">
-
-                                                        <label style="text-align:right" class="col-sm-4 col-form-label">Estatus Incidencia:</label>
-                                                        <div class="col-sm-6">
-                                                          <input type="text" class="form-control" readonly value="<?php echo $row['estatus'];?>">
-                                                        </div>
-                                                        
-                                                      </div>
-                                                    
-                                                      <br>
 
 
 
@@ -589,10 +633,6 @@ a:focus {
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <!-- <a class="btn btn-primary btn-lg" href="javascript:imprimirSeleccion('body')">
-                                                      Imprimir
-                                                    </a> -->
-
                                                     <a class="btn btn-danger btn-lg" data-dismiss="modal">
                                                       Cerrar
                                                     </a>

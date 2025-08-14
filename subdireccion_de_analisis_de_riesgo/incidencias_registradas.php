@@ -540,6 +540,7 @@ a:focus {
                                                       <?php 
                                                       if ($row['respuesta'] != ""){
                                                       $resp = $row['respuesta'];
+                                                      
                                                       echo "
                                                       <div class='form-group row'>
                                                         <label style='text-align:right' class='col-sm-4 col-form-label'>Respuesta:</label>

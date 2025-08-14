@@ -277,25 +277,7 @@ a:focus {
 
 
       <nav class="menu-nav">
-              <li>
-                  <a href="#" onclick="toggleSubmenu(this)">
-                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
-                      <span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span>
-                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
-                  </a>
-                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
-                          </a>
-                      </li>
-                      <!-- <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
-                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
-                      </li> -->
 
-                  </ul>
-              </li>
 
       </nav>
 
@@ -351,7 +333,7 @@ a:focus {
                     $contador = 0;
                           $query= "SELECT*
                                     FROM incidencias
-                                    WHERE incidencias.usuario = '$user_solicitud'
+                                    
                                     ORDER BY incidencias.fecha_solicitud DESC";
 
                           $rq = $mysqli->query($query);
@@ -537,9 +519,13 @@ a:focus {
                                                         
                                                       </div>
 
+
+                                                      
+
                                                       <?php 
                                                       if ($row['respuesta'] != ""){
                                                       $resp = $row['respuesta'];
+                                                      
                                                       echo "
                                                       <div class='form-group row'>
                                                         <label style='text-align:right' class='col-sm-4 col-form-label'>Respuesta:</label>
@@ -622,7 +608,7 @@ a:focus {
     </div>
   </div>
 
-  <a href="./menu.php" class="btn-flotante">INICIO</a>
+  <a href="./admin.php" class="btn-flotante">INICIO</a>
 
 
 

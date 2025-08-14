@@ -437,6 +437,33 @@ if ($permiso3=='solicitar') {
                   </ul>
               </li>
           </ul>
+
+
+
+            <ul>
+                <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
+                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">INCIDENCIAS</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
+                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+            </ul>
+
+
+
           <br><br>
           <ul>
 				    <?php

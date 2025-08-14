@@ -360,16 +360,6 @@ a:focus {
 <?php 
 if ($_SESSION['usuario'] == 'estadistica_admin'){
   echo "
-      <li style='text-align:center'>
-        <a href='./incidencia_asistencia_admin.php'>
-          <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/incidencia.png' style='width:55px;height:55px;'></span>
-          <div class='ca-content'>
-            <h2 class='ca-main'>INCIDENCIAS</h2>
-            <h3 class='ca-sub'>DETALLE DE LAS INCIDENCIAS DE ASISTENCIAS MÉDICAS</h3>
-          </div>
-        </a>
-      </li>
-
 
       <li style='text-align:center'>
         <a href='./bd_asistencias_medicas.php'>
@@ -382,19 +372,7 @@ if ($_SESSION['usuario'] == 'estadistica_admin'){
       </li>
   ";
 }
-else {
-  echo "
-      <li style='text-align:center'>
-        <a href='./incidencia_asistencia_enproceso.php'>
-          <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/HELP-DESK.png' style='width:55px;height:55px;'></span>
-          <div class='ca-content'>
-            <h2 class='ca-main'>INCIDENCIAS</h2>
-            <h3 class='ca-sub'>ATENCIÓN INCIDENCIAS DE ASISTENCIAS MÉDICAS</h3>
-          </div>
-        </a>
-      </li>
-";
-}
+
 ?>
 
 </ul>

@@ -14,16 +14,22 @@ $row=$resultado->fetch_assoc();
 
   $apartado = $_POST['apartado'];
   $usuario = $_POST['usuario'];
+
   $nombre_servidor = $_POST['nombre_servidor'];
+
   $subdireccion = $_POST['subdireccion'];
   $folio_expediente = $_POST['folio_expediente'];
   $id_sujeto = $_POST['id_sujeto'];
   $id_asistencia = $_POST['id_asistencia'];
   $tipo_falla = $_POST['tipo_falla'];
-  $status = $_POST['estatus'];  
+  $status = $_POST['estatus'];
+
   $atencion_usuario = $_POST['atencion'];
-  $descripcion = $_POST['descripcion'];
   $id_atencion = $_POST['id_atencion'];
+  
+  $descripcion = $_POST['descripcion'];
+
+
 
   // echo $apartado;
   // echo '<br>';
@@ -45,6 +51,10 @@ $row=$resultado->fetch_assoc();
   // echo '<br>';
   // echo $atencion_usuario;
   // echo '<br>';
+
+  // echo $id_atencion;
+  // echo '<br>';
+
   // echo $descripcion;
   // echo '<br>';
 
@@ -64,14 +74,12 @@ $row=$resultado->fetch_assoc();
   // echo $clave_apartado;
   // echo '<br>';
 
-  $sub="SELECT usuarios.nombre, usuarios.usuario, usuarios_servidorespublicos.subdireccion
-            FROM usuarios                                                              
-            JOIN usuarios_servidorespublicos
-            ON usuarios.id = usuarios_servidorespublicos.id_usuarioprincipal
-            AND usuarios.usuario = '$usuario'";
+  $sub="SELECT usuarios.nombre, usuarios.usuario, usuarios.area
+            FROM usuarios                                                             
+            WHERE usuarios.usuario = '$usuario'";
   $sub_resultado = $mysqli->query($sub);
   $row_sub=$sub_resultado->fetch_assoc();
-  $subdireccion = strtoupper($row_sub['subdireccion']);
+  $subdireccion = strtoupper($row_sub['area']);
   // echo $subdireccion;
   // echo '<br>';
 
@@ -120,16 +128,16 @@ if ($apartado === "REPORTES DEL PROGRAMA"){
 
 
 
-     if($result){
-      echo ("<script type='text/javaScript'>
-      window.location.href='./registrar_incidencia.php';
-      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-      </script>");
+      if($result){
+        echo ("<script type='text/javaScript'>
+        window.location.href='./registrar_incidencia.php';
+        window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+        </script>");
 
 
-      }
+        }
 
- }
+}
 
 
   else {

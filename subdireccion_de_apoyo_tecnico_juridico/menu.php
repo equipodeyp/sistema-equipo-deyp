@@ -316,7 +316,7 @@ text-decoration: underline;
             <!-- <li><a href="#" onclick="location.href='./registrar_incidencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li> -->
               <li>
                   <a href="#" onclick="toggleSubmenu(this)">
-                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
                       <span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span>
                       <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                   </a>
@@ -327,7 +327,7 @@ text-decoration: underline;
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_incidencia.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
                               <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
                       </li>
                   </ul>

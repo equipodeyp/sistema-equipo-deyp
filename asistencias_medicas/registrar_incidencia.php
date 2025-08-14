@@ -157,12 +157,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
         <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-
-
-      
-
-
-
       </nav>
     </div>
     <div class="main bg-light">
@@ -183,7 +177,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
             <!-- menu de navegacion de la parte de arriba -->
           <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="./menu.php">INICIO</a>
+            <a href="../consultores/admin.php">INICIO</a>
             <a class="actived" href="./registrar_incidencia.php">REGISTRAR INCIDENCIA</a>
           </div>
           
@@ -379,6 +373,7 @@ $folio_incidencia = 'INC0'.$c.'-';
 
 
 
+
                   <div class="form-group">
                     <label for="descripcion" class="col-md-4 control-label" style="font-size: 16px">DESCRIPCIÓN BREVE DE LA FALLA</label>
                     <div class="col-md-4 selectContainer">
@@ -411,7 +406,7 @@ $folio_incidencia = 'INC0'.$c.'-';
   </div>
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="../consultores/admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
 
 
@@ -573,8 +568,8 @@ else if(alea === 13 || alea === 16 || alea === 19 || alea === 20 || alea === 23 
   document.getElementById("atencion").value = aza;
   document.getElementById("id_atencion").value = "estadistica3";
   // console.log(gab);
-}
 
+}
 </script>
 
 

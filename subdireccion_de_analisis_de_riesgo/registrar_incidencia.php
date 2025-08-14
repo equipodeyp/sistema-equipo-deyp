@@ -157,12 +157,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
         <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-
-
-      
-
-
-
       </nav>
     </div>
     <div class="main bg-light">
@@ -378,7 +372,6 @@ $folio_incidencia = 'INC0'.$c.'-';
                   </div>
 
 
-
                   <div class="form-group">
                     <label for="descripcion" class="col-md-4 control-label" style="font-size: 16px">DESCRIPCIÓN BREVE DE LA FALLA</label>
                     <div class="col-md-4 selectContainer">
@@ -411,7 +404,7 @@ $folio_incidencia = 'INC0'.$c.'-';
   </div>
 
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="./menu.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
 
 

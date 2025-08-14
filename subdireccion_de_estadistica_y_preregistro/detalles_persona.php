@@ -225,8 +225,8 @@ $fexprel1 = $rexprel1->fetch_assoc();
     </div>
     <nav class="menu-nav">
           <ul>
-				   	<a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-            <a style="text-align:center" class='user-nombre' href='repo.php?folio=<?php echo $rowfol['folioexpediente']; ?>'><button type='button' class='btn btn-light'>REPOSITORIO <br> PERSONA</button> </a>
+				   	<!-- <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente']; ?>'><button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
+            <a style="text-align:center" class='user-nombre' href='repo.php?folio=<?php echo $rowfol['folioexpediente']; ?>'><button type='button' class='btn btn-light'>REPOSITORIO <br> PERSONA</button> </a> -->
           </ul>
     </nav>
   </div>

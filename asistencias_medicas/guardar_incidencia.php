@@ -24,7 +24,6 @@ $row=$resultado->fetch_assoc();
   $atencion_usuario = $_POST['atencion'];
   $descripcion = $_POST['descripcion'];
   $id_atencion = $_POST['id_atencion'];
-
   // echo $apartado;
   // echo '<br>';
   // echo $usuario;
@@ -115,21 +114,21 @@ if ($apartado === "REPORTES DEL PROGRAMA"){
   VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia2', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
-} 
+}
 
 
 
 
-     if($result){
-      echo ("<script type='text/javaScript'>
-      window.location.href='./registrar_incidencia.php';
-      window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-      </script>");
+      if($result){
+        echo ("<script type='text/javaScript'>
+        window.location.href='./registrar_incidencia.php';
+        window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+        </script>");
 
 
-      }
+        }
 
- }
+}
 
 
   else {
