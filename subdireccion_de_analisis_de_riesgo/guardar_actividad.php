@@ -20,7 +20,7 @@ $clasificacion_tres = $_POST['clasificacion_actividad_tres'];
 $clasificacion_cuatro = $_POST['clasificacion_actividad_cuatro'];
 $clasificacion_cinco = $_POST['clasificacion_actividad_cinco'];
 $clasificacion_seis = $_POST['clasificacion_actividad_seis'];
-$cantidad_actividad = $_POST['cantidad_actividad'];
+$cantidad_actividad = 1;
 $fecha_actividad = $_POST['fecha_actividad'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
 

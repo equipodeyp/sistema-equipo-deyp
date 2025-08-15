@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 date_default_timezone_set("America/Mexico_City");
 session_start ();
 require '../conexion.php';
@@ -7,14 +7,14 @@ $check_actividad = $_SESSION["check_actividad"];
 if ($check_actividad == 1) {
     unset($_SESSION['check_actividad']);
     $name = $_SESSION['usuario'];
-    echo $name = $_SESSION['usuario'];
+    // echo $name = $_SESSION['usuario'];
     // echo "<br>";
     $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
     $result = $mysqli->query($sentencia);
     $row=$result->fetch_assoc();
 
 $numero_actividad = $_POST['numero_actividad'];
-$cantidad_actividad = $_POST['cantidad_actividad'];
+$cantidad_actividad = 1;
 $fecha_actividad = $_POST['fecha_actividad'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
 $folio_expediente = $_POST['folio_expediente'];
@@ -101,6 +101,8 @@ $year = date('Y');
 
 
 if ($numero_actividad === '9' && $folio_expediente_actividad === 'SI' && $id_sujeto_actividad === 'Lista Acumulada' && $clasificacion_actividad === 'Lista Desplegable'){
+    // echo "<br>";
+    // echo $numero_actividad;
 
     $query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
     reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
@@ -116,6 +118,8 @@ if ($numero_actividad === '9' && $folio_expediente_actividad === 'SI' && $id_suj
 }
 
 else if ($numero_actividad === '1' || $numero_actividad === '4' || $numero_actividad === '6' || $numero_actividad === '7' || $numero_actividad === '8'){
+    // echo "<br>";
+    // echo $numero_actividad;
 
     $query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
     reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
@@ -130,6 +134,8 @@ else if ($numero_actividad === '1' || $numero_actividad === '4' || $numero_activ
 } 
 
 else {
+    // echo "<br>";
+    // echo $numero_actividad;
 
     $query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
     reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
@@ -159,11 +165,10 @@ else {
 
 
 
-    // validacion de update correcto
 
     if($resultado){
         echo ("<script type='text/javaScript'>
-        window.location.href='../actividades_enlace/registrar_actividad.php';
+        window.location.href='./registrar_actividad.php';
         window.alert('!!!!!Registro exitoso¡¡¡¡¡')
     </script>");
     }
@@ -172,7 +177,7 @@ else {
 }
 
 else {
-    echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=../admin.php'>";
+    echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=./registrar_actividad.php'>";
 }
 
 ?>

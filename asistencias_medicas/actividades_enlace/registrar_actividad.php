@@ -140,19 +140,19 @@ $_SESSION["check_actividad"] = $check_actividad;
       </div>
 
 
-      <div class="form-group">
+      <!-- <div class="form-group" style="display:none;">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-list-ol"></i></span>
-            <input name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
+            <input value="1" name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
           </div>
           <h6 style="text-align:justify; font-size: x-small;">
             * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos; 
             en caso contrario, se debrá registrar actividad por actividad.
           </h6>
         </div>
-      </div>
+      </div> -->
       
 
 
