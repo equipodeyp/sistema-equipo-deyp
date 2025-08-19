@@ -691,7 +691,7 @@ a:focus {
 
   Swal.fire({
   title:"APLICATIVO INCIDENCIAS 2.0",
-  html: '<h3 style="text-align: justify;"> Como parte del mantenimiento y actualización del Sistema Informático del Programa de Protección de Sujetos que Intervienen en el Procedimiento Penal o Extinción de Dominio, se llevó a cabo la actualización del apartado de incidencias con la finalidad de mejorar los procesos y experiencia de los usuarios en el uso del sistema.</h3><h3 style="text-align: justify;">Si deseas conocer mas sobre la actualización da clic <a href="../docs/incidencias2.0.pdf">aqui.</a></h3>',
+  html: '<h3 style="text-align: justify;"> Como parte del mantenimiento y actualización del Sistema Informático del Programa de Protección de Sujetos que Intervienen en el Procedimiento Penal o Extinción de Dominio, se llevó a cabo la actualización del apartado de incidencias con la finalidad de mejorar los procesos y experiencia de los usuarios en el uso del sistema.</h3><h3 style="text-align: justify;">Si deseas conocer más sobre la actualización da clic <a href="../docs/incidencias2.0.pdf">aquí.</a></h3>',
   width: 1000,
   imageUrl: "../image/incidenciasvers2.0.png",
   imageWidth: 400,
