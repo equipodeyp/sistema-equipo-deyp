@@ -285,6 +285,12 @@ a:focus {
     /* opacity: 100%; */
   }
   /*  */
+
+.swal2-confirm {
+  font-size: 2.0em !important; /* Ajusta el tamaño de la fuente */
+  padding: 12px 22px !important; /* Ajusta el relleno para hacerlo más grande */
+}
+  
   </style>
 
 <link rel="stylesheet" href="../css/button_notification.css" type="text/css">
@@ -821,6 +827,37 @@ document.getElementById('show_alert').style.display = "";
 
    return false;
   });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  
+  var fecha_inicio = new Date().toLocaleDateString();
+  var fecha_fin = "31/8/2025";
+  // console.log(fecha_inicio);
+  
+  if (fecha_inicio <= fecha_fin){
+
+  Swal.fire({
+  title:"APLICATIVO INCIDENCIAS 2.0",
+  html: '<h3 style="text-align: justify;"> Como parte del mantenimiento y actualización del Sistema Informático del Programa de Protección de Sujetos que Intervienen en el Procedimiento Penal o Extinción de Dominio, se llevó a cabo la actualización del apartado de incidencias con la finalidad de mejorar los procesos y experiencia de los usuarios en el uso del sistema.</h3><h3 style="text-align: justify;">Si deseas conocer mas sobre la actualización da clic <a href="../docs/incidencias2.0.pdf">aqui.</a></h3>',
+  width: 1000,
+  imageUrl: "../image/incidenciasvers2.0.png",
+  imageWidth: 400,
+  imageHeight: 300,
+  padding: "3em",
+  color: "#242425ff",
+  background: "#fff url(/images/trees.png)",
+
+  backdrop: `
+    rgba(79, 87, 82, 0.4)
+  `,
+  confirmButtonText: 'Cerrar',
+  confirmButtonColor: '#5F6D6B',
+});
+
+
+  }
+
 </script>
 </body>
 </html>

@@ -219,7 +219,7 @@ $folio_incidencia = 'INC0'.$c.'-';
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-sitemap"></i></span>
                         <select required class="form-control" id="apartado" name="apartado">
-                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                            <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
                               <?php
                                   $select_apartado = "SELECT nombre
                                   FROM apartado_sippsipped ORDER BY nombre ASC ";
