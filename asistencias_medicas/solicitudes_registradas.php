@@ -198,8 +198,6 @@ $row=$result->fetch_assoc();
                                                             </td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $fecha_solicitud;?></td>
 
-                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_servidor']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['num_oficio']?></td> -->
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['tipo_requerimiento']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['observaciones']?></td>
