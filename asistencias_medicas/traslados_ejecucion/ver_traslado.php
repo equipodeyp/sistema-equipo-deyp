@@ -170,9 +170,7 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
         <div class="col-md-7 selectContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select name="municipiosalida" class="form-control selectpicker" disabled>
-              <option disabled selected value="<?php echo $ftraertraslado['municipio_salida']; ?>"><?php echo $ftraertraslado['municipio_salida']; ?></option>
-            </select>
+            <input name="municipiosalida" class="form-control" type="text" value="<?php echo $ftraertraslado['municipio_salida']; ?>" disabled>
           </div>
         </div>
       </div>
@@ -248,6 +246,12 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
                   <td><?php echo $ftraerdestinos['motivo']; ?></td>
                 </tr>
                 <?php
+                if ($ftraerdestinos['motivo'] === 'ASISTENCIA MÉDICA') {
+                  $mostrarasistenciamedica = 'true';
+                  $mostrarasistenciamedica2 = 'true';
+                }else {
+                  $mostrarasistenciamedica = 'false';
+                }
               }
 
               function numvecesbr($numcrear){
@@ -296,13 +300,15 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
               $auxcontarsuj = $auxcontarsuj + 1;
               $idsujdestinotraer = $fsujdestino['id_sujeto'];
               // traer todos los destinos pór sujeto
-
+              $getinfosujeto = "SELECT * FROM datospersonales WHERE id = '$idsujdestinotraer'";
+              $rgetinfosujeto = $mysqli->query($getinfosujeto);
+              $fgetinfosujeto = $rgetinfosujeto->fetch_assoc();
 
               ?>
               <tr>
                 <td><?php echo $auxcontarsuj; ?></td>
                 <td><?php echo $fsujdestino['folio_expediente']; ?></td>
-                <td><?php echo $fsujdestino['id_sujeto']; ?></td>
+                <td><?php echo $fgetinfosujeto['identificador']; ?></td>
                 <td><?php echo $fsujdestino['resguardado']; ?></td>
                 <td>
                   <?php
@@ -360,6 +366,23 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
               }
             });
           });
+
+          //Manejar cambio en select de id sujeto para asisntencia medica
+          $(document).on('change', '.id-sujeto', function(){
+            var $this = $(this);
+            var idsujeto = $this.val();
+            var $idSujetoSelect = $this.closest('.persona-form').find('.asistencia-medica');
+
+            $.ajax({
+              url: 'get_asistencia_medica.php',
+              type: 'POST',
+              data: {idsujeto: idsujeto},
+              success: function(response){
+                $idSujetoSelect.html(response);
+              }
+            });
+          });
+          // fin de asistencia medica
         });
       </script>
       <h4><span style="color: red;">NOTA: PARA CONCLUIR EL TRASLADO DEBES DE REGISTRAR LOS PDIS QUE REALIZARON EL TRASLADO</span></h4>

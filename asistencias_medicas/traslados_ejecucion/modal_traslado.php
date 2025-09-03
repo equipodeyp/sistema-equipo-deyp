@@ -170,7 +170,7 @@
                         // }
                       }
                       ?>
-                      <br><br>
+                      <br><br><br><br>
                       <div id="cabecera">
                         <div style="background: #63696D repeat-x fixed; color: #000; font-weight: 900;">
                           <h3 style="text-align:center; color: #ddd;">SUJETOS TRASLADADOS</h3>
@@ -182,23 +182,27 @@
                       <div class="col-md-3">
                         <h3 style="text-align:center">EXPEDIENTE</h3>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <h3 style="text-align:center">ID DE LA PP O SP</h3>
                       </div>
                       <div class="col-md-2">
                         <h3 style="text-align:center">EN RESGUARDO</h3>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <h3 style="text-align:center">DESTINOS</h3>
+                      </div>
+                      <div class="col-md-2">
+                        <h3 style="text-align:center">ASISTENCIA MÉDICA</h3>
                       </div>
                       <?php
                         $contarpers = 0;
                         $auxcontarsuj2 = 0;
-                        $datpers = "SELECT DISTINCT id_sujeto, folio_expediente, id_sujeto, resguardado FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladover'";
+                        $datpers = "SELECT DISTINCT id_sujeto, folio_expediente, id_sujeto, resguardado, id_asistenciamedica FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladover'";
                         $rdatpers = $mysqli->query($datpers);
                         while ($fdatpers = $rdatpers->fetch_assoc()) {
                           $contarpers = $contarpers + 1;
                           $idsujetouni = $fdatpers['id_sujeto'];
+                          $idasismedica = $fdatpers['id_asistenciamedica'];
                           // traer el identificador del sujeto
                           $identificador = "SELECT * FROM datospersonales WHERE id = '$idsujetouni'";
                           $ridentificador = $mysqli ->query($identificador);
@@ -214,10 +218,10 @@
                       <div class="col-md-2">
                         <h4 style="text-align:center"><?php echo $fidentificador['identificador']; ?></h4>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <h4 style="text-align:center"><?php echo $fdatpers['resguardado']; ?></h4>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <h4 style="text-align:center"><?php
                         $destxsuj = "SELECT * FROM react_destinos_traslados
                                      INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
@@ -228,6 +232,19 @@
                           echo $auxcontarsuj2.'.-'.$fdestxsuj['municipio'].'<br>';
                         }
                         $auxcontarsuj2 = 0;
+                        ?></h4>
+                      </div>
+                      <div class="col-md-2">
+                        <h4 style="text-align:center"><?php
+                        if ($idasismedica > 0 ) {
+                          $getidasismed = "SELECT * FROM solicitud_asistencia WHERE id = '$idasismedica'";
+                          $rgetidasismed = $mysqli->query($getidasismed);
+                          while ($fgetidasismed = $rgetidasismed->fetch_assoc()) {
+                            echo $fgetidasismed['id_asistencia'];
+                          }
+                        }elseif ($idasismedica === '0') {
+                          echo "N/A";
+                        }
                         ?></h4>
                       </div>
                       <?php

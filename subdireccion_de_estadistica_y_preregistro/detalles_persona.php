@@ -1092,7 +1092,7 @@ ocultarCamposNoFormalizadodisabled();
 <script type="text/javascript">
 var concluNone = document.getElementById('ESTATUS_PERSONA').value;
 function ConclusionCancelacion(){
-if(concluNone === "" || concluNone === null || concluNone === "PERSONA PROPUESTA" || concluNone === "SUJETO PROTEGIDO"){
+if(concluNone === "" || concluNone === null || concluNone === "PERSONA PROPUESTA" || concluNone === "SUJETO PROTEGIDO" || concluNone === "SUSPENDIDO TEMPORALMENTE"){
       document.getElementById('LABEL_CONCLUSION_CANCELACION_EXP').style.display = "none";
       document.getElementById('CONCLUSION_CANCELACION_EXP').style.display = "none";
       document.getElementById('LABEL_CONCLUSION_ART351').style.display = "none";
