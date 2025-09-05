@@ -6,7 +6,7 @@ $fnoincorporado = $rnoincorporado->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalsujincor = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-WHERE datospersonales.relacional = 'NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'";
+WHERE datospersonales.relacional = 'NO' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND (estatus = 'SUJETO PROTEGIDO' || estatus = 'DESINCORPORADO')";
 $rtotalsujincor = $mysqli->query($totalsujincor);
 $ftotalsujincor = $rtotalsujincor->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +29,10 @@ $fdesincorporado = $rdesincorporado->fetch_assoc();
 $perpropuesta = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'PERSONA PROPUESTA' AND relacional = 'NO'";
 $rperpropuesta = $mysqli->query($perpropuesta);
 $fperpropuesta = $rperpropuesta->fetch_assoc();
+////////////////////////////////////////////////////////////////////////////////
+$sujsuspendidotem = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'SUSPENDIDO TEMPORALMENTE' AND relacional = 'NO'";
+$rsujsuspendidotem = $mysqli->query($sujsuspendidotem);
+$fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'];
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +59,11 @@ echo "</tr>";
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "PERSONAS PROPUESTAS A INCORPORARSE"; "</td>";
 echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; "</td>";
+echo "</tr>";
+////////////////////////////////////////////////////////////////////////////////
+echo "<tr>";
+echo "<td style='text-align:left'>"; echo "SUJETOS SUSPENDIDOS TEMPORALMENTE"; "</td>";
+echo "<td style='text-align:center'>"; echo $fsujsuspendidotem['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";

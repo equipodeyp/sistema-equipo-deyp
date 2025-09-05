@@ -1,21 +1,21 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+require_once '../../mpdf/vendor/autoload.php';
 include("../conexion.php");
 // css
 $css = file_get_contents('css/main2.css');
 // Grab variables
 $mpdf = new \Mpdf\Mpdf([
-          'mode' => '',
-          'format' => 'A4',
-          'default_font_size' => 0,
-          'default_font' => '',
-          'margin_left' => 5,
-          'margin_right' => 5,
-          'margin_top' => 6,
-          'margin_bottom' => 6,
-          'margin_header' => 2,
-          'margin_footer' => 2,
-          'orientation' => 'L',
+  'mode' => 'utf-8',
+  'format' => '',
+  'default_font_size' => 0,
+  'default_font' => '',
+  'margin_left' => 15,
+  'margin_right' => 25,
+  'margin_top' => 16,
+  'margin_bottom' => 16,
+  'margin_header' => 6,
+  'margin_footer' => 6,
+  'orientation' => 'L',
     ]);
 
 // $mpdf->setAutoTopMargin = 'false';
@@ -39,7 +39,7 @@ $mpdf->SetHTMLFooter('
 <td width="3%" align="center" bgcolor="#97897D" style="height:30vh;"><h3 class=""></font></span>
 <span style="font-size: .55em; align:left;width:6px; color:white;"><font style="font-family: gothambook">
 <p align="center">
-<span style="font-size: 2em;">{PAGENO}</span>
+<span style="font-size: 2em;">{PAGENO}/2</span>
 </p>
 </font></span></h3>
 </td>
@@ -155,7 +155,7 @@ switch ($day) {
            $diafin = date( "j", $diafinal);
            // echo '<h1 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</h1>';
            // echo '<h1 style="text-align:center">' ; echo "<b>"; echo "REPORTE SEMANAL <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo "</b>"; echo '</h1>';
-           $data = '<br><br><br><br><h4 style="text-align:center; font-family: gothambook;"><b>Reporte Semanal <br> DEL '.$diaini.' AL '.$diafin.' DE '.$meses[date('n')-1].' DEL '.date('Y').' </b> </h4>';
+           $data = '<br><br><br><br><h3 style="text-align:center; font-family: gothambook;"><strong style="text-align:center; font-family: gothambook;">Reporte Semanal <br> DEL '.$diaini.' AL '.$diafin.' DE '.$meses[date('n')-1].' DEL '.date('Y').' </strong> </h3>';
     break;
     case "Saturday": //sabado
            $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));

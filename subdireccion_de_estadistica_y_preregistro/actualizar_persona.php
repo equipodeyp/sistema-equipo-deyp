@@ -150,7 +150,7 @@ if ($verifica_update_person == 1) {
   $fila_estatus_per = $res_estatus_pe->fetch_assoc();
   $folioexpediente_persona = $fila_estatus_per['folioexpediente'];
   // echo $fila_estatus_per['estatus'];
-  if ($fila_estatus_per['estatus'] === 'PERSONA PROPUESTA' || $fila_estatus_per['estatus'] === 'SUJETO PROTEGIDO' || $fila_estatus_per['estatus'] === '') {
+  if ($fila_estatus_per['estatus'] === 'PERSONA PROPUESTA' || $fila_estatus_per['estatus'] === 'SUJETO PROTEGIDO' || $fila_estatus_per['estatus'] === '' || $fila_estatus_per['estatus'] === 'SUSPENDIDO TEMPORALMENTE') {
     $datos_persona = "UPDATE datospersonales SET estatus='$estatus'  WHERE id = '$id_persona'";
     $res_dat_per = $mysqli->query($datos_persona);
   }
