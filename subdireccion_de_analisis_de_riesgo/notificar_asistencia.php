@@ -380,7 +380,7 @@ function cancelar() {
 }
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -393,7 +393,7 @@ if(dd<10){
   }
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("fecha_oficio_notificacion").setAttribute("min", today);
-</script>
+</script> -->
 
 
 <script type="text/javascript">
