@@ -6,7 +6,7 @@ $fnoincorporado = $rnoincorporado->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalsujincor = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-WHERE datospersonales.relacional = 'NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'";
+WHERE datospersonales.relacional = 'NO' AND determinacionincorporacion.convenio = 'FORMALIZADO' AND (estatus = 'SUJETO PROTEGIDO' || estatus = 'DESINCORPORADO')";
 $rtotalsujincor = $mysqli->query($totalsujincor);
 $ftotalsujincor = $rtotalsujincor->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ $perpropuesta = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'PERS
 $rperpropuesta = $mysqli->query($perpropuesta);
 $fperpropuesta = $rperpropuesta->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
-$sujsuspendidotem = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'SUSPEDIDO TEMPORALMENTE' AND relacional = 'NO'";
+$sujsuspendidotem = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'SUSPENDIDO TEMPORALMENTE' AND relacional = 'NO'";
 $rsujsuspendidotem = $mysqli->query($sujsuspendidotem);
 $fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

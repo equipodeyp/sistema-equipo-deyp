@@ -208,6 +208,8 @@
                   ?>
                 </tbody>
               </table>
+              <br>
+              <textarea name="name" rows="5" cols="89" placeholder="en caso de nota agregar aqui"></textarea>
             </div>
           </div>
         </div>
@@ -260,6 +262,8 @@
                   ?>
                 </tbody>
               </table>
+              <br>
+              <textarea name="name" rows="5" cols="89" placeholder="en caso de nota agregar aqui"></textarea>
             </div>
           </div>
           <!-- CUARTA TABLA -->
