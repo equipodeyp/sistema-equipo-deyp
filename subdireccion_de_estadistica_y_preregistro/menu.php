@@ -680,7 +680,8 @@ a:focus {
    return false;
   });
   </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   
   var fecha_inicio = new Date().toLocaleDateString();
@@ -710,6 +711,7 @@ a:focus {
 
   }
 
-</script>
+</script> -->
+
 </body>
 </html>

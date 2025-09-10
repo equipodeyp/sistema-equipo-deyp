@@ -580,7 +580,7 @@ $counti = $num_ti['ti'];
    return false;
   });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   
   var fecha_inicio = new Date().toLocaleDateString();
@@ -610,6 +610,6 @@ $counti = $num_ti['ti'];
 
   }
 
-</script>
+</script> -->
 </body>
 </html>

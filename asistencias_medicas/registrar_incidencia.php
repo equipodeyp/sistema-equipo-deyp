@@ -263,6 +263,29 @@ $folio_incidencia = 'INC0'.$c.'-';
                   </div>
 
 
+                  <div class="form-group" style="display: none" id="div_id_traslado">
+                    <label for="id_traslado" class="col-md-4 control-label" style="font-size: 16px">ID TRASLADO</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
+                        <select class="form-control" id="id_traslado" name="id_traslado">
+                            <option disabled selected value="">SELECCIONE EL ID DEL TRASLADO</option>
+                              <?php
+                                  $select1 = "SELECT DISTINCT idtrasladounico
+                                  FROM react_traslados
+                                  WHERE usuario = '$user' 
+                                  ORDER BY fecha_alta DESC ";
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_idtraslado = $valores1['idtrasladounico'];
+                                    echo "<option value='$result_idtraslado'>$result_idtraslado</option>";
+                                  }
+                              ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
 
                   <div class="form-group" style="display: none" id="div_folio_expediente">
                     <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
@@ -441,8 +464,8 @@ function obtenerRespuesta3(e){
 
 if (respuestaObtenida3 === "ALERTA DE CONVENIOS" || respuestaObtenida3 === "EXPEDIENTES Y SUJETOS" 
 ||  respuestaObtenida3 === "INSTRUMENTO DE ADAPTABILIDAD" ||  respuestaObtenida3 === "REGISTRO DE ACTIVIDADES"
-||  respuestaObtenida3 === "TRASLADOS SUJETOS" ||  respuestaObtenida3 === "VALIDAR MEDIDAS"
-|| respuestaObtenida3 === "MEDIDAS OTORGADAS" || respuestaObtenida3 === "SEGUIMIENTO EXPEDIENTE" || respuestaObtenida3 === "SEGUIMIENTO SUJETO" ){
+||  respuestaObtenida3 === "VALIDAR MEDIDAS" || respuestaObtenida3 === "MEDIDAS OTORGADAS" 
+|| respuestaObtenida3 === "SEGUIMIENTO EXPEDIENTE" || respuestaObtenida3 === "SEGUIMIENTO SUJETO" ){
 
       document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
 
@@ -491,6 +514,23 @@ else if(respuestaObtenida3 === "REPORTES DEL PROGRAMA"){
       document.getElementById("id_sujeto").required = false; // VALIDAR
       document.getElementById("id_asistencia").required = false; // VALIDAR
 
+      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
+      document.getElementById("div_folio_expediente").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto").style.display = "none"; // OCULTAR
+
+} else if (respuestaObtenida3 === "TRASLADOS SUJETOS"){
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+      document.getElementById("id_traslado").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente").required = false; // VALIDAR
+      document.getElementById("id_sujeto").required = false; // VALIDAR
+      document.getElementById("id_asistencia").required = false; // VALIDAR
+
+      document.getElementById("div_id_traslado").style.display = ""; // OCULTAR
       document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
       document.getElementById("div_folio_expediente").style.display = "none"; // OCULTAR
       document.getElementById("div_id_sujeto").style.display = "none"; // OCULTAR

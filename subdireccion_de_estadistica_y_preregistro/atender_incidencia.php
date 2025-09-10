@@ -441,7 +441,19 @@ a:focus {
                                                         
                                                       </div>
 
-                                                      
+                                                      <?php 
+                                                      if ($row['id_apartado'] != "NO APLICA"){
+                                                      $id_traslado = $row['id_traslado'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Id traslado:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$id_traslado'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
 
                                                       <?php 
                                                       if ($row['folio_expediente'] != "NO APLICA"){
