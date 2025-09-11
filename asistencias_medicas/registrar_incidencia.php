@@ -263,7 +263,7 @@ $folio_incidencia = 'INC0'.$c.'-';
                   </div>
 
 
-                  <div class="form-group" style="display: none" id="div_id_traslado">
+                  <div class="form-group"  id="div_id_traslado">
                     <label for="id_traslado" class="col-md-4 control-label" style="font-size: 16px">ID TRASLADO</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
@@ -271,9 +271,9 @@ $folio_incidencia = 'INC0'.$c.'-';
                         <select class="form-control" id="id_traslado" name="id_traslado">
                             <option disabled selected value="">SELECCIONE EL ID DEL TRASLADO</option>
                               <?php
-                                  $select1 = "SELECT DISTINCT idtrasladounico
+                                  $select1 = "SELECT idtrasladounico
                                   FROM react_traslados
-                                  
+                                 
                                   ORDER BY fecha_alta DESC ";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
