@@ -5,7 +5,6 @@ date_default_timezone_set("America/Mexico_City");
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
-// echo $name;
 if (!isset($name)) {
   header("location: ../logout.php");
 }
@@ -30,7 +29,7 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
-// echo $name;
+// echo"$name";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -243,10 +242,7 @@ a:focus {
   color: #FFFFFF;
   text-decoration: underline;
 }
-  .swal2-confirm {
-  font-size: 2.0em !important; /* Ajusta el tamaño de la fuente */
-  padding: 12px 22px !important; /* Ajusta el relleno para hacerlo más grande */
-}
+
   </style>
 </head>
 <body>
@@ -334,56 +330,23 @@ a:focus {
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/registrar.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
                               <i class="fas fa-file-medical"></i> REGISTRAR
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/consultar.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
                               <i class="fas fa-laptop-file"></i> CONSULTAR
                           </a>
                       </li>
                       <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./react/buscar.php'">
+                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
                               <i class="fas fa-search"></i> BUSCAR
                           </a>
                       </li>
                   </ul>
               </li>
         </ul>
-
-            <ul>
-                <li>
-                  <a href="#" onclick="toggleSubmenu(this)">
-                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
-                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">INCIDENCIAS</span>
-                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
-                  </a>
-                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                      <?php if ($name=='estadistica_sub') { ?>
-                      <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
-                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
-                          </a>
-                      </li>
-                      <?php }?>
-                      <?php if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3') {?>
-                      <li>
-                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./atender_incidencia.php'">
-                              <i class="fas fa-laptop-file"></i> ATENDER INCIDENCIA
-                          </a>
-                      </li>
-                      <?php }?>
-                  </ul>
-              </li>
-            </ul>
-          
-            
       </nav>
     </div>
     <div class="main bg-light">
@@ -680,38 +643,5 @@ a:focus {
    return false;
   });
   </script>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  
-  var fecha_inicio = new Date().toLocaleDateString();
-  var fecha_fin = "31/8/2025";
-  // console.log(fecha_inicio);
-  
-  if (fecha_inicio <= fecha_fin){
-
-  Swal.fire({
-  title:"APLICATIVO INCIDENCIAS 2.0",
-  html: '<h3 style="text-align: justify;"> Como parte del mantenimiento y actualización del Sistema Informático del Programa de Protección de Sujetos que Intervienen en el Procedimiento Penal o Extinción de Dominio, se llevó a cabo la actualización del apartado de incidencias con la finalidad de mejorar los procesos y experiencia de los usuarios en el uso del sistema.</h3><h3 style="text-align: justify;">Si deseas conocer más sobre la actualización da clic <a href="../docs/incidencias2.0.pdf">aquí.</a></h3>',
-  width: 1000,
-  imageUrl: "../image/incidenciasvers2.0.png",
-  imageWidth: 400,
-  imageHeight: 300,
-  padding: "3em",
-  color: "#242425ff",
-  background: "#fff url(/images/trees.png)",
-
-  backdrop: `
-    rgba(79, 87, 82, 0.4)
-  `,
-  confirmButtonText: 'Cerrar',
-  confirmButtonColor: '#5F6D6B',
-});
-
-
-  }
-
-</script> -->
-
 </body>
 </html>
