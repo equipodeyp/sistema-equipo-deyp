@@ -26,60 +26,68 @@ $informe_medico = $_POST['informe_medico'];
 $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
 
-// $cl = "SELECT COUNT(*) as t FROM seguimiento_asistencia WHERE seguimiento_asistencia.id_asistencia = '$id_asistencia'";
-// $rcl = $mysqli->query($cl);
-// $fcl = $rcl->fetch_assoc();
 
-// echo $fcl['t'];
 
 // $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
-// echo $id_asistencia;
-// echo "<br>";
-// echo $traslado;
-// echo "<br>";
-// echo $se_presento;
-// echo "<br>";
-// echo $reprogramar;
-// echo "<br>";
-// echo $motivo;
-// echo "<br>";
-// echo $policia_investigacion;
-// echo "<br>";
-// echo $hospitalizacion;
-// echo "<br>";
-// echo $diagnostico;
-// echo "<br>";
-// echo $cita_seguimiento;
-// echo "<br>";
-// echo $informe_medico;
-// echo "<br>";
-// echo $observaciones_seguimiento;
-// echo "<br>";
-// echo $etapa;
-// echo "<br>";
+echo $id_asistencia;
+echo "<br>";
+echo $traslado;
+echo "<br>";
+echo $se_presento;
+echo "<br>";
+echo $reprogramar;
+echo "<br>";
+echo $motivo;
+echo "<br>";
+echo $policia_investigacion;
+echo "<br>";
+echo $hospitalizacion;
+echo "<br>";
+echo $diagnostico;
+echo "<br>";
+echo $cita_seguimiento;
+echo "<br>";
+echo $informe_medico;
+echo "<br>";
+echo $observaciones_seguimiento;
+echo "<br>";
+echo $etapa;
+echo "<br>";
+
+
+$cl = "SELECT* FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
+$rcl = $mysqli->query($cl);
+$fcl = $rcl->fetch_assoc();
+$folio_expediente = $fcl['folio_expediente'];
+$id_sujeto = $fcl['id_sujeto'];
+echo "<br>";
+echo $folio_expediente;
+echo "<br>";
+echo $id_sujeto;
+//////////////////////////////////////////////////////////////////////////////////////////
 
 
     // if($traslado == 'SI' &&  $se_presento == 'SI'){
 
 
 
-    $etapa = "ASISTENCIA MÉDICA COMPLETADA";
+    // $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
-    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, informe_medico, observaciones_seguimiento, servidor_registra) 
-    VALUES ('$id_asistencia', '$traslado', '$informe_medico', '$observaciones_seguimiento', '$nombre_servidor')";
-    $result = $mysqli->query($query);
+    // $query = "INSERT INTO seguimiento_asistencia (id_asistencia, traslado_realizado, informe_medico, observaciones_seguimiento, servidor_registra) 
+    // VALUES ('$id_asistencia', '$traslado', '$informe_medico', '$observaciones_seguimiento', '$nombre_servidor')";
+    // $result = $mysqli->query($query);
 
-    $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
-    $res_etapa = $mysqli->query($actualizar_etapa);
+    // $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+    // $res_etapa = $mysqli->query($actualizar_etapa);
 
-        if($result) {
-            echo $verifica;
-            echo ("<script type='text/javaScript'>
-            window.location.href='./asistencia_turnada.php';
-            window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-        </script>");
-            } else { }
+    //     if($result) {
+    //         echo $verifica;
+    //         echo ("<script type='text/javaScript'>
+    //         window.location.href='./asistencia_turnada.php';
+    //         window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+    //     </script>");
+    //         } else { }
 
 
 

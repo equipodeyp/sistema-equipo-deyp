@@ -273,7 +273,7 @@ $folio_incidencia = 'INC0'.$c.'-';
                               <?php
                                   $select1 = "SELECT DISTINCT idtrasladounico
                                   FROM react_traslados
-                                  WHERE usuario = '$user' 
+                                  
                                   ORDER BY fecha_alta DESC ";
                                   $answer1 = $mysqli->query($select1);
                                   while($valores1 = $answer1->fetch_assoc()){
