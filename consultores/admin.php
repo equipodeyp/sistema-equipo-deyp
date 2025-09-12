@@ -327,24 +327,25 @@ a:focus {
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
-                            <i class="fas fa-car-side"></i> TRASLADOS
-                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
-                        </a>
-                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/add_traslado.php'">
-                                <i class="fas fa-file-medical"></i> REGISTRAR</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/consulta_traslados.php'">
-                                <i class="fas fa-laptop-file"></i> BUSCAR</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/search_traslado.php'">
-                              <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
+                <li>
+                  <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
+                    <i class="fas fa-car-side"></i>
+                    <span class="menu-items" style="color: white; font-weight:bold;">TRASLADOS</span>
+                    <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/add_traslado.php'">
+                      <i class="fas fa-file-medical"></i> REGISTRAR</a>
+                    </li>
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/consulta_traslados.php'">
+                      <i class="fas fa-laptop-file"></i> BUSCAR</a>
+                    </li>
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/search_traslado.php'">
+                      <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
+                    </li>
+                  </ul>
+                </li>
             </li>
         </ul>
       </ul>
@@ -372,7 +373,7 @@ a:focus {
             </ul>
 
 
-        
+
         <?php
         }
         ?>
@@ -633,11 +634,11 @@ a:focus {
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-  
+
   var fecha_inicio = new Date().toLocaleDateString();
   var fecha_fin = "31/8/2025";
   // console.log(fecha_inicio);
-  
+
   if (fecha_inicio <= fecha_fin){
 
   Swal.fire({
@@ -664,4 +665,3 @@ a:focus {
 </script> -->
 
 </body></html>
-
