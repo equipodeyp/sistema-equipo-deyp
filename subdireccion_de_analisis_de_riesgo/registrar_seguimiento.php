@@ -331,9 +331,21 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     </div>
                   </div> -->
 
+                  <div class="form-group" id="div_numero_oficio">
+                      <label for="numero_oficio" class="col-md-4 control-label" style="font-size: 16px">NÚMERO DE OFICIO</label>
+                      <div class="col-md-4">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fas fa-solid fa-paperclip"></i></span>
+  
+                              <input class="form-control" id="numero_oficio" name="numero_oficio">
+  
+                        </div>
+                      </div>
+                  </div>
+
 
                   <div class="form-group">
-                    <label for="informe_medico" class="col-md-4 control-label" style="font-size: 16px">INFORME MÉDICO</label>
+                    <label for="informe_medico" class="col-md-4 control-label" style="font-size: 16px">INFORME</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <textarea onkeypress="cancelar()" value name="informe_medico" id="informe_medico" rows="6" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
