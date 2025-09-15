@@ -165,7 +165,8 @@ $row=$result->fetch_assoc();
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico
 
                                                     FROM solicitud_asistencia
-                                                    WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
+                                                    WHERE solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
+                                                    AND solicitud_asistencia.etapa = 'NOTIFICADA' 
                                                     OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);

@@ -372,7 +372,7 @@ $permiso6 = $fuserfijo['permiso6']; //AGENDAR
 $permiso7 = $fuserfijo['permiso7']; //SEGUIMIENTO
 
 $permiso8 = $fuserfijo['permiso8']; //DETALLE
-
+$permiso9 = $fuserfijo['permiso9']; //REGISTRAR
 // echo $permiso1;
 // echo '<br>';
 // echo $permiso2;
@@ -441,6 +441,24 @@ if ($permiso7==='seguimiento') {
 }
 
 
+if ($permiso9==='registrar') {
+  echo "
+
+  <li style='text-align:center'>
+    <a href='./registrar_asistencia.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>REGISTRAR</h2>
+      <h3 class='ca-sub'>ASISTENCIA PSICOLÓGICA</h3>
+    </div>
+    </a>
+  </li>
+
+  ";
+
+}
+
+
 if ($permiso4==='calendario') {
   echo "
     <li style='text-align:center'>
@@ -472,6 +490,8 @@ if ($permiso8==='detalle') {
   ";
 
 }
+
+
 
 if($fcl['t'] > 0){
 
