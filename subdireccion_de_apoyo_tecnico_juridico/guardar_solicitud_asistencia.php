@@ -66,7 +66,7 @@ $año = $folio_separado[4];
 
 // echo '<br>';
 $c = $r["total"] + 1;
-$id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$c;
+$id_asistencia_medica = $id_sujeto.'-'.$año.'-AP0'.$c;
 // echo $id_asistencia_medica;
 
 

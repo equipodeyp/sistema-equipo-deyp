@@ -182,8 +182,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         <thead>
                             <tr>
 
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA MÉDICA</th>
-                                
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA DE SOLICITUD</th>
 
                                 
@@ -217,11 +217,14 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                     <?php $count = $count + 1 ?>
                                                         <tr>
 
+                                                            
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
-
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['fecha_solicitud']?></td>
-<!-- 
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['id_servidor']?></td> -->
+                                                            <?php
+                                                              $fecha_solic = $row['fecha_solicitud'];
+                                                              $fecha_s = date("d/m/Y", strtotime($fecha_solic));
+                                                            ?>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $fecha_s?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['num_oficio']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['tipo_requerimiento']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>

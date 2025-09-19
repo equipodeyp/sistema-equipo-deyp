@@ -18,7 +18,7 @@ $user = $row['usuario'];
 $m_user = $user;
 $m_user = strtoupper($m_user);
 
-// echo $m_user; 
+// echo $user; 
 // echo $user;
 // $f_exped = 'UPSIPPED/TOL/113/015/2022';
 // echo $f_exped;
@@ -195,7 +195,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                   </div>
 
 
-<!-- <div id="mostrar_campos" style="display: none;"> -->
+
 
                   <div class="form-group">
                     <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
@@ -210,24 +210,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                       </div>
                     </div>
                   </div>
-
-
-
-
-<!-- </div> -->
-
-
-                  <!-- <div class="form-group">
-                    <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
-                    <div class="col-md-4 selectContainer">
-                      <div id="select_id_sujeto" class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
-                        <select class="form-control" id="id_sujeto" name="id_sujeto" required>
-                            <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div> -->
 
 
                   <div class="form-group" style="display: none;">
@@ -248,26 +230,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     </div>
                   </div>
 
-        <!-- <div class="form-group" style="display: none;">
-					<label for="fecha_solicitud" class="col-md-4 control-label">FECHA DE SOLICITUD</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-calendar-check"></i></span>
-                            <input name="fecha_solicitud" class="form-control"  id="fecha_solicitud"  placeholder="Fecha" value="" readonly>
-			            </div>
-					</div>
-				</div>
-
-        <div class="form-group" style="display: none;">
-					<label for="hora_solicitud" class="col-md-4 control-label">HORA DE SOLICITUD</label>
-					<div class="col-md-4 inputGroupContainer">
-						<div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
-                            <input name="hora_solicitud" class="form-control"  id="hora_solicitud"  placeholder="Hora" value="" readonly>
-			            </div>
-					</div>
-				</div> -->
-
 
                 <div class="form-group" style="display: none;">
                     <label for="id_servidor" class="col-md-4 control-label">ID SERVIDOR PÚBLICO</label>
@@ -275,6 +237,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
                         <input type="text" class="form-control"  id="id_servidor" name="id_servidor" placeholder="" value="<?php echo $id_servidor_ini;?>" readonly>
+                        <input type="text" class="form-control"  id="user" name="user" placeholder="" value="<?php echo $user;?>" readonly>
                       </div>
                     </div>
                 </div>
@@ -298,44 +261,60 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                         <span class="input-group-addon"><i class="fas fa-solid fa-thumbtack"></i></span>
                         <select class="form-control selectpicker" id="tipo_requerimiento" name="tipo_requerimiento" required>
                             <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <option value="EQUIPO MULTIDISIPLINARIO" >EQUIPO MULTIDISIPLINARIO</option>
-                            <option value="POR INGRESO">POR INGRESO</option>
-                            <option value="PRIMERA VEZ">PRIMERA VEZ</option>
-                            <!-- <option value="SEGUIMIENTO" >SEGUIMIENTO</option>
-                            <option value="URGENCIA">URGENCIA</option> -->
+                            <option value="PERIÓDICA DE SEGUIMIENTO">PERIÓDICA DE SEGUIMIENTO</option>
+                            <option value="PROVISIONAL DE SEGUIMIENTO">PROVISIONAL DE SEGUIMIENTO</option>
                         </select>
                       </div>
                     </div>
                   </div>
 
+
+                  <div class="form-group" style="display: none;">
+                    <label for="servicio_medico" class="col-md-4 control-label" style="font-size: 16px">TIPO DE SERVICIO </label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-brain"></i></span>
+                        <input type="text" class="form-control"  id="servicio_medico" name="servicio_medico" placeholder="" value="PSICOLÓGICO" readonly>
+                      </div>
+                    </div>
+                  </div>
 
 
                   <div class="form-group">
-                    <label for="servicio_medico" class="col-md-4 control-label" style="font-size: 16px">SERVICIO MÉDICO </label>
-                    <div class="col-md-4 selectContainer">
+                    <label for="fecha_asistencia" class="col-md-4 control-label">FECHA ASISTENCIA</label>
+                    <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <select class="form-control" id="servicio_medico" maxlength="50" name="servicio_medico" required>
-                        <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
-                            <?php
-                            $select = "SELECT * FROM servicios_medicos";
-                            $answer = $mysqli->query($select);
-                            while($valores = $answer->fetch_assoc()){
-                              echo "<option value='".$valores['servicio_medico']."'>".$valores['servicio_medico']."</option>";
-                            }
-                          ?>
-                        </select>
+                        <span class="input-group-addon"></span>
+                        <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" value="">
                       </div>
                     </div>
                   </div>
 
+
+                  <div class="form-group">
+                    <label for="hora_asistencia" class="col-md-4 control-label">HORA ASISTENCIA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                          <span class="input-group-addon"></span>
+                          <input required name="hora_asistencia" type="time" class="form-control input-group-addon"  id="hora_asistencia"  value="">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="informe_medico" class="col-md-4 control-label" style="font-size: 16px">INFORME</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <textarea required value name="informe_medico" id="informe_medico" rows="6" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="form-group">
                     <label for="observaciones" class="col-md-4 control-label" style="font-size: 16px">OBSERVACIONES</label>
                     <div class="col-md-4 selectContainer">
                       <div class="input-group">
-                        <!-- <span class="input-group-addon"><i class="fas fa-solid fa-eye"></i></span> -->
-                        <textarea onkeypress="cancelar()" name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea name="observaciones" id="observaciones" rows="5" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
@@ -351,7 +330,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                 </form>
               </div>
-            </div><!-- /.container -->
+            </div>
           </article>
         </div>
       </div>
@@ -361,93 +340,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
   <div class="contenedor">
     <a href="menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
-  <div class="contenedor">
-    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
-  </div>
 
-
-
-
-
-  <!-- <div class="con">
-        <form method="post" id="frm">
-            <input type="text" name="comm" id="comm" placeholder="Escribe tu comentario aquí...">
-            <input type="submit" value="Enviar" id="submit">
-        </form>
-  </div>   
-    
-    
-  <script src="../js/new_register.js"></script> -->
-
-
-<!-- <script type="text/javascript">
-  window.onload = function(){
-    var fecha = new Date();
-    var mes = fecha.getMonth()+1;
-    var dia = fecha.getDate();
-    var ano = fecha.getFullYear();
-
-    var horas = fecha.getHours();
-    var minutos = fecha.getMinutes();
-    var segundos = fecha. getSeconds();
-
-    document.getElementById('hora_solicitud').value=horas+":"+minutos+":"+segundos;
-
-    if(dia<10)
-        dia='0'+dia;
-    if(mes<10)
-        mes='0'+mes
-    document.getElementById('fecha_solicitud').value=dia+"/"+mes+"/"+ano;
-    
-}
-</script>
-
-
-<script type="text/javascript">
-
-  var idsuj = document.getElementById('id_sujeto');
-  var idsujeto;
-  var idasistencia;
-
-  var folioexpediente = document.getElementById('folio_expediente');
-  var folio;
-  var folioobtenido;
-
-  var separaranio = [];
-  var anioSeparado;
-
-
-  folioexpediente.addEventListener('change', obtenerfolio);
-  
-  function obtenerfolio(e){
-
-    folio = e.target.value;
-    folioobtenido = folio;
-
-    // console.log(folioobtenido);
-
-    separaranio = folioobtenido.split("/");
-    anioSeparado = separaranio[4];
-    
-    // console.log(anioSeparado);
-
-
-  }
-
-
-  idsuj.addEventListener('change', obtenerid);
-  function obtenerid(e){
-
-    idsujeto = e.target.value;
-    idasistencia = idsujeto+"-"+anioSeparado+"-AM0"
-
-    // console.log(idasistencia);
-    document.getElementById('id_asistencia').value = idasistencia+"<?php echo $c+1; ?>";
-
-  }
-
-
-</script> -->
 
 
 <script type="text/javascript">
@@ -476,42 +369,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 	}
 </script>
 
-<script type="text/javascript">
-function cancelar() {
-    var key = event.keyCode;
-
-    if (key === 13) {
-        event.preventDefault();
-    }
-}
-</script>
-
-<!-- <script type="text/javascript">
-
-  var id_sujeto = document.getElementById('folio_expediente');
-
-  var id;
-  var idobtenido;
-
-  id_sujeto.addEventListener('change', obtenerfolio);
-  
-  function obtenerfolio(e){
-
-    id = e.target.value;
-    idobtenido = id;
-
-    if (idobtenido != "" ){
-
-      document.getElementById("mostrar_campos").style.display = "";
-
-    }
-
-    console.log(idobtenido);
 
 
-
-
-  }
-</script> -->
 </body>
 </html>
