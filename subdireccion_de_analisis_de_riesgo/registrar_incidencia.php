@@ -310,11 +310,23 @@ $folio_incidencia = 'INC0'.$c.'-';
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
                         <select class="form-control" id="id_asistencia" name="id_asistencia">
 
-                        </select>
-                        <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
-                        
+                        </select>                      
                       </div>
-                      <!-- <h6>Nota: Digite el Id de la asistencia, si cuenta con él. En caso contrario deje el campo vacio.</h6> -->
+
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" style="display: none" id="div_id_asistencia_psico">
+                    <label for="id_asistencia_psico" class="col-md-4 control-label">ID ASISTENCIA PSICOLÓGICA</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-brain"></i></span>
+                        <select class="form-control" id="id_asistencia_psico" name="id_asistenciapsico">
+
+                        </select>                      
+                      </div>
+
                     </div>
                   </div>
 
@@ -474,6 +486,25 @@ else if(respuestaObtenida3 === "ASISTENCIAS MÉDICAS"){
       document.getElementById("folio_expediente").required = true; // VALIDAR
       document.getElementById("id_sujeto").required = true; // VALIDAR
       document.getElementById("id_asistencia").required = true; // VALIDAR
+
+}
+
+else if(respuestaObtenida3 === "ASISTENCIAS PSICOLÓGICAS"){
+
+      document.getElementById("div_folio_expediente").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_sujeto").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_asistencia_psico").style.display = ""; // MOSTRAR
+
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_psico").value = ""; // LIMPIAR
+      
+      document.getElementById("folio_expediente").required = true; // VALIDAR
+      document.getElementById("id_sujeto").required = true; // VALIDAR
+      document.getElementById("id_asistencia_psico").required = true; // VALIDAR
 
 }
 
