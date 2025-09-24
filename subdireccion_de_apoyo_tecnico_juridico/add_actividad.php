@@ -183,7 +183,7 @@ $mostrar=$result->fetch_assoc();
          </div>
         </div>
 
-<div class="form-group">
+<div class="form-group"  style="display:none;">
         <label class="col-md-3 control-label">CANTIDAD</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
@@ -433,7 +433,7 @@ $mostrar=$result->fetch_assoc();
 	function recargarLista(){
 		$.ajax({
 			type:"POST",
-			url:"./get_id_sujeto.php",
+			url:"./get_id_sujeto.php", 
 			data:"folio=" + $('#folio_expediente').val(),
 			success:function(r){
 				$('#id_sujeto').html(r);
@@ -461,9 +461,9 @@ $mostrar=$result->fetch_assoc();
 
     console.log(num_actividad_obtenido);
     
-    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '7') {
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3') {
       
-    document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
     //document.getElementById("id_sujeto").value = ""; // LIMPIAR
@@ -490,7 +490,7 @@ $mostrar=$result->fetch_assoc();
 
     else if (num_actividad_obtenido === '5') {
       
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+      document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
       document.getElementById("fechaactividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById("id_sujeto").value = ""; // LIMPIAR
@@ -517,7 +517,7 @@ $mostrar=$result->fetch_assoc();
 
  
      else if (num_actividad_obtenido === '4') {
-     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+     document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
     document.getElementById("id_sujeto").value = ""; // LIMPIAR
@@ -552,7 +552,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("clasificacion4").style.display = ""; // MOSTRAR
 
 
-    document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
     document.getElementById("id_sujeto").value = ""; // LIMPIAR
@@ -566,7 +566,7 @@ $mostrar=$result->fetch_assoc();
       
     } 
 
-     else if (num_actividad_obtenido === '8') {
+     else if (num_actividad_obtenido === '7') {
       
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
@@ -578,7 +578,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
       document.getElementById("clasificacion1").style.display = ""; // MOSTRAR
 
-    document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+    document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
     document.getElementById("id_sujeto").value = ""; // LIMPIAR
@@ -591,7 +591,7 @@ $mostrar=$result->fetch_assoc();
       
     } 
 
-    else if (num_actividad_obtenido === '9') {
+    else if (num_actividad_obtenido === '8') {
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
@@ -602,7 +602,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
       document.getElementById("clasificacion2").style.display = ""; // MOSTRAR
 
-     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+     document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
     document.getElementById("id_sujeto").value = ""; // LIMPIAR
@@ -617,7 +617,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-    else if (num_actividad_obtenido === '10') {
+    else if (num_actividad_obtenido === '9') {
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
@@ -628,7 +628,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
       document.getElementById("clasificacion5").style.display = ""; // MOSTRAR
 
-     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
+     document.getElementById("cantidad_actividad").value = "1"; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
     document.getElementById("id_sujeto").value = ""; // LIMPIAR

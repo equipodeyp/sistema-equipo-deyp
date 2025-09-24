@@ -155,16 +155,22 @@
                     </div>
                   </div>
                 </div>
+
+
+
                 <!-- EVIDENCIA INTERNA -->
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">EVIDENCIA INTERNA:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
+                <!-- <div class="form-group"> -->
+                  <!-- <label for="" class="col-md-4 control-label">EVIDENCIA INTERNA:</label> -->
+                  <!-- <div class="col-md-4 inputGroupContainer"> -->
+                    <!-- <div class="input-group"> -->
                       <!-- <span class="input-group-addon"><i class=""></i></span> -->
-                      <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['evidencia_interna']; ?>" readonly>
-                    </div>
-                  </div>
-                </div>
+                      <!-- <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['evidencia_interna']; ?>" readonly> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
+                <!-- </div> -->
+
+
+                
                 <!-- NUMERO EVIDENCIA -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">NÚMERO DE EVIDENCIA:</label>
@@ -186,15 +192,22 @@
                   </div>
                 </div>
                 <!-- ID SUJETO -->
-                <div class="form-group">
+                <?php if ($ftraeractividad['id_sujeto'] != "") { ?>
+                  <div class="form-group">
                   <label for="" class="col-md-4 control-label">ID SUJETO:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                       <!-- <span class="input-group-addon"><i class=""></i></span> -->
+                       
                       <input style="width: 700px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $ftraeractividad['id_sujeto']; ?>" readonly>
+                        
                     </div>
                   </div>
                 </div>
+                 <?php } ?>
+
+
+
                 <!-- REPORTE DE METAS -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">REPORTE DE METAS:</label>

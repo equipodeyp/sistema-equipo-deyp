@@ -120,7 +120,7 @@ echo "<br>";
 
 
 
- if ( $idactividad === '1'|| $idactividad === '2'|| $idactividad === '3'|| $idactividad === '5'|| $idactividad === '7'){
+ if ( $idactividad === '1'|| $idactividad === '2'|| $idactividad === '3'|| $idactividad === '5'){
     $clasificacion = 'NA';
  $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
                                                id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
@@ -152,7 +152,7 @@ VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$
 }
 
 
-else if ( $idactividad === '8'){
+else if ( $idactividad === '7'){
        $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
                                                id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
 VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion1', 
@@ -162,7 +162,7 @@ VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$
 }
 
 
-else if ( $idactividad === '9'){
+else if ( $idactividad === '8'){
        $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
                                                id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
 VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion2', 
@@ -172,7 +172,7 @@ VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$
 }
 
 
-else if ( $idactividad === '10'){
+else if ( $idactividad === '9'){
        $addactividad = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, folio_expediente, 
                                                id_sujeto, id_evidencia, observaciones, informe_anual, usuario, year) 
 VALUES ('$consecutivo_actividad','$id_actividad', '$subdireccion_actividad ', '$funcion_actividad', '$idactividad', '$unidad_medida_actividad', '$reporte_metas_actividad', '$clasificacion5', 
