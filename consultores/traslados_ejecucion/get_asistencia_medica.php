@@ -1,7 +1,9 @@
 <?php
 $conexion=mysqli_connect('localhost','root','','sistemafgjem');
-$id_sujeto=$_POST['idsujeto'];
+echo $id_sujeto=$_POST['idsujeto'];
 $id = $id_sujeto;
+echo $fecha=$_POST['fecha'];
+
 
 $getidsujeto = "SELECT identificador FROM datospersonales
                      WHERE id = '$id_sujeto'";

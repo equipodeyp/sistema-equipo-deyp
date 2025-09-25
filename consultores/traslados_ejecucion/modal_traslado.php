@@ -78,7 +78,7 @@
                       </div>
                       <!-- horasalida -->
                       <div class="form-group">
-                        <label class="col-md-3 control-label">HORA DE SALIDA</label>
+                        <label class="col-md-3 control-label">INICIO DEL TRASLADO</label>
                         <div class="col-md-7 inputGroupContainer">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
@@ -88,7 +88,7 @@
                       </div>
                       <!-- horallegada -->
                       <div class="form-group">
-                        <label class="col-md-3 control-label">HORA DE LLEGADA</label>
+                        <label class="col-md-3 control-label">FIN DEL TRASLADO</label>
                         <div class="col-md-7 inputGroupContainer">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>

@@ -335,13 +335,13 @@ a:focus {
                     <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                   </a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/add_traslado.php'">
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/add_traslado.php'">
                       <i class="fas fa-file-medical"></i> REGISTRAR</a>
                     </li>
-                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/consulta_traslados.php'">
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/consulta_traslados.php'">
                       <i class="fas fa-laptop-file"></i> BUSCAR</a>
                     </li>
-                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/traslados_ejecucion/search_traslado.php'">
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='./traslados_ejecucion/search_traslado.php'">
                       <i class="fas fa-search"></i> CONSULTAR CIFRAS</a>
                     </li>
                   </ul>
