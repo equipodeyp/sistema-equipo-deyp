@@ -45,7 +45,8 @@ $etapa = "SOLICITADA";
 // echo $etapa;
 // echo '<br>';
 
-$cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto'";
+// $cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto'";
+$cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto' AND servicio_medico = 'PSICOLÓGICO'";
 $result = $mysqli->query($cant);
 $r=$result->fetch_assoc();
 // echo $r["total"];
