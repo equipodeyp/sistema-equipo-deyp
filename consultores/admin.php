@@ -310,23 +310,15 @@ a:focus {
                     <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
                 </a>
                 <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <li>
-                        <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
-                            <i class="fas fa-clipboard-list"></i> ACTIVIDADES
-                            <i class="fas fa-chevron-down" style="float:center; margin-top:5px;"></i>
-                        </a>
-                        <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_ejecucion/add_actividad.php'">
-                                <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_ejecucion/consulta_actividad.php'">
-                                <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD</a>
-                            </li>
-                            <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_ejecucion/search_actividad.php'">
-                              <i class="fas fa-search"></i> CONSULTAR ACTIVIDAD</a>
-                            </li>
-                        </ul>
-                    </li>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_ejecucion/add_actividad.php'">
+                      <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD</a>
+                  </li>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_ejecucion/consulta_actividad.php'">
+                      <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD</a>
+                  </li>
+                  <li><a href="#" style="color:white; text-decoration:none;" onclick="location.href='../asistencias_medicas/actividades_ejecucion/search_actividad.php'">
+                    <i class="fas fa-search"></i> CONSULTAR ACTIVIDAD</a>
+                  </li>
                 </ul>
                 <li>
                   <a href="#" onclick="toggleSubmenu(this)" style="color:white; text-decoration:none;">
