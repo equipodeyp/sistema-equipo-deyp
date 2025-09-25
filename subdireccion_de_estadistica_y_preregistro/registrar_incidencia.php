@@ -17,8 +17,6 @@ $row=$result->fetch_assoc();
 $user = $row['usuario'];
 
 
-// echo $user;
-
 $row_nombre = $row['nombre'];
 $apellido_p = $row['apellido_p'];
 $apellido_m = $row['apellido_m'];
@@ -249,7 +247,7 @@ $folio_incidencia = 'INC0'.$c.'-';
                         <input type="text" class="form-control"  id="nombre_servidor" name="nombre_servidor" placeholder="" readonly value="<?php echo $full_name;?>">
                       </div>
                     </div>
-                  </div>
+                </div>
 
 
                 <div class="form-group" style="display: none">
@@ -310,11 +308,117 @@ $folio_incidencia = 'INC0'.$c.'-';
                         <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
                         <select class="form-control" id="id_asistencia" name="id_asistencia">
 
-                        </select>
-                        <!-- <input required onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" type="text" class="form-control"  id="id_asistencia" name="id_asistencia" placeholder="Ejemplo: LGP-001-2024-AM01"> -->
-                        
+                        </select>                      
                       </div>
-                      <!-- <h6>Nota: Digite el Id de la asistencia, si cuenta con él. En caso contrario deje el campo vacio.</h6> -->
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group" style="display: none" id="div_folio_expediente_psico">
+                    <label for="folio_expediente_psico" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
+                        <select class="form-control" id="folio_expediente_psico" name="folio_expediente_psico">
+                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                            <option value="NO APLICA">NO APLICA</option>
+                              <?php
+                                  $select1 = "SELECT DISTINCT folioexpediente
+                                  FROM datospersonales";
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_folio = $valores1['folioexpediente'];
+                                    echo "<option value='$result_folio'>$result_folio</option>";
+                                  }
+                              ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" style="display: none" id="div_id_sujeto_psico">
+                    <label for="id_sujeto_psico" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
+                        <select class="form-control" id="id_sujeto_psico" name="id_sujeto_psico">
+
+
+
+
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" style="display: none" id="div_id_asistencia_psico">
+                    <label for="id_asistencia_psico" class="col-md-4 control-label">ID ASISTENCIA PSICOLÓGICA</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-brain"></i></span>
+                        <select class="form-control" id="id_asistencia_psico" name="id_asistencia_psico">
+
+                        </select>                      
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group" style="display: none" id="div_folio_expediente_tras">
+                    <label for="folio_expediente_tras" class="col-md-4 control-label" style="font-size: 16px">FOLIO DEL EXPEDIENTE</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
+                        <select class="form-control" id="folio_expediente_tras" name="folio_expediente_tras">
+                            <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                            <option value="NO APLICA">NO APLICA</option>
+                              <?php
+                                  $select1 = "SELECT DISTINCT folioexpediente
+                                  FROM datospersonales";
+                                  $answer1 = $mysqli->query($select1);
+                                  while($valores1 = $answer1->fetch_assoc()){
+                                    $result_folio = $valores1['folioexpediente'];
+                                    echo "<option value='$result_folio'>$result_folio</option>";
+                                  }
+                              ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" style="display: none" id="div_id_sujeto_tras">
+                    <label for="id_sujeto_tras" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
+                        <select class="form-control" id="id_sujeto_tras" name="id_sujeto_tras">
+
+
+
+
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group" style="display: none" id="div_id_asistencia_tras">
+                    <label for="id_asistencia_tras" class="col-md-4 control-label">ID TRASLADO</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-brain"></i></span>
+                        <select class="form-control" id="id_asistencia_tras" name="id_asistencia_tras">
+
+                        </select>                      
+                      </div>
+
                     </div>
                   </div>
 
@@ -360,6 +464,7 @@ $folio_incidencia = 'INC0'.$c.'-';
                   </div>
 
 
+
                   <div class="form-group" style="display: none">
                     <label for="id_atencion" class="col-md-4 control-label">ID USUARIO ATENCIÓN</label>
                     <div class="col-md-4 inputGroupContainer">
@@ -369,8 +474,6 @@ $folio_incidencia = 'INC0'.$c.'-';
                       </div>
                     </div>
                   </div>
-
-
 
 
                   <div class="form-group">
@@ -409,11 +512,11 @@ $folio_incidencia = 'INC0'.$c.'-';
   </div>
 
 
-
-  
-
-  <script src="../js/alert.js"></script>
-  <script src="../js/peticion_folio_expediente.js"></script>
+<script src="../js/alert_id_asistencia.js"></script>
+<script src="../js/alert_id_psico.js"></script>
+<script src="../js/alert_id_traslado.js"></script>
+<script src="../js/peticion_folio_expediente.js"></script>
+<!-- <script src="../js/peticion_folio_expediente_psico.js"></script> -->
 
 
 
@@ -435,72 +538,348 @@ function obtenerRespuesta3(e){
   respuestaSeleccionada3 = e.target.value;
   respuestaObtenida3 = respuestaSeleccionada3;
 
-
   // console.log(respuestaObtenida3);
 
 if (respuestaObtenida3 === "ALERTA DE CONVENIOS" || respuestaObtenida3 === "EXPEDIENTES Y SUJETOS" 
-|| respuestaObtenida3 === "INSTRUMENTO DE ADAPTABILIDAD" || respuestaObtenida3 === "REGISTRO DE ACTIVIDADES"
-|| respuestaObtenida3 === "TRASLADOS SUJETOS" || respuestaObtenida3 === "VALIDAR MEDIDAS"
-|| respuestaObtenida3 === "MEDIDAS OTORGADAS" || respuestaObtenida3 === "SEGUIMIENTO EXPEDIENTE" || respuestaObtenida3 === "SEGUIMIENTO SUJETO" ){
+||  respuestaObtenida3 === "INSTRUMENTO DE ADAPTABILIDAD" ||  respuestaObtenida3 === "REGISTRO DE ACTIVIDADES"
+||  respuestaObtenida3 === "VALIDAR MEDIDAS" || respuestaObtenida3 === "MEDIDAS OTORGADAS" 
+|| respuestaObtenida3 === "SEGUIMIENTO EXPEDIENTE" || respuestaObtenida3 === "SEGUIMIENTO SUJETO" ){
 
-      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
-
+      
       document.getElementById("div_folio_expediente").style.display = ""; // MOSTRAR
       document.getElementById("div_id_sujeto").style.display = ""; // MOSTRAR
-      
+
+      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
+      document.getElementById("div_folio_expediente_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_folio_expediente_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_tras").style.display = "none"; // OCULTAR
+
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById("id_sujeto").value = ""; // LIMPIAR
       document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente_psico").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_psico").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_psico").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente_tras").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_tras").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_tras").value = ""; // LIMPIAR
       document.getElementById("tipo_falla").value = ""; // LIMPIAR
       document.getElementById("descripcion").value = ""; // LIMPIAR
       
       document.getElementById("folio_expediente").required = true; // VALIDAR
       document.getElementById("id_sujeto").required = true; // VALIDAR
+
       document.getElementById("div_id_asistencia").required = false; // VALIDAR
+      document.getElementById("folio_expediente_psico").required = false; // VALIDAR
+      document.getElementById("id_sujeto_psico").required = false; // VALIDAR
+      document.getElementById("id_asistencia_psico").required = false; // VALIDAR
+      document.getElementById("folio_expediente_tras").required = false; // VALIDAR
+      document.getElementById("id_sujeto_tras").required = false; // VALIDAR
+      document.getElementById("id_asistencia_tras").required = false; // VALIDAR
 
 }
 
 else if(respuestaObtenida3 === "ASISTENCIAS MÉDICAS"){
 
+  const cbxTipo = document.getElementById('folio_expediente')
+cbxTipo.addEventListener('change', getNombreInstitucion)
+
+const cbxNombre = document.getElementById('id_sujeto')
+cbxNombre.addEventListener('change', getDomicilioInstitucion)
+
+
+const cbxDomicilio = document.getElementById('id_asistencia')
+
+
+
+function fetchAndSetData(url, formData, targetElement) {
+    return fetch(url, {
+        method: 'POST',
+        body : formData,
+        mode: 'cors'
+    })
+        .then(response => response.json())
+        .then(data => {
+            targetElement.innerHTML = data
+        })
+        .catch(err => console.log(err))
+}
+
+
+function getNombreInstitucion(){
+    let tipo = cbxTipo.value
+    let url = '../asistencias_medicas/get_sujeto.php'
+    let formData = new FormData()
+    formData.append('folio_expediente', tipo)
+    fetchAndSetData(url, formData, cbxNombre)
+}
+
+
+
+function getDomicilioInstitucion(){
+    let nombre = cbxNombre.value
+    let url = '../asistencias_medicas/get_asistencia_medica.php'
+    let formData = new FormData()
+    formData.append('id_sujeto', nombre)
+    fetchAndSetData(url, formData, cbxDomicilio)
+}
+
+
+
       document.getElementById("div_folio_expediente").style.display = ""; // MOSTRAR
       document.getElementById("div_id_sujeto").style.display = ""; // MOSTRAR
       document.getElementById("div_id_asistencia").style.display = ""; // MOSTRAR
+      
+      document.getElementById("div_folio_expediente_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_psico").style.display = "none"; // OCULTAR
+
+      document.getElementById("div_folio_expediente_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_tras").style.display = "none"; // OCULTAR
 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById("id_sujeto").value = ""; // LIMPIAR
       document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente_psico").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_psico").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_psico").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente_tras").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_tras").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_tras").value = ""; // LIMPIAR
       document.getElementById("tipo_falla").value = ""; // LIMPIAR
       document.getElementById("descripcion").value = ""; // LIMPIAR
       
       document.getElementById("folio_expediente").required = true; // VALIDAR
       document.getElementById("id_sujeto").required = true; // VALIDAR
       document.getElementById("id_asistencia").required = true; // VALIDAR
+      document.getElementById("folio_expediente_psico").required = false; // VALIDAR
+      document.getElementById("id_sujeto_psico").required = false; // VALIDAR
+      document.getElementById("id_asistencia_psico").required = false; // VALIDAR
+      document.getElementById("folio_expediente_tras").required = false; // VALIDAR
+      document.getElementById("id_sujeto_tras").required = false; // VALIDAR
+      document.getElementById("id_asistencia_tras").required = false; // VALIDAR
+
+
 
 }
 
-else if(respuestaObtenida3 === "REPORTES DEL PROGRAMA"){
+else if(respuestaObtenida3 === "ASISTENCIAS PSICOLÓGICAS"){
+
+
+const cbxTipo = document.getElementById('folio_expediente_psico')
+cbxTipo.addEventListener('change', getNombreInstitucion)
+
+const cbxNombre = document.getElementById('id_sujeto_psico')
+cbxNombre.addEventListener('change', getDomicilioInstitucion)
+
+
+const cbxDomicilio = document.getElementById('id_asistencia_psico')
+
+
+
+function fetchAndSetData(url, formData, targetElement) {
+    return fetch(url, {
+        method: 'POST',
+        body : formData,
+        mode: 'cors'
+    })
+        .then(response => response.json())
+        .then(data => {
+            targetElement.innerHTML = data
+        })
+        .catch(err => console.log(err))
+}
+
+
+function getNombreInstitucion(){
+    let tipo = cbxTipo.value
+    let url = '../subdireccion_de_analisis_de_riesgo/get_sujeto_psico.php'
+    let formData = new FormData()
+    formData.append('folio_expediente_psico', tipo)
+    fetchAndSetData(url, formData, cbxNombre)
+}
+
+
+
+function getDomicilioInstitucion(){
+    let nombre = cbxNombre.value
+    let url = '../subdireccion_de_analisis_de_riesgo/get_asistencia_psico.php'
+    let formData = new FormData()
+    formData.append('id_sujeto_psico', nombre)
+    fetchAndSetData(url, formData, cbxDomicilio)
+}
+
+
+
+      document.getElementById("div_folio_expediente").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
+
+      document.getElementById("div_folio_expediente_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_tras").style.display = "none"; // OCULTAR
+
+      document.getElementById("div_folio_expediente_psico").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_sujeto_psico").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_asistencia_psico").style.display = ""; // MOSTRAR
 
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById("id_sujeto").value = ""; // LIMPIAR
       document.getElementById("id_asistencia").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente_psico").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_psico").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_psico").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente_tras").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_tras").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_tras").value = ""; // LIMPIAR
+
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente").required = false; // VALIDAR
+      document.getElementById("id_sujeto").required = false; // VALIDAR
+      document.getElementById("id_asistencia").required = false; // VALIDAR
+      document.getElementById("folio_expediente_tras").required = false; // VALIDAR
+      document.getElementById("id_sujeto_tras").required = false; // VALIDAR
+      document.getElementById("id_asistencia_tras").required = false; // VALIDAR
+      document.getElementById("folio_expediente_psico").required = true; // VALIDAR
+      document.getElementById("id_sujeto_psico").required = true; // VALIDAR
+      document.getElementById("id_asistencia_psico").required = true; // VALIDAR
+
+
+} 
+
+else if(respuestaObtenida3 === "TRASLADOS SUJETOS"){
+
+const cbxTipo = document.getElementById('folio_expediente_tras')
+cbxTipo.addEventListener('change', getNombreInstitucion)
+
+const cbxNombre = document.getElementById('id_sujeto_tras')
+cbxNombre.addEventListener('change', getDomicilioInstitucion)
+
+
+const cbxDomicilio = document.getElementById('id_asistencia_tras')
+
+
+
+function fetchAndSetData(url, formData, targetElement) {
+    return fetch(url, {
+        method: 'POST',
+        body : formData,
+        mode: 'cors'
+    })
+        .then(response => response.json())
+        .then(data => {
+            targetElement.innerHTML = data
+        })
+        .catch(err => console.log(err))
+}
+
+
+function getNombreInstitucion(){
+    let tipo = cbxTipo.value
+    let url = '../subdireccion_de_analisis_de_riesgo/get_sujeto_traslado.php'
+    let formData = new FormData()
+    formData.append('folio_expediente_tras', tipo)
+    fetchAndSetData(url, formData, cbxNombre)
+}
+
+
+
+function getDomicilioInstitucion(){
+    let nombre = cbxNombre.value
+    let url = '../subdireccion_de_analisis_de_riesgo/get_id_traslado.php'
+    let formData = new FormData()
+    formData.append('id_sujeto_tras', nombre)
+    fetchAndSetData(url, formData, cbxDomicilio)
+}
+
+
+
+      document.getElementById("div_folio_expediente").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
+
+      document.getElementById("div_folio_expediente_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_psico").style.display = "none"; // OCULTAR
+
+      document.getElementById("div_folio_expediente_tras").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_sujeto_tras").style.display = ""; // MOSTRAR
+      document.getElementById("div_id_asistencia_tras").style.display = ""; // MOSTRAR
+
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente_psico").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_psico").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_psico").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente_tras").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_tras").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_tras").value = ""; // LIMPIAR
+
+      document.getElementById("tipo_falla").value = ""; // LIMPIAR
+      document.getElementById("descripcion").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente").required = false; // VALIDAR
+      document.getElementById("id_sujeto").required = false; // VALIDAR
+      document.getElementById("id_asistencia").required = false; // VALIDAR
+      document.getElementById("folio_expediente_psico").required = false; // VALIDAR
+      document.getElementById("id_sujeto_psico").required = false; // VALIDAR
+      document.getElementById("id_asistencia_psico").required = false; // VALIDAR
+      document.getElementById("folio_expediente_tras").required = true; // VALIDAR
+      document.getElementById("id_sujeto_tras").required = true; // VALIDAR
+      document.getElementById("id_asistencia_tras").required = true; // VALIDAR
+
+} else if(respuestaObtenida3 === "REPORTES DEL PROGRAMA"){
+
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente_psico").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_psico").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_psico").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente_tras").value = ""; // LIMPIAR
+      document.getElementById("id_sujeto_tras").value = ""; // LIMPIAR
+      document.getElementById("id_asistencia_tras").value = ""; // LIMPIAR
       document.getElementById("tipo_falla").value = ""; // LIMPIAR
       document.getElementById("descripcion").value = ""; // LIMPIAR
       
       document.getElementById("folio_expediente").required = false; // VALIDAR
       document.getElementById("id_sujeto").required = false; // VALIDAR
       document.getElementById("id_asistencia").required = false; // VALIDAR
+      document.getElementById("folio_expediente_psico").required = false; // VALIDAR
+      document.getElementById("id_sujeto_psico").required = false; // VALIDAR
+      document.getElementById("id_asistencia_psico").required = false; // VALIDAR
+      document.getElementById("folio_expediente_tras").required = false; // VALIDAR
+      document.getElementById("id_sujeto_tras").required = false; // VALIDAR
+      document.getElementById("id_asistencia_tras").required = false; // VALIDAR
 
       document.getElementById("div_id_asistencia").style.display = "none"; // OCULTAR
       document.getElementById("div_folio_expediente").style.display = "none"; // OCULTAR
       document.getElementById("div_id_sujeto").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_folio_expediente_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_psico").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_asistencia_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_folio_expediente_tras").style.display = "none"; // OCULTAR
+      document.getElementById("div_id_sujeto_tras").style.display = "none"; // OCULTAR
 
-}
+} 
 }
 
 </script>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 
 var id_expediente = document.getElementById('folio_expediente');
@@ -519,7 +898,7 @@ function obtenerRespuesta3(e){
   respuestaIdexpediente = respuestaIdexpediente;
 
 
-  // console.log(respuestaIdexpediente);
+  console.log(respuestaIdexpediente);
   if (respuestaIdexpediente === 'NO APLICA'){
 
   document.getElementById('id_sujeto').value = "NO APLICA";
@@ -527,7 +906,7 @@ function obtenerRespuesta3(e){
 }
 
 
-</script>
+</script> -->
 
 
 <script type="text/javascript">

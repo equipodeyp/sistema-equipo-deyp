@@ -328,12 +328,14 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                           <label>ETAPA ASISTENCIA MÉDICA</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['etapa'];?>">
                                                                         </div>
-                                                                        <?php if ($row['observaciones'] != "") { ?>
+
+                                                                        <?php if ($row['observaciones_seguimiento'] != "") { ?>
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>OBSERVACIONES:</label>
                                                                           <textarea style="font-size: 14px;" rows="5" cols="33" type="text" class="form-control" readonly placeholder="<?php echo $row['observaciones_seguimiento'];?>"></textarea>
                                                                         </div>
                                                                         <?php } ?>
+                                                                        
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>INFORME:</label>
                                                                           <textarea style="font-size: 14px;" rows="5" cols="33" type="text" class="form-control" readonly placeholder="<?php echo $row['informe_medico'];?>"></textarea>

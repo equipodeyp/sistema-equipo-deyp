@@ -20,6 +20,7 @@ $clasificacion_tres = $_POST['clasificacion_actividad_tres'];
 $clasificacion_cuatro = $_POST['clasificacion_actividad_cuatro'];
 $clasificacion_cinco = $_POST['clasificacion_actividad_cinco'];
 $clasificacion_seis = $_POST['clasificacion_actividad_seis'];
+$clasificacion_siete = $_POST['clasificacion_actividad_siete'];
 $cantidad_actividad = 1;
 $fecha_actividad = $_POST['fecha_actividad'];
 $observaciones_actividad = $_POST['observaciones_actividad'];
@@ -127,7 +128,7 @@ if ($numero_actividad === '1'){
     $resultado = $mysqli->query($query);
 }
 
-else if ($numero_actividad === '2' || $numero_actividad === '4' || $numero_actividad === '5' || $numero_actividad === '6' || $numero_actividad === '9' || $numero_actividad === '12'){
+else if ($numero_actividad === '2' || $numero_actividad === '4' || $numero_actividad === '5' || $numero_actividad === '6' || $numero_actividad === '9' || $numero_actividad === '12' || $numero_actividad === '16'){
     
     $clasificacion = 'NA';
 
@@ -224,7 +225,22 @@ else if ($numero_actividad === '11'){
     $resultado = $mysqli->query($query);
 }
 
-else if ($numero_actividad === '13'){
+// else if ($numero_actividad === '13'){
+
+//     $query = "INSERT INTO react_actividad (consecutivosub, idactividad, 
+//     id_subdireccion, funcion, id_actividad, unidad_medida, 
+//     reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+//     folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+//     observaciones, informe_anual, usuario, year) 
+//     VALUES ('$consecutivo_actividad', '$id_actividad', 
+//     '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+//     '$reporte_metas_actividad', '$clasificacion_seis', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+//     '$folio_expediente', '$id_sujeto', '$evidencia_interna_actividad', '$numero_oficio_solicitud', '$kilometraje_actividad', 
+//     '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+//     $resultado = $mysqli->query($query);
+// }
+
+else if ($numero_actividad === '14'){
 
     $query = "INSERT INTO react_actividad (consecutivosub, idactividad, 
     id_subdireccion, funcion, id_actividad, unidad_medida, 
@@ -234,6 +250,36 @@ else if ($numero_actividad === '13'){
     VALUES ('$consecutivo_actividad', '$id_actividad', 
     '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
     '$reporte_metas_actividad', '$clasificacion_seis', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+    '$folio_expediente', '$id_sujeto', '$evidencia_interna_actividad', '$numero_oficio_solicitud', '$kilometraje_actividad', 
+    '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+    $resultado = $mysqli->query($query);
+}
+
+else if ($numero_actividad === '15'){
+
+    $query = "INSERT INTO react_actividad (consecutivosub, idactividad, 
+    id_subdireccion, funcion, id_actividad, unidad_medida, 
+    reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+    folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+    observaciones, informe_anual, usuario, year) 
+    VALUES ('$consecutivo_actividad', '$id_actividad', 
+    '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+    '$reporte_metas_actividad', '$clasificacion_siete', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+    '$folio_expediente', '$id_sujeto', '$evidencia_interna_actividad', '$numero_oficio_solicitud', '$kilometraje_actividad', 
+    '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+    $resultado = $mysqli->query($query);
+}
+
+else if ($numero_actividad === '17'){
+
+    $query = "INSERT INTO react_actividad (consecutivosub, idactividad, 
+    id_subdireccion, funcion, id_actividad, unidad_medida, 
+    reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+    folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+    observaciones, informe_anual, usuario, year) 
+    VALUES ('$consecutivo_actividad', '$id_actividad', 
+    '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+    '$reporte_metas_actividad', '$clasificacion_uno', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
     '$folio_expediente', '$id_sujeto', '$evidencia_interna_actividad', '$numero_oficio_solicitud', '$kilometraje_actividad', 
     '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
     $resultado = $mysqli->query($query);

@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica = $_SESSION["verifica"];
@@ -16,9 +16,19 @@ $row=$resultado->fetch_assoc();
   $usuario = $_POST['usuario'];
   $nombre_servidor = $_POST['nombre_servidor'];
   $subdireccion = $_POST['subdireccion'];
+
   $folio_expediente = $_POST['folio_expediente'];
   $id_sujeto = $_POST['id_sujeto'];
   $id_asistencia = $_POST['id_asistencia'];
+
+  $folio_expediente_psico = $_POST['folio_expediente_psico'];
+  $id_sujeto_psico = $_POST['id_sujeto_psico'];
+  $id_asistencia_psico = $_POST['id_asistencia_psico'];
+
+  $folio_expediente_tras = $_POST['folio_expediente_tras'];
+  $id_sujeto_tras = $_POST['id_sujeto_tras'];
+  $id_asistencia_tras = $_POST['id_asistencia_tras'];
+
   $tipo_falla = $_POST['tipo_falla'];
   $status = $_POST['estatus'];  
   $atencion_usuario = $_POST['atencion'];
@@ -70,8 +80,8 @@ $row=$resultado->fetch_assoc();
             AND usuarios.usuario = '$usuario'";
   $sub_resultado = $mysqli->query($sub);
   $row_sub=$sub_resultado->fetch_assoc();
-  $subdireccion = strtoupper($row_sub['subdireccion']);
-  // echo $subdireccion;
+  $subdireccion_altas = strtoupper($row_sub['subdireccion']);
+  // echo $subdireccion_altas;
   // echo '<br>';
 
   $ini_sub="SELECT subdireccion, clave FROM react_subdireccion WHERE subdireccion='$subdireccion'";
@@ -104,6 +114,18 @@ if ($apartado === "REPORTES DEL PROGRAMA"){
 
   $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
   VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $result = $mysqli->query($query);
+
+} else if ($apartado === "ASISTENCIAS PSICOLÓGICAS"){
+
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente_psico', '$id_sujeto_psico', '$id_asistencia_psico', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $result = $mysqli->query($query);
+
+} else if ($apartado === "TRASLADOS SUJETOS"){
+
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente_tras', '$id_sujeto_tras', '$id_asistencia_tras', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
 } else {

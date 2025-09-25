@@ -1,11 +1,14 @@
-const cbxTipo = document.getElementById('folio_expediente')
+
+
+
+const cbxTipo = document.getElementById('folio_expediente_psico')
 cbxTipo.addEventListener('change', getNombreInstitucion)
 
-const cbxNombre = document.getElementById('id_sujeto')
+const cbxNombre = document.getElementById('id_sujeto_psico')
 cbxNombre.addEventListener('change', getDomicilioInstitucion)
 
 
-const cbxDomicilio = document.getElementById('id_asistencia')
+const cbxDomicilio = document.getElementById('id_asistencia_psico')
 
 
 
@@ -25,9 +28,9 @@ function fetchAndSetData(url, formData, targetElement) {
 
 function getNombreInstitucion(){
     let tipo = cbxTipo.value
-    let url = '../asistencias_medicas/get_sujeto.php'
+    let url = '../subdireccion_de_analisis_de_riesgo/get_sujeto_psico.php'
     let formData = new FormData()
-    formData.append('folio_expediente', tipo)
+    formData.append('folio_expediente_psico', tipo)
     fetchAndSetData(url, formData, cbxNombre)
 }
 
@@ -35,9 +38,8 @@ function getNombreInstitucion(){
 
 function getDomicilioInstitucion(){
     let nombre = cbxNombre.value
-    let url = '../asistencias_medicas/get_asistencia_medica.php'
+    let url = '../subdireccion_de_analisis_de_riesgo/get_asistencia_psico.php'
     let formData = new FormData()
-    formData.append('id_sujeto', nombre)
+    formData.append('id_sujeto_psico', nombre)
     fetchAndSetData(url, formData, cbxDomicilio)
 }
-

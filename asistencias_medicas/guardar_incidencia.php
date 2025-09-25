@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica = $_SESSION["verifica"];
@@ -16,15 +16,24 @@ $row=$resultado->fetch_assoc();
   $usuario = $_POST['usuario'];
   $nombre_servidor = $_POST['nombre_servidor'];
   $subdireccion = $_POST['subdireccion'];
+
   $folio_expediente = $_POST['folio_expediente'];
   $id_sujeto = $_POST['id_sujeto'];
   $id_asistencia = $_POST['id_asistencia'];
+
+  $folio_expediente_psico = $_POST['folio_expediente_psico'];
+  $id_sujeto_psico = $_POST['id_sujeto_psico'];
+  $id_asistencia_psico = $_POST['id_asistencia_psico'];
+
+  $folio_expediente_tras = $_POST['folio_expediente_tras'];
+  $id_sujeto_tras = $_POST['id_sujeto_tras'];
+  $id_asistencia_tras = $_POST['id_asistencia_tras'];
+
   $tipo_falla = $_POST['tipo_falla'];
   $status = $_POST['estatus'];  
   $atencion_usuario = $_POST['atencion'];
   $descripcion = $_POST['descripcion'];
   $id_atencion = $_POST['id_atencion'];
-  $id_traslado = $_POST['id_traslado'];
   // echo $apartado;
   // echo '<br>';
   // echo $usuario;
@@ -47,7 +56,6 @@ $row=$resultado->fetch_assoc();
   // echo '<br>';
   // echo $descripcion;
   // echo '<br>';
-  // echo $id_traslado;
 
   $sentencia3=" SELECT COUNT(*) AS total FROM incidencias";
   $result3 = $mysqli->query($sentencia3);
@@ -72,8 +80,8 @@ $row=$resultado->fetch_assoc();
             AND usuarios.usuario = '$usuario'";
   $sub_resultado = $mysqli->query($sub);
   $row_sub=$sub_resultado->fetch_assoc();
-  $subdireccion = strtoupper($row_sub['subdireccion']);
-  // echo $subdireccion;
+  $subdireccion_altas = strtoupper($row_sub['subdireccion']);
+  // echo $subdireccion_altas;
   // echo '<br>';
 
   $ini_sub="SELECT subdireccion, clave FROM react_subdireccion WHERE subdireccion='$subdireccion'";
@@ -89,7 +97,7 @@ $row=$resultado->fetch_assoc();
   // echo '<br>';
         
 
-if ($apartado === "TRASLADOS SUJETOS"){
+if ($apartado === "REPORTES DEL PROGRAMA"){
   $folio_expediente1 = "NO APLICA";
   $id_sujeto1 = "NO APLICA";
   $id_asistencia1 = "NO APLICA";
@@ -98,41 +106,37 @@ if ($apartado === "TRASLADOS SUJETOS"){
   // echo $id_sujeto1;
   // echo $id_asistencia1;
 
-  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, id_traslado, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
-  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$id_traslado', '$folio_expediente1', '$id_sujeto1', '$id_asistencia1', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
-  $result = $mysqli->query($query);
-
-} else if ($apartado === "REPORTES DEL PROGRAMA"){
-  $folio_expediente1 = "NO APLICA";
-  $id_sujeto1 = "NO APLICA";
-  $id_asistencia1 = "NO APLICA";
-  $id_traslado1 = "NO APLICA";
-
-  // echo $folio_expediente1;
-  // echo $id_sujeto1;
-  // echo $id_asistencia1;
-
-  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, id_traslado, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
-  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$id_traslado1', '$folio_expediente1', '$id_sujeto1', '$id_asistencia1', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente1', '$id_sujeto1', '$id_asistencia1', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
   $result = $mysqli->query($query);
   
 } else if ($apartado === "ASISTENCIAS MÉDICAS"){
-  $id_traslado2 = "NO APLICA";
 
-  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, id_traslado, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
-  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$id_traslado2', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $result = $mysqli->query($query);
+
+} else if ($apartado === "ASISTENCIAS PSICOLÓGICAS"){
+
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente_psico', '$id_sujeto_psico', '$id_asistencia_psico', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $result = $mysqli->query($query);
+
+} else if ($apartado === "TRASLADOS SUJETOS"){
+
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente_tras', '$id_sujeto_tras', '$id_asistencia_tras', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
 } else {
 
   $id_asistencia2 = "NO APLICA";
-  $id_traslado3 = "NO APLICA";
 
-  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, id_traslado, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
-  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$id_traslado3', '$folio_expediente', '$id_sujeto', '$id_asistencia2', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
+  $query = "INSERT INTO incidencias (folio_incidencia, usuario, subdireccion, folio_expediente, id_sujeto, id_asistencia_medica, apartado_sippsipped, tipo_falla, descripcion_falla, estatus, servidor_registra, id_usuario, usuario_atencion) 
+  VALUES ('$folio_incidencia', '$usuario', '$subdireccion', '$folio_expediente', '$id_sujeto', '$id_asistencia2', '$apartado', '$tipo_falla', '$descripcion', '$status', '$nombre_servidor', '$id_atencion', '$atencion_usuario')";
   $result = $mysqli->query($query);
 
-}
+} 
 
 
 

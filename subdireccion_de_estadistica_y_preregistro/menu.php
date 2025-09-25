@@ -347,6 +347,42 @@ a:focus {
                   </ul>
               </li>
         </ul>
+
+
+
+                   <ul>
+                <li>
+                  <a href="#" onclick="toggleSubmenu(this)">
+                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
+                      <span class="menu-items" style="font-size: 15px; color: white; font-weight:bold;">INCIDENCIAS</span>
+                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+                  </a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                      <?php if ($name=='estadistica_sub') { ?>
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
+                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
+                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
+                          </a>
+                      </li>
+                      <?php }?>
+                      <?php if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3') {?>
+                      <li>
+                          <a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./atender_incidencia.php'">
+                              <i class="fas fa-laptop-file"></i> ATENDER INCIDENCIA
+                          </a>
+                      </li>
+                      <?php }?>
+                  </ul>
+              </li>
+            </ul>
+          
+
+            
       </nav>
     </div>
     <div class="main bg-light">

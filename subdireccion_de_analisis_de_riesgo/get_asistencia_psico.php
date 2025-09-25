@@ -3,10 +3,10 @@
 
 require 'conexion.php';
 
-$id_sujeto = $mysqli->real_escape_string($_POST['id_sujeto']);
+$id_sujeto = $mysqli->real_escape_string($_POST['id_sujeto_psico']);
 
 
-$sql = "SELECT id_asistencia FROM solicitud_asistencia WHERE id_sujeto = '$id_sujeto' AND servicio_medico != 'PSICOLÓGICO' ORDER BY fecha_solicitud DESC";
+$sql = "SELECT id_asistencia FROM solicitud_asistencia WHERE id_sujeto = '$id_sujeto' AND servicio_medico = 'PSICOLÓGICO' ORDER BY fecha_solicitud DESC";
 $resultado = $mysqli->query($sql);
 
 $respuesta = "<option disabled selected value=''>ID ASISTENCIA</option>";

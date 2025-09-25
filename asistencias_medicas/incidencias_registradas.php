@@ -461,19 +461,6 @@ a:focus {
                                                         
                                                       </div>
 
-                                                      <?php 
-                                                      if ($row['id_apartado'] != "NO APLICA"){
-                                                      $id_traslado = $row['id_traslado'];
-                                                      echo "
-                                                      <div class='form-group row'>
-                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Id traslado:</label>
-                                                        <div class='col-sm-6'>
-                                                          <input type='text' class='form-control' readonly value='$id_traslado'>
-                                                        </div>
-                                                      </div>
-                                                      ";
-                                                      }
-                                                      ?>
 
                                                       <?php 
                                                       if ($row['folio_expediente'] != "NO APLICA"){
@@ -504,7 +491,7 @@ a:focus {
                                                       ?>
 
                                                       <?php 
-                                                      if ($row['id_asistencia_medica'] != "NO APLICA"){
+                                                      if ($row['apartado_sippsipped'] === "ASISTENCIAS MÉDICAS"){
                                                       $id_as = $row['id_asistencia_medica'];
                                                       echo "
                                                       <div class='form-group row'>
@@ -517,8 +504,34 @@ a:focus {
                                                       }
                                                       ?>
 
+                                                      <?php 
+                                                      if ($row['apartado_sippsipped'] === "ASISTENCIAS PSICOLÓGICAS"){
+                                                      $id_as = $row['id_asistencia_medica'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Id Asistencia Psicológica:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$id_as'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
 
 
+                                                      <?php 
+                                                      if ($row['apartado_sippsipped'] === "TRASLADOS SUJETOS"){
+                                                      $id_as = $row['id_asistencia_medica'];
+                                                      echo "
+                                                      <div class='form-group row'>
+                                                        <label style='text-align:right' class='col-sm-4 col-form-label'>Id Traslado:</label>
+                                                        <div class='col-sm-6'>
+                                                          <input type='text' class='form-control' readonly value='$id_as'>
+                                                        </div>
+                                                      </div>
+                                                      ";
+                                                      }
+                                                      ?>
 
                                                       <div class="form-group row">
 
