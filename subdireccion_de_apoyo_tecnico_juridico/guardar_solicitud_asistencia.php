@@ -11,9 +11,6 @@ $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios 
 $resultado = $mysqli->query($sentencia);
 $row=$resultado->fetch_assoc();
 
-
-
-
 $folio_expediente=$_POST['folio_expediente'];
 $id_sujeto=$_POST['id_sujeto'];
 $id_asistencia=$_POST['id_asistencia'];
@@ -45,6 +42,8 @@ $etapa = "SOLICITADA";
 // echo $etapa;
 // echo '<br>';
 
+
+if ($servicio_medico === 'PSICOLÓGICO'){
 // $cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto'";
 $cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto' AND servicio_medico = 'PSICOLÓGICO'";
 $result = $mysqli->query($cant);
@@ -61,37 +60,62 @@ $año = $folio_separado[4];
 // echo '<br>';
 // echo '<br>';
 // echo '<br>';
-
-
-
-
 // echo '<br>';
 $c = $r["total"] + 1;
 $id_asistencia_medica = $id_sujeto.'-'.$año.'-AP0'.$c;
 // echo $id_asistencia_medica;
 
 
+$query = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa, agendar, turnar, notificar)
+VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa', 'NO', 'NO', 'NO')";
+$result = $mysqli->query($query);
 
+            if($result) {
+                    echo $verifica;
+                    echo ("<script type='text/javaScript'>
+                    window.location.href='./solicitudes_registradas.php';
+                    window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                </script>");
+                    } else {  }
 
+}
+else {
+$cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto' AND solicitud_asistencia.servicio_medico !='PSICOLÓGICO'";
+// $cant="SELECT COUNT(*) total FROM solicitud_asistencia WHERE solicitud_asistencia.id_sujeto = '$id_sujeto' AND servicio_medico = 'PSICOLÓGICO'";
+$result = $mysqli->query($cant);
+$r=$result->fetch_assoc();
+// echo $r["total"];
+// echo '<br>';
 
+$cadena = $folio_expediente;
+$separador = "/";
+$folio_separado = explode($separador, $cadena);
+$año = $folio_separado[4];
 
-
+// echo $año;
+// echo '<br>';
+// echo '<br>';
+// echo '<br>';
+// echo '<br>';
+$c = $r["total"] + 1;
+$id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$c;
+// echo $id_asistencia_medica;
 
 
 $query = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa, agendar, turnar, notificar)
 VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa', 'NO', 'NO', 'NO')";
 $result = $mysqli->query($query);
 
+            if($result) {
+                    echo $verifica;
+                    echo ("<script type='text/javaScript'>
+                    window.location.href='./solicitudes_registradas.php';
+                    window.alert('!!!!!Registro exitoso¡¡¡¡¡')
+                </script>");
+                    } else {  }
+}
 
-
-    if($result) {
-            echo $verifica;
-            echo ("<script type='text/javaScript'>
-            window.location.href='./solicitudes_registradas.php';
-            window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-        </script>");
-            } else {  }
-    } else {
+} else {
     echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=menu.php'>";
 }
 ?>
