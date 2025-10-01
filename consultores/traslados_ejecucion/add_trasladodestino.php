@@ -211,7 +211,7 @@ function mostrar_inputs_text(){
   document.getElementById("esp_lugar_motivo").required = true;
   document.getElementById("esp_domicilio_motivo").required = true;
   document.getElementById("esp_municipio_motivo").required = true;
-  document.getElementById("especificar_motivo_trs").required = true;
+  document.getElementById("especificar_motivo_trs").required = false;
 }
 function motivotras(sel) {
   console.log(sel.value);
