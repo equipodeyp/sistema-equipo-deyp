@@ -531,6 +531,7 @@ transition: all .2s ease;
       document.getElementById("horaejecmed").style.display = "none";
       document.getElementById("evidenciaejecmed").style.display = "none";
       document.getElementById("evidejemed").style.display = "";
+      document.getElementById("reportemetas").value = "SI";
     }else if (idactividad === '3') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -546,6 +547,7 @@ transition: all .2s ease;
       document.getElementById("horaejecmed").style.display = "none";
       document.getElementById("evidenciaejecmed").style.display = "none";
       document.getElementById("evidejemed").style.display = "";
+      document.getElementById("reportemetas").value = "SI";
     }else if (idactividad === '4') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -561,6 +563,7 @@ transition: all .2s ease;
       document.getElementById("horaejecmed").style.display = "";
       document.getElementById("evidenciaejecmed").style.display = "";
       document.getElementById("evidejemed").style.display = "none";
+      document.getElementById("reportemetas").value = "SI";
     }else if (idactividad === '5') {
       document.getElementById("unidadmedida").value = "ACCIÓN";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -576,6 +579,7 @@ transition: all .2s ease;
       document.getElementById("horaejecmed").style.display = "none";
       document.getElementById("evidenciaejecmed").style.display = "";
       document.getElementById("evidejemed").style.display = "none";
+      document.getElementById("reportemetas").value = "SI";
     }else if (idactividad === '6') {
       document.getElementById("unidadmedida").value = "RONDÍN POLICIAL";
       document.getElementById("trasladoclasificacion").style.display = "none";
@@ -591,8 +595,24 @@ transition: all .2s ease;
       document.getElementById("horaejecmed").style.display = "none";
       document.getElementById("evidenciaejecmed").style.display = "";
       document.getElementById("evidejemed").style.display = "none";
+      document.getElementById("reportemetas").value = "SI";
+    }else if (idactividad === '7') {
+      document.getElementById("unidadmedida").value = "OTRAS ACTIVIDADES";
+      document.getElementById("trasladoclasificacion").style.display = "none";
+      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
+      document.getElementById("clasificacionaccionseguridad").style.display = "none";
+      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
+      document.getElementById("entidadmunicipio_1_2").style.display = "none";
+      document.getElementById("actividad_folioexpediente").style.display = "none";
+      document.getElementById("actividad_idsujeto").style.display = "none";
+      document.getElementById("actividad_idevidencia").style.display = "none";
+      document.getElementById("actividad_kilometros").style.display = "none";
+      document.getElementById("medionotificejecmed").style.display = "none";
+      document.getElementById("horaejecmed").style.display = "none";
+      document.getElementById("evidenciaejecmed").style.display = "none";
+      document.getElementById("evidejemed").style.display = "none";
+      document.getElementById("reportemetas").value = "NO";
     }
-    document.getElementById("reportemetas").value = "SI";
 }
   </script>
   <script>

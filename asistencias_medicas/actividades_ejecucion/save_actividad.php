@@ -145,6 +145,15 @@ echo "<br>";
     $id_sujeto = $_POST['id_sujeto'];
     $kilometros = $_POST['kilometros'];
     $informe_anual = 'REPORTADO';
+  }elseif ($actividad === '7') {
+    $idactividad ='SUBEM-07';
+    $clasificacion = 'NA';
+    $id_evidencia = 'NA';
+    $entidadmunicipio = 'NA';
+    $folioexpediente = 'NA';
+    $id_sujeto = 'NA';
+    $kilometros = 'NA';
+    $informe_anual = 'NA';
   }
   echo "CLASIFICACION:  ".$clasificacion;
   echo "<br>";

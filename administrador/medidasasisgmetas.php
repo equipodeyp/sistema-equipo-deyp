@@ -1,16 +1,20 @@
 <?php
 // echo "prueba asistmetas";
 $count = 0;
- $año_actual = date('Y');
-//  "<br>";
- $mes_actual = date('m');
-//  "<br>";
- $dias_mes_actual = date('t');
-//  "<br>";
- $fechainicial = $año_actual.'-'.$mes_actual.'-01';
-//  "<br>";
- $fechafinal = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
-// echo "<br>";
+$dia_actual = date('d');
+if ($dia_actual > 2) {
+  $año_actual = date('Y');
+  $mes_actual = date('m');
+  $dias_mes_actual = date('t');
+  $fechainicial = $año_actual.'-'.$mes_actual.'-01';
+  $fechafinal = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
+}else {
+  $año_actual = date('Y');
+  $mes_actual = date('m')-1;
+  $dias_mes_actual = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+  $fechainicial = $año_actual.'-'.$mes_actual.'-01';
+  $fechafinal = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
+}
 $asistmetas = "SELECT * FROM medidas
 WHERE date_ejecucion BETWEEN '$fechainicial' AND '$fechafinal' AND clasificacion = 'ASISTENCIA'
 ORDER BY date_ejecucion ASC";
