@@ -47,6 +47,11 @@ $mostrar=$result->fetch_assoc();
    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
  }
  $idtrasladounico = $n_con.'-'.$a;
+
+ $año_actual = date('Y');
+ $mes_actual = date('m');
+ $dias_mes_actual = date('t');
+ $datemin = $año_actual.'-'.$mes_actual.'-01';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -155,7 +160,7 @@ $mostrar=$result->fetch_assoc();
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
                       <label class="col-md-2 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">FECHA DE TRASLADO</label>
-                      <input name="fechatraslado" class="form-control" type="date" required max="<?= date("Y-m-d") ?>">
+                      <input name="fechatraslado" class="form-control" type="date" required min="<?php echo $datemin; ?>" max="<?= date("Y-m-d") ?>">
                     </div>
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
