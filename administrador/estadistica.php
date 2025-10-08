@@ -86,6 +86,7 @@ $result = $mysqli->query($sentencia);
               <li class="menu-items"><a href="../administrador/informe_sujetos.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-clipboard-user menu-nav--icon fa-fw'></i> INFORME SUJETOS</span></a></li>
               <li class="menu-items"><a href="../administrador/bd_traslados.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> BD TRASLADOS</span></a></li>
               <li class="menu-items"><a href="../administrador/bd_metas.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> BD METAS</span></a></li>
+              <li class="menu-items"><a href="../administrador/bd_metas_react_apoyo.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> BD METAS REACT SUB APOYO TEC. Y JUR.</span></a></li>
               </ul>
       </nav>
     </div>
@@ -121,52 +122,7 @@ $result = $mysqli->query($sentencia);
           <?php
           include("../administrador/obtener_fechas_reportes.php");
           ?>
-          <ul class="ca-menu">
-
-            <!-- <li>
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_solicitudes">
-                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/SOLICITUDES.png" style="width:55px;height:55px;"></span>
-                <div class="ca-content">
-                  <h2 class="ca-main">SOLICITUDES</h2>
-                  <h3 class="ca-sub">PROCEDENTES - NO PROCEDENTES</h3></div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_personas">
-                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/PERSONAS.png" style="width:60px;height:60px;"></span>
-                <div class="ca-content">
-                  <h2 class="ca-main">PERSONAS</h2>
-                  <h3 class="ca-sub">SUJETOS - ESTATUS - CALIDAD</h3></div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_medidas1">
-                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/MEDIDAS.png" style="width:60px;height:60px;"></span>
-                <div class="ca-content">
-                  <h2 class="ca-main">MEDIDAS</h2>
-                  <h3 class="ca-sub">PROVISIONALES - DEFINITIVAS - ASISTENCIA - RESGUARDO- EJECUTADAS </h3></div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_expedientes">
-                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/EXPEDIENTES.png" style="width:60px;height:60px;"></span>
-                <div class="ca-content">
-                  <h2 class="ca-main">EXPEDIENTES</h2>
-                  <h3 class="ca-sub">ESTATUS - SEDES - DELITOS - RADICACION- AUTORIDADES - ETAPAS </h3></div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" data-toggle="modal" data-target="#add_data_Modal_resumen">
-                <span class="ca-icon"><img alt="" src="../image/ESTADISTICA/RESUMEN.png" style="width:60px;height:60px;"></span>
-                <div class="ca-content">
-                  <h2 class="ca-main">RESUMEN</h2>
-                  <h3 class="ca-sub">TOTAL - EXPEDIENTES - SUJETOS - MEDIDAS</h3></div>
-              </a>
-            </li> -->
+          <ul class="ca-menu">            
 
           </ul>
         </div>
