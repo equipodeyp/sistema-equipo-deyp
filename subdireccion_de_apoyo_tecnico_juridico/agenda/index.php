@@ -23,6 +23,7 @@ ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
 AND solicitud_asistencia.etapa != 'CANCELADA'
 AND solicitud_asistencia.tipo_requerimiento != 'PERIÓDICA DE SEGUIMIENTO'
 AND solicitud_asistencia.tipo_requerimiento != 'PROVISIONAL DE SEGUIMIENTO'
+AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO'
 
 JOIN agendar_asistencia
 ON cita_asistencia.id_asistencia = agendar_asistencia.id_asistencia
