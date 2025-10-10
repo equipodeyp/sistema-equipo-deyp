@@ -199,7 +199,8 @@ $row=$result->fetch_assoc();
           <div class="secciones form-horizontal sticky breadcrumb flat">
             <a href="../administrador/admin.php">REGISTROS</a>
             <a href="../administrador/estadistica.php">ESTADISTICA</a>
-            <a class="actived">REACT SUB APOYO TEC. Y JUR.</a>
+            <a href="../administrador/bd_metas.php">BD METAS</a>
+            <a class="actived">METAS JURIDICO</a>
           </div>
           <div class="container">
             <!-- <h2 style="text-align:center">METAS</h2> -->

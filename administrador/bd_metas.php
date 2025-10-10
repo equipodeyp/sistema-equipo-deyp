@@ -173,6 +173,13 @@ $row=$result->fetch_assoc();
          ?>
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
+
+  <nav class="menu-nav">
+            <ul>
+                <li class="menu-items"><a href="../administrador/bd_metas_react_apoyo.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> METAS JURIDICO</span></a></li>
+              </ul>
+      </nav>
+
     </div>
     <div class="main bg-light">
       <div class="barra">
