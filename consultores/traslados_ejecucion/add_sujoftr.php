@@ -6,13 +6,21 @@
         <center><h1 class="modal-title" id="myModalLabel">PERSONA PROPUESTA O SUJETO PROTEGIDO</h1></center>
       </div>
       <?php
-      echo $iddestraslado = $fgetdesoftras['id'];
-      echo "<br>";
+      $iddestraslado = $fgetdesoftras['id'];
+      // echo "<br>";
       // obtener datos del destino
       $getdes = "SELECT * FROM react_destinos_traslados WHERE id = '$iddestraslado'";
       $rgetdes = $mysqli -> query($getdes);
       $fgetdes = $rgetdes ->fetch_assoc();
-      echo $valmotivo = $fgetdes['motivo'];
+      $valmotivo = $fgetdes['motivo'];
+      $año_actual = date('Y');
+      $mes_actual = date('m');
+      $dias_mes_actual = date('t');
+      // echo "<br>";
+      $datemin = $año_actual.'-'.$mes_actual.'-01';
+      // echo "<br>";
+      $datemax = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
+      // echo "<br>";
       ?>
 
       <div class="modal-body">
@@ -30,8 +38,9 @@
                         <select class="form-control expediente" name="nombre" required>
                           <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
                           <?php
-                          $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                          FROM datospersonales";
+                          $select1 = "SELECT DISTINCT folioexpediente FROM statusseguimiento
+                          WHERE (status = 'EN EJECUCION' OR status = 'ANALISIS')
+                          OR (status = 'CONCLUIDO' AND (date_desincorporacion BETWEEN '$datemin' AND '$datemax'))";
                           $answer1 = $mysqli->query($select1);
                           while($valores1 = $answer1->fetch_assoc()){
                             $result_folio = $valores1['folioexpediente'];

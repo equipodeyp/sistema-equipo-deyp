@@ -225,10 +225,11 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
                           $rcontarsujetos = $mysqli->query($contarsujetos);
                           $fcontarsujetos = $rcontarsujetos ->fetch_assoc();
                           // echo $fcontarsujetos['t'];
-                          if ($fcontarsujetos['t'] < 3) {
-                            echo "<a href='#addsujtraslado_".$fgetdesoftras['id']."'  data-toggle='modal'><i class='fa-solid fa-user-plus color-icon'></i></a>";
-                            // code...
-                          }
+                            if ($fcontarsujetos['t'] < 3) {
+                              echo "<a href='#addsujtraslado_".$fgetdesoftras['id']."'  data-toggle='modal'><i class='fa-solid fa-user-plus color-icon'></i></a>";
+                              // code...
+                            }
+                            // code...                          
                           echo "</td>";
                           // break;
 
@@ -284,17 +285,23 @@ $ftraerobservacion = $rtraerobservacion -> fetch_assoc();
                               // contar si existe info de la asistencia medica info react sujetos traslado
                               $contisasis = "SELECT * FROM react_sujetos_traslado WHERE id = '$idsujforasismed'";
                               $rcontisasis = $mysqli ->query($contisasis);
-                              $fcontisasis = $rcontisasis->fetch_assoc();
+                              while ($fcontisasis = $rcontisasis->fetch_assoc()) {
+                                $idauxasismed = $fcontisasis['id_asistenciamedica'];
+                                $getinfoauxasismed = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$idauxasismed'";
+                                $rgetinfoauxasismed = $mysqli->query($getinfoauxasismed);
+                                $fgetinfoauxasismed = $rgetinfoauxasismed ->fetch_assoc();
+
                               // echo "total de asistencia medica---";
                               if ($fcontisasis['id_asistenciamedica'] === '') {
                                 // echo "aun no se registra la asistencia medica";
                                 echo "<a href='#addasistenciamedsuj_".$idsujforasismed."'  data-toggle='modal'><i class='fa-solid fa-notes-medical color-icon'></i></a>";
                                 // echo "<br>";
                               }else {
-                                echo $fcontisasis['id_asistenciamedica'].'/<br>'.$fgetinfoasismed['servicio_medico'];
+                                echo $fcontisasis['id_asistenciamedica'].'/<br>'.$fgetinfoauxasismed['servicio_medico'];
                                 // echo "<br>";
                                 // code...
                               }
+                            }
 
 
                             } echo "</td>";

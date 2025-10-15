@@ -197,16 +197,25 @@
                       <?php
                         $contarpers = 0;
                         $auxcontarsuj2 = 0;
-                        $datpers = "SELECT DISTINCT id_sujeto, folio_expediente, id_sujeto, resguardado, id_asistenciamedica FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladover'";
+                        $datpers = "SELECT DISTINCT id, id_sujeto, folio_expediente, id_sujeto, resguardado, id_destino, id_asistenciamedica FROM react_sujetos_traslado WHERE id_traslado = '$idtrasladover'";
                         $rdatpers = $mysqli->query($datpers);
                         while ($fdatpers = $rdatpers->fetch_assoc()) {
                           $contarpers = $contarpers + 1;
+                          $idunicdestino = $fdatpers['id_destino'];;
                           $idsujetouni = $fdatpers['id_sujeto'];
                           $idasismedica = $fdatpers['id_asistenciamedica'];
                           // traer el identificador del sujeto
                           $identificador = "SELECT * FROM datospersonales WHERE id = '$idsujetouni'";
                           $ridentificador = $mysqli ->query($identificador);
                           $fidentificador = $ridentificador ->fetch_assoc();
+                          // get info destino
+                          $fetinfodestino = "SELECT * FROM react_destinos_traslados WHERE id = '$idunicdestino'";
+                          $rfetinfodestino = $mysqli->query($fetinfodestino);
+                          $ffetinfodestino = $rfetinfodestino ->fetch_assoc();
+                          // get info asistencia medica
+                          $getinfasimed = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$idasismedica'";
+                          $rgetinfasimed = $mysqli->query($getinfasimed);
+                          $fgetinfasimed = $rgetinfasimed ->fetch_assoc();
                       ?>
                       <span>_____________________________________________________________________________________________________________________________</span>
                       <div class="col-md-1">
@@ -222,28 +231,14 @@
                         <h4 style="text-align:center"><?php echo $fdatpers['resguardado']; ?></h4>
                       </div>
                       <div class="col-md-2">
-                        <h4 style="text-align:center"><?php
-                        $destxsuj = "SELECT * FROM react_destinos_traslados
-                                     INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
-                                     WHERE react_sujetos_traslado.id_sujeto = '$idsujetouni' AND react_destinos_traslados.id_traslado ='$idtrasladover'";
-                        $rdestxsuj = $mysqli -> query($destxsuj);
-                        while ($fdestxsuj = $rdestxsuj ->fetch_assoc()) {
-                          $auxcontarsuj2 = $auxcontarsuj2 + 1;
-                          echo $auxcontarsuj2.'.-'.$fdestxsuj['municipio'].'<br>';
-                        }
-                        $auxcontarsuj2 = 0;
-                        ?></h4>
+                        <h4 style="text-align:center"><?php echo $ffetinfodestino['municipio']; ?></h4>
                       </div>
                       <div class="col-md-2">
                         <h4 style="text-align:center"><?php
-                        if ($idasismedica > 0 ) {
-                          $getidasismed = "SELECT * FROM solicitud_asistencia WHERE id = '$idasismedica'";
-                          $rgetidasismed = $mysqli->query($getidasismed);
-                          while ($fgetidasismed = $rgetidasismed->fetch_assoc()) {
-                            echo $fgetidasismed['id_asistencia'];
-                          }
-                        }elseif ($idasismedica === '0') {
+                        if ($fdatpers['id_asistenciamedica'] == '' || $fdatpers['id_asistenciamedica'] == '0') {
                           echo "N/A";
+                        }else {
+                          echo $fdatpers['id_asistenciamedica'].'/<br>'.$fgetinfasimed['servicio_medico'];;
                         }
                         ?></h4>
                       </div>

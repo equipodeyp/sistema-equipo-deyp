@@ -47,11 +47,15 @@ $mostrar=$result->fetch_assoc();
    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
  }
  $idtrasladounico = $n_con.'-'.$a;
-
  $año_actual = date('Y');
  $mes_actual = date('m');
  $dias_mes_actual = date('t');
+ // echo "<br>";
  $datemin = $año_actual.'-'.$mes_actual.'-01';
+ // echo "<br>";
+ $datemax = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
+ // echo "<br>";
+ include("calculardiasminimospararegistro.php")
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -140,6 +144,41 @@ $mostrar=$result->fetch_assoc();
           </h4>
         </div>
       </div>
+      <!-- Modal HTML -->
+        <div id="myModal" class="modal fade" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
+            <div class="modal-dialog modal-lg" style="max-height:90%;  margin-top: 100px; margin-bottom:100px; width:60%">
+              <!-- <div class="mi-div-color" style="background-color: blue; color: white; padding: 10px;">Este div tiene un color de fondo. -->
+                <div class="modal-content" style="background-color: #63696D; color: white; padding: 10px;">
+                    <div class="modal-header">
+                        <h1 class="modal-title" style="text-align:center"><strong>Aviso:</strong></h1>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                    </div>
+                    <div class="modal-body">
+                      <h3>A partir de esta fecha el Motivo de traslado denominado “Otro” se elimina de la lista,
+                        por lo que los registros que se contemplan dentro de esa categoría se deberán ubicar dentro de una de las siguientes opciones:</h3>
+                        <h3><strong>1. Diligencia Administrativa sin sujeto:</strong>
+                          Son todas aquellas salidas que la PDI realiza para llevar a cabo diligencias relacionadas con los sujetos protegidos
+                          pero que no involucra el traslado físico del sujeto protegido (recabar firma, entregar oficios, entre otros).</h3>
+                      <h3><strong>2. Diligencia Administrativa con sujeto:</strong>
+                        Son todas aquellas salidas en donde la PDI trasporta al sujeto protegido para que realice
+                        actividades específicas (corte de cabello, trámites personales, entre otros).</h3>
+                    </div>
+                    <!-- <div class="modal-footer">Don't have an account? <a href="#">Create one</a></div> -->
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <script type="text/javascript">
+        $(document).ready(function() {
+    // Muestra el modal al cargar la página
+    $('#myModal').modal('show');
+
+    // Cierra el modal después de 10 segundos
+    setTimeout(function(){
+      $('#myModal').modal('hide');
+    }, 9000);
+  });
+        </script>
       <div class="">
         <h1 style="text-align:center">REGISTRAR TRASLADO</h1>
         <center>
@@ -160,7 +199,7 @@ $mostrar=$result->fetch_assoc();
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
                       <label class="col-md-2 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">FECHA DE TRASLADO</label>
-                      <input name="fechatraslado" class="form-control" type="date" required min="<?php echo $datemin; ?>" max="<?= date("Y-m-d") ?>">
+                      <input name="fechatraslado" class="form-control" type="date" required min="<?php echo $datemin; ?>">
                     </div>
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">

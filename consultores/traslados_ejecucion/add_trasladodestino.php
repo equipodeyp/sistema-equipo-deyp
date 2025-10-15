@@ -18,8 +18,8 @@
                       <div id="contenedor-personas">
                         <div class="persona-form">
                           <div class="row">
-                            <div class="col-md-4" style="text-align: center; width: 258px; border: 1px solid #ECECEC;">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">MOTIVO</label>
+                            <div class="col-md-6" style="text-align: center; border: 1px solid #ECECEC;">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">MOTIVO</label>
                                 <select name="motivotraslado" class="form-control selectpicker" required onchange="motivotras(this)">
                                   <option disabled selected value>SELECCIONE UN MOTIVO</option>
                                   <?php
@@ -32,8 +32,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-8" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_inc">
-                              <label class="col-md-8 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_inc">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <!-- <input name="lugardestino[]" placeholder="INGRESE LUGAR DE DESTINO" class="form-control" type="text" required> -->
                                 <select id="selectmot_inc" name="lugardestino1" class="form-control selectpicker" onchange="motivotras_inc(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
@@ -47,8 +47,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_desinc">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_desinc">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <select id="selectmot_desinc" name="lugardestino2" class="form-control selectpicker" onchange="motivotras_desinc(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
                                   <?php
@@ -61,8 +61,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_visfam">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_visfam">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <select id="selectmot_visfam" name="lugardestino3" class="form-control selectpicker" onchange="motivotras_visfam(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
                                   <?php
@@ -75,8 +75,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_dilmin">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_dilmin">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <select id="selectmot_dilmin" name="lugardestino4" class="form-control selectpicker" onchange="motivotras_dilmin(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
                                   <?php
@@ -89,8 +89,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_diljud">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_diljud">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <select id="selectmot_diljud" name="lugardestino5" class="form-control selectpicker" onchange="motivotras_diljud(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
                                   <?php
@@ -103,8 +103,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_asimed">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_asimed">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <select id="selectmot_asimed" name="lugardestino6" class="form-control selectpicker" onchange="motivotras_asimed(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
                                   <?php
@@ -117,8 +117,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3" style="display:none; text-align: center; width: 648px; border: 1px solid #ECECEC;" id="motivo_cuspol">
-                              <label class="col-md-3 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">LUGAR</label>
+                            <div class="col-md-6" style="display:none; text-align: center; border: 1px solid #ECECEC;" id="motivo_cuspol">
+                              <label class="col-md-6 control-label" style="text-align: center; border: 1px solid #ECECEC;">LUGAR</label>
                                 <select id="selectmot_cuspol" name="lugardestino7" class="form-control selectpicker" onchange="motivotras_cuspol(this)">
                                   <option disabled selected value>SELECCIONE LUGAR</option>
                                   <?php
@@ -130,13 +130,17 @@
                                   ?>
                                 </select>
                             </div>
+                          </div>
+                          <div class="row">
                             <!-- cuando se seleccione otro se abren lugar domicilio y municipio -->
                             <!-- ESPECIFICAR MOTIVO -->
-                            <div class="col-md-4" style="display:none;" id="especif_motivotrs_ds">
-                              <label class="col-md-4 control-label">ESPECIFIQUE</label>
-                              <input id="especificar_motivo_trs" name="especificarmotivotrs" placeholder="INGRESE MOTIVO" class="form-control" type="text" autocomplete="off">
-                            </div>
-
+                            <!-- <div class="col-md-4" style="display:none;" id="especif_motivotrs_ds"> -->
+                              <!-- <label class="col-md-4 control-label">ESPECIFIQUE</label> -->
+                              <!-- <input id="especificar_motivo_trs" name="especificarmotivotrs" placeholder="INGRESE MOTIVO" class="form-control" type="text" autocomplete="off"> -->
+                            <!-- </div> -->
+                            <!-- <br> -->
+                            <!-- <div class="row"> -->
+                            <!-- <h1>prueba</h1> -->
                             <div class="col-md-4" style="display:none;" id="especif_lugar">
                               <label class="col-md-4 control-label">LUGAR</label>
                               <input id="esp_lugar_motivo" name="esp_lugar_motivosave" placeholder="INGRESE LUGAR DE DESTINO" class="form-control" type="text" autocomplete="off">
@@ -149,20 +153,23 @@
 
                             <div class="col-md-4" style="display:none;" id="especif_municipio">
                               <label class="col-md-4 control-label">MUNICIPIO</label>
-                                <select id="esp_municipio_motivo" name="esp_municipio_motivosave" class="form-control selectpicker" autocomplete="off">
-                                  <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
-                                  <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
-                                  <?php
-                                  $municipio = "SELECT * FROM municipios";
-                                  $answermun = $mysqli->query($municipio);
-                                  while($municipios = $answermun->fetch_assoc()){
-                                   echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
-                                  }
-                                  ?>
-                                </select>
+                              <select id="esp_municipio_motivo" name="esp_municipio_motivosave" class="form-control selectpicker" autocomplete="off">
+                                <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
+                                <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+                                <?php
+                                $municipio = "SELECT * FROM municipios";
+                                $answermun = $mysqli->query($municipio);
+                                while($municipios = $answermun->fetch_assoc()){
+                                  echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+                                }
+                                ?>
+                              </select>
                             </div>
-                            <br>
+                            <!-- </div> -->
                           </div>
+                          <br>
+
+
                         </div>
                       </div>
                     </div>
@@ -191,12 +198,12 @@ function ocultar_inputs_text(){
   document.getElementById("esp_lugar_motivo").value = "";
   document.getElementById("esp_domicilio_motivo").value = "";
   document.getElementById("esp_municipio_motivo").value = "";
-  document.getElementById("especificar_motivo_trs").value = "";
+  // document.getElementById("especificar_motivo_trs").value = "";
   //
   document.getElementById("esp_lugar_motivo").required = false;
   document.getElementById("esp_domicilio_motivo").required = false;
   document.getElementById("esp_municipio_motivo").required = false;
-  document.getElementById("especificar_motivo_trs").required = false;
+  // document.getElementById("especificar_motivo_trs").required = false;
 }
 function mostrar_inputs_text(){
   document.getElementById("especif_lugar").style.display = "";
@@ -206,12 +213,12 @@ function mostrar_inputs_text(){
   document.getElementById("esp_lugar_motivo").value = "";
   document.getElementById("esp_domicilio_motivo").value = "";
   document.getElementById("esp_municipio_motivo").value = "";
-  document.getElementById("especificar_motivo_trs").value = "";
+  // document.getElementById("especificar_motivo_trs").value = "";
   //
   document.getElementById("esp_lugar_motivo").required = true;
   document.getElementById("esp_domicilio_motivo").required = true;
   document.getElementById("esp_municipio_motivo").required = true;
-  document.getElementById("especificar_motivo_trs").required = false;
+  // document.getElementById("especificar_motivo_trs").required = false;
 }
 function motivotras(sel) {
   console.log(sel.value);
@@ -223,7 +230,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     // document.getElementById("selectmot_inc").style.display = "";
     document.getElementById("selectmot_desinc").value = "";
@@ -232,7 +239,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_diljud").value = "";
     document.getElementById("selectmot_asimed").value = "";
     document.getElementById("selectmot_cuspol").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     //
     ocultar_inputs_text();
     //
@@ -251,7 +258,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     document.getElementById("selectmot_inc").value = "";
     // document.getElementById("selectmot_desinc").value = "";
@@ -260,7 +267,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_diljud").value = "";
     document.getElementById("selectmot_asimed").value = "";
     document.getElementById("selectmot_cuspol").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     //
     ocultar_inputs_text();
     //
@@ -279,7 +286,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     document.getElementById("selectmot_inc").value = "";
     document.getElementById("selectmot_desinc").value = "";
@@ -288,7 +295,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_diljud").value = "";
     document.getElementById("selectmot_asimed").value = "";
     document.getElementById("selectmot_cuspol").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     //
     ocultar_inputs_text();
     //
@@ -307,7 +314,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     document.getElementById("selectmot_inc").value = "";
     document.getElementById("selectmot_desinc").value = "";
@@ -316,7 +323,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_diljud").value = "";
     document.getElementById("selectmot_asimed").value = "";
     document.getElementById("selectmot_cuspol").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     //
     ocultar_inputs_text();
     //
@@ -335,7 +342,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     document.getElementById("selectmot_inc").value = "";
     document.getElementById("selectmot_desinc").value = "";
@@ -344,7 +351,7 @@ function motivotras(sel) {
     // document.getElementById("selectmot_diljud").value = "";
     document.getElementById("selectmot_asimed").value = "";
     document.getElementById("selectmot_cuspol").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     //
     ocultar_inputs_text();
     //
@@ -363,7 +370,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     document.getElementById("selectmot_inc").value = "";
     document.getElementById("selectmot_desinc").value = "";
@@ -372,7 +379,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_diljud").value = "";
     // document.getElementById("selectmot_asimed").value = "";
     document.getElementById("selectmot_cuspol").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     //
     ocultar_inputs_text();
     //
@@ -391,7 +398,7 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "";
-    document.getElementById("especif_motivotrs_ds").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "none";
     //
     document.getElementById("selectmot_inc").value = "";
     document.getElementById("selectmot_desinc").value = "";
@@ -399,7 +406,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_dilmin").value = "";
     document.getElementById("selectmot_diljud").value = "";
     document.getElementById("selectmot_asimed").value = "";
-    document.getElementById("especificar_motivo_trs").value = "";
+    // document.getElementById("especificar_motivo_trs").value = "";
     // document.getElementById("selectmot_cuspol").value = "";
     //
     ocultar_inputs_text();
@@ -411,7 +418,7 @@ function motivotras(sel) {
     document.getElementById("selectmot_diljud").required = false;
     document.getElementById("selectmot_asimed").required = false;
     document.getElementById("selectmot_cuspol").required = true;
-  }else if (sel.value === 'OTRO') {
+  }else if (sel.value === 'DILIGENCIA ADMINISTRATIVA CON SUJETO') {
     document.getElementById("motivo_inc").style.display = "none";
     document.getElementById("motivo_desinc").style.display = "none";
     document.getElementById("motivo_visfam").style.display = "none";
@@ -419,9 +426,48 @@ function motivotras(sel) {
     document.getElementById("motivo_diljud").style.display = "none";
     document.getElementById("motivo_asimed").style.display = "none";
     document.getElementById("motivo_cuspol").style.display = "none";
-    document.getElementById("especif_motivotrs_ds").style.display = "";
+    // document.getElementById("especif_motivotrs_ds").style.display = "";
+    document.getElementById("selectmot_inc").value = "";
+    document.getElementById("selectmot_desinc").value = "";
+    document.getElementById("selectmot_visfam").value = "";
+    document.getElementById("selectmot_dilmin").value = "";
+    document.getElementById("selectmot_diljud").value = "";
+    document.getElementById("selectmot_asimed").value = "";
+    document.getElementById("selectmot_cuspol").value = "";
     //
     mostrar_inputs_text();
+    document.getElementById("selectmot_inc").required = false;
+    document.getElementById("selectmot_desinc").required = false;
+    document.getElementById("selectmot_visfam").required = false;
+    document.getElementById("selectmot_dilmin").required = false;
+    document.getElementById("selectmot_diljud").required = false;
+    document.getElementById("selectmot_asimed").required = false;
+    document.getElementById("selectmot_cuspol").required = false;
+  }else if (sel.value === 'DILIGENCIA ADMINISTRATIVA SIN SUJETO') {
+    document.getElementById("motivo_inc").style.display = "none";
+    document.getElementById("motivo_desinc").style.display = "none";
+    document.getElementById("motivo_visfam").style.display = "none";
+    document.getElementById("motivo_dilmin").style.display = "none";
+    document.getElementById("motivo_diljud").style.display = "none";
+    document.getElementById("motivo_asimed").style.display = "none";
+    document.getElementById("motivo_cuspol").style.display = "none";
+    // document.getElementById("especif_motivotrs_ds").style.display = "";
+    document.getElementById("selectmot_inc").value = "";
+    document.getElementById("selectmot_desinc").value = "";
+    document.getElementById("selectmot_visfam").value = "";
+    document.getElementById("selectmot_dilmin").value = "";
+    document.getElementById("selectmot_diljud").value = "";
+    document.getElementById("selectmot_asimed").value = "";
+    document.getElementById("selectmot_cuspol").value = "";
+    //
+    mostrar_inputs_text();
+    document.getElementById("selectmot_inc").required = false;
+    document.getElementById("selectmot_desinc").required = false;
+    document.getElementById("selectmot_visfam").required = false;
+    document.getElementById("selectmot_dilmin").required = false;
+    document.getElementById("selectmot_diljud").required = false;
+    document.getElementById("selectmot_asimed").required = false;
+    document.getElementById("selectmot_cuspol").required = false;
   }
 }
 // funciones de cada opcion de select de lugar dependiendo el motivo

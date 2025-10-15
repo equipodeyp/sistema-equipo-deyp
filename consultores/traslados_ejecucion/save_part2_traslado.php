@@ -253,10 +253,15 @@ if ($check_traslado2 == 1) {
                                  VALUES ('$id_traslado', '$lugardes', '$domicilioget', '$municipioget', '$motivotr', '$fecha_alta', '$name')";
       $radddestinotraslado = $mysqli->query($adddestinotraslado);
     }
-  }elseif ($motivotr === 'OTRO') {
+  }elseif ($motivotr === 'DILIGENCIA ADMINISTRATIVA CON SUJETO') {
     // ADD DESTINO A LA TABLA DE REACT DESTINOS CON LOS DATOS DE OTRO
     $adddestinotraslado = "INSERT INTO react_destinos_traslados(id_traslado, lugar, domicilio, municipio, motivo, fecha_alta, usuario)
-                               VALUES ('$id_traslado', '$esplugdes', '$espdomdes', '$espmundes', '$espmotivotrsds', '$fecha_alta', '$name')";
+                               VALUES ('$id_traslado', '$esplugdes', '$espdomdes', '$espmundes', '$motivotr', '$fecha_alta', '$name')";
+    $radddestinotraslado = $mysqli->query($adddestinotraslado);
+  }elseif ($motivotr === 'DILIGENCIA ADMINISTRATIVA SIN SUJETO') {
+    // ADD DESTINO A LA TABLA DE REACT DESTINOS CON LOS DATOS DE OTRO
+    $adddestinotraslado = "INSERT INTO react_destinos_traslados(id_traslado, lugar, domicilio, municipio, motivo, fecha_alta, usuario)
+                               VALUES ('$id_traslado', '$esplugdes', '$espdomdes', '$espmundes', '$motivotr', '$fecha_alta', '$name')";
     $radddestinotraslado = $mysqli->query($adddestinotraslado);
   }
   // validacion de update correcto

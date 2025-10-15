@@ -1,6 +1,7 @@
 <?php
 /*require 'conexion.php';*/
 // prueba commit
+error_reporting(0);
 date_default_timezone_set("America/Mexico_City");
 include("../conexion.php");
 session_start ();
