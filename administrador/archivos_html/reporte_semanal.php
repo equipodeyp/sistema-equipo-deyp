@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <form action="../administrador/archivos_html/prueba_reportesemanal.php" method="POST">
-          <button class="btn btn-success" type="submit">Create PDF</button><br><br>
+          <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <div class="well form-horizontal">
             <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
             <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
@@ -147,7 +147,7 @@
             ?>
             <div class="contenedor-flex">
               <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D;">1/2</label>
+              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;1/2&nbsp;&nbsp;</label>
             </div>
             <div class="">
               <table width="100%">
@@ -179,8 +179,8 @@
 
             <div class="contenedor-flex">
               <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D;">2/2</label>
-            </div>
+              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;2/2&nbsp;&nbsp;</label>
+              </div>
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <thead>
                 <tr>

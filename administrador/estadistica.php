@@ -123,7 +123,7 @@ $result = $mysqli->query($sentencia);
         </div>
         <br>
         </div>
-        <!-- <button   id="exportarExcelN" onclick="exportarExcelv2();">Exportar a Excel</button> -->
+        <!-- <button   id="exportarExcelN" onclick="exportarExcelv2();">Exportar a Excel</button> -->        
         <div class="container">
           <article class="">
             <div class="secciones form-horizontal sticky breadcrumb flat">
