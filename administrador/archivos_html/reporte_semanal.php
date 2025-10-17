@@ -145,24 +145,30 @@
                 break;
             }
             ?>
-            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-              <thead>
-                <tr>
-                  <th width="80%" align="left" bgcolor="#63696D">
-                    <h5 class=""></font></span>
-                    <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                    </font></span></h5>
-                  </th>
-                  <th width="20%" align="left" bgcolor="#63696D">
-                    <h5 class=""></font></span>
-                    <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                    Subdirección de Estadística y Pre-Registro
-                    </font></span></h5>
-                  </th>
-                </tr>
-              </tbody>
-            </table>
+            <div class="contenedor-flex">
+              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
+              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D;">1/2</label>
+            </div>
+            <div class="">
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <th width="80%" align="left" bgcolor="#63696D">
+                      <h5 class="">
+                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
+                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
+                      </font></span></h5>
+                    </th>
+                    <th width="20%" align="left" bgcolor="#63696D">
+                      <h5 class="">
+                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
+                      Subdirección de Estadística y Pre-Registro
+                      </font></span></h5>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
           </div>
           <!-- segunda pagina -->
           <div class="well form-horizontal">
@@ -170,7 +176,11 @@
             <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
             <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
             <h1 style="text-align:center; color: #030303;">Reporte Global Semanal <br> DEL 01 DE JUNIO DEL 2021 AL <?php echo $diafin.' DE '.$meses[date('n')].' DEL '.date('Y'); ?></h1>
-            
+
+            <div class="contenedor-flex">
+              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
+              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D;">2/2</label>
+            </div>
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
               <thead>
                 <tr>

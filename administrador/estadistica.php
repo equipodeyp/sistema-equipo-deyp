@@ -51,6 +51,21 @@ $result = $mysqli->query($sentencia);
 <link rel="stylesheet" href="../css/breadcrumb.css">
 <link rel="stylesheet" href="../css/expediente.css">
 <!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
+<style media="screen">
+.contenedor-flex {
+  display: flex; /* Coloca los elementos hijos uno al lado del otro */
+  justify-content: space-between; /* Distribuye el espacio: una al inicio y otra al final */
+  width: 100%; /* Asegúrate de que el contenedor ocupe el ancho necesario */
+}
+
+/* Opcional: Estilos para las etiquetas */
+.izquierda {
+  margin-right: 10px; /* Espacio entre las etiquetas */
+}
+.derecha {
+  /* Ya está al final por justify-content */
+}
+</style>
 </head>
 <body>
   <div class="contenedor">
@@ -121,7 +136,7 @@ $result = $mysqli->query($sentencia);
           <?php
           include("../administrador/obtener_fechas_reportes.php");
           ?>
-          <ul class="ca-menu">            
+          <ul class="ca-menu">
 
           </ul>
         </div>
