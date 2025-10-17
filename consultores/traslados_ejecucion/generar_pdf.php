@@ -9,15 +9,15 @@ $css = file_get_contents('../../css/main2.css');
 
 $mpdf = new \Mpdf\Mpdf([
           'mode' => '',
-          'format' => 'A4',
+          'format' => [216, 279],
           'default_font_size' => 0,
           'default_font' => '',
           'margin_left' => 10,
-          'margin_right' => 7,
+          'margin_right' => 8,
           'margin_top' => 32,
           'margin_bottom' => 20,
-          'margin_header' => 2,
-          'margin_footer' => 2,
+          'margin_header' => 1,
+          'margin_footer' => 6,
           'orientation' => 'P',
     ]);
     $mpdf->SetHTMLHeader('<table width="100%">
@@ -342,117 +342,8 @@ $data .='<br><br>
     </tbody>';
 
 $data .='</table>';
-$data .='<br>
-<table style="width: 100%; margin: 0 auto;" class="table table-striped table-bordered" cellspacing="0" bgcolor="#97897D">
-    <thead>
-        <tr>
-            <th style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><font size=1><b style="text-align:center; color:white;">NO.</b></font></th>
-            <th style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><font size=1><b style="text-align:center; color:white;">TRASLADO</b></font></th>
-            <th style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><font size=1><b style="text-align:center; color:white;">FECHA</b></font></th>
-        </tr>
-    </thead>
-    <tbody>';
-    $auxsum = 0;
-    $auxsum2 = 0;
-    $sujetosidrecor = array();
-    $sujetosidrecor2 = array();
-    $conteotrasdestino001 = "SELECT * FROM react_sujetos_traslado
-    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
-    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
-    WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-    ORDER BY react_traslados.fecha ASC";
-    $rconteotrasdestino001 = $mysqli->query($conteotrasdestino001);
-    while ($fconteotrasdestino001 = $rconteotrasdestino001->fetch_assoc()){
-      $iddd = intVal($fconteotrasdestino001['id_sujeto']);
-      array_push($sujetosidrecor, $iddd);
-    }
-    $miArray = array(1, 2, 2, 2, 3, 3, 4, 4, 5);
-    // Verificar si el array tiene al menos dos elementos
-    if (count($sujetosidrecor) >= 3) {
-        // Iterar sobre el array
-        for ($i = 0; $i < count($sujetosidrecor); $i++) {
-            // Obtener el valor anterior
-            $anterior = ($i > 0) ? $sujetosidrecor[$i - 1] : null;
-            $anterior2 = ($i > 0) ? $sujetosidrecor[$i - 2] : null;
-            // Obtener el valor actual
-            $actual = $sujetosidrecor[$i];
-            $actual2 = $sujetosidrecor[$i+1];
-            // Comparar si el valor anterior es igual al valor actual
-            if ($i > 0 && $anterior2 == $actual) {
-                 // echo "Valor igual: 3" . PHP_EOL;
-                 array_push($sujetosidrecor2, 3);
-            }elseif ($i > 0 && $anterior == $actual) {
-               // "Valecho or igual: 2" . PHP_EOL;
-               array_push($sujetosidrecor2, 2);
-            } else {
-                //Si es diferente, imprimimos el valor actual.
-                 // echo "Valor desigual: 1" . PHP_EOL;
-                 array_push($sujetosidrecor2, 1);
-            }
-        }
-    }
-    $conteotrasdestino = "SELECT * FROM react_sujetos_traslado
-    INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
-    INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-    INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
-    WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-    ORDER BY react_traslados.fecha ASC";
-    $rconteotrasdestino = $mysqli->query($conteotrasdestino);
-    while ($fconteotrasdestino = $rconteotrasdestino->fetch_assoc()) {
-      $auxsum = $auxsum +1;
-      $idsujetorecor = $fconteotrasdestino['id_sujeto'];
-      $numtrasladorecor = $fconteotrasdestino['id_destino'];
-
-      $conteotrasdestino2 = "SELECT COUNT(*) AS pt FROM react_sujetos_traslado
-       INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-       WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
-      $rconteotrasdestino2 = $mysqli->query($conteotrasdestino2);
-      $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();
-
-      $resmotivodes = $fconteotrasdestino['motivo'];
-      $cadena = $resmotivodes;
-      $texto_minusculas = mb_strtolower($cadena, 'UTF-8');
-      $texto_minusculas; // Imprime "hola mundo, éste es un ejemplo."
-      // echo "<br>";
-      $foo = ucfirst($texto_minusculas);
-      // echo "<br>";
-       $ultimosCinco = substr($fconteotrasdestino['folio_expediente'], -7);
-       // $fconteotrasdestino['identificador'];
-      $cadena = $fconteotrasdestino['identificador'];
-      // echo "<br>";
-      $caracter = "-";
-      // Encuentra la posición del carácter
-      $posicion = strpos($cadena, $caracter);
-      // Si el carácter existe en la cadena
-      if ($posicion !== false) {
-        // Extrae la parte de la cadena hasta el carácter
-        $parte = substr($cadena, 0, $posicion);
-        // Imprime la parte de la cadena
-        $parte; // Imprimirá "Hola"
-      }
-      $texto = $parte;
-      // Convertir el texto en un array de caracteres
-      $arrayCaracteres = str_split($texto);
-      // Unir los caracteres con un punto
-      $textoConPuntos = implode(".", $arrayCaracteres);
-      $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-0'.$sujetosidrecor2[$auxsum2];
-
-$data .='<tr bgcolor="white">
-    <td style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><font size=1><p>'.$auxsum.'</font></p></td>
-    <td style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><font size=1><p>'.$concatenacion.'</font></p></td>
-    <td style="border: 1px solid #A19E9F; text-align:center; font-family: gothambook;"><font size=1><p>'.date("d/m/Y", strtotime($fconteotrasdestino['fecha'])).'</font></p></td>
-    </tr>';
-    $auxsum2 = $auxsum2 +1;
-    }
-
-$data .='</tbody>';
-
-
-$data .='</table>
-
-
-</div>';
+$data .='<br>';
+$data .='</div>';
 
 $data .='<div style="float:left;width: 1%;outline: white solid thin">
   <h6 style="display:none;">hola</h6>&nbsp;
