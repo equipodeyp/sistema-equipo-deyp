@@ -195,6 +195,33 @@ elseif ($actividad === '6') {
                      </tr>
                     </tfoot>';
 }
+elseif ($actividad === '7') {
+  $otrasact = "SELECT COUNT(*) AS suma FROM react_actividad
+                 WHERE id_subdireccion = 4 AND usuario = '$usuario' AND id_actividad = 7 AND (fecha BETWEEN '$fecha_inicio' AND '$fecha_fin')";
+  $rotrasact = $mysqli->query($otrasact);
+  $fotrasact = $rotrasact ->fetch_assoc();
+  $html .='<tr>
+            <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> 1 </td>
+            <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> OTRAS </td>
+            <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> N/A </td>
+            <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> N/A </td>
+            <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> '.$fotrasact['suma'].' </td>
+           </tr>';
+           $totalactividades = "SELECT COUNT(*) AS suma FROM react_actividad
+           WHERE id_subdireccion = 4 AND usuario = '$usuario' AND id_actividad = 7 AND (fecha BETWEEN '$fecha_inicio' AND '$fecha_fin')";
+           $rtotalactividades = $mysqli->query($totalactividades);
+           $ftotalactividades = $rtotalactividades ->fetch_assoc();
+           $html .='<tfoot>
+                     <tr>
+                       <th scope="row" bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: right;" colspan="4">
+                         <font size=5><b style="text-align:center; color:white;">TOTAL DE ACTIVIDADES</b></font>
+                       </th>
+                       <td bgcolor="#5F6D6B" style="color:#fdfdfc; border: 1px solid black; padding: 2px; text-align: center;">
+                         <font size=5><b style="text-align:center; color:white;">'.$ftotalactividades['suma'].'</b></font>
+                       </td>
+                     </tr>
+                    </tfoot>';
+}
 $html .='</table>
         </dvi><br><br>';
 
