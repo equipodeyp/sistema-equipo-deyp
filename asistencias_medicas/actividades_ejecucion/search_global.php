@@ -116,6 +116,19 @@ $html .='<tr>
           <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> RONDÍN POLICIAL </td>
           <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;">'.$frecorridos['suma'].'</td>
          </tr>';
+
+//
+$otrasact = "SELECT COUNT(*) AS suma FROM react_actividad
+               WHERE id_subdireccion = 4 AND id_actividad = 7 AND (fecha BETWEEN '$fecha_inicio' AND '$fecha_fin')";
+$rotrasact = $mysqli->query($otrasact);
+$fotrasact = $rotrasact ->fetch_assoc();
+$html .='<tr>
+          <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> 5 </td>
+          <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> OTRAS </td>
+          <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> N/A </td>
+          <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;"> NA </td>
+          <td width="5%" style="border: 1px solid black; padding: 2px; text-align: center;">'.$fotrasact['suma'].'</td>
+         </tr>';
 $totalactividades = "SELECT COUNT(*) AS suma FROM react_actividad
                WHERE id_subdireccion = 4 AND id_subdireccion = 4 AND (fecha BETWEEN '$fecha_inicio' AND '$fecha_fin')";
 $rtotalactividades = $mysqli->query($totalactividades);
