@@ -484,7 +484,7 @@ $data .='</tbody>
                             //
                             $data .= '<tr bgcolor="white">
                             <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;ASISTENCIA</h1></td>
-                            <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fenejecr['t'].'</h1></td>
+                            <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fenejeca['t'].'</h1></td>
                             <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fejeca['t'].'</h1></td>
                             <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fcancela['t'].'</h1></td>
                             <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fasist['t'].'</h1></td>
