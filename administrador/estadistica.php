@@ -123,7 +123,7 @@ $result = $mysqli->query($sentencia);
         </div>
         <br>
         </div>
-        <!-- <button   id="exportarExcelN" onclick="exportarExcelv2();">Exportar a Excel</button> -->        
+        <!-- <button   id="exportarExcelN" onclick="exportarExcelv2();">Exportar a Excel</button> -->
         <div class="container">
           <article class="">
             <div class="secciones form-horizontal sticky breadcrumb flat">
@@ -379,7 +379,7 @@ $result = $mysqli->query($sentencia);
         include("../administrador/archivos_html/resumendiario.html");//RESUMEN DIARO DEL SISTEMA
         include("../administrador/archivos_html/medidas_alojamiento_temporal.html");//SUJETOS CON ALOJAMIENTO TEMPORAL
         include("../administrador/archivos_html/total_sujetos_alojamiento.html");//TOTAL DE SUJETOS POR AÑO EN ALOJAMIENTO TEMPORAL
-        include("../administrador/archivos_html/reporte_diario.html");
+        include("../administrador/archivos_html/reporte_diario.php");
         include("../administrador/archivos_html/reporte_semanal.php");
         include("../administrador/archivos_html/reporte_mensual.php");
         ?>
