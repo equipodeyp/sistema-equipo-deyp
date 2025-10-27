@@ -78,7 +78,17 @@ Penal o de Extinción de Dominio del Estado de México. </h2>
 <td width="10%" style="text-align: right;"><img  src="../../image/FGJEM.jpg" width="52" height="52"></td>
 </tr>
 </table>');
-$mpdf->SetHTMLFooter('<div style="float: left; width: 95%;"><h1 class="izquierda" style="font-size:13px"></h1></div>
+$mpdf->SetHTMLFooter('<div style="float: left; width: 85%;">
+<table width="100%" align="right">
+  <tr>
+    <td  align="left" bgcolor="" style="height:30vh;">
+      <h1 style="font-size: 13.33px; color:#63696D;">
+      <strong>*NOTA: Cifras sujetas a cambios por actualización</strong>
+      </h1>
+    </td>
+  </tr>
+</table>
+</div>
 <div style="float: right; width: 5%;">
   <table width="5%" align="right">
     <tr>
