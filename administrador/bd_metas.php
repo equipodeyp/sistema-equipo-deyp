@@ -176,8 +176,9 @@ $row=$result->fetch_assoc();
 
   <nav class="menu-nav">
             <ul>
-                <li class="menu-items"><a href="../administrador/bd_metas_react_apoyo.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> METAS JURIDICO</span></a></li>
-              </ul>
+              <li class="menu-items"><a href="../administrador/bd_metas_react_apoyo.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> METAS JURIDICO</span></a></li>
+              <li class="menu-items"><a href="../administrador/gettrasladossearch.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-van-shuttle menu-nav--icon fa-fw'></i> TRASLADOS</span></a></li>
+            </ul>
       </nav>
 
     </div>
@@ -320,6 +321,7 @@ $row=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
+      <a href="estadistica.php" class="btn-flotante">REGRESAR</a>
   </div>
 </body>
 </html>

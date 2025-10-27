@@ -279,7 +279,7 @@ a:focus {
               <a href="#"><i class='color-icon fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span style="color: white; font-weight:bold;" class="menu-items">BUSQUEDA</span></a>
               <li class="menu-items"><a href="../administrador/estadistica.php"><i class="color-icon fa-solid fa-chart-line menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;"class="menu-items"> ESTADISTICA</span></a></li>
           </ul>
-          
+
 
           <ul>
                 <li>
@@ -329,18 +329,9 @@ a:focus {
         </div> -->
         <br>
         <!--Ejemplo tabla con DataTables-->
-
-
-
-
-
         <div class="">
             <div class="row">
                     <div class="col-lg-12">
-
-
-
-
                         <div class="table-responsive">
                             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>

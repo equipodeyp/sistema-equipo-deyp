@@ -172,7 +172,7 @@ if ($fincornoproc['t'] > 0 || $fincornoprocreporte['t'] > 0) {
 ////////////////////////////////////////////////////////////////////////////////
 if ($fenelaboracion['t'] > 0 || $fenelaboracionreporte['t'] > 0) {
   echo "<tr>";
-  echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
+  echo "<td style='text-align:left'>"; echo "EN ANÁLISIS"; "</td>";
   echo "<td style='text-align:center'>"; echo $fenelaboracion['t']; "</td>";
   echo "<td style='text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
   echo "<td style='text-align:center'>"; echo $totalenelaboracion; "</td>";
