@@ -1,160 +1,80 @@
 <?php
+error_reporting(0);
+header("Content-Type: text/html;charset=utf-8");
+date_default_timezone_set("America/Mexico_City");
 /*require 'conexion.php';*/
-// error_reporting(0);
-include("conexion.php");
+include("./conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$check_actividad = 1;
+$_SESSION["check_actividad"] = $check_actividad;
+
+// echo $name;
+
+/* $sentencia="SELECT usuarios.cargo, usuarios.usuario, usuarios_servidorespublicos.estatus, usuarios.nombre
+
+FROM usuarios
+
+JOIN usuarios_servidorespublicos
+ON usuarios.id = usuarios_servidorespublicos.id_usuarioprincipal
+AND usuarios_servidorespublicos.estatus = 'activo'
+AND usuarios.usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
- ?>
+$cargo = $row['cargo'];
+$estatus=$row['estatus'];
+$id_usuario=$row['usuario']; */
+// echo $id_usuario;
+// echo $cargo;
+// echo $estatus;
+// $today = date("Y-m-d H:i:s"); 
+// echo $today;
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>METAS REACT SUB APOYO TEC.Y JUR.</title>
+  <title>CONSULTAR CIFRAS ACTIVIDAD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="../js/funciones_react.js"></script>
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../css/cli.css">
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/main2.css">
-  <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css"/>
-  <!--datables estilo bootstrap 4 CSS-->
-  <link rel="stylesheet"  type="text/css" href="../datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
-  <!--font awesome con CDN-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <!-- datatables JS -->
-  <script type="text/javascript" src="../datatables/datatables.min.js"></script>
-  <!-- para usar botones en datatables JS -->
-  <script src="../datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-  <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
-  <script src="../datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-  <script src="../datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-  <script src="../datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
-
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
-  <!-- barra de navegacion -->
-  <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
-<!-- SCRIPT PARA EL MANEJO DE LA TABLA -->
-  <script type="text/javascript">
-  // primer tabla de meses
-  $(document).ready(function() {
-      $('#example').DataTable({
-          language: {
-                  "lengthMenu": "Mostrar _MENU_ registros",
-                  "zeroRecords": "No se encontraron resultados",
-                  "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                  "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                  "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                  "sSearch": "Buscar:",
-                  "oPaginate": {
-                      "sFirst": "Primero",
-                      "sLast":"Último",
-                      "sNext":"Siguiente",
-                      "sPrevious": "Anterior"
-             },
-             "sProcessing":"Procesando...",
-              },
-          // para usar los botones
-          // searching: false,
-          responsive: "true",
-          dom: 'Bfrtilp',
-          buttons:[
-        {
-          extend:    'excelHtml5',
-          text:      '<i class="fas fa-file-excel"></i> ',
-          titleAttr: 'Exportar a Excel',
-          className: 'btn btn-success',
-          title:     'METAS'
-        },
-      ]
-      });
-  });
-  // segunda tabla de medidas de resguardo
-  $(document).ready(function() {
-      $('#resguardometas').DataTable({
-          language: {
-                  "lengthMenu": "Mostrar _MENU_ registros",
-                  "zeroRecords": "No se encontraron resultados",
-                  "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                  "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                  "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                  "sSearch": "Buscar:",
-                  "oPaginate": {
-                      "sFirst": "Primero",
-                      "sLast":"Último",
-                      "sNext":"Siguiente",
-                      "sPrevious": "Anterior"
-             },
-             "sProcessing":"Procesando...",
-              },
-          // para usar los botones
-          // searching: false,
-          responsive: "true",
-          dom: 'Bfrtilp',
-          buttons:[
-        {
-          extend:    'excelHtml5',
-          text:      '<i class="fas fa-file-excel"></i> ',
-          titleAttr: 'Exportar a Excel',
-          className: 'btn btn-success',
-          title:     'METAS MEDIDAS RESGUARDO'
-        },
-      ]
-      });
-  });
-  // segunda tabla de medidas de ASISTENCIA
-  $(document).ready(function() {
-      $('#asistenciametas').DataTable({
-          language: {
-                  "lengthMenu": "Mostrar _MENU_ registros",
-                  "zeroRecords": "No se encontraron resultados",
-                  "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                  "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                  "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                  "sSearch": "Buscar:",
-                  "oPaginate": {
-                      "sFirst": "Primero",
-                      "sLast":"Último",
-                      "sNext":"Siguiente",
-                      "sPrevious": "Anterior"
-             },
-             "sProcessing":"Procesando...",
-              },
-          // para usar los botones
-          // searching: false,
-          responsive: "true",
-          dom: 'Bfrtilp',
-          buttons:[
-        {
-          extend:    'excelHtml5',
-          text:      '<i class="fas fa-file-excel"></i> ',
-          titleAttr: 'Exportar a Excel',
-          className: 'btn btn-success',
-          title:     'METAS MEDIDAS ASISTENCIA'
-        },
-      ]
-      });
-  });
-  </script>
+  <!-- font-awesome -->
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
+  <!-- estilos de diseño add traslados -->
+  <link rel="stylesheet" href="../css/react_add_traslados.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="assets/css/material.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="./assets/css/loader.css">
+  <script src="../js/funciones_react.js"></script>
+
+
 </head>
 <body>
   <div class="contenedor">
     <div class="sidebar ancho">
       <div class="logo text-warning">
       </div>
-      <div style="text-align:center" class="user">
+      <div class="user">
         <?php
         $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
         $result = $mysqli->query($sentencia);
@@ -162,7 +82,7 @@ $row=$result->fetch_assoc();
         $genero = $row['sexo'];
 
         if ($genero=='mujer') {
-          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+          echo "<img style='text-align:center;' src='../image/mujerup.png' width='100' height='100'>";
         }
 
         if ($genero=='hombre') {
@@ -173,7 +93,11 @@ $row=$result->fetch_assoc();
          ?>
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
-    </div>
+
+       <nav class="menu-nav">
+          
+      </nav>
+    </div> 
     <div class="main bg-light">
       <div class="barra">
           <img src="../image/fiscalia.png" alt="" width="150" height="150">
@@ -182,138 +106,320 @@ $row=$result->fetch_assoc();
       </div>
       <div class="container">
         <div class="row">
-          <h1 style="text-align:center">
+          <!-- <h1 style="text-align:center">
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-          </h1>
-          <h5 style="text-align:center">
+          </h1> -->
+          <!-- <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
-          </h5>
+          </h4> -->
         </div>
-        <br>
-        <!--Ejemplo tabla con DataTables-->
       </div>
-      <div class="container">
-        <article class="">
-          <div class="secciones form-horizontal sticky breadcrumb flat">
-            <a href="../administrador/admin.php">REGISTROS</a>
-            <a href="../administrador/estadistica.php">ESTADISTICA</a>
-            <a href="../administrador/bd_metas.php">BD METAS</a>
-            <a class="actived">METAS JURIDICO</a>
+      <div class="">
+        <br>
+        <br>
+        <br>
+        <h1 style="text-align:center">METAS DE CONVENIOS Y ESTUDIOS TECNICOS</h1>
+<center>
+  <div style="text-align:center;padding:15px;border:solid 5px; width:80%;border-radius:35px;shadow" class="well form-horizontal">
+
+   <!--  <form action="generar_reporte_pdf.php" method="post" accept-charset="utf-8" id="form_consultar_cifras" autocomplete="off"> -->
+
+
+    <div class="form-group">
+        <h4 class="col-md-3 control-label">TIPO DE CONSULTA:</h4>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
+
+              <?php 
+              if ($cargo != '' ){ 
+              echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="ESTUDIO TECNICO">ESTUDIO TECNICO</option>
+                    <option value="CONVENIO">CONVENIO</option>';
+              }else{
+              // echo 'adminidtrativo';
+              echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
+                    <option value="ESTUDIO TECNICO">ESTUDIO TECNICO</option>      
+                    <option value="CONVENIO">CONVENIO</option>';
+              }
+              ?>
+
+            </select>
+
           </div>
-          <div class="container">
-            <!-- <h2 style="text-align:center">METAS</h2> -->
-            <div class="">
-                <div class="row">
-               <!--           <div class="col-lg-12">
-                            <div class="table-responsive">
-                              <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                              <thead>
-                                  <tr>
-                                    <th style="text-align:center">DESCRIPCION</th>
-                                    <th style="text-align:center">ENERO</th>
-                                    <th style="text-align:center">FEBRERO</th>
-                                    <th style="text-align:center">MARZO</th>
-                                    <th style="text-align:center">ABRIL</th>
-                                    <th style="text-align:center">MAYO</th>
-                                    <th style="text-align:center">JUNIO</th>
-                                    <th style="text-align:center">JULIO</th>
-                                    <th style="text-align:center">AGOSTO</th>
-                                    <th style="text-align:center">SEPTIEMBRE</th>
-                                    <th style="text-align:center">OCTUBRE</th>
-                                    <th style="text-align:center">NOVIEMBRE</th>
-                                    <th style="text-align:center">DICIEMBRE</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                <?php include("contardatemedidas.php"); ?>
-                                <tr>
-                                  <td>RESGUARDO</td>
-                                  <td><?php echo $feneroresg['total']; ?></td>
-                                  <td><?php echo $ffebreroresg['total']; ?></td>
-                                  <td><?php echo $fmarzoresg['total']; ?></td>
-                                  <td><?php echo $fabrilresg['total']; ?></td>
-                                  <td><?php echo $fmayoresg['total']; ?></td>
-                                  <td><?php echo $fjunioresg['total']; ?></td>
-                                  <td><?php echo $fjulioresg['total']; ?></td>
-                                  <td><?php echo $fagostoresg['total']; ?></td>
-                                  <td><?php echo $fseptiembreresg['total']; ?></td>
-                                  <td><?php echo $foctubreresg['total']; ?></td>
-                                  <td><?php echo $fnoviembreresg['total']; ?></td>
-                                  <td><?php echo $fdiciembreresg['total']; ?></td>
-                                </tr>
-                                <tr>
-                                  <td>ASISTENCIA</td>
-                                  <td><?php echo $feneroasis['total']; ?></td>
-                                  <td><?php echo $ffebreroasis['total']; ?></td>
-                                  <td><?php echo $fmarzoasis['total']; ?></td>
-                                  <td><?php echo $fabrilasis['total']; ?></td>
-                                  <td><?php echo $fmayoasis['total']; ?></td>
-                                  <td><?php echo $fjunioasis['total']; ?></td>
-                                  <td><?php echo $fjulioasis['total']; ?></td>
-                                  <td><?php echo $fagostoasis['total']; ?></td>
-                                  <td><?php echo $fseptiembreasis['total']; ?></td>
-                                  <td><?php echo $foctubreasis['total']; ?></td>
-                                  <td><?php echo $fnoviembreasis['total']; ?></td>
-                                  <td><?php echo $fdiciembreasis['total']; ?></td>
-                                  <!-- <td><?php echo $feneroasis['total']; ?></td> -->
-                                </tr>
-                              </tbody>
-                             </table>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                          <br><br>
-                          <div class="alert alert-success" role="alert">
-                            <!-- A simple success alert—check it out! -->
-                            <h1 style="text-align:center">TABLAS DE ACTIVIDADES SEGUN EL MES ACTUAL</h1>
-                          </div>
-                            <div class="table-responsive">
-                              <table id="resguardometas" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                              <thead>
-                                <tr>
-                                  <th style="text-align:center" colspan="3">CONVENIOS</th>
-                                </tr>
-                                <tr>
-                                  <th style="text-align:center">NO.</th>
-                                  <th style="text-align:center">ID</th>
-                                  <th style="text-align:center">FECHA</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <?php include("medidasresgmetas.php"); ?>
-                              </tbody>
-                             </table>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="table-responsive">
-                              <table id="asistenciametas" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                              <thead>
-                                  <tr>
-                                    <th style="text-align:center" colspan="3">ANALISIS</th>
-                                  </tr>
-                                  <tr>
-                                    <th style="text-align:center">NO.</th>
-                                    <th style="text-align:center">ID</th>
-                                    <th style="text-align:center">FECHA</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                <?php include("medidasasisgmetas.php"); ?>
-                              </tbody>
-                             </table>
-                            </div>
-                        </div> -->
-                </div>
+        </div>
+      </div>
+
+   
+      <div class="form-group">
+        <h4 class="col-md-3 control-label">FECHA INICIO:</h4>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span> -->
+            <input name="fecha_inicio" id="fecha_inicio" class="form-control" type="date" required>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <h4 class="col-md-3 control-label">FECHA TERMINO:</h4>
+        <div class="col-md-7 inputGroupContainer">
+          <div class="input-group">
+            <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span> -->
+            <input name="fecha_fin" id="fecha_fin" class="form-control" type="date" required>
+          </div>
+        </div>
+      </div>
+
+      <input name="input_tipo_consulta" id="input_tipo_consulta" class="form-control" type="text" value style="display:none;">
+<!--       <input name="input_usuario" id="input_usuario" class="form-control" type="text" value style="display:none;">
+      <input name="input_nombre_actividad" id="input_nombre_actividad" class="form-control" type="text" value style="display:none;"> -->
+
+
+      <div class="form-group">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-5">
+          <!-- <button type="submit" name="submit" value="search" id="btn_search" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> CONSULTAR </button> -->
+          <!-- <button id="btn_Limpiar" class="btn btn-danger"><span class="glyphicon glyphicon-erase"></span> LIMPIAR </button> -->
+          <br>
+          <br>
+          <span class="btn btn-info" id="btn_search">Consultar</span>
+          <button id= "descargar" style="display:none;" type="submit" class="btn btn-success">Generar Reporte</button>
+
+        </div>
+      </div>
+
+    </form>
+
+      <div class="col-md-12 text-center mt-5">     
+        <span id="loaderFiltro">  </span>
+      </div>
+
+
+      <div class="table-responsive resultadoFiltro">
+              <table class="table table-hover" id="tablaReact">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">FECHA  DE FIRMA</th>
+                  </tr>
+                </thead>
+              <?php
+              include('./config.php');
+              $sqlReact = ("SELECT * FROM evaluacion_persona WHERE tipo_convenio != '' AND fecha_firma <= '2025-10-31' AND fecha_firma >= '2025-10-01';");
+              $query = mysqli_query($con, $sqlReact);
+              $i =1;
+                while ($dataRow = mysqli_fetch_array($query)) { ?>
+                <tbody>
+                  <tr>
+                    <td ><?php echo $i++; ?></td>
+                    <td style="text-align: left;"><?php echo $dataRow['ID'] ; ?></td>
+                    <td><?php echo $dataRow['fecha'] ; ?></td>
+                </tr>
+                </tbody>
+              <?php } ?>
+              </table>
             </div>
-          </div>
-        </article>
+
+
+  
+
+  </div>
+</center>
+
+
+
       </div>
     </div>
   </div>
   <div class="contenedor">
+      <a href="./menu.php" class="btn-flotante">INICIO</a>
   </div>
+
+
+<script>
+
+// Obtén el formulario por su ID
+var miFormulario = document.getElementById("form_consultar_cifras");
+
+// Añade un listener para el evento 'popstate'
+window.addEventListener('popstate', () => {
+  // Limpia el formulario
+  miFormulario.reset();
+});
+
+// También puedes limpiar el formulario cuando se carga la página por primera vez
+window.addEventListener('load', () => {
+  miFormulario.reset();
+});
+</script>
+
+
+<!-- <script type="text/javascript">
+
+  var tipo_actividad = document.getElementById('tipo_consulta');
+  var numero_tipo_act;
+  var tipo_actividad_obtenido;
+
+  tipo_actividad.addEventListener('change', obtenerActividad);
+
+  function obtenerActividad(e){
+
+    numero_tipo_act = e.target.value;
+    tipo_actividad_obtenido = numero_tipo_act;
+
+    
+    if (tipo_actividad_obtenido === 'POR USUARIO'){
+      document.getElementById("div_usuario").style.display = ""; // MOSTRAR
+      document.getElementById("div_actividad").style.display = ""; // MOSTRAR
+
+      document.getElementById('usuario').value = ""; // LIMPIAR
+      document.getElementById('nombre_actividad').value = ""; // LIMPIAR
+      document.getElementById('fecha_inicio').value = ""; // LIMPIAR
+      document.getElementById('fecha_fin').value = ""; // LIMPIAR
+
+      document.getElementById("usuario").required = true;
+      document.getElementById("nombre_actividad").required = true;
+      
+    } else{
+      document.getElementById("div_usuario").style.display = "none"; // MOSTRAR
+      document.getElementById("div_actividad").style.display = "none"; // MOSTRAR
+
+      document.getElementById('usuario').value = ""; // LIMPIAR
+      document.getElementById('nombre_actividad').value = ""; // LIMPIAR
+      document.getElementById('fecha_inicio').value = ""; // LIMPIAR
+      document.getElementById('fecha_fin').value = ""; // LIMPIAR
+
+    }
+
+  
+  }
+</script> -->
+
+<script type="text/javascript">
+
+  var fecha_inicio = document.getElementById('tipo_consulta');
+  var fecha_ini;
+  var fecha_inicio_obtenida;
+
+  fecha_inicio.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    fecha_ini = e.target.value;
+    fecha_inicio_obtenida = fecha_ini;
+
+
+    // console.log(fecha_inicio_obtenida);
+  
+    document.getElementById('input_tipo_consulta').value = fecha_inicio_obtenida;
+  
+  }
+</script>
+
+<!-- 
+<script type="text/javascript">
+
+  var usuario = document.getElementById('usuario');
+  var user;
+  var usuario_obtenido;
+
+  usuario.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    user = e.target.value;
+    usuario_obtenido = user;
+
+
+    // console.log(usuario_obtenido);
+    document.getElementById('input_usuario').value = usuario_obtenido;
+  
+
+  
+  }
+</script> -->
+
+
+<!-- <script type="text/javascript">
+
+  var actividad = document.getElementById('nombre_actividad');
+  var act;
+  var actividad_obtenida;
+
+  actividad.addEventListener('change', obtenerFecha);
+
+  function obtenerFecha(e){
+
+    act = e.target.value;
+    actividad_obtenida = act;
+
+
+    // console.log(actividad_obtenida);
+    document.getElementById('input_nombre_actividad').value = actividad_obtenida;
+    
+  
+
+  
+  }
+</script> -->
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="assets/js/material.min.js"></script>
+  <script>
+  $(function() {
+      setTimeout(function(){
+        $('body').addClass('loaded');
+      }, 1000);
+
+
+//FILTRANDO REGISTROS
+$("#btn_search").on("click", function(e){ 
+  e.preventDefault();
+  
+  loaderF(true);
+
+  var f_inicio = $('input[name=fecha_inicio]').val();
+  var f_fin = $('input[name=fecha_fin]').val();
+
+  var tipo_consulta = $('input[name=input_tipo_consulta]').val();
+  var usuario = $('input[name=input_usuario]').val();
+  var actividad = $('input[name=input_nombre_actividad]').val();
+
+  // console.log(f_inicio + '' + f_fin);
+
+  if(tipo_consulta !="" && f_inicio !="" && f_fin !="" || tipo_consulta !="" && usuario !="" && actividad !="" && f_inicio !="" && f_fin !=""){
+    $.post("filtro.php", {f_inicio, f_fin, tipo_consulta, usuario, actividad}, function (data) {
+      $("#tablaReact").hide();
+      $(".resultadoFiltro").html(data);
+      document.getElementById("descargar").style.display = ""; // MOSTRAR
+      loaderF(false);
+    });  
+  }else{
+    $("#loaderFiltro").html('<p style="color:red; font-weight:bold;"> Debe llenar todos los campos</p>');
+  }
+} );   
+
+
+function loaderF(statusLoader){
+    // console.log(statusLoader);
+    if(statusLoader){
+      $("#loaderFiltro").show();
+      $("#loaderFiltro").html('<img class="img-fluid" src="assets/img/cargando.svg" style="left:50%; right: 50%; width:50px;">');
+    }else{
+      $("#loaderFiltro").hide();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
 </body>
 </html>
