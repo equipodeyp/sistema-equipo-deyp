@@ -40,7 +40,7 @@ echo "<td style='text-align:center'>"; echo $fexp2024['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2025'; echo "</td>";
+echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL '.date("d").' DE '.strtoupper($meses[date("n")-1]).' DE '. date("Y"); echo "</td>";
 echo "<td style='text-align:center'>"; echo $fexp2025['t']; echo "</td>";
 echo "</tr>";
 
