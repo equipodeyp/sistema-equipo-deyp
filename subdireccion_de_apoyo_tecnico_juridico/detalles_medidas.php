@@ -232,24 +232,24 @@ $rowstatusexp = $resultadostatusexp->fetch_array(MYSQLI_ASSOC);
                     <th style="text-align:center">ESTATUS</th>
                     <!-- <th style="text-align:center">FECHA DE EJECUCIÓN</th> -->
                     <!-- <th style="text-align:center">VALIDACIÓN</th> -->
-                    <th style="text-align:center">
+                    <th style="text-align:center">DETALLES
 
 
                       </div>
                     <?php
-                    $contarmedidas = "SELECT COUNT(*) AS t FROM medidas WHERE id_persona = '$fol_exp' AND tipo = 'PROVISIONAL'";
-                    $rcontarmedidas = $mysqli->query($contarmedidas);
-                    $fcontarmedidas = $rcontarmedidas->fetch_assoc();
-                    $nummedidas = $fcontarmedidas['t'];
-                    // echo $nummedidas;
-                    if ($tipo_status === 'PERSONA PROPUESTA' && $nummedidas === '0'){
-                      // echo '<a href="registrar_medida.php?folio='.$fol_exp.'"> <button type="button" id="NUEVA_MEDIDA" class="btn color-btn-success-white">NUEVA MEDIDA</button> </a> ';
-                      // echo '<a href="#basicModal" class="btn btn-lg btn-success" data-toggle="modal">Click to open Modal</a>';
-                      echo "<a href='#basicModal".$fol_exp."' class='btn color-btn-success-white' data-toggle='modal'>AGREGAR MEDIDAS</a>";
-                      // echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      // Launch demo modal
-                      // </button>';
-                    }
+                    // $contarmedidas = "SELECT COUNT(*) AS t FROM medidas WHERE id_persona = '$fol_exp' AND tipo = 'PROVISIONAL'";
+                    // $rcontarmedidas = $mysqli->query($contarmedidas);
+                    // $fcontarmedidas = $rcontarmedidas->fetch_assoc();
+                    // $nummedidas = $fcontarmedidas['t'];
+                    // // echo $nummedidas;
+                    // if ($tipo_status === 'PERSONA PROPUESTA' && $nummedidas === '0'){
+                    //   // echo '<a href="registrar_medida.php?folio='.$fol_exp.'"> <button type="button" id="NUEVA_MEDIDA" class="btn color-btn-success-white">NUEVA MEDIDA</button> </a> ';
+                    //   // echo '<a href="#basicModal" class="btn btn-lg btn-success" data-toggle="modal">Click to open Modal</a>';
+                    //   echo "<a href='#basicModal".$fol_exp."' class='btn color-btn-success-white' data-toggle='modal'>AGREGAR MEDIDAS</a>";
+                    //   // echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    //   // Launch demo modal
+                    //   // </button>';
+                    // }
                     ?>
                     </th>
         		  		</thead>

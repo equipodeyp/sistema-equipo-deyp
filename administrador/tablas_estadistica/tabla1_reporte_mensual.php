@@ -7,7 +7,7 @@ $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","S
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $mesant = $meses[date('n')];
-$mesanterior = date('n');
+$mesanterior = date('n')-1;
 $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
 $fecha_inicio = $anioActual."-01-01";
 $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
@@ -62,28 +62,32 @@ $totalparcialproc = $fparcialproc['t'] + $fparcialprocreporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 $totalacumulado = $totalanterior + $totalreporte;
 //inicio de filas para la tabla
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "JURÍDICAMENTE PROCEDENTE "; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fsiprocede['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fsiprocedereporte['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalsiprocede; "</td>";
-echo "</tr>";
+if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0) {
+  echo "<tr>";
+  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;JURÍDICAMENTE PROCEDENTE "; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fsiprocede['t']; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fsiprocedereporte['t']; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalsiprocede; "</td>";
+  echo "</tr>";
+}
+if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0) {
+  echo "<tr>";
+  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "JURÍDICAMENTE NO PROCEDENTE"; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fnoprocede['t']; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fnoprocedereporte['t']; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalnoprocede; "</td>";
+  echo "</tr>";
+}
+if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0) {
+  echo "<tr>";
+  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "PARCIALMENTE PROCEDENTE"; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fparcialproc['t']; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fparcialprocreporte['t']; "</td>";
+  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalparcialproc; "</td>";
+  echo "</tr>";
+}
 ////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "JURÍDICAMENTE NO PROCEDENTE"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fnoprocede['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fnoprocedereporte['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalnoprocede; "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "PARCIALMENTE PROCEDENTE"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fparcialproc['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fparcialprocreporte['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalparcialproc; "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>"; echo "TOTAL DE SOLICITUDES RECIBIDAS"; echo "</b>"; "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>"; echo "TOTAL DE SOLICITUDES RECIBIDAS&nbsp;&nbsp;"; echo "</b>"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; "</td>";

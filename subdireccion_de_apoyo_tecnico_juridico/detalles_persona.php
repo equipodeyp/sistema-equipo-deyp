@@ -1024,7 +1024,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   <label for="">estatus expediente</label>
                   <input class="form-control" type="text" name="staexpediente" id="staexpediente" value="<?php echo $filastaexp['status']; ?>">
                 </div>
-                <div class="row">
+                <div class="row" style="display:none;">
                   <div>
                       <br>
                       <br>

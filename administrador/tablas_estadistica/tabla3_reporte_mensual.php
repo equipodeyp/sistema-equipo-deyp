@@ -7,7 +7,7 @@ $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","S
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $mesant = $meses[date('n')];
-$mesanterior = date('n');
+$mesanterior = date('n')-1;
 $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
 $fecha_inicio = $anioActual."-01-01";
 $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
@@ -62,7 +62,7 @@ $ftotalreporteautoridad = $rtotalreporteautoridad->fetch_assoc();
 $totalacumulado = $ftotalanteriorautoridad['t'] + $ftotalreporteautoridad['t'];
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE EXPEDIENTES</b>"; echo "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE EXPEDIENTES&nbsp;&nbsp;</b>"; echo "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $ftotalanteriorautoridad['t']; echo "</b>"; echo "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $ftotalreporteautoridad['t']; echo "</b>"; echo "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";

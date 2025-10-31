@@ -28,14 +28,14 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   $calant = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
+  AND determinacionincorporacion.date_desincorporacion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
   $rcalant = $mysqli->query($calant);
   $fcalant = $rcalant->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   $calreporte = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
+  AND determinacionincorporacion.date_desincorporacion BETWEEN '$diamesinicio' AND '$diamesfin'";
   $rcalreporte = $mysqli->query($calreporte);
   $fcalreporte = $rcalreporte->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
@@ -54,14 +54,14 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
 $totalanterior = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
+AND determinacionincorporacion.date_desincorporacion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
 $rtotalanterior = $mysqli->query($totalanterior);
 $ftotalanterior = $rtotalanterior->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalreporte = "SELECT COUNT(*) as t FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
+AND determinacionincorporacion.date_desincorporacion BETWEEN '$diamesinicio' AND '$diamesfin'";
 $rtotalreporte = $mysqli->query($totalreporte);
 $ftotalreporte = $rtotalreporte->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("America/Mexico_City");
+// date_default_timezone_set("America/Mexico_City");
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$mesone. " DEL ".date('Y') ;

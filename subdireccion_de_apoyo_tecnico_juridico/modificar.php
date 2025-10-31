@@ -331,13 +331,13 @@ $row=$result->fetch_assoc();
 		  			<th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
 					<th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
             		<th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
-		  			<th style="text-align:center">
+		  			<th style="text-align:center">DETALLES
               <?php
-                if ($filastaexp['status'] === 'ANALISIS' || $filastaexp['status'] === 'EN EJECUCION') {
-                  echo '<a href="registro_persona.php?folio='.$fol_exp.'"> <button type="button" class="btn color-btn-success-white">AGREGAR PERSONA</button> </a>';
-                }else {
-                  echo "DETALLES";
-                }
+                // if ($filastaexp['status'] === 'ANALISIS' || $filastaexp['status'] === 'EN EJECUCION') {
+                //   echo '<a href="registro_persona.php?folio='.$fol_exp.'"> <button type="button" class="btn color-btn-success-white">AGREGAR PERSONA</button> </a>';
+                // }else {
+                //   echo "DETALLES";
+                // }
                ?>
             </th>
 		  		</thead>
@@ -371,7 +371,7 @@ $row=$result->fetch_assoc();
                       } elseif ($fila_val['validacion'] == 'false') {
                         echo "<i class='fas fa-times'></i>";
                       } echo "</td>";
-        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>ACTUALIZAR</button> </a> </td>";
+        		          echo "<td style='text-align:center'>  <a href='detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>VER</button> </a> </td>";
         		        echo "</tr>";
             }
 

@@ -274,7 +274,7 @@ text-decoration: underline;
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
             <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
             <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTE</span></a></li>
-            <?php            
+            <?php
             if ($row['cargo'] === 'subdirector') {
             ?>
             <li id="liestadistica3" class="subtitle3">
@@ -393,7 +393,7 @@ text-decoration: underline;
           </h5>
         </div>
         <br>
-        <div class="row">
+        <div class="row" style="display:none;">
           <a href="crear_expediente.php" class="btn-flotante-nuevo-exp">Nuevo Expediente</a>
         </div>
         <br>
@@ -582,11 +582,11 @@ $counti = $num_ti['ti'];
 </script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-  
+
   var fecha_inicio = new Date().toLocaleDateString();
   var fecha_fin = "31/8/2025";
   // console.log(fecha_inicio);
-  
+
   if (fecha_inicio <= fecha_fin){
 
   Swal.fire({

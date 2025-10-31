@@ -7,7 +7,7 @@ $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","S
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $mesant = $meses[date('n')];
-$mesanterior = date('n');
+$mesanterior = date('n')-1;
 $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
 $fecha_inicio = $anioActual."-01-01";
 $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
@@ -58,27 +58,27 @@ $totalenelaboracion = $fenelaboracion['t'] + $fenelaboracionreporte['t'];
 $totalacumulado = $totalanterior + $totalreporte;
 //inicio de filas para la tabla
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "INCORPORACION PROCEDENTE "; "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;INCORPORACION PROCEDENTE "; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincorporc['t']; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincorprocreporte['t']; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalincorproc; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "INCORPORACION NO PROCEDENTE"; "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;INCORPORACION NO PROCEDENTE"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincornoproc['t']; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincornoprocreporte['t']; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalincornoproc; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;EN ANÁLISIS"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fenelaboracion['t']; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalenelaboracion; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS"; echo "</b>"; "</td>";
+echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS&nbsp;&nbsp;"; echo "</b>"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";
 echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; "</td>";
