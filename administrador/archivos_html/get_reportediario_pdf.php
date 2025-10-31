@@ -384,7 +384,7 @@ $data .='</tbody>
                       </tr>';
                       //////////
                       $data .= '<tr bgcolor="white">
-                      <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2025</h1></td>
+                      <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;DEL 01 DE ENERO AL '.$diaactual.' DE '.strtoupper($mesactual).' DE '.date("Y").'</h1></td>
                       <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fexp2025['t'].'</h1></td>
                       </tr>';
                       //////////
