@@ -9,21 +9,17 @@ $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO"
 $mesant = $meses[date('n')];
 $mesanterior = date('n')-1;
 $cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".'0'.$mesanterior."-".$cantidaddiasanterior;
+echo $fecha_inicio = $anioActual."-01-01";
+echo $fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
 $diamesinicio = $anioActual."-".$mesActual."-01";
 $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
 $date_principio = $anioActual."-01-01";
 $date_termino = $anioActual."-12-31";
 ////////////////////////////////////////////////////////////////////////////////
-$calidad = "SELECT calidadpersona, COUNT(*) AS t FROM datospersonales
-INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE autoridad.fechasolicitud BETWEEN '$date_principio' AND '$date_termino' AND datospersonales.relacional = 'NO'
-GROUP BY datospersonales.calidadpersona
-HAVING COUNT(*)>0";
+$calidad = "SELECT * FROM calidadpersona";
 $rcalidad = $mysqli->query($calidad);
 while ($fcalidad = $rcalidad->fetch_assoc()) {
-  $namecalidad =$fcalidad['calidadpersona'];
+  $namecalidad =$fcalidad['nombre'];
   //////////////////////////////////////////////////////////////////////////////
   $calant = "SELECT COUNT(*) as t FROM datospersonales
   INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
@@ -39,12 +35,14 @@ while ($fcalidad = $rcalidad->fetch_assoc()) {
   //////////////////////////////////////////////////////////////////////////////
   $totalcalidad = $fcalant['t'] + $fcalreporte['t'];
   //////////////////////////////////////////////////////////////////////////////
-  echo "<tr>";
-  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo '&nbsp;&nbsp;'.$fcalidad['calidadpersona']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalant['t']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalreporte['t']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalcalidad; echo "</td>";
-  echo "</tr>";
+  if ($fcalant['t'] > 0 || $fcalant['t'] > 0) {
+    echo "<tr>";
+    echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo '&nbsp;&nbsp;'.$fcalidad['nombre']; echo "</td>";
+    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalant['t']; echo "</td>";
+    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalreporte['t']; echo "</td>";
+    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalcalidad; echo "</td>";
+    echo "</tr>";
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 $totalanterior = "SELECT COUNT(*) as t FROM datospersonales
