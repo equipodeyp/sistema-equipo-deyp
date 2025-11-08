@@ -268,7 +268,7 @@ a:focus {
       </div>
       <nav class="menu-nav">
           <ul>
-              <!-- <li class="menu-items"><a  href='./resumen_tickets_enproceso.php'><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIA</span></a></li> -->
+              <li class="menu-items"><a  href='new_exp.php'><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">REGISTRAR EXPEDIENTE</span></a></li>
               <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>ASISTENCIAS MÉDICAS</span></a></li>
 
               <!-- <li class="menu-items"><a  href="#" onclick="location.href='incidencia_asistencia_enproceso.php'"><i class="color-icon fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span style="color: white; font-weight:bold;">INCIDENCIAS - A.M.</span></a></li> -->
