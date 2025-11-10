@@ -274,7 +274,7 @@ a:focus {
 
         <?php
 
-          if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3') {
+          if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3' || $name=='estadistica4') {
             // echo "<a style='text-align:center' class='user-nombre' href='./incidencias_por_atender.php'><button type='button' class='btn btn-light'>INCIDENCIAS</button> </a>";
           ?>
           <li><a href="../administrador/admin.php"><i class='color-icon fa-solid fa-user-tie  menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;"> ADMINISTRADOR</span></a></li>

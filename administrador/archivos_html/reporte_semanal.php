@@ -36,6 +36,19 @@
                        } else {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                        }
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
                          // echo "<br>";
@@ -54,9 +67,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
                 case "Monday"://LUNES
@@ -70,6 +83,19 @@
                        $diaini = date( "j", $diainicio);
                        $diafinal = strtotime($fecha_fin);
                        $diafin = date( "j", $diafinal);
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." DE ".$meses[date('n')-1]." AL ".$diafin. " DE ".$meses[date('n')]. " DEL ".date('Y'); echo '</h1>';
                        } else {
@@ -93,9 +119,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
                 case "Tuesday"://MARTES
@@ -115,6 +141,19 @@
                        } else {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                        }
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
                          // echo "<br>";
@@ -133,9 +172,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
                 case "Wednesday"://MIERCOLES
@@ -154,6 +193,19 @@
                        } else {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                        }
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
                          // echo "<br>";
@@ -172,9 +224,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
                 case "Thursday":  //Jueves
@@ -193,6 +245,19 @@
                        } else {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                        }
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
                          // echo "<br>";
@@ -211,9 +276,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
                 case "Friday": //Viernes
@@ -234,6 +299,19 @@
                        } else {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                        }
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
                          // echo "<br>";
@@ -252,9 +330,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
                 case "Saturday": //sabado
@@ -274,6 +352,19 @@
                        } else {
                         echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                        }
+                       /////////////////////////////////////////////////////////
+                       if ($diaini < 10) {
+                         $diaini = '0'.$diaini;
+                       }else {
+                         $diaini = $diaini;
+                       }
+                       /////////////////////////////////////////////////////////
+                       if ($diafin < 10) {
+                         $diafin = '0'.$diafin;
+                       }else {
+                         $diafin = $diafin;
+                       }
+                       /////////////////////////////////////////////////////////
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
                          // echo "<br>";
@@ -292,9 +383,9 @@
                          // echo "<br>";
                          $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-0'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
                        }
                 break;
             }
