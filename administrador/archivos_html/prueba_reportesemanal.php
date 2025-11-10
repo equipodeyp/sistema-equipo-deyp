@@ -325,7 +325,7 @@ $totalacumulado = $totalanterior + $totalreporte;
 ////////////////////////////////////////////////////////////////////////////////
 if ($fincorporc['t'] > 0 || $fincorprocreporte['t'] > 0 || $totalincorproc > 0) {
   $data .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;INCORPORACION PROCEDENTE</h1></td>
+  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;INCORPORACIÓN PROCEDENTE</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincorporc['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincorprocreporte['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalincorproc.'</h1></td>
@@ -334,7 +334,7 @@ if ($fincorporc['t'] > 0 || $fincorprocreporte['t'] > 0 || $totalincorproc > 0) 
 ////////////////////////////////////////////////////////////////////////////////
 if ($fincornoproc['t'] > 0 || $fincornoprocreporte['t'] > 0 || $totalincornoproc > 0) {
   $data .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;INCORPORACION NO PROCEDENTE</h1></td>
+  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;INCORPORACIÓN NO PROCEDENTE</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincornoproc['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincornoprocreporte['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalincornoproc.'</h1></td>
@@ -390,7 +390,7 @@ $data .= '<div style="float: left; width: 55%;">
     while ($fcalidad = $rcalidad->fetch_assoc()) {
       $namecalidad = $fcalidad['nombre'];
       if ($fcalidad['nombre'] === 'I. VICTIMA') {
-        $namecortocalidad = 'VICTIMA';
+        $namecortocalidad = 'VÍCTIMA';
       }
       if ($fcalidad['nombre'] === 'II. OFENDIDO') {
         $namecortocalidad = 'OFENDIDO';
@@ -408,7 +408,7 @@ $data .= '<div style="float: left; width: 55%;">
         $namecortocalidad = 'DEFENSOR';
       }
       if ($fcalidad['nombre'] === 'VII. POLICIA') {
-        $namecortocalidad = 'POLICIA';
+        $namecortocalidad = 'POLICÍA';
       }
       if ($fcalidad['nombre'] === 'VIII. PERITO') {
         $namecortocalidad = 'PERITO';
@@ -417,7 +417,7 @@ $data .= '<div style="float: left; width: 55%;">
         $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
       }
       if ($fcalidad['nombre'] === 'X. PERSONA CON PARENTESCO O CERCANIA') {
-        $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+        $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANÍA';
       }
       //////////////////////////////////////////////////////////////////////////////
       $personaspropuestas = "SELECT COUNT(*) as t FROM datospersonales
