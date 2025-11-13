@@ -34,7 +34,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>TRASLADOS BUSCADOS</title>
+  <title>RONDINES BUSCADOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/funciones_react.js"></script>
@@ -105,7 +105,8 @@ $_SESSION["check_traslado"] = $check_traslado;
           extend:    'excelHtml5',
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
-          className: 'btn color-btn-export-xls'
+          className: 'btn color-btn-export-xls',
+          title:      'FORMATO RONDINES'
         },
       ]
       });
