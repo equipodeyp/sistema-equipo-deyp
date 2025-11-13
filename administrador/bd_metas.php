@@ -178,6 +178,7 @@ $row=$result->fetch_assoc();
             <ul>
               <li class="menu-items"><a href="../administrador/bd_metas_react_apoyo.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> METAS JURIDICO</span></a></li>
               <li class="menu-items"><a href="../administrador/gettrasladossearch.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-van-shuttle menu-nav--icon fa-fw'></i> TRASLADOS</span></a></li>
+              <li class="menu-items"><a href="../administrador/getrondinessearch.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-person-walking-arrow-right menu-nav--icon fa-fw'></i> RONDINES</span></a></li>
             </ul>
       </nav>
 
