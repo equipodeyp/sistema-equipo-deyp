@@ -65,7 +65,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
@@ -117,7 +117,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
@@ -170,7 +170,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
@@ -222,7 +222,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
@@ -274,7 +274,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
@@ -328,7 +328,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
@@ -381,7 +381,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-0'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
