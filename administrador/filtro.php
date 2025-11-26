@@ -17,20 +17,62 @@ $fecha_fin  = date("Y-m-d", strtotime($_POST['f_fin']));
 // echo $fechaInit;
 // echo $fecha_fin;
 
-if ($tipo_consulta === 'CONVENIO'){
+if ($tipo_consulta === 'GLOBAL'){
 
-$sqlReact = ("SELECT * FROM evaluacion_persona WHERE tipo_convenio != '' AND fecha_firma <= '2025-10-31' AND fecha_firma >= '2025-10-01'");
+$sqlReact = ("SELECT react_actividad_analisis.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+            react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario
+
+            FROM react_actividad
+
+            JOIN react_actividad_analisis 
+            ON react_actividad.id_actividad = react_actividad_analisis.id 
+            AND react_actividad.fecha BETWEEN '$fechaInit' AND '$fecha_fin'
+
+            JOIN react_subdireccion 
+            ON react_actividad.id_subdireccion = react_subdireccion.id
+            AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ANÁLISIS DE RIESGO'
+
+            ORDER BY react_actividad_analisis.nombre ASC");
 
 }
 
-else if ($tipo_consulta === 'ESTUDIO TECNICO' ){
-$sqlReact = ("SELECT * FROM evaluacion_persona WHERE tipo_convenio != '' AND fecha_firma <= '2025-10-31' AND fecha_firma >= '2025-10-01'");
+else if ($tipo_consulta === 'POR USUARIO' && $actividad === 'Todas'){
+$sqlReact = ("SELECT react_actividad_analisis.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+            react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario
+
+            FROM react_actividad
+
+            JOIN react_actividad_analisis 
+            ON react_actividad.id_actividad = react_actividad_analisis.id 
+            AND react_actividad.usuario = '$usuario'
+            AND react_actividad.fecha BETWEEN '$fechaInit' AND '$fecha_fin'
+
+            JOIN react_subdireccion 
+            ON react_actividad.id_subdireccion = react_subdireccion.id
+            AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ANÁLISIS DE RIESGO'
+
+            ORDER BY react_actividad_analisis.nombre ASC");
 
 
 }
 
 else {
-$sqlReact = ("SELECT * FROM evaluacion_persona WHERE tipo_convenio != '' AND fecha_firma <= '2025-10-31' AND fecha_firma >= '2025-10-01'");
+$sqlReact = ("SELECT react_actividad_analisis.nombre, react_actividad.clasificacion, react_actividad.unidad_medida, 
+            react_actividad.cantidad, react_actividad.fecha, react_subdireccion.subdireccion, react_actividad.usuario
+
+            FROM react_actividad
+
+            JOIN react_actividad_analisis 
+            ON react_actividad.id_actividad = react_actividad_analisis.id 
+            AND react_actividad.usuario = '$usuario'
+            AND react_actividad.id_actividad = '$actividad'
+            AND react_actividad.fecha BETWEEN '$fechaInit' AND '$fecha_fin'
+
+            JOIN react_subdireccion 
+            ON react_actividad.id_subdireccion = react_subdireccion.id
+            AND react_subdireccion.subdireccion = 'SUBDIRECCIÓN DE ANÁLISIS DE RIESGO'
+
+            ORDER BY react_actividad_analisis.nombre ASC");
 
 }
 
@@ -46,8 +88,11 @@ echo '<strong>Total: </strong> ('. $total .')';
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">ID</th>
-             <th scope="col">FECHA DE FIRMA</th>
+            <th scope="col">ACTIVIDAD</th>
+            <th scope="col">CLASIFICACIÓN</th>
+            <th scope="col">UNIDAD DE MEDIDA</th>
+            <th scope="col">CANTIDAD</th>
+            <th scope="col">FECHA</th>
         </tr>
     </thead>
     <?php
@@ -57,7 +102,10 @@ echo '<strong>Total: </strong> ('. $total .')';
             <tr>
                 <td><?php echo $i++; ?></td>
                 <td style="text-align: left;"><?php echo $dataRow['nombre'] ; ?></td>
-                 <td><?php echo $dataRow['fecha'] ; ?></td>
+                <td><?php echo $dataRow['clasificacion'] ; ?></td>
+                <td><?php echo $dataRow['unidad_medida'] ; ?></td>
+                <td><?php echo $dataRow['cantidad'] ; ?></td>
+                <td><?php echo $dataRow['fecha'] ; ?></td>
             </tr>
         </tbody>
     <?php } ?>
