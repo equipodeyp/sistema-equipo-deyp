@@ -1142,10 +1142,12 @@ $data1 .= '<div style="float: left; width: 30%;">
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsujencentrosresguardo['t'].'</h1></td>
   </tr>';
   //////////////////////////////////////////////////////////////////////////////////////////
-  $data1 .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS</h1></td>
-  <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperpropresguardo['t'].'</h1></td>
-  </tr>';
+  if ($fperpropresguardo['t'] > 0) {
+    $data1 .= '<tr bgcolor="white">
+    <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperpropresguardo['t'].'</h1></td>
+    </tr>';
+  }
   //////////////////////////////////////////////////////////////////////////////////////////
   $data1 .= '<tr bgcolor="#e6e1dc">
   <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:12.33px; color:#97897D;">TOTAL DE SUJETOS&nbsp;</h1></td>
