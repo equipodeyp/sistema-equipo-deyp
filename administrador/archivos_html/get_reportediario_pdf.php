@@ -302,10 +302,12 @@ $data .='</tbody>
                 <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fdesincorporado['t'].'</h1></td>
                 </tr>';
                 //////////
-                $data .= '<tr bgcolor="white">
-                <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONA PROPUESTA A INCORPORARSE</h1></td>
-                <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fperpropuesta['t'].'</h1></td>
-                </tr>';
+                if ($fperpropuesta['t'] > 0) {
+                  $data .= '<tr bgcolor="white">
+                  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONA PROPUESTA A INCORPORARSE</h1></td>
+                  <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fperpropuesta['t'].'</h1></td>
+                  </tr>';
+                }
                 ////////////
                 $data .= '<tr bgcolor="#e6e3e1">
                 <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:13.33px; color:#97897D;">TOTAL DE PERSONAS&nbsp;</h1></td>
@@ -418,10 +420,12 @@ $data .='</tbody>
                   <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fsujencentrosresguardo['t'].'</h1></td>
                   </tr>';
                   //////////
-                  $data .= '<tr bgcolor="white">
-                  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS</h1></td>
-                  <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fperpropresguardo['t'].'</h1></td>
-                  </tr>';
+                  if ($fperpropresguardo['t'] > 0) {
+                    $data .= '<tr bgcolor="white">
+                    <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS</h1></td>
+                    <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fperpropresguardo['t'].'</h1></td>
+                    </tr>';
+                  }
                   //////////
                   $data .= '<tr bgcolor="#e6e3e1">
                   <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:13.33px; color:#97897D;">TOTAL DE SUJETOS&nbsp;</h1></td>
