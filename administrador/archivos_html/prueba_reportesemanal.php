@@ -28,7 +28,12 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 ///////////mes
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 $mesrep = date("m", strtotime($datefinprinc));
-$mesone =$meses[$mesrep-1];
+if ($dia_inicio_reporte == 1) {
+  $mesone =$meses[$mesrep-1];
+}else {
+  $mesone =$meses[$mesrep-0];
+}
+
 $mestwo =$meses[$mesrep-0];
 // fechas en formato dia-mes-año
 $dateprin = date("d-m-Y", strtotime($dateprinc));
@@ -140,10 +145,10 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
   <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo.'</strong></h2></div><br>';
 }else {
   $data .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
-  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mesone.'</strong></h2></div><br>';
+  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mestwo.'</strong></h2></div><br>';
 }
 
-// $data .= '<h1>inicio--->'.$dia_inicio_reporte.'</h1><br>';
+// $data .= '<h1>inicio--->'.$mesone.'</h1><br>';
 // $data .= '<h1>fin--->'.$dia_fin_reporte.'</h1><br>';
 // $data .= '<h1>mensaje--->'.$mostrar.'</h1><br>';
 // $data .= '<h1>inicio--->'.$dateprinc.'</h1><br>';
@@ -153,7 +158,7 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 if ($dia_inicio_reporte > $dia_fin_reporte) {
   $msjreposem = $dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo;
 }else {
-  $msjreposem = $dia_inicio_reporte.' AL '.$dia_fin_reporte.' DE '.$mesone;
+  $msjreposem = $dia_inicio_reporte.' AL '.$dia_fin_reporte.' DE '.$mestwo;
 }
 //////////////////////////////////////////////////////////////////////
 $data .= '<div style="float: left; width: 55%;">
@@ -678,13 +683,9 @@ $mpdf->WriteHtml($data);
 
 ////////////////////////////////////////////////////////////////////////////////
 $mpdf->AddPage();
-if ($dia_inicio_reporte > $dia_fin_reporte) {
   $data1 .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
   <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$dia_fin_reporte.' DE '.$mestwo.' DEL '.date('Y').'</strong></h2></div><br>';
-}else {
-  $data1 .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
-  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$dia_fin_reporte.' DE '.$mesone.' DEL '.date('Y').'</strong></h2></div><br>';
-}
+
 // $data1 .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
 // <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$dia_fin_reporte.' DE '.$mesone.' DEL '.date('Y').'</strong></h2></div><br>';
 

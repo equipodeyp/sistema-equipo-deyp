@@ -383,7 +383,7 @@ $fexprel1 = $rexprel1->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_CONVENIO_ENTENDIMIENTO" for="CONVENIO_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+                    <label id="LABEL_CONVENIO_ENTENDIMIENTO" for="CONVENIO_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO DE INCORPORACIÓN AL PROGRAMA<span class="required"></span></label>
                     <select id="CONVENIO_ENTENDIMIENTO" class="form-select form-select-lg" name="CONVENIO_ENTENDIMIENTO" >
                       <option style="visibility: hidden" id="opt-convenio-de-entendimiento" value="<?php echo $rowdetinc['convenio']; ?>"><?php echo $rowdetinc['convenio']; ?></option>
                       <?php

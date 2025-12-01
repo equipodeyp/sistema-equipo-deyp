@@ -51,13 +51,13 @@ if ($verifica_update_person == 1) {
          $fecha_vigencia = date("Y-m-d",strtotime($datefin));
       }
     }
-  }elseif ($tipo_convenio === 'CONVENIO DE ADHESIÓN') {
+  }elseif ($tipo_convenio === 'CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA') {
     if ($fecha_inicio != '') {
       $fecha_mas = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));
       $fecha_vigencia = date("Y/m/d",strtotime($fecha_mas."- 1 days"));
       // solo se agrega si se eligio conveio de adhesion
       $estatus_suj_alert = 'PENDIENTE';
-      $tipo_convenio_alert = 'CONVENIO DE ADHESIÓN';
+      $tipo_convenio_alert = 'CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA';
       // sql para agregar registro en la tabla de alerta de convenios
       $alert_conv = "INSERT INTO alerta_convenios(expediente, id_persona, id_unico, fecha_inicio, fecha_termino, estatus, tipo_convenio)
                             VALUES('$folioexpediente', '$id', '$id_unico', '$fecha_inicio', '$fecha_vigencia', '$estatus_suj_alert', '$tipo_convenio_alert')";
