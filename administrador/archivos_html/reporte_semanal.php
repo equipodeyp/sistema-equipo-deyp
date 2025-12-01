@@ -106,7 +106,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$fecha_finsemanaanterior;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini;
                          // echo "<br>";
@@ -117,11 +117,11 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diafinsemant;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
                        }
                 break;
                 case "Tuesday"://MARTES
