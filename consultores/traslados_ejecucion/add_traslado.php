@@ -51,7 +51,7 @@ $mostrar=$result->fetch_assoc();
  $mes_actual = date('m');
  $dias_mes_actual = date('t');
  // echo "<br>";
- $datemin = '2025-11-01';
+ // $datemin = '2025-11-01';
  // echo "<br>";
  $datemax = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
  // echo "<br>";
