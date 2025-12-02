@@ -390,7 +390,7 @@
                 break;
             }
             ?>
-            <div class="row" style="display:;">
+            <div class="row" style="display:none;">
               <div class="col-md-3 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">FECHA INICIO<span ></span></label>
                     <input class="form-control" name="dateprinc" placeholder="" type="date" value="<?php echo $fechainicio_pdf; ?>" maxlength="50" readonly>
