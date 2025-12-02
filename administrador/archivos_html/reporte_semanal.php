@@ -170,11 +170,11 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
+                         $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
                        }
                 break;
                 case "Wednesday"://MIERCOLES
@@ -390,7 +390,7 @@
                 break;
             }
             ?>
-            <div class="row" style="display:none;">
+            <div class="row" style="display:;">
               <div class="col-md-3 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">FECHA INICIO<span ></span></label>
                     <input class="form-control" name="dateprinc" placeholder="" type="date" value="<?php echo $fechainicio_pdf; ?>" maxlength="50" readonly>
