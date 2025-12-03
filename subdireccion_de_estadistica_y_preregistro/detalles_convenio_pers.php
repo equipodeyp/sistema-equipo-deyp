@@ -152,7 +152,7 @@ $id_persona = $fila_consulta_uno ['id'];
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
                     <select id="SELECT_TIPO_CONVENIO"  class="form-select form-select-lg" name="tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
-                      <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
+                      <option value="CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA">1.- CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
                       <option value="NO APLICA">3.- NO APLICA</option>
                     </select>
@@ -287,7 +287,7 @@ $id_persona = $fila_consulta_uno ['id'];
         document.getElementById('INPUT_FECHA_INICIO').value = "";
         document.getElementById("INPUT_VIGENCIA").value = "";
         document.getElementById('INPUT_ID_CONVENIO').value = "";
-      }else if (camtipconv === 'CONVENIO DE ADHESIÓN') {
+      }else if (camtipconv === 'CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA') {
         document.getElementById('LABEL_FECHA_FIRMA').style.display = "";
         document.getElementById('INPUT_FECHA_FIRMA').style.display = "";
         document.getElementById('LABEL_FECHA_INICIO').style.display = "";

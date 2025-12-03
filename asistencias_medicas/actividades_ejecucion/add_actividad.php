@@ -16,6 +16,7 @@ $año_actual = date('Y');
 $mes_actual = date('m');
 $dias_mes_actual = date('t');
 $datemin = $año_actual.'-'.$mes_actual.'-01';
+// $datemin = '2025-11-01';
 ?>
 <!DOCTYPE html>
 <html lang="es">

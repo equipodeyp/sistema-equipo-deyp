@@ -405,7 +405,7 @@ $fila_seguiimiento_exped = $res_seguimiento_exped->fetch_assoc();
                   </div>
 
                   <div class="col-md-6 mb-3 validar">
-                    <label id="LABEL_CONVENIO_ENTENDIMIENTO" for="CONVENIO_DE_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO<span class="required"></span></label>
+                    <label id="LABEL_CONVENIO_ENTENDIMIENTO" for="CONVENIO_DE_ENTENDIMIENTO">CONVENIO DE ENTENDIMIENTO DE INCORPORACIÓN AL PROGRAMA<span class="required"></span></label>
                     <select class="form-select form-select-lg" id="CONVENIO_DE_ENTENDIMIENTO" name="CONVENIO_DE_ENTENDIMIENTO">
                       <option style="visibility: hidden" id="tab3-convenio-entendimiento" value="<?php echo $fila_analisis_expediente['convenio'];?>"><?php echo $fila_analisis_expediente['convenio'];?></option>
                       <?php

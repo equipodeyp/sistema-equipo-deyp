@@ -28,7 +28,12 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 ///////////mes
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 $mesrep = date("m", strtotime($datefinprinc));
-$mesone =$meses[$mesrep-1];
+if ($dia_inicio_reporte == 1) {
+  $mesone =$meses[$mesrep-1];
+}else {
+  $mesone =$meses[$mesrep-0];
+}
+
 $mestwo =$meses[$mesrep-0];
 // fechas en formato dia-mes-año
 $dateprin = date("d-m-Y", strtotime($dateprinc));
@@ -140,10 +145,10 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
   <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo.'</strong></h2></div><br>';
 }else {
   $data .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
-  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mesone.'</strong></h2></div><br>';
+  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mestwo.'</strong></h2></div><br>';
 }
 
-// $data .= '<h1>inicio--->'.$dia_inicio_reporte.'</h1><br>';
+// $data .= '<h1>inicio--->'.$mesone.'</h1><br>';
 // $data .= '<h1>fin--->'.$dia_fin_reporte.'</h1><br>';
 // $data .= '<h1>mensaje--->'.$mostrar.'</h1><br>';
 // $data .= '<h1>inicio--->'.$dateprinc.'</h1><br>';
@@ -153,7 +158,7 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 if ($dia_inicio_reporte > $dia_fin_reporte) {
   $msjreposem = $dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo;
 }else {
-  $msjreposem = $dia_inicio_reporte.' AL '.$dia_fin_reporte.' DE '.$mesone;
+  $msjreposem = $dia_inicio_reporte.' AL '.$dia_fin_reporte.' DE '.$mestwo;
 }
 //////////////////////////////////////////////////////////////////////
 $data .= '<div style="float: left; width: 55%;">
@@ -678,13 +683,9 @@ $mpdf->WriteHtml($data);
 
 ////////////////////////////////////////////////////////////////////////////////
 $mpdf->AddPage();
-if ($dia_inicio_reporte > $dia_fin_reporte) {
   $data1 .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
   <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$dia_fin_reporte.' DE '.$mestwo.' DEL '.date('Y').'</strong></h2></div><br>';
-}else {
-  $data1 .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
-  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$dia_fin_reporte.' DE '.$mesone.' DEL '.date('Y').'</strong></h2></div><br>';
-}
+
 // $data1 .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
 // <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Global Semanal <br> DEL 1 DE JUNIO DEL 2021 AL '.$dia_fin_reporte.' DE '.$mesone.' DEL '.date('Y').'</strong></h2></div><br>';
 
@@ -707,9 +708,9 @@ $data1 .= '<div style="float: left; width: 42%;">
   $rnoprocede = $mysqli->query($noprocede);
   $fnoprocede = $rnoprocede->fetch_assoc();
   ////////////////////////////////////////////////////////////////////////////////
-  $enelaboracionreporte = "SELECT COUNT(*) as t FROM analisis_expediente
-  INNER JOIN expediente on analisis_expediente.folioexpediente = expediente.fol_exp
-  WHERE analisis_expediente.analisis = 'EN ELABORACION' and expediente.fecha_nueva BETWEEN '2021-01-01' and '$daterepfin'";
+  $enelaboracionreporte = "SELECT COUNT(*) as t FROM statusseguimiento
+  INNER JOIN expediente on statusseguimiento.folioexpediente = expediente.fol_exp
+  WHERE statusseguimiento.status = 'ANALISIS' and expediente.fecha_nueva BETWEEN '2021-01-01' and '$daterepfin'";
   $renelaboracionreporte = $mysqli->query($enelaboracionreporte);
   $fenelaboracionreporte = $renelaboracionreporte->fetch_assoc();
   ////////////////////////////////////////////////////////////////////////////////
@@ -854,15 +855,19 @@ $data1 .= '<div style="float: right; width: 45%;">
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fdesincorporado['t'].'</h1></td>
   </tr>';
   ////////////////////////////////////////////////////////////////////////////////
-  $data1 .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS A INCORPORARSE</h1></td>
-  <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperpropuesta['t'].'</h1></td>
-  </tr>';
+  if ($fperpropuesta['t'] > 0) {
+    $data1 .= '<tr bgcolor="white">
+    <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS A INCORPORARSE</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperpropuesta['t'].'</h1></td>
+    </tr>';
+  }
   ////////////////////////////////////////////////////////////////////////////////
-  $data1 .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;SUJETOS SUSPENDIDOS TEMPORALMENTE</h1></td>
-  <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsujsuspendidotem['t'].'</h1></td>
-  </tr>';
+  if ($fsujsuspendidotem['t'] > 0) {
+    $data1 .= '<tr bgcolor="white">
+    <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;SUJETOS SUSPENDIDOS TEMPORALMENTE</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsujsuspendidotem['t'].'</h1></td>
+    </tr>';
+  }
   ////////////////////////////////////////////////////////////////////////////////
   $data1 .= '<tr bgcolor="#e6e1dc">
   <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:13.33px; color:#97897D;">TOTAL DE PERSONAS&nbsp;</h1></td>
@@ -1138,10 +1143,12 @@ $data1 .= '<div style="float: left; width: 30%;">
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsujencentrosresguardo['t'].'</h1></td>
   </tr>';
   //////////////////////////////////////////////////////////////////////////////////////////
-  $data1 .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS</h1></td>
-  <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperpropresguardo['t'].'</h1></td>
-  </tr>';
+  if ($fperpropresguardo['t'] > 0) {
+    $data1 .= '<tr bgcolor="white">
+    <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONAS PROPUESTAS</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperpropresguardo['t'].'</h1></td>
+    </tr>';
+  }
   //////////////////////////////////////////////////////////////////////////////////////////
   $data1 .= '<tr bgcolor="#e6e1dc">
   <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:12.33px; color:#97897D;">TOTAL DE SUJETOS&nbsp;</h1></td>

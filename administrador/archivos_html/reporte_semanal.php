@@ -106,7 +106,7 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini-1;
+                         $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini;
                          // echo "<br>";
@@ -117,11 +117,11 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
+                         $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
                        }
                 break;
                 case "Tuesday"://MARTES
@@ -170,11 +170,11 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n').'-'.$diaini-1;
+                         $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
                          $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini+6;
+                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
                        }
                 break;
                 case "Wednesday"://MIERCOLES
@@ -423,13 +423,19 @@
                         <th style="text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center"><?php echo "DEL 1 DE ENERO<br> AL ".$diafinsemant. " DE ".$meses[date('n')-1]; ?></th>
+                        <th style="text-align:center"><?php
+                        if ($diaini == 1) {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-2]; echo '</H4>';
+                        }else {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>';
+                        }
+                        ?></th>
                         <th style="text-align:center"><?php
                           if ($diaini > $diafin) {
                             echo "DEL ".$diaini." DE ".$meses[date('n')-1]." AL ".$diafin. " DE ".$meses[date('n')]. " DEL ".date('Y'); echo '</h1>';
                           } else {
-                              echo "DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
-                            }
+                            echo "DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+                          }
                          ?></th>
                       </tr>
                     </thead>
@@ -457,7 +463,13 @@
                         <th style="text-align:center" rowspan="2">TOTAL ACUMULADO</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center"><?php echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>'; ?></th>
+                        <th style="text-align:center"><?php
+                        if ($diaini == 1) {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-2]; echo '</H4>';
+                        }else {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>';
+                        }
+                        ?></th>
                         <th style="text-align:center"><?php
                         if ($diaini > $diafin) {
                             echo "DEL ".$diaini." DE ".$meses[date('n')-1]." AL ".$diafin. " DE ".$meses[date('n')]. " DEL ".date('Y'); echo '</h1>';
@@ -501,7 +513,13 @@
                         <th style="text-align:center" rowspan="2">TOTAL  <br> ACUMULADO</th>
                       </tr>
                       <tr>
-                        <th style="text-align:center"><?php echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>'; ?> </th>
+                        <th style="text-align:center"><?php
+                        if ($diaini == 1) {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-2]; echo '</H4>';
+                        }else {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>';
+                        }
+                        ?></th>
                         <th style="text-align:center"><?php
                         if ($diaini > $diafin) {
                             echo "DEL ".$diaini." DE ".$meses[date('n')-1]." AL ".$diafin. " DE ".$meses[date('n')]. " DEL ".date('Y'); echo '</h1>';
@@ -509,7 +527,13 @@
                               echo "DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
                             }
                         ?> </th>
-                        <th style="text-align:center"><?php echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>'; ?> </th>
+                        <th style="text-align:center"><?php
+                        if ($diaini == 1) {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-2]; echo '</H4>';
+                        }else {
+                          echo '<H4 style="text-align:center">' ; echo "DEL 1 DE ENERO AL ".$diafinsemant. " DE ".$meses[date('n')-1]; echo '</H4>';
+                        }
+                        ?></th>
                         <th style="text-align:center"><?php
                         if ($diaini > $diafin) {
                             echo "DEL ".$diaini." DE ".$meses[date('n')-1]." AL ".$diafin. " DE ".$meses[date('n')]. " DEL ".date('Y'); echo '</h1>';
@@ -600,6 +624,7 @@
               </div>
             </div>
             <br>
+            <?php $datefinrep = " AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); ?>
             <div class="contenedor-flex">
               <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
               <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;1/2&nbsp;&nbsp;</label>
@@ -630,7 +655,7 @@
             <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
             <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
             <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <h1 style="text-align:center; color: #030303;">Reporte Global Semanal <br> DEL 01 DE JUNIO DEL 2021 AL <?php echo $diafin.' DE '.$meses[date('n')].' DEL '.date('Y'); ?></h1>
+            <h1 style="text-align:center; color: #030303;">Reporte Global Semanal <br> DEL 01 DE JUNIO DEL 2021 AL <?php echo $datefinrep; ?></h1>
             <!--  -->
             <div class="row">
               <div class="col-lg-4">

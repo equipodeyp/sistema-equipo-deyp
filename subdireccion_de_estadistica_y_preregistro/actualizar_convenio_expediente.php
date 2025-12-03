@@ -64,7 +64,7 @@ if ($verifica_update_person == 1) {
           $fecha_vigencia = $rcheckconvns2['fecha_termino_convenio'];
       }
     }
-  }elseif ($tipo_convenio === 'CONVENIO DE ADHESIÓN') {
+  }elseif ($tipo_convenio === 'CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA') {
     // obtener fecha de la vigencia en automatico
     if ($fecha_inicio != '') {
       $fecha_mas = date("Y/m/d",strtotime($fecha_inicio."+ $vigencia days"));

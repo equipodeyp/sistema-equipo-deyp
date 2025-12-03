@@ -4,6 +4,7 @@ $mes_actual = date('m');
 $dia_actual = date('d');
 $dias_mes_actual = date('t');
 $datemin = $año_actual.'-'.$mes_actual.'-01';
+// $datemin = '2025-11-01';
 // echo date('l');
 date_default_timezone_set("America/Mexico_City");
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");

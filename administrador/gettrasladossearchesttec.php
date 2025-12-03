@@ -106,7 +106,7 @@ $_SESSION["check_traslado"] = $check_traslado;
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn color-btn-export-xls',
-          title:      'METAS CONVENIOS'
+          title:      'METAS ESTUDIOS'
         },
       ]
       });
@@ -199,7 +199,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 
           if (isset($_GET['star']))
           {
-            $where="WHERE evaluacion_persona.fecha_firma BETWEEN '$fechainicial' AND '$fechafin'";
+            $where="WHERE evaluacion_persona.fecha_aut BETWEEN '$fechainicial' AND '$fechafin'";
             $mostrar = 1;
           }
 
@@ -308,14 +308,15 @@ $_SESSION["check_traslado"] = $check_traslado;
                           <?php
                           $auxsum = 0;
                           $getrondin = "SELECT * FROM evaluacion_persona
-                          WHERE tipo_convenio != ' '
-                          AND fecha_firma <= '2025-10-31'
-                          AND fecha_firma >= '2025-10-01';";
+                          WHERE analisis != ' '
+                          AND fecha_aut <= '2025-10-31'
+                          AND fecha_aut >= '2025-10-01';";
                           $rgetrondin = $mysqli->query($getrondin);
                           while ($fgetrondin = $rgetrondin->fetch_assoc()) {
                             $auxsum = $auxsum +1;
                             $idunico = $fgetrondin['id_unico'];
                             $ultimosCinco = substr($fgetrondin['folioexpediente'], -8);
+                            // $ultimosExp = substr($fgetrondin['analisis']);
                             $getinfosujeto = "SELECT * FROM evaluacion_persona WHERE id = '$idunico'";
                             $rgetinfosujeto = $mysqli->query($getinfosujeto);
                             $fgetinfosujeto  = $rgetinfosujeto ->fetch_assoc();
@@ -336,7 +337,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                             $arrayCaracteres = str_split($texto);
                             // Unir los caracteres con un punto
                             $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenar_rondin ='Convenio_Exp_'.$ultimosCinco.'_'.$textoConPuntos.''.$idunico.'.';
+                            $concatenar_rondin ='Expediente_Exp_'.$ultimosCinco.'_'.$textoConPuntos.'.';
                           ?>
                             <tr>
                               <td><?php echo $auxsum; ?></td>
