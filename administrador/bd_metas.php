@@ -179,6 +179,8 @@ $row=$result->fetch_assoc();
               <li class="menu-items"><a href="../administrador/gettrasladossearchapo.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-database menu-nav--icon fa-fw'></i> METAS JURIDICO</span></a></li>
               <li class="menu-items"><a href="../administrador/gettrasladossearch.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-van-shuttle menu-nav--icon fa-fw'></i> TRASLADOS</span></a></li>
               <li class="menu-items"><a href="../administrador/getrondinessearch.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-person-walking-arrow-right menu-nav--icon fa-fw'></i> RONDINES</span></a></li>
+              <li class="menu-items"><a href="../administrador/metas_asistencias.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-user-doctor menu-nav--icon fa-fw'></i> ASISTENCIAS</span></a></li>
+              <li class="menu-items"><a href="../administrador/metas_evaluaciones.php"><span class="menu-items" style="color: white; font-weight:bold;"><i class='fa-solid fa-square-poll-horizontal menu-nav--icon fa-fw'></i> EVALUACIONES</span></a></li>
             </ul>
       </nav>
 

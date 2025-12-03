@@ -101,8 +101,10 @@ $year = date('Y');
 
     $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 
-    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, numero_oficio, traslado_realizado, informe_medico, observaciones_seguimiento, servidor_registra) 
-    VALUES ('$id_asistencia', '$numero_oficio', '$traslado', '$informe_medico', '$observaciones_seguimiento', '$nombre_servidor')";
+    $query = "INSERT INTO seguimiento_asistencia (id_asistencia, numero_oficio, traslado_realizado, se_presento, reprogramar, motivo, 
+    nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra) 
+    VALUES ('$id_asistencia', '$numero_oficio', '$traslado', 'NO APLICA', 'NO APLICA', 'NO APLICA', 
+    'NO APLICA', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$informe_medico', '$observaciones_seguimiento', '$nombre_servidor')";
     $result = $mysqli->query($query);
 
     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";

@@ -27,16 +27,28 @@ $etapa = "NOTIFICADA";
 // echo $notificar_subdireccion;
 // echo $numero_oficio_notificacion;
 // echo $fecha_oficio_notificacion;
+if ($notificar_subdireccion === 'NO APLICA') {
+        $query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, requiere_traslado, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
+        VALUES ('$id_asistencia', '$notificar_subdireccion', 'NO APLICA', 'NO APLICA', '$fecha_oficio_notificacion', '$nombre_servidor')";
+        $result = $mysqli->query($query);
 
-$query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, requiere_traslado, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
-VALUES ('$id_asistencia', '$notificar_subdireccion', '$traslado', '$numero_oficio_notificacion', '$fecha_oficio_notificacion', '$nombre_servidor')";
-$result = $mysqli->query($query);
+        $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+        $res_etapa = $mysqli->query($actualizar_etapa);
 
-$actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
-$res_etapa = $mysqli->query($actualizar_etapa);
+        $query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
+        $result3 = $mysqli->query($query3);
+} else {
+        $query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, requiere_traslado, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
+        VALUES ('$id_asistencia', '$notificar_subdireccion', '$traslado', '$numero_oficio_notificacion', '$fecha_oficio_notificacion', '$nombre_servidor')";
+        $result = $mysqli->query($query);
 
-$query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
-$result3 = $mysqli->query($query3);
+        $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+        $res_etapa = $mysqli->query($actualizar_etapa);
+
+        $query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
+        $result3 = $mysqli->query($query3);
+}
+
 
 
 

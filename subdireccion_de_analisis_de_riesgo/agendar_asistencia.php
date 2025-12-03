@@ -279,7 +279,7 @@ $tipo_institucion = $mysqli->query("SELECT id, tipo FROM tipo_institucion");
                           echo '<input disabled class="form-control" id="" name="" value="'; echo $fagendar['nombre_institucion']; echo '">';
                           }else {
                           ?>
-                          <input readonly class="form-control" id="nombre_institucion" name="nombre_institucion" value="UPSIPED">
+                          <input readonly class="form-control" id="nombre_institucion" name="nombre_institucion" value="UPSIPPED">
                           <?php
                           }
                           ?>

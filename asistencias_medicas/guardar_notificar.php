@@ -37,22 +37,42 @@ $serv_medico = $r_f['servicio_medico'];
 // echo $numero_oficio_notificacion;
 // echo $fecha_oficio_notificacion;
 
-$query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
-VALUES ('$id_asistencia', '$notificar_subdireccion', '$numero_oficio_notificacion', '$fecha_oficio_notificacion', '$nombre_servidor')";
-$result = $mysqli->query($query);
+if ($notificar_subdireccion === 'NO APLICA'){
 
-$query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
-$result3 = $mysqli->query($query3);
+        $query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, requiere_traslado, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
+        VALUES ('$id_asistencia', '$notificar_subdireccion', 'NO APLICA', 'NO APLICA', '$fecha_oficio_notificacion', '$nombre_servidor')";
+        $result = $mysqli->query($query);
 
-if($serv_medico === 'MÉDICO' || $serv_medico === 'SANITARIO'){
-    $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = 'ASISTENCIA MÉDICA COMPLETADA' WHERE id_asistencia = '$id_asistencia'";
-    $res_etapa = $mysqli->query($actualizar_etapa);
+        $query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
+        $result3 = $mysqli->query($query3);
+        
+        $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+        $res_etapa = $mysqli->query($actualizar_etapa);
+        
+} else {
 
-} else{
-    $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
-    $res_etapa = $mysqli->query($actualizar_etapa);
+        $query = "INSERT INTO notificar_asistencia (id_asistencia, notificar_subdireccion, numero_oficio_notificacion, fecha_oficio_notificacion, servidor_registra) 
+        VALUES ('$id_asistencia', '$notificar_subdireccion', '$numero_oficio_notificacion', '$fecha_oficio_notificacion', '$nombre_servidor')";
+        $result = $mysqli->query($query);
 
+        $query3 = "UPDATE solicitud_asistencia SET notificar = 'SI' WHERE id_asistencia = '$id_asistencia'";
+        $result3 = $mysqli->query($query3);
+        $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+        $res_etapa = $mysqli->query($actualizar_etapa);
 }
+
+
+
+// if($serv_medico === 'MÉDICO' || $serv_medico === 'SANITARIO'){
+
+//     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = 'ASISTENCIA MÉDICA COMPLETADA' WHERE id_asistencia = '$id_asistencia'";
+//     $res_etapa = $mysqli->query($actualizar_etapa);
+
+// } else{
+//     $actualizar_etapa = "UPDATE solicitud_asistencia SET etapa = '$etapa' WHERE id_asistencia = '$id_asistencia'";
+//     $res_etapa = $mysqli->query($actualizar_etapa);
+
+// }
 
 
 if($result) {

@@ -37,6 +37,7 @@
                         <h2 style="text-align:center">TRASLADO: <?php echo $ftrasunico['idtrasladounico']; ?></h2>
                       </div> -->
                       <!--  -->
+                      
                       <div class="form-group">
                         <label class="col-md-3 control-label">FECHA TRASLADO</label>
                         <div class="col-md-7 inputGroupContainer">
@@ -46,6 +47,10 @@
                           </div>
                         </div>
                       </div>
+
+<form> 
+<input name="fechatraslado" class="form-control" type="text" value="<?php echo $ftrasunico['idtrasladounico']; ?>" readonly>
+
                       <!-- lugar_salida -->
                       <div class="form-group">
                         <label class="col-md-3 control-label">LUGAR DE SALIDA</label>
@@ -291,6 +296,7 @@
                 <button onclick="location.href='./add_traslado.php'" class="btn btn-success " data-dismiss="modal"><span class="fa-solid fa-file-lines"></span> CONCLUIR TRASLADO</button>
                 </center>
               </div>
+            </form> 
         </div>
     </div>
 </div>

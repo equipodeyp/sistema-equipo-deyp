@@ -502,9 +502,8 @@ document.getElementById("fecha_asistencia").setAttribute("min", today);
     document.getElementById("hora_asistencia").disabled="true";
     document.getElementById("fecha_asistencia").required="false";
     document.getElementById("hora_asistencia").required="false";
-
-
-
+    document.getElementById("fecha_asistencia").required = false; // VALIDAR
+    document.getElementById("hora_asistencia").required = false; // VALIDAR
 
   }
 
