@@ -34,7 +34,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>TRASLADOS BUSCADOS</title>
+  <title>METAS EVALUACIONES</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/funciones_react.js"></script>
@@ -213,7 +213,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 
           if (isset($_GET['star']))
           {
-            $where="WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+            $where="WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'";
             $mostrar = 1;
           }
 
@@ -235,7 +235,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 
             if ($mostrar === 1) {
               $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-              $SQL="SELECT * FROM react_traslados $where";
+              $SQL="SELECT * FROM react_actividad $where";
               $dato = mysqli_query($conexion, $SQL);
               $row_cnt = $dato->num_rows;
               if($dato -> num_rows >0){
@@ -306,12 +306,16 @@ $_SESSION["check_traslado"] = $check_traslado;
                     <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
-                          <h1>PERIODO DE CONSULTA DE LA INFORMACIÓN</h1>
-                          <h3>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
-                          </h3>
+                          <h1>EVALUACIONES SUBDIRECCIÓN DE ANÁLIS DE RIESGO</h1>
+                          <h3>PERIODO DE CONSULTA DE LA INFORMACIÓN</h3>
+                          <h4>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
+                          </h4>
                             <tr>
                                 <th class="table-header" style="text-align:center">NO.</th>
-                                <th class="table-header" style="text-align:center">TRASLADO</th>
+                                <th class="table-header" style="text-align:center">ID SUJETO</th>
+                                <th class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
+                                <th class="table-header" style="text-align:center">ID ACTIVIDAD</th>
+                                <th class="table-header" style="text-align:center">NOMBRE ACTIVIDAD</th>
                                 <th class="table-header" style="text-align:center">FECHA</th>
                             </tr>
                         </thead>
@@ -321,12 +325,16 @@ $_SESSION["check_traslado"] = $check_traslado;
                           $auxsum2 = 0;
                           $sujetosidrecor = array();
                           $sujetosidrecor2 = array();
-                          $conteotrasdestino001 = "SELECT * FROM react_sujetos_traslado
-                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
-                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
-                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                          ORDER BY react_traslados.fecha ASC";
+                          $conteotrasdestino001 = "SELECT react_actividad.id_sujeto, react_actividad.folio_expediente, 
+                          react_actividad_analisis.id_actividad, react_actividad_analisis.nombre, react_actividad.fecha
+                          FROM react_actividad_analisis
+                          INNER JOIN react_actividad
+                          ON react_actividad_analisis.id_actividad = react_actividad.idactividad
+                          
+
+                          WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'
+                          AND react_actividad.idactividad = 'SAR-01'
+                          ORDER BY react_actividad.fecha ASC";
                           $rconteotrasdestino001 = $mysqli->query($conteotrasdestino001);
                           while ($fconteotrasdestino001 = $rconteotrasdestino001->fetch_assoc()){
                             $iddd = intVal($fconteotrasdestino001['id_sujeto']);
@@ -357,20 +365,24 @@ $_SESSION["check_traslado"] = $check_traslado;
                                   }
                               }
                           }
-                          $conteotrasdestino = "SELECT * FROM react_sujetos_traslado
-                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
-                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
-                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                          ORDER BY react_traslados.fecha ASC";
+                          $conteotrasdestino = "SELECT react_actividad.id_sujeto, react_actividad.folio_expediente, 
+                          react_actividad_analisis.id_actividad, react_actividad_analisis.nombre, react_actividad.fecha
+                          FROM react_actividad_analisis
+                          INNER JOIN react_actividad
+                          ON react_actividad_analisis.id_actividad = react_actividad.idactividad
+
+                          WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'
+                          AND react_actividad.idactividad = 'SAR-01'
+                          ORDER BY react_actividad.fecha ASC";
                           $rconteotrasdestino = $mysqli->query($conteotrasdestino);
                           while ($fconteotrasdestino = $rconteotrasdestino->fetch_assoc()) {
                             $auxsum = $auxsum +1;
                             $valdestino = $fconteotrasdestino['id_destino'];
 
-                            $conteotrasdestino2 = "SELECT COUNT(*) AS pt FROM react_sujetos_traslado
-                             INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                             WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
+                            $conteotrasdestino2 = "SELECT COUNT(*) AS pt 
+                            FROM react_sujetos_traslado
+                            INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
+                            WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
                             $rconteotrasdestino2 = $mysqli->query($conteotrasdestino2);
                             $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();
 
@@ -409,7 +421,13 @@ $_SESSION["check_traslado"] = $check_traslado;
                           ?>
                           <tr>
                             <td><?php echo $auxsum; ?></td>
-                            <td><?php echo $concatenacion; ?></td>
+                            <!-- <td><?php echo $concatenacion; ?></td> -->
+
+                            <td><?php echo $fconteotrasdestino['id_sujeto']; ?></td>
+                            <td><?php echo $fconteotrasdestino['folio_expediente']; ?></td>
+                            <td><?php echo $fconteotrasdestino['id_actividad']; ?></td>
+                            <td><?php echo $fconteotrasdestino['nombre']; ?></td>
+
                             <td><?php echo date("d/m/Y", strtotime($fconteotrasdestino['fecha'])); ?></td>
                           </tr>
                         <?php

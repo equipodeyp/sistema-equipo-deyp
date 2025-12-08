@@ -379,28 +379,24 @@ $_SESSION["check_actividad"] = $check_actividad;
 
     // console.log(num_actividad_obtenido);
     
-    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6' || num_actividad_obtenido === '7' || num_actividad_obtenido === '8'){
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6' 
+        || num_actividad_obtenido === '7' || num_actividad_obtenido === '8'){
       
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
-      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
-
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
+      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
+      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
       
+
+      document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+
       document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
       document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
-
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
       document.getElementById("clasificacion").style.display = "none"; // OCULTAR
 
-
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-
-
       document.getElementById("numero_oficio_actividad").required = true;
-
       document.getElementById("folio_expediente").required = false;
       document.getElementById("id_sujeto").required = false;
       document.getElementById("clasificacion_actividad").required = false;
@@ -410,24 +406,20 @@ $_SESSION["check_actividad"] = $check_actividad;
 
     else if (num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5'){
 
-      document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
-
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
+      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
+      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
       
+      document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
       document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
       document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
-
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
       document.getElementById("clasificacion").style.display = "none"; // OCULTAR
-
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-
-      document.getElementById("numero_oficio_actividad").required = false;
       
+      
+      document.getElementById("numero_oficio_actividad").required = false;
       document.getElementById("folio_expediente").required = false;
       document.getElementById("id_sujeto").required = false;
       document.getElementById("clasificacion_actividad").required = false;
@@ -437,53 +429,47 @@ $_SESSION["check_actividad"] = $check_actividad;
 
     else if (num_actividad_obtenido === '9'){
       
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
+      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
-
+      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
 
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
-      document.getElementById("clasificacion").style.display = ""; // MOSTRAR
-
-      document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
-
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-
-      document.getElementById("numero_oficio_actividad").required = false;
-
-      document.getElementById("folio_expediente").required = true;
-      document.getElementById("id_sujeto").required = true;
-      document.getElementById("clasificacion_actividad").required = true;
-
-
-    } 
-
-    else if (num_actividad_obtenido === '10' || num_actividad_obtenido === '11'){
+      document.getElementById('div_numero_oficio_actividad').style.display = ""; // MOSTRAR
       
-      document.getElementById("folio_expediente").value = ""; // LIMPIAR
-      document.getElementById('id_sujeto').value = ""; // LIMPIAR
-      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
-      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
-      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
-
-      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
-      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
-
       document.getElementById("clasificacion").style.display = "none"; // OCULTAR
-      document.getElementById('div_numero_oficio_actividad').style.display = ""; // OCULTAR
-      
-
-
 
       document.getElementById("numero_oficio_actividad").required = true;
       document.getElementById("folio_expediente").required = true;
       document.getElementById("id_sujeto").required = true;
+
+      document.getElementById("clasificacion_actividad").required = false;
+
+
+    } 
+
+    else {
+      
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
+      document.getElementById("folio_expediente").value = ""; // LIMPIAR
+      document.getElementById('id_sujeto').value = ""; // LIMPIAR
+      document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
+      document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
+      document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
+
+      document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
+      document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
+      document.getElementById('div_numero_oficio_actividad').style.display = ""; // MOSTRAR
+
+      document.getElementById("clasificacion").style.display = "none"; // OCULTAR
+      
+      document.getElementById("numero_oficio_actividad").required = true;
+      document.getElementById("folio_expediente").required = true;
+      document.getElementById("id_sujeto").required = true;
+      document.getElementById("clasificacion_actividad").required = false;
 
 
 
