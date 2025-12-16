@@ -18,8 +18,8 @@ $nombre_institucion=$_POST['nombre_institucion'];
 $domicilio_institucion=$_POST['domicilio_institucion'];
 $municipio_institucion=$_POST['municipio_institucion'];
 $oficio_gestion=$_POST['oficio_gestion'];
-$fecha_asistencia="2025-10-10";
-$hora_asistencia="15:00:00";
+$fecha_asistencia=$_POST['fecha_asistencia'];
+$hora_asistencia=$_POST['hora_asistencia'];
 $observaciones_asistencia=$_POST['observaciones_asistencia'];
 
 // $etapa = "AGENDADA";
@@ -33,8 +33,8 @@ $observaciones_asistencia=$_POST['observaciones_asistencia'];
 // $fecha_fin = $fecha_asistencia.' '.$hora_f;
 
 
-$folio = "SELECT folio_expediente, id_sujeto FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
-$result_f = mysqli_query($mysqli, $folio);
+$folio_e = "SELECT folio_expediente, id_sujeto FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
+$result_f = mysqli_query($mysqli, $folio_e);
 $r_f = mysqli_fetch_array($result_f);
 $folio = $r_f['folio_expediente'];
 $id_sujeto = $r_f['id_sujeto'];
@@ -91,12 +91,13 @@ $m = $r_m['municipio'];
 // echo $fecha_fin;
 // echo '<br>';
 
-$folio = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
-$result_f = mysqli_query($mysqli, $folio);
+$folio_exp = "SELECT * FROM solicitud_asistencia WHERE id_asistencia = '$id_asistencia'";
+$result_f = mysqli_query($mysqli, $folio_exp);
 $r_f = mysqli_fetch_array($result_f);
 $id_asist = $r_f['id_asistencia'];
 $serv_medico = $r_f['servicio_medico'];
 // echo $id_asist;
+// echo '<br>';
 // echo $serv_medico;
 
 if ($serv_medico === 'MÉDICO' || $serv_medico === 'SANITARIO' && $oficio_gestion != '' ){
@@ -143,7 +144,17 @@ if ($serv_medico === 'MÉDICO' || $serv_medico === 'SANITARIO' && $oficio_gestio
         </script>");
 
 
-} else {
+
+
+} else {        
+        
+        $query9 = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
+        VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', 'NO APLICA', 'NO APLICA', '$observaciones_asistencia', '$nombre_servidor')";
+        $result9 = $mysqli->query($query9);
+
+        $query10 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
+        VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia', '$nombre_servidor')";
+        $result10 = $mysqli->query($query10);
 
         $query11 = "UPDATE solicitud_asistencia SET agendar = 'SI' WHERE id_asistencia = '$id_asistencia'";
         $result11 = $mysqli->query($query11);
@@ -151,18 +162,15 @@ if ($serv_medico === 'MÉDICO' || $serv_medico === 'SANITARIO' && $oficio_gestio
         $query12 = "UPDATE solicitud_asistencia SET etapa = 'AGENDADA' WHERE id_asistencia = '$id_asistencia'";
         $result12 = $mysqli->query($query12);
 
-        $query9 = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
-        VALUES ('$id_asistencia', '$t', '$n', '$d', '$m', 'NO APLICA', 'NO APLICA', '$observaciones_asistencia', '$nombre_servidor')";
-        $result9 = $mysqli->query($query9);
-
-        // $query10 = "INSERT INTO cita_asistencia (folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
-        // VALUES ('$folio', '$id_sujeto', '$id_asistencia', '$fecha_asistencia', '$hora_asistencia', '$nombre_servidor')";
-        // $result10 = $mysqli->query($query10);
-
         echo ("<script type='text/javaScript'>
         window.location.href='./agendar_asistencia.php?id_asistencia_medica=$id_asistencia';
         window.alert('!!!!!Registro exitoso¡¡¡¡¡')
         </script>");
+
+
+
+
+
         
 
 }
