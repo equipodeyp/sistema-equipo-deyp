@@ -31,15 +31,18 @@ $mesrep = date("m", strtotime($datefinprinc));
 if ($dia_inicio_reporte == 1) {
   $mesone =$meses[$mesrep-1];
 }else {
-  $mesone =$meses[$mesrep-0];
+  $mesone =$meses[$mesrep-1];
 }
 
-$mestwo =$meses[$mesrep-0];
+$mestwo =$meses[$mesrep-1];
 // fechas en formato dia-mes-año
 $dateprin = date("d-m-Y", strtotime($dateprinc));
 $dateconclu = date("d-m-Y", strtotime($datefinprinc));
 $dateprinrep = date("d-m-Y", strtotime($daterepini));
 $dateconclurep = date("d-m-Y", strtotime($daterepfin));
+// get year
+$fechaComoEntero = strtotime($dateprinrep);
+$anio = date("Y", $fechaComoEntero);
 
 require_once '../../mpdf/vendor/autoload.php';
 include("../conexion.php");
@@ -142,13 +145,13 @@ $mpdf->SetHTMLFooter('<div style="float: left; width: 95%;"><h1 class="izquierda
 ///////inicio de primer hoja
 if ($dia_inicio_reporte > $dia_fin_reporte) {
   $data .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
-  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo.'</strong></h2></div><br>';
+  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo.' DEL '.date("Y").'</strong></h2></div><br>';
 }else {
   $data .= '<div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 200px; min-height: 200px; min-width: 100%; max-width: 100%;">
-  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mestwo.'</strong></h2></div><br>';
+  <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mestwo.' DEL '.date("Y").'</strong></h2></div><br>';
 }
 
-// $data .= '<h1>inicio--->'.$mesone.'</h1><br>';
+// $data .= '<h1>inicio--->'.$anio.'</h1><br>';
 // $data .= '<h1>fin--->'.$dia_fin_reporte.'</h1><br>';
 // $data .= '<h1>mensaje--->'.$mostrar.'</h1><br>';
 // $data .= '<h1>inicio--->'.$dateprinc.'</h1><br>';

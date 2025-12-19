@@ -269,110 +269,74 @@ text-decoration: underline;
         <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
       </div>
       <nav class="menu-nav">
-          <ul>
-            <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
-            <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
-            <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
-            <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTE</span></a></li>
-            <?php
-            if ($row['cargo'] === 'subdirector') {
-            ?>
-            <li id="liestadistica3" class="subtitle3">
-                <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
-                <ul class="submenu3">
-                  <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
-                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
-                  <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
-                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
-                  <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
-                </ul>
-              <!-- <li><a href="dentro_y_fuera_del_cr.php"><i class='color-icon fas fa-users'></i><span class="menu-items" style="color: white; font-weight:bold;" > SUJETOS DENTRO Y FUERA DEL CENTRO DE RESGUARDO</span></a></li> -->
-            </li>
-            <?php
-            }
-            ?>
-            <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-briefcase-medical menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>ASISTEMCIAS MÉDICAS</span></a></li>
-            <li><a href="#" onclick="location.href='alertas_convenios_por_finalizar.php'"><i class="color-icon fas fa-soli fa-person-circle-exclamation menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> ALERTA DE CONVENIOS</span></a></li>
-
-            <li>
-                  <a href="#" onclick="toggleSubmenu(this)">
-                      <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
-                      <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
-                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
-                  </a>
-                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
-                              <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
-                      </li>
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
-                              <i class="fas fa-search"></i> CONSULTAR CIFRAS
-                          </a>
-                      </li>
-                  </ul>
-              </li>
-            <!-- <li><a href="#" onclick="location.href='./registrar_incidencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li> -->
+        <ul>
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > GLOSARIO</span></a></li>
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio2"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL DE USUARIO</span></a></li>
+          <li><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio1"><i class='color-icon fas fa-file-pdf menu-nav--icon'></i><span class="menu-items" style="color: white; font-weight:bold;" > MANUAL TECNICO</span></a></li>
+          <li><a href="#" onclick="location.href='../consultores/admin.php'"><i class="color-icon fas fa-folder-open menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> CONSULTAR EXPEDIENTE</span></a></li>
+          <?php
+          if ($row['cargo'] === 'subdirector') {
+          ?>
+          <li id="liestadistica3" class="subtitle3">
+            <a href="#" class="action3"><i class='color-icon fa-sharp fa-solid fa-file-invoice menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white; font-weight:bold;"> REPORTES</span></a>
+            <ul class="submenu3">
+              <li id="liexpediente" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_diario.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar-day  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> DIARIO</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_semanal.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-sharp fa-solid fa-calendar-week menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMANAL <br />   </span></a></li>
+              <li id="lipersonas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_mensual.php">&nbsp;&nbsp;&nbsp;<i class="color-icon fa-solid fa-calendar-days menu-nav--icon fa-fw"></i><span class="menu-items" style="color: white;"> MENSUAL</span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_anual.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-calendar menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> ANUAL <br /> </span></a></li>
+              <li id="limedidas" class="menu-items"><a href="../subdireccion_de_apoyo_tecnico_juridico/ver_reporte_semestral.php">&nbsp;&nbsp;&nbsp;<i class='color-icon fa-solid fa-person-circle-plus  menu-nav--icon fa-fw'></i><span class="menu-items" style="color: white;"> SEMESTRAL</span></a></li>
+            </ul>
+          </li>
+          <?php
+          }
+          ?>
+          <li class='menu-items'><a href='./menu_asistencias_medicas.php'><i class='color-icon fa-solid fa-briefcase-medical menu-nav--icon fa-fw'></i><span style='color: white; font-weight:bold;'>ASISTEMCIAS MÉDICAS</span></a></li>
+          <li><a href="#" onclick="location.href='alertas_convenios_por_finalizar.php'"><i class="color-icon fas fa-soli fa-person-circle-exclamation menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;"> ALERTA DE CONVENIOS</span></a></li>
+          <li>
+            <a href="#" onclick="toggleSubmenu(this)">
+              <i class="color-icon fa-solid fa-book-atlas menu-nav--icon"></i>
+              <span class="menu-items" style="color: white; font-weight:bold;">REACT</span>
+              <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+            </a>
+            <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
               <li>
-                  <a href="#" onclick="toggleSubmenu(this)">
-                      <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
-                      <span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span>
-                      <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
-                  </a>
-                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
-                              <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
-                              <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
-                      </li>
-                  </ul>
+                <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./add_actividad.php'">
+                  <i class="fas fa-file-medical"></i> REGISTRAR ACTIVIDAD
+                </a>
               </li>
-          </ul>
-          <ul>
-				    <?php
-              $sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
-              $result = $mysqli->query($sentencia);
-              $row=$result->fetch_assoc();
-              $genero = $row['sexo'];
-              $id_user = $row['id'];
-              $cargo = $row['cargo'];
-              // echo $id_user;
-              $userfijo=" SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
-              $ruserfijo = $mysqli->query($userfijo);
-              $fuserfijo=$ruserfijo->fetch_assoc();
-              $permiso1 = $fuserfijo['permiso1'];
-              $permiso2 = $fuserfijo['permiso2'];
-              $permiso3 = $fuserfijo['permiso3'];
-              $permiso4 = $fuserfijo['permiso4'];
-              $permiso5 = $fuserfijo['permiso5'];
-              $permiso6 = $fuserfijo['permiso6'];
-              // echo $permiso1;
-              // echo $permiso2;
-              // echo $permiso3;
-              // echo $permiso4;
-              // echo $permiso5;
-              // echo $permiso6;
-
-
-		   				// if ($permiso3 ==='solicitar') {
-							// echo "
-              //   <a style='text-align:center' class='user-nombre' href='./menu_asistencias_medicas.php'><button type='button' class='btn btn-light'>MENÚ ASISTENCIAS<br>MÉDICAS</button> </a>
-							// ";
-						  // }
-
-
-
-					?>
-          </ul>
+              <li>
+                <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./buscar_actividad.php'">
+                  <i class="fas fa-laptop-file"></i> BUSCAR ACTIVIDAD
+                </a>
+              </li>
+              <li>
+                <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./consultar_cifras_actividad.php'">
+                  <i class="fas fa-search"></i> CONSULTAR CIFRAS
+                </a>
+              </li>
+            </ul>
+            </li>
+          <!-- <li><a href="#" onclick="location.href='./registrar_incidencia.php'"><i class="color-icon fas fa-solid fa-headset menu-nav--icon"></i><span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span></a></li> -->
+            <li>
+              <a href="#" onclick="toggleSubmenu(this)">
+                <i class="color-icon fa-solid fa-headset menu-nav--icon"></i>
+                <span class="menu-items" style="color: white; font-weight:bold;">INCIDENCIAS</span>
+                <i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i>
+              </a>
+              <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                <li>
+                  <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./registrar_incidencia.php'">
+                    <i class="fas fa-file-medical"></i> REGISTRAR INCIDENCIA
+                  </a>
+                </li>
+                <li>
+                  <a href="#" style="color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'">
+                    <i class="fas fa-laptop-file"></i> CONSULTAR INCIDENCIA
+                  </a>
+                </li>
+              </ul>
+            </li>
+        </ul>          
       </nav>
     </div>
     <div class="main bg-light">
