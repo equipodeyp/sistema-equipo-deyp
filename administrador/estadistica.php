@@ -12,68 +12,68 @@ $_SESSION["verifica_update_person"] = $verifica_update_person;
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 
-$fecha_inicial = new DateTime('2025-12-01'); // Crea un objeto DateTime
-$fecha_inicial->add(new DateInterval('P6D')); // Añade un intervalo de 6 días (P1D = 1 día)
-
-echo "Fecha inicial: " . $fecha_inicial->format('Y-m-d') . "\n"; // Salida: 2025-12-15
-$fecha_inicial->add(new DateInterval('P15D'));
-echo "Fecha en 6 días: " . $fecha_inicial->format('Y-m-d'); // Salida: 2025-12-21
-echo "<br>";
-// $fechaComoEntero = strtotime($fecha_inicial);
-// echo $anio = date("Y", $fechaComoEntero);
-// 1. Establecer la zona horaria (recomendado para evitar errores)
-date_default_timezone_set('America/Mexico_City'); // ¡Cambia a tu zona horaria!
-
-// 2. Crear un objeto DateTime para la fecha y hora actual
-$fechaActual = new DateTime();
-
-// 3. Formatear la fecha como Año-Mes-Día
-echo $fechaActual->format('Y-m-d'); // Salida: 2025-12-15 (ejemplo)
-echo "<br>";
-// También puedes obtener la hora:
-echo $fechaActual->format('Y-m-d'); // Salida: 2025-12-15 10:30:00 (ejemplo)
-echo "<br>";
-echo "fecha final----";
-$fechaActual->add(new DateInterval('P6D'));
-echo "Fecha final: " . $fechaActual->format('Y-m-d') . "\n"; // Salida: 2025-12-15
-echo "<br>";
-// Establece la zona horaria para obtener la fecha correcta
-date_default_timezone_set('America/Mexico_City'); // Ejemplo para México
-
-// Obtener el día numérico
-$dia_numerico = date('d');
-echo "Hoy es el día número: " . $dia_numerico . "\n"; // Salida: 15 (ejemplo)
-
-// Obtener el día de la semana
-$dia_semana_corto = date('D');
-echo "Día de la semana (abreviado): " . $dia_semana_corto . "\n"; // Salida: Lun (ejemplo)
-
-$dia_semana_largo = date('l');
-echo "Día de la semana (completo): " . $dia_semana_largo . "\n"; // Salida: Lunes (ejemplo)
-
-// Obtener la fecha completa
-$fecha_completa = date('Y-m-d');
-echo "Fecha completa: " . $fecha_completa . "\n"; // Salida: 2025-12-15 (ejemplo)
-// Crea un objeto DateTime para la hora actual
-$fecha_actual = new DateTime();
-
-// Obtener el día numérico
-echo "Día (Num): " . $fecha_actual->format('d') . "\n"; // Salida: 15 (ejemplo)
-
-// Obtener el día de la semana
-echo "Día (Texto): " . $fecha_actual->format('l') . "\n"; // Salida: Lunes (ejemplo)
-
-// Obtener la fecha completa
-echo "Fecha Completa: " . $fecha_actual->format('Y-m-d') . "\n"; // Salida: 2025-12-15 (ejemplo)
-echo "<br>";
-setlocale(LC_TIME, 'es_ES.UTF-8', 'Spanish_Spain', 'es', 'es_ES'); // Configura el locale a español
-echo strftime('%A, %d de %B de %Y'); // Salida: Lunes, 15 de Diciembre de 2025
-
-$fecha = new DateTime();
-$dias = array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
-$meses = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-echo $dias[$fecha->format('w')] . ', ' . $fecha->format('j') . ' de ' . $meses[$fecha->format('n')] . ' de ' . $fecha->format('Y');
-// Salida: Lunes, 15 de Diciembre de 2025
+// $fecha_inicial = new DateTime('2025-12-01'); // Crea un objeto DateTime
+// $fecha_inicial->add(new DateInterval('P6D')); // Añade un intervalo de 6 días (P1D = 1 día)
+//
+// echo "Fecha inicial: " . $fecha_inicial->format('Y-m-d') . "\n"; // Salida: 2025-12-15
+// $fecha_inicial->add(new DateInterval('P15D'));
+// echo "Fecha en 6 días: " . $fecha_inicial->format('Y-m-d'); // Salida: 2025-12-21
+// echo "<br>";
+// // $fechaComoEntero = strtotime($fecha_inicial);
+// // echo $anio = date("Y", $fechaComoEntero);
+// // 1. Establecer la zona horaria (recomendado para evitar errores)
+// date_default_timezone_set('America/Mexico_City'); // ¡Cambia a tu zona horaria!
+//
+// // 2. Crear un objeto DateTime para la fecha y hora actual
+// $fechaActual = new DateTime();
+//
+// // 3. Formatear la fecha como Año-Mes-Día
+// echo $fechaActual->format('Y-m-d'); // Salida: 2025-12-15 (ejemplo)
+// echo "<br>";
+// // También puedes obtener la hora:
+// echo $fechaActual->format('Y-m-d'); // Salida: 2025-12-15 10:30:00 (ejemplo)
+// echo "<br>";
+// echo "fecha final----";
+// $fechaActual->add(new DateInterval('P6D'));
+// echo "Fecha final: " . $fechaActual->format('Y-m-d') . "\n"; // Salida: 2025-12-15
+// echo "<br>";
+// // Establece la zona horaria para obtener la fecha correcta
+// date_default_timezone_set('America/Mexico_City'); // Ejemplo para México
+//
+// // Obtener el día numérico
+// $dia_numerico = date('d');
+// echo "Hoy es el día número: " . $dia_numerico . "\n"; // Salida: 15 (ejemplo)
+//
+// // Obtener el día de la semana
+// $dia_semana_corto = date('D');
+// echo "Día de la semana (abreviado): " . $dia_semana_corto . "\n"; // Salida: Lun (ejemplo)
+//
+// $dia_semana_largo = date('l');
+// echo "Día de la semana (completo): " . $dia_semana_largo . "\n"; // Salida: Lunes (ejemplo)
+//
+// // Obtener la fecha completa
+// $fecha_completa = date('Y-m-d');
+// echo "Fecha completa: " . $fecha_completa . "\n"; // Salida: 2025-12-15 (ejemplo)
+// // Crea un objeto DateTime para la hora actual
+// $fecha_actual = new DateTime();
+//
+// // Obtener el día numérico
+// echo "Día (Num): " . $fecha_actual->format('d') . "\n"; // Salida: 15 (ejemplo)
+//
+// // Obtener el día de la semana
+// echo "Día (Texto): " . $fecha_actual->format('l') . "\n"; // Salida: Lunes (ejemplo)
+//
+// // Obtener la fecha completa
+// echo "Fecha Completa: " . $fecha_actual->format('Y-m-d') . "\n"; // Salida: 2025-12-15 (ejemplo)
+// echo "<br>";
+// setlocale(LC_TIME, 'es_ES.UTF-8', 'Spanish_Spain', 'es', 'es_ES'); // Configura el locale a español
+// echo strftime('%A, %d de %B de %Y'); // Salida: Lunes, 15 de Diciembre de 2025
+//
+// $fecha = new DateTime();
+// $dias = array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+// $meses = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+// echo $dias[$fecha->format('w')] . ', ' . $fecha->format('j') . ' de ' . $meses[$fecha->format('n')] . ' de ' . $fecha->format('Y');
+// // Salida: Lunes, 15 de Diciembre de 2025
 
 ?>
 <!DOCTYPE html>
