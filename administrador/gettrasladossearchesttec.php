@@ -309,14 +309,15 @@ $_SESSION["check_traslado"] = $check_traslado;
                           $auxsum = 0;
                           $getrondin = "SELECT * FROM evaluacion_persona
                           WHERE analisis != ' '
-                          AND fecha_aut <= '2025-10-31'
-                          AND fecha_aut >= '2025-10-01';";
+                          AND fecha_aut <= '2025-12-31'
+                          AND fecha_aut >= '2025-12-01';";
                           $rgetrondin = $mysqli->query($getrondin);
                           while ($fgetrondin = $rgetrondin->fetch_assoc()) {
                             $auxsum = $auxsum +1;
                             $idunico = $fgetrondin['id_unico'];
+                            $analisis = $fgetrondn['analisis'];
                             $ultimosCinco = substr($fgetrondin['folioexpediente'], -8);
-                            // $ultimosExp = substr($fgetrondin['analisis']);
+                           // $ultimoexp = "SELECT * FROM evaluacion_persona WHERE analisis = ' ' ";
                             $getinfosujeto = "SELECT * FROM evaluacion_persona WHERE id = '$idunico'";
                             $rgetinfosujeto = $mysqli->query($getinfosujeto);
                             $fgetinfosujeto  = $rgetinfosujeto ->fetch_assoc();
@@ -337,7 +338,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                             $arrayCaracteres = str_split($texto);
                             // Unir los caracteres con un punto
                             $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenar_rondin ='Expediente_Exp_'.$ultimosCinco.'_'.$textoConPuntos.'.';
+                            $concatenar_rondin ='Expediente_Exp_'.$ultimosCinco.'_'.$textoConPuntos.'_'.$analisis.'.';
                           ?>
                             <tr>
                               <td><?php echo $auxsum; ?></td>
