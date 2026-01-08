@@ -1,7 +1,7 @@
 <?php
-/*require 'conexion.php';*/
 // error_reporting(0);
 include("conexion.php");
+include("modelos/getinfodetalemedida.php");
 session_start ();
 $name = $_SESSION['usuario'];
 if (!isset($name)) {
@@ -10,732 +10,261 @@ if (!isset($name)) {
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
-$result = $mysqli->query($sentencia);
-$row=$result->fetch_assoc();
-$id_medida = $_GET['id'];
-$medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-$resultadomedida = $mysqli->query($medida);
-$rowmedida = $resultadomedida->fetch_array(MYSQLI_ASSOC);
-$id_p = $rowmedida['id_persona'];
-$fol_exp =$rowmedida['folioexpediente'];
-
-$multidisciplinario = "SELECT * FROM multidisciplinario_medidas WHERE id_medida = '$id_medida'";
-$resultadomultidisciplinario = $mysqli->query($multidisciplinario);
-$rowmultidisciplinario = $resultadomultidisciplinario->fetch_array(MYSQLI_ASSOC);
-
-$fol=" SELECT * FROM datospersonales WHERE id='$id_p'";
-$resultfol = $mysqli->query($fol);
-$rowfol=$resultfol->fetch_assoc();
-$name_folio=$rowfol['folioexpediente'];
-$id_person=$rowfol['id'];
-$idunico= $rowfol['identificador'];
-$valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
-$res_val=$mysqli->query($valid);
-$fil_val = $res_val->fetch_assoc();
-$validacion = $fil_val['validacion'];
-
- ?>
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>UPSIPPED</title>
+  <title>SIPPSIPPED</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/bootstrap-theme.css" rel="stylesheet">
+
   <script src="../js/jquery-3.1.1.min.js"></script>
-  <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-  <script src="../js/jquery.dataTables.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../css/breadcrumb.css">
-  <link rel="stylesheet" href="../css/expediente.css">
-  <link rel="stylesheet" href="../css/font-awesome.css">
+
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+  <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="../css/bootstrap-theme.css" rel="stylesheet"> -->
+  <!-- <script src="../js/bootstrap.min.js"></script> -->
   <link rel="stylesheet" href="../css/cli.css">
+  <!-- CSS personalizado -->
   <link rel="stylesheet" href="../css/main2.css">
+  <!--font awesome local-->
+  <link rel="stylesheet" href="../css/fontawesome/css/all.css">
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
+  <!-- <link rel="stylesheet" href="../css/bootstrap538.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+<!-- scripts para sujeto -->
+<!-- <script src="../js/persona.js"></script> -->
+<!-- <style media="screen">
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="../js/expediente.js"></script>
-  <script src="../js/solicitud.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/cli.css">
-  <link rel="stylesheet" href="../css/registrosolicitud1.css">
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <!-- <script src="JQuery.js"></script> -->
-  <script src="../js/Javascript.js"></script>
-  <!-- <script src="../js/validar_campos.js"></script> -->
-  <script src="../js/verificar_camposm1.js"></script>
-  <!-- <script src="../js/mascara2campos.js"></script> -->
-  <script src="../js/mod_medida.js"></script>
-  <!-- <link rel="stylesheet" href="../css/estilos.css">
-  <script src="../js/main.js"></script> -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/solid.css" integrity="sha384-DhmF1FmzR9+RBLmbsAts3Sp+i6cZMWQwNTRsew7pO/e4gvzqmzcpAzhDIwllPonQ" crossorigin="anonymous"/>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/fontawesome.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous"/>
-
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
+</style> -->
 </head>
-<body >
-<div class="contenedor">
-  <div class="sidebar ancho">
-    <div class="logo text-warning">
+<body>
+  <div class="contenedor">
+    <div class="sidebar ancho">
+      <div class="logo text-warning">
+      </div>
+      <div style="text-align:center" class="user">
+        <?php
+        $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+        $result = $mysqli->query($sentencia);
+        $row=$result->fetch_assoc();
+        $genero = $row['sexo'];
+
+        if ($genero=='mujer') {
+          echo "<img src='../image/mujerup.png' width='100' height='100'>";
+        }
+
+        if ($genero=='hombre') {
+          // $foto = ../image/user.png;
+          echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+        }
+        // echo $genero;
+         ?>
+        <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
+      </div>
+      <nav class="menu-nav">
+
+      </nav>
     </div>
-    <div class="user">
-      <?php
-			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
-			$result_user = $mysqli->query($sentencia_user);
-			$row_user=$result_user->fetch_assoc();
-			$genero = $row_user['sexo'];
-
-			if ($genero=='mujer') {
-				echo "<img src='../image/mujerup.png' width='100' height='100'>";
-			}
-
-			if ($genero=='hombre') {
-				// $foto = ../image/user.png;
-				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
-			}
-			// echo $genero;
-			?>
-      <h6 style="text-align:center" class='user-nombre'>  <?php echo "" . $_SESSION['usuario']; ?> </h6>
-    </div>
-    <nav class="menu-nav">
-           <ul>
-              <a style="text-align:center" class='user-nombre' href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente'];?>'> <button type='button' class='btn btn-light'>INCIDENCIA</button> </a>
-              <!-- <a  href='create_ticket.php?folio=<?php echo $rowfol['folioexpediente'];?>'><i class="fa-solid fa-comment-dots menu-nav--icon fa-fw"></i><span>Incidencia</span></a> -->
-              <!-- <li class="menu-items"><a href="#" data-toggle="modal" data-target="#add_data_Modal_convenio"><i class='fas fa-file-pdf  menu-nav--icon fa-fw'></i><span class="menu-items">Glosario</span></a></li> -->
-              <!-- <li class="menu-items"><a href="#"><i class='fa-solid fa-magnifying-glass  menu-nav--icon fa-fw'></i><span class="menu-items">Busqueda</span></a></li> -->
-            </ul>
-    </nav>
-  </div>
-  <div class="main bg-light">
-    <div class="barra">
-      <img src="../image/fiscalia.png" alt="" width="150" height="150">
-      <img src="../image/ups2.png" alt="" width="1400" height="70">
-      <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
-    </div>
-
-    <div class="wrap">
-    <div class="secciones">
-    <article id="tab1">
-    <div class="container">
-      <form class="container well form-horizontal" method="POST" action="actualizar_medida.php?folio=<?php echo $id_medida; ?>" enctype= "multipart/form-data">
-        <div class="secciones form-horizontal sticky breadcrumb flat">
-          <a href="../administrador/admin.php">REGISTROS</a>
-          <a href="../administrador/detalles_expediente.php?folio=<?=$rowfol['folioexpediente']?>">EXPEDIENTE</a>
-          <a href="../administrador/detalles_persona.php?folio=<?=$id_p?>">PERSONA</a>
-          <a href="../administrador/detalles_medidas.php?folio=<?=$id_p?>">MEDIDAS</a>
-          <a class="actived">DETALLE DE LA MEDIDA</a>
-        </div>
-        <div class="row">
-          <div class="alert div-title">
-            <h3 style="text-align:center">FOLIO DEL EXPEDIENTE</h3>
-          </div>
-          <?php
-          $fol=" SELECT * FROM validar_medida WHERE id_medida='$id_medida'";
-          $resultfol = $mysqli->query($fol);
-          $rowfol1=$resultfol->fetch_assoc();
-          $name_folio=$rowfol1['folioexpediente'];
-          // $id_person=$rowfol['id'];
-          // $idunico= $rowfol['identificador'];
-          // $valid = "SELECT * FROM validar_persona WHERE id_persona = '$id_person'";
-          // $res_val=$mysqli->query($valid);
-          // $fil_val = $res_val->fetch_assoc();
-          $validacion = $rowfol1['validar_datos'];
-            if ($validacion == 'true') {
-              echo "<div class='columns download'>
-                      <p>
-                      <img src='../image/true4.jpg' width='50' height='50' class='center'>
-                      <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>MEDIDA VALIDADA</FONT></h3>
-
-                      </p>
-              </div>";
-            }elseif ($validacion == 'false') {
-              echo "<div class='columns download'>
-                      <p>
-
-                      <h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>PENDIENTE POR VALIDAR</FONT></h3>
-
-                      </p>
-              </div>";
-            }
-            ?>
-          <div class="col-md-6 mb-3 validar">
-                <label for="SIGLAS DE LA UNIDAD">FOLIO DEL EXPEDIENTE DE PROTECCIÓN<span ></span></label>
-                <input class="form-control" id="NUM_EXPEDIENTE" name="NUM_EXPEDIENTE" placeholder="" type="text" readonly value="<?php echo $rowfol['folioexpediente'];?>" maxlength="50">
-          </div>
-          <div class="col-md-6 mb-3 validar">
-            <label for="SIGLAS DE LA UNIDAD">ID PERSONA<span ></span></label>
-            <input class="form-control" id="ID_UNICO" name="ID_UNICO" placeholder="" type="text" readonly value="<?php echo $rowfol['identificador']; ?>" maxlength="50">
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="FECHA_CAPTURA">FECHA DE CAPTURA DE LA MEDIDA<span class="required"></span></label>
-            <input class="form-control" id="FECHA_CAPTURA" name="FECHA_CAPTURA" placeholder="" readonly value="<?php echo date("d/m/Y h:i:sa", strtotime($rowmedida['fecha_captura'])); ?>" type="text">
-            </select>
-          </div>
-
-          <div class="alert div-title">
-            <h3 style="text-align:center">MEDIDA OTORGADA</h3>
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="CATEAGORIA_MEDIDA">CATEGORÍA DE LA MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CATEAGORIA_MEDIDA" name="CATEAGORIA_MEDIDA">
-              <option style="visibility: hidden" value="<?php echo $rowmedida['categoria']; ?>"><?php echo $rowmedida['categoria']; ?></option>
-              <option value="INICIAL">INICIAL</option>
-              <option value="AMPLIACION">AMPLIACIÓN</option>
-              <option value="MODIFICATORIA">MODIFICATORIA</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="TIPO_DE_MEDIDA">TIPO DE MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="TIPO_DE_MEDIDA" name="TIPO_DE_MEDIDA" required>
-              <option style="visibility: hidden" value="<?php echo $rowmedida['tipo']; ?>"><?php echo $rowmedida['tipo']; ?></option>
-              <option value="PROVISIONAL">PROVISIONAL</option>
-              <option value="DEFINITIVA">DEFINITIVA</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar">
-            <label for="CLASIFICACION_MEDIDA">CLASIFICACIÓN DE LA MEDIDA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="CLASIFICACION_MEDIDA" name="CLASIFICACION_MEDIDA" onChange="modselectmedida(this)">
-              <option style="visibility: hidden" id="opt-clasificacion-medida" value="<?php echo $rowmedida['clasificacion']; ?>"><?php echo $rowmedida['clasificacion']; ?></option>
-              <option value="ASISTENCIA">ASISTENCIA</option>
-              <option value="RESGUARDO">RESGUARDO</option>
-            </select>
-          </div>
-          <!-- medida de asistencia -->
-          <div class="col-md-6 mb-3 validar" id="asistencia">
-            <label for="MEDIDAS_ASISTENCIA">INCISO DE LA MEDIDA DE ASISTENCIA<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDAS_ASISTENCIA" name="MEDIDAS_ASISTENCIA">
-              <option style="visibility: hidden" value="<?php echo $rowmedida['medida']; ?>"><?php echo $rowmedida['medida']; ?></option>
+    <div class="main bg-light">
+      <div class="barra">
+          <img src="../image/fiscalia.png" alt="" width="150" height="150">
+          <img src="../image/ups2.png" alt="" width="1400" height="70">
+          <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+      </div>
+      <br><br>
+      <div class="container">
+        <ul class="tabs">
+          <li><a href="#" onclick="location.href='detalles_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="far fa-address-card"></span><span class="tab-text">DATOS PERSONALES</span></a></li>
+          <li><a class="active"><span class="fas fa-book-open"></span><span class="tab-text">MEDIDAS</span></a></li>
+          <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-list"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li>
+        </ul>        
+        <br>
+        <form class="" action="index.html" method="post">
+          <div style="padding:0px; border:solid 4px;">
+            <section class="container well form-horizontal secciones"><br>
               <?php
-              $asistencia = "SELECT * FROM medidaasistencia";
-              $answerasis = $mysqli->query($asistencia);
-              while($asistencias = $answerasis->fetch_assoc()){
-               echo "<option value='".$asistencias['nombre']."'>".$asistencias['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="otherasistencia">
-            <label for="OTRA_MEDIDA_ASISTENCIA">OTRA MEDIDA ASISTENCIA<span class="required"></span></label>
-            <input class="form-control" id="OTRA_MEDIDA_ASISTENCIA" name="OTRA_MEDIDA_ASISTENCIA" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
-          </div>
-
-          <!-- medidas de resguardo -->
-          <div class="col-md-6 mb-3 validar" id="resguardo">
-            <label for="MEDIDAS_RESGUARDO">INCISO DE LA MEDIDA DE RESGUARDO<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="MEDIDAS_RESGUARDO" name="MEDIDAS_RESGUARDO">
-              <option style="visibility: hidden" value="<?php echo $rowmedida['medida']; ?>"><?php echo $rowmedida['medida']; ?></option>
-              <?php
-              $resguardo = "SELECT * FROM medidaresguardo";
-              $answerres = $mysqli->query($resguardo);
-              while($resguardos = $answerres->fetch_assoc()){
-               echo "<option value='".$resguardos['nombre']."'>".$resguardos['nombre']."</option>";
-              }
-              ?>
-              </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="otherresguardo" style="display:none;">
-            <label for="OTRA_MEDIDA_RESGUARDO">OTRA MEDIDA RESGUARDO<span class="required"></span></label>
-            <input autocomplete="off" class="form-control" id="OTRA_MEDIDA_RESGUARDO" name="OTRA_MEDIDA_RESGUARDO" value="<?php echo $rowmedida['descripcion']; ?>" type="text">
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="resguardoxi" style="display:none;">
-            <label for="RESGUARDO_XI">EJECUCIÓN DE LA MEDIDA PROCESAL<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="RESGUARDO_XI" name="RESGUARDO_XI" >
-              <option style="visibility: hidden" value="<?php echo $rowmedida['descripcion']; ?>"><?php echo $rowmedida['descripcion']; ?></option>
-              <?php
-              $resguardoxi = "SELECT * FROM medidaresguardoxi";
-              $answerresxi = $mysqli->query($resguardoxi);
-              while($resguardosxi = $answerresxi->fetch_assoc()){
-               echo "<option value='".$resguardosxi['nombre']."'>".$resguardosxi['nombre']."</option>";
-              }
-              ?>
-              </select>
-          </div>
-
-          <div class="col-md-6 mb-3 validar" id="resguardoxii" style="display:none;">
-            <label for="RESGUARDO_XII">MEDIDA OTORGADA A SUJETOS RECLUIDOS<span class="required"></span></label>
-            <select class="form-select form-select-lg" id="RESGUARDO_XII" name="RESGUARDO_XII" >
-              <option style="visibility: hidden" value="<?php echo $rowmedida['descripcion']; ?>"><?php echo $rowmedida['descripcion']; ?></option>
-              <?php
-              $resguardoxii = "SELECT * FROM medidaresguardoxii";
-              $answerresxii = $mysqli->query($resguardoxii);
-              while($resguardosxii = $answerresxii->fetch_assoc()){
-               echo "<option value='".$resguardosxii['nombre']."'>".$resguardosxii['nombre']."</option>";
-              }
-              ?>
-              </select>
-          </div>
-
-           <div class="col-md-6 mb-3 validar" id="act_date_definitiva">
-              <label for="FECHA_ACTUALIZACION_MEDIDA">FECHA DE LA MEDIDA PROVISIONAL<span class="required"></span></label>
-              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA" name="FECHA_ACTUALIZACION_MEDIDA" placeholder="" value="<?php if ($rowmedida['date_provisional'] === '0000-00-00') {
-                echo $rowmedida['date_definitva'];
-              }else {
-                echo $rowmedida['date_provisional'];
-              }?>" type="date">
-           </div>
-
-           <div class="col-md-6 mb-3 validar" id="act_date_definitiva_def" style="display:none;">
-              <label for="FECHA_ACTUALIZACION_MEDIDA_DEF">FECHA DE LA MEDIDA DEFINITIVA<span class="required"></span></label>
-              <input class="form-control" id="FECHA_ACTUALIZACION_MEDIDA_DEF" name="FECHA_ACTUALIZACION_MEDIDA_DEF" placeholder="" value="<?php echo $rowmedida['date_definitva']; ?>" type="date">
-           </div>
-
-          <div class="row">
-            <div class="row">
-              <hr class="mb-4">
-            </div>
-            <div class="alert div-title">
-              <h3 style="text-align:center">ESTATUS DE LA MEDIDA</h3>
-            </div>
-
-            <div class="col-md-6 mb-3 validar">
-              <label for="ESTATUS_MEDIDA">ESTATUS DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="ESTATUS_MEDIDA"  name="ESTATUS_MEDIDA">
-                <option style="visibility: hidden" id="opt-estatus-medida" value="<?php echo $rowmedida['estatus']; ?>"><?php echo $rowmedida['estatus']; ?></option>
-                <option value="EN EJECUCION" >EN EJECUCION</option>
-                <option value="EJECUTADA">EJECUTADA</option>
-                <option value="CANCELADA">CANCELADA</option>
-                </select>
-            </div>
-
-            <div class="col-md-6 mb-3 validar">
-              <label for="MUNIPIO_EJECUCION_MEDIDA">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA<span class="required"></span></label>
-              <select class="form-select form-select-lg" id="MUNIPIO_EJECUCION_MEDIDA" name="MUNIPIO_EJECUCION_MEDIDA">
-                <option style="visibility: hidden" id="opt-municipio-ejecucion-medida" value="<?php echo $rowmedida['ejecucion']; ?>"><?php echo $rowmedida['ejecucion']; ?></option>
-                <?php
-                $municipio = "SELECT * FROM municipios";
-                $answermun = $mysqli->query($municipio);
-                while($municipios = $answermun->fetch_assoc()){
-                 echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+                if ($validacion == 'true') {
+                  echo "<div class='columns download' style='text-align:center;'>
+                          <p>
+                          <img src='../image/true4.jpg' width='50' height='50' class='center'>
+                          <h3 style='text-align:center'><FONT COLOR='green' size=6 align='center'>MEDIDA VALIDADA</FONT></h3>
+                          </p>
+                  </div>";
+                }elseif ($validacion == 'false') {
+                  echo "<div class='columns download'>
+                          <p>
+                          <h3 style='text-align:center'><FONT COLOR='red' size=6 align='center'>PENDIENTE POR VALIDAR</FONT></h3>
+                          </p>
+                  </div>";
                 }
                 ?>
-              </select>
-            </div>
-
-             <div class="col-md-6 mb-3 validar">
-               <label for="FECHA_INICIO">FECHA DE INICIO DE LA MEDIDA<span class="required"></span></label>
-               <input class="form-control" id="FECHA_INICIO" name="FECHA_INICIO" placeholder=""  type="date" value="<?php if ($rowmedida['date_provisional'] === '0000-00-00') {
-                 echo $rowmedida['date_definitva'];
-               }else {
-                 echo $rowmedida['date_provisional'];
-               } ?>" readonly>
-             </div>
-
-             <div class="col-md-6 mb-3 validar" id="fecha_conclusion">
-               <label for="FECHA_DE_EJECUCION" id="dat_ejec">FECHA DE EJECUCIÓN<span class="required"></span></label>
-               <label for="FECHA_DE_CANCELACION" id="dat_cancel">FECHA DE CANCELACIÓN<span class="required"></span></label>
-               <input class="form-control" id="FECHA_DESINCORPORACION" name="FECHA_DESINCORPORACION" placeholder=""  type="date" value="<?php if ($rowmedida['date_ejecucion'] !== '0000-00-00') {
-                 echo $rowmedida['date_ejecucion'];
-               } ?>">
-             </div>
-
-             <div class="col-md-6 mb-3 validar" id="MOTIVO">
-               <label for="MOTIVO_CANCEL">MOTIVO DE CANCELACIÓN<span class="required"></span></label>
-               <input autocomplete="off" class="form-control" id="MOTIVO_CANCEL" name="MOTIVO_CANCEL" value="<?php echo $rowmedida['tipo_modificacion']; ?>" type="text">
-             </div>
-
-          </div>
-
-
-          <div class="row" id="conclu_cancel">
-            <div class="row">
-              <hr class="mb-4">
-            </div>
-            <div class="alert div-title">
-              <h3 style="text-align:center">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</h3>
-            </div>
-
-            <div class="col-md-6 mb-3 validar" id="CONCLUSION_ART35">
-              <label for="CONCLUSION_ART35">CONCLUSIÓN ARTICULO 35</label>
-              <select class="form-select form-select-lg" id="CONCLUSION_ART35select" name="CONCLUSION_ART35" onChange="modotherart35(this)">
-                <option style="visibility: hidden" value="<?php echo $rowmultidisciplinario['acuerdo']; ?>"><?php echo $rowmultidisciplinario['acuerdo']; ?></option>
-                <?php
-                $art35 = "SELECT * FROM conclusionart35";
-                $answerart35 = $mysqli->query($art35);
-                while($art35s = $answerart35->fetch_assoc()){
-                  echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
-                }
-                ?>
-              </select>
-            </div>
-
-             <div class="col-md-6 mb-3 validar" id="OTHERART35">
-               <label for="OTHER_ART351">ESPECIFIQUE</label>
-               <input autocomplete="off" class="form-control" id="OTHER_ART351" name="OTHER_ART351" value="<?php echo $rowmultidisciplinario['conclusionart35']; ?>" type="text">
-             </div>
-
-          </div>
-
-
-
+              <div class="alert alert-dark" role="alert" style="text-align:center; background-color: #5F6D6B; height: 50px;">
+                <strong style="color: #f8fdfc;">MEDIDA OTORGADA</strong>
               </div>
               <div class="row">
-                <div class="row">
-
-                  <hr class="mb-4">
+                <div class="col-md-6 mb-3 validar">
+                  <label for="categoriamedsujprov">CATEGORÍA DE LA MEDIDA<span class="required"></span></label>
+                  <select class="form-select" id="categoriamedsujprov" name="CATEAGORIA_MEDIDA" disabled>
+                    <option disabled selected><?php echo $fgetinfomedida['categoria']; ?></option>
+                  </select>
                 </div>
-
-                <div class="alert div-title">
-                  <h3 style="text-align:center">COMENTARIOS</h3>
+                <div class="col-md-6 mb-3 validar">
+                  <label for="upt_tipo">TIPO DE MEDIDA<span class="required"></span></label>
+                  <select class="form-select" id="upt_tipo" name="act_tipo" onchange="tipoofmedida(this)">
+                    <option disabled selected><?php echo $fgetinfomedida['tipo']; ?></option>
+                    <option value="DEFINITIVA">DEFINITIVA</option>
+                  </select>
                 </div>
-
-              <div id="contenido" class="">
-                <div class="">
-                  <table class="table table-striped table-bordered " >
-                    <thead >
-
-                    </thead>
-                    <?php
-                    $tabla="SELECT * FROM comentario WHERE folioexpediente ='$fol_exp' AND id_persona = '$id_p' AND id_medida = '$id_medida' AND comentario_mascara = '2'";
-                    $var_resultado = $mysqli->query($tabla);
-                    while ($var_fila=$var_resultado->fetch_array())
-                    {
-                    echo "<tr>";
-                    echo "<td>";
-                    echo "<ul>
-                          <li>
-
-                          <div>
-                          <span>
-                          usuario:".$var_fila['usuario']."
-                          </span>
-                          </div>
-                          <div>
-                          <span>
-                            ".$var_fila['comentario']."
-                          </span>
-                          </div>
-                          <div>
-                          <span>
-                          ".date("d/m/Y", strtotime($var_fila['fecha']))."
-                          </span>
-                          </div>
-                          </li>
-                    </ul>";echo "</td>";
-                    echo "</tr>";
-
-                    }
-                  ?>
-                  </table>
+                <div class="col-md-6 mb-3 validar">
+                  <label for="upt_clasificacion">CLASIFICACIÓN DE LA MEDIDA</label>
+                  <select class="form-select" name="" id="upt_clasificacion" disabled>
+                    <option disabled selected><?php echo $fgetinfomedida['clasificacion']; ?></option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_asistencia" style="display:none;">
+                  <label for="upt_medinciso_asistencia">INCISO DE LA MEDIDA DE ASISTENCIA</label>
+                  <select class="form-select" name="" id="upt_medinciso_asistencia" disabled>
+                    <option disabled selected><?php echo $fgetinfomedida['medida']; ?></option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_othermedextent" style="display:none;">
+                  <label for="upt_otherasistencia">OTRA MEDIDA DE ASISTENCIA</label>
+                  <input class="form-control" type="text" name="" value="<?php echo $fgetinfomedida['descripcion']; ?>" id="upt_otherasistencia" disabled>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_resguardo" style="display:none;">
+                  <label for="upt_medinciso_resguardo">INCISO DE LA MEDIDA DE RESGUARDO</label>
+                  <select class="form-select" name="" id="upt_medinciso_resguardo" disabled>
+                    <option disabled selected><?php echo $fgetinfomedida['medida']; ?></option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_ejecucionmedprocesal" style="display:none;">
+                  <label for="upt_ximedresguardo">EJECUCIÓN DE LA MEDIDA PROCESAL</label>
+                  <select class="form-select" name="" id="upt_ximedresguardo" disabled>
+                    <option disabled selected><?php echo $fgetinfomedida['descripcion']; ?></option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_medotorgadasujrecluidos" style="display:none;">
+                  <label for="upt_xiimedresguardo">MEDIDA OTORGADA A SUJETOS RECLUIDOS</label>
+                  <select class="form-select" name="" id="upt_xiimedresguardo" disabled>
+                    <option disabled selected><?php echo $fgetinfomedida['descripcion']; ?></option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_othermedguard" style="display:none;">
+                  <label for="upt_otherresguardo">OTRA MEDIDA DE RESGUARDO</label>
+                  <input class="form-control" type="text" name="" value="<?php echo $fgetinfomedida['descripcion']; ?>" id="upt_otherresguardo" disabled>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_dateprovisional" style="display:none;">
+                  <label for="upt_dateprovisional">FECHA DE INICIO DE LA MEDIDA PROVISIONAL</label>
+                  <input class="form-control" type="date" name="" value="<?php echo $fgetinfomedida['date_provisional']; ?>" id="upt_dateprovisional" disabled>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_datedefinitiva" style="display:none;">
+                  <label for="upt_datedefinitiva">FECHA DE INICIO DE LA MEDIDA DEFINITIVA</label>
+                  <input class="form-control" type="date" name="" value="<?php echo $fgetinfomedida['date_definitva']; ?>" id="upt_datedefinitiva">
                 </div>
               </div>
-
-
-
-              <?php
-              $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-              $resultadomedida = $mysqli->query($medida);
-              $rowmedida1 = $resultadomedida->fetch_array(MYSQLI_ASSOC);
-              $id_p = $rowmedida1['id_persona'];
-              $fol_exp =$rowmedida1['folioexpediente'];
-              $id_m = $rowmedida1['id'];
-              $estatus_medida = $rowmedida1['estatus'];
-              $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-              $resultadomedida = $mysqli->query($medida);
-              $rowmedida12 = $resultadomedida->fetch_array();
-              $valid13 = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
-              $res_val13=$mysqli->query($valid13);
-              $fil_val13 = $res_val13->fetch_assoc();
-              $validacion13 = $fil_val13['validacion'];
-
-                  echo '
-
-                    <textarea name="COMENTARIO" id="COMENTARIO" rows="8" cols="80" placeholder="Escribe tus comentarios" maxlength="100"></textarea>
-
+              <div class="alert alert-dark" role="alert" style="text-align:center; background-color: #5F6D6B; height: 50px;">
+                <strong style="color: #f8fdfc;">ESTATUS DE LA MEDIDA</strong>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3 validar">
+                  <label for="upt_estatus">ESTATUS DE LA MEDIDA</label>
+                  <select class="form-select" name="act_estatus" id="upt_estatus" onchange="estatusmedida(this)">
+                    <option disabled selected><?php echo $fgetinfomedida['estatus']; ?></option>
+                    <option value="EJECUTADA">EJECUTADA</option>
+                    <option value="CANCELADA">CANCELADA</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_municioejecucion" style="display:none;">
+                  <label for="upt_municipioejecucion">MUNICIPIO DE EJECUCIÓN DE LA MEDIDA</label>
+                  <select class="form-select" name="act_municipio" id="upt_municipioejecucion">
+                    <option disabled selected value>SELECCIONA UNA OPCIÓN</option>
+                    <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+                    <?php
+                    $municipio = "SELECT * FROM municipios";
+                    $answermun = $mysqli->query($municipio);
+                    while($municipios = $answermun->fetch_assoc()){
+                     echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 validar">
+                  <label for="upt_dateiniciomed">FECHA DE INICIO DE LA MEDIDA</label>
+                  <input class="form-control" type="date" name="" value="<?php if ($fgetinfomedida['date_provisional'] == '0000-00-00') {
+                    echo $fgetinfomedida['date_definitva'];
+                  }else {
+                    echo $fgetinfomedida['date_provisional'];
+                  } ?>" id="upt_dateiniciomed" disabled>
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_dateejecucion" style="display:none;">
+                  <label for="upt_datetermino">FECHA DE EJECUCIÓN</label>
+                  <input class="form-control" type="date" name="act_datetermino" id="upt_datetermino">
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_datecancelacion" style="display:none;">
+                  <label for="upt_datecancelacion">FECHA DE CANCELACIÓN</label>
+                  <input class="form-control" type="date" name="act_datecancelacion" id="upt_datecancelacion">
+                </div>
+                <div class="col-md-6 mb-3 validar" id="div_motivocancelacion" style="display:none;">
+                  <label for="upt_motivocancel">MOTIVO DE CANCELACIÓN</label>
+                  <input class="form-control" type="text" name="act_motivocancel" id="upt_motivocancel">
+                </div>
+              </div>
+              <div id="div_nextejecuatda" style="display:none;">
+                <div class="alert alert-dark" role="alert" style="text-align:center; background-color: #5F6D6B; height: 50px;">
+                  <strong style="color: #f8fdfc;">MOTIVO DE CONCLUSIÓN DE LA MEDIDA</strong>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3 validar">
+                    <label for="upt_conart35">CONCLUSIÓN DEL ARTICULO NO. 35</label>
+                    <select class="form-select" name="act_conart35" id="upt_conart35" onchange="motivoconclusion(this)">
+                      <option disabled selected value="">SELECCIONE UNA OPCIÓN</option>
+                      <?php
+                      $art35 = "SELECT * FROM conclusionart35";
+                      $answerart35 = $mysqli->query($art35);
+                      while($art35s = $answerart35->fetch_assoc()){
+                        echo "<option value='".$art35s['nombre']."'>".$art35s['nombre']."</option>";
+                      }
+                      ?>
+                    </select>
                   </div>
-                  <div class="row">
-                    <div>
-                        <br>
-                        <br>
-                    		<button style="display: block; margin: 0 auto;" class="btn btn-success" id="enter" type="submit">ACTUALIZAR</button>
-                    </div>
-                  </div>';
-
-               ?>
-
-
-        </div>
-      </form>
+                  <div class="col-md-6 mb-3 validar" id="div_especifiqueconclusion" style="display:none;">
+                    <label for="upt_otherart35">ESPECIFIQUE</label>
+                    <input class="form-control" type="text" name="act_otherart35" id="upt_otherart35">
+                  </div>
+                </div>
+              </div>
+              <div class="alert alert-dark" role="alert" style="text-align:center; background-color: #5F6D6B; height: 50px;">
+                <strong style="color: #f8fdfc;">COMENTARIOS</strong>
+              </div>
+              <textarea name="commentmediprovsuj" id="commentmediprovsuj" rows="5" cols="194" placeholder="Escribe tus comentarios" maxlength="2000" style="resize: none;"></textarea>
+              <br><br>
+            </section>
+            <div class="modal-footer d-flex justify-content-center">
+              <div class="row">
+                <div>
+                  <button style="display: block; margin: 0 auto;" class="btn color-btn-success btn-sm" id="enter" type="submit">REGISTRAR</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">CANCELAR</button>
+            </div>
+            <br>
+          </div>
+        </form>
+      </div>
     </div>
-    </article>
   </div>
-</div>
+  <div class="contenedor">
+    <a href="detalles_medidas.php?folio=<?=$idpersona?>" class="btn-flotante">REGRESAR</a>
   </div>
-</div>
-<div class="contenedor">
-  <?php
-  $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-  $resultadomedida = $mysqli->query($medida);
-  $rowmedida1 = $resultadomedida->fetch_array(MYSQLI_ASSOC);
-  $id_p = $rowmedida1['id_persona'];
-  $fol_exp =$rowmedida1['folioexpediente'];
-  $id_m = $rowmedida1['id'];
-  $estatus_medida = $rowmedida1['estatus'];
-  $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
-  $res_val=$mysqli->query($valid);
-  $fil_val = $res_val->fetch_assoc();
-    if ($fil_val['validar_datos'] === 'false' && $name === 'adrianahe') {
-      echo "<div>
-              <p>
-                <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-glosario' ><i class=''></i>VALIDAR</a>
-              </p>
-      </div>";
-    }
-   ?>
-<a href="../administrador/detalles_medidas.php?folio=<?=$id_p?>" class="btn-flotante">REGRESAR</a>
-</div>
-<!-- SCRIPT DE FECHAS  -->
-
-<script type="text/javascript">
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-      dd='0'+dd
-  }
-  if(mm<10){
-      mm='0'+mm
-  }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("FECHA_DESINCORPORACION").setAttribute("max", today);
-</script>
-
-<script type="text/javascript">
-// var estatusMedidas = document.getElementById("ESTATUS_MEDIDA").value;
-// if(estatusMedidas === "EN EJECUCION"){
-//   document.getElementById("MUNIPIO_EJECUCION_MEDIDA").disabled = false;
-// }
-</script>
-<script type="text/javascript">
-  var clasificacionmedida = document.getElementById('CLASIFICACION_MEDIDA').value;
-  function clasif_medida() {
-    // console.log(clasificacionmedida);
-    if (clasificacionmedida === 'ASISTENCIA') {
-      document.getElementById('resguardo').style.display = "none";
-      document.getElementById('otherresguardo').style.display = "none";
-      document.getElementById('resguardoxi').style.display = "none";
-      document.getElementById('resguardoxii').style.display = "none";
-    }else if (clasificacionmedida === 'RESGUARDO') {
-      document.getElementById('asistencia').style.display = "none";
-      document.getElementById('otherasistencia').style.display = "none";
-      // document.getElementById('resguardoxi').style.display = "none";
-      // document.getElementById('resguardoxii').style.display = "none";
-    }
-  }
-  clasif_medida();
-  ////////////////////////////////////////////////////////////////////////
-  var incisoasistencia = document.getElementById('MEDIDAS_ASISTENCIA').value;
-  function inciso_asistencia(){
-    // console.log(incisoasistencia);
-    if (incisoasistencia !== 'VI. OTRAS') {
-      document.getElementById('otherasistencia').style.display = "none";
-    }
-  }
-  inciso_asistencia();
-  ////////////////////////////////////////////////////////////////////////
-  var incisoresguardo = document.getElementById('MEDIDAS_RESGUARDO').value;
-  function inciso_resguardo() {
-    // console.log(incisoresguardo);
-    if (incisoresguardo === 'XI. EJECUCION DE MEDIDAS PROCESALES') {
-      document.getElementById('resguardoxi').style.display = "";
-    }else if (incisoresguardo === 'XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
-      document.getElementById('resguardoxii').style.display = "";
-    }else if (incisoresguardo === 'XIII. OTRAS MEDIDAS') {
-      document.getElementById('otherresguardo').style.display = "";
-    }
-  }
-  inciso_resguardo();
-  /////////////////////////////////////////////////////////////////////////
-  // estatus de la medida ///////////
-  // var estatus_medida = document.getElementById('ESTATUS_MEDIDA').value;
-  // function mostrar_estatus_medida() {
-  //   // console.log(estatus_medida);
-  //   if (estatus_medida === 'EJECUTADA') {
-  //     document.getElementById('dat_ejec').style.display = "";
-  //     document.getElementById('fecha_conclusion').style.display = "";
-  //     document.getElementById('conclu_cancel').style.display = "";
-  //     document.getElementById('CONCLUSION_ART35').style.display = "";
-  //   }else if (estatus_medida === 'CANCELADA') {
-  //     document.getElementById('dat_cancel').style.display = "";
-  //     document.getElementById('fecha_conclusion').style.display = "";
-  //     document.getElementById('MOTIVO').style.display = "";
-  //   }
-  // }
-  // mostrar_estatus_medida();
-
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-// motivo de cancelacion y/o conclusion
-  // var ejecutamed = document.getElementById('CONCLUSION_CANCELACION').value;
-  // function conclu_cancel_med() {
-  //   // console.log(ejecutamed);
-  //   if (ejecutamed === 'CONCLUSION') {
-  //     document.getElementById('CONCLUSION_ART35').style.display = "";
-  //   }
-  // }
-  // conclu_cancel_med();
-  ///////////////////////////////////////////////////////////////////
-  // conclusion por articulo 35
-
-
-  var concluart = document.getElementById('CONCLUSION_ART35select').value;
-  function conclu_cancel_art35() {
-    console.log(concluart);
-    if (concluart === 'IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO' || concluart === 'OTRO') {
-      document.getElementById('OTHERART35').style.display = "";
-    }else {
-      document.getElementById('OTHERART35').style.display = "none";
-    }
-  }
-  conclu_cancel_art35();
-</script>
-
-<script type="text/javascript">
-
-
-// medidas asistencia
-var medidasAsistencia = document.getElementById("MEDIDAS_ASISTENCIA");
-var medDeAsistencia;
-
-medidasAsistencia.addEventListener('change', obtenerMedDeAsistencia);
-    function obtenerMedDeAsistencia(e) {
-      medDeAsistencia = e.target.value;
-      console.log(medDeAsistencia);
-      if (medDeAsistencia === 'VI. OTRAS') {
-        document.getElementById("otherasistencia").style.display = "";
-      }else {
-        document.getElementById("otherasistencia").style.display = "none";
-      }
-    }
-
-// medidas de resguardo
-
-var medidasResguardo = document.getElementById("MEDIDAS_RESGUARDO");
-var medDeResguardo;
-
-medidasResguardo.addEventListener('change', obtenerMedDeResguardo);
-    function obtenerMedDeResguardo(e) {
-      medDeResguardo = e.target.value;
-      console.log(medDeResguardo);
-      if (medDeResguardo == "XI. EJECUCION DE MEDIDAS PROCESALES"){
-        document.getElementById("resguardoxi").style.display = "";
-        document.getElementById("resguardoxii").style.display = "none";
-        document.getElementById("otherresguardo").style.display = "none";
-      }else if (medDeResguardo === 'XII. MEDIDAS OTORGADAS A SUJETOS RECLUIDOS') {
-        document.getElementById("resguardoxi").style.display = "none";
-        document.getElementById("resguardoxii").style.display = "";
-        document.getElementById("otherresguardo").style.display = "none";
-      }else if (medDeResguardo === 'XIII. OTRAS MEDIDAS') {
-        document.getElementById("resguardoxi").style.display = "none";
-        document.getElementById("resguardoxii").style.display = "none";
-        document.getElementById("otherresguardo").style.display = "";
-      }else {
-        document.getElementById("resguardoxi").style.display = "none";
-        document.getElementById("resguardoxii").style.display = "none";
-        document.getElementById("otherresguardo").style.display = "none";
-      }
-
-}
-
-</script>
-
-<script type="text/javascript">
-
-var estatusMedida = document.getElementById("ESTATUS_MEDIDA");
-var estatusMed;
-
-estatusMedida.addEventListener('change', obtenerEstatusMed);
-    function obtenerEstatusMed(e) {
-      estatusMed = e.target.value;
-      console.log(estatusMed);
-      if (estatusMed == "EN EJECUCION" ){
-        document.getElementById("fecha_conclusion").style.display = "none";
-        document.getElementById("dat_ejec").style.display = "none";
-        document.getElementById("dat_cancel").style.display = "none";
-        document.getElementById("FECHA_DESINCORPORACION").style.display = "none";
-        document.getElementById("conclu_cancel").style.display = "none";
-        document.getElementById("MOTIVO").style.display = "none";
-        document.getElementById("CONCLUSION_ART35select").value = "";
-        document.getElementById("OTHERART35").style.display = "none";
-      }else if (estatusMed == "EJECUTADA") {
-        document.getElementById("fecha_conclusion").style.display = "";
-        document.getElementById("dat_ejec").style.display = "";
-        document.getElementById("dat_cancel").style.display = "none";
-        document.getElementById("FECHA_DESINCORPORACION").style.display = "";
-        document.getElementById("conclu_cancel").style.display = "";
-        document.getElementById("MOTIVO").style.display = "none";
-      }else if (estatusMed == "CANCELADA") {
-        document.getElementById("fecha_conclusion").style.display = "";
-        document.getElementById("dat_ejec").style.display = "none";
-        document.getElementById("dat_cancel").style.display = "";
-        document.getElementById("FECHA_DESINCORPORACION").style.display = "";
-        document.getElementById("conclu_cancel").style.display = "none";
-        document.getElementById("MOTIVO").style.display = "";
-        document.getElementById("CONCLUSION_ART35select").value = "";
-        document.getElementById("OTHERART35").style.display = "none";
-      }
-
-}
-
-</script>
-
-
-<script type="text/javascript">
-
-var conclusionArt35 = document.getElementById("CONCLUSION_ART35select");
-var concluArt35;
-
-conclusionArt35.addEventListener('change', obtenerConclusionArt35);
-    function obtenerConclusionArt35(e) {
-      concluArt35 = e.target.value;
-      if (concluArt35 === "IX. ESTABLECIDAS EN EL CONVENIO DE ENTENDIMIENTO" || concluArt35 === "OTRO" ){
-        document.getElementById('OTHERART35').style.display = "";
-      }
-
-}
-
-</script>
-<script type="text/javascript">
-  var fech_p = document.getElementById('TIPO_DE_MEDIDA');
-  var fecha_p= '';
-  fech_p.addEventListener('change', gettipomedida);
-  function gettipomedida (e) {
-    fecha_p = e.target.value;
-    console.log(fecha_p);
-    if (fecha_p === 'DEFINITIVA') {
-      document.getElementById('act_date_definitiva_def').style.display="";
-    }else {
-      document.getElementById('act_date_definitiva_def').style.display="none";
-    }
-  }
-  var checkfech = document.getElementById('TIPO_DE_MEDIDA').value;
-  function disfech () {
-    console.log(checkfech);
-    if (checkfech === 'DEFINITIVA') {
-      document.getElementById('act_date_definitiva_def').style.display="";
-    }else {
-      document.getElementById('act_date_definitiva_def').style.display="none";
-    }
-  }
-  disfech();
-</script>
-
 </body>
+<link rel="stylesheet" href="../css/menuactualizado.css">
+<!-- <script src="../js/controller_medidas.js"></script> -->
+<script src="../js/controller_pormedida.js" charset="utf-8"></script>
+<!-- <script src="../js/addevaluacion_sujeto.js"></script> -->
 </html>

@@ -1,0 +1,268 @@
+body {
+  font-family: 'Montserrat', sans-serif; /* O la fuente que elijas */
+  font-size: 12px; /* Un tamaño de 16px es un buen estándar para legibilidad */
+}
+
+  *{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .wrap{
+    width: 1800px;
+    max-width: 60%;
+    margin: 20px auto;
+
+  }
+
+  ul.tabs{
+    width: 100%;
+    background: #cccccc;
+    list-style: none;
+    display: flex;
+  }
+
+  ul.tabs li{
+    width: 32.5%;
+  }
+
+  ul.tabs li a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    padding: 20px 0px;
+  }
+
+  .active{
+    background: #97897D;
+  }
+
+  ul.tabs li a .tab-text{
+    margin-left: 8px;
+  }
+
+  .secciones{
+    width: 100%;
+    background: white;
+  }
+
+  .secciones article{
+    padding: 30px;
+  }
+
+  .secciones article p{
+    text-align: justify;
+  }
+
+
+  @media screen and (max-width: 1700px){
+    ul.tabs li{
+      width: none;
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+  }
+
+  @media screen and (max-width: 850px){
+    ul.tabs li a{
+      padding: 155px 0px;
+    }
+
+    ul.tabs li a .tab-text{
+      display: none;
+    }
+
+    .secciones article{
+      padding: 200px;
+    }
+  }
+/* //////////////////////////////////////////////////////////////////////////////// */
+/* toggle in label designing */
+.toggle {
+    position : relative ;
+    display : inline-block;
+    width : 70px;
+    height : 25px;
+    background-color: red;
+    border-radius: 30px;
+    border: 1px solid #FFFFFF;
+}
+
+/* After slide changes */
+.toggle:after {
+    content: '';
+    position: absolute;
+    width: 31px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #999999;
+    top: -1px;
+    left: 0px;
+    transition:  all 0.5s;
+}
+
+/* Toggle text */
+/* p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+} */
+
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+    left : 43px;
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+    background-color: #229954;
+}
+
+/* Checkbox vanished */
+.checkbox {
+    display : none;
+}
+
+/*  */
+
+
+    /* toggle in label designing */
+    .toggle2 {
+        position : relative ;
+        display : inline-block;
+        width : 70px;
+        height : 25px;
+        background-color: red;
+        border-radius: 30px;
+        border: 1px solid #FFFFFF;
+    }
+
+    /* After slide changes */
+    .toggle2:after {
+        content: '';
+        position: absolute;
+        width: 31px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #999999;
+        top: -1px;
+        left: 0px;
+        transition:  all 0.5s;
+    }
+
+    /* Toggle text */
+    /* p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    } */
+
+    /* Checkbox checked effect */
+    .checkbox2:checked + .toggle2::after {
+        left : 43px;
+    }
+
+    /* Checkbox checked toggle label bg color */
+    .checkbox2:checked + .toggle2 {
+        background-color: #229954;
+    }
+
+    /* Checkbox vanished */
+    .checkbox2 {
+        display : none;
+    }
+/* //////////////////////////////////////////////////////////////////////////////// */
+ul.tabs-sujeto {
+  display: flex;
+  flex-direction: row;
+  /* width: 450px; */
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow-y: auto;
+}
+
+ul.tabs-sujeto li {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  text-align: center;
+  white-space: nowrap;
+}
+
+ul.tabs-sujeto li a {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #ccc;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+  padding: 0.5em 1em;
+}
+
+ul.tabs-sujeto li a.selected {
+  background-color: #777;
+  color: #fff;
+}
+/* ////////////////////////////////////////////////////////////////////////// */
+/* Oculta los controles nativos */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+/* Muestra el calendario al hacer clic */
+input[type="date"] {
+    position: relative; /* Importante para que el indicador se posicione correctamente */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    background: transparent; /* Asegura que el indicador no tenga color de fondo */
+}
+
+
+#texarearesize {
+  width: 100%; /* Ocupa todo el ancho del div contenedor */
+  padding: 10px;
+  box-sizing: border-box; /* Asegura que el padding no exceda el ancho del 100% */
+  resize: none; /* Importante: deshabilita el redimensionamiento manual del usuario */
+  overflow-y: hidden; /* Oculta la barra de desplazamiento vertical por defecto */
+  min-height: 50px; /* Altura mínima inicial */
+  font-size: 16px;
+  line-height: 1.5; /* Espaciado entre líneas para mejor cálculo de altura */
+}
+
+/*  */
+.contenedor-margen {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px; /* Espacio entre textarea y botón */
+}
+.contenedor-margen textarea {
+  flex-grow: 1; /* Ocupa todo el espacio */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.contenedor-margen button {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto; /* Empuja el botón a la derecha */
+}

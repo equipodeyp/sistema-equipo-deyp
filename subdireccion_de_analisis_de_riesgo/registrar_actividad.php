@@ -115,7 +115,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     <form method="POST" action="./guardar_actividad.php" enctype= "multipart/form-data">
 
       <!-- <input  id="act" > -->
-          
+
       <div class="form-group">
         <label class="col-md-3 control-label">ACTIVIDAD</label>
         <div class="col-md-7 inputGroupContainer">
@@ -125,7 +125,7 @@ $_SESSION["check_actividad"] = $check_actividad;
             <select class="form-control" name="numero_actividad" id="numero_actividad" required>
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_analisis ORDER BY nombre ASC"; 
+                    $select = "SELECT * FROM react_actividad_analisis ORDER BY nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     $id_actividad = $valores['id_actividad'];
@@ -319,12 +319,12 @@ $_SESSION["check_actividad"] = $check_actividad;
             <input value="1"autocomplete="off" name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
           </div>
           <h6 style="text-align:justify; font-size: x-small;">
-            * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos; 
+            * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos;
             en caso contrario, se debrá reportar actividad por actividad.
           </h6>
         </div>
       </div> -->
-      
+
 
 
       <div class="form-group">
@@ -332,7 +332,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
-            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required>
+            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" min="2026-01-01" required>
           </div>
         </div>
       </div>
@@ -362,7 +362,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
 
-      
+
       <div class="form-group" id="id_sujeto_actividad" style="display:none;">
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
@@ -407,7 +407,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
 
-      
+
     </form>
   </div>
 </center>
@@ -456,7 +456,7 @@ $_SESSION["check_actividad"] = $check_actividad;
   var n_actividad = document.getElementById('numero_actividad');
   var numero_act;
   var num_actividad_obtenido;
-  
+
   n_actividad.addEventListener('change', obtenerNumero);
 
   function obtenerNumero(e){
@@ -468,7 +468,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     // console.log(num_actividad_obtenido);
 
     if (num_actividad_obtenido === '1'){
-      
+
       document.getElementById("clasificacion_uno").style.display = ""; // MOSTRAR
       document.getElementById('folio_expediente_actividad').style.display = ""; // MOSTRAR
       document.getElementById('id_sujeto_actividad').style.display = ""; // MOSTRAR
@@ -489,14 +489,14 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
-      
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
-      
+
+
       document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
       document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
       document.getElementById("numero_oficio_actividad").required = true; // CAMPO OBLIGATORIO
@@ -526,12 +526,12 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
+
       document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
       document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
       document.getElementById("numero_oficio_actividad").required = true; // CAMPO OBLIGATORIO
@@ -548,7 +548,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_cinco").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_seis").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion_siete").style.display = "none"; // OCULTAR
-      
+
       document.getElementById('folio_expediente_actividad').style.display = ""; // MOSTRAR
       document.getElementById('id_sujeto_actividad').style.display = ""; // MOSTRAR
 
@@ -561,16 +561,16 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
+
       document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
       document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
 
-    } 
+    }
 
     else if (num_actividad_obtenido === '7'){
 
@@ -594,12 +594,12 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
+
       document.getElementById("clasificacion_actividad_dos").required = true; // CAMPO OBLIGATORIO
       document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
       document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
@@ -628,7 +628,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
@@ -665,7 +665,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
@@ -701,7 +701,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
@@ -712,7 +712,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("id_sujeto").required = true; // CAMPO OBLIGATORIO
       document.getElementById("numero_oficio_actividad").required = true; // CAMPO OBLIGATORIO
 
-      
+
 
 
     }
@@ -736,7 +736,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     //   document.getElementById("clasificacion_actividad_cinco").value = ""; // LIMPIAR
     //   document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
     //   document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-    //   document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+    //   document.getElementById("fecha_actividad").value = ""; // LIMPIAR
     //   document.getElementById("folio_expediente").value = ""; // LIMPIAR
     //   document.getElementById('id_sujeto').value = ""; // LIMPIAR
     //   document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
@@ -770,7 +770,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
@@ -805,7 +805,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
@@ -819,7 +819,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     }
 
     else if (num_actividad_obtenido === '17'){
-      
+
       document.getElementById("clasificacion_uno").style.display = ""; // MOSTRAR
       document.getElementById('folio_expediente_actividad').style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
@@ -841,22 +841,22 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad_seis").value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad_siete").value = ""; // LIMPIAR
 
-      
-      document.getElementById("fecha_actividad").value = ""; // LIMPIAR 
+
+      document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
-      
+
+
       document.getElementById("folio_expediente").required = true; // CAMPO OBLIGATORIO
       document.getElementById("numero_oficio_actividad").required = true; // CAMPO OBLIGATORIO
       document.getElementById("clasificacion_actividad_uno").required = true; // CAMPO OBLIGATORIO
     }
 
 
-    
-    
+
+
   }
 
 </script>

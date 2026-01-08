@@ -68,7 +68,7 @@ if ($verifica_update_person == 1) {
   $id_convenio = $_POST['id_convenio'];
   $observaciones = $_POST['observaciones'];
   $usuario =$name;
-  $fecha_alta = date('y/m/d');
+  $fecha_alta = date('Y/m/d');
 
   $add_evaluacion_p = "INSERT INTO evaluacion_persona(folioexpediente, id_unico, analisis, fecha_aut, id_analisis, tipo_convenio, fecha_firma, fecha_inicio, vigencia, fecha_vigencia, id_convenio, observaciones, usuario, fecha_alta)
                  VALUES('$folioexpediente', '$id_unico', '$analisis', '$fecha_aut', '$id_analisis', '$tipo_convenio', '$fecha_firma', '$fecha_inicio', '$vigencia', '$fecha_vigencia', '$id_convenio', '$observaciones', '$usuario', '$fecha_alta')";
