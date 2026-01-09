@@ -135,9 +135,11 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <label for="analisis_m">ANÁLISIS MULTIDISCIPLINARIO</label>
                     <select id="ANALISIS_MULT" class="form-select form-select-lg" name="analisis_m">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['analisis']; ?>"><?php echo $fila_consulta['analisis']; ?></option>
-                      <option value="ESTUDIO TECNICO">1.- ESTUDIO TECNICO</option>
+                      <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
                       <option value="ACUERDO DE CANCELACION">2.- ACUERDO DE CANCELACION</option>
                       <option value="ACUERDO DE CONCLUSION">3.- ACUERDO DE CONCLUSION</option>
+                      <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
+                      <option value="AUTORIZACION DEL TITULAR">5.- AUTORIZACION DEL TITULAR</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
@@ -152,8 +154,9 @@ $fila_consulta = $res_consulta->fetch_assoc();
                     <label id="LABEL_TIPO_CONVENIO" for="tipo_convenio">TIPO DE CONVENIO</label>
                     <select  id="SELECT_TIPO_CONVENIO" class="form-select form-select-lg" name="tipo_convenio">
                       <option style="visibility: hidden" value="<?php echo $fila_consulta['tipo_convenio']; ?>"><?php echo $fila_consulta['tipo_convenio']; ?></option>
-                      <option value="CONVENIO DE ADHESIÓN">1.- CONVENIO DE ADHESIÓN</option>
+                      <option value="CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA">1.- CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA</option>
                       <option value="CONVENIO MODIFICATORIO">2.- CONVENIO MODIFICATORIO</option>
+                      <option value="NO APLICA">3.- NO APLICA</option>
                     </select>
                   </div>
                   <div class="col-md-6 mb-3 validar ">
