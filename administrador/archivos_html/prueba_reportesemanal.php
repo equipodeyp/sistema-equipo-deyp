@@ -378,9 +378,9 @@ $data .= '<div style="float: left; width: 55%;">
         <th style="background-color: #665649; border: 1px solid #A19E9F; text-align:center;" colspan="4"><h1 style="font-size:11px; color:white;">SUJETOS INCORPORADOS AL PROGRAMA</h1></th>
       </tr>
       <tr>
-        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" colspan="2"><h1 style="font-size:12px; color:white;">2025</h1></th>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" colspan="2"><h1 style="font-size:12px; color:white;">'.$year.'</h1></th>
         <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" rowspan="2"><h1 style="font-weight: normal; font-size:10px; color:white;">TOTAL  <br> ACUMULADO</h1></th>
-        <th style="background-color: #665649; border: 1px solid #A19E9F; text-align:center;" colspan="2"><h1 style="font-size:12px; color:white;">2025</h1></th>
+        <th style="background-color: #665649; border: 1px solid #A19E9F; text-align:center;" colspan="2"><h1 style="font-size:12px; color:white;">'.$year.'</h1></th>
         <th style="background-color: #665649; border: 1px solid #A19E9F; text-align:center;" rowspan="2"><h1 style="font-weight: normal; font-size:10px; color:white;">TOTAL  <br> ACUMULADO</h1></th>
       </tr>
       <tr>
