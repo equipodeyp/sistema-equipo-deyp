@@ -122,10 +122,10 @@ if ($verifica_update_person == 1) {
     $res_dat_per_statusprog = $mysqli->query($datos_personastatusprog);
   }
   //////////////////////////////////////////////////////////////////////////////
-  if ($rupdatedeterminacion) {
+  if ($rupdatedeterminacion || $res_dat_per_statusprog) {
     echo ("<script type='text/javaScript'>
      window.location.href='../seguimiento_persona.php?folio=$id_persona';
-     window.alert('!!!!!COMENTARIO AGREGADO¡¡¡¡¡')
+     window.alert('!!!!!ACTUALIZACION CORRECTA¡¡¡¡¡')
    </script>");
   }
 }
