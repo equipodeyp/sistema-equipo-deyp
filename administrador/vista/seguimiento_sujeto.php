@@ -292,7 +292,7 @@
             </button>
             <?php
             include('detallesevaluacionpersona.php');
-          }elseif ($var_fila['analisis'] == 'ESTUDIO TECNICO DE ANALISIS DE RIESGO' && $var_fila['tipo_convenio'] == '') {
+          }elseif ($var_fila['analisis'] == 'ESTUDIO TECNICO DE EVALUACION DE RIESGO' && $var_fila['tipo_convenio'] == '') {
             ?>
             <!-- <h1>actualizar</h1> -->
             <button type="button" class="btn color-btn-success btn-sm" data-bs-toggle="modal"

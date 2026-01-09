@@ -26,7 +26,7 @@
                   <label for="ANALISIS_MULT">ANÁLISIS MULTIDISCIPLINARIO</label>
                   <select class="form-select" name="analisis_m" id="ANALISIS_MULT" required>
                     <option  value="default">SELECCIONE UNA OPCION</option>
-                    <option value="ESTUDIO TECNICO DE ANALISIS DE RIESGO">1.- ESTUDIO TECNICO DE ANALISIS DE RIESGO</option>
+                    <option value="ESTUDIO TECNICO DE EVALUACION DE RIESGO">1.- ESTUDIO TECNICO DE EVALUACION DE RIESGO</option>
                     <option value="ESTUDIO TECNICO DE CANCELACION">2.- ESTUDIO TECNICO DE CANCELACION</option>
                     <option value="ESTUDIO TECNICO DE CONCLUSION">3.- ESTUDIO TECNICO DE CONCLUSION</option>
                     <option value="ESTUDIO TECNICO DE MODIFICACION">4.- ESTUDIO TECNICO DE MODIFICACION</option>
