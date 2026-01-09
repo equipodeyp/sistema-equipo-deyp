@@ -19,6 +19,11 @@ $fexp2024 = $rexp2024->fetch_assoc();
 $exp2025 = "SELECT COUNT(*) AS t FROM expediente WHERE año = 2025";
 $rexp2025 = $mysqli->query($exp2025);
 $fexp2025 = $rexp2025->fetch_assoc();
+
+$exp2026 = "SELECT COUNT(*) AS t FROM expediente WHERE año = 2026";
+$rexp2026 = $mysqli->query($exp2026);
+$fexp2026 = $rexp2026->fetch_assoc();
+
 echo "<tr bgcolor=''>";
 echo "<td style='text-align:left'>"; echo 'DEL 01 DE JUNIO AL 31 DE DICIEMBRE DE 2021'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fexp2021['t']; echo "</td>";
@@ -40,8 +45,13 @@ echo "<td style='text-align:center'>"; echo $fexp2024['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL '.date("d").' DE '.strtoupper($meses[date("n")-1]).' DE '. date("Y"); echo "</td>";
+echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2025'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fexp2025['t']; echo "</td>";
+echo "</tr>";
+
+echo "<tr bgcolor=''>";
+echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL '.date("d").' DE '.strtoupper($meses[date("n")-1]).' DE '. date("Y"); echo "</td>";
+echo "<td style='text-align:center'>"; echo $fexp2026['t']; echo "</td>";
 echo "</tr>";
 
 ?>

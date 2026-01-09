@@ -364,6 +364,10 @@ $data .='</tbody>
                       $exp2025 = "SELECT COUNT(*) AS t FROM expediente WHERE año = 2025";
                       $rexp2025 = $mysqli->query($exp2025);
                       $fexp2025 = $rexp2025->fetch_assoc();
+                      //////////////////////////////////////////////////////////////////////
+                      $exp2026 = "SELECT COUNT(*) AS t FROM expediente WHERE año = 2026";
+                      $rexp2026 = $mysqli->query($exp2026);
+                      $fexp2026 = $rexp2026->fetch_assoc();
                       //////
                       $data .= '<tr bgcolor="white">
                       <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;DEL 01 DE JUNIO AL 31 DE DICIEMBRE DE 2021</h1></td>
@@ -386,8 +390,13 @@ $data .='</tbody>
                       </tr>';
                       //////////
                       $data .= '<tr bgcolor="white">
-                      <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;DEL 01 DE ENERO AL '.$diaactual.' DE '.strtoupper($mesactual).' DE '.date("Y").'</h1></td>
+                      <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2025</h1></td>
                       <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fexp2025['t'].'</h1></td>
+                      </tr>';
+                      //////////
+                      $data .= '<tr bgcolor="white">
+                      <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;DEL 01 DE ENERO AL '.$diaactual.' DE '.strtoupper($mesactual).' DE '.date("Y").'</h1></td>
+                      <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fexp2026['t'].'</h1></td>
                       </tr>';
                       //////////
           $data .='</tbody>
@@ -434,7 +443,7 @@ $data .='</tbody>
                   //////////
       $data .='</tbody>
               </table>
-                </div><br><br><br><br><br>';
+                </div><br><br><br><br><br><br><br>';
                 $data .= '<div style="float: left; width: 100%;">
                             <table border="1px" cellspacing="0" width="100%" bgcolor="#97897D">
                               <thead>
