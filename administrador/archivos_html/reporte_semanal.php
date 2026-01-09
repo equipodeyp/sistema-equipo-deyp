@@ -330,9 +330,9 @@
                          // echo "<br>";
                          $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-0'.date('n').'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
+                         $fechafinal_reporte_pdf =date('Y').'-0'.date('n').'-'.$diafin;
                        }
                 break;
                 case "Saturday": //sabado
