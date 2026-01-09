@@ -3,7 +3,7 @@ evaluacionestudio.addEventListener('change', function() {
   // 'this' se refiere al elemento select
   const valorevaluacionestudio = this.value;
   // console.log(valorevaluacionestudio);
-  if (valorevaluacionestudio == 'ESTUDIO TECNICO DE ANALISIS DE RIESGO') {
+  if (valorevaluacionestudio == 'ESTUDIO TECNICO DE EVALUACION DE RIESGO') {
     document.getElementById('div_dateautorizacioneval').style.display = '';
     document.getElementById('div_idanalisiseval').style.display = '';
     document.getElementById('div_tipoconvenioeval').style.display = '';
