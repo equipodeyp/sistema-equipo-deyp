@@ -37,8 +37,8 @@ $result = $mysqli->query($sql);
 $mostrar=$result->fetch_assoc();
  $yearactual = $mostrar['year'];
  $id_traslado =$mostrar["id"];
- if ($a === $yearactual){
-   $n=$id_traslado;
+ if ($a == $yearactual){
+   $n=$mostrar['num_consecutivo'];
    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
    $n_con;
  } else {
@@ -50,6 +50,7 @@ $mostrar=$result->fetch_assoc();
  $año_actual = date('Y');
  $mes_actual = date('m');
  $dias_mes_actual = date('t');
+
  // echo "<br>";
  // $datemin = '2025-11-01';
  // echo "<br>";

@@ -44,8 +44,8 @@ if ($check_traslado == 1) {
     $lugarsaltable = $fgetlugarsalida['lugar'];
     $domiciliosaltable = $fgetlugarsalida['domicilio'];
     $municipiosaltable = $fgetlugarsalida['municipio'];
-    $addtraslado = "INSERT INTO react_traslados(idtrasladounico,fecha, lugar_salida, domicilio_salida, municipio_salida, hora_salida, hora_llegada, kilometros, usuario, fecha_alta, year)
-            VALUES ('$id_traslado_unico', '$fecha_traslado', '$lugarsaltable', '$domiciliosaltable', '$municipiosaltable', '$hora_salida', '$hora_llegada', '$kilometros_recorridos', '$name', '$fecha_alta', '$year_alta')";
+    $addtraslado = "INSERT INTO react_traslados(idtrasladounico,fecha, lugar_salida, domicilio_salida, municipio_salida, hora_salida, hora_llegada, kilometros, usuario, fecha_alta, year, num_consecutivo)
+            VALUES ('$id_traslado_unico', '$fecha_traslado', '$lugarsaltable', '$domiciliosaltable', '$municipiosaltable', '$hora_salida', '$hora_llegada', '$kilometros_recorridos', '$name', '$fecha_alta', '$year_alta', '$id_traslado_unico')";
     $raddtraslado = $mysqli->query($addtraslado);
   }
   // traer el id del traslado capturado
