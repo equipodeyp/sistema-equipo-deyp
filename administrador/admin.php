@@ -78,7 +78,7 @@ $row=$result->fetch_assoc();
         <ul>
           <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
             <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-              <li><a href="#" style="font-size: 15px; color:white; text-decoration:none;" onclick="location.href='./incidencias_registradas.php'"><i class="fas fa-laptop-file"></i> CONSULTAR</a></li>
+              <li class="menu-items"><a href='./incidencias_registradas.php'><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">CONSULTAR</strong></a></li>
             </ul>
           </li>
         </ul>
