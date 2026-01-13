@@ -266,3 +266,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   margin-left: auto; /* Empuja el botón a la derecha */
 }
+/* ///////////////////////////////////////////////////////////////////////////*/
+.cerrar-sesion-menu {
+    position: fixed; /* Posiciona el elemento respecto al viewport */
+    bottom: 0;       /* Lo pega al borde inferior */
+    left: 0;         /* Lo pega al borde izquierdo */
+    /* background-color: white; /* Estilo de fondo */ */
+    color: white;    /* Color de texto */
+    padding: 5px;   /* Espaciado interno */
+    margin: 5px;    /* Margen para separarlo ligeramente de las esquinas */
+    border-radius: 5px; /* Esquinas redondeadas (opcional) */
+    z-index: 1000;   /* Asegura que esté por encima de otros elementos (opcional) */
+}
