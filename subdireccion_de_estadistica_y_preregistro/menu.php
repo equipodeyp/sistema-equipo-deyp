@@ -9,6 +9,11 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+//
+$tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
+$rtmf = $mysqli->query($tmf);
+$ftmf = $rtmf->fetch_assoc();
+$mmed =  $ftmf['t'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -58,6 +63,11 @@ $row=$result->fetch_assoc();
       <nav class="menu-nav">
         <ul>
           <?php
+          if ($mmed > 0) {
+            ?>
+            <li class="menu-items"><a href='../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php'><i style="color: orange;" class="fa-solid fa-triangle-exclamation menu-nav--icon"></i><strong style="color: orange;">MEDIDAS POR VALIDAR</strong></a></li>
+            <?php
+            }
           if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3' || $name=='estadistica4') {
             ?>
             <li class="menu-items"><a href='../administrador/admin.php'><i style="color: #FFFFFF;" class="fa-solid fa-user-tie menu-nav--icon"></i><strong style="color: white;">ADMINISTRADOR</strong></a></li>
@@ -113,13 +123,13 @@ $row=$result->fetch_assoc();
             <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
               <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                 <?php if ($name=='estadistica_sub') { ?>
-                <li class="menu-items"><a href='./registrar_incidencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">CONSULTAR</strong></a></li>
-                <li class="menu-items"><a href='./incidencias_registradas.php'><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">CONSULTAR INCIDENCIA</strong></a></li>
+                <li class="menu-items"><a href='./registrar_incidencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-desktop menu-nav--icon"></i><strong style="color: white;">REGISTRAR</strong></a></li>
+                <li class="menu-items"><a href='./incidencias_registradas.php'><i style="color: #FFFFFF;" class="fa-solid fa-computer menu-nav--icon"></i><strong style="color: white;">CONSULTAR</strong></a></li>
                 <?php
                 }
                 if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3') {
                 ?>
-                <li class="menu-items"><a href='./atender_incidencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">ATENDER INCIDENCIA</strong></a></li>
+                <li class="menu-items"><a href='./atender_incidencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-computer menu-nav--icon"></i><strong style="color: white;">ATENDER INCIDENCIA</strong></a></li>
                 <?php }?>
               </ul>
             </li>
@@ -158,9 +168,6 @@ $row=$result->fetch_assoc();
             <b><?php echo utf8_decode(strtoupper($row['area'])); ?>
           </h5>
         </div>
-        <div class="dropdown">
-          <a id="btnmedidaspendientes" href="../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php"> <button id="" type="button" class="btn color-btn-success">pendientes por validar</button> </a>
-        </div>
         <!--Ejemplo tabla con DataTables-->
         <div class="">
             <div class="row">
@@ -168,7 +175,7 @@ $row=$result->fetch_assoc();
                         <div class="table-responsive">
                             <table id="registros_expedientes" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                            <h3 style="text-align:center"><b>Registros</b></h3>
+                            <!-- <h3 style="text-align:center"><b>Registros</b></h3> -->
                                 <tr>
                                     <th style="text-align:center; color: white; border: 1px solid black;">NO.</th>
                                     <th style="text-align:center; color: white; border: 1px solid black;">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
@@ -232,10 +239,6 @@ $row=$result->fetch_assoc();
   include('../documentacion/manual_tecnico.php');
   include('../documentacion/manual_usuario.php');
   $var = $name;
-  $tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
-  $rtmf = $mysqli->query($tmf);
-  $ftmf = $rtmf->fetch_assoc();
-  $mmed =  $ftmf['t'];
   ?>
   <script type="text/javascript">
   <?php
@@ -246,7 +249,7 @@ $row=$result->fetch_assoc();
   console.log(jsvmedidasfalse);
   if (jsvar === 'estadistica_sub') {
     if (jsvmedidasfalse > 0) {
-      document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
+      // document.getElementById('btnmedidaspendientes').style.display = ""; // visible
       console.log(jsvar);
       console.log(jsvmedidasfalse);
       (function(window, document) { // asilamos el componente
@@ -254,97 +257,38 @@ $row=$result->fetch_assoc();
       var container = document.createElement('div');
       container.className = 'toast-container';
       document.body.appendChild(container);
-
       // esta es la funcion que hace la tostada
       window.doToast = function(message) {
         // creamos tostada
         var toast = document.createElement('div');
         toast.className = 'toast-toast';
         toast.innerHTML = message;
-
         // agregamos a la tostadora
         container.appendChild(toast);
-
         // programamos su eliminación
         setTimeout(function() {
           // cuando acabe de desaparecer, lo eliminamos del dom.
           toast.addEventListener("transitionend", function() {
              container.removeChild(toast);
           }, false);
-
           // agregamos un estilo que inicie la "transition".
           toast.classList.add("fadeout");
         }, 10000); // OP dijo, "solo dos segundos"
       }
       })(window, document);
-
       // ejempo de uso
       doToast("¡ATENCIÓN!");
-
       // ejemplo retardado de uso
       setTimeout(function() {
        doToast("FALTAN MEDIDAS POR VALIDAR");
       }, 1200);
       // fin de mostrar alerta
     }else {
-      document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
+      // document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
     }
   }else {
-    document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
+    // document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
   }
-  // if (jsvar === 'jesusaz' || jsvar === 'dircece') {
-  //   document.getElementById('liexpediente').style.visibility = "visible"; // visible
-  //   document.getElementById('lipersonas').style.visibility = "visible"; // visible
-  //   document.getElementById('limedidas').style.visibility = "visible"; // visible
-  //   document.getElementById('liestadistica').style.visibility = "visible"; // visible
-  // }else {
-  //   document.getElementById('liexpediente').style.visibility = "hidden"; // hide
-  //   document.getElementById('lipersonas').style.visibility = "hidden"; // hide
-  //   document.getElementById('limedidas').style.visibility = "hidden"; // hide
-  //   document.getElementById('liestadistica').style.visibility = "hidden"; // hide
-  // }
-  // CODIGO DE MENU CON submenu
-  $(".subtitle .action").click(function(event){
-   var subtitle = $(this).parents(".subtitle");
-   var submenu = $(subtitle).find(".submenu");
-
-   $(".submenu").not($(submenu)).slideUp("slow").removeClass("opacity");
-   $(".open").not($(subtitle)).removeClass("open");
-
-   $(subtitle).toggleClass("open");
-   $(submenu).slideToggle("slow").toggleClass("opacity");
-
-   return false;
-  });
-  //
-
-  // CODIGO DE MENU CON submenu2
-  $(".subtitle2 .action2").click(function(event){
-   var subtitle2 = $(this).parents(".subtitle2");
-   var submenu2 = $(subtitle2).find(".submenu2");
-
-   $(".submenu2").not($(submenu2)).slideUp("slow").removeClass("opacity");
-   $(".open").not($(subtitle2)).removeClass("open");
-
-   $(subtitle2).toggleClass("open");
-   $(submenu2).slideToggle("slow").toggleClass("opacity");
-
-   return false;
-  });
-  //
-  // CODIGO DE MENU CON submenu3
-  $(".subtitle3 .action3").click(function(event){
-   var subtitle3 = $(this).parents(".subtitle3");
-   var submenu3 = $(subtitle3).find(".submenu3");
-
-   $(".submenu3").not($(submenu3)).slideUp("slow").removeClass("opacity");
-   $(".open").not($(subtitle3)).removeClass("open");
-
-   $(subtitle3).toggleClass("open");
-   $(submenu3).slideToggle("slow").toggleClass("opacity");
-
-   return false;
-  });
   </script>
 </body>
 <link rel="stylesheet" href="../css/menuactualizado.css">
