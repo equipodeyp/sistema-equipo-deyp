@@ -108,12 +108,12 @@ $row=$result->fetch_assoc();
       <div class="container">
         <div class="row">
           <h1 style="text-align:center">
-            <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-            <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-            <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?> </span>
-          </h1>
+            <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
+            <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
+            <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
+          </b></h1>
           <h5 style="text-align:center">
-            <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
+            <b><?php echo utf8_decode(strtoupper($row['area'])); ?>
           </h5>
         </div>
         <div class="">
@@ -125,7 +125,7 @@ $row=$result->fetch_assoc();
               <div class="table-responsive">
                 <table id="registros_expedientes" class="table table-striped table-bordered" cellspacing="0" width="100%">
                   <thead>
-                    <h3 style="text-align:center">Registros</h3>
+                    <h3 style="text-align:center"><b>Registros</b></h3>
                       <tr>
                           <th style="text-align:center; color: white; border: 1px solid black;">No.</th>
                           <th style="text-align:center; color: white; border: 1px solid black;">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
