@@ -367,7 +367,7 @@ $data .= '<tr bgcolor="#e6e1dc">
 ////////////////////////////////////////////////////////////////////////////////
   $data .= '</tbody>
 </table>
-</div><br><br><br>';
+</div><br><br>';
 ////////////////////////////////////////////////////////////////////////////////
 $data .= '<div style="float: left; width: 55%;">
   <table id="tabla1" border="1px" cellspacing="0" width="89.2%" bgcolor="#97897D">
