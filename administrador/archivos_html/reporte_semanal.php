@@ -270,15 +270,21 @@
                          $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+3 day'));
 
                        } else {
+                         $mesreport = date('n');
                          // echo $mostrar = "inicio es menor";
+                         if ($mesreport < 10) {
+                           $mesreportpdf = '0'.$mesreport;
+                         }else {
+                           $mesreportpdf = $mesreport;
+                         }
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
                          $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
+                         $fechafinal_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diafin;
                        }
                 break;
                 case "Friday": //Viernes
@@ -324,15 +330,21 @@
                          $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+2 day'));
 
                        } else {
+                         $mesreport = date('n');
                          // echo $mostrar = "inicio es menor";
+                         if ($mesreport < 10) {
+                           $mesreportpdf = '0'.$mesreport;
+                         }else {
+                           $mesreportpdf = $mesreport;
+                         }
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
                          $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-0'.date('n').'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-0'.date('n').'-'.$diafin;
+                         $fechafinal_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diafin;
                        }
                 break;
                 case "Saturday": //sabado

@@ -35,6 +35,7 @@ $a = date("Y");
 $sql="select * from react_traslados where id in (select MAX(id) from react_traslados)";
 $result = $mysqli->query($sql);
 $mostrar=$result->fetch_assoc();
+// echo $mostrar['num_consecutivo'];;
  $yearactual = $mostrar['year'];
  $id_traslado =$mostrar["id"];
  if ($a == $yearactual){
