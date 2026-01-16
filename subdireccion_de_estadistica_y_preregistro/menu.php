@@ -63,7 +63,7 @@ $mmed =  $ftmf['t'];
       <nav class="menu-nav">
         <ul>
           <?php
-          if ($mmed > 0) {
+          if ($mmed > 0 AND $name == 'estadistica_sub') {
             ?>
             <li class="menu-items"><a href='../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php'><i style="color: orange;" class="fa-solid fa-triangle-exclamation menu-nav--icon"></i><strong style="color: orange;">MEDIDAS POR VALIDAR</strong></a></li>
             <?php
