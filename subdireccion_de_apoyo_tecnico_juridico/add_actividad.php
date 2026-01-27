@@ -169,7 +169,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-              <select name="idactividad" id="idactividad" class="form-control" required onchange="selectNit(event)">
+              <select name="idactividad" id="idactividad" class="form-control"  onchange="selectNit(event)" required>
               <option  disabled selected value="">SELECCIONA ACTIVIDAD</option>
               <?php
               $se = "SELECT * FROM react_actividad_apoyo";
@@ -210,12 +210,12 @@ $mostrar=$result->fetch_assoc();
 
 
 
-      <div class="form-group" id="folio_expediente_actividad" style="display:none;">
+      <div class="form-group" id="folio_expediente_actividad" style="display:none;" >
         <label class="col-md-3 control-label">FOLIO DEL EXPEDIENTE</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-folder"></i></span>
-            <select class="form-control" name="folio_expediente" id="folio_expediente">
+            <select class="form-control" name="folio_expediente" id="folio_expediente" required>
               <option disabled selected value>SELECCIONE EL EXPEDIENTE</option>
                 <?php
                     $select1 = "SELECT DISTINCT datospersonales.folioexpediente
@@ -239,7 +239,7 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
-            <select class="form-control" name="id_sujeto" id="id_sujeto">
+            <select class="form-control" name="id_sujeto" id="id_sujeto" >
 
 
             </select>
@@ -252,7 +252,7 @@ $mostrar=$result->fetch_assoc();
           <div class="col-md-7 inputGroupContainer">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa-solid fa-file"></i></span>
-              <input autocomplete="off" name="numero_oficio_actividad" id="numero_oficio_actividad" class="form-control" value class="form-control" type="text" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+              <input autocomplete="off" name="numero_oficio_actividad" id="numero_oficio_actividad" class="form-control" value class="form-control" type="text" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
             </div>
           </div>
       </div>
@@ -484,6 +484,15 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       //document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
+       
+      document.getElementById("id_sujeto").required = "";
+
+
+      document.getElementById("clasificacion1").required="";
+      document.getElementById("clasificacion2").required="";
+      document.getElementById("clasificacion3").required="";
+      document.getElementById("clasificacion4").required="";
+      document.getElementById("clasificacion5").required="";
 
 
     }
@@ -512,7 +521,7 @@ $mostrar=$result->fetch_assoc();
         document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
         document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
 
-
+        document.getElementById("id_sujeto").required = "true";
       }
 
 
@@ -537,6 +546,11 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad2").value="";
     document.getElementById("clasificacion_actividad4").value="";
     document.getElementById("clasificacion_actividad5").value="";
+
+
+    document.getElementById("id_sujeto").required = "true";
+    document.getElementById("clasificacion_actividad3").required = "true";
+
 
     }
 
@@ -564,6 +578,9 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad5").value="";
 
 
+    document.getElementById("id_sujeto").required = "true";
+    document.getElementById("clasificacion_actividad4").required = "true";
+
     }
 
      else if (num_actividad_obtenido === '7') {
@@ -589,6 +606,10 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad4").value="";
 
+
+    document.getElementById("id_sujeto").required = "true";
+    document.getElementById("clasificacion_actividad1").required = "true";
+
     }
 
     else if (num_actividad_obtenido === '8') {
@@ -612,6 +633,9 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad4").value="";
     document.getElementById("clasificacion_actividad5").value="";
+
+    document.getElementById("id_sujeto").required = "true";
+    document.getElementById("clasificacion_actividad2").required = "true";
     }
 
 
@@ -638,6 +662,9 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad2").value="";
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad4").value="";
+
+    document.getElementById("id_sujeto").required = "true";
+    document.getElementById("clasificacion_actividad5").required = "true";
 
     }
 
