@@ -165,7 +165,7 @@ $mmed =  $ftmf['t'];
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
           </b></h1>
           <h5 style="text-align:center">
-            <b><?php echo utf8_decode(strtoupper($row['area'])); ?>
+            <b><?php echo utf8_decode(strtoupper($row['area'])); ?></b>
           </h5>
         </div>
         <!--Ejemplo tabla con DataTables-->

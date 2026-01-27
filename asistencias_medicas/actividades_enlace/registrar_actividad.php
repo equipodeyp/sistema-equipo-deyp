@@ -148,12 +148,12 @@ $_SESSION["check_actividad"] = $check_actividad;
             <input value="1" name="cantidad_actividad" id="cantidad_actividad" class="form-control" type="number" required>
           </div>
           <h6 style="text-align:justify; font-size: x-small;">
-            * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos; 
+            * Es posible capturar más de dos actividades cuando estas comparten todos sus atributos;
             en caso contrario, se debrá registrar actividad por actividad.
           </h6>
         </div>
       </div> -->
-      
+
 
 
       <div class="form-group">
@@ -191,7 +191,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
 
-      
+
       <div class="form-group" id="id_sujeto_actividad" style="display:none;">
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
@@ -322,7 +322,7 @@ $_SESSION["check_actividad"] = $check_actividad;
         </div>
       </div>
 
-      
+
     </form>
   </div>
 </center>
@@ -378,17 +378,17 @@ $_SESSION["check_actividad"] = $check_actividad;
     num_actividad_obtenido = numero_act;
 
     // console.log(num_actividad_obtenido);
-    
-    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6' 
+
+    if (num_actividad_obtenido === '1' || num_actividad_obtenido === '4' || num_actividad_obtenido === '6'
         || num_actividad_obtenido === '7' || num_actividad_obtenido === '8'){
-      
+
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
+
 
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
 
@@ -401,7 +401,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("id_sujeto").required = false;
       document.getElementById("clasificacion_actividad").required = false;
 
-      
+
     }
 
     else if (num_actividad_obtenido === '2' || num_actividad_obtenido === '3' || num_actividad_obtenido === '5'){
@@ -412,13 +412,13 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById('numero_oficio_actividad').value = ""; // LIMPIAR
       document.getElementById("clasificacion_actividad").value = ""; // LIMPIAR
       document.getElementById("observaciones_actividad").value = ""; // LIMPIAR
-      
+
       document.getElementById('div_numero_oficio_actividad').style.display = "none"; // OCULTAR
       document.getElementById('folio_expediente_actividad').style.display = "none"; // OCULTAR
       document.getElementById('id_sujeto_actividad').style.display = "none"; // OCULTAR
       document.getElementById("clasificacion").style.display = "none"; // OCULTAR
-      
-      
+
+
       document.getElementById("numero_oficio_actividad").required = false;
       document.getElementById("folio_expediente").required = false;
       document.getElementById("id_sujeto").required = false;
@@ -428,7 +428,7 @@ $_SESSION["check_actividad"] = $check_actividad;
     }
 
     else if (num_actividad_obtenido === '9'){
-      
+
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
@@ -439,8 +439,8 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById('div_numero_oficio_actividad').style.display = ""; // MOSTRAR
-      
-      document.getElementById("clasificacion").style.display = "none"; // OCULTAR
+
+      document.getElementById("clasificacion").style.display = ""; // OCULTAR
 
       document.getElementById("numero_oficio_actividad").required = true;
       document.getElementById("folio_expediente").required = true;
@@ -449,10 +449,10 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById("clasificacion_actividad").required = false;
 
 
-    } 
+    }
 
     else {
-      
+
       document.getElementById("fecha_actividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById('id_sujeto').value = ""; // LIMPIAR
@@ -465,7 +465,7 @@ $_SESSION["check_actividad"] = $check_actividad;
       document.getElementById('div_numero_oficio_actividad').style.display = ""; // MOSTRAR
 
       document.getElementById("clasificacion").style.display = "none"; // OCULTAR
-      
+
       document.getElementById("numero_oficio_actividad").required = true;
       document.getElementById("folio_expediente").required = true;
       document.getElementById("id_sujeto").required = true;
@@ -473,10 +473,10 @@ $_SESSION["check_actividad"] = $check_actividad;
 
 
 
-    } 
+    }
 
 
-    
+
   }
 
 
