@@ -16,12 +16,18 @@ $m_user = $user;
 $m_user = strtoupper($m_user);
 // obtener subdireccion del perfil
 $iduser = $row['id'];
-$subuser = "SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal = '$iduser'";
-$rsubuser = $mysqli->query($subuser);
-while ($fsubuser = $rsubuser -> fetch_assoc()) {
-  $subdirecfcion_user = $fsubuser['subdireccion'];
-  $permiso1 = $fsubuser['permiso1'];
-  $subdireccion = $fsubuser['subdireccion'];
+if ($iduser == 1) {
+  $subdireccion_user = 'titular de la unidad de proteccion de sujetos que intervienen en el procedimiento penal o extincion de dominio';
+  $permiso1 = 'consulta';
+  $subdireccion = 'titular de la unidad de proteccion de sujetos que intervienen en el procedimiento penal o extincion de dominio';
+}else{
+  $subuser = "SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal = '$iduser'";
+  $rsubuser = $mysqli->query($subuser);
+  while ($fsubuser = $rsubuser -> fetch_assoc()) {
+    $subdireccion_user = $fsubuser['subdireccion'];
+    $permiso1 = $fsubuser['permiso1'];
+    $subdireccion = $fsubuser['subdireccion'];
+  }
 }
 $genero = $row['sexo'];
 $area = $row['area'];
@@ -102,7 +108,7 @@ $cargouser = $row['cargo'];;
           ?>
         </ul>
         <?php
-        if ($subdirecfcion_user === 'Subdirección de ejecucion de medidas') {
+        if ($subdireccion_user == 'Subdirección de ejecucion de medidas') {
           ?>
           <ul>
             <li class="menu-items"><a href="#" onclick="menureact(this)"><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">REACT</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
@@ -124,7 +130,7 @@ $cargouser = $row['cargo'];;
           </ul>
           <?php
         }
-        if ($subdirecfcion_user === 'Subdirección de enlace interinstitucional') {
+        if ($subdireccion_user === 'Subdirección de enlace interinstitucional') {
           ?>
           <ul>
             <li class="menu-items"><a href="#" onclick="menureact(this)"><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">REACT</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
