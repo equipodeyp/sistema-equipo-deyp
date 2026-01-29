@@ -278,3 +278,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 5px; /* Esquinas redondeadas (opcional) */
     z-index: 1000;   /* Asegura que esté por encima de otros elementos (opcional) */
 }
+
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/* toast bootstrap */
+/* Animación de la barra (vaciado) */
+ .toast.showing #bar,
+ .toast.show #bar {
+   animation: countdown 7s linear forwards;
+ }
+
+ @keyframes countdown {
+   from { width: 100%; }
+   to { width: 0%; }
+ }
+
+ /* Estilo opcional para el texto dentro de la barra */
+ #timerText {
+   font-weight: bold;
+   font-size: 0.25rem;
+ }
+ /* ////////////////////////////////////////////////////////////////////////// */

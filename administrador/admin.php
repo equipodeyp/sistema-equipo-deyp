@@ -208,6 +208,30 @@ $mmed =  $ftmf['t'];
       </div>
     </div>
   </div>
+  <!-- Contenedor posicionado abajo a la izquierda -->
+  <!-- Contenedor del Toast (Fijado abajo a la derecha) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <!-- Toast con borde de color (clase border-primary) y delay de 7000ms -->
+    <div id="autoToast" class="toast border border-secondary border-5" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
+      <div class="toast-header">
+        <span class="p-2 bg-secondary rounded me-2"></span>
+        <strong class="me-auto text-secondary">SIPPSIPPED</strong>
+        <small>AHORA MISMO</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+      </div>
+      <div class="toast-body">
+        <div style="text-align:center">
+          <i style="color:blue; font-size: 25px;" class="fas fa-exclamation-triangle me-2"></i>
+          <b style="color:#000000; font-size: 15px;">¡ATENCIÓN! <br> FALTAN MEDIDAS POR VALIDAR</b>
+        </div>
+      </div>
+      <div class="progress" style="height: 5px; border-radius: 0;">
+        <div id="bar" class="progress-bar bg-secondary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">
+          <span id="timerText">7s</span>
+        </div>
+      </div>
+    </div>
+  </div>
   <?php
   include('../documentacion/glosario.php');
   include('../documentacion/manual_tecnico.php');
@@ -241,45 +265,13 @@ $mmed =  $ftmf['t'];
   ?>
   if (jsvar === 'estadistica_admin') {
     if (jsvmedidasfalse > 0) {
-      // document.getElementById('btnmedidaspendientes').style.visibility = "visible"; // visible
-      console.log(jsvar);
-      console.log(jsvmedidasfalse);
-      (function(window, document) { // asilamos el componente
-      // creamos el contedor de las tostadas o la tostadora
-      var container = document.createElement('div');
-      container.className = 'toast-container';
-      document.body.appendChild(container);
-      // esta es la funcion que hace la tostada
-      window.doToast = function(message) {
-        // creamos tostada
-        var toast = document.createElement('div');
-        toast.className = 'toast-toast';
-        toast.innerHTML = message;
-        // agregamos a la tostadora
-        container.appendChild(toast);
-        // programamos su eliminación
-        setTimeout(function() {
-          // cuando acabe de desaparecer, lo eliminamos del dom.
-          toast.addEventListener("transitionend", function() {
-             container.removeChild(toast);
-          }, false);
-          // agregamos un estilo que inicie la "transition".
-          toast.classList.add("fadeout");
-        }, 10000); // OP dijo, "solo dos segundos"
-      }
-      })(window, document);
-      // ejempo de uso
-      doToast("¡ATENCIÓN!");
-      // ejemplo retardado de uso
-      setTimeout(function() {
-       doToast("FALTAN MEDIDAS POR VALIDAR");
-      }, 1200);
-      // fin de mostrar alerta
-    }else {
-      // document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
+      // Ejecutar cuando el DOM esté completamente cargado
+      document.addEventListener('DOMContentLoaded', () => {
+        const toastElement = document.getElementById('autoToast');
+        const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+        toastInstance.show();
+      });
     }
-  }else {
-    // document.getElementById('btnmedidaspendientes').style.visibility = "hidden"; // hide
   }
   </script>
 </body>
