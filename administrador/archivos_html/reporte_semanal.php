@@ -263,9 +263,9 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
                          // echo "<br>";
                          $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+3 day'));
 
@@ -323,9 +323,9 @@
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
-                         $fechafin_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini-1;
+                         $fechafin_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini-1;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
                          // echo "<br>";
                          $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+2 day'));
 
