@@ -33,8 +33,13 @@ if ($dia_inicio_reporte == 1) {
 }else {
   $mesone =$meses[$mesrep-1];
 }
-
-$mestwo =$meses[$mesrep-1];
+$mesrep2 = date("m", strtotime($daterepfin));
+if ($dia_inicio_reporte == 1) {
+  $mestwo =$meses[$mesrep2];
+}else {
+  $mestwo =$meses[$mesrep2-1];
+}
+// $mestwo =$meses[$mesrep];
 // fechas en formato dia-mes-año
 $dateprin = date("d-m-Y", strtotime($dateprinc));
 $dateconclu = date("d-m-Y", strtotime($datefinprinc));
@@ -151,9 +156,9 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
   <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mestwo.' DEL '.date("Y").'</strong></h2></div><br>';
 }
 
-// $data .= '<h1>inicio--->'.$anio.'</h1><br>';
-// $data .= '<h1>fin--->'.$dia_fin_reporte.'</h1><br>';
-// $data .= '<h1>mensaje--->'.$mostrar.'</h1><br>';
+// $data .= '<h1>inicio--->'.$mesone.'</h1><br>';
+// $data .= '<h1>fin--->'.$mestwo.'</h1><br>';
+// $data .= '<h1>mensaje--->'.$mesrep2.'</h1><br>';
 // $data .= '<h1>inicio--->'.$dateprinc.'</h1><br>';
 // $data .= '<h1>fin--->'.$datefinprinc.'</h1><br>';
 // $data .= '<h1>inicio--->'.$daterepini.'</h1><br>';
