@@ -177,7 +177,7 @@ $mmed =  $ftmf['t'];
                   <table id="registros_expedientes" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                       <tr>
-                        <th style="text-align:center; color: white; border: 1px solid black;">NO.</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">#</th>
                         <th style="text-align:center; color: white; border: 1px solid black;">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
                         <th style="text-align:center; color: white; border: 1px solid black;">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
                         <th style="text-align:center; color: white; border: 1px solid black;">PERSONAS PROPUESTAS</th>
@@ -229,7 +229,7 @@ $mmed =  $ftmf['t'];
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
         </b>
       </div>
     </div>

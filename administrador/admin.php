@@ -140,7 +140,7 @@ $mmed =  $ftmf['t'];
                     <thead>
                       <!-- <h3 style="text-align:center"><b>Registros</b></h3> -->
                         <tr>
-                            <th style="text-align:center; color: white; border: 1px solid black;">No.</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">#</th>
                             <th style="text-align:center; color: white; border: 1px solid black;">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
                             <th style="text-align:center; color: white; border: 1px solid black;">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
                             <th style="text-align:center; color: white; border: 1px solid black;">PERSONAS PROPUESTAS</th>

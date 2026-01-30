@@ -215,111 +215,113 @@ if ($permiso3=='solicitar') {
         </div>
         <br>
         <!--Ejemplo tabla con DataTables-->
-        <div class="row" id="show_alert" style="display:none;">
-          <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <h3 style="text-align:center">¡ALERTA HAY CONVENIOS POR FINALIZAR!</h3>
-              <tr>
-                <th style="text-align:center; color: white; border: 1px solid black;">#</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">EXPEDIENTE</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">ID PERSONA</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">FECHA INICIO</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">FECHA TERMINO</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">DIAS RESTANTES</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">OBSERVACIONES</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">SEMAFORO</th>
-                <th style="text-align:center; color: white; border: 1px solid black;">SEGUIMIENTO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $contador = 0;
-              $obtenfechaactualprincipal1 = date('Y-m-d'); echo "<br>";
-              $obtenfechaactualprincipal2 = date('Y-m-d');
-              $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
-              $get3dyas= "SELECT * FROM datospersonales
-              INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
-              WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO') OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1'
-              AND datospersonales.estatus = 'SUJETO PROTEGIDO') ORDER BY fecha_termino ASC";
-              $rget3dyas = $mysqli->query($get3dyas);
-              while ($fget3dyas = $rget3dyas->fetch_assoc()) {
-                $idalertconv = $fget3dyas['id'];
-                $contador = $contador + 1;
-                ?>
+        <b>
+          <div class="row" id="show_alert" style="display:none;">
+            <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <h3 style="text-align:center">¡ALERTA HAY CONVENIOS POR FINALIZAR!</h3>
                 <tr>
-                  <td style="text-align:center"><?php echo $contador ?></span></td>
-                  <td style="text-align:center"><?php echo $fget3dyas['expediente']; ?></span></td>
-                  <td style="text-align:center"><?php echo $fget3dyas['id_unico']; ?></span></td>
-                  <td style="text-align:center"><?php echo date("d/m/Y", strtotime($fget3dyas['fecha_inicio'])); ?></span></td>
-                  <td style="text-align:center"><?php echo date("d/m/Y", strtotime($fget3dyas['fecha_termino'])); ?></span></td>
-                  <td style="text-align:center"><?php echo $fget3dyas['dias_restantes']; ?></span></td>
-                  <td style="text-align:center">
-                    <button type="button" class="btn color-btn-success btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#update_alerta_<?php echo $fget3dyas['id'];?>">
-                      <i class="fa-solid fa-eye"></i>VER
-                    </button>
-                    <?php
-                    include('update_alertaconvenio.php');
-                    // echo "<a href='#edit_".$fget3dyas['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
-                    ?>
-                  </td>
-                  <td style="text-align:center">
-                    <?php
-                    if ($fget3dyas['semaforo'] == 'MORADO') {
-                      ?>
-                      <div class="alert alert-info d-flex align-items-center justify-content-center m-0 w-100" role="alert">
-                        <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
-                        <div>
-                          <strong style="color:#000000; font-size: 12px;">¡CONCLUIDO!</strong>
-                        </div>
-                      </div>
-                      <?php
-                    }elseif ($fget3dyas['semaforo'] == 'ROJO') {
-                      ?>
-                      <div class="alert alert-danger d-flex align-items-center justify-content-center m-0 w-100" role="alert">
-                        <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
-                        <div>
-                          <strong style="color:#000000; font-size: 12px;">¡ALERTA!</strong>
-                        </div>
-                      </div>
-                      <?php
-                    }elseif ($fget3dyas['semaforo'] == 'AMARILLO') {
-                      ?>
-                      <div class="alert alert-warning d-flex align-items-center justify-content-center m-0 w-100" role="alert">
-                        <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
-                        <div>
-                          <strong style="color:#000000; font-size: 12px;">¡ATENCIÓN!</strong>
-                        </div>
-                      </div>
-                      <?php
-                    }elseif ($fget3dyas['semaforo'] == 'VERDE') {
-                      ?>
-                      <div class="alert alert-success d-flex align-items-center justify-content-center m-0 w-100" role="alert">
-                        <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
-                        <div>
-                          <strong style="color:#000000; font-size: 12px;">PRECAUCIÓN!</strong>
-                        </div>
-                      </div>
-                      <?php
-                    }
-                    ?>
-                  </td>
-                  <td style="text-align:center">
-                    <?php
-                    if ($fget3dyas['estatus'] != 'PENDIENTE') {
-                      echo "FINALIZADO";
-                    }else {
-                      echo $fget3dyas['estatus'];
-                    }
-                    ?>
-                  </td>
+                  <th style="text-align:center; color: white; border: 1px solid black;">#</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">EXPEDIENTE</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">ID PERSONA</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">FECHA INICIO</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">FECHA TERMINO</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">DIAS RESTANTES</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">OBSERVACIONES</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">SEMAFORO</th>
+                  <th style="text-align:center; color: white; border: 1px solid black;">SEGUIMIENTO</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php
-              }
-              ?>
-            </tbody>
-           </table>
-        </div>
+                $contador = 0;
+                $obtenfechaactualprincipal1 = date('Y-m-d'); echo "<br>";
+                $obtenfechaactualprincipal2 = date('Y-m-d');
+                $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
+                $get3dyas= "SELECT * FROM datospersonales
+                INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
+                WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO') OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1'
+                AND datospersonales.estatus = 'SUJETO PROTEGIDO') ORDER BY fecha_termino ASC";
+                $rget3dyas = $mysqli->query($get3dyas);
+                while ($fget3dyas = $rget3dyas->fetch_assoc()) {
+                  $idalertconv = $fget3dyas['id'];
+                  $contador = $contador + 1;
+                  ?>
+                  <tr>
+                    <td style="text-align:center"><?php echo $contador ?></span></td>
+                    <td style="text-align:center"><?php echo $fget3dyas['expediente']; ?></span></td>
+                    <td style="text-align:center"><?php echo $fget3dyas['id_unico']; ?></span></td>
+                    <td style="text-align:center"><?php echo date("d/m/Y", strtotime($fget3dyas['fecha_inicio'])); ?></span></td>
+                    <td style="text-align:center"><?php echo date("d/m/Y", strtotime($fget3dyas['fecha_termino'])); ?></span></td>
+                    <td style="text-align:center"><?php echo $fget3dyas['dias_restantes']; ?></span></td>
+                    <td style="text-align:center">
+                      <button type="button" class="btn color-btn-success btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#update_alerta_<?php echo $fget3dyas['id'];?>">
+                        <i class="fa-solid fa-eye"></i>VER
+                      </button>
+                      <?php
+                      include('update_alertaconvenio.php');
+                      // echo "<a href='#edit_".$fget3dyas['id']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i>VER</a>";
+                      ?>
+                    </td>
+                    <td style="text-align:center">
+                      <?php
+                      if ($fget3dyas['semaforo'] == 'MORADO') {
+                        ?>
+                        <div class="alert alert-info d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                          <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
+                          <div>
+                            <strong style="color:#000000; font-size: 12px;">¡CONCLUIDO!</strong>
+                          </div>
+                        </div>
+                        <?php
+                      }elseif ($fget3dyas['semaforo'] == 'ROJO') {
+                        ?>
+                        <div class="alert alert-danger d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                          <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
+                          <div>
+                            <strong style="color:#000000; font-size: 12px;">¡ALERTA!</strong>
+                          </div>
+                        </div>
+                        <?php
+                      }elseif ($fget3dyas['semaforo'] == 'AMARILLO') {
+                        ?>
+                        <div class="alert alert-warning d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                          <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
+                          <div>
+                            <strong style="color:#000000; font-size: 12px;">¡ATENCIÓN!</strong>
+                          </div>
+                        </div>
+                        <?php
+                      }elseif ($fget3dyas['semaforo'] == 'VERDE') {
+                        ?>
+                        <div class="alert alert-success d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                          <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
+                          <div>
+                            <strong style="color:#000000; font-size: 12px;">PRECAUCIÓN!</strong>
+                          </div>
+                        </div>
+                        <?php
+                      }
+                      ?>
+                    </td>
+                    <td style="text-align:center">
+                      <?php
+                      if ($fget3dyas['estatus'] != 'PENDIENTE') {
+                        echo "FINALIZADO";
+                      }else {
+                        echo $fget3dyas['estatus'];
+                      }
+                      ?>
+                    </td>
+                  </tr>
+                  <?php
+                }
+                ?>
+              </tbody>
+             </table>
+          </div>
+        </b>
       </div>
     </div>
   <?php
