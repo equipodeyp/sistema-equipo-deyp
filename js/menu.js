@@ -75,6 +75,19 @@ function menureact(element) {
         icon.style.transform = "rotate(0deg)";
     }
 }
+//////////////////////////////////////////////////////////////////////////////
+function menumetas(element) {
+    var submenu = element.nextElementSibling;
+    var icon = element.querySelector('.fa-chevron-down');
+
+    if(submenu.style.display === "none") {
+        submenu.style.display = "block";
+        icon.style.transform = "rotate(180deg)";
+    } else {
+        submenu.style.display = "none";
+        icon.style.transform = "rotate(0deg)";
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////
 new DataTable('#registros_expedientes', {
   layout: {
@@ -101,3 +114,17 @@ new DataTable('#registros_expedientes', {
       },
 });
 ////////////////////////////////////////////////////////////////////////////////
+// control de input date al hacer clic en cualquier lado del input
+// Selecciona todos los inputs date dentro de formularios
+const dateInputs = document.querySelectorAll('form input[type="date"]');
+
+dateInputs.forEach(input => {
+  input.addEventListener('click', function() {
+    try {
+      // El método nativo para desplegar el calendario
+      this.showPicker();
+    } catch (err) {
+      console.warn('showPicker() no disponible en este navegador');
+    }
+  });
+});

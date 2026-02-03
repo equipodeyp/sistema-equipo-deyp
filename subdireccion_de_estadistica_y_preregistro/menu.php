@@ -95,7 +95,14 @@ $mmed =  $ftmf['t'];
                     <li class="menu-items"><a href='../subdireccion_de_estadistica_y_preregistro/evaluacion_personas.php'><i style="color: #FFFFFF;" class="fa-solid fa-people-roof menu-nav--icon"></i><strong style="color: white;">SUJETOS</strong></a></li>
                   </ul>
                 </li>
-                <li class="menu-items"><a href='../administrador/bd_metas.php'><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-check menu-nav--icon"></i><strong style="color: white;">METAS</strong></a></li>
+                <li>
+                  <a href="#" onclick="menumetas(this)"><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-check menu-nav--icon"></i><strong style="color: white;">METAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <li class="menu-items"><a href='../administrador/bd_metas.php'><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-check menu-nav--icon"></i><strong style="color: white;">METAS</strong></a></li>
+                    <li class="menu-items"><a href='../subdireccion_de_estadistica_y_preregistro/bd_metas_a_r.php'><i style="color: #FFFFFF;" class="fa-solid fa-folder-open menu-nav--icon"></i><strong style="color: white;">MEDIDAS A/R</strong></a></li>
+                    <!-- <li class="menu-items"><a href='../subdireccion_de_estadistica_y_preregistro/evaluacion_personas.php'><i style="color: #FFFFFF;" class="fa-solid fa-people-roof menu-nav--icon"></i><strong style="color: white;">SUJETOS</strong></a></li> -->
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
