@@ -33,6 +33,9 @@ $row=$result->fetch_assoc();
   <!--  -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
   <link rel="stylesheet" href="../css/button_notification.css" type="text/css">
+  <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.3.7/b-3.2.6/b-html5-3.2.6/datatables.min.css" rel="stylesheet" integrity="sha384-zxBc2Gq4cHjveiM/HCfF2K+hESBu0cevO1quMBKTTb7JSFezPn/Rsn11iV1AKbPU" crossorigin="anonymous">
+
+<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.3.7/b-3.2.6/b-html5-3.2.6/datatables.min.js" integrity="sha384-su0ggAjemkLelaikLBKhyUmOAGA8UTqF6eP0mJ0do5m5PGwSA0xCdMRiANIDWQCO" crossorigin="anonymous"></script>
   <link href="../datatables/datatables.min.css" rel="stylesheet">
   <script src="../datatables/datatables.min.js"></script>
 </head>
@@ -135,35 +138,133 @@ $row=$result->fetch_assoc();
             if ($totalres > 0) {
               echo "con datos";
               echo "<br>";
+              function transformarmesaletra($pasardia, $pasarmes, $pasaranio){
+                switch ($pasarmes) {
+                  case 1:
+                  echo $fecha_formateada = $pasardia." DE ENERO DE ".$pasaranio;
+                  break;
+                  case 2:
+                  echo $fecha_formateada = $pasardia." DE FEBRERO DE ".$pasaranio;
+                  break;
+                  case 3:
+                  echo $fecha_formateada = $pasardia." DE MARZO DE ".$pasaranio;
+                  break;
+                  case 4:
+                  echo $fecha_formateada = $pasardia." DE ABRIL DE ".$pasaranio;
+                  break;
+                  case 5:
+                  echo $fecha_formateada = $pasardia." DE MAYO DE ".$pasaranio;
+                  break;
+                  case 6:
+                  echo $fecha_formateada = $pasardia." DE JUNIO DE ".$pasaranio;
+                  break;
+                  case 7:
+                  echo $fecha_formateada = $pasardia." DE JULIO DE ".$pasaranio;
+                  break;
+                  case 8:
+                  echo $fecha_formateada = $pasardia." DE AGOSTO DE ".$pasaranio;
+                  break;
+                  case 9:
+                  echo $fecha_formateada = $pasardia." DE SEPTIEMBRE DE ".$pasaranio;
+                  break;
+                  case 10:
+                  echo $fecha_formateada = $pasardia." DE OCTUBRE DE ".$pasaranio;
+                  break;
+                  case 11:
+                  echo $fecha_formateada = $pasardia." DE NOVIEMBRE DE ".$pasaranio;
+                  break;
+                  case 12:
+                  echo $fecha_formateada = $pasardia." DE DICIEMBRE DE ".$pasaranio;
+                  break;
+                }
+              }
+              // $fechainicial;
+              $diainicial = date('d', strtotime($fechainicial));
+              $mesnumeroinicial = date('m', strtotime($fechainicial));
+              $anioinicial = date('Y', strtotime($fechainicial));
+              // transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial);
+              // $fechafin;
+              $diafinal = date('d', strtotime($fechafin));
+              $mesnumerofinal = date('m', strtotime($fechafin));
+              $aniofinal = date('Y', strtotime($fechafin));
+              include("contardatemedidas.php");
               ?>
-              <div class="" id="showafterconsul">
-                <div class="container well form-horizontal" style="text-align:center;padding:10px;border:solid 3px; width:98%;border-radius:20px;shadow">
-                  <div style="display: flex; justify-content: center;">
-
-                  </div>
-                  <div style="float:left;width: 100%;outline: white solid thin">
+              <b>
+                <div class="" id="showafterconsul">
+                  <div id="contenedorBoton" class="mb-3"></div>
+                  <div class="container well form-horizontal" style="text-align:center;padding:10px;border:solid 3px; width:98%;border-radius:20px;shadow; float:left;width: 100%;outline: white solid thin">
                     <div class="table-responsive">
-                      <table>
-                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                      <table id="tabla1" class="table table-striped table-bordered" cellspacing="0">
+                        <thead>
+                          <h1> <b>PERIODO DE CONSULTA DE LA INFORMACIÓN</b> </h1><br>
+                          <h3> <b>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?></b> </h3>
+                          <tr>
+                            <th class="table-header" style="text-align:center; color: white; border: 1px solid black;">MEDIDAS</th>
+                            <th class="table-header" style="text-align:center; color: white; border: 1px solid black;">EJECUTADAS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style="text-align:center;">ASISTENCIA</td>
+                            <td><?php echo $fmed_asistencia['total']; ?></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align:center;">RESGUARDO</td>
+                            <td><?php echo $fmed_resguardo['total']; ?></td>
+                          </tr>
+                          <tr>
+                            <td style="text-align:right;">TOTAL</td>
+                            <td><?php echo $fmed_total['total']; ?></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="row g-4">
+                      <!-- Primer Div (Columna) -->
+                      <div class="col-md-6">
+                        <div class="p-3 border rounded bg-light">
+                          <h5 class="mb-3"> <b>MEDIDAS DE ASISTENCIA</b> </h5>
+                          <div class="table-responsive">
+                            <table id="tabla2" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
-                              <h1>PERIODO DE CONSULTA DE LA INFORMACIÓN</h1>
-                              <!-- <h3>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?> -->
-                              </h3>
                                 <tr>
-                                  <th class="table-header" style="text-align:center">NO.</th>
-                                  <th class="table-header" style="text-align:center">FECHA</th>
-                                  <th class="table-header" style="text-align:center">MUNICIPIO</th>
-                                  <th class="table-header" style="text-align:center">EXPEDIENTE</th>
-                                  <th class="table-header" style="text-align:center">ID DE LA PP O SP</th>
-                                  <th class="table-header" style="text-align:center">KILOMETROS</th>
-                                  <th class="table-header" style="text-align:center">ID RONDIN META</th>
+                                  <th style="text-align:center; color: white; border: 1px solid black;">#</th>
+                                  <th style="text-align:center; color: white; border: 1px solid black;">ID</th>
+                                  <th style="text-align:center; color: white; border: 1px solid black;">FECHA</th>
                                 </tr>
                             </thead>
-                      </table>
+                            <tbody>
+                              <?php include("medidasasisgmetas.php"); ?>
+                            </tbody>
+                           </table>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Segundo Div (Columna) -->
+                      <div class="col-md-6">
+                        <div class="p-3 border rounded bg-light">
+                          <h5 class="mb-3"> <b>MEDIDAS DE RESGUARDO</b> </h5>
+                          <div class="table-responsive">
+                            <table id="tabla3" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                              <tr>
+                                <th style="text-align:center; color: white; border: 1px solid black;">#</th>
+                                <th style="text-align:center; color: white; border: 1px solid black;">ID</th>
+                                <th style="text-align:center; color: white; border: 1px solid black;">FECHA</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php include("medidasresgmetas.php"); ?>
+                            </tbody>
+                           </table>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </b>
               <?php
             }else {
               echo "sin datos";
@@ -190,6 +291,43 @@ $row=$result->fetch_assoc();
     </div>
   </div>
 </body>
+<script type="text/javascript">
+$(document).ready(function() {
+  // 1. Inicializamos las tablas por separado
+  var t1 = $('#tabla1').DataTable();
+  var t2 = $('#tabla2').DataTable();
+  var t3 = $('#tabla3').DataTable();
+
+  // 2. Creamos el botón de exportación vinculado a la primera tabla
+  new $.fn.dataTable.Buttons(t1, {
+      buttons: [
+          {
+              extend: 'excelHtml5',
+              text: 'Descargar Excel (3 Hojas)',
+              className: 'btn btn-success',
+              title: 'Reporte Consolidado',
+              action: function ( e, dt, button, config ) {
+                  var self = this;
+
+                  // Definimos el contenido de cada hoja (Sheet)
+                  // .exportData() extrae solo lo que está visible o filtrado
+                  var data = [
+                      { data: t1.buttons.exportData(), name: 'Inventario' },
+                      { data: t2.buttons.exportData(), name: 'Ventas' },
+                      { data: t3.buttons.exportData(), name: 'Clientes' }
+                  ];
+
+                  // Ejecutamos la acción nativa pero inyectando nuestro array de datos
+                  $.fn.dataTable.ext.buttons.excelHtml5.action.call(self, e, dt, button, config, data);
+              }
+          }
+      ]
+  });
+
+  // 3. Colocamos el botón en nuestro contenedor personalizado
+  t1.buttons().container().appendTo('#contenedorBoton');
+});
+</script>
 <link rel="stylesheet" href="../css/menuactualizado.css">
 <script src="../js/menu.js"></script>
 </html>

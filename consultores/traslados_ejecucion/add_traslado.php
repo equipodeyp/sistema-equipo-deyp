@@ -201,7 +201,7 @@ $mostrar=$result->fetch_assoc();
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
                       <label class="col-md-2 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">FECHA DE TRASLADO</label>
-                      <input name="fechatraslado" class="form-control" type="date" required min="">
+                      <input name="fechatraslado" class="form-control" type="date" required min="<?php echo $datemin; ?>">
                     </div>
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
