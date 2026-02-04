@@ -841,7 +841,7 @@ $data1 .= '<div style="float: right; width: 45%;">
   $rsujsuspendidotem = $mysqli->query($sujsuspendidotem);
   $fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
   ////////////////////////////////////////////////////////////////////////////////
-  $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'];
+  $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'] + $fsujsuspendidotem['t'];
   ////////////////////////////////////////////////////////////////////////////////
   $data1 .= '<tr bgcolor="white">
   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;NO INCORPORADOS AL PROGRAMA<sup>1</sup></h1></td>

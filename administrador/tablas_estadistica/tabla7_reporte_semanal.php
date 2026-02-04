@@ -34,7 +34,7 @@ $sujsuspendidotem = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = '
 $rsujsuspendidotem = $mysqli->query($sujsuspendidotem);
 $fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
-$totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'];
+$totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'] + $fsujsuspendidotem['t'];
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
 echo "<td style='text-align:left'>"; echo "NO INCORPORADOS AL PROGRAMA¹"; "</td>";
