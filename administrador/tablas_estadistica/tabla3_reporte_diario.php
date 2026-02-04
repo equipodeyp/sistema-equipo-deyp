@@ -49,7 +49,7 @@ echo "</tr>";
 
 echo "<tr bgcolor=''>";
 echo "<td style='text-align:left'>"; echo 'SUJETOS SUSPENDIDOS TEMPORALMENTE'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fsujsuspendidotem['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
