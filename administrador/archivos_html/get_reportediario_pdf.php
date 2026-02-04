@@ -285,7 +285,11 @@ $data .='</tbody>
                 $rperpropuesta = $mysqli->query($perpropuesta);
                 $fperpropuesta = $rperpropuesta->fetch_assoc();
                 ////////////////////////////////////////////////////////////////////////////////
-                $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'];
+                $sujsuspendidotem = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'SUSPENDIDO TEMPORALMENTE' AND relacional = 'NO'";
+                $rsujsuspendidotem = $mysqli->query($sujsuspendidotem);
+                $fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
+                ////////////////////////////////////////////////////////////////////////////////
+                $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'] + $fsujsuspendidotem['t'];
                 //////
                 $data .= '<tr bgcolor="white">
                 <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;SUJETOS INCORPORADOS ACTIVOS</h1></td>
@@ -306,6 +310,13 @@ $data .='</tbody>
                   $data .= '<tr bgcolor="white">
                   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PERSONA PROPUESTA A INCORPORARSE</h1></td>
                   <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fperpropuesta['t'].'</h1></td>
+                  </tr>';
+                }
+                ////////////
+                if ($fsujsuspendidotem['t'] > 0) {
+                  $data .= '<tr bgcolor="white">
+                  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;SUJETOS SUSPENDIDOS TEMPORALMENTE</h1></td>
+                  <td style="background-color: white; border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$fsujsuspendidotem['t'].'</h1></td>
                   </tr>';
                 }
                 ////////////

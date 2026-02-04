@@ -18,7 +18,11 @@ $perpropuesta = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'PERS
 $rperpropuesta = $mysqli->query($perpropuesta);
 $fperpropuesta = $rperpropuesta->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
-$totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'];
+$sujsuspendidotem = "SELECT COUNT(*) as t FROM datospersonales WHERE estatus = 'SUSPENDIDO TEMPORALMENTE' AND relacional = 'NO'";
+$rsujsuspendidotem = $mysqli->query($sujsuspendidotem);
+$fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
+////////////////////////////////////////////////////////////////////////////////
+$totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'] + $fsujsuspendidotem['t'];
 
 echo "<tr bgcolor=''>";
 echo "<td style='text-align:left'>"; echo 'SUJETOS INCORPORADOS ACTIVOS'; echo "</td>";
@@ -39,10 +43,14 @@ echo "</tr>";
 
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'PERSONA PROPUESTA A INCORPORARSE '; echo "</td>";
+echo "<td style='text-align:left'>"; echo 'PERSONA PROPUESTA A INCORPORARSE'; echo "</td>";
 echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; echo "</td>";
 echo "</tr>";
 
+echo "<tr bgcolor=''>";
+echo "<td style='text-align:left'>"; echo 'SUJETOS SUSPENDIDOS TEMPORALMENTE'; echo "</td>";
+echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; echo "</td>";
+echo "</tr>";
 
 echo "<tr bgcolor=''>";
 echo "<td style='text-align:right'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
