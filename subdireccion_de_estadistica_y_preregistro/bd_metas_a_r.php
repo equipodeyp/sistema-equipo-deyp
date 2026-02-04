@@ -33,9 +33,6 @@ $row=$result->fetch_assoc();
   <!--  -->
   <link rel="stylesheet" type="text/css" href="../css/toast.css"/>
   <link rel="stylesheet" href="../css/button_notification.css" type="text/css">
-  <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.3.7/b-3.2.6/b-html5-3.2.6/datatables.min.css" rel="stylesheet" integrity="sha384-zxBc2Gq4cHjveiM/HCfF2K+hESBu0cevO1quMBKTTb7JSFezPn/Rsn11iV1AKbPU" crossorigin="anonymous">
-
-<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.3.7/b-3.2.6/b-html5-3.2.6/datatables.min.js" integrity="sha384-su0ggAjemkLelaikLBKhyUmOAGA8UTqF6eP0mJ0do5m5PGwSA0xCdMRiANIDWQCO" crossorigin="anonymous"></script>
   <link href="../datatables/datatables.min.css" rel="stylesheet">
   <script src="../datatables/datatables.min.js"></script>
 </head>
@@ -88,7 +85,7 @@ $row=$result->fetch_assoc();
               <form action="" method="GET">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="" class="form-label"><b> Del dia</b></label>
+                    <label for="starfech" class="form-label"><b> Del dia</b></label>
                     <input type="date" name="star" id="starfech" class="form-control" required>
                   </div>
                 </div>
@@ -97,7 +94,7 @@ $row=$result->fetch_assoc();
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="" class="form-label"><b>Hasta el dia</b> </label>
+                    <label for="finfech" class="form-label"><b>Hasta el dia</b> </label>
                     <input type="date" name="fin" id="finfech" class="form-control" required>
                   </div>
                 </div>
@@ -106,7 +103,7 @@ $row=$result->fetch_assoc();
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
-                    <label for="" class="form-label"><b>BUSCAR</b></label><br>
+                    <label for="ocultar-mostrar" class="form-label"><b>BUSCAR</b></label><br>
                     <button type="submit" id="ocultar-mostrar" class="btn btn-primary" name="enviar"><i class="fa fa-search" aria-hidden="true"></i></button>
                   </div>
                 </div>
@@ -134,10 +131,10 @@ $row=$result->fetch_assoc();
           $rgetrondin = $mysqli->query($getrondin);
           while ($fgetrondin = $rgetrondin->fetch_assoc()) {
             $auxsum = $auxsum +1;
-            echo $totalres = $fgetrondin['total'];
+            $totalres = $fgetrondin['total'];
             if ($totalres > 0) {
-              echo "con datos";
-              echo "<br>";
+              // echo "con datos";
+              // echo "<br>";
               function transformarmesaletra($pasardia, $pasarmes, $pasaranio){
                 switch ($pasarmes) {
                   case 1:
@@ -189,12 +186,12 @@ $row=$result->fetch_assoc();
               $aniofinal = date('Y', strtotime($fechafin));
               include("contardatemedidas.php");
               ?>
+              <br><br>
               <b>
                 <div class="" id="showafterconsul">
-                  <div id="contenedorBoton" class="mb-3"></div>
                   <div class="container well form-horizontal" style="text-align:center;padding:10px;border:solid 3px; width:98%;border-radius:20px;shadow; float:left;width: 100%;outline: white solid thin">
                     <div class="table-responsive">
-                      <table id="tabla1" class="table table-striped table-bordered" cellspacing="0">
+                      <table id="" class="table table-striped table-bordered" cellspacing="0">
                         <thead>
                           <h1> <b>PERIODO DE CONSULTA DE LA INFORMACIÓN</b> </h1><br>
                           <h3> <b>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?></b> </h3>
@@ -226,7 +223,7 @@ $row=$result->fetch_assoc();
                         <div class="p-3 border rounded bg-light">
                           <h5 class="mb-3"> <b>MEDIDAS DE ASISTENCIA</b> </h5>
                           <div class="table-responsive">
-                            <table id="tabla2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <table id="metas_medidas_asistencia" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                   <th style="text-align:center; color: white; border: 1px solid black;">#</th>
@@ -246,7 +243,7 @@ $row=$result->fetch_assoc();
                         <div class="p-3 border rounded bg-light">
                           <h5 class="mb-3"> <b>MEDIDAS DE RESGUARDO</b> </h5>
                           <div class="table-responsive">
-                            <table id="tabla3" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <table id="metas_medidas_resguardo" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                               <tr>
                                 <th style="text-align:center; color: white; border: 1px solid black;">#</th>
@@ -267,12 +264,13 @@ $row=$result->fetch_assoc();
               </b>
               <?php
             }else {
-              echo "sin datos";
+              // echo "sin datos";
               ?>
+              <br><br>
               <div class="alert alert-success d-flex align-items-center justify-content-center m-0 w-100" role="alert">
                 <i style="color:red; font-size: 24px;" class="fas fa-exclamation-triangle me-2"></i>
                 <div>
-                  <strong style="color:#000000; font-size: 24px;">¡NO SE ENCOTRARON REGISTROS CON LAS FECHAS MENCIONADAS!</strong>
+                  <strong style="color:#000000; font-size: 24px;">¡NO SE ENCOTRARON REGISTROS CON LAS FECHAS ESPECIFICADAS!</strong>
                 </div>
               </div>
               <?php
@@ -291,43 +289,6 @@ $row=$result->fetch_assoc();
     </div>
   </div>
 </body>
-<script type="text/javascript">
-$(document).ready(function() {
-  // 1. Inicializamos las tablas por separado
-  var t1 = $('#tabla1').DataTable();
-  var t2 = $('#tabla2').DataTable();
-  var t3 = $('#tabla3').DataTable();
-
-  // 2. Creamos el botón de exportación vinculado a la primera tabla
-  new $.fn.dataTable.Buttons(t1, {
-      buttons: [
-          {
-              extend: 'excelHtml5',
-              text: 'Descargar Excel (3 Hojas)',
-              className: 'btn btn-success',
-              title: 'Reporte Consolidado',
-              action: function ( e, dt, button, config ) {
-                  var self = this;
-
-                  // Definimos el contenido de cada hoja (Sheet)
-                  // .exportData() extrae solo lo que está visible o filtrado
-                  var data = [
-                      { data: t1.buttons.exportData(), name: 'Inventario' },
-                      { data: t2.buttons.exportData(), name: 'Ventas' },
-                      { data: t3.buttons.exportData(), name: 'Clientes' }
-                  ];
-
-                  // Ejecutamos la acción nativa pero inyectando nuestro array de datos
-                  $.fn.dataTable.ext.buttons.excelHtml5.action.call(self, e, dt, button, config, data);
-              }
-          }
-      ]
-  });
-
-  // 3. Colocamos el botón en nuestro contenedor personalizado
-  t1.buttons().container().appendTo('#contenedorBoton');
-});
-</script>
 <link rel="stylesheet" href="../css/menuactualizado.css">
 <script src="../js/menu.js"></script>
 </html>
