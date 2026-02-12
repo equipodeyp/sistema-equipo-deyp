@@ -1,64 +1,63 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n');
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
-$date_principio = $anioActual."-01-01";
-$date_termino = $anioActual."-12-31";
-////////////////////////////////////////////////////////////////////////////////
-$p = "SELECT ejecucion, COUNT(*) as t FROM medidas
-WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '$date_principio' AND '$date_termino'
-GROUP BY ejecucion
-HAVING COUNT(*)>0
-ORDER BY `t`  DESC";
-$rp = $mysqli->query($p);
-while ($fp = $rp->fetch_assoc()) {
-  $clasif = $fp['ejecucion'];
-  $pa = "SELECT COUNT(*) as t FROM medidas
-  WHERE ejecucion = '$clasif' AND estatus='ejecutada' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-  $rpa = $mysqli->query($pa);
-  $fpa = $rpa->fetch_assoc();
-  //////////////////////////////////////////////////////////////////////////////
-  $reportemensual = "SELECT COUNT(*) as t FROM medidas
-  WHERE ejecucion = '$clasif' AND estatus='ejecutada' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
-  $rreportemensual = $mysqli->query($reportemensual);
-  $freportemensual = $rreportemensual->fetch_assoc();
-  //////////////////////////////////////////////////////////////////////////////
-  $totalmunicipio = $fpa['t'] + $freportemensual['t'];
-  //////////////////////////////////////////////////////////////////////////////
-    echo "<tr>";
-    echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo $fp['ejecucion']; echo "</td>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fpa['t']; echo "</td>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $freportemensual['t']; echo "</td>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalmunicipio; echo "</td>";
-    echo "</tr>";
+$contador = 0;
+$sql = "SELECT * FROM datospersonales WHERE estatus = 'SUJETO PROTEGIDO' || estatus = 'PERSONA PROPUESTA' AND relacional = 'NO'";
+$resultado = $mysqli->query($sql);
+while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
+  $id_sujeto = $row['id'];
+  $identificador_sujeto = $row['identificador'];
+  $checkdentro = "SELECT DISTINCT id_persona FROM medidas
+  WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND id_persona = '$id_sujeto' AND estatus = 'EN EJECUCION'";
+  $rcheckdentro = $mysqli->query($checkdentro);
+  $fcheckdentro = $rcheckdentro->fetch_assoc();
+  if(isset($fcheckdentro['id_persona'])){
+    //sujuetos dentro del resguardo
+  }else {
+    $sujetofueradelresguardo = $id_sujeto;
+    if ($row['estatus'] === 'SUJETO PROTEGIDO') {
+      $convenioent = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$sujetofueradelresguardo'";
+      $fconvenioent = $mysqli->query($convenioent);
+      $rconvenioent = $fconvenioent->fetch_assoc();
+      //////////////////////////////////////////////////////////////////////////
+      $fechafirma = date("d-m-Y", strtotime($rconvenioent['date_convenio']));
+      $contadorevaluacion = "SELECT COUNT(*) AS total FROM evaluacion_persona WHERE id_unico = '$identificador_sujeto'";
+      $rcontadorevaluacion = $mysqli->query($contadorevaluacion);
+      $fcontadorevaluacion = $rcontadorevaluacion->fetch_assoc();
+      if ($fcontadorevaluacion['total'] > 0) {
+        $evalsujultimo = "SELECT * FROM evaluacion_persona WHERE id_unico = '$identificador_sujeto' ORDER BY id DESC LIMIT 1";
+        $revalsujultimo = $mysqli->query($evalsujultimo);
+        $fevalsujultimo = $revalsujultimo->fetch_assoc();
+        $fechavigencia = date("d-m-Y", strtotime($fevalsujultimo['fecha_vigencia']));
+      }else {
+        $fechavigencia = date("d-m-Y", strtotime($rconvenioent['fecha_vigencia']));
+      }
+    }elseif ($row['estatus'] === 'PERSONA PROPUESTA') {
+      $fechafirma = "EN ANALISIS";
+      $fechavigencia = "EN ANALISIS";
+    }
+    $autoridadsujeto = "SELECT * FROM autoridad WHERE id_persona = '$sujetofueradelresguardo'";
+    $rautoridadsujeto = $mysqli->query($autoridadsujeto);
+    $fautoridadsujeto = $rautoridadsujeto->fetch_assoc();
+    $delitosujeto = "SELECT * FROM procesopenal WHERE id_persona = '$sujetofueradelresguardo'";
+    $rdelitosujeto = $mysqli->query($delitosujeto);
+    $fdelitosujeto = $rdelitosujeto->fetch_assoc();
+    if ($fdelitosujeto['delitoprincipal'] === 'OTRO') {
+      $delitoperson = $fdelitosujeto['otrodelitoprincipal'];
+    }else {
+      $delitoperson = $fdelitosujeto['delitoprincipal'];
+    }
+    $contador = $contador + 1;
+    ?>
+    <tr style="border: 3px solid black;">
+      <td style="text-align:left; border: 3px solid black;"><b><?php echo $contador; ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo $row['identificador']; ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo date("d-m-Y", strtotime($fautoridadsujeto['fechasolicitud_persona'])); ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo $fechafirma; ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo $row['sexopersona']; ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo $row['edadpersona']; ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo $row['calidadpersona']; ?></b></td>
+      <td style="text-align:center; border: 3px solid black;"><b><?php echo $delitoperson; ?></b></td>
+    </tr>
+    <?php
   }
-  //////////////////////////////////////////////////////////////////////////////
-  $anterior = "SELECT COUNT(*) as t FROM medidas
-  WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-  $ranterior = $mysqli->query($anterior);
-  $fanterior = $ranterior->fetch_assoc();
-  //////////////////////////////////////////////////////////////////////////////
-  $mesreporte = "SELECT COUNT(*) as t FROM medidas
-  WHERE estatus='ejecutada' AND date_ejecucion BETWEEN '$diamesinicio' AND '$diamesfin'";
-  $rmesreporte = $mysqli->query($mesreporte);
-  $fmesreporte = $rmesreporte->fetch_assoc();
-  //////////////////////////////////////////////////////////////////////////////
-  $totalacumulado = $fanterior['t'] + $fmesreporte['t'];
-  echo "<tr>";
-  echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL</b>"; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $fanterior['t']; echo "</b>"; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $fmesreporte['t']; echo "</b>"; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
-  echo "</tr>";
+}
 ?>

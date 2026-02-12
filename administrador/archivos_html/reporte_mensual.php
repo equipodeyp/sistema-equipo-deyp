@@ -12,6 +12,7 @@
         $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
         $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
         $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+        $mesesminusculas = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         // echo " ".date('d')." DE ".$meses[date('n')]. " DEL ".date('Y') ;
         $mesant = $meses[date('n')];
         $mesanterior = date('n')-1;
@@ -25,649 +26,921 @@
           <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <!-- PRIMER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
-            <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
-            <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <h1 style="text-align:center"><b>REPORTE MENSUAL DEL</b></h1>
-            <h1 style="text-align:center"><b>DEL 1 AL  <?php echo $cantidadDias." DE ".$meses[date('n')-1]. " DEL ".date('Y'); ?> </b></h1>
+            <?php include('header_reporte_mensual.php'); ?>
             <!-- contenido -->
 
-
-
-            <br><br><br>
-            <div class="contenedor-flex">
-              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;1/6&nbsp;&nbsp;</label>
-            </div>
-            <div class="">
-              <table width="100%">
+            <br>
+            <!-- <div class="col-md-12"> -->
+              <table width="100%" border="3px" cellspacing="0" bordered>
                 <thead>
-                  <tr>
-                    <th width="80%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                      </font></span></h5>
+                  <tr style="border: 3px solid black;">
+                    <th style="border: 3px solid black;" width="100%" colspan="4">
+                      <b>
+                        <h2 style="text-align:center;">SOLICITUDES DE INCORPORACIÓN RECIBIDAS</h2>
+                      </b>
                     </th>
-                    <th width="20%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      Subdirección de Estadística y Pre-Registro
-                      </font></span></h5>
+                  </tr>
+                  <tr style="border: 3px solid black;">
+                    <th style="border: 3px solid black;" width="64%">
+                      <b>
+                        <h2 style="text-align:center;">Autoridad Solicitante</h2>
+                      </b>
+                    </th>
+                    <th style="border: 3px solid black;" width="12%">
+                      <b>
+                        <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                      </b>
+                    </th>
+                    <th style="border: 3px solid black;" width="12%">
+                      <b>
+                        <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                      </b>
+                    </th>
+                    <th style="border: 3px solid black;" width="12%">
+                      <b>
+                        <h2 style="text-align:center;">Total</h2>
+                      </b>
                     </th>
                   </tr>
                 </thead>
+                <tbody>
+                  <?php
+                  include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
+                  ?>
+                </tbody>
               </table>
+            <!-- </div> -->
+            <br>
+            <div style="display: flex; justify-content: space-between; gap: 40px; align-items: flex-start;">
+              <!-- COLUMNA IZQUIERDA (2 tablas una debajo de otra) -->
+              <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">PERSONAS PROPUESTAS PARA SU INCORPORACIÓN</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Calidad del Sujeto dentro del Programa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">SUJETOS INCORPORADOS<sup>2</sup></h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Calidad del Sujeto dentro del Programa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                  <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
+                    <tr>
+                      <td colspan="100%">
+                        <sup>2</sup>La incorporación se da mediante la formalización del Convenio de Entendimiento
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- COLUMNA DERECHA (3 tablas una debajo de otra) -->
+              <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">PERSONAS PROPUESTAS NO INCORPORADAS<sup>1</sup></h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Calidad del Sujeto dentro del Programa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                  <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
+                    <tr>
+                      <td colspan="100%">
+                        <sup>1</sup> Corresponde a los siguientes casos: <br>
+                        &nbsp;&nbsp;&nbsp; a) La solicitud no cumple con los requisitos de Ley.<br>
+                        &nbsp;&nbsp;&nbsp; b) La persona manifiesta negativa de voluntariedad para incorporarse.<br>
+                        &nbsp;&nbsp;&nbsp; c) Se determina la no procedencia de incorporación.
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">SUJETOS DESINCORPORADOS<sup>3</sup></h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Calidad del Sujeto dentro del Programa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla5_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                  <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
+                    <tr>
+                      <td colspan="100%">
+                        <sup>3</sup> Se refiere a los Sujetos Protegidos que se encuentran en los siguientes supuestos: <br>
+                        &nbsp;&nbsp;&nbsp; a) Concluyó su participación dentro del Proceso Penal;<br>
+                        &nbsp;&nbsp;&nbsp; b) Renuncia voluntaria<br>
+                        &nbsp;&nbsp;&nbsp; c) Determinación de disminución o cese del riesgo.
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
           <!-- SEGUNDA HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
-            <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
-            <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <h1 style="text-align:center"><b>MEDIDAS DE APOYO EJECUTADAS</b></h1>
-            <!-- <h1 style="text-align:center"><b>DEL 1 AL  <?php echo $cantidadDias." DE ".$meses[date('n')-1]. " DEL ".date('Y'); ?> </b></h1> -->
+            <?php include('header_reporte_mensual.php'); ?>
             <!-- contenido -->
+            <br>
+            <div style="display: flex; justify-content: space-between; gap: 40px; align-items: flex-start;">
+              <!-- COLUMNA IZQUIERDA (2 tablas una debajo de otra) -->
+              <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">SUJETOS QUE FINALIZARON SU ESTANCIA EN EL CENTRO DE RESGUARDO </h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Calidad del Sujeto dentro del Programa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla6_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
 
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">ASISTENCIAS MÉDICAS OTORGADAS</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Servicio</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
 
-            <br><br><br>
-            <div class="contenedor-flex">
-              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;2/6&nbsp;&nbsp;</label>
-            </div>
-            <div class="">
-              <table width="100%">
-                <thead>
-                  <tr>
-                    <th width="80%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                      </font></span></h5>
-                    </th>
-                    <th width="20%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      Subdirección de Estadística y Pre-Registro
-                      </font></span></h5>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
+              <!-- COLUMNA DERECHA (3 tablas una debajo de otra) -->
+              <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">MEDIDAS DE APOYO EJECUTADAS</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;"width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Municipio</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">TRASLADOS REALIZADOS POR LA PDI</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Servicio</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla9_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="4">
+                        <b>
+                          <h2 style="text-align:center;">RONDINES REALIZADOS POR LA PDI</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="64%">
+                        <b>
+                          <h2 style="text-align:center;">Lugar</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-2]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;"><?php echo $mesesminusculas[date('n')-1]; ?></h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;" width="12%">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla10_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <!-- TERCER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
-            <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
-            <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <h1 style="text-align:center"><b>REPORTE CIFRAS ACUMULADAS <?php echo date("Y"); ?></b></h1>
-            <h1 style="text-align:center"><b>DEL 1 DE ENERO AL  <?php echo $cantidadDias." DE ".$meses[date('n')-1]. " DEL ".date('Y'); ?> </b></h1>
-            <h2 style="text-align:center"><b>SOLICITUDES DE INCORPORACIÓN</b></h2>
-            <h1>____________________________________________________________________</h1>
+            <?php include('header_reporte_mensual.php'); ?>
             <!-- contenido -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">SOLICITUDES RECIBIDAS SEGÚN SU PROCEDENCIA JURÍDICA</h1>
-                  <table id="tabla1" border="3px" cellspacing="0" width="100%" style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">PROCEDENCIA JURÍDICA</th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo 'DEL'; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center">ACUMULADO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">SOLICITUDES RECIBIDAS POR AUTORIDAD SOLICITANTE</h1>
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">AUTORIDAD SOLICITANTE</th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center">ACUMULADO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <br><br><br>
-            <div class="contenedor-flex">
-              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;3/6&nbsp;&nbsp;</label>
-            </div>
-            <div class="">
-              <table width="100%">
-                <thead>
-                  <tr>
-                    <th width="80%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                      </font></span></h5>
-                    </th>
-                    <th width="20%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      Subdirección de Estadística y Pre-Registro
-                      </font></span></h5>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-
+            <br>
+            <table width="100%" border="3px" cellspacing="0" bordered>
+              <thead>
+                <tr style="border: 3px solid black;">
+                  <th style="border: 3px solid black;" width="100%" colspan="8">
+                    <b>
+                      <h2 style="text-align:center;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2>
+                    </b>
+                  </th>
+                </tr>
+                <tr style="border: 3px solid black;">
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">No.</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">ID Sujeto</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Fecha de ingreso al Resguardo</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Fecha de Incorporación</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Sexo</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Edad</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Calidad del sujeto dentro del Programa</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Delito</h2>
+                    </b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                include("../administrador/tablas_estadistica/tabla11_reporte_mensual.php");
+                ?>
+              </tbody>
+            </table>
+            <br>
+            <table width="100%" border="3px" cellspacing="0" bordered>
+              <thead>
+                <tr style="border: 3px solid black;">
+                  <th style="border: 3px solid black;" width="100%" colspan="8">
+                    <b>
+                      <h2 style="text-align:center;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2>
+                    </b>
+                  </th>
+                </tr>
+                <tr style="border: 3px solid black;">
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">No.</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">ID Sujeto</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Fecha de ingreso al Programa</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Fecha de Incorporación</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Sexo</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Edad</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Calidad del sujeto dentro del Programa</h2>
+                    </b>
+                  </th>
+                  <th style="border: 3px solid black;">
+                    <b>
+                      <h2 style="text-align:center;">Delito</h2>
+                    </b>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                include("../administrador/tablas_estadistica/tabla12_reporte_mensual.php");
+                ?>
+              </tbody>
+            </table>
           </div>
           <!-- CUARTA HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
-            <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
-            <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <h1 style="text-align:center"><b>REPORTE CIFRAS ACUMULADAS <?php echo date("Y"); ?></b></h1>
-            <h1 style="text-align:center"><b>DEL 1 DE ENERO AL  <?php echo $cantidadDias." DE ".$meses[date('n')-1]. " DEL ".date('Y'); ?> </b></h1>
-            <h2 style="text-align:center"><b>SOLICITUDES DE INCORPORACIÓN</b></h2>
-            <h1>____________________________________________________________________</h1>
+            <?php include('header_reporte_mensual.php'); ?>
             <!-- contenido -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">SOLICITUDES DE INCORPORACIÓN RECIBIDAS DE ACUERDO AL DELITO VINCULADO</h1>
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">DELITO PRINCIPAL</th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center">ACUMULADO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
+            <br>
+            <h2 style="text-align:center;">RESUMEN DEL PROGRAMA</h2>
+            <br>
+            <div style="display: flex; justify-content: space-between; gap: 40px; align-items: flex-start;">
+              <!-- COLUMNA IZQUIERDA (2 tablas una debajo de otra) -->
+              <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="2">
+                        <b>
+                          <h2 style="text-align:center;">EXPEDIENTES DE PROTECCIÓN INICIADOS</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;">
+                        <b>
+                          <h2 style="text-align:center;">Etapa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla13_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="2">
+                        <b>
+                          <h2 style="text-align:center;">MEDIDAS DE APOYO EJECUTADAS</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;">
+                        <b>
+                          <h2 style="text-align:center;">Clasificación</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla15_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- COLUMNA DERECHA (3 tablas una debajo de otra) -->
+              <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+                <table width="100%" border="3px" cellspacing="0" bordered>
+                  <thead>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;" width="100%" colspan="2">
+                        <b>
+                          <h2 style="text-align:center;">PERSONAS QUE SOLICITARON INCORPORARSE</h2>
+                        </b>
+                      </th>
+                    </tr>
+                    <tr style="border: 3px solid black;">
+                      <th style="border: 3px solid black;">
+                        <b>
+                          <h2 style="text-align:center;">Etapa dentro del Programa</h2>
+                        </b>
+                      </th>
+                      <th style="border: 3px solid black;">
+                        <b>
+                          <h2 style="text-align:center;">Total</h2>
+                        </b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include("../administrador/tablas_estadistica/tabla14_reporte_mensual.php");
+                    ?>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <h2 style="text-align:center"><b>EXPEDIENTES DE PROTECCIÓN INICIADOS</b></h2>
-            <h1>____________________________________________________________________</h1>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">EXPEDIENTES INICIADOS SEGÚN SU PROCEDENCIA DE INCORPORACIÓN</h1>
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">DETERMINACION</th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center">ACUMULADO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <h2 style="text-align:center"><b>PERSONAS PROPUESTAS</b></h2>
-            <h1>____________________________________________________________________</h1>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">PERSONAS PROPUESTAS PARA SU INCORPORACIÓN SEGÚN SU CALIDAD DENTRO DEL PROGRAMA</h1>
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2">PERSONAS PROPUESTAS</th>
-                      </tr>
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2">ACUMULADO</th>
-                      </tr>
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">CALIDAD EN EL PROGRAMA</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <br><br><br>
-            <div class="contenedor-flex">
-              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;4/6&nbsp;&nbsp;</label>
-            </div>
-            <div class="">
-              <table width="100%">
-                <thead>
-                  <tr>
-                    <th width="80%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                      </font></span></h5>
-                    </th>
-                    <th width="20%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      Subdirección de Estadística y Pre-Registro
-                      </font></span></h5>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-          <!-- QUINTA HOJA -->
-          <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
-            <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
-            <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <h2 style="text-align:center"><b>SUJETOS PROTEGIDOS</b></h2>
-            <h1>____________________________________________________________________</h1>
-            <!-- contenido -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">SUJETOS INCORPORADOS AL PROGRAMA SEGÚN SU CALIDAD</h1>
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2">SUJETOS PROTEGIDOS</th>
-                      </tr>
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2">ACUMULADO</th>
-                      </tr>
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">CALIDAD EN EL PROGRAMA</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <h2 style="text-align:center"><b>SUJETOS DESINCORPORADOS</b></h2>
-            <h1>____________________________________________________________________</h1>
-            <!-- contenido -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <h1 style="text-align:center">SUJETOS DESINCORPORADOS AL PROGRAMA SEGÚN SU CALIDAD</h1>
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered style="border: 5px solid #97897D;">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2">SUJETOS DESINCORPORADOS</th>
-                      </tr>
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2"><?php echo "DEL 01 DE ENERO<br> AL ".$cantidaddiasanterior. " DE ".$meses[date('n')-2]; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2"><?php echo ''; echo " 01 AL ".$cantidadDias. " DE ".$meses[date('n')-1]; echo ''; ?></th>
-                        <th style="border: 5px solid #97897D; text-align:center" rowspan="2">ACUMULADO</th>
-                      </tr>
-                      <tr>
-                        <th style="border: 5px solid #97897D; text-align:center">CALIDAD EN EL PROGRAMA</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tablasujdesincor_reporte_mensual.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <br><br>
-            <!-- <div class="row"> -->
-              <?php
-              // session_start();
-
-              $host = "localhost";    /* Host  */
-              $user = "root";         /* Usuario */
-              $password = "";         /* Password */
-              $dbname = "sistemafgjem";   /* Database nombre */
-
-              // Creamos la conexion mysql
-              $con = mysqli_connect($host, $user, $password,$dbname);
-
-              // Comprobamos la cnexion
-              if (!$con) {
-                  die("Connection failed: " . mysqli_connect_error());
-              }
-            	// Consulta sql para contar la cantidad por ciudad
-            	$sql = "SELECT ejecucion,count(id) as totalusers FROM medidas
-            	WHERE date_ejecucion BETWEEN '2025-01-01' AND '2025-12-31' AND medidas.estatus = 'EJECUTADA'
-            	GROUP BY ejecucion ORDER BY totalusers DESC";
-            	$records = mysqli_query($con, $sql);
-            	$data = array();
-            	while($row = mysqli_fetch_assoc($records)){
-            		$data[] = $row;
-            	}
-
-            	$jsonData = json_encode($data);
-            	?>
-            	<!-- Almacenamos JSON data -->
-              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            	<script type="text/javascript">
-              google.charts.load('current', {'packages':['corechart']});
-              google.charts.setOnLoadCallback(drawChart);
-
-              function drawChart() {
-
-                var chartData_json = document.getElementById('chartinfo').value;
-
-                let obj = JSON.parse(chartData_json) ;
-                let jsonData = obj;
-                var chartData = [];
-
-                // Add Chart data
-                  var chartData = [
-                  ['MUNICIPIO','TOTAL MEDIDAS',{ role: 'annotation'}],
-                ];
-
-                  for (var key in obj) {
-                    if (obj.hasOwnProperty(key)) {
-                      var val = obj[key];
-
-                      var city = val.ejecucion;
-                      var totalusers = Number(val.totalusers);
-
-                      // Add to Array
-                      chartData.push([city,totalusers,totalusers]);
-                      // chartData.push(['city']);
-
-                    }
+            <!-- EXPEDIENTES -->
+            <?php
+            // session_start();
+            $host = "localhost";    /* Host  */
+            $user = "root";         /* Usuario */
+            $password = "";         /* Password */
+            $dbname = "sistemafgjem";   /* Database nombre */
+            // Creamos la conexion mysql
+            $con = mysqli_connect($host, $user, $password,$dbname);
+            // Comprobamos la cnexion
+            if (!$con) {
+              die("Connection failed: " . mysqli_connect_error());
+            }
+            // Consulta sql para contar la cantidad por ciudad
+            $sql = "SELECT año,count(id) as totalexp FROM expediente
+            WHERE fecha_nueva BETWEEN '2021-01-01' AND '2026-12-31'
+            GROUP BY año  ORDER BY año ASC";
+            $records = mysqli_query($con, $sql);
+            $data = array();
+            while($row = mysqli_fetch_assoc($records)){
+              $data[] = $row;
+            }
+            $jsonData = json_encode($data);
+            ?>
+            <!-- Almacenamos JSON data -->
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var chartData_json = document.getElementById('chartinfo').value;
+              let obj = JSON.parse(chartData_json);
+              var chartData = [['AÑO', 'TOTAL EXPEDIENTES', { role: 'annotation' }],];
+              let existe2026 = false;
+              // 1. Recorrer datos de la DB
+              for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                  var val = obj[key];
+                  var anio = String(val.año);
+                  var total = Number(val.totalexp);
+                  if (anio === "2026") existe2026 = true;
+                  chartData.push([anio, total, total]);
                 }
-
-                var data = google.visualization.arrayToDataTable(chartData);
-
-                // Options
-                // var options = {
-                // 	title:'Reporte por municipio',
-                // 	colors: ['#4473c5'],
-                // 	indexAxis: 'y',
-                // 	width: 1900, // Ancho en píxeles
-                //   height: 700, // Alto en píxeles
-                // };
-                var options = {
-                  isStacked: true,
-                  indexAxis: 'y',
-                  width: 1230, // Ancho en píxeles
-                  height: 300, // Alto en píxeles
-                title: {
-                  title:'Reporte por municipio',
-                  colors: ['#4473c5'],
-                  fontSize: 14 // Tamaño de fuente para el título
-                },
-                hAxis: {
-                  textStyle: {
-                    fontSize: 12 // Tamaño de fuente para el eje horizontal
-                  }
-                },
-                vAxis: {
-                  textStyle: {
-                    fontSize: 12 // Tamaño de fuente para el eje vertical
-                  }
-                },
-                legend: {
-                  textStyle: {
-                    fontSize: 12 // Tamaño de fuente para la leyenda
-                  }
-                },
-                vAxis: {
-        scaleType: 'log'
-  }
-              };
-
-                // Initialize
-                var chart = new google.visualization.ColumnChart(document.getElementById('ciudadChart'));
-                chart.draw(data, options);
-
               }
-              </script>
-              <!-- <div class="row"> -->
-                <!-- <div class="col-lg-12"> -->
-                  <textarea style="display:none" id="chartinfo"><?= $jsonData ?></textarea>
-                  <div id="ciudadChart"></div>
-                  <canvas id="ciudadChart" ></canvas>
-                <!-- </div> -->
-              <!-- </div> -->
-              </div>
-
-            <!-- </div> -->
-
-            <br><br><br>
-            <div class="contenedor-flex">
-              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;5/6&nbsp;&nbsp;</label>
-            </div>
-            <div class="">
-              <table width="100%">
-                <thead>
-                  <tr>
-                    <th width="80%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                      </font></span></h5>
-                    </th>
-                    <th width="20%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      Subdirección de Estadística y Pre-Registro
-                      </font></span></h5>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-          <!-- SEXTA HOJA -->
-          <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
-            <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
-            <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-            <!-- contenido -->
-            <h1 style="text-align:center">Reporte Global</h1>
-            <h1 style="text-align:center">Del 01 de Junio del 2021 al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?> </h1>
-            <h1>____________________________________________________________________</h1>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="table-responsive">
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="text-align:center">CONCEPTO</th>
-                        <th style="text-align:center">TOTAL</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla1_reporte_diario.php");
-                      ?>
-                    </tbody>
-                  </table>
-                  <div class="col-lg-12">
-                    <strong><sup>*</sup> Activos al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?></strong>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="table-responsive">
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="text-align:center">ESTATUS DE LOS EXPEDIENTES DE PROTECCIÓN</th>
-                        <th style="text-align:center">TOTAL</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla2_reporte_diario.php");
-                      ?>
-                    </tbody>
-                  </table>
-                  <div class="col-lg-12">
-                    <strong><sup>*</sup> Activos al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?></strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <br><br><br>
-
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="table-responsive">
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="text-align:center">ESTATUS DE LAS PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</th>
-                        <th style="text-align:center">TOTAL</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla3_reporte_diario.php");
-                      ?>
-                    </tbody>
-                  </table>
-                  <div class="col-lg-12">
-                    <strong><sup>*</sup> Activos al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?></strong><br>
-                    <strong><sup>1</sup> Corresponde a los siguientes casos:<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) La solicitud no cumple con los requisitos de Ley<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) La persona manifiesta negativa de voluntariedad para incorporarse<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c) Se determina la no procedencia de incorporación<br>
-                      <sup>2</sup> Se refiere a las personas que se encuentran en los siguientes supuestos:<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) Concluyó su participación dentro del Proceso Penal<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) Renuncia voluntaria<br>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c) Determinación de disminución o cese del riesgo</strong>
-                    </div>
-                </div>
-              </div>
-
-              <div class="col-lg-6">
-                <div class="table-responsive">
-                  <table id="tabla1" border="1px" cellspacing="0" width="90%" bordered>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="text-align:center">PERIODO</th>
-                        <th style="text-align:center width:40%">EXPEDIENTE DE PROTECCIÓN INICIADOS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla4_reporte_diario.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-                <br><br>
-                <div class="table-responsive">
-                  <table id="tabla1" border="1px" cellspacing="0" width="90%" bordered>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="text-align:center" colspan="2">SUJETOS EN RESGUARDO ACTIVOS</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla5_reporte_diario.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <br><br>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="table-responsive">
-                  <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                    <thead class="thead-dark">
-                      <tr>
-                        <th style="text-align:center">ESTATUS DE LAS MEDIDAS DE APOYO DICTAMINADAS</th>
-                        <th style="text-align:center">EN EJECUCIÓN</th>
-                        <th style="text-align:center">EJECUTADA</th>
-                        <th style="text-align:center">CANCELADA</th>
-                        <th style="text-align:center">TOTAL</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      include("../administrador/tablas_estadistica/tabla6_reporte_diario.php");
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            <br><br><br>
-            <div class="contenedor-flex">
-              <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-              <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;6/6&nbsp;&nbsp;</label>
-            </div>
-            <div class="">
-              <table width="100%">
-                <thead>
-                  <tr>
-                    <th width="80%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                      </font></span></h5>
-                    </th>
-                    <th width="20%" align="left" bgcolor="#63696D">
-                      <h5 class="">
-                      <span style="font-size: .95em; align:left; color:white;"><font style="font-family: gothambook">
-                      Subdirección de Estadística y Pre-Registro
-                      </font></span></h5>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
+              // 2. Si la DB no trajo el 2026, lo agregamos manualmente con 0
+              if (!existe2026) {
+                chartData.push(["2026", 0, "0"]);
+              }
+              var data = google.visualization.arrayToDataTable(chartData);
+              var options = {
+                title: 'EXPEDIENTES DE PROTECCIÓN INICIADOS',
+                // Centrar el título
+                titleTextStyle: {
+                  color: '#333',
+                  fontSize: 18,
+                  bold: true,
+                  italic: false,
+                  // Nota: Google Charts posiciona el título a la izquierda por defecto.
+                  // Para centrarlo visualmente usamos:
+                  auraColor: 'none'
+                },
+                // Esta propiedad ayuda a centrar el título respecto al gráfico
+                titlePosition: 'out',
+                alignment: 'center', // Intentar alineación centrada
+                width: 1230,
+                height: 400,
+                colors: ['#4473c5'],
+                pointSize: 7,
+                hAxis: {
+                  title: 'AÑO',
+                  slantedText: false, // Texto horizontal
+                  textStyle: { fontSize: 12 }
+                },
+                vAxis: {
+                  title: 'EXPEDIENTES',
+                  minValue: 0,
+                  viewWindow: { min: 0 },
+                  format: '0' // Quita decimales en el eje vertical
+                },
+                legend: { position: 'bottom' }
+              };
+              var chart = new google.visualization.LineChart(document.getElementById('ciudadChart'));
+              chart.draw(data, options);
+            }
+            </script>
+            <br>
+            <textarea style="display:none" id="chartinfo"><?= $jsonData ?></textarea>
+            <div id="ciudadChart" style="border: 3px solid black;"></div>
+            <!-- <canvas id="ciudadChart"></canvas> -->
+            <!-- SUJETOS -->
+            <?php
+            // Consulta sql para contar la cantidad
+            $sql = "SELECT expediente.año,count(datospersonales.id) as totalepersonas FROM expediente
+            INNER JOIN datospersonales ON expediente.fol_exp = datospersonales.folioexpediente
+            WHERE expediente.fecha_nueva BETWEEN '2021-01-01' AND '2026-12-31' AND datospersonales.relacional ='NO'
+            GROUP BY año  ORDER BY año ASC";
+            $records = mysqli_query($con, $sql);
+            $data = array();
+            while($row = mysqli_fetch_assoc($records)){
+              $data[] = $row;
+            }
+            $jsonData = json_encode($data);
+            ?>
+            <!-- Almacenamos JSON data -->
+            <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var chartData_json = document.getElementById('chartinfo2').value;
+              let obj = JSON.parse(chartData_json);
+              var chartData = [['AÑO', 'TOTAL PERSONAS', { role: 'annotation' }],];
+              let existe2026 = false;
+              // 1. Recorrer datos de la DB
+              for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                  var val = obj[key];
+                  var anio = String(val.año);
+                  var total = Number(val.totalepersonas);
+                  if (anio === "2026") existe2026 = true;
+                  chartData.push([anio, total, total]);
+                }
+              }
+              // 2. Si la DB no trajo el 2026, lo agregamos manualmente con 0
+              if (!existe2026) {
+                chartData.push(["2026", 0, "0"]);
+              }
+              var data = google.visualization.arrayToDataTable(chartData);
+              var options = {
+                title: 'PERSONAS PROPUESTAS PARA SU INCORPORACIÓN',
+                // Centrar el título
+                titleTextStyle: {
+                  color: '#333',
+                  fontSize: 18,
+                  bold: true,
+                  italic: false,
+                  // Nota: Google Charts posiciona el título a la izquierda por defecto.
+                  // Para centrarlo visualmente usamos:
+                  auraColor: 'none'
+                },
+                // Esta propiedad ayuda a centrar el título respecto al gráfico
+                titlePosition: 'out',
+                alignment: 'center', // Intentar alineación centrada
+                width: 1230,
+                height: 400,
+                colors: ['#4473c5'],
+                pointSize: 7,
+                hAxis: {
+                  title: 'AÑO',
+                  slantedText: false, // Texto horizontal
+                  textStyle: { fontSize: 12 }
+                },
+                vAxis: {
+                  title: 'PERSONAS',
+                  minValue: 0,
+                  viewWindow: { min: 0 },
+                  format: '0' // Quita decimales en el eje vertical
+                },
+                legend: { position: 'bottom' }
+              };
+              var chart = new google.visualization.LineChart(document.getElementById('ciudadChart2'));
+              chart.draw(data, options);
+            }
+            </script>
+            <br>
+            <textarea style="display:none" id="chartinfo2"><?= $jsonData ?></textarea>
+            <div id="ciudadChart2" style="border: 3px solid black;"></div>
+            <!-- <canvas id="ciudadChart2"></canvas> -->
+            <!-- SUJETOS EN RESGUARDO-->
+            <?php
+            // Consulta sql para contar la cantidad
+            $sql = "SELECT YEAR(autoridad.fechasolicitud_persona) as año, COUNT(DISTINCT medidas.id_persona) as totalsujcr FROM medidas
+            INNER JOIN datospersonales ON medidas.id_persona = datospersonales.id
+            INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+            WHERE (medidas.date_provisional BETWEEN '2021-01-01' AND '2026-12-31' OR medidas.date_definitva BETWEEN '2021-01-01' AND '2026-12-31') AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.relacional = 'NO' AND autoridad.fechasolicitud_persona BETWEEN '2021-01-01' AND '2026-12-31'
+            GROUP BY año
+            ORDER BY año ASC";
+            $records = mysqli_query($con, $sql);
+            $data = array();
+            while($row = mysqli_fetch_assoc($records)){
+              $data[] = $row;
+            }
+            $jsonData = json_encode($data);
+            ?>
+            <!-- Almacenamos JSON data -->
+            <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var chartData_json = document.getElementById('chartinfo3').value;
+              let obj = JSON.parse(chartData_json);
+              var chartData = [['AÑO', 'TOTAL PERSONAS', { role: 'annotation' }],];
+              let existe2026 = false;
+              // 1. Recorrer datos de la DB
+              for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                  var val = obj[key];
+                  var anio = String(val.año);
+                  var total = Number(val.totalsujcr);
+                  if (anio === "2026") existe2026 = true;
+                  chartData.push([anio, total, total]);
+                }
+              }
+              // 2. Si la DB no trajo el 2026, lo agregamos manualmente con 0
+              if (!existe2026) {
+                chartData.push(["2026", 0, "0"]);
+              }
+              var data = google.visualization.arrayToDataTable(chartData);
+              var options = {
+                title: 'SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO',
+                // Centrar el título
+                titleTextStyle: {
+                  color: '#333',
+                  fontSize: 18,
+                  bold: true,
+                  italic: false,
+                  // Nota: Google Charts posiciona el título a la izquierda por defecto.
+                  // Para centrarlo visualmente usamos:
+                  auraColor: 'none'
+                },
+                // Esta propiedad ayuda a centrar el título respecto al gráfico
+                titlePosition: 'out',
+                alignment: 'center', // Intentar alineación centrada
+                width: 1230,
+                height: 400,
+                colors: ['#4473c5'],
+                pointSize: 7,
+                hAxis: {
+                  title: 'AÑO',
+                  slantedText: false, // Texto horizontal
+                  textStyle: { fontSize: 12 }
+                },
+                vAxis: {
+                  title: 'SUJETOS',
+                  minValue: 0,
+                  viewWindow: { min: 0 },
+                  format: '0' // Quita decimales en el eje vertical
+                },
+                legend: { position: 'bottom' }
+              };
+              var chart = new google.visualization.LineChart(document.getElementById('ciudadChart3'));
+              chart.draw(data, options);
+            }
+            </script>
+            <br>
+            <textarea style="display:none" id="chartinfo3"><?= $jsonData ?></textarea>
+            <div id="ciudadChart3" style="border: 3px solid black;"></div>
+            <!-- <canvas id="ciudadChart3"></canvas> -->
           </div>
         </form>
-
       </div>
     </div>
   </div>

@@ -1,76 +1,50 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n')-1;
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
-$date_principio = $anioActual."-01-01";
-$date_termino = $anioActual."-12-31";
+include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$calidad = "SELECT calidadpersona, COUNT(*) AS t FROM datospersonales
-INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE autoridad.fechasolicitud BETWEEN '$date_principio' AND '$date_termino' AND datospersonales.relacional = 'NO'
-GROUP BY datospersonales.calidadpersona
-HAVING COUNT(*)>0";
-$rcalidad = $mysqli->query($calidad);
-while ($fcalidad = $rcalidad->fetch_assoc()) {
-  $namecalidad =$fcalidad['calidadpersona'];
+$totalppnoincorporadas_col1 = 0;
+$totalppnoincorporadas_col2 = 0;
+$sumatotalppnoincorporadas = 0;
+$asistenciasmedicas = "SELECT solicitud_asistencia.servicio_medico, COUNT(*) AS total FROM solicitud_asistencia
+INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio' AND '$datetermino'
+GROUP BY solicitud_asistencia.servicio_medico ORDER BY total DESC, solicitud_asistencia.servicio_medico ASC";
+$rasistenciasmedicas = $mysqli->query($asistenciasmedicas);
+while ($fasistenciasmedicas = $rasistenciasmedicas->fetch_assoc()) {
+  $serviciomedico = $fasistenciasmedicas['servicio_medico'];
   //////////////////////////////////////////////////////////////////////////////
-  $calant = "SELECT COUNT(*) as t FROM datospersonales
-  INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-  WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-  $rcalant = $mysqli->query($calant);
-  $fcalant = $rcalant->fetch_assoc();
+  $ppnoincorporadas_col1 = "SELECT COUNT(*) AS total FROM solicitud_asistencia
+  INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+  WHERE solicitud_asistencia.servicio_medico = '$serviciomedico' AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+  AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
+  $rppnoincorporadas_col1 = $mysqli->query($ppnoincorporadas_col1);
+  $fppnoincorporadas_col1 = $rppnoincorporadas_col1->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $calreporte = "SELECT COUNT(*) as t FROM datospersonales
-  INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-  WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-  AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
-  $rcalreporte = $mysqli->query($calreporte);
-  $fcalreporte = $rcalreporte->fetch_assoc();
+  $ppnoincorporadas_col2 = "SELECT COUNT(*) AS total FROM solicitud_asistencia
+  INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+  WHERE solicitud_asistencia.servicio_medico = '$serviciomedico' AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+  AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
+  $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
+  $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $totalcalidad = $fcalant['t'] + $fcalreporte['t'];
-  //////////////////////////////////////////////////////////////////////////////
-  if ($fcalant['t'] > 0 || $fcalreporte['t'] > 0) {
-    echo "<tr>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo '&nbsp;&nbsp;'.$fcalidad['calidadpersona']; echo "</td>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalant['t']; echo "</td>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fcalreporte['t']; echo "</td>";
-    echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalcalidad; echo "</td>";
-    echo "</tr>";
-  }
+  $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
+  $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
+  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
+  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  ?>
+  <tr style="border: 3px solid black;">
+    <td style="text-align:left; border: 3px solid black;"><b><?php echo $serviciomedico; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+  </tr>
+  <?php
 }
 ////////////////////////////////////////////////////////////////////////////////
-$totalanterior = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-WHERE datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rtotalanterior = $mysqli->query($totalanterior);
-$ftotalanterior = $rtotalanterior->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalreporte = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-WHERE datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rtotalreporte = $mysqli->query($totalreporte);
-$ftotalreporte = $rtotalreporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalacumulado = $ftotalanterior['t'] + $ftotalreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE PERSONAS&nbsp;&nbsp;</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $ftotalanterior['t']; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $ftotalreporte['t']; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
-echo "</tr>";
 ?>
+<tr style="border: 3px solid black;">
+  <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalppnoincorporadas; ?></b></td>
+</tr>

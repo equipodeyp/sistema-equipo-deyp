@@ -181,7 +181,8 @@ if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0) {
   echo "<td style='text-align:center'>"; echo $totalparcialproc; "</td>";
   echo "</tr>";
 }
-////////////////////////////////////////////////////////////////////////////////echo "<tr>";
+////////////////////////////////////////////////////////////////////////////////
+echo "<tr>";
 echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE SOLICITUDES"; echo "</b>"; "</td>";
 echo "<td style='text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
 echo "<td style='text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";

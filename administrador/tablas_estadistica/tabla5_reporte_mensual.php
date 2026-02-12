@@ -1,93 +1,82 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n');
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$inicialanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INICIAL' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rinicialanterior = $mysqli->query($inicialanterior);
-$finicialanterior = $rinicialanterior ->fetch_assoc();
-//////////////////////////////////////////////////////////////////////////////
-$inicialreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INICIAL' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rinicialreporte = $mysqli->query($inicialreporte);
-$finicialreporte = $rinicialreporte ->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalinicial = $finicialanterior['t'] + $finicialreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$intermediaanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INTERMEDIA' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rintermediaanterior = $mysqli->query($intermediaanterior);
-$fintermediaanterior = $rintermediaanterior ->fetch_assoc();
-//////////////////////////////////////////////////////////////////////////////
-$intermediareporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'INTERMEDIA' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rintermediareporte = $mysqli->query($intermediareporte);
-$fintermediareporte = $rintermediareporte ->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalintermedia = $fintermediaanterior['t'] + $fintermediareporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$juiciooralanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'JUICIO ORAL' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rjuiciooralanterior = $mysqli->query($juiciooralanterior);
-$fjuiciooralanterior = $rjuiciooralanterior ->fetch_assoc();
-//////////////////////////////////////////////////////////////////////////////
-$juiciooralreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE procesopenal.etapaprocedimiento = 'JUICIO ORAL' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rjuiciooralreporte = $mysqli->query($juiciooralreporte);
-$fjuiciooralreporte = $rjuiciooralreporte ->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totaljuiciooral = $fjuiciooralanterior['t'] + $fjuiciooralreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalanterior = $finicialanterior['t'] + $fintermediaanterior['t'] + $fjuiciooralanterior['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalreporte = $finicialreporte['t'] + $fintermediareporte['t'] + $fjuiciooralreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalacumulado = $totalanterior + $totalreporte;
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "INICIAL"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $finicialanterior['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $finicialreporte['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalinicial; echo "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "INTERMEDIA"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fintermediaanterior['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fintermediareporte['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalintermedia; echo "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "JUICIO ORAL"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fjuiciooralanterior['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fjuiciooralreporte['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totaljuiciooral; echo "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE EXPEDIENTES</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $totalanterior; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $totalreporte; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
-echo "</tr>";
+$totalppnoincorporadas_col1 = 0;
+$totalppnoincorporadas_col2 = 0;
+$sumatotalppnoincorporadas = 0;
+$ppnoincorporadas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
+INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+WHERE datospersonales.estatus = 'DESINCORPORADO'
+AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
+GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
+$rppnoincorporadas = $mysqli->query($ppnoincorporadas);
+while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
+  $namecalidad = $fppnoincorporadas['calidadpersona'];
+  if ($namecalidad === 'I. VICTIMA') {
+    $namecortocalidad = 'VICTIMA';
+  }
+  if ($namecalidad === 'II. OFENDIDO') {
+    $namecortocalidad = 'OFENDIDO';
+  }
+  if ($namecalidad === 'III. TESTIGO') {
+    $namecortocalidad = 'TESTIGO';
+  }
+  if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
+    $namecortocalidad = 'COLABORADOR O INFORMANTE';
+  }
+  if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+    $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+  }
+  if ($namecalidad === 'VI. DEFENSOR') {
+    $namecortocalidad = 'DEFENSOR';
+  }
+  if ($namecalidad === 'VII. POLICIA') {
+    $namecortocalidad = 'POLICIA';
+  }
+  if ($namecalidad === 'VIII. PERITO') {
+    $namecortocalidad = 'PERITO';
+  }
+  if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+    $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+  }
+  if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+    $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+  }
+  //////////////////////////////////////////////////////////////////////////////
+  $ppnoincorporadas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
+  INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+  WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+  AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+  AND datospersonales.relacional = 'NO'";
+  $rppnoincorporadas_col1 = $mysqli->query($ppnoincorporadas_col1);
+  $fppnoincorporadas_col1 = $rppnoincorporadas_col1->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $ppnoincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
+  INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+  WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+  AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
+  AND datospersonales.relacional = 'NO'";
+  $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
+  $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
+  $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
+  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
+  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  ?>
+  <tr style="border: 3px solid black;">
+    <td style="text-align:left; border: 3px solid black;"><b><?php echo $namecortocalidad; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+  </tr>
+  <?php
+}
 ////////////////////////////////////////////////////////////////////////////////
 ?>
+<tr style="border: 3px solid black;">
+  <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalppnoincorporadas; ?></b></td>
+</tr>

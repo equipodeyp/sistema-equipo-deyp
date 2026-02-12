@@ -1,68 +1,47 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n');
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$perpropmenor = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE datospersonales.estatus = 'PERSONA PROPUESTA' AND datospersonales.grupoedad = 'MENOR DE EDAD' AND datospersonales.calidadpersona = '$namecalidad'
-AND datospersonales.relacional ='NO' AND autoridad.fechasolicitud BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rperpropmenor = $mysqli->query($perpropmenor);
-$fperpropmenor = $rperpropmenor->fetch_assoc();
+$totalppnoincorporadas_col1 = 0;
+$totalppnoincorporadas_col2 = 0;
+$sumatotalppnoincorporadas = 0;
+$asistenciasmedicas = "SELECT react_actividad.entidad_municipio, COUNT(*) AS total FROM react_actividad
+WHERE react_actividad.id_subdireccion = '4' AND react_actividad.unidad_medida = 'RONDÍN POLICIAL'
+AND react_actividad.fecha BETWEEN '$dateinicio' AND '$datetermino'
+GROUP BY react_actividad.entidad_municipio ORDER BY total DESC, react_actividad.entidad_municipio ASC";
+$rasistenciasmedicas = $mysqli->query($asistenciasmedicas);
+while ($fasistenciasmedicas = $rasistenciasmedicas->fetch_assoc()) {
+  $serviciomedico = $fasistenciasmedicas['entidad_municipio'];
+  //////////////////////////////////////////////////////////////////////////////
+  $ppnoincorporadas_col1 = "SELECT react_actividad.entidad_municipio, COUNT(*) AS total FROM react_actividad
+  WHERE react_actividad.entidad_municipio = '$serviciomedico' AND react_actividad.id_subdireccion = '4' AND react_actividad.unidad_medida = 'RONDÍN POLICIAL'
+  AND react_actividad.fecha BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
+  $rppnoincorporadas_col1 = $mysqli->query($ppnoincorporadas_col1);
+  $fppnoincorporadas_col1 = $rppnoincorporadas_col1->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $ppnoincorporadas_col2 = "SELECT react_actividad.entidad_municipio, COUNT(*) AS total FROM react_actividad
+  WHERE react_actividad.entidad_municipio = '$serviciomedico' AND react_actividad.id_subdireccion = '4' AND react_actividad.unidad_medida = 'RONDÍN POLICIAL'
+  AND react_actividad.fecha BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
+  $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
+  $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
+  $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
+  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
+  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  ?>
+  <tr style="border: 3px solid black;">
+    <td style="text-align:left; border: 3px solid black;"><b><?php echo $serviciomedico; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+  </tr>
+  <?php
+}
 ////////////////////////////////////////////////////////////////////////////////
-$perpropmayor = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-WHERE datospersonales.estatus = 'PERSONA PROPUESTA' AND datospersonales.grupoedad = 'MAYOR DE EDAD' AND datospersonales.calidadpersona = '$namecalidad'
-AND datospersonales.relacional ='NO' AND autoridad.fechasolicitud BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rperpropmayor = $mysqli->query($perpropmayor);
-$fperpropmayor = $rperpropmayor->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalperprop = $fperpropmenor['t'] + $fperpropmayor['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalsujprotmenor = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' AND datospersonales.grupoedad = 'MENOR DE EDAD'
-AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rtotalsujprotmenor = $mysqli->query($totalsujprotmenor);
-$ftotalsujprotmenor = $rtotalsujprotmenor->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalsujpromayor = "SELECT COUNT(*) as t FROM datospersonales
-INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' AND datospersonales.grupoedad = 'MAYOR DE EDAD'
-AND datospersonales.relacional ='NO' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-AND determinacionincorporacion.fecha_inicio BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rtotalsujpromayor = $mysqli->query($totalsujpromayor);
-$ftotalsujpromayor = $rtotalsujpromayor->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalsujprot = $ftotalsujprotmenor['t'] + $ftotalsujpromayor['t'];
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "MENOR DE EDAD"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fperpropmenor['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalsujprotmenor['t']; echo "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "MAYOR DE EDAD"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fperpropmayor['t']; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $ftotalsujpromayor['t']; echo "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalperprop; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalsujprot; echo "</b>"; echo "</td>";
-echo "</tr>";
 ?>
+<tr style="border: 3px solid black;">
+  <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalppnoincorporadas; ?></b></td>
+</tr>

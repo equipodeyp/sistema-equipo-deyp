@@ -1,68 +1,85 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n');
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$municipio = "SELECT procesopenal.numeroradicacion, COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE  expediente.año= '$anioActual'
-GROUP BY procesopenal.numeroradicacion
-ORDER BY  COUNT(DISTINCT expediente.fol_exp) DESC, procesopenal.numeroradicacion ASC";
-$rmunicipio = $mysqli->query($municipio);
-while ($fmunicipio = $rmunicipio->fetch_assoc()) {
-  $namemunicipio = $fmunicipio['numeroradicacion'];
+$totalppnoincorporadas_col1 = 0;
+$totalppnoincorporadas_col2 = 0;
+$sumatotalppnoincorporadas = 0;
+$ppnoincorporadas = "SELECT datospersonales.calidadpersona FROM datospersonales
+INNER JOIN medidas ON datospersonales.id = medidas.id_persona
+INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.estatus = 'DESINCORPORADO'
+AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino'
+AND datospersonales.relacional = 'NO' GROUP BY datospersonales.calidadpersona ORDER BY datospersonales.calidadpersona ASC";
+$rppnoincorporadas = $mysqli->query($ppnoincorporadas);
+while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
+  $namecalidad = $fppnoincorporadas['calidadpersona'];
+  if ($namecalidad === 'I. VICTIMA') {
+    $namecortocalidad = 'VICTIMA';
+  }
+  if ($namecalidad === 'II. OFENDIDO') {
+    $namecortocalidad = 'OFENDIDO';
+  }
+  if ($namecalidad === 'III. TESTIGO') {
+    $namecortocalidad = 'TESTIGO';
+  }
+  if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
+    $namecortocalidad = 'COLABORADOR O INFORMANTE';
+  }
+  if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+    $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+  }
+  if ($namecalidad === 'VI. DEFENSOR') {
+    $namecortocalidad = 'DEFENSOR';
+  }
+  if ($namecalidad === 'VII. POLICIA') {
+    $namecortocalidad = 'POLICIA';
+  }
+  if ($namecalidad === 'VIII. PERITO') {
+    $namecortocalidad = 'PERITO';
+  }
+  if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+    $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+  }
+  if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+    $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+  }
   //////////////////////////////////////////////////////////////////////////////
-  $anteriormun = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-  INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-  WHERE procesopenal.numeroradicacion = '$namemunicipio' AND expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-  $ranteriormun = $mysqli->query($anteriormun);
-  $fanteriormun = $ranteriormun ->fetch_assoc();
+  $ppnoincorporadas_col1 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
+  INNER JOIN medidas ON datospersonales.id = medidas.id_persona
+  INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+  WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+  AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+  AND datospersonales.relacional = 'NO'";
+  $rppnoincorporadas_col1 = $mysqli->query($ppnoincorporadas_col1);
+  $fppnoincorporadas_col1 = $rppnoincorporadas_col1->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $reportemunicipio = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-  INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-  WHERE procesopenal.numeroradicacion = '$namemunicipio' AND expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
-  $rreportemunicipio = $mysqli->query($reportemunicipio);
-  $freportemunicipio = $rreportemunicipio ->fetch_assoc();
+  $ppnoincorporadas_col2 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
+  INNER JOIN medidas ON datospersonales.id = medidas.id_persona
+  INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+  WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+  AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
+  AND datospersonales.relacional = 'NO'";
+  $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
+  $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $totalmunicipio = $fanteriormun['t'] + $freportemunicipio['t'];
-  //////////////////////////////////////////////////////////////////////////////
-  echo "<tr>";
-  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo $fmunicipio['numeroradicacion']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fanteriormun['t']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $freportemunicipio['t']; echo "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalmunicipio; echo "</td>";
-  echo "</tr>";
+  $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
+  $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
+  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
+  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  ?>
+  <tr style="border: 3px solid black;">
+    <td style="text-align:left; border: 3px solid black;"><b><?php echo $namecortocalidad; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+  </tr>
+  <?php
 }
 ////////////////////////////////////////////////////////////////////////////////
-$totalmunanterior = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rtotalmunanterior = $mysqli->query($totalmunanterior);
-$ftotalmunanterior = $rtotalmunanterior ->fetch_assoc();
-//////////////////////////////////////////////////////////////////////////////
-$totalreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) AS t FROM  expediente
-INNER JOIN procesopenal ON expediente.fol_exp = procesopenal.folioexpediente
-WHERE expediente.fecha_nueva BETWEEN '$diamesinicio' AND '$diamesfin'";
-$rtotalreporte = $mysqli->query($totalreporte);
-$ftotalreporte = $rtotalreporte ->fetch_assoc();
-//////////////////////////////////////////////////////////////////////////////
-$totalacumulado = $ftotalmunanterior['t'] + $ftotalreporte['t'];
-//////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>TOTAL DE EXPEDIENTES</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $ftotalmunanterior['t']; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $ftotalreporte['t']; echo "</b>"; echo "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>";echo "<b>"; echo $totalacumulado; echo "</b>"; echo "</td>";
-echo "</tr>";
 ?>
+<tr style="border: 3px solid black;">
+  <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalppnoincorporadas; ?></b></td>
+</tr>

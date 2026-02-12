@@ -1,95 +1,35 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n')-1;
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
+include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$siprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
-$rsiprocede = $mysqli->query($siprocede);
-$fsiprocede = $rsiprocede->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$noprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
-$rnoprocede = $mysqli->query($noprocede);
-$fnoprocede = $rnoprocede->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$parcialproc = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDENTE' and expediente.fecha_nueva BETWEEN '$fecha_inicio' and '$fecha_anterior'";
-$rparcialproc = $mysqli->query($parcialproc);
-$fparcialproc = $rparcialproc->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalanterior = $fsiprocede['t'] + $fnoprocede['t'] + $fparcialproc['t'];
-////////////////////////conteo  de datos  de la semana para entregar reporte//////////////////////////////////////
-$siprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
-$rsiprocedereporte = $mysqli->query($siprocedereporte);
-$fsiprocedereporte = $rsiprocedereporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$noprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
-$rnoprocedereporte = $mysqli->query($noprocedereporte);
-$fnoprocedereporte = $rnoprocedereporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$parcialprocreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDE' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
-$rparcialprocreporte = $mysqli->query($parcialprocreporte);
-$fparcialprocreporte = $rparcialprocreporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalreporte = $fsiprocedereporte['t'] + $fnoprocedereporte['t'] + $fparcialprocreporte['t'];
-////////////////totales por fila //////////////////////////////////////////////////////////////////////
-$totalsiprocede = $fsiprocede['t'] + $fsiprocedereporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalnoprocede = $fnoprocede['t'] + $fnoprocedereporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalparcialproc = $fparcialproc['t'] + $fparcialprocreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalacumulado = $totalanterior + $totalreporte;
-//inicio de filas para la tabla
-if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0) {
-  echo "<tr>";
-  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;JURÍDICAMENTE PROCEDENTE "; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fsiprocede['t']; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fsiprocedereporte['t']; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalsiprocede; "</td>";
-  echo "</tr>";
-}
-if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0) {
-  echo "<tr>";
-  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "JURÍDICAMENTE NO PROCEDENTE"; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fnoprocede['t']; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fnoprocedereporte['t']; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalnoprocede; "</td>";
-  echo "</tr>";
-}
-if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0) {
-  echo "<tr>";
-  echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "PARCIALMENTE PROCEDENTE"; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fparcialproc['t']; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fparcialprocreporte['t']; "</td>";
-  echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalparcialproc; "</td>";
+$totalcol1 = 0;
+$totalcol2 = 0;
+$sumatotal = 0;
+$solicitudes_col1 = "SELECT nombreautoridad, COUNT(DISTINCT folioexpediente) AS total FROM autoridad
+WHERE fechasolicitud BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+GROUP BY nombreautoridad ORDER BY total DESC, nombreautoridad ASC";
+$rsolicitudes_col1 = $mysqli->query($solicitudes_col1);
+while ($fsolicitudes_col1 = $rsolicitudes_col1->fetch_assoc()) {
+  $nameautoridad = $fsolicitudes_col1['nombreautoridad'];
+  $totalcol1 = $totalcol1 + $fsolicitudes_col1['total'];
+  $solicitudes_col2 = "SELECT COUNT(*) AS total FROM autoridad
+  WHERE nombreautoridad = '$nameautoridad' AND fechasolicitud BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
+  $rsolicitudes_col2 = $mysqli->query($solicitudes_col2);
+  $fsolicitudes_col2 = $rsolicitudes_col2->fetch_assoc();
+  $totalfila = $fsolicitudes_col1['total'] + $fsolicitudes_col2['total'];
+  $totalcol2 = $totalcol2 + $fsolicitudes_col2['total'];
+  $sumatotal = $sumatotal + $totalfila;
+  echo "<tr style='border: 3px solid black;'>";
+  echo "<td style='text-align:left; border: 3px solid black;'>"; echo $fsolicitudes_col1['nombreautoridad']; echo "</b>"; echo"</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $fsolicitudes_col1['total']; echo "</b>"; echo"</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $fsolicitudes_col2['total']; echo "</b>"; echo"</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalfila; echo "</b>"; echo"</td>";
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>"; echo "TOTAL DE SOLICITUDES RECIBIDAS&nbsp;&nbsp;"; echo "</b>"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; "</td>";
+echo "<tr style='border: 3px solid black;'>";
+echo "<td style='text-align:right; border: 3px solid black;'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalcol1; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalcol2; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $sumatotal; echo "</b>"; echo "</td>";
 echo "</tr>";
 ?>

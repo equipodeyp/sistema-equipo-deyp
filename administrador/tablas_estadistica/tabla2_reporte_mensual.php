@@ -1,87 +1,79 @@
 <?php
-// calculo de fechas automaticas
-$anioActual = date("Y");
-$mesActual = date("n");
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
-$diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-$meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-// echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-$mesant = $meses[date('n')];
-$mesanterior = date('n')-1;
-$cantidaddiasanterior = cal_days_in_month(CAL_GREGORIAN, $mesanterior, $anioActual);
-$fecha_inicio = $anioActual."-01-01";
-$fecha_anterior = $anioActual."-".$mesanterior."-".$cantidaddiasanterior;
-$diamesinicio = $anioActual."-".$mesActual."-01";
-$diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
-////////////////////////conteo  de datos  de la semana anterior//////////////////////////////////////
-$incorporc = "SELECT COUNT(*) as t FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION PROCEDENTE' and fecha_analisis BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rincorporc = $mysqli->query($incorporc);
-$fincorporc = $rincorporc->fetch_assoc();
+include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$incornoproc = "SELECT COUNT(*) as t FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' and fecha_analisis BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$rincornoproc = $mysqli->query($incornoproc);
-$fincornoproc = $rincornoproc->fetch_assoc();
+$totalpp_col1 = 0;
+$totalpp_col2 = 0;
+$sumatotalpp = 0;
+$personaspropuestas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
+INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+WHERE autoridad.fechasolicitud_persona BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
+GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
+$rpersonaspropuestas = $mysqli->query($personaspropuestas);
+while ($fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc()) {
+  $namecalidad = $fpersonaspropuestas['calidadpersona'];
+  if ($namecalidad === 'I. VICTIMA') {
+    $namecortocalidad = 'VICTIMA';
+  }
+  if ($namecalidad === 'II. OFENDIDO') {
+    $namecortocalidad = 'OFENDIDO';
+  }
+  if ($namecalidad === 'III. TESTIGO') {
+    $namecortocalidad = 'TESTIGO';
+  }
+  if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
+    $namecortocalidad = 'COLABORADOR O INFORMANTE';
+  }
+  if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+    $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+  }
+  if ($namecalidad === 'VI. DEFENSOR') {
+    $namecortocalidad = 'DEFENSOR';
+  }
+  if ($namecalidad === 'VII. POLICIA') {
+    $namecortocalidad = 'POLICIA';
+  }
+  if ($namecalidad === 'VIII. PERITO') {
+    $namecortocalidad = 'PERITO';
+  }
+  if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+    $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+  }
+  if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+    $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+  }
+  //////////////////////////////////////////////////////////////////////////////
+  $personaspropuestas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
+  INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+  WHERE datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+  AND datospersonales.relacional = 'NO'";
+  $rpersonaspropuestas_col1 = $mysqli->query($personaspropuestas_col1);
+  $fpersonaspropuestas_col1 = $rpersonaspropuestas_col1->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $personaspropuestas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
+  INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
+  WHERE datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio_col2' AND '$datefin_col2'
+  AND datospersonales.relacional = 'NO'";
+  $rpersonaspropuestas_col2 = $mysqli->query($personaspropuestas_col2);
+  $fpersonaspropuestas_col2 = $rpersonaspropuestas_col2->fetch_assoc();
+  //////////////////////////////////////////////////////////////////////////////
+  $totalpp_col1 = $totalpp_col1 + $fpersonaspropuestas_col1['total'];
+  $totalpp_col2 = $totalpp_col2 + $fpersonaspropuestas_col2['total'];
+  $totalpp_fila = $fpersonaspropuestas_col1['total'] +$fpersonaspropuestas_col2['total'];
+  $sumatotalpp = $sumatotalpp + $totalpp_fila;
+  ?>
+  <tr style="border: 3px solid black;">
+    <td style="text-align:left; border: 3px solid black;"><b><?php echo $namecortocalidad; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fpersonaspropuestas_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fpersonaspropuestas_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+  </tr>
+  <?php
+}
 ////////////////////////////////////////////////////////////////////////////////
-$enelaboracion = "SELECT COUNT(*) as t FROM analisis_expediente
-INNER JOIN expediente ON analisis_expediente.folioexpediente = expediente.fol_exp
-WHERE analisis = 'EN ELABORACION' and expediente.fecha_nueva BETWEEN '$fecha_inicio' AND '$fecha_anterior'";
-$renelaboracion = $mysqli->query($enelaboracion);
-$fenelaboracion = $renelaboracion->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalanterior = $fincorporc['t'] + $fincornoproc['t'] + $fenelaboracion['t'];
-////////////////////////conteo  de datos  de la semana para entregar reporte//////////////////////////////////////
-$incorprocreporte = "SELECT COUNT(*) as t FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION PROCEDENTE' and fecha_analisis BETWEEN '$diamesinicio' and '$diamesfin'";
-$rincorprocreporte = $mysqli->query($incorprocreporte);
-$fincorprocreporte = $rincorprocreporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$incornoprocreporte = "SELECT COUNT(*) as t FROM analisis_expediente
-WHERE incorporacion = 'INCORPORACION NO PROCEDENTE' and fecha_analisis BETWEEN '$diamesinicio' and '$diamesfin'";
-$rincornoprocreporte = $mysqli->query($incornoprocreporte);
-$fincornoprocreporte = $rincornoprocreporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$enelaboracionreporte = "SELECT COUNT(*) as t FROM analisis_expediente
-INNER JOIN expediente on analisis_expediente.folioexpediente = expediente.fol_exp
-WHERE analisis_expediente.analisis = 'EN ELABORACION' and expediente.fecha_nueva BETWEEN '$diamesinicio' and '$diamesfin'";
-$renelaboracionreporte = $mysqli->query($enelaboracionreporte);
-$fenelaboracionreporte = $renelaboracionreporte->fetch_assoc();
-////////////////////////////////////////////////////////////////////////////////
-$totalreporte = $fincorprocreporte['t'] + $fincornoprocreporte['t'] + $fenelaboracionreporte['t'];
-////////////////totales por fila //////////////////////////////////////////////////////////////////////
-$totalincorproc = $fincorporc['t'] + $fincorprocreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalincornoproc = $fincornoproc['t'] + $fincornoprocreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalenelaboracion = $fenelaboracion['t'] + $fenelaboracionreporte['t'];
-////////////////////////////////////////////////////////////////////////////////
-$totalacumulado = $totalanterior + $totalreporte;
-//inicio de filas para la tabla
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;INCORPORACION PROCEDENTE "; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincorporc['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincorprocreporte['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalincorproc; "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;INCORPORACION NO PROCEDENTE"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincornoproc['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fincornoprocreporte['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalincornoproc; "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////
-echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:left'>"; echo "&nbsp;&nbsp;EN ANÁLISIS"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fenelaboracion['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo $totalenelaboracion; "</td>";
-echo "</tr>";
-////////////////////////////////////////////////////////////////////////////////echo "<tr>";
-echo "<td style='border: 5px solid #97897D; text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES DETERMINADOS&nbsp;&nbsp;"; echo "</b>"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalanterior; echo "</b>"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalreporte; echo "</b>"; "</td>";
-echo "<td style='border: 5px solid #97897D; text-align:center'>"; echo "<b>"; echo $totalacumulado; echo "</b>"; "</td>";
-echo "</tr>";
 ?>
+<tr style="border: 3px solid black;">
+  <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalpp; ?></b></td>
+</tr>
