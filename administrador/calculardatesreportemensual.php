@@ -8,6 +8,7 @@ if ($mesActual < 10) {
 $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesActual, $anioActual);
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+$mesesminusculas = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
 $mesant = $meses[date('n')-1];
 $mesanterior = date('n')-1;

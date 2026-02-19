@@ -1,17 +1,17 @@
 <?php
 include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$totalppnoincorporadas_col1 = 0;
-$totalppnoincorporadas_col2 = 0;
-$sumatotalppnoincorporadas = 0;
-$ppnoincorporadas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
+$totalpdesincorporadas_col1 = 0;
+$totalpdesincorporadas_col2 = 0;
+$sumatotalpdesincorporadas = 0;
+$sujetosdesincorporadas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE datospersonales.estatus = 'DESINCORPORADO'
 AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
 GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
-$rppnoincorporadas = $mysqli->query($ppnoincorporadas);
-while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
-  $namecalidad = $fppnoincorporadas['calidadpersona'];
+$rsujetosdesincorporadas = $mysqli->query($sujetosdesincorporadas);
+while ($fsujetosdesincorporadas = $rsujetosdesincorporadas->fetch_assoc()) {
+  $namecalidad = $fsujetosdesincorporadas['calidadpersona'];
   if ($namecalidad === 'I. VICTIMA') {
     $namecortocalidad = 'VICTIMA';
   }
@@ -43,32 +43,32 @@ while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
     $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
   }
   //////////////////////////////////////////////////////////////////////////////
-  $ppnoincorporadas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
+  $sujetosdesincorporadas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
   AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
   AND datospersonales.relacional = 'NO'";
-  $rppnoincorporadas_col1 = $mysqli->query($ppnoincorporadas_col1);
-  $fppnoincorporadas_col1 = $rppnoincorporadas_col1->fetch_assoc();
+  $rsujetosdesincorporadas_col1 = $mysqli->query($sujetosdesincorporadas_col1);
+  $fsujetosdesincorporadas_col1 = $rsujetosdesincorporadas_col1->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $ppnoincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
+  $sujetosdesincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
   AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
   AND datospersonales.relacional = 'NO'";
-  $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
-  $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
+  $rsujetosdesincorporadas_col2 = $mysqli->query($sujetosdesincorporadas_col2);
+  $fsujetosdesincorporadas_col2 = $rsujetosdesincorporadas_col2->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
-  $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
-  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
-  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  $totalpdesincorporadas_col1 = $totalpdesincorporadas_col1 + $fsujetosdesincorporadas_col1['total'];
+  $totalpdesincorporadas_col2 = $totalpdesincorporadas_col2 + $fsujetosdesincorporadas_col2['total'];
+  $totalsujetosdesincorporados_fila = $fsujetosdesincorporadas_col1['total'] +$fsujetosdesincorporadas_col2['total'];
+  $sumatotalpdesincorporadas = $sumatotalpdesincorporadas + $totalsujetosdesincorporados_fila;
   ?>
   <tr style="border: 3px solid black;">
     <td style="text-align:left; border: 3px solid black;"><b><?php echo $namecortocalidad; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fsujetosdesincorporadas_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fsujetosdesincorporadas_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalsujetosdesincorporados_fila; ?></b></td>
   </tr>
   <?php
 }
@@ -76,7 +76,7 @@ while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
 ?>
 <tr style="border: 3px solid black;">
   <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
-  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col1; ?></b></td>
-  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col2; ?></b></td>
-  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalppnoincorporadas; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpdesincorporadas_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpdesincorporadas_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalpdesincorporadas; ?></b></td>
 </tr>

@@ -235,16 +235,16 @@ $data .= '<div style="float: left; width: 55%;">
         ////////////////////////////////////////////////////////////////////////////////
         $totalacumulado = $totalanterior + $totalreporte;
         ////////////////////////////////////////////////////////////////////////
-        // if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0 || $totalsiprocede > 0) {descomentar cuando llegue expediente nuevo
+        if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0 || $totalsiprocede > 0) {
           $data .= '<tr bgcolor="white">
           <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;JURÍDICAMENTE PROCEDENTE</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsiprocede['t'].'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsiprocedereporte['t'].'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalsiprocede.'</h1></td>
           </tr>';
-        // }descomentar cuando llegue expediente nuevo
+        }
         ////////////////////////////////////////////////////////////////////////
-        // if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0 || $totalnoprocede > 0) {descomentar cuando llegue expediente nuevo
+        if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0 || $totalnoprocede > 0) {
           // code...
         $data .= '<tr bgcolor="white">
         <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;JURÍDICAMENTE NO PROCEDENTE</h1></td>
@@ -252,16 +252,16 @@ $data .= '<div style="float: left; width: 55%;">
         <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fnoprocedereporte['t'].'</h1></td>
         <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalnoprocede.'</h1></td>
         </tr>';
-        // }descomentar cuando llegue expediente nuevo
+        }
         ////////////////////////////////////////////////////////////////////////
-        // if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0 || $totalparcialproc > 0) {descomentar cuando llegue expediente nuevo
+        if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0 || $totalparcialproc > 0) {
           $data .= '<tr bgcolor="white">
           <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PARCIALMENTE PROCEDENTE</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fparcialproc['t'].'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fparcialprocreporte['t'].'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalparcialproc.'</h1></td>
           </tr>';
-        // }descomentar cuando llegue expediente nuevo
+        }
         ////////////////////////////////////////////////////////////////////////
         $data .= '<tr bgcolor="#e6e1dc">
         <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:13.33px; color:#97897D;">TOTAL DE SOLICITUDES&nbsp;</h1></td>
@@ -336,32 +336,32 @@ $totalenelaboracion = $fenelaboracion['t'] + $fenelaboracionreporte['t'];
 ////////////////////////////////////////////////////////////////////////////////
 $totalacumulado = $totalanterior + $totalreporte;
 ////////////////////////////////////////////////////////////////////////////////
-// if ($fincorporc['t'] > 0 || $fincorprocreporte['t'] > 0 || $totalincorproc > 0) {descomentar cuando llegue expediente nuevo
+if ($fincorporc['t'] > 0 || $fincorprocreporte['t'] > 0 || $totalincorproc > 0) {
   $data .= '<tr bgcolor="white">
   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;INCORPORACIÓN PROCEDENTE</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincorporc['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincorprocreporte['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalincorproc.'</h1></td>
   </tr>';
-// }descomentar cuando llegue expediente nuevo
+}
 ////////////////////////////////////////////////////////////////////////////////
-// if ($fincornoproc['t'] > 0 || $fincornoprocreporte['t'] > 0 || $totalincornoproc > 0) {descomentar cuando llegue expediente nuevo
+if ($fincornoproc['t'] > 0 || $fincornoprocreporte['t'] > 0 || $totalincornoproc > 0) {
   $data .= '<tr bgcolor="white">
   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;INCORPORACIÓN NO PROCEDENTE</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincornoproc['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fincornoprocreporte['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalincornoproc.'</h1></td>
   </tr>';
-// }descomentar cuando llegue expediente nuevo
+}
 ////////////////////////////////////////////////////////////////////////////////
-// if ($fenelaboracion['t'] > 0 || $fenelaboracionreporte['t'] > 0 || $totalenelaboracion > 0) {descomentar cuando llegue expediente nuevo
+if ($fenelaboracion['t'] > 0 || $fenelaboracionreporte['t'] > 0 || $totalenelaboracion > 0) {
   $data .= '<tr bgcolor="white">
   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;EN ANÁLISIS</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fenelaboracion['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fenelaboracionreporte['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalenelaboracion.'</h1></td>
   </tr>';
-// }descomentar cuando llegue expediente nuevo
+}
 ////////////////////////////////////////////////////////////////////////////////
 $data .= '<tr bgcolor="#e6e1dc">
 <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:13.33px; color:#97897D;">TOTAL DE EXPEDIENTES&nbsp;</h1></td>
@@ -372,7 +372,7 @@ $data .= '<tr bgcolor="#e6e1dc">
 ////////////////////////////////////////////////////////////////////////////////
   $data .= '</tbody>
 </table>
-</div><br>';
+</div><br><br><br>';
 ////////////////////////////////////////////////////////////////////////////////
 $data .= '<div style="float: left; width: 55%;">
   <table id="tabla1" border="1px" cellspacing="0" width="89.2%" bgcolor="#97897D">
@@ -465,7 +465,7 @@ $data .= '<div style="float: left; width: 55%;">
       //////////////////////////////////////////////////////////////////////////////
       $totalacumuladoperprop = $fpersonaspropuestas['t'] + $fpersonaspropuestas['t'];
 
-      // if ($fpersonaspropuestas['t'] > 0 || $fpersonaspropuestasreporte['t'] > 0) {descomentar cuando llegue expediente nuevo
+      if ($fpersonaspropuestas['t'] > 0 || $fpersonaspropuestasreporte['t'] > 0) {
         $data .= '<tr bgcolor="white">
         <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;'.$namecortocalidad.'</h1></td>
         <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fpersonaspropuestas['t'].'</h1></td>
@@ -475,7 +475,7 @@ $data .= '<div style="float: left; width: 55%;">
         <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fperincorporadasreporte['t'].'</h1></td>
         <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalperincorporadas.'</h1></td>
         </tr>';
-      // }descomentar cuando llegue expediente nuevo
+      }
     }
     ////////////////////////////////////////////////////////////////////////////////
     $personaspropuestastotal = "SELECT COUNT(*) as t FROM datospersonales

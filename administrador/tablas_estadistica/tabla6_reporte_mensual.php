@@ -1,18 +1,18 @@
 <?php
 include("calculardatesreportemensual.php");
 ////////////////////////////////////////////////////////////////////////////////
-$totalppnoincorporadas_col1 = 0;
-$totalppnoincorporadas_col2 = 0;
-$sumatotalppnoincorporadas = 0;
-$ppnoincorporadas = "SELECT datospersonales.calidadpersona FROM datospersonales
+$totalsujfinresguardo_col1 = 0;
+$totalsujfinresguardo_col2 = 0;
+$sumatotalsujetosfinresguardo = 0;
+$sujfinalderesguardo = "SELECT datospersonales.calidadpersona FROM datospersonales
 INNER JOIN medidas ON datospersonales.id = medidas.id_persona
 INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
 WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.estatus = 'DESINCORPORADO'
 AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino'
 AND datospersonales.relacional = 'NO' GROUP BY datospersonales.calidadpersona ORDER BY datospersonales.calidadpersona ASC";
-$rppnoincorporadas = $mysqli->query($ppnoincorporadas);
-while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
-  $namecalidad = $fppnoincorporadas['calidadpersona'];
+$rsujfinalderesguardo = $mysqli->query($sujfinalderesguardo);
+while ($fsujfinalderesguardo = $rsujfinalderesguardo->fetch_assoc()) {
+  $namecalidad = $fsujfinalderesguardo['calidadpersona'];
   if ($namecalidad === 'I. VICTIMA') {
     $namecortocalidad = 'VICTIMA';
   }
@@ -44,34 +44,34 @@ while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
     $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
   }
   //////////////////////////////////////////////////////////////////////////////
-  $ppnoincorporadas_col1 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
+  $sujfinalderesguardo_col1 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
   INNER JOIN medidas ON datospersonales.id = medidas.id_persona
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
   AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
   AND datospersonales.relacional = 'NO'";
-  $rppnoincorporadas_col1 = $mysqli->query($ppnoincorporadas_col1);
-  $fppnoincorporadas_col1 = $rppnoincorporadas_col1->fetch_assoc();
+  $rsujfinalderesguardo_col1 = $mysqli->query($sujfinalderesguardo_col1);
+  $fsujfinalderesguardo_col1 = $rsujfinalderesguardo_col1->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $ppnoincorporadas_col2 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
+  $sujfinalderesguardo_col2 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
   INNER JOIN medidas ON datospersonales.id = medidas.id_persona
   INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
   WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
   AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
   AND datospersonales.relacional = 'NO'";
-  $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
-  $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
+  $rsujfinalderesguardo_col2 = $mysqli->query($sujfinalderesguardo_col2);
+  $fsujfinalderesguardo_col2 = $rsujfinalderesguardo_col2->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
-  $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
-  $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
-  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
-  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  $totalsujfinresguardo_col1 = $totalsujfinresguardo_col1 + $fsujfinalderesguardo_col1['total'];
+  $totalsujfinresguardo_col2 = $totalsujfinresguardo_col2 + $fsujfinalderesguardo_col2['total'];
+  $totalsujfinresguardo_fila = $fsujfinalderesguardo_col1['total'] +$fsujfinalderesguardo_col2['total'];
+  $sumatotalsujetosfinresguardo = $sumatotalsujetosfinresguardo + $totalsujfinresguardo_fila;
   ?>
   <tr style="border: 3px solid black;">
     <td style="text-align:left; border: 3px solid black;"><b><?php echo $namecortocalidad; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fsujfinalderesguardo_col1['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $fsujfinalderesguardo_col2['total']; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalsujfinresguardo_fila; ?></b></td>
   </tr>
   <?php
 }
@@ -79,7 +79,7 @@ while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
 ?>
 <tr style="border: 3px solid black;">
   <td style="text-align:right; border: 3px solid black;"><b><?php echo "TOTAL"; ?></b></td>
-  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col1; ?></b></td>
-  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppnoincorporadas_col2; ?></b></td>
-  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalppnoincorporadas; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalsujfinresguardo_col1; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalsujfinresguardo_col2; ?></b></td>
+  <td style="text-align:center; border: 3px solid black;"><b><?php echo $sumatotalsujetosfinresguardo; ?></b></td>
 </tr>

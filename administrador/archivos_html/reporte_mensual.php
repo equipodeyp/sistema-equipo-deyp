@@ -22,7 +22,7 @@
         $diamesinicio = $anioActual."-".$mesActual."-01";
         $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
         ?>
-        <form class="" action="index.html" method="post">
+        <form action="../administrador/archivos_html/get_reportemensual.php" method="POST">
           <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <!-- PRIMER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
@@ -742,36 +742,55 @@
               }
               var data = google.visualization.arrayToDataTable(chartData);
               var options = {
-                title: 'EXPEDIENTES DE PROTECCIÓN INICIADOS',
-                // Centrar el título
+                // title: 'PERSONAS PROPUESTAS PARA SU INCORPORACIÓN',
                 titleTextStyle: {
                   color: '#333',
                   fontSize: 18,
-                  bold: true,
-                  italic: false,
-                  // Nota: Google Charts posiciona el título a la izquierda por defecto.
-                  // Para centrarlo visualmente usamos:
-                  auraColor: 'none'
+                  bold: true
                 },
-                // Esta propiedad ayuda a centrar el título respecto al gráfico
-                titlePosition: 'out',
-                alignment: 'center', // Intentar alineación centrada
-                width: 1230,
+                // --- GROSOR DE LA LÍNEA ---
+                lineWidth: 5,
+                // --------------------------
+                pointSize: 6, // Aumenté un poco el punto para que combine con la línea gruesa
+                chartArea: {
+                  left: 25,
+                  top: 30,
+                  width: '97%',
+                  height: '70%'
+                },
+                width: 1240,
                 height: 400,
-                colors: ['#4473c5'],
+                colors: ['#000'],
                 pointSize: 7,
+                legend: { position: 'none' },
                 hAxis: {
                   title: 'AÑO',
-                  slantedText: false, // Texto horizontal
-                  textStyle: { fontSize: 12 }
+                  titleTextStyle: {
+                    bold: true,
+                    fontSize: 20,
+                    color: '#333'
+                  },
+                  // --- ETIQUETAS DE LOS AÑOS EN NEGRITA ---
+                  textStyle: {
+                    fontSize: 20,
+                    bold: true,
+                    color: '#000' // Opcional: un color más oscuro para resaltar
+                  }
                 },
                 vAxis: {
-                  title: 'EXPEDIENTES',
+                  title: 'Personas',
+                  titleTextStyle: {
+                    bold: true,
+                    fontSize: 20,
+                    color: '#000'
+                  },
+                  textStyle: {
+                    bold: true // También puse los números del eje Y en negrita para consistencia
+                  },
                   minValue: 0,
                   viewWindow: { min: 0 },
-                  format: '0' // Quita decimales en el eje vertical
-                },
-                legend: { position: 'bottom' }
+                  format: '0'
+                }
               };
               var chart = new google.visualization.LineChart(document.getElementById('ciudadChart'));
               chart.draw(data, options);
@@ -779,7 +798,10 @@
             </script>
             <br>
             <textarea style="display:none" id="chartinfo"><?= $jsonData ?></textarea>
-            <div id="ciudadChart" style="border: 3px solid black;"></div>
+            <div class="">
+              <h3 style="text-align: center;"><b>EXPEDIENTES DE PROTECCIÓN INICIADOS</b></h3>
+              <div id="ciudadChart" style="border: 3px solid black;"></div>
+            </div>
             <!-- <canvas id="ciudadChart"></canvas> -->
             <!-- SUJETOS -->
             <?php
@@ -820,36 +842,55 @@
               }
               var data = google.visualization.arrayToDataTable(chartData);
               var options = {
-                title: 'PERSONAS PROPUESTAS PARA SU INCORPORACIÓN',
-                // Centrar el título
+                // title: 'PERSONAS PROPUESTAS PARA SU INCORPORACIÓN',
                 titleTextStyle: {
                   color: '#333',
                   fontSize: 18,
-                  bold: true,
-                  italic: false,
-                  // Nota: Google Charts posiciona el título a la izquierda por defecto.
-                  // Para centrarlo visualmente usamos:
-                  auraColor: 'none'
+                  bold: true
                 },
-                // Esta propiedad ayuda a centrar el título respecto al gráfico
-                titlePosition: 'out',
-                alignment: 'center', // Intentar alineación centrada
-                width: 1230,
+                // --- GROSOR DE LA LÍNEA ---
+                lineWidth: 5,
+                // --------------------------
+                pointSize: 6, // Aumenté un poco el punto para que combine con la línea gruesa
+                chartArea: {
+                  left: 25,
+                  top: 30,
+                  width: '97%',
+                  height: '70%'
+                },
+                width: 1240,
                 height: 400,
-                colors: ['#4473c5'],
+                colors: ['#000'],
                 pointSize: 7,
+                legend: { position: 'none' },
                 hAxis: {
                   title: 'AÑO',
-                  slantedText: false, // Texto horizontal
-                  textStyle: { fontSize: 12 }
+                  titleTextStyle: {
+                    bold: true,
+                    fontSize: 20,
+                    color: '#333'
+                  },
+                  // --- ETIQUETAS DE LOS AÑOS EN NEGRITA ---
+                  textStyle: {
+                    fontSize: 20,
+                    bold: true,
+                    color: '#000' // Opcional: un color más oscuro para resaltar
+                  }
                 },
                 vAxis: {
-                  title: 'PERSONAS',
+                  title: 'Personas',
+                  titleTextStyle: {
+                    bold: true,
+                    fontSize: 20,
+                    color: '#000'
+                  },
+                  textStyle: {
+                    bold: true // También puse los números del eje Y en negrita para consistencia
+                  },
                   minValue: 0,
                   viewWindow: { min: 0 },
-                  format: '0' // Quita decimales en el eje vertical
-                },
-                legend: { position: 'bottom' }
+                  format: '0'
+                }
               };
               var chart = new google.visualization.LineChart(document.getElementById('ciudadChart2'));
               chart.draw(data, options);
@@ -857,7 +898,11 @@
             </script>
             <br>
             <textarea style="display:none" id="chartinfo2"><?= $jsonData ?></textarea>
-            <div id="ciudadChart2" style="border: 3px solid black;"></div>
+            <!-- <div id="ciudadChart2" style="border: 3px solid black; width: 100%; display: block;"></div> -->
+            <div class="">
+              <h3 style="text-align: center;"><b>PERSONAS PROPUESTAS PARA SU INCORPORACIÓN</b></h3>
+              <div id="ciudadChart2" style="border: 3px solid black; width: 100%; display: block;"></div>
+            </div>
             <!-- <canvas id="ciudadChart2"></canvas> -->
             <!-- SUJETOS EN RESGUARDO-->
             <?php
@@ -865,7 +910,9 @@
             $sql = "SELECT YEAR(autoridad.fechasolicitud_persona) as año, COUNT(DISTINCT medidas.id_persona) as totalsujcr FROM medidas
             INNER JOIN datospersonales ON medidas.id_persona = datospersonales.id
             INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-            WHERE (medidas.date_provisional BETWEEN '2021-01-01' AND '2026-12-31' OR medidas.date_definitva BETWEEN '2021-01-01' AND '2026-12-31') AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.relacional = 'NO' AND autoridad.fechasolicitud_persona BETWEEN '2021-01-01' AND '2026-12-31'
+            WHERE (medidas.date_provisional BETWEEN '2021-01-01' AND '2026-12-31' OR medidas.date_definitva BETWEEN '2021-01-01' AND '2026-12-31')
+            AND medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.relacional = 'NO'
+            AND autoridad.fechasolicitud_persona BETWEEN '2021-01-01' AND '2026-12-31' AND medidas.estatus != 'CANCELADA'
             GROUP BY año
             ORDER BY año ASC";
             $records = mysqli_query($con, $sql);
@@ -900,44 +947,77 @@
               }
               var data = google.visualization.arrayToDataTable(chartData);
               var options = {
-                title: 'SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO',
-                // Centrar el título
+                // title: 'SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO',
                 titleTextStyle: {
                   color: '#333',
                   fontSize: 18,
-                  bold: true,
-                  italic: false,
-                  // Nota: Google Charts posiciona el título a la izquierda por defecto.
-                  // Para centrarlo visualmente usamos:
-                  auraColor: 'none'
+                  bold: true
                 },
-                // Esta propiedad ayuda a centrar el título respecto al gráfico
-                titlePosition: 'out',
-                alignment: 'center', // Intentar alineación centrada
-                width: 1230,
+                // --- GROSOR DE LA LÍNEA ---
+                lineWidth: 5,
+                // --------------------------
+                pointSize: 6, // Aumenté un poco el punto para que combine con la línea gruesa
+                chartArea: {
+                  left: 25,
+                  top: 30,
+                  width: '97%',
+                  height: '70%'
+                },
+                width: 1240,
                 height: 400,
-                colors: ['#4473c5'],
+                colors: ['#000'],
                 pointSize: 7,
+                legend: { position: 'none' },
                 hAxis: {
                   title: 'AÑO',
-                  slantedText: false, // Texto horizontal
-                  textStyle: { fontSize: 12 }
+                  titleTextStyle: {
+                    bold: true,
+                    fontSize: 20,
+                    color: '#333'
+                  },
+                  // --- ETIQUETAS DE LOS AÑOS EN NEGRITA ---
+                  textStyle: {
+                    fontSize: 20,
+                    bold: true,
+                    color: '#000' // Opcional: un color más oscuro para resaltar
+                  }
                 },
                 vAxis: {
-                  title: 'SUJETOS',
+                  title: 'Sujetos',
+                  titleTextStyle: {
+                    bold: true,
+                    fontSize: 20,
+                    color: '#000'
+                  },
+                  textStyle: {
+                    bold: true // También puse los números del eje Y en negrita para consistencia
+                  },
                   minValue: 0,
                   viewWindow: { min: 0 },
-                  format: '0' // Quita decimales en el eje vertical
-                },
-                legend: { position: 'bottom' }
+                  format: '0'
+                }
               };
               var chart = new google.visualization.LineChart(document.getElementById('ciudadChart3'));
               chart.draw(data, options);
+              // 1. Obtener la imagen en Base64
+var imgUri = chart.getImageURI();
+
+// 2. Enviar al servidor mediante una petición (fetch)
+fetch('guardar_grafica.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'imagen=' + encodeURIComponent(imgUri)
+})
+.then(response => response.text())
+.then(data => console.log('Imagen guardada:', data));
             }
             </script>
             <br>
             <textarea style="display:none" id="chartinfo3"><?= $jsonData ?></textarea>
-            <div id="ciudadChart3" style="border: 3px solid black;"></div>
+            <div class="">
+              <h3 style="text-align: center;"><b>SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO</b></h3>
+              <div id="ciudadChart3" style="border: 3px solid black;"></div>
+            </div>
             <!-- <canvas id="ciudadChart3"></canvas> -->
           </div>
         </form>

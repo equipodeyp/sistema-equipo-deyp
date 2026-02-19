@@ -256,7 +256,7 @@ $data .='</tbody>
         <tbody>
         </tbody>
       </table>
-    </div><br><br><br><br><br>';
+    </div><br><br><br><br>';
     $data .= '<div style="float: left; width: 50%;">
                 <table border="1px" cellspacing="0" width="90%" bgcolor="#97897D">
                   <thead>
@@ -454,7 +454,7 @@ $data .='</tbody>
                   //////////
       $data .='</tbody>
               </table>
-                </div><br><br><br><br><br><br><br>';
+                </div><br><br><br><br><br><br>';
                 $data .= '<div style="float: left; width: 100%;">
                             <table border="1px" cellspacing="0" width="100%" bgcolor="#97897D">
                               <thead>

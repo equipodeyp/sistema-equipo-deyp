@@ -60,14 +60,14 @@ while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
   //////////////////////////////////////////////////////////////////////////////
   $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
   $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
-  $totalpp_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
-  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalpp_fila;
+  $totalppni_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
+  $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalppni_fila;
   ?>
   <tr style="border: 3px solid black;">
     <td style="text-align:left; border: 3px solid black;"><b><?php echo $namecortocalidad; ?></b></td>
     <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col1['total']; ?></b></td>
     <td style="text-align:center; border: 3px solid black;"><b><?php echo $fppnoincorporadas_col2['total']; ?></b></td>
-    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalpp_fila; ?></b></td>
+    <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalppni_fila; ?></b></td>
   </tr>
   <?php
 }
