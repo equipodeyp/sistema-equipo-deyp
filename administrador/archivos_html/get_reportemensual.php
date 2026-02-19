@@ -1427,6 +1427,7 @@ $data .= '<!-- TABLA PRINCIPAL DE MAQUETACIÓN -->
 </table>';
 
                 $img_externa = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
+                $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
         $data .='
         <br><br><br><br><div style="style="float: left; width: 100%; background-color: white; border: 1.8px solid black;"">
         <div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 40px; min-height: 40px; min-width: 40%; max-width: 100%;">
