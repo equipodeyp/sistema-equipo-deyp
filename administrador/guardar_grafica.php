@@ -8,6 +8,7 @@ if (isset($_POST['imagen'])) {
     // RUTA CORREGIDA: Agregamos la barra tras C: y el nombre del archivo al final
     // Es vital que termine en .png para que no se considere una carpeta
     $file = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
+    $file = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
 
     // Intentar guardar
     if (file_put_contents($file, $data)) {
