@@ -239,19 +239,289 @@ $data .='<div style="float: left; width: 49%;">
 
   }
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>TOTAL</h4></td>
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>'.$totalpp_col1.'</h4></td>
-    <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>'.$totalpp_col2.'</h4></td>
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>'.$sumatotalpp.'</h4></td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpp_col1.'</td>
+    <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpp_col2.'</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalpp.'</td>
   </tr>';
 
   $data .= '<tbody>
   </table>
   <br>
+  <!-- siguiente tabla izquierda -->
+  <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+    <thead>
+      <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+        <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS INCORPORADOS<sup>2</sup></th>
+      </tr>
+      <tr style="background-color: white; border: 1.5px solid black;">
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+        <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+      </tr>
+    </thead>
+    <tbody>';
+    ////////////////////////////////////////////////////////////////////////////////
+    $totalpincorporadas_col1 = 0;
+    $totalpincorporadas_col2 = 0;
+    $sumatotalpincorporadas = 0;
+    $sujetosincorporados = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
+    INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+    WHERE determinacionincorporacion.convenio = 'FORMALIZADO'
+    AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
+    GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
+    $rsujetosincorporados = $mysqli->query($sujetosincorporados);
+    while ($fsujetosincorporados = $rsujetosincorporados->fetch_assoc()) {
+      $namecalidad = $fsujetosincorporados['calidadpersona'];
+      if ($namecalidad === 'I. VICTIMA') {
+        $namecortocalidad = 'VICTIMA';
+      }
+      if ($namecalidad === 'II. OFENDIDO') {
+        $namecortocalidad = 'OFENDIDO';
+      }
+      if ($namecalidad === 'III. TESTIGO') {
+        $namecortocalidad = 'TESTIGO';
+      }
+      if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
+        $namecortocalidad = 'COLABORADOR O INFORMANTE';
+      }
+      if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+        $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+      }
+      if ($namecalidad === 'VI. DEFENSOR') {
+        $namecortocalidad = 'DEFENSOR';
+      }
+      if ($namecalidad === 'VII. POLICIA') {
+        $namecortocalidad = 'POLICIA';
+      }
+      if ($namecalidad === 'VIII. PERITO') {
+        $namecortocalidad = 'PERITO';
+      }
+      if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+        $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+      }
+      if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+        $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+      }
+      //////////////////////////////////////////////////////////////////////////////
+      $sujetosincorporados_col1 = "SELECT COUNT(*) AS total FROM datospersonales
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE datospersonales.calidadpersona = '$namecalidad' AND determinacionincorporacion.convenio = 'FORMALIZADO'
+      AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+      AND datospersonales.relacional = 'NO'";
+      $rsujetosincorporados_col1 = $mysqli->query($sujetosincorporados_col1);
+      $fsujetosincorporados_col1 = $rsujetosincorporados_col1->fetch_assoc();
+      //////////////////////////////////////////////////////////////////////////////
+      $sujetosincorporados_col2 = "SELECT COUNT(*) AS total FROM datospersonales
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE datospersonales.calidadpersona = '$namecalidad' AND determinacionincorporacion.convenio = 'FORMALIZADO'
+      AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicio_col2' AND '$datefin_col2'
+      AND datospersonales.relacional = 'NO'";
+      $rsujetosincorporados_col2 = $mysqli->query($sujetosincorporados_col2);
+      $fsujetosincorporados_col2 = $rsujetosincorporados_col2->fetch_assoc();
+      //////////////////////////////////////////////////////////////////////////////
+      $totalpincorporadas_col1 = $totalpincorporadas_col1 + $fsujetosincorporados_col1['total'];
+      $totalpincorporadas_col2 = $totalpincorporadas_col2 + $fsujetosincorporados_col2['total'];
+      $totalsujetosincorporados_fila = $fsujetosincorporados_col1['total'] +$fsujetosincorporados_col2['total'];
+      $sumatotalpincorporadas = $sumatotalpincorporadas + $totalsujetosincorporados_fila;
 
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+      <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosincorporados_col1['total'].'</td>
+      <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosincorporados_col2['total'].'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalsujetosincorporados_fila.'</td>
+      </tr>';
+
+    }
+    $data .= '<tr style="background-color: white; border: 1px solid black;">
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpincorporadas_col1.'</td>
+      <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpincorporadas_col2.'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;" font-size:13.33px;>'.$sumatotalpincorporadas.'</td>
+    </tr>';
+
+    $data .='</tbody>
+    </table>
+    <table id="tabla1" border="1px" cellspacing="0" width="85%" bgcolor="white">
+      <thead class="thead-dark">
+        <tr>
+          <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: 300; font-size:8px; text-align: justify; color:black;" colspan="4">
+          &nbsp;&nbsp;<sup>2</sup>La incorporación se da mediante la formalización del Convenio de Entendimiento.
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <br>
+    <!-- siguiente tabla izquierda -->
+    <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+      <thead>
+        <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+          <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS QUE FINALIZARON SU ESTANCIA EN EL CENTRO DE RESGUARDO</th>
+        </tr>
+        <tr style="background-color: white; border: 1.5px solid black;">
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+          <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+        </tr>
+      </thead>
+      <tbody>';
+      ////////////////////////////////////////////////////////////////////////////////
+      $totalsujfinresguardo_col1 = 0;
+      $totalsujfinresguardo_col2 = 0;
+      $sumatotalsujetosfinresguardo = 0;
+      $sujfinalderesguardo = "SELECT datospersonales.calidadpersona FROM datospersonales
+      INNER JOIN medidas ON datospersonales.id = medidas.id_persona
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.estatus = 'DESINCORPORADO'
+      AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino'
+      AND datospersonales.relacional = 'NO' GROUP BY datospersonales.calidadpersona ORDER BY datospersonales.calidadpersona ASC";
+      $rsujfinalderesguardo = $mysqli->query($sujfinalderesguardo);
+      while ($fsujfinalderesguardo = $rsujfinalderesguardo->fetch_assoc()) {
+        $namecalidad = $fsujfinalderesguardo['calidadpersona'];
+        if ($namecalidad === 'I. VICTIMA') {
+          $namecortocalidad = 'VICTIMA';
+        }
+        if ($namecalidad === 'II. OFENDIDO') {
+          $namecortocalidad = 'OFENDIDO';
+        }
+        if ($namecalidad === 'III. TESTIGO') {
+          $namecortocalidad = 'TESTIGO';
+        }
+        if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
+          $namecortocalidad = 'COLABORADOR O INFORMANTE';
+        }
+        if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+          $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+        }
+        if ($namecalidad === 'VI. DEFENSOR') {
+          $namecortocalidad = 'DEFENSOR';
+        }
+        if ($namecalidad === 'VII. POLICIA') {
+          $namecortocalidad = 'POLICIA';
+        }
+        if ($namecalidad === 'VIII. PERITO') {
+          $namecortocalidad = 'PERITO';
+        }
+        if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+          $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+        }
+        if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+          $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+        }
+        //////////////////////////////////////////////////////////////////////////////
+        $sujfinalderesguardo_col1 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
+        INNER JOIN medidas ON datospersonales.id = medidas.id_persona
+        INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+        WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+        AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+        AND datospersonales.relacional = 'NO'";
+        $rsujfinalderesguardo_col1 = $mysqli->query($sujfinalderesguardo_col1);
+        $fsujfinalderesguardo_col1 = $rsujfinalderesguardo_col1->fetch_assoc();
+        //////////////////////////////////////////////////////////////////////////////
+        $sujfinalderesguardo_col2 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
+        INNER JOIN medidas ON datospersonales.id = medidas.id_persona
+        INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+        WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+        AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
+        AND datospersonales.relacional = 'NO'";
+        $rsujfinalderesguardo_col2 = $mysqli->query($sujfinalderesguardo_col2);
+        $fsujfinalderesguardo_col2 = $rsujfinalderesguardo_col2->fetch_assoc();
+        //////////////////////////////////////////////////////////////////////////////
+        $totalsujfinresguardo_col1 = $totalsujfinresguardo_col1 + $fsujfinalderesguardo_col1['total'];
+        $totalsujfinresguardo_col2 = $totalsujfinresguardo_col2 + $fsujfinalderesguardo_col2['total'];
+        $totalsujfinresguardo_fila = $fsujfinalderesguardo_col1['total'] +$fsujfinalderesguardo_col2['total'];
+        $sumatotalsujetosfinresguardo = $sumatotalsujetosfinresguardo + $totalsujfinresguardo_fila;
+
+        $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujfinalderesguardo_col1['total'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujfinalderesguardo_col2['total'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalsujfinresguardo_fila.'</td>
+        </tr>';
+
+      }
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalsujfinresguardo_col1.'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalsujfinresguardo_col2.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalsujetosfinresguardo.'</td>
+      </tr>';
+
+      $data .='</tbody>
+      </table>
+      <br>
+      <!-- siguiente tabla izquierda -->
+      <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+        <thead>
+          <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+            <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">ASISTENCIAS MÉDICAS OTORGADAS</th>
+          </tr>
+          <tr style="background-color: white; border: 1.5px solid black;">
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Servicio</th>
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+            <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+          </tr>
+        </thead>
+        <tbody>';
+        ////////////////////////////////////////////////////////////////////////////////
+        $totalamotorgadas_col1 = 0;
+        $totalamotorgadas_col2 = 0;
+        $sumatotalamotorgadas = 0;
+        $asistenciasmedicas = "SELECT solicitud_asistencia.servicio_medico, COUNT(*) AS total FROM solicitud_asistencia
+        INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+        WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+        AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio' AND '$datetermino'
+        GROUP BY solicitud_asistencia.servicio_medico ORDER BY total DESC, solicitud_asistencia.servicio_medico ASC";
+        $rasistenciasmedicas = $mysqli->query($asistenciasmedicas);
+        while ($fasistenciasmedicas = $rasistenciasmedicas->fetch_assoc()) {
+          $serviciomedico = $fasistenciasmedicas['servicio_medico'];
+          //////////////////////////////////////////////////////////////////////////////
+          $amotorgadas_col1 = "SELECT COUNT(*) AS total FROM solicitud_asistencia
+          INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+          WHERE solicitud_asistencia.servicio_medico = '$serviciomedico' AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+          AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
+          $ramotorgadas_col1 = $mysqli->query($amotorgadas_col1);
+          $famotorgadas_col1 = $ramotorgadas_col1->fetch_assoc();
+          //////////////////////////////////////////////////////////////////////////////
+          $amotorgadas_col2 = "SELECT COUNT(*) AS total FROM solicitud_asistencia
+          INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+          WHERE solicitud_asistencia.servicio_medico = '$serviciomedico' AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+          AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
+          $ramotorgadas_col2 = $mysqli->query($amotorgadas_col2);
+          $famotorgadas_col2 = $ramotorgadas_col2->fetch_assoc();
+          //////////////////////////////////////////////////////////////////////////////
+          $totalamotorgadas_col1 = $totalamotorgadas_col1 + $famotorgadas_col1['total'];
+          $totalamotorgadas_col2 = $totalamotorgadas_col2 + $famotorgadas_col2['total'];
+          $totalamotorgadas_fila = $famotorgadas_col1['total'] +$famotorgadas_col2['total'];
+          $sumatotalamotorgadas = $sumatotalamotorgadas + $totalamotorgadas_fila;
+
+          $data .= '<tr style="background-color: white; border: 1px solid black;">
+          <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$serviciomedico.'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$famotorgadas_col1['total'].'</td>
+          <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$famotorgadas_col2['total'].'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalamotorgadas_fila.'</td>
+          </tr>';
+
+        }
+        $data .= '<tr style="background-color: white; border: 1px solid black;">
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalamotorgadas_col1.'</td>
+          <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalamotorgadas_col2.'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalamotorgadas.'</td>
+        </tr>';
+
+        $data .='</tbody>
+        </table>
 </div>';
+////////////////////////////////////////////////////////////////////////////////
 $data .='<div style="float: center; width: 2%;">
 </div>';
+////////////////////////////////////////////////////////////////////////////////
 $data .='<div style="float: right; width: 49%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
@@ -348,746 +618,263 @@ $data .='<div style="float: right; width: 49%;">
   <table id="tabla1" border="1px" cellspacing="0" width="85%" bgcolor="white">
     <thead class="thead-dark">
       <tr>
-        <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: bold;" colspan="4"><h1 style="font-size:8px; text-align: justify; color:black; font-weight: bold;">
+        <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: 300; font-size:8px; text-align: justify; color:black;" colspan="4">
         &nbsp;&nbsp;<sup>1</sup>Corresponde a los siguientes casos:<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) La solicitud no cumple con los requisitos de Ley.<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) La persona manifiesta negativa de voluntariedad para incorporarse.<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) Se determina la no procedencia de incorporación.<br>
-      </h1></th>
+      </th>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>
-</div>';
-$data .='';
-$data .='';
-$data .='';
-$data .='';
-$data .='';
+  <br>
+  <!-- siguiente tabla derecha -->
+  <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+    <thead>
+      <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+        <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS DESINCORPORADOS<sup>3</sup></th>
+      </tr>
+      <tr style="background-color: white; border: 1.5px solid black;">
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+        <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+      </tr>
+    </thead>
+    <tbody>';
+    ////////////////////////////////////////////////////////////////////////////////
+    $totalpdesincorporadas_col1 = 0;
+    $totalpdesincorporadas_col2 = 0;
+    $sumatotalpdesincorporadas = 0;
+    $sujetosdesincorporadas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
+    INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+    WHERE datospersonales.estatus = 'DESINCORPORADO'
+    AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
+    GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
+    $rsujetosdesincorporadas = $mysqli->query($sujetosdesincorporadas);
+    while ($fsujetosdesincorporadas = $rsujetosdesincorporadas->fetch_assoc()) {
+      $namecalidad = $fsujetosdesincorporadas['calidadpersona'];
+      if ($namecalidad === 'I. VICTIMA') {
+        $namecortocalidad = 'VICTIMA';
+      }
+      if ($namecalidad === 'II. OFENDIDO') {
+        $namecortocalidad = 'OFENDIDO';
+      }
+      if ($namecalidad === 'III. TESTIGO') {
+        $namecortocalidad = 'TESTIGO';
+      }
+      if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
+        $namecortocalidad = 'COLABORADOR O INFORMANTE';
+      }
+      if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+        $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+      }
+      if ($namecalidad === 'VI. DEFENSOR') {
+        $namecortocalidad = 'DEFENSOR';
+      }
+      if ($namecalidad === 'VII. POLICIA') {
+        $namecortocalidad = 'POLICIA';
+      }
+      if ($namecalidad === 'VIII. PERITO') {
+        $namecortocalidad = 'PERITO';
+      }
+      if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+        $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+      }
+      if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+        $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
+      }
+      //////////////////////////////////////////////////////////////////////////////
+      $sujetosdesincorporadas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+      AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
+      AND datospersonales.relacional = 'NO'";
+      $rsujetosdesincorporadas_col1 = $mysqli->query($sujetosdesincorporadas_col1);
+      $fsujetosdesincorporadas_col1 = $rsujetosdesincorporadas_col1->fetch_assoc();
+      //////////////////////////////////////////////////////////////////////////////
+      $sujetosdesincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+      AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
+      AND datospersonales.relacional = 'NO'";
+      $rsujetosdesincorporadas_col2 = $mysqli->query($sujetosdesincorporadas_col2);
+      $fsujetosdesincorporadas_col2 = $rsujetosdesincorporadas_col2->fetch_assoc();
+      //////////////////////////////////////////////////////////////////////////////
+      $totalpdesincorporadas_col1 = $totalpdesincorporadas_col1 + $fsujetosdesincorporadas_col1['total'];
+      $totalpdesincorporadas_col2 = $totalpdesincorporadas_col2 + $fsujetosdesincorporadas_col2['total'];
+      $totalsujetosdesincorporados_fila = $fsujetosdesincorporadas_col1['total'] +$fsujetosdesincorporadas_col2['total'];
+      $sumatotalpdesincorporadas = $sumatotalpdesincorporadas + $totalsujetosdesincorporados_fila;
 
-////////////////////////////////////////////////////////////////////////////////
-$data .= '<!-- TABLA PRINCIPAL DE MAQUETACIÓN -->
-<table class="tabla-layout">
-    <tr>
-        <!-- COLUMNA IZQUIERDA -->
-        <td style="vertical-align: top; width: 49%; padding-right: 1%;">
-        <table border="1.5px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:18.33px;">PERSONAS PROPUESTAS PARA SU INCORPORACIÓN</th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          ////////////////////////////////////////////////////////////////////////////////
-          $totalpp_col1 = 0;
-          $totalpp_col2 = 0;
-          $sumatotalpp = 0;
-          $personaspropuestas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
-          INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-          WHERE autoridad.fechasolicitud_persona BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
-          GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
-          $rpersonaspropuestas = $mysqli->query($personaspropuestas);
-          while ($fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc()) {
-            $namecalidad = $fpersonaspropuestas['calidadpersona'];
-            if ($namecalidad === 'I. VICTIMA') {
-              $namecortocalidad = 'VICTIMA';
-            }
-            if ($namecalidad === 'II. OFENDIDO') {
-              $namecortocalidad = 'OFENDIDO';
-            }
-            if ($namecalidad === 'III. TESTIGO') {
-              $namecortocalidad = 'TESTIGO';
-            }
-            if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
-              $namecortocalidad = 'COLABORADOR O INFORMANTE';
-            }
-            if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
-              $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
-            }
-            if ($namecalidad === 'VI. DEFENSOR') {
-              $namecortocalidad = 'DEFENSOR';
-            }
-            if ($namecalidad === 'VII. POLICIA') {
-              $namecortocalidad = 'POLICIA';
-            }
-            if ($namecalidad === 'VIII. PERITO') {
-              $namecortocalidad = 'PERITO';
-            }
-            if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
-              $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
-            }
-            if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
-              $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
-            }
-            //////////////////////////////////////////////////////////////////////////////
-            $personaspropuestas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
-            INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-            WHERE datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio_col1' AND '$datefin_col1'
-            AND datospersonales.relacional = 'NO'";
-            $rpersonaspropuestas_col1 = $mysqli->query($personaspropuestas_col1);
-            $fpersonaspropuestas_col1 = $rpersonaspropuestas_col1->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $personaspropuestas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
-            INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-            WHERE datospersonales.calidadpersona = '$namecalidad' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio_col2' AND '$datefin_col2'
-            AND datospersonales.relacional = 'NO'";
-            $rpersonaspropuestas_col2 = $mysqli->query($personaspropuestas_col2);
-            $fpersonaspropuestas_col2 = $rpersonaspropuestas_col2->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $totalpp_col1 = $totalpp_col1 + $fpersonaspropuestas_col1['total'];
-            $totalpp_col2 = $totalpp_col2 + $fpersonaspropuestas_col2['total'];
-            $totalpp_fila = $fpersonaspropuestas_col1['total'] +$fpersonaspropuestas_col2['total'];
-            $sumatotalpp = $sumatotalpp + $totalpp_fila;
-            $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$namecortocalidad.'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fpersonaspropuestas_col1['total'].'</td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fpersonaspropuestas_col2['total'].'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalpp_fila.'</td>
-            </tr>';
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+      <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosdesincorporadas_col1['total'].'</td>
+      <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosdesincorporadas_col2['total'].'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalsujetosdesincorporados_fila.'</td>
+      </tr>';
+    }
+    $data .= '<tr style="background-color: white; border: 1px solid black;">
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpdesincorporadas_col1.'</td>
+      <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpdesincorporadas_col2.'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalpdesincorporadas.'</td>
+    </tr>';
 
-          }
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalpp_col1.'</h4></td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalpp_col2.'</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalpp.'</h4></td>
-          </tr>';
+    $data .='</tbody>
+    </table>
+    <table id="tabla1" border="1px" cellspacing="0" width="85%" bgcolor="white">
+      <thead class="thead-dark">
+        <tr>
+          <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: 100; font-size:8px; text-align: justify; color:black;" colspan="4">
+          &nbsp;&nbsp;<sup>3</sup>Se refiere a los Sujetos Protegidos que se encuentran en los siguientes supuestos: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) Concluyó su participación dentro del Proceso Penal.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) Renuncia voluntaria.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) Determinación de disminución o cese del riesgo.<br>
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <br>
+    <!-- siguiente tabla derecha -->
+    <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+      <thead>
+        <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+          <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">MEDIDAS DE APOYO EJECUTADAS</th>
+        </tr>
+        <tr style="background-color: white; border: 1.5px solid black;">
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+          <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+        </tr>
+      </thead>
+      <tbody>';
+      ////////////////////////////////////////////////////////////////////////////////
+      $totalmedidasejecutadas_col1 = 0;
+      $totalmedidasejecutadas_col2 = 0;
+      $sumatotalmedidasejecutadas = 0;
+      $medidasejecutadas = "SELECT medidas.ejecucion, COUNT(*) AS total FROM medidas
+      WHERE medidas.estatus = 'EJECUTADA'
+      AND medidas.date_ejecucion BETWEEN '$dateinicio' AND '$datetermino'
+      GROUP BY medidas.ejecucion ORDER BY total DESC, medidas.ejecucion ASC";
+      $rmedidasejecutadas = $mysqli->query($medidasejecutadas);
+      while ($fmedidasejecutadas = $rmedidasejecutadas->fetch_assoc()) {
+        $municipio = $fmedidasejecutadas['ejecucion'];
+        //////////////////////////////////////////////////////////////////////////////
+        $medidasejecutadas_col1 = "SELECT COUNT(*) AS total FROM medidas
+        WHERE medidas.estatus = 'EJECUTADA' AND medidas.ejecucion = '$municipio'
+        AND medidas.date_ejecucion BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
+        $rmedidasejecutadas_col1 = $mysqli->query($medidasejecutadas_col1);
+        $fmedidasejecutadas_col1 = $rmedidasejecutadas_col1->fetch_assoc();
+        //////////////////////////////////////////////////////////////////////////////
+        $medidasejecutadas_col2 = "SELECT COUNT(*) AS total FROM medidas
+        WHERE medidas.estatus = 'EJECUTADA' AND medidas.ejecucion = '$municipio'
+        AND medidas.date_ejecucion BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
+        $rmedidasejecutadas_col2 = $mysqli->query($medidasejecutadas_col2);
+        $fmedidasejecutadas_col2 = $rmedidasejecutadas_col2->fetch_assoc();
+        //////////////////////////////////////////////////////////////////////////////
+        $totalmedidasejecutadas_col1 = $totalmedidasejecutadas_col1 + $fmedidasejecutadas_col1['total'];
+        $totalmedidasejecutadas_col2 = $totalmedidasejecutadas_col2 + $fmedidasejecutadas_col2['total'];
+        $totalmedidasejecutadas_fila = $fmedidasejecutadas_col1['total'] +$fmedidasejecutadas_col2['total'];
+        $sumatotalmedidasejecutadas = $sumatotalmedidasejecutadas + $totalmedidasejecutadas_fila;
 
-          $data .= '<tbody>
-          </table>
-          <br>
-          <!-- siguiente tabla izquierda -->
-          <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-            <thead>
-              <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-                <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">SUJETOS INCORPORADOS<sup>2</sup></th>
-              </tr>
-              <tr style="background-color: white; border: 1.5px solid black;">
-                <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-                <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-                <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-                <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-              </tr>
-            </thead>
-            <tbody>';
-            ////////////////////////////////////////////////////////////////////////////////
-            $totalpincorporadas_col1 = 0;
-            $totalpincorporadas_col2 = 0;
-            $sumatotalpincorporadas = 0;
-            $sujetosincorporados = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
-            INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-            WHERE determinacionincorporacion.convenio = 'FORMALIZADO'
-            AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
-            GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
-            $rsujetosincorporados = $mysqli->query($sujetosincorporados);
-            while ($fsujetosincorporados = $rsujetosincorporados->fetch_assoc()) {
-              $namecalidad = $fsujetosincorporados['calidadpersona'];
-              if ($namecalidad === 'I. VICTIMA') {
-                $namecortocalidad = 'VICTIMA';
-              }
-              if ($namecalidad === 'II. OFENDIDO') {
-                $namecortocalidad = 'OFENDIDO';
-              }
-              if ($namecalidad === 'III. TESTIGO') {
-                $namecortocalidad = 'TESTIGO';
-              }
-              if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
-                $namecortocalidad = 'COLABORADOR O INFORMANTE';
-              }
-              if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
-                $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
-              }
-              if ($namecalidad === 'VI. DEFENSOR') {
-                $namecortocalidad = 'DEFENSOR';
-              }
-              if ($namecalidad === 'VII. POLICIA') {
-                $namecortocalidad = 'POLICIA';
-              }
-              if ($namecalidad === 'VIII. PERITO') {
-                $namecortocalidad = 'PERITO';
-              }
-              if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
-                $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
-              }
-              if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
-                $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
-              }
-              //////////////////////////////////////////////////////////////////////////////
-              $sujetosincorporados_col1 = "SELECT COUNT(*) AS total FROM datospersonales
-              INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-              WHERE datospersonales.calidadpersona = '$namecalidad' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-              AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicio_col1' AND '$datefin_col1'
-              AND datospersonales.relacional = 'NO'";
-              $rsujetosincorporados_col1 = $mysqli->query($sujetosincorporados_col1);
-              $fsujetosincorporados_col1 = $rsujetosincorporados_col1->fetch_assoc();
-              //////////////////////////////////////////////////////////////////////////////
-              $sujetosincorporados_col2 = "SELECT COUNT(*) AS total FROM datospersonales
-              INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-              WHERE datospersonales.calidadpersona = '$namecalidad' AND determinacionincorporacion.convenio = 'FORMALIZADO'
-              AND determinacionincorporacion.fecha_inicio BETWEEN '$dateinicio_col2' AND '$datefin_col2'
-              AND datospersonales.relacional = 'NO'";
-              $rsujetosincorporados_col2 = $mysqli->query($sujetosincorporados_col2);
-              $fsujetosincorporados_col2 = $rsujetosincorporados_col2->fetch_assoc();
-              //////////////////////////////////////////////////////////////////////////////
-              $totalpincorporadas_col1 = $totalpincorporadas_col1 + $fsujetosincorporados_col1['total'];
-              $totalpincorporadas_col2 = $totalpincorporadas_col2 + $fsujetosincorporados_col2['total'];
-              $totalsujetosincorporados_fila = $fsujetosincorporados_col1['total'] +$fsujetosincorporados_col2['total'];
-              $sumatotalpincorporadas = $sumatotalpincorporadas + $totalsujetosincorporados_fila;
+        $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$municipio.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmedidasejecutadas_col1['total'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmedidasejecutadas_col2['total'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalmedidasejecutadas_fila.'</td>
+        </tr>';
 
-              $data .= '<tr style="background-color: white; border: 1px solid black;">
-              <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$namecortocalidad.'</td>
-              <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fsujetosincorporados_col1['total'].'</td>
-              <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fsujetosincorporados_col2['total'].'</td>
-              <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalsujetosincorporados_fila.'</td>
-              </tr>';
+      }
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalmedidasejecutadas_col1.'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalmedidasejecutadas_col2.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalmedidasejecutadas.'</td>
+      </tr>';
 
-            }
-            $data .= '<tr style="background-color: white; border: 1px solid black;">
-              <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-              <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalpincorporadas_col1.'</h4></td>
-              <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalpincorporadas_col2.'</h4></td>
-              <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalpincorporadas.'</h4></td>
-            </tr>';
-
-            $data .='</tbody>
-            </table>
-            <table id="tabla1" border="1px" cellspacing="0" width="85%" bgcolor="white">
-              <thead class="thead-dark">
-                <tr>
-                  <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: bold;" colspan="4"><h1 style="font-size:8px; text-align: justify; color:black; font-weight: bold;">
-                  &nbsp;&nbsp;<sup>2</sup>La incorporación se da mediante la formalización del Convenio de Entendimiento.
-                </h1></th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-            <br>
-            <!-- siguiente tabla izquierda -->
-            <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-              <thead>
-                <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-                  <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">SUJETOS QUE FINALIZARON SU ESTANCIA EN EL CENTRO DE RESGUARDO</th>
-                </tr>
-                <tr style="background-color: white; border: 1.5px solid black;">
-                  <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-                  <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-                  <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-                  <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-                </tr>
-              </thead>
-              <tbody>';
-              ////////////////////////////////////////////////////////////////////////////////
-              $totalsujfinresguardo_col1 = 0;
-              $totalsujfinresguardo_col2 = 0;
-              $sumatotalsujetosfinresguardo = 0;
-              $sujfinalderesguardo = "SELECT datospersonales.calidadpersona FROM datospersonales
-              INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-              INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-              WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.estatus = 'DESINCORPORADO'
-              AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino'
-              AND datospersonales.relacional = 'NO' GROUP BY datospersonales.calidadpersona ORDER BY datospersonales.calidadpersona ASC";
-              $rsujfinalderesguardo = $mysqli->query($sujfinalderesguardo);
-              while ($fsujfinalderesguardo = $rsujfinalderesguardo->fetch_assoc()) {
-                $namecalidad = $fsujfinalderesguardo['calidadpersona'];
-                if ($namecalidad === 'I. VICTIMA') {
-                  $namecortocalidad = 'VICTIMA';
-                }
-                if ($namecalidad === 'II. OFENDIDO') {
-                  $namecortocalidad = 'OFENDIDO';
-                }
-                if ($namecalidad === 'III. TESTIGO') {
-                  $namecortocalidad = 'TESTIGO';
-                }
-                if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
-                  $namecortocalidad = 'COLABORADOR O INFORMANTE';
-                }
-                if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
-                  $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
-                }
-                if ($namecalidad === 'VI. DEFENSOR') {
-                  $namecortocalidad = 'DEFENSOR';
-                }
-                if ($namecalidad === 'VII. POLICIA') {
-                  $namecortocalidad = 'POLICIA';
-                }
-                if ($namecalidad === 'VIII. PERITO') {
-                  $namecortocalidad = 'PERITO';
-                }
-                if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
-                  $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
-                }
-                if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
-                  $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
-                }
-                //////////////////////////////////////////////////////////////////////////////
-                $sujfinalderesguardo_col1 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
-                INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-                INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-                WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
-                AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
-                AND datospersonales.relacional = 'NO'";
-                $rsujfinalderesguardo_col1 = $mysqli->query($sujfinalderesguardo_col1);
-                $fsujfinalderesguardo_col1 = $rsujfinalderesguardo_col1->fetch_assoc();
-                //////////////////////////////////////////////////////////////////////////////
-                $sujfinalderesguardo_col2 = "SELECT COUNT(DISTINCT medidas.id_persona) AS total FROM datospersonales
-                INNER JOIN medidas ON datospersonales.id = medidas.id_persona
-                INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-                WHERE medidas.medida = 'VIII. ALOJAMIENTO TEMPORAL' AND datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
-                AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
-                AND datospersonales.relacional = 'NO'";
-                $rsujfinalderesguardo_col2 = $mysqli->query($sujfinalderesguardo_col2);
-                $fsujfinalderesguardo_col2 = $rsujfinalderesguardo_col2->fetch_assoc();
-                //////////////////////////////////////////////////////////////////////////////
-                $totalsujfinresguardo_col1 = $totalsujfinresguardo_col1 + $fsujfinalderesguardo_col1['total'];
-                $totalsujfinresguardo_col2 = $totalsujfinresguardo_col2 + $fsujfinalderesguardo_col2['total'];
-                $totalsujfinresguardo_fila = $fsujfinalderesguardo_col1['total'] +$fsujfinalderesguardo_col2['total'];
-                $sumatotalsujetosfinresguardo = $sumatotalsujetosfinresguardo + $totalsujfinresguardo_fila;
-
-                $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$namecortocalidad.'</td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fsujfinalderesguardo_col1['total'].'</td>
-                <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fsujfinalderesguardo_col2['total'].'</td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalsujfinresguardo_fila.'</td>
-                </tr>';
-
-              }
-              $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalsujfinresguardo_col1.'</h4></td>
-                <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalsujfinresguardo_col2.'</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalsujetosfinresguardo.'</h4></td>
-              </tr>';
-
-              $data .='</tbody>
-              </table>
-              <br>
-            <!-- siguiente tabla izquierda -->
-            <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-              <thead>
-                <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-                  <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">ASISTENCIAS MÉDICAS OTORGADAS</th>
-                </tr>
-                <tr style="background-color: white; border: 1.5px solid black;">
-                  <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Servicio</th>
-                  <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-                  <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-                  <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-                </tr>
-              </thead>
-              <tbody>';
-              ////////////////////////////////////////////////////////////////////////////////
-              $totalamotorgadas_col1 = 0;
-              $totalamotorgadas_col2 = 0;
-              $sumatotalamotorgadas = 0;
-              $asistenciasmedicas = "SELECT solicitud_asistencia.servicio_medico, COUNT(*) AS total FROM solicitud_asistencia
-              INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-              WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
-              AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio' AND '$datetermino'
-              GROUP BY solicitud_asistencia.servicio_medico ORDER BY total DESC, solicitud_asistencia.servicio_medico ASC";
-              $rasistenciasmedicas = $mysqli->query($asistenciasmedicas);
-              while ($fasistenciasmedicas = $rasistenciasmedicas->fetch_assoc()) {
-                $serviciomedico = $fasistenciasmedicas['servicio_medico'];
-                //////////////////////////////////////////////////////////////////////////////
-                $amotorgadas_col1 = "SELECT COUNT(*) AS total FROM solicitud_asistencia
-                INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-                WHERE solicitud_asistencia.servicio_medico = '$serviciomedico' AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
-                AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
-                $ramotorgadas_col1 = $mysqli->query($amotorgadas_col1);
-                $famotorgadas_col1 = $ramotorgadas_col1->fetch_assoc();
-                //////////////////////////////////////////////////////////////////////////////
-                $amotorgadas_col2 = "SELECT COUNT(*) AS total FROM solicitud_asistencia
-                INNER JOIN cita_asistencia ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-                WHERE solicitud_asistencia.servicio_medico = '$serviciomedico' AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
-                AND cita_asistencia.fecha_asistencia BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
-                $ramotorgadas_col2 = $mysqli->query($amotorgadas_col2);
-                $famotorgadas_col2 = $ramotorgadas_col2->fetch_assoc();
-                //////////////////////////////////////////////////////////////////////////////
-                $totalamotorgadas_col1 = $totalamotorgadas_col1 + $famotorgadas_col1['total'];
-                $totalamotorgadas_col2 = $totalamotorgadas_col2 + $famotorgadas_col2['total'];
-                $totalamotorgadas_fila = $famotorgadas_col1['total'] +$famotorgadas_col2['total'];
-                $sumatotalamotorgadas = $sumatotalamotorgadas + $totalamotorgadas_fila;
-
-                $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$serviciomedico.'</td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$famotorgadas_col1['total'].'</td>
-                <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$famotorgadas_col2['total'].'</td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalamotorgadas_fila.'</td>
-                </tr>';
-
-              }
-              $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalamotorgadas_col1.'</h4></td>
-                <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalamotorgadas_col2.'</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalamotorgadas.'</h4></td>
-              </tr>';
-
-              $data .='</tbody>
-              </table>
-        </td>
-
-        <!-- COLUMNA DERECHA -->
-        <td style="vertical-align: top; width: 49%; padding-left: 1%;">
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">PERSONAS PROPUESTAS NO INCORPORADAS<sup>1</sup></th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          ////////////////////////////////////////////////////////////////////////////////
-          $totalppnoincorporadas_col1 = 0;
-          $totalppnoincorporadas_col2 = 0;
-          $sumatotalppnoincorporadas = 0;
-          $ppnoincorporadas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
-          INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-          WHERE datospersonales.estatus = 'NO INCORPORADO' AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
-          GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
-          $rppnoincorporadas = $mysqli->query($ppnoincorporadas);
-          while ($fppnoincorporadas = $rppnoincorporadas->fetch_assoc()) {
-            $namecalidad = $fppnoincorporadas['calidadpersona'];
-            if ($namecalidad === 'I. VICTIMA') {
-              $namecortocalidad = 'VICTIMA';
-            }
-            if ($namecalidad === 'II. OFENDIDO') {
-              $namecortocalidad = 'OFENDIDO';
-            }
-            if ($namecalidad === 'III. TESTIGO') {
-              $namecortocalidad = 'TESTIGO';
-            }
-            if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
-              $namecortocalidad = 'COLABORADOR O INFORMANTE';
-            }
-            if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
-              $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
-            }
-            if ($namecalidad === 'VI. DEFENSOR') {
-              $namecortocalidad = 'DEFENSOR';
-            }
-            if ($namecalidad === 'VII. POLICIA') {
-              $namecortocalidad = 'POLICIA';
-            }
-            if ($namecalidad === 'VIII. PERITO') {
-              $namecortocalidad = 'PERITO';
-            }
-            if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
-              $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
-            }
-            if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
-              $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
-            }
-            //////////////////////////////////////////////////////////////////////////////
-            $ppnoincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
-            INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-            WHERE datospersonales.estatus = 'NO INCORPORADO' AND datospersonales.calidadpersona = '$namecalidad'
-            AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio_col1' AND '$datefin_col1'
-            AND datospersonales.relacional = 'NO'";
-            $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
-            $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $ppnoincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
-            INNER JOIN autoridad ON datospersonales.id = autoridad.id_persona
-            WHERE datospersonales.estatus = 'NO INCORPORADO' AND datospersonales.calidadpersona = '$namecalidad'
-            AND autoridad.fechasolicitud_persona BETWEEN '$dateinicio_col2' AND '$datefin_col2'
-            AND datospersonales.relacional = 'NO'";
-            $rppnoincorporadas_col2 = $mysqli->query($ppnoincorporadas_col2);
-            $fppnoincorporadas_col2 = $rppnoincorporadas_col2->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $totalppnoincorporadas_col1 = $totalppnoincorporadas_col1 + $fppnoincorporadas_col1['total'];
-            $totalppnoincorporadas_col2 = $totalppnoincorporadas_col2 + $fppnoincorporadas_col2['total'];
-            $totalppni_fila = $fppnoincorporadas_col1['total'] +$fppnoincorporadas_col2['total'];
-            $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalppni_fila;
-
-            $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$namecortocalidad.'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fppnoincorporadas_col1['total'].'</td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fppnoincorporadas_col2['total'].'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalppni_fila.'</td>
-            </tr>';
-          }
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalppnoincorporadas_col1.'</h4></td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalppnoincorporadas_col2.'</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalppnoincorporadas.'</h4></td>
-          </tr>';
-
-          $data .='</tbody>
-          </table>
-          <table id="tabla1" border="1px" cellspacing="0" width="85%" bgcolor="white">
-            <thead class="thead-dark">
-              <tr>
-                <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: bold;" colspan="4"><h1 style="font-size:8px; text-align: justify; color:black; font-weight: bold;">
-                &nbsp;&nbsp;<sup>1</sup>Corresponde a los siguientes casos:<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) La solicitud no cumple con los requisitos de Ley.<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) La persona manifiesta negativa de voluntariedad para incorporarse.<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) Se determina la no procedencia de incorporación.<br>
-              </h1></th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <br>
-        <!-- siguiente tabla izquierda -->
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">SUJETOS DESINCORPORADOS<sup>3</sup></th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          ////////////////////////////////////////////////////////////////////////////////
-          $totalpdesincorporadas_col1 = 0;
-          $totalpdesincorporadas_col2 = 0;
-          $sumatotalpdesincorporadas = 0;
-          $sujetosdesincorporadas = "SELECT calidadpersona, COUNT(*) AS total FROM datospersonales
-          INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-          WHERE datospersonales.estatus = 'DESINCORPORADO'
-          AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio' AND '$datetermino' AND datospersonales.relacional = 'NO'
-          GROUP BY datospersonales.calidadpersona ORDER BY total DESC, datospersonales.calidadpersona ASC";
-          $rsujetosdesincorporadas = $mysqli->query($sujetosdesincorporadas);
-          while ($fsujetosdesincorporadas = $rsujetosdesincorporadas->fetch_assoc()) {
-            $namecalidad = $fsujetosdesincorporadas['calidadpersona'];
-            if ($namecalidad === 'I. VICTIMA') {
-              $namecortocalidad = 'VICTIMA';
-            }
-            if ($namecalidad === 'II. OFENDIDO') {
-              $namecortocalidad = 'OFENDIDO';
-            }
-            if ($namecalidad === 'III. TESTIGO') {
-              $namecortocalidad = 'TESTIGO';
-            }
-            if ($namecalidad === 'IV. COLABORADOR O INFORMANTE') {
-              $namecortocalidad = 'COLABORADOR O INFORMANTE';
-            }
-            if ($namecalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
-              $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
-            }
-            if ($namecalidad === 'VI. DEFENSOR') {
-              $namecortocalidad = 'DEFENSOR';
-            }
-            if ($namecalidad === 'VII. POLICIA') {
-              $namecortocalidad = 'POLICIA';
-            }
-            if ($namecalidad === 'VIII. PERITO') {
-              $namecortocalidad = 'PERITO';
-            }
-            if ($namecalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
-              $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
-            }
-            if ($namecalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
-              $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANIA';
-            }
-            //////////////////////////////////////////////////////////////////////////////
-            $sujetosdesincorporadas_col1 = "SELECT COUNT(*) AS total FROM datospersonales
-            INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-            WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
-            AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col1' AND '$datefin_col1'
-            AND datospersonales.relacional = 'NO'";
-            $rsujetosdesincorporadas_col1 = $mysqli->query($sujetosdesincorporadas_col1);
-            $fsujetosdesincorporadas_col1 = $rsujetosdesincorporadas_col1->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $sujetosdesincorporadas_col2 = "SELECT COUNT(*) AS total FROM datospersonales
-            INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
-            WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
-            AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateinicio_col2' AND '$datefin_col2'
-            AND datospersonales.relacional = 'NO'";
-            $rsujetosdesincorporadas_col2 = $mysqli->query($sujetosdesincorporadas_col2);
-            $fsujetosdesincorporadas_col2 = $rsujetosdesincorporadas_col2->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $totalpdesincorporadas_col1 = $totalpdesincorporadas_col1 + $fsujetosdesincorporadas_col1['total'];
-            $totalpdesincorporadas_col2 = $totalpdesincorporadas_col2 + $fsujetosdesincorporadas_col2['total'];
-            $totalsujetosdesincorporados_fila = $fsujetosdesincorporadas_col1['total'] +$fsujetosdesincorporadas_col2['total'];
-            $sumatotalpdesincorporadas = $sumatotalpdesincorporadas + $totalsujetosdesincorporados_fila;
-
-            $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$namecortocalidad.'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fsujetosdesincorporadas_col1['total'].'</td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fsujetosdesincorporadas_col2['total'].'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalsujetosdesincorporados_fila.'</td>
-            </tr>';
-          }
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalpdesincorporadas_col1.'</h4></td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalpdesincorporadas_col2.'</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalpdesincorporadas.'</h4></td>
-          </tr>';
-
-          $data .='</tbody>
-          </table>
-          <table id="tabla1" border="1px" cellspacing="0" width="85%" bgcolor="white">
-            <thead class="thead-dark">
-              <tr>
-                <th style="background-color: white; border: 6px solid white; text-align:justify; font-weight: bold;" colspan="4"><h1 style="font-size:8px; text-align: justify; color:black; font-weight: bold;">
-                &nbsp;&nbsp;<sup>3</sup>Se refiere a los Sujetos Protegidos que se encuentran en los siguientes supuestos: <br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) Concluyó su participación dentro del Proceso Penal.<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) Renuncia voluntaria.<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c) Determinación de disminución o cese del riesgo.<br>
-              </h1></th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-          <br>
-        <!-- siguiente tabla izquierda -->
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">MEDIDAS DE APOYO EJECUTADAS</th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          ////////////////////////////////////////////////////////////////////////////////
-          $totalmedidasejecutadas_col1 = 0;
-          $totalmedidasejecutadas_col2 = 0;
-          $sumatotalmedidasejecutadas = 0;
-          $medidasejecutadas = "SELECT medidas.ejecucion, COUNT(*) AS total FROM medidas
-          WHERE medidas.estatus = 'EJECUTADA'
-          AND medidas.date_ejecucion BETWEEN '$dateinicio' AND '$datetermino'
-          GROUP BY medidas.ejecucion ORDER BY total DESC, medidas.ejecucion ASC";
-          $rmedidasejecutadas = $mysqli->query($medidasejecutadas);
-          while ($fmedidasejecutadas = $rmedidasejecutadas->fetch_assoc()) {
-            $municipio = $fmedidasejecutadas['ejecucion'];
-            //////////////////////////////////////////////////////////////////////////////
-            $medidasejecutadas_col1 = "SELECT COUNT(*) AS total FROM medidas
-            WHERE medidas.estatus = 'EJECUTADA' AND medidas.ejecucion = '$municipio'
-            AND medidas.date_ejecucion BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
-            $rmedidasejecutadas_col1 = $mysqli->query($medidasejecutadas_col1);
-            $fmedidasejecutadas_col1 = $rmedidasejecutadas_col1->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $medidasejecutadas_col2 = "SELECT COUNT(*) AS total FROM medidas
-            WHERE medidas.estatus = 'EJECUTADA' AND medidas.ejecucion = '$municipio'
-            AND medidas.date_ejecucion BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
-            $rmedidasejecutadas_col2 = $mysqli->query($medidasejecutadas_col2);
-            $fmedidasejecutadas_col2 = $rmedidasejecutadas_col2->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $totalmedidasejecutadas_col1 = $totalmedidasejecutadas_col1 + $fmedidasejecutadas_col1['total'];
-            $totalmedidasejecutadas_col2 = $totalmedidasejecutadas_col2 + $fmedidasejecutadas_col2['total'];
-            $totalmedidasejecutadas_fila = $fmedidasejecutadas_col1['total'] +$fmedidasejecutadas_col2['total'];
-            $sumatotalmedidasejecutadas = $sumatotalmedidasejecutadas + $totalmedidasejecutadas_fila;
-
-            $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$municipio.'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fmedidasejecutadas_col1['total'].'</td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$fmedidasejecutadas_col2['total'].'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalmedidasejecutadas_fila.'</td>
-            </tr>';
-
-          }
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalmedidasejecutadas_col1.'</h4></td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalmedidasejecutadas_col2.'</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalmedidasejecutadas.'</h4></td>
-          </tr>';
-
-          $data .='</tbody>
-          </table>
-          <br>
-        <!-- siguiente tabla izquierda -->
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">TRASLADOS REALIZADOS POR LA PDI</th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          ////////////////////////////////////////////////////////////////////////////////
-          $totaltraslados_col1 = 0;
-          $totaltraslados_col2 = 0;
-          $sumatotaltraslados = 0;
-          $traslados = "SELECT react_destinos_traslados.motivo, COUNT(*) AS total FROM react_destinos_traslados
+      $data .='</tbody>
+      </table>
+      <br>
+      <!-- siguiente tabla derecha -->
+      <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+        <thead>
+          <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+            <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">TRASLADOS REALIZADOS POR LA PDI</th>
+          </tr>
+          <tr style="background-color: white; border: 1.5px solid black;">
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+            <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+          </tr>
+        </thead>
+        <tbody>';
+        ////////////////////////////////////////////////////////////////////////////////
+        $totaltraslados_col1 = 0;
+        $totaltraslados_col2 = 0;
+        $sumatotaltraslados = 0;
+        $traslados = "SELECT react_destinos_traslados.motivo, COUNT(*) AS total FROM react_destinos_traslados
+        INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
+        INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+        WHERE react_traslados.fecha BETWEEN '$dateinicio' AND '$datetermino'
+        GROUP BY react_destinos_traslados.motivo ORDER BY total DESC, react_destinos_traslados.motivo ASC";
+        $rtraslados = $mysqli->query($traslados);
+        while ($ftraslados = $rtraslados->fetch_assoc()) {
+          $trasladomunicipio = $ftraslados['motivo'];
+          //////////////////////////////////////////////////////////////////////////////
+          $traslados_col1 = "SELECT COUNT(*) AS total FROM react_destinos_traslados
           INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
           INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
-          WHERE react_traslados.fecha BETWEEN '$dateinicio' AND '$datetermino'
-          GROUP BY react_destinos_traslados.motivo ORDER BY total DESC, react_destinos_traslados.motivo ASC";
-          $rtraslados = $mysqli->query($traslados);
-          while ($ftraslados = $rtraslados->fetch_assoc()) {
-            $trasladomunicipio = $ftraslados['motivo'];
-            //////////////////////////////////////////////////////////////////////////////
-            $traslados_col1 = "SELECT COUNT(*) AS total FROM react_destinos_traslados
-            INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
-            INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
-            WHERE react_destinos_traslados.motivo = '$serviciomedico' AND react_traslados.fecha BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
-            $rtraslados_col1 = $mysqli->query($traslados_col1);
-            $ftraslados_col1 = $rtraslados_col1->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $traslados_col2 = "SELECT COUNT(*) AS total FROM react_destinos_traslados
-            INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
-            INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
-            WHERE react_destinos_traslados.motivo = '$serviciomedico' AND react_traslados.fecha BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
-            $rtraslados_col2 = $mysqli->query($traslados_col2);
-            $ftraslados_col2 = $rtraslados_col2->fetch_assoc();
-            //////////////////////////////////////////////////////////////////////////////
-            $totaltraslados_col1 = $totaltraslados_col1 + $ftraslados_col1['total'];
-            $totaltraslados_col2 = $totaltraslados_col2 + $ftraslados_col2['total'];
-            $totaltraslados_fila = $ftraslados_col1['total'] +$ftraslados_col2['total'];
-            $sumatotaltraslados = $sumatotaltraslados + $totaltraslados_fila;
+          WHERE react_destinos_traslados.motivo = '$trasladomunicipio' AND react_traslados.fecha BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
+          $rtraslados_col1 = $mysqli->query($traslados_col1);
+          $ftraslados_col1 = $rtraslados_col1->fetch_assoc();
+          //////////////////////////////////////////////////////////////////////////////
+          $traslados_col2 = "SELECT COUNT(*) AS total FROM react_destinos_traslados
+          INNER JOIN react_sujetos_traslado ON react_destinos_traslados.id = react_sujetos_traslado.id_destino
+          INNER JOIN react_traslados ON react_destinos_traslados.id_traslado = react_traslados.id
+          WHERE react_destinos_traslados.motivo = '$trasladomunicipio' AND react_traslados.fecha BETWEEN '$dateinicio_col2' AND '$datefin_col2'";
+          $rtraslados_col2 = $mysqli->query($traslados_col2);
+          $ftraslados_col2 = $rtraslados_col2->fetch_assoc();
+          //////////////////////////////////////////////////////////////////////////////
+          $totaltraslados_col1 = $totaltraslados_col1 + $ftraslados_col1['total'];
+          $totaltraslados_col2 = $totaltraslados_col2 + $ftraslados_col2['total'];
+          $totaltraslados_fila = $ftraslados_col1['total'] +$ftraslados_col2['total'];
+          $sumatotaltraslados = $sumatotaltraslados + $totaltraslados_fila;
 
-            $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$trasladomunicipio.'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$ftraslados_col1['total'].'</td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$ftraslados_col2['total'].'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totaltraslados_fila.'</td>
-            </tr>';
-
-          }
           $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totaltraslados_col1.'</h4></td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totaltraslados_col2.'</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotaltraslados.'</h4></td>
+          <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$trasladomunicipio.'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$ftraslados_col1['total'].'</td>
+          <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$ftraslados_col2['total'].'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totaltraslados_fila.'</td>
           </tr>';
 
-          $data .='</tbody>
-          </table>
-          <br>
-        <!-- siguiente tabla izquierda -->
+        }
+        $data .= '<tr style="background-color: white; border: 1px solid black;">
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totaltraslados_col1.'</td>
+          <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totaltraslados_col2.'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotaltraslados.'</td>
+        </tr>';
+
+        $data .='</tbody>
+        </table>
+        <br>
+        <!-- siguiente tabla derecha -->
         <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
           <thead>
             <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">RONDINES REALIZADOS POR LA PDI</th>
+              <th colspan="4" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">RONDINES REALIZADOS POR LA PDI</th>
             </tr>
             <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-2].'</th>
-              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">'.$mesesminusculas[date('n')-1].'</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
+              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
+              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+              <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
+              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
             </tr>
           </thead>
           <tbody>';
@@ -1121,41 +908,47 @@ $data .= '<!-- TABLA PRINCIPAL DE MAQUETACIÓN -->
             $sumatotalrondines = $sumatotalrondines + $totalrondines_fila;
 
             $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100;">'.$serviciomedico.'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$frondines_col1['total'].'</td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$frondines_col2['total'].'</td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">'.$totalrondines_fila.'</td>
+            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$serviciomedico.'</td>
+            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$frondines_col1['total'].'</td>
+            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$frondines_col2['total'].'</td>
+            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalrondines_fila.'</td>
             </tr>';
 
           }
           $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalrondines_col1.'</h4></td>
-            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalrondines_col2.'</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$sumatotalrondines.'</h4></td>
+            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalrondines_col1.'</td>
+            <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalrondines_col2.'</td>
+            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalrondines.'</td>
           </tr>';
 
           $data .='</tbody>
           </table>
-        <!-- siguiente tabla izquierda -->
-        </td>
-    </tr>
-</table><br><br>';
+          <br>
+</div>';
+$data .='';
+$data .='';
+$data .='';
+$data .='';
+$data .='';
+
+////////////////////////////////////////////////////////////////////////////////
+
 $data .= '<div style="float: left; width: 100%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-      <th colspan="8" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2></th>
+      <th colspan="8" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2></th>
     </tr>
     <tr style="background-color: white; border: 1.5px solid black;">
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">No.</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">ID Sujeto</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Fecha de ingreso al <br>Resguardo</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Fecha de <br>Incorporación</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Sexo</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Edad</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Calidad del sujeto <br>dentro del Programa</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Delito</h2></th>
+      <th style="width: 1%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">No.</th>
+      <th style="width: 8%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">ID Sujeto</th>
+      <th style="width: 15%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Fecha de ingreso al <br>Resguardo</th>
+      <th style="width: 12%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Fecha de <br>Incorporación</th>
+      <th style="width: 7%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Sexo</th>
+      <th style="width: 7%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Edad</th>
+      <th style="width: 5%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Calidad del sujeto <br>dentro del Programa</th>
+      <th style="width: 15%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Delito</h2></th>
     </tr>
   </thead>
   <tbody>';
@@ -1174,17 +967,26 @@ $data .= '<div style="float: left; width: 100%;">
         $convenioent = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$sujetodentrodelresguardo'";
         $fconvenioent = $mysqli->query($convenioent);
         $rconvenioent = $fconvenioent->fetch_assoc();
-        $fechafirma = date("d/m/Y", strtotime($rconvenioent['date_convenio']));
-        //////////////////////////////////////////////////////////////////////////
-        $getinicioresguardo = "SELECT * FROM medidas
+        $fechafirma = date("d-m-Y", strtotime($rconvenioent['date_convenio']));
+        ////////////////////////////////////////////////////////////////////////////
+        $getinicioresguardo1 = "SELECT * FROM medidas
         WHERE id_persona = '$id_sujetodr'  AND medida = 'VIII. ALOJAMIENTO TEMPORAL'
         LIMIT 1";
-        $rgetinicioresguardo = $mysqli->query($getinicioresguardo);
-        $fgetinicioresguardo = $rgetinicioresguardo ->fetch_assoc();
+        $rgetinicioresguardo1 = $mysqli->query($getinicioresguardo1);
+        $fgetinicioresguardo1 = $rgetinicioresguardo1 ->fetch_assoc();
+        $inicioresguardo = date("d-m-Y", strtotime($fgetinicioresguardo1['date_provisional']));
       }elseif ($fsujetores['estatus'] === 'PERSONA PROPUESTA') {
         $fechafirma = "EN ANALISIS";
         $fechavigencia = "EN ANALISIS";
+        ////////////////////////////////////////////////////////////////////////////
+        $getinicioresguardo2 = "SELECT * FROM medidas
+        WHERE id_persona = '$id_sujetodr'  AND medida = 'VIII. ALOJAMIENTO TEMPORAL'
+        LIMIT 1";
+        $rgetinicioresguardo2 = $mysqli->query($getinicioresguardo2);
+        $fgetinicioresguardo2 = $rgetinicioresguardo2 ->fetch_assoc();
+        $inicioresguardo = date("d-m-Y", strtotime($fgetinicioresguardo2['date_provisional']));
       }
+      ////////////////////////////////////////////////////////////////////////////
       $delitosujetodr = "SELECT * FROM procesopenal WHERE id_persona = '$id_sujetodr'";
       $rdelitosujetodr = $mysqli->query($delitosujetodr);
       $fdelitosujetodr = $rdelitosujetodr->fetch_assoc();
@@ -1193,16 +995,22 @@ $data .= '<div style="float: left; width: 100%;">
       }else {
         $delitopersondr = $fdelitosujetodr['delitoprincipal'];
       }
+      if ($delitopersondr == 'Desaparición de Personas cometida por Particulares' || $delitopersondr == 'DESAPARICION COMETIDA POR PARTICULARES' ||
+          $delitopersondr == 'DESAPARICIÓN FORZADA DE PERSONAS') {
+        $delitoprimdr = 'DESAPARICION DE PERSONAS';
+      }else {
+        $delitoprimdr = $delitopersondr;
+      }
       $contadorsujresguardados = $contadorsujresguardados + 1;
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$contadorsujresguardados.'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$fsujetores['identificador'].'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.date("d/m/Y", strtotime($fgetinicioresguardo['date_provisional'])).'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$fechafirma.'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$fsujetores['sexopersona'].'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$fsujetores['edadpersona'].'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$fsujetores['calidadpersona'].'</h4></td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$delitopersondr.'</h4></td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$contadorsujresguardados.'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['identificador'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$inicioresguardo.'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fechafirma.'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['sexopersona'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['edadpersona'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['calidadpersona'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$delitoprimdr.'</td>
       </tr>';
     }
   }
@@ -1215,17 +1023,17 @@ $data .= '<div style="float: left; width: 100%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-      <th colspan="8" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2></th>
+      <th colspan="8" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2></th>
     </tr>
     <tr style="background-color: white; border: 1.5px solid black;">
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">No.</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">ID Sujeto</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Fecha de ingreso al <br>Resguardo</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Fecha de <br>Incorporación</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Sexo</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Edad</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Calidad del sujeto <br>dentro del Programa</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:10px;">Delito</h2></th>
+      <th style="width: 1%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">No.</th>
+      <th style="width: 8%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">ID Sujeto</th>
+      <th style="width: 15%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Fecha de ingreso al <br>Resguardo</th>
+      <th style="width: 12%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Fecha de <br>Incorporación</th>
+      <th style="width: 7%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Sexo</th>
+      <th style="width: 7%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Edad</th>
+      <th style="width: 5%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Calidad del sujeto <br>dentro del Programa</th>
+      <th style="width: 15%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">Delito</h2></th>
     </tr>
   </thead>
   <tbody>';
@@ -1277,14 +1085,14 @@ $data .= '<div style="float: left; width: 100%;">
       }
       $contadorfr = $contadorfr + 1;
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$contadorfr.'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$ffueraresguardo['identificador'].'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.date("d/m/Y", strtotime($fautoridadsujetofr['fechasolicitud_persona'])).'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$fechafirmafr.'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$ffueraresguardo['sexopersona'].'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$ffueraresguardo['edadpersona'].'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$ffueraresguardo['calidadpersona'].'</h4></td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10px;"><h4>'.$delitopersonfr.'</h4></td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$contadorfr.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['identificador'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.date("d/m/Y", strtotime($fautoridadsujetofr['fechasolicitud_persona'])).'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$fechafirmafr.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['sexopersona'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['edadpersona'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['calidadpersona'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$delitopersonfr.'</td>
       </tr>';
     }
   }
@@ -1292,142 +1100,141 @@ $data .= '<div style="float: left; width: 100%;">
 
 $data .='</tbody>
 </table>
-</div><br><br><br><br><br>';
-$data .= '<!-- TABLA PRINCIPAL DE MAQUETACIÓN -->
-<table class="tabla-layout">
-    <tr>
-        <!-- COLUMNA IZQUIERDA -->
-        <td style="vertical-align: top; width: 49%; padding-right: 1%;">
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="2" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">EXPEDIENTES DE PROTECCIÓN INICIADOS</h2></th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Etapa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          $consecutivo = 0;
-          $totalexpedientes = 0;
-          $statusexpediente = "SELECT * FROM statusexpediente";
-          $rstatusexpediente = $mysqli->query($statusexpediente);
-          while ($fstatusexpediente = $rstatusexpediente->fetch_assoc()) {
-            $consecutivo = $consecutivo +1;
-            $estatus_exp = $fstatusexpediente['nombre'];
-            $contarstatusexp = "SELECT COUNT(*) AS total FROM statusseguimiento
-            WHERE status = '$estatus_exp'";
-            $rcontarstatusexp = $mysqli->query($contarstatusexp);
-            $fcontarstatusexp = $rcontarstatusexp ->fetch_assoc();
-            $totalexpedientes = $totalexpedientes + $fcontarstatusexp['total'];
-            if ($estatus_exp == 'ANALISIS' AND $fcontarstatusexp['total'] == 0) {
-              $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>EN ANALISIS</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$fcontarstatusexp['total'].'</h4></td>
-              </tr>';
-            }elseif ($fcontarstatusexp['total'] > 0 ) {
-              $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$estatus_exp.'</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$fcontarstatusexp['total'].'</h4></td>
-              </tr>';
-            }
-          }
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalexpedientes.'</h4></td>
-          </tr>';
-
-        $data .='</tbody>
-        </table>
-        <br>
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="2" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">MEDIDAS DE APOYO EJECUTADAS</h2></th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Clasificación</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          $med_asistencia = "SELECT COUNT(*) As total FROM medidas
-          WHERE clasificacion = 'ASISTENCIA' AND estatus = 'EJECUTADA'";
-          $rmed_asistencia = $mysqli->query ($med_asistencia);
-          $fmed_asistencia = $rmed_asistencia ->fetch_assoc();
-          ////////////////////////////////////////////////////////////////////////////////
-          $med_resguardo = "SELECT COUNT(*) As total FROM medidas
-          WHERE clasificacion = 'RESGUARDO' AND estatus = 'EJECUTADA'";
-          $rmed_resguardo = $mysqli->query ($med_resguardo);
-          $fmed_resguardo = $rmed_resguardo ->fetch_assoc();
-          $totalmed_ejecutadas = $fmed_asistencia['total'] + $fmed_resguardo['total'];
-
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>ASISTENCIA</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$fmed_asistencia['total'].'</h4></td>
-          </tr>';
-
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>RESGUARDO</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$fmed_resguardo['total'].'</h4></td>
-          </tr>';
-
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalmed_ejecutadas.'</h4></td>
-          </tr>';
-
-        $data .='</tbody>
-        </table>
-        </td>
-
-        <!-- COLUMNA DERECHA -->
-        <td style="vertical-align: top; width: 49%; padding-left: 1%;">
-        <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
-          <thead>
-            <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-              <th colspan="2" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;">PERSONAS QUE SOLICITARON INCORPORARSE</h2></th>
-            </tr>
-            <tr style="background-color: white; border: 1.5px solid black;">
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Etapa dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;">Total</th>
-            </tr>
-          </thead>
-          <tbody>';
-          $consecutivo = 0;
-          $totalsujetos = 0;
-          $estatussujeto = "SELECT * FROM estatuspersona";
-          $restatussujeto = $mysqli->query($estatussujeto);
-          while ($festatussujeto = $restatussujeto->fetch_assoc()) {
-            $consecutivo = $consecutivo + 1;
-            $status_sujeto = $festatussujeto['nombre'];
-            //////////////////////////////////////////////////////////////////////////////
-            $contarstatuspersonas = "SELECT COUNT(*) AS total FROM datospersonales
-            WHERE estatus = '$status_sujeto' AND relacional = 'NO'";
-            $rcontarstatuspersonas = $mysqli->query($contarstatuspersonas);
-            $fcontarstatuspersonas = $rcontarstatuspersonas ->fetch_assoc();
-            $totalsujetos = $totalsujetos + $fcontarstatuspersonas['total'];
-            if ($fcontarstatuspersonas['total'] > 0) {
-              $data .= '<tr style="background-color: white; border: 1px solid black;">
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$status_sujeto.'</h4></td>
-                <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;"><h4>'.$fcontarstatuspersonas['total'].'</h4></td>
-              </tr>';
-            }
-          }
-          $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>TOTAL</h4></td>
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;"><h4>'.$totalsujetos.'</h4></td>
-          </tr>';
-
-        $data .='</tbody>
-        </table>
-        </td>
+</div><br>';
+$data .= '<div style="float: left; width: 100%;">
+<h1 style="text-align:center;">RESUMEN DEL PROGRAMA</h1>
+</div>';
+$data .='<div style="float: left; width: 49%;">
+<table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+  <thead>
+    <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+      <th colspan="2" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">EXPEDIENTES DE PROTECCIÓN INICIADOS</th>
     </tr>
-</table>';
+    <tr style="background-color: white; border: 1.5px solid black;">
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Etapa</th>
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+    </tr>
+  </thead>
+  <tbody>';
+  $consecutivo = 0;
+  $totalexpedientes = 0;
+  $statusexpediente = "SELECT * FROM statusexpediente";
+  $rstatusexpediente = $mysqli->query($statusexpediente);
+  while ($fstatusexpediente = $rstatusexpediente->fetch_assoc()) {
+    $consecutivo = $consecutivo +1;
+    $estatus_exp = $fstatusexpediente['nombre'];
+    $contarstatusexp = "SELECT COUNT(*) AS total FROM statusseguimiento
+    WHERE status = '$estatus_exp'";
+    $rcontarstatusexp = $mysqli->query($contarstatusexp);
+    $fcontarstatusexp = $rcontarstatusexp ->fetch_assoc();
+    $totalexpedientes = $totalexpedientes + $fcontarstatusexp['total'];
+    if ($estatus_exp == 'ANALISIS' AND $fcontarstatusexp['total'] == 0) {
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">EN ANALISIS</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fcontarstatusexp['total'].'</td>
+      </tr>';
+    }elseif ($fcontarstatusexp['total'] > 0 ) {
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$estatus_exp.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fcontarstatusexp['total'].'</td>
+      </tr>';
+    }
+  }
+  $data .= '<tr style="background-color: white; border: 1px solid black;">
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalexpedientes.'</td>
+  </tr>';
+
+$data .='</tbody>
+</table>
+<br>
+<table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+  <thead>
+    <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+      <th colspan="2" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">MEDIDAS DE APOYO EJECUTADAS</th>
+    </tr>
+    <tr style="background-color: white; border: 1.5px solid black;">
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Clasificación</th>
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+    </tr>
+  </thead>
+  <tbody>';
+  $med_asistencia = "SELECT COUNT(*) As total FROM medidas
+  WHERE clasificacion = 'ASISTENCIA' AND estatus = 'EJECUTADA'";
+  $rmed_asistencia = $mysqli->query ($med_asistencia);
+  $fmed_asistencia = $rmed_asistencia ->fetch_assoc();
+  ////////////////////////////////////////////////////////////////////////////////
+  $med_resguardo = "SELECT COUNT(*) As total FROM medidas
+  WHERE clasificacion = 'RESGUARDO' AND estatus = 'EJECUTADA'";
+  $rmed_resguardo = $mysqli->query ($med_resguardo);
+  $fmed_resguardo = $rmed_resguardo ->fetch_assoc();
+  $totalmed_ejecutadas = $fmed_asistencia['total'] + $fmed_resguardo['total'];
+
+  $data .= '<tr style="background-color: white; border: 1px solid black;">
+    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">ASISTENCIA</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmed_asistencia['total'].'</td>
+  </tr>';
+
+  $data .= '<tr style="background-color: white; border: 1px solid black;">
+    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">RESGUARDO</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmed_resguardo['total'].'</td>
+  </tr>';
+
+  $data .= '<tr style="background-color: white; border: 1px solid black;">
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalmed_ejecutadas.'</td>
+  </tr>';
+
+$data .='</tbody>
+</table>
+<br>
+</div>';
+$data .='<div style="float: center; width: 2%;">
+</div>';
+$data .='<div style="float: right; width: 49%;">
+<table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
+  <thead>
+    <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
+      <th colspan="2" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">PERSONAS QUE SOLICITARON INCORPORARSE</th>
+    </tr>
+    <tr style="background-color: white; border: 1.5px solid black;">
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Etapa dentro del Programa</th>
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
+    </tr>
+  </thead>
+  <tbody>';
+  $consecutivo = 0;
+  $totalsujetos = 0;
+  $estatussujeto = "SELECT * FROM estatuspersona";
+  $restatussujeto = $mysqli->query($estatussujeto);
+  while ($festatussujeto = $restatussujeto->fetch_assoc()) {
+    $consecutivo = $consecutivo + 1;
+    $status_sujeto = $festatussujeto['nombre'];
+    //////////////////////////////////////////////////////////////////////////////
+    $contarstatuspersonas = "SELECT COUNT(*) AS total FROM datospersonales
+    WHERE estatus = '$status_sujeto' AND relacional = 'NO'";
+    $rcontarstatuspersonas = $mysqli->query($contarstatuspersonas);
+    $fcontarstatuspersonas = $rcontarstatuspersonas ->fetch_assoc();
+    $totalsujetos = $totalsujetos + $fcontarstatuspersonas['total'];
+    if ($fcontarstatuspersonas['total'] > 0) {
+      $data .= '<tr style="background-color: white; border: 1px solid black;">
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$status_sujeto.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fcontarstatuspersonas['total'].'</td>
+      </tr>';
+    }
+  }
+  $data .= '<tr style="background-color: white; border: 1px solid black;">
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalsujetos.'</td>
+  </tr>';
+
+$data .='</tbody>
+</table>
+</div>';
+
 
                 $img_externa = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
-                $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+                // $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
         $data .='
         <br><br><br><br><div style="style="float: left; width: 100%; background-color: white; border: 1.8px solid black;"">
         <div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 40px; min-height: 40px; min-width: 40%; max-width: 100%;">
