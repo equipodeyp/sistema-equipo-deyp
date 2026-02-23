@@ -22,11 +22,11 @@
         $diamesinicio = $anioActual."-".$mesActual."-01";
         $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
         ?>
-        <form action="../administrador/archivos_html/get_reportemensual.php" method="POST">
+        <!-- <form action="../administrador/archivos_html/get_reportemensual.php" method="POST"> -->
           <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <!-- PRIMER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <?php include('header_reporte_mensual.php'); ?>
+            <!-- <?php include('header_reporte_mensual.php'); ?> -->
             <!-- contenido -->
 
             <br>
@@ -65,7 +65,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
+                  // include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -108,7 +108,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -146,7 +146,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
                     ?>
                   </tbody>
                   <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
@@ -194,7 +194,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
                     ?>
                   </tbody>
                   <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
@@ -242,7 +242,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla5_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla5_reporte_mensual.php");
                     ?>
                   </tbody>
                   <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
@@ -261,7 +261,7 @@
           </div>
           <!-- SEGUNDA HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <?php include('header_reporte_mensual.php'); ?>
+            <!-- <?php include('header_reporte_mensual.php'); ?> -->
             <!-- contenido -->
             <br>
             <div style="display: flex; justify-content: space-between; gap: 40px; align-items: flex-start;">
@@ -301,7 +301,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla6_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla6_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -340,7 +340,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -382,7 +382,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -421,7 +421,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla9_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla9_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -460,7 +460,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla10_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla10_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -469,7 +469,7 @@
           </div>
           <!-- TERCER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <?php include('header_reporte_mensual.php'); ?>
+            <!-- <?php include('header_reporte_mensual.php'); ?> -->
             <!-- contenido -->
             <br>
             <table width="100%" border="3px" cellspacing="0" bordered>
@@ -526,7 +526,7 @@
               </thead>
               <tbody>
                 <?php
-                include("../administrador/tablas_estadistica/tabla11_reporte_mensual.php");
+                // include("../administrador/tablas_estadistica/tabla11_reporte_mensual.php");
                 ?>
               </tbody>
             </table>
@@ -585,14 +585,14 @@
               </thead>
               <tbody>
                 <?php
-                include("../administrador/tablas_estadistica/tabla12_reporte_mensual.php");
+                // include("../administrador/tablas_estadistica/tabla12_reporte_mensual.php");
                 ?>
               </tbody>
             </table>
           </div>
           <!-- CUARTA HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <?php include('header_reporte_mensual.php'); ?>
+            <!-- <?php include('header_reporte_mensual.php'); ?> -->
             <!-- contenido -->
             <br>
             <h2 style="text-align:center;">RESUMEN DEL PROGRAMA</h2>
@@ -624,7 +624,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla13_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla13_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -653,7 +653,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla15_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla15_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -685,7 +685,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    include("../administrador/tablas_estadistica/tabla14_reporte_mensual.php");
+                    // include("../administrador/tablas_estadistica/tabla14_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>

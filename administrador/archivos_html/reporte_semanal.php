@@ -6,19 +6,16 @@
         <h2 style="text-align:center" class="modal-title" id="myModalLabel">REPORTE SEMANAL</h2>
       </div>
       <div class="modal-body">
-        <form action="../administrador/archivos_html/prueba_reportesemanal.php" method="POST">
+        <!-- <form action="../administrador/archivos_html/prueba_reportesemanal.php" method="POST"> -->
           <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
             <img style="float: left;" src="../image/ESCUDO.png" width="60" height="50">
             <img style="float: right;" src="../image/FGJEM.png" width="50" height="50">
             <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
             <?php
-            $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-            $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+            include('get_fechas_rerpotesemanal.php');
             // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-            $fecha_actual = date("Y-m-d");
-            $year = date("Y");
-            $day = date("l");
+
             switch ($day) {
                 case "Sunday"://DOMINGO
                        $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));
@@ -73,16 +70,34 @@
                        }
                 break;
                 case "Monday"://LUNES
+                // echo "fecha inicial reporte---";
                        $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual));
+                       // echo "<br>";
+                       // echo "fecha anterior reporte---";
                        $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+                       // echo "<br>";
+                       // echo "fecha final reporte---";
                        $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 6 day"));
+                       // echo "<br>";
                        ////////////////////fechas de reporte semanal
+                       // echo "fecha fin reporte anterior---";
                        $diafinsemanaanterior = strtotime($fecha_finsemanaanterior);
+                       // echo "<br>";
+                       // echo "dia de termino de reporte anterior---";
                        $diafinsemant = date( "j", $diafinsemanaanterior);
+                       // echo "<br>";
+                       // echo "fecha de inicio del reporte actual---";
                        $diainicio = strtotime($fecha_inicio);
+                       // echo "<br>";
+                       // echo "dia de inicio de reporte actual---";
                        $diaini = date( "j", $diainicio);
+                       // echo "<br>";
+                       // echo "string";
                        $diafinal = strtotime($fecha_fin);
+                       // echo "<br>";
+                       // echo "string";
                        $diafin = date( "j", $diafinal);
+                       // echo "<br>";
                        /////////////////////////////////////////////////////////
                        if ($diaini < 10) {
                          $diaini = '0'.$diaini;
@@ -103,25 +118,36 @@
                        }
                        if ($diaini > $diafin) {
                          // echo $mostrar = "inicio es mayor";
+                         $mesreport = date('n');
+                         if ($mesreport < 10) {
+                           $mesreportpdf = '0'.$mesreport;
+                         }else {
+                           $mesreportpdf = $mesreport;
+                         }
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
                          $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n', strtotime('-0 month')).'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
                          // echo "<br>";
                          $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+6 day'));
 
                        } else {
                          // echo $mostrar = "inicio es menor";
+                         if ($mesreport < 10) {
+                           $mesreportpdf = '0'.$mesreport;
+                         }else {
+                           $mesreportpdf = $mesreport;
+                         }
                          // echo "<br>";
                          $fechainicio_pdf =date('Y').'-01-01';
                          // echo "<br>";
                          $fechafin_pdf =$fecha_finsemanaanterior;
                          // echo "<br>";
-                         $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
+                         $fechainicial_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diaini;
                          // echo "<br>";
-                         $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
+                         $fechafinal_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diafin;
                        }
                 break;
                 case "Tuesday"://MARTES
@@ -402,7 +428,7 @@
                 break;
             }
             ?>
-            <div class="row" style="display:none;">
+            <div class="row" style="display:;">
               <div class="col-md-3 mb-3 validar">
                     <label for="SIGLAS DE LA UNIDAD">FECHA INICIO<span ></span></label>
                     <input class="form-control" name="dateprinc" placeholder="" type="date" value="<?php echo $fechainicio_pdf; ?>" maxlength="50" readonly>
