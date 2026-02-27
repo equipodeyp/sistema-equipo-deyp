@@ -10,6 +10,7 @@ $dateprinc = $_POST['dateprinc'];
 $datefinprinc  = $_POST['datefinprinc'];
 $daterepini = $_POST['daterepini'];
 $daterepfin  = $_POST['daterepfin'];
+$tabla3_pp_sp = $_POST['tabla3_pp_sp'];
 ////////////////////////////
 $diainicio = strtotime($daterepini);
 $diaini = date( "j", $diainicio);
@@ -156,7 +157,7 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
   <h2 style="text-align: center; font-size: 16px;"><strong>Reporte Semanal <br> DEL '.$dia_inicio_reporte.'  AL '.$dia_fin_reporte.' DE '.$mestwo.' DEL '.date("Y").'</strong></h2></div><br>';
 }
 
-// $data .= '<h1>inicio--->'.$mesone.'</h1><br>';
+// $data .= '<h1>inicio--->'.$tabla3_pp_sp.'</h1><br>';
 // $data .= '<h1>fin--->'.$mestwo.'</h1><br>';
 // $data .= '<h1>mensaje--->'.$mesrep2.'</h1><br>';
 // $data .= '<h1>inicio--->'.$dateprinc.'</h1><br>';
@@ -519,21 +520,21 @@ $data .= '<div style="float: left; width: 55%;">
     </tr>
     </tbody>
   </table>
-
+  <table id="tabla1" border="1px" cellspacing="0" width="75%" bgcolor="white">
+    <thead class="thead-dark">
+      <tr>
+        <th style="background-color: white; border: 6px solid white; text-align:justify;" colspan="4">
+          <h1 style="font-size:8px; text-align: justify; color:#665649;">
+          '.$tabla3_pp_sp.'
+          </h1>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 </div>';
-// <table id="tabla1" border="1px" cellspacing="0" width="75%" bgcolor="white">
-//   <thead class="thead-dark">
-//     <tr>
-//       <th style="background-color: white; border: 6px solid white; text-align:justify;" colspan="4"><h1 style="font-size:7px; text-align: justify; color:#665649;">*El sujeto protegido de iniciales S.S.A. relacionado al Expediente de Protección
-//     UPSIPPED/TOL/108/005/2025 firmó el Convenio de Entendimiento para su incorporación al
-//     Programa; sin embargo, ya se encuentra activo dentro del Expediente de Protección
-//     UPSIPPED/TOL/113/015/2022, por lo que no se refleja su incorporación en este cuadro a fin de
-//     evitar duplicidad .</h1></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//   </tbody>
-// </table>
+
 $data .='<div style="float: right; width: 43%;">
 <table id="tabla1" border="1px" cellspacing="0" width="100%" bgcolor="#97897D">
 <thead class="thead-dark">

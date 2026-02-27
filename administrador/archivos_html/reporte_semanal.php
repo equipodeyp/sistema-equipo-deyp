@@ -303,7 +303,7 @@
                     </tbody>
                   </table>
                   <br>
-                  <textarea style="resize: none;" name="name" rows="3" cols="87" placeholder="En caso de nota agregar aqui"></textarea>
+                  <textarea style="resize: none;" name="tabla3_pp_sp" rows="3" cols="87" placeholder="En caso de nota agregar aqui"></textarea>
                 </div>
               </div>
               <!-- CUARTA TABLA -->

@@ -48,16 +48,8 @@ $mostrar=$result->fetch_assoc();
    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
  }
  $idtrasladounico = $n_con.'-'.$a;
- $año_actual = date('Y');
- $mes_actual = date('m');
- $dias_mes_actual = date('t');
-
- // echo "<br>";
- // $datemin = '2025-11-01';
- // echo "<br>";
- $datemax = $año_actual.'-'.$mes_actual.'-'.$dias_mes_actual;
- // echo "<br>";
- include("calculardiasminimospararegistro.php")
+ ///////////////////////////////////////////////////////////////////////////////
+ include("../../calculodefechas/calculardiasminimospararegistro.php")
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -178,7 +170,7 @@ $mostrar=$result->fetch_assoc();
     // Cierra el modal después de 10 segundos
     setTimeout(function(){
       $('#myModal').modal('hide');
-    }, 3000);
+    }, 1000);
   });
         </script>
       <div class="">
@@ -201,7 +193,14 @@ $mostrar=$result->fetch_assoc();
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
                       <label class="col-md-2 control-label" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">FECHA DE TRASLADO</label>
-                      <input name="fechatraslado" class="form-control" type="date" required min="<?php echo $datemin; ?>">
+                      <input name="fechatraslado" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
+                      <div class="form-text">
+                        <?php if ($fecha_actual > $fecha_limite): ?>
+                          <span class="text-danger">Febrero ya no está disponible. Seleccione una fecha de Marzo en adelante.</span>
+                        <?php else: ?>
+                          <span class="text-success">Febrero sigue disponible para selección.</span>
+                        <?php endif; ?>
+                      </div>
                     </div>
 
                     <div class="col-md-2" style="text-align: center; width: 228px; border: 1px solid #ECECEC;">
