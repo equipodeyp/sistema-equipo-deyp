@@ -26,7 +26,9 @@
           <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <!-- PRIMER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <!-- <?php include('header_reporte_mensual.php'); ?> -->
+            <?php
+            include('header_reporte_mensual.php');
+            ?>
             <!-- contenido -->
 
             <br>
@@ -261,7 +263,9 @@
           </div>
           <!-- SEGUNDA HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <!-- <?php include('header_reporte_mensual.php'); ?> -->
+            <?php
+            include('header_reporte_mensual.php');
+            ?>
             <!-- contenido -->
             <br>
             <div style="display: flex; justify-content: space-between; gap: 40px; align-items: flex-start;">
@@ -469,7 +473,9 @@
           </div>
           <!-- TERCER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <!-- <?php include('header_reporte_mensual.php'); ?> -->
+            <?php
+            include('header_reporte_mensual.php');
+            ?>
             <!-- contenido -->
             <br>
             <table width="100%" border="3px" cellspacing="0" bordered>
@@ -592,7 +598,9 @@
           </div>
           <!-- CUARTA HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
-            <!-- <?php include('header_reporte_mensual.php'); ?> -->
+            <?php
+            include('header_reporte_mensual.php');
+            ?>
             <!-- contenido -->
             <br>
             <h2 style="text-align:center;">RESUMEN DEL PROGRAMA</h2>
