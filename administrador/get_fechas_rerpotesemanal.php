@@ -50,6 +50,7 @@ switch ($day) {
     $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
     $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+6 day'));
     } else {
+      $mesreport = date('n');
       if ($mesreport < 10) {
         $mesreportpdf = '0'.$mesreport;
       }else {
@@ -77,26 +78,27 @@ switch ($day) {
     } else {
       echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
     }
-    /////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     if ($diaini < 10) {
       $diaini = '0'.$diaini;
     }else {
       $diaini = $diaini;
     }
-    /////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     if ($diafin < 10) {
       $diafin = '0'.$diafin;
     }else {
       $diafin = $diafin;
     }
-    /////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    $mesact = date('n', strtotime('-0 month'));
+    if ($mesact < 10) {
+      $mesactpdf = '0'.$mesact;
+    }else {
+      $mesactpdf = $mesact;
+    }
+    ////////////////////////////////////////////////////////////////////////////
     if ($diaini > $diafin) {
-      $mesact = date('n', strtotime('-0 month'));
-      if ($mesact < 10) {
-        $mesactpdf = '0'.$mesact;
-      }else {
-        $mesactpdf = $mesact;
-      }
       $fechainicio_pdf =date('Y').'-01-01';
       $fechafin_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini-1;
       $fechainicial_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini;
@@ -104,9 +106,10 @@ switch ($day) {
     } else {
       $fechainicio_pdf =date('Y').'-01-01';
       $fechafin_pdf =$fecha_finsemanaanterior;
-      $fechainicial_reporte_pdf =date('Y').'-'.date('n').'-'.$diaini;
-      $fechafinal_reporte_pdf =date('Y').'-'.date('n').'-'.$diafin;
+      $fechainicial_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini;
+      $fechafinal_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diafin;
     }
+    ////////////////////////////////////////////////////////////////////////////
     break;
     case 'Wednesday':
       $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 2 day"));

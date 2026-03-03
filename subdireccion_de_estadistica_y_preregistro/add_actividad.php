@@ -47,6 +47,8 @@ $mostrar=$result->fetch_assoc();
    $n_con = str_pad($n + 1, 3, 0, STR_PAD_LEFT);
  }
  $idtrasladounico = $n_con.'-'.$a;
+ ///////////////////////////////////////////////////////////////////////////////
+ include("../calculodefechas/calculardiasminimospararegistro.php")
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -129,7 +131,7 @@ $mostrar=$result->fetch_assoc();
     </div>
 
 
-    
+
     <div class="main bg-light">
       <div class="barra">
           <img src="../image/fiscalia.png" alt="" width="150" height="150">
@@ -160,7 +162,7 @@ $mostrar=$result->fetch_assoc();
               $select = "SELECT * FROM react_subdireccion where id = '5'";
               $answer = $mysqli->query($select);
               $valores = $answer->fetch_assoc();
-                                 ?>     
+                                 ?>
 
 
 
@@ -177,9 +179,9 @@ $mostrar=$result->fetch_assoc();
               while ($val = $answer1->fetch_assoc()){
                 echo "<option value='".$val['id']."'>".$val['nombre']."</option>";
                               }
-                                 ?>   
-              </select>   
-            </div>          
+                                 ?>
+              </select>
+            </div>
          </div>
         </div>
 
@@ -192,7 +194,7 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-      
+
 
 
 
@@ -203,7 +205,14 @@ $mostrar=$result->fetch_assoc();
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input  name="fecha_actividad" id="fechaactividad" class="form-control" type="date" required>
+            <input  name="fecha_actividad" id="fechaactividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
+            <div class="form-text">
+              <?php if ($fecha_actual > $fecha_limite): ?>
+                <span class="text-danger">Febrero ya no está disponible. Seleccione una fecha de Marzo en adelante.</span>
+              <?php else: ?>
+                  <span class="text-success">Febrero sigue disponible para selección.</span>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -238,7 +247,7 @@ $mostrar=$result->fetch_assoc();
         <label class="col-md-3 control-label">ID SUJETO</label>
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span> 
+            <span class="input-group-addon"><i class="fa-solid fa-id-card"></i></span>
             <select class="form-control" name="id_sujeto" id="id_sujeto">
 
 
@@ -281,7 +290,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-      
+
  <div class="form-group" id="clasificacion2" style="display:none;">
         <label class="col-md-3 control-label">CLASIFICACIÓN</label>
         <div class="col-md-7 inputGroupContainer">
@@ -329,7 +338,7 @@ $mostrar=$result->fetch_assoc();
 
 
 
-     
+
     <div class="form-group" id="clasificacion4" style="display:none;">
         <label class="col-md-3 control-label">CLASIFICACIÓN</label>
         <div class="col-md-7 inputGroupContainer">
@@ -350,7 +359,7 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-    
+
 
 
        <div class="form-group" id="clasificacion5" style="display:none;">
@@ -373,7 +382,7 @@ $mostrar=$result->fetch_assoc();
           </div>
         </div>
       </div>
-      
+
 
 
 
@@ -410,7 +419,7 @@ $mostrar=$result->fetch_assoc();
     </div>
   </div>
   <div class="contenedor">
-    <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> INICIO</a>     
+    <a href="menu.php" class="btn-flotante-regresar color-btn-success-gray"> INICIO</a>
   </div>
 
 
@@ -460,9 +469,9 @@ $mostrar=$result->fetch_assoc();
     num_actividad_obtenido = numero_act;
 
     console.log(num_actividad_obtenido);
-    
+
     if (num_actividad_obtenido === '1' || num_actividad_obtenido === '2' || num_actividad_obtenido === '3') {
-      
+
     document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
     document.getElementById("folio_expediente").value = ""; // LIMPIAR
@@ -474,48 +483,48 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion3").value="";
     document.getElementById("clasificacion4").value="";
     document.getElementById("clasificacion5").value="";
-    
+
     document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
     document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
     document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
-    document.getElementById("clasificacion4").style.display = "none"; // OCULTAR 
-    document.getElementById("clasificacion5").style.display = "none"; // OCULTAR 
+    document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
+    document.getElementById("clasificacion5").style.display = "none"; // OCULTAR
 
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       //document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
-      
-      
+
+
     }
 
     else if (num_actividad_obtenido === '5') {
-      
+
       document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
       document.getElementById("fechaactividad").value = ""; // LIMPIAR
       document.getElementById("folio_expediente").value = ""; // LIMPIAR
       document.getElementById("id_sujeto").value = ""; // LIMPIAR
       document.getElementById("numero_oficio_actividad").value = ""; // LIMPIAR
-  
+
       document.getElementById("clasificacion1").value="";
       document.getElementById("clasificacion2").value="";
       document.getElementById("clasificacion3").value="";
       document.getElementById("clasificacion4").value="";
       document.getElementById("clasificacion5").value="";
-      
+
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
-      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR 
-      document.getElementById("clasificacion5").style.display = "none"; // OCULTAR 
-  
+      document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
+      document.getElementById("clasificacion5").style.display = "none"; // OCULTAR
+
         document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
         document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
         document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
-        
-        
+
+
       }
 
- 
+
      else if (num_actividad_obtenido === '4') {
      document.getElementById("cantidad_actividad").value = ""; // LIMPIAR
     document.getElementById("fechaactividad").value = ""; // LIMPIAR
@@ -527,7 +536,7 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion2").value="";
     document.getElementById("clasificacion4").value="";
     document.getElementById("clasificacion5").value="";
-    
+
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
@@ -537,15 +546,15 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad2").value="";
     document.getElementById("clasificacion_actividad4").value="";
     document.getElementById("clasificacion_actividad5").value="";
-      
+
     }
-    
+
      else if (num_actividad_obtenido === '6') {
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion5").style.display = "none"; // OCULTAR
-    
+
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
@@ -563,16 +572,16 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad5").value="";
 
-      
-    } 
+
+    }
 
      else if (num_actividad_obtenido === '8') {
-      
+
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion5").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
-    
+
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
@@ -588,15 +597,15 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad2").value="";
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad4").value="";
-      
-    } 
+
+    }
 
     else if (num_actividad_obtenido === '9') {
       document.getElementById("clasificacion1").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion5").style.display = "none"; // OCULTAR
-    
+
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
@@ -612,7 +621,7 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad4").value="";
     document.getElementById("clasificacion_actividad5").value="";
-    } 
+    }
 
 
 
@@ -622,7 +631,7 @@ $mostrar=$result->fetch_assoc();
       document.getElementById("clasificacion2").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion3").style.display = "none"; // OCULTAR
       document.getElementById("clasificacion4").style.display = "none"; // OCULTAR
-    
+
       document.getElementById("folio_expediente_actividad").style.display = ""; // MOSTRAR
       document.getElementById("id_sujeto_actividad").style.display = ""; // MOSTRAR
       document.getElementById("div_numero_oficio_actividad").style.display = ""; // MOSTRAR
@@ -638,8 +647,8 @@ $mostrar=$result->fetch_assoc();
     document.getElementById("clasificacion_actividad2").value="";
     document.getElementById("clasificacion_actividad3").value="";
     document.getElementById("clasificacion_actividad4").value="";
-      
-    } 
+
+    }
 
 
   }

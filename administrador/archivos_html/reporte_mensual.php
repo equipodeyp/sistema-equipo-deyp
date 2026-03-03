@@ -22,7 +22,7 @@
         $diamesinicio = $anioActual."-".$mesActual."-01";
         $diamesfin = $anioActual."-".$mesActual."-".$cantidadDias;
         ?>
-        <!-- <form action="../administrador/archivos_html/get_reportemensual.php" method="POST"> -->
+        <form action="../administrador/archivos_html/get_reportemensual.php" method="POST">
           <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
           <!-- PRIMER HOJA -->
           <div class="well form-horizontal" style="border: 5px solid #63696D;">
@@ -67,7 +67,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  // include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
+                  include("../administrador/tablas_estadistica/tabla1_reporte_mensual.php");
                   ?>
                 </tbody>
               </table>
@@ -110,7 +110,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla2_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -148,7 +148,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla4_reporte_mensual.php");
                     ?>
                   </tbody>
                   <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
@@ -196,7 +196,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla3_reporte_mensual.php");
                     ?>
                   </tbody>
                   <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
@@ -244,7 +244,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla5_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla5_reporte_mensual.php");
                     ?>
                   </tbody>
                   <tfoot style="border: 3px solid white; background-color: #f1f1f1; font-weight: bold;">
@@ -305,7 +305,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla6_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla6_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -344,7 +344,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla8_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -386,7 +386,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla7_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -425,7 +425,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla9_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla9_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -464,7 +464,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla10_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla10_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -532,7 +532,7 @@
               </thead>
               <tbody>
                 <?php
-                // include("../administrador/tablas_estadistica/tabla11_reporte_mensual.php");
+                include("../administrador/tablas_estadistica/tabla11_reporte_mensual.php");
                 ?>
               </tbody>
             </table>
@@ -591,7 +591,7 @@
               </thead>
               <tbody>
                 <?php
-                // include("../administrador/tablas_estadistica/tabla12_reporte_mensual.php");
+                include("../administrador/tablas_estadistica/tabla12_reporte_mensual.php");
                 ?>
               </tbody>
             </table>
@@ -632,7 +632,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla13_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla13_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -661,7 +661,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla15_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla15_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -693,7 +693,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    // include("../administrador/tablas_estadistica/tabla14_reporte_mensual.php");
+                    include("../administrador/tablas_estadistica/tabla14_reporte_mensual.php");
                     ?>
                   </tbody>
                 </table>
@@ -814,10 +814,12 @@
             <!-- SUJETOS -->
             <?php
             // Consulta sql para contar la cantidad
-            $sql = "SELECT expediente.año,count(datospersonales.id) as totalepersonas FROM expediente
-            INNER JOIN datospersonales ON expediente.fol_exp = datospersonales.folioexpediente
-            WHERE expediente.fecha_nueva BETWEEN '2021-01-01' AND '2026-12-31' AND datospersonales.relacional ='NO'
-            GROUP BY año  ORDER BY año ASC";
+            $sql = "SELECT YEAR(autoridad.fechasolicitud_persona) AS año, COUNT(*) AS totalepersonas
+FROM autoridad
+INNER JOIN datospersonales ON autoridad.id_persona = datospersonales.id
+WHERE datospersonales.relacional='NO'
+GROUP BY YEAR(autoridad.fechasolicitud_persona)
+ORDER BY año ASC";
             $records = mysqli_query($con, $sql);
             $data = array();
             while($row = mysqli_fetch_assoc($records)){

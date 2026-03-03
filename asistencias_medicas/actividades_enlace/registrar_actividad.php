@@ -11,6 +11,8 @@ if (!isset($name)) {
 }
 $check_actividad = 1;
 $_SESSION["check_actividad"] = $check_actividad;
+///////////////////////////////////////////////////////////////////////////////
+include("../../calculodefechas/calculardiasminimospararegistro.php")
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -161,7 +163,14 @@ $_SESSION["check_actividad"] = $check_actividad;
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
-            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required>
+            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
+            <div class="form-text">
+              <?php if ($fecha_actual > $fecha_limite): ?>
+                <span class="text-danger">Febrero ya no está disponible. Seleccione una fecha de Marzo en adelante.</span>
+              <?php else: ?>
+                  <span class="text-success">Febrero sigue disponible para selección.</span>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
       </div>
