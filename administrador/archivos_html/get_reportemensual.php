@@ -114,7 +114,7 @@ $mpdf = new \Mpdf\Mpdf([
   'margin_footer' => 2,
   'orientation' => 'P',
     ]);
-
+$mpdf->curlAllowUnsafeSslRequests = true; // Permite cargar imágenes por HTTPS local sin certificado válido
 $mpdf->SetHTMLHeader('<div style="float: left; width: 100%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="#97897E">
   <thead>
@@ -1338,7 +1338,8 @@ $data .='</tbody>
 
 
                 // $img_externa = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
-                $img_externa = $_SERVER['DOCUMENT_ROOT'] . '/sistema-equipo-deyp/administrador/grafica_expedientes.png';
+                $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+                // $img_externa = $_SERVER['DOCUMENT_ROOT'] . '/sistema-equipo-deyp/administrador/grafica_expedientes.png';
         $data .='
         <br><br><br><br><div style="style="float: left; width: 100%; background-color: white; border: 1.8px solid black;"">
         <div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 40px; min-height: 40px; min-width: 40%; max-width: 100%;">
