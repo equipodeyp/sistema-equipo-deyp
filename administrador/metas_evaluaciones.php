@@ -1,3 +1,4 @@
+
 <?php
 error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
@@ -105,20 +106,9 @@ $_SESSION["check_traslado"] = $check_traslado;
           extend:    'excelHtml5',
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
-          className: 'btn color-btn-export-xls'
+          className: 'btn color-btn-export-xls',
+          title:      'METAS EVALUACIONES'
         },
-        // {
-        //   extend:    'pdfHtml5',
-        //   text:      '<i class="fas fa-file-pdf"></i> ',
-        //   titleAttr: 'Exportar a PDF',
-        //   className: 'btn color-btn-export-ppt'
-        // },
-        // {
-        //   extend:    'print',
-        //   text:      '<i class="fa fa-print"></i> ',
-        //   titleAttr: 'Imprimir',
-        //   className: 'btn color-btn-export-imp'
-        // },
       ]
       });
   });
@@ -169,12 +159,13 @@ $_SESSION["check_traslado"] = $check_traslado;
           <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h4>
+          <br><br>
+          <h1 style="text-align:center"> CONSULTAR METAS EVALUACIONES </h4>
+          <br><br>
+
         </div>
       </div>
       <div class="">
-        <!-- <h1 style="text-align:center">CONSULTA DE TRASLADOS</h1> -->
-        <!-- Search Forms -->
-
         <div class="container" style="display: flex; justify-content: center;">
           <div class="row mt-8">
               <form class="d-flex" style="width: 800px;">
@@ -213,8 +204,10 @@ $_SESSION["check_traslado"] = $check_traslado;
 
           if (isset($_GET['star']))
           {
-            $where="WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+            $where="WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin' AND react_actividad.idactividad = 'SAR-01'";
             $mostrar = 1;
+
+
           }
 
         }
@@ -235,7 +228,21 @@ $_SESSION["check_traslado"] = $check_traslado;
 
             if ($mostrar === 1) {
               $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-              $SQL="SELECT * FROM react_actividad $where";
+              $SQL="SELECT DISTINCT react_actividad.id_sujeto,
+              react_actividad.folio_expediente, react_actividad.idactividad, 
+              react_actividad_analisis.nombre
+
+              FROM react_actividad
+
+              INNER JOIN react_actividad_analisis
+              ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+
+                                        
+              $where
+      
+              ORDER BY react_actividad.fecha ASC
+              ";
+
               $dato = mysqli_query($conexion, $SQL);
               $row_cnt = $dato->num_rows;
               if($dato -> num_rows >0){
@@ -294,8 +301,6 @@ $_SESSION["check_traslado"] = $check_traslado;
               $diafinal = date('d', strtotime($fechafin));
               $mesnumerofinal = date('m', strtotime($fechafin));
               $aniofinal = date('Y', strtotime($fechafin));
-
-
               ?>
               <div class="" id="showafterconsul">
                 <div class="container well form-horizontal" style="text-align:center;padding:10px;border:solid 3px; width:98%;border-radius:20px;shadow">
@@ -306,148 +311,108 @@ $_SESSION["check_traslado"] = $check_traslado;
                     <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
-                          <h1>EVALUACIONES SUBDIRECCIÓN DE ANÁLIS DE RIESGO</h1>
-                          <h3>PERIODO DE CONSULTA DE LA INFORMACIÓN</h3>
+                          
+                          <h2>PERIODO DE CONSULTA DE INFORMACIÓN</h2>
                           <h4>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
                           </h4>
                             <tr>
-                                <th class="table-header" style="text-align:center">NO.</th>
-                                <th class="table-header" style="text-align:center">ID SUJETO</th>
-                                <th class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
-                                <th class="table-header" style="text-align:center">ID ACTIVIDAD</th>
-                                <th class="table-header" style="text-align:center">NOMBRE ACTIVIDAD</th>
-                                <th class="table-header" style="text-align:center">FECHA</th>
+                              <th class="table-header" style="text-align:center">NO.</th>
+                              <th class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
+                              <th class="table-header" style="text-align:center">ID SUJETO</th>
+                              <th class="table-header" style="text-align:center">NOMBRE ACTIVIDAD</th>
+                              <th class="table-header" style="text-align:center">FECHA</th>
+                              <th class="table-header" style="text-align:center">NOMENCLATURA</th>
                             </tr>
                         </thead>
                         <tbody>
                           <?php
                           $auxsum = 0;
-                          $auxsum2 = 0;
-                          $sujetosidrecor = array();
-                          $sujetosidrecor2 = array();
-                          $conteotrasdestino001 = "SELECT react_actividad.id_sujeto, react_actividad.folio_expediente, 
-                          react_actividad_analisis.id_actividad, react_actividad_analisis.nombre, react_actividad.fecha
-                          FROM react_actividad_analisis
-                          INNER JOIN react_actividad
-                          ON react_actividad_analisis.id_actividad = react_actividad.idactividad
-                          
+                          $getrondin = "SELECT DISTINCT react_actividad.id_sujeto,
+                                        react_actividad.folio_expediente, react_actividad.idactividad, 
+                                        react_actividad_analisis.nombre
 
-                          WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                          AND react_actividad.idactividad = 'SAR-01'
-                          ORDER BY react_actividad.fecha ASC";
-                          $rconteotrasdestino001 = $mysqli->query($conteotrasdestino001);
-                          while ($fconteotrasdestino001 = $rconteotrasdestino001->fetch_assoc()){
-                            $iddd = intVal($fconteotrasdestino001['id_sujeto']);
-                            array_push($sujetosidrecor, $iddd);
-                          }
-                          $miArray = array(1, 2, 2, 2, 3, 3, 4, 4, 5);
-                          // Verificar si el array tiene al menos dos elementos
-                          if (count($sujetosidrecor) >= 3) {
-                              // Iterar sobre el array
-                              for ($i = 0; $i < count($sujetosidrecor); $i++) {
-                                  // Obtener el valor anterior
-                                  $anterior = ($i > 0) ? $sujetosidrecor[$i - 1] : null;
-                                  $anterior2 = ($i > 0) ? $sujetosidrecor[$i - 2] : null;
-                                  // Obtener el valor actual
-                                  $actual = $sujetosidrecor[$i];
-                                  $actual2 = $sujetosidrecor[$i+1];
-                                  // Comparar si el valor anterior es igual al valor actual
-                                  if ($i > 0 && $anterior2 == $actual) {
-                                       // echo "Valor igual: 3" . PHP_EOL;
-                                       array_push($sujetosidrecor2, 3);
-                                  }elseif ($i > 0 && $anterior == $actual) {
-                                     // "Valecho or igual: 2" . PHP_EOL;
-                                     array_push($sujetosidrecor2, 2);
-                                  } else {
-                                      //Si es diferente, imprimimos el valor actual.
-                                       // echo "Valor desigual: 1" . PHP_EOL;
-                                       array_push($sujetosidrecor2, 1);
-                                  }
-                              }
-                          }
-                          $conteotrasdestino = "SELECT react_actividad.id_sujeto, react_actividad.folio_expediente, 
-                          react_actividad_analisis.id_actividad, react_actividad_analisis.nombre, react_actividad.fecha
-                          FROM react_actividad_analisis
-                          INNER JOIN react_actividad
-                          ON react_actividad_analisis.id_actividad = react_actividad.idactividad
+                                        FROM react_actividad
 
-                          WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                          AND react_actividad.idactividad = 'SAR-01'
-                          ORDER BY react_actividad.fecha ASC";
-                          $rconteotrasdestino = $mysqli->query($conteotrasdestino);
-                          while ($fconteotrasdestino = $rconteotrasdestino->fetch_assoc()) {
+                                        INNER JOIN react_actividad_analisis
+                                        ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+
+                                        
+                                        WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin' 
+                                        AND react_actividad.idactividad = 'SAR-01'
+      
+                                        ORDER BY react_actividad.fecha ASC
+                                        ";
+                          $rgetrondin = $mysqli->query($getrondin);
+                          while ($fgetrondin = $rgetrondin->fetch_assoc()) {
                             $auxsum = $auxsum +1;
-                            $valdestino = $fconteotrasdestino['id_destino'];
+                            
+                            $id_sujeto = $fgetrondin['id_sujeto'];
+                            // echo $id_sujeto;
+                            // echo $fechainicial;
 
-                            $conteotrasdestino2 = "SELECT COUNT(*) AS pt 
-                            FROM react_sujetos_traslado
-                            INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                            WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
-                            $rconteotrasdestino2 = $mysqli->query($conteotrasdestino2);
-                            $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();
+                            
+                            $getactividad = "SELECT DISTINCT react_actividad.id_sujeto,
+                            react_actividad.folio_expediente, react_actividad.idactividad,  
+                            react_actividad_analisis.nombre, react_actividad.fecha
 
-                            $resmotivodes = $fconteotrasdestino['motivo'];
+                            FROM react_actividad
 
-                            $restrasladounico = $fconteotrasdestino['idtrasladounico'];
-                            $resmunicipiodes = $fconteotrasdestino['municipio'];
-                            $cadena = $resmotivodes;
-                            $texto_minusculas = mb_strtolower($cadena, 'UTF-8');
-                            $texto_minusculas2 = mb_strtolower($resmunicipiodes, 'UTF-8');
-                            // $texto_minusculas; // Imprime "hola mundo, éste es un ejemplo."
-                            // echo "<br>";
-                            $foo = ucfirst($texto_minusculas);
-                            $foo2= ucfirst($texto_minusculas2);
-                            // echo "<br>";
-                             $ultimosCinco = substr($fconteotrasdestino['folio_expediente'], -7);
-                             // $fconteotrasdestino['identificador'];
-                            $cadena = $fconteotrasdestino['identificador'];
-                            // echo "<br>";
-                            $caracter = "-";
-                            // Encuentra la posición del carácter
-                            $posicion = strpos($cadena, $caracter);
-                            // Si el carácter existe en la cadena
-                            if ($posicion !== false) {
-                              // Extrae la parte de la cadena hasta el carácter
-                              $parte = substr($cadena, 0, $posicion);
-                              // Imprime la parte de la cadena
-                              $parte; // Imprimirá "Hola"
+                            INNER JOIN react_actividad_analisis
+                            ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+
+                            WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin' 
+                            AND react_actividad.idactividad = 'SAR-01' AND react_actividad.id_sujeto = '$id_sujeto'
+                                  
+                            ORDER BY react_actividad.fecha ASC
+                            LIMIT 1
+                            ";
+
+                            $resultado_act = $mysqli->query($getactividad);
+                            $row_resu = $resultado_act->fetch_assoc();
+                            // echo $r_acti = $row_resu['fecha'];
+
+                            $texto = $fgetrondin['folio_expediente'];
+                            // Imprimir "Extraer caracteres" 
+                            $fol_ex = substr($texto, 17);
+                            // echo $fol_exp;
+
+                            // IMPRIMIR SOLO LETRAS
+                            $texto_idsujeto = $fgetrondin['id_sujeto'];
+
+                            $resultado = "";
+                            for ($i = 0; $i < strlen($texto_idsujeto); $i++) {
+                                if (ctype_alpha($texto_idsujeto[$i])) { 
+                                    $resultado .= $texto_idsujeto[$i];
+                                }
                             }
-                            $texto = $parte;
-                            // Convertir el texto en un array de caracteres
-                            $arrayCaracteres = str_split($texto);
-                            // Unir los caracteres con un punto
-                            $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-'.$restrasladounico.'-'.$foo2;
+                            // echo $resultado; 
+
+                            // Evaluación_EXP_006/2022-JVT
+                            $concatenacion = 'Evaluación_EXP_'.$fol_ex.'-'.$resultado;
                           ?>
-                          <tr>
-                            <td><?php echo $auxsum; ?></td>
-                            <!-- <td><?php echo $concatenacion; ?></td> -->
+                            <tr>
+                              <td><?php echo $auxsum; ?></td>
+                              <td><?php echo $fgetrondin['folio_expediente']; ?></td>
+                              <td><?php echo $fgetrondin['id_sujeto']; ?></td>                           
+                              <td><?php echo $fgetrondin['nombre']; ?></td>
+                              <td><?php echo date("d/m/Y", strtotime($row_resu['fecha'])); ?></td>
+                              <td><?php echo $concatenacion; ?></td>
+                              
 
-                            <td><?php echo $fconteotrasdestino['id_sujeto']; ?></td>
-                            <td><?php echo $fconteotrasdestino['folio_expediente']; ?></td>
-                            <td><?php echo $fconteotrasdestino['id_actividad']; ?></td>
-                            <td><?php echo $fconteotrasdestino['nombre']; ?></td>
-
-                            <td><?php echo date("d/m/Y", strtotime($fconteotrasdestino['fecha'])); ?></td>
-                          </tr>
-                        <?php
-                        $auxsum2 = $auxsum2 +1;
-                        }
-                        ?>
+                            </tr>
+                          <?php
+                          }
+                          ?>
                         </tbody>
                     </table>
                     </div>
                   </div>
-
-                  <!-- conteo de total de municipios de destinos de traslados -->
-
                 </div>
               </div>
               <br><br>
               <?php
             }else {
               ?>
-
               <div class="alert alert-warning" role="alert">
                 <h1 style="text-align:center">no existen registros</h1>
               </div>
@@ -460,14 +425,13 @@ $_SESSION["check_traslado"] = $check_traslado;
       <?php
       if ($mostrar === 1) {
       ?>
-
       <?php
       }
       ?>
     </div>
   </div>
   <div class="contenedor">
-      <a href="bd_metas.php" class="btn-flotante">REGRESAR</a>
+      <a href="./bd_metas.php" class="btn-flotante">REGRESAR</a>
   </div>
   <script type="text/javascript">
     function verdato(){

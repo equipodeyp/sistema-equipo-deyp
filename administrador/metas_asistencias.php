@@ -1,3 +1,4 @@
+
 <?php
 error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
@@ -34,7 +35,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>TRASLADOS BUSCADOS</title>
+  <title>METAS ASISTENCIAS MEDICAS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/funciones_react.js"></script>
@@ -105,20 +106,9 @@ $_SESSION["check_traslado"] = $check_traslado;
           extend:    'excelHtml5',
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
-          className: 'btn color-btn-export-xls'
+          className: 'btn color-btn-export-xls',
+          title:      'METAS ASISTENCIAS MEDICAS'
         },
-        // {
-        //   extend:    'pdfHtml5',
-        //   text:      '<i class="fas fa-file-pdf"></i> ',
-        //   titleAttr: 'Exportar a PDF',
-        //   className: 'btn color-btn-export-ppt'
-        // },
-        // {
-        //   extend:    'print',
-        //   text:      '<i class="fa fa-print"></i> ',
-        //   titleAttr: 'Imprimir',
-        //   className: 'btn color-btn-export-imp'
-        // },
       ]
       });
   });
@@ -169,12 +159,13 @@ $_SESSION["check_traslado"] = $check_traslado;
           <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h4>
+          <br><br>
+          <h1 style="text-align:center"> CONSULTAR METAS ASISTENCIAS MÉDICAS </h4>
+          <br><br>
+
         </div>
       </div>
       <div class="">
-        <!-- <h1 style="text-align:center">CONSULTA DE TRASLADOS</h1> -->
-        <!-- Search Forms -->
-
         <div class="container" style="display: flex; justify-content: center;">
           <div class="row mt-8">
               <form class="d-flex" style="width: 800px;">
@@ -213,8 +204,10 @@ $_SESSION["check_traslado"] = $check_traslado;
 
           if (isset($_GET['star']))
           {
-            $where="WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+            $where="WHERE cita_asistencia.fecha_asistencia BETWEEN '$fechainicial' AND '$fechafin'";
             $mostrar = 1;
+
+
           }
 
         }
@@ -235,7 +228,15 @@ $_SESSION["check_traslado"] = $check_traslado;
 
             if ($mostrar === 1) {
               $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-              $SQL="SELECT * FROM react_traslados $where";
+              $SQL="SELECT * 
+                    FROM solicitud_asistencia
+
+                    INNER JOIN cita_asistencia
+                    ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                    $where
+                    AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA' 
+
+                    ORDER BY cita_asistencia.fecha_asistencia ASC;";
               $dato = mysqli_query($conexion, $SQL);
               $row_cnt = $dato->num_rows;
               if($dato -> num_rows >0){
@@ -294,8 +295,6 @@ $_SESSION["check_traslado"] = $check_traslado;
               $diafinal = date('d', strtotime($fechafin));
               $mesnumerofinal = date('m', strtotime($fechafin));
               $aniofinal = date('Y', strtotime($fechafin));
-
-
               ?>
               <div class="" id="showafterconsul">
                 <div class="container well form-horizontal" style="text-align:center;padding:10px;border:solid 3px; width:98%;border-radius:20px;shadow">
@@ -306,130 +305,102 @@ $_SESSION["check_traslado"] = $check_traslado;
                     <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
-                          <h1>PERIODO DE CONSULTA DE LA INFORMACIÓN</h1>
-                          <h3>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
-                          </h3>
+                          
+                          <h2>PERIODO DE CONSULTA DE INFORMACIÓN</h2>
+                          <h4>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
+                          </h4>
                             <tr>
-                                <th class="table-header" style="text-align:center">NO.</th>
-                                <th class="table-header" style="text-align:center">TRASLADO</th>
-                                <th class="table-header" style="text-align:center">FECHA</th>
+                              <th class="table-header" style="text-align:center">NO.</th>
+                              <!-- <th class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
+                              <th class="table-header" style="text-align:center">ID SUJETO</th> -->
+                              <th class="table-header" style="text-align:center">ID ASISTENCIA MEDICA</th>
+                              
+                              <th class="table-header" style="text-align:center">FECHA CITA</th>
+                              <th class="table-header" style="text-align:center">NOMENCLATURA</th>
                             </tr>
                         </thead>
                         <tbody>
                           <?php
                           $auxsum = 0;
-                          $auxsum2 = 0;
-                          $sujetosidrecor = array();
-                          $sujetosidrecor2 = array();
-                          $conteotrasdestino001 = "SELECT * FROM react_sujetos_traslado
-                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
-                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
-                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                          ORDER BY react_traslados.fecha ASC";
-                          $rconteotrasdestino001 = $mysqli->query($conteotrasdestino001);
-                          while ($fconteotrasdestino001 = $rconteotrasdestino001->fetch_assoc()){
-                            $iddd = intVal($fconteotrasdestino001['id_sujeto']);
-                            array_push($sujetosidrecor, $iddd);
-                          }
-                          $miArray = array(1, 2, 2, 2, 3, 3, 4, 4, 5);
-                          // Verificar si el array tiene al menos dos elementos
-                          if (count($sujetosidrecor) >= 3) {
-                              // Iterar sobre el array
-                              for ($i = 0; $i < count($sujetosidrecor); $i++) {
-                                  // Obtener el valor anterior
-                                  $anterior = ($i > 0) ? $sujetosidrecor[$i - 1] : null;
-                                  $anterior2 = ($i > 0) ? $sujetosidrecor[$i - 2] : null;
-                                  // Obtener el valor actual
-                                  $actual = $sujetosidrecor[$i];
-                                  $actual2 = $sujetosidrecor[$i+1];
-                                  // Comparar si el valor anterior es igual al valor actual
-                                  if ($i > 0 && $anterior2 == $actual) {
-                                       // echo "Valor igual: 3" . PHP_EOL;
-                                       array_push($sujetosidrecor2, 3);
-                                  }elseif ($i > 0 && $anterior == $actual) {
-                                     // "Valecho or igual: 2" . PHP_EOL;
-                                     array_push($sujetosidrecor2, 2);
-                                  } else {
-                                      //Si es diferente, imprimimos el valor actual.
-                                       // echo "Valor desigual: 1" . PHP_EOL;
-                                       array_push($sujetosidrecor2, 1);
-                                  }
-                              }
-                          }
-                          $conteotrasdestino = "SELECT * FROM react_sujetos_traslado
-                          INNER JOIN react_destinos_traslados ON react_sujetos_traslado.id_destino = react_destinos_traslados.id
-                          INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                          INNER JOIN datospersonales ON react_sujetos_traslado.id_sujeto = datospersonales.id
-                          WHERE react_traslados.fecha BETWEEN '$fechainicial' AND '$fechafin'
-                          ORDER BY react_traslados.fecha ASC";
-                          $rconteotrasdestino = $mysqli->query($conteotrasdestino);
-                          while ($fconteotrasdestino = $rconteotrasdestino->fetch_assoc()) {
+                          $getrondin = "SELECT * 
+                                        FROM solicitud_asistencia
+
+                                        INNER JOIN cita_asistencia
+                                        ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia 
+                                        WHERE cita_asistencia.fecha_asistencia BETWEEN '$fechainicial' AND '$fechafin'
+                                        AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA' 
+
+                                        ORDER BY cita_asistencia.fecha_asistencia ASC";
+                          $rgetrondin = $mysqli->query($getrondin);
+                          while ($fgetrondin = $rgetrondin->fetch_assoc()) {
                             $auxsum = $auxsum +1;
-                            $valdestino = $fconteotrasdestino['id_destino'];
-
-                            $conteotrasdestino2 = "SELECT COUNT(*) AS pt FROM react_sujetos_traslado
-                             INNER JOIN react_traslados ON react_sujetos_traslado.id_traslado = react_traslados.id
-                             WHERE react_sujetos_traslado.id_sujeto = '$idsujetorecor' AND react_sujetos_traslado.id_traslado ='$numtrasladorecor'";
-                            $rconteotrasdestino2 = $mysqli->query($conteotrasdestino2);
-                            $fconteotrasdestino2 = $rconteotrasdestino2->fetch_assoc();
-
-                            $resmotivodes = $fconteotrasdestino['motivo'];
-
-                            $restrasladounico = $fconteotrasdestino['idtrasladounico'];
-                            $resmunicipiodes = $fconteotrasdestino['municipio'];
-                            $cadena = $resmotivodes;
-                            $texto_minusculas = mb_strtolower($cadena, 'UTF-8');
-                            $texto_minusculas2 = mb_strtolower($resmunicipiodes, 'UTF-8');
-                            // $texto_minusculas; // Imprime "hola mundo, éste es un ejemplo."
-                            // echo "<br>";
-                            $foo = ucfirst($texto_minusculas);
-                            $foo2= ucfirst($texto_minusculas2);
-                            // echo "<br>";
-                             $ultimosCinco = substr($fconteotrasdestino['folio_expediente'], -7);
-                             // $fconteotrasdestino['identificador'];
-                            $cadena = $fconteotrasdestino['identificador'];
-                            // echo "<br>";
-                            $caracter = "-";
-                            // Encuentra la posición del carácter
-                            $posicion = strpos($cadena, $caracter);
-                            // Si el carácter existe en la cadena
-                            if ($posicion !== false) {
-                              // Extrae la parte de la cadena hasta el carácter
-                              $parte = substr($cadena, 0, $posicion);
-                              // Imprime la parte de la cadena
-                              $parte; // Imprimirá "Hola"
-                            }
-                            $texto = $parte;
-                            // Convertir el texto en un array de caracteres
-                            $arrayCaracteres = str_split($texto);
-                            // Unir los caracteres con un punto
-                            $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenacion = 'Traslado_Exp_'.$ultimosCinco.'-'.$textoConPuntos.'.-'.$foo.'-'.$restrasladounico.'-'.$foo2;
+                            
+                            // $idunico = $fgetrondin['id_sujeto'];
+                            // echo $idunico;
+                            // $ultimosCinco = substr($fgetrondin['folio_expediente'], -8);
+                            
+                            // $getinfosujeto = "SELECT * FROM datospersonales WHERE id = '$idunico'";
+                            // $rgetinfosujeto = $mysqli->query($getinfosujeto);
+                            
+                            // $fgetinfosujeto  = $rgetinfosujeto ->fetch_assoc();
+                            // $cadena = $fgetinfosujeto['identificador'];
+                            // // echo "<br>";
+                            // $caracter = "-";
+                            // // Encuentra la posición del carácter
+                            // $posicion = strpos($cadena, $caracter);
+                            // // Si el carácter existe en la cadena
+                            // if ($posicion !== false) {
+                            //   // Extrae la parte de la cadena hasta el carácter
+                            //   $parte = substr($cadena, 0, $posicion);
+                            //   // Imprime la parte de la cadena
+                            //   $parte; // Imprimirá "Hola"
+                            // }
+                            // $texto = $parte;
+                            // // Convertir el texto en un array de caracteres
+                            // $arrayCaracteres = str_split($texto);
+                            // // Unir los caracteres con un punto
+                            // $textoConPuntos = implode(".", $arrayCaracteres);
+                            // $concatenar_rondin ='Ruta_Exp_'.$ultimosCinco.'_'.$textoConPuntos.'.';
                           ?>
-                          <tr>
-                            <td><?php echo $auxsum; ?></td>
-                            <td><?php echo $concatenacion; ?></td>
-                            <td><?php echo date("d/m/Y", strtotime($fconteotrasdestino['fecha'])); ?></td>
-                          </tr>
-                        <?php
-                        $auxsum2 = $auxsum2 +1;
-                        }
-                        ?>
+                            <tr>
+                              <td><?php echo $auxsum; ?></td>
+                              <!-- <td><?php echo date("d/m/Y", strtotime($fgetrondin['fecha'])); ?></td> -->
+                              <!-- <td><?php echo $fgetrondin['entidad_municipio']; ?></td> -->
+                              <!-- <td><?php echo $fgetrondin['folio_expediente']; ?></td> -->
+                              <!-- <td><?php echo $fgetinfosujeto['identificador']; ?></td> -->
+                              <!-- <td><?php echo $fgetrondin['kilometraje']; ?></td> -->
+                              <!-- <td><?php echo $concatenar_rondin; ?></td> -->
+                              <td><?php echo $fgetrondin['id_asistencia']; ?></td>
+                              <?php
+                              $txt_sin_acentos = $fgetrondin['servicio_medico'];                          
+                              $original = array('á','é','í','ó','ú','ñ','Á','É','Í','Ó','Ú','Ñ');
+                              $reemplazo = array('a','e','i','o','u','n','A','E','I','O','U','N');
+                              $limpio = str_replace($original, $reemplazo, $txt_sin_acentos);
+
+                              $txt_minusculas = strtolower($limpio);
+                              $txt_altas = ucwords($txt_minusculas);
+
+                              $concatenacion = 'Gestión_'.$fgetrondin['id_asistencia'].'_'.$txt_altas;
+                              ?>
+                              
+                              <!-- <td><?php echo $fgetrondin['folio_expediente']; ?></td>
+                              <td><?php echo $fgetrondin['id_sujeto']; ?></td> -->
+                              <td><?php echo date("d/m/Y", strtotime($fgetrondin['fecha_asistencia'])); ?></td>
+                              <td><?php echo $concatenacion; ?></td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
                         </tbody>
                     </table>
                     </div>
                   </div>
-
-                  <!-- conteo de total de municipios de destinos de traslados -->
-
                 </div>
               </div>
               <br><br>
               <?php
             }else {
               ?>
-
               <div class="alert alert-warning" role="alert">
                 <h1 style="text-align:center">no existen registros</h1>
               </div>
@@ -442,14 +413,13 @@ $_SESSION["check_traslado"] = $check_traslado;
       <?php
       if ($mostrar === 1) {
       ?>
-
       <?php
       }
       ?>
     </div>
   </div>
   <div class="contenedor">
-      <a href="bd_metas.php" class="btn-flotante">REGRESAR</a>
+      <a href="./bd_metas.php" class="btn-flotante">REGRESAR</a>
   </div>
   <script type="text/javascript">
     function verdato(){
