@@ -1203,7 +1203,7 @@ $data .='</tbody>
 $data .= '<div style="float: left; width: 100%;">
 <h1 style="text-align:center;">RESUMEN DEL PROGRAMA</h1>
 </div>';
-$data .='<div style="float: left; width: 35%;">
+$data .='<div style="float: left; width: 49%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
@@ -1334,20 +1334,37 @@ $data .='<div style="float: right; width: 49%;">
 
 $data .='</tbody>
 </table>
-</div>';
+</div></div>';
 
 
-                // $img_externa = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
-                $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+  // $img_expedientes = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
+  // $img_personaspropuestas = 'C:/Users/FGJJE/Downloads/grafica_personaspropuestas.png';
+  // $img_externa = 'C:/Users/FGJJE/Downloads/grafica_sujetosenresguardo.png';
+  //////////////////////////////////////////////////////////////////////////////
+  $img_expedientes = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+  $img_personaspropuestas = 'C:/Users/FGJEM/Downloads/grafica_personaspropuestas.png';
+  $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
                 // $img_externa = $_SERVER['DOCUMENT_ROOT'] . '/sistema-equipo-deyp/administrador/grafica_expedientes.png';
         $data .='
-        <br><br><br><br><div style="style="float: left; width: 100%; background-color: white; border: 1.8px solid black;"">
-        <div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 40px; min-height: 40px; min-width: 40%; max-width: 100%;">
-                  <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO</b></h2></div>
-            <!-- mPDF requiere la ruta física completa -->
-            <img src="' . $img_externa . '" width="800">
+        <br>
 
-        </div>';
+        <div style="width: 80%; margin: 0 auto; text-align: center; border: 3px solid black;">
+          <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>EXPEDIENTES DE PROTECCIÓN INICIADOS</b></h2>
+          <!-- La imagen se ajustará al ancho del div si es muy grande -->
+          <img src="' . $img_expedientes . '" style="width: 100%; height: auto;">
+        </div><br>
+        <div style="width: 80%; margin: 0 auto; text-align: center; border: 3px solid black;">
+          <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>PERSONAS PROPUESTAS PARA SU INCORPORACIÓN</b></h2>
+          <!-- La imagen se ajustará al ancho del div si es muy grande -->
+          <img src="' . $img_personaspropuestas . '" style="width: 100%; height: auto;">
+        </div><br>
+        <div style="width: 80%; margin: 0 auto; text-align: center; border: 3px solid black;">
+          <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO</b></h2>
+          <!-- La imagen se ajustará al ancho del div si es muy grande -->
+          <img src="' . $img_externa . '" style="width: 100%; height: auto;">
+        </div>
+
+        ';
 
 
         $data .= '

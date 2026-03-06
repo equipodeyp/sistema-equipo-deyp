@@ -770,6 +770,7 @@
                 height: 400,
                 colors: ['#000'],
                 pointSize: 7,
+                fontSize: 22,
                 legend: { position: 'none' },
                 hAxis: {
                   title: 'AÑO',
@@ -786,7 +787,7 @@
                   }
                 },
                 vAxis: {
-                  title: 'Personas',
+                  title: 'Expedientes',
                   titleTextStyle: {
                     bold: true,
                     fontSize: 20,
@@ -802,6 +803,17 @@
               };
               var chart = new google.visualization.LineChart(document.getElementById('ciudadChart'));
               chart.draw(data, options);
+              // 1. Obtener la imagen en Base64
+var imgUri = chart.getImageURI();
+
+// 2. Enviar al servidor mediante una petición (fetch)
+fetch('guardar_grafica_expedientes.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'imagen=' + encodeURIComponent(imgUri)
+})
+.then(response => response.text())
+.then(data => console.log('Imagen guardada:', data));
             }
             </script>
             <br>
@@ -861,7 +873,8 @@ ORDER BY año ASC";
                 // --- GROSOR DE LA LÍNEA ---
                 lineWidth: 5,
                 // --------------------------
-                pointSize: 6, // Aumenté un poco el punto para que combine con la línea gruesa
+                pointSize: 7, // Aumenté un poco el punto para que combine con la línea gruesa
+                fontSize: 22,
                 chartArea: {
                   left: 25,
                   top: 30,
@@ -904,6 +917,17 @@ ORDER BY año ASC";
               };
               var chart = new google.visualization.LineChart(document.getElementById('ciudadChart2'));
               chart.draw(data, options);
+              // 1. Obtener la imagen en Base64
+var imgUri = chart.getImageURI();
+
+// 2. Enviar al servidor mediante una petición (fetch)
+fetch('guardar_grafica_personaspropuestas.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'imagen=' + encodeURIComponent(imgUri)
+})
+.then(response => response.text())
+.then(data => console.log('Imagen guardada:', data));
             }
             </script>
             <br>
@@ -966,7 +990,8 @@ ORDER BY año ASC";
                 // --- GROSOR DE LA LÍNEA ---
                 lineWidth: 5,
                 // --------------------------
-                pointSize: 6, // Aumenté un poco el punto para que combine con la línea gruesa
+                pointSize: 7, // Aumenté un poco el punto para que combine con la línea gruesa
+                fontSize: 22,
                 chartArea: {
                   left: 25,
                   top: 30,
@@ -1013,7 +1038,7 @@ ORDER BY año ASC";
 var imgUri = chart.getImageURI();
 
 // 2. Enviar al servidor mediante una petición (fetch)
-fetch('guardar_grafica.php', {
+fetch('guardar_grafica_sujetosenresguardo.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'imagen=' + encodeURIComponent(imgUri)
