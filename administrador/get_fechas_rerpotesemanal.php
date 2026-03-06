@@ -139,14 +139,15 @@ switch ($day) {
       }else {
         $diafin = $diafin;
       }
+      //////////////////////////////////////////////////////////////////////////
+      $mesact = date('n', strtotime('-0 month'));
+      if ($mesact < 10) {
+        $mesactpdf = '0'.$mesact;
+      }else {
+        $mesactpdf = $mesact;
+      }
       /////////////////////////////////////////////////////////
       if ($diaini > $diafin) {
-        $mesact = date('n', strtotime('-0 month'));
-        if ($mesact < 10) {
-          $mesactpdf = '0'.$mesact;
-        }else {
-          $mesactpdf = $mesact;
-        }
         $fechainicio_pdf =date('Y').'-01-01';
         $fechafin_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini-1;
         $fechainicial_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini;
@@ -154,8 +155,8 @@ switch ($day) {
       } else {
         $fechainicio_pdf =date('Y').'-01-01';
         $fechafin_pdf =$fecha_finsemanaanterior;
-        $fechainicial_reporte_pdf =date('Y').'-0'.date('n').'-'.$diaini;
-        $fechafinal_reporte_pdf =date('Y').'-0'.date('n').'-'.$diafin;
+        $fechainicial_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini;
+        $fechafinal_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diafin;
       }
       break;
       case 'Thursday':
@@ -186,14 +187,15 @@ switch ($day) {
         }else {
           $diafin = $diafin;
         }
-        /////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+        $mesact = date('n', strtotime('-0 month'));
+        if ($mesact < 10) {
+          $mesactpdf = '0'.$mesact;
+        }else {
+          $mesactpdf = $mesact;
+        }
+        ////////////////////////////////////////////////////////////////////////
         if ($diaini > $diafin) {
-          $mesact = date('n', strtotime('-0 month'));
-          if ($mesact < 10) {
-            $mesactpdf = '0'.$mesact;
-          }else {
-            $mesactpdf = $mesact;
-          }
           $fechainicio_pdf =date('Y').'-01-01';
           $fechafin_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini-1;
           $fechainicial_reporte_pdf =date('Y').'-'.$mesactpdf.'-'.$diaini;

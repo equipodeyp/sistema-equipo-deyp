@@ -1,5 +1,46 @@
 <?php
 ////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+function capitalizarConReglasEspeciales($texto) {
+    // 1. Estandarizamos a minúsculas
+    $texto = mb_strtolower($texto, 'UTF-8');
+    $contador = 0;
+
+    // 2. Procesamos cada palabra
+    return preg_replace_callback('/\b\w+\b/u', function($coincidencias) use (&$contador) {
+        $palabra = $coincidencias[0];
+        $longitud = mb_strlen($palabra, 'UTF-8');
+        $esPrimeraPalabra = ($contador === 0);
+        $contador++;
+
+        // REGLA: Si la palabra es solo una "x" (sola), convertir a "X"
+        if ($palabra === 'x') {
+            return 'X';
+        }
+
+        // REGLA: Si es la primera palabra de la oración, siempre capitalizar
+        // (Incluso si tiene 3 letras o menos)
+        if ($esPrimeraPalabra) {
+            return mb_ucfirst($palabra);
+        }
+
+        // REGLA: Capitalizar palabras de 3 o más letras
+        if ($longitud >= 4) {
+            return mb_ucfirst($palabra);
+        }
+
+        // De lo contrario, dejar en minúsculas (palabras de 1 o 2 letras)
+        return $palabra;
+    }, $texto);
+}
+
+// Función auxiliar para capitalizar correctamente con tildes/eñes
+function mb_ucfirst($string, $encoding = 'UTF-8') {
+    $firstChar = mb_substr($string, 0, 1, $encoding);
+    $rest = mb_substr($string, 1, null, $encoding);
+    return mb_strtoupper($firstChar, $encoding) . $rest;
+}
+////////////////////////////////////////////////////////////////////////////////
 require_once '../../mpdf/vendor/autoload.php';
 include("../conexion.php");
 include("../calculardatesreportemensual.php");
@@ -100,6 +141,8 @@ $mpdf->SetHTMLFooter('<div style="float: left; width: 100%;">
 </table>
 </div>');
 //////////////////////////////////////////////////////
+$mesescolumna_a = 'Enero-<br>'.$mesesminusculas[date('n')-2];
+
 $data .= '<div style="float: left; width: 100%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
@@ -108,7 +151,7 @@ $data .= '<div style="float: left; width: 100%;">
     </tr>
     <tr style="background-color: white; border: 1.5px solid black;">
       <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Autoridad Solicitante</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
       <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
       <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
     </tr>
@@ -138,7 +181,7 @@ while ($fsolicitudesrecibidas = $rsolicitudesrecibidas->fetch_assoc()) {
   $totalcol2 = $totalcol2 + $fsolicitudes_col2['total'];
   $sumatotal = $sumatotal + $totalfila;
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-  <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$nameautoridad.'</td>
+  <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($nameautoridad).'</td>
   <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsolicitudes_col1['total'].'</td>
   <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsolicitudes_col2['total'].'</td>
   <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100;" font-size:13.33px;>'.$totalfila.'</td>
@@ -156,7 +199,7 @@ $data .= '</tbody>
 </table>
 </div><br>';
 ////////////////////////////////////////////////////////////////////////////////
-$data .='<div style="float: left; width: 49%;">
+$data .='<div style="float: left; width: 48%;">
 <table border="1.5px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
@@ -164,7 +207,7 @@ $data .='<div style="float: left; width: 49%;">
     </tr>
     <tr style="background-color: white; border: 1.5px solid black;">
       <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
       <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
       <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
     </tr>
@@ -231,7 +274,7 @@ $data .='<div style="float: left; width: 49%;">
     $totalpp_fila = $fpersonaspropuestas_col1['total'] +$fpersonaspropuestas_col2['total'];
     $sumatotalpp = $sumatotalpp + $totalpp_fila;
     $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($namecortocalidad).'</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fpersonaspropuestas_col1['total'].'</td>
     <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fpersonaspropuestas_col2['total'].'</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalpp_fila.'</td>
@@ -247,7 +290,7 @@ $data .='<div style="float: left; width: 49%;">
 
   $data .= '<tbody>
   </table>
-  <br>
+  <br><br>
   <!-- siguiente tabla izquierda -->
   <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
     <thead>
@@ -256,7 +299,7 @@ $data .='<div style="float: left; width: 49%;">
       </tr>
       <tr style="background-color: white; border: 1.5px solid black;">
         <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
         <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
         <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
       </tr>
@@ -327,7 +370,7 @@ $data .='<div style="float: left; width: 49%;">
       $sumatotalpincorporadas = $sumatotalpincorporadas + $totalsujetosincorporados_fila;
 
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-      <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($namecortocalidad).'</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosincorporados_col1['total'].'</td>
       <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosincorporados_col2['total'].'</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalsujetosincorporados_fila.'</td>
@@ -354,7 +397,7 @@ $data .='<div style="float: left; width: 49%;">
       <tbody>
       </tbody>
     </table>
-    <br>
+    <br><br>
     <!-- siguiente tabla izquierda -->
     <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
       <thead>
@@ -363,7 +406,7 @@ $data .='<div style="float: left; width: 49%;">
         </tr>
         <tr style="background-color: white; border: 1.5px solid black;">
           <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
           <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
           <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
         </tr>
@@ -437,7 +480,7 @@ $data .='<div style="float: left; width: 49%;">
         $sumatotalsujetosfinresguardo = $sumatotalsujetosfinresguardo + $totalsujfinresguardo_fila;
 
         $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($namecortocalidad).'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujfinalderesguardo_col1['total'].'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujfinalderesguardo_col2['total'].'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalsujfinresguardo_fila.'</td>
@@ -453,7 +496,7 @@ $data .='<div style="float: left; width: 49%;">
 
       $data .='</tbody>
       </table>
-      <br>
+      <br><br>
       <!-- siguiente tabla izquierda -->
       <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
         <thead>
@@ -462,7 +505,7 @@ $data .='<div style="float: left; width: 49%;">
           </tr>
           <tr style="background-color: white; border: 1.5px solid black;">
             <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Servicio</th>
-            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
             <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
             <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
           </tr>
@@ -501,7 +544,7 @@ $data .='<div style="float: left; width: 49%;">
           $sumatotalamotorgadas = $sumatotalamotorgadas + $totalamotorgadas_fila;
 
           $data .= '<tr style="background-color: white; border: 1px solid black;">
-          <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$serviciomedico.'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($serviciomedico).'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$famotorgadas_col1['total'].'</td>
           <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$famotorgadas_col2['total'].'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalamotorgadas_fila.'</td>
@@ -519,10 +562,10 @@ $data .='<div style="float: left; width: 49%;">
         </table>
 </div>';
 ////////////////////////////////////////////////////////////////////////////////
-$data .='<div style="float: center; width: 2%;">
+$data .='<div style="float: center; width: 4%;">
 </div>';
 ////////////////////////////////////////////////////////////////////////////////
-$data .='<div style="float: right; width: 49%;">
+$data .='<div style="float: right; width: 48%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
@@ -530,7 +573,7 @@ $data .='<div style="float: right; width: 49%;">
     </tr>
     <tr style="background-color: white; border: 1.5px solid black;">
       <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+      <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
       <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
       <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
     </tr>
@@ -600,7 +643,7 @@ $data .='<div style="float: right; width: 49%;">
     $sumatotalppnoincorporadas = $sumatotalppnoincorporadas + $totalppni_fila;
 
     $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($namecortocalidad).'</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fppnoincorporadas_col1['total'].'</td>
     <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fppnoincorporadas_col2['total'].'</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalppni_fila.'</td>
@@ -629,7 +672,7 @@ $data .='<div style="float: right; width: 49%;">
     <tbody>
     </tbody>
   </table>
-  <br>
+  <br><br>
   <!-- siguiente tabla derecha -->
   <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
     <thead>
@@ -638,7 +681,7 @@ $data .='<div style="float: right; width: 49%;">
       </tr>
       <tr style="background-color: white; border: 1.5px solid black;">
         <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+        <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
         <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
         <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
       </tr>
@@ -709,7 +752,7 @@ $data .='<div style="float: right; width: 49%;">
       $sumatotalpdesincorporadas = $sumatotalpdesincorporadas + $totalsujetosdesincorporados_fila;
 
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-      <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$namecortocalidad.'</td>
+      <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($namecortocalidad).'</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosdesincorporadas_col1['total'].'</td>
       <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fsujetosdesincorporadas_col2['total'].'</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalsujetosdesincorporados_fila.'</td>
@@ -738,7 +781,7 @@ $data .='<div style="float: right; width: 49%;">
       <tbody>
       </tbody>
     </table>
-    <br>
+    <br><br>
     <!-- siguiente tabla derecha -->
     <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
       <thead>
@@ -747,7 +790,7 @@ $data .='<div style="float: right; width: 49%;">
         </tr>
         <tr style="background-color: white; border: 1.5px solid black;">
           <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+          <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
           <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
           <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
         </tr>
@@ -783,7 +826,7 @@ $data .='<div style="float: right; width: 49%;">
         $sumatotalmedidasejecutadas = $sumatotalmedidasejecutadas + $totalmedidasejecutadas_fila;
 
         $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$municipio.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($municipio).'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmedidasejecutadas_col1['total'].'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmedidasejecutadas_col2['total'].'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalmedidasejecutadas_fila.'</td>
@@ -799,7 +842,7 @@ $data .='<div style="float: right; width: 49%;">
 
       $data .='</tbody>
       </table>
-      <br>
+      <br><br>
       <!-- siguiente tabla derecha -->
       <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
         <thead>
@@ -808,7 +851,7 @@ $data .='<div style="float: right; width: 49%;">
           </tr>
           <tr style="background-color: white; border: 1.5px solid black;">
             <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+            <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
             <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
             <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
           </tr>
@@ -847,7 +890,7 @@ $data .='<div style="float: right; width: 49%;">
           $sumatotaltraslados = $sumatotaltraslados + $totaltraslados_fila;
 
           $data .= '<tr style="background-color: white; border: 1px solid black;">
-          <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$trasladomunicipio.'</td>
+          <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($trasladomunicipio).'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$ftraslados_col1['total'].'</td>
           <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$ftraslados_col2['total'].'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totaltraslados_fila.'</td>
@@ -863,7 +906,7 @@ $data .='<div style="float: right; width: 49%;">
 
         $data .='</tbody>
         </table>
-        <br>
+        <br><br>
         <!-- siguiente tabla derecha -->
         <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
           <thead>
@@ -872,7 +915,7 @@ $data .='<div style="float: right; width: 49%;">
             </tr>
             <tr style="background-color: white; border: 1.5px solid black;">
               <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Calidad del Sujeto dentro del Programa</th>
-              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-2].'</th>
+              <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesescolumna_a.'</th>
               <th style="background-color: #D5D0CB; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$mesesminusculas[date('n')-1].'</th>
               <th style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</th>
             </tr>
@@ -908,7 +951,7 @@ $data .='<div style="float: right; width: 49%;">
             $sumatotalrondines = $sumatotalrondines + $totalrondines_fila;
 
             $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$serviciomedico.'</td>
+            <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($serviciomedico).'</td>
             <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$frondines_col1['total'].'</td>
             <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$frondines_col2['total'].'</td>
             <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$totalrondines_fila.'</td>
@@ -924,14 +967,8 @@ $data .='<div style="float: right; width: 49%;">
 
           $data .='</tbody>
           </table>
-          <br>
+          <br><br>
 </div>';
-$data .='';
-$data .='';
-$data .='';
-$data .='';
-$data .='';
-
 ////////////////////////////////////////////////////////////////////////////////
 
 $data .= '<div style="float: left; width: 100%;">
@@ -957,6 +994,37 @@ $data .= '<div style="float: left; width: 100%;">
   $rsujetores = $mysqli->query($sujetores);
   while ($fsujetores = $rsujetores->fetch_array(MYSQLI_ASSOC)) {
     $id_sujetodr = $fsujetores['id'];
+    $namecalidaddentrorescalidad = $fsujetores['calidadpersona'];
+    if ($namecalidaddentrorescalidad === 'I. VICTIMA') {
+      $namecortocalidaddentrores1 = 'VICTIMA';
+    }
+    if ($namecalidaddentrorescalidad === 'II. OFENDIDO') {
+      $namecortocalidaddentrores1 = 'OFENDIDO';
+    }
+    if ($namecalidaddentrorescalidad === 'III. TESTIGO') {
+      $namecortocalidaddentrores1 = 'TESTIGO';
+    }
+    if ($namecalidaddentrorescalidad === 'IV. COLABORADOR O INFORMANTE') {
+      $namecortocalidaddentrores1 = 'COLABORADOR O INFORMANTE';
+    }
+    if ($namecalidaddentrorescalidad === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+      $namecortocalidaddentrores1 = 'AGENTE DEL MINISTERIO PUBLICO';
+    }
+    if ($namecalidaddentrorescalidad === 'VI. DEFENSOR') {
+      $namecortocalidaddentrores1 = 'DEFENSOR';
+    }
+    if ($namecalidaddentrorescalidad === 'VII. POLICIA') {
+      $namecortocalidaddentrores1 = 'POLICIA';
+    }
+    if ($namecalidaddentrorescalidad === 'VIII. PERITO') {
+      $namecortocalidaddentrores1 = 'PERITO';
+    }
+    if ($namecalidaddentrorescalidad === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+      $namecortocalidaddentrores1 = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+    }
+    if ($namecalidaddentrorescalidad === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+      $namecortocalidaddentrores1 = 'PERSONA CON PARENTESCO O CERCANIA';
+    }
     $checkdentro = "SELECT DISTINCT id_persona FROM medidas
     WHERE medida = 'VIII. ALOJAMIENTO TEMPORAL' AND id_persona = '$id_sujetodr' AND estatus = 'EN EJECUCION'";
     $rcheckdentro = $mysqli->query($checkdentro);
@@ -1007,10 +1075,10 @@ $data .= '<div style="float: left; width: 100%;">
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['identificador'].'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$inicioresguardo.'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fechafirma.'</td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['sexopersona'].'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.capitalizarConReglasEspeciales($fsujetores['sexopersona']).'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['edadpersona'].'</td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$fsujetores['calidadpersona'].'</td>
-        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.$delitoprimdr.'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.capitalizarConReglasEspeciales($namecortocalidaddentrores1).'</td>
+        <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:8.33px;">'.capitalizarConReglasEspeciales($delitoprimdr).'</td>
       </tr>';
     }
   }
@@ -1084,15 +1152,46 @@ $data .= '<div style="float: left; width: 100%;">
         $delitopersonfr = $fdelitosujetofr['delitoprincipal'];
       }
       $contadorfr = $contadorfr + 1;
+      $namecalidadconnumrom = $ffueraresguardo['calidadpersona'];
+      if ($namecalidadconnumrom === 'I. VICTIMA') {
+        $namecortocalidadsinnumrom = 'VICTIMA';
+      }
+      if ($namecalidadconnumrom === 'II. OFENDIDO') {
+        $namecortocalidadsinnumrom = 'OFENDIDO';
+      }
+      if ($namecalidadconnumrom === 'III. TESTIGO') {
+        $namecortocalidadsinnumrom = 'TESTIGO';
+      }
+      if ($namecalidadconnumrom === 'IV. COLABORADOR O INFORMANTE') {
+        $namecortocalidadsinnumrom = 'COLABORADOR O INFORMANTE';
+      }
+      if ($namecalidadconnumrom === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+        $namecortocalidadsinnumrom = 'AGENTE DEL MINISTERIO PUBLICO';
+      }
+      if ($namecalidadconnumrom === 'VI. DEFENSOR') {
+        $namecortocalidadsinnumrom = 'DEFENSOR';
+      }
+      if ($namecalidadconnumrom === 'VII. POLICIA') {
+        $namecortocalidadsinnumrom = 'POLICIA';
+      }
+      if ($namecalidadconnumrom === 'VIII. PERITO') {
+        $namecortocalidadsinnumrom = 'PERITO';
+      }
+      if ($namecalidadconnumrom === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+        $namecortocalidadsinnumrom = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+      }
+      if ($namecalidadconnumrom === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+        $namecortocalidadsinnumrom = 'PERSONA CON PARENTESCO O CERCANIA';
+      }
       $data .= '<tr style="background-color: white; border: 1px solid black;">
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$contadorfr.'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['identificador'].'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.date("d/m/Y", strtotime($fautoridadsujetofr['fechasolicitud_persona'])).'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$fechafirmafr.'</td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['sexopersona'].'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.capitalizarConReglasEspeciales($ffueraresguardo['sexopersona']).'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['edadpersona'].'</td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$ffueraresguardo['calidadpersona'].'</td>
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.$delitopersonfr.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.capitalizarConReglasEspeciales($namecortocalidadsinnumrom).'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:10.33px;">'.capitalizarConReglasEspeciales($delitopersonfr).'</td>
       </tr>';
     }
   }
@@ -1104,7 +1203,7 @@ $data .='</tbody>
 $data .= '<div style="float: left; width: 100%;">
 <h1 style="text-align:center;">RESUMEN DEL PROGRAMA</h1>
 </div>';
-$data .='<div style="float: left; width: 49%;">
+$data .='<div style="float: left; width: 35%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
@@ -1130,12 +1229,17 @@ $data .='<div style="float: left; width: 49%;">
     $totalexpedientes = $totalexpedientes + $fcontarstatusexp['total'];
     if ($estatus_exp == 'ANALISIS' AND $fcontarstatusexp['total'] == 0) {
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">EN ANALISIS</td>
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">En analisis</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fcontarstatusexp['total'].'</td>
       </tr>';
     }elseif ($fcontarstatusexp['total'] > 0 ) {
+      if ($estatus_exp == 'ANALISIS') {
+        $estatus_exp = 'En análisis';
+      }elseif ($estatus_exp == 'EN EJECUCION') {
+        $estatus_exp = 'EN EJECUCIÓN';
+      }
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$estatus_exp.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($estatus_exp).'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fcontarstatusexp['total'].'</td>
       </tr>';
     }
@@ -1171,12 +1275,12 @@ $data .='</tbody>
   $totalmed_ejecutadas = $fmed_asistencia['total'] + $fmed_resguardo['total'];
 
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">ASISTENCIA</td>
+    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">Asistencia</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmed_asistencia['total'].'</td>
   </tr>';
 
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">RESGUARDO</td>
+    <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">Resguardo</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fmed_resguardo['total'].'</td>
   </tr>';
 
@@ -1218,7 +1322,7 @@ $data .='<div style="float: right; width: 49%;">
     $totalsujetos = $totalsujetos + $fcontarstatuspersonas['total'];
     if ($fcontarstatuspersonas['total'] > 0) {
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$status_sujeto.'</td>
+        <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($status_sujeto).'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$fcontarstatuspersonas['total'].'</td>
       </tr>';
     }
@@ -1233,8 +1337,8 @@ $data .='</tbody>
 </div>';
 
 
-                $img_externa = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
-                // $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+                // $img_externa = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
+                $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
         $data .='
         <br><br><br><br><div style="style="float: left; width: 100%; background-color: white; border: 1.8px solid black;"">
         <div style="display: grid; background-color: white; justify-content: center; align-items: center; max-height: 40px; min-height: 40px; min-width: 40%; max-width: 100%;">
