@@ -83,9 +83,9 @@ $mmed =  $ftmf['t'];
         ?>
         <ul>
           <li class="menu-items"><a href='new_exp.php'><i style="color: #FFFFFF;" class="fa-solid fa-folder-plus menu-nav--icon"></i><strong style="color: white;">REGISTRAR EXPEDIENTE</strong></a></li>
-          <li class="menu-items"><a href='./menu_asistencias_medicas.php'><i style="color: #FFFFFF;" class="fa-solid fa-book-medical menu-nav--icon"></i><strong style="color: white;">ASISTENCIAS MÉDICAS</strong></a></li>
-          <li class="menu-items"><a href='#'><i style="color: #FFFFFF;" class="fa-solid fa-magnifying-glass menu-nav--icon"></i><strong style="color: white;">BUSQUEDA</strong></a></li>
-          <li class="menu-items"><a href='../administrador/estadistica.php'><i style="color: #FFFFFF;" class="fa-solid fa-chart-bar menu-nav--icon"></i><strong style="color: white;">ESTADISTICA</strong></a></li>
+          <!-- <li class="menu-items"><a href='./menu_asistencias_medicas.php'><i style="color: #FFFFFF;" class="fa-solid fa-book-medical menu-nav--icon"></i><strong style="color: white;">ASISTENCIAS MÉDICAS</strong></a></li> -->
+          <!-- <li class="menu-items"><a href='#'><i style="color: #FFFFFF;" class="fa-solid fa-magnifying-glass menu-nav--icon"></i><strong style="color: white;">BUSQUEDA</strong></a></li> -->
+          <!-- <li class="menu-items"><a href='../administrador/estadistica.php'><i style="color: #FFFFFF;" class="fa-solid fa-chart-bar menu-nav--icon"></i><strong style="color: white;">ESTADISTICA</strong></a></li> -->
         </ul>
         <ul>
           <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>

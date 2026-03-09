@@ -190,7 +190,7 @@ while ($fsolicitudesrecibidas = $rsolicitudesrecibidas->fetch_assoc()) {
 }
 
 $data .= '<tr style="background-color: white; border: 1px solid black;">
-  <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+  <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
   <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalcol1.'</td>
   <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalcol2.'</td>
   <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotal.'</td>
@@ -282,7 +282,7 @@ $data .='<div style="float: left; width: 48%;">
 
   }
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpp_col1.'</td>
     <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpp_col2.'</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalpp.'</td>
@@ -378,7 +378,7 @@ $data .='<div style="float: left; width: 48%;">
 
     }
     $data .= '<tr style="background-color: white; border: 1px solid black;">
-      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpincorporadas_col1.'</td>
       <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpincorporadas_col2.'</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold;" font-size:13.33px;>'.$sumatotalpincorporadas.'</td>
@@ -488,7 +488,7 @@ $data .='<div style="float: left; width: 48%;">
 
       }
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalsujfinresguardo_col1.'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalsujfinresguardo_col2.'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalsujetosfinresguardo.'</td>
@@ -552,7 +552,7 @@ $data .='<div style="float: left; width: 48%;">
 
         }
         $data .= '<tr style="background-color: white; border: 1px solid black;">
-          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalamotorgadas_col1.'</td>
           <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalamotorgadas_col2.'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalamotorgadas.'</td>
@@ -650,7 +650,7 @@ $data .='<div style="float: right; width: 48%;">
     </tr>';
   }
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>TOTAL</h4></td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>Total</h4></td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>'.$totalppnoincorporadas_col1.'</h4></td>
     <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>'.$totalppnoincorporadas_col2.'</h4></td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;"><h4>'.$sumatotalppnoincorporadas.'</h4></td>
@@ -759,7 +759,7 @@ $data .='<div style="float: right; width: 48%;">
       </tr>';
     }
     $data .= '<tr style="background-color: white; border: 1px solid black;">
-      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+      <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpdesincorporadas_col1.'</td>
       <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalpdesincorporadas_col2.'</td>
       <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalpdesincorporadas.'</td>
@@ -834,7 +834,7 @@ $data .='<div style="float: right; width: 48%;">
 
       }
       $data .= '<tr style="background-color: white; border: 1px solid black;">
-        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+        <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalmedidasejecutadas_col1.'</td>
         <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalmedidasejecutadas_col2.'</td>
         <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalmedidasejecutadas.'</td>
@@ -898,7 +898,7 @@ $data .='<div style="float: right; width: 48%;">
 
         }
         $data .= '<tr style="background-color: white; border: 1px solid black;">
-          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+          <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totaltraslados_col1.'</td>
           <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totaltraslados_col2.'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotaltraslados.'</td>
@@ -959,7 +959,7 @@ $data .='<div style="float: right; width: 48%;">
 
           }
           $data .= '<tr style="background-color: white; border: 1px solid black;">
-            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+            <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
             <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalrondines_col1.'</td>
             <td style="background-color: #D5D0CB; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalrondines_col2.'</td>
             <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$sumatotalrondines.'</td>
@@ -1245,7 +1245,7 @@ $data .='<div style="float: left; width: 49%;">
     }
   }
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalexpedientes.'</td>
   </tr>';
 
@@ -1285,7 +1285,7 @@ $data .='</tbody>
   </tr>';
 
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalmed_ejecutadas.'</td>
   </tr>';
 
@@ -1328,7 +1328,7 @@ $data .='<div style="float: right; width: 49%;">
     }
   }
   $data .= '<tr style="background-color: white; border: 1px solid black;">
-    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">TOTAL</td>
+    <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">Total</td>
     <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:13.33px;">'.$totalsujetos.'</td>
   </tr>';
 
@@ -1337,13 +1337,13 @@ $data .='</tbody>
 </div></div>';
 
 
-  // $img_expedientes = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
-  // $img_personaspropuestas = 'C:/Users/FGJJE/Downloads/grafica_personaspropuestas.png';
-  // $img_externa = 'C:/Users/FGJJE/Downloads/grafica_sujetosenresguardo.png';
+  $img_expedientes = 'C:/Users/FGJJE/Downloads/grafica_expedientes.png';
+  $img_personaspropuestas = 'C:/Users/FGJJE/Downloads/grafica_personaspropuestas.png';
+  $img_externa = 'C:/Users/FGJJE/Downloads/grafica_sujetosenresguardo.png';
   //////////////////////////////////////////////////////////////////////////////
-  $img_expedientes = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
-  $img_personaspropuestas = 'C:/Users/FGJEM/Downloads/grafica_personaspropuestas.png';
-  $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+  // $img_expedientes = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
+  // $img_personaspropuestas = 'C:/Users/FGJEM/Downloads/grafica_personaspropuestas.png';
+  // $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
                 // $img_externa = $_SERVER['DOCUMENT_ROOT'] . '/sistema-equipo-deyp/administrador/grafica_expedientes.png';
         $data .='
         <br>
