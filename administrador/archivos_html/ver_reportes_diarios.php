@@ -115,7 +115,7 @@ $row=$result->fetch_assoc();
                       <div class="progress" style="height: 45px; border-radius: 25px;">
                         <div id="timeBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%"></div>
                       </div>
-                      <p class="mt-3 text-muted">El reporte se genera automáticamente al finalizar el día.</p>
+                      <p class="mt-3 text-muted">El reporte se visualizara al finalizar el día.</p>
                     </div>
                     <iframe src="" id="pdfFrame" class="pdf-frame d-none"></iframe>
                   </div>

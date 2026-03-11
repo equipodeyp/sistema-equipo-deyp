@@ -42,50 +42,50 @@ $res_cant_med2=$mysqli->query($cant_med2);
 $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
 ////////////////////////////////////////////////////////////////////////////////
   echo "<tr>";
-   echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fexpedientes['fol_exp']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fexpedientes['fecha_nueva']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fexpedientes['sede']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fautoridad['nombreautoridad']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fprocesopenal['delitoprincipal']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fprocesopenal['otrodelitoprincipal']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fprocesopenal['etapaprocedimiento']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fprocesopenal['nuc']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fprocesopenal['numeroradicacion']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fvalorjuridica['resultadovaloracion']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fvalorjuridica['motivoprocedencia']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fcountpersonas['t']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fanalisisexp['analisis']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fanalisisexp['incorporacion']; echo "</td>";
-   echo "<td style='text-align:center'>"; if ($fanalisisexp['fecha_analisis'] != '0000-00-00') {
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $contador; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fexpedientes['fol_exp']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fexpedientes['fecha_nueva']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fexpedientes['sede']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fautoridad['nombreautoridad']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fprocesopenal['delitoprincipal']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fprocesopenal['otrodelitoprincipal']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fprocesopenal['etapaprocedimiento']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fprocesopenal['nuc']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fprocesopenal['numeroradicacion']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fvalorjuridica['resultadovaloracion']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fvalorjuridica['motivoprocedencia']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fcountpersonas['t']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fanalisisexp['analisis']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fanalisisexp['incorporacion']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; if ($fanalisisexp['fecha_analisis'] != '0000-00-00') {
      echo date("d/m/Y", strtotime($fanalisisexp['fecha_analisis']));
    } echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fanalisisexp['id_analisis']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fanalisisexp['convenio']; echo "</td>";
-   echo "<td style='text-align:center'>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fanalisisexp['id_analisis']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fanalisisexp['convenio']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>";
    if ($fanalisisexp['fecha_convenio'] != '0000-00-00') {
      echo date("d/m/Y", strtotime($fanalisisexp['fecha_convenio']));
    } echo "</td>";
-   echo "<td style='text-align:center'>";
+   echo "<td style='text-align:center; border: 1px solid black;'>";
    if ($fanalisisexp['fecha_inicio'] != '0000-00-00') {
      echo date("d/m/Y", strtotime($fanalisisexp['fecha_inicio']));
    } echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fanalisisexp['vigencia']; echo "</td>";
-   echo "<td style='text-align:center'>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fanalisisexp['vigencia']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>";
    if ($fanalisisexp['fecha_termino_convenio'] != '0000-00-00') {
      echo date("d/m/Y", strtotime($fanalisisexp['fecha_termino_convenio']));
    } echo "</td>";
-   echo "<td style='text-align:center'>"; echo $festatusseguimiento['conclu_cancel']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $festatusseguimiento['conclusionart35']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $festatusseguimiento['otherart35']; echo "</td>";
-   echo "<td style='text-align:center'>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $festatusseguimiento['conclu_cancel']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $festatusseguimiento['conclusionart35']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $festatusseguimiento['otherart35']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>";
    if ($festatusseguimiento['date_desincorporacion'] != '0000-00-00') {
      echo date("d/m/Y", strtotime($festatusseguimiento['date_desincorporacion']));
    }echo "</td>";
-   echo "<td style='text-align:center'>"; echo $festatusseguimiento['status']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $row_med1['cant']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $row_med2['cant']; echo "</td>";
-   echo "<td style='text-align:center'>"; echo $fexpedientes['relacion']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $festatusseguimiento['status']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $row_med1['cant']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $row_med2['cant']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fexpedientes['relacion']; echo "</td>";
   echo "</tr>";
 }
 ?>

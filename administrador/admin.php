@@ -103,7 +103,7 @@ $mmed =  $ftmf['t'];
               <ul>
                 <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">REGISTROS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-folder menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
+                    <li class="menu-items"><a href='./basesdedatos/expedientes.php'><i style="color: #FFFFFF;" class="fa-solid fa-folder menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
                     <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-users menu-nav--icon"></i><strong style="color: white;">PERSONAS</strong></a></li>
                     <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-notes-medical menu-nav--icon"></i><strong style="color: white;">MEDIDAS</strong></a></li>
                     <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-shelter menu-nav--icon"></i><strong style="color: white;">ALOJAMIENTO <br>TEMPORAL</strong></a></li>
