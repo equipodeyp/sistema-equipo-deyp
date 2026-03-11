@@ -164,7 +164,7 @@ $mmed =  $ftmf['t'];
       <!-- <br><br> -->
       <div class="container">
         <div class="row">
-          <h1 style="text-align:center">
+          <h1 style="text-align:center"><b>
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>

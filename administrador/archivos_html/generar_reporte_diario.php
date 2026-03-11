@@ -67,185 +67,65 @@ $row=$result->fetch_assoc();
           <img src="../../image/ups2.png" alt="" width="1400" height="70">
           <img style="display: block; margin: 0 auto;" src="../../image/ups3.png" alt="" width="1400" height="70">
       </div>
-      <div class="container">
+      <div class="container"><br>
         <div class="row">
-          <h1 style="text-align:center">
+          <h1 style="text-align:center"><b>
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
           </b></h1>
-          <h5 style="text-align:center">
+          <h4 style="text-align:center">
             <b><?php echo utf8_decode(strtoupper($row['area'])); ?></b>
-          </h5>
+          </h4>
         </div>
         <!--Ejemplo tabla con DataTables-->
         <b>
-          <!-- <form action="../../administrador/archivos_html/get_reportediario_pdf.php" method="POST"> -->
-            <div class="" id="showafterconsul">
-              <button class="btn-flotante-nuevo-exp" type="submit">GENERAR PDF</button><br><br>
-              <div class="row">
-                <div class="well form-horizontal" style="border: 5px solid #63696D;"><br>
-                  <img style="float: left;" src="../../image/ESCUDO.png" width="60" height="50">
-                  <img style="float: right;" src="../../image/FGJEM.png" width="50" height="50">
-                  <h4 style="text-align:center; color: #030303;">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento <br> Penal o de Extinción de Dominio</h4>
-                  <h1 style="text-align:center">Reporte Global</h1>
-                  <h1 style="text-align:center">Del 01 de Junio del 2021 al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?> </h1>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="table-responsive">
-                        <table id="tabla1" border="3px" cellspacing="0" width="100%" bordered>
-                          <thead class="thead-dark">
-                            <tr>
-                              <th style="text-align:center; border: 3px solid black;">CONCEPTO</th>
-                              <th style="text-align:center; border: 3px solid black;">TOTAL</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            include("../../administrador/tablas_estadistica/tabla1_reporte_diario.php");
-                            ?>
-                          </tbody>
-                        </table>
-                        <div class="col-lg-12">
-                          <strong><sup>*</sup> Activos al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?></strong>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="table-responsive">
-                        <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                          <thead class="thead-dark">
-                            <tr>
-                              <th style="text-align:center; border: 3px solid black;">ESTATUS DE LOS EXPEDIENTES DE PROTECCIÓN</th>
-                              <th style="text-align:center; border: 3px solid black;">TOTAL</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            include("../../administrador/tablas_estadistica/tabla2_reporte_diario.php");
-                            ?>
-                          </tbody>
-                        </table>
-                        <div class="col-lg-12">
-                          <strong><sup>*</sup> Activos al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?></strong>
-                        </div>
-                      </div>
-                    </div>
+          <br><br>
+          <div class="container">
+            <div class="archivador">
+              <!-- Decoración Superior -->
+              <div class="decoracion-superior">
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+              </div>
+              <div class="mes-display" id="txtMes">MES</div>
+              <div class="tabla-blanca" id="gridDias"></div>
+            </div>
+          </div>
+          <!-- Modal para mostrar pdf-->
+          <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header bg-dark text-white p-2">
+                  <h6 class="modal-title ms-2">SIPPSIPPED - ESTADO DEL REPORTE</h6>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                  <div class="p-2 bg-light border-bottom d-flex justify-content-between align-items-center">
+                    <span class="ms-2 small">ID: <span id="idFull" class="id-badge"></span></span>
+                    <span id="txtEstado" class="badge bg-primary">ESTADO</span>
                   </div>
-                  <br><br>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="table-responsive">
-                        <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                          <thead class="thead-dark">
-                            <tr>
-                              <th style="text-align:center; border: 3px solid black;">ESTATUS DE LAS PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA</th>
-                              <th style="text-align:center; border: 3px solid black;">TOTAL</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            include("../../administrador/tablas_estadistica/tabla3_reporte_diario.php");
-                            ?>
-                          </tbody>
-                        </table>
-                        <div class="col-lg-12">
-                          <strong><sup>*</sup> Activos al <?php echo date("d").' de '.$meses[date("n")-1].' del '. date("Y");?></strong><br>
-                          <strong><sup>1</sup> Corresponde a los siguientes casos:<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) La solicitud no cumple con los requisitos de Ley<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) La persona manifiesta negativa de voluntariedad para incorporarse<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c) Se determina la no procedencia de incorporación<br>
-                            <sup>2</sup> Se refiere a las personas que se encuentran en los siguientes supuestos:<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) Concluyó su participación dentro del Proceso Penal<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) Renuncia voluntaria<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c) Determinación de disminución o cese del riesgo</strong>
-                          </div>
+                  <div id="visorDinamico" class="contenedor-principal">
+                    <div id="timeWrapper" class="time-progress-wrapper d-none">
+                      <div class="progress-label-lg" id="labelPorcentaje">0%</div>
+                      <div class="progress" style="height: 45px; border-radius: 25px;">
+                        <div id="timeBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%"></div>
                       </div>
+                      <p class="mt-3 text-muted">El reporte se genera automáticamente al finalizar el día.</p>
                     </div>
-                    <div class="col-lg-6">
-                      <div class="table-responsive">
-                        <table id="tabla1" border="1px" cellspacing="0" width="95%" bordered>
-                          <thead class="thead-dark">
-                            <tr>
-                              <th style="text-align:center; border: 3px solid black; width: 70%">PERIODO</th>
-                              <th style="text-align:center; border: 3px solid black; width: 30%">EXPEDIENTE DE PROTECCIÓN INICIADOS</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            include("../../administrador/tablas_estadistica/tabla4_reporte_diario.php");
-                            ?>
-                          </tbody>
-                        </table>
-                      </div>
-                      <br><br>
-                      <div class="table-responsive">
-                        <table id="tabla1" border="1px" cellspacing="0" width="95%" bordered>
-                          <thead class="thead-dark">
-                            <tr>
-                              <th style="text-align:center; border: 3px solid black;" colspan="2">SUJETOS EN RESGUARDO ACTIVOS</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            include("../../administrador/tablas_estadistica/tabla5_reporte_diario.php");
-                            ?>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                    <iframe src="" id="pdfFrame" class="pdf-frame d-none"></iframe>
                   </div>
-                  <br><br>
-                  <div class="col-lg-12">
-                    <div class="table-responsive">
-                      <table id="tabla1" border="1px" cellspacing="0" width="100%" bordered>
-                        <thead class="thead-dark">
-                          <tr>
-                            <th style="text-align:center; border: 3px solid black;">ESTATUS DE LAS MEDIDAS DE APOYO DICTAMINADAS</th>
-                            <th style="text-align:center; border: 3px solid black;">EN EJECUCIÓN</th>
-                            <th style="text-align:center; border: 3px solid black;">EJECUTADA</th>
-                            <th style="text-align:center; border: 3px solid black;">CANCELADA</th>
-                            <th style="text-align:center; border: 3px solid black;">TOTAL</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          include("../../administrador/tablas_estadistica/tabla6_reporte_diario.php");
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <br><br><br><br>
-                  <div class="contenedor-flex">
-                    <label class="izquierda">*NOTA: Cifras sujetas a cambios por actualización</label>
-                    <label class="derecha" style="font-size: 23px; color: white; background-color: #63696D; border-radius: 40% 40% 5% 5%;">&nbsp;&nbsp;1/1&nbsp;&nbsp;</label>
-                  </div>
-                  <div class="">
-                    <table width="100%">
-                      <thead>
-                        <tr>
-                          <th width="80%" align="left" bgcolor="#63696D">
-                            <h5 class="">
-                            <span style="font-size: 14px; align:left; color:white;"><font style="font-family: gothambook">
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unidad de Protección de Sujetos Que Intervienen en el Procedimiento Penal o de Extinción de Dominio
-                            </font></span></h5>
-                          </th>
-                          <th width="20%" align="left" bgcolor="#63696D">
-                            <h5 class="">
-                            <span style="font-size: 14px; align:left; color:white;"><font style="font-family: gothambook">
-                            Subdirección de Estadística y Pre-Registro
-                            </font></span></h5>
-                          </th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </div>
-                  <br>
+                </div>
+                <div class="modal-footer bg-light p-1">
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
               </div>
             </div>
-          <!-- </form> -->
+          </div>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
@@ -254,6 +134,8 @@ $row=$result->fetch_assoc();
     </div>
   </div>
 </body>
-<link rel="stylesheet" href="../css/menuactualizado.css">
-<script src="../js/menu.js"></script>
+<link rel="stylesheet" href="../../css/menuactualizado.css">
+<link rel="stylesheet" type="text/css" href="../../css/calendario_diario.css"/>
+<script src="../../js/menu.js"></script>
+<script src="../../js/carga_dias_reporte_diario.js"></script>
 </html>
