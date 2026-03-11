@@ -1,0 +1,45 @@
+:root { --fgj-color: #545b64; --borde: #adb5bd; }
+
+
+/* Estética de Archivador */
+.archivador-anual {
+    max-width: 1100px; margin: 0 auto; background: var(--fgj-color);
+    border-radius: 60px 60px 20px 20px; padding: 60px 0 25px 0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3); position: relative;
+}
+
+.decoracion-superior {
+    display: flex; justify-content: center; gap: 150px;
+    position: absolute; top: 15px; width: 100%; left: 0;
+}
+.punto {
+    width: 45px; height: 45px; background: #3c444b;
+    border-radius: 50%; box-shadow: inset 0 20px 8px rgba(0,0,0,0.6);
+}
+
+.anio-titulo { color: white; font-size: 4.5rem; font-weight: 800; text-align: center; margin-bottom: 30px; letter-spacing: 5px; }
+
+/* Cuadrícula */
+.grid-meses {
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 30px;
+    border: 2px solid var(--borde);
+}
+
+.mes-celda {
+    border: 1px solid var(--borde);
+    padding: 50px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fff;
+}
+.mes-celda:hover { background-color: #f8f9fa; transform: scale(1.01); z-index: 10; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+.mes-nombre { font-size: 2.2rem; font-weight: 700; color: #333; text-transform: uppercase; }
+
+/* Estilo del Modal */
+.modal-xl { max-width: 65% !important; }
+.pdf-frame { width: 100%; height: 75vh; border: none; }
+.progress-container { height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f8f9fa; padding: 50px; }
