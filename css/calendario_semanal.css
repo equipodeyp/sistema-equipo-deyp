@@ -1,0 +1,80 @@
+:root { --fgj-color: #545b64; --borde: #adb5bd; }
+
+/* Estética de Archivador */
+.archivador-semanal {
+    max-width: 1300px;
+    margin: 0 auto;
+    background: var(--fgj-color);
+    border-radius: 40px 40px 15px 15px;
+    padding: 60px 10px 15px 10px; /* Aumentado para que no choque con puntos */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    position: relative;
+}
+
+/* Puntos superiores con sombras mejoradas */
+.decoracion-superior {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    position: absolute;
+    top: 18px;
+    width: 100%;
+    left: 0;
+}
+.punto {
+    width: 38px;
+    height: 38px;
+    background: #3a4148;
+    border-radius: 50%;
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.8), 0 1px 2px rgba(255,255,255,0.1);
+}
+
+/* Centrado absoluto del Año */
+.header-controles {
+    display: flex;
+    justify-content: center; /* Centro los elementos */
+    align-items: center;
+    padding: 0 40px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.año-header {
+    color: white;
+    font-size: 5rem;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+    flex: 1; /* Esto hace que el h2 tome todo el centro */
+    letter-spacing: 5px;
+}
+
+.titulo-semanal {
+    background: white;
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+    margin: 0 15px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Cuerpo del Reporte */
+.cuerpo-reporte {
+    background: white;
+    margin: 0 15px 15px 15px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    min-height: 80vh;
+}
+
+.pdf-visor {
+    width: 100%;
+    height: 75vh;
+    border: 2px solid var(--fgj-color);
+    border-radius: 4px;
+    background: #eee;
+}
