@@ -25,35 +25,35 @@ $fsujsuspendidotem = $rsujsuspendidotem->fetch_assoc();
 $totalpersonas = $fnoincorporado['t'] + $ftotalsujetosactivos['t'] + $fdesincorporado['t'] + $fperpropuesta['t'] + $fsujsuspendidotem['t'];
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'SUJETOS INCORPORADOS ACTIVOS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotalsujetosactivos['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'SUJETOS INCORPORADOS ACTIVOS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $ftotalsujetosactivos['t']; echo "</td>";
 echo "</tr>";
 
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'NO INCORPORADO AL PROGRAMA ¹'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fnoincorporado['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'NO INCORPORADO AL PROGRAMA ¹'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fnoincorporado['t']; echo "</td>";
 echo "</tr>";
 
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DESINCORPORADO DEL PROGRAMA ²'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fdesincorporado['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DESINCORPORADO DEL PROGRAMA ²'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fdesincorporado['t']; echo "</td>";
 echo "</tr>";
 
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'PERSONA PROPUESTA A INCORPORARSE'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fperpropuesta['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'PERSONA PROPUESTA A INCORPORARSE'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fperpropuesta['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'SUJETOS SUSPENDIDOS TEMPORALMENTE'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fsujsuspendidotem['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'SUJETOS SUSPENDIDOS TEMPORALMENTE'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fsujsuspendidotem['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:right'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $totalpersonas; echo "</td>";
+echo "<td style='text-align:right; border: 3px solid black;'>"; echo 'TOTAL DE PERSONAS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $totalpersonas; echo "</td>";
 echo "</tr>";
 ?>

@@ -203,3 +203,28 @@ new DataTable('#metas_medidas_resguardo', {
   ]
 });
 ////////////////////////////////////////////////////////////////////////////////
+function menuestadistica_admin(element) {
+    var submenu = element.nextElementSibling;
+    var icon = element.querySelector('.fa-chevron-down');
+
+    if(submenu.style.display === "none") {
+        submenu.style.display = "block";
+        icon.style.transform = "rotate(180deg)";
+    } else {
+        submenu.style.display = "none";
+        icon.style.transform = "rotate(0deg)";
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+function menuebasesdatos_admin(element) {
+    var submenu = element.nextElementSibling;
+    var icon = element.querySelector('.fa-chevron-down');
+
+    if(submenu.style.display === "none") {
+        submenu.style.display = "block";
+        icon.style.transform = "rotate(180deg)";
+    } else {
+        submenu.style.display = "none";
+        icon.style.transform = "rotate(0deg)";
+    }
+}

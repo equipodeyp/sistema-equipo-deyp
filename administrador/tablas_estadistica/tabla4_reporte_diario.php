@@ -25,33 +25,33 @@ $rexp2026 = $mysqli->query($exp2026);
 $fexp2026 = $rexp2026->fetch_assoc();
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE JUNIO AL 31 DE DICIEMBRE DE 2021'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp2021['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DEL 01 DE JUNIO AL 31 DE DICIEMBRE DE 2021'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp2021['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2022'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp2022['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2022'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp2022['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2023'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp2023['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2023'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp2023['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2024'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp2024['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2024'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp2024['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2025'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp2025['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DEL 01 DE ENERO AL 31 DE DICIEMBRE DE 2025'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp2025['t']; echo "</td>";
 echo "</tr>";
 
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'DEL 01 DE ENERO AL '.date("d").' DE '.strtoupper($meses[date("n")-1]).' DE '. date("Y"); echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp2026['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'DEL 01 DE ENERO AL '.date("d").' DE '.strtoupper($meses[date("n")-1]).' DE '. date("Y"); echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp2026['t']; echo "</td>";
 echo "</tr>";
 
 ?>

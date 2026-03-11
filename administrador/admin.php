@@ -88,6 +88,51 @@ $mmed =  $ftmf['t'];
           <!-- <li class="menu-items"><a href='../administrador/estadistica.php'><i style="color: #FFFFFF;" class="fa-solid fa-chart-bar menu-nav--icon"></i><strong style="color: white;">ESTADISTICA</strong></a></li> -->
         </ul>
         <ul>
+          <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-chart-column menu-nav--icon"></i><strong style="color: white;">ESTADISTICA</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+            <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+              <li class="menu-items"><a href='./archivos_html/generar_reporte_diario.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">REPORTE DIARIO</strong></a></li>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">REPORTE SEMANAL</strong></a></li>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">REPORTE MENSUAL</strong></a></li>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">REPORTE ANUAL</strong></a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li class="menu-items"><a href="#" onclick="menuebasesdatos_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-database menu-nav--icon"></i><strong style="color: white;">BASES DE DATOS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+            <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+              <ul>
+                <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">REGISTROS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-folder menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-users menu-nav--icon"></i><strong style="color: white;">PERSONAS</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-notes-medical menu-nav--icon"></i><strong style="color: white;">MEDIDAS</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-shelter menu-nav--icon"></i><strong style="color: white;">ALOJAMIENTO <br>TEMPORAL</strong></a></li>
+                  </ul>
+                </li>
+              </ul>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-car-side menu-nav--icon"></i><strong style="color: white;">TRASLADOS</strong></a></li>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-hospital-user menu-nav--icon"></i><strong style="color: white;">ASISTENCIAS MEDICAS</strong></a></li>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-chalkboard menu-nav--icon"></i><strong style="color: white;">SUJETOS SEMANAL</strong></a></li>
+              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-circle-check menu-nav--icon"></i><strong style="color: white;">SUJETOS MENSUAL</strong></a></li>
+              <ul>
+                <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-list menu-nav--icon"></i><strong style="color: white;">PLANEACION</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">RUTA</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">EXPEDIENTE</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">TRASLADO</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">EVALUACION</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">GESTION</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">INFORME ASISTENCIA</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">CONVENIO</strong></a></li>
+                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">INFORME RESGUARDO</strong></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </ul>
+          </li>
+        </ul>
+        <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-book-open-reader menu-nav--icon"></i><strong style="color: white;">LECTURA</strong></a></li>
+        <ul>
           <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
             <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
               <li class="menu-items"><a href='./incidencias_registradas.php'><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">CONSULTAR</strong></a></li>

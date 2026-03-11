@@ -33,23 +33,23 @@ $rmedidastts = $mysqli->query($medidastts);
 $fmedidastts = $rmedidastts->fetch_assoc();
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'EXPEDIENTES INICIADOS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fexp['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'EXPEDIENTES INICIADOS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fexp['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fsujtts['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'PERSONAS QUE SOLICITARON INCORPORARSE AL PROGRAMA'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fsujtts['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'SUJETOS INCORPORADOS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fsuj['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'SUJETOS INCORPORADOS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fsuj['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'SUJETOS PROTEGIDOS ACTIVOS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fsujact['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'SUJETOS PROTEGIDOS ACTIVOS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fsujact['t']; echo "</td>";
 echo "</tr>";
 //
 // echo "<tr bgcolor=''>";
@@ -58,12 +58,12 @@ echo "</tr>";
 // echo "</tr>";
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'MEDIDAS DE APOYO DICTAMINADAS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fmeds['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'MEDIDAS DE APOYO DICTAMINADAS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmeds['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:left'>"; echo 'MEDIDAS DE APOYO EJECUTADAS'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fmedidastts['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black;'>"; echo 'MEDIDAS DE APOYO EJECUTADAS'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedidastts['t']; echo "</td>";
 echo "</tr>";
 ?>

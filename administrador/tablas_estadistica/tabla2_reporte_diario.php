@@ -15,13 +15,15 @@ while ($fstexp = $rstexp->fetch_assoc()) {
   WHERE statusseguimiento.status = '$status'";
   $rtotst = $mysqli->query($totst);
   $ftotst = $rtotst->fetch_assoc();
-  echo "<tr >";
-  echo "<td style='text-align:left'>"; echo $fstexp['nombre']; echo "</td>";
-  echo "<td style='text-align:center'>"; echo $ftotst['t']; echo "</td>";
-  echo "</tr>";
+  if ($ftotst['t'] > 0) {
+    echo "<tr >";
+    echo "<td style='text-align:left; border: 3px solid black;'>"; echo $fstexp['nombre']; echo "</td>";
+    echo "<td style='text-align:center; border: 3px solid black;'>"; echo $ftotst['t']; echo "</td>";
+    echo "</tr>";
+  }
 }
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:right'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $ftotexp['t']; echo "</td>";
+echo "<td style='text-align:right; border: 3px solid black;'>"; echo 'TOTAL DE EXPEDIENTES'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $ftotexp['t']; echo "</td>";
 echo "</tr>";
 ?>
