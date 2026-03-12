@@ -106,7 +106,7 @@ $mmed =  $ftmf['t'];
                     <li class="menu-items"><a href='./basesdedatos/expedientes.php'><i style="color: #FFFFFF;" class="fa-solid fa-folder menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
                     <li class="menu-items"><a href='./basesdedatos/personas.php'><i style="color: #FFFFFF;" class="fa-solid fa-users menu-nav--icon"></i><strong style="color: white;">PERSONAS</strong></a></li>
                     <li class="menu-items"><a href='./basesdedatos/medidas.php'><i style="color: #FFFFFF;" class="fa-solid fa-notes-medical menu-nav--icon"></i><strong style="color: white;">MEDIDAS</strong></a></li>
-                    <li class="menu-items"><a href='./basesdedatos/medidas.php'><i style="color: #FFFFFF;" class="fa-solid fa-person-shelter menu-nav--icon"></i><strong style="color: white;">ALOJAMIENTO <br>TEMPORAL</strong></a></li>
+                    <li class="menu-items"><a href='./basesdedatos/alojamiento_temporal.php'><i style="color: #FFFFFF;" class="fa-solid fa-person-shelter menu-nav--icon"></i><strong style="color: white;">ALOJAMIENTO <br>TEMPORAL</strong></a></li>
                   </ul>
                 </li>
               </ul>
