@@ -389,6 +389,8 @@ today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("fecha_oficio").setAttribute("min", today);
 </script>
 
+
+
 <script type="text/javascript">
 
   var turnarSubdireccion = document.getElementById('turnar_asistencia');
