@@ -104,7 +104,7 @@ $mmed =  $ftmf['t'];
                 <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-laptop-file menu-nav--icon"></i><strong style="color: white;">REGISTROS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                     <li class="menu-items"><a href='./basesdedatos/expedientes.php'><i style="color: #FFFFFF;" class="fa-solid fa-folder menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
-                    <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-users menu-nav--icon"></i><strong style="color: white;">PERSONAS</strong></a></li>
+                    <li class="menu-items"><a href='./basesdedatos/personas.php'><i style="color: #FFFFFF;" class="fa-solid fa-users menu-nav--icon"></i><strong style="color: white;">PERSONAS</strong></a></li>
                     <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-notes-medical menu-nav--icon"></i><strong style="color: white;">MEDIDAS</strong></a></li>
                     <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-shelter menu-nav--icon"></i><strong style="color: white;">ALOJAMIENTO <br>TEMPORAL</strong></a></li>
                   </ul>
@@ -164,11 +164,11 @@ $mmed =  $ftmf['t'];
       <!-- <br><br> -->
       <div class="container">
         <div class="row">
-          <h1 style="text-align:center"><b>
+          <h1 style="text-align:center">
             <?php echo mb_strtoupper (html_entity_decode($row['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_p'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
             <?php echo mb_strtoupper (html_entity_decode($row['apellido_m'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?>
-          </b></h1>
+          </h1>
           <h5 style="text-align:center">
             <b><?php echo utf8_decode(strtoupper($row['area'])); ?></b>
           </h5>
