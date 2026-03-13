@@ -112,7 +112,14 @@ $mmed =  $ftmf['t'];
               </ul>
               <li class="menu-items"><a href='./basesdedatos/traslados.php'><i style="color: #FFFFFF;" class="fa-solid fa-car-side menu-nav--icon"></i><strong style="color: white;">TRASLADOS</strong></a></li>
               <li class="menu-items"><a href='./basesdedatos/asistencias_medicas.php'><i style="color: #FFFFFF;" class="fa-solid fa-hospital-user menu-nav--icon"></i><strong style="color: white;">ASISTENCIAS MEDICAS</strong></a></li>
-              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-chalkboard menu-nav--icon"></i><strong style="color: white;">SUJETOS SEMANAL</strong></a></li>
+              <ul>
+                <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-person-chalkboard menu-nav--icon"></i><strong style="color: white;">SUJETOS SEMANAL</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+                  <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
+                    <li class="menu-items"><a href='./basesdedatos/sujetos_dentro_del_resguardo.php'><i style="color: #FFFFFF;" class="fa-solid fa-house-user menu-nav--icon"></i><strong style="color: white;">SUJETOS DENTRO DEL RESGUARDO</strong></a></li>
+                    <li class="menu-items"><a href='./basesdedatos/personas.php'><i style="color: #FFFFFF;" class="fa-solid fa-users-between-lines menu-nav--icon"></i><strong style="color: white;">SUJETOS FUERA DEL RESGUARDO</strong></a></li>
+                  </ul>
+                </li>
+              </ul>
               <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-circle-check menu-nav--icon"></i><strong style="color: white;">SUJETOS MENSUAL</strong></a></li>
               <ul>
                 <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-list menu-nav--icon"></i><strong style="color: white;">PLANEACION</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
