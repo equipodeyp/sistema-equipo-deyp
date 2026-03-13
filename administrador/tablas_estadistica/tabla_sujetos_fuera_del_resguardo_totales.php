@@ -1,6 +1,6 @@
 <?php
 $contador = 0;
-$sql = "SELECT * FROM datospersonales WHERE (estatus = 'SUJETO PROTEGIDO' || estatus = 'PERSONA PROPUESTA') AND relacional = 'NO'";
+$sql = "SELECT * FROM datospersonales WHERE estatus = 'SUJETO PROTEGIDO' || estatus = 'PERSONA PROPUESTA' AND relacional = 'NO'";
 $resultado = $mysqli->query($sql);
 while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
@@ -14,14 +14,15 @@ while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
   $fcheckdentro = $rcheckdentro->fetch_assoc();
   if(isset($fcheckdentro['id_persona'])){
     // echo $contador.".-esta en reguardo *****";
-    $sujetodentrodelresguardo = $fcheckdentro['id_persona'];
+    // echo $sujetodentrodelresguardo = $fcheckdentro['id_persona'];
+  }else {
+    // echo $contador.".-no tiene alojamiento *****";
+    $sujetofueradelresguardo = $id_sujeto;
     if ($row['estatus'] === 'SUJETO PROTEGIDO') {
-      $convenioent = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$sujetodentrodelresguardo'";
+      $convenioent = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$sujetofueradelresguardo'";
       $fconvenioent = $mysqli->query($convenioent);
       $rconvenioent = $fconvenioent->fetch_assoc();
-
       $fechafirma = date("d-m-Y", strtotime($rconvenioent['date_convenio']));
-
       $contadorevaluacion = "SELECT COUNT(*) AS total FROM evaluacion_persona WHERE id_unico = '$identificador_sujeto'";
       $rcontadorevaluacion = $mysqli->query($contadorevaluacion);
       $fcontadorevaluacion = $rcontadorevaluacion->fetch_assoc();
@@ -67,11 +68,7 @@ while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
         echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fautoridadsujeto['nombreautoridad']; echo "</td>";
         echo "<td style='text-align:center; border: 1px solid black;'>"; echo $delitoperson; echo "</td>";
         echo "</tr>";
-    //
-  }else {
-    // echo $contador.".-no tiene alojamiento *****";
-    // echo $sujetofueradelresguardo = $id_sujeto;
   }
   // echo "<br>";
-  }
+    }
 ?>
