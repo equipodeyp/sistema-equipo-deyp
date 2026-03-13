@@ -20,7 +20,7 @@ while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
       $fconvenioent = $mysqli->query($convenioent);
       $rconvenioent = $fconvenioent->fetch_assoc();
 
-      $fechafirma = date("d-m-Y", strtotime($rconvenioent['date_convenio']));
+      $fechafirma = date("d/m/Y", strtotime($rconvenioent['date_convenio']));
 
       $contadorevaluacion = "SELECT COUNT(*) AS total FROM evaluacion_persona WHERE id_unico = '$identificador_sujeto'";
       $rcontadorevaluacion = $mysqli->query($contadorevaluacion);
@@ -32,14 +32,14 @@ while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
         $revalsujultimo = $mysqli->query($evalsujultimo);
         $fevalsujultimo = $revalsujultimo->fetch_assoc();
         // if(isset($fevalsujultimo['fecha_vigencia'])){
-          $fechavigencia = date("d-m-Y", strtotime($fevalsujultimo['fecha_vigencia']));
+          $fechavigencia = date("d/m/Y", strtotime($fevalsujultimo['fecha_vigencia']));
         // }else {
           // $fechavigencia = 'n/a';
         // }
       }else {
         // echo $contador.".-n/a";
         // echo "<br>";
-        $fechavigencia = date("d-m-Y", strtotime($rconvenioent['fecha_vigencia']));
+        $fechavigencia = date("d/m/Y", strtotime($rconvenioent['fecha_vigencia']));
       }
     }elseif ($row['estatus'] === 'PERSONA PROPUESTA') {
       $fechafirma = "EN ANALISIS";

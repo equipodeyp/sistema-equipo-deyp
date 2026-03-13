@@ -87,38 +87,38 @@ $row=$result->fetch_assoc();
                 <div class="table-responsive">
                   <table id="bd_expedientes" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
-                        <tr>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">No.</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID EXPEDIENTE</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA RECEPCION</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">SEDE</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE AUTORIDAD</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">DELITO PRINCIPAL</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">OTRO DELITO PRINCIPAL</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ETAPA PROCEDIMIENTO/RECURSO</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NUC</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">MUNICIPIO RADICACION</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RESULTADO VALORACION JURIDICA</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">MOTIVO NO PROCEDENCIA JURIDICA</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS PROPUESTAS</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ANALISIS MULTIDISCIPLINARIO</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">INCORPORACIÓN</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA ANALISIS</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID ANALISIS</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CONVENIO</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA FIRMA CONVENIO</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA INICIO</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">VIGENCIA</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA TERMINO</th>                            
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CONCLUSIÓN / CANCELACIÓN</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CONCLUSIÓN ART. 35</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">OTRO ART. 35</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA DESINCORPORACIÓN</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS INCORPORADAS</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS VIGENTES</th>
-                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RELACIONADO</th>
-                        </tr>
+                      <tr>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">No.</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID EXPEDIENTE</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA RECEPCION</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">SEDE</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE AUTORIDAD</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">DELITO PRINCIPAL</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">OTRO DELITO PRINCIPAL</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ETAPA PROCEDIMIENTO/RECURSO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NUC</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">MUNICIPIO RADICACION</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RESULTADO VALORACION JURIDICA</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">MOTIVO NO PROCEDENCIA JURIDICA</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS PROPUESTAS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ANALISIS MULTIDISCIPLINARIO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">INCORPORACIÓN</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA ANALISIS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID ANALISIS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CONVENIO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA FIRMA CONVENIO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA INICIO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">VIGENCIA</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA TERMINO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CONCLUSIÓN / CANCELACIÓN</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CONCLUSIÓN ART. 35</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">OTRO ART. 35</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA DESINCORPORACIÓN</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS INCORPORADAS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS VIGENTES</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RELACIONADO</th>
+                      </tr>
                     </thead>
                   <tbody>
                     <?php
