@@ -111,7 +111,7 @@ $mmed =  $ftmf['t'];
                 </li>
               </ul>
               <li class="menu-items"><a href='./basesdedatos/traslados.php'><i style="color: #FFFFFF;" class="fa-solid fa-car-side menu-nav--icon"></i><strong style="color: white;">TRASLADOS</strong></a></li>
-              <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-hospital-user menu-nav--icon"></i><strong style="color: white;">ASISTENCIAS MEDICAS</strong></a></li>
+              <li class="menu-items"><a href='./basesdedatos/asistencias_medicas.php'><i style="color: #FFFFFF;" class="fa-solid fa-hospital-user menu-nav--icon"></i><strong style="color: white;">ASISTENCIAS MEDICAS</strong></a></li>
               <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-chalkboard menu-nav--icon"></i><strong style="color: white;">SUJETOS SEMANAL</strong></a></li>
               <li class="menu-items"><a href=''><i style="color: #FFFFFF;" class="fa-solid fa-person-circle-check menu-nav--icon"></i><strong style="color: white;">SUJETOS MENSUAL</strong></a></li>
               <ul>
