@@ -36,32 +36,6 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatablesv2026.min.css" rel="stylesheet">
   <script src="../../datatables/datatablesv2026.min.js"></script>
-  <style>
-      /* Estilos del Spinner */
-      #loader {
-          display: none;
-          position: fixed;
-          top: 0; left: 0; width: 100%; height: 100%;
-          background: rgba(255, 255, 255, 0.8);
-          z-index: 1000;
-          text-align: center;
-          padding-top: 200px;
-      }
-      .spinner {
-          border: 16px solid #f3f3f3;
-          border-top: 16px solid #3498db;
-          border-radius: 50%;
-          width: 120px; height: 120px;
-          animation: spin 2s linear infinite;
-          margin: auto;
-      }
-      @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-      }
-      table { border-collapse: collapse; width: 50%; margin-top: 20px; }
-      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-  </style>
 </head>
 <body>
   <div class="contenedor">
@@ -109,75 +83,41 @@ $row=$result->fetch_assoc();
           <br><br>
           <div class="container" style="display: flex; justify-content: center;">
             <div class="row mt-8">
-          
-          <form id="searchForm" class="d-flex" style="width: 800px;">
-              <!-- <label>Desde:</label>
-              <input type="date" name="fecha_inicio" required>
-              <label>Hasta:</label>
-              <input type="date" name="fecha_fin" required> -->
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="starfech" class="form-label"><b> Del dia</b></label>
-                  <input type="date" name="fecha_inicio" id="starfech" class="form-control" required>
-                </div>
-              </div>
-              <div class="col-md-1">
-                <!-- div para dejar espacio entre inputs -->
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="finfech" class="form-label"><b>Hasta el dia</b> </label>
-                  <input type="date" name="fecha_fin" id="finfech" class="form-control" required>
-                </div>
-              </div>
-              <div class="col-md-1">
-                <!-- div para dejar espacio entre inputs -->
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label for="ocultar-mostrar" class="form-label"><b>BUSCAR</b></label><br>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </div>
-              </div>
-              <!-- <button type="submit">Buscar</button> -->
-          </form>
-          </div>
+              <form id="searchplaneacion_rutas" class="d-flex" style="width: 800px;">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="starfech" class="form-label"><b> Del dia</b></label>
+                      <input type="date" name="fecha_inicio" id="starfech" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <!-- div para dejar espacio entre inputs -->
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="finfech" class="form-label"><b>Hasta el dia</b> </label>
+                      <input type="date" name="fecha_fin" id="finfech" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <!-- div para dejar espacio entre inputs -->
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <span for="ocultar-mostrar" class="form-label"><b>BUSCAR</b></span><br>
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+              </form>
+            </div>
           </div>
           <!-- Overlay del Spinner -->
-          <div id="loader">
-              <div class="spinner"></div>
-              <h3>Buscando datos... </h3>
+          <div id="loader_carga">
+            <div class="spinner"></div>
+            <h3>Buscando datos...  Espere </h3>
           </div>
-
           <!-- Contenedor de resultados -->
-          <div id="resultTable"></div>
-
-          <script>
-          $(document).ready(function() {
-              $('#searchForm').on('submit', function(e) {
-                  e.preventDefault(); // Evitar recarga
-
-                  // 1. Mostrar Spinner
-                  $('#loader').show();
-
-                  // 2. Esperar 5 segundos
-                  setTimeout(function() {
-                      // 3. Ejecutar consulta Ajax
-                      $.ajax({
-                          url: 'buscar.php',
-                          type: 'POST',
-                          data: $('#searchForm').serialize(),
-                          success: function(response) {
-                              $('#resultTable').html(response);
-                              $('#loader').hide(); // Ocultar spinner
-                          }
-                      });
-                  }, 5000); // 5000 milisegundos
-              });
-          });
-          </script>
-
-
+          <div id="resultados_rutas"></div>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
@@ -188,4 +128,5 @@ $row=$result->fetch_assoc();
 </body>
 <link rel="stylesheet" href="../../css/menuactualizado.css">
 <script src="../../js/menu.js"></script>
+<script src="../../js/bd_planeacion.js" charset="utf-8"></script>
 </html>
