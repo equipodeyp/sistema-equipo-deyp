@@ -235,13 +235,14 @@ if ($permiso3=='solicitar') {
               <tbody>
                 <?php
                 $contador = 0;
-                $obtenfechaactualprincipal1 = date('Y-m-d'); echo "<br>";
-                $obtenfechaactualprincipal2 = date('Y-m-d');
+                $obtenfechaactualprincipal1 = date('Y-m-d'); 
+                $obtenfechaactualprincipal2 = date('Y-m-d'); 
                 $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
                 $get3dyas= "SELECT * FROM datospersonales
                 INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
-                WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO') OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1'
-                AND datospersonales.estatus = 'SUJETO PROTEGIDO') ORDER BY fecha_termino ASC";
+                WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO')
+                OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1' AND datospersonales.estatus = 'SUJETO PROTEGIDO')
+                ORDER BY fecha_termino ASC";
                 $rget3dyas = $mysqli->query($get3dyas);
                 while ($fget3dyas = $rget3dyas->fetch_assoc()) {
                   $idalertconv = $fget3dyas['id'];

@@ -354,13 +354,14 @@ a:focus {
             <tbody>
               <?php
               $contador = 0;
-              $obtenfechaactualprincipal1 = date('Y-m-d'); echo "<br>";
-              $obtenfechaactualprincipal2 = date('Y-m-d');
+              $obtenfechaactualprincipal1 = date('Y-m-d');
+              $obtenfechaactualprincipal2 = date('Y-m-d'); 
               $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
               $get3dyas= "SELECT * FROM datospersonales
               INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
-              WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO') OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1'
-              AND datospersonales.estatus = 'SUJETO PROTEGIDO') ORDER BY fecha_termino ASC";
+              WHERE (alerta_convenios.estatus = 'PENDIENTE' AND (alerta_convenios.dias_restantes BETWEEN 1 AND 15) AND datospersonales.estatus = 'SUJETO PROTEGIDO')
+              OR (datospersonales.estatus = 'SUJETO PROTEGIDO' AND alerta_convenios.estatus != 'HECHO' AND (alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1'))
+              ORDER BY fecha_termino ASC";
               $rget3dyas = $mysqli->query($get3dyas);
               while ($fget3dyas = $rget3dyas->fetch_assoc()) {
                 $contador = $contador + 1;
@@ -388,7 +389,11 @@ a:focus {
                 <?php
 
               }
-                    $query= "SELECT * FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15 ORDER BY dias_restantes ASC";
+                    $query= "SELECT * FROM datospersonales
+                    INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
+                    WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO')
+                    OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1' AND datospersonales.estatus = 'SUJETO PROTEGIDO')
+                    ORDER BY fecha_termino ASC";
                     $rq = $mysqli->query($query);
                        while($row = $rq->fetch_assoc()){
                          $contador = $contador + 1;
