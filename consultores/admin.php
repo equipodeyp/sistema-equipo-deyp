@@ -143,6 +143,7 @@ $cargouser = $row['cargo'];;
           </ul>
           <?php
         }
+        if ($row['area'] != 'titular de la unidad de proteccion de sujetos que intervienen en el procedimiento penal o extincion de dominio') {
         ?>
         <ul>
           <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
@@ -152,6 +153,9 @@ $cargouser = $row['cargo'];;
             </ul>
           </li>
         </ul>
+        <?php
+        }
+        ?>
         <div class="cerrar-sesion-menu">
           <ul>
             <li class="menu-items"><a href="#" onclick="menudocumentacion(this)"><i style="color: #FFFFFF;" class="fa-solid fa-user-gear menu-nav--icon"></i><strong style="color: white;">AYUDA</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
