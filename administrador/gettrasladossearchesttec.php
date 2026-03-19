@@ -301,7 +301,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                               <th class="table-header" style="text-align:center">ID DE LA PP O SP</th>
                               <th class="table-header" style="text-align:center">KILOMETROS</th> -->
                                <th class="table-header" style="text-align:center">FECHA</th>
-                              
+
                             </tr>
                         </thead>
                         <tbody>
@@ -348,7 +348,7 @@ $_SESSION["check_traslado"] = $check_traslado;
                               <td><?php echo $fgetinfosujeto['identificador']; ?></td>
                               <td><?php echo $fgetrondin['kilometraje']; ?></td> -->
                               <td><?php echo date("d/m/Y", strtotime($fgetrondin['fecha_firma'])); ?></td>
-                             
+
                             </tr>
                           <?php
                           }
@@ -379,7 +379,9 @@ $_SESSION["check_traslado"] = $check_traslado;
       }
       ?>
     </div>
-  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div>  -->
   <div class="contenedor">
       <a href="bd_metas.php" class="btn-flotante">REGRESAR</a>
   </div>
