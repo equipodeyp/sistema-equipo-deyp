@@ -60,3 +60,65 @@ $(document).ready(function() {
     });
 });
 ////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function() {
+    $('#searchplaneacion_traslados').on('submit', function(e) {
+        e.preventDefault(); // Evitar recarga
+        // 1. Mostrar Spinner
+        $('#loader_carga').show();
+        // 2. Esperar 5 segundos
+        setTimeout(function() {
+            // 3. Ejecutar consulta Ajax
+            $.ajax({
+                url: 'buscar_traslados.php',
+                type: 'POST',
+                data: $('#searchplaneacion_traslados').serialize(),
+                success: function(response) {
+                    $('#resultados_traslados').html(response);
+                    new DataTable('#bd_planeacion_traslados', {
+                      layout: {
+                          bottomEnd: {
+                            paging: {
+                              firstLast: false
+                            }
+                          }
+                      },
+                      language: {
+                        lengthMenu: "Mostrar _MENU_ registros",
+                        zeroRecords: "No se encontraron resultados",
+                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                        sSearch: "Buscar:",
+                        oPaginate: {
+                          sFirst: "Primero",
+                          sLast: "Último",
+                          sNext: "Siguiente",
+                          sPrevious: "Anterior"
+                        },
+                        sProcessing: "Procesando...",
+                      },
+                      // para usar los botones
+                      responsive: true,
+                      dom: 'Brtip',
+                      buttons: [{
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i>',
+                        titleAttr: 'Exportar a Excel',
+                        className: 'btn color-btn-export-xls',
+                        title: 'BD PLANEACION TRASLADOS',
+                        // Añade esto para asegurar que tome todas las filas
+                        exportOptions: {
+                          modifier: {
+                          page: 'all',    // Exporta todas las páginas, no solo la visible
+                          search: 'none'  // Exporta todo, incluso lo que está filtrado
+                        }
+                      }
+                    },]
+                    });
+                    $('#loader_carga').hide(); // Ocultar spinner
+                }
+            });
+        }, 5000); // 5000 milisegundos
+    });
+});
+////////////////////////////////////////////////////////////////////////////////

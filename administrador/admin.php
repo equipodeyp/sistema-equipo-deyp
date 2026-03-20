@@ -127,7 +127,7 @@ $mmed =  $ftmf['t'];
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                     <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">RUTA</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/expediente.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">EXPEDIENTE</strong></a></li>
-                    <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">TRASLADO</strong></a></li>
+                    <li class="menu-items"><a href='./planeacion/traslado.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">TRASLADO</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">EVALUACION</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">GESTION</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">INFORME ASISTENCIA</strong></a></li>
