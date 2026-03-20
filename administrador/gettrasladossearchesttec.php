@@ -379,9 +379,7 @@ $_SESSION["check_traslado"] = $check_traslado;
       }
       ?>
     </div>
-  <!-- </div> -->
-  <!-- </div> -->
-  <!-- </div>  -->
+  </div>
   <div class="contenedor">
       <a href="bd_metas.php" class="btn-flotante">REGRESAR</a>
   </div>
