@@ -4,14 +4,13 @@ include("../conexion.php");
 // variables de fechas
 $fechaInicio = $_POST['fecha_inicio'];
 $fechaFin = $_POST['fecha_fin'];
+// funcion para contar letras de una palabra
 function contarLetrasPorPalabraasis($texto) {
   $palabras = str_word_count($texto, 1); // Obtiene un array de palabras
   $resultados = [];
-
   foreach ($palabras as $palabra) {
     $resultados[$palabra] = strlen($palabra);
   }
-
   return $resultados;
 }
 // Consulta SQL con el rango de fechas
@@ -90,44 +89,20 @@ if ($result->num_rows > 0) {
           <tbody>
           <?php
           while($row = $result->fetch_assoc()) {
-            // echo $row['medida'];
-            // echo "<br>";
             $auxsum++;
-            // echo $muestra = 'Informe_Exp_01/2025-EGG-Custodia Policial o Domiciliaria';
-            // echo "<br>";
-            // echo $row['medida'];
-            // echo "<br>";
             $folioexpediente = $row['folioexpediente'];
             $idsujeto = $row['id_persona'];
             $cadena = $row['medida'];
             $resultado = strrchr($cadena, ".");
             if ($resultado !== false) {
               $resultado = substr($resultado, 1); // Eliminar el punto inicial
-              // echo $resultado; // Salida: txt
             }else {
             $resultado = $row['medida'];
             }
-            // echo "<br>";
             $cadena = $resultado;
-             $str = mb_strtolower($cadena);
-            // $cadena_mayuscula = ucwords($cadena);
-            // echo 'altay baja'.$cadena_mayuscula; // Output: Hola Mundo
-            // echo "<br>";
-            // function convertirAMinusculasExceptoPrimeraLetra($cadena) {
-            //   $primeraLetra = strtoupper(substr($cadena, 0, 1));
-            //   $restoCadena = strtolower(substr($cadena, 1));
-            //   return $primeraLetra . $restoCadena;
-            // }
-            //
-            // $texto = $cadena;
-            // $resultado2 = convertirAMinusculasExceptoPrimeraLetra($texto);
-            // echo $resultado2; // Output: Ejemplo
-            // echo "<br>";
+            $str = mb_strtolower($cadena);
             $cadena_mayuscula2 = ucwords($str);
-            // echo '+++++++'.$cadena_mayuscula2.'+++++++'; // Output: Hola Mundo
-            // echo "<br>";
-            // echo "Informe_Exp_11/2022-MAMF-Salvaguarda De La Integridad Personal";
-            // echo "<br>";
+
             $getexpinfo = "SELECT * FROM expediente WHERE fol_exp = '$folioexpediente'";
             $rgetexpinfo = $mysqli->query($getexpinfo);
             $fgetexpinfo = $rgetexpinfo->fetch_assoc();
@@ -136,13 +111,12 @@ if ($result->num_rows > 0) {
              // $numero_de_tres_digitos = "123";
             $dos_primeros_digitos = substr($numexpediente, 1, 2);
             // echo $dos_primeros_digitos; // Output: 12
-
-             $fgetexpinfo['año'];
+            $fgetexpinfo['año'];
 
             $getsujinfo = "SELECT * FROM datospersonales WHERE id = '$idsujeto'";
             $rgetsujinfo = $mysqli->query($getsujinfo);
             $fgetsujinfo = $rgetsujinfo->fetch_assoc();
-             $fgetsujinfo['identificador'];
+            $fgetsujinfo['identificador'];
 
             $cadena = $fgetsujinfo['identificador'];
             //
@@ -156,10 +130,7 @@ if ($result->num_rows > 0) {
               // Imprime la parte de la cadena
               $parte; // Imprimirá "Hola"
             }
-             $texto = $parte;
-
-
-
+            $texto = $parte;
             $miTexto = $str;
             $resultados = contarLetrasPorPalabraasis($miTexto);
             $arraytextmedida =array();
@@ -174,22 +145,8 @@ if ($result->num_rows > 0) {
                  $getpalabramayuscula = $palabra;
                 array_push($arraytextmedida, $getpalabramayuscula);
               }
-              // echo "<br>";
-            }
-            // print_r($arraytextmedida);
-            // echo "<br>";
-            // var_dump($arraytextmedida);
-            // echo "<br>";
-            //  echo 'Informe_Exp_'.$dos_primeros_digitos.'/'.$añoexpediente.'-'.$texto.'-';
-            //  foreach($arraytextmedida as $numero) {
-            //    echo $numero.' ';
-            // }
-
-
-
-
+            }            
           ?>
-
             <tr>
               <td style="text-align:center; border: 1px solid black;"><?php echo $auxsum; ?></td>
               <td style="text-align:center; border: 1px solid black;"><?php   echo 'Informe_Exp_'.$dos_primeros_digitos.'/'.$añoexpediente.'-'.$texto.'-';
