@@ -131,7 +131,7 @@ $mmed =  $ftmf['t'];
                     <li class="menu-items"><a href='./planeacion/evaluacion.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">EVALUACION</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/gestion.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">GESTION</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/convenio.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">CONVENIO</strong></a></li>
-                    <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">INFORME ASISTENCIA</strong></a></li>
+                    <li class="menu-items"><a href='./planeacion/informe_asistencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">INFORME ASISTENCIA</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">INFORME RESGUARDO</strong></a></li>
                   </ul>
                 </li>
