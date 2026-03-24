@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include("../conexion.php");
 // variables de fechas
 $fechaInicio = $_POST['fecha_inicio'];
@@ -82,13 +83,13 @@ if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             $auxsum = $auxsum +1;
             $idunico = $row['id_unico'];
-            $analisis = $row['analisis'];
+            $analisis = $fgetrondn['analisis'];
             $ultimosCinco = substr($row['folioexpediente'], -8);
            // $ultimoexp = "SELECT * FROM evaluacion_persona WHERE analisis = ' ' ";
             $getinfosujeto = "SELECT * FROM evaluacion_persona WHERE id = '$idunico'";
             $rgetinfosujeto = $mysqli->query($getinfosujeto);
             $fgetinfosujeto  = $rgetinfosujeto ->fetch_assoc();
-            $cadena = $idunico;
+            $cadena = $fgetinfosujeto['identificador'];
             // echo "<br>";
             $caracter = "-";
             // Encuentra la posición del carácter
