@@ -36,6 +36,83 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
+  <style>
+  .btn-interactivo {
+            /* Posicionamiento fijo a la derecha y centrado vertical */
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+
+            /* Diseño base compacto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            height: 54px;
+            padding: 0 20px;
+
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+            /* Transición fluida para la expansión */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            white-space: nowrap;
+
+            /* Animación de entrada inicial */
+            animation: entradaRebote 1s ease-out forwards;
+        }
+
+        /* Contenedores internos */
+        .texto {
+            font-size: 15px;
+            font-weight: 500;
+            margin-right: 0;
+            transition: margin 0.3s;
+        }
+
+        .icono {
+            font-size: 20px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        /* EFECTO HOVER: Expansión y revelación */
+        .btn-interactivo:hover {
+            padding: 0 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: #2563eb; /* Cambia a un color más vibrante al interactuar */
+        }
+
+        .btn-interactivo:hover .texto {
+            margin-right: 12px;
+        }
+
+        .btn-interactivo:hover .icono {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Animación de entrada desde la derecha */
+        @keyframes entradaRebote {
+            0% {
+                opacity: 0;
+                right: -100px;
+            }
+            100% {
+                opacity: 1;
+                right: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
   <div class="contenedor">
@@ -126,6 +203,11 @@ $row=$result->fetch_assoc();
               </div>
             </div>
           </div>
+          <!-- <button class="btn-interactivo">Explorar Ahora</button> -->
+          <button class="btn-interactivo">
+        <span class="texto">PRELIMINAR <br> <?php echo date("d/m/Y"); ?></span>
+        <span class="icono">→</span>
+    </button>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
