@@ -32,7 +32,8 @@ if ($iduser == 1) {
 $genero = $row['sexo'];
 $area = $row['area'];
 $id_user = $row['id'];
-$cargouser = $row['cargo'];;
+$cargouser = $row['cargo'];
+$idcargouser = $row['id_cargo'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -154,6 +155,11 @@ $cargouser = $row['cargo'];;
           </li>
         </ul>
         <?php
+        }
+        if ($idcargouser == 4 || $idcargouser == 1) {
+          ?>
+          <li class="menu-items"><a href='../administrador/admin.php'><i style="color: #FFFFFF;" class="fa-solid fa-user-tie menu-nav--icon"></i><strong style="color: white;">ADMINISTRADOR</strong></a></li>
+          <?php
         }
         ?>
         <div class="cerrar-sesion-menu">
