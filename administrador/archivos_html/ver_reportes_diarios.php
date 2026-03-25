@@ -1,5 +1,6 @@
 <?php
-date_default_timezone_set("America/Mexico_City");
+// Configurar la zona horaria (ajusta a tu localidad)
+date_default_timezone_set('America/Mexico_City');
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 include("../conexion.php");
@@ -11,6 +12,25 @@ if (!isset($name)) {
 $sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+// Obtener la hora actual en formato 24h
+$horaActual = (int)date('H');
+$minutosActual = (int)date('i');
+
+// Definir los formatos de fecha
+$formato = 'd-m-Y'; // Ejemplo: 25-03-2026
+// Lógica de comparación
+// Si la hora es 9 (9:00 - 9:59) se muestra ayer
+if ($horaActual == 9) {
+    $varbtnmsjrd = date($formato, strtotime('yesterday'));
+}
+// Si son las 10:00 exactamente o más, muestra hoy
+elseif ($horaActual >= 10) {
+    $varbtnmsjrd = date($formato);
+}
+// Antes de las 9am, mostramos ayer también (o podrías ajustar esta lógica)
+else {
+    $varbtnmsjrd =  date($formato, strtotime('yesterday'));
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,83 +56,6 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
-  <style>
-  .btn-interactivo {
-            /* Posicionamiento fijo a la derecha y centrado vertical */
-            position: fixed;
-            right: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-
-            /* Diseño base compacto */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 50px;
-            height: 54px;
-            padding: 0 20px;
-
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-
-            /* Transición fluida para la expansión */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            white-space: nowrap;
-
-            /* Animación de entrada inicial */
-            animation: entradaRebote 1s ease-out forwards;
-        }
-
-        /* Contenedores internos */
-        .texto {
-            font-size: 15px;
-            font-weight: 500;
-            margin-right: 0;
-            transition: margin 0.3s;
-        }
-
-        .icono {
-            font-size: 20px;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        /* EFECTO HOVER: Expansión y revelación */
-        .btn-interactivo:hover {
-            padding: 0 30px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background: #2563eb; /* Cambia a un color más vibrante al interactuar */
-        }
-
-        .btn-interactivo:hover .texto {
-            margin-right: 12px;
-        }
-
-        .btn-interactivo:hover .icono {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Animación de entrada desde la derecha */
-        @keyframes entradaRebote {
-            0% {
-                opacity: 0;
-                right: -100px;
-            }
-            100% {
-                opacity: 1;
-                right: 25px;
-            }
-        }
-    </style>
 </head>
 <body>
   <div class="contenedor">
@@ -192,7 +135,7 @@ $row=$result->fetch_assoc();
                       <div class="progress" style="height: 45px; border-radius: 25px;">
                         <div id="timeBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%"></div>
                       </div>
-                      <p class="mt-3 text-muted">El reporte se visualizara al finalizar el día.</p>
+                      <p class="mt-3 text-muted">El reporte se visualizara mañana.</p>
                     </div>
                     <iframe src="" id="pdfFrame" class="pdf-frame d-none"></iframe>
                   </div>
@@ -204,10 +147,10 @@ $row=$result->fetch_assoc();
             </div>
           </div>
           <!-- <button class="btn-interactivo">Explorar Ahora</button> -->
-          <button class="btn-interactivo">
-        <span class="texto">PRELIMINAR <br> <?php echo date("d/m/Y"); ?></span>
-        <span class="icono">→</span>
-    </button>
+          <a class="btn-interactivo" href="../generar_reportes/reporte_diario.php">
+            <span class="texto">REPORTE DIARIO <br> <?php echo $varbtnmsjrd;?></span>
+            <span class="icono">→</span>
+          </a>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
@@ -220,4 +163,6 @@ $row=$result->fetch_assoc();
 <link rel="stylesheet" type="text/css" href="../../css/calendario_diario.css"/>
 <script src="../../js/menu.js"></script>
 <script src="../../js/carga_dias_reporte_diario.js"></script>
+<link rel="stylesheet" href="../../css/menu_creacionreportes.css">
+<script src="../../js/descargarpdfreportes.js"></script>
 </html>

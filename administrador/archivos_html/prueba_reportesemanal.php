@@ -102,10 +102,10 @@ $mpdf = new \Mpdf\Mpdf([
   'format' => [216, 279],
   'default_font_size' => 0,
   'default_font' => '',
-  'margin_left' => 10,
+  'margin_left' => 8,
   'margin_right' => 8,
-  'margin_top' => 35,
-  'margin_bottom' => 20,
+  'margin_top' => 30,
+  'margin_bottom' => 15,
   'margin_header' => 7,
   'margin_footer' => 6,
   'orientation' => 'L',
@@ -177,7 +177,7 @@ $data .= '<div style="float: left; width: 55%;">
             <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" colspan="4"><h1 style="font-size:13.33px; color:white;">SOLICITUDES RECIBIDAS Y EXPEDIENTES INICIADOS</h1></th>
           </tr>
           <tr>
-            <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" rowspan="2"><h1 style="font-size:13.33px; color:white;">CONCEPTO </h1></th>
+            <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" rowspan="2"><h1 style="font-size:13.33px; color:white;">AUTORIDAD </h1></th>
             <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" colspan="2"><h1 style="font-size:13.33px; color:white;">'.$year.'</h1></th>
             <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center; width:5px;" rowspan="2"><h1 style="font-weight: normal; font-size:11.33px;">TOTAL ACUMULADO </h1></th>
           </tr>
@@ -188,87 +188,118 @@ $data .= '<div style="float: left; width: 55%;">
         </thead>
         <tbody>';
         ////////////////////////////////////////////////////////////////////////////////
-        $siprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-        INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-        WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$dateprinc' and '$datefinprinc'";
-        $rsiprocede = $mysqli->query($siprocede);
-        $fsiprocede = $rsiprocede->fetch_assoc();
-        ////////////////////////////////////////////////////////////////////////////////
-        $noprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-        INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-        WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$dateprinc' and '$datefinprinc'";
-        $rnoprocede = $mysqli->query($noprocede);
-        $fnoprocede = $rnoprocede->fetch_assoc();
-        ////////////////////////////////////////////////////////////////////////////////
-        $parcialproc = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-        INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-        WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDENTE' and expediente.fecha_nueva BETWEEN '$dateprinc' and '$datefinprinc'";
-        $rparcialproc = $mysqli->query($parcialproc);
-        $fparcialproc = $rparcialproc->fetch_assoc();
-        ////////////////////////////////////////////////////////////////////////////////
-        $totalanterior = $fsiprocede['t'] + $fnoprocede['t'] + $fparcialproc['t'];
-        ////////////////////////conteo  de datos  de la semana para entregar reporte//////////////////////////////////////
-        $siprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-        INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-        WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$daterepini' and '$daterepfin'";
-        $rsiprocedereporte = $mysqli->query($siprocedereporte);
-        $fsiprocedereporte = $rsiprocedereporte->fetch_assoc();
-        ////////////////////////////////////////////////////////////////////////////////
-        $noprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-        INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-        WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$daterepini' and '$daterepfin'";
-        $rnoprocedereporte = $mysqli->query($noprocedereporte);
-        $fnoprocedereporte = $rnoprocedereporte->fetch_assoc();
-        ////////////////////////////////////////////////////////////////////////////////
-        $parcialprocreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
-        INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
-        WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDE' and expediente.fecha_nueva BETWEEN '$daterepini' and '$daterepfin'";
-        $rparcialprocreporte = $mysqli->query($parcialprocreporte);
-        $fparcialprocreporte = $rparcialprocreporte->fetch_assoc();
-        ////////////////////////////////////////////////////////////////////////////////
-        $totalreporte = $fsiprocedereporte['t'] + $fnoprocedereporte['t'] + $fparcialprocreporte['t'];
-        ////////////////totales por fila //////////////////////////////////////////////////////////////////////
-        $totalsiprocede = $fsiprocede['t'] + $fsiprocedereporte['t'];
-        ////////////////////////////////////////////////////////////////////////////////
-        $totalnoprocede = $fnoprocede['t'] + $fnoprocedereporte['t'];
-        ////////////////////////////////////////////////////////////////////////////////
-        $totalparcialproc = $fparcialproc['t'] + $fparcialprocreporte['t'];
-        ////////////////////////////////////////////////////////////////////////////////
-        $totalacumulado = $totalanterior + $totalreporte;
-        ////////////////////////////////////////////////////////////////////////
-        if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0 || $totalsiprocede > 0) {
+        $solicitudesrecibidas = "SELECT nombreautoridad, COUNT(DISTINCT folioexpediente) AS total FROM autoridad
+        WHERE fechasolicitud BETWEEN '2026-01-01' AND '2026-12-31'
+        GROUP BY nombreautoridad ORDER BY total DESC, nombreautoridad ASC";
+        $rsolicitudesrecibidas = $mysqli->query($solicitudesrecibidas);
+        while ($fsolicitudesrecibidas = $rsolicitudesrecibidas->fetch_assoc()) {
+        // Ejemplo de uso:
+        $nameautoridad = $fsolicitudesrecibidas['nombreautoridad'];
+
+          $solicitudes_col1 = "SELECT COUNT(DISTINCT autoridad.folioexpediente) AS total FROM autoridad
+          WHERE nombreautoridad = '$nameautoridad' AND fechasolicitud BETWEEN '$dateprinc' AND '$datefinprinc'";
+          $rsolicitudes_col1 = $mysqli->query($solicitudes_col1);
+          $fsolicitudes_col1 = $rsolicitudes_col1->fetch_assoc();
+
+          $totalcol1 = $totalcol1 + $fsolicitudes_col1['total'];
+
+          $solicitudes_col2 = "SELECT COUNT(DISTINCT autoridad.folioexpediente) AS total FROM autoridad
+          WHERE nombreautoridad = '$nameautoridad' AND fechasolicitud BETWEEN '$daterepini' AND '$daterepfin'";
+          $rsolicitudes_col2 = $mysqli->query($solicitudes_col2);
+          $fsolicitudes_col2 = $rsolicitudes_col2->fetch_assoc();
+
+          $totalfila = $fsolicitudes_col1['total'] + $fsolicitudes_col2['total'];
+          $totalcol2 = $totalcol2 + $fsolicitudes_col2['total'];
+          $sumatotal = $sumatotal + $totalfila;
+
           $data .= '<tr bgcolor="white">
-          <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;JURÍDICAMENTE PROCEDENTE</h1></td>
-          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsiprocede['t'].'</h1></td>
-          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsiprocedereporte['t'].'</h1></td>
-          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalsiprocede.'</h1></td>
+          <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;'.$nameautoridad.'</h1></td>
+          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsolicitudes_col1['total'].'</h1></td>
+          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsolicitudes_col2['total'].'</h1></td>
+          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalfila.'</h1></td>
           </tr>';
         }
-        ////////////////////////////////////////////////////////////////////////
-        if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0 || $totalnoprocede > 0) {
-          // code...
-        $data .= '<tr bgcolor="white">
-        <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;JURÍDICAMENTE NO PROCEDENTE</h1></td>
-        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fnoprocede['t'].'</h1></td>
-        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fnoprocedereporte['t'].'</h1></td>
-        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalnoprocede.'</h1></td>
-        </tr>';
-        }
-        ////////////////////////////////////////////////////////////////////////
-        if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0 || $totalparcialproc > 0) {
-          $data .= '<tr bgcolor="white">
-          <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PARCIALMENTE PROCEDENTE</h1></td>
-          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fparcialproc['t'].'</h1></td>
-          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fparcialprocreporte['t'].'</h1></td>
-          <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalparcialproc.'</h1></td>
-          </tr>';
-        }
-        ////////////////////////////////////////////////////////////////////////
+        // $siprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
+        // INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
+        // WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$dateprinc' and '$datefinprinc'";
+        // $rsiprocede = $mysqli->query($siprocede);
+        // $fsiprocede = $rsiprocede->fetch_assoc();
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $noprocede = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
+        // INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
+        // WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$dateprinc' and '$datefinprinc'";
+        // $rnoprocede = $mysqli->query($noprocede);
+        // $fnoprocede = $rnoprocede->fetch_assoc();
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $parcialproc = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
+        // INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
+        // WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDENTE' and expediente.fecha_nueva BETWEEN '$dateprinc' and '$datefinprinc'";
+        // $rparcialproc = $mysqli->query($parcialproc);
+        // $fparcialproc = $rparcialproc->fetch_assoc();
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $totalanterior = $fsiprocede['t'] + $fnoprocede['t'] + $fparcialproc['t'];
+        // ////////////////////////conteo  de datos  de la semana para entregar reporte//////////////////////////////////////
+        // $siprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
+        // INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
+        // WHERE valoracionjuridica.resultadovaloracion = 'SI PROCEDE' and expediente.fecha_nueva BETWEEN '$daterepini' and '$daterepfin'";
+        // $rsiprocedereporte = $mysqli->query($siprocedereporte);
+        // $fsiprocedereporte = $rsiprocedereporte->fetch_assoc();
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $noprocedereporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
+        // INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
+        // WHERE valoracionjuridica.resultadovaloracion = 'NO PROCEDE' and expediente.fecha_nueva BETWEEN '$daterepini' and '$daterepfin'";
+        // $rnoprocedereporte = $mysqli->query($noprocedereporte);
+        // $fnoprocedereporte = $rnoprocedereporte->fetch_assoc();
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $parcialprocreporte = "SELECT COUNT(DISTINCT expediente.fol_exp) as t  FROM expediente
+        // INNER JOIN valoracionjuridica on expediente.fol_exp = valoracionjuridica.folioexpediente
+        // WHERE valoracionjuridica.resultadovaloracion = 'PARCIALMENTE PROCEDE' and expediente.fecha_nueva BETWEEN '$daterepini' and '$daterepfin'";
+        // $rparcialprocreporte = $mysqli->query($parcialprocreporte);
+        // $fparcialprocreporte = $rparcialprocreporte->fetch_assoc();
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $totalreporte = $fsiprocedereporte['t'] + $fnoprocedereporte['t'] + $fparcialprocreporte['t'];
+        // ////////////////totales por fila //////////////////////////////////////////////////////////////////////
+        // $totalsiprocede = $fsiprocede['t'] + $fsiprocedereporte['t'];
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $totalnoprocede = $fnoprocede['t'] + $fnoprocedereporte['t'];
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $totalparcialproc = $fparcialproc['t'] + $fparcialprocreporte['t'];
+        // ////////////////////////////////////////////////////////////////////////////////
+        // $totalacumulado = $totalanterior + $totalreporte;
+        // ////////////////////////////////////////////////////////////////////////
+        // if ($fsiprocede['t'] > 0 || $fsiprocedereporte['t'] > 0 || $totalsiprocede > 0) {
+        //   $data .= '<tr bgcolor="white">
+        //   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;JURÍDICAMENTE PROCEDENTE</h1></td>
+        //   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsiprocede['t'].'</h1></td>
+        //   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsiprocedereporte['t'].'</h1></td>
+        //   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalsiprocede.'</h1></td>
+        //   </tr>';
+        // }
+        // ////////////////////////////////////////////////////////////////////////
+        // if ($fnoprocede['t'] > 0 || $fnoprocedereporte['t'] > 0 || $totalnoprocede > 0) {
+        //   // code...
+        // $data .= '<tr bgcolor="white">
+        // <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;JURÍDICAMENTE NO PROCEDENTE</h1></td>
+        // <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fnoprocede['t'].'</h1></td>
+        // <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fnoprocedereporte['t'].'</h1></td>
+        // <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalnoprocede.'</h1></td>
+        // </tr>';
+        // }
+        // ////////////////////////////////////////////////////////////////////////
+        // if ($fparcialproc['t'] > 0 || $fparcialprocreporte['t'] > 0 || $totalparcialproc > 0) {
+        //   $data .= '<tr bgcolor="white">
+        //   <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;PARCIALMENTE PROCEDENTE</h1></td>
+        //   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fparcialproc['t'].'</h1></td>
+        //   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fparcialprocreporte['t'].'</h1></td>
+        //   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalparcialproc.'</h1></td>
+        //   </tr>';
+        // }
+        // ////////////////////////////////////////////////////////////////////////
         $data .= '<tr bgcolor="#e6e1dc">
         <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:13.33px; color:#97897D;">TOTAL DE SOLICITUDES&nbsp;</h1></td>
-        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$totalanterior.'</h1></td>
-        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$totalreporte.'</h1></td>
-        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$totalacumulado.'</h1></td>
+        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$totalcol1.'</h1></td>
+        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$totalcol2.'</h1></td>
+        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:13.33px; color:#97897D;">'.$sumatotal.'</h1></td>
         </tr>';
         ////////////////////////////////////////////////////////////////////////
         $data .= '</tbody>
@@ -373,7 +404,7 @@ $data .= '<tr bgcolor="#e6e1dc">
 ////////////////////////////////////////////////////////////////////////////////
   $data .= '</tbody>
 </table>
-</div><br><br><br>';
+</div><br><br>';
 ////////////////////////////////////////////////////////////////////////////////
 $data .= '<div style="float: left; width: 55%;">
   <table id="tabla1" border="1px" cellspacing="0" width="89.2%" bgcolor="#97897D">
@@ -517,6 +548,121 @@ $data .= '<div style="float: left; width: 55%;">
     <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:14px; color:#97897D;">'.$fperincorporadastotal['t'].'</h1></td>
     <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:14px; color:#97897D;">'.$fperincorporadasreportetotal['t'].'</h1></td>
     <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:14px; color:#97897D;">'.$totalperincorporadasacumulado.'</h1></td>
+    </tr>
+    </tbody>
+  </table>
+  <table id="tabla1" border="1px" cellspacing="0" width="75%" bgcolor="white">
+    <thead class="thead-dark">
+      <tr>
+        <th style="background-color: white; border: 6px solid white; text-align:justify;" colspan="4">
+          <h1 style="font-size:8px; text-align: justify; color:#665649;">
+          '.$tabla3_pp_sp.'
+          </h1>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+';
+$data .= '
+  <table id="tabla1" border="1px" cellspacing="0" width="89.2%" bgcolor="#97897D">
+    <thead>
+      <tr>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center; width:220px;" rowspan="3"><h1 style="font-size:14px; color:white;">CALIDAD DENTRO DEL PROGRAMA</h1></th>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" colspan="3"><h1 style="font-size:11px; color:white;">SUJETOS DESINCORPORADOS DEL PROGRAMA</h1></th>
+      </tr>
+      <tr>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" colspan="2"><h1 style="font-size:12px; color:white;">'.$year.'</h1></th>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center;" rowspan="2"><h1 style="font-weight: normal; font-size:10px; color:white;">TOTAL  <br> ACUMULADO</h1></th>
+      </tr>
+      <tr>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center; width:80px;"><h1 style="font-weight: normal; font-size:10px; color:white;">DEL 1 DE ENERO AL '.$diaprevius.' DE '.$mesone.'</h1></th>
+        <th style="background-color: #97897D; border: 1px solid #A19E9F; text-align:center; width:80px;"><h1 style="font-weight: normal; font-size:10px; color:white;">DEL '.$msjreposem.'</h1></th>
+
+      </tr>
+    </thead>
+    <tbody>';
+    ////////////////////////conteo  de datos  de la semana anterior//////////////////////////////////////
+    $totalsujdesincorporadoscol_a = 0;
+    $totalsujdesincorporadoscol_b = 0;
+    $totalsujdesincorporados = 0;
+    $calidad = "SELECT * FROM calidadpersona";
+    $rcalidad = $mysqli->query($calidad);
+    while ($fcalidad = $rcalidad->fetch_assoc()) {
+      $namecalidad = $fcalidad['nombre'];
+      if ($fcalidad['nombre'] === 'I. VICTIMA') {
+        $namecortocalidad = 'VÍCTIMA';
+      }
+      if ($fcalidad['nombre'] === 'II. OFENDIDO') {
+        $namecortocalidad = 'OFENDIDO';
+      }
+      if ($fcalidad['nombre'] === 'III. TESTIGO') {
+        $namecortocalidad = 'TESTIGO';
+      }
+      if ($fcalidad['nombre'] === 'IV. COLABORADOR O INFORMANTE') {
+        $namecortocalidad = 'COLABORADOR O INFORMANTE';
+      }
+      if ($fcalidad['nombre'] === 'V. AGENTE DEL MINISTERIO PUBLICO') {
+        $namecortocalidad = 'AGENTE DEL MINISTERIO PUBLICO';
+      }
+      if ($fcalidad['nombre'] === 'VI. DEFENSOR') {
+        $namecortocalidad = 'DEFENSOR';
+      }
+      if ($fcalidad['nombre'] === 'VII. POLICIA') {
+        $namecortocalidad = 'POLICÍA';
+      }
+      if ($fcalidad['nombre'] === 'VIII. PERITO') {
+        $namecortocalidad = 'PERITO';
+      }
+      if ($fcalidad['nombre'] === 'IX. JUEZ O MAGISTRADO DEL PODER JUDICIAL') {
+        $namecortocalidad = 'JUEZ O MAGISTRADO DEL PODER JUDICIAL';
+      }
+      if ($fcalidad['nombre'] === 'X. PERSONA CON PARENTESCO O CERCANIA') {
+        $namecortocalidad = 'PERSONA CON PARENTESCO O CERCANÍA';
+      }
+      //////////////////////////////////////////////////////////////////////////////
+      $personaspropuestas = "SELECT COUNT(*) AS t FROM datospersonales
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+      AND determinacionincorporacion.date_desincorporacion BETWEEN '$dateprinc' AND '$datefinprinc'
+      AND datospersonales.relacional = 'NO'";
+      $rpersonaspropuestas = $mysqli->query($personaspropuestas);
+      $fpersonaspropuestas = $rpersonaspropuestas->fetch_assoc();
+      $totalsujdesincorporadoscol_a = $totalsujdesincorporadoscol_a + $fpersonaspropuestas['t'];
+      //////////////////////////////////////////////////////////////////////////////
+      $personaspropuestasreporte = "SELECT COUNT(*) AS t FROM datospersonales
+      INNER JOIN determinacionincorporacion ON datospersonales.id = determinacionincorporacion.id_persona
+      WHERE datospersonales.calidadpersona = '$namecalidad' AND datospersonales.estatus = 'DESINCORPORADO'
+      AND determinacionincorporacion.date_desincorporacion BETWEEN '$daterepini' AND '$daterepfin'
+      AND datospersonales.relacional = 'NO'";
+      $rpersonaspropuestasreporte = $mysqli->query($personaspropuestasreporte);
+      $fpersonaspropuestasreporte = $rpersonaspropuestasreporte->fetch_assoc();
+      $totalsujdesincorporadoscol_b = $totalsujdesincorporadoscol_b + $fpersonaspropuestasreporte['t'];
+      //////////////////////////////////////////////////////////////////////////////
+      $totalsujdesincorporados = $totalsujdesincorporadoscol_a + $totalsujdesincorporadoscol_b;
+      //////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////
+      $totalacumuladoperprop = $fpersonaspropuestas['t'] + $fpersonaspropuestasreporte['t'];
+
+      if ($fpersonaspropuestas['t'] > 0 || $fpersonaspropuestasreporte['t'] > 0) {
+        $data .= '<tr bgcolor="white">
+        <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;'.$namecortocalidad.'</h1></td>
+        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fpersonaspropuestas['t'].'</h1></td>
+        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fpersonaspropuestasreporte['t'].'</h1></td>
+        <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalacumuladoperprop.'</h1></td>
+
+        </tr>';
+      }
+    }
+    ////////////////////////////////////////////////////////////////////////////////
+
+    $data .= '<tr bgcolor="#e6e1dc">
+    <td style="border: 1px solid #A19E9F; text-align:right;"><h1 style="font-size:15px; color:#97897D;">TOTAL DE PERSONAS&nbsp;</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:14px; color:#97897D;">'.$totalsujdesincorporadoscol_a.'</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:14px; color:#97897D;">'.$totalsujdesincorporadoscol_b.'</h1></td>
+    <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-size:14px; color:#97897D;">'.$totalsujdesincorporados.'</h1></td>
+
     </tr>
     </tbody>
   </table>
@@ -684,6 +830,7 @@ $data .= '<tr bgcolor="#e6e1dc">
   $data .= '</tbody>
 </table></div></div>';
 }
+
 $mpdf ->WriteHtml($css, \Mpdf\HTMLParsermode::HEADER_CSS);
 $mpdf ->WriteHtml($css2, \Mpdf\HTMLParsermode::HEADER_CSS);
 $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
@@ -903,7 +1050,7 @@ $data1 .= '<div style="float: right; width: 45%;">
     <tbody>
     </tbody>
   </table>';
-$data1 .= '</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+$data1 .= '</div><br><br><br><br><br><br><br><br><br><br><br>';
 //////////////////////////////////////////////////////////////////////////////
 $data1 .= '<div style="float: left; width: 55%;">
 <table id="tabla1" border="1px" cellspacing="0" width="100%" bgcolor="#97897D">
@@ -970,7 +1117,7 @@ $data1 .= '<div style="float: left; width: 55%;">
   $fmedidast = $rmedidast->fetch_assoc();
   /////////////////////////////////////////////////////////////////////////////////////
   $data1 .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;ASISTENCIA</h1></td>
+  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;ASISTENCIA*</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fenejeca['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fejeca['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fcancela['t'].'</h1></td>
@@ -978,7 +1125,7 @@ $data1 .= '<div style="float: left; width: 55%;">
   </tr>';
   /////////////////////////////////////////////////////////////////////////////////////
   $data1 .= '<tr bgcolor="white">
-  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;RESGUARDO</h1></td>
+  <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;RESGUARDO**</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fenejecr['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fejecr['t'].'</h1></td>
   <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fcancelr['t'].'</h1></td>
@@ -994,6 +1141,20 @@ $data1 .= '<div style="float: left; width: 55%;">
   </tr>';
   ////////////////////////conteo  de datos  de la semana anterior//////////////////////////////////////
   $data1 .='</tbody>
+  </table>
+  <table id="tabla1" border="1px" cellspacing="0" width="100%" bgcolor="white">
+    <thead class="thead-dark">
+      <tr>
+        <th style="background-color: white; border: 6px solid white; text-align:justify;" colspan="4"><h1 style="font-size:8px; text-align: justify; color:#665649;">
+        *  I. Tratamiento psicológico, médico o sanitario; II. Asesoramiento jurídico gratuito; III. Gestión de trámites; IV. Ayuda de servicios; V. Apoyo económico; VI. Cualquier otra medida de asistencia (apoyo en especie).
+<br>
+** I. Salvagurarda de la integridad personal; II. Vigilancia; III. Modo y mecanismo para el traslado del sujeto; IV. Custodia policial o dimiciliaria; V. facilitar la reubicacion; VI. Mecanismos de comunicacion inmediata; VII. Cambio de número telefónico; VIII. Alojamiento temporal; IX. Capacitación de medidas; X. Nueva identidad del sujeto; XI. Ejecucion de medidas procesales; XII. Medidas otorgadas a sujetos recluidos; XIII. Cualquier otra medida de apoyo (autocuidados, otras medidas que a su juicio sea procedente, evitar salir de noche, evitar acercarse a la zona donde se encuentras los agentes generadores de riesgo, cambiar de rutina escolar, laboral y recreativa)
+
+      </h1></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
   </table>';
 $data1 .= '</div>';
 ///////////////////////////////////////////////////////////////////////////////

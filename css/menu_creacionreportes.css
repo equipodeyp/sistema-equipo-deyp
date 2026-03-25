@@ -1,0 +1,361 @@
+.btn-interactivo {
+          /* Posicionamiento fijo a la derecha y centrado vertical */
+          position: fixed;
+          right: 25px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 1000;
+
+          /* Diseño base compacto */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 50px;
+          height: 54px;
+          padding: 0 20px;
+
+          background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+          color: white;
+          border: none;
+          border-radius: 50px;
+          cursor: pointer;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+          /* Transición fluida para la expansión */
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          overflow: hidden;
+          white-space: nowrap;
+
+          /* Animación de entrada inicial */
+          animation: entradaRebote 1s ease-out forwards;
+      }
+
+      /* Contenedores internos */
+      .texto {
+          font-size: 15px;
+          font-weight: 500;
+          margin-right: 0;
+          transition: margin 0.3s;
+      }
+
+      .icono {
+          font-size: 20px;
+          opacity: 0;
+          transform: translateX(20px);
+          transition: all 0.3s ease;
+          display: inline-block;
+      }
+
+      /* EFECTO HOVER: Expansión y revelación */
+      .btn-interactivo:hover {
+          padding: 0 30px;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+          background: #2563eb; /* Cambia a un color más vibrante al interactuar */
+      }
+
+      .btn-interactivo:hover .texto {
+          margin-right: 12px;
+      }
+
+      .btn-interactivo:hover .icono {
+          opacity: 1;
+          transform: translateX(0);
+      }
+
+      /* Animación de entrada desde la derecha */
+      @keyframes entradaRebote {
+          0% {
+              opacity: 0;
+              right: -100px;
+          }
+          100% {
+              opacity: 1;
+              right: 25px;
+          }
+      }
+/* ////////////////////////////////////////////////////////////////////////// */
+/* Contenedor para que se quede fijo arriba */
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background-color: #f8f9fa; /* Fondo para que no se vea el texto de abajo al scrollear */
+    padding: 10px 0;
+    border-bottom: 0px solid #ddd;
+}
+
+.wizard-steps {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    /* Permite scroll horizontal en móviles si el texto es muy largo */
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ocultar barra de scroll en el menú */
+.wizard-steps::-webkit-scrollbar { display: none; }
+
+.step {
+    position: relative;
+    /* SE ADAPTA AL CONTENIDO: */
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 30px 10px 45px; /* Más padding para la forma de flecha */
+    background: white;
+    color: black;
+    text-decoration: none;
+    border: 5px solid #ccc;
+    border-right: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+/* Flecha trasera (Corte en V) */
+.step::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 30px;
+    background: black; /* Debe ser igual al fondo del wrapper */
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    z-index: 1;
+}
+
+/* Ajuste para el primer y último paso */
+.step:first-child { padding-left: 15px; }
+.step:first-child::before { display: none; }
+.step:last-child { border-right: 6px solid #ccc; }
+.step:last-child::after { display: none; }
+
+/* Círculo numerado */
+.step-num {
+    width: 22px;
+    height: 22px;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 13px;
+    background: white;
+    flex-shrink: 0; /* Evita que el círculo se deforme */
+}
+
+/* Estado Activo (Paso 5 de tu imagen) */
+.step.active {
+    background: #888888;
+    color: white !important;
+    border-color: #777;
+}
+.step.active::after {
+    background: #888888;
+    border-left: 1px solid #777;
+}
+.step.active .step-num {
+    background: green;
+    color: white;
+    border-color: black;
+}
+
+/* Efecto hover simple */
+.step:hover:not(.active) {
+    background: #f1f1f1;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////// */
+/* 1. ANIMACIONES */
+@keyframes pulse-glow {
+0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.7); transform: translateY(-50%) scale(1); }
+70% { box-shadow: 0 0 25px 15px rgba(0, 242, 255, 0); transform: translateY(-50%) scale(1.05); }
+100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); transform: translateY(-50%) scale(1); }
+}
+
+/* 2. CONTENEDOR */
+#contenedor-pdf {
+position: fixed;
+right: 25px;
+top: 50%;
+transform: translateY(-50%);
+z-index: 9999;
+font-family: 'Gotham', sans-serif;
+  -webkit-font-smoothing: antialiased; /* Mejora la renderización */
+font-size: 12px; /* Un tamaño de 16px es un buen estándar para legibilidad */
+}
+
+/* 3. RELOJ / CONTADOR */
+#reloj {
+background: #888888;
+backdrop-filter: blur(10px);
+color: white;
+padding: 15px;
+border-radius: 20px;
+font-size: 13px;
+font-weight: 800;
+border: 5px solid black;
+text-align: center;
+min-width: 140px;
+}
+
+.urgente {
+color: yellow !important;
+border-color: green !important;
+box-shadow: 0 0 25px black !important;
+}
+
+/* 4. BOTÓN DE DESCARGA */
+#btn-descarga {
+display: none;
+width: 70px;
+height: 70px;
+border-radius: 50%;
+align-items: center;
+justify-content: center;
+background: linear-gradient(135deg, green, green);
+border: none;
+cursor: pointer;
+position: relative; /* Necesario para el mensaje flotante */
+}
+
+.activo {
+display: flex !important;
+animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* 5. MENSAJE "DESCARGAR PDF" (TOOLTIP) */
+#btn-descarga::after {
+content: "Descargar PDF";
+position: absolute;
+right: 85px; /* Aparece a la izquierda del botón */
+background: #333;
+color: yellow;
+padding: 8px 15px;
+border-radius: 8px;
+font-size: 14px;
+white-space: nowrap;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+box-shadow: 0 5px 15px #888;
+}
+
+/* Flechita del mensaje */
+#btn-descarga::before {
+content: "";
+position: absolute;
+right: 75px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent transparent #333;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+#btn-descarga:hover::after, #btn-descarga:hover::before {
+opacity: 1;
+visibility: visible;
+transform: translateX(-5px);
+}
+
+#btn-descarga svg { width: 32px; fill: white; }
+/* ////////////////////////////////////////////////////////////////////////// */
+:root {
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --accent-color: #007AFF; /* Azul Apple */
+}
+
+.modern-toast {
+  position: fixed;
+  top: 25px;
+  left: -400px; /* Escondido */
+  width: 320px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(15px); /* Efecto cristal */
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 10000;
+}
+
+.modern-toast.active {
+  left: 25px; /* Aparece */
+}
+
+.toast-content {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-icon {
+  background: var(--accent-color);
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  display: flex;
+  flex-direction: column;
+}
+
+.toast-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #1d1d1f;
+}
+
+.toast-desc {
+  font-size: 12px;
+  color: #86868b;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: color 0.2s;
+}
+
+.toast-close:hover { color: #333; }
+
+/* Barra de progreso animada */
+.toast-progress {
+  height: 3px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.toast-progress::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--accent-color);
+  animation: progress 10s linear forwards;
+}
+
+@keyframes progress {
+  to { width: 0%; }
+}

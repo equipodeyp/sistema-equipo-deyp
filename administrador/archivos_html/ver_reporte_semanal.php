@@ -36,6 +36,59 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
+  <style>
+  /* Contenedor fijo a la derecha y centrado verticalmente */
+     .area-botones {
+         position: fixed;
+         right: 25px;
+         top: 50%;
+         transform: translateY(-50%);
+         z-index: 1000;
+     }
+
+     /* Estilo base elegante */
+     .btn-premium {
+         display: none; /* Se activa con JavaScript */
+         align-items: center;
+         padding: 16px 28px;
+         color: white;
+         border: none;
+         border-radius: 14px;
+         cursor: pointer;
+         font-size: 15px;
+         font-weight: 600;
+         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+         text-decoration: none;
+         opacity: 0;
+         right: -100px;
+         position: relative;
+         animation: entrar 0.7s ease-out forwards;
+     }
+
+     /* Estilo LUNES: Reporte (Verde Esmeralda) */
+     .lunes-style {
+         background: linear-gradient(135deg, #059669, #10b981);
+     }
+
+     /* Estilo RESTO DE SEMANA: Contacto (Azul Medianoche) */
+     .semana-style {
+         background: linear-gradient(135deg, #1e293b, #334155);
+     }
+
+     /* Animación al pasar el mouse */
+     .btn-premium:hover {
+         transform: scale(1.08) translateX(-5px);
+         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+         filter: brightness(1.1);
+     }
+
+     .icono { margin-left: 12px; font-size: 18px; }
+
+     @keyframes entrar {
+         to { opacity: 1; right: 0; }
+     }
+</style>
 </head>
 <body>
   <div class="contenedor">
@@ -106,6 +159,37 @@ $row=$result->fetch_assoc();
               </div>
             </div>
           </div>
+          <div class="area-botones">
+        <!-- Botón para el Lunes -->
+        <button id="btnLunes" class="btn-premium lunes-style">
+            Generar <br> Reporte <br> Semanal <span class="icono">📊</span>
+        </button>
+
+        <!-- Botón para Martes a Domingo -->
+        <button id="btnSemana" class="btn-premium semana-style">
+            Preliminar <br> Reporte <br> Semanal <span class="icono">📊</span>
+        </button>
+    </div>
+
+<script>
+function gestionarBotones() {
+        const hoy = new Date().getDay(); // 0=Dom, 1=Lun, 2=Mar...
+        const btnLunes = document.getElementById('btnLunes');
+        const btnSemana = document.getElementById('btnSemana');
+
+        if (hoy === 1) {
+            // Es Lunes: Mostrar reporte, asegurar que contacto esté oculto
+            btnLunes.style.display = 'flex';
+            btnSemana.style.display = 'none';
+        } else {
+            // No es lunes: Mostrar contacto, asegurar que reporte esté oculto
+            btnLunes.style.display = 'none';
+            btnSemana.style.display = 'flex';
+        }
+    }
+    // Ejecutar al cargar
+    window.onload = gestionarBotones;
+</script>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>

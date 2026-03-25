@@ -39,7 +39,7 @@ while ($fsolicitudesrecibidas = $rsolicitudesrecibidas->fetch_assoc()) {
 // Ejemplo de uso:
 $nameautoridad = $fsolicitudesrecibidas['nombreautoridad'];
 
-  $solicitudes_col1 = "SELECT COUNT(*) AS total FROM autoridad
+  $solicitudes_col1 = "SELECT COUNT(DISTINCT autoridad.folioexpediente) AS total FROM autoridad
   WHERE nombreautoridad = '$nameautoridad' AND fechasolicitud BETWEEN '$dateinicio_col1' AND '$datefin_col1'";
   $rsolicitudes_col1 = $mysqli->query($solicitudes_col1);
   $fsolicitudes_col1 = $rsolicitudes_col1->fetch_assoc();

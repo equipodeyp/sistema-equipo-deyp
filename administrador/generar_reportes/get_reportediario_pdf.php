@@ -5,7 +5,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 // echo " ".date('d')." DE ".$mesone. " DEL ".date('Y') ;
 $fecha_actual = date("Y-m-d");
 
-$diaactual = date("d");
+$diaactual = date("d", strtotime("-1 day"));
 $mesactual = $meses[date("n")-1];
 ////////////////////////////
 require_once '../../mpdf/vendor/autoload.php';
@@ -60,8 +60,8 @@ $mpdf = new \Mpdf\Mpdf([
   'format' => [216, 279],
   'default_font_size' => 0,
   'default_font' => '',
-  'margin_left' => 10,
-  'margin_right' => 7,
+  'margin_left' => 5,
+  'margin_right' => 5,
   'margin_top' => 35,
   'margin_bottom' => 20,
   'margin_header' => 7,
@@ -551,6 +551,16 @@ $data .='</tbody>
     // $mpdf->WriteHTML($data, \Mpdf\HTMLParserMode::BODY_HTML);
     $mpdf->WriteHtml($data);
 ////////////////////////////////////////////////////////////////////////////////
-$mpdf->output();
+// $mpdf->output();
 // $mpdf->output("REPORTE SEMANAL.pdf",'D');
+// 1. Obtener la marca de tiempo de ayer
+$ayer = strtotime('-1 day');
+// 2. Obtener el día del año de ayer (sumamos 1 porque 'z' empieza en 0)
+$dia_del_anio = date('z', $ayer) + 1;
+// 3. Obtener la fecha de ayer en formato dmy
+$fecha_ayer = date('dmY', $ayer);
+// 4. Construir el nombre con la nomenclatura de ayer
+$nombre_archivo = "(" . $dia_del_anio . ") RD_" . $fecha_ayer . ".pdf";
+// 5. Salida de mPDF
+$mpdf->Output($nombre_archivo, 'D');
 ?>
