@@ -255,29 +255,29 @@ $row=$result->fetch_assoc();
                 </div>
               </div>
             </div>
-          </form>
-          <div id="miAlerta" class="modern-toast">
-            <div class="toast-content">
-              <div class="toast-icon">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="3" fill="none">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+            <div id="miAlerta" class="modern-toast">
+              <div class="toast-content">
+                <div class="toast-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="3" fill="none">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="toast-message">
+                  <span class="toast-title">Para descargar el reporte diario de hoy tienes que hacerlo el dia de mañana, solo tienes de 9 a 10 de la mañana para descargarlo</span>
+                  <span class="toast-desc"></span>
+                </div>
+                <button class="toast-close" onclick="cerrarAlerta()">×</button>
               </div>
-              <div class="toast-message">
-                <span class="toast-title">Para descargar el reporte diario de hoy tienes que hacerlo el dia de mañana, solo tienes de 9 a 10 de la mañana para descargarlo</span>
-                <span class="toast-desc"></span>
-              </div>
-              <button class="toast-close" onclick="cerrarAlerta()">×</button>
+              <!-- Barra de progreso de tiempo -->
+              <div class="toast-progress"></div>
             </div>
-            <!-- Barra de progreso de tiempo -->
-            <div class="toast-progress"></div>
-          </div>
-          <div id="contenedor-pdf">
-            <div id="reloj">Cargando...</div>
-            <button class="btn-pdf-round" type="submit" id="btn-descarga" title="Descargar ahora"> <svg viewBox="0 0 24 24">
-              <path d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"/>
-            </svg></button>
-          </div>
+            <div id="contenedor-pdf">
+              <div id="reloj">Cargando...</div>
+              <button class="btn-pdf-round" type="submit" id="btn-descarga" title="Descargar ahora"> <svg viewBox="0 0 24 24">
+                <path d="M19,9h-4V3H9v6H5l7,7L19,9z M5,18v2h14v-2H5z"/>
+              </svg></button>
+            </div>
+          </form>
         </b>
       </div>
     </div>

@@ -56,6 +56,49 @@ else {
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
+  <style>
+         :root { --fgj-color: #545b64; --borde: #adb5bd; }
+
+
+         /* Estética Archivador */
+         .archivador {
+             max-width: 1100px; margin: 0 auto; background: var(--fgj-color);
+             border-radius: 50px 50px 15px 15px; padding: 40px 15px 25px 15px;
+             box-shadow: 0 12px 35px rgba(0,0,0,0.3); position: relative;
+         }
+         .decoracion-superior {
+             display: flex; justify-content: center; gap: 40px;
+             position: absolute; top: 15px; width: 100%; left: 0;
+         }
+         .punto { width: 35px; height: 35px; background: #3a4148; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
+
+         /* Navegación */
+         .nav-header { display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 30px; padding: 0 10px; margin-top: 25px; margin-bottom: 15px;  }
+         .mes-titulo { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 10px; margin: 0; }
+         .btn-nav { background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; transition: 0.3s; visibility: visible; }
+         .btn-nav:hover { background: white; color: var(--fgj-color); }
+         .btn-hidden { visibility: hidden; } /* Para ocultar flecha siguiente */
+
+         /* Calendario Grid */
+         .calendario-grid { display: grid; grid-template-columns: repeat(7, 1fr); background: white; border: 5px solid var(--borde); }
+         .header-dia { background: #eee; font-weight: bold; padding: 10px; border: 1px solid var(--borde); text-align: center; font-size: 0.75rem; color: #555; }
+
+         .dia-celda {
+             background: white; border: 5px solid var(--borde); min-height: 100px;
+             padding: 10px; cursor: pointer; transition: 0.2s; position: relative;
+         }
+         .dia-celda:hover { background: #888888; z-index: 5; }
+         .dia-numero { font-weight: bold; font-size: 2rem; color: green; }
+
+         .fuera-mes { background: #fafafa; color: red; cursor: default; }
+         .es-hoy { background: #fff; border: 13px solid red !important; }
+         .es-hoy .dia-numero { text-decoration: underline; color: #000; }
+
+         /* Modal e Iframe */
+         .modal-xl { max-width: 95% !important; }
+         .pdf-visor { width: 100%; height: 80vh; border: none; background: #525659; }
+         .badge-id { font-family: 'Courier New', monospace; background: #2c3e50; color: #00ff00; padding: 3px 10px; border-radius: 4px; font-size: 0.85rem; }
+     </style>
 </head>
 <body>
   <div class="contenedor">
@@ -101,56 +144,149 @@ else {
         <!--Ejemplo tabla con DataTables-->
         <b>
           <br><br>
-          <div class="container">
-            <div class="archivador">
-              <!-- Decoración Superior -->
-              <div class="decoracion-superior">
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-              </div>
-              <div class="mes-display" id="txtMes">MES</div>
-              <div class="tabla-blanca" id="gridDias"></div>
-            </div>
-          </div>
-          <!-- Modal para mostrar pdf-->
-          <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header bg-dark text-white p-2">
-                  <h6 class="modal-title ms-2">SIPPSIPPED - ESTADO DEL REPORTE</h6>
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-0">
-                  <div class="p-2 bg-light border-bottom d-flex justify-content-between align-items-center">
-                    <span class="ms-2 small">ID: <span id="idFull" class="id-badge"></span></span>
-                    <span id="txtEstado" class="badge bg-primary">ESTADO</span>
-                  </div>
-                  <div id="visorDinamico" class="contenedor-principal">
-                    <div id="timeWrapper" class="time-progress-wrapper d-none">
-                      <div class="progress-label-lg" id="labelPorcentaje">0%</div>
-                      <div class="progress" style="height: 45px; border-radius: 25px;">
-                        <div id="timeBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%"></div>
-                      </div>
-                      <p class="mt-3 text-muted">El reporte se visualizara mañana.</p>
-                    </div>
-                    <iframe src="" id="pdfFrame" class="pdf-frame d-none"></iframe>
-                  </div>
-                </div>
-                <div class="modal-footer bg-light p-1">
-                  <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
           <!-- <button class="btn-interactivo">Explorar Ahora</button> -->
           <a class="btn-interactivo" href="../generar_reportes/reporte_diario.php">
             <span class="texto">REPORTE DIARIO <br> <?php echo $varbtnmsjrd;?></span>
             <span class="icono">→</span>
           </a>
+          <div class="container">
+    <div class="archivador">
+        <div class="decoracion-superior">
+            <div class="punto"></div><div class="punto"></div><div class="punto"></div><div class="punto"></div>
+        </div>
+
+        <div class="nav-header">
+            <button id="btnPrev" class="btn-nav" onclick="cambiarMes(-1)"><i class="bi bi-chevron-left"></i></button>
+            <h1 class="mes-titulo" id="txtMes">>CARGANDO...</h1>
+            <button id="btnNext" class="btn-nav" onclick="cambiarMes(1)"><i class="bi bi-chevron-right"></i></button>
+        </div>
+
+        <div class="calendario-grid" id="gridCalendario">
+            <!-- Cabeceras fijas LUN-DOM -->
+            <div class="header-dia">LUNES</div><div class="header-dia">MARTES</div><div class="header-dia">MIÉRCOLES</div>
+            <div class="header-dia">JUEVES</div><div class="header-dia">VIERNES</div><div class="header-dia">SÁBADO</div>
+            <div class="header-dia">DOMINGO</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Visor de PDF -->
+<div class="modal fade" id="modalDiario" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white p-2">
+        <h6 class="modal-title ms-2">REPORTE DIARIO: <span id="titFecha"></span></h6>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="p-2 bg-light border-bottom">
+            <span class="ms-2 small fw-bold">ID: <span id="idFull" class="badge-id"></span></span>
+        </div>
+        <iframe src="" id="visorPDF" class="pdf-visor"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    const mesesNombres = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+
+    // Referencia inamovible del tiempo real
+    const HOY_REAL = new Date();
+    const ANIO_ACTUAL = HOY_REAL.getFullYear();
+    const MES_LIMITE = HOY_REAL.getMonth(); // Mes actual (0-11)
+
+    // Estado de la vista actual
+    let fechaVista = new Date(ANIO_ACTUAL, MES_LIMITE, 1);
+
+    function dibujarCalendario() {
+        const grid = document.getElementById('gridCalendario');
+        const headers = document.querySelectorAll('.header-dia');
+        grid.innerHTML = '';
+        headers.forEach(h => grid.appendChild(h));
+
+        const anioEnVista = fechaVista.getFullYear();
+        const mesEnVista = fechaVista.getMonth();
+
+        document.getElementById('txtMes').innerText = `${mesesNombres[mesEnVista]} ${anioEnVista}`;
+
+        // Control de visibilidad de flechas
+        // Ocultar PREV si estamos en Enero del año actual
+        document.getElementById('btnPrev').classList.toggle('btn-hidden', mesEnVista === 0);
+        // Ocultar NEXT si estamos en el mes actual (MES_LIMITE)
+        document.getElementById('btnNext').classList.toggle('btn-hidden', mesEnVista >= MES_LIMITE);
+
+        let primerDia = new Date(anioEnVista, mesEnVista, 1).getDay();
+        let inicioOffset = (primerDia === 0) ? 6 : primerDia - 1;
+        let totalDias = new Date(anioEnVista, mesEnVista + 1, 0).getDate();
+
+        // 1. Celdas vacías mes anterior
+        for (let i = 0; i < inicioOffset; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'dia-celda fuera-mes';
+            grid.appendChild(cell);
+        }
+
+        // 2. Días del mes
+        for (let d = 1; d <= totalDias; d++) {
+            const cell = document.createElement('div');
+            const fechaLoop = new Date(anioEnVista, mesEnVista, d);
+            const esHoy = fechaLoop.toDateString() === HOY_REAL.toDateString();
+
+            cell.className = `dia-celda ${esHoy ? 'es-hoy' : ''}`;
+            cell.innerHTML = `<div class="dia-numero">${d}</div>`;
+
+            cell.onclick = () => {
+                const modal = new bootstrap.Modal(document.getElementById('modalDiario'));
+
+                const dd = String(d).padStart(2, '0');
+                const mm = String(mesEnVista + 1).padStart(2, '0');
+
+                // Cálculo de 'z'
+                const inicioAnio = new Date(anioEnVista, 0, 0);
+                const diff = fechaLoop - inicioAnio;
+                const z = Math.floor(diff / 86400000);
+
+                const nombreArchivo = `(${z}) RD_${dd}${mm}${anioEnVista}.pdf`;
+
+                document.getElementById('titFecha').innerText = `${dd}/${mm}/${anioEnVista}`;
+                document.getElementById('idFull').innerText = nombreArchivo;
+
+                // Ruta dinámica con PHP para la carpeta base si se desea
+                const rutaPDF = `../../docs/reportes/anual<?php echo date('Y'); ?>/${nombreArchivo}`;
+                document.getElementById('visorPDF').src = rutaPDF;
+
+                modal.show();
+            };
+
+            grid.appendChild(cell);
+        }
+    }
+
+    function cambiarMes(n) {
+        let nuevoMes = fechaVista.getMonth() + n;
+
+        // Validar que no se salga de los límites (Enero - Mes Actual)
+        if (nuevoMes >= 0 && nuevoMes <= MES_LIMITE) {
+            fechaVista.setMonth(nuevoMes);
+            dibujarCalendario();
+        }
+    }
+
+    document.getElementById('modalDiario').addEventListener('hidden.bs.modal', () => {
+        document.getElementById('visorPDF').src = "";
+    });
+
+    window.onload = dibujarCalendario;
+</script>
+
+
+
+
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
