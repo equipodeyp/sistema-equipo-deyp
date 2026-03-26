@@ -128,11 +128,14 @@ $row=$result->fetch_assoc();
         </div>
         <!--Ejemplo tabla con DataTables-->
         <b>
+          <br>
+          <h3 style="text-align:center">EXPEDIENTES DE PROTECCIÓN EN EJECUCIÓN </h3>
+          <br>
           <div class="">
             <div class="row">
               <div class="col-lg-12">
                 <div class="table-responsive">
-                  <table id="registros_expedientes" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                  <table id="registros_expedientes_activos" name="registros_expedientes_activos" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th style="text-align:center; color: white; border: 1px solid black;">#</th>
@@ -151,7 +154,11 @@ $row=$result->fetch_assoc();
                       $resultado = $mysqli->query($sql);
                       $row = $resultado->fetch_array(MYSQLI_ASSOC);
                       $fol_exp =$row['fol_exp'];
-                      $tabla="SELECT * FROM expediente";
+                      $tabla="SELECT *
+                              FROM expediente
+                              INNER JOIN statusseguimiento
+                              ON expediente.fol_exp = statusseguimiento.folioexpediente
+                              WHERE statusseguimiento.status != 'CONCLUIDO' AND statusseguimiento.status != 'CANCELADO'";
                       $var_resultado = $mysqli->query($tabla);
                       while ($var_fila=$var_resultado->fetch_array()) {
                         $contador = $contador + 1;
@@ -184,6 +191,76 @@ $row=$result->fetch_assoc();
                       ?>
                     </tbody>
                   </table>
+
+                
+
+          <br>
+          <h3 style="text-align:center">EXPEDIENTES DE PROTECCIÓN EN CONCLUIDOS</h3>
+          <br>
+          <div class="">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-responsive">
+                  <table id="registros_expedientes_activos" name="registros_expedientes_activos" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th style="text-align:center; color: white; border: 1px solid black;">#</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">FECHA DE RECEPCIÓN DE LA SOLICITUD DE INCORPORACIÓN AL PROGRAMA</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">FOLIO DEL EXPEDIENTE DE PROTECCIÓN</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">PERSONAS PROPUESTAS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">MEDIDAS DE APOYO OTORGADAS</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">VALIDACIÓN DEL EXPEDIENTE DE PROTECCIÓN</th>
+                        <th style="text-align:center; color: white; border: 1px solid black;">DETALLES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $contador = 0;
+                      $sql = "SELECT * FROM expediente";
+                      $resultado = $mysqli->query($sql);
+                      $row = $resultado->fetch_array(MYSQLI_ASSOC);
+                      $fol_exp =$row['fol_exp'];
+                      $tabla="SELECT *
+                              FROM expediente
+                              INNER JOIN statusseguimiento
+                              ON expediente.fol_exp = statusseguimiento.folioexpediente
+                              WHERE statusseguimiento.status = 'CONCLUIDO' OR statusseguimiento.status = 'CANCELADO'";
+                      $var_resultado = $mysqli->query($tabla);
+                      while ($var_fila=$var_resultado->fetch_array()) {
+                        $contador = $contador + 1;
+                        $fol_exp2=$var_fila['fol_exp'];
+                        $cant="SELECT COUNT(*) AS cant FROM medidas WHERE folioexpediente = '$fol_exp2'";
+                        $r=$mysqli->query($cant);
+                        $row2 = $r->fetch_array(MYSQLI_ASSOC);
+                        $abc="SELECT count(*) as c FROM datospersonales WHERE folioexpediente='$fol_exp2'";
+                        $result=$mysqli->query($abc);
+                        if($result) {
+                          while($row=mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                              echo "<td style='text-align:center'>"; echo $contador; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $var_fila['fecharecep']; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $var_fila['fol_exp']; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $row['c']; echo "</td>";
+                              echo "<td style='text-align:center'>"; echo $row2['cant']; echo "</td>";
+                              echo "<td style='text-align:center'>";
+                                if ($var_fila['validacion'] == 'true') {
+                                  echo "<i class='fas fa-check'></i>";
+                                }elseif ($var_fila['validacion'] == 'false') {
+                                  echo "<i class='fas fa-times'></i>";
+                                }
+                              echo "</td>";
+                              echo "<td style='text-align:center'><a href='modificar.php?id=".$var_fila['fol_exp']."'><i style='color: black;' class='fa-solid fa-folder-open menu-nav--icon'></i></a></td>";
+                            echo "</tr>";
+                          }
+                        }
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+
+
+
+
                 </div>
               </div>
             </div>
@@ -205,4 +282,25 @@ $row=$result->fetch_assoc();
 </body>
 <link rel="stylesheet" href="../css/menuactualizado.css">
 <script src="../js/menu.js"></script>
+<script>
+
+$('#registros_expedientes_activos, #registros_expedientes_concluidos').DataTable({
+    "pageLength": 5, // Fila predeterminada al cargar
+    "lengthMenu": [5, 10, 25, 50, 100], // Opciones en el menú desplegable
+    "language": {
+          "search": "Buscar:",
+          "lengthMenu": "Mostrar _MENU_ registros",
+          "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+          "paginate": {
+              "first": "Primero",
+              "last": "Último",
+              "next": "Siguiente",
+              "previous": "Anterior"
+          }
+            
+            }
+});
+
+
+</script>
 </html>

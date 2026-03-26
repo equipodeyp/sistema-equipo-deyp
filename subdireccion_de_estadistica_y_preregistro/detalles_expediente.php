@@ -101,7 +101,7 @@ $name = $_SESSION['usuario'];
 	  <article id="tab1">
 			<div class="well form-horizontal" >
 				<div class="secciones sticky breadcrumb flat">
-					<a href="../subdireccion_de_estadistica_y_preregistro/menu.php">REGISTROS</a>
+					<a href="../subdireccion_de_estadistica_y_preregistro/expedientes_concluidos.php">REGISTROS</a>
 					<a class="actived">EXPEDIENTE</a>
 					<!-- <a class="actived">DATOS DE PERSONAS PROPUESTAS</a> -->
 				</div>
@@ -313,7 +313,7 @@ $name = $_SESSION['usuario'];
 				<p>
 				<!-- <a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a> -->
 				</p>
-				<a href="menu.php" class="btn-flotante">REGRESAR</a>
+				<a href="expedientes_concluidos.php" class="btn-flotante">REGRESAR</a>
 				</div>
 			</div>
 		</div>
