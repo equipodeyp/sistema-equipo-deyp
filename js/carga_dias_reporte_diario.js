@@ -1,74 +1,95 @@
-const dSemana = ["LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"];
-const meses = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+const mesesNombres = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
 
-function init() {
-    const grid = document.getElementById('gridDias');
-    const ahora = new Date();
-    const hoySinHora = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate()).getTime();
+// Referencia inamovible del tiempo real
+const HOY_REAL = new Date();
+const ANIO_ACTUAL = HOY_REAL.getFullYear();
+const MES_LIMITE = HOY_REAL.getMonth(); // Mes actual (0-11)
 
-    document.getElementById('txtMes').innerText = meses[ahora.getMonth()];
+// Estado de la vista actual
+let fechaVista = new Date(ANIO_ACTUAL, MES_LIMITE, 1);
 
-    let diaActualSemana = ahora.getDay();
-    let diffAlLunes = ahora.getDate() - diaActualSemana + (diaActualSemana === 0 ? -6 : 1);
-    const inicioSemana = new Date(new Date().setDate(diffAlLunes));
+function dibujarCalendario() {
+    const grid = document.getElementById('gridCalendario');
+    const headers = document.querySelectorAll('.header-dia');
+    grid.innerHTML = '';
+    headers.forEach(h => grid.appendChild(h));
 
-    for (let i = 0; i < 7; i++) {
-        const fecha = new Date(inicioSemana);
-        fecha.setDate(inicioSemana.getDate() + i);
-        const fechaTimestamp = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate()).getTime();
+    const anioEnVista = fechaVista.getFullYear();
+    const mesEnVista = fechaVista.getMonth();
 
-        const d = String(fecha.getDate()).padStart(2, '0');
-        const m = String(fecha.getMonth() + 1).padStart(2, '0');
-        const y = fecha.getFullYear();
-        const z = Math.floor((fecha - new Date(y, 0, 0)) / 86400000);
+    document.getElementById('txtMes').innerText = `${mesesNombres[mesEnVista]} ${anioEnVista}`;
 
-        const esHoy = fecha.toDateString() === (new Date()).toDateString();
-        const esFuturo = fechaTimestamp > hoySinHora;
+    // Control de visibilidad de flechas
+    // Ocultar PREV si estamos en Enero del año actual
+    document.getElementById('btnPrev').classList.toggle('btn-hidden', mesEnVista === 0);
+    // Ocultar NEXT si estamos en el mes actual (MES_LIMITE)
+    document.getElementById('btnNext').classList.toggle('btn-hidden', mesEnVista >= MES_LIMITE);
 
-        const btn = document.createElement('div');
-        btn.className = `dia-btn ${esHoy ? 'es-hoy' : ''}`;
-        btn.innerHTML = `<span class="label-dia">${dSemana[i]}</span><span>${d}/${m}/${y}</span>`;
+    let primerDia = new Date(anioEnVista, mesEnVista, 1).getDay();
+    let inicioOffset = (primerDia === 0) ? 6 : primerDia - 1;
+    let totalDias = new Date(anioEnVista, mesEnVista + 1, 0).getDate();
 
-        btn.onclick = () => {
-            const modal = new bootstrap.Modal(document.getElementById('pdfModal'));
-            const pdfURL = `../../docs/REPORTES/(${z}) RD_${d}${m}${y}.pdf`;
+    // 1. Celdas vacías mes anterior
+    for (let i = 0; i < inicioOffset; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'dia-celda fuera-mes';
+        grid.appendChild(cell);
+    }
 
-            const timeWrapper = document.getElementById('timeWrapper');
-            const pdfFrame = document.getElementById('pdfFrame');
-            const txtEstado = document.getElementById('txtEstado');
+    // 2. Días del mes
+    for (let d = 1; d <= totalDias; d++) {
+        const cell = document.createElement('div');
+        const fechaLoop = new Date(anioEnVista, mesEnVista, d);
+        const esHoy = fechaLoop.toDateString() === HOY_REAL.toDateString();
 
-            if (esHoy || esFuturo) {
-                pdfFrame.classList.add('d-none');
-                timeWrapper.classList.remove('d-none');
-                let porcentaje = 0;
-                if (esHoy) {
-                    const minPasados = (new Date().getHours() * 60) + new Date().getMinutes();
-                    porcentaje = Math.round((minPasados / 1440) * 100);
-                    txtEstado.innerText = "DÍA EN CURSO";
-                    txtEstado.className = "badge bg-warning text-dark";
-                    document.getElementById('labelPorcentaje').innerText = `${porcentaje}% TRANSCURRIDO`;
-                } else {
-                    txtEstado.innerText = "PROGRAMADO";
-                    txtEstado.className = "badge bg-secondary";
-                    document.getElementById('labelPorcentaje').innerText = "0% - PENDIENTE";
-                }
-                document.getElementById('timeBar').style.width = porcentaje + "%";
-            } else {
-                timeWrapper.classList.add('d-none');
-                pdfFrame.classList.remove('d-none');
-                pdfFrame.src = pdfURL;
-                txtEstado.innerText = "FINALIZADO";
-                txtEstado.className = "badge bg-success";
-            }
-            document.getElementById('idFull').innerText = `${dSemana[i]}---(${z}) RD_${d}${m}${y}`;
+        cell.className = `dia-celda ${esHoy ? 'es-hoy' : ''}`;
+        cell.innerHTML = `<div class="dia-numero">${d}</div>`;
+
+        cell.onclick = () => {
+            const modal = new bootstrap.Modal(document.getElementById('modalDiario'));
+
+            const dd = String(d).padStart(2, '0');
+            const mm = String(mesEnVista + 1).padStart(2, '0');
+
+            // Cálculo de 'z' (día del año)
+    const inicioAnio = new Date(anioEnVista, 0, 0);
+    const diff = fechaLoop - inicioAnio;
+    const z = Math.floor(diff / 86400000);
+
+    const nombreArchivo = `(${z}) RD_${dd}${mm}${anioEnVista}.pdf`;
+
+    // Obtener el nombre del mes en mayúsculas desde tu array mesesNombres
+    const nombreMesMayus = mesesNombres[mesEnVista];
+
+    // NUEVA RUTA: ../../docs/REPORTES/DIARIOS/2026/MARZO/(70) RD_11032026.pdf
+    const rutaPDF = `../../docs/REPORTES/DIARIOS/${anioEnVista}/${nombreMesMayus}/${nombreArchivo}`;
+
+            document.getElementById('titFecha').innerText = `${dd}/${mm}/${anioEnVista}`;
+            document.getElementById('idFull').innerText = nombreArchivo;
+
+            // // Ruta dinámica con PHP para la carpeta base si se desea
+            // const rutaPDF = `../../docs/REPORTES/DIARIOS/${nombreArchivo}`;
+            document.getElementById('visorPDF').src = rutaPDF;
+
             modal.show();
         };
-        grid.appendChild(btn);
+
+        grid.appendChild(cell);
     }
 }
 
-document.getElementById('pdfModal').addEventListener('hidden.bs.modal', () => {
-    document.getElementById('pdfFrame').src = "";
+function cambiarMes(n) {
+    let nuevoMes = fechaVista.getMonth() + n;
+
+    // Validar que no se salga de los límites (Enero - Mes Actual)
+    if (nuevoMes >= 0 && nuevoMes <= MES_LIMITE) {
+        fechaVista.setMonth(nuevoMes);
+        dibujarCalendario();
+    }
+}
+
+document.getElementById('modalDiario').addEventListener('hidden.bs.modal', () => {
+    document.getElementById('visorPDF').src = "";
 });
 
-window.onload = init;
+window.onload = dibujarCalendario;
