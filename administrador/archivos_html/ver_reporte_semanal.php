@@ -36,59 +36,6 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
-  <style>
-  /* Contenedor fijo a la derecha y centrado verticalmente */
-     .area-botones {
-         position: fixed;
-         right: 25px;
-         top: 50%;
-         transform: translateY(-50%);
-         z-index: 1000;
-     }
-
-     /* Estilo base elegante */
-     .btn-premium {
-         display: none; /* Se activa con JavaScript */
-         align-items: center;
-         padding: 16px 28px;
-         color: white;
-         border: none;
-         border-radius: 14px;
-         cursor: pointer;
-         font-size: 15px;
-         font-weight: 600;
-         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-         text-decoration: none;
-         opacity: 0;
-         right: -100px;
-         position: relative;
-         animation: entrar 0.7s ease-out forwards;
-     }
-
-     /* Estilo LUNES: Reporte (Verde Esmeralda) */
-     .lunes-style {
-         background: linear-gradient(135deg, #059669, #10b981);
-     }
-
-     /* Estilo RESTO DE SEMANA: Contacto (Azul Medianoche) */
-     .semana-style {
-         background: linear-gradient(135deg, #1e293b, #334155);
-     }
-
-     /* Animación al pasar el mouse */
-     .btn-premium:hover {
-         transform: scale(1.08) translateX(-5px);
-         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-         filter: brightness(1.1);
-     }
-
-     .icono { margin-left: 12px; font-size: 18px; }
-
-     @keyframes entrar {
-         to { opacity: 1; right: 0; }
-     }
-</style>
 </head>
 <body>
   <div class="contenedor">
@@ -133,63 +80,39 @@ $row=$result->fetch_assoc();
         </div>
         <!--Ejemplo tabla con DataTables-->
         <b>
-          <br><br>
-          <div class="container">
-            <div class="archivador-semanal">
-              <div class="decoracion-superior">
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-                <div class="punto"></div>
-              </div>
-              <!-- Controles de navegación de semanas -->
-              <div class="header-controles">
-                <div class="año-header">
-                  <h2 class="año-header" id="txtAño" style="text-align: center;">2026</h2>
-                </div>
-              </div>
-              <div class="titulo-semanal">Semanal</div>
-              <div class="cuerpo-reporte">
-                <!-- Visor del PDF -->
-                <div id="contenedorVisor">
-                  <iframe src="../../docs/REPORTES/SEMANAL.pdf" id="visorPDF" class="pdf-visor"></iframe>
-                </div>
-              </div>
+
+          <div class="external-actions">
+            <div id="btnPreliminar" class="modern-btn">
+              <div class="glow-effect" style="background: var(--accent-preliminar);"></div>
+              Versión Preliminar
+            </div>
+            <div id="btnActualizado" class="modern-btn">
+              <div class="glow-effect" style="background: var(--accent-actualizado);"></div>
+              Reporte Final
             </div>
           </div>
-          <div class="area-botones">
-        <!-- Botón para el Lunes -->
-        <button id="btnLunes" class="btn-premium lunes-style">
-            Generar <br> Reporte <br> Semanal <span class="icono">📊</span>
-        </button>
 
-        <!-- Botón para Martes a Domingo -->
-        <button id="btnSemana" class="btn-premium semana-style">
-            Preliminar <br> Reporte <br> Semanal <span class="icono">📊</span>
-        </button>
-    </div>
-
-<script>
-function gestionarBotones() {
-        const hoy = new Date().getDay(); // 0=Dom, 1=Lun, 2=Mar...
-        const btnLunes = document.getElementById('btnLunes');
-        const btnSemana = document.getElementById('btnSemana');
-
-        if (hoy === 1) {
-            // Es Lunes: Mostrar reporte, asegurar que contacto esté oculto
-            btnLunes.style.display = 'flex';
-            btnSemana.style.display = 'none';
-        } else {
-            // No es lunes: Mostrar contacto, asegurar que reporte esté oculto
-            btnLunes.style.display = 'none';
-            btnSemana.style.display = 'flex';
-        }
-    }
-    // Ejecutar al cargar
-    window.onload = gestionarBotones;
-</script>
+          <div class="calendar-container">
+            <div class="header-tab">
+              <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+              <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            </div>
+            <div class="title-section">
+              <h1>2026</h1>
+              <h2> <b>Archivo Digital Semanal</b> </h2>
+            </div>
+            <div class="nav-controls">
+              <button id="prevBtn" class="nav-btn" onclick="changeWeek(-1)">❮</button>
+              <div class="week-info">
+                <span class="week-label" id="weekDisplay">CARGANDO...</span>
+                <div class="date-range" id="dateRangeDisplay">--</div>
+              </div>
+              <button id="nextBtn" class="nav-btn" onclick="changeWeek(1)">❯</button>
+            </div>
+            <div class="pdf-wrapper">
+              <iframe id="pdfFrame" class="pdf-viewer" src=""></iframe>
+            </div>
+          </div>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
@@ -201,4 +124,5 @@ function gestionarBotones() {
 <link rel="stylesheet" href="../../css/menuactualizado.css">
 <link rel="stylesheet" type="text/css" href="../../css/calendario_semanal.css"/>
 <script src="../../js/menu.js"></script>
+<script src="../../js/funciones_semanal.js"></script>
 </html>

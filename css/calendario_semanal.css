@@ -1,80 +1,161 @@
-:root { --fgj-color: #545b64; --borde: #adb5bd; }
 
-/* Estética de Archivador */
-.archivador-semanal {
-    max-width: 1300px;
-    margin: 0 auto;
-    background: var(--fgj-color);
-    border-radius: 40px 40px 15px 15px;
-    padding: 60px 10px 15px 10px; /* Aumentado para que no choque con puntos */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-    position: relative;
-}
 
-/* Puntos superiores con sombras mejoradas */
-.decoracion-superior {
-    display: flex;
-    justify-content: center;
-    gap: 150px;
-    position: absolute;
-    top: 18px;
-    width: 100%;
-    left: 0;
-}
-.punto {
-    width: 38px;
-    height: 38px;
-    background: #3a4148;
-    border-radius: 50%;
-    box-shadow: inset 0 4px 8px rgba(0,0,0,0.8), 0 1px 2px rgba(255,255,255,0.1);
-}
+          :root {
+              --bg-color: #f0f2f5;
+              --container-bg: #ffffff;
+              --accent-preliminar: linear-gradient(135deg, #8C8279 0%, #97999B 100%);
+              --accent-actualizado: linear-gradient(135deg, #717C7D 0%, #97999B 100%);
+              --text-main: #1a202c;
+          }
 
-/* Centrado absoluto del Año */
-.header-controles {
-    display: flex;
-    justify-content: center; /* Centro los elementos */
-    align-items: center;
-    padding: 0 40px;
-    margin-bottom: 10px;
-    width: 100%;
-}
+          /* Contenedor Principal Estilo "Card" */
+          .calendar-container {
+              width: 100%;
+              max-width: 1200px;
+              background: var(--container-bg);
+              border-radius: 40px;
+              box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+              overflow: hidden;
+              position: relative;
+              border: 5px solid black;
+          }
 
-.año-header {
-    color: white;
-    font-size: 5rem;
-    font-weight: 800;
-    margin: 0;
-    text-align: center;
-    flex: 1; /* Esto hace que el h2 tome todo el centro */
-    letter-spacing: 5px;
-}
+          /* Encabezado con Estética de Argollas Minimalistas */
+          .header-tab {
+              background-color: #888888;
+              height: 60px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 145px;
+          }
 
-.titulo-semanal {
-    background: white;
-    color: #333;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px;
-    margin: 0 15px;
-    text-transform: uppercase;
-    letter-spacing: 10px;
-    border-bottom: 2px solid #ddd;
-}
+          .ring {
+              width: 44px;
+              height: 44px;
+              background: white;
+              border-radius: 50%;
+              box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+          }
 
-/* Cuerpo del Reporte */
-.cuerpo-reporte {
-    background: white;
-    margin: 0 15px 15px 15px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    min-height: 80vh;
-}
+          .title-section { text-align: center; padding: 40px 0 20px; }
+          .title-section h1 {
+              margin: 0; font-size: 80px; font-weight: 900;
+              letter-spacing: -2px; color: #111; line-height: 0.1;
+          }
+          .title-section h2 {
+              margin: 0.5; font-size: 14px; letter-spacing: 18px;
+              text-transform: uppercase; color: #97999B; padding-top: 35px;
+          }
 
-.pdf-visor {
-    width: 100%;
-    height: 75vh;
-    border: 2px solid var(--fgj-color);
-    border-radius: 4px;
-    background: #eee;
-}
+          /* Navegación Futurista */
+          .nav-controls {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 20px 60px;
+              background: rgba(247, 250, 252, 0.8);
+              backdrop-filter: blur(10px);
+          }
+
+          .nav-btn {
+              background: white; border: none;
+              width: 50px; height: 50px; border-radius: 20px;
+              cursor: pointer; font-size: 20px; color: #111;
+              transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+          }
+
+          .nav-btn:hover:not(:disabled) {
+              transform: scale(1.1) rotate(5deg);
+              background: #111; color: white;
+          }
+
+          .week-label { margin: 0; font-size: 50px; font-weight: 900;
+          letter-spacing: -2px; color: #111; line-height: 0.1; }
+          .date-range { font-size: 1rem; color: #718096; font-weight: 400; margin-top: 4px; }
+
+          /* Visor de PDF */
+          .pdf-wrapper { padding: 30px; background: #f8fafc; }
+          .pdf-viewer {
+              width: 100%; height: 75vh; border: none;
+              border-radius: 30px; background: white;
+              box-shadow: 0 20px 60px rgba(0,0,0,0.03);
+          }
+
+          /* --- BOTONES ULTRA MODERNOS (FLOTANTES Y CON BRILLO) --- */
+          .external-actions {
+              position: fixed;
+              right: 40px;
+              top: 50%;
+              transform: translateY(-50%);
+              display: flex;
+              flex-direction: column;
+              gap: 25px;
+              z-index: 100;
+          }
+
+          .modern-btn {
+              display: none;
+              padding: 20px 35px;
+              border-radius: 24px;
+              font-weight: 700;
+              font-size: 0.9rem;
+              cursor: pointer;
+              border: 1px solid rgba(255,255,255,0.4);
+              color: white;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              transition: 0.5s all ease;
+              position: relative;
+              overflow: hidden;
+              text-align: center;
+              min-width: 220px;
+          }
+
+          /* Efecto de destello que recorre el botón */
+          .modern-btn::after {
+              content: "";
+              position: absolute;
+              top: -50%; left: -60%;
+              width: 20%; height: 200%;
+              background: rgba(255,255,255,0.4);
+              transform: rotate(30deg);
+              transition: 0.8s;
+          }
+
+          .modern-btn:hover::after {
+              left: 120%;
+          }
+
+          #btnPreliminar {
+              background: var(--accent-preliminar);
+              box-shadow: 0 15px 35px #8C8279;
+          }
+
+          #btnActualizado {
+              background: var(--accent-actualizado);
+              box-shadow: 0 25px 15px #8C8279;
+              color: white; /* Mejor contraste para verde claro */
+          }
+
+          .modern-btn:hover {
+              transform: translateX(-15px) translateY(-5px);
+              box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+          }
+
+          /* Indicador de brillo dinámico detrás */
+          .glow-effect {
+              position: absolute;
+              width: 100%; height: 100%;
+              top: 0; left: 0;
+              filter: blur(20px);
+              opacity: 0.6;
+              z-index: -1;
+              transition: 0.5s;
+          }
+
+          .modern-btn:hover .glow-effect {
+              opacity: 1;
+              transform: scale(1.2);
+          }
