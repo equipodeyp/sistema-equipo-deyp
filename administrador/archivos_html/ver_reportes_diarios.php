@@ -257,7 +257,7 @@ else {
                 document.getElementById('idFull').innerText = nombreArchivo;
 
                 // Ruta dinámica con PHP para la carpeta base si se desea
-                const rutaPDF = `../../docs/reportes/anual<?php echo date('Y'); ?>/${nombreArchivo}`;
+                const rutaPDF = `../../docs/REPORTES/<?php echo date('Y'); ?>/${nombreArchivo}`;
                 document.getElementById('visorPDF').src = rutaPDF;
 
                 modal.show();
