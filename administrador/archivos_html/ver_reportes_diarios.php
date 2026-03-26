@@ -56,9 +56,6 @@ else {
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
-  <style>
-
-     </style>
 </head>
 <body>
   <div class="contenedor">
@@ -118,9 +115,9 @@ else {
         </div>
 
         <div class="nav-header">
-            <button id="btnPrev" class="btn-nav" onclick="cambiarMes(-1)"><i class="bi bi-chevron-left"></i></button>
+            <button id="btnPrev" class="btn-nav" onclick="cambiarMes(-1)"><i class="fa-solid fa-angle-left"></i></button>
             <h1 class="mes-titulo" id="txtMes">>CARGANDO...</h1>
-            <button id="btnNext" class="btn-nav" onclick="cambiarMes(1)"><i class="bi bi-chevron-right"></i></button>
+            <button id="btnNext" class="btn-nav" onclick="cambiarMes(1)"><i class="fa-solid fa-angle-right"></i></button>
         </div>
 
         <div class="calendario-grid" id="gridCalendario">
@@ -152,12 +149,6 @@ else {
 
 
 
-<script>
-
-</script>
-
-
-
 
         </b>
         <div class="contenedor">
@@ -172,5 +163,4 @@ else {
 <script src="../../js/menu.js"></script>
 <script src="../../js/carga_dias_reporte_diario.js"></script>
 <link rel="stylesheet" href="../../css/menu_creacionreportes.css">
-<!-- <script src="../../js/descargarpdfreportes.js"></script> -->
 </html>
