@@ -101,55 +101,73 @@ else {
         <!--Ejemplo tabla con DataTables-->
         <b>
           <br><br>
-
-
           <!-- <button class="btn-interactivo">Explorar Ahora</button> -->
           <a class="btn-interactivo" href="../generar_reportes/reporte_diario.php">
             <span class="texto">REPORTE DIARIO <br> <?php echo $varbtnmsjrd;?></span>
             <span class="icono">→</span>
           </a>
+          <!-- calendario -->
           <div class="container">
-    <div class="archivador">
-        <div class="decoracion-superior">
-            <div class="punto"></div><div class="punto"></div><div class="punto"></div><div class="punto"></div>
-        </div>
-
-        <div class="nav-header">
-            <button id="btnPrev" class="btn-nav" onclick="cambiarMes(-1)"><i class="fa-solid fa-angle-left"></i></button>
-            <h1 class="mes-titulo" id="txtMes">>CARGANDO...</h1>
-            <button id="btnNext" class="btn-nav" onclick="cambiarMes(1)"><i class="fa-solid fa-angle-right"></i></button>
-        </div>
-
-        <div class="calendario-grid" id="gridCalendario">
-            <!-- Cabeceras fijas LUN-DOM -->
-            <div class="header-dia">LUNES</div><div class="header-dia">MARTES</div><div class="header-dia">MIÉRCOLES</div>
-            <div class="header-dia">JUEVES</div><div class="header-dia">VIERNES</div><div class="header-dia">SÁBADO</div>
-            <div class="header-dia">DOMINGO</div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Visor de PDF -->
-<div class="modal fade" id="modalDiario" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-dark text-white p-2">
-        <h6 class="modal-title ms-2">REPORTE DIARIO: <span id="titFecha"></span></h6>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="p-2 bg-light border-bottom">
-            <span class="ms-2 small fw-bold">ID: <span id="idFull" class="badge-id"></span></span>
-        </div>
-        <iframe src="" id="visorPDF" class="pdf-visor"></iframe>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
+            <div class="archivador">
+              <div class="decoracion-superior">
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+                <div class="punto"></div>
+              </div>
+              <div class="nav-header">
+                <button id="btnPrev" class="btn-nav" onclick="cambiarMes(-1)"><i class="fa-solid fa-angle-left"></i></button>
+                <h1 class="mes-titulo" id="txtMes">>CARGANDO...</h1>
+                <button id="btnNext" class="btn-nav" onclick="cambiarMes(1)"><i class="fa-solid fa-angle-right"></i></button>
+              </div>
+              <div class="calendario-grid" id="gridCalendario">
+                <!-- Cabeceras fijas LUN-DOM -->
+                <div class="header-dia">LUNES</div>
+                <div class="header-dia">MARTES</div>
+                <div class="header-dia">MIÉRCOLES</div>
+                <div class="header-dia">JUEVES</div>
+                <div class="header-dia">VIERNES</div>
+                <div class="header-dia">SÁBADO</div>
+                <div class="header-dia">DOMINGO</div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal para Visor de PDF -->
+          <div class="modal fade" id="modalDiario" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 50%; width: 50%;">
+              <div class="modal-content border-0">
+                <div class="modal-header bg-dark text-white py-2 px-3">
+                  <h6 class="modal-title d-flex align-items-center">
+                    <i class="far fa-file-pdf me-2 text-danger"></i>
+                    REPORTE DIARIO: <span id="titFecha" class="ms-2 fw-normal"></span>
+                  </h6>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0" style="background-color: #8c8279;">
+                  <div class="d-flex justify-content-between align-items-center p-2 bg-white border-bottom px-3">
+                    <h3 class="text-muted fw-bold">ID: <span id="idFull" class="badge bg-secondary ms-1">---</span></h3>
+                  </div>
+                  <div id="statusContainer" class="text-center">
+                    <div id="loadingBar" class="progress mx-auto" style="display: none; height: 18px; max-width: 800px;" aria-valuenow="100">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%">Buscando...</div>
+                    </div>
+                    <h1 style="color: yellow;"><b id="txtCarga" class="" style="display: none;">Consultando servidor...</b></h1>
+                    <div id="alertaNoDisponible" class="alert alert-light border-warning m-0 shadow-sm" style="display: none;">
+                      <div class="progress mx-auto" style="height: 18px; max-width: 800px;" aria-valuenow="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                      </div>
+                      <h1 class="alert-heading text-warning"><i class="fas fa-clock mb-3"></i></h1>
+                      <h5><b class="mb-0 fw-bold">REPORTE NO DISPONIBLE</b></h5>
+                      <h3 class="text-muted"><b>El documento solicitado aún no se ha generado.</b></h3>
+                    </div>
+                  </div>
+                  <iframe src="" id="visorPDF" style="display: none; width: 100%; height: 75vh; border: none; vertical-align: middle;"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>
