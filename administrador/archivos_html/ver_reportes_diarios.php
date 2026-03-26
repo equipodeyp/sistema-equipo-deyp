@@ -57,47 +57,7 @@ else {
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
   <style>
-         :root { --fgj-color: #545b64; --borde: #adb5bd; }
 
-
-         /* Estética Archivador */
-         .archivador {
-             max-width: 1100px; margin: 0 auto; background: var(--fgj-color);
-             border-radius: 50px 50px 15px 15px; padding: 40px 15px 25px 15px;
-             box-shadow: 0 12px 35px rgba(0,0,0,0.3); position: relative;
-         }
-         .decoracion-superior {
-             display: flex; justify-content: center; gap: 40px;
-             position: absolute; top: 15px; width: 100%; left: 0;
-         }
-         .punto { width: 35px; height: 35px; background: #3a4148; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
-
-         /* Navegación */
-         .nav-header { display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 30px; padding: 0 10px; margin-top: 25px; margin-bottom: 15px;  }
-         .mes-titulo { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 10px; margin: 0; }
-         .btn-nav { background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; transition: 0.3s; visibility: visible; }
-         .btn-nav:hover { background: white; color: var(--fgj-color); }
-         .btn-hidden { visibility: hidden; } /* Para ocultar flecha siguiente */
-
-         /* Calendario Grid */
-         .calendario-grid { display: grid; grid-template-columns: repeat(7, 1fr); background: white; border: 5px solid var(--borde); }
-         .header-dia { background: #eee; font-weight: bold; padding: 10px; border: 1px solid var(--borde); text-align: center; font-size: 0.75rem; color: #555; }
-
-         .dia-celda {
-             background: white; border: 5px solid var(--borde); min-height: 100px;
-             padding: 10px; cursor: pointer; transition: 0.2s; position: relative;
-         }
-         .dia-celda:hover { background: #888888; z-index: 5; }
-         .dia-numero { font-weight: bold; font-size: 2rem; color: green; }
-
-         .fuera-mes { background: #fafafa; color: red; cursor: default; }
-         .es-hoy { background: #fff; border: 13px solid red !important; }
-         .es-hoy .dia-numero { text-decoration: underline; color: #000; }
-
-         /* Modal e Iframe */
-         .modal-xl { max-width: 95% !important; }
-         .pdf-visor { width: 100%; height: 80vh; border: none; background: #525659; }
-         .badge-id { font-family: 'Courier New', monospace; background: #2c3e50; color: #00ff00; padding: 3px 10px; border-radius: 4px; font-size: 0.85rem; }
      </style>
 </head>
 <body>

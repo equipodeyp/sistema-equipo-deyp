@@ -1,41 +1,50 @@
 :root { --fgj-color: #545b64; --borde: #adb5bd; }
 
 
-/* Estética de Archivador */
+/* Estética Archivador */
 .archivador {
-    max-width: 1150px; margin: 0 auto; background: var(--fgj-color);
+    max-width: 1100px; margin: 0 auto; background: var(--fgj-color);
     border-radius: 50px 50px 15px 15px; padding: 40px 15px 25px 15px;
     box-shadow: 0 12px 35px rgba(0,0,0,0.3); position: relative;
 }
-
-/* DECORACIÓN SUPERIOR */
 .decoracion-superior {
-    display: flex; justify-content: center; gap: 150px;
+    display: flex; justify-content: center; gap: 40px;
     position: absolute; top: 15px; width: 100%; left: 0;
 }
-.punto {
-    width: 45px; height: 45px; background: #3a4148;
-    border-radius: 50%; box-shadow: inset 0 20px 8px rgba(0,0,0,0.5);
+.punto { width: 35px; height: 35px; background: #3a4148; border-radius: 50%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
+
+/* Navegación */
+.nav-header { display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 30px; padding: 0 10px; margin-top: 25px; margin-bottom: 15px;  }
+.mes-titulo { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 10px; margin: 0; }
+.btn-nav { background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; transition: 0.3s; visibility: visible; }
+.btn-nav:hover { background: white; color: var(--fgj-color); }
+.btn-hidden { visibility: hidden; } /* Para ocultar flecha siguiente */
+
+/* Calendario Grid */
+.calendario-grid { display: grid; grid-template-columns: repeat(7, 1fr); background: white; border: 5px solid var(--borde); }
+.header-dia { background: #eee; font-weight: bold; padding: 10px; border: 1px solid var(--borde); text-align: center; font-size: 0.75rem; color: #555; }
+
+.dia-celda {
+    background: white; border: 5px solid var(--borde); min-height: 100px;
+    padding: 10px; cursor: pointer; transition: 0.2s; position: relative;
+}
+.dia-celda:hover { background: #888888; z-index: 5; }
+.dia-numero { font-weight: bold; font-size: 2rem; color: green; }
+
+.fuera-mes { background: #fafafa; color: red; cursor: default; }
+/* Resaltado del día actual con el color solicitado */
+.es-hoy {
+background-color: #8c8279 !important; /* Color gris solicitado */
+border: 2px solid #333 !important;    /* Borde oscuro para resaltar */
+color: white !important;              /* Texto blanco para contraste */
 }
 
-/* Título del MES */
-.mes-display {
-    color: white; font-size: 4.2rem; font-weight: 800;
-    text-align: center; margin-bottom: 25px; letter-spacing: 5px;
-    text-transform: uppercase; margin-top: 10px;
+.es-hoy .dia-numero {
+color: white !important;
+text-decoration: underline;
 }
 
-.tabla-blanca { display: grid; grid-template-columns: repeat(7, 1fr); background: white; border: 2px solid var(--borde); }
-.dia-btn { border-right: 1px solid var(--borde); padding: 25px 5px; text-align: center; cursor: pointer; transition: 0.2s; }
-.dia-btn:hover { background: #f8f9fa; transform: translateY(-2px); z-index: 5; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-.label-dia { font-weight: 700; color: #333; display: block; border-bottom: 1px solid #eee; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; }
-.es-hoy { border: 4px solid #000 !important; background: #fff; }
-
-.modal-xl { max-width: 65% !important; }
-.contenedor-principal { width: 100%; height: 75vh; display: flex; align-items: center; justify-content: center; background: #f8f9fa; }
-.pdf-frame { width: 100%; height: 75vh; border: none; }
-
-.time-progress-wrapper { width: 80%; text-align: center; }
-.progress-label-lg { font-size: 1.5rem; font-weight: bold; color: var(--fgj-color); margin-bottom: 20px; }
-.id-badge { font-family: 'Courier New', monospace; background: #2c3e50; color: #00ff00; padding: 4px 10px; border-radius: 4px; font-weight: bold; }
+/* Modal e Iframe */
+.modal-xl { max-width: 95% !important; }
+.pdf-visor { width: 100%; height: 80vh; border: none; background: #525659; }
+.badge-id { font-family: 'Courier New', monospace; background: #2c3e50; color: #00ff00; padding: 3px 10px; border-radius: 4px; font-size: 0.85rem; }
