@@ -126,10 +126,10 @@ while ($fmunicipios = $rmunicipios -> fetch_assoc()) {
   $fejecutadasresguardo = $rejecutadasresguardo->fetch_assoc();
   //////////////////////////////////////////////////////////////////////////////
   echo "<tr>";
-  echo "<td style='text-align:left'>"; echo $fmunicipios['ejecucion']; "</td>";
-  echo "<td style='text-align:center'>"; echo $fejecutadasasistencia['t']; "</td>";
-  echo "<td style='text-align:center'>"; echo $fejecutadasresguardo['t']; "</td>";
-  echo "<td style='text-align:center'>"; echo $fmunicipios['t']; "</td>";
+  echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo $fmunicipios['ejecucion']; "</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fejecutadasasistencia['t']; "</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fejecutadasresguardo['t']; "</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmunicipios['t']; "</td>";
   echo "</tr>";
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -148,9 +148,9 @@ $rtotalacumulado = $mysqli -> query ($totalacumulado);
 $ftotalacumulado = $rtotalacumulado->fetch_assoc();
 //////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $ftotalejecutadasasistencia['t']; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $ftotalejecutadasresguardo['t']; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $ftotalacumulado['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:right; border: 3px solid black; padding-right: 4px;'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $ftotalejecutadasasistencia['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $ftotalejecutadasresguardo['t']; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $ftotalacumulado['t']; echo "</b>"; "</td>";
 echo "</tr>";
 ?>

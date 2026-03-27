@@ -135,36 +135,36 @@ $totalexpedientes = $fnoprocede['t'] + $fenelaboracionreporte['t'] + $fbyejecuci
 ////////////////////////////////////////////////////////////////////////////////
 if ($fnoprocede['t'] > 0) {
   echo "<tr>";
-  echo "<td style='text-align:left'>"; echo "NO PROCEDE JURIDICAMENTE"; "</td>";
-  echo "<td style='text-align:center'>"; echo $fnoprocede['t']; "</td>";
+  echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "NO PROCEDE JURIDICAMENTE"; "</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fnoprocede['t']; "</td>";
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
 if ($fenelaboracionreporte['t'] > 0) {
   echo "<tr>";
-  echo "<td style='text-align:left'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
-  echo "<td style='text-align:center'>"; echo $fenelaboracionreporte['t']; "</td>";
+  echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "EN ANÁLISIS PARA DETERMINAR SU INCORPORACIÓN"; "</td>";
+  echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fenelaboracionreporte['t']; "</td>";
   echo "</tr>";
 }
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "EN EJECUCIÓN"; "</td>";
-echo "<td style='text-align:center'>"; echo $fbyejecucion['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "EN EJECUCIÓN"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fbyejecucion['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "CONCLUIDO"; "</td>";
-echo "<td style='text-align:center'>"; echo $fconcluido['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "CONCLUIDO"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fconcluido['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "CANCELADO"; "</td>";
-echo "<td style='text-align:center'>"; echo $fcancelado['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "CANCELADO"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fcancelado['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES"; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totalexpedientes; echo "</b>"; "</td>";
+echo "<td style='text-align:right; border: 3px solid black; padding-right: 4px;'>"; echo "<b>"; echo "TOTAL DE EXPEDIENTES"; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalexpedientes; echo "</b>"; "</td>";
 echo "</tr>";
 
 ?>

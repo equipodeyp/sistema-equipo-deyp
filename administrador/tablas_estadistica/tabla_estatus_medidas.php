@@ -51,26 +51,26 @@ $fmedidast = $rmedidast->fetch_assoc();
 
 //
 echo "<tr >";
-echo "<td style='text-align:left'>"; echo 'ASISTENCIA'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fenejeca['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fejeca['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fcancela['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fasist['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo 'ASISTENCIA'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fenejeca['t']; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fejeca['t']; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fcancela['t']; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fasist['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr >";
-echo "<td style='text-align:left'>"; echo 'RESGUARDO'; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fenejecr['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fejecr['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fcancelr['t']; echo "</td>";
-echo "<td style='text-align:center'>"; echo $fresg['t']; echo "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo 'RESGUARDO'; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fenejecr['t']; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fejecr['t']; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fcancelr['t']; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fresg['t']; echo "</td>";
 echo "</tr>";
 //
 echo "<tr bgcolor=''>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo 'TOTAL DE MEDIDAS DE APOYO'; echo "</b>"; echo "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $feneject['t']; echo "</b>"; echo "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $feject['t']; echo "</b>"; echo "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $fcanceltot['t']; echo "</b>"; echo "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $fmedidast['t']; echo "</b>"; echo "</td>";
+echo "<td style='text-align:right; border: 3px solid black; padding-right: 4px;'>"; echo "<b>"; echo 'TOTAL DE MEDIDAS DE APOYO'; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $feneject['t']; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $feject['t']; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $fcanceltot['t']; echo "</b>"; echo "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $fmedidast['t']; echo "</b>"; echo "</td>";
 echo "</tr>";
 ?>

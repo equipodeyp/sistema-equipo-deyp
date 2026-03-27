@@ -64,40 +64,40 @@ $fhombresenresguardo = $rhombresenresguardo->fetch_assoc();
 ////////////////////////////////////////////////////////////////////////////////
 $totalsexoenresguardo = $fmujeresenresguardo['t'] + $fhombresenresguardo['t'];
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "MENOR DE EDAD "; "</td>";
-echo "<td style='text-align:center'>"; echo $fmenoredad['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmenoredadenresguardo['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "MENOR DE EDAD "; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmenoredad['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmenoredadenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "MAYOR DE EDAD
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "MAYOR DE EDAD
 "; "</td>";
-echo "<td style='text-align:center'>"; echo $fmayoredad['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmayoredadenresguardo['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmayoredad['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmayoredadenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totaledad; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totaledadenresguardo; echo "</b>"; "</td>";
+echo "<td style='text-align:right; border: 3px solid black; padding-right: 4px;'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totaledad; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totaledadenresguardo; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL MUJERES"; "</td>";
-echo "<td style='text-align:center'>"; echo $fmujeres['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmujeresenresguardo['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "TOTAL MUJERES"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmujeres['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmujeresenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "TOTAL HOMBRES"; "</td>";
-echo "<td style='text-align:center'>"; echo $fhombres['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fhombresenresguardo['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "TOTAL HOMBRES"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fhombres['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fhombresenresguardo['t']; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totalsexo; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totalsexoenresguardo; echo "</b>"; "</td>";
+echo "<td style='text-align:right; border: 3px solid black; padding-right: 4px;'>"; echo "<b>"; echo "TOTAL"; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalsexo; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalsexoenresguardo; echo "</b>"; "</td>";
 echo "</tr>";
 ////////////////////////////////////////////////////////////////////////////////
 ?>

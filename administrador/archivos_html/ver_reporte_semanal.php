@@ -82,7 +82,7 @@ $row=$result->fetch_assoc();
         <b>
 
           <div class="external-actions">
-            <div id="btnPreliminar" class="modern-btn">
+            <div id="btnPreliminar" class="modern-btn" onclick="goToReport()">
               <div class="glow-effect" style="background: var(--accent-preliminar);"></div>
               Versión Preliminar
             </div>

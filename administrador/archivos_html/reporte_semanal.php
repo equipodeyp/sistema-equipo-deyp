@@ -15,7 +15,6 @@
             <?php
             include('get_fechas_rerpotesemanal.php');
             // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-
             switch ($day) {
                 case "Sunday"://DOMINGO
                        $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));

@@ -141,23 +141,23 @@ $fmedicanceladasresguardo = $rmedicanceladasresguardo->fetch_assoc();
 $totalcanceladas = $fmedcanceladasasistencia['t'] + $fmedicanceladasresguardo['t'];
 ////////////////////////////////////////////////////////////////////////////////
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo 'MEDIDAS DE ASISTENCIA'; "</td>";
-echo "<td style='text-align:center'>"; echo $fmedejecucionasistencia['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmedejecutadasasistencia['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmedcanceladasasistencia['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo 'MEDIDAS DE ASISTENCIA'; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedejecucionasistencia['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedejecutadasasistencia['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedcanceladasasistencia['t']; "</td>";
 echo "</tr>";
 
 echo "<tr>";
-echo "<td style='text-align:left'>"; echo "MEDIDAS DE RESGUARDO "; "</td>";
-echo "<td style='text-align:center'>"; echo $fmedejecucionresguardo['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmedejecutadasresguardo['t']; "</td>";
-echo "<td style='text-align:center'>"; echo $fmedicanceladasresguardo['t']; "</td>";
+echo "<td style='text-align:left; border: 3px solid black; padding-left: 7px; padding-right: 4px;'>"; echo "MEDIDAS DE RESGUARDO "; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedejecucionresguardo['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedejecutadasresguardo['t']; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo $fmedicanceladasresguardo['t']; "</td>";
 echo "</tr>";
 
 echo "<tr>";
-echo "<td style='text-align:right'>"; echo "<b>"; echo "TOTAL DE MEDIDAS"; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totalejecucion; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totalejecutadas; echo "</b>"; "</td>";
-echo "<td style='text-align:center'>"; echo "<b>"; echo $totalcanceladas; echo "</b>"; "</td>";
+echo "<td style='text-align:right; border: 3px solid black; padding-right: 4px;'>"; echo "<b>"; echo "TOTAL DE MEDIDAS"; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalejecucion; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalejecutadas; echo "</b>"; "</td>";
+echo "<td style='text-align:center; border: 3px solid black;'>"; echo "<b>"; echo $totalcanceladas; echo "</b>"; "</td>";
 echo "</tr>";
 ?>
