@@ -313,7 +313,7 @@ $name = $_SESSION['usuario'];
 				<p>
 				<!-- <a href="#" onclick="location.href='create_ticket.php?folio=<?php echo $fol_exp; ?>'" target="_blank" class="btn-flotante-notificacion"><i class="fas fa-file-signature"></i></a> -->
 				</p>
-				<a href="expedientes_concluidos.php" class="btn-flotante">REGRESAR</a>
+				<a href="menu.php" class="btn-flotante">REGRESAR</a>
 				</div>
 			</div>
 		</div>
