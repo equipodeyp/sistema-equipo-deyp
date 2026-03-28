@@ -36,6 +36,72 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
+  <style>
+          :root {
+              --glow-color: #ff4d4d;
+              --btn-color-start: #ff7e5f;
+              --btn-color-end: #ff4b4b;
+          }
+
+          body {
+              font-family: 'Inter', 'Segoe UI', sans-serif; /* Usamos 'Inter' si está disponible para un toque más moderno */
+              background-color: #1a1a1a; /* Fondo oscuro para resaltar el brillo */
+          }
+
+          .float-pdf-button {
+              position: fixed;
+              right: 20px; /* Separación del borde derecho */
+              top: 50%;
+              transform: translateY(-50%);
+
+              /* Diseño del botón circular */
+              width: 70px;  /* Ancho fijo */
+              height: 70px; /* Alto fijo (igual que el ancho) */
+              border-radius: 50%; /* Esto crea el círculo */
+              background: linear-gradient(135deg, var(--btn-color-start), var(--btn-color-end));
+              color: white;
+              text-decoration: none;
+
+              /* Centrado del texto */
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              /* Tipografía */
+              font-weight: 800; /* Texto más grueso para mayor impacto visual */
+              font-size: 18px;
+              letter-spacing: 1px;
+
+              /* Sombra y Brillo base */
+              box-shadow: 0 4px 15px rgba(230, 0, 0, 0.5);
+
+              transition: all 0.3s ease;
+              border: none;
+              cursor: pointer;
+              z-index: 9999;
+
+              /* Animación de brillo constante */
+              animation: pulse-glow-circular 2s infinite;
+          }
+
+          .float-pdf-button:hover {
+              transform: translateY(-50%) scale(1.1); /* Escala ligeramente al pasar el mouse */
+              box-shadow: 0 0 30px var(--glow-color); /* Intensifica el brillo */
+          }
+
+          /* Definición de la animación de brillo para forma circular */
+          @keyframes pulse-glow-circular {
+              0% {
+                  box-shadow: 0 0 10px var(--glow-color), 0 0 15px rgba(255, 75, 75, 0.4);
+              }
+              50% {
+                  box-shadow: 0 0 25px var(--glow-color), 0 0 40px rgba(255, 75, 75, 0.7);
+              }
+              100% {
+                  box-shadow: 0 0 10px var(--glow-color), 0 0 15px rgba(255, 75, 75, 0.4);
+              }
+          }
+      </style>
 </head>
 <body>
   <div class="contenedor">
@@ -90,7 +156,7 @@ $row=$result->fetch_assoc();
               </nav>
             </div>
           </div>
-          <form action="get_reportediario_pdf.php" method="POST">
+          <form action="get_reportesemanal_pdf.php" method="POST">
             <div class="well form-horizontal" style="border: 5px solid #63696D; width: 1390px;">
               <div class="well form-horizontal">
                 <img style="float: left;" src="../../image/ESCUDO.png" width="60" height="50">
@@ -490,14 +556,14 @@ $row=$result->fetch_assoc();
                     </div>
                     <div class="col-lg-12" style="padding-top: 8px;">
                       <strong style="display: block; text-align: justify; font-weight: bold;">
-                        *  I. Tratamiento psicológico, médico o sanitario; II. Asesoramiento jurídico gratuito; III. Gestión de trámites; IV.
-                        Ayuda de servicios; V. Apoyo económico; VI. Cualquier otra medida de asistencia (apoyo en especie).<br>
+                        *  I. Tratamiento psicológico, médico o sanitario; II. Asesoramiento jurídico gratuito; III. Gestión de trámites;
+                        IV. Ayuda de servicios; V. Apoyo económico; VI. Cualquier otra medida de asistencia (apoyo en especie). <br>
                         ** I. Salvagurarda de la integridad personal; II. Vigilancia; III. Modo y mecanismo para el traslado del sujeto;
-                        IV. Custodia policial o dimiciliaria; V. facilitar la reubicacion; VI. Mecanismos de comunicacion inmediata;
+                        IV. Custodia policial o domiciliaria; V. Facilitar la reubicación; VI. Mecanismos de comunicación inmediata;
                         VII. Cambio de número telefónico; VIII. Alojamiento temporal; IX. Capacitación de medidas; X. Nueva identidad del sujeto;
-                        XI. Ejecucion de medidas procesales; XII. Medidas otorgadas a sujetos recluidos;
-                        XIII. Cualquier otra medida de apoyo (autocuidados, otras medidas que a su juicio sea procedente, evitar salir de noche,
-                        evitar acercarse a la zona donde se encuentras los agentes generadores de riesgo, cambiar de rutina escolar, laboral y recreativa)
+                        XI. Ejecución de medidas procesales; XII. Medidas otorgadas a sujetos recluidos; XIII. Cualquier otra medida de apoyo
+                        (autocuidados, otras medidas que a su juicio sea procedente, evitar salir de noche, evitar acercarse a la zona donde
+                        se encuentras los agentes generadores de riesgo, cambiar de rutina escolar, laboral y recreativa)
                       </strong>
                     </div>
                   </div>
@@ -578,6 +644,7 @@ $row=$result->fetch_assoc();
                 <br>
               </div>
             </div>
+            <button class="float-pdf-button" type="submit">PDF</button>
           </form>
         </b>
       </div>
@@ -587,5 +654,5 @@ $row=$result->fetch_assoc();
 <link rel="stylesheet" href="../../css/menuactualizado.css">
 <link rel="stylesheet" href="../../css/menu_creacionreportes.css">
 <script src="../../js/menu.js"></script>
-<script src="../../js/descargarpdfreportes.js"></script>
+<!-- <script src="../../js/descargarpdfreportes.js"></script> -->
 </html>

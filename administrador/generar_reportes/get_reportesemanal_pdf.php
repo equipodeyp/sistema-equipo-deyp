@@ -1,8 +1,9 @@
 <?php
-// date_default_timezone_set("America/Mexico_City");
+date_default_timezone_set("America/Mexico_City");
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 // echo " ".date('d')." DE ".$mesone. " DEL ".date('Y') ;
+$horalunes = date("H:i:s");
 $fecha_actual = date("Y-m-d");
 $year = date("Y");
 $day = date("l");
@@ -1335,6 +1336,18 @@ $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
 
 $mpdf->WriteHtml($data1);
 ////////////////////////////////////////////////////////////////////////////////
-$mpdf->output();
+// $mpdf->output();
+
+if ($horalunes >= '09:00:00' AND $horalunes <='11:00:00') {
+  $semana_pasada = date('W', strtotime('-1 week'));
+
+$nombre_archivo = "SEMANAL_" . $semana_pasada. ".pdf";
+$mpdf->Output($nombre_archivo, 'D');
+}else {
+  $semana_actual = date('W');
+
+  $nombre_archivo = "SEMANAL_" . $semana_actual. ".pdf";
+  $mpdf->Output($nombre_archivo, 'D');
+}
 // $mpdf->output("REPORTE SEMANAL.pdf",'D');
 ?>

@@ -86,7 +86,7 @@ $row=$result->fetch_assoc();
               <div class="glow-effect" style="background: var(--accent-preliminar);"></div>
               Versión Preliminar
             </div>
-            <div id="btnActualizado" class="modern-btn">
+            <div id="btnActualizado" class="modern-btn" onclick="goToReport()">
               <div class="glow-effect" style="background: var(--accent-actualizado);"></div>
               Reporte Final
             </div>

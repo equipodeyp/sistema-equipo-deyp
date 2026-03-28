@@ -10,6 +10,62 @@ $day = date("l");
 // echo "<br>";
 switch ($day) {
   case 'Monday':
+  $horalunes = date("H:i:s");
+  if ($horalunes >= '09:00:00' AND $horalunes <='11:00:00') {
+    // echo "entra en rango de hora";
+    $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 7 day"));
+    $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 8 day"));
+    $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
+    ////////////////////fechas de reporte semanal
+    $diafinsemanaanterior = strtotime($fecha_finsemanaanterior);
+    $diafinsemant = date( "j", $diafinsemanaanterior);
+    $diainicio = strtotime($fecha_inicio);
+    $diaini = date( "j", $diainicio);
+    $diafinal = strtotime($fecha_fin);
+    $diafin = date( "j", $diafinal);
+    /////////////////////////////////////////////////////////
+    if ($diaini < 10) {
+      $diaini = '0'.$diaini;
+    }else {
+      $diaini = $diaini;
+    }
+    /////////////////////////////////////////////////////////
+    if ($diafin < 10) {
+      $diafin = '0'.$diafin;
+    }else {
+      $diafin = $diafin;
+    }
+    /////////////////////////////////////////////////////////
+    if ($diaini > $diafin) {
+      echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." DE ".$meses[date('n')-1]." AL ".$diafin. " DE ".$meses[date('n')]. " DEL ".date('Y'); echo '</h1>';
+    } else {
+      echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
+    }
+    if ($diaini > $diafin) {
+      $mesreport = date('n');
+      if ($mesreport < 10) {
+        $mesreportpdf = '0'.$mesreport;
+      }else {
+        $mesreportpdf = $mesreport;
+      }
+    $fechainicio_pdf =date('Y').'-01-01';
+    $fechafin_pdf =$fecha_finsemanaanterior;
+    $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
+    $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+6 day'));
+    } else {
+      $mesreport = date('n');
+      if ($mesreport < 10) {
+        $mesreportpdf = '0'.$mesreport;
+      }else {
+        $mesreportpdf = $mesreport;
+      }
+      $fechainicio_pdf =date('Y').'-01-01';
+      $fechafin_pdf =$fecha_finsemanaanterior;
+      $fechainicial_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diaini;
+      $fechafinal_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diafin;
+    }
+  }else {
+    // echo "fuera de rango de hora";
     $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual));
     $fecha_finsemanaanterior =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
     $fecha_fin =  date("Y-m-d",strtotime($fecha_actual." + 6 day"));
@@ -61,6 +117,8 @@ switch ($day) {
       $fechainicial_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diaini;
       $fechafinal_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diafin;
     }
+  }
+
     break;
   case 'Tuesday':
     $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 1 day"));
