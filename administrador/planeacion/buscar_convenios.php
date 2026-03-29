@@ -7,9 +7,12 @@ $fechaFin = $_POST['fecha_fin'];
 // Consulta SQL con el rango de fechas
 $sql = "SELECT * FROM evaluacion_persona
 WHERE tipo_convenio != ' '
-AND fecha_firma <= '2026-02-28'
-AND fecha_firma >= '2026-02-01'";
+AND fecha_firma BETWEEN '$fechaInicio' AND '$fechaFin'";
 $result = $mysqli->query($sql);
+
+$sql2 = "SELECT * FROM determinacionincorporacion
+WHERE convenio = 'FORMALIZADO' AND date_convenio BETWEEN '$fechaInicio' AND '$fechaFin'";
+$result2 = $mysqli->query($sql2);
 
 if ($result->num_rows > 0) {
   function transformarmesaletra($pasardia, $pasarmes, $pasaranio){
@@ -84,31 +87,29 @@ if ($result->num_rows > 0) {
             $auxsum = $auxsum +1;
             $idunico = $row['id_unico'];
             $ultimosCinco = substr($row['folioexpediente'], -8);
-              $cadena = $idunico;
-              // echo "<br>";
-              $caracter = "-";
-              // Encuentra la posición del carácter
-              $posicion = strpos($cadena, $caracter);
-              // Si el carácter existe en la cadena
-              if ($posicion !== false) {
-                // Extrae la parte de la cadena hasta el carácter
-                $parte = substr($cadena, 0, $posicion);
-                // Imprime la parte de la cadena
-                $parte; // Imprimirá "Hola"
-              }
-              $texto = $parte;
-              // Convertir el texto en un array de caracteres
-              $arrayCaracteres = str_split($texto);
-              // Unir los caracteres con un punto
-
-            $textoConPuntos = implode(".", $arrayCaracteres);
-            $concatenar_rondin ='Convenio_Exp_'.$ultimosCinco.'_'.$textoConPuntos.''.$idunico.'.';
+            $concatenar_rondin ='Convenio_Exp_'.$ultimosCinco.'_'.$idunico.'.';
           ?>
-
             <tr>
               <td style="text-align:center; border: 1px solid black;"><?php echo $auxsum; ?></td>
               <td style="text-align:center; border: 1px solid black;"><?php echo $concatenar_rondin; ?></td>
               <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row['fecha_firma'])); ?></td>
+            </tr>
+          <?php
+          }
+          while($row2 = $result2->fetch_assoc()) {
+            $auxsum = $auxsum +1;
+            $idsujeto = $row2['id_persona'];
+            $getinfosujeto = "SELECT * FROM datospersonales WHERE id = '$idsujeto'";
+            $rgetinfosujeto = $mysqli->query($getinfosujeto);
+            $fgetinfosujeto = $rgetinfosujeto->fetch_assoc();
+            $idunico = $fgetinfosujeto['identificador'];
+            $ultimosCinco = substr($row2['folioexpediente'], -8);
+            $concatenar_rondin ='Convenio_Exp_'.$ultimosCinco.'_'.$idunico.'.';
+          ?>
+            <tr>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $auxsum; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $concatenar_rondin; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row2['date_convenio'])); ?></td>
             </tr>
           <?php
           }
