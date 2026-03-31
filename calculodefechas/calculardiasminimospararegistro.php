@@ -4,7 +4,7 @@ $dias_mes_actual = date('t');
 // Obtenemos la fecha actual del sistema
 // Fecha actual del servidor
 $fecha_actual = date('Y-m-d');
-$fecha_limite = '2026-04-01';
+$fecha_limite = '2026-03-31';
 
 // Si hoy es mayor al 3 de marzo de 2026
 if ($fecha_actual > $fecha_limite) {
