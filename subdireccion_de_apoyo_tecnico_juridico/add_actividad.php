@@ -208,9 +208,9 @@ $mostrar=$result->fetch_assoc();
             <input  name="fecha_actividad" id="fechaactividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
             <div class="form-text">
               <?php if ($fecha_actual > $fecha_limite): ?>
-                <span class="text-danger">Febrero ya no está disponible. Seleccione una fecha de Marzo en adelante.</span>
+                <span class="text-danger">Marzo ya no está disponible. Seleccione una fecha de Abril en adelante.</span>
               <?php else: ?>
-                  <span class="text-success">Febrero sigue disponible para selección.</span>
+                  <span class="text-success">Marzo sigue disponible para selección.</span>
               <?php endif; ?>
             </div>
           </div>
