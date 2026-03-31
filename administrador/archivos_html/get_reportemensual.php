@@ -542,7 +542,9 @@ $data .='<div style="float: left; width: 48%;">
           $totalamotorgadas_col2 = $totalamotorgadas_col2 + $famotorgadas_col2['total'];
           $totalamotorgadas_fila = $famotorgadas_col1['total'] +$famotorgadas_col2['total'];
           $sumatotalamotorgadas = $sumatotalamotorgadas + $totalamotorgadas_fila;
-
+          if ($serviciomedico == 'PSICOLÓGICO') {
+            $serviciomedico = 'CONTENCIÓN PSICOLÓGICA';
+          }
           $data .= '<tr style="background-color: white; border: 1px solid black;">
           <td style="background-color: white; border: 1px solid black; text-align:left; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.capitalizarConReglasEspeciales($serviciomedico).'</td>
           <td style="background-color: white; border: 1px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">'.$famotorgadas_col1['total'].'</td>
@@ -1091,7 +1093,7 @@ $data .= '<div style="float: left; width: 100%;">
 <table border="1px" cellspacing="0" width="100%" bgcolor="black" style="border: 1.5px solid black;">
   <thead>
     <tr style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black;">
-      <th colspan="8" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS PROTEGIDOS ACTIVOS CON ESTANCIA EN EL CENTRO DE RESGUARDO</h2></th>
+      <th colspan="8" style="background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: 100; font-size:13.33px;">SUJETOS PROTEGIDOS ACTIVOS FUERA DEL CENTRO DE RESGUARDO</h2></th>
     </tr>
     <tr style="background-color: white; border: 1.5px solid black;">
       <th style="width: 1%; background-color: white; border: 1.5px solid black; text-align:center; font-family: gothambook; color:black; font-weight: bold; font-size:11.33px;">No.</th>
@@ -1199,7 +1201,7 @@ $data .= '<div style="float: left; width: 100%;">
 
 $data .='</tbody>
 </table>
-</div><br>';
+</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
 $data .= '<div style="float: left; width: 100%;">
 <h1 style="text-align:center;">RESUMEN DEL PROGRAMA</h1>
 </div>';
@@ -1346,29 +1348,26 @@ $data .='</tbody>
   // $img_externa = 'C:/Users/FGJEM/Downloads/grafica_expedientes.png';
                 // $img_externa = $_SERVER['DOCUMENT_ROOT'] . '/sistema-equipo-deyp/administrador/grafica_expedientes.png';
         $data .='
-        <br>
 
-        <div style="width: 80%; margin: 0 auto; text-align: center; border: 3px solid black;">
-          <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>EXPEDIENTES DE PROTECCIÓN INICIADOS</b></h2>
+
+        <div style="width: 80%; height: 10%; margin: 0 auto; text-align: center; border: 3px solid black;">
+          <h2 style="text-align: center; font-size: 12px; font-weight: bold;"><b>EXPEDIENTES DE PROTECCIÓN INICIADOS</b></h2>
           <!-- La imagen se ajustará al ancho del div si es muy grande -->
-          <img src="' . $img_expedientes . '" style="width: 100%; height: auto;">
+          <img src="' . $img_expedientes . '" style="width: 100%; height: 22%;">
         </div><br>
-        <div style="width: 80%; margin: 0 auto; text-align: center; border: 3px solid black;">
-          <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>PERSONAS PROPUESTAS PARA SU INCORPORACIÓN</b></h2>
+        <div style="width: 80%; height: 10%; margin: 0 auto; text-align: center; border: 3px solid black;">
+          <h2 style="text-align: center; font-size: 12px; font-weight: bold;"><b>PERSONAS PROPUESTAS PARA SU INCORPORACIÓN</b></h2>
           <!-- La imagen se ajustará al ancho del div si es muy grande -->
-          <img src="' . $img_personaspropuestas . '" style="width: 100%; height: auto;">
+          <img src="' . $img_personaspropuestas . '" style="width: 100%; height: 22%;">
         </div><br>
-        <div style="width: 80%; margin: 0 auto; text-align: center; border: 3px solid black;">
-          <h2 style="text-align: center; font-size: 16px; font-weight: bold;"><b>SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO</b></h2>
+        <div style="width: 80%; height: 10%; margin: 0 auto; text-align: center; border: 3px solid black;">
+          <h2 style="text-align: center; font-size: 12px; font-weight: bold;"><b>SUJETOS QUE INGRESARON A ESTANCIA EN EL CENTRO DE RESGUARDO</b></h2>
           <!-- La imagen se ajustará al ancho del div si es muy grande -->
-          <img src="' . $img_externa . '" style="width: 100%; height: auto;">
+          <img src="' . $img_externa . '" style="width: 100%; height: 22%;">
         </div>
 
         ';
 
-
-        $data .= '
-        ';
 
     $mpdf ->WriteHtml($css, \Mpdf\HTMLParsermode::HEADER_CSS);
     $mpdf ->WriteHtml($css1, \Mpdf\HTMLParsermode::HEADER_CSS);

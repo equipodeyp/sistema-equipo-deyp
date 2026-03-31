@@ -33,7 +33,11 @@ while ($fasistenciasmedicas = $rasistenciasmedicas->fetch_assoc()) {
   $sumatotalamotorgadas = $sumatotalamotorgadas + $totalamotorgadas_fila;
   ?>
   <tr style="border: 3px solid black;">
-    <td style="text-align:left; border: 3px solid black;"><b><?php echo $serviciomedico; ?></b></td>
+    <td style="text-align:left; border: 3px solid black;"><b><?php
+    if ($serviciomedico == 'PSICOLÓGICO') {
+      $serviciomedico = 'CONTENCIÓN PSICOLÓGICA';
+    }
+    echo $serviciomedico; ?></b></td>
     <td style="text-align:center; border: 3px solid black;"><b><?php echo $famotorgadas_col1['total']; ?></b></td>
     <td style="text-align:center; border: 3px solid black;"><b><?php echo $famotorgadas_col2['total']; ?></b></td>
     <td style="text-align:center; border: 3px solid black;"><b><?php echo $totalamotorgadas_fila; ?></b></td>
