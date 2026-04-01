@@ -580,7 +580,7 @@ $meses_es = [
     ];
 $mes_actual_es = $meses_es[date('F')];
 
-$base_path = "C:/xampp/htdocs/pruebas/sistema-equipo-deypv1.1/docs/REPORTES/DIARIOS/";
+$base_path = "C:/xampp/htdocs/sistema-equipo-deyp/docs/REPORTES/DIARIOS/";
 $ruta_destino = $base_path . $anio_actual . "/" . $mes_actual_es . "/";
 
 if (!file_exists($ruta_destino)) {
