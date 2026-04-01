@@ -30,8 +30,8 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 ///////////mes
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 $mesrep = date("m", strtotime($datefinprinc));
-if ($dia_inicio_reporte == 1) {
-  $mesone =$meses[$mesrep-1];
+if ($dia_inicio_reporte > $dia_fin_reporte) {
+  $mesone =$meses[$mesrep-2];
 }else {
   $mesone =$meses[$mesrep-1];
 }
