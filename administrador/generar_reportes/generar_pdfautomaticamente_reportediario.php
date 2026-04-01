@@ -557,48 +557,45 @@ $data .='</tbody>
     // $mpdf->WriteHTML($data, \Mpdf\HTMLParserMode::BODY_HTML);
     $mpdf->WriteHtml($data);
 ////////////////////////////////////////////////////////////////////////////////
-// $mpdf->output();
-// $mpdf->output("REPORTE SEMANAL.pdf",'D');
-// --- LÓGICA DE FECHAS (AYER) ---
 // --- LÓGICA DE FECHAS (HOY) ---
-// Eliminamos el strtotime('-1 day') para que tome el tiempo actual
+// --- LÓGICA DE FECHAS (HOY) ---
 $hoy = time();
 $dia_del_anio = date('z', $hoy) + 1;
 $fecha_hoy = date('dmY', $hoy);
-
-// --- LÓGICA DE RUTA DINÁMICA (MES EN ESPAÑOL) ---
+// --- LÓGICA DE RUTA DINÁMICA ---
 $anio_actual = date('Y');
 $meses_es = [
-    "January"   => "ENERO",
-    "February"  => "FEBRERO",
-    "March"     => "MARZO",
-    "April"     => "ABRIL",
-    "May"       => "MAYO",
-    "June"      => "JUNIO",
-    "July"      => "JULIO",
-    "August"    => "AGOSTO",
+    "January" => "ENERO",
+    "February" => "FEBRERO",
+    "March" => "MARZO",
+    "April" => "ABRIL",
+    "May" => "MAYO",
+    "June" => "JUNIO",
+    "July" => "JULIO",
+    "August" => "AGOSTO",
     "September" => "SEPTIEMBRE",
-    "October"   => "OCTUBRE",
-    "November"  => "NOVIEMBRE",
-    "December"  => "DICIEMBRE"
-];
+    "October" => "OCTUBRE",
+    "November" => "NOVIEMBRE",
+    "December" => "DICIEMBRE"
+    ];
 $mes_actual_es = $meses_es[date('F')];
 
-// Construcción de la ruta
 $base_path = "C:/xampp/htdocs/pruebas/sistema-equipo-deypv1.1/docs/REPORTES/DIARIOS/";
 $ruta_destino = $base_path . $anio_actual . "/" . $mes_actual_es . "/";
 
-// Crear carpetas automáticamente si no existen
 if (!file_exists($ruta_destino)) {
     mkdir($ruta_destino, 0777, true);
 }
-
-// --- GENERACIÓN DEL NOMBRE DEL ARCHIVO CON FECHA DE HOY ---
+// --- VALIDACIÓN DE REEMPLAZO ---
 $nombre_archivo = "(" . $dia_del_anio . ") RD_" . $fecha_hoy . ".pdf";
 $ruta_completa = $ruta_destino . $nombre_archivo;
 
-// USAMOS 'F' PARA GUARDAR EN EL DISCO DURO
+if (file_exists($ruta_completa)) {
+    unlink($ruta_completa); // Borra el archivo anterior para escribir el nuevo
+}
+// --- GENERACIÓN Y GUARDADO ---
+// Asegúrate de que $mpdf->WriteHTML($data) se ejecutó antes de esto
 $mpdf->Output($ruta_completa, 'F');
 
-echo "Éxito: Reporte de HOY guardado en " . $ruta_completa;
+echo "Éxito: El reporte de hoy ha sido generado (y reemplazado si existía) en: " . $ruta_completa;
 ?>
