@@ -42,7 +42,7 @@ switch ($day) {
       echo '<h1 style="text-align:center">' ; echo "Reporte Semanal <br> DEL ".$diaini." AL ".$diafin. " DE ".$meses[date('n')-1]. " DEL ".date('Y'); echo '</h1>';
     }
     if ($diaini > $diafin) {
-      $mesreport = date('n');
+      $mesreport = date('n', strtotime('-1 month'));
       if ($mesreport < 10) {
         $mesreportpdf = '0'.$mesreport;
       }else {
@@ -51,7 +51,7 @@ switch ($day) {
     $fechainicio_pdf =date('Y').'-01-01';
     $fechafin_pdf =$fecha_finsemanaanterior;
     $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
-    $fechafinal_reporte_pdf =date('Y-m-d', strtotime('+6 day'));
+    $fechafinal_reporte_pdf =date('Y-m-d', strtotime('-1 day'));
     } else {
       $mesreport = date('n');
       if ($mesreport < 10) {
@@ -301,7 +301,7 @@ switch ($day) {
           }
           /////////////////////////////////////////////////////////
           if ($diaini > $diafin) {
-            $mesact = date('n', strtotime('-0 month'));
+            $mesact = date('n', strtotime('-1 month'));
             if ($mesact < 10) {
               $mesactpdf = '0'.$mesact;
             }else {

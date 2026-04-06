@@ -30,9 +30,9 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 $meses = array("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
 $mesrep = date("m", strtotime($datefinprinc));
 if ($dia_inicio_reporte > $dia_fin_reporte) {
-  $mesone =$meses[$mesrep-2];
-}else {
   $mesone =$meses[$mesrep-1];
+}else {
+  $mesone =$meses[$mesrep-0];
 }
 $mesrep2 = date("m", strtotime($daterepfin));
 if ($dia_inicio_reporte == 1) {
@@ -160,10 +160,10 @@ if ($dia_inicio_reporte > $dia_fin_reporte) {
 // $data .= '<h1>inicio--->'.$tabla3_pp_sp.'</h1><br>';
 // $data .= '<h1>fin--->'.$mestwo.'</h1><br>';
 // $data .= '<h1>mensaje--->'.$mesrep2.'</h1><br>';
-// $data .= '<h1>inicio--->'.$dateprinc.'</h1><br>';
-// $data .= '<h1>fin--->'.$datefinprinc.'</h1><br>';
-// $data .= '<h1>inicio--->'.$daterepini.'</h1><br>';
-// $data .= '<h1>fin--->'.$daterepfin.'</h1><br>';
+// $data .= '<h1>inicio--->'.$dateprin.'</h1><br>';
+// $data .= '<h1>fin--->'.$dateconclu.'</h1><br>';
+// $data .= '<h1>inicio--->'.$dateprinrep.'</h1><br>';
+// $data .= '<h1>fin--->'.$dateconclurep.'</h1><br>';
 if ($dia_inicio_reporte > $dia_fin_reporte) {
   $msjreposem = $dia_inicio_reporte.' DE '.$mesone.' AL '.$dia_fin_reporte.' DE '.$mestwo;
 }else {
