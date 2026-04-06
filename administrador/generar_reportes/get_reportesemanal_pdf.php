@@ -196,6 +196,8 @@ $data .= '<div style="float: left; width: 55%;">
         while ($fsolicitudesrecibidas = $rsolicitudesrecibidas->fetch_assoc()) {
         // Ejemplo de uso:
         $nameautoridad = $fsolicitudesrecibidas['nombreautoridad'];
+        // Reemplazar "FISCALIA" por "FISCALÍA"
+        $nameautoridadfinal = str_replace("FISCALIA", "FISCALÍA", $nameautoridad);
 
           $solicitudes_col1 = "SELECT COUNT(DISTINCT autoridad.folioexpediente) AS total FROM autoridad
           WHERE nombreautoridad = '$nameautoridad' AND fechasolicitud BETWEEN '$dateprinc' AND '$datefinprinc'";
@@ -214,7 +216,7 @@ $data .= '<div style="float: left; width: 55%;">
           $sumatotal = $sumatotal + $totalfila;
 
           $data .= '<tr bgcolor="white">
-          <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;'.$nameautoridad.'</h1></td>
+          <td style="border: 1px solid #A19E9F; text-align:left;"><h1 style="font-weight: normal; font-size:11px; color:black;">&nbsp;'.$nameautoridadfinal.'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsolicitudes_col1['total'].'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$fsolicitudes_col2['total'].'</h1></td>
           <td style="border: 1px solid #A19E9F; text-align:center;"><h1 style="font-weight: normal; font-size:13.33px; color:#97897D;">'.$totalfila.'</h1></td>
@@ -305,7 +307,7 @@ $data .= '<div style="float: left; width: 55%;">
         ////////////////////////////////////////////////////////////////////////
         $data .= '</tbody>
       </table>
-      </div>';
+      </div><br>';
 /////////////segunda tabla
 $data .= '<div style="float: right; width: 45%;">
 <table id="tabla1" border="1px" cellspacing="0" width="100%" bgcolor="#97897D">
