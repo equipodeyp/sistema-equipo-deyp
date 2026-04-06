@@ -15,13 +15,7 @@
             <?php
             include('get_fechas_rerpotesemanal.php');
             // echo " ".date('d')." DE ".$meses[date('n')-1]. " DEL ".date('Y') ;
-            $mes = date('m');
-echo $mes; // Ejemplo: "04"
-$mes = date('m');
-// Restar un mes a la fecha actual y obtener solo el número del mes
-$mesAnterior = date('m', strtotime('-1 month'));
 
-echo $mesAnterior; // Ejemplo: si es "04", devolverá "03"
             switch ($day) {
                 case "Sunday"://DOMINGO
                        $fecha_inicio =  date("Y-m-d",strtotime($fecha_actual." - 6 day"));

@@ -304,7 +304,7 @@ $data .= '<div style="float: left; width: 55%;">
         ////////////////////////////////////////////////////////////////////////
         $data .= '</tbody>
       </table>
-      </div>';
+      </div><br>';
 /////////////segunda tabla
 $data .= '<div style="float: right; width: 45%;">
 <table id="tabla1" border="1px" cellspacing="0" width="100%" bgcolor="#97897D">

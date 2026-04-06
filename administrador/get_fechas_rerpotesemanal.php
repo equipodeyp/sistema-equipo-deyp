@@ -50,7 +50,7 @@ switch ($day) {
       }
     $fechainicio_pdf =date('Y').'-01-01';
     $fechafin_pdf =$fecha_finsemanaanterior;
-    $fechainicial_reporte_pdf =date('Y').'-0'.date('n', strtotime('-0 month')).'-'.$diaini;
+    $fechainicial_reporte_pdf =date('Y').'-'.$mesreportpdf.'-'.$diaini;
     $fechafinal_reporte_pdf =date('Y-m-d', strtotime('-1 day'));
     } else {
       $mesreport = date('n');
