@@ -95,16 +95,16 @@ $row=$result->fetch_assoc();
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE AUTORIDAD</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CALIDAD PERSONA</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">SEXO PERSONA</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE COMPLETO</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">IDENTIFICADOR SUJETO</th>
-                          <!-- <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS SUJETO PROGRAMA</th> -->
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS SUJETO PROGRAMA</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RELACIONADO</th>
-                          <!-- <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS DENTRO DEL PROGRAMA</th> -->
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS DENTRO DEL PROGRAMA</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RE-INGRESO</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EN CENTRO DE RESGUARDO</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EDAD</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">GRUPO DE EDAD</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTADIA</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE COMPLETO</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTADÍA</th>
                         </tr>
                     </thead>
                     <tbody>
