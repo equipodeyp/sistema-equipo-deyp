@@ -27,6 +27,25 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
     $alojamiento_suj = 'NO';
   }
   //
+  $inicio = new DateTime($rdatexp['fecha_nueva']);
+$hoy = new DateTime();
+$diff = $inicio->diff($hoy);
+
+$partes = [];
+
+if ($diff->y > 0) $partes[] = $diff->y . ($diff->y == 1 ? ' año' : ' años');
+if ($diff->m > 0) $partes[] = $diff->m . ($diff->m == 1 ? ' mes' : ' meses');
+if ($diff->d > 0) $partes[] = $diff->d . ($diff->d == 1 ? ' día' : ' días');
+
+// Unimos las partes con comas y la última con "y"
+$resultado = implode(', ', $partes);
+$resultado = preg_replace('/, ([^,]+)$/', ' y $1', $resultado);
+
+// Si la diferencia es 0 (mismo día)
+if (empty($resultado)) $resultado = "Hoy";
+
+// echo $resultado; // Ejemplo: "1 año, 2 meses y 5 días"
+  //////////////
   echo "<tr>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $contador; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['folioexpediente']; echo "</td>";
@@ -35,7 +54,6 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['calidadpersona']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['sexopersona']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['identificador']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['relacional']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['reingreso']; echo "</td>";
@@ -56,6 +74,7 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   }
   echo $edadgruposujeto;
   echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $resultado; echo "</td>";
   echo "</tr>";
 }
 ?>
