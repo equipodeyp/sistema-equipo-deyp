@@ -8,6 +8,9 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   // varialbes de consulta
   $folexp = $rinfsuj['folioexpediente'];
   $idsuj = $rinfsuj['id'];
+  $nombre_completo = $rinfsuj['nombrepersona'].' '.$rinfsuj['paternopersona'].' '.$rinfsuj['maternopersona'];
+  // Convertimos a mayúsculas con soporte para caracteres especiales (UTF-8)
+  $nombre_completo_mayusculas = mb_strtoupper($nombre_completo, 'UTF-8');
   // consulta a tabla de expedientes
   $datexp = "SELECT * FROM expediente WHERE fol_exp = '$folexp'";
   $fdatexp = $mysqli->query($datexp);
@@ -53,9 +56,10 @@ if (empty($resultado)) $resultado = "Hoy";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rdataut['nombreautoridad']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['calidadpersona']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['sexopersona']; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $nombre_completo_mayusculas; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['identificador']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['relacional']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
+  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['reingreso']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $alojamiento_suj; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['edadpersona']; echo "</td>";
