@@ -19,6 +19,10 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   $dataut = "SELECT * FROM autoridad WHERE id_persona = '$idsuj'";
   $fdataut = $mysqli -> query ($dataut);
   $rdataut = $fdataut ->fetch_assoc();
+  $nombreauroridad = $rdataut['nombreautoridad'];
+  $getareaautoridad = "SELECT * FROM nombreautoridad WHERE nombre = '$nombreauroridad'";
+  $rgetareaautoridad = $mysqli->query($getareaautoridad);
+  $fgetareaautoridad = $rgetareaautoridad->fetch_assoc();
   // consulta para verificar si esta alojado en un centro de proteccion
   $checkalojamiento = "SELECT COUNT(*) as t FROM  medidas
                                             WHERE id_persona = '$idsuj' AND medida= 'VIII. ALOJAMIENTO TEMPORAL' AND estatus != 'CANCELADA'";
@@ -31,18 +35,27 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   }
   //
   $inicio = new DateTime($rdatexp['fecha_nueva']);
-  $hoy = new DateTime();
-  $diff = $inicio->diff($hoy);
-  $partes = [];
-  if ($diff->y > 0) $partes[] = $diff->y . ($diff->y == 1 ? ' año' : ' años');
-  if ($diff->m > 0) $partes[] = $diff->m . ($diff->m == 1 ? ' mes' : ' meses');
-  if ($diff->d > 0) $partes[] = $diff->d . ($diff->d == 1 ? ' día' : ' días');
-  // Unimos las partes con comas y la última con "y"
-  $resultado = implode(', ', $partes);
-  $resultado = preg_replace('/, ([^,]+)$/', ' y $1', $resultado);
-  // Si la diferencia es 0 (mismo día)
-  if (empty($resultado)) $resultado = "Hoy";
-  // echo $resultado; // Ejemplo: "1 año, 2 meses y 5 días"
+$hoy = new DateTime();
+$diff = $inicio->diff($hoy);
+
+$partes = [];
+if ($diff->y > 0) $partes[] = $diff->y . ($diff->y == 1 ? ' año' : ' años');
+if ($diff->m > 0) $partes[] = $diff->m . ($diff->m == 1 ? ' mes' : ' meses');
+if ($diff->d > 0) $partes[] = $diff->d . ($diff->d == 1 ? ' día' : ' días');
+
+$resultado = implode(', ', $partes);
+$resultado = preg_replace('/, ([^,]+)$/', ' y $1', $resultado);
+if (empty($resultado)) $resultado = "Hoy";
+
+// NUEVA VARIABLE: Validación de si es mayor o menor a un año
+// Comprobamos si tiene al menos 1 año, o si tiene 1 año exacto con meses/días extra
+if ($diff->y >= 1) {
+    $estado_periodo = "MAYOR";
+} else {
+    $estado_periodo = "MENOR";
+}
+
+// echo "Tiempo: " . $resultado . " (Es " . $estado_periodo . " a un año)";
   echo "<tr>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $contador; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['folioexpediente']; echo "</td>";
@@ -72,8 +85,11 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   }
   echo $edadgruposujeto;
   echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $estado_periodo; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $nombre_completo_mayusculas; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $resultado; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['area']; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['id_area']; echo "</td>";
   echo "</tr>";
 }
 ?>
