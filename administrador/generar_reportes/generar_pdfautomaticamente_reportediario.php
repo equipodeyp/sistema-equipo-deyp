@@ -7,7 +7,7 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 // echo " ".date('d')." DE ".$mesone. " DEL ".date('Y') ;
 $fecha_actual = date("Y-m-d");
 
-$diaactual = date("d", strtotime("-1 day"));
+$diaactual = date("d", strtotime("-0 day"));
 $mesactual = $meses[date("n")-1];
 ////////////////////////////
 // require_once '../../mpdf/vendor/autoload.php';
