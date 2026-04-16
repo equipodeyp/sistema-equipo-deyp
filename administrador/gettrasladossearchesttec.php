@@ -1,3 +1,4 @@
+
 <?php
 error_reporting(0);
 header("Content-Type: text/html;charset=utf-8");
@@ -34,7 +35,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>METAS CONVENIOS</title>
+  <title>METAS ESTUDIOS TÉCNICOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <script src="../js/funciones_react.js"></script>
@@ -106,7 +107,7 @@ $_SESSION["check_traslado"] = $check_traslado;
           text:      '<i class="fas fa-file-excel"></i> ',
           titleAttr: 'Exportar a Excel',
           className: 'btn color-btn-export-xls',
-          title:      'METAS ESTUDIOS'
+          title:      'METAS ESTUDIOS TÉCNICOS'
         },
       ]
       });
@@ -158,6 +159,10 @@ $_SESSION["check_traslado"] = $check_traslado;
           <h4 style="text-align:center">
             <?php echo utf8_decode(strtoupper($row['area'])); ?> </span>
           </h4>
+          <br><br>
+          <h1 style="text-align:center"> CONSULTAR METAS ESTUDIOS TÉCNICOS </h4>
+          <br><br>
+
         </div>
       </div>
       <div class="">
@@ -199,8 +204,12 @@ $_SESSION["check_traslado"] = $check_traslado;
 
           if (isset($_GET['star']))
           {
-            $where="WHERE evaluacion_persona.fecha_aut BETWEEN '$fechainicial' AND '$fechafin'";
+            $where="WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'";
+
+
             $mostrar = 1;
+
+
           }
 
         }
@@ -221,7 +230,20 @@ $_SESSION["check_traslado"] = $check_traslado;
 
             if ($mostrar === 1) {
               $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-              $SQL="SELECT * FROM evaluacion_persona $where";
+              $SQL="SELECT react_actividad.id_subdireccion, react_actividad.fecha, react_actividad.id_evidencia, react_actividad.folio_expediente, react_actividad.id_sujeto
+
+                    FROM react_actividad
+
+                    INNER JOIN react_actividad_apoyo
+                    ON react_actividad.id_actividad = react_actividad_apoyo.id 
+                    $where
+                    AND react_actividad_apoyo.id = '9'
+                    AND react_actividad.id_subdireccion = '2'
+
+
+
+                    ORDER BY react_actividad.fecha ASC;";
+
               $dato = mysqli_query($conexion, $SQL);
               $row_cnt = $dato->num_rows;
               if($dato -> num_rows >0){
@@ -290,65 +312,66 @@ $_SESSION["check_traslado"] = $check_traslado;
                     <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
-                          <h1>PERIODO DE CONSULTA DE LA INFORMACIÓN</h1>
-                          <h3>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
-                          </h3>
+                          
+                          <h2>PERIODO DE CONSULTA DE INFORMACIÓN</h2>
+                          <h4>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?>
+                          </h4>
                             <tr>
                               <th class="table-header" style="text-align:center">NO.</th>
-                             <th class="table-header" style="text-align:center">ID</th>
-                              <!-- <th class="table-header" style="text-align:center">MUNICIPIO</th>
-                              <th class="table-header" style="text-align:center">EXPEDIENTE</th>
-                              <th class="table-header" style="text-align:center">ID DE LA PP O SP</th>
-                              <th class="table-header" style="text-align:center">KILOMETROS</th> -->
-                               <th class="table-header" style="text-align:center">FECHA</th>
+                              <th class="table-header" style="text-align:center">ACTIVIDAD</th>
+                              <th class="table-header" style="text-align:center">FECHA</th>
+                              <th class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
+                              <th class="table-header" style="text-align:center">ID SUJETO</th>
+                              <th class="table-header" style="text-align:center">ID EVIDENCIA</th>
+                              <th class="table-header" style="text-align:center">NOMENCLATURA</th>
 
                             </tr>
                         </thead>
                         <tbody>
                           <?php
                           $auxsum = 0;
-                          $getrondin = "SELECT * FROM evaluacion_persona
-                          WHERE analisis != ' '
-                          AND fecha_aut <= '2026-02-28'
-                          AND fecha_aut >= '2026-02-01';";
+                          $getrondin = "SELECT react_actividad.id_subdireccion, react_actividad.fecha, react_actividad.id_evidencia, react_actividad.folio_expediente, react_actividad.id_sujeto
+
+                                        FROM react_actividad
+
+                                        INNER JOIN react_actividad_apoyo
+                                        ON react_actividad.id_actividad = react_actividad_apoyo.id 
+                                        WHERE react_actividad.fecha BETWEEN '$fechainicial' AND '$fechafin'
+                                        AND react_actividad_apoyo.id = '9'
+                                        AND react_actividad.id_subdireccion = '2'
+
+
+
+                                        ORDER BY react_actividad.fecha ASC;";
                           $rgetrondin = $mysqli->query($getrondin);
                           while ($fgetrondin = $rgetrondin->fetch_assoc()) {
                             $auxsum = $auxsum +1;
-                            $idunico = $fgetrondin['id_unico'];
-                            $analisis = $fgetrondn['analisis'];
-                            $ultimosCinco = substr($fgetrondin['folioexpediente'], -8);
-                           // $ultimoexp = "SELECT * FROM evaluacion_persona WHERE analisis = ' ' ";
-                            $getinfosujeto = "SELECT * FROM evaluacion_persona WHERE id = '$idunico'";
-                            $rgetinfosujeto = $mysqli->query($getinfosujeto);
-                            $fgetinfosujeto  = $rgetinfosujeto ->fetch_assoc();
-                            $cadena = $fgetinfosujeto['identificador'];
-                            // echo "<br>";
-                            $caracter = "-";
-                            // Encuentra la posición del carácter
-                            $posicion = strpos($cadena, $caracter);
-                            // Si el carácter existe en la cadena
-                            if ($posicion !== false) {
-                              // Extrae la parte de la cadena hasta el carácter
-                              $parte = substr($cadena, 0, $posicion);
-                              // Imprime la parte de la cadena
-                              $parte; // Imprimirá "Hola"
-                            }
-                            $texto = $parte;
-                            // Convertir el texto en un array de caracteres
-                            $arrayCaracteres = str_split($texto);
-                            // Unir los caracteres con un punto
-                            $textoConPuntos = implode(".", $arrayCaracteres);
-                            $concatenar_rondin ='Expediente_Exp_'.$ultimosCinco.'_'.$textoConPuntos.'_'.$analisis.'.';
+                            
+
                           ?>
                             <tr>
                               <td><?php echo $auxsum; ?></td>
-                               <td><?php echo $concatenar_rondin; ?></td>
-                             <!--  <td><?php echo $fgetrondin['entidad_municipio']; ?></td>
-                              <td><?php echo $fgetrondin['folio_expediente']; ?></td>
-                              <td><?php echo $fgetinfosujeto['identificador']; ?></td>
-                              <td><?php echo $fgetrondin['kilometraje']; ?></td> -->
-                              <td><?php echo date("d/m/Y", strtotime($fgetrondin['fecha_firma'])); ?></td>
 
+
+                              <?php 
+                              $n_actividad = 'Llevar a cabo la revisión jurídica de los Estudios Técnicos elaborados por el Grupo Multidisciplinario';
+                              ?>
+
+                              <td><?php if ($fgetrondin['id_subdireccion'] == 2 ){ echo $n_actividad; } ?></td>
+                              <td><?php echo date("d/m/Y", strtotime($fgetrondin['fecha'])); ?></td>
+                              <td><?php echo $fgetrondin['folio_expediente']; ?></td>
+                              <td><?php echo $fgetrondin['id_sujeto']; ?></td>
+                              <td><?php echo $fgetrondin['id_evidencia']; ?></td>
+
+                              <?php
+                              $texto_idsujeto = $fgetrondin['id_sujeto'];
+                              $soloLetras_idsujeto = preg_replace('/[^a-zA-ZáéíóúüÁÉÍÓÚÜñÑ]+/', '', $texto_idsujeto);
+
+                              $texto_expediente = substr($fgetrondin['folio_expediente'], -8);
+
+                              $concatenacion = 'Expediente_Exp_'.$texto_expediente.'_EstudioTécnico Evaluación de Riesgo'; 
+                              ?>
+                              <td><?php echo "$concatenacion"; ?></td>
                             </tr>
                           <?php
                           }
@@ -381,7 +404,7 @@ $_SESSION["check_traslado"] = $check_traslado;
     </div>
   </div>
   <div class="contenedor">
-      <a href="bd_metas.php" class="btn-flotante">REGRESAR</a>
+      <a href="./bd_metas.php" class="btn-flotante">REGRESAR</a>
   </div>
   <script type="text/javascript">
     function verdato(){
