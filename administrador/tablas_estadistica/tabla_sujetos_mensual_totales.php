@@ -54,7 +54,18 @@ if ($diff->y >= 1) {
 } else {
     $estado_periodo = "MENOR";
 }
-
+$fecha_nacimiento = new DateTime($rinfsuj['fechanacimientopersona']);
+$hoy = new DateTime();
+$edad = $hoy->diff($fecha_nacimiento);
+if ($edad->y >= 0 && $edad->y <= 11) {
+  $edadgruposujeto =  'NIÑAS Y NIÑOS';
+}elseif ($edad->y >= 12 && $edad->y < 18) {
+  $edadgruposujeto =  'ADOLESCENTES';
+}elseif ($edad->y >= 18 && $edad->y <= 59) {
+  $edadgruposujeto =  'ADULTOS JÓVENES';
+}elseif ($edad->y >= 60) {
+  $edadgruposujeto =  'ADULTOS MAYORES';
+}
 // echo "Tiempo: " . $resultado . " (Es " . $estado_periodo . " a un año)";
   echo "<tr>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $contador; echo "</td>";
@@ -69,22 +80,8 @@ if ($diff->y >= 1) {
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['reingreso']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $alojamiento_suj; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['edadpersona']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>";
-  $fecha_nacimiento = new DateTime($rinfsuj['fechanacimientopersona']);
-  $hoy = new DateTime();
-  $edad = $hoy->diff($fecha_nacimiento);
-  if ($edad->y >= 0 && $edad->y <= 11) {
-    $edadgruposujeto =  'NIÑAS Y NIÑOS';
-  }elseif ($edad->y >= 12 && $edad->y < 18) {
-    $edadgruposujeto =  'ADOLESCENTES';
-  }elseif ($edad->y >= 18 && $edad->y <= 59) {
-    $edadgruposujeto =  'ADULTOS JÓVENES';
-  }elseif ($edad->y >= 60) {
-    $edadgruposujeto =  'ADULTOS MAYORES';
-  }
-  echo $edadgruposujeto;
-  echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $edad->y . " años";; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $edadgruposujeto; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $estado_periodo; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $nombre_completo_mayusculas; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $resultado; echo "</td>";

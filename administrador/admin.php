@@ -94,6 +94,8 @@ $mmed =  $ftmf['t'];
               <li class="menu-items"><a href='./archivos_html/ver_reporte_semanal.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">REPORTE SEMANAL</strong></a></li>
               <li class="menu-items"><a href='./archivos_html/ver_reportes_mensuales.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">REPORTE MENSUAL</strong></a></li>
               <li class="menu-items"><a href='./archivos_html/ver_reporte_anual.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">REPORTE ANUAL</strong></a></li>
+              <li class="menu-items"><a href='./archivos_html/ver_reporte_con_medidasresguardovigilancia.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">SUJETOS CON MEDIDAS <br>DE RESGUARDO</strong></a></li>
+              <li class="menu-items"><a href='./archivos_html/ver_reporte_mensualtraslados.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">REPORTE MENSUAL TRASLADOS</strong></a></li>
             </ul>
           </li>
         </ul>
@@ -430,7 +432,7 @@ $('#registros_expedientes_activos, #registros_expedientes_concluidos').DataTable
               "next": "Siguiente",
               "previous": "Anterior"
           }
-            
+
             }
 });
 
