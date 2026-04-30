@@ -232,7 +232,7 @@ transition: all .2s ease;
         <?php if ($mostrar_abril): ?>
           <section class="mb-5 p-4 border-bottom">
             <h3 class="display-4 text-success fw-bold">
-              *Para el registro de las actividades realizadas durante el mes de abil de 2026,
+              *Para el registro de las actividades realizadas durante el mes de abril de 2026,
               el sistema estará habilitado hasta el día 30 de abril de 2026 a las 21:00 horas
             </h3>
           </section>
