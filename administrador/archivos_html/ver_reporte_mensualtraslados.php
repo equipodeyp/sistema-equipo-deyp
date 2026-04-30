@@ -36,72 +36,32 @@ $row=$result->fetch_assoc();
   <link rel="stylesheet" href="../../css/button_notification.css" type="text/css">
   <link href="../../datatables/datatables.min.css" rel="stylesheet">
   <script src="../../datatables/datatables.min.js"></script>
-  <style>
-        
+  <!-- Librerías para Excel Profesional -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.bare.js"></script>
 
-        /* Estilo del Marco de Hoja */
+    <!-- <link href="https://jsdelivr.net" rel="stylesheet"> -->
+    <style>
+        /* body { background-color: #f0f2f5; font-family: 'Segoe UI', sans-serif; padding: 40px 0; } */
         .hoja-marco {
-            background-color: white;
-            border: 1px solid #ced4da;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            margin: 0 auto 50px auto;
-            max-width: 900px;
-            min-height: 1000px;
-            padding: 0;
+            background-color: white; border: 1px solid #ccc;
+            box-shadow: 0 0 25px rgba(0,0,0,0.2); margin: 0 auto;
+            max-width: 900px; min-height: 1000px;
         }
-
-        /* Cabecera idéntica a la imagen */
-        .header-container-custom {
-            display: flex;
-            align-items: stretch;
-            height: 70px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 30px;
-        }
-
+        .header-container-custom { display: flex; height: 70px; font-weight: bold; color: white; }
         .header-main-title {
-            flex-grow: 1;
-            background: linear-gradient(to bottom, #7a7a7a 0%, #5a5a5a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            letter-spacing: 1px;
-            border-right: 3px solid white;
+            flex-grow: 1; background: linear-gradient(to bottom, #7a7a7a 0%, #5a5a5a 100%);
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
         }
-
         .header-date-box {
-            width: 220px;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            line-height: 1.3;
-            text-transform: uppercase;
+            width: 200px; background-color: #000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-
-        /* Estilo de Tablas */
-        .tabla-estilo-imagen { border: 2px solid #333 !important; }
-        .tabla-estilo-imagen th, .tabla-estilo-imagen td {
-            border: 1px solid #333 !important;
-            vertical-align: middle;
-            padding: 10px;
-        }
-
-        /* Visibilidad y Animación */
-        .oculto { display: none; opacity: 0; }
-        .visible {
-            display: block !important;
-            animation: slideUp 0.6s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .tabla-estilo-imagen { border: 2px solid #333 !important; margin-bottom: 40px; width: 100%; }
+        .tabla-estilo-imagen th, .tabla-estilo-imagen td { border: 1px solid #333 !important; padding: 10px; }
+        .oculto { display: none; }
+        .visible { display: block !important; animation: slideUp 0.5s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -153,143 +113,133 @@ $row=$result->fetch_assoc();
 
 
           <div class="container text-center">
-      <!-- Selector Superior -->
-      <div class="card shadow-sm mx-auto mb-5" style="max-width: 450px; border-radius: 15px;">
-          <div class="card-body">
-              <label class="form-label fw-bold h5 mb-3 text-secondary">Periodo de Consulta 2026</label>
-              <select class="form-select form-select-lg" id="selectMeses" onchange="generarReporte()">
-                  <option value="" selected disabled>— Seleccione el Mes —</option>
-              </select>
-          </div>
-      </div>
+    <div class="card shadow-sm mx-auto mb-4" style="max-width: 500px; border-radius: 12px;">
+        <div class="card-body d-flex gap-2 justify-content-center">
+            <select class="form-select w-50" id="selectMeses" onchange="generarReporte()">
+                <option value="" selected disabled>Seleccione Mes</option>
+            </select>
+            <button id="btnExcel" class="btn btn-success d-none" onclick="descargarExcel()">Descargar Excel</button>
+        </div>
+    </div>
 
-      <!-- Spinner -->
-      <div id="loader" class="d-none my-5">
-          <div class="spinner-grow text-dark" role="status"></div>
-          <p class="mt-2 fw-bold text-muted">Procesando datos...</p>
-      </div>
+    <div id="loader" class="d-none my-5"><div class="spinner-border text-primary"></div></div>
 
-      <!-- Contenedor Hoja -->
-      <div id="hojaReporte" class="hoja-marco oculto text-start">
-          <div class="header-container-custom">
-              <div class="header-main-title">REPORTE MENSUAL DE TRASLADOS</div>
-              <div class="header-date-box">
-                  <span id="mesCabecera">MES</span><br>2026
-              </div>
-          </div>
+    <div id="hojaReporte" class="hoja-marco oculto text-start">
+        <div class="header-container-custom">
+            <div class="header-main-title">REPORTE MENSUAL DE TRASLADOS</div>
+            <div class="header-date-box"><span id="mesCabecera">MES</span><br>2026</div>
+        </div>
 
-          <div class="px-5 pb-5">
-              <!-- TABLA 1: MOTIVOS -->
-              <div class="table-responsive mb-5">
-                  <table class="table table-bordered tabla-estilo-imagen">
-                      <thead>
-                          <tr class="bg-dark text-white text-center">
-                              <th colspan="3">MOTIVO DEL TRASLADO</th>
-                          </tr>
-                          <tr class="bg-secondary text-white text-center">
-                              <th style="width: 10%;">No.</th>
-                              <th style="width: 70%;">MOTIVO</th>
-                              <th style="width: 20%;">TOTAL</th>
-                          </tr>
-                      </thead>
-                      <tbody id="cuerpoMotivos"></tbody>
-                      <tfoot id="pieMotivos"></tfoot>
-                  </table>
-              </div>
+        <div class="p-5">
+            <table class="table tabla-estilo-imagen">
+                <thead>
+                  <tr class="bg-dark text-white text-center">
+                    <th colspan="3">MOTIVO DEL TRASLADO</th>
+                  </tr>
+                  <tr class="bg-dark text-white text-center">
+                    <th >NO.</th>
+                    <th >MOTIVO</th>
+                    <th >TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody id="cuerpoMotivos"></tbody><tfoot id="pieMotivos"></tfoot>
+            </table>
+            <table class="table tabla-estilo-imagen">
+                <thead><tr class="bg-dark text-white text-center"><th colspan="3">DESTINO DEL TRASLADO (MUNICIPIO)</th></tr></thead>
+                <tbody id="cuerpoDestinos"></tbody><tfoot id="pieDestinos"></tfoot>
+            </table>
+            <table class="table tabla-estilo-imagen">
+                <thead><tr class="bg-dark text-white text-center"><th colspan="3">SEGÚN ESTANCIA EN EL CENTRO</th></tr></thead>
+                <tbody id="cuerpoEstancia"></tbody><tfoot id="pieEstancia"></tfoot>
+            </table>
+            <table class="table tabla-estilo-imagen">
+                <thead><tr class="bg-dark text-white text-center"><th colspan="3">SUJETO PROTEGIDO (ID)</th></tr></thead>
+                <tbody id="cuerpoSujetos"></tbody><tfoot id="pieSujetos"></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 
-              <!-- TABLA 2: DESTINOS (NUEVA) -->
-              <div class="table-responsive">
-                  <table class="table table-bordered tabla-estilo-imagen">
-                      <thead>
-                          <tr class="bg-dark text-white text-center">
-                              <th colspan="3">DESTINO DEL TRASLADO (MUNICIPIO)</th>
-                          </tr>
-                          <tr class="bg-secondary text-white text-center">
-                              <th style="width: 10%;">No.</th>
-                              <th style="width: 70%;">DESTINO</th>
-                              <th style="width: 20%;">TOTAL</th>
-                          </tr>
-                      </thead>
-                      <tbody id="cuerpoDestinos"></tbody>
-                      <tfoot id="pieDestinos"></tfoot>
-                  </table>
-              </div>
+<script>
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const select = document.getElementById('selectMeses');
+    let datosGlobales = null; // Guardará el JSON para el Excel
 
-              <!-- <p class="text-end mt-4 text-muted small">* Información generada dinámicamente según filtros aplicados.</p> -->
-          </div>
-      </div>
-  </div>
+    // Llenar selector
+    for (let i = 0; i <= new Date().getMonth(); i++) {
+        let opt = document.createElement('option');
+        opt.value = i + 1; opt.innerHTML = meses[i];
+        select.appendChild(opt);
+    }
 
-  <script>
-      const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-      const select = document.getElementById('selectMeses');
+    async function generarReporte() {
+        document.getElementById('loader').classList.remove('d-none');
+        document.getElementById('hojaReporte').classList.add('oculto');
 
-      // Llenar select hasta mes actual
-      const mesActual = new Date().getMonth();
-      for (let i = 0; i <= mesActual; i++) {
-          let opt = document.createElement('option');
-          opt.value = i + 1;
-          opt.innerHTML = meses[i];
-          select.appendChild(opt);
-      }
+        try {
+            const res = await fetch(`obtener_reporte.php?mes=${select.value}`);
+            datosGlobales = await res.json();
 
-      async function generarReporte() {
-          const hoja = document.getElementById('hojaReporte');
-          const loader = document.getElementById('loader');
+            llenarTabla('cuerpoMotivos', 'pieMotivos', datosGlobales.motivos, 'motivo');
+            llenarTabla('cuerpoDestinos', 'pieDestinos', datosGlobales.destinos, 'municipio');
+            llenarTabla('cuerpoEstancia', 'pieEstancia', datosGlobales.estancia, 'resguardado');
+            llenarTabla('cuerpoSujetos', 'pieSujetos', datosGlobales.sujetos, 'identificador');
 
-          loader.classList.remove('d-none');
-          hoja.classList.add('oculto');
-          hoja.classList.remove('visible');
+            document.getElementById('mesCabecera').innerText = meses[select.value-1];
+            document.getElementById('loader').classList.add('d-none');
+            document.getElementById('hojaReporte').classList.replace('oculto', 'visible');
+            document.getElementById('btnExcel').classList.remove('d-none');
+        } catch (e) {
+            alert("Error al cargar datos");
+            document.getElementById('loader').classList.add('d-none');
+        }
+    }
 
-          try {
-              const response = await fetch(`obtener_reporte.php?mes=${select.value}`);
-              const data = await response.json();
+    function llenarTabla(tbodyId, tfootId, lista, campo) {
+        const tbody = document.getElementById(tbodyId);
+        const tfoot = document.getElementById(tfootId);
+        tbody.innerHTML = ""; let sum = 0;
+        lista.forEach((item, i) => {
+            sum += parseInt(item.total);
+            tbody.innerHTML += `<tr><td class="text-center">${i+1}</td><td>${item[campo]}</td><td class="text-center fw-bold">${item.total}</td></tr>`;
+        });
+        tfoot.innerHTML = `<tr class="bg-light fw-bold"><td colspan="2" class="text-end pe-4">TOTAL</td><td class="text-center">${sum}</td></tr>`;
+    }
 
-              // Llenar ambas tablas usando una función genérica
-              llenarTabla('cuerpoMotivos', 'pieMotivos', data.motivos, 'motivo');
-              llenarTabla('cuerpoDestinos', 'pieDestinos', data.destinos, 'municipio');
+    async function descargarExcel() {
+        if (!datosGlobales) return;
+        const wb = new ExcelJS.Workbook();
+        const ws = wb.addWorksheet('Reporte');
 
-              document.getElementById('mesCabecera').innerText = select.options[select.selectedIndex].text;
+        ws.columns = [{ width: 10 }, { width: 50 }, { width: 15 }];
 
-              setTimeout(() => {
-                  loader.classList.add('d-none');
-                  hoja.classList.replace('oculto', 'visible');
-              }, 600);
+        const addSec = (title, rows, prop) => {
+            const rT = ws.addRow([title.toUpperCase()]);
+            ws.mergeCells(`A${rT.number}:C${rT.number}`);
+            rT.font = { bold: true, color: { argb: 'FFFFFF' } };
+            rT.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF717C7D' } };
+            rT.alignment = { horizontal: 'center' };
 
-          } catch (error) {
-              loader.classList.add('d-none');
-              alert("Error al obtener datos.");
-          }
-      }
+            ws.addRow(['No.', 'Descripción', 'Total']).font = { bold: true };
+            let s = 0;
+            rows.forEach((r, i) => {
+                s += parseInt(r.total);
+                ws.addRow([i + 1, r[prop], parseInt(r.total)]);
+            });
+            const rF = ws.addRow(['', 'TOTAL', s]);
+            rF.font = { bold: true };
+            ws.addRow([]);
+        };
 
-      function llenarTabla(tbodyId, tfootId, lista, propiedadNombre) {
-          const tbody = document.getElementById(tbodyId);
-          const tfoot = document.getElementById(tfootId);
-          tbody.innerHTML = "";
-          let sumaTotal = 0;
+        addSec("Motivo del Traslado", datosGlobales.motivos, 'motivo');
+        addSec("Destino (Municipio)", datosGlobales.destinos, 'municipio');
+        addSec("Estancia en el Centro", datosGlobales.estancia, 'resguardado');
+        addSec("Sujeto Protegido", datosGlobales.sujetos, 'identificador');
 
-          if (lista.length === 0) {
-              tbody.innerHTML = `<tr><td colspan="3" class="text-center">No hay registros</td></tr>`;
-          } else {
-              lista.forEach((item, index) => {
-                  sumaTotal += parseInt(item.total);
-                  tbody.innerHTML += `
-                      <tr>
-                          <td class="text-center">${index + 1}</td>
-                          <td class="ps-3">${item[propiedadNombre]}</td>
-                          <td class="text-center fw-bold">${item.total}</td>
-                      </tr>`;
-              });
-          }
-
-          tfoot.innerHTML = `
-              <tr class="bg-light fw-bold">
-                  <td colspan="2" class="text-center">TOTAL</td>
-                  <td class="text-center">${sumaTotal}</td>
-              </tr>`;
-      }
-  </script>
-
+        const buffer = await wb.xlsx.writeBuffer();
+        saveAs(new Blob([buffer]), `Reporte_${meses[select.value-1]}_2026.xlsx`);
+    }
+</script>
 
 
 
@@ -306,6 +256,10 @@ $row=$result->fetch_assoc();
     </div>
   </div>
 </body>
+<!-- En el <head> añadir: -->
+<!-- <script src="https://cloudflare.com"></script> -->
+<!-- 1. LIBRERÍA EXCEL (Carga prioritaria) -->
+    <!-- <script src="https://jsdelivr.net"></script> -->
 <link rel="stylesheet" href="../../css/menuactualizado.css">
 <script src="../../js/menu.js"></script>
 </html>
