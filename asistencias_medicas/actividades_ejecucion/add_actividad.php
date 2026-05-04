@@ -319,7 +319,7 @@ transition: all .2s ease;
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input name="fechaactividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
+            <input name="fechaactividad" class="form-control" type="date" required >
           </div>
         </div>
       </div>
