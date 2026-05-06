@@ -39,8 +39,7 @@
                           <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
                           <?php
                           $select1 = "SELECT DISTINCT folioexpediente FROM statusseguimiento
-                          WHERE (status = 'EN EJECUCION' OR status = 'ANALISIS')
-                          OR (status = 'CONCLUIDO' AND (date_desincorporacion BETWEEN '$datemin' AND '$datemax'))";
+                          ";
                           $answer1 = $mysqli->query($select1);
                           while($valores1 = $answer1->fetch_assoc()){
                             $result_folio = $valores1['folioexpediente'];
