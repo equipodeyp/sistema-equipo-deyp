@@ -36,9 +36,11 @@
       // echo "<br>";
       // echo "para traer el dia de la cita se ocupa folexp, identificador, id_asistencia, fecha_Asistencia";
       // echo "<br>";
-      $getdeatllesasismed = "SELECT * FROM solicitud_asistencia
-                                 WHERE solicitud_asistencia.fecha_solicitud = '$fechatrs' AND solicitud_asistencia.folio_expediente='$folexpunisuj'
-                                 AND solicitud_asistencia.id_sujeto = '$identificadorsuj'";
+      $getdeatllesasismed = "SELECT * FROM cita_asistencia
+                                 INNER JOIN solicitud_asistencia ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
+                                 WHERE cita_asistencia.fecha_asistencia = '$fechatrs' AND solicitud_asistencia.folio_expediente='$folexpunisuj'
+                                 AND solicitud_asistencia.id_sujeto = '$identificadorsuj' AND solicitud_asistencia.etapa != 'CANCELADA'
+                                 AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ')";
       $rgetdeatllesasismed = $mysqli->query($getdeatllesasismed);
       while ($fgetdeatllesasismed = $rgetdeatllesasismed -> fetch_assoc()) {
         // echo "asistencia medica----";
