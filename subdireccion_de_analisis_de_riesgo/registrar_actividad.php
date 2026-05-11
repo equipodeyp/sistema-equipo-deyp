@@ -115,27 +115,6 @@ include("../calculodefechas/calculardiasminimospararegistro.php")
   <div style="text-align:center;padding:15px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
 
     <form method="POST" action="./guardar_actividad.php" enctype= "multipart/form-data">
-      <!-- Contenedor principal de avisos -->
-      <div class="container my-4">
-        <?php if ($mostrar_abril): ?>
-          <section class="mb-5 p-4 border-bottom">
-            <h3 class="display-4 text-success fw-bold">
-              *Para el registro de las actividades realizadas durante el mes de abril de 2026,
-              el sistema estará habilitado hasta el día 30 de abril de 2026 a las 21:00 horas
-            </h3>
-          </section>
-        <?php endif; ?>
-
-        <?php if ($mostrar_mayo): ?>
-          <section class="mb-4 p-4 bg-light rounded-3 shadow-sm">
-            <h3 class="display-4 text-success fw-bold">
-              *En el caso del registro de las actividaes realizadas durante el periodo
-              del 01 al 03 de mayo, deberá realizarse máximo el día 03 de mayo.
-            </h3>
-          </section>
-        <?php endif; ?>
-      </div>
-      <!-- <input  id="act" > -->
       <div class="form-group">
         <label class="col-md-3 control-label">ACTIVIDAD</label>
         <div class="col-md-7 inputGroupContainer">
@@ -352,7 +331,7 @@ include("../calculodefechas/calculardiasminimospararegistro.php")
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
-            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" min="2026-01-01" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
+            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
           </div>
         </div>
       </div>
