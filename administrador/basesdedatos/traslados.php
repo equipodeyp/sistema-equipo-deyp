@@ -98,6 +98,7 @@ $row=$result->fetch_assoc();
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EXPEDIENTE</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID DE LA PP O SP</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EN RESGUARDO</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">LUGAR</th>
                         </tr>
                     </thead>
                     <tbody>
