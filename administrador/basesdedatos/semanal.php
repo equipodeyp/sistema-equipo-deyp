@@ -1,5 +1,23 @@
 <?php
 // error_reporting(0);
+date_default_timezone_set('America/Mexico_City');
+
+$hoy = new DateTime();
+$diaSemana = $hoy->format('N'); // 1 para lunes, 2 para martes, etc.
+
+if ($diaSemana == 1) {
+    // Si es lunes: rango de la SEmana PASADA
+    $lunes = (clone $hoy)->modify('Monday last week');
+    $domingo = (clone $hoy)->modify('Sunday last week');
+} else {
+    // Si es de martes a domingo: rango de la SEmana ACTUAL
+    $lunes = (clone $hoy)->modify('Monday this week');
+    $domingo = (clone $hoy)->modify('Sunday this week');
+}
+
+
+ $fechainicial =  $lunes->format('Y-m-d');
+ $fechafinal = $domingo->format('Y-m-d');
 date_default_timezone_set("America/Mexico_City");
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -24,6 +42,8 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
+
+
 // 2. Tu consulta SQL corregida
 $sql = "SELECT react_actividad.folio_expediente, datospersonales.identificador, react_actividad.fecha, react_contacto_familiar.nombre
 
@@ -33,8 +53,7 @@ JOIN react_actividad_ejecucion
 ON react_actividad.id_actividad = react_actividad_ejecucion.id
 AND react_actividad.id_subdireccion = '4'
 AND react_actividad.id_actividad = '3'
-AND react_actividad.fecha BETWEEN '2026-04-01'
-AND '2026-05-11'
+AND react_actividad.fecha 
 
 JOIN datospersonales
 ON react_actividad.id_sujeto = datospersonales.id
