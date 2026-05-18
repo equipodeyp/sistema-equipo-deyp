@@ -253,13 +253,31 @@ $row=$result->fetch_assoc();
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo "0"?></td>
                                                                         <?php } ?>
 
+                                                                        <?php
+                                                                        date_default_timezone_set('America/Mexico_City');
+                                                                        // $fecha = date("d/m/Y h:i:s a");
+                                                                        // echo date('l');
+                                                                        // echo date("d/m/Y h:i:s a");
+                                                                        if (date("l") === "Monday" && date("h:i:s a") >= "12:00:00 am"){
 
+                                                                        ?>
+                                                                        <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+
+                                                                        <a style="text-decoration: underline;" href="" class="btn btn-outline-warning">
+                                                                                  REGISTRAR EN <br>  PAUSA 
+                                                                        </a>
+                                                                        <?php
+                                                                        } else {?>
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
 
                                                                         <a style="text-decoration: underline;" href="./registrar_seguimiento.php?id_asistencia_medica=<?php echo $row2['id_asistencia']?>" class="btn btn-outline-success">
                                                                                   REGISTRAR <br> SEGUIMIENTO
                                                                         </a>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+
 
                                                                         <!-- <?php 
                                                                           if ($row2['dias_restantes'] >= -4 && $row2['dias_restantes'] <= 0 && $row['servicio_medico'] != 'PSICOLÓGICO') { ?>
