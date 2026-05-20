@@ -468,6 +468,9 @@ $row=$result->fetch_assoc();
                                                                         <a class="btn btn-danger btn-lg" data-dismiss="modal">
                                                                           Cerrar
                                                                         </a>
+                                                                        <a class="btn btn-success btn-lg" href="javascript:imprimirSeleccion('body')">
+                                                                          Imprimir
+                                                                        </a>
                                                                   </div>
 
                                                                 </div>
@@ -509,4 +512,13 @@ $row=$result->fetch_assoc();
 
 </body>
 </html>
-
+<script language="Javascript">
+function imprimirSeleccion(nombre) {
+var ficha = document.getElementById(nombre);
+var ventimp = window.open(' ', 'popimpr');
+ventimp.document.write( ficha.innerHTML );
+ventimp.document.close();
+ventimp.print( );
+ventimp.close();
+}
+</script>

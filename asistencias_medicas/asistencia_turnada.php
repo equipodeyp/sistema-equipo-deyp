@@ -201,28 +201,32 @@ $row=$result->fetch_assoc();
 
                                                               $query_cita = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico, solicitud_asistencia.etapa, DATEDIFF (cita_asistencia.fecha_asistencia, NOW()) AS dias_restantes, cita_asistencia.id_asistencia, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia
 
-                                                                FROM solicitud_asistencia
+                                                                            FROM solicitud_asistencia
 
-                                                                JOIN cita_asistencia 
-                                                                ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-                                                                AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                                WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                                OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'
+                                                                            JOIN cita_asistencia 
+                                                                            ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+                                                                            AND solicitud_asistencia.id_asistencia = '$id_asistencia'
+                                                                            AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+                                                                            AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
+                                                                            
+                                                                            WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
+                                                                            OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'
 
-                                                                ORDER BY cita_asistencia.id DESC
-                                                                LIMIT 1";
+                                                                            ORDER BY cita_asistencia.id DESC
+                                                                            LIMIT 1";
 
 
                                                               $result_cita = mysqli_query($mysqli, $query_cita);
 
                                                               while($row2 = mysqli_fetch_array($result_cita)) {
-                                                                
+
                                                                 
                                                                 if ($id_asistencia == $row2['id_asistencia']){
                                                               ?>
                                                                         <?php
                                                                         $originalDate = $row2['fecha_asistencia'];
                                                                         $date = date("d/m/Y", strtotime($originalDate));
+                                                                        
                                                                         ?>
 
                                                                         <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $date;?></td>
