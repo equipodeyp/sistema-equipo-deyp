@@ -118,18 +118,25 @@ $row=$result->fetch_assoc();
               FROM solicitud_asistencia 
               JOIN cita_asistencia 
               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-              WHERE etapa = 'NOTIFICADA' 
-              OR etapa = 'REPROGRAMADA NOTIFICADA'
               AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY);
+              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
+              AND etapa = 'NOTIFICADA' 
+              OR etapa = 'REPROGRAMADA NOTIFICADA'
               ";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
               if ($fcl['t'] == 0){
+                    $fecha = new DateTime(); // Fecha y hora actual
+                    $dia_semana = $fecha->format('N'); 
+                    $fecha->modify('-' . ($dia_semana - 1) . ' days');
+                    // echo $fecha->format('d-m-Y');
+                    $ultimoDiaSemana = date('d-m-Y', strtotime('next Monday'));
+                    // echo $ultimoDiaSemana; 
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS REGISTRADAS DE LA SEMANA EN CURSO !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>DEL "; echo $fecha->format('d-m-Y'); echo " AL "; echo $ultimoDiaSemana; echo "</h3>
                       </div>
                     </div>";
               } else{
@@ -181,12 +188,12 @@ $row=$result->fetch_assoc();
 
                                                               JOIN cita_asistencia 
                                                               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-
+															                                AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+                                                              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
                                                               AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
                                                               AND solicitud_asistencia.etapa = 'NOTIFICADA' 
                                                               OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'
-                                                              AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                                                              AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                              
 
                                                               ORDER BY cita_asistencia.id ASC
                                                               ";
