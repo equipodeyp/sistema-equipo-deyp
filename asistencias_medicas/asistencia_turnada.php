@@ -133,12 +133,18 @@ $row=$result->fetch_assoc();
                       </div>
                     </div>";
               } else{
+                    $fecha = new DateTime(); // Fecha y hora actual
+                    $dia_semana = $fecha->format('N'); 
+                    $fecha->modify('-' . ($dia_semana - 1) . ' days');
+                    // echo $fecha->format('d-m-Y');
+                    $ultimoDiaSemana = date('d-m-Y', strtotime('next Monday'));
+                    // echo $ultimoDiaSemana; 
                     echo "
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
                             <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
-                            <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
+                            <h3 style='text-align:center'>DEL "; echo $fecha->format('d-m-Y'); echo " AL "; echo $ultimoDiaSemana; echo "</h3>
                           </div>
                         </div>
                       <div>
