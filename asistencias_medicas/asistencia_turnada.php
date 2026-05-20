@@ -114,15 +114,22 @@ $row=$result->fetch_assoc();
               <form class="container well form-horizontal" enctype="multipart/form-data">
 
               <?php
-              $cl = "SELECT COUNT(*) as t FROM solicitud_asistencia 
-              WHERE etapa = 'NOTIFICADA' OR etapa = 'REPROGRAMADA NOTIFICADA'";
+              $cl = "SELECT COUNT(*) as t 
+              FROM solicitud_asistencia 
+              JOIN cita_asistencia 
+              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+              WHERE etapa = 'NOTIFICADA' 
+              OR etapa = 'REPROGRAMADA NOTIFICADA'
+              AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY);
+              ";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
               // echo $fcl['t'];
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MÉDICAS REGISTRADAS DE LA SEMANA EN CURSO !</h3>
                       </div>
                     </div>";
               } else{
@@ -130,6 +137,7 @@ $row=$result->fetch_assoc();
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
+                            <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
                             <h3 style='text-align:center'>ASISTENCIAS MÉDICAS TURNADAS A LA SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS</h3>
                           </div>
                         </div>
@@ -163,11 +171,19 @@ $row=$result->fetch_assoc();
                                                 <?php
                                                 
                                                     $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.servicio_medico
+                                                              FROM solicitud_asistencia
 
-                                                    FROM solicitud_asistencia
-                                                    WHERE solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
-                                                    AND solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                    OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'";
+                                                              JOIN cita_asistencia 
+                                                              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+
+                                                              AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
+                                                              AND solicitud_asistencia.etapa = 'NOTIFICADA' 
+                                                              OR solicitud_asistencia.etapa ='REPROGRAMADA NOTIFICADA'
+                                                              AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+                                                              AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+
+                                                              ORDER BY cita_asistencia.id ASC
+                                                              ";
 
                                                     $result_solicitud = mysqli_query($mysqli, $query);
                                                     $c=0;
