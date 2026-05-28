@@ -69,7 +69,7 @@ $(document).ready(function() {
         setTimeout(function() {
             // 3. Ejecutar consulta Ajax
             $.ajax({
-                url: 'buscar_expedientes.php',
+                url: 'buscar_estudios_tecnicos.php',
                 type: 'POST',
                 data: $('#searchplaneacion_expedientes').serialize(),
                 success: function(response) {
@@ -105,7 +105,7 @@ $(document).ready(function() {
                         text: '<i class="fas fa-file-excel"></i>',
                         titleAttr: 'Exportar a Excel',
                         className: 'btn color-btn-export-xls',
-                        title: 'BD PLANEACION EXPEDIENTES',
+                        title: 'BD PLANEACION ESTUDIOS TECNICOS',
                         // Añade esto para asegurar que tome todas las filas
                         exportOptions: {
                           modifier: {
@@ -317,7 +317,7 @@ $(document).ready(function() {
         setTimeout(function() {
             // 3. Ejecutar consulta Ajax
             $.ajax({
-                url: 'buscar_convenios.php',
+                url: 'buscar_convenios_apoyo.php',
                 type: 'POST',
                 data: $('#searchplaneacion_convenios').serialize(),
                 success: function(response) {

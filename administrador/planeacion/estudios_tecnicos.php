@@ -1,5 +1,4 @@
 <?php
-// error_reporting(0);
 date_default_timezone_set("America/Mexico_City");
 $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -18,7 +17,7 @@ $row=$result->fetch_assoc();
 <head>
   <script src="../../js/botonatras.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>SIPPSIPPED</title>
+  <title>ESTUDIOS TECNICOS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../../js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="../../css/cli.css">
@@ -84,7 +83,7 @@ $row=$result->fetch_assoc();
           <br><br>
           <div class="container" style="display: flex; justify-content: center;">
             <div class="row mt-8">
-              <form id="searchplaneacion_convenios" class="d-flex" style="width: 800px;">
+              <form id="searchplaneacion_expedientes" class="d-flex" style="width: 800px;">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="starfech" class="form-label"><b> Del dia</b></label>
@@ -118,7 +117,7 @@ $row=$result->fetch_assoc();
             <h3>Buscando datos...  Espere </h3>
           </div>
           <!-- Contenedor de resultados -->
-          <div id="resultados_convenios"></div>
+          <div id="resultados_expedientes"></div>
         </b>
         <div class="contenedor">
           <a href="../admin.php" class="btn-flotante">REGRESAR</a>

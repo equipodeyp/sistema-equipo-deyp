@@ -342,7 +342,7 @@ $_SESSION["check_traslado"] = $check_traslado;
 
 
 
-                                        ORDER BY react_actividad.fecha ASC;";
+                                        ORDER BY react_actividad.fecha ASC";
                           $rgetrondin = $mysqli->query($getrondin);
                           while ($fgetrondin = $rgetrondin->fetch_assoc()) {
                             $auxsum = $auxsum +1;

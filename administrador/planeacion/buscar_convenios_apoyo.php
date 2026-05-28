@@ -1,15 +1,25 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 include("../conexion.php");
 // variables de fechas
 $fechaInicio = $_POST['fecha_inicio'];
 $fechaFin = $_POST['fecha_fin'];
+
 // Consulta SQL con el rango de fechas
-$sql = "SELECT * FROM evaluacion_persona
-WHERE analisis != ' '
-AND fecha_aut <= '2026-02-28'
-AND fecha_aut >= '2026-02-01'";
+$sql = "SELECT react_actividad.id_subdireccion, react_actividad.fecha, react_actividad.folio_expediente, react_actividad.id_sujeto, react_actividad.id_evidencia
+
+        FROM react_actividad
+        INNER JOIN react_actividad_apoyo
+        ON react_actividad.id_actividad = react_actividad_apoyo.id 
+        WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
+        AND react_actividad_apoyo.id = '7'
+        AND react_actividad.id_subdireccion = '2'
+        ORDER BY react_actividad.fecha ASC";
+
 $result = $mysqli->query($sql);
+
+
+
 
 if ($result->num_rows > 0) {
   function transformarmesaletra($pasardia, $pasarmes, $pasaranio){
@@ -69,54 +79,43 @@ if ($result->num_rows > 0) {
       <h1> <b>PERIODO DE CONSULTA DE LA INFORMACIÓN</b> </h1><br>
       <h3> <b>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?></b> </h3>
       <div class="table-responsive">
-        <table id="bd_planeacion_expedientes" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="bd_planeacion_convenios" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             </h3>
               <tr>
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NO.</th>
-                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID</th>
-                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">ACTIVIDAD</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">FECHA</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">ID SUJETO</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">NOMENCLATURA</th>
+
               </tr>
           </thead>
           <tbody>
           <?php
           while($row = $result->fetch_assoc()) {
             $auxsum = $auxsum +1;
-            $idunico = $row['id_unico'];
-            $analisis = $fgetrondn['analisis'];
-            $ultimosCinco = substr($row['folioexpediente'], -8);
-           // $ultimoexp = "SELECT * FROM evaluacion_persona WHERE analisis = ' ' ";
-            $getinfosujeto = "SELECT * FROM evaluacion_persona WHERE id = '$idunico'";
-            $rgetinfosujeto = $mysqli->query($getinfosujeto);
-            $fgetinfosujeto  = $rgetinfosujeto ->fetch_assoc();
-            $cadena = $fgetinfosujeto['identificador'];
-            // echo "<br>";
-            $caracter = "-";
-            // Encuentra la posición del carácter
-            $posicion = strpos($cadena, $caracter);
-            // Si el carácter existe en la cadena
-            if ($posicion !== false) {
-              // Extrae la parte de la cadena hasta el carácter
-              $parte = substr($cadena, 0, $posicion);
-              // Imprime la parte de la cadena
-              $parte; // Imprimirá "Hola"
-            }
-            $texto = $parte;
-            // Convertir el texto en un array de caracteres
-            $arrayCaracteres = str_split($texto);
-            // Unir los caracteres con un punto
-            $textoConPuntos = implode(".", $arrayCaracteres);
-            $concatenar_rondin ='Expediente_Exp_'.$ultimosCinco.'_'.$textoConPuntos.'_'.$analisis.'.';
-          ?>
+            $n_actividad = 'Elaborar convenios con personas o instituciones públicas y privadas para la protección de sujetos';
+            $texto_idsujeto = $row['id_sujeto'];
+            $soloLetras_idsujeto = preg_replace('/[^a-zA-ZáéíóúüÁÉÍÓÚÜñÑ]+/', '', $texto_idsujeto);
 
+            $texto_expediente = substr($row['folio_expediente'], -8);
+            $concatenacion = 'Convenio_Exp_'.$texto_expediente.'_'.$row['id_sujeto']; 
+
+          ?>
             <tr>
               <td style="text-align:center; border: 1px solid black;"><?php echo $auxsum; ?></td>
-              <td style="text-align:center; border: 1px solid black;"><?php echo $concatenar_rondin; ?></td>
-              <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row['fecha_firma'])); ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $n_actividad; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row['fecha'])); ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $row['folio_expediente']; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $row['id_sujeto']; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo "$concatenacion"; ?></td>
             </tr>
           <?php
           }
           ?>
+
           </tbody>
         </table>
       </div>

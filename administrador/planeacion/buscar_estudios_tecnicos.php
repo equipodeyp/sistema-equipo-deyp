@@ -4,15 +4,24 @@ include("../conexion.php");
 // variables de fechas
 $fechaInicio = $_POST['fecha_inicio'];
 $fechaFin = $_POST['fecha_fin'];
+
 // Consulta SQL con el rango de fechas
-$sql = "SELECT * FROM evaluacion_persona
-WHERE tipo_convenio != ' '
-AND fecha_firma BETWEEN '$fechaInicio' AND '$fechaFin'";
+$sql = "SELECT react_actividad.id_subdireccion, react_actividad.fecha, react_actividad.id_evidencia, react_actividad.folio_expediente, react_actividad.id_sujeto
+
+        FROM react_actividad
+
+        INNER JOIN react_actividad_apoyo
+        ON react_actividad.id_actividad = react_actividad_apoyo.id 
+        WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
+        AND react_actividad_apoyo.id = '9'
+        AND react_actividad.id_subdireccion = '2'
+
+        ORDER BY react_actividad.fecha ASC";
+
 $result = $mysqli->query($sql);
 
-$sql2 = "SELECT * FROM determinacionincorporacion
-WHERE convenio = 'FORMALIZADO' AND date_convenio BETWEEN '$fechaInicio' AND '$fechaFin'";
-$result2 = $mysqli->query($sql2);
+
+
 
 if ($result->num_rows > 0) {
   function transformarmesaletra($pasardia, $pasarmes, $pasaranio){
@@ -77,43 +86,40 @@ if ($result->num_rows > 0) {
             </h3>
               <tr>
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NO.</th>
-                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID TRASLADO</th>
-                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">ACTIVIDAD</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">FECHA</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">FOLIO EXPEDIENTE</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">ID SUJETO</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;" class="table-header" style="text-align:center">NOMENCLATURA</th>
+
               </tr>
           </thead>
           <tbody>
           <?php
           while($row = $result->fetch_assoc()) {
             $auxsum = $auxsum +1;
-            $idunico = $row['id_unico'];
-            $ultimosCinco = substr($row['folioexpediente'], -8);
-            $concatenar_rondin ='Convenio_Exp_'.$ultimosCinco.'_'.$idunico.'.';
+            $n_actividad = 'Llevar a cabo la revisión jurídica de los Estudios Técnicos elaborados por el Grupo Multidisciplinario';
+            $texto_idsujeto = $row['id_sujeto'];
+
+            $soloLetras_idsujeto = preg_replace('/[^a-zA-ZáéíóúüÁÉÍÓÚÜñÑ]+/', '', $texto_idsujeto);
+
+            $texto_expediente = substr($row['folio_expediente'], -8);
+
+            $concatenacion = 'Expediente_Exp_'.$texto_expediente.'_EstudioTécnico Evaluación de Riesgo'; 
+
           ?>
             <tr>
               <td style="text-align:center; border: 1px solid black;"><?php echo $auxsum; ?></td>
-              <td style="text-align:center; border: 1px solid black;"><?php echo $concatenar_rondin; ?></td>
-              <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row['fecha_firma'])); ?></td>
-            </tr>
-          <?php
-          }
-          while($row2 = $result2->fetch_assoc()) {
-            $auxsum = $auxsum +1;
-            $idsujeto = $row2['id_persona'];
-            $getinfosujeto = "SELECT * FROM datospersonales WHERE id = '$idsujeto'";
-            $rgetinfosujeto = $mysqli->query($getinfosujeto);
-            $fgetinfosujeto = $rgetinfosujeto->fetch_assoc();
-            $idunico = $fgetinfosujeto['identificador'];
-            $ultimosCinco = substr($row2['folioexpediente'], -8);
-            $concatenar_rondin ='Convenio_Exp_'.$ultimosCinco.'_'.$idunico.'.';
-          ?>
-            <tr>
-              <td style="text-align:center; border: 1px solid black;"><?php echo $auxsum; ?></td>
-              <td style="text-align:center; border: 1px solid black;"><?php echo $concatenar_rondin; ?></td>
-              <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row2['date_convenio'])); ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $n_actividad; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo date("d/m/Y", strtotime($row['fecha'])); ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $row['folio_expediente']; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo $row['id_sujeto']; ?></td>
+              <td style="text-align:center; border: 1px solid black;"><?php echo "$concatenacion"; ?></td>
             </tr>
           <?php
           }
           ?>
+
           </tbody>
         </table>
       </div>
