@@ -331,8 +331,8 @@ include("../calculodefechas/calculardiasminimospararegistro.php")
         <div class="col-md-7 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa-regular fa-calendar"></i></span>
-            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
-            <!-- <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required > -->
+            <!-- <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>"> -->
+            <input name="fecha_actividad" id="fecha_actividad" class="form-control" type="date" required >
           </div>
         </div>
       </div>
