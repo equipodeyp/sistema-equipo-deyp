@@ -69,7 +69,7 @@ $(document).ready(function() {
         setTimeout(function() {
             // 3. Ejecutar consulta Ajax
             $.ajax({
-                url: 'buscar_estudios_tecnicos.php',
+                url: 'buscar_expedientes.php',
                 type: 'POST',
                 data: $('#searchplaneacion_expedientes').serialize(),
                 success: function(response) {
