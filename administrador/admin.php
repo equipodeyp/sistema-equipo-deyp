@@ -129,7 +129,7 @@ $mmed =  $ftmf['t'];
                 <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-list menu-nav--icon"></i><strong style="color: white;">PLANEACION</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                     <li class="menu-items"><a href='./planeacion/ruta.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">RUTA</strong></a></li>
-                    <li class="menu-items"><a href='./planeacion/estudios_tecnicos.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
+                    <li class="menu-items"><a href='./planeacion/expedientes.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">EXPEDIENTES</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/traslado.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar menu-nav--icon"></i><strong style="color: white;">TRASLADO</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/evaluacion.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">EVALUACION</strong></a></li>
                     <li class="menu-items"><a href='./planeacion/gestion.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">GESTION</strong></a></li>

@@ -238,6 +238,19 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
+                  <div class="form-group" id="sepresento">
+                    <label for="se_presento" class="col-md-4 control-label" style="font-size: 16px">SE LLEVO A CABO LA ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
+                        <select value class="form-control" id="se_realizo" name="se_realizo">
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="SI">SI</option>
+                          <option value="NO">NO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
 
 
 
@@ -266,6 +279,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                           <option value="CANCELACIÓN">CANCELACIÓN</option>
                           <option value="DESICIÓN DEL SUJETO">DECISIÓN DEL SUJETO</option>
                           <option value="DESINCORPORACIÓN">DESINCORPORACIÓN</option>
+                          <option value="DESINCORPORACIÓN">SIN ATENCIÓN</option>
                           <option value="OTRO">OTRO</option>
                           <option value="RECURSOS">RECURSOS</option>
                         </select>
