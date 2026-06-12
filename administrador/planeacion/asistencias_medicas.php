@@ -32,7 +32,7 @@ while ($var_fila1=$var_resultado1->fetch_array())
   $var_resultado3 = $mysqli->query($consulta3);
   $var_fila3=$var_resultado3->fetch_array();
 
-  $consulta4 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento,
+  $consulta4 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_otorgo,
   seguimiento_asistencia.hospitalizacion, seguimiento_asistencia.cita_seguimiento,
   seguimiento_asistencia.diagnostico
   FROM seguimiento_asistencia
@@ -73,7 +73,7 @@ while ($var_fila1=$var_resultado1->fetch_array())
     echo "<td style='text-align:center; border: 1px solid black;'>"; if ($var_fila1['etapa'] === 'CANCELADA') {
       echo "";
     }else {
-      echo $var_fila4['se_presento'];
+      echo $var_fila4['se_otorgo'];
     } echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; if ($var_fila1['etapa'] === 'CANCELADA') {
       echo "";
