@@ -22,27 +22,6 @@ $id_sujeto = $_POST['id_sujeto'];
 $numero_oficio_solicitud = $_POST['numero_oficio_actividad'];
 $clasificacion = $_POST['clasificacion_actividad'];
 
-// echo $numero_actividad;
-// echo "<br>";
-// echo $cantidad_actividad;
-// echo "<br>";
-// echo $fecha_actividad;
-// echo "<br>";
-// echo $observaciones_actividad;
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-// echo $folio_expediente;
-// echo "<br>";
-// echo $id_sujeto;
-// echo "<br>";
-// echo $numero_oficio_solicitud;
-// echo "<br>";
-// echo $clasificacion;
-// echo "<br>";
-// echo "<br>";
-// echo "<br>";
-
 
 
 $sentencia1=" SELECT* FROM react_actividad_enlace WHERE id = '$numero_actividad'";
@@ -68,39 +47,124 @@ $municipio_actividad = $row1['municipio'];
 $kilometraje_actividad = $row1['kilometraje'];
 $year = date('Y');
 
+// echo 'CONSECUTIVO ACTIVIDAD';
+// echo "<br>";
+// echo $numero_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'CANTIDAD DE ACTIVIDADES';
+// echo "<br>";
+// echo $cantidad_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'FECHA ACTIVIDAD';
+// echo "<br>";
+// echo $fecha_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'OBSERVACIONES';
+// echo "<br>";
+// echo $observaciones_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'FOLIO ESXPEDIENTE';
+// echo "<br>";
+// echo $folio_expediente;
+// echo "<br>";
+// echo "<br>";
+// echo 'ID SUJETO';
+// echo "<br>";
+// echo $id_sujeto;
+// echo "<br>";
+// echo "<br>";
+// echo 'NUMERO DE OFICIO';
+// echo "<br>";
+// echo $numero_oficio_solicitud;
+// echo "<br>";
+// echo "<br>";
+// echo 'CLASIFICACION';
+// echo "<br>";
+// echo $clasificacion;
+// echo "<br>";
+// echo "<br>";
+// echo 'AÑO';
+// echo "<br>";
 // echo $year;
+// echo "<br>";
+// echo "<br>";
+// echo 'NOMBRE ACTVIDAD';
 // echo "<br>";
 // echo $nombre_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'ID ACTIVIDAD';
+// echo "<br>";
 // echo $id_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'SUBDIRECCION ACTIVIDAD';
 // echo "<br>";
 // echo $subdireccion_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'FUNCION ACTIVIDAD';
+// echo "<br>";
 // echo $funcion_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'UNIDAD DE MEDIDA';
 // echo "<br>";
 // echo $unidad_medida_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'INFORME ANUAL';
+// echo "<br>";
 // echo $informe_anual_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'EVIDENCIA ASISTENCOA';
 // echo "<br>";
 // echo $evidencia_interna_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'FOLIO EXPEDIENTE ACTIVIDAD';
+// echo "<br>";
 // echo $folio_expediente_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'ID_SUJETO';
 // echo "<br>";
 // echo $id_sujeto_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'EVIDENCIA ACTIVIDAD';
+// echo "<br>";
 // echo $evidencia_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'CLASIFICACION';
 // echo "<br>";
 // echo $clasificacion_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'REPORTE METAS';
+// echo "<br>";
 // echo $reporte_metas_actividad;
+// echo "<br>";
+// echo "<br>";
+// echo 'REPORTE ACTIVIDAD';
 // echo "<br>";
 // echo $municipio_actividad;
 // echo "<br>";
+// echo "<br>";
+// echo 'KILOMETRAJE';
+// echo "<br>";
 // echo $kilometraje_actividad;
+// echo "<br>";
 // echo "<br>";
 
 
-if ($numero_actividad === '9' && $folio_expediente_actividad === 'SI' && $id_sujeto_actividad === 'Lista Acumulada' && $clasificacion_actividad === 'Lista Desplegable'){
+if ($numero_actividad === '9'){
     // echo "<br>";
     // echo $numero_actividad;
 
@@ -133,7 +197,7 @@ else if ($numero_actividad === '1' || $numero_actividad === '4' || $numero_activ
 
 } 
 
-else {
+else if ($numero_actividad === '2' || $numero_actividad === '3' || $numero_actividad === '5'){
     // echo "<br>";
     // echo $numero_actividad;
 
@@ -151,17 +215,17 @@ else {
 
 
 
-
-// $query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
-// reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
-// folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
-// observaciones, informe_anual, usuario, year) 
-// VALUES ('$consecutivo_actividad', '$id_actividad', '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
-// '$reporte_metas_actividad', '$clasificacion_actividad', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
-// '$folio_expediente_actividad', '$id_sujeto_actividad', '$evidencia_interna_actividad', '$evidencia_actividad', '$kilometraje_actividad', 
-// '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
-// $resultado = $mysqli->query($query);
-
+else {
+    $query = "INSERT INTO react_actividad (consecutivosub, idactividad, id_subdireccion, funcion, id_actividad, unidad_medida, 
+    reporte_metas, clasificacion, fecha, cantidad, entidad_municipio, 
+    folio_expediente, id_sujeto, evidencia_interna, id_evidencia, kilometraje, 
+    observaciones, informe_anual, usuario, year) 
+    VALUES ('$consecutivo_actividad', '$id_actividad', '$subdireccion_actividad', '$funcion_actividad', '$numero_actividad', '$unidad_medida_actividad', 
+    '$reporte_metas_actividad', '$clasificacion_actividad', '$fecha_actividad', '$cantidad_actividad', '$municipio_actividad', 
+    '$folio_expediente', '$id_sujeto', '$evidencia_interna_actividad', '$evidencia_actividad', '$kilometraje_actividad', 
+    '$observaciones_actividad', '$informe_anual_actividad', '$name', '$year')";
+    $resultado = $mysqli->query($query);
+}
 
 
 

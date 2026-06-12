@@ -223,11 +223,12 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
-                  <div class="form-group" id="sepresento">
+
+                  <!-- <div class="form-group" id="se_presento_div" style="display: none;">
                     <label for="se_presento" class="col-md-4 control-label" style="font-size: 16px">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
                         <select value class="form-control" id="se_presento" name="se_presento">
                           <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                           <option value="SI">SI</option>
@@ -235,18 +236,40 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
 
-                  <div class="form-group" id="sepresento">
-                    <label for="se_presento" class="col-md-4 control-label" style="font-size: 16px">SE LLEVO A CABO LA ASISTENCIA MÉDICA</label>
+                  <div class="form-group" id="se_otorgo_div" style="display: none;">
+                    <label for="se_presento" class="col-md-4 control-label" style="font-size: 16px">SE OTORGÓ EL SERVICIO</label>
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-solid fa-stethoscope"></i></span>
-                        <select value class="form-control" id="se_realizo" name="se_realizo">
+                        <select value class="form-control" id="se_otorgo" name="se_otorgo">
                           <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                           <option value="SI">SI</option>
                           <option value="NO">NO</option>
+                        </select>
+                      </div>
+                    <h5  id="nota" style="display: none;"style="text-align: justify;" >Al elegir esta opcion la asitencia médica quedará en etapa de completada; se realiza el traslado pero no se otorga el servicio. Elige el motivo según corresponda. En caso de requerir reprogramar la asitencia médica deberá realizarse mediante una nueva solicitud.</h5>
+                    </div>
+                  </div>
+
+
+
+
+
+                  <div class="form-group" id="motivo_div" style="display: none;">
+                    <label for="motivo" class="col-md-4 control-label" style="font-size: 16px">MOTIVO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-check"></i></span>
+                        <select value class="form-control" id="motivo" name="motivo">
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="CANCELACIÓN">CANCELACIÓN</option>
+                          <option value="DESICIÓN DEL SUJETO">DECISIÓN DEL SUJETO</option>
+                          <option value="DESINCORPORACIÓN">DESINCORPORACIÓN</option>
+                          <option value="OTRO">OTRO</option>
+                          <option value="RECURSOS">POR RECURSOS</option>
                         </select>
                       </div>
                     </div>
@@ -254,11 +277,12 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
+
                   <div class="form-group" id="reprogramar_div" style="display: none;">
                     <label for="reprogramar" class="col-md-4 control-label" style="font-size: 16px">REPROGRAMAR ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-car"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-clock"></i></span>
                         <select value class="form-control" id="reprogramar" name="reprogramar">
                           <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                           <option value="SI">SI</option>
@@ -269,31 +293,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
-                  <div class="form-group" id="motivo_div" style="display: none;">
-                    <label for="motivo" class="col-md-4 control-label" style="font-size: 16px">MOTIVO</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-car"></i></span>
-                        <select value class="form-control" id="motivo" name="motivo">
-                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                          <option value="CANCELACIÓN">CANCELACIÓN</option>
-                          <option value="DESICIÓN DEL SUJETO">DECISIÓN DEL SUJETO</option>
-                          <option value="DESINCORPORACIÓN">DESINCORPORACIÓN</option>
-                          <option value="DESINCORPORACIÓN">SIN ATENCIÓN</option>
-                          <option value="OTRO">OTRO</option>
-                          <option value="RECURSOS">RECURSOS</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
 
-
-
-        
-
-
-
-        <div id=division_1>
 
                   <!-- <div class="form-group">
                     <label for="policia_investigacion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
@@ -307,7 +307,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="hospitalizacion_div" style="display: none;">
                     <label for="hospitalizacion" class="col-md-4 control-label" style="font-size: 16px">HOSPITALIZACIÓN</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -323,7 +323,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="diagnostico_div" style="display: none;">
                     <label for="diagnostico" class="col-md-4 control-label" style="font-size: 16px">DIAGNÓSTICO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -336,7 +336,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="cita_seguimiento_div" style="display: none;">
                     <label for="cita_seguimiento" class="col-md-4 control-label">REQUIERE CITA DE SEGUIMIENTO</label>
                     <div class="col-md-4">
                       <div class="input-group">
@@ -351,31 +351,30 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="informe_medico_div" style="display: none;">
                     <label for="informe_medico" class="col-md-4 control-label" style="font-size: 16px">INFORME MÉDICO</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <textarea onkeypress="cancelar()" value name="informe_medico" id="informe_medico" rows="6" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" value name="informe_medico" id="informe_medico" rows="6" cols="34" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
-
-        </div>
-
+                </div>
 
 
-                  <div class="form-group">
+
+                  <div class="form-group" id="observaciones_seguimiento_div" style="display: none;">
                     <label for="observaciones_seguimiento" class="col-md-4 control-label" style="font-size: 16px">COMENTARIOS </label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <textarea onkeypress="cancelar()" value name="observaciones_seguimiento" id="observaciones_seguimiento" rows="3" cols="33" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
+                        <textarea onkeypress="cancelar()" value name="observaciones_seguimiento" id="observaciones_seguimiento" rows="3" cols="34" maxlength="1000" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"></textarea>
                       </div>
                     </div>
                   </div>
 
 
 
-                  <div class="form-group">
+                  <div class="form-group" id="registrar_div" style="display: none;">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
                       <br>
@@ -413,15 +412,16 @@ function cancelar() {
 </script>
 
 
+
+
+
 <script type="text/javascript">
+  
+
 
   var trasladoRealizado = document.getElementById('traslado');
-
   var respuestaSeleccionada;
   var respuestaObtenida;
-
-
-
 
   trasladoRealizado.addEventListener('change', obtenerRespuesta);
   
@@ -431,120 +431,52 @@ function cancelar() {
     respuestaObtenida = respuestaSeleccionada;
 
 
+    if (respuestaObtenida === "SI" ){
 
+          document.getElementById("se_otorgo_div").style.display = "";
 
-    var sePresento = document.getElementById('se_presento');
-
-    var respuestaSeleccionada2;
-    var respuestaObtenida2;
-
-
-
-
-    sePresento.addEventListener('change', obtenerRespuesta2);
-
-    function obtenerRespuesta2(e){
-
-      respuestaSeleccionada2 = e.target.value;
-      respuestaObtenida2 = respuestaSeleccionada2;
-
-        if (respuestaObtenida == "SI" && respuestaObtenida2 == "NO"){
-
-          document.getElementById("division_1").style.display = "none";
-          document.getElementById("reprogramar_div").style.display = "";
-          document.getElementById("motivo_div").style.display = "";
-          // document.getElementById("guardar").style.display = "";
-          // document.getElementById("registrar_seguimiento").style.display = "none";
-
-
-          document.getElementById("policia_investigacion").value = "";
-          document.getElementById("hospitalizacion").value = "";
-          document.getElementById("diagnostico").value = "";
-          document.getElementById("cita_seguimiento").value = "";
-          document.getElementById("informe_medico").value = "";
-          document.getElementById("observaciones_seguimiento").value = "";
-
-          document.getElementById("reprogramar").value = "";
-          document.getElementById("motivo").value = "";
-
-          // console.log (respuestaObtenida);
-          // console.log (respuestaObtenida2);
-
-        } 
-        
-        else if(respuestaObtenida == "SI" && respuestaObtenida2 == "SI"){
-
-          document.getElementById("division_1").style.display = "";
-          document.getElementById("reprogramar_div").style.display = "";
           document.getElementById("motivo_div").style.display = "none";
-          // document.getElementById("guardar").style.display = "none";
-          // document.getElementById("registrar_seguimiento").style.display = "";
+          document.getElementById("reprogramar_div").style.display = "none";
+          document.getElementById("hospitalizacion_div").style.display = "none";
+          document.getElementById("diagnostico_div").style.display = "none";
+          document.getElementById("cita_seguimiento_div").style.display = "none";
+          document.getElementById("informe_medico_div").style.display = "none";
+          document.getElementById("observaciones_seguimiento_div").style.display = "none";
+          document.getElementById("registrar_div").style.display = "none";
 
-          document.getElementById("policia_investigacion").value = "";
+          document.getElementById("motivo").value = "";
+          document.getElementById("reprogramar").value = "";
           document.getElementById("hospitalizacion").value = "";
           document.getElementById("diagnostico").value = "";
           document.getElementById("cita_seguimiento").value = "";
           document.getElementById("informe_medico").value = "";
           document.getElementById("observaciones_seguimiento").value = "";
-
-          // console.log (respuestaObtenida);
-          // console.log (respuestaObtenida2);
-        }
 
 
     }
 
+    else {
+          document.getElementById("motivo_div").style.display = "";
+          document.getElementById("reprogramar_div").style.display = "";
+          document.getElementById("observaciones_seguimiento_div").style.display = "";
+          document.getElementById("registrar_div").style.display = "";
+        
+          document.getElementById("se_otorgo_div").style.display = "none";
+          document.getElementById("hospitalizacion_div").style.display = "none";
+          document.getElementById("diagnostico_div").style.display = "none";
+          document.getElementById("cita_seguimiento_div").style.display = "none";
+          document.getElementById("informe_medico_div").style.display = "none";
+          
+          document.getElementById("se_otorgo").value = "";
+          document.getElementById("motivo").value = "";
+          document.getElementById("reprogramar").value = "";
+          document.getElementById("hospitalizacion").value = "";
+          document.getElementById("diagnostico").value = "";
+          document.getElementById("cita_seguimiento").value = "";
+          document.getElementById("informe_medico").value = "";
+          document.getElementById("observaciones_seguimiento").value = "";
 
-}
-
-
-
-
-var trasladoRealizado2 = document.getElementById('traslado');
-
-var respuestaSeleccionada3;
-var respuestaObtenida3;
-
-
-
-
-trasladoRealizado2.addEventListener('change', obtenerRespuesta3);
-
-function obtenerRespuesta3(e){
-
-  respuestaSeleccionada3 = e.target.value;
-  respuestaObtenida3 = respuestaSeleccionada3;
-
-  if (respuestaObtenida3 == "NO" ){
-
-    document.getElementById("division_1").style.display = "none";
-    document.getElementById("reprogramar_div").style.display = "";
-    document.getElementById("motivo_div").style.display = "";
-    // document.getElementById("guardar").style.display = "";
-    // document.getElementById("registrar_seguimiento").style.display = "none";
-    document.getElementById("sepresento").style.display = "none";
-
-    document.getElementById("policia_investigacion").value = "";
-    document.getElementById("hospitalizacion").value = "";
-    document.getElementById("diagnostico").value = "";
-    document.getElementById("cita_seguimiento").value = "";
-    document.getElementById("informe_medico").value = "";
-    document.getElementById("observaciones_seguimiento").value = "";
-    document.getElementById("se_presento").value = "";
-
-  } else {
-
-    // document.getElementById("registrar_seguimiento").style.display = "";
-    // document.getElementById("guardar").style.display = "none";
-    document.getElementById("reprogramar_div").style.display = "none";
-    document.getElementById("motivo_div").style.display = "none";
-    document.getElementById("division_1").style.display = "";
-    document.getElementById("sepresento").style.display = "";
-
-    document.getElementById("reprogramar").value = "";
-    document.getElementById("motivo").value = "";
-    document.getElementById("observaciones_seguimiento").value = "";
-
+    }
 
 
   }
@@ -552,11 +484,68 @@ function obtenerRespuesta3(e){
 
 
 
+  var servicioOtorgado = document.getElementById('se_otorgo');
+  var respuestaServicio;
+  var respuestaObtenidaServicio;
+
+  servicioOtorgado.addEventListener('change', obtenerRespuestaServicio);
+  
+  function obtenerRespuestaServicio(e){
+
+    respuestaServicio = e.target.value;
+    respuestaObtenidaServicio = respuestaServicio;
 
 
-}
+    if (respuestaObtenidaServicio === "SI" ){
 
 
+          document.getElementById("motivo_div").style.display = "none";
+          document.getElementById("reprogramar_div").style.display = "none";
+          document.getElementById("nota").style.display = "none";
+
+          document.getElementById("hospitalizacion_div").style.display = "";
+          document.getElementById("diagnostico_div").style.display = "";
+          document.getElementById("cita_seguimiento_div").style.display = "";
+          document.getElementById("informe_medico_div").style.display = "";
+          document.getElementById("observaciones_seguimiento_div").style.display = "";
+          document.getElementById("registrar_div").style.display = "";
+
+          document.getElementById("motivo").value = "";
+          document.getElementById("reprogramar").value = "";
+          document.getElementById("hospitalizacion").value = "";
+          document.getElementById("diagnostico").value = "";
+          document.getElementById("cita_seguimiento").value = "";
+          document.getElementById("informe_medico").value = "";
+          document.getElementById("observaciones_seguimiento").value = "";
+
+
+    }
+
+    else {
+          document.getElementById("motivo_div").style.display = "";
+          document.getElementById("observaciones_seguimiento_div").style.display = "";
+          document.getElementById("registrar_div").style.display = "";
+          document.getElementById("nota").style.display = "";
+        
+          document.getElementById("reprogramar_div").style.display = "none";
+          document.getElementById("hospitalizacion_div").style.display = "none";
+          document.getElementById("diagnostico_div").style.display = "none";
+          document.getElementById("cita_seguimiento_div").style.display = "none";
+          document.getElementById("informe_medico_div").style.display = "none";
+          
+
+          document.getElementById("motivo").value = "";
+          document.getElementById("reprogramar").value = "";
+          document.getElementById("hospitalizacion").value = "";
+          document.getElementById("diagnostico").value = "";
+          document.getElementById("cita_seguimiento").value = "";
+          document.getElementById("informe_medico").value = "";
+          document.getElementById("observaciones_seguimiento").value = "";
+
+    }
+
+
+  }
 
 
 

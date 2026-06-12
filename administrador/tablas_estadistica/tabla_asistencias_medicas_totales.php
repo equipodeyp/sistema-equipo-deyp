@@ -27,7 +27,7 @@ while ($var_fila1=$var_resultado1->fetch_array())
   $var_resultado3 = $mysqli->query($consulta3);
   $var_fila3=$var_resultado3->fetch_array();
 
-  $consulta4 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento,
+  $consulta4 = "SELECT seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_otorgo,
   seguimiento_asistencia.hospitalizacion, seguimiento_asistencia.cita_seguimiento,
   seguimiento_asistencia.diagnostico
   FROM seguimiento_asistencia
@@ -61,7 +61,7 @@ while ($var_fila1=$var_resultado1->fetch_array())
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo date("d/m/Y", strtotime($var_fila3['fecha_asistencia'])); echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila3['hora_asistencia']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila4['traslado_realizado']; echo "</td>";
-    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila4['se_presento']; echo "</td>";
+    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila4['se_otorgo']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila4['hospitalizacion']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila4['cita_seguimiento']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila4['diagnostico']; echo "</td>";
