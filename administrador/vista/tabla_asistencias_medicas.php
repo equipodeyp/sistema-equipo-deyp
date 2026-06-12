@@ -19,7 +19,7 @@
       <th style="width: 5%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">FECHA ASISTENCIA</th>
       <th style="width: 4%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">HORA ASISTENCIA</th>
       <th style="width: 5%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">TRASLADO REALIZADO</th>
-      <th style="width: 4%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">SE PRESENTÓ</th>
+      <th style="width: 4%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">SE OTORGO</th>
       <th style="width: 5%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">HOSPITALIZACIÓN</th>
       <th style="width: 5%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">CITA DE SEGUIMIENTO</th>
       <th style="width: 8%; text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">DIAGNÓSTICO</th>
