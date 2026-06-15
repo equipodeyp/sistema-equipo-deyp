@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 require 'conexion.php';
 session_start ();
 $verifica = $_SESSION["verifica"];
@@ -94,7 +94,7 @@ $query2 = "INSERT INTO cita_asistencia(folio_expediente, id_sujeto, id_asistenci
 VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$fecha_asistencia', '$hora_asistencia', '$id_servidor')";
 $result2= $mysqli->query($query2);
 
-$query3 = "INSERT INTO seguimiento_asistencia(id_asistencia, traslado_realizado, se_presento, reprogramar, motivo, nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra)
+$query3 = "INSERT INTO seguimiento_asistencia(id_asistencia, traslado_realizado, se_otorgo, reprogramar, motivo, nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra)
 VALUES ('$id_asistencia_medica', 'NO APLICA', 'NO APLICA', 'NO APLICA', 'NO APLICA', ' NO APLICA', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$informe_medico', '$observaciones', '$id_servidor')";
 $result3 = $mysqli->query($query3);
 
