@@ -197,7 +197,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                     $count = 0;
 
-                                                    $query = "SELECT solicitud_asistencia.id_asistencia, seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_presento, 
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, seguimiento_asistencia.traslado_realizado, seguimiento_asistencia.se_otorgo, 
                                                     seguimiento_asistencia.nombre_pdi, seguimiento_asistencia.diagnostico, seguimiento_asistencia.cita_seguimiento, 
                                                     seguimiento_asistencia.observaciones_seguimiento, solicitud_asistencia.etapa, seguimiento_asistencia.fecha_registro
                                                     FROM solicitud_asistencia
@@ -219,7 +219,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['traslado_realizado']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['se_presento']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['se_otorgo']?></td>
                                                             <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['nombre_pdi']?></td> -->
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['diagnostico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['cita_seguimiento']?></td>
