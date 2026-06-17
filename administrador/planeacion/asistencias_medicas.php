@@ -56,11 +56,9 @@ while ($var_fila1=$var_resultado1->fetch_array())
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila1['id_sujeto']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila1['id_asistencia']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo date("d/m/Y", strtotime($var_fila1['fecha_solicitud'])); echo "</td>";
-    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila1['tipo_requerimiento']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila1['servicio_medico']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila1['etapa']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila1['id_servidor']; echo "</td>";
-    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila2['tipo_institucion']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila2['nombre_institucion']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila2['municipio_institucion']; echo "</td>";
     echo "<td style='text-align:center; border: 1px solid black;'>"; echo date("d/m/Y", strtotime($var_fila3['fecha_asistencia'])); echo "</td>";
@@ -79,18 +77,7 @@ while ($var_fila1=$var_resultado1->fetch_array())
       echo "";
     }else {
       echo $var_fila4['hospitalizacion'];
-    } echo "</td>";
-    echo "<td style='text-align:center; border: 1px solid black;'>"; if ($var_fila1['etapa'] === 'CANCELADA') {
-      echo "";
-    }else {
-      echo $var_fila4['cita_seguimiento'];
-    } echo "</td>";
-    echo "<td style='text-align:center; border: 1px solid black;'>"; if ($var_fila1['etapa'] === 'CANCELADA') {
-      echo "";
-    }else {
-      echo $var_fila4['diagnostico'];
-    } echo "</td>";
-    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $var_fila5['total']; echo "</td>";
+    } echo "</td>";    
     echo "</tr>";
   }
 ?>
