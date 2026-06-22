@@ -113,6 +113,7 @@ while ($fconteotrasdestino = $rconteotrasdestino->fetch_assoc()) {
   <td style="text-align:center; border: 1px solid black;"><?php echo $fconteotrasdestino['identificador']; ?></td>
   <td style="text-align:center; border: 1px solid black;"><?php echo $resguardado; ?></td>
   <td style="text-align:center; border: 1px solid black;"><?php echo $fconteotrasdestino['lugar']; ?></td>
+  <td style="text-align:center; border: 1px solid black;"><?php echo $fconteotrasdestino['id_asistenciamedica']; ?></td>
 </tr>
 <?php
 $auxsum2 = $auxsum2 +1;

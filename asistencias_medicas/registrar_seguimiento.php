@@ -276,6 +276,23 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                   </div>
 
 
+                  <div class="form-group" id="motivo_div2" style="display: none;">
+                    <label for="motivo" class="col-md-4 control-label" style="font-size: 16px">MOTIVO</label>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-check"></i></span>
+                        <select value class="form-control" id="motivo2" name="motivo2">
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="CANCELACIÓN">CANCELACIÓN</option>
+                          <option value="DESICIÓN DEL SUJETO">DECISIÓN DEL SUJETO</option>
+                          <option value="OTRO">OTRO</option>
+                          <option value="RECURSOS">POR RECURSOS</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
 
 
                   <div class="form-group" id="reprogramar_div" style="display: none;">
@@ -460,7 +477,7 @@ function cancelar() {
           document.getElementById("reprogramar_div").style.display = "";
           document.getElementById("observaciones_seguimiento_div").style.display = "";
           document.getElementById("registrar_div").style.display = "";
-        
+          document.getElementById("motivo_div2").style.display = "none";
           document.getElementById("se_otorgo_div").style.display = "none";
           document.getElementById("hospitalizacion_div").style.display = "none";
           document.getElementById("diagnostico_div").style.display = "none";
@@ -522,11 +539,12 @@ function cancelar() {
     }
 
     else {
-          document.getElementById("motivo_div").style.display = "";
+          document.getElementById("motivo_div2").style.display = "";
           document.getElementById("observaciones_seguimiento_div").style.display = "";
           document.getElementById("registrar_div").style.display = "";
           document.getElementById("nota").style.display = "";
-        
+
+          document.getElementById("motivo_div").style.display = "none";
           document.getElementById("reprogramar_div").style.display = "none";
           document.getElementById("hospitalizacion_div").style.display = "none";
           document.getElementById("diagnostico_div").style.display = "none";

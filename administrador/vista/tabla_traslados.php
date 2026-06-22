@@ -12,7 +12,8 @@
       <th style="width: 13%;  text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">EXPEDIENTE</th>
       <th style="width: 5%;   text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">ID SUJETO</th>
       <th style="width: 5%;   text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">EN RESGUARDO</th>
-      <th style="width: 18%;  text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">LUGAR</th>
+      <th style="width: 15%;  text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">LUGAR</th>
+      <th style="width: 11%;  text-align:center; color: white; border: 1px solid black; background-color: #333; vertical-align: middle;">ID ASISTENCIA MEDICA</th>
     </tr>
   </thead>
   <tbody>
