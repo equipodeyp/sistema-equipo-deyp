@@ -342,6 +342,32 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
   </div>
 
 
+<script type="text/javascript">
+function cancelar() {
+    var key = event.keyCode;
+
+    if (key === 13) {
+        event.preventDefault();
+    }
+}
+</script>
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+      dd='0'+dd
+  }
+  if(mm<10){
+      mm='0'+mm
+  }
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("fecha_asistencia").setAttribute("min", today);
+</script>
+
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
