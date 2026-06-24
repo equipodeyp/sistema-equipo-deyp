@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -174,7 +175,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <label for="id_asistencia" class="col-md-4 control-label">ID ASISTENCIA MÉDICA</label>
                     <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-briefcase-medical"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
                         <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
                       </div>
                     </div>
@@ -224,19 +225,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
-                  <!-- <div class="form-group" id="se_presento_div" style="display: none;">
-                    <label for="se_presento" class="col-md-4 control-label" style="font-size: 16px">SE PRESENTÓ A LA ASISTENCIA MÉDICA</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-user"></i></span>
-                        <select value class="form-control" id="se_presento" name="se_presento">
-                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                          <option value="SI">SI</option>
-                          <option value="NO">NO</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div> -->
+
 
 
                   <div class="form-group" id="se_otorgo_div" style="display: none;">
@@ -311,16 +300,6 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
 
 
 
-
-                  <!-- <div class="form-group">
-                    <label for="policia_investigacion" class="col-md-4 control-label" style="font-size: 16px">POLICIA DE INVESTIGACIÓN A CARGO DEL TRASLADO</label>
-                    <div class="col-md-4">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-user-secret"></i></span>
-                        <input value autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="policia_investigacion" name="policia_investigacion" placeholder="NOMBRE DEL P.D.I.">
-                      </div>
-                    </div>
-                  </div> -->
 
 
 
@@ -566,6 +545,36 @@ function cancelar() {
   }
 
 
+  var motivo = document.getElementById('motivo');
+  var respuestaSeleccionadamotivo;
+  var respuestaObtenidamotivo;
+
+  motivo.addEventListener('change', obtenerRespuestamotivo);
+  
+  function obtenerRespuestamotivo(e){
+
+    respuestaSeleccionadamotivo = e.target.value;
+    respuestaObtenidamotivo = respuestaSeleccionadamotivo;
+
+
+    if (respuestaObtenidamotivo === "DESINCORPORACIÓN" ){
+
+          document.getElementById("reprogramar_div").style.display = "none";
+          document.getElementById("reprogramar").value = "";
+
+
+
+    }
+
+    else {
+          document.getElementById("reprogramar_div").style.display = "";
+          document.getElementById("reprogramar").value = "";
+
+
+    }
+
+
+  }
 
 
   </script>

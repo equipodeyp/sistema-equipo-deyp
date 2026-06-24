@@ -142,7 +142,7 @@ $observaciones_seguimiento = $_POST['observaciones_seguimiento'];
 
 
 
-    else if ($traslado == 'NO' && $reprogramar == 'NO'){
+    else if ($traslado == 'NO' && $reprogramar == 'NO' || $traslado == 'NO' && $motivo == 'DESINCORPORACIÓN'){
 
         $etapa = "CANCELADA";
         // echo $etapa;
