@@ -164,7 +164,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                 <li><a href="#" onclick="location.href='asistencias_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">ASISTENCIA REGISTRADAS</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
-                <form method="POST" action="guardar_asistencia.php">
+                <form method="POST" action="guardar_asistencia.php" id="myForm">
                   <div class="alert div-title">
                     <h3 style="text-align:center">REGISTRAR ASISTENCIA PSICOLÓGICA</h3>
                   </div>
@@ -286,6 +286,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                       <div class="input-group">
                         <span class="input-group-addon"></span>
                         <input required name="fecha_asistencia" type="date" class="form-control input-group-addon"  id="fecha_asistencia" value="">
+                        <p id="mensaje" style="color: red;"></p>
                       </div>
                     </div>
                   </div>
@@ -328,6 +329,10 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
+
+
+
+
                 </form>
               </div>
             </div>
@@ -343,28 +348,73 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 <script type="text/javascript">
-function cancelar() {
-    var key = event.keyCode;
+// function cancelar() {
+//     var key = event.keyCode;
 
-    if (key === 13) {
-        event.preventDefault();
-    }
-}
+//     if (key === 13) {
+//         event.preventDefault();
+//     }
+// }
 </script>
 
 <script type="text/javascript">
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
-if(dd<10){
-      dd='0'+dd
-  }
-  if(mm<10){
-      mm='0'+mm
-  }
-today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("fecha_asistencia").setAttribute("min", today);
+
+// var today = new Date();
+// var dd = today.getDate();
+// var mm = today.getMonth()+1; //January is 0!
+// var yyyy = today.getFullYear();
+// if(dd<10){
+//       dd='0'+dd
+//   }
+//   if(mm<10){
+//       mm='0'+mm
+//   }
+// today = yyyy+'-'+mm+'-'+dd;
+// document.getElementById("fecha_asistencia").setAttribute("min", today);
+
+
+
+const inputFecha = document.getElementById('fecha_asistencia');
+const form = document.getElementById('myForm');
+const mensaje = document.getElementById('mensaje');
+
+
+// inicio y fin de la semana actual
+const hoy = new Date();
+const diaSemana = hoy.getDay(); // 0 (Dom) a 6 (Sáb)
+
+// el inicio de semana sea Lunes (si quieres iniciar en Domingo, cambia el 1 por un 0)
+const diff = hoy.getDate() - diaSemana + (diaSemana === 0 ? -6 : 1); 
+const lunes = new Date(hoy.setDate(diff));
+const domingo = new Date(hoy.setDate(lunes.getDate() + 6));
+
+// Establecer los límites del input en formato YYYY-MM-DD
+inputFecha.min = lunes.toISOString().split('T')[0];
+inputFecha.max = domingo.toISOString().split('T')[0];
+
+// Validar al enviar el formulario
+form.addEventListener('submit', function(event) {
+    const fechaSeleccionada = new Date(inputFecha.value);
+    
+    // Validar si es fin de semana (opcional, ajusta según tu regla)
+    // const diaSeleccionado = fechaSeleccionada.getDay();
+    // if (diaSeleccionado === 0 || diaSeleccionado === 6) {
+    //     mensaje.textContent = "Por favor, selecciona un día laborable de la semana en curso.";
+    //     event.preventDefault(); // Evita el envío del formulario
+    // }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 

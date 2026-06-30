@@ -105,7 +105,7 @@ $(document).ready(function() {
                         text: '<i class="fas fa-file-excel"></i>',
                         titleAttr: 'Exportar a Excel',
                         className: 'btn color-btn-export-xls',
-                        title: 'BD PLANEACION ESTUDIOS TECNICOS',
+                        title: 'BD PLANEACION EXPEIENTES',
                         // Añade esto para asegurar que tome todas las filas
                         exportOptions: {
                           modifier: {

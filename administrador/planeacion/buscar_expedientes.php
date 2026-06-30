@@ -81,7 +81,7 @@ if ($result->num_rows > 0) {
       <h1> <b>PERIODO DE CONSULTA DE LA INFORMACIÓN</b> </h1><br>
       <h3> <b>DEL <?php transformarmesaletra($diainicial, $mesnumeroinicial, $anioinicial); ?> AL <?php transformarmesaletra($diafinal, $mesnumerofinal, $aniofinal); ?></b> </h3>
       <div class="table-responsive">
-        <table id="bd_planeacion_convenios" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="bd_planeacion_expedientes" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             </h3>
               <tr>
