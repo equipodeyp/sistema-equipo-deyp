@@ -11,7 +11,7 @@ if (isset($_POST['actividad'])) {
         $select1 = "SELECT m.folioexpediente
 FROM medidas m
 INNER JOIN statusseguimiento s ON m.folioexpediente = s.folioexpediente
-WHERE s.status = 'EN EJECUCION'
+WHERE (s.status = 'EN EJECUCION' || s.status = 'ANALISIS')
   AND m.estatus = 'EN EJECUCION'
 GROUP BY m.folioexpediente
 HAVING COUNT(DISTINCT m.id_persona) > SUM(m.medida = 'VIII. ALOJAMIENTO TEMPORAL')
@@ -28,7 +28,7 @@ ORDER BY m.folioexpediente ASC;";
                     FROM medidas
                     INNER JOIN statusseguimiento ON medidas.folioexpediente = statusseguimiento.folioexpediente
                     WHERE (medidas.medida ='VIII. ALOJAMIENTO TEMPORAL' AND medidas.estatus='EN EJECUCION')
-                      AND statusseguimiento.status ='EN EJECUCION'
+                      AND (statusseguimiento.status ='EN EJECUCION' || statusseguimiento.status ='ANALISIS')
                     ORDER BY medidas.id ASC";
     }
 
