@@ -61,7 +61,6 @@
                   <label for="" class="col-md-4 control-label">SUBDIRECCIÓN:</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <!-- <input style="width: 800px; height: 30px;" name="" type="text" class="form-control"  id="" name="" placeholder="" value="<?php echo $fsubdir['subdireccion'];; ?>" readonly> -->
                       <textarea style="width: 800px; height: 28px; resize: none" name="" rows="8" cols="80" disabled><?php echo $fsubdir['subdireccion']; ?></textarea>
                     </div>
                   </div>
@@ -87,7 +86,7 @@
                 <!-- CLASIFICACIÓN -->
                 <?php
                 include('getnameclasificacion.php');
-                if ($idactivity === '3' || $idactivity === '4' || $idactivity === '5') {
+                if ($idactivity === '3') {
                 ?>
                 <div class="form-group" id="showclasif">
                   <label for="" class="col-md-4 control-label">CLASIFICACIÓN:</label>
@@ -107,6 +106,9 @@
                     </div>
                   </div>
                 </div>
+                <?php
+                if ($idactivity !== '7' && $idactivity !== '8') {
+                ?>
                 <!-- CANTIDAD -->
                 <div class="form-group">
                   <label for=""class="col-md-4 control-label">CANTIDAD:</label>
@@ -117,7 +119,8 @@
                   </div>
                 </div>
                 <?php
-                if ($idactivity === '3' || $idactivity === '6') {
+                }
+                if (in_array($idactivity, ['3', '6', '8'], true)) {
                 ?>
                 <!-- INFORME ANUAL -->
                 <div class="form-group">
@@ -130,7 +133,7 @@
                 </div>
                 <?php
                 }
-                if ($idactivity === '6') {
+                if (in_array($idactivity, ['6'], true)) {
                 ?>
                 <!-- REPORTE DE METAS -->
                 <div class="form-group">
@@ -149,17 +152,17 @@
                   <label for="" class="col-md-4 control-label">FECHA ACTIVIDAD:</label>
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                    <?php
-                      $originalDate = $ftraeractividad['fecha'];
-                      $f = date("d/m/Y", strtotime($originalDate));
-                    ?>
+                      <?php
+                        $originalDate = $ftraeractividad['fecha'];
+                        $f = date("d/m/Y", strtotime($originalDate));
+                      ?>
                       <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $f; ?></textarea>
                     </div>
                   </div>
                 </div>
                 <!-- ENTIDAD/MUNICIPIO -->
                 <?php
-                if ($idactivity === '6') {
+                if (in_array($idactivity, ['6'], true)) {
                 ?>
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">ENTIDAD/MUNICIPIO:</label>
@@ -171,7 +174,7 @@
                 </div>
                 <?php
                 }
-                if ($idactivity === '2' || $idactivity === '3') {
+                if (in_array($idactivity, ['2', '3'], true)) {
                 ?>
                 <!-- EVIDENCIA INTERNA -->
                 <div class="form-group">
@@ -184,7 +187,7 @@
                 </div>
                 <?php
                 }
-                if ($idactivity === '2') {
+                if (in_array($idactivity, ['2', '7', '8'], true)) {
                 ?>
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">MEDIO DE NOTIFICACION:</label>
@@ -196,20 +199,7 @@
                 </div>
                 <?php
                 }
-                if ($idactivity === '4') {
-                ?>
-                <!-- NUMERO EVIDENCIA -->
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">NÚMERO DE EVIDENCIA:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      <textarea style="width: 800px; height: 28px; resize: none" disabled name="" rows="8" cols="80"><?php echo $ftraeractividad['id_evidencia']; ?></textarea>
-                    </div>
-                  </div>
-                </div>
-                <?php
-                }
-                if ($idactivity === '2' || $idactivity === '3' || $idactivity === '5' || $idactivity === '6') {
+
                 ?>
                 <!-- FOLIO EXPEDIENTE -->
                 <div class="form-group">
@@ -229,9 +219,6 @@
                     </div>
                   </div>
                 </div>
-                <?php
-                }
-                ?>
                 <!-- OBSERVACIONES -->
                 <div class="form-group">
                   <label for="" class="col-md-4 control-label">OBSERVACIONES:</label>
@@ -243,27 +230,82 @@
                 </div>
                 <!-- image -->
                 <?php
-                if ($idactivity === '4' || $idactivity === '5' || $idactivity === '6') {
+                if (in_array($idactivity, ['6', '7'], true)) {
                 ?>
-                <div class="form-group">
-                  <label for="" class="col-md-4 control-label">EVIDENCIA:</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                      <?php
-                      if($fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  ||
-                          $fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
-                        ?>
-                        <div class="mbr-section-btn align-left"><a class="btn btn-md btn-primary display-4" href="<?php echo $fgetimage['ruta'] ?>" download>Descargar</a></div>
-                        <?php
-                      }elseif ($fgetimage['tipo'] === 'image/png' || $fgetimage['tipo'] === 'image/jpeg' || $fgetimage['tipo'] === 'video/mp4' || $fgetimage['tipo'] === 'application/pdf') {
-                        ?>
-                        <iframe src="<?php echo $fgetimage['ruta'] ?>" style="width:500px; height:300px;"></iframe>
-                        <?php
-                      }
-                      ?>
-                    </div>
-                  </div>
-                </div>
+                <h1 style="text-align:center;">EVIDENCIA:</h1>
+                <!-- Agregamos justify-content: center para centrar los elementos hijos -->
+
+                <div class="input-group" style="display: flex; flex-direction: row; justify-content: center; gap: 10px; flex-wrap: wrap; width: 100%;">
+
+    <!-- Estilos CSS para el carrusel y efectos hover -->
+    <style>
+      .carrusel-evidencias {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        width: 100%;
+        padding: 20px 0; /* Espacio para que el efecto de agrandar no se corte */
+        scroll-snap-type: x mandatory; /* Efecto carrusel magnético */
+        scroll-behavior: smooth;
+      }
+
+      /* Oculta la barra de scroll en navegadores modernos */
+      .carrusel-evidencias::-webkit-scrollbar {
+        height: 6px;
+      }
+      .carrusel-evidencias::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+      }
+
+      .img-evidencia {
+        width: 380px;
+        height: 350px;
+        object-fit: cover;
+        flex-shrink: 0;
+        scroll-snap-align: center; /* Alinea la foto al centro al hacer scroll */
+        border-radius: 8px; /* Bordes redondeados estéticos */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave inicial */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        cursor: pointer;
+        opacity: 0.85; /* Un poco opaca por defecto para resaltar el hover */
+      }
+
+      /* Efecto cuando pasas el mouse por encima */
+      .img-evidencia:hover {
+        transform: scale(1.45); /* Agranda la imagen un 5% */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25); /* Sombra más profunda */
+        opacity: 1; /* Brillo completo */
+        z-index: 10; /* Asegura que se superponga correctamente */
+      }
+    </style>
+
+    <!-- Contenedor del carrusel -->
+    <div class="carrusel-evidencias input-group">
+
+      <?php
+      $getimage = "SELECT * FROM react_image_actividad WHERE id_actividad = '$idactividad'";
+      $rgetimage = $mysqli->query($getimage);
+      $contadorimage = 1;
+
+      while ($fgetimage = $rgetimage->fetch_assoc()) {
+        if ($fgetimage['tipo'] === 'image/png' || $fgetimage['tipo'] === 'image/jpeg') {
+          ?>
+          <img id="evidencia_<?php echo $contadorimage; ?>"
+               class="img-evidencia"
+               src="<?php echo $fgetimage['ruta']; ?>"
+               alt="Evidencia <?php echo $contadorimage; ?>">
+          <?php
+          $contadorimage++;
+        }
+      }
+      ?>
+
+    </div>
+
                 <?php
                 }
                 ?>

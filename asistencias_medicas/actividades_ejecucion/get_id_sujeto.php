@@ -11,7 +11,7 @@ $folio = $folio_expediente;
 
 $select2 = "SELECT datospersonales.id, datospersonales.identificador
 FROM datospersonales
-WHERE datospersonales.folioexpediente = '$folio'
+WHERE datospersonales.folioexpediente = '$folio' AND (datospersonales.estatus='SUJETO PROTEGIDO' OR datospersonales.estatus='PERSONA PROPUESTA')
 ORDER BY datospersonales.identificador ASC";
 
 

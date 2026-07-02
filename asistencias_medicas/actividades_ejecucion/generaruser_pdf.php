@@ -73,7 +73,7 @@ $mpdf->SetHTMLFooter('
       </table>
     </div>');
 
-$html .='<br><br><br><br>';
+$html .='<br><br><br><br><br><br><br><br>';
 // BUSQUEDA GLOBAL Y TODAS LAS ACTIVIDADES
 if ($actividad === 'TODAS') {
   include("search_global_user.php");

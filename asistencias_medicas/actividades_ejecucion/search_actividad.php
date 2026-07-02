@@ -193,7 +193,7 @@ $cargo = $row['cargo'];
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
               <option value="TODAS">TODAS</option>
                 <?php
-                    $select = "SELECT * FROM react_actividad_ejecucion ORDER BY react_actividad_ejecucion.nombre ASC";
+                    $select = "SELECT * FROM react_actividad_ejecucion ORDER BY react_actividad_ejecucion.id ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){
                     // $id_actividad = $valores['idactividad'];

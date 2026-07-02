@@ -1,6 +1,5 @@
 <?php
 // error_reporting(0);
-
 require_once '../../mpdf/vendor/autoload.php';
 include("../conexion.php");
 date_default_timezone_set("America/Mexico_City");
@@ -113,7 +112,7 @@ $mpdf->SetHTMLFooter('
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$facttraer['nombre'].'</p></font></th>
             </tr>';
             include('getnameclasificacion.php');
-            if ($idactivity === '3' || $idactivity === '4' || $idactivity === '5') {
+            if ($idactivity === '3') {
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">CLASIFICACIÓN:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$nombre_clasificacion.'</p></font></th>
@@ -122,12 +121,14 @@ $mpdf->SetHTMLFooter('
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">UNIDAD DE MEDIDA:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['unidad_medida'].'</p></font></th>
-            </tr>
-            <tr>
+            </tr>';
+            if ($idactivity !== '7' && $idactivity !== '8') {
+              $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">CANTIDAD:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['cantidad'].'</p></font></th>
             </tr>';
-            if ($idactivity === '3' || $idactivity === '6') {
+            }
+            if (in_array($idactivity, ['3', '6', '8'], true)) {
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">INFORME ANUAL:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['informe_anual'].'</p></font></th>
@@ -151,25 +152,19 @@ $mpdf->SetHTMLFooter('
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['entidad_municipio'].'</p></font></th>
             </tr>';
             }
-            if ($idactivity === '2' || $idactivity === '3') {
+            if (in_array($idactivity, ['2', '3'], true)) {
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">EVIDENCIA INTERNA:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['evidencia_interna'].'</p></font></th>
             </tr>';
             }
-            if ($idactivity === '2') {
+            if (in_array($idactivity, ['2', '7', '8'], true)) {
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">MEDIO DE NOTIFICACIÓN:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['id_evidencia'].'</p></font></th>
             </tr>';
             }
-            if ($idactivity === '4') {
-            $html .='<tr>
-              <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">NÚMERO DE EVIDENCIA:</b></font></th>
-              <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['id_evidencia'].'</p></font></th>
-            </tr>';
-            }
-            if ($idactivity === '2' || $idactivity === '3' || $idactivity === '5' || $idactivity === '6') {
+
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">FOLIO EXPEDIENTE:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['folio_expediente'].'</p></font></th>
@@ -178,14 +173,14 @@ $mpdf->SetHTMLFooter('
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">ID SUJETO:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$identunico.'</p></font></th>
             </tr>';
-            }
+
             $html .='<tr>
               <th style="border: 1px solid #A19E9F; text-align:right; font-family: gothambook;" ><font size=4><b style="text-align:center; color:white;">OBSERVACIONES:</b></font></th>
               <th style="background-color: #f0f0f0; border: 1px solid #A19E9F; text-align:left; font-family: gothambook;"><p style="text-align:center; color:black;"><font size=3>'.$ftraeractividad['observaciones'].'</p></font></th>
             </tr>
             </thead>
         </table>';
-            if (($idactivity === '4' || $idactivity === '5' || $idactivity === '6')) {
+            if (in_array($idactivity, ['6', '7'], true)) {
             $html .='<br><table style="width: 100%; margin: 0 auto;" class="table table-striped table-bordered" cellspacing="0" bgcolor="#97897D">
               <thead class="thead-dark">
                   <tr>
@@ -193,17 +188,31 @@ $mpdf->SetHTMLFooter('
                   </tr>
                 </thead>
               </table>';
-              if($fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  ||
-                  $fgetimage['tipo'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                  || $fgetimage['tipo'] === 'video/mp4' || $fgetimage['tipo'] === 'application/pdf') {
-                    $html .='<div style="display: flex; justify-content: center; align-items: center; border: 1px solid black; text-align: center;">
-                              <h1>ARCHIVO SIN VISTA PREVIA</h1>
-                             </div>';
-                  }elseif ($fgetimage['tipo'] === 'image/png' || $fgetimage['tipo'] === 'image/jpeg') {
-                    $html .='<div style="display: flex; justify-content: center; align-items: center; border: 1px solid black; text-align: center;">
-                              <img  src="'.$fgetimage['ruta'].'" width="60%" height="45%">
-                             </div>';
-                  }
+              $html .='<div class="input-group" style="display: flex; flex-direction: row; justify-content: center; gap: 10px; flex-wrap: wrap; width: 100%;">';
+              $getimage = "SELECT * FROM react_image_actividad WHERE id_actividad = '$idactividad'";
+              $rgetimage = $mysqli->query($getimage);
+              $contadorimage = 1;
+              // 1. Iniciamos la estructura de la tabla centrada antes del ciclo de imágenes
+              $html .= '<table style="width: 100%; border-collapse: collapse; margin: 20px auto;">';
+              $html .= '<tr>';
+              // [Aquí va tu ciclo WHILE o FOR de PHP que recorre las imágenes]
+              // Suponiendo que recuperas tus datos, agregas cada imagen como una celda (<td>):
+              while ($fgetimage = $rgetimage->fetch_assoc()) {
+                if ($fgetimage['tipo'] === 'image/png' || $fgetimage['tipo'] === 'image/jpeg') {
+                  $html .= '<td style="text-align: center; vertical-align: middle; padding: 10px;">
+                    <img id="evidencia_' . $contadorimage . '"
+                         src="' . $fgetimage['ruta'] . '"
+                         style="width: 220px; height: 165px; object-fit: cover; border-radius: 4px;"
+                         alt="Evidencia_' . $contadorimage . '">
+                  </td>';
+                  $contadorimage++;
+                }
+              }
+              // 2. Cerramos la fila y la tabla después de terminar el ciclo
+              $html .= '</tr>';
+              $html .= '</table>';
+              $html .='</div>';
+
             }
             $html .='<table width="100%">
             <tr>

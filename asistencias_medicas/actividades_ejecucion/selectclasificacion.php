@@ -23,7 +23,7 @@
   <div class="col-md-7 selectContainer">
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-      <select name="clasificacioncontacto" class="form-control selectpicker" id="clasificacionejecucion">
+      <select name="clasificacioncontacto" class="form-control selectpicker" id="clasificacionejecucion_contactofam">
         <option disabled selected value>SELECCIONE UNA OPCION</option>
         <?php
         $municipio = "SELECT * FROM react_contacto_familiar";

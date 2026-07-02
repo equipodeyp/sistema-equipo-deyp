@@ -35,124 +35,6 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/fontawesome.min.css" rel="stylesheet">
   <!-- estilos de diseño add traslados -->
   <link rel="stylesheet" href="../../css/react_add_traslados.css">
-  <style media="screen">
-  body {
-font-family: sans-serif;
-background-color: #eeeeee;
-}
-
-.file-upload {
-background-color: #ffffff;
-width: 636px;
-margin: 0 auto;
-padding: 25px;
-}
-
-.file-upload-btn {
-width: 100%;
-margin: 0;
-color: #fff;
-background: #1FB264;
-border: none;
-padding: 10px;
-border-radius: 4px;
-border-bottom: 4px solid #15824B;
-transition: all .2s ease;
-outline: none;
-text-transform: uppercase;
-font-weight: 700;
-}
-
-.file-upload-btn:hover {
-background: #1AA059;
-color: #ffffff;
-transition: all .2s ease;
-cursor: pointer;
-}
-
-.file-upload-btn:active {
-border: 0;
-transition: all .2s ease;
-}
-
-.file-upload-content {
-display: none;
-text-align: center;
-}
-
-.file-upload-input {
-position: absolute;
-margin: 0;
-padding: 0;
-width: 100%;
-height: 100%;
-outline: none;
-opacity: 0;
-cursor: pointer;
-}
-
-.image-upload-wrap {
-margin-top: 20px;
-border: 4px dashed #1FB264;
-position: relative;
-}
-
-.image-dropping,
-.image-upload-wrap:hover {
-background-color: #1FB264;
-border: 4px dashed #ffffff;
-}
-
-.image-title-wrap {
-padding: 0 15px 15px 15px;
-color: #222;
-}
-
-.drag-text {
-text-align: center;
-}
-
-.drag-text h3 {
-font-weight: 100;
-text-transform: uppercase;
-color: #15824B;
-padding: 90px 0;
-}
-
-.file-upload-image {
-max-height: 200px;
-max-width: 200px;
-margin: auto;
-padding: 20px;
-}
-
-.remove-image {
-width: 200px;
-margin: 0;
-color: #fff;
-background: #cd4535;
-border: none;
-padding: 10px;
-border-radius: 4px;
-border-bottom: 4px solid #b02818;
-transition: all .2s ease;
-outline: none;
-text-transform: uppercase;
-font-weight: 700;
-}
-
-.remove-image:hover {
-background: #c13b2a;
-color: #ffffff;
-transition: all .2s ease;
-cursor: pointer;
-}
-
-.remove-image:active {
-border: 0;
-transition: all .2s ease;
-}
-  </style>
 </head>
 <body>
   <div class="contenedor">
@@ -224,498 +106,253 @@ transition: all .2s ease;
       <div class="">
         <h1 style="text-align:center">REGISTRAR ACTIVIDAD</h1>
         <center>
-  <div style="text-align:center;padding:25px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
-
-    <form method="POST" action="save_actividad.php" enctype="multipart/form-data">
-      <!-- Contenedor principal de avisos -->
-      <div class="container my-4">
-        <?php if ($mostrar_abril): ?>
-          <section class="mb-5 p-4 border-bottom">
-            <h3 class="display-4 text-success fw-bold">
-              *Para el registro de las actividades realizadas durante el mes de abril de 2026,
-              el sistema estará habilitado hasta el día 30 de abril de 2026 a las 21:00 horas
-            </h3>
-          </section>
-        <?php endif; ?>
-
-        <?php if ($mostrar_mayo): ?>
-          <section class="mb-4 p-4 bg-light rounded-3 shadow-sm">
-            <h3 class="display-4 text-success fw-bold">
-              *En el caso del registro de las actividaes realizadas durante el periodo
-              del 01 al 03 de mayo, deberá realizarse máximo el día 03 de mayo.
-            </h3>
-          </section>
-        <?php endif; ?>
-      </div>
-      <!-- SUBDIRECCIÓN-->
-      <div class="persona-form">
-      <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="subdireccion" value="SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS" class="form-control" type="text" readonly>
-          </div>
-        </div>
-      </div>
-      <!-- FUNCIÓN -->
-      <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">FUNCIÓN</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="funcion" value="MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
-          </div>
-        </div>
-      </div>
-      <!-- SELECT DE ACTIVIDAD -->
-      <div class="form-group">
-        <label class="col-md-3 control-label">ACTIVIDAD</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select name="actividad" class="form-control selectpicker" required onchange="selectNit(event)" id="actividadejecucion">
-              <option disabled selected value>SELECCIONE UNA ACTIVIDAD</option>
-              <?php
-              $municipio = "SELECT * FROM react_actividad_ejecucion";
-              $answermun = $mysqli->query($municipio);
-              while($municipios = $answermun->fetch_assoc()){
-               echo "<option value='".$municipios['id']."'>".$municipios['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- UNIDAD DE MEDIDA -->
-      <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="unidadmedida" value="" class="form-control" type="text" readonly id="unidadmedida">
-          </div>
-        </div>
-      </div>
-      <!-- REPORTE DE METAS -->
-      <div class="form-group" style="display:none;">
-        <label class="col-md-3 control-label">REPORTE DE METAS</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="reportemetas" value="" class="form-control" type="text" readonly id="reportemetas">
-          </div>
-        </div>
-      </div>
-      <!-- <span>______________________________________________________________________________________________</span> -->
-
-      <!-- inputs de clasificacion segun el tipo de actividad seleccionada -->
-      <?php
-      include("selectclasificacion.php");
-      ?>
-      <!-- FECHA -->
-      <div class="form-group">
-        <label class="col-md-3 control-label">FECHA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input name="fechaactividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
-          </div>
-        </div>
-      </div>
-      <!-- hora -->
-      <div class="form-group" id="horaejecmed" style="display:none">
-        <label class="col-md-3 control-label">HORA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
-            <input name="horaactividad" class="form-control" type="time">
-          </div>
-        </div>
-      </div>
-      <!-- CANTIDAD -->
-      <div class="form-group" id="cantidadejecmed" style="display:none">
-        <label class="col-md-3 control-label">CANTIDAD</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="cantidad" value="1" class="form-control" type="text" id="cantidad">
-          </div>
-        </div>
-      </div>
-
-      <!-- ENTIDAD/MUNICIPIO -->
-      <div class="form-group" id="entidadmunicipio_1_2" style="display: none;">
-        <label class="col-md-3 control-label">ENTIDAD/MUNICIPIO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select name="entidadmunicipio" class="form-control selectpicker">
-              <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
-              <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
-              <?php
-              $municipio = "SELECT * FROM municipios";
-              $answermun = $mysqli->query($municipio);
-              while($municipios = $answermun->fetch_assoc()){
-               echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
-              }
-              ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- sujeto traslado relacionar -->
-      <div class="form-group" id="traslado_ejecutado" style="display: none;">
-        <label class="col-md-3 control-label">TRASLADO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select class="form-control" name="trasladorel" id="trasladorelact" onchange="checktraslado(event)">
-              <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
-              <option value="SI">SI</option>
-              <option value="NO">NO</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- traslado ejecutado -->
-      <div class="form-group" id="traslado_ejecutadoinfo" style="display: none;">
-        <label class="col-md-3 control-label">ID TRASLADO</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select class="form-control" name="trasladorelid" id="trasladorelact">
-              <option disabled selected value="">SELECCIONE TRASLADO</option>
-              <?php
-                $trasejecinf = "SELECT * FROM react_traslados";
-                $rtrasejecinf = $mysqli->query($trasejecinf);
-                while($ftrasejecinf = $rtrasejecinf->fetch_assoc()){
-                  $idtrasladoun = $ftrasejecinf['idtrasladounico'];
-                  echo "<option value='$idtrasladoun'>$idtrasladoun</option>";
-                }
-              ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- id del expediente -->
-      <div class="form-group" id="actividad_folioexpediente" style="display: none;">
-        <label class="col-md-3 control-label">ID DEL EXPEDIENTE DE PROTECCIÓN</label>
-        <div class="col-md-7 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-            <select class="form-control expediente" name="folioexpediente">
-              <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
-              <?php
-                $select1 = "SELECT DISTINCT datospersonales.folioexpediente
-                FROM datospersonales
-                WHERE datospersonales.estatus = 'SUJETO PROTEGIDO' OR datospersonales.estatus = 'PERSONA PROPUESTA'
-                ORDER BY datospersonales.id ASC";
-                $answer1 = $mysqli->query($select1);
-                while($valores1 = $answer1->fetch_assoc()){
-                  $result_folio = $valores1['folioexpediente'];
-                  echo "<option value='$result_folio'>$result_folio</option>";
-                }
-              ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- id del SUJETO -->
-      <div class="form-group" id="actividad_idsujeto" style="display: none;">
-        <label class="col-md-3 control-label">ID DE PP O SP</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <select class="form-control id-sujeto" name="id_sujeto">
-              <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- EVIDENCIA -->
-      <div class="form-group" id="evidejemed" style="display: none;">
-        <label class="col-md-3 control-label">EVIDENCIA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
-            <select class="form-control" name="evidencia" id="evidencia">
-              <option disabled selected value="">SELECCIONE UNA OPCION</option>
-              <option value="ACUERDO">ACUERDO</option>
-              <option value="CONSTANCIA">CONSTANCIA</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- medio de notificacion -->
-      <div class="form-group" id="medionotificejecmed" style="display:none">
-        <label class="col-md-3 control-label">MEDIO DE NOTIFICACION A LA PP O SP</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
-            <select class="form-control" name="notific_atn" id="notific_atnpet">
-              <option disabled selected value="">SELECCIONE UNA OPCION</option>
-              <option value="ACTA CIRCUNSTANCIADA">ACTA CIRCUNSTANCIADA</option>
-              <option value="CEDULA DE NOTIFICACION">CEDULA DE NOTIFICACION</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- ID DE EVIDENCIA -->
-      <div class="form-group" id="actividad_idevidencia" style="display: none;">
-        <label class="col-md-3 control-label">ID DE LA EVIDENCIA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="idevidencia" value="" class="form-control" type="text" id="idevidencia">
-          </div>
-        </div>
-      </div>
-
-      <!-- ID DE EVIDENCIA -->
-      <div class="form-group" id="evidenciaejecmed" style="display: none;">
-        <label class="col-md-3 control-label" style="line-height: 310px;">EVIDENCIA</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <div class="file-upload">
-              <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">SELECCIONAR ARCHIVO</button>
-              <div class="image-upload-wrap">
-                <input class="file-upload-input" type="file" onchange="readURL(this);"  name="archivo" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf,video/*">
-                <!-- <input required="" type="file" name="file" id="exampleInputFile"> -->
-                <div class="drag-text">
-                  <h3>SELECCIONA UN ARCHIVO</h3>
+          <div style="text-align:center;padding:25px;border:solid 5px; width:70%;border-radius:35px;shadow" class="well form-horizontal">
+            <form id="formulario-slider" method="POST" action="save_actividad.php" enctype="multipart/form-data">
+              <!-- SUBDIRECCIÓN-->
+              <div class="persona-form">
+                <div class="form-group" style="display:none;">
+                  <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="subdireccion" value="SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS" class="form-control" type="text" readonly>
+                    </div>
+                  </div>
+                </div>
+                <!-- FUNCIÓN -->
+                <div class="form-group" style="display:none;">
+                  <label class="col-md-3 control-label">FUNCIÓN</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="funcion" value="MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
+                    </div>
+                  </div>
+                </div>
+                <!-- SELECT DE ACTIVIDAD -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">ACTIVIDAD</label>
+                  <div class="col-md-7 selectContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      <select name="actividad" class="form-control selectpicker" required onchange="selectNit(event)" id="actividadejecucion">
+                        <option disabled selected value>SELECCIONE UNA ACTIVIDAD</option>
+                        <?php
+                        $municipio = "SELECT * FROM react_actividad_ejecucion";
+                        $answermun = $mysqli->query($municipio);
+                        while($municipios = $answermun->fetch_assoc()){
+                         echo "<option value='".$municipios['id']."'>".$municipios['nombre']."</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- UNIDAD DE MEDIDA -->
+                <div class="form-group" style="display:none;">
+                  <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="unidadmedida" value="" class="form-control" type="text" readonly id="unidadmedida">
+                    </div>
+                  </div>
+                </div>
+                <!-- REPORTE DE METAS -->
+                <div class="form-group" style="display:none;">
+                  <label class="col-md-3 control-label">REPORTE DE METAS</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="reportemetas" value="" class="form-control" type="text" readonly id="reportemetas">
+                    </div>
+                  </div>
+                </div>
+                <?php
+                include("selectclasificacion.php");
+                ?>
+                <!-- FECHA -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label">FECHA</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
+                      <input name="fechaactividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
+                    </div>
+                  </div>
+                </div>
+                <!-- CANTIDAD -->
+                <div class="form-group" id="cantidadejecmed" style="display:none">
+                  <label class="col-md-3 control-label">CANTIDAD</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="cantidad" value="1" class="form-control" type="text" id="cantidad">
+                    </div>
+                  </div>
+                </div>
+                <!-- ENTIDAD/MUNICIPIO -->
+                <div class="form-group" id="entidadmunicipio_1_2" style="display: none;">
+                  <label class="col-md-3 control-label">ENTIDAD/MUNICIPIO</label>
+                  <div class="col-md-7 selectContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      <select name="entidadmunicipio" class="form-control selectpicker" id="requiredentidadmunicipio">
+                        <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
+                        <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
+                        <?php
+                        $municipio = "SELECT * FROM municipios";
+                        $answermun = $mysqli->query($municipio);
+                        while($municipios = $answermun->fetch_assoc()){
+                         echo "<option value='".$municipios['nombre']."'>".$municipios['nombre']."</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- id del expediente -->
+                <div class="form-group" id="actividad_folioexpediente" style="display: none;">
+                  <label class="col-md-3 control-label">ID DEL EXPEDIENTE DE PROTECCIÓN</label>
+                  <div class="col-md-7 selectContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      <select class="form-control expediente" name="folioexpediente" id="requiredfolioexpediente">
+                        <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- id del SUJETO -->
+                <div class="form-group" id="actividad_idsujeto" style="display: none;">
+                  <label class="col-md-3 control-label">ID DE PP O SP</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <select class="form-control id-sujeto" name="id_sujeto" id="requiredidsujeto">
+                        <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- EVIDENCIA -->
+                <div class="form-group" id="evidejemed" style="display: none;">
+                  <label class="col-md-3 control-label">EVIDENCIA</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
+                      <select class="form-control" name="evidencia" id="evidencia">
+                        <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                        <option value="ACUERDO">ACUERDO</option>
+                        <option value="CONSTANCIA">CONSTANCIA</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- medio de notificacion -->
+                <div class="form-group" id="medionotificejecmed" style="display:none">
+                  <label class="col-md-3 control-label">MEDIO DE NOTIFICACION A LA PP O SP</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
+                      <select class="form-control" name="notific_atn" id="notific_atnpet">
+                        <option disabled selected value="">SELECCIONE UNA OPCION</option>
+                        <option value="ACTA CIRCUNSTANCIADA">ACTA CIRCUNSTANCIADA</option>
+                        <option value="CEDULA DE NOTIFICACION">CEDULA DE NOTIFICACION</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- ID DE EVIDENCIA -->
+                <div class="form-group" id="actividad_idevidencia" style="display: none;">
+                  <label class="col-md-3 control-label">ID DE LA EVIDENCIA</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="idevidencia" value="" class="form-control" type="text" id="requiredidevidencia">
+                    </div>
+                  </div>
+                </div>
+                <!-- ID DE EVIDENCIA -->
+                <div class="form-group" id="evidenciaejecmed" style="display: none;">
+                  <label class="col-md-3 control-label" style="line-height: 310px;">EVIDENCIA</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <div class="file-upload">
+                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">SELECCIONAR ARCHIVO</button>
+                        <div class="image-upload-wrap">
+                          <input class="file-upload-input" type="file" onchange="readURL(this);"  name="archivo" accept=".jpg,.jpeg,.png,image/jpeg,image/png" id="requiredimageactividad6">
+                          <!-- <input required="" type="file" name="file" id="exampleInputFile"> -->
+                          <div class="drag-text">
+                            <h3>SELECCIONA UN ARCHIVO</h3>
+                          </div>
+                        </div>
+                        <div class="file-upload-content">
+                          <img class="file-upload-image" src="#" alt="your image" name="imageevidencia2" id="imageevid2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- KILOMETROS -->
+                <div class="form-group" id="actividad_kilometros" style="display: none;">
+                  <label class="col-md-3 control-label">KILOMETROS</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <input name="kilometros" value="" class="form-control" type="text" id="requiredkilometros" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    </div>
+                  </div>
+                </div>
+                <!-- OBSERVACIONES -->
+                <div class="form-group">
+                  <label class="col-md-3 control-label" style="line-height: 60px;">OBSERVACIONES</label>
+                  <div class="col-md-7 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <input name="observaciones" value="" class="form-control" type="text" id="observaciones"> -->
+                      <textarea name="observaciones" class="form-control" id="observacionesact" rows="3" cols="80"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- Agregamos un formulario real para cuando envíes los datos a tu servidor -->
+                <!-- Formulario para enviar las imágenes al servidor -->
+                <div class="slider-seccion" id="evidencias_actividadessujeto" style="display:none;">
+                  <div class="slider-header">
+                    <h2 class="slider-titulo">EVIDENCIAS</h2>
+                    <p class="slider-subtitulo">Puedes subir hasta 3 imágenes</p>
+                  </div>
+                  <!-- Fila dinámica contenedora -->
+                  <div class="slider-fila" id="slider-fila">
+                    <!-- Las imágenes cargadas aparecerán aquí dinámicamente mediante JS -->
+                    <!-- Botón interactivo para añadir que se desplaza a la derecha -->
+                    <div class="tarjeta-anadir" id="btn-anadir-disparador">
+                      <div class="icono-mas">+</div>
+                      <div class="texto-anadir">Añadir Imagen</div>
+                    </div>
+                  </div>
+                  <!-- Contenedor oculto donde JS guardará los inputs de archivos reales antes del envío -->
+                  <div id="inputs-ocultos-contenedor" style="display: none;"></div>
                 </div>
               </div>
-              <div class="file-upload-content">
-                <img class="file-upload-image" src="#" alt="your image" name="imageevidencia2" id="imageevid2">
+              <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-5">
+                  <button type="submit" class="btn btn-success">REGISTRAR <span class="glyphicon glyphicon-ok"></span></button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
-        </div>
-      </div>
-      <!-- KILOMETROS -->
-      <div class="form-group" id="actividad_kilometros" style="display: none;">
-        <label class="col-md-3 control-label">KILOMETROS</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <input name="kilometros" value="" class="form-control" type="text" id="kilometros">
-          </div>
-        </div>
-      </div>
-      <!-- OBSERVACIONES -->
-      <div class="form-group">
-        <label class="col-md-3 control-label" style="line-height: 60px;">OBSERVACIONES</label>
-        <div class="col-md-7 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
-            <!-- <input name="observaciones" value="" class="form-control" type="text" id="observaciones"> -->
-            <textarea name="observaciones" class="form-control" id="observacionesact" rows="3" cols="80"></textarea>
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-3 control-label"></label>
-        <div class="col-md-5">
-          <button type="submit" class="btn btn-success">REGISTRAR <span class="glyphicon glyphicon-ok"></span></button>
-        </div>
-      </div>
-    </form>
-  </div>
-</center>
-
-
+        </center>
       </div>
     </div>
   </div>
   <div class="contenedor">
       <a href="../../consultores/admin.php" class="btn-flotante">INICIO</a>
   </div>
-  <script type="text/javascript">
-  function selectNit(e) {
-    var idactividad = document.getElementById("actividadejecucion").value;
-      if (idactividad === '2') {
-      document.getElementById("unidadmedida").value = "DOCUMENTO";
-      document.getElementById("trasladoclasificacion").style.display = "none";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
-      document.getElementById("clasificacionaccionseguridad").style.display = "none";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
-      document.getElementById("entidadmunicipio_1_2").style.display = "none";
-      document.getElementById("actividad_folioexpediente").style.display = "";
-      document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "none";
-      document.getElementById("actividad_kilometros").style.display = "none";
-      document.getElementById("medionotificejecmed").style.display = "";
-      document.getElementById("horaejecmed").style.display = "none";
-      document.getElementById("evidenciaejecmed").style.display = "none";
-      document.getElementById("evidejemed").style.display = "";
-      document.getElementById("reportemetas").value = "SI";
-    }else if (idactividad === '3') {
-      document.getElementById("unidadmedida").value = "ACCIÓN";
-      document.getElementById("trasladoclasificacion").style.display = "none";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "";
-      document.getElementById("clasificacionaccionseguridad").style.display = "none";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
-      document.getElementById("entidadmunicipio_1_2").style.display = "none";
-      document.getElementById("actividad_folioexpediente").style.display = "";
-      document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "none";
-      document.getElementById("actividad_kilometros").style.display = "none";
-      document.getElementById("medionotificejecmed").style.display = "none";
-      document.getElementById("horaejecmed").style.display = "none";
-      document.getElementById("evidenciaejecmed").style.display = "none";
-      document.getElementById("evidejemed").style.display = "";
-      document.getElementById("reportemetas").value = "SI";
-    }else if (idactividad === '4') {
-      document.getElementById("unidadmedida").value = "ACCIÓN";
-      document.getElementById("trasladoclasificacion").style.display = "none";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
-      document.getElementById("clasificacionaccionseguridad").style.display = "";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
-      document.getElementById("entidadmunicipio_1_2").style.display = "none";
-      document.getElementById("actividad_folioexpediente").style.display = "";
-      document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "";
-      document.getElementById("actividad_kilometros").style.display = "none";
-      document.getElementById("medionotificejecmed").style.display = "none";
-      document.getElementById("horaejecmed").style.display = "";
-      document.getElementById("evidenciaejecmed").style.display = "";
-      document.getElementById("evidejemed").style.display = "none";
-      document.getElementById("reportemetas").value = "SI";
-    }else if (idactividad === '5') {
-      document.getElementById("unidadmedida").value = "ACCIÓN";
-      document.getElementById("trasladoclasificacion").style.display = "none";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
-      document.getElementById("clasificacionaccionseguridad").style.display = "none";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "";
-      document.getElementById("entidadmunicipio_1_2").style.display = "none";
-      document.getElementById("actividad_folioexpediente").style.display = "";
-      document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "none";
-      document.getElementById("actividad_kilometros").style.display = "none";
-      document.getElementById("medionotificejecmed").style.display = "none";
-      document.getElementById("horaejecmed").style.display = "none";
-      document.getElementById("evidenciaejecmed").style.display = "";
-      document.getElementById("evidejemed").style.display = "none";
-      document.getElementById("reportemetas").value = "SI";
-    }else if (idactividad === '6') {
-      document.getElementById("unidadmedida").value = "RONDÍN POLICIAL";
-      document.getElementById("trasladoclasificacion").style.display = "none";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
-      document.getElementById("clasificacionaccionseguridad").style.display = "none";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
-      document.getElementById("entidadmunicipio_1_2").style.display = "";
-      document.getElementById("actividad_folioexpediente").style.display = "";
-      document.getElementById("actividad_idsujeto").style.display = "";
-      document.getElementById("actividad_idevidencia").style.display = "none";
-      document.getElementById("actividad_kilometros").style.display = "";
-      document.getElementById("medionotificejecmed").style.display = "none";
-      document.getElementById("horaejecmed").style.display = "none";
-      document.getElementById("evidenciaejecmed").style.display = "";
-      document.getElementById("evidejemed").style.display = "none";
-      document.getElementById("reportemetas").value = "SI";
-    }else if (idactividad === '7') {
-      document.getElementById("unidadmedida").value = "OTRAS ACTIVIDADES";
-      document.getElementById("trasladoclasificacion").style.display = "none";
-      document.getElementById("clasificacioncontactofamiliar").style.display = "none";
-      document.getElementById("clasificacionaccionseguridad").style.display = "none";
-      document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
-      document.getElementById("entidadmunicipio_1_2").style.display = "none";
-      document.getElementById("actividad_folioexpediente").style.display = "none";
-      document.getElementById("actividad_idsujeto").style.display = "none";
-      document.getElementById("actividad_idevidencia").style.display = "none";
-      document.getElementById("actividad_kilometros").style.display = "none";
-      document.getElementById("medionotificejecmed").style.display = "none";
-      document.getElementById("horaejecmed").style.display = "none";
-      document.getElementById("evidenciaejecmed").style.display = "none";
-      document.getElementById("evidejemed").style.display = "none";
-      document.getElementById("reportemetas").value = "NO";
-    }
-}
-  </script>
-  <script>
-    $(document).ready(function(){
-      // Manejar cambio en select de expediente
-      $(document).on('change', '.expediente', function(){
-        var $this = $(this);
-        var expediente = $this.val();
-        var $idSujetoSelect = $this.closest('.persona-form').find('.id-sujeto');
-
-        $.ajax({
-          url: 'get_id_sujeto.php',
-          type: 'POST',
-          data: {expediente: expediente},
-          success: function(response){
-            $idSujetoSelect.html(response);
-          }
-        });
-      });
-    });
-  </script>
-  <script type="text/javascript">
-  function readURL(input) {
-if (input.files && input.files[0]) {
-
-  var reader = new FileReader();
-
-  reader.onload = function(e) {
-    $('.image-upload-wrap').hide();
-
-    $('.file-upload-image').attr('src', e.target.result);
-    $('.file-upload-content').show();
-
-    $('.image-title').html(input.files[0].name);
-  };
-
-  reader.readAsDataURL(input.files[0]);
-
-} else {
-  removeUpload();
-}
-}
-
-function removeUpload() {
-$('.file-upload-input').replaceWith($('.file-upload-input').clone());
-$('.file-upload-content').hide();
-$('.image-upload-wrap').show();
-}
-$('.image-upload-wrap').bind('dragover', function () {
-  $('.image-upload-wrap').addClass('image-dropping');
-});
-$('.image-upload-wrap').bind('dragleave', function () {
-  $('.image-upload-wrap').removeClass('image-dropping');
-});
-
-  </script>
-  <script type="text/javascript">
-  function selecttasl(e) {
-    var idtrasladorel = document.getElementById("clasificacionsalvaguardarintegridad").value;
-    if (idtrasladorel === '1') {
-      document.getElementById("traslado_ejecutado").style.display = "none";
-      document.getElementById("traslado_ejecutadoinfo").style.display = "none";
-    }else if (idtrasladorel === '2') {
-      document.getElementById("traslado_ejecutado").style.display = "";
-    }else if (idtrasladorel === '3') {
-      document.getElementById("traslado_ejecutado").style.display = "none";
-      document.getElementById("traslado_ejecutadoinfo").style.display = "none";
-    }
-  }
-
-  //checar si es traslado
-  function checktraslado(e){
-    var checktrasladoejec = document.getElementById("trasladorelact").value;
-    if (checktrasladoejec === 'SI') {
-      document.getElementById("traslado_ejecutadoinfo").style.display = "";
-    }else {
-      document.getElementById("traslado_ejecutadoinfo").style.display = "none";
-    }
-  }
-
-  </script>
 </body>
+<link rel="stylesheet" href="../../css/actividad_ejecucion.css">
+<script src="../../js/funciones_react_ejecucion.js"></script>
 </html>
-<!-- nuevos campos de hora y fotografia -->

@@ -151,33 +151,33 @@ $_SESSION["check_consultaactividad"] = $check_consultaactividad;
                   <tbody>
                     <?php
                     $contador = 0;
-                          $query= "SELECT * FROM react_actividad WHERE usuario = '$name' ORDER BY id_actividad ASC";
-                          $rq = $mysqli->query($query);
-                             while($row = $rq->fetch_assoc()){
-                               $contador = $contador + 1;
-                               $id_per = $row['id_persona'];
-                               $idact = $row['id_actividad'];
-                               $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
-                               $rdper = $mysqli->query($dper);
-                               $fdper = $rdper->fetch_assoc();
-                                   ?>
-                                       <tr>
-                                          <td style="text-align:center"><?php echo $contador ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['funcion']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['id_actividad']; ?></span></td>
-                                          <td style="text-align:center"><?php echo $row['unidad_medida']; ?></span></td>
-                                          <td style="text-align:center">
-                              							<!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
-                              							<?php
-                              							echo "<a href='#edit_".$row['id']."' id='".$row['id_actividad']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
-                              							 ?>
-                              							<!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
-                              						</td>
-                                          <?php include('veractividad.php'); ?>
-                                        </tr>
-                                   <?php
-                                   }
-                               ?>
+                    $query= "SELECT * FROM react_actividad WHERE react_actividad.usuario = '$name' ORDER BY react_actividad.fecha_alta DESC";
+                    $rq = $mysqli->query($query);
+                    while($row = $rq->fetch_assoc()){
+                      $contador = $contador + 1;
+                      $id_per = $row['id_persona'];
+                      $idact = $row['id_actividad'];
+                      $dper = "SELECT * FROM datospersonales WHERE id = '$id_per'";
+                      $rdper = $mysqli->query($dper);
+                      $fdper = $rdper->fetch_assoc();
+                      ?>
+                      <tr>
+                        <td style="text-align:center"><?php echo $contador ?></td>
+                        <td style="text-align:center"><?php echo $row['funcion']; ?></td>
+                        <td style="text-align:center"><?php echo $row['id_actividad']; ?></td>
+                        <td style="text-align:center"><?php echo $row['unidad_medida']; ?></td>
+                        <td style="text-align:center">
+                        <!-- <a href="#edit_<?php echo $row['id']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> Editar</a> -->
+                        <?php
+                        echo "<a href='#edit_".$row['id']."' id='".$row['id_actividad']."' class='btn color-btn-success btn-sm' data-toggle='modal'><i class='fa-solid fa-file-pen'></i> Detalle</a>";
+                        ?>
+                        <!-- <a href="#delete_<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> Borrar</a> -->
+                        </td>
+                        <?php include('veractividad.php'); ?>
+                      </tr>
+                      <?php
+                      }
+                      ?>
                   </tbody>
                 </table>
               </div>
