@@ -132,11 +132,12 @@ $row=$result->fetch_assoc();
                             <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EN CENTRO DE RESGUARDO</th>
                             <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EDAD</th>
                             <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">GRUPO DE EDAD</th>
+                            <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ANTIGUEDAD</th>
                         </tr>
                     </thead>
                     <tbody>
                       <?php
-                      include("../../administrador/tablas_estadistica/tabla_personas_totales.php");                      
+                      include("../../administrador/tablas_estadistica/tabla_personas_totales.php");
                       ?>
                     </tbody>
                  </table>

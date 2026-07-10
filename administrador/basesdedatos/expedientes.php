@@ -118,6 +118,7 @@ $row=$result->fetch_assoc();
                         <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS INCORPORADAS</th>
                         <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">PERSONAS VIGENTES</th>
                         <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RELACIONADO</th>
+                        <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ANTIGUEDAD</th>
                       </tr>
                     </thead>
                   <tbody>

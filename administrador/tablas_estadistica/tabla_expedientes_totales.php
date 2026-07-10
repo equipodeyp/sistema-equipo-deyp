@@ -41,6 +41,74 @@ $cant_med2="SELECT COUNT(*) AS cant FROM datospersonales WHERE folioexpediente =
 $res_cant_med2=$mysqli->query($cant_med2);
 $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
 ////////////////////////////////////////////////////////////////////////////////
+/////////////////antiguedad dependiendo el estatus del expediente ////////////////////////////////////////
+$estatusexpant = $festatusseguimiento['status'];
+if ($estatusexpant === 'CONCLUIDO' || $estatusexpant === 'CANCELADO') {
+  if ($fexpedientes['fecha_nueva'] !== '0000-00-00' && $festatusseguimiento['date_desincorporacion']!== '0000-00-00') {
+    // echo "existen ambas";
+    $fecha_inicial = new DateTime($fexpedientes['fecha_nueva']);
+    // $fecha_inicial = new DateTime($rdatexp['fecha_nueva']);
+    $fecha_final = new DateTime($festatusseguimiento['date_desincorporacion']);
+    $diferencia = $fecha_inicial->diff($fecha_final);
+
+    $partes = [];
+
+    if ($diferencia->y > 0) {
+        $partes[] = $diferencia->y . ($diferencia->y == 1 ? ' año' : ' años');
+    }
+    if ($diferencia->m > 0) {
+        $partes[] = $diferencia->m . ($diferencia->m == 1 ? ' mes' : ' meses');
+    }
+    if ($diferencia->d > 0) {
+        $partes[] = $diferencia->d . ($diferencia->d == 1 ? ' día' : ' días');
+    }
+
+    // Control para el caso de mismo día (cero absoluto en todas las unidades)
+    if (empty($partes)) {
+        $resultado = "1 día";
+    } else {
+        $ultimo = array_pop($partes);
+        $resultado = $partes ? implode(', ', $partes) . ' y ' . $ultimo : $ultimo;
+    }
+
+    // echo "Hay " . $resultado . ".";
+
+  }else {
+    echo "----------------falta una fecha";
+  }
+}elseif ($estatusexpant === 'EN EJECUCION' || $estatusexpant === 'ANALISIS') {
+  // 1. Instanciar la fecha del expediente y la fecha actual (hoy)
+$fecha_inicial = new DateTime($fexpedientes['fecha_nueva']);
+$fecha_final = new DateTime(); // Sin parámetros toma automáticamente el día de hoy
+
+// 2. Calcular la diferencia
+$diferencia = $fecha_inicial->diff($fecha_final);
+
+$partes = [];
+
+// 3. Evaluar y omitir ceros
+if ($diferencia->y > 0) {
+    $partes[] = $diferencia->y . ($diferencia->y == 1 ? ' año' : ' años');
+}
+if ($diferencia->m > 0) {
+    $partes[] = $diferencia->m . ($diferencia->m == 1 ? ' mes' : ' meses');
+}
+if ($diferencia->d > 0) {
+    $partes[] = $diferencia->d . ($diferencia->d == 1 ? ' día' : ' días');
+}
+
+// 4. Control para el mismo día (cero absoluto)
+if (empty($partes)) {
+    $resultado = "1 día";
+} else {
+    $ultimo = array_pop($partes);
+    $resultado = $partes ? implode(', ', $partes) . ' y ' . $ultimo : $ultimo;
+}
+
+// echo "Hay " . $resultado . ".";
+
+}
+// echo "<br>";
   echo "<tr>";
    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $contador; echo "</td>";
    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fexpedientes['fol_exp']; echo "</td>";
@@ -86,6 +154,7 @@ $row_med2 = $res_cant_med2->fetch_array(MYSQLI_ASSOC);
    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $row_med1['cant']; echo "</td>";
    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $row_med2['cant']; echo "</td>";
    echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fexpedientes['relacion']; echo "</td>";
+   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $resultado; echo "</td>";
   echo "</tr>";
 }
 ?>
