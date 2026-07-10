@@ -126,6 +126,7 @@ $mmed =  $ftmf['t'];
                 </li>
               </ul>
               <li class="menu-items"><a href='./basesdedatos/sujetos_mensual.php'><i style="color: #FFFFFF;" class="fa-solid fa-person-circle-check menu-nav--icon"></i><strong style="color: white;">SUJETOS MENSUAL</strong></a></li>
+              <li class="menu-items"><a href='./bd_tratamiento_medico.php'><i style="color: #FFFFFF;" class="fa-solid fa-pills menu-nav--icon"></i><strong style="color: white;">TRATAMIENTO MÉDICO</strong></a></li>
               <ul>
                 <li class="menu-items"><a href="#" onclick="menuestadistica_admin(this)"><i style="color: #FFFFFF;" class="fa-solid fa-clipboard-list menu-nav--icon"></i><strong style="color: white;">PLANEACION</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
                   <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">

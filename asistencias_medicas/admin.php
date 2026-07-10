@@ -621,21 +621,31 @@ else {
 <ul class='ca-menu' style='text-align:right'>
 
 <li style='text-align:center'>
-  <a href='./solicitar_asistencia.php'>
-    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
-    <div class='ca-content'>
-      <h2 class='ca-main'>SOLICITAR</h2>
-      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
-  </a>
-</li>
-
-
-<li style='text-align:center'>
   <a href='./asistencia_turnada.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/turnadas_asignadas.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
       <h2 class='ca-main'>ASISTENCIAS MÉDICAS</h2>
       <h3 class='ca-sub'>TURNADAS Y/O ASIGNADAS</h3></div>
+  </a>
+</li>
+
+
+<li style='text-align:center'>
+  <a href='./registrar_asistencia_medica_por_urgencia.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>REGISTRAR</h2>
+      <h3 class='ca-sub'>ASISTENCIA MÉDICA POR URGENCIA</h3>
+    </div>
+  </a>
+</li>
+
+<li style='text-align:center'>
+  <a href='./solicitar_asistencia.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>SOLICITAR</h2>
+      <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
   </a>
 </li>
 
@@ -658,6 +668,9 @@ else {
       <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
   </a>
 </li>
+
+
+
 
 
 ";

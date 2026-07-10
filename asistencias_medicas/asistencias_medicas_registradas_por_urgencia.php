@@ -403,21 +403,3 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 </body>
 </html>
-
-
-<!-- SELECT *
-FROM solicitud_asistencia
-
-JOIN agendar_asistencia
-ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia
-AND (solicitud_asistencia.tipo_requerimiento = 'PERIÓDICA DE SEGUIMIENTO'
-OR solicitud_asistencia.tipo_requerimiento = 'PROVISIONAL DE SEGUIMIENTO')
-
-JOIN cita_asistencia 
-ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-
-JOIN seguimiento_asistencia
-ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia
-
-ORDER BY solicitud_asistencia.fecha_solicitud DESC
-LIMIT 10; -->
