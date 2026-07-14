@@ -64,7 +64,7 @@
                         <!-- <input name="lugarsalida" placeholder="INGRESE LUGAR" class="form-control" type="text" required> -->
                         <select class="form-control" name="idasismed" required>
                           <option disabled selected value="">SELECCIONE LA ASISTENCIA MEDICA</option>
-                          <option value="URGENCIA">URGENCIA</option>
+                          <!-- <option value="URGENCIA">URGENCIA</option> -->
                           <?php
                           $select1 = "SELECT * FROM cita_asistencia
                                                      INNER JOIN solicitud_asistencia ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
