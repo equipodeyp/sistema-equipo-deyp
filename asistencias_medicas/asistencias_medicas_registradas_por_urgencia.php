@@ -142,7 +142,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
               <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
-              <a class="actived" href="./asistencias_registradas.php">ASISTENCIAS PSICOLÓGICAS REGISTRADAS</a>
+              <a class="actived" href="./asistencias_medicas_registradas_por_urgencia.php">ASISTENCIAS MÉDICAS REGISTRADAS POR URGENCIA</a>
             </div>
           
 
@@ -150,8 +150,8 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               <div class="row">
 
               <ul class="tabs">
-                    <li><a href="#" onclick="location.href='registrar_asistencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">REGISTRAR ASISTENCIA PSICOLÓGICAS</span></a></li>
-                    <li><a href="#" class="active" onclick="location.href='./asistencias_registradas.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">ASISTENCIAS PSICOLÓGICAS REGISTRADAS</span></a></li>
+                    <li><a href="#" onclick="location.href='registrar_asistencia_medica_por_urgencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">REGISTRAR ASISTENCIA MÉDICA POR URGENCIA</span></a></li>
+                    <li><a href="#" class="active" onclick="location.href='./asistencias_medicas_registradas_por_urgencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">ASISTENCIAS MÉDICAS REGISTRADAS POR URGENCIA</span></a></li>
                     <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
 
@@ -161,8 +161,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               $cl = "SELECT COUNT(*) as t 
               FROM solicitud_asistencia 
               WHERE etapa = 'ASISTENCIA MÉDICA COMPLETADA' 
-              AND servicio_medico = 'PSICOLÓGICO' 
-              AND tipo_requerimiento = 'PERIÓDICA DE SEGUIMIENTO' OR tipo_requerimiento = 'PROVISIONAL DE SEGUIMIENTO'
+              AND tipo_requerimiento = 'URGENCIA' OR tipo_requerimiento = 'EXTRAORDINARIA'
               ";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
@@ -170,7 +169,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               if ($fcl['t'] == 0){
                     echo "<div id='cabecera'>
                       <div class='row alert div-title' role='alert'>
-                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS PSICOLÓGICAS REGISTRADAS !</h3>
+                        <h3 style='text-align:center'>¡ NO HAY ASISTENCIAS MEDICAS REGISTRADAS !</h3>
                       </div>
                     </div>";
               } else{
@@ -178,7 +177,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                       <div class='row'>
                         <div id='cabecera'>
                           <div class='row alert div-title'>
-                            <h3 style='text-align:center'>ASISTENCIAS PSICOLÓGICAS REGISTRADAS</h3>
+                            <h3 style='text-align:center'>ASISTENCIAS MEDICAS REGISTRADAS POR URGENCIA Y EXTRAORDINARIAS</h3>
                           </div>
                         </div>
                       <div>
@@ -188,10 +187,9 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                             <tr>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NO.</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ID ASISTENCIA</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA REGISTRO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>NÚMERO DE OFICIO</th>
-                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>FECHA ASISTENCIA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>TIPO DE REQUERIMIENTO</th>
+                                <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>SERVICIO</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>ETAPA</th>
                                 <th style='text-align:center; font-size: 14px; border: 2px solid #97897D;'>DETALLES</th>
                             </tr>
@@ -214,16 +212,14 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                     JOIN agendar_asistencia
                                                     ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia
-                                                    AND (solicitud_asistencia.tipo_requerimiento = 'PERIÓDICA DE SEGUIMIENTO'
-                                                    OR solicitud_asistencia.tipo_requerimiento = 'PROVISIONAL DE SEGUIMIENTO')
+                                                    AND (solicitud_asistencia.tipo_requerimiento = 'URGENCIA'
+                                                    OR solicitud_asistencia.tipo_requerimiento = 'EXTRAORDINARIA')
 
                                                     JOIN cita_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
 
-                                                    JOIN seguimiento_asistencia
-                                                    ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia
 
-                                                    ORDER BY seguimiento_asistencia.fecha_registro DESC
+                                                    ORDER BY cita_asistencia.fecha_asistencia DESC
                                                     LIMIT 10";
                                                     $result_solicitud = mysqli_query($mysqli, $query);
 
@@ -233,16 +229,16 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                 ?>
                                                     <?php 
                                                     $count = $count + 1;
-                                                    $fecha_registro = $row['fecha_solicitud'];
-                                                    $fecha_r = date("d/m/Y", strtotime($fecha_registro ));
+                                                    $fecha_asistencia = $row['fecha_asistencia'];
+                                                    $fecha_r = date("d/m/Y", strtotime($fecha_asistencia));
                                                     ?>
                                                         <tr>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $count?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['id_asistencia']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $fecha_r?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['num_oficio']?></td>
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>
                                                             <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"> <?php echo $row['tipo_requerimiento']?></td>
+                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;"><?php echo $row['servicio_medico']?></td>
+                                                            
                                                             
 
 
@@ -281,7 +277,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                                       <form>
                                                                         <div style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #5F6D6B; height: 40px; width: 100%; box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);">
-                                                                            <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">DETALLE DE LA ASISTECIA PSICOLÓGICA</h3>
+                                                                            <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">DETALLE DE LA ASISTECIA MÉDICA</h3>
                                                                         </div>
                                                                         <br>
                                                                         <div class="col-md-6 mb-3">

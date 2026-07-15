@@ -132,8 +132,8 @@ $id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$c;
 // $result1 = $mysqli->query($query_agendar);
 
 
-$query_agendar = "INSERT INTO agendar_asistencia(id_asistencia, tipo_institucion, municipio_institucion, oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
-VALUES ('$id_asistencia_medica', '$tipo_institucion', '$municipio_institucion', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$id_servidor')";
+$query_agendar = "INSERT INTO agendar_asistencia(id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
+VALUES ('$id_asistencia_medica', '$tipo_institucion', '$nombre_institucion', '$domicilio_institucion', '$municipio_institucion', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$id_servidor')";
 $result_agendar = $mysqli->query($query_agendar);
 
 $query_solicitud = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa, agendar, turnar, notificar)

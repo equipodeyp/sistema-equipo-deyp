@@ -161,7 +161,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
               <ul class="tabs">
                 <li><a href="#" class="active" onclick="location.href='registrar_asistencia_medica_por_urgencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">REGISTRAR ASISTENCIA MÉDICA POR URGENCIA</span></a></li>
-                <li><a href="#" onclick="location.href='asistencias_medicas_registradas_por_urgencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">ASISTENCIAS MÉDICAS REGISTRADAS</span></a></li>
+                <li><a href="#" onclick="location.href='./asistencias_medicas_registradas_por_urgencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">ASISTENCIAS MÉDICAS REGISTRADAS</span></a></li>
                 <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
                 <form method="POST" action="guardar_asistencia_medica_por_urgencia.php" id="myForm">

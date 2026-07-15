@@ -635,7 +635,7 @@ else {
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
       <h2 class='ca-main'>REGISTRAR</h2>
-      <h3 class='ca-sub'>ASISTENCIA MÉDICA POR URGENCIA</h3>
+      <h3 class='ca-sub'>URGENCIA - EXTRAORDINARIA</h3>
     </div>
   </a>
 </li>
