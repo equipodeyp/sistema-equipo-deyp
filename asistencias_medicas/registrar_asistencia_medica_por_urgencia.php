@@ -236,13 +236,19 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                 </div>
 
 
-                <div class="form-group" style="display: none;">
-                    <label for="tipo_requerimiento" class="col-md-4 control-label" style="font-size: 16px">TIPO DE REQUERIMIENTO </label>
-                    <div class="col-md-4 selectContainer">
+
+
+
+                  <div class="form-group">
+                    <label for="hospitalizacion" class="col-md-4 control-label" style="font-size: 16px">TIPO DE REQUERIMIENTO</label>
+                    <div class="col-md-4">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-solid fa-thumbtack"></i></span>
-                        <input value="URGENCIA MÉDICA" type="text" class="form-control" id="tipo_requerimiento" name="tipo_requerimiento" required style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                      </div>
+                        <span class="input-group-addon"><i class="fas fa-hospital"></i></span> 
+                        <select required value class="form-control" id="tipo_requerimiento" name="tipo_requerimiento">
+                          <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                          <option value="EXTRAORDINARIA">EXTRAORDINARIA</option>
+                          <option value="URGENCIA">URGENCIA</option>
+                        </select>
                       </div>
                     </div>
                   </div>
