@@ -60,14 +60,16 @@ $etapa = "ASISTENCIA MÉDICA COMPLETADA";
 // echo '<br>';
 
 
-$nombre_institucion="SELECT municipio, domicilio
+$nombre_institucion="SELECT*
 FROM instituciones_medicas
 WHERE nombre = '$nombre_institucion'";
 
 $result_nombre = $mysqli->query($nombre_institucion);
 $resultado_institucion = $result_nombre->fetch_assoc();
+
 $municipio_institucion = $resultado_institucion["municipio"];
 $domicilio_institucion = $resultado_institucion["domicilio"];
+
 
 // echo $municipio_institucion;
 // echo '<br>';
@@ -126,34 +128,48 @@ $id_asistencia_medica = $id_sujeto.'-'.$año.'-AM0'.$c;
 
 
 // $query_agendar = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion, oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
-// VALUES ('$id_asistencia_medica', '$tipo_institucion', '$nombre_institucion', '$domicilio_institucion', '$municipio_institucion', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$id_servidor')";
+// VALUES ('$id_asistencia_medica', '$tipo_institucion', '$nom_institucion', '$domicilio_institucion', '$municipio_institucion', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$id_servidor')";
 // $result1 = $mysqli->query($query_agendar);
 
-// $query_solicitud = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa, agendar, turnar, notificar)
-// VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa', 'NO', 'NO', 'NO')";
-// $result = $mysqli->query($query_solicitud);
 
-// $query_cita = "INSERT INTO cita_asistencia(folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
-// VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$fecha_asistencia', '$hora_asistencia', '$id_servidor')";
-// $result2= $mysqli->query($query_cita);
+$query_agendar = "INSERT INTO agendar_asistencia(id_asistencia, tipo_institucion, municipio_institucion, oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
+VALUES ('$id_asistencia_medica', '$tipo_institucion', '$municipio_institucion', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$id_servidor')";
+$result_agendar = $mysqli->query($query_agendar);
 
-// $query_seguimiento = "INSERT INTO seguimiento_asistencia(id_asistencia, traslado_realizado, se_otorgo, reprogramar, motivo, nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra)
-// VALUES ('$id_asistencia_medica', 'SI', 'NO APLICA', 'NO APLICA', 'NO APLICA', ' NO APLICA', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones', '$id_servidor')";
-// $result3 = $mysqli->query($query_seguimiento);
+$query_solicitud = "INSERT INTO solicitud_asistencia (folio_expediente, id_sujeto, id_asistencia, id_servidor, num_oficio, tipo_requerimiento, servicio_medico, observaciones, etapa, agendar, turnar, notificar)
+VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$id_servidor', '$numero_oficio', '$tipo_requerimiento', '$servicio_medico', '$observaciones', '$etapa', 'NO', 'NO', 'NO')";
+$result_solicitud = $mysqli->query($query_solicitud);
 
-$query_agendar = "INSERT INTO agendar_asistencia (id_asistencia, tipo_institucion, nombre_institucion, domicilio_institucion, municipio_institucion; oficio_gestion, servidor_asistencia, observaciones, servidor_registra)
-VALUES ('$id_asistencia_medica', '$tipo_institucion', '$nombre_institucion', '$domicilio_institucion', '$municipio_institucion', 'NO APLICA', 'NO APLICA', 'NO APLICA', '$id_servidor')";
+$query_cita = "INSERT INTO cita_asistencia(folio_expediente, id_sujeto, id_asistencia, fecha_asistencia, hora_asistencia, servidor_registra)
+VALUES ('$folio_expediente', '$id_sujeto', '$id_asistencia_medica', '$fecha_asistencia', '$hora_asistencia', '$id_servidor')";
+$result_cita= $mysqli->query($query_cita);
+
+$query_seguimiento = "INSERT INTO seguimiento_asistencia(id_asistencia, traslado_realizado, se_otorgo, reprogramar, motivo, nombre_pdi, hospitalizacion, diagnostico, cita_seguimiento, informe_medico, observaciones_seguimiento, servidor_registra)
+VALUES ('$id_asistencia_medica', 'SI', 'NO APLICA', 'NO APLICA', 'NO APLICA', ' NO APLICA', '$hospitalizacion', '$diagnostico', '$cita_seguimiento', '$informe_medico', '$observaciones', '$id_servidor')";
+$result_seguimiento = $mysqli->query($query_seguimiento);
+
+// $query_nombre = "UPDATE agendar_asistencia SET nombre_institucion = '$nombre_institucion' WHERE id_asistencia = '$id_asistencia_medica'";
+// $result_nombre = $mysqli->query($query_nombre);
+
+// $query_domicilio = "UPDATE agendar_asistencia SET domicilio_institucion = '$domicilio_institucion' WHERE id_asistencia = '$id_asistencia_medica'";
+// $result_domicilio = $mysqli->query($query_domicilio);
 
 
 
-    if($result) {
+
+
+    if($result_seguimiento) {
             echo $verifica;
             echo ("<script type='text/javaScript'>
-            window.location.href='./asistencias_medicas_registradas_por_urgencia.php';
+            
+            window.location.href='./registrar_asistencia_medica_por_urgencia.php';
             window.alert('!!!!!Registro exitoso¡¡¡¡¡')
-        </script>");
+            </script>");
             } else {  }
     } else {
     echo "<META HTTP-EQUIV='Refresh' CONTENT='0; url=admin.php'>";
 }
+
+
+// window.location.href='./asistencias_medicas_registradas_por_urgencia.php';
 ?>
