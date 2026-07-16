@@ -332,10 +332,10 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                         </div>
                                                                         <?php } ?>
                                                                         
-                                                                        <div class="col-md-6 mb-3">
+                                                                        <!-- <div class="col-md-6 mb-3">
                                                                           <label>INFORME:</label>
                                                                           <textarea style="font-size: 14px;" rows="5" cols="33" type="text" class="form-control" readonly placeholder="<?php echo $row['informe_medico'];?>"></textarea>
-                                                                        </div>
+                                                                        </div> -->
 
                                                                       </form>
 
