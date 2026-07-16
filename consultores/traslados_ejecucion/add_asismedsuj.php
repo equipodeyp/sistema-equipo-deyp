@@ -40,7 +40,7 @@
                                  INNER JOIN solicitud_asistencia ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
                                  WHERE cita_asistencia.fecha_asistencia = '$fechatrs' AND solicitud_asistencia.folio_expediente='$folexpunisuj'
                                  AND solicitud_asistencia.id_sujeto = '$identificadorsuj' AND solicitud_asistencia.etapa != 'CANCELADA'
-                                 AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ')";
+                                 AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ' OR solicitud_asistencia.tipo_requerimiento = 'URGENCIA' OR solicitud_asistencia.tipo_requerimiento = 'EXTRAORDINARIA')";
       $rgetdeatllesasismed = $mysqli->query($getdeatllesasismed);
       while ($fgetdeatllesasismed = $rgetdeatllesasismed -> fetch_assoc()) {
         // echo "asistencia medica----";
