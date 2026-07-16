@@ -480,6 +480,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                               <option value="BOLSA">BOLSA</option>
                               <option value="FRASCO">FRASCO</option>
                               <option value="LATA">LATA</option>
+                              <option value="LATA">TUBO</option>
                             </select>
                           </div>
 

@@ -141,7 +141,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
             <!-- menu de navegacion de la parte de arriba -->
 
             <div class="secciones form-horizontal sticky breadcrumb flat">
-              <a href="./menu_asistencias_medicas.php">MENÚ ASISTENCIAS MÉDICAS</a>
+              <a href="./admin.php">MENÚ ASISTENCIAS MÉDICAS</a>
               <a class="actived" href="./asistencias_medicas_registradas_por_urgencia.php">ASISTENCIAS MÉDICAS REGISTRADAS POR URGENCIA</a>
             </div>
           
@@ -150,7 +150,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               <div class="row">
 
               <ul class="tabs">
-                    <li><a href="#" onclick="location.href='registrar_asistencia_medica_por_urgencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">REGISTRAR ASISTENCIA MÉDICA POR URGENCIA</span></a></li>
+                    <li><a href="#" onclick="location.href='./registrar_asistencia_medica_por_urgencia.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">REGISTRAR ASISTENCIA MÉDICA POR URGENCIA</span></a></li>
                     <li><a href="#" class="active" onclick="location.href='./asistencias_medicas_registradas_por_urgencia.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">ASISTENCIAS MÉDICAS REGISTRADAS POR URGENCIA</span></a></li>
                     <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
               </ul>
@@ -388,7 +388,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
   <div class="contenedor">
-    <a href="./menu_asistencias_medicas.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+    <a href="./admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
   </div>
   <div class="contenedor">
     <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
