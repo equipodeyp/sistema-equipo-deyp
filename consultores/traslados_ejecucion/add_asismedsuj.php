@@ -13,26 +13,26 @@
       $getdes = "SELECT * FROM react_sujetos_traslado WHERE id = '$iddestraslado'";
       $rgetdes = $mysqli -> query($getdes);
       $fgetdes = $rgetdes ->fetch_assoc();
-      // echo "id del sujeto de datos personales---";
-      $idunicsuj = $fgetdes['id_sujeto'];
-      // echo "<br>";
-      // echo "id del traslado unico---";
-      $idunictrs = $fgetdes['id_traslado'];
-      // echo "<br>";
+      echo "id del sujeto de datos personales---";
+      echo $idunicsuj = $fgetdes['id_sujeto'];
+      echo "<br>";
+      echo "id del traslado unico---";
+      echo $idunictrs = $fgetdes['id_traslado'];
+      echo "<br>";
       $getident = "SELECT * FROM datospersonales WHERE id = '$idunicsuj'";
       $rgetident = $mysqli->query($getident);
       $fgetident = $rgetident ->fetch_assoc();
-      // echo "folio del expediente---";
-      $folexpunisuj = $fgetident['folioexpediente'];
-      // echo "<br>";
-      // echo "indetificador del sujeto---";
-      $identificadorsuj = $fgetident['identificador'];
-      // echo "<br>";
+      echo "folio del expediente---";
+      echo $folexpunisuj = $fgetident['folioexpediente'];
+      echo "<br>";
+      echo "indetificador del sujeto---";
+      echo $identificadorsuj = $fgetident['identificador'];
+      echo "<br>";
       $getinfotrs ="SELECT * FROM react_traslados WHERE id = '$idunictrs'";
       $rgetinfotrs = $mysqli->query($getinfotrs);
       $fgetinfotrs = $rgetinfotrs->fetch_assoc();
-      // echo "fecha del traslado---";
-      $fechatrs = $fgetinfotrs['fecha'];
+      echo "fecha del traslado---";
+      echo $fechatrs = $fgetinfotrs['fecha'];
       // echo "<br>";
       // echo "para traer el dia de la cita se ocupa folexp, identificador, id_asistencia, fecha_Asistencia";
       // echo "<br>";
@@ -40,7 +40,8 @@
                                  INNER JOIN solicitud_asistencia ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
                                  WHERE cita_asistencia.fecha_asistencia = '$fechatrs' AND solicitud_asistencia.folio_expediente='$folexpunisuj'
                                  AND solicitud_asistencia.id_sujeto = '$identificadorsuj' AND solicitud_asistencia.etapa != 'CANCELADA'
-                                 AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ' OR solicitud_asistencia.tipo_requerimiento = 'URGENCIA' OR solicitud_asistencia.tipo_requerimiento = 'EXTRAORDINARIA')";
+                                 AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ'
+                                   OR solicitud_asistencia.tipo_requerimiento = 'URGENCIA' OR solicitud_asistencia.tipo_requerimiento = 'EXTRAORDINARIA')";
       $rgetdeatllesasismed = $mysqli->query($getdeatllesasismed);
       while ($fgetdeatllesasismed = $rgetdeatllesasismed -> fetch_assoc()) {
         // echo "asistencia medica----";
@@ -70,7 +71,8 @@
                                                      INNER JOIN solicitud_asistencia ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
                                                      WHERE cita_asistencia.fecha_asistencia = '$fechatrs' AND solicitud_asistencia.folio_expediente='$folexpunisuj'
                                                      AND solicitud_asistencia.id_sujeto = '$identificadorsuj' AND solicitud_asistencia.etapa != 'CANCELADA'
-                                                     AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ')";
+                                                     AND (solicitud_asistencia.tipo_requerimiento = 'SEGUIMIENTO' OR solicitud_asistencia.tipo_requerimiento = 'POR INGRESO' OR solicitud_asistencia.tipo_requerimiento = 'PRIMERA VEZ'
+                                                     OR solicitud_asistencia.tipo_requerimiento = 'URGENCIA' OR solicitud_asistencia.tipo_requerimiento = 'EXTRAORDINARIA')";
                           $answer1 = $mysqli->query($select1);
                           while($valores1 = $answer1->fetch_assoc()){
                             $rresidasismed = $valores1['id_asistencia'];
