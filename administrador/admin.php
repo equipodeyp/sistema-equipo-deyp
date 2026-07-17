@@ -141,6 +141,7 @@ $mmed =  $ftmf['t'];
                   </ul>
                 </li>
               </ul>
+              <li class="menu-items"><a href='./basesdedatos/bd_react.php'><i style="color: #FFFFFF;" class="fa-solid fa-file-circle-plus menu-nav--icon"></i><strong style="color: white;">REACT</strong></a></li>
             </ul>
           </li>
         </ul>
