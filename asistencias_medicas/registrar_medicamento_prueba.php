@@ -1,0 +1,350 @@
+
+<?php
+/*require 'conexion.php';*/
+include("conexion.php");
+session_start ();
+$name = $_SESSION['usuario'];
+if (!isset($name)) {
+  header("location: ../logout.php");
+}
+$verifica = 1;
+$_SESSION["verifica"] = $verifica;
+$name = $_SESSION['usuario'];
+
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$user = $row['usuario'];
+
+$m_user = $user;
+$m_user = strtoupper($m_user);
+
+// echo $m_user;
+// echo $user;
+// $f_exped = 'UPSIPPED/TOL/113/015/2022';
+// echo $f_exped;
+
+
+$sentencia2=" SELECT nombre, amaterno, apaterno FROM usuarios_servidorespublicos WHERE usuario ='$user'";
+$rnombre = $mysqli->query($sentencia2);
+$fnombre=$rnombre->fetch_assoc();
+$name_serv = $fnombre['nombre'];
+$ap_serv = $fnombre['apaterno'];
+$am_serv = $fnombre['amaterno'];
+
+
+
+$name_user = $name_serv;
+$name_user = strtoupper($name_user);
+$names = $name_user;
+$one_name = explode(" ", $names); 
+$primer_nombre = $one_name[0];
+
+// echo $primer_nombre;
+
+$a_paterno = $ap_serv;
+$a_paterno = strtoupper($a_paterno);
+$ap_string = $a_paterno;
+$inicial_ap = $ap_string[0];
+// echo $inicial_ap;
+
+$a_materno = $am_serv;
+$a_materno = strtoupper($a_materno);
+$am_string = $a_materno;
+$inicial_am = $am_string[0];
+// echo $inicial_am;
+
+
+
+$id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
+// echo $id_servidor_ini;
+
+
+
+
+$sentencia=" SELECT * FROM usuarios WHERE usuario='$name'";
+$result = $mysqli->query($sentencia);
+$row=$result->fetch_assoc();
+$genero = $row['sexo'];
+$id_user = $row['id'];
+// echo $id_user;
+
+$userfijo="SELECT * FROM usuarios_servidorespublicos WHERE id_usuarioprincipal='$id_user'";
+$ruserfijo = $mysqli->query($userfijo);
+$fuserfijo=$ruserfijo->fetch_assoc();
+$n = $fuserfijo['nombre'];
+$permiso1 = $fuserfijo['permiso1'];
+$permiso2 = $fuserfijo['permiso2'];
+$permiso3 = $fuserfijo['permiso3'];
+$permiso4 = $fuserfijo['permiso4'];
+$permiso5 = $fuserfijo['permiso5'];
+$permiso6 = $fuserfijo['permiso6'];
+$sub = $fuserfijo['subdireccion'];
+// echo $permiso1;
+// echo $permiso2;
+// echo $permiso3;
+// echo $permiso4;
+// echo $permiso5;
+// echo $permiso6;
+
+// echo $sub;
+// echo $n;
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPSIPPED</title>
+  <script src="../js/jquery-3.1.1.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap-theme.css" rel="stylesheet">
+  <script src="../js/bootstrap.min.js"></script>
+  <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="../js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <!-- barra de navegacion -->
+  <link rel="stylesheet" href="../css/breadcrumb.css">
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../css/expediente.css">
+  <link rel="stylesheet" href="../css/font-awesome.css">
+  <link rel="stylesheet" href="../css/cli.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="../js/expediente.js"></script>
+  <script src="../js/solicitud.js"></script>
+  <script src="../js/Javascript.js"></script>
+  <!-- <script src="../js/validar_campos.js"></script> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/cli.css">
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="../css/main2.css">
+
+</head>
+<body >
+  <div class="contenedor">
+    <div class="sidebar ancho">
+      <div class="logo text-warning">
+      </div>
+      <div class="user">
+        <?php
+  			$sentencia_user=" SELECT usuario, nombre, area, apellido_p, apellido_m, sexo FROM usuarios WHERE usuario='$name'";
+  			$result_user = $mysqli->query($sentencia_user);
+  			$row_user=$result_user->fetch_assoc();
+  			$genero = $row_user['sexo'];
+
+  			if ($genero=='mujer') {
+  				echo "<img src='../image/mujerup.png' width='100' height='100'>";
+  			}
+
+  			if ($genero=='hombre') {
+  				// $foto = ../image/user.png;
+  				echo "<img src='../image/hombreup.jpg' width='100' height='100'>";
+  			}
+  			// echo $genero;
+  			?>
+        <h6 style="text-align:center" class='user-nombre' >  <?php echo "" . $_SESSION['usuario']; ?> </h6>
+      </div>
+      <nav class="menu-nav">
+      </nav>
+    </div>
+    <div class="main bg-light">
+      <div class="barra">
+        <img src="../image/fiscalia.png" alt="" width="150" height="150">
+        <img src="../image/ups2.png" alt="" width="1400" height="70">
+        <img style="display: block; margin: 0 auto;" src="../image/ups3.png" alt="" width="1400" height="70">
+    </div>
+
+
+      <!-- menu del expediente -->
+      <div class="wrap">
+
+
+
+        <div class="secciones">
+          <article id="tab1">
+
+            <!-- menu de navegacion de la parte de arriba -->
+          <div class="secciones form-horizontal sticky breadcrumb flat">
+            <a href="../consultores/admin.php">INICIO</a>
+            <a href="../asistencias_medicas/admin.php">MENÚ ASISTENCIAS MÉDICAS</a>
+            <a class="actived" href="../asistencias_medicas/tratamiento_medico.php">TRATAMIENTO MÉDICO</a>
+          </div>
+
+
+            <div class=" well form-horizontal">
+              <div class="row">
+
+              <ul class="tabs">
+                <li><a href="#" class="active" onclick="location.href='tratamiento medico.php'"><span class="far fa-regular fa-bell"></span><span class="tab-text">TRATAMIENTO MEDICO</span></a></li>
+                <!-- <li><a href="#" onclick="location.href='solicitud_registrada.php'"><span class="fas fa-regular fa-clipboard"></span><span class="tab-text">SOLICITUDES REGISTRADAS</span></a></li> -->
+                <!-- <li><a href="#" onclick="location.href='seguimiento_persona.php?folio=<?php echo $fol_exp; ?>'"><span class="fas fa-book-open"></span><span class="tab-text">SEGUIMIENTO PERSONA</span></a></li> -->
+              </ul>
+                <form method="POST" action="">
+                  <div class="alert div-title">
+                    <h3 style="text-align:center">TRATAMIENTO MÉDICO</h3>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label for="fecha_asistencia_medica" class="col-md-4 control-label" style="font-size: 16px">FECHA DE LA ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
+                        <select class="form-control" id="fecha_asistencia_medica" name="fecha_asistencia_medica" required>
+                            <option disabled selected value="">SELECCIONE UNA FECHA</option>
+                             <?php
+
+                                  $selectfecha_asistencia_medica = "SELECT DISTINCT cita_asistencia.fecha_asistencia
+                                              FROM cita_asistencia                                                                          
+                                              JOIN solicitud_asistencia
+                                              ON cita_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
+                                              AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+                                              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
+                                              AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
+                                              AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
+                                              AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
+                                              WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
+                                              OR solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+                                              ORDER BY cita_asistencia.fecha_asistencia ASC";
+
+                                  $answerfecha_asistencia_medica = $mysqli->query($selectfecha_asistencia_medica);
+                                  while($valoresfecha_asistencia_medica = $answerfecha_asistencia_medica->fetch_assoc()){
+                                    $result_fecha_asistencia_medica = $valoresfecha_asistencia_medica['fecha_asistencia'];
+                                    
+                                    $originalDate = $result_fecha_asistencia_medica;
+                                    $date = date("Y/m/d", strtotime($originalDate));
+
+                                    $result_fecha_asistencia_medica = $valoresfecha_asistencia_medica['fecha_asistencia'];
+                                    echo "<option value='$date'>$date</option>";
+                                  }
+                              ?>
+
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  
+
+
+                  <div class="form-group">
+                    <label for="id_asistencia_medica" class="col-md-4 control-label" style="font-size: 16px">ID ASISTENCIA MÉDICA</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-folder"></i></span>
+                        <select class="form-control" id="id_asistencia_medica" name="id_asistencia_medica" required>
+                        
+
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <!-- <div class="form-group">
+                    <label for="folio_expediente" class="col-md-4 control-label" style="font-size: 16px">FOLIO EXPEDIENTE</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
+                        <input type="text" class="form-control"  id="folio_expediente" name="folio_expediente" readonly required>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <label for="id_sujeto" class="col-md-4 control-label" style="font-size: 16px">ID SUJETO</label>
+                    <div class="col-md-4 selectContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fas fa-solid fa-id-card"></i></span>
+                        <input type="text" class="form-control"  id="id_sujeto" name="id_sujeto" readonly required>
+                      </div>
+                    </div>
+                  </div> -->
+
+
+
+
+
+                  <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      <button style="display: block; margin: 0 auto;" type="submit" class="btn color-btn-success">GUARDAR REGISTRO</button>
+                    </div>
+                  </div>
+
+
+
+                </form>
+              </div>
+            </div><!-- /.container -->
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <!-- <?php echo "cambios"; ?> -->
+    <a href="admin.php" class="btn-flotante color-btn-success-gray">REGRESAR</a>
+  </div>
+  <div class="contenedor">
+    <!-- <a href="../logout.php" class="btn-flotante-dos">Cerrar Sesión</a> -->
+  </div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#fecha_asistencia_medica').val(1);
+		recargarLista();
+
+		$('#fecha_asistencia_medica').change(function(){
+			recargarLista();
+		});
+
+
+	})
+</script>
+
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"./get_id_asistencia_medica.php",
+			data:"folio=" + $('#fecha_asistencia_medica').val(),
+			success:function(r){
+				$('#id_asistencia_medica').html(r);
+			}
+		});
+	}
+</script>
+
+</body>
+</html>

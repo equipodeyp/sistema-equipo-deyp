@@ -1,0 +1,13 @@
+/* Estilo diferente para el botón Agregar (Verde al pasar el cursor) */
+.btn-agregar:hover {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+/* Estilo diferente para el botón Historial (Azul al pasar el cursor) */
+.btn-historial:hover {
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}

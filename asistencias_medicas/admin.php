@@ -548,7 +548,8 @@ $fcl2 = $rcl2->fetch_assoc();
 
 
 if ($permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta') {
-  echo "
+
+echo "
 <ul class='ca-menu'>
 
 <li style='text-align:center'>
@@ -610,13 +611,13 @@ if ($permiso6 == 'agendar' && $permiso3 == 'solicitar' && $permiso1 == 'consulta
 
       // }
 
-echo " </ul>
-";
+echo " </ul> ";
 
 }
 
 else {
-  echo "
+
+echo "
 
 <ul class='ca-menu' style='text-align:right'>
 
@@ -641,6 +642,16 @@ else {
 </li>
 
 <li style='text-align:center'>
+  <a href='./tratamiento_medico.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/tm.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>TRATAMIENTO MÉDICO</h2>
+      <h3 class='ca-sub'>REGISTRAR MEDICAMENTO</h3>
+    </div>
+  </a>
+</li>
+
+<li style='text-align:center'>
   <a href='./solicitar_asistencia.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
     <div class='ca-content'>
@@ -648,6 +659,7 @@ else {
       <h3 class='ca-sub'>NUEVA ASISTENCIA MÉDICA</h3></div>
   </a>
 </li>
+
 
 
 <li style='text-align:center'>
@@ -670,9 +682,6 @@ else {
 </li>
 
 
-
-
-
 ";
 
 
@@ -689,8 +698,12 @@ else {
         // }
 
 
-echo " </ul>
-";
+echo " </ul>";
+
+
+
+
+
 }
 ?>
 

@@ -187,7 +187,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">DIAGNÓSTICO</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">CITA DE SEGUIMIENTO</th>
                                 <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">ETAPA</th>
-                                <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">TRATAMIENTO MEDICO</th>
+                                <!-- <th style="text-align:center; font-size: 14px; border: 2px solid #97897D;">TRATAMIENTO MEDICO</th> -->
                             </tr>
                         </thead>
 
@@ -227,15 +227,15 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                             
 
 
-                                                            <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
+                                                            <!-- <td style="text-align:center; font-size: 10px; border: 2px solid #97897D;">
                                                                 <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#myModal">
                                                                    REGISTRAR <br> MEDICAMENTO
                                                                 </button>
-                                                                <!-- <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button>
+                                                                <button style="display: block; margin: 0 auto;" disabled class="btn btn-primary"><?php echo $row['etapa']?></button>
                                                                 <a href="grafico_instrumento.php?folio=<?php echo $fol_exp; ?>" class="btn btn-outline-secondary">
                                                                     <i class="fas fa-chart-line" ></i>
-                                                                </a> -->
-                                                            </td>
+                                                                </a>
+                                                            </td> -->
                                                             
                                                         </tr>
 
@@ -263,7 +263,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
-              <form class="container well form-horizontal" enctype="multipart/form-data">
+              <!-- <form class="container well form-horizontal" enctype="multipart/form-data">
               <?php
               $cl = "SELECT COUNT(*) as t FROM tratamiento_medico WHERE id_asistencia = '$id_asistencia_medica'";
               $rcl = $mysqli->query($cl);
@@ -304,7 +304,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                     ";
                   }
 
-            ?>
+            ?> -->
 
 
 <tbody>

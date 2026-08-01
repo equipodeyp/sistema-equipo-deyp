@@ -206,7 +206,10 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                     $count = 0;
 
-                                                    $query = "SELECT *
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.folio_expediente, solicitud_asistencia.id_sujeto, solicitud_asistencia.servicio_medico,
+                                                    solicitud_asistencia.tipo_requerimiento, solicitud_asistencia.etapa, agendar_asistencia.nombre_institucion, agendar_asistencia.domicilio_institucion,
+                                                    agendar_asistencia.municipio_institucion, cita_asistencia.fecha_asistencia, cita_asistencia.hora_asistencia,
+                                                    solicitud_asistencia.observaciones
                                                     
                                                     FROM solicitud_asistencia
 
@@ -218,13 +221,34 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                     JOIN cita_asistencia 
                                                     ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
 
-
                                                     ORDER BY cita_asistencia.fecha_asistencia DESC
                                                     LIMIT 10";
+
                                                     $result_solicitud = mysqli_query($mysqli, $query);
+                                                    
+
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
+
+
+                                                    $id_asistencia_seguimiento = $row['id_asistencia'];
+
+                                                    $query_seguimiento = "SELECT *
                                                     
+                                                    FROM seguimiento_asistencia
+
+                                                    JOIN solicitud_asistencia
+                                                    ON seguimiento_asistencia.id_asistencia = solicitud_asistencia.id_asistencia
+                                                    AND (solicitud_asistencia.tipo_requerimiento = 'URGENCIA'
+                                                    OR solicitud_asistencia.tipo_requerimiento = 'EXTRAORDINARIA')
+                                                    AND seguimiento_asistencia.id_asistencia = '$id_asistencia_seguimiento'";
+
+                                                    $result_seguimiento = $mysqli->query($query_seguimiento);
+                                                    $row_seguimiento = $result_seguimiento->fetch_assoc();
+                                                    $r_diagnostico = $row_seguimiento['diagnostico'];
+                                                    $r_informe_medico = $row_seguimiento['informe_medico'];
+
+
                                                         
                                                 ?>
                                                     <?php 
@@ -293,7 +317,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['id_sujeto'];?>">
                                                                         </div>
                                                                         <div class="col-md-6 mb-3">
-                                                                          <label>FECHA Y HORA REGISTRO:</label>
+                                                                          <label>FECHA Y HORA ASISTENCIA:</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $fecha_r." ".$row['hora_solicitud']?>">
                                                                         </div>
                                                                         <div class="col-md-6 mb-3">
@@ -304,14 +328,14 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                           <label>TIPO DE REQUERIMIENTO:</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['tipo_requerimiento'];?>">
                                                                         </div>
-                                                                        <div class="col-md-6 mb-3">
+                                                                        <!-- <div class="col-md-6 mb-3">
                                                                           <label>NÚMERO DE OFICIO:</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['num_oficio'];?>">
-                                                                        </div>
-                                                                        <div class="col-md-6 mb-3">
+                                                                        </div> -->
+                                                                        <!-- <div class="col-md-6 mb-3">
                                                                           <label>SERVIDOR PÚBLICO:</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['servidor_asistencia'];?>">
-                                                                        </div>
+                                                                        </div> -->
                                                                         <?php
                                                                         $fecha_asist = $row['fecha_asistencia'];
                                                                         $fecha_a = date("d/m/Y", strtotime($fecha_asist));
@@ -320,6 +344,17 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                           <label>FECHA Y HORA ASISTENCIA:</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $fecha_a." ".$row['hora_asistencia']?>">
                                                                         </div>
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                        <label>DIAGNOSTICO:</label>
+                                                                          <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $r_diagnostico; ?>">
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>INFORME MÉDICO:</label>
+                                                                          <textarea style="font-size: 14px;" rows="5" cols="33" type="text" class="form-control" readonly placeholder="<?php echo $r_informe_medico; ?>"></textarea>
+                                                                        </div>
+
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>ETAPA ASISTENCIA MÉDICA</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['etapa'];?>">
