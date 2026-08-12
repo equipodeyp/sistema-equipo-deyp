@@ -88,30 +88,21 @@ $row=$result->fetch_assoc();
                 <div class="table-responsive">
                   <table id="bd_react" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
-                      <!-- <h3 style="text-align:center">Registros</h3> -->
                         <tr>
-                            <th style="text-align:center">No.</th>
-                            <th style="text-align:center">SUBDIRECCION</th>
-                            <!-- <th style="text-align:center">ID ACTIVIDAD</th> -->
-                            <!-- <th style="text-align:center">FUNCION</th> -->
-                            <!-- <th style="text-align:center">UNIDAD DE MEDIDA</th> -->
-                            <th style="text-align:center">ACTIVIDAD</th>
-                            <th style="text-align:center">CLASIFICACION</th>
-                            <th style="text-align:center">FECHA</th>
-                            <!-- <th style="text-align:center">CANTIDAD</th> -->
-                            <!-- <th style="text-align:center">ENTIDAD MUNICIPIO</th> -->
-                            <th style="text-align:center">FOLIO EXPEDIENTE</th>
-                            <th style="text-align:center">ID SUJETO</th>
-                            <!-- <th style="text-align:center">KILOMETRAJE</th> -->
-                            <!-- <th style="text-align:center">OBSERVACIONES</th> -->
-                            <!-- <th style="text-align:center">EN CENTRO DE RESGUARDO</th> -->
+                            <th style="text-align:center; color: white; border: 1px solid black;">No.</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">SUBDIRECCION</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">FUNCION</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">ACTIVIDAD</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">UNIDAD DE MEDIDA</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">FOLIO EXPEDIENTE</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">ID SUJETO</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">FECHA</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">OBSERVACIONES</th>
+                            <th style="text-align:center; color: white; border: 1px solid black;">CLASIFICACION</th>
                         </tr>
                     </thead>
                   <tbody>
                     <?php
-//                     UPDATE `react_actividad` 
-// SET id_actividad = 8
-// WHERE id_subdireccion = 4 AND unidad_medida = 'OTRAS ACTIVIDADES';
                     $año = date("Y");
                     // echo "<br>";
                     $fechaprincipio = $año.'-01-01';
@@ -132,9 +123,7 @@ $row=$result->fetch_assoc();
                       <tr>
                         <td><?php echo $id; ?></td>
                         <td><?php echo $fgetsub['subdireccion']; ?></td>
-                        <!-- <td><?php echo $freactbd['idactividad']; ?></td> -->
-                        <!-- <td><?php echo mb_strtoupper (html_entity_decode($freactbd['funcion'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?></td> -->
-                        <!-- <td><?php echo mb_strtoupper (html_entity_decode($freactbd['unidad_medida'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?></td> -->
+                        <td><?php echo mb_strtoupper (html_entity_decode($freactbd['funcion'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?></td>
                         <td>
                         <?php if ($idsub == 1) {
                           $idact_analisis = $freactbd['id_actividad'];
@@ -165,30 +154,7 @@ $row=$result->fetch_assoc();
                           echo mb_strtoupper (html_entity_decode($factejecucion['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8"));
                         }
                         ?></td>
-                        <td><?php
-                        if ($idsub == 4) {
-                          // echo "ejecucion de medidas";
-                          // echo "<br>";
-                          $idactsub = $freactbd['id_actividad'];
-                          // echo "<br>";
-                          if ($idactsub == 3) {
-                            // echo "facilitar el contacto";
-                            // echo "<br>";
-                            $clasificacioncontfam = $freactbd['clasificacion'];
-                            $getfac_contacto = "SELECT nombre FROM react_contacto_familiar WHERE contactoid = '$clasificacioncontfam'";
-                            $rgetfac_contacto = $mysqli->query($getfac_contacto);
-                            $fgetfac_contacto = $rgetfac_contacto->fetch_assoc();
-                            echo $fgetfac_contacto['nombre'];
-                          }else {
-                            echo mb_strtoupper (html_entity_decode($freactbd['clasificacion'], ENT_QUOTES | ENT_HTML401, "UTF-8"));
-                          }
-                        }else {
-                          echo mb_strtoupper (html_entity_decode($freactbd['clasificacion'], ENT_QUOTES | ENT_HTML401, "UTF-8"));
-                        }
-                        ?></td>
-                        <td><?php echo date("d/m/Y", strtotime($freactbd['fecha'])); ?></td>
-                        <!-- <td><?php echo $freactbd['cantidad']; ?></td> -->
-                        <!-- <td><?php echo $freactbd['entidad_municipio']; ?></td> -->
+                        <td><?php echo mb_strtoupper (html_entity_decode($freactbd['unidad_medida'], ENT_QUOTES | ENT_HTML401, "UTF-8")); ?></td>
                         <td><?php
                           $fol_exp_suj = $freactbd['folio_expediente'];
                           if ($fol_exp_suj === 'SI') {
@@ -216,9 +182,30 @@ $row=$result->fetch_assoc();
                         }
                         ?>
                         </td>
-                        <!-- <td></td> -->
-                        <!-- <td></td> -->
-                        <!-- <td></td> -->
+                        <td><?php echo date("d/m/Y", strtotime($freactbd['fecha'])); ?></td>
+                        <td><?php
+                          if ($freactbd['observaciones'] === '') {
+                            echo "SIN OBSERVACIONES";
+                          }else {
+                            echo mb_strtoupper (html_entity_decode($freactbd['observaciones'], ENT_QUOTES | ENT_HTML401, "UTF-8"));
+                          }
+                        ?></td>
+                        <td><?php
+                        if ($idsub == 4) {
+                          $idactsub = $freactbd['id_actividad'];
+                          if ($idactsub == 3) {
+                            $clasificacioncontfam = $freactbd['clasificacion'];
+                            $getfac_contacto = "SELECT nombre FROM react_contacto_familiar WHERE contactoid = '$clasificacioncontfam'";
+                            $rgetfac_contacto = $mysqli->query($getfac_contacto);
+                            $fgetfac_contacto = $rgetfac_contacto->fetch_assoc();
+                            echo $fgetfac_contacto['nombre'];
+                          }else {
+                            echo mb_strtoupper (html_entity_decode($freactbd['clasificacion'], ENT_QUOTES | ENT_HTML401, "UTF-8"));
+                          }
+                        }else {
+                          echo mb_strtoupper (html_entity_decode($freactbd['clasificacion'], ENT_QUOTES | ENT_HTML401, "UTF-8"));
+                        }
+                        ?></td>
                       </tr>
                       <?php
                     }
