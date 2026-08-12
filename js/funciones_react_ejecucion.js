@@ -7,6 +7,7 @@ function selectNit(e) {
     document.getElementById("clasificacionaccionseguridad").style.display = "none";
     document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
     document.getElementById("entidadmunicipio_1_2").style.display = "none";
+    document.getElementById("actividadesrealizadasporsujetos").style.display = "none";
     document.getElementById("actividad_folioexpediente").style.display = "";
     document.getElementById("actividad_idsujeto").style.display = "";
     document.getElementById("actividad_idevidencia").style.display = "none";
@@ -37,6 +38,7 @@ function selectNit(e) {
     document.getElementById("clasificacionaccionseguridad").style.display = "none";
     document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
     document.getElementById("entidadmunicipio_1_2").style.display = "none";
+    document.getElementById("actividadesrealizadasporsujetos").style.display = "none";
     document.getElementById("actividad_folioexpediente").style.display = "";
     document.getElementById("actividad_idsujeto").style.display = "";
     document.getElementById("actividad_idevidencia").style.display = "none";
@@ -66,6 +68,7 @@ function selectNit(e) {
     document.getElementById("clasificacionaccionseguridad").style.display = "none";
     document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
     document.getElementById("entidadmunicipio_1_2").style.display = "";
+    document.getElementById("actividadesrealizadasporsujetos").style.display = "none";
     document.getElementById("actividad_folioexpediente").style.display = "";
     document.getElementById("actividad_idsujeto").style.display = "";
     document.getElementById("actividad_idevidencia").style.display = "none";
@@ -95,6 +98,7 @@ function selectNit(e) {
     document.getElementById("clasificacionaccionseguridad").style.display = "none";
     document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
     document.getElementById("entidadmunicipio_1_2").style.display = "none";
+    document.getElementById("actividadesrealizadasporsujetos").style.display = "none";
     document.getElementById("actividad_folioexpediente").style.display = "";
     document.getElementById("actividad_idsujeto").style.display = "";
     document.getElementById("actividad_idevidencia").style.display = "";
@@ -125,8 +129,9 @@ function selectNit(e) {
     document.getElementById("clasificacionaccionseguridad").style.display = "none";
     document.getElementById("clasificacion_salvaguardarintegridad").style.display = "none";
     document.getElementById("entidadmunicipio_1_2").style.display = "none";
-    document.getElementById("actividad_folioexpediente").style.display = "";
-    document.getElementById("actividad_idsujeto").style.display = "";
+    document.getElementById("actividadesrealizadasporsujetos").style.display = "";
+    document.getElementById("actividad_folioexpediente").style.display = "none";
+    document.getElementById("actividad_idsujeto").style.display = "none";
     document.getElementById("actividad_idevidencia").style.display = "";
     document.getElementById("requiredidevidencia").setAttribute("placeholder", "NUMERO DE LA TARJETA INFORMATIVA");
     document.getElementById("actividad_kilometros").style.display = "none";
@@ -136,10 +141,11 @@ function selectNit(e) {
     document.getElementById("reportemetas").value = "NO";
     document.getElementById("evidencias_actividadessujeto").style.display = "";
     // HACER CAMPOS OBLIGATORIOS
-    document.getElementById("requiredfolioexpediente").required = true;
-    document.getElementById("requiredidsujeto").required = true;
+
     document.getElementById("requiredidevidencia").required = true;
     // document.getElementById("requiredkilometros").required = true;
+    document.getElementById("requiredfolioexpediente").required = false;
+    document.getElementById("requiredidsujeto").required = false;
     document.getElementById("evidencia").required = false;
     document.getElementById("notific_atnpet").required = false;
     document.getElementById("clasificacionejecucion_contactofam").required = false;

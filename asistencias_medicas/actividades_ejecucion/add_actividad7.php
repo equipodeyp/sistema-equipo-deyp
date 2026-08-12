@@ -39,7 +39,13 @@ $rgetidebntificadorsuj = $mysqli->query($getidebntificadorsuj);
 $fgetidebntificadorsuj = $rgetidebntificadorsuj->fetch_assoc();
 $identificador = $fgetidebntificadorsuj['identificador'];
 $fechaactividad2 = date("d-m-Y", strtotime($fechaactividad));
-$directorioDestino = "../../fotos/actividades_ejecucion/" . $folioLimpio . "/" . $identificador . "/". $fechaactividad2 . "/";
+// $directorioDestino = "../../fotos/actividades_ejecucon/" . $folioLimpio . "/" . $identificador . "/". $fechaactividad2 . "/";
+// Extraemos año, mes y día de forma independiente basados en la fecha original
+$anio = date("Y", strtotime($fechaactividad));
+$mes  = date("m", strtotime($fechaactividad));
+$dia  = date("d", strtotime($fechaactividad));
+// Creamos la nueva ruta estructurada por año/mes/día/
+$directorioDestino = "../../fotos/actividades_ejecucion/" . $anio . "/" . $mes . "/" . $dia . "/";
 
 if (!file_exists($directorioDestino)) {
     mkdir($directorioDestino, 0777, true);
@@ -70,7 +76,7 @@ foreach ($archivos['tmp_name'] as $indice => $temporalPath) {
         $rutaFinal = $directorioDestino . $nombreLimpio;
 
         if (move_uploaded_file($temporalPath, $rutaFinal)) {
-            echo "Imagen guardada con éxito en el servidor: " . $nombreLimpio . "<br>";
+            // echo "Imagen guardada con éxito en el servidor: " . $nombreLimpio . "<br>";
         }
         // Obtener el tipo de archivo (MIME type) usando el índice correcto
         $tipo_archivo = $archivos['type'][$indice];
@@ -80,5 +86,17 @@ foreach ($archivos['tmp_name'] as $indice => $temporalPath) {
                          VALUES('$id_activity', '$rutaFinal', '$name', '$fecha_alta', '$horaact', '$nombreLimpio', '$tipo_archivo')";
         $raddimageruta = $mysqli->query($addimageruta);
     }
+}
+
+// Comprobamos si se enviaron datos mediante POST y si el campo 'tecnologias' existe
+if (isset($_POST['tecnologias']) && is_array($_POST['tecnologias'])) {
+    foreach ($_POST['tecnologias'] as $tecnologia) {
+        // guardamos de manera segura cada valor
+        $idsujetoactividad = $tecnologia;
+        $addsujetoactividad = "INSERT INTO react_sujetosactividad(id_actividad, id_sujeto, usuario, fecha, hora)
+        VALUES('$id_activity', '$idsujetoactividad', '$name', '$fecha_alta', '$horaact')";
+        $raddsujetoactividad = $mysqli->query($addsujetoactividad);
+    }
+
 }
 ?>

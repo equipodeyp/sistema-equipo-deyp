@@ -3,7 +3,7 @@
   <label class="col-md-3 control-label">CLASIFICACIÓN</label>
   <div class="col-md-7 selectContainer">
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
       <select name="clasificaciontraslado" class="form-control selectpicker" id="clasificacionejecucion">
         <option disabled selected value>SELECCIONE UNA OPCION</option>
         <?php
@@ -22,7 +22,7 @@
   <label class="col-md-3 control-label">CLASIFICACIÓN</label>
   <div class="col-md-7 selectContainer">
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
       <select name="clasificacioncontacto" class="form-control selectpicker" id="clasificacionejecucion_contactofam">
         <option disabled selected value>SELECCIONE UNA OPCION</option>
         <?php
@@ -41,7 +41,7 @@
   <label class="col-md-3 control-label">CLASIFICACIÓN</label>
   <div class="col-md-7 selectContainer">
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
       <select name="clasificacionseguridad" class="form-control selectpicker" id="clasificacionsegurityfamily">
         <option disabled selected value>SELECCIONE UNA OPCION</option>
         <?php
@@ -60,7 +60,7 @@
   <label class="col-md-3 control-label">CLASIFICACIÓN</label>
   <div class="col-md-7 selectContainer">
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
       <select name="clasificacionsalvarintegridad" class="form-control selectpicker" id="clasificacionsalvaguardarintegridad" onchange="selecttasl(event)">
         <option disabled selected value>SELECCIONE UNA OPCION</option>
         <?php

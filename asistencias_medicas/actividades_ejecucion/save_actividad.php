@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif ($actividad === '8') {
       include('add_actividad8.php');
     }
-    //
+
     // validacion de update correcto
     if($raddactividad){
       echo ("<script type='text/javaScript'>

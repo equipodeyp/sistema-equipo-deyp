@@ -114,7 +114,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">SUBDIRECCIÓN</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="subdireccion" value="SUBDIRECCIÓN DE EJECUCIÓN DE MEDIDAS" class="form-control" type="text" readonly>
                     </div>
                   </div>
@@ -124,7 +124,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">FUNCIÓN</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="funcion" value="MEDIDAS DE RESGUARDO" class="form-control" type="text" readonly>
                     </div>
                   </div>
@@ -134,7 +134,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">ACTIVIDAD</label>
                   <div class="col-md-7 selectContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
                       <select name="actividad" class="form-control selectpicker" required onchange="selectNit(event)" id="actividadejecucion">
                         <option disabled selected value>SELECCIONE UNA ACTIVIDAD</option>
                         <?php
@@ -153,7 +153,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">UNIDAD DE MEDIDA</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="unidadmedida" value="" class="form-control" type="text" readonly id="unidadmedida">
                     </div>
                   </div>
@@ -163,7 +163,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">REPORTE DE METAS</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="reportemetas" value="" class="form-control" type="text" readonly id="reportemetas">
                     </div>
                   </div>
@@ -176,7 +176,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">FECHA</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-clock"></i></span> -->
                       <input name="fechaactividad" class="form-control" type="date" required min="<?php echo $min; ?>" max="<?php echo $max; ?>">
                     </div>
                   </div>
@@ -186,7 +186,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">CANTIDAD</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="cantidad" value="1" class="form-control" type="text" id="cantidad">
                     </div>
                   </div>
@@ -196,7 +196,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">ENTIDAD/MUNICIPIO</label>
                   <div class="col-md-7 selectContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
                       <select name="entidadmunicipio" class="form-control selectpicker" id="requiredentidadmunicipio">
                         <option disabled selected value>SELECCIONE UN MUNICIPIO</option>
                         <option value="CIUDAD DE MEXICO">CIUDAD DE MEXICO</option>
@@ -211,12 +211,42 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                     </div>
                   </div>
                 </div>
+
+                <div class="form-group" id="actividadesrealizadasporsujetos" style="display: none;">
+                  <label class="col-md-3 control-label">SUJETOS PROTEGIDOS</label>
+                  <div class="col-md-7 selectContainer">
+                    <div class="input-group">
+                      <div class="input-group">
+                        <select id="select-tags" name="tecnologias[]" multiple autocomplete="off" placeholder="Busca o selecciona..." style="width: 550px;">
+                          <?php
+                          $getidentificador = "SELECT dp.id, dp.identificador
+                          FROM datospersonales dp
+                          WHERE EXISTS (
+                            SELECT 1
+                            FROM medidas m
+                            WHERE m.id_persona = dp.id
+                            AND m.medida = 'VIII. ALOJAMIENTO TEMPORAL'
+                            AND m.estatus = 'EN EJECUCION')";
+                          $rgetidentificador = $mysqli ->query($getidentificador);
+                          while ($fgetidentificador = $rgetidentificador->fetch_assoc()) {
+                            $idsp = $fgetidentificador['id'];
+                            $identificadorsp = $fgetidentificador['identificador'];
+                            echo "<option value='$idsp'>$identificadorsp</option>";
+                          }
+                          ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
                 <!-- id del expediente -->
                 <div class="form-group" id="actividad_folioexpediente" style="display: none;">
                   <label class="col-md-3 control-label">ID DEL EXPEDIENTE DE PROTECCIÓN</label>
                   <div class="col-md-7 selectContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                      <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span> -->
                       <select class="form-control expediente" name="folioexpediente" id="requiredfolioexpediente">
                         <option disabled selected value="">SELECCIONE EL EXPEDIENTE</option>
                       </select>
@@ -228,7 +258,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">ID DE PP O SP</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <select class="form-control id-sujeto" name="id_sujeto" id="requiredidsujeto">
                         <option disabled selected value="">SELECCIONE EL ID DEL SUJETO</option>
                       </select>
@@ -240,12 +270,15 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">EVIDENCIA</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
                       <select class="form-control" name="evidencia" id="evidencia">
                         <option disabled selected value="">SELECCIONE UNA OPCION</option>
                         <option value="ACUERDO">ACUERDO</option>
                         <option value="CONSTANCIA">CONSTANCIA</option>
+                        <option value="FORMATO SOLICITUD">FORMATO SOLICITUD</option>
+                        <option value="GESTION INTERNA">GESTION INTERNA</option>
+                        <option value="N/A">N/A</option>
                       </select>
                     </div>
                   </div>
@@ -255,12 +288,13 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">MEDIO DE NOTIFICACION A LA PP O SP</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <!-- <input name="evidencia" value="" class="form-control" type="text" id="evidencia"> -->
                       <select class="form-control" name="notific_atn" id="notific_atnpet">
                         <option disabled selected value="">SELECCIONE UNA OPCION</option>
                         <option value="ACTA CIRCUNSTANCIADA">ACTA CIRCUNSTANCIADA</option>
                         <option value="CEDULA DE NOTIFICACION">CEDULA DE NOTIFICACION</option>
+                        <option value="CONSTANCIA">CONSTANCIA</option>
                       </select>
                     </div>
                   </div>
@@ -270,7 +304,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">ID DE LA EVIDENCIA</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="idevidencia" value="" class="form-control" type="text" id="requiredidevidencia">
                     </div>
                   </div>
@@ -301,7 +335,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label">KILOMETROS</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <input name="kilometros" value="" class="form-control" type="text" id="requiredkilometros" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </div>
                   </div>
@@ -311,7 +345,7 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
                   <label class="col-md-3 control-label" style="line-height: 60px;">OBSERVACIONES</label>
                   <div class="col-md-7 inputGroupContainer">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span>
+                      <!-- <span class="input-group-addon"><i class="fa-regular fa-calendar-check"></i></span> -->
                       <!-- <input name="observaciones" value="" class="form-control" type="text" id="observaciones"> -->
                       <textarea name="observaciones" class="form-control" id="observacionesact" rows="3" cols="80"></textarea>
                     </div>
@@ -355,4 +389,15 @@ include("../../calculodefechas/calculardiasminimospararegistro.php")
 </body>
 <link rel="stylesheet" href="../../css/actividad_ejecucion.css">
 <script src="../../js/funciones_react_ejecucion.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.6.2/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.2/dist/js/tom-select.complete.min.js"></script>
+<script>
+    // Inicializar Tom Select en nuestro elemento
+    new TomSelect("#select-tags", {
+        plugins: ['remove_button'], // Añade una "X" para quitar opciones fácilmente
+        create: false,               // Evita que el usuario invente nuevas opciones
+        maxItems: null               // Permite seleccionar opciones ilimitadas
+    });
+</script>
+
 </html>
