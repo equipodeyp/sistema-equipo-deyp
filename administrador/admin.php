@@ -145,6 +145,7 @@ $mmed =  $ftmf['t'];
             </ul>
           </li>
         </ul>
+        <li class="menu-items"><a href='./descargar_fotosreact.php'><i style="color: #FFFFFF;" class="fa-solid fa-images menu-nav--icon"></i><strong style="color: white;">DESCARGAR FOTOS REACT</strong></a></li>
         <li class="menu-items"><a href='../consultores/admin.php'><i style="color: #FFFFFF;" class="fa-solid fa-book-open-reader menu-nav--icon"></i><strong style="color: white;">LECTURA</strong></a></li>
         <ul>
           <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
