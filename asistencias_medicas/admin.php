@@ -651,6 +651,17 @@ echo "
   </a>
 </li>
 
+
+<li style='text-align:center'>
+  <a href='./panel_medicamentos_sujetos.php'>
+    <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/medicamento.png' style='width:55px;height:55px;'></span>
+    <div class='ca-content'>
+      <h2 class='ca-main'>MEDICAMENTO</h2>
+      <h3 class='ca-sub'>DE LOS SUJETOS PROTEGIDOS</h3></div>
+  </a>
+</li>
+
+
 <li style='text-align:center'>
   <a href='./solicitar_asistencia.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/registrar.png' style='width:60px;height:60px;'></span>
@@ -672,6 +683,7 @@ echo "
 </li>
 
 
+
 <li style='text-align:center'>
   <a href='./panel_asistencias_completadas.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/detalle.png' style='width:55px;height:55px;'></span>
@@ -680,6 +692,10 @@ echo "
       <h3 class='ca-sub'>ASISTENCIAS MÉDICAS COMPLETADAS</h3></div>
   </a>
 </li>
+
+
+
+
 
 
 ";

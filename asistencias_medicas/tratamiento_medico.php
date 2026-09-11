@@ -1,5 +1,6 @@
 <?php
 /*require 'conexion.php';*/
+error_reporting(0);
 include("conexion.php");
 session_start ();
 $name = $_SESSION['usuario'];
@@ -73,39 +74,51 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>UPSIPPED</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRATAMIENTO MÉDICO</title>
+
   <link rel="stylesheet" href="../css/instrumento_adaptabilidad.css">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/bootstrap-theme.css" rel="stylesheet">
+  <link href='css/bootstrap.min.css' rel='stylesheet'>
+  <link href='css/fullcalendar.min.css' rel='stylesheet' />
+  <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <link href='css/personalizado.css' rel='stylesheet' />
+
+  <!-- <link href="../css/bootstrap-theme.css" rel="stylesheet">
   <script src="../js/jquery-3.1.1.min.js"></script>
   <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="../js/jquery.dataTables.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script> -->
   <link rel="stylesheet" href="../css/breadcrumb.css">
   <link rel="stylesheet" href="../css/expediente.css">
   <link rel="stylesheet" href="../css/font-awesome.css">
   <link rel="stylesheet" href="../css/cli.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/expediente.js"></script>
   <script src="../js/solicitud.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/cli.css">
-  <link rel="stylesheet" href="../css/registrosolicitud1.css">
-  <!-- CSS only -->
+  <link rel="stylesheet" href="../css/registrosolicitud1.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>-->
   <link rel="stylesheet" href="../css/main2.css">
-  <link rel="stylesheet" href="../css/tratamiento_medico_botones.css">
+  <link rel="stylesheet" href="../css/tarjeta_medicamento.css"> 
+  
+
+
+
+
+
+
+
 </head>
 <body >
 <div class="contenedor">
@@ -162,8 +175,64 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
               <div class="row">
 
               <ul class="tabs">
-                <li><a href="./tratamiento_medico.php" class="active"><span class="far fa-regular fa-bell"></span><span class="tab-text">TRATAMIENTO MEDICO</span></a></li>
+                <li><a href="./tratamiento_medico.php" class="active"><span class="far fa-regular fa-bell"></span><span class="tab-text">TRATAMIENTO MÉDICO</span></a></li>
               </ul>
+
+              <?php
+              $consulta_am = "SELECT COUNT(*) as total
+                  FROM solicitud_asistencia
+
+                  JOIN agendar_asistencia 
+                  ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
+
+                  JOIN cita_asistencia
+                  ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+
+                  JOIN seguimiento_asistencia
+                  ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia 
+
+                  AND seguimiento_asistencia.traslado_realizado = 'SI'
+                  AND seguimiento_asistencia.se_otorgo = 'SI'
+                  AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
+                  AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
+                  AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO'
+                  AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+                  WHERE cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+                  AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
+              ";
+              $consulta_count = $mysqli->query($consulta_am);
+              $row_count=$consulta_count->fetch_assoc();
+              $resultado_count = $row_count['total'];
+              if ($resultado_count <= 0){
+              ?>
+
+                      <div class="row">
+                        <div id="cabecera">
+                          <div class="row alert div-title">
+                            <?php
+                            $fecha = new DateTime(); // Fecha y hora actual
+                            $dia_semana = $fecha->format('N'); 
+                            $fecha->modify('-' . ($dia_semana - 1) . ' days');
+                            // echo $fecha->format('d-m-Y');
+                            $ultimoDiaSemana = date('d-m-Y', strtotime('next Monday'));
+                            // echo $ultimoDiaSemana;
+                            ?>
+
+                            <h3 style='text-align:center'>¡NO HAY ASISTENCIAS MÉDICAS COMPLETADAS! </h3>
+                            <h3 style='text-align:center'>DENTRO DEL PERIODO: <?php echo $fecha->format('d-m-Y'); ?> AL  <?php echo $ultimoDiaSemana; ?> </h3>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+              <?php
+              }
+              ?>
+              <?php
+              if ($resultado_count > 0){
+              ?>
+              
 
 
               <form class="container well form-horizontal" enctype="multipart/form-data">
@@ -205,26 +274,36 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                     $count = 0;
 
-                                                    $query = "SELECT*
+                                                    $query = "SELECT solicitud_asistencia.id_asistencia, solicitud_asistencia.id_sujeto, solicitud_asistencia.servicio_medico,
+                                                              cita_asistencia.fecha_asistencia, solicitud_asistencia.folio_expediente, cita_asistencia.hora_asistencia,
+                                                              agendar_asistencia.nombre_institucion, solicitud_asistencia.etapa
+                                                              FROM solicitud_asistencia
 
-                                                            FROM solicitud_asistencia
-                                                            JOIN agendar_asistencia 
-                                                            ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
-                                                            JOIN cita_asistencia 
-                                                            ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia                                                            
-                                                            AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                                                            AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
-                                                            AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
-                                                            AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
-                                                            AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
-                                                            WHERE solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA' 
+                                                              JOIN agendar_asistencia 
+                                                              ON solicitud_asistencia.id_asistencia = agendar_asistencia.id_asistencia 
+
+                                                              JOIN cita_asistencia
+                                                              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+
+                                                              JOIN seguimiento_asistencia
+                                                              ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia 
+
+                                                              AND seguimiento_asistencia.traslado_realizado = 'SI'
+                                                              AND seguimiento_asistencia.se_otorgo = 'SI'
+                                                              AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
+                                                              AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
+                                                              AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO'
+                                                              AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
+                                                              WHERE cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
+                                                              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
                             
 
-                                                            ORDER BY cita_asistencia.fecha_asistencia  DESC
+                                                              ORDER BY cita_asistencia.fecha_asistencia  DESC
                                                     ";
                                                     
                                                     
                                                     $result_solicitud = mysqli_query($mysqli, $query);
+                                                    global $id_asistencia_m;
 
                                                     while($row = mysqli_fetch_array($result_solicitud)) {
 
@@ -258,8 +337,11 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                             <?php 
                                                             
                                                             while ($var_fila4=$var_resultado4->fetch_array())
+
                                                                 {
+                                                                  
                                                                 echo "<td style='text-align:center; font-size: 15px; font-weight: bold; border: 2px solid #97897D;'>"; echo $var_fila4['total']; echo "</td>";
+                                                                
 
                                                                 }
 
@@ -274,16 +356,30 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                 $nota_archivo = "Medicamentos registrados";
                                                                 ?>
 
+                                                                <?php
+                                                                $consulta_total_m = "SELECT COUNT(*) as total
+                                                                FROM tratamiento_medico
+                                                                WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'";
+
+                                                                $r_consulta_total_m = $mysqli->query($consulta_total_m);
+                                                                $row_consulta_total_m=$r_consulta_total_m->fetch_assoc();
+                                                                $total_m = $row_consulta_total_m['total'];
+                                                                ?>
+
                                                                 <!-- Primer Enlace -->
                                                                 <a type="button" data-toggle="modal" data-target="#registrarModal<?php echo $id_asistencia_m;?>" class="btn btn-outline-secondary enlace-nota btn-agregar" data-nota="<?php echo $nota_agregar; ?>">
                                                                     <i class="fas fa-plus"></i>
                                                                 </a>
-
+                                                                <?php 
+                                                                if ($total_m > 0){
+                                                                ?>                    
                                                                 <!-- Segundo Enlace -->
-                                                                <a type="button" class="btn btn-outline-secondary enlace-nota btn-historial" data-nota="<?php echo $nota_archivo; ?>">
+                                                                <a type="button" data-toggle="modal" data-target="#medicamentoModal<?php echo $id_asistencia_m;?>" class="btn btn-outline-secondary enlace-nota btn-historial" data-nota="<?php echo $nota_archivo; ?>">
                                                                     <i class="fas fa-file-medical"></i>
                                                                 </a>
-
+                                                                <?php 
+                                                                }
+                                                                ?> 
                                                                 <!-- Contenedor para la -->
                                                                 <div id="tooltip-flotante" style="display:none; position:absolute; background:#222; color:#fff; padding:6px 12px; border-radius:4px; pointer-events:none; font-family:sans-serif; font-size:13px; z-index:9999;"></div>
 
@@ -305,12 +401,16 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
+
+
+
+
                                                         <!-- INICIO Modal -->
                                                         <div class="modal" id="detalleModal<?php echo $id_asistencia_m;?>" role="dialog">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                   
-                                                                  <div id="body">
+                                                                  <div id="">
 
                                                                     <div class="modal-header">
                                                                       <div class="">
@@ -369,7 +469,37 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>ETAPA ASISTENCIA MÉDICA</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['etapa']?>">
-                                                                        </div>                                                                     
+                                                                        </div>
+                                                                        <div style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #5F6D6B; height: 40px; width: 100%; box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);">
+                                                                            <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">SEGUIMIENTO DE LA ASISTENCIA MÉDICA</h3>
+                                                                        </div>
+                                                                        <br>
+                                                                        <?php 
+                                                                            $consulta_seguimiento = "SELECT*
+                                                                            FROM seguimiento_asistencia
+                                                                            WHERE id_asistencia = '$id_asistencia_m'";
+
+                                                                            $resultado_seguimiento = $mysqli->query($consulta_seguimiento);
+                                                                            $r_seguimiento = $resultado_seguimiento->fetch_assoc();
+                                                                            $seguimiento = $r_seguimiento['traslado_realizado'];
+                                                                        ?>
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>HOSPITALIZACIÓN</label>
+                                                                          <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $r_seguimiento['hospitalizacion']; ?>">
+                                                                        </div> 
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label> REQUIERE CITA DE SEGUIMIENTO</label>
+                                                                          <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $r_seguimiento['cita_seguimiento']; ?>">
+                                                                        </div>                                                                               
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>DIAGNÓSTICO</label>
+                                                                          <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $r_seguimiento['diagnostico']; ?>">
+                                                                        </div>
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>INFORME MÉDICO</label>
+                                                                          <textarea style="font-size: 14px;" readonly class="form-control" type="text" rows="5" cols="33" placeholder="<?php echo $r_seguimiento['informe_medico']; ?>"></textarea>
+                                                                        </div>                                                       
 
 
 
@@ -414,9 +544,10 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                   
-                                                                  <div id="body">
+                                                                  <div id="">
 
                                                                     <div class="modal-header">
+
                                                                       <div class="">
                                                                           <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                                                                           <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
@@ -425,6 +556,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                       </div>
                                                                       
                                                                     </div>
+                                                                    
                                                                     <!-- INICIO MODAL BODY -->
                                                                     <div class="modal-body">
                                                                       <p style="text-align:center; font-size: 18px; color:#5F6D6B;">TRATAMIENTO MÉDICO</p>
@@ -433,52 +565,118 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
-                                                                <form method="POST" action="./guardar_tratamiento_medico.php">
+                                                                    <form method="POST" action="./guardar_tratamiento_medico.php">
 
                                                                         <div style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #5F6D6B; height: 40px; width: 100%; box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);">
-                                                                            <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">INFORMACIÓN DE LA ASISTENCIA MÉDICA</h3>
+                                                                          <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">INFORMACIÓN DE LA ASISTENCIA MÉDICA</h3>
                                                                         </div>
                                                                         <br>
 
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>ID ASISTENCIA MÉDICA:</label>
-                                                                          <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $row['id_asistencia']?>">
+                                                                          <input type="text" style="font-size: 14px;" readonly class="form-control" id="id_asistencia" name="id_asistencia" value="<?php echo $row['id_asistencia']?>">
                                                                         </div>
 
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>ID SUJETO:</label>
-                                                                          <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $row['id_sujeto']?>">
+                                                                          <input type="text" style="font-size: 14px;" readonly class="form-control" id="id_sujeto" name="id_sujeto" value="<?php echo $row['id_sujeto']?>">
                                                                         </div>
 
                                                                         <div style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #5F6D6B; height: 40px; width: 100%; box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);">
-                                                                            <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">REGISTRAR MEDICAMENTO</h3>
+                                                                          <h3 style="text-align:center; color: #ede7e7ff; font-size: 18px;">REGISTRAR MEDICAMENTO</h3>
                                                                         </div>
                                                                         <br>
 
                                                                         <div class="col-md-6 mb-3" style="display: none;">
                                                                           <label>ID SERVIDOR PÚBLICO:</label>
-                                                                           <input type="text" class="form-control"  id="id_servidor" name="id_servidor" readonly value="<?php echo $id_servidor_ini;?>">
+                                                                          <input type="text" class="form-control"  id="id_servidor" name="id_servidor" readonly value="<?php echo $id_servidor_ini;?>">
                                                                         </div>                                                                        
                                                                         
-                                                                        <div class="col-md-6 mb-3">
-                                                                            <label>ADQUISICIÓN DEL MEDICAMENTO:</label>
-                                                                            <select autocomplete="off" class="form-control" id="adquisicion" name="adquisicion" required>
-                                                                              <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                              <option value="COMPRADO">COMPRADO</option>
-                                                                              <option value="DONACIÓN">DONACIÓN</option>
-                                                                                <option value="OTORGADO POR LA INSTITUCIÓN">OTORGADO POR LA INSTITUCIÓN</option>
-                                                                            </select>
-                                                                        </div>
+
                                                                         
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>NOMBRE DEL MEDICAMENTO:</label>
-                                                                          <input placeholder="NOMBRE DEL MEDICAMENTO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre" name="nombre" required value="">
+                                                                          <input placeholder="NOMBRE" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre_medicamento" name="nombre_medicamento" required value="">
                                                                         </div>
 
                                                                         <div class="col-md-6 mb-3">
-                                                                          <label>CANTIDAD:</label>
-                                                                          <select autocomplete="off" class="form-control" id="cantidad" name="cantidad" required>
+                                                                          <label>GRAMAJE:</label>
+                                                                          <input placeholder="EJEMPLO: 500MG" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="gramaje" name="gramaje" required value="">
+                                                                        </div>
+
+                                                                         <div class="col-md-6 mb-3">
+                                                                          <label>CANTIDAD DE LA DOSIS:</label>
+                                                                          <select autocomplete="off" class="form-control" id="cantidad_dosis" name="cantidad_dosis" required>
+                                                                              <option disabled selected value="">EJEMPLO: 1 TABLETA</option>
+                                                                              <option value="1">1</option>
+                                                                              <option value="2">2</option>
+                                                                              <option value="3">3</option>
+                                                                              <option value="4">4</option>
+                                                                              <option value="5">5</option>
+                                                                              <option value="10">10</option>
+                                                                              <option value="15">15</option>
+                                                                              <option value="20">20</option>
+                                                                              <option value="25">25</option>
+                                                                              <option value="30">30</option>
+                                                                          </select>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>DESCRIPCIÓN:</label>
+                                                                          <select autocomplete="off" class="form-control" id="descripcion_dosis" name="descripcion_dosis" required>
                                                                               <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                                                                              <option value="TABLETA">TABLETA</option>
+                                                                              <option value="CAPSULA">CAPSULA</option>
+                                                                              <option value="GOTAS">GOTAS</option>
+                                                                              <option value="CUCHARADA">CUCHARADA</option>
+                                                                              <option value="MILILITROS">MILILITROS</option>
+                                                                              <option value="PARCHE">PARCHE</option>
+                                                                              <option value="AMPOLLETA">AMPOLLETA</option>
+                                                                              <option value="JERINGA">JERINGA</option>
+                                                                              <option value="DISPAROS">DISPAROS</option>
+                                                                              <option value="SOBRE">SOBRE</option>
+                                                                              <option value="SUERO">SUERO</option>
+                                                                              <option value="APLICACIÓN">APLICACIÓN</option>
+                                                                              <option value="TAPA">TAPA</option>
+                                                                          </select>
+                                                                        </div>
+
+                                                                       <div class="col-md-6 mb-3">
+                                                                          <label>PERIODO DE LA DOSIS:</label>
+                                                                          <select autocomplete="off" class="form-control" id="periodo_dosis" name="periodo_dosis" required>
+                                                                              <option disabled selected value="">EJEMPLO: CADA 8 HORAS</option>
+                                                                              <option value="1">1</option>
+                                                                              <option value="2">2</option>
+                                                                              <option value="3">3</option>
+                                                                              <option value="4">4</option>
+                                                                              <option value="5">5</option>
+                                                                              <option value="6">6</option>
+                                                                              <option value="8">8</option>
+                                                                              <option value="10">10</option>
+                                                                              <option value="12">12</option>
+                                                                              <option value="24">24</option>
+                                                                          </select>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>TIEMPO:</label>
+                                                                          <select autocomplete="off" class="form-control" id="tiempo_periodo" name="tiempo_periodo" required>
+                                                                              <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                                                                              <option value="HORAS">HORAS</option>
+                                                                              <option value="DIAS">DIAS</option>
+                                                                              <option value="MESES">MESES</option>
+                                                                          </select>
+                                                                        </div>
+
+
+                                                                        
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>TEMPORALIDAD DE LA DOSIS:</label>
+                                                                          <select autocomplete="off" class="form-control" id="duracion_dosis" name="duracion_dosis" required>
+                                                                              <option disabled selected value="">EJEMPLO: POR 5 DIAS</option>
                                                                               <option value="1">1</option>
                                                                               <option value="2">2</option>
                                                                               <option value="3">3</option>
@@ -489,61 +687,106 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                               <option value="8">8</option>
                                                                               <option value="9">9</option>
                                                                               <option value="10">10</option>
-                                                                          </select>
-                                                                        </div>
-                                                                        
-                                                                        <div class="col-md-6 mb-3">
-                                                                          <label>PRESENTACIÓN:</label>
-                                                                          <select autocomplete="off" class="form-control" id="presentacion" name="presentacion" required>
-                                                                            <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                            <option value="CAJA">CAJA</option>
-                                                                            <option value="BOTELLA">BOTELLA</option>
-                                                                            <option value="BOLSA">BOLSA</option>
-                                                                            <option value="FRASCO">FRASCO</option>
-                                                                            <option value="LATA">LATA</option>
-                                                                            <option value="LATA">TUBO</option>
+                                                                              <option value="10">11</option>
+                                                                              <option value="15">15</option>
+                                                                              <option value="15">18</option>
+                                                                              <option value="20">20</option>                                                                              
                                                                           </select>
                                                                         </div>
 
-                                                                        <div class="col-md-6 mb-3">
-                                                                          <label>CONTENIDO</label>
-                                                                          <input placeholder="EJEMPLO: 20 TABLETAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="contenido" name="contenido" required value="">
-                                                                        </div>
-                                                                                  
-                                                                        <div class="col-md-6 mb-3">
-                                                                          <label>INDICACIONES DEL TRATAMIENTO MÉDICO</label>
-                                                                          <textarea placeholder="EJEMPLO: TOMAR 1 TABLETA CADA 8 HRS DURANTE 5 DIAS" autocomplete="off" style="text-transform:uppercase;" rows="5" cols="33" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="indicaciones" name="indicaciones" required value=""></textarea>
-                                                                        </div>
 
-                                                                        <!-- <div class="col-md-6 mb-3">
-
-                                                                        </div>
-                                                                        
-                                                                        <div class="col-md-6 mb-3">
-
-                                                                        </div>
 
                                                                         <div class="col-md-6 mb-3">
+                                                                          <label>TIEMPO:</label>
+                                                                          <select autocomplete="off" class="form-control" id="tiempo_duracion" name="tiempo_duracion" required>
+                                                                              <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                                                                              <option value="DIAS">DIAS</option>
+                                                                              <option value="MESES">MESES</option>
+                                                                              <option value="AÑOS">AÑOS</option>
+                                                                          </select>
+                                                                        </div>
 
-                                                                        </div> -->
+
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>VÍA DE ADMINISTRACIÓN:</label>
+                                                                          <select autocomplete="off" class="form-control" id="via_administracion" name="via_administracion" required>
+                                                                              <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
+                                                                              <option value="ORAL">ORAL</option>
+                                                                              <option value="SUBLINGUAL">SUBLINGUAL</option>
+                                                                              <option value="RECTAL">RECTAL</option>
+                                                                              <option value="INTRAVENOSA">INTRAVENOSA</option>
+                                                                              <option value="INTRAMUSCULAR">INTRAMUSCULAR</option>
+                                                                              <option value="CUTÁNEA">CUTÁNEA</option>
+                                                                              <option value="OFTÁLMICA">OFTÁLMICA</option>
+                                                                              <option value="NASAL">NASAL</option>
+                                                                              <option value="VAGINAL">VAGINAL</option>
+                                                                          </select>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>HORA DE INICIO DEL TRATAMIENTO:</label>
+                                                                          <input type="time" id="hora_inicio" name="hora_inicio" step="3600" required class="form-control">
+                                                                          <!-- <input placeholder="" autocomplete="off" type="time" class="form-control" id="hora_inicio_tratamiento" name="hora_inicio_tratamiento" required value> -->
+                                                                        </div>
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>FECHA DE INICIO DEL TRATAMIENTO:</label>
+                                                                          <input placeholder="" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="date" class="form-control"  id="fecha_inicio_tratamiento" name="fecha_inicio_tratamiento" required value>
+                                                                        </div>
+
+
+
+
+                                                                        <?php 
+                                                                        $consulta_total_recomendaciones = "SELECT COUNT(*) as total
+                                                                        FROM tratamiento_medico
+                                                                        WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'";
+
+                                                                        $r_consulta_total_r = $mysqli->query($consulta_total_recomendaciones);
+                                                                        $row_consulta_total_r=$r_consulta_total_r->fetch_assoc();
+                                                                        $total_r = $row_consulta_total_r['total'];
+
+                                                                        if ($total_r <= 0) { 
+                                                                        ?>
+
+                                                                        <div class="col-md-6 mb-3">
+                                                                          <label>RECOMENDACIONES DE LA ASISTENCIA MÉDICA</label>
+                                                                          
+                                                                          <textarea placeholder="EJEMPLO: NO CONSUMIR LÁCTEOS NI EMBUTIDOS" autocomplete="off" style="text-transform:uppercase;" rows="5" cols="33" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="recomendaciones" name="recomendaciones" required value></textarea>
+                                                                        </div>
+                                                                        <?php 
+                                                                        }
+                                                                        ?>
+
+                                                                        <div class="col-md-6 mb-3" style="display: none;">
+                                                                          <label>ESTATUS DEL MEDICAMENTO:</label>
+                                                                          <input id="estatus_medicamento" name="estatus_medicamento" value="VIGENTE">
+                                                                        </div>
+                                                                         
+
+
 
                                       
 
                                                                     </div>
                                                                     <!-- FIN MODAL BODY -->
 
-
                                                                   </div>
+
                                                                   <div class="modal-footer">
-                                                                        <button type="button" class="btn-danger btn-lg" data-dismiss="modal">
+                                                                        <button type="button" class="btn-danger btn-lg" data-dismiss="modal" href="javascript:imprimirSeleccion('body')">
                                                                           Cerrar
                                                                         </button>
+                                                                        
                                                                         <button type="submit" class="btn-success btn-lg" >
                                                                           Guardar
                                                                         </button>
                                                                   </div>
 
-                                                                </form>  
+
+
+                                                                  </form>  
 
                                                                 </div>
                                                             </div>
@@ -561,154 +804,208 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
 
 
-                                                        <div class="modal" id="myModal">
-                                                          <div class="modal-dialog">
-                                                            <div class="modal-content">
+                                                        <!-- INICIO Modal -->
+                                                        <div class="modal" id="medicamentoModal<?php echo $id_asistencia_m;?>" role="dialog">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                  
+                                                                  <div id="body">
 
-                                                            
-                                                              <div class="modal-header">
-                                                                <h2 class="modal-title">REGISTRAR MEDICAMENTO</h2>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                              </div>
-
-
-                                                              <div class="modal-body">
-                                                                <form method="POST" action="./guardar_medicamento.php">
-
-
-
-
-                                                                                <div style="display: none;">
-                                                                                  <label class="control-label">ID SERVIDOR PÚBLICO</label>
-                                                                                  <input type="text" class="form-control"  id="id_servidor" name="id_servidor" readonly value="<?php echo $id_servidor_ini;?>">
-                                                                                </div>
-
-                                                                                <br>
-
-                                                                                <div>
-                                                                                  <label class="control-label">ID ASISTENCIA MÉDICA</label>
-                                                                                  <input type="text" class="form-control"  id="id_asistencia" name="id_asistencia" readonly value="<?php echo $id_asistencia_medica;?>">
-                                                                                </div>
-                                                                                
-                                                                                <br>
-
-                                                                                <!-- <div>
-                                                                                  <label class="control-label">MEDICAMENTO SURTIDO POR LA INSTITUCIÓN MÉDICA</label>
-                                                                                  <select autocomplete="off" class="form-control" id="surtido" name="surtido" required>
-                                                                                    <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                                    <option value="SI">SI</option>
-                                                                                    <option value="NO">NO</option>
-                                                                                  </select>
-                                                                                </div> -->
-
-                                                                                <!-- <br> -->
-
-                                                                                <!-- <div>
-                                                                                  <label class="control-label">MEDICAMENTO ENTREGADO</label>
-                                                                                  <select autocomplete="off" class="form-control" id="entregado" name="entregado" required>
-                                                                                    <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                                    <option value="EN GESTÓN">EN GESTÓN</option>
-                                                                                    <option value="PARCIALMENTE ENTREGADO">PARCIALMENTE ENTREGADO</option>
-                                                                                    <option value="COMPLETO">COMPLETO</option>
-                                                                                    <option value="NO APLICA">NO APLICA</option>
-                                                                                  </select>
-                                                                                </div> -->
-
-                                                                                <!-- <br> -->
-
-                                                                                <div>
-                                                                                  <label class="control-label">ADQUISICIÓN DEL MEDICAMENTO</label>
-                                                                                  <select autocomplete="off" class="form-control" id="adquisicion" name="adquisicion" required>
-                                                                                    <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                                    <option value="COMPRADO">COMPRADO</option>
-                                                                                    <option value="DONACIÓN">DONACIÓN</option>
-                                                                                    <option value="OTORGADO POR LA INSTITUCIÓN">OTORGADO POR LA INSTITUCIÓN</option>
-                                                                                  </select>
-                                                                                </div>
-
-                                                                                <br>
-
-                                                                                <div>
-                                                                                  <label class="control-label">NOMBRE DEL MEDICAMENTO</label>
-                                                                                  <input placeholder="NOMBRE DEL MEDICAMENTO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre" name="nombre" required value="">
-                                                                                </div>
-
-                                                                                <br>
-
-                                                                                <div>
-                                                                                  <label class="control-label">CANTIDAD</label>
-                                                                                  <select autocomplete="off" class="form-control" id="cantidad" name="cantidad" required>
-                                                                                    <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                    <option value="6">6</option>
-                                                                                    <option value="7">7</option>
-                                                                                    <option value="8">8</option>
-                                                                                    <option value="9">9</option>
-                                                                                    <option value="10">10</option>
-                                                                                  </select>
-                                                                                </div>
-
-                                                                                <br>
-
-                                                                                  <div>
-                                                                                    <label class="control-label">PRESENTACIÓN</label>
-                                                                                    <select autocomplete="off" class="form-control" id="presentacion" name="presentacion" required>
-                                                                                      <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
-                                                                                      <option value="CAJA">CAJA</option>
-                                                                                      <option value="BOTELLA">BOTELLA</option>
-                                                                                      <option value="BOLSA">BOLSA</option>
-                                                                                      <option value="FRASCO">FRASCO</option>
-                                                                                      <option value="LATA">LATA</option>
-                                                                                      <option value="LATA">TUBO</option>
-                                                                                    </select>
-                                                                                  </div>
-
-                                                                                  <br>
-
-                                                                                  <div>
-                                                                                    <label class="control-label">CONTENIDO</label>
-                                                                                    <input placeholder="EJEMPLO: 20 TABLETAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="contenido" name="contenido" required value="">
-                                                                                  </div>
-
-                                                                                  <br>
-                                                                                  
-                                                                                  <div>
-                                                                                    <label class="control-label">INDICACIONES DEL TRATAMIENTO MÉDICO</label>
-                                                                                    <input placeholder="EJEMPLO: TOMAR 1 TABLETA CADA 8 HRS DURANTE 5 DIAS" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="indicaciones" name="indicaciones" required value="">
-                                                                                  </div>
-
-                                                                                  <br>
-
-                                                                                  <!-- <div>
-                                                                                    <label class="control-label">NÚMERO DE OFICIO MEDIANTE EL CUAL SE RECIBE EL MEDICAMENTO</label>
-                                                                                    <input placeholder="NÚMERO DE OFICIO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="oficio" name="oficio" required value="">
-                                                                                  </div>
-
-                                                                                  <br>
-
-                                                                                  <div>
-                                                                                    <label class="control-label">NOMBRE DEL SERVIDOR PÚBLICO QUE RECIBE EL MEDICAMENTO</label>
-                                                                                    <input placeholder="NOMBRE DEL SERVIDOR PÚBLICO" autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="nombre_recibe" name="nombre_recibe" required value="">
-                                                                                  </div> -->
-
-
-
-
-
-                                                              </div>
-
-                                                                      <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
-                                                                        <button type="submit" class="btn color-btn-success">GUARDAR</button>
+                                                                    <div class="modal-header">
+                                                                      <div class="">
+                                                                          <img style="float: left;" src="../image/FGJEM.png" width="50" height="50">
+                                                                          <img style="float: right;" src="../image/ESCUDO.png" width="60" height="50">
+                                                                          <p style="text-align:center; color: #030303; font-size: 18px">Unidad de Proteccón de Sujetos que Intervienen en el Procedimiento Penal o de Extinción de Dominio</p>
+                                                                          <!-- <p style="text-align:center; color: #030303; font-size: 18px"></p> -->
                                                                       </div>
-                                                                </form>
+                                                                      
+                                                                    </div>
+                                                                    <!-- INICIO MODAL BODY -->
+                                                                    <div class="modal-body">
+                                                                      <!-- <p style="text-align:center; font-size: 14px; color:#5F6D6B;">TRATAMIENTO MÉDICO</p> -->
+                                                    
+                                                                      <!-- <br> -->
+
+                                                                      <form>
+
+                                                                        <?php
+                                                                        $consulta_total_m = "SELECT COUNT(*) as total
+                                                                        FROM tratamiento_medico
+                                                                        WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'";
+
+                                                                        $r_consulta_total_m = $mysqli->query($consulta_total_m);
+                                                                        $row_consulta_total_m=$r_consulta_total_m->fetch_assoc();
+                                                                        $total_m = $row_consulta_total_m['total'];
+                                                                        ?>
+
+                                                                        <?php
+ 
+                                                                        
+                                                                        $resultado = $mysqli->query("SELECT*
+                                                                                  FROM tratamiento_medico
+                                                                                  WHERE id_asistencia = '$id_asistencia_m'
+                                                                                  ORDER BY fecha_registro ASC");
+
+                                                                       
+                                                                        $medicamentos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+                                                                        // Obtenemos la fecha actual para la validación
+                                                                        $fecha_actual = new DateTime();
+                                                                        ?>
+
+
+
+                                                                        <div class="medical-card">
+                                                                          <div class="card-header">
+                                                                            <p style="text-align:center; color: #fffff; font-size: 18px; font-weight: bold;" >TRATAMIENTO MÉDICO</p>
+                                                                            <p class="specialty" style="text-align:center;"><?php echo $row['servicio_medico']?>
+                                                                            <?php 
+                                                                            if ($r_seguimiento['diagnostico'] != "") {
+                                                                            
+                                                                            ?>
+
+                                                                            <?php echo " - ". $r_seguimiento['diagnostico']; ?> </p> 
+                                                                            
+                                                                            <?php    
+                                                                                }
+                                                                            ?> 
+
+                                                                            
+                                                                          </div>
+                                                                          
+                                                                          <div class="card-body">
+                                                                            <div class="patient-info">
+                                                                              <p style="text-align:lefth;"><strong>Sujeto Protegido:</strong> <?php echo $row['id_sujeto'];?> <br> <strong>Fecha Asistencia:</strong> <?php echo $date;?> <br> <strong>Id Asistencia:</strong> <?php echo $id_asistencia_m; ?></p>
+                                                                            </div>
+                                                                            
+                                                                            <div class="prescription-container">
+                                                                              <h3 class="rx-title" style="text-align:lefth; font-size: 18px;" >Medicamentos Registrados:</h3>
+                                                                              
+                                                                              <div id="medication-list">
+                                                                                <?php
+
+
+
+
+
+                                                                                $contador = 1;
+                                                                                foreach ($medicamentos as $med): 
+                                                                                    
+                                                                                    $fecha_fin = new DateTime($med['fin_tratamiento']);
+                                                                                    $es_vigente = $fecha_actual <= $fecha_fin;
+                                                                                    
+                                                                                    
+                                                                                    $clase_estado = $es_vigente ? 'status-active' : 'status-expired';
+                                                                                    $texto_estado = $es_vigente ? 'Vigente' : 'Finalizado';
+                                                                                    
+                                                                                    
+                                                                                    $f_inicio_formato = date("d/m/Y", strtotime($med['inicio_tratamiento']));
+                                                                                    $f_fin_formato = date("d/m/Y", strtotime($med['fin_tratamiento']));
+
+                                                                                    
+                                                                                    $hora_inicio = date('H:i:s', strtotime($med['hora_inicio']));
+                                                                                
+
+                                                                                ?>
+                                                                                <?php 
+                                                                                    if ($contador === 7){
+                                                                                ?> 
+
+
+                                                                                <div style="page-break-before: always;">
+                                                                                  <p></p>
+                                                                                </div>
+
+                                                                                <?php    
+                                                                                    }
+                                                                                ?> 
+                                                                                
+                                                                                  <div class="medication-item">
+                                                                                    <div class="med-header">
+                                                                                      <p class="med-name"><?php echo $contador . ". " . htmlspecialchars($med['nombre_medicamento']); ?></p>
+                                                                                     
+                                                                                    </div>
+                                                                                    <ul class="circulo" style="list-style-type: circle;">
+
+                                                                                    <li>INDICACIÓN:<?php echo htmlspecialchars($med['indicaciones']); ?></li>                                       
+                                                                                    <li>VÍA DE ADMINISTRACIÓN: <?php echo $med['via_administracion']; ?> </li>
+                                                                                    <li>HORA DE INICIO DEL TRATAMIENTO: <?php echo $hora_inicio; ?> </li>
+                                                                                    <li>FECHA DE INICIO DEL TRATAMIENTO: <?php echo $f_inicio_formato; ?></li>
+
+                                                                                    </ul>
+
+                                                                                    <!-- <p class="med-instruction">Indicación:<?php echo htmlspecialchars($med['indicaciones']); ?></p>
+                                                                                    <p class="med-dates">Vía de Administración: <?php echo $med['via_administracion']."     |     "; ?> Inicio del tratamiento: <?php echo $f_inicio_formato; ?></p> -->
+
+                                                                                    
+                                                                                  </div>
+                                                                                  
+                                                                                <?php
+                                                                                 
+                                                                                  $contador++;
+                                                                                endforeach; 
+                                                                                ?>
+                                                                              </div>
+                                                                            </div>
+
+                                                                            <div class="recommendations-container">
+                                                                              
+                                                                              <?php
+                                                                              $consulta_recomendaciones = "SELECT nombre_medicamento, indicaciones, recomendaciones,fecha_registro
+                                                                              FROM tratamiento_medico
+                                                                              WHERE tratamiento_medico.id_asistencia = '$id_asistencia_m'
+                                                                              ORDER BY fecha_registro ASC 
+                                                                              LIMIT 1
+                                                                              ";
+
+                                                                              $consulta_re = $mysqli->query($consulta_recomendaciones);
+                                                                              $row_recomendaciones=$consulta_re->fetch_assoc();
+                                                                              $resultado_re = $row_recomendaciones['recomendaciones'];
+                                                                              ?>
+                                                                              <span class="rec-title">RECOMENDACIONES GENERALES:</span>
+                                                                              <p><?php echo $resultado_re; ?></p>
+                                                                            </div>
+                                                                          </div>
+                                                                          
+                                                                          <!-- <div class="card-footer">
+                                                                            Función nativa de JS para activar la ventana de impresión/guardado PDF
+                                                                            <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
+                                                                          </div> -->
+                                                                          
+                                                                        </div>
+
+
+                                                                        
+                                                                      </form>
+
+                                                                    </div>
+                                                                    <!-- FIN MODAL BODY -->
+
+
+                                                                  </div>
+
+                                                                  <div class="modal-footer">
+                                                                        <!-- <button id="nombre" class="btn-primary btn-lg" href="javascript:imprimirSeleccion('body_med')">
+                                                                          Imprimir
+                                                                        </button> -->
+                                                                        <a class="btn btn-primary btn-lg" href="javascript:imprimirSeleccion('body')">
+                                                                          Imprimir
+                                                                        </a>
+                                                                        <button class="btn-danger btn-lg" data-dismiss="modal">
+                                                                          Cerrar
+                                                                        </button>
+                                                                  </div>
+
+                                                                </div>
                                                             </div>
-                                                          </div>
                                                         </div>
+                                                        <!-- FIN Modal -->
+
+
+                                                        
+
+
+                                                        
 
 
 
@@ -720,7 +1017,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 
                                                     <?php } ?>
                                             </tbody>
-                                        </table> 
+                                        <!-- </table>  -->
 
 
 
@@ -732,6 +1029,19 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                     
                   </div>
               </form>
+
+
+
+              <?php
+              }
+              ?>
+
+
+
+
+
+
+
 
 
 
@@ -755,6 +1065,10 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
 <a href="../asistencias_medicas/admin.php" class="btn-flotante">REGRESAR</a>
 </div>
 
+
+
+</body>
+</html>
 <script language="Javascript">
 
 // js notas
@@ -783,5 +1097,50 @@ enlaces.forEach(enlace => {
 
 
 
-</body>
-</html>
+<script language="Javascript">
+function imprimirSeleccion(nombre) {
+var ficha = document.getElementById(nombre);
+var ventimp = window.open(' ', 'popimpr');
+ventimp.document.write( ficha.innerHTML );
+ventimp.document.close();
+ventimp.print( );
+ventimp.close();
+}
+</script>
+
+<script>
+  const inputTime = document.getElementById('hora_inicio');
+
+  inputTime.addEventListener('input', (e) => {
+    const valor = e.target.value; // Formato HH:MM o HH:MM:SS
+    
+    if (valor) {
+      // Dividimos el tiempo en componentes [HH, MM, SS]
+      const partes = valor.split(':');
+      
+      // Forzamos que los minutos y segundos sean siempre '00'
+      partes[1] = '00'; 
+      if (partes[2]) partes[2] = '00'; 
+      
+      // Reasignamos el valor corregido al input
+      e.target.value = partes.join(':');
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

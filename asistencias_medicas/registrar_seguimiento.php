@@ -324,7 +324,7 @@ $id_asistencia_medica = $_GET["id_asistencia_medica"];
                     <div class="col-md-4">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-briefcase-medical"></i></span>
-                        <input value autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"  id="diagnostico" name="diagnostico" placeholder="DESCRIBE EL DIAGNÓSTICO">
+                        <input value autocomplete="off" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" require id="diagnostico" name="diagnostico" placeholder="DESCRIBE EL DIAGNÓSTICO">
                       </div>
                     </div>
                   </div>

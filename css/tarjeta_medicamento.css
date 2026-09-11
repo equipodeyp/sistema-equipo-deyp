@@ -1,0 +1,203 @@
+/* --- ESTILOS GENERALES DE LA TARJETA --- */
+.medical-card {
+  width: 750px; /* Incrementado para acomodar las fechas y badges lateralmente */
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.card-header {
+  background: #5F6D6B;
+  color: #ffffff;
+  padding: 15px;
+  text-align: center;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.specialty {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.card-body {
+  padding: 15px;
+  color: #374151;
+  font-size: 14px;
+}
+
+.patient-info {
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #474747;
+  padding-bottom: 10px;
+}
+
+.patient-info p {
+  margin: 4px 0;
+}
+
+.prescription-container {
+  background: #f0f1f1; /*   background  */
+  border-left: 4px solid #5F6D6B;
+  padding: 12px;
+  border-radius: 0 4px 4px 0;
+}
+
+.rx-title {
+  font-weight: bold;
+  color: #5F6D6B;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* --- BLOQUE DE MEDICAMENTOS --- */
+.medication-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #a2b6ae;
+}
+
+.medication-item:first-child {
+  padding-top: 0;
+}
+
+.medication-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.med-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.med-name {
+  font-weight: bold;
+  margin: 0;
+  color: #1f2937;
+}
+
+.med-instruction {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0 0 4px 0;
+  padding-left: 14px;
+}
+
+.med-dates {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  padding-left: 14px;
+  font-style: italic;
+}
+
+/* --- BADGES (INDICADORES DE COLOR) --- */
+.badge {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+/* Color si está vigente */
+.status-active {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+/* Color si está vencido */
+.status-expired {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* --- RECOMENDACIONES Y BOTÓN --- */
+.recommendations-container {
+  margin-top: 15px;
+  padding: 12px;
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 4px;
+}
+
+.rec-title {
+  font-weight: bold;
+  color: #4b5563;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.recommendations-container p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.card-footer {
+  padding: 10px 15px;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.btn-print {
+  background: #5F6D6B;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.btn-print:hover {
+  background: #d7d9da;
+}
+
+/* --- CONFIGURACIÓN DE IMPRESIÓN / GUARDADO PDF --- */
+@media print {
+  body {
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .medical-card {
+    width: 100%; /* Se expande para ocupar la hoja */
+    max-width: 600px;
+    border: none;
+    box-shadow: none;
+    margin: 0 auto;
+  }
+  
+  .card-footer, .btn-print {
+    display: none !important; /* Oculta el botón y el footer en el PDF */
+  }
+  
+  .prescription-container {
+    background: #f8fafc !important; /* Suaviza el tono azul en impresión */
+    -webkit-print-color-adjust: exact; /* Fuerza a los navegadores a imprimir los colores de fondo */
+    print-color-adjust: exact;
+  }
+
+  .badge {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+
+
