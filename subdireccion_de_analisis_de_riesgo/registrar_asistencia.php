@@ -378,32 +378,63 @@ const inputFecha = document.getElementById('fecha_asistencia');
 const form = document.getElementById('myForm');
 const mensaje = document.getElementById('mensaje');
 
-
-// inicio y fin de la semana actual
+// 1. Obtener la fecha de hoy
 const hoy = new Date();
-const diaSemana = hoy.getDay(); // 0 (Dom) a 6 (Sáb)
+hoy.setHours(0, 0, 0, 0);
 
-// el inicio de semana sea Lunes (si quieres iniciar en Domingo, cambia el 1 por un 0)
-const diff = hoy.getDate() - diaSemana + (diaSemana === 0 ? -6 : 1); 
-const lunes = new Date(hoy.setDate(diff));
-const domingo = new Date(hoy.setDate(lunes.getDate() + 6));
+const diaSemana = hoy.getDay(); // 0 (Dom) a 6 (Sáb). Lunes es 1.
 
-// Establecer los límites del input en formato YYYY-MM-DD
-inputFecha.min = lunes.toISOString().split('T')[0];
-inputFecha.max = domingo.toISOString().split('T')[0];
+// 2. Calcular el lunes y domingo de la SEMANA ACTUAL
+const diffLunesActual = hoy.getDate() - diaSemana + (diaSemana === 0 ? -6 : 1);
+const lunesActual = new Date(hoy);
+lunesActual.setDate(diffLunesActual);
+
+const domingoActual = new Date(lunesActual);
+domingoActual.setDate(lunesActual.getDate() + 6);
+
+// Variables para los límites finales
+let fechaMinima;
+let fechaMaxima = domingoActual; // El límite máximo siempre será el domingo actual
+
+// 3. APLICAR CONDICIÓN:
+if (diaSemana !== 1) {
+    // SI NO ES LUNES: Solo se permite la semana actual
+    fechaMinima = lunesActual;
+} else {
+    // SI ES LUNES: Se permite desde la semana anterior hasta la actual
+    const lunesSemanaAnterior = new Date(lunesActual);
+    lunesSemanaAnterior.setDate(lunesActual.getDate() - 7);
+    fechaMinima = lunesSemanaAnterior;
+}
+
+// 4. Formatear fechas de manera segura (evitando errores de zona horaria)
+const formatearFecha = (fecha) => {
+    const offset = fecha.getTimezoneOffset();
+    const fechaLocal = new Date(fecha.getTime() - (offset * 60 * 1000));
+    return fechaLocal.toISOString().split('T')[0];
+};
+
+// 5. Asignar los límites al input HTML
+inputFecha.min = formatearFecha(fechaMinima);
+inputFecha.max = formatearFecha(fechaMaxima);
 
 // Validar al enviar el formulario
 form.addEventListener('submit', function(event) {
-    const fechaSeleccionada = new Date(inputFecha.value);
-    
-    // Validar si es fin de semana (opcional, ajusta según tu regla)
-    // const diaSeleccionado = fechaSeleccionada.getDay();
-    // if (diaSeleccionado === 0 || diaSeleccionado === 6) {
-    //     mensaje.textContent = "Por favor, selecciona un día laborable de la semana en curso.";
-    //     event.preventDefault(); // Evita el envío del formulario
-    // }
-});
+    if (!inputFecha.value) {
+        event.preventDefault();
+        mensaje.textContent = "Por favor, selecciona una fecha.";
+        return;
+    }
 
+    const fechaSeleccionada = inputFecha.value; // Formato YYYY-MM-DD
+    
+    if (fechaSeleccionada < inputFecha.min || fechaSeleccionada > inputFecha.max) {
+        event.preventDefault();
+        mensaje.textContent = `Fecha inválida. Solo se permite desde el ${inputFecha.min} al ${inputFecha.max}.`;
+    } else {
+        mensaje.textContent = ""; // Todo correcto
+    }
+});
 
 
 
