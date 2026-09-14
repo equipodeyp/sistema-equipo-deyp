@@ -394,17 +394,20 @@ domingoActual.setDate(lunesActual.getDate() + 6);
 
 // Variables para los límites finales
 let fechaMinima;
-let fechaMaxima = domingoActual; // El límite máximo siempre será el domingo actual
+let fechaMaxima;
 
 // 3. APLICAR CONDICIÓN:
 if (diaSemana !== 1) {
-    // SI NO ES LUNES: Solo se permite la semana actual
+    // SI NO ES LUNES: Permitir solamente la semana actual completa
     fechaMinima = lunesActual;
+    fechaMaxima = domingoActual;
 } else {
-    // SI ES LUNES: Se permite desde la semana anterior hasta la actual
+    // SI ES LUNES: Permitir desde el lunes anterior hasta el lunes actual
     const lunesSemanaAnterior = new Date(lunesActual);
     lunesSemanaAnterior.setDate(lunesActual.getDate() - 7);
+    
     fechaMinima = lunesSemanaAnterior;
+    fechaMaxima = lunesActual; // El límite máximo se corta aquí
 }
 
 // 4. Formatear fechas de manera segura (evitando errores de zona horaria)
