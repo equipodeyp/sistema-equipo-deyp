@@ -994,6 +994,14 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                               <p><?php echo $resultado_re; ?></p>
                                                                             </div>
                                                                             <?php
+                                                                            } else { ?>
+
+                                                                            <div class="recommendations-container">
+                                                                              <span class="rec-title">RECOMENDACIONES GENERALES:</span>
+                                                                              <p><?php echo "SIN RECOMENDACIONES"; ?></p>
+                                                                            </div>
+
+                                                                            <?php
                                                                             }
                                                                             ?> 
 
