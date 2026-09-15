@@ -636,7 +636,7 @@ echo "
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/solicitar.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
       <h2 class='ca-main'>REGISTRAR</h2>
-      <h3 class='ca-sub'>URGENCIA - EXTRAORDINARIA</h3>
+      <h3 class='ca-sub'> ASISTENCIA POR URGENCIA O EXTRAORDINARIA</h3>
     </div>
   </a>
 </li>
@@ -645,8 +645,8 @@ echo "
   <a href='./tratamiento_medico.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/tm.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
-      <h2 class='ca-main'>TRATAMIENTO MÉDICO</h2>
-      <h3 class='ca-sub'>REGISTRAR MEDICAMENTO</h3>
+      <h2 class='ca-main'>REGISTRAR</h2>
+      <h3 class='ca-sub'>MEDICAMENTO DE LOS SUJETOS PROTEGIDOS</h3>
     </div>
   </a>
 </li>
@@ -656,8 +656,8 @@ echo "
   <a href='./panel_medicamentos_sujetos.php'>
     <span class='ca-icon'><img alt='' src='../image/asistencias_medicas/medicamento.png' style='width:55px;height:55px;'></span>
     <div class='ca-content'>
-      <h2 class='ca-main'>MEDICAMENTO</h2>
-      <h3 class='ca-sub'>DE LOS SUJETOS PROTEGIDOS</h3></div>
+      <h2 class='ca-main'>CONSULTAR</h2>
+      <h3 class='ca-sub'>MEDICAMENTOS REGISTRADOS DE LOS SUJETOS PROTEGIDOS</h3></div>
   </a>
 </li>
 
