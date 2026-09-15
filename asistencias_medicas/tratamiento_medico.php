@@ -950,7 +950,7 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                                     }
                                                                                     ?>
                                                                                     <?php 
-                                                                                    if ( $f_inicio_formato != ""){ 
+                                                                                    if ( $f_inicio_formato != "01/01/1970"){ 
                                                                                     ?> 
                                                                                     <li>FECHA DE INICIO DEL TRATAMIENTO: <?php echo $f_inicio_formato; ?></li>
                                                                                     <?php
