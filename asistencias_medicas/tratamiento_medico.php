@@ -491,11 +491,18 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                         <div class="col-md-6 mb-3">
                                                                           <label> REQUIERE CITA DE SEGUIMIENTO</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $r_seguimiento['cita_seguimiento']; ?>">
-                                                                        </div>                                                                               
+                                                                        </div>
+                                                                        <?php
+                                                                        if ( $r_seguimiento['diagnostico'] != ""){
+                                                                        ?> 
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>DIAGNÓSTICO</label>
                                                                           <input style="font-size: 14px;" readonly class="form-control" type="text" value="<?php echo $r_seguimiento['diagnostico']; ?>">
                                                                         </div>
+                                                                        <?php
+                                                                        }
+                                                                        ?>                                                                              
+
                                                                         <div class="col-md-6 mb-3">
                                                                           <label>INFORME MÉDICO</label>
                                                                           <textarea style="font-size: 14px;" readonly class="form-control" type="text" rows="5" cols="33" placeholder="<?php echo $r_seguimiento['informe_medico']; ?>"></textarea>
@@ -927,11 +934,30 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                                     </div>
                                                                                     <ul class="circulo" style="list-style-type: circle;">
 
-                                                                                    <li>INDICACIÓN:<?php echo htmlspecialchars($med['indicaciones']); ?></li>                                       
+                                                                                    <li>INDICACIÓN:<?php echo htmlspecialchars($med['indicaciones']); ?></li>
+                                                                                    <?php 
+                                                                                    if ( $med['via_administracion'] != ""){ 
+                                                                                    ?> 
                                                                                     <li>VÍA DE ADMINISTRACIÓN: <?php echo $med['via_administracion']; ?> </li>
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?>                                       
+                                                                                    <?php 
+                                                                                    if ( $hora_inicio != '00:00:00'){ 
+                                                                                    ?> 
                                                                                     <li>HORA DE INICIO DEL TRATAMIENTO: <?php echo $hora_inicio; ?> </li>
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?>
+                                                                                    <?php 
+                                                                                    if ( $f_inicio_formato != ""){ 
+                                                                                    ?> 
                                                                                     <li>FECHA DE INICIO DEL TRATAMIENTO: <?php echo $f_inicio_formato; ?></li>
-
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?> 
+                                                                                    
+                                                                                    
                                                                                     </ul>
 
                                                                                     <!-- <p class="med-instruction">Indicación:<?php echo htmlspecialchars($med['indicaciones']); ?></p>
@@ -948,8 +974,6 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                               </div>
                                                                             </div>
 
-                                                                            <div class="recommendations-container">
-                                                                              
                                                                               <?php
                                                                               $consulta_recomendaciones = "SELECT nombre_medicamento, indicaciones, recomendaciones,fecha_registro
                                                                               FROM tratamiento_medico
@@ -961,10 +985,19 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                                               $consulta_re = $mysqli->query($consulta_recomendaciones);
                                                                               $row_recomendaciones=$consulta_re->fetch_assoc();
                                                                               $resultado_re = $row_recomendaciones['recomendaciones'];
+
+                                                                              if ($resultado_re != ""){
                                                                               ?>
+
+                                                                            <div class="recommendations-container">
                                                                               <span class="rec-title">RECOMENDACIONES GENERALES:</span>
                                                                               <p><?php echo $resultado_re; ?></p>
                                                                             </div>
+                                                                            <?php
+                                                                            }
+                                                                            ?> 
+
+
                                                                           </div>
                                                                           
                                                                           <!-- <div class="card-footer">
