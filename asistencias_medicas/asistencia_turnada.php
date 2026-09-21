@@ -115,16 +115,16 @@ $row=$result->fetch_assoc();
 
               <?php
               $cl = "SELECT COUNT(*) as t 
-              FROM solicitud_asistencia 
-              JOIN cita_asistencia 
-              ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-              AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
-              AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
-              AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
-              AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
-              WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-              OR solicitud_asistencia.etapa = 'REPROGRAMADA NOTIFICADA'
+                      FROM solicitud_asistencia 
+                      JOIN cita_asistencia 
+                      ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
+                      AND cita_asistencia.fecha_asistencia BETWEEN 
+                      -- FECHA INICIO: Si es lunes (0), resta 7 días, se incluiye la semana anterior y la semana actual
+                      DATE_SUB(CURDATE(), INTERVAL IF(WEEKDAY(CURDATE()) = 0, WEEKDAY(CURDATE()) + 7, WEEKDAY(CURDATE())) DAY)
+                      -- FECHA FIN: semana actual (lunes a domingo)
+                      AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                      WHERE solicitud_asistencia.servicio_medico NOT IN ('MÉDICO', 'SANITARIO', 'PSICOLÓGICO')
+                      AND solicitud_asistencia.etapa IN ('NOTIFICADA', 'REPROGRAMADA NOTIFICADA');
               ";
               $rcl = $mysqli->query($cl);
               $fcl = $rcl->fetch_assoc();
@@ -191,13 +191,13 @@ $row=$result->fetch_assoc();
 
                                                               JOIN cita_asistencia 
                                                               ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
-															                                AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                                                              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
-                                                              AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
-                                                              AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
-                                                              AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
-                                                              WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                              OR solicitud_asistencia.etapa = 'REPROGRAMADA NOTIFICADA'
+                                                              AND cita_asistencia.fecha_asistencia BETWEEN 
+                                                              -- FECHA INICIO: Si es lunes (0), resta 7 días, se incluiye la semana anterior y la semana actual
+                                                              DATE_SUB(CURDATE(), INTERVAL IF(WEEKDAY(CURDATE()) = 0, WEEKDAY(CURDATE()) + 7, WEEKDAY(CURDATE())) DAY)
+                                                              -- FECHA FIN: semana actual (lunes a domingo)
+                                                              AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                              WHERE solicitud_asistencia.servicio_medico NOT IN ('MÉDICO', 'SANITARIO', 'PSICOLÓGICO')
+                                                              AND solicitud_asistencia.etapa IN ('NOTIFICADA', 'REPROGRAMADA NOTIFICADA')
                                                               
                                                             
                                                               ORDER BY cita_asistencia.id ASC
@@ -240,13 +240,13 @@ $row=$result->fetch_assoc();
                                                                             JOIN cita_asistencia 
                                                                             ON solicitud_asistencia.id_asistencia = cita_asistencia.id_asistencia
                                                                             AND solicitud_asistencia.id_asistencia = '$id_asistencia'
-                                                                            AND cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                                                                            AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
-                                                                            AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
-                                                                            AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
-                                                                            AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO' 
-                                                                            WHERE solicitud_asistencia.etapa = 'NOTIFICADA' 
-                                                                            OR solicitud_asistencia.etapa = 'REPROGRAMADA NOTIFICADA'
+                                                                            AND cita_asistencia.fecha_asistencia BETWEEN 
+                                                                            -- FECHA INICIO: Si es lunes (0), resta 7 días, se incluiye la semana anterior y la semana actual
+                                                                            DATE_SUB(CURDATE(), INTERVAL IF(WEEKDAY(CURDATE()) = 0, WEEKDAY(CURDATE()) + 7, WEEKDAY(CURDATE())) DAY)
+                                                                            -- FECHA FIN: semana actual (lunes a domingo)
+                                                                            AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                                            WHERE solicitud_asistencia.servicio_medico NOT IN ('MÉDICO', 'SANITARIO', 'PSICOLÓGICO')
+                                                                            AND solicitud_asistencia.etapa IN ('NOTIFICADA', 'REPROGRAMADA NOTIFICADA')
 
                                                                             ORDER BY cita_asistencia.id DESC
                                                                             LIMIT 1";
