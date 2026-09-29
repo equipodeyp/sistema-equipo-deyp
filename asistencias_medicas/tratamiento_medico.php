@@ -247,9 +247,9 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                             $fecha = new DateTime(); // Fecha y hora actual
                             $dia_semana = $fecha->format('N'); 
                             $fecha->modify('-' . ($dia_semana - 1) . ' days');
-                            // echo $fecha->format('d-m-Y');
+                            echo $fecha->format('d-m-Y');
                             $ultimoDiaSemana = date('d-m-Y', strtotime('next Monday'));
-                            // echo $ultimoDiaSemana;
+                            echo $ultimoDiaSemana;
                             ?>
 
                             <h3 style='text-align:center'>ASISTENCIAS MÉDICAS COMPLETADAS </h3>
@@ -291,14 +291,15 @@ $id_servidor_ini = $primer_nombre.$inicial_ap.$inicial_am;
                                                               JOIN seguimiento_asistencia
                                                               ON solicitud_asistencia.id_asistencia = seguimiento_asistencia.id_asistencia 
 
-                                                              AND seguimiento_asistencia.traslado_realizado = 'SI'
-                                                              AND seguimiento_asistencia.se_otorgo = 'SI'
-                                                              AND solicitud_asistencia.servicio_medico != 'MÉDICO' 
-                                                              AND solicitud_asistencia.servicio_medico != 'SANITARIO' 
-                                                              AND solicitud_asistencia.servicio_medico != 'PSICOLÓGICO'
-                                                              AND solicitud_asistencia.etapa = 'ASISTENCIA MÉDICA COMPLETADA'
-                                                              WHERE cita_asistencia.fecha_asistencia BETWEEN DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) 
-                                                              AND DATE_ADD(CURDATE(), INTERVAL (7 - WEEKDAY(CURDATE())) DAY)
+                                                              AND cita_asistencia.fecha_asistencia BETWEEN 
+                                                              -- FECHA INICIO: Si es lunes (0), resta 7 días, se incluiye la semana anterior y la semana actual
+                                                              DATE_SUB(CURDATE(), INTERVAL IF(WEEKDAY(CURDATE()) = 0, WEEKDAY(CURDATE()) + 7, WEEKDAY(CURDATE())) DAY)
+                                                                  -- FECHA FIN: semana actual (lunes a domingo)
+                                                              AND DATE_ADD(CURDATE(), INTERVAL (6 - WEEKDAY(CURDATE())) DAY)
+                                                              WHERE solicitud_asistencia.servicio_medico NOT IN ('MÉDICO', 'SANITARIO', 'PSICOLÓGICO')
+                                                              AND solicitud_asistencia.etapa IN ('ASISTENCIA MÉDICA COMPLETADA')
+                                                              AND seguimiento_asistencia.traslado_realizado IN ('SI')
+                                                              AND seguimiento_asistencia.se_otorgo IN ('SI')
                             
 
                                                               ORDER BY cita_asistencia.fecha_asistencia  DESC

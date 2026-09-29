@@ -5,15 +5,20 @@ include("../conexion.php");
 $fechaInicio = $_POST['fecha_inicio'];
 $fechaFin = $_POST['fecha_fin'];
 // Consulta SQL con el rango de fechas
-$sql = "SELECT DISTINCT react_actividad.id_sujeto,
-              react_actividad.folio_expediente, react_actividad.idactividad,
-              react_actividad_analisis.nombre
-              FROM react_actividad
-              INNER JOIN react_actividad_analisis
-              ON react_actividad.idactividad = react_actividad_analisis.id_actividad
-              WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
-              AND react_actividad.idactividad = 'SAR-01'
-              ORDER BY react_actividad.fecha ASC";
+$sql = "SELECT 
+              react_actividad.folio_expediente,
+              react_actividad_analisis.nombre,
+              react_actividad.clasificacion,
+                                      
+              MIN(react_actividad.fecha) AS fecha
+                                
+        FROM react_actividad
+        INNER JOIN react_actividad_analisis
+        ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+        WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin' 
+        AND react_actividad.idactividad = 'SAR-01'
+        GROUP BY react_actividad.folio_expediente, react_actividad.clasificacion
+        ORDER BY react_actividad.folio_expediente ASC, react_actividad.clasificacion ASC";
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
@@ -80,8 +85,9 @@ if ($result->num_rows > 0) {
               <tr>
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NO.</th>
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FOLIO EXPEDIENTE</th>
-                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID SUJETO</th>
+                <!-- <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID SUJETO</th> -->
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE ACTIVIDAD</th>
+                <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CLASIFICACIÍN</th>
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA</th>
                 <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMENCLATURA</th>
               </tr>
@@ -90,19 +96,47 @@ if ($result->num_rows > 0) {
           <?php
           while($row = $result->fetch_assoc()) {
             $auxsum = $auxsum +1;
-            $id_sujeto = $row['id_sujeto'];
+            // $id_sujeto = $row['id_sujeto'];
             // echo $id_sujeto;
             // echo $fechainicial;
-            $getactividad = "SELECT DISTINCT react_actividad.id_sujeto,
-            react_actividad.folio_expediente, react_actividad.idactividad,
-            react_actividad_analisis.nombre, react_actividad.fecha
-            FROM react_actividad
-            INNER JOIN react_actividad_analisis
-            ON react_actividad.idactividad = react_actividad_analisis.id_actividad
-            WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
-            AND react_actividad.idactividad = 'SAR-01' AND react_actividad.id_sujeto = '$id_sujeto'
-            ORDER BY react_actividad.fecha ASC
-            LIMIT 1";
+            // $getactividad = "SELECT DISTINCT react_actividad.id_sujeto,
+            // react_actividad.folio_expediente, react_actividad.idactividad,
+            // react_actividad_analisis.nombre, react_actividad.fecha
+            // FROM react_actividad
+            // INNER JOIN react_actividad_analisis
+            // ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+            // WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
+            // AND react_actividad.idactividad = 'SAR-01' AND react_actividad.id_sujeto = '$id_sujeto'
+            // ORDER BY react_actividad.fecha ASC
+            // LIMIT 1";
+
+            // $getactividad = "SELECT DISTINCT react_actividad.id_sujeto,
+            // react_actividad.folio_expediente, react_actividad.idactividad,
+            // react_actividad_analisis.nombre, react_actividad.fecha
+            // FROM react_actividad
+            // INNER JOIN react_actividad_analisis
+            // ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+            // WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
+            // AND react_actividad.idactividad = 'SAR-01' AND react_actividad.id_sujeto = '$id_sujeto'
+            // ORDER BY react_actividad.fecha ASC
+            // LIMIT 1
+            // ";
+
+            $getactividad = "SELECT 
+                                react_actividad.folio_expediente,
+                                react_actividad_analisis.nombre,
+                                react_actividad.clasificacion,
+                                
+                                MIN(react_actividad.fecha) AS fecha
+                                
+                            FROM react_actividad
+                            INNER JOIN react_actividad_analisis
+                            ON react_actividad.idactividad = react_actividad_analisis.id_actividad
+                            WHERE react_actividad.fecha BETWEEN '$fechaInicio' AND '$fechaFin'
+                            AND react_actividad.idactividad = 'SAR-01'
+                            GROUP BY react_actividad.folio_expediente, react_actividad.clasificacion
+                            ORDER BY react_actividad.folio_expediente ASC, react_actividad.clasificacion ASC
+            ";
 
             $resultado_act = $mysqli->query($getactividad);
             $row_resu = $resultado_act->fetch_assoc();
@@ -114,23 +148,25 @@ if ($result->num_rows > 0) {
             // echo $fol_exp;
 
             // IMPRIMIR SOLO LETRAS
-            $texto_idsujeto = $row['id_sujeto'];
+            // $texto_idsujeto = $row['id_sujeto'];
+            $clas = $row['clasificacion'];
 
-            $resultado = "";
-            for ($i = 0; $i < strlen($texto_idsujeto); $i++) {
-                if (ctype_alpha($texto_idsujeto[$i])) {
-                    $resultado .= $texto_idsujeto[$i];
-                }
-            }
+            // $resultado = "";
+            // for ($i = 0; $i < strlen($texto_idsujeto); $i++) {
+            //     if (ctype_alpha($texto_idsujeto[$i])) {
+            //         $resultado .= $texto_idsujeto[$i];
+            //     }
+            // }
             // echo $resultado;
             // Evaluación_EXP_006/2022-JVT
-            $concatenacion = 'Evaluación_EXP_'.$fol_ex.'-'.$resultado;
+            $concatenacion = 'Evaluación_EXP_'.$fol_ex.'-'.$clas;
           ?>
           <tr>
             <td><?php echo $auxsum; ?></td>
             <td><?php echo $row['folio_expediente']; ?></td>
-            <td><?php echo $row['id_sujeto']; ?></td>
+            <!-- <td><?php echo $row['id_sujeto']; ?></td> -->
             <td><?php echo $row['nombre']; ?></td>
+            <td><?php echo $row['clasificacion']; ?></td>
             <td><?php echo date("d/m/Y", strtotime($row_resu['fecha'])); ?></td>
             <td><?php echo $concatenacion; ?></td>
           </tr>
