@@ -1,7 +1,7 @@
 <?php
 $contador = 0;
 $infsuj = "SELECT * FROM datospersonales
-                    WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PROPUESTA'";
+                    WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PROPUESTA' OR estatus = 'SUSPENDIDO TEMPORALMENTE'";
 $finfsuj = $mysqli->query($infsuj);
 while ($rinfsuj = $finfsuj-> fetch_assoc()) {
   $contador = $contador + 1;
@@ -34,6 +34,8 @@ while ($rinfsuj = $finfsuj-> fetch_assoc()) {
     $alojamiento_suj = 'NO';
   }
   //
+
+  // $inicio = new DateTime($rdataut['fechasolicitud_persona']);
   $inicio = new DateTime($rdatexp['fecha_nueva']);
 $hoy = new DateTime();
 $diff = $inicio->diff($hoy);
@@ -66,27 +68,55 @@ if ($edad->y >= 0 && $edad->y <= 11) {
 }elseif ($edad->y >= 60) {
   $edadgruposujeto =  'ADULTOS MAYORES';
 }
+
+$est_suj = $rinfsuj['estatus'];
+$idunicosuj = $rinfsuj['identificador'];
+if ($est_suj === 'SUJETO PROTEGIDO') {
+  $checkconvenios = "SELECT COUNT(*) AS totalconvenios FROM evaluacion_persona WHERE id_unico = '$idunicosuj' AND analisis ='ESTUDIO TECNICO DE EVALUACION DE RIESGO'";
+  $rcheckconvenios = $mysqli->query($checkconvenios);
+  $fcheckconvenios = $rcheckconvenios ->fetch_assoc();
+  $numconvenios = $fcheckconvenios['totalconvenios'];
+  if ($numconvenios > 1) {
+    $checkfechavigencia = "SELECT * FROM evaluacion_persona WHERE id_unico = '$idunicosuj' AND analisis ='ESTUDIO TECNICO DE EVALUACION DE RIESGO'
+                            AND tipo_convenio ='CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA'
+                           ORDER BY id DESC LIMIT 1";
+    $rcheckfechavigencia = $mysqli->query($checkfechavigencia);
+    $fcheckfechavigencia = $rcheckfechavigencia ->fetch_assoc();
+    $fecha_termino_convenio = date("d/m/Y", strtotime($fcheckfechavigencia['fecha_vigencia']));
+  }else {
+    $checkfechavigencia2 = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$idsuj' AND multidisciplinario ='ESTUDIO TECNICO DE ANALISIS DE RIESGO'
+                           AND convenio ='FORMALIZADO'";
+    $rcheckfechavigencia2 = $mysqli->query($checkfechavigencia2);
+    $fcheckfechavigencia2 = $rcheckfechavigencia2 ->fetch_assoc();
+    $fecha_termino_convenio = date("d/m/Y", strtotime($fcheckfechavigencia2['fecha_vigencia']));
+  }
+}elseif ($est_suj === 'SUSPENDIDO TEMPORALMENTE') {
+  $fecha_termino_convenio = 'AUN NO FIRMA CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA';
+}elseif ($est_suj === 'PERSONA PROPUESTA') {
+  $fecha_termino_convenio = 'AUN NO FIRMA CONVENIO DE ENTENDIMIENTO PARA INCORPORARSE AL PROGRAMA';
+}
 // echo "Tiempo: " . $resultado . " (Es " . $estado_periodo . " a un año)";
   echo "<tr>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $contador; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['folioexpediente']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo date("d/m/Y", strtotime($rdatexp['fecha_nueva'])); echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['area']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rdataut['nombreautoridad']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['calidadpersona']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['sexopersona']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['identificador']; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $nombre_completo_mayusculas; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['sexopersona']; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo date("d/m/Y", strtotime($rinfsuj['fechanacimientopersona'])); echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['calidadpersona']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['relacional']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['estatus']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['reingreso']; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $alojamiento_suj; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $edad->y . " años";; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $edadgruposujeto; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $estado_periodo; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $nombre_completo_mayusculas; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $resultado; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['area']; echo "</td>";
-  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['id_area']; echo "</td>";
+  echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fecha_termino_convenio; echo "</td>";
+  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['relacional']; echo "</td>";
+  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['reingreso']; echo "</td>";
+  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $estado_periodo; echo "</td>";
+  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['id_area']; echo "</td>";
   echo "</tr>";
 }
 ?>

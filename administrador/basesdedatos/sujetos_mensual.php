@@ -92,22 +92,23 @@ $row=$result->fetch_assoc();
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NO.</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EXPEDIENTE</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA DE RECEPCION EXPEDIENTE</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">AREA</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE AUTORIDAD</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CALIDAD PERSONA</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">SEXO PERSONA</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">IDENTIFICADOR SUJETO</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE COMPLETO</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">SEXO PERSONA</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA DE NACIMIENTO</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">CALIDAD PERSONA</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS SUJETO PROGRAMA</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RELACIONADO</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS DENTRO DEL PROGRAMA</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RE-INGRESO</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EN CENTRO DE RESGUARDO</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">EDAD ACTUAL</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">GRUPO DE EDAD</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ANTIGUEDAD</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">FECHA DE VENCIMIENTO DE SU ULTIMO CONVENIO</th>
+                          <!-- <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTATUS DENTRO DEL PROGRAMA</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">RE-INGRESO</th>
                           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ANTIGÜEDAD</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">NOMBRE COMPLETO</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ESTADÍA</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">AREA</th>
-                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID AREA</th>
+                          <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ID AREA</th> -->
                         </tr>
                     </thead>
                     <tbody>
