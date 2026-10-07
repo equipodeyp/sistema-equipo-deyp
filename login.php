@@ -6,7 +6,7 @@ try {
   $password=htmlentities(addslashes($_POST['inputPassword']));
   // contador
   $contador = 0;
-  $sqluser = "SELECT * FROM usuarios WHERE usuario = BINARY :usuario";
+  $sqluser = "SELECT * FROM usuarios WHERE usuario = :usuario";
   $resultado = $DB->prepare($sqluser);
   $resultado->execute(array(":usuario"=>$usuario));
   while ($login=$resultado->fetch(PDO::FETCH_ASSOC)) {
