@@ -9,7 +9,7 @@ $fecha_actual = date('Y-m-d');
 $hora_actual = date('H:i');
 
 // Rango horario del mantenimiento programado para el día de hoy
-if ($fecha_actual == '2026-10-09' && $hora_actual >= '11:00' && $hora_actual <= '11:58') {
+if ($fecha_actual == '2026-10-09' && $hora_actual >= '12:00' && $hora_actual <= '12:59') {
     echo json_encode(["mantenimiento" => true]);
 } else {
     echo json_encode(["mantenimiento" => false]);
