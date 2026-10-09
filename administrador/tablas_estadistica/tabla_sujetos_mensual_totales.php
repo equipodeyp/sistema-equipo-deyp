@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Mexico_City');
 $contador = 0;
 $infsuj = "SELECT * FROM datospersonales
                     WHERE estatus = 'SUJETO PROTEGIDO' OR estatus = 'PERSONA PROPUESTA' OR estatus = 'SUSPENDIDO TEMPORALMENTE'";
