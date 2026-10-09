@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>FISCALIA GENERAL DE JUSTICIA DEL ESTADO DE MEXICO</title>
   <link rel="stylesheet" href="css/log.css" type="text/css" />
+  <script src="https://cloudflare.com"></script>
   <style>
 header {
 	width:100%;
 	overflow:hidden;
-	/* background:hsl(0, 74%, 12%); */
 	margin-bottom:20px;
 }
 
@@ -24,14 +24,14 @@ h5 {
 
 /* === ESTILOS DE LA VENTANA MODAL === */
 .modal-alerta {
-  display: flex; /* Centra el contenido en la pantalla */
+  display: flex;
   position: fixed;
-  z-index: 9999; /* Por encima de todo */
+  z-index: 9999;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro más denso */
+  background-color: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
 }
@@ -47,40 +47,57 @@ h5 {
   max-height: 90%;
 }
 
-.modal-contenido img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Estilos para el contador regresivo */
-.contador-regresivo {
-  position: absolute;
-  top: 8px;
-  right: 15px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #666;
-  background-color: #eee;
-  padding: 4px 8px;
-  border-radius: 4px;
+/* Estilos para el contenedor de mantenimiento dinámico */
+.mantenimiento-activo {
+    background-color: #6c757d !important;
+    color: #ffffff !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important;
+    margin: 0 !important;
 }
   </style>
+
+  <!-- SCRIPT DE VERIFICACIÓN CONTINUA (BUCLE DE RETORNO AUTOMÁTICO) -->
+  <script>
+    function verificarEstadoSistema() {
+        // Consultamos al servidor usando una marca de tiempo dinámica para romper la caché de red
+        fetch('mantenimiento.php?antiCache=' + Date.now())
+            .then(response => response.json())
+            .then(data => {
+                if (data.mantenimiento === true) {
+                    // Si el servidor confirma mantenimiento y la pantalla aún no es gris, la bloqueamos
+                    if (document.body.className !== "mantenimiento-activo") {
+                        document.body.className = "mantenimiento-activo";
+                        document.body.innerHTML = `
+                            <div style="text-align: center; background-color: rgba(0, 0, 0, 0.25); padding: 40px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); max-width: 500px; width: 90%;">
+                                <h1 style="font-size: 2.2em; margin-bottom: 15px; font-weight: bold;">Plataforma en Mantenimiento</h1>
+                                <p style="font-size: 1.1em; color: #e9ecef; line-height: 1.6;">Actualmente se están realizando actualizaciones programadas en nuestro servidor para mejorar la estabilidad del entorno de trabajo.</p>
+                                <p style="font-size: 0.95em; color: #ced4da; margin-top: 20px; font-weight: bold;">El servicio se restablecerá automáticamente a las 13:00 hrs. Agradecemos su comprensión.</p>
+                            </div>
+                        `;
+                    }
+                } else {
+                    // SI YA NO HAY MANTENIMIENTO:
+                    // Si la pantalla estaba bloqueada (gris) y el servidor da luz verde, forzamos la recarga inmediata
+                    if (document.body.className === "mantenimiento-activo") {
+                        window.location.reload();
+                    }
+                }
+            })
+            .catch(err => console.error("Error en el lazo de control de tiempo:", err));
+    }
+
+    // Ejecutamos la verificación apenas se procesa el documento
+    document.addEventListener("DOMContentLoaded", function() {
+        verificarEstadoSistema();
+        // Configura un lazo repetitivo: revisa el estado real cada 5 segundos de manera exacta
+        setInterval(verificarEstadoSistema, 5000);
+    });
+  </script>
 </head>
 <body>
-
-  <!-- === VENTANA MODAL DE ALERTA OBLIGATORIA === -->
-  <div id="miModalAlerta" class="modal-alerta">
-    <div class="modal-contenido">
-      <!-- Elemento donde se mostrarán los segundos restantes -->
-      <div id="contador" class="contador-regresivo">Este aviso se cerrará en 30s</div>
-      <!-- Cambia 'image/tu-alerta.png' por la ruta real de tu imagen -->
-      <img src="image/avisos/COMUNICADO.png" alt="Aviso Importante" width="900" height="700">
-    </div>
-  </div>
-
   <section>
     <header>
       <nav>
@@ -98,7 +115,6 @@ h5 {
     </header>
   </section>
 
-
   <section class="stark-login">
     <form action="login.php" method="POST">
       <div id="fade-box">
@@ -114,103 +130,12 @@ h5 {
     </div>
   </div>
 
-
   <div class="hexagons">
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <br>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <br>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <br>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <br>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
-    <span>&#x2B22;</span>
+    <span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><br>
+    <span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><br>
+    <span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><br>
+    <span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><br>
+    <span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span><span>&#x2B22;</span>
   </div>
-
-  <!-- === LÓGICA DE JAVASCRIPT === -->
-  <!-- === LÓGICA DE JAVASCRIPT === -->
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // 1. CONTROL DEL MODAL (30 SEGUNDOS)
-    let tiempoRestante = 30;
-    const elementoContador = document.getElementById("contador");
-    const modal = document.getElementById("miModalAlerta");
-
-    const intervalo = setInterval(() => {
-      tiempoRestante--;
-      if (elementoContador) {
-        elementoContador.textContent = `Este aviso se cerrará en ${tiempoRestante}s`;
-      }
-
-      if (tiempoRestante <= 0) {
-        clearInterval(intervalo);
-        if (modal) {
-          modal.style.display = "none";
-        }
-      }
-    }, 1000);
-
-    // 2. REFRESCAR LA PÁGINA COMPLETA EN 10 MINUTOS
-    // 10 minutos = 10 * 60 * 1000 = 600,000 milisegundos
-    setTimeout(() => {
-      window.location.reload();
-    }, 150000); 
-  });
-</script>
-
-
 </body>
 </html>

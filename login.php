@@ -1,153 +1,191 @@
 <?php
 session_start();
 require 'checar.php';
+
 try {
   $usuario=htmlentities(addslashes($_POST['inputUsuario']));
   $password=htmlentities(addslashes($_POST['inputPassword']));
-  // contador
-  $contador = 0;
+
+  // Estructura HTML base indispensable para SweetAlert2
+  echo '<!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesando...</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.26.25/sweetalert2.all.js"></script>
+    <style>
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: #f4f6f9;
+      }
+    </style>
+  </head>
+  <body>';
+
+  // Cálculo del saludo dinámico según la hora del sistema
+  date_default_timezone_set('America/Mexico_City'); // Ajusta a tu zona horaria si es necesario
+  $hora = date('H');
+  if ($hora < 12) {
+      $saludo = "Buenos días";
+  } else if ($hora < 19) {
+      $saludo = "Buenas tardes";
+  } else {
+      $saludo = "Buenas noches";
+  }
+
   $sqluser = "SELECT * FROM usuarios WHERE usuario = :usuario";
   $resultado = $DB->prepare($sqluser);
   $resultado->execute(array(":usuario"=>$usuario));
-  while ($login=$resultado->fetch(PDO::FETCH_ASSOC)) {
+
+  // Guardamos el registro en una variable para validar correctamente fuera de bucles conflictivos
+  $login = $resultado->fetch(PDO::FETCH_ASSOC);
+
+  if ($login) {
+    // EL USUARIO EXISTE -> VALIDAMOS CONTRASEÑA
     if (password_verify($password, $login['password'])) {
-      /*
-      aqui se podra crear sesiones
-      */
+      $nombreservidor = mb_strtoupper($login['nombre'], 'UTF-8');
       $_SESSION['IS_LOGIN']='yes';
-          $_SESSION['usuario']=$usuario;
+      $_SESSION['usuario']=$usuario;
+
           if($login['id_cargo']==1){ //administrador
-                echo'<script type="text/javascript">
-                alert("Bienvenido");
-                window.location.href="administrador/admin.php";
+                echo '<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    icon: "success",
+                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
+                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: { popup: "swal2-modal swal2-icon-show" },
+                    hideClass: { popup: "swal2-modal swal2-icon-hide" }
+                  }).then(() => {
+                    window.location.href="administrador/admin.php";
+                  });
+                });
                 </script>';
           }else if($login['id_cargo']==2){ //validacion de medidas
-                echo'<script type="text/javascript">
-                alert("Bienvenido");
-                window.location.href="subdireccion_de_analisis_de_riesgo/menu.php";
+                echo '<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    icon: "success",
+                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
+                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: { popup: "swal2-modal swal2-icon-show" },
+                    hideClass: { popup: "swal2-modal swal2-icon-hide" }
+                  }).then(() => {
+                    window.location.href="subdireccion_de_analisis_de_riesgo/menu.php";
+                  });
+                });
                 </script>';
           }else if($login['id_cargo']==3){ //ingreso de datos de expediente y de sujetos
-                echo'<script type="text/javascript">
-                alert("Bienvenido");
-                window.location.href="subdireccion_de_apoyo_tecnico_juridico/menu.php";
+                echo '<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    icon: "success",
+                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
+                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: { popup: "swal2-modal swal2-icon-show" },
+                    hideClass: { popup: "swal2-modal swal2-icon-hide" }
+                  }).then(() => {
+                    window.location.href="subdireccion_de_apoyo_tecnico_juridico/menu.php";
+                  });
+                });
                 </script>';
           }else if($login['id_cargo']==4){ //registro de medidas y seguimiento de expediente y de sujeto
-                echo'<script type="text/javascript">
-                alert("Bienvenido");
-                window.location.href="subdireccion_de_estadistica_y_preregistro/menu.php";
+                echo '<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    icon: "success",
+                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
+                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: { popup: "swal2-modal swal2-icon-show" },
+                    hideClass: { popup: "swal2-modal swal2-icon-hide" }
+                  }).then(() => {
+                    window.location.href="subdireccion_de_estadistica_y_preregistro/menu.php";
+                  });
+                });
                 </script>';
           }else if($login['id_cargo']==5){ //solo lectura de expedientes
-                echo'<script type="text/javascript">
-                alert("Bienvenido");
-                window.location.href="consultores/admin.php";
+                echo '<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    icon: "success",
+                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
+                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: { popup: "swal2-modal swal2-icon-show" },
+                    hideClass: { popup: "swal2-modal swal2-icon-hide" }
+                  }).then(() => {
+                    window.location.href="consultores/admin.php";
+                  });
+                });
                 </script>';
           }else if($login['id_cargo']==6){ //solo lectura de expedientes
-            echo'<script type="text/javascript">
-            alert("Bienvenido");
-            window.location.href="consultores/admin.php";
-            </script>';
-      }
-      $contador++;
-    }else {
-          echo'<script type="text/javascript">
-          alert("CONTRASEÑA INCORRECTA");
-          window.location.href="login.html";
+                echo '<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                  Swal.fire({
+                    icon: "success",
+                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
+                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    showClass: { popup: "swal2-modal swal2-icon-show" },
+                    hideClass: { popup: "swal2-modal swal2-icon-hide" }
+                  }).then(() => {
+                    window.location.href="consultores/admin.php";
+                  });
+                });
+                </script>';
+          }
+    } else {
+          // CONTRASEÑA INCORRECTA
+          echo '<script type="text/javascript">
+          document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+              icon: "error",
+              title: "Contraseña Incorrecta",
+              text: "Por favor, verifica tus datos e intenta de nuevo.",
+              confirmButtonColor: "#d33"
+            }).then(() => {
+              window.location.href="login.html";
+            });
+          });
           </script>';
     }
-  }
-  if ($contador>0) {
-  echo "el usuario existe";
   } else {
-    echo'<script type="text/javascript">
-    alert("USUARIO INCORRECTO");
-    window.location.href="login.html";
+    // USUARIO INCORRECTO
+    echo '<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+      Swal.fire({
+        icon: "warning",
+        title: "Usuario Incorrecto",
+        text: "El nombre de usuario ingresado no existe.",
+        confirmButtonColor: "#f8bb86"
+      }).then(() => {
+        window.location.href="login.html";
+      });
+    });
     </script>';
   }
+
+  echo '</body></html>';
   //cierro la conexion
   $conexion = null;
 } catch (\Exception $e) {
   die($e->getMessage());
 }
-
-// ConsultarUsuario($_POST['inputUsuario'], $_POST['inputPassword']);
-// function ConsultarUsuario($usuario, $password)
-// {
-//   /*include'conexion.php';*/
-//
-//   $conexion=mysqli_connect("localhost","root","","sistemafgjem");
-//   include_once "alerta_modal.php";
-//   $sentencia="SELECT * FROM usuarios WHERE UPPER (usuario='".$usuario."') AND UPPER (password='".$password."') ";
-//   $resultado=$conexion->query($sentencia) or die ("Error al comprobar usuario: ".mysqli_error($conexion));
-//
-//   $filas=mysqli_fetch_array($resultado); //Numero de filas del resultado de la consulta
-//
-//   if($filas > 0) //si la variable count es mayor a 0
-//   {
-//     $_SESSION['IS_LOGIN']='yes';
-//     $_SESSION['usuario']=$usuario;
-//     if($filas['id_cargo']==1){ //administrador
-//       // $_SESSION['start'] = time(); // Taking now logged in time.
-//       //       // Ending a session in 30 minutes from the starting time.
-//       // $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
-//       echo'<script type="text/javascript">
-//       alert("Bienvenido");
-//       window.location.href="administrador/admin.php";
-//       </script>';
-//         // echo '<script>console.log('Bienvenido');</script>";
-//         // header("location: administrador/admin.php");
-//         // MensajeAlerta("correcto", "Bienvenido", "administrador/admin.php");
-//     }else
-//     if($filas['id_cargo']==2){ //cliente
-//       echo'<script type="text/javascript">
-//       alert("Bienvenido");
-//       window.location.href="subdireccion_de_analisis_de_riesgo/menu.php";
-//       </script>';
-//         // MensajeAlerta("correcto", "Bienvenido", "consultores/consultar.php");
-//         /*header("location: consultores/consultar.php");*/
-//     }else
-//       if($filas['id_cargo']==3){ //registro mascara 1
-//         echo'<script type="text/javascript">
-//         alert("Bienvenido");
-//         window.location.href="subdireccion_de_apoyo_tecnico_juridico/menu.php";
-//         </script>';
-//         // MensajeAlerta("correcto", "Bienvenido", "registro_mascara1/registro_mascara1.php");
-//           /*header("location: registro_mascara1/registro_mascara1.php");*/
-//       }else
-//         if($filas['id_cargo']==4){ //registro mascara 1
-//           echo'<script type="text/javascript">
-//           alert("Bienvenido");
-//           window.location.href="subdireccion_de_estadistica_y_preregistro/menu.php";
-//           </script>';
-//         // MensajeAlerta("correcto", "Bienvenido", "mascara1/registro_mascara1.php");
-//             /*header("location: mascara1/registro_mascara1.php");*/
-//         }else
-//           if($filas['id_cargo']==5){ //registro mascara 1
-//             echo'<script type="text/javascript">
-//             alert("Bienvenido");
-//             window.location.href="modificar/mod.php";
-//             </script>';
-//         // MensajeAlerta("correcto", "Bienvenido", "modificar/mod.php");
-//               /*header("location: modificar/modificar.php");*/
-//           }
-//     /***  AHORA ***/
-//
-//     /***  ANTES ***/
-//     /*echo '<script>';
-//       echo 'alert("Bienvenido!!");';
-//       echo 'window.location.href="menu.php";';
-//     echo '</script>';*/
-//   }
-//   else
-//   {
-//     echo'<script type="text/javascript">
-// alert("Datos erroneos");
-// window.location.href="login.html";
-// </script>';
-//     // MensajeAlerta("error", "Datos de acceso incorrectos", "login.html");
-//     /*echo '<script>';
-//       echo 'alert("Datos de acceso incorrectos");';
-//       echo 'window.location.href="index.php";';
-//     echo '</script>';*/
-//   }
-// }
 ?>
