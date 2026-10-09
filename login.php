@@ -13,7 +13,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procesando...</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.26.25/sweetalert2.all.js"></script>
+    <script src="./js/sweetalert2.all.js"></script>
     <style>
       body {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -53,10 +53,10 @@ try {
                 document.addEventListener("DOMContentLoaded", function() {
                   Swal.fire({
                     icon: "success",
-                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
-                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    title: "' . $saludo . ',<br>BIENVENID@ <br>' . $nombreservidor . '",
+                    html: "Ingresando al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
                     showConfirmButton: false,
-                    timer: 6000,
+                    timer: 2500,
                     timerProgressBar: true,
                     showClass: { popup: "swal2-modal swal2-icon-show" },
                     hideClass: { popup: "swal2-modal swal2-icon-hide" }
@@ -70,10 +70,10 @@ try {
                 document.addEventListener("DOMContentLoaded", function() {
                   Swal.fire({
                     icon: "success",
-                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
-                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    title: "' . $saludo . ',<br>BIENVENID@ <br>' . $nombreservidor . '",
+                    html: "Ingresando al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
                     showConfirmButton: false,
-                    timer: 6000,
+                    timer: 2500,
                     timerProgressBar: true,
                     showClass: { popup: "swal2-modal swal2-icon-show" },
                     hideClass: { popup: "swal2-modal swal2-icon-hide" }
@@ -87,10 +87,10 @@ try {
                 document.addEventListener("DOMContentLoaded", function() {
                   Swal.fire({
                     icon: "success",
-                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
-                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    title: "' . $saludo . ',<br>BIENVENID@ <br>' . $nombreservidor . '",
+                    html: "Ingresando al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
                     showConfirmButton: false,
-                    timer: 6000,
+                    timer: 2500,
                     timerProgressBar: true,
                     showClass: { popup: "swal2-modal swal2-icon-show" },
                     hideClass: { popup: "swal2-modal swal2-icon-hide" }
@@ -104,10 +104,10 @@ try {
                 document.addEventListener("DOMContentLoaded", function() {
                   Swal.fire({
                     icon: "success",
-                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
-                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    title: "' . $saludo . ',<br>BIENVENID@ <br>' . $nombreservidor . '",
+                    html: "Ingresando al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
                     showConfirmButton: false,
-                    timer: 6000,
+                    timer: 2500,
                     timerProgressBar: true,
                     showClass: { popup: "swal2-modal swal2-icon-show" },
                     hideClass: { popup: "swal2-modal swal2-icon-hide" }
@@ -121,10 +121,10 @@ try {
                 document.addEventListener("DOMContentLoaded", function() {
                   Swal.fire({
                     icon: "success",
-                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
-                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    title: "' . $saludo . ',<br>BIENVENID@ <br>' . $nombreservidor . '",
+                    html: "Ingresando al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
                     showConfirmButton: false,
-                    timer: 6000,
+                    timer: 2500,
                     timerProgressBar: true,
                     showClass: { popup: "swal2-modal swal2-icon-show" },
                     hideClass: { popup: "swal2-modal swal2-icon-hide" }
@@ -138,10 +138,10 @@ try {
                 document.addEventListener("DOMContentLoaded", function() {
                   Swal.fire({
                     icon: "success",
-                    title: "' . $saludo . ',<br> ' . $nombreservidor . '",
-                    html: "Bienvenido al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
+                    title: "' . $saludo . ',<br>BIENVENID@ <br>' . $nombreservidor . '",
+                    html: "Ingresando al SIPPSIPPED<br><br><span style=\'color: green; font-size: 0.95em;\'>Iniciando componentes y entorno de trabajo...</span>",
                     showConfirmButton: false,
-                    timer: 6000,
+                    timer: 2500,
                     timerProgressBar: true,
                     showClass: { popup: "swal2-modal swal2-icon-show" },
                     hideClass: { popup: "swal2-modal swal2-icon-hide" }
