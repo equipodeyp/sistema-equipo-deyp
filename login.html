@@ -21,66 +21,9 @@ h5 {
   justify-content:center;
   float:center;
 }
-
-/* === ESTILOS DE LA VENTANA MODAL === */
-.modal-alerta {
-  display: flex; /* Centra el contenido en la pantalla */
-  position: fixed;
-  z-index: 9999; /* Por encima de todo */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro más denso */
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-contenido {
-  background-color: #fff;
-  padding: 30px 20px 20px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  text-align: center;
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.modal-contenido img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Estilos para el contador regresivo */
-.contador-regresivo {
-  position: absolute;
-  top: 8px;
-  right: 15px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #666;
-  background-color: #eee;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
   </style>
 </head>
 <body>
-
-  <!-- === VENTANA MODAL DE ALERTA OBLIGATORIA === -->
-  <div id="miModalAlerta" class="modal-alerta">
-    <div class="modal-contenido">
-      <!-- Elemento donde se mostrarán los segundos restantes -->
-      <div id="contador" class="contador-regresivo">Este aviso se cerrará en 20s</div>
-      <!-- Cambia 'image/tu-alerta.png' por la ruta real de tu imagen -->
-      <img src="image/avisos/COMUNICADO2.png" alt="Aviso Importante" width="900" height="700">
-    </div>
-  </div>
-
   <section>
     <header>
       <nav>
@@ -179,38 +122,5 @@ h5 {
     <span>&#x2B22;</span>
     <span>&#x2B22;</span>
   </div>
-
-  <!-- === LÓGICA DE JAVASCRIPT === -->
-  <!-- === LÓGICA DE JAVASCRIPT === -->
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // 1. CONTROL DEL MODAL (30 SEGUNDOS)
-    let tiempoRestante = 20;
-    const elementoContador = document.getElementById("contador");
-    const modal = document.getElementById("miModalAlerta");
-
-    const intervalo = setInterval(() => {
-      tiempoRestante--;
-      if (elementoContador) {
-        elementoContador.textContent = `Este aviso se cerrará en ${tiempoRestante}s`;
-      }
-
-      if (tiempoRestante <= 0) {
-        clearInterval(intervalo);
-        if (modal) {
-          modal.style.display = "none";
-        }
-      }
-    }, 1000);
-
-    // 2. REFRESCAR LA PÁGINA COMPLETA EN 10 MINUTOS
-    // 10 minutos = 10 * 60 * 1000 = 600,000 milisegundos
-    setTimeout(() => {
-      window.location.reload();
-    }, 600000);
-  });
-</script>
-
-
 </body>
 </html>
