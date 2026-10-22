@@ -77,19 +77,44 @@ if ($est_suj === 'SUJETO PROTEGIDO') {
   $rcheckconvenios = $mysqli->query($checkconvenios);
   $fcheckconvenios = $rcheckconvenios ->fetch_assoc();
   $numconvenios = $fcheckconvenios['totalconvenios'];
-  if ($numconvenios > 1) {
+  if ($numconvenios > 0) {
     $checkfechavigencia = "SELECT * FROM evaluacion_persona WHERE id_unico = '$idunicosuj' AND analisis ='ESTUDIO TECNICO DE EVALUACION DE RIESGO'
                             AND tipo_convenio ='CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA'
                            ORDER BY id DESC LIMIT 1";
     $rcheckfechavigencia = $mysqli->query($checkfechavigencia);
     $fcheckfechavigencia = $rcheckfechavigencia ->fetch_assoc();
-    $fecha_termino_convenio = date("d/m/Y", strtotime($fcheckfechavigencia['fecha_vigencia']));
+    $fecha_termino_convenioinic = date("d/m/Y", strtotime($fcheckfechavigencia['fecha_vigencia']));
+    // 2. Convertirla a un objeto DateTime reconociendo su formato original
+    $fechaObtenida = DateTime::createFromFormat('d/m/Y', $fecha_termino_convenioinic);
+    // 3. Opcional: Ponemos las horas a cero para comparar solo el día del calendario
+    $fechaObtenida->setTime(0, 0, 0);
+    // 4. Obtener el día de hoy a las 00:00:00
+    $hoy = new DateTime('today');
+    // 5. Realizar la comparación
+    if ($fechaObtenida < $hoy) {
+      $fecha_termino_convenio = 'VIGENCIA EXPIRADA / CONVENIO DE CONTINUIDAD PENDIENTE';
+    } else {
+      $fecha_termino_convenio = $fecha_termino_convenioinic;
+    }
+
   }else {
     $checkfechavigencia2 = "SELECT * FROM determinacionincorporacion WHERE id_persona = '$idsuj' AND multidisciplinario ='ESTUDIO TECNICO DE ANALISIS DE RIESGO'
                            AND convenio ='FORMALIZADO'";
     $rcheckfechavigencia2 = $mysqli->query($checkfechavigencia2);
     $fcheckfechavigencia2 = $rcheckfechavigencia2 ->fetch_assoc();
-    $fecha_termino_convenio = date("d/m/Y", strtotime($fcheckfechavigencia2['fecha_vigencia']));
+    $fecha_termino_convenioinic2 = date("d/m/Y", strtotime($fcheckfechavigencia2['fecha_vigencia']));
+    // 2. Convertirla a un objeto DateTime reconociendo su formato original
+    $fechaObtenida2 = DateTime::createFromFormat('d/m/Y', $fecha_termino_convenioinic2);
+    // 3. Opcional: Ponemos las horas a cero para comparar solo el día del calendario
+    $fechaObtenida2->setTime(0, 0, 0);
+    // 4. Obtener el día de hoy a las 00:00:00
+    $hoy2 = new DateTime('today');
+    // 5. Realizar la comparación
+    if ($fechaObtenida2 < $hoy2) {
+      $fecha_termino_convenio = 'VIGENCIA EXPIRADA / CONVENIO DE CONTINUIDAD PENDIENTE';
+    } else {
+      $fecha_termino_convenio = $fecha_termino_convenioinic2;
+    }
   }
 }elseif ($est_suj === 'SUSPENDIDO TEMPORALMENTE') {
   $fecha_termino_convenio = 'AUN NO FIRMA CONVENIO DE ENTENDIMIENTO PARA CONTINUAR INCORPORADO AL PROGRAMA';
@@ -114,10 +139,6 @@ if ($est_suj === 'SUJETO PROTEGIDO') {
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $edadgruposujeto; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $resultado; echo "</td>";
   echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fecha_termino_convenio; echo "</td>";
-  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['relacional']; echo "</td>";
-  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $rinfsuj['reingreso']; echo "</td>";
-  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $estado_periodo; echo "</td>";
-  // echo "<td style='text-align:center; border: 1px solid black;'>"; echo $fgetareaautoridad['id_area']; echo "</td>";
   echo "</tr>";
 }
 ?>
