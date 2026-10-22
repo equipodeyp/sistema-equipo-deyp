@@ -190,15 +190,16 @@ $id_usuario=$row['usuario'];
               <option disabled selected value>SELECCIONE UNA OPCIÓN</option>
 
                 <?php
-                if ($cargo != '' && $estatus === 'activo' || $id_usuario === 'analisis7' && $estatus === 'activo'){
-                    $select = "SELECT DISTINCT usuarios_servidorespublicos.nombre, 
-                    usuarios_servidorespublicos.apaterno, usuarios_servidorespublicos.amaterno, 
-                    react_actividad.usuario
-                    FROM react_actividad
+                if ($cargo != '' && $estatus === 'activo' || $id_usuario === '210015783' && $estatus === 'activo'){
+                    $select = "SELECT usuarios_servidorespublicos.nombre, 
+                    usuarios_servidorespublicos.apaterno, 
+                    usuarios_servidorespublicos.amaterno, usuarios.usuario
+                    FROM usuarios
 
                     JOIN usuarios_servidorespublicos
-                    ON react_actividad.usuario = usuarios_servidorespublicos.usuario
-                    AND react_actividad.id_subdireccion = '1'
+                    ON usuarios.usuario = usuarios_servidorespublicos.usuario
+                    AND usuarios.area = 'Subdireccion de Analisis de Riesgo'
+                  
                     ORDER BY usuarios_servidorespublicos.nombre ASC";
                     $answer = $mysqli->query($select);
                     while($valores = $answer->fetch_assoc()){

@@ -16,7 +16,7 @@
 }
 
 .sidebar {
-  display: ;
+  display: block;
   flex-direction: column;
   background: #5F6D6B;
   min-height: 100vh;

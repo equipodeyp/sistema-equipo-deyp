@@ -1,0 +1,195 @@
+/* Estilos Generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.menu-container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Sistema de Cuadrícula (Grid) - Forzado a 3 columnas por fila */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
+    padding: 10px;
+    margin: 0 auto;
+}
+
+/* Estilo Base de los Botones con Efectos y Animaciones */
+.menu-item {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 14px; 
+    padding: 30px 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden; /* Necesario para el efecto de brillo interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    
+    /* Animación de entrada suave al cargar la página */
+    animation: aparecer 0.5s cubic-bezier(0.25, 1, 0.5, 1) backwards;
+}
+
+/* --- EFECTOS Y TRANSICIONES --- */
+
+/* Transición ultra suave para todos los estados interactivos */
+.menu-item, .menu-item img, .menu-item span {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Efecto Hover (Al pasar el ratón) */
+.menu-item:hover {
+    transform: translateY(-6px); /* Eleva el botón de forma sutil */
+    background-color: #d8e7e6;
+    border-color: #5F6D6B; /* Cambia el borde a un tono azul moderno */
+    box-shadow: 0 12px 20px rgba(59, 130, 246, 0.15); /* Sombra difuminada con tono azul */
+}
+
+/* Efecto en la imagen al hacer Hover */
+.menu-item:hover img {
+    transform: scale(1.12); /* Agranda la imagen un 12% suavemente */
+    filter: drop-shadow(0 4px 6px rgba(59, 130, 246, 0.2)); /* Sombra a la silueta del icono */
+}
+
+/* Efecto en el texto al hacer Hover */
+.menu-item:hover span {
+    color: #5F6D6B; /* El texto se ilumina en azul */
+}
+
+/* Efecto Active (Al hacer clic físico) */
+.menu-item:active {
+    transform: translateY(-2px) scale(0.97); /* Se hunde ligeramente simulando presión */
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.1);
+}
+
+/* --- ELEMENTOS INTERNOS DE LOS BOTONES --- */
+
+.menu-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.menu-item span {
+    font-size: 1.5rem; 
+    font-weight: 600;
+    color: #4a5568;
+}
+
+/* --- ANIMACIONES DE CARGA (KEYFRAMES) --- */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Los botones suben desde abajo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Retraso secuencial para que los botones aparezcan uno tras otro (efecto cascada) */
+.menu-item:nth-child(1) { animation-delay: 0.05s; }
+.menu-item:nth-child(2) { animation-delay: 0.10s; }
+.menu-item:nth-child(3) { animation-delay: 0.15s; }
+.menu-item:nth-child(4) { animation-delay: 0.20s; }
+.menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+
+
+
+
+ /* Estilos Base / Reset */
+        /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } */
+
+        /* body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; 
+            padding: 2rem 1rem;
+        } */
+
+        /* Contenedor del Título Principal */
+        .header-panel {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        /* Subtítulo o categoría superior (Estilo Kicker) */
+        .header-panel .panel-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #6c757d; /* Gris medio */
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Título Principal */
+        .header-panel .panel-title {
+            font-size: 2.25rem; /* Tamaño óptimo para escritorio */
+            font-weight: 700;
+            color: #212529; /* Negro corporativo suave (Charcoal) */
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Línea divisoria minimalista e isotipo sutil */
+        .header-panel .panel-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #343a40; /* Gris oscuro / Negro */
+            border-radius: 2px;
+        }
+
+        /* Responsividad / Ajustes para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .header-panel .panel-title {
+                font-size: 1.75rem; /* Se reduce el tamaño en tablets */
+            }
+            .header-panel .panel-tag {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-panel .panel-title {
+                font-size: 1.5rem; /* Se reduce en dispositivos móviles */
+            }
+        }
