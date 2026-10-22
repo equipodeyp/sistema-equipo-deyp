@@ -8,9 +8,10 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$cargo =$row['cargo'];
 
 $tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
 $rtmf = $mysqli->query($tmf);
@@ -75,7 +76,7 @@ $mmed =  $ftmf['t'];
       </div>
       <nav class="menu-nav">
         <?php
-        if ($mmed > 0 AND $name == 'estadistica_admin') {
+        if ($mmed > 0 AND $cargo == 'subdirector') {
           ?>
           <li class="menu-items"><a href='../administrador/medidas_por_validar.php'><i style="color: orange;" class="fa-solid fa-triangle-exclamation menu-nav--icon"></i><strong style="color: orange;">MEDIDAS POR VALIDAR</strong></a></li>
           <?php

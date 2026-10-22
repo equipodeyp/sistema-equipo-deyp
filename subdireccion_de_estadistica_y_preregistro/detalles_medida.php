@@ -10,9 +10,10 @@ if (!isset($name)) {
 $verifica_update_person = 1;
 $_SESSION["verifica_update_person"] = $verifica_update_person;
 $name = $_SESSION['usuario'];
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$cargouser = $row['cargo'];
 $id_medida = $_GET['id'];
 $medida = "SELECT * FROM medidas WHERE id = '$id_medida'";
 $resultadomedida = $mysqli->query($medida);
@@ -691,7 +692,7 @@ $validacion = $fil_val['validacion'];
   $valid = "SELECT * FROM validar_medida WHERE id_persona = '$id_p' && id_medida = '$id_m'";
   $res_val=$mysqli->query($valid);
   $fil_val = $res_val->fetch_assoc();
-    if ($fil_val['validar_datos'] === 'false' && $name === 'estadistica_sub') {
+    if ($fil_val['validar_datos'] === 'false' && $cargouser === 'subdirector') {
       echo "<div>
                 <a href='validar_medida.php?folio= $id_medida' class='btn-flotante-validar' ><i class=''></i>VALIDAR</a>
       </div>";

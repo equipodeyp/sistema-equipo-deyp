@@ -6,9 +6,10 @@ $name = $_SESSION['usuario'];
 if (!isset($name)) {
   header("location: ../logout.php");
 }
-$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m FROM usuarios WHERE usuario='$name'";
+$sentencia=" SELECT usuario, nombre, area, apellido_p, apellido_m, cargo FROM usuarios WHERE usuario='$name'";
 $result = $mysqli->query($sentencia);
 $row=$result->fetch_assoc();
+$cargo =$row['cargo'];
 //
 $tmf = "SELECT COUNT(*) as t from validar_medida WHERE validar_datos = 'false'";
 $rtmf = $mysqli->query($tmf);
@@ -63,18 +64,14 @@ $mmed =  $ftmf['t'];
       <nav class="menu-nav">
         <ul>
           <?php
-          if ($mmed > 0 AND $name == 'estadistica_sub') {
+          if ($mmed > 0 AND $cargo == 'subdirector') {
             ?>
             <li class="menu-items"><a href='../subdireccion_de_estadistica_y_preregistro/medidas_por_validar.php'><i style="color: orange;" class="fa-solid fa-triangle-exclamation menu-nav--icon"></i><strong style="color: orange;">MEDIDAS POR VALIDAR</strong></a></li>
             <?php
             }
-          if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3' || $name=='estadistica4') {
             ?>
-            <li class="menu-items"><a href='../administrador/admin.php'><i style="color: #FFFFFF;" class="fa-solid fa-user-tie menu-nav--icon"></i><strong style="color: white;">ADMINISTRADOR</strong></a></li>
-            <?php
-          }
-          ?>
           <ul>
+            <li class="menu-items"><a href='../administrador/admin.php'><i style="color: #FFFFFF;" class="fa-solid fa-user-tie menu-nav--icon"></i><strong style="color: white;">ADMINISTRADOR</strong></a></li>
             <li class="menu-items"><a href="#" onclick="menuestadisticabd(this)"><i style="color: #FFFFFF;" class="fa-solid fa-database menu-nav--icon"></i><strong style="color: white;">BASES DE DATOS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
               <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                 <li>
@@ -129,12 +126,12 @@ $mmed =  $ftmf['t'];
           <ul>
             <li class="menu-items"><a href="#" onclick="toggleSubmenu(this)"><i style="color: #FFFFFF;" class="fa-solid fa-headset menu-nav--icon"></i><strong style="color: white;">INCIDENCIAS</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
               <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
-                <?php if ($name=='estadistica_sub') { ?>
+                <?php if ($cargo == 'subdirector') { ?>
                 <li class="menu-items"><a href='./registrar_incidencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-desktop menu-nav--icon"></i><strong style="color: white;">REGISTRAR</strong></a></li>
                 <li class="menu-items"><a href='./incidencias_registradas.php'><i style="color: #FFFFFF;" class="fa-solid fa-computer menu-nav--icon"></i><strong style="color: white;">CONSULTAR</strong></a></li>
                 <?php
                 }
-                if ($name=='estadistica1' || $name=='estadistica2' || $name=='estadistica3') {
+                if ($cargo=='') {
                 ?>
                 <li class="menu-items"><a href='./atender_incidencia.php'><i style="color: #FFFFFF;" class="fa-solid fa-computer menu-nav--icon"></i><strong style="color: white;">ATENDER INCIDENCIA</strong></a></li>
                 <?php }?>
@@ -185,7 +182,7 @@ $mmed =  $ftmf['t'];
               <div class="col-lg-12">
                 <div class="table-responsive">
                   <table id="registros_expedientes_activos" name="registros_expedientes_activos" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    
+
                     <thead>
                       <tr>
                         <th style="text-align:center; color: white; border: 1px solid black;">#</th>
@@ -243,13 +240,13 @@ $mmed =  $ftmf['t'];
                   </table>
 
           <br>
-  
+
 
           <h3 style="text-align:center">EXPEDIENTES DE PROTECCIÓN CONCLUIDOS</h3>
 
 
                   <table id="registros_expedientes_concluidos" name="registros_expedientes_concluidos" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    
+
                     <thead>
                       <tr>
                         <th style="text-align:center; color: white; border: 1px solid black;">#</th>
@@ -307,12 +304,12 @@ $mmed =  $ftmf['t'];
                   </table>
 
                   <!-- <a href="expedientes_concluidos.php">
-                  <button 
-                        type="button" class="btn btn-danger" 
+                  <button
+                        type="button" class="btn btn-danger"
                         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 1rem;">
                     CONCLUIDOS
                   </button></a> -->
-                  
+
 
 
                 </div>
@@ -390,7 +387,7 @@ $('#registros_expedientes_activos, #registros_expedientes_concluidos').DataTable
               "next": "Siguiente",
               "previous": "Anterior"
           }
-            
+
             }
 });
 

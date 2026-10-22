@@ -100,7 +100,7 @@
         <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">MOTIVO</th>
         <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">DETALLES</th>
         <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">ELIMINAR</th>
-        <?php if ($name == 'estadistica_admin') {
+        <?php if ($cargouser == 'subdirector') {
           if ($showfilacolvalidar != 0) {
           ?>
           <th style="text-align:center; color: white; border: 1px solid black; vertical-align: middle;">VALIDAR</th>
@@ -220,10 +220,10 @@
                 <?php
                 include('eliminar_medida.php');
                 echo "</td>";
-                if ($name == 'estadistica_admin') {
+                if ($cargouser == 'subdirector') {
                   if ($showfilacolvalidar != 0) {
                 echo "<td style='text-align:center; border: 1px solid black;'>";
-                if ($fila_valmeds['validar_datos'] == 'false' AND $name == 'estadistica_admin' AND $var_fila['clasificacion'] != '') {
+                if ($fila_valmeds['validar_datos'] == 'false' AND $cargouser == 'subdirector' AND $var_fila['clasificacion'] != '') {
                 ?>
                 <button type="button" class="btn color-btn-success btn-sm" data-bs-toggle="modal"
                   data-id="<?php echo $id_medida; ?>"
