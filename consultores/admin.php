@@ -85,7 +85,7 @@ $idcargouser = $row['id_cargo'];
           <?php
           if ($cargouser == 'titular' || $cargouser == 'subdirector') {
             ?>
-            <li class="menu-items"><a href="#" onclick="menureportes(this)"><i style="color: #FFFFFF;" class="fa-solid fa-chart-column menu-nav--icon"></i><strong style="color: white;">REPORTES</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
+            <!-- <li class="menu-items"><a href="#" onclick="menureportes(this)"><i style="color: #FFFFFF;" class="fa-solid fa-chart-column menu-nav--icon"></i><strong style="color: white;">REPORTES</strong><i class="fas fa-chevron-down" style="color: white; float:center; margin-top:1px;"></i></a>
               <ul class="submenu" style="display:none; list-style:none; padding-left:15px;">
                 <li class="menu-items"><a href='../consultores/ver_reporte_diario.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-day menu-nav--icon"></i><strong style="color: white;">DIARIO</strong></a></li>
                 <li class="menu-items"><a href='../consultores/ver_reporte_semanal.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-week menu-nav--icon"></i><strong style="color: white;">SEMANAL</strong></a></li>
@@ -93,7 +93,8 @@ $idcargouser = $row['id_cargo'];
                 <li class="menu-items"><a href='../consultores/ver_reporte_anual.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-check menu-nav--icon"></i><strong style="color: white;">ANUAL</strong></a></li>
                 <li class="menu-items"><a href='../consultores/ver_reporte_semestral.php'><i style="color: #FFFFFF;" class="fa-solid fa-calendar-days menu-nav--icon"></i><strong style="color: white;">SEMESTRAL</strong></a></li>
               </ul>
-            </li>
+            </li> -->
+            <li class="menu-items"><a href='./alertas_convenios_por_finalizar.php'><i style="color: #FFFFFF;" class="fa-solid fa-triangle-exclamation menu-nav--icon"></i><strong style="color: white;">ALERTA DE CONVENIOS</strong></a></li>
             <?php
           }
           if ($row['area'] == 'titular de la unidad de proteccion de sujetos que intervienen en el procedimiento penal o extincion de dominio') {
@@ -386,7 +387,7 @@ $('#registros_expedientes_activos, #registros_expedientes_concluidos').DataTable
               "next": "Siguiente",
               "previous": "Anterior"
           }
-            
+
             }
 });
 

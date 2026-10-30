@@ -5,39 +5,60 @@ $hoy = date('Y-m-d');
 $hora_corte = '12:00:00';
 $paso_mediodia = (date('H:i:s') >= $hora_corte);
 
-// 1. DEFINIR EL LÍMITE DEL MES (Piso absoluto)
+// 1. CONDICIONES DE DETECCIÓN
 $primer_dia_mes_actual = date('Y-m-01');
-$primer_dia_mes_pasado = date('Y-m-01', strtotime('first day of last month'));
+$dia_semana_primero = (int)date('N', strtotime($primer_dia_mes_actual)); // 6 = Sábado, 7 = Domingo
+$dia_semana_hoy = (int)date('N'); // 1 = Lunes, 2 = Martes...
 
-if (date('j') == 1 && !$paso_mediodia) {
-    // Único caso donde se permite el mes pasado: día 1 antes de las 12:00
-    $piso_mensual = $primer_dia_mes_pasado;
-} else {
-    // En cualquier otro momento, no se puede elegir nada anterior al día 1 de este mes
-    $piso_mensual = $primer_dia_mes_actual;
-}
+$mes_inicio_en_fin_de_semana = ($dia_semana_primero == 6 || $dia_semana_primero == 7);
 
-// 2. LÓGICA SEMANAL
-if (date('N') == 1) { // Es Lunes
-    if ($paso_mediodia) {
-        $min_semanal = $hoy;
-    } else {
-        // Lunes antes de las 12:00 permite la semana pasada
-        $min_semanal = date('Y-m-d', strtotime('monday last week'));
+// Valores por defecto para días normales (Miércoles a Domingo)
+// Por defecto se limita estrictamente a la semana en curso (Lunes a Domingo)
+$min = date('Y-m-d', strtotime('monday this week'));
+$max = date('Y-m-d', strtotime('sunday this week'));
+
+// 2. APLICACIÓN DE REGLAS CON LUNES INHÁBIL
+if ($mes_inicio_en_fin_de_semana) {
+
+    if ($dia_semana_hoy == 1) {
+        // TODO EL LUNES (Inhábil) -> SOLO disponible la semana pasada
+        $min = date('Y-m-d', strtotime('monday last week'));
+        $max = date('Y-m-d', strtotime('sunday last week'));
     }
+
+    elseif ($dia_semana_hoy == 2) {
+        // MARTES (Primer día hábil)
+        if (!$paso_mediodia) {
+            // Martes ANTES de las 12:00 PM -> Sigue disponible SOLO la semana pasada
+            $min = date('Y-m-d', strtotime('monday last week'));
+            $max = date('Y-m-d', strtotime('sunday last week'));
+        } else {
+            // Martes DESPUÉS de las 12:00 PM -> SOLO la semana en curso
+            $min = date('Y-m-d', strtotime('monday this week'));
+            $max = date('Y-m-d', strtotime('sunday this week')); // Candado para no ir más allá de esta semana
+        }
+    }
+
 } else {
-    // Martes a Domingo, el mínimo es el lunes de esta semana
-    $min_semanal = date('Y-m-d', strtotime('monday this week'));
+    // CASO NORMAL (Si el mes NO inició en fin de semana, el lunes se trabaja normal)
+    if ($dia_semana_hoy == 1) {
+        if (!$paso_mediodia) {
+            $min = date('Y-m-d', strtotime('monday last week'));
+            $max = date('Y-m-d', strtotime('sunday last week'));
+        } else {
+            $min = $hoy;
+            $max = date('Y-m-d', strtotime('sunday this week')); // Candado para no ir más allá de esta semana
+        }
+    }
 }
-
-// 3. CRUCE DE REGLAS (El "Candado")
-// Comparamos la regla semanal con el piso mensual.
-// Si la semana pasada cae en el mes anterior, prevalece el $piso_mensual.
-$min = ($min_semanal > $piso_mensual) ? $min_semanal : $piso_mensual;
-
-$max = date('Y-m-t'); // Fin del mes actual
 
 // --- Datos para la vista ---
 $meses = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 $mes_actual_txt = $meses[(int)date('m')];
+
+
+
+
+
+
 ?>
