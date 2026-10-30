@@ -103,7 +103,7 @@ $fcl = $rcl->fetch_assoc();
         <br>
         <!--Ejemplo tabla con DataTables-->
         <b>
-          <div class="row" id="show_alert" style="display:none;">
+          <div class="row" id="show_alert" style="display:;">
             <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
               <thead>
                 <h3 style="text-align:center">¡ALERTA HAY CONVENIOS POR FINALIZAR!</h3>
@@ -116,20 +116,23 @@ $fcl = $rcl->fetch_assoc();
                   <th style="text-align:center; color: white; border: 1px solid black;">DIAS RESTANTES</th>
                   <th style="text-align:center; color: white; border: 1px solid black;">OBSERVACIONES</th>
                   <th style="text-align:center; color: white; border: 1px solid black;">SEMAFORO</th>
-                  <th style="text-align:center; color: white; border: 1px solid black;">SEGUIMIENTO</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $contador = 0;
-                $obtenfechaactualprincipal1 = date('Y-m-d');
-                $obtenfechaactualprincipal2 = date('Y-m-d');
-                $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
+                date_default_timezone_set('America/Mexico_City');
+
+// 1. Límite inferior: Hace 4 días (4 días antes de hoy)
+$fecha_vencidos = date('Y-m-d', strtotime('-4 days')); // Daría '2026-10-26'
+
+// 2. Límite superior: Dentro de 16 días
+$fecha_por_vencer = date('Y-m-d', strtotime('+16 days')); // Daría '2026-11-15'
                 $get3dyas= "SELECT * FROM datospersonales
-                INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
-                WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO')
-                OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1' AND datospersonales.estatus = 'SUJETO PROTEGIDO')
-                ORDER BY fecha_termino ASC";
+          INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
+          WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
+            AND alerta_convenios.fecha_termino BETWEEN '$fecha_vencidos' AND '$fecha_por_vencer'
+          ORDER BY fecha_termino ASC";
                 $rget3dyas = $mysqli->query($get3dyas);
                 while ($fget3dyas = $rget3dyas->fetch_assoc()) {
                   $idalertconv = $fget3dyas['id'];
@@ -190,15 +193,15 @@ $fcl = $rcl->fetch_assoc();
                           </div>
                         </div>
                         <?php
-                      }
-                      ?>
-                    </td>
-                    <td style="text-align:center">
-                      <?php
-                      if ($fget3dyas['estatus'] != 'PENDIENTE') {
-                        echo "FINALIZADO";
                       }else {
-                        echo $fget3dyas['estatus'];
+                        ?>
+                        <div class="alert alert-info d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                          <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
+                          <div>
+                            <strong style="color:#000000; font-size: 12px;">¡CONCLUIDO!</strong>
+                          </div>
+                        </div>
+                        <?php
                       }
                       ?>
                     </td>
@@ -219,23 +222,7 @@ $fcl = $rcl->fetch_assoc();
   include('../documentacion/glosario.php');
   include('../documentacion/manual_tecnico.php');
   include('../documentacion/manual_usuario.php');
-  $mostraralert = "SELECT COUNT(*) AS total FROM alerta_convenios WHERE estatus = 'PENDIENTE' AND dias_restantes BETWEEN 1 AND 15";
-  $rmostraralert = $mysqli -> query($mostraralert);
-  $fmostraralert = $rmostraralert -> fetch_assoc();
-  $restotal = $fmostraralert['total'];
   ?>
-<script type="text/javascript">
-<?php
-echo "var totalconvenios = '$restotal';";
-?>
-if (totalconvenios > 0) {
-document.getElementById('show_alert').style.display = "";
-}else {
-  document.getElementById('show_alert').style.display = "none";
-}
-</script>
-<script src='../js/notification_analisis.js'></script>
-
 </body>
 <link rel="stylesheet" href="../css/menuactualizado.css">
 <script src="../js/menu.js"></script>

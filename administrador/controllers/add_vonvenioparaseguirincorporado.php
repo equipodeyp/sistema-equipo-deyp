@@ -78,7 +78,7 @@ if ($verifica_update_person == 1) {
       echo "<br>";
       // sql para agregar registro en la tabla de alerta de convenios
       $alert_conv = "INSERT INTO alerta_convenios(expediente, id_persona, id_unico, fecha_inicio, fecha_termino, estatus, tipo_convenio)
-                            VALUES('$folioexpediente', '$id', '$id_unico', '$fecha_inicio', '$fecha_vigencia', '$estatus_suj_alert', '$tipo_convenio_alert')";
+                            VALUES('$folioexpediente', '$id_persona', '$id_unico', '$dateinicio', '$fecha_vigencia', '$estatus_suj_alert', '$tipo_convenio_alert')";
       $ralert_conv = $mysqli ->query($alert_conv);
     }
   }

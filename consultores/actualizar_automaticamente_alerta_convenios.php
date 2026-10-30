@@ -37,8 +37,8 @@ while ($falert_convs = $ralert_convs ->fetch_assoc()) {
     // echo "<br>";
     // sql para actualizar autopmaticamente la tabla de alerta de convenios
 
-      $updalertconv = "UPDATE alerta_convenios SET dias_restantes ='$diasfaltantes', semaforo = '$semaforo' WHERE id = '$id_persona_alert'";
-      $rupdalertconv = $mysqli -> query($updalertconv);
+    $updalertconv = "UPDATE alerta_convenios SET dias_restantes ='$diasfaltantes', semaforo = '$semaforo' WHERE id = '$id_persona_alert'";
+    $rupdalertconv = $mysqli -> query($updalertconv);
 
   // }
 }

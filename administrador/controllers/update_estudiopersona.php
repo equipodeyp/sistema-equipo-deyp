@@ -39,6 +39,11 @@ if ($verifica_update_person == 1) {
     echo "<br>";
     echo $uptent_idconvenio = strtoupper($_POST['id_convenio_ent']);
     echo "<br>";
+    // 2. Calcular los días a sumar (Vigencia - 1 día porque cuenta desde el día cero)
+    $dias_a_sumar = (int)$uptent_vigencia - 1;
+
+    // 3. Realizar la suma con la corrección aplicada
+    $nueva_fecha = date('Y-m-d', strtotime($fecha_input . ' + ' . $dias_a_sumar . ' days'));
     // sql para actualizar estudio de persona
     if ($uptent_dateinicio != '') {
       echo $uptent_fecha_mas = date("Y/m/d",strtotime($uptent_dateinicio."+ $uptent_vigencia days"));
@@ -52,7 +57,7 @@ if ($verifica_update_person == 1) {
       echo "<br>";
       // sql para agregar registro en la tabla de alerta de convenios
       $alert_conv = "INSERT INTO alerta_convenios(expediente, id_persona, id_unico, fecha_inicio, fecha_termino, estatus, tipo_convenio)
-                            VALUES('$folioexpediente', '$id', '$id_unico', '$fecha_inicio', '$fecha_vigencia', '$estatus_suj_alert', '$tipo_convenio_alert')";
+                            VALUES('$folioexpediente', '$id_persona', '$id_unico', '$uptent_dateinicio', '$nueva_fecha', 'PENDIENTE', '$uptconvenio')";
       $ralert_conv = $mysqli ->query($alert_conv);
       $act_eva_ind = "UPDATE evaluacion_persona SET  tipo_convenio= '$uptconvenio', fecha_firma = '$uptent_datefirma', fecha_inicio = '$uptent_dateinicio',
                                                       vigencia = '$uptent_vigencia', fecha_vigencia = '$uptent_fecha_vigencia',
