@@ -161,7 +161,7 @@ $id_usuario=$row['usuario'];
             <select class="form-control" name="tipo_consulta" id="tipo_consulta" required>
 
               <?php 
-              if ($cargo != '' || $id_usuario === 'analisis7'){
+              if ($cargo != '' || $id_usuario === '210015783'){
               // echo 'subdirector';
               echo '<option disabled selected value>SELECCIONE UNA OPCIÓN</option>
                     <option value="GLOBAL">GLOBAL</option>
