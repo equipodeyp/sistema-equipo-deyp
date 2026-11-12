@@ -17,27 +17,40 @@ if (date('j') == 1 && !$paso_mediodia) {
     $piso_mensual = $primer_dia_mes_actual;
 }
 
-// 2. LÓGICA SEMANAL
-if (date('N') == 1) { // Es Lunes
+// 2. LÓGICA SEMANAL (Con excepción única para el Martes 17 de Noviembre 2026)
+if ($hoy == '2026-11-16') {
+    // Lunes 16 (todo el día): sigue permitiendo la semana pasada (desde el lunes 9)
+    $min_semanal = '2026-11-09';
+} elseif ($hoy == '2026-11-17') {
+    // Martes 17: el corte se recorre a las 12:00 PM
     if ($paso_mediodia) {
-        $min_semanal = $hoy;
+        $min_semanal = '2026-11-16'; // A partir de las 12:00, el mínimo es el lunes 16
     } else {
-        // Lunes antes de las 12:00 permite la semana pasada
-        $min_semanal = date('Y-m-d', strtotime('monday last week'));
+        $min_semanal = '2026-11-09'; // Antes de las 12:00, aún permite desde el lunes 9
     }
 } else {
-    // Martes a Domingo, el mínimo es el lunes de esta semana
-    $min_semanal = date('Y-m-d', strtotime('monday this week'));
+    // Lógica normal para cualquier otra fecha (incluyendo del miércoles 18 en adelante)
+    if (date('N') == 1) { // Es Lunes
+        if ($paso_mediodia) {
+            $min_semanal = $hoy;
+        } else {
+            // Lunes antes de las 12:00 permite la semana pasada
+            $min_semanal = date('Y-m-d', strtotime('monday last week'));
+        }
+    } else {
+        // Martes a Domingo, el mínimo es el lunes de esta semana
+        $min_semanal = date('Y-m-d', strtotime('monday this week'));
+    }
 }
 
 // 3. CRUCE DE REGLAS (El "Candado")
 // Comparamos la regla semanal con el piso mensual.
 // Si la semana pasada cae en el mes anterior, prevalece el $piso_mensual.
 $min = ($min_semanal > $piso_mensual) ? $min_semanal : $piso_mensual;
-
-$max = date('Y-m-t'); // Fin del mes actual
+$max = date('Y-m-t'); // Fin del mes actual (2026-11-30)
 
 // --- Datos para la vista ---
 $meses = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 $mes_actual_txt = $meses[(int)date('m')];
+
 ?>
