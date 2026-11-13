@@ -17,13 +17,14 @@ if ($verifica_update_person == 1) {
   $folioexpediente = $fcheck['expediente'];
   $observacion_alerta = $_POST['observacion_alert'];
   $estatus_alerta = $_POST['SIDO_RESUELTO'];
+  $idanalisisalerta = $_POST['idanalisisestudio'];
 
   date_default_timezone_set("America/Mexico_City");
   $fecha_observacion = date('Y/m/d H:i:sa');
 
   // id	id_persona	id_unico	folioexpediente	observacion	id_alerta	usuario	fecha
   if ($estatus_alerta === 'HECHO') {
-    $updatealerta = "UPDATE alerta_convenios SET semaforo = 'RESUELTO', estatus = '$estatus_alerta' WHERE id = '$id_alerta'";
+    $updatealerta = "UPDATE alerta_convenios SET semaforo = 'RESUELTO', estatus = '$estatus_alerta', idanalisis ='$idanalisisalerta', notatiempoexcedido ='ATENDIDA EN TIEMPO Y FORMA' WHERE id = '$id_alerta'";
     $rupdatealerta = $mysqli->query($updatealerta);
   }
 

@@ -43,11 +43,11 @@ while ($falert_convs = $ralert_convs ->fetch_assoc()) {
   // }
 }
 $alert_convs12 = "SELECT * FROM alerta_convenios
-                          WHERE fecha_termino < '$obtenfechaactualprincipal' AND estatus ='PENDIENTE'";
+                          WHERE fecha_termino < '$obtenfechaactualprincipal' AND estatus !='HECHO'";
 $ralert_convs12 = $mysqli->query($alert_convs12);
 while ($falert_convs12 = $ralert_convs12 ->fetch_assoc()) {
   $id_persona_alert12 = $falert_convs12['id'];
-  $updalertconv = "UPDATE alerta_convenios SET dias_restantes ='0', semaforo = 'MORADO', estatus = 'CANCELADO POR TIEMPO EXCEDIDO' WHERE id = '$id_persona_alert12'";
+  $updalertconv = "UPDATE alerta_convenios SET dias_restantes =0, semaforo = 'MORADO', estatus = 'CANCELADO POR TIEMPO EXCEDIDO' WHERE id = '$id_persona_alert12'";
   $rupdalertconv = $mysqli -> query($updalertconv);
   // $fupdalertconv = $rupdalertconv->fetch_assoc();
 }

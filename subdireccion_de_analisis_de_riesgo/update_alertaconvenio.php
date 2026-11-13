@@ -1,20 +1,3 @@
-<?php
-// // get info medidas
-// $getinfomedida = "SELECT * FROM medidas WHERE id = '$id_medida'";
-// $rgetinfomedida = $mysqli->query($getinfomedida);
-// $fgetinfomedida = $rgetinfomedida->fetch_assoc();
-// $idpersona = $fgetinfomedida['id_persona'];
-// // get info sujeto con idpersona
-// $getdatospersona = "SELECT * FROM datospersonales WHERE id = '$idpersona'";
-// $rgetdatospersona = $mysqli ->query($getdatospersona);
-// $fgetdatospersona = $rgetdatospersona -> fetch_assoc();
-// // get datos de validacion de medida
-// $fol=" SELECT * FROM validar_medida WHERE id_medida='$id_medida'";
-// $resultfol = $mysqli->query($fol);
-// $rowfol1=$resultfol->fetch_assoc();
-// $name_folio=$rowfol1['folioexpediente'];
-// $validacion = $rowfol1['validar_datos'];
-?>
 <div class="modal fade" id="update_alerta_<?php echo $fget3dyas['id'];?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
@@ -49,7 +32,7 @@
           <?php
         }elseif ($fget3dyas['semaforo'] == 'MORADO') {
           ?>
-          <div class="alert alert-info d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+          <div class="alert alert-dark d-flex align-items-center justify-content-center m-0 w-100" role="alert">
             <i style="color:red; font-size: 40px;" class="fas fa-exclamation-triangle me-2"></i>
             <div>
               <strong style="color:#000000; font-size: 40px;">¡ATENCIÓN!</strong>
@@ -98,12 +81,17 @@
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3 validar">
-                  <label for="RESUELTO">¿HA SIDO RESUELTO?<span ></span></label>
+                  <label for="SIDO_RESUELTO">¿HA SIDO RESUELTO?<span></span></label>
                   <select class="form-control" id="SIDO_RESUELTO" name="SIDO_RESUELTO" required>
                     <option style="visibility: hidden" value="">SELECCIONE UNA OPCIÓN</option>
                     <option value="HECHO">SI</option>
                     <option value="PENDIENTE">NO</option>
                   </select>
+                </div>
+                <!-- Se agrega el ID y se oculta inicialmente -->
+                <div class="col-md-6 mb-3 validar" id="contenedor_analisis" style="display: none;">
+                  <label for="idanalisisestudio">ID ANALISIS<span></span></label>
+                  <input class="form-control" id="idanalisisestudio" name="idanalisisestudio" placeholder="" type="text">
                 </div>
               </div>
               <div class="alert alert-dark" role="alert" style="text-align:center; background-color: #5F6D6B; height: 50px;">
@@ -185,3 +173,22 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const selectResuelto = document.getElementById("SIDO_RESUELTO");
+    const contenedorAnalisis = document.getElementById("contenedor_analisis");
+    const inputAnalisis = document.getElementById("idanalisisestudio");
+
+    selectResuelto.addEventListener("change", function() {
+      // Validamos contra "HECHO" porque es el value de la opción "SI"
+      if (this.value === "HECHO") {
+        contenedorAnalisis.style.display = "block"; // Muestra el div
+        inputAnalisis.setAttribute("required", "required"); // Lo hace obligatorio
+      } else {
+        contenedorAnalisis.style.display = "none"; // Oculta el div
+        inputAnalisis.removeAttribute("required"); // Quita lo obligatorio
+        inputAnalisis.value = ""; // Limpia el campo por si escribieron algo antes
+      }
+    });
+  });
+</script>
