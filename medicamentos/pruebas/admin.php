@@ -105,15 +105,15 @@ $sub = $fuserfijo['subdireccion'];
 
 
 
+<div>
 
-
-
-
-        <!-- Componente del Título -->
-        <!-- <header class="header-panel">
-            <span class="panel-tag">Menú</span>
-            <h1 class="panel-title">Gestión de Medicamentos</h1>
-        </header> -->
+        <div>
+            <!-- Componente del Título -->
+            <header class="header-panel">
+                <span class="panel-tag">Menú</span>
+                <h1 class="panel-title">Gestión de Medicamentos</h1>
+            </header>
+        </div>
 
         <div class="menu-grid">
             <?php
@@ -139,48 +139,15 @@ $sub = $fuserfijo['subdireccion'];
 
 
 
+</div>
 
 
 
 
 
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#folio_expediente').val(1);
-		recargarLista();
-
-		$('#folio_expediente').change(function(){
-			recargarLista();
-		});
-
-
-	})
-</script>
 
 
 <script type="text/javascript">
-	function recargarLista(){
-		$.ajax({
-			type:"POST",
-			url:"./get_id_sujeto.php",
-			data:"folio=" + $('#folio_expediente').val(),
-			success:function(r){
-				$('#id_sujeto').html(r);
-			}
-		});
-	}
-</script>
-
-
-<script type="text/javascript">
-function cancelar() {
-    var key = event.keyCode;
-
-    if (key === 13) {
-        event.preventDefault();
-    }
-}
 
 
 

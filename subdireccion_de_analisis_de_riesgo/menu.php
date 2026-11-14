@@ -158,7 +158,7 @@ if ($permiso3=='solicitar') {
           }
           if ($permiso5 ==='instrumento') {
             ?>
-            <li class="menu-items"><a href='./menu_instrumento.php'><i style="color: #FFFFFF;" class="fa-solid fa-file-lines menu-nav--icon"></i><strong style="color: white;">INSTRUMENTO DE ADAPTABILIDAD</strong></a></li>
+            <!-- <li class="menu-items"><a href='./menu_instrumento.php'><i style="color: #FFFFFF;" class="fa-solid fa-file-lines menu-nav--icon"></i><strong style="color: white;">INSTRUMENTO DE ADAPTABILIDAD</strong></a></li> -->
             <?php
           }
 					?>

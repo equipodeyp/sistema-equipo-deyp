@@ -17,6 +17,114 @@ $fol_exp = $_GET['folio'];
 $sql = "SELECT * FROM expediente WHERE fol_exp = '$fol_exp'";
 $resultado = $mysqli->query($sql);
 $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
+
+
+
+
+
+
+
+	date_default_timezone_set('America/Mexico_City');
+	$contador = 0;
+	$infsuj = "SELECT datospersonales.id, datospersonales.folioexpediente, datospersonales.estatus, 
+				datospersonales.identificador, datospersonales.estatusprograma, expediente.fecha_nueva, datospersonales.estatusprograma
+				FROM datospersonales
+				INNER JOIN expediente
+				ON datospersonales.folioexpediente = expediente.fol_exp 
+				AND datospersonales.folioexpediente = '$fol_exp'";
+	$finfsuj = $mysqli->query($infsuj);
+	while ($rinfsuj = $finfsuj-> fetch_assoc()) {
+	$contador = $contador + 1;
+
+	$id_sujeto = $rinfsuj["identificador"];
+
+	$sql_estatus = "SELECT datospersonales.id, 
+						determinacionincorporacion.id_persona, 
+						determinacionincorporacion.folioexpediente, 
+						datospersonales.identificador, 
+						determinacionincorporacion.date_desincorporacion, 
+						datospersonales.estatusprograma 
+					FROM determinacionincorporacion 
+					JOIN datospersonales ON determinacionincorporacion.id_persona = datospersonales.id 
+					WHERE datospersonales.identificador = '$id_sujeto'";
+
+
+	$resultado_estatus = $mysqli->query($sql_estatus);
+
+
+	if ($resultado_estatus && $resultado_estatus->num_rows > 0) {
+		$row_estatus = $resultado_estatus->fetch_array(MYSQLI_ASSOC);
+		$fecha_desincorporacion = $row_estatus['date_desincorporacion'];
+	} 
+	
+
+
+	$estatus = $rinfsuj["estatusprograma"];
+	$fecha_inicio_vigencia = $rinfsuj["fecha_nueva"];
+
+	
+	$fechaFin = new DateTime('today');
+	$fechaInicio = new DateTime($fecha_inicio_vigencia);
+
+	// echo $fecha_inicio_vigencia;
+	// echo "<br>";
+	// echo $id_sujeto;
+	// echo "<br>";
+	// echo $estatus;
+	// echo "<br>";
+	// echo $fecha_desincorporacion;
+	// echo "<br>";
+
+
+
+	// fecha de inicio
+	$fechaInicio = new DateTime($fecha_inicio_vigencia);
+
+	// fecha fin según el estatus
+	if (strtolower(trim($estatus)) === 'inactivo' && !empty($fecha_desincorporacion)) {
+		$fechaFin = new DateTime($fecha_desincorporacion);
+	} else {
+		$fechaFin = new DateTime('today');
+	}
+
+	// Validar si ambas fechas son exactamente el mismo día
+	if ($fechaInicio == $fechaFin) {
+		echo "Nuevo ingreso";
+		exit;
+	}
+
+	// Calcular diferencia 
+	$diferencia = $fechaInicio->diff($fechaFin);
+	$partes = [];
+
+	if ($diferencia->y > 0) {
+		$partes[] = $diferencia->y . ($diferencia->y === 1 ? ' año' : ' años');
+	}
+
+	if ($diferencia->m > 0) {
+		$partes[] = $diferencia->m . ($diferencia->m === 1 ? ' mes' : ' meses');
+	}
+
+	if ($diferencia->d > 0) {
+		$partes[] = $diferencia->d . ($diferencia->d === 1 ? ' día' : ' días');
+	}
+
+
+	$resultado = implode('<br>', $partes);
+
+
+	// echo $resultado;
+
+ }
+
+
+
+
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -235,12 +343,13 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
               </div>
               <table class="table table-striped table-bordered ">
                 <thead >
-                  <th style="text-align:center">No.</th>
+                  <!-- <th style="text-align:center">No.</th> -->
                   <th style="text-align:center">ID PERSONA</th>
                   <th style="text-align:center">SEXO</th>
                   <th style="text-align:center">ESTATUS DE LA PERSONA PROPUESTA EN EL PROGRAMA</th>
                   <th style="text-align:center">CALIDAD EN EL PROGRAMA DE LA PERSONA PROPUESTA</th>
                   <th style="text-align:center">MEDIDAS DE APOYO OTORGADAS</th>
+                  <th style="text-align:center">ANTIGUEDAD EN EL PROGRAMA</th>
                   <th style="text-align:center">VALIDACIÓN DE LA PERSONA PROPUESTA</th>
                   <th style="text-align:center"><a href="registrar_sujeto.php?folio=<?php echo $fol_exp; ?>"> <button type="button" class="btn color-btn-success-white">AGREGAR PERSONA</button> </a> </th>
                 </thead>
@@ -263,18 +372,19 @@ $row = $resultado->fetch_array(MYSQLI_ASSOC);  //echo $row["fol_exp"];
                         $cuenta = $cuenta + 1;
 
                               echo "<tr>";
-                              echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
-                              echo "<td style='text-align:center'>"; echo $var_fila['identificador']; echo "</td>";
-                          echo "<td style='text-align:center'>"; echo $var_fila['sexopersona']; echo "</td>";
-                              echo "<td style='text-align:center'>"; echo $var_fila['estatus']; echo "</td>";
-                              echo "<td style='text-align:center'>"; echo $var_fila['calidadpersona']; echo "</td>";
-                      echo "<td style='text-align:center'>"; echo $row_med['cant']; echo "</td>";
-                                  echo "<td style='text-align:center'>"; if ($fila_val['validacion'] == 'true') {
+                              // echo "<td style='text-align:center'>"; echo $cuenta; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 16px;'>"; echo $var_fila['identificador']; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 16px;'>"; echo $var_fila['sexopersona']; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 16px;'>"; echo $var_fila['estatus']; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 16px;'>"; echo $var_fila['calidadpersona']; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 16px;'>"; echo $row_med['cant']; echo "</td>";
+                              echo "<td style='text-align:center; font-size: 16px;'>"; echo $resultado; echo "</td>";
+                                  echo "<td style='text-align:center; font-size: 16px;'>"; if ($fila_val['validacion'] == 'true') {
                                   echo "<i class='fas fa-check'></i>";
                                 } elseif ($fila_val['validacion'] == 'false') {
                                   echo "<i class='fas fa-times'></i>";
                                 } echo "</td>";
-                              echo "<td style='text-align:center'><a href='../administrador/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
+                              echo "<td style='text-align:center; font-size: 16px;'><a href='../administrador/detalles_persona.php?folio=".$var_fila['id']."'> <button type='button' class='btn color-btn-success'>Detalle</button> </a> </td>";
                               echo "</tr>";
                       }
 

@@ -1,3 +1,13 @@
+/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
+:root {
+    --primary-color: #5F6D6B;
+    --accent-color: #5F6D6B;
+    --bg-light: #f8f9fa;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --sidebar-width: 260px;
+    --transition-speed: 0.3s;
+}
 /* Estilos Generales */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,21 +31,211 @@ h1 {
     font-weight: 700;
 }
 
+img {
+  width: 100%;
+  height: auto;
+  display: block; /* Elimina espacios en blanco debajo de la imagen */
+}
+
+
+/* --- HEADER Y NAVBAR --- */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 10px #5F6D6B;
+
+}
+
+.header-img-fiscalia {
+    display: inline-block;
+    width: 70px; /* Evita que la imagen sea más grande que su contenedor */
+    height: 70px;     /* Mantiene la proporción original */
+    position: absolute;
+    top: 0.75rem;   /* Pegada arriba */
+    right: 3rem; /* Pegada a la derecha */
+    }
+
+.header-img-sippsipped {
+    display: inline-block;
+    width: 400px; /* Evita que la imagen sea más grande que su contenedor */
+    height: 60px;     /* Mantiene la proporción original */
+
+
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    z-index: 101;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+}
+
+
+aside {
+    position: fixed;
+    top: 0;
+    left: calc(-1 * var(--sidebar-width));
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding-top: 80px;
+    transition: left var(--transition-speed) ease;
+    z-index: 99;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+aside.active {
+    left: 0;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+aside ul li a:hover {
+    color: var(--text-light);
+    background-color: #5F6D6B;
+    border-left-color: var(--accent-color);
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-wrapper {
+    margin-top: 70px;
+    padding: 2rem;
+    flex: 1;
+    transition: margin-left var(--transition-speed) ease;
+    width: 100%;
+}
+
+/* Efecto empuje en pantallas grandes si se desea (opcional) */
+@media (min-width: 992px) {
+    body.sidebar-open .main-wrapper {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+}
+
+/* --- CONTENIDO RESPONSIVO (GRID / FLEX) --- */
+.hero {
+    background: linear-gradient(135deg, #d9dada, #99a5a2);
+    color: var(--text-light);
+    padding: 0.5rem 10rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 2rem;
+
+
+}
+
+.hero img { 
+    max-width: 60%; 
+    height: 90%; 
+    display: block;
+    margin: 0 auto;
+    width: 900px; /* Es necesario definir un ancho */
+}
+
+.hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.hero h3 { font-size: 1.5vw; font-weight: 600; }
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: var(--text-light);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #1a252f;
+    color: #7f8c8d;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* --- CAPA OSCURA DE FONDO (OVERLAY) --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    z-index: 98;
+    display: none;
+}
+.overlay.active {
+    display: block;
+}
+
+
+
 /* Sistema de Cuadrícula (Grid) - Forzado a 3 columnas por fila */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     padding: 10px;
     margin: 0 auto;
+
+
+
 }
+
 
 /* Estilo Base de los Botones con Efectos y Animaciones */
 .menu-item {
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 14px; 
-    padding: 30px 20px; 
+    padding: 10px 10px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +266,7 @@ h1 {
 
 /* Efecto en la imagen al hacer Hover */
 .menu-item:hover img {
-    transform: scale(1.12); /* Agranda la imagen un 12% suavemente */
+    transform: scale(1.19); /* Agranda la imagen un 12% suavemente */
     filter: drop-shadow(0 4px 6px rgba(59, 130, 246, 0.2)); /* Sombra a la silueta del icono */
 }
 
@@ -81,18 +281,21 @@ h1 {
     box-shadow: 0 4px 8px rgba(59, 130, 246, 0.1);
 }
 
-/* --- ELEMENTOS INTERNOS DE LOS BOTONES --- */
+/* --- ELEMENTOS INTERNOS DE LOS BOTONES --------------------------------------------------------------------- */
 
 .menu-item img {
-    width: 60px;
-    height: 60px;
+    max-width: 30%;
+    max-height: 30%;
+
     object-fit: contain;
     margin-bottom: 15px;
 }
 
 .menu-item span {
-    font-size: 1.5rem; 
-    font-weight: 600;
+    /* font-size: 1.5rem;  */
+    font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1.5rem);
+    /* font-size: 3.5vw; */
+    /* font-weight: 400; */
     color: #4a5568;
 }
 
@@ -120,76 +323,166 @@ h1 {
 
 
 
- /* Estilos Base / Reset */
-        /* * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        } */
 
-        /* body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa; 
-            padding: 2rem 1rem;
-        } */
+/* Contenedor del Título Principal */
+.header-panel {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+}
 
-        /* Contenedor del Título Principal */
-        .header-panel {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 1.5rem 1rem;
-        }
 
-        /* Subtítulo o categoría superior (Estilo Kicker) */
-        .header-panel .panel-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #6c757d; /* Gris medio */
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
 
-        /* Título Principal */
-        .header-panel .panel-title {
-            font-size: 2.25rem; /* Tamaño óptimo para escritorio */
-            font-weight: 700;
-            color: #212529; /* Negro corporativo suave (Charcoal) */
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.75rem;
-        }
+/* Subtítulo o categoría superior (Estilo Kicker) */
+.header-panel .panel-tag {
+    /* font-size: 0.75rem; */
+    font-size: 1vw; 
+    font-weight: 400;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.1em;
+    color: #6c757d; /* Gris medio */
 
-        /* Línea divisoria minimalista e isotipo sutil */
-        .header-panel .panel-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: #343a40; /* Gris oscuro / Negro */
-            border-radius: 2px;
-        }
+    margin-bottom: 0.5rem;
+    display: block;
+}
 
-        /* Responsividad / Ajustes para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .header-panel .panel-title {
-                font-size: 1.75rem; /* Se reduce el tamaño en tablets */
-            }
-            .header-panel .panel-tag {
-                font-size: 0.7rem;
-            }
-        }
+/* Título Principal */
+.header-panel .panel-title { 
+    /* Tamaño óptimo para escritorio */
+    /* font-size: 2.25rem;
+    font-weight: 700; */
+    font-size: 2.5vw; 
+    font-weight: 600;
+    color: #212529; /* Negro corporativo suave (Charcoal) */
+    letter-spacing: -0.02em;
+    line-height: 1;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.75rem;
+}
 
-        @media (max-width: 480px) {
-            .header-panel .panel-title {
-                font-size: 1.5rem; /* Se reduce en dispositivos móviles */
-            }
-        }
+/* Línea divisoria minimalista e isotipo sutil */
+.header-panel .panel-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #343a40; /* Gris oscuro / Negro */
+    border-radius: 2px;
+}
+
+
+/* BOTON MENU PRINCIPAL */
+
+
+
+
+/* Estilos Escritorio y Tablets */
+.btn-menu-principal {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  
+  /* Fondo semi-transparente y efecto de desenfoque */
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Soporte para Safari */
+  
+  color: #5F6D6B;
+  border: 1px solid rgba(95, 109, 107, 0.25);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(95, 109, 107, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+
+.icon-regresar {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Efectos Hover (Solo en dispositivos con mouse) */
+@media (hover: hover) {
+  .btn-menu-principal:hover {
+    background-color: #5F6D6B;
+    color: #ffffff;
+    border-color: #5F6D6B;
+    box-shadow: 0 8px 24px rgba(95, 109, 107, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .btn-menu-principal:hover .icon-regresar {
+    transform: translateX(-4px);
+  }
+}
+
+/* Efecto al hacer clic */
+.btn-menu-principal:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(95, 109, 107, 0.15);
+}
+
+/* Pantallas Móviles */
+@media (max-width: 576px) {
+  .btn-menu-principal {
+    bottom: 20px;
+    left: 20px;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    gap: 0; /* Elimina el espacio residual del texto */
+    
+    /* Aumentamos un poco la opacidad para asegurar contraste solo para móvil */
+    background-color: rgba(255, 255, 255, 0.85); 
+    box-shadow: 0 6px 20px rgba(95, 109, 107, 0.18);
+  }
+
+  /* Oculta por completo el texto del botón en móviles */
+  .btn-texto {
+    display: none;
+  }
+
+  .icon-regresar {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+/* BOTON MENU PRINCIPAL - FIN*/
+
+
+/* Responsividad / Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .header-panel .panel-title {
+        font-size: 1.75rem; /* Se reduce el tamaño en tablets */
+    }
+    .header-panel .panel-tag {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-panel .panel-title {
+        font-size: 1.5rem; /* Se reduce en dispositivos móviles */
+    }
+}
