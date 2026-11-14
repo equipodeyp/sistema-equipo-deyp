@@ -235,14 +235,21 @@ if ($permiso3=='solicitar') {
               <tbody>
                 <?php
                 $contador = 0;
-                $obtenfechaactualprincipal1 = date('Y-m-d'); 
-                $obtenfechaactualprincipal2 = date('Y-m-d'); 
+                date_default_timezone_set('America/Mexico_City');
+
+                // 1. Límite inferior: Hace 4 días (4 días antes de hoy)
+                $fecha_vencidos = date('Y-m-d', strtotime('-4 days')); // Daría '2026-10-26'
+
+                // 2. Límite superior: Dentro de 16 días
+                $fecha_por_vencer = date('Y-m-d', strtotime('+16 days')); // Daría '2026-11-15'
+                $obtenfechaactualprincipal1 = date('Y-m-d');
+                $obtenfechaactualprincipal2 = date('Y-m-d');
                 $obtenfechaactualprincipal3 = date("Y-m-d",strtotime($obtenfechaactualprincipal2."- 4 days"));
                 $get3dyas= "SELECT * FROM datospersonales
-                INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
-                WHERE (alerta_convenios.estatus = 'PENDIENTE' AND alerta_convenios.dias_restantes BETWEEN 1 AND 15 AND datospersonales.estatus = 'SUJETO PROTEGIDO')
-                OR (alerta_convenios.estatus != 'HECHO' AND alerta_convenios.fecha_termino BETWEEN '$obtenfechaactualprincipal3' AND '$obtenfechaactualprincipal1' AND datospersonales.estatus = 'SUJETO PROTEGIDO')
-                ORDER BY fecha_termino ASC";
+          INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
+          WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
+            AND alerta_convenios.fecha_termino BETWEEN '$fecha_vencidos' AND '$fecha_por_vencer' AND alerta_convenios.estatus !='HECHO'
+          ORDER BY fecha_termino ASC";
                 $rget3dyas = $mysqli->query($get3dyas);
                 while ($fget3dyas = $rget3dyas->fetch_assoc()) {
                   $idalertconv = $fget3dyas['id'];
@@ -269,10 +276,10 @@ if ($permiso3=='solicitar') {
                       <?php
                       if ($fget3dyas['semaforo'] == 'MORADO') {
                         ?>
-                        <div class="alert alert-info d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                        <div class="alert alert-dark d-flex align-items-center justify-content-center m-0 w-100" role="alert">
                           <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
                           <div>
-                            <strong style="color:#000000; font-size: 12px;">¡CONCLUIDO!</strong>
+                            <strong style="color:#000000; font-size: 12px;">¡REZAGADO!</strong>
                           </div>
                         </div>
                         <?php
@@ -309,7 +316,7 @@ if ($permiso3=='solicitar') {
                     <td style="text-align:center">
                       <?php
                       if ($fget3dyas['estatus'] != 'PENDIENTE') {
-                        echo "FINALIZADO";
+                        echo $fget3dyas['notatiempoexcedido'];
                       }else {
                         echo $fget3dyas['estatus'];
                       }

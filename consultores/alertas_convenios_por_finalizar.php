@@ -131,7 +131,7 @@ $fecha_por_vencer = date('Y-m-d', strtotime('+16 days')); // Daría '2026-11-15'
                 $get3dyas= "SELECT * FROM datospersonales
           INNER JOIN alerta_convenios ON alerta_convenios.id_persona = datospersonales.id
           WHERE datospersonales.estatus = 'SUJETO PROTEGIDO'
-            AND alerta_convenios.fecha_termino BETWEEN '$fecha_vencidos' AND '$fecha_por_vencer'
+            AND alerta_convenios.fecha_termino BETWEEN '$fecha_vencidos' AND '$fecha_por_vencer' AND alerta_convenios.estatus !='HECHO'
           ORDER BY fecha_termino ASC";
                 $rget3dyas = $mysqli->query($get3dyas);
                 while ($fget3dyas = $rget3dyas->fetch_assoc()) {
@@ -159,10 +159,10 @@ $fecha_por_vencer = date('Y-m-d', strtotime('+16 days')); // Daría '2026-11-15'
                       <?php
                       if ($fget3dyas['semaforo'] == 'MORADO') {
                         ?>
-                        <div class="alert alert-info d-flex align-items-center justify-content-center m-0 w-100" role="alert">
+                        <div class="alert alert-dark d-flex align-items-center justify-content-center m-0 w-100" role="alert">
                           <i style="color:red; font-size: 12px;" class="fas fa-exclamation-triangle me-2"></i>
                           <div>
-                            <strong style="color:#000000; font-size: 12px;">¡CONCLUIDO!</strong>
+                            <strong style="color:#000000; font-size: 12px;">¡REZAGADO!</strong>
                           </div>
                         </div>
                         <?php
