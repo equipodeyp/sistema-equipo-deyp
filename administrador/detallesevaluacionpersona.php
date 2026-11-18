@@ -8,7 +8,7 @@ $fgetestudiopersona = $rgetestudiopersona ->fetch_assoc();
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 style="display: block; margin: 0 auto;" class="modal-title" id="miModalLabel">DETALLES ESPECIFICOS DE LA MEDIDA OTORGADA</h2>
+        <h2 style="display: block; margin: 0 auto;" class="modal-title" id="miModalLabel">DETALLES ESPECIFICOS DEL ESTUDIO TECNICO</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -44,7 +44,7 @@ $fgetestudiopersona = $rgetestudiopersona ->fetch_assoc();
                 <input type="text" id="idppofsp" class="form-control" value="<?php echo $fgetestudiopersona['id_analisis']; ?>" disabled>
               </div>
               <?php
-              if ($fgetestudiopersona['analisis'] == 'ESTUDIO TECNICO DE ANALISIS DE RIESGO' || $fgetestudiopersona['analisis'] == 'ESTUDIO TECNICO DE MODIFICACION' || $fgetestudiopersona['analisis'] == 'AUTORIZACION DEL TITULAR') {
+              if ($fgetestudiopersona['analisis'] == 'ESTUDIO TECNICO DE EVALUACION DE RIESGO' || $fgetestudiopersona['analisis'] == 'ESTUDIO TECNICO DE MODIFICACION' || $fgetestudiopersona['analisis'] == 'AUTORIZACION DEL TITULAR') {
                 ?>
                 <div class="col-md-6 mb-3 validar ">
                   <label for="idppofsp">TIPO DE CONVENIO</label>
