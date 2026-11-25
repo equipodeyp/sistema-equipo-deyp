@@ -54,8 +54,8 @@
         <!-- <img style="display: block; margin: 0 auto;" src="../image/ups3.png"> -->
         <!-- <img style="display: block; margin: 0 auto;" src="../image/ups3.png"> -->
         <!-- <p>Diseño web de última generación completamente adaptado a dispositivos móviles, tablets y ordenadores.</p> -->
-        <h3>Bienvenido a nuestra plataforma</h3>
         <img style="display: block; margin: 0 auto;" src="../image/ups3.png">
+        <h3>Bienvenido a nuestra plataforma</h3>
         <!-- <p>Diseño web de última generación completamente adaptado a dispositivos móviles, tablets y ordenadores.</p> -->
     </section>
 
@@ -93,7 +93,7 @@
 
                 $botones = [
                     ['texto' => 'Solicitar', 'imagen' => '../image/gestion_medicamentos/solicitar.png', 'accion' => 'solicitar.php'],
-                    ['texto' => 'Registrar', 'imagen' => '../image/gestion_medicamentos/alta.png', 'accion' => 'registrar_nuevo_medicamento.php'],
+                    ['texto' => 'Registrar', 'imagen' => '../image/gestion_medicamentos/alta.png', 'accion' => './registrar/registrar.html'],
                     ['texto' => 'Entrada', 'imagen' => '../image/gestion_medicamentos/entrada.png', 'accion' => 'entrada.php'],
                     ['texto' => 'Salida', 'imagen' => '../image/gestion_medicamentos/salida.png', 'accion' => 'salida.php'],
                     ['texto' => 'Consultar', 'imagen' => '../image/gestion_medicamentos/consultar.png', 'accion' => 'consultar.php'],
@@ -115,55 +115,8 @@
 
 
 
-<!-- Aside -->
-<script>
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const body = document.body;
 
-    function toggleMenu() {
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
-        body.classList.toggle('sidebar-open');
-    }
-
-    // Eventos para abrir/cerrar
-    menuToggle.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
-
-    // Cerrar aside
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && sidebar.classList.contains('active')) {
-            toggleMenu();
-        }
-    });
-</script>
-
-
-
-<script type="text/javascript">
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const botones = document.querySelectorAll('.menu-item');
-
-    botones.forEach(boton => {
-        boton.addEventListener('click', () => {
-            const urlDestino = boton.getAttribute('data-url');
-            
-            if (urlDestino) {
-                // Redirige a una opción dl menú
-                window.location.href = urlDestino;
-            } else {
-                console.error('No se definió una ruta para este botón.');
-            }
-        });
-    });
-});
-
-</script>
-
+<script src="menu.js"></script>
 
 
 </body>

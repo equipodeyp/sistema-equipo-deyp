@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar medicamento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fontawesome.com" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+</head>
+<body class="">
+
+<!-- cerrar menú al dar clic fuera -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Encabezado / Navbar -->
+<header class="header-superior">
+    <button class="menu-btn" id="menuToggle" aria-label="Abrir menú">
+        ☰ <!-- Icono de hamburguesa -->
+    </button>
+    <div class="logo">
+        <img class="header-img-sippsipped" src="../../image/ups2.png" alt="SIPPSIPPED">
+        <img class="header-img-fiscalia" src="../../image/fiscalia.png" alt="Fiscalía">
+    </div>
+    <div class="user-status">
+        <!-- <?php  -->
+            <!-- user PHP
+            $usuario = "Invitado";
+            echo "Hola, " . htmlspecialchars($usuario); -->
+        <!-- ?> -->
+    </div>
+</header>
+
+<!-- Barra lateral - Aside -->
+<aside id="sidebar">
+    <!-- <nav>
+        <ul>
+            <li><a href="#inicio">Solicitar</a></li>
+            <li><a href="#servicios">Registrar</a></li>
+            <li><a href="#portafolio">Entrada</a></li>
+            <li><a href="#nosotros">Salida</a></li>
+            <li><a href="#contacto">Inventario</a></li>
+            <li><a href="#contacto">Baja de inventario</a></li>
+        </ul>
+    </nav> -->
+</aside>
+
+<div class="container">
+    <div class="main-header">
+        <div class="titulo">
+            <h1>Registrar Medicamento</h1>
+            <p>Alta de un medicamento en la lista.</p>
+        </div>
+
+        <!-- BOTONES DE ACCIÓN PRINCIPALES -->
+        <div class="header-actions">
+            <button id="btn-open-modal" class="btn btn-primary btn-lg">+ Nuevo Medicamento</button>
+            <button id="btn-open-search" class="btn btn-info btn-lg">Buscar Medicamento</button>
+            
+            <!-- BOTÓN PDF -->
+
+            <button id="btn-open-pdf" class="btn btn-pdf btn-lg" title="Ver Catálogo Completo en PDF" aria-label="Ver Catálogo Completo en PDF">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                    <line x1="9" y1="11" x2="11" y2="11"></line>
+                </svg>
+            </button>
+
+        </div>
+    </div>
+
+    <main class="content-layout">
+        <!-- TABLA -->
+        <section class="table-section">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Medicamento</th>
+                            <th>Forma / Vía de Adm.</th>
+                            <th>Ediciones</th>
+                            <th>Editar / Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-registros"></tbody>
+                </table>
+            </div>
+            <!-- NOTA -->
+            <div class="table-note">
+                <span>
+                    <strong>Nota:</strong> La interfaz permite añadir nuevos registros mediante el código del medicamento. 
+                    La tabla muestra únicamente los últimos cinco registros realizados. 
+                    Para consultar información específica, utilice el módulo de búsqueda superior; 
+                    si desea verificar si un fármaco ya existe en la base de datos y ver el listado completo, 
+                    haga clic en el icono de archivo.
+                </span>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- MODAL REGISTRAR / EDITAR -->
+<div id="crud-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <header class="modal-header">
+            <h2 id="form-title">Registrar Medicamento</h2>
+            <button id="btn-close-x" class="btn-close-x">&times;</button>
+        </header>
+        
+        <form id="crud-form" novalidate>
+            <input type="hidden" id="registro-id">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="codigo">Código</label>
+                    <input type="text" id="codigo" pattern="^[a-zA-Z0-9]+$" required placeholder="Ej. A123B">
+                </div>
+                <div class="input-group">
+                    <label for="nombre_generico">Nombre Genérico</label>
+                    <input type="text" id="nombre_generico" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required placeholder="Ej. Paracetamol">
+                </div>
+                <div class="input-group">
+                    <label for="nombre_comercial">Nombre Comercial</label>
+                    <input type="text" id="nombre_comercial" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$" required placeholder="Ej. Tempra">
+                </div>
+                <div class="input-group">
+                    <label for="forma_farmaceutica">Forma Farmacéutica</label>
+                    <select id="forma_farmaceutica" required>
+                        <option value="">Seleccione una opción...</option>
+                        <option value="Tableta">Tableta</option>
+                        <option value="Cápsula">Cápsula</option>
+                        <option value="Jarabe">Jarabe</option>
+                        <option value="Inyección">Inyección</option>
+                        <option value="Pomada">Pomada</option>
+                        <option value="Gel">Gel</option>
+                        <option value="Suspensión">Suspensión</option>
+                        <option value="Polvo">Polvo</option>
+                        <option value="Gotas">Gotas</option>
+                        <option value="Crema">Crema</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="gramaje">Gramaje</label>
+                    <input type="text" id="gramaje" pattern="^[a-zA-Z0-9\s]+$" required placeholder="Ej. 500mg">
+                </div>
+                <div class="input-group">
+                    <label for="contenido">Contenido</label>
+                    <input type="text" id="contenido" pattern="^[a-zA-Z0-9\s]+$" required placeholder="Ej. 20 tabletas">
+                </div>
+                <div class="input-group">
+                    <label for="via_administracion">Vía de Administración</label>
+                    <select id="via_administracion" required>
+                        <option value="">Seleccione una opción...</option>
+                        <option value="Oral">Oral</option>
+                        <option value="Intravenosa">Intravenosa</option>
+                        <option value="Intramuscular">Intramuscular</option>
+                        <option value="Cutánea">Cutánea</option>
+                        <option value="Oftálmica">Oftálmica</option>
+                        <option value="Nasal">Nasal</option>
+                        <option value="Ótica">Ótica</option>
+                        <option value="Sublingual">Sublingual</option>
+                        <option value="Rectal">Rectal</option>
+                        <option value="Inhalatoria">Inhalatoria</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="presentacion">Presentación</label>
+                    <select id="presentacion" required>
+                        <option value="">Seleccione una opción...</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Frasco">Frasco</option>
+                        <option value="Tubo">Tubo</option>
+                        <option value="Blíster">Blíster</option>
+                        <option value="Ampolleta">Ampolleta</option>
+                        <option value="Sobre">Sobre</option>
+                        <option value="Bolsa">Bolsa</option>
+                        <option value="Frasco Gotero">Frasco Gotero</option>
+                        <option value="Envase">Envase</option>
+                        <option value="Aerosol">Aerosol</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="btn-cancel" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" id="btn-submit" class="btn btn-primary">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- MODAL BUSCAR -->
+<div id="search-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <header class="modal-header">
+            <h2>Buscar Medicamento</h2>
+            <button id="btn-close-search-x" class="btn-close-x">&times;</button>
+        </header>
+        
+        <div class="search-box-container">
+            <div class="input-group">
+                <label for="search-codigo-input">Ingrese el Código del Medicamento</label>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="search-codigo-input" placeholder="Ej. A123B">
+                    <button id="btn-execute-search" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETALLE - BÚSQUEDA -->
+        <div id="search-detail-result" class="search-detail hidden">
+            <h3>Registro Encontrado:</h3>
+            <div class="detail-grid">
+                <p><strong>Código:</strong> <span id="det-codigo"></span></p>
+                <p><strong>Nombre Genérico:</strong> <span id="det-generico"></span></p>
+                <p><strong>Nombre Comercial:</strong> <span id="det-comercial"></span></p>
+                <p><strong>Forma Farmacéutica:</strong> <span id="det-forma"></span></p>
+                <p><strong>Gramaje:</strong> <span id="det-gramaje"></span></p>
+                <p><strong>Contenido:</strong> <span id="det-contenido"></span></p>
+                <p><strong>Vía de Adm.:</strong> <span id="det-via"></span></p>
+                <p><strong>Presentación:</strong> <span id="det-presentacion"></span></p>
+            </div>
+        </div>
+        <div id="search-error-message" class="search-error-text hidden">Medicamento no encontrado.</div>
+    </div>
+</div>
+
+<!-- MODAL CATÁLOGO PDF -->
+<div id="pdf-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-pdf-card">
+        <header class="modal-header">
+            <div class="pdf-header-title">
+                <h2>Catálogo General de Medicamentos</h2>
+                <span id="pdf-total-badge" class="badge">0 registros</span>
+            </div>
+            <div class="pdf-header-actions">
+                <button type="button" id="btn-download-pdf" class="btn btn-primary btn-sm">
+                    <i class="fas fa-download"></i> Descargar PDF
+                </button>
+                <button type="button" id="btn-close-pdf-x" class="btn-close-x" aria-label="Cerrar">&times;</button>
+            </div>
+        </header>
+
+        <div class="pdf-viewer-body">
+            <!-- Estado de carga -->
+            <div id="pdf-loading" class="pdf-loading">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p>Generando vista previa del catálogo...</p>
+            </div>
+
+            <!-- Visor PDF  -->
+            <iframe id="pdf-preview-frame" class="pdf-preview-frame hidden" title="Vista previa del catálogo de medicamentos"></iframe>
+
+            <!-- Vista adaptativa para dispositivos móviles  -->
+            <div id="pdf-mobile-fallback" class="pdf-mobile-fallback hidden">
+                <div class="pdf-mobile-summary">
+                    <i class="fas fa-file-pdf fa-3x"></i>
+                    <p>El documento PDF está listo con el listado completo y los logotipos institucionales.</p>
+                    <button type="button" id="btn-download-pdf" class="btn btn-primary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Descargar PDF
+                    </button>
+                </div>
+                <div id="pdf-mobile-list" class="pdf-mobile-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BOTÓN MENÚ PRINCIPAL -->
+<a href="../menu_gestion_medicamentos.php" class="btn-menu-principal">
+    <svg class="icon-regresar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    <span class="btn-texto">Menú Gestión de Medicamentos</span>
+</a>
+
+
+<!-- LIBRERÍAS LOCALES PARA GENERAR PDF -->
+<script src="./js/jspdf.umd.min.js"></script>
+<script src="./js/jspdf.plugin.autotable.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

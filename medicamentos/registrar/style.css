@@ -1,0 +1,876 @@
+:root {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --primary: #466D65;
+    --primary-hover: #385851;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --secondary: #e2e8f0;
+    --secondary-hover: #cbd5e1;
+    --border: #e2e8f0;
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --primary-color: #5F6D6B;
+    --accent-color: #5F6D6B;
+    --bg-light: #f8f9fa;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --sidebar-width: 260px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 6rem 1rem 5rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 0.5s ease;
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text-main);
+    margin-bottom: 0.35rem;
+}
+
+.main-header p {
+    color: var(--text-muted);
+}
+
+.titulo {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.content-layout {
+    animation: scaleUp 0.4s ease;
+}
+
+section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   ESTILOS DE MODALES
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.modal-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 650px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(0);
+    transition: var(--transition);
+    animation: modalSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+}
+
+.modal-header h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-close-x {
+    background: transparent;
+    border: none;
+    font-size: 1.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+    line-height: 1;
+}
+.btn-close-x:hover {
+    color: var(--danger);
+}
+
+/* Distribución de los campos dentro del modal */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: #f8fafc;
+    transition: var(--transition);
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(70, 109, 101, 0.12);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+}
+
+/* BOTONES */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+.btn-sm {
+    padding: 0.5rem 0.95rem;
+    font-size: 0.85rem;
+}
+.btn-lg {
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+}
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--text-main);
+}
+.btn-secondary:hover {
+    background: var(--secondary-hover);
+}
+.btn-info {
+    background-color: #2d6bf1;
+    color: #ffffff;
+}
+.btn-info:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* BOTÓN CATÁLOGO PDF */
+.btn-pdf {
+    background-color: #ffffff;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    padding: 0.85rem 1.1rem;
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.08);
+}
+.btn-pdf span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.btn-pdf:hover {
+    background-color: #666666;
+    color: #ffffff;
+    border-color: #666666;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(228, 227, 227, 0.2);
+}
+
+.btn-danger {
+    background: #fee2e2;
+    color: var(--danger);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+}
+.btn-danger:hover {
+    background: var(--danger);
+    color: white;
+}
+.btn-edit {
+    background: #f0fdf4;
+    color: #16a34a;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    margin-right: 0.35rem;
+}
+.btn-edit:hover {
+    background: #16a34a;
+    color: white;
+}
+.btn-edit:disabled {
+    background: #f1f5f9;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+/* ==========================================================================
+   TABLA Y BADGES
+   ========================================================================== */
+.table-responsive {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    vertical-align: middle;
+}
+th {
+    font-weight: 600;
+    color: var(--text-muted);
+    background: #fafafa;
+    font-size: 1.05rem;
+    padding: 1.15rem 1rem;
+}
+
+tr {
+    transition: var(--transition);
+}
+tr:hover {
+    background-color: #f8fafc;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #d4e3f5;
+    color: var(--text-main);
+}
+.badge-warning {
+    background: #fef3c7;
+    color: #d97706;
+}
+.badge-danger {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* Control del Modal */
+.hidden {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Animaciones */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.99); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   BUSCADOR Y ACCIONES DEL ENCABEZADO
+   ========================================================================== */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.search-box-container {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+.search-detail {
+    border: 1px solid #5078fd;
+    background: #e2edf7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    animation: scaleUp 0.3s ease;
+}
+
+.search-detail h3 {
+    font-size: 1rem;
+    color: #3a59be;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+.detail-grid p {
+    color: var(--text-main);
+}
+
+.detail-grid strong {
+    color: var(--text-muted);
+}
+
+.search-error-text {
+    color: var(--danger);
+    background: #fee2e2;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   MODAL VISOR CATÁLOGO PDF (EMPRESARIAL Y RESPONSIVO)
+   ========================================================================== */
+.modal-pdf-card {
+    max-width: 1575px;
+    width: 120%;
+    height: 88vh;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+.modal-pdf-card .modal-header {
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.pdf-header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.pdf-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pdf-viewer-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pdf-loading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--primary);
+    padding: 2rem;
+    text-align: center;
+}
+
+.pdf-preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #525659;
+}
+
+/* Vista adaptativa móvil dentro del modal PDF */
+.pdf-mobile-fallback {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.pdf-mobile-summary {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pdf-mobile-summary i.fa-file-pdf {
+    color: #f7bebe;
+}
+
+.pdf-mobile-summary p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.pdf-mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.pdf-mobile-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.pdf-mobile-item-head {
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.pdf-mobile-item-title {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.pdf-mobile-item-title small {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.pdf-mobile-item-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Estilos Nota Tabla */
+.table-note {
+    margin-top: 1rem;
+    padding: 0.65rem 0.9rem;
+    background-color: #f0f4f8;
+    border-left: 3px solid #466D65;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    animation: scaleUp 0.4s ease;
+    display: flex;
+    align-items: center;
+}
+
+.table-note strong {
+    color: var(--text-main);
+}
+
+
+/************** INICIO - TEMPLATE ASIDE ***************/
+
+.menu-container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- HEADER Y NAVBAR --- */
+.header-superior {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(95, 109, 107, 0.35);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-img-fiscalia {
+    display: inline-block;
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    position: absolute;
+    top: 0.5rem;
+    right: 2.5rem;
+}
+
+.header-img-sippsipped {
+    display: inline-block;
+    width: 340px;
+    max-width: 55vw;
+    height: auto;
+    max-height: 55px;
+    object-fit: contain;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    z-index: 101;
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    left: calc(-1 * var(--sidebar-width));
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding-top: 80px;
+    transition: left var(--transition-speed) ease;
+    z-index: 99;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+aside.active {
+    left: 0;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+aside ul li a:hover {
+    color: var(--text-light);
+    background-color: #4f5c5a;
+    border-left-color: var(--accent-color);
+}
+
+/* --- CAPA DE FONDO - OVERLAY --- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    z-index: 98;
+    display: none;
+}
+.overlay.active {
+    display: block;
+}
+
+/* ==========================================================================
+   BOTÓN MENÚ PRINCIPAL
+   ========================================================================== */
+.btn-menu-principal {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 95;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #5F6D6B;
+    border: 1px solid rgba(95, 109, 107, 0.25);
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    box-shadow: 0 4px 20px rgba(95, 109, 107, 0.12);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+.icon-regresar {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+    .btn-menu-principal:hover {
+        background-color: #5F6D6B;
+        color: #ffffff;
+        border-color: #5F6D6B;
+        box-shadow: 0 8px 24px rgba(95, 109, 107, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .btn-menu-principal:hover .icon-regresar {
+        transform: translateX(-4px);
+    }
+}
+
+.btn-menu-principal:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(95, 109, 107, 0.15);
+}
+
+/* ==========================================================================
+   ADAPTABILIDAD RESPONSIVA (TABLETS Y MÓVILES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 5.5rem 0.75rem 5rem;
+        align-items: flex-start;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+
+    .main-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .header-actions .btn-primary,
+    .header-actions .btn-info {
+        flex: 1 1 auto;
+    }
+
+    .header-actions .btn-pdf {
+        flex: 0 0 auto;
+    }
+
+    section {
+        padding: 1.25rem;
+    }
+
+    .form-grid,
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .modal-card {
+        width: 96%;
+        padding: 1.25rem;
+    }
+
+    .modal-pdf-card {
+        width: 96%;
+        height: 90vh;
+        max-height: 90vh;
+        padding: 1rem;
+    }
+
+    .modal-pdf-card .modal-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
+    }
+
+    .pdf-header-actions {
+        justify-content: space-between;
+    }
+
+    .header-img-fiscalia {
+        width: 48px;
+        height: 48px;
+        right: 1rem;
+        top: 0.65rem;
+    }
+
+    .header-img-sippsipped {
+        width: 220px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-actions {
+        flex-direction: row;
+    }
+
+    .header-actions .btn-lg {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-menu-principal {
+        bottom: 16px;
+        left: 16px;
+        padding: 0;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        gap: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .btn-texto {
+        display: none;
+    }
+
+    .icon-regresar {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/************** FIN - TEMPLATE ASIDE ***************/
+
+/************** BOTÓN PDF ***************/
+.btn-pdf {
+    background-color: #ffffff;
+    color: #807f7f;
+    border: 1px solid #949393;
+    padding: 0.70rem; /* Mismo alto que .btn-lg pero cuadrado */
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 2px 4px rgba(88, 88, 88, 0.08);
+}
+/************** BOTÓN PDF ***************/
