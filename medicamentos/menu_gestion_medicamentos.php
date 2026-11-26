@@ -92,8 +92,8 @@
                 <?php
 
                 $botones = [
-                    ['texto' => 'Solicitar', 'imagen' => '../image/gestion_medicamentos/solicitar.png', 'accion' => 'solicitar.php'],
-                    ['texto' => 'Registrar', 'imagen' => '../image/gestion_medicamentos/alta.png', 'accion' => './registrar/registrar.html'],
+                    ['texto' => 'Solicitar', 'imagen' => '../image/gestion_medicamentos/solicitar.png', 'accion' => './solicitar/solicitar.html'],
+                    ['texto' => 'Agregar', 'imagen' => '../image/gestion_medicamentos/alta.png', 'accion' => './registrar/registrar.html'],
                     ['texto' => 'Entrada', 'imagen' => '../image/gestion_medicamentos/entrada.png', 'accion' => 'entrada.php'],
                     ['texto' => 'Salida', 'imagen' => '../image/gestion_medicamentos/salida.png', 'accion' => 'salida.php'],
                     ['texto' => 'Consultar', 'imagen' => '../image/gestion_medicamentos/consultar.png', 'accion' => 'consultar.php'],
